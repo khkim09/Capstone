@@ -1,0 +1,18 @@
+# Unity YAML 파일들은 LF 사용
+*.unity text eol=lf
+*.meta text eol=lf
+
+# 바이너리 파일
+*.png binary
+*.jpg binary
+*.fbx binary
+*.dll binary
+*.exe binary
+*.zip binary
+*.mp4 binary
+*.wav binary
+*.mp3 binary
+
+# Git에서 자동 병합을 방지하고 Unity가 병합하도록 설정
+*.unity merge=unityyamlmerge
+*.meta merge=unityyamlmerge
