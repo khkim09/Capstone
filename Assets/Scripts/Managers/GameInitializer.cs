@@ -26,7 +26,7 @@ public class GameInitializer : MonoBehaviour
 
     private T InstantiateIfNotExists<T>(GameObject prefab) where T : MonoBehaviour
     {
-        var existing = FindObjectOfType<T>();
+        var existing = FindAnyObjectByType<T>();
         if (existing == null && prefab != null)
         {
             var obj = Instantiate(prefab);

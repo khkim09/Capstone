@@ -40,9 +40,9 @@ public class CrewManager : MonoBehaviour
         */
     }
 
-    public void AddCrewMember(string inputName, CrewRace inputRace)
+    public void AddCrewMember(string inputName, CrewRace inputRace, CrewMember newCrew)
     {
-        CrewMember newCrew = new CrewMember();
+        // CrewMember newCrew = new CrewMember();
 
         switch (inputRace)
         {
@@ -92,7 +92,7 @@ public class CrewManager : MonoBehaviour
         }
 
         // 기본 정보 초기화
-        newCrew.name = inputName;
+        newCrew.crewName = inputName;
         newCrew.health = newCrew.maxHealth; // 초기 현재 체력 = maxHealth
         newCrew.race = inputRace;
         newCrew.isAlive = true;
@@ -103,11 +103,12 @@ public class CrewManager : MonoBehaviour
         newCrew.combatSkill = 0.0f;
         newCrew.tradeSkill = 0.0f;
 
+/*
         // 기본 장비 설정 (수정 필요)
         newCrew.equipment.workAssistant = "Basic workAssistant";
         newCrew.equipment.weapon = "Basic weapon";
         newCrew.equipment.armor = "Basic armor";
-
+*/
         // 크루 추가
         crew.Add(newCrew);
         OnCrewChanged?.Invoke(crew.Count - 1, newCrew);
@@ -190,7 +191,7 @@ public class CrewManager : MonoBehaviour
             crew[index].health = 0;
             crew[index].status = CrewStatus.Normal; // 사망 시 상태효과 제거
 
-            Debug.Log($"Crew member {crew[index].name} has died!");
+            Debug.Log($"Crew member {crew[index].crewName} has died!");
             OnCrewChanged?.Invoke(index, crew[index]);
 
             // 모든 승무원이 사망했는지 확인

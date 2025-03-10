@@ -22,10 +22,10 @@ public class Equipment
 }
 
 [Serializable]
-public class CrewMember
+public class CrewMember : MonoBehaviour
 {
     // 기본 정보
-    public string name; // 이름
+    public string crewName; // 이름
     public float health; // 현재 체력
     public CrewStatus status; // 현재 상태 (부상 등)
     public bool isAlive = true; // 생존 여부
@@ -45,6 +45,4 @@ public class CrewMember
 
     // 장비
     public Equipment equipment; // 착용 장비
-    public string weapon; // 무기
-    public string armor; // 방어구
 }
