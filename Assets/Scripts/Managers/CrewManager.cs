@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
 public class CrewManager : MonoBehaviour
@@ -8,8 +9,9 @@ public class CrewManager : MonoBehaviour
     // 승무원 상태 변경 이벤트
     public delegate void CrewChangedHandler(int crewIndex, CrewMember crewMember);
 
-    [SerializeField] private List<CrewMember> crew = new();
+    [SerializeField] private List<CrewMember> crew = new List<CrewMember>();
     public static CrewManager Instance { get; private set; }
+    public event CrewChangedHandler OnCrewChanged;
 
     private void Awake()
     {
@@ -19,7 +21,8 @@ public class CrewManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             // 초기 승무원 설정
-            if (crew.Count == 0) InitializeDefaultCrew();
+            if (crew.Count == 0)
+                InitializeDefaultCrew();
         }
         else
         {
@@ -27,27 +30,85 @@ public class CrewManager : MonoBehaviour
         }
     }
 
-    public event CrewChangedHandler OnCrewChanged;
-
     private void InitializeDefaultCrew()
     {
+        /*
         // 기본 승무원 생성 예시
         AddCrewMember("Captain", new List<string> { "Leadership", "Piloting" });
         AddCrewMember("Engineer", new List<string> { "Repairs", "Technical" });
         AddCrewMember("Doctor", new List<string> { "Medical", "Science" });
+        */
     }
 
-    public void AddCrewMember(string name, List<string> skills)
+    public void AddCrewMember(string inputName, CrewRace inputRace)
     {
-        var newCrew = new CrewMember
-        {
-            name = name,
-            skills = skills,
-            health = 100f,
-            status = CrewStatus.Normal,
-            isAlive = true
-        };
+        CrewMember newCrew = new CrewMember();
 
+        switch (inputRace)
+        {
+            case CrewRace.Human:
+                newCrew.maxHealth = 100.0f;
+                newCrew.attack = 8.0f;
+                newCrew.defense = 8.0f;
+                newCrew.maxSkillValue = 100.0f;
+                newCrew.learningSpeed = 1.5f;
+                break;
+            case CrewRace.Amorphous:
+                newCrew.maxHealth = 100.0f;
+                newCrew.attack = 9.0f;
+                newCrew.defense = 6.0f;
+                newCrew.maxSkillValue = 120.0f;
+                newCrew.learningSpeed = 0.8f;
+                break;
+            case CrewRace.MechanicTank:
+                newCrew.maxHealth = 120.0f;
+                newCrew.attack = 5.0f;
+                newCrew.defense = 5.0f;
+                newCrew.maxSkillValue = 100.0f;
+                newCrew.learningSpeed = 0.0f;
+                break;
+            case CrewRace.MechanicSup:
+                newCrew.maxHealth = 70.0f;
+                newCrew.attack = 5.0f;
+                newCrew.defense = 5.0f;
+                newCrew.maxSkillValue = 100.0f;
+                newCrew.learningSpeed = 0.0f;
+                break;
+            case CrewRace.Beast:
+                newCrew.maxHealth = 120.0f;
+                newCrew.attack = 12.0f;
+                newCrew.defense = 12.0f;
+                newCrew.maxSkillValue = 100.0f;
+                newCrew.learningSpeed = 0.8f;
+                // 짐승형 제작 시 전투 능력 만 learningSpeed = 1.5f
+                break;
+            case CrewRace.Insect:
+                newCrew.maxHealth = 120.0f;
+                newCrew.attack = 10.0f;
+                newCrew.defense = 15.0f;
+                newCrew.maxSkillValue = 120.0f;
+                newCrew.learningSpeed = 1.0f;
+                break;
+        }
+
+        // 기본 정보 초기화
+        newCrew.name = inputName;
+        newCrew.health = newCrew.maxHealth; // 초기 현재 체력 = maxHealth
+        newCrew.race = inputRace;
+        newCrew.isAlive = true;
+        newCrew.status = CrewStatus.Normal;
+
+        // 숙련도 초기화
+        newCrew.facilitySkill = 0.0f;
+        newCrew.combatSkill = 0.0f;
+        newCrew.tradeSkill = 0.0f;
+
+        // 기본 장비 설정 (수정 필요)
+        newCrew.equipment.workAssistant = "Basic workAssistant";
+        newCrew.equipment.weapon = "Basic weapon";
+        newCrew.equipment.armor = "Basic armor";
+
+        // 크루 추가
         crew.Add(newCrew);
         OnCrewChanged?.Invoke(crew.Count - 1, newCrew);
     }
@@ -183,16 +244,5 @@ public class CrewManager : MonoBehaviour
 
                 OnCrewChanged?.Invoke(i, crew[i]);
             }
-    }
-
-    [Serializable]
-    public class CrewMember
-    {
-        public string name;
-        public float health = 100f;
-        public float maxHealth = 100f;
-        public CrewStatus status = CrewStatus.Normal;
-        public bool isAlive = true;
-        public List<string> skills = new();
     }
 }

@@ -83,7 +83,8 @@ public class UIManager : MonoBehaviour
     private void InitializeResourceUI()
     {
         // 기존 자원 UI 제거
-        foreach (Transform child in resourceContainer) Destroy(child.gameObject);
+        foreach (Transform child in resourceContainer)
+            Destroy(child.gameObject);
 
         resourceTexts.Clear();
 
@@ -105,15 +106,17 @@ public class UIManager : MonoBehaviour
     private void InitializeCrewUI()
     {
         // 기존 승무원 UI 제거
-        foreach (Transform child in crewContainer) Destroy(child.gameObject);
+        foreach (Transform child in crewContainer)
+            Destroy(child.gameObject);
 
         crewObjects.Clear();
 
         // 모든 승무원에 대한 UI 생성
-        for (var i = 0; i < CrewManager.Instance.GetAliveCrewCount(); i++)
+        for (int i = 0; i < CrewManager.Instance.GetAliveCrewCount(); i++)
         {
-            var crewMember = CrewManager.Instance.GetCrewMember(i);
-            if (crewMember != null) CreateCrewUI(i, crewMember);
+            CrewMember crewMember = CrewManager.Instance.GetCrewMember(i);
+            if (crewMember != null)
+                CreateCrewUI(i, crewMember);
         }
     }
 
@@ -121,12 +124,14 @@ public class UIManager : MonoBehaviour
     private void InitializeSystemUI()
     {
         // 기존 시스템 UI 제거
-        foreach (Transform child in systemContainer) Destroy(child.gameObject);
+        foreach (Transform child in systemContainer)
+            Destroy(child.gameObject);
 
         systemObjects.Clear();
 
         // 모든 선박 시스템에 대한 UI 생성
-        foreach (var system in ShipManager.Instance.GetAllSystems()) CreateSystemUI(system);
+        foreach (var system in ShipManager.Instance.GetAllSystems())
+            CreateSystemUI(system);
     }
 
     // 자원 UI 업데이트
@@ -136,7 +141,7 @@ public class UIManager : MonoBehaviour
     }
 
     // 승무원 UI 업데이트
-    private void UpdateCrewUI(int crewIndex, CrewManager.CrewMember crewMember)
+    private void UpdateCrewUI(int crewIndex, CrewMember crewMember)
     {
         if (crewObjects.TryGetValue(crewIndex, out var crewObj))
         {
@@ -167,7 +172,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void CreateCrewUI(int index, CrewManager.CrewMember crewMember)
+    private void CreateCrewUI(int index, CrewMember crewMember)
     {
         var crewObj = Instantiate(crewPrefab, crewContainer);
         var nameText = crewObj.transform.Find("NameText").GetComponent<TextMeshProUGUI>();
