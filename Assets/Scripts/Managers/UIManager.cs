@@ -112,9 +112,9 @@ public class UIManager : MonoBehaviour
         crewObjects.Clear();
 
         // 모든 승무원에 대한 UI 생성
-        for (int i = 0; i < CrewManager.Instance.GetAliveCrewCount(); i++)
+        for (var i = 0; i < CrewManager.Instance.GetAliveCrewCount(); i++)
         {
-            CrewMember crewMember = CrewManager.Instance.GetCrewMember(i);
+            var crewMember = CrewManager.Instance.GetCrewMember(i);
             if (crewMember != null)
                 CreateCrewUI(i, crewMember);
         }
@@ -187,7 +187,7 @@ public class UIManager : MonoBehaviour
     }
 
     // 선박 시스템 UI 업데이트
-    private void UpdateSystemUI(int systemIndex, ShipManager.ShipSystem system)
+    private void UpdateSystemUI(int systemIndex, ShipSystem system)
     {
         if (systemObjects.TryGetValue(system.name, out var systemObj))
         {
@@ -213,7 +213,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void CreateSystemUI(ShipManager.ShipSystem system)
+    private void CreateSystemUI(ShipSystem system)
     {
         var systemObj = Instantiate(systemPrefab, systemContainer);
         var nameText = systemObj.transform.Find("NameText").GetComponent<TextMeshProUGUI>();
