@@ -99,16 +99,25 @@ public class CrewManager : MonoBehaviour
         newCrew.status = CrewStatus.Normal;
 
         // 숙련도 초기화
+        // 시설 숙련도 (수정 필요)
         newCrew.facilitySkill = 0.0f;
-        newCrew.combatSkill = 0.0f;
+
+        // combat skill 값 초기화
+        newCrew.meleeSkill = 0.0f;
+        newCrew.rangeSkill = 0.0f;
+        newCrew.shieldSkill = 0.0f;
+
+        // etc skill 값 초기화
+        newCrew.healSkill = 0.0f;
         newCrew.tradeSkill = 0.0f;
 
-/*
-        // 기본 장비 설정 (수정 필요)
-        newCrew.equipment.workAssistant = "Basic workAssistant";
-        newCrew.equipment.weapon = "Basic weapon";
-        newCrew.equipment.armor = "Basic armor";
-*/
+        /*
+                // 기본 장비 설정 (수정 필요)
+                newCrew.equipment.workAssistant = "Basic workAssistant";
+                newCrew.equipment.weapon = "Basic weapon";
+                newCrew.equipment.armor = "Basic armor";
+        */
+
         // 크루 추가
         crew.Add(newCrew);
         OnCrewChanged?.Invoke(crew.Count - 1, newCrew);
@@ -142,14 +151,27 @@ public class CrewManager : MonoBehaviour
             // 효과 유형에 따른 처리
             switch (effect.effectType)
             {
+                case CrewEffectType.MeleeHit:
+                    targetCrew.meleeSkill += 0.2f;
+                    targetCrew.attack += targetCrew.attack * targetCrew.meleeSkill; // 수치 조정 필요
+                    break;
+
+                case CrewEffectType.RangeHit:
+                    targetCrew.attack = targetCrew.attack * 0.2f; // 수치 조정 필요
+                    break;
+
                 case CrewEffectType.Damage:
                     targetCrew.health = Mathf.Max(0, targetCrew.health + effect.healthChange);
-                    if (targetCrew.health <= 0) KillCrewMember(targetIndex);
+                    // targetCrew.shieldSkill = 
+                    if (targetCrew.health <= 0)
+                        KillCrewMember(targetIndex);
                     break;
 
                 case CrewEffectType.Heal:
-                    targetCrew.health = Mathf.Min(targetCrew.maxHealth,
-                        targetCrew.health + Mathf.Abs(effect.healthChange));
+                    targetCrew.health = Mathf.Min(targetCrew.maxHealth, targetCrew.health + Mathf.Abs(effect.healthChange));
+                    break;
+
+                case CrewEffectType.Trade:
                     break;
 
                 case CrewEffectType.StatusChange:
@@ -213,7 +235,9 @@ public class CrewManager : MonoBehaviour
 
     public CrewMember GetCrewMember(int index)
     {
-        if (index >= 0 && index < crew.Count) return crew[index];
+        if (index >= 0 && index < crew.Count)
+            return crew[index];
+
         return null;
     }
 
@@ -229,12 +253,14 @@ public class CrewManager : MonoBehaviour
                     case CrewStatus.Sick:
                         // 아픈 상태는 지속적인 체력 손실
                         crew[i].health -= 5f;
-                        if (crew[i].health <= 0) KillCrewMember(i);
+                        if (crew[i].health <= 0)
+                            KillCrewMember(i);
                         break;
 
                     case CrewStatus.Injured:
                         // 부상은 약간 회복될 수 있음
-                        if (Random.value < 0.3f) crew[i].status = CrewStatus.Normal;
+                        if (Random.value < 0.3f)
+                            crew[i].status = CrewStatus.Normal;
                         break;
 
                     case CrewStatus.Normal:

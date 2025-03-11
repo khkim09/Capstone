@@ -10,7 +10,7 @@ public class ShieldRoom : Room
 
     private float shieldRechargeTimer;
 
-    private void Update()
+    public override void Update()
     {
         base.Update();
 

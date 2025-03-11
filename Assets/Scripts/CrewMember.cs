@@ -1,24 +1,15 @@
 using System;
 using UnityEngine;
 
-// 종족
 public enum CrewRace
 {
-    Human, // 인간형
-    Amorphous, // 무정형 (신체 X)
-    MechanicTank, // 기계형 (돌격)
-    MechanicSup, // 기계형 (지원)
-    Beast, // 짐승형
-    Insect // 곤충형
-}
-
-// 장비 (보조 장비, 무기, 방어구)
-[Serializable]
-public class Equipment
-{
-    public string workAssistant; // 작업 보조 장비
-    public string weapon; // 무기 장비
-    public string armor; // 방어구 장비
+    None = 0,
+    Human = 1,
+    Amorphous = 2,
+    MechanicTank = 3,
+    MechanicSup = 4,
+    Beast = 5,
+    Insect = 6
 }
 
 [Serializable]
@@ -38,11 +29,22 @@ public class CrewMember : MonoBehaviour
     public float maxSkillValue; // 최대 숙련도
     public float learningSpeed; // 학습 속도
 
-    // 숙련도 디테일 (0 ~ maxSkillValue)
+    // 숙련도 디테일 (수정 필요)
     public float facilitySkill; // 시설 숙련도
-    public float combatSkill; // 전투 숙련도
-    public float tradeSkill; // 거래 숙련도
 
-    // 장비
-    public Equipment equipment; // 착용 장비
+    // combat skill
+    public float meleeSkill; // 근접
+    public float rangeSkill; // 원거리
+    public float shieldSkill; // 방어
+
+    // etc skill
+    public float healSkill; // 치유
+    public float tradeSkill; // 거래
+
+    /*
+        // 장비
+        public string workAssistant; // 작업 보조 장비
+        public string weapon; // 무기 장비
+        public string armor; // 방어구 장비
+    */
 }
