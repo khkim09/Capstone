@@ -30,7 +30,7 @@ public class UIHandler : MonoBehaviour
         CrewRace crewRace;
 
         // 올바른 입력 값 체크
-        if (!Enum.TryParse<CrewRace>(inputRace, true, out crewRace))
+        if (!Enum.TryParse<CrewRace>(inputRace, true, out crewRace) || !Enum.IsDefined(typeof(CrewRace), crewRace))
         {
             Debug.LogWarning("종족 입력 값 오류, Human으로 대체");
             crewRace = CrewRace.Human;
