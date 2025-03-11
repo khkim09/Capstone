@@ -36,7 +36,6 @@ public class GridPlacer : MonoBehaviour
             Collider2D hitCollider = Physics2D.OverlapPoint(gridPos);
             if (hitCollider != null)
             {
-                Debug.Log("뭐가 있음");
                 Destroy(hitCollider.gameObject);
             }
         }
