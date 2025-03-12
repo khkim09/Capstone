@@ -4,12 +4,34 @@ using System;
 
 public class UIHandler : MonoBehaviour
 {
+    [Header("UI")]
+    public GameObject createUIScreen;
+    public GameObject testUIScreen;
+    public GameObject CustomizeUI;
+
     // name, race field
-    [SerializeField] private GameObject createUIScreen;
-    [SerializeField] private GameObject testUIScreen;
     [SerializeField] private TMP_InputField nameInputField;
     [SerializeField] private TMP_InputField raceInputField;
     [SerializeField] private int i = 0;
+
+    // GridPlacer
+    public GridPlacer gridPlacer;
+
+    // customize button click
+    public void OnCustomizeButtonClicked()
+    {
+        createUIScreen.SetActive(false);
+        CustomizeUI.SetActive(true);
+    }
+
+    public void OnBackButtonClicked()
+    {
+        if (gridPlacer)
+            gridPlacer.ClearGrid();
+
+        CustomizeUI.SetActive(false);
+        createUIScreen.SetActive(true);
+    }
 
     // create button click
     public void OnCreateButtonClicked()
