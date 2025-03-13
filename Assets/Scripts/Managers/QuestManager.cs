@@ -51,6 +51,11 @@ public class QuestManager : MonoBehaviour
         Debug.Log($"New quest added: {quest.title}");
     }
 
+    public void TriggerQuestCompleted(Quest quest)
+    {
+        OnQuestCompleted?.Invoke(quest);
+    }
+
     public void UpdateQuestObjective(string questId, int objectiveIndex, int amount)
     {
         var quest = activeQuests.Find(q => q.id == questId);
@@ -75,6 +80,10 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 퀘스트 완료시 호출되는 함수
+    /// </summary>
+    /// <param name="quest"></param>
     private void CompleteQuest(Quest quest)
     {
         quest.status = QuestStatus.Completed;
