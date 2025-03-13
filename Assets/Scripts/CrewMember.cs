@@ -26,20 +26,6 @@ public class CrewMember : MonoBehaviour
     public float maxHealth; // 최대 체력
     public float attack; // 공격력
     public float defense; // 방어력
-    public float maxSkillValue; // 최대 숙련도
-    public float learningSpeed; // 학습 속도
-
-    // 숙련도 디테일 (수정 필요)
-    public float facilitySkill; // 시설 숙련도
-
-    // combat skill
-    public float meleeSkill; // 근접
-    public float rangeSkill; // 원거리
-    public float shieldSkill; // 방어
-
-    // etc skill
-    public float healSkill; // 치유
-    public float tradeSkill; // 거래
 
     /*
         // 장비
