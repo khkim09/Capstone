@@ -10,6 +10,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private GameObject resourceManagerPrefab;
     [SerializeField] private GameObject shipManagerPrefab;
     [SerializeField] private GameObject uiManagerPrefab;
+    [SerializeField] private GameObject mapSystemManagerPrefab;
 
     private void Awake()
     {
@@ -22,14 +23,15 @@ public class GameInitializer : MonoBehaviour
         InstantiateIfNotExists<QuestManager>(questManagerPrefab);
         InstantiateIfNotExists<InventoryManager>(inventoryManagerPrefab);
         InstantiateIfNotExists<UIManager>(uiManagerPrefab);
+        InstantiateIfNotExists<MapSystemManager>(mapSystemManagerPrefab);
     }
 
     private T InstantiateIfNotExists<T>(GameObject prefab) where T : MonoBehaviour
     {
-        var existing = FindAnyObjectByType<T>();
+        T existing = FindAnyObjectByType<T>();
         if (existing == null && prefab != null)
         {
-            var obj = Instantiate(prefab);
+            GameObject obj = Instantiate(prefab);
             obj.name = typeof(T).Name;
             return obj.GetComponent<T>();
         }

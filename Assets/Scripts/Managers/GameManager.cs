@@ -51,8 +51,6 @@ public class GameManager : MonoBehaviour
             EventManager.Instance != null &&
             CrewManager.Instance != null
         );
-
-        Debug.Log("All managers initialized successfully");
     }
 
     // 게임 상태 변경

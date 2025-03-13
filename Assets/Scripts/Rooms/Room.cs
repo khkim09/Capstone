@@ -52,8 +52,7 @@ public abstract class Room : MonoBehaviour
     protected float powerConsumption;
     protected SpriteRenderer roomRenderer; // 방 렌더러
 
-    [SerializeField]
-    protected SpriteRenderer spriteRenderer;
+    [SerializeField] protected SpriteRenderer spriteRenderer;
 
     public bool isPlaced { get; protected set; }
 
@@ -91,14 +90,14 @@ public abstract class Room : MonoBehaviour
     protected virtual void UpdatePowerLevel()
     {
         // 체력 기반으로 수용 가능한 최대 전력 계산
-        var healthRatio = currentHealth / maxHealth;
-        var availablePower = Mathf.FloorToInt(powerRequirements[maxPowerLevel] * healthRatio);
+        float healthRatio = currentHealth / maxHealth;
+        int availablePower = Mathf.FloorToInt(powerRequirements[maxPowerLevel] * healthRatio);
 
         // 가능한 최대 레벨 찾기
         currentPowerLevel = 0;
         isPowered = false;
 
-        for (var level = maxPowerLevel; level > 0; level--)
+        for (int level = maxPowerLevel; level > 0; level--)
             if (availablePower >= powerRequirements[level])
             {
                 currentPowerLevel = level;
@@ -174,7 +173,7 @@ public abstract class Room : MonoBehaviour
         if (roomRenderer == null) return;
 
         // 산소 레벨에 따른 방 색상 조정
-        var targetColor = normalColor;
+        Color targetColor = normalColor;
 
         switch (oxygenLevel)
         {
@@ -197,7 +196,7 @@ public abstract class Room : MonoBehaviour
     {
         // 현재 방에 있는 선원들에게 데미지 적용
         if (crewDamagePerOxygen[oxygenLevel] > 0)
-            foreach (var crew in crewInRoom)
+            foreach (CrewMember crew in crewInRoom)
             {
                 //crew.TakeDamage(crewDamagePerOxygen[(int)oxygenLevel] * Time.deltaTime);
             }
