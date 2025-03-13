@@ -11,11 +11,9 @@ public class CrewEffect
 
 public enum CrewEffectType
 {
-    MeleeHit, // 근접 공격
-    RangeHit, // 원거리 공격
-    Damage, // 피해 (방어)
+    Hit, // 공격 가함
+    Damage, // 공격 당함
     Heal, // 치유
-    Trade, // 거래
     StatusChange,
     Kill,
     AddCrew,
