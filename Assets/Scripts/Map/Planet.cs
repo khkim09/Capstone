@@ -3,6 +3,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+public enum SpeciesType
+{
+    Aquatic, // 어인
+    Avian, // 조류
+    Ancient, // 선인
+    Humanoid, // 인간형
+    Amorphous // 부정형
+}
+
 public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [Header("Planet Info")] public string planetName;
@@ -10,6 +19,8 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     public bool hasEvent;
     public bool hasQuest;
     public float fuelPrice;
+
+    [Header("Species Info")] public SpeciesType dominantSpecies;
 
     private float lastPositionUpdateTime = 0f;
     private float positionUpdateInterval = 0.2f; // 0.2초마다 위치 업데이트
@@ -74,7 +85,14 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     private void Start()
     {
         // If name is not set yet, generate a random name
-        if (string.IsNullOrEmpty(planetName)) GenerateRandomName();
+        if (string.IsNullOrEmpty(planetName))
+        {
+            // Randomly assign a species type if not set
+            if (!System.Enum.IsDefined(typeof(SpeciesType), dominantSpecies))
+                dominantSpecies = (SpeciesType)Random.Range(0, System.Enum.GetValues(typeof(SpeciesType)).Length);
+
+            GenerateRandomName();
+        }
 
         // Initialize random fuel price
         fuelPrice = Random.Range(25f, 75f);
@@ -109,11 +127,37 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     // Generate a random name based on our pattern
     private void GenerateRandomName()
     {
-        // This could later be replaced with loading from JSON/XML
-        string[] prefixes = { "Kepler", "Gliese", "HD", "Trappist", "Wolf", "Ross", "Proxima", "TOI", "WASP", "TYC" };
+        // Get prefix based on dominant species
+        string prefix = GetSpeciesPrefix(dominantSpecies);
+
+        // Generate random number (3-4 digits)
         int randomNumber = Random.Range(100, 10000);
 
-        planetName = $"{prefixes[Random.Range(0, prefixes.Length)]}-{randomNumber}";
+        // Generate random capital letter
+        char randomLetter = (char)Random.Range('A', 'Z' + 1);
+
+        // Combine to form planet name: PREFIX-NUMBER+LETTER
+        planetName = $"{prefix}-{randomNumber}{randomLetter}";
+    }
+
+    // Get prefix based on species type
+    private string GetSpeciesPrefix(SpeciesType species)
+    {
+        switch (species)
+        {
+            case SpeciesType.Aquatic: // 어인
+                return "SIS";
+            case SpeciesType.Avian: // 조류
+                return "CCK";
+            case SpeciesType.Ancient: // 선인
+                return "ICM";
+            case SpeciesType.Humanoid: // 인간형
+                return "RCE";
+            case SpeciesType.Amorphous: // 부정형
+                return "KTL";
+            default:
+                return "UNK"; // Unknown, fallback
+        }
     }
 
     // Calculate light years based on Unity distance

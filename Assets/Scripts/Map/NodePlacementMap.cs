@@ -30,9 +30,9 @@ public class NodePlacementMap : MonoBehaviour
     [SerializeField] private float dangerZoneRadius = 100f; // 위험지역 반경
     [SerializeField] private Color dangerZoneColor = new(1f, 0f, 0f, 0.3f); // 위험지역 색상
 
-    // Planet Names Data
-    [Header("Planet Names")] [SerializeField]
-    private TextAsset planetNamesJson; // JSON 파일 참조
+    // 불필요한 Planet Names Data 제거
+    // [Header("Planet Names")] [SerializeField]
+    // private TextAsset planetNamesJson; // JSON 파일 참조
 
     private readonly List<RectTransform> placedNodeObjects = new(); // 배치된 노드 목록
     private readonly List<GameObject> planets = new(); // 생성된 행성 리스트
@@ -52,8 +52,8 @@ public class NodePlacementMap : MonoBehaviour
     private GameObject startPlanet; // 출발 행성
     private GameObject validRangeIndicatorInstance; // 생성된 인스턴스
 
-    // Planet names data container
-    private PlanetNamesData planetNames;
+    // 불필요한 Planet names data container 제거
+    // private PlanetNamesData planetNames;
 
     private void Awake()
     {
@@ -61,8 +61,8 @@ public class NodePlacementMap : MonoBehaviour
         eventSystem = FindObjectOfType<EventSystem>();
         if (eventSystem == null) Debug.LogError("EventSystem not found in the scene!");
 
-        // Load planet names if available
-        LoadPlanetNamesData();
+        // 불필요한 행성 이름 데이터 로드 제거
+        // LoadPlanetNamesData();
 
         // 행성 생성 후 초기화
         GenerateRandomPlanets();
@@ -75,6 +75,8 @@ public class NodePlacementMap : MonoBehaviour
         EnsurePlanetsOnTop();
     }
 
+    // 불필요한 LoadPlanetNamesData 메서드 제거
+    /*
     private void LoadPlanetNamesData()
     {
         // Load planet names from JSON if available
@@ -96,6 +98,7 @@ public class NodePlacementMap : MonoBehaviour
             Debug.LogWarning("Planet names JSON not found, using default names");
         }
     }
+    */
 
     private void Update()
     {
@@ -303,6 +306,8 @@ public class NodePlacementMap : MonoBehaviour
         return false;
     }
 
+    // 불필요한 GenerateRandomPlanetName 메서드 제거 (Planet 클래스의 로직 사용)
+    /*
     // Generate random planet name using available prefixes
     private string GenerateRandomPlanetName()
     {
@@ -314,6 +319,7 @@ public class NodePlacementMap : MonoBehaviour
 
         return $"{prefix}-{number}";
     }
+    */
 
     private void EnsurePlanetsOnTop()
     {
@@ -345,15 +351,21 @@ public class NodePlacementMap : MonoBehaviour
             Planet planetComponent = planet.GetComponent<Planet>();
             if (planetComponent == null) planetComponent = planet.AddComponent<Planet>();
 
-            // Initialize planet data
-            planetComponent.planetName = GenerateRandomPlanetName();
+            // 행성 종족 타입 랜덤 지정
+            planetComponent.dominantSpecies =
+                (SpeciesType)Random.Range(0, System.Enum.GetValues(typeof(SpeciesType)).Length);
+
+            // 이름은 Planet 클래스 내에서 생성됨 (Start 메서드에서)
+            // planetComponent.planetName = GenerateRandomPlanetName();  // 이 부분 제거
+
             planetComponent.fuelPrice = Random.Range(25f, 75f);
             planetComponent.hasEvent = Random.value > 0.7f; // 30% chance to have an event
             planetComponent.hasQuest = Random.value > 0.8f; // 20% chance to have a quest
+
             // Assign tooltip prefab if not already set
             if (tooltipPrefab != null &&
-                planetComponent.GetType().GetField("tooltipPrefab").GetValue(planetComponent) == null)
-                planetComponent.GetType().GetField("tooltipPrefab").SetValue(planetComponent, tooltipPrefab);
+                planetComponent.tooltipPrefab == null)
+                planetComponent.tooltipPrefab = tooltipPrefab;
 
             planets.Add(planet);
         }
