@@ -37,7 +37,9 @@ public class ResourceManager : MonoBehaviour
             {
                 var data = new ResourceData
                 {
-                    type = type, amount = GetDefaultAmount(type), maxAmount = GetMaxAmount(type)
+                    type = type,
+                    amount = GetDefaultAmount(type),
+                    maxAmount = GetMaxAmount(type)
                 };
 
                 resources.Add(data);
@@ -121,18 +123,20 @@ public class ResourceManager : MonoBehaviour
         {
             case ResourceType.Food:
                 // 음식 고갈 시 모든 승무원에게 피해
-                CrewManager.Instance.ApplyEffectToAllCrew(new CrewEffect
+                DefaultCrewManagerScript.Instance.ApplyEffectToAllCrew(new CrewEffect
                 {
-                    effectType = CrewEffectType.Damage, healthChange = -5
+                    effectType = CrewEffectType.Damage,
+                    healthChange = -5
                 });
                 Debug.Log("No food left! Crew is starving.");
                 break;
 
             case ResourceType.Water:
                 // 물 고갈 시 모든 승무원에게 상태 효과
-                CrewManager.Instance.ApplyEffectToAllCrew(new CrewEffect
+                DefaultCrewManagerScript.Instance.ApplyEffectToAllCrew(new CrewEffect
                 {
-                    effectType = CrewEffectType.StatusChange, statusEffect = CrewStatus.Sick
+                    effectType = CrewEffectType.StatusChange,
+                    statusEffect = CrewStatus.Sick
                 });
                 Debug.Log("No water left! Crew is getting sick.");
                 break;
@@ -149,7 +153,7 @@ public class ResourceManager : MonoBehaviour
     public void ConsumeResourcesForNewDay()
     {
         // 기본 일일 소비량 설정
-        var crewCount = CrewManager.Instance.GetAliveCrewCount();
+        var crewCount = DefaultCrewManagerScript.Instance.GetAliveCrewCount();
 
         ChangeResource(ResourceType.Food, -crewCount);
         ChangeResource(ResourceType.Water, -crewCount);

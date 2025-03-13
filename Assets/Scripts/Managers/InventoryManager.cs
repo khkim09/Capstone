@@ -144,9 +144,9 @@ public class InventoryManager : MonoBehaviour
             // 특정 상태의 크루원 회복
             var sickCrewIndices = new List<int>();
 
-            for (var i = 0; i < CrewManager.Instance.GetAliveCrewCount(); i++)
+            for (var i = 0; i < DefaultCrewManagerScript.Instance.GetAliveCrewCount(); i++)
             {
-                var crewMember = CrewManager.Instance.GetCrewMember(i);
+                var crewMember = DefaultCrewManagerScript.Instance.GetCrewMember(i);
                 if (crewMember != null && crewMember.status == CrewStatus.Sick) sickCrewIndices.Add(i);
             }
 
@@ -154,16 +154,18 @@ public class InventoryManager : MonoBehaviour
             {
                 var targetIndex = sickCrewIndices[Random.Range(0, sickCrewIndices.Count)];
 
-                CrewManager.Instance.ApplyCrewEffect(new CrewEffect
+                DefaultCrewManagerScript.Instance.ApplyCrewEffect(new CrewEffect
                 {
                     effectType = CrewEffectType.StatusChange,
                     targetCrewIndex = targetIndex,
                     statusEffect = CrewStatus.Normal
                 });
 
-                CrewManager.Instance.ApplyCrewEffect(new CrewEffect
+                DefaultCrewManagerScript.Instance.ApplyCrewEffect(new CrewEffect
                 {
-                    effectType = CrewEffectType.Heal, targetCrewIndex = targetIndex, healthChange = 20f
+                    effectType = CrewEffectType.Heal,
+                    targetCrewIndex = targetIndex,
+                    healthChange = 20f
                 });
             }
         }

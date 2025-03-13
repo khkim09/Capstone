@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
         ResourceManager.Instance.OnResourceChanged += UpdateResourceUI;
 
         // 승무원 변경 이벤트 구독
-        CrewManager.Instance.OnCrewChanged += UpdateCrewUI;
+        DefaultCrewManagerScript.Instance.OnCrewChanged += UpdateCrewUI;
 
         // 선박 시스템 변경 이벤트 구독
         ShipManager.Instance.OnShipSystemChanged += UpdateSystemUI;
@@ -112,9 +112,9 @@ public class UIManager : MonoBehaviour
         crewObjects.Clear();
 
         // 모든 승무원에 대한 UI 생성
-        for (var i = 0; i < CrewManager.Instance.GetAliveCrewCount(); i++)
+        for (var i = 0; i < DefaultCrewManagerScript.Instance.GetAliveCrewCount(); i++)
         {
-            var crewMember = CrewManager.Instance.GetCrewMember(i);
+            var crewMember = DefaultCrewManagerScript.Instance.GetCrewMember(i);
             if (crewMember != null)
                 CreateCrewUI(i, crewMember);
         }

@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     // 이벤트 및 상태 변화와 관련된 델리게이트
     public delegate void GameStateChangedHandler(GameState newState);
 
-    [Header("Game State")] [SerializeField]
+    [Header("Game State")]
+    [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     [SerializeField] private int currentDay = 1;
@@ -99,7 +100,7 @@ public class GameManager : MonoBehaviour
     public void OnEventCompleted()
     {
         // 이벤트 후 게임 상태 체크
-        if (CrewManager.Instance.GetAliveCrewCount() <= 0) ChangeGameState(GameState.GameOver);
+        if (DefaultCrewManagerScript.Instance.GetAliveCrewCount() <= 0) ChangeGameState(GameState.GameOver);
     }
 
     private void HandleGameOver()

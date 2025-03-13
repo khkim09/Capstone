@@ -101,7 +101,7 @@ public class EventManager : MonoBehaviour
                 ResourceManager.Instance.ChangeResource(effect.resourceType, effect.amount);
 
             // 승무원 효과 적용
-            foreach (var effect in outcome.crewEffects) CrewManager.Instance.ApplyCrewEffect(effect);
+            foreach (var effect in outcome.crewEffects) DefaultCrewManagerScript.Instance.ApplyCrewEffect(effect);
 
             // 특수 효과 처리
             ProcessSpecialEffect(outcome);

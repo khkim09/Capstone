@@ -96,9 +96,10 @@ public class ShipManager : MonoBehaviour
             case "Life Support":
                 // 생명 유지 장치 손상 시 승무원 건강 영향
                 Debug.Log("Life Support system failure! Crew is in danger.");
-                CrewManager.Instance.ApplyEffectToAllCrew(new CrewEffect
+                DefaultCrewManagerScript.Instance.ApplyEffectToAllCrew(new CrewEffect
                 {
-                    effectType = CrewEffectType.Damage, healthChange = -10f
+                    effectType = CrewEffectType.Damage,
+                    healthChange = -10f
                 });
                 break;
 
