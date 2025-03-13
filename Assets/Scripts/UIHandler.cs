@@ -6,7 +6,7 @@ public class UIHandler : MonoBehaviour
 {
     [Header("UI")]
     public GameObject createUIScreen;
-    public GameObject testUIScreen;
+    public GameObject submitUIScreen;
     public GameObject CustomizeUI;
 
     // name, race field
@@ -40,7 +40,7 @@ public class UIHandler : MonoBehaviour
         raceInputField.text = "";
 
         createUIScreen.SetActive(false);
-        testUIScreen.SetActive(true);
+        submitUIScreen.SetActive(true);
     }
 
     // submit button click
@@ -60,6 +60,7 @@ public class UIHandler : MonoBehaviour
 
         // 2) Cube 생성
         GameObject newCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        newCube.AddComponent<Collider2D>();
 
         // 3) 생성된 Cube의 이름 설정
         Vector3 startPos = new Vector3(-8.0f, 0.0f, 0.0f);
@@ -74,7 +75,7 @@ public class UIHandler : MonoBehaviour
         Debug.Log($"New Cube created with name: {newCube.name}");
 
         // 초기화
-        testUIScreen.SetActive(false);
+        submitUIScreen.SetActive(false);
         createUIScreen.SetActive(true);
     }
 }

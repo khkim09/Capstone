@@ -12,6 +12,9 @@ public class RTSSelectionManager : MonoBehaviour
     private Vector2 dragStartPos;
     private bool isDragging = false;
 
+    // 단일 클릭 임계값
+    private float clickThreshold = 10f;
+
     // 선택된 선원 리스트
     public List<CrewMember> selectedCrew = new List<CrewMember>();
 
@@ -19,6 +22,9 @@ public class RTSSelectionManager : MonoBehaviour
     public float attackRange = 2.0f;
     // 임시 장비 공격력 변수
     public float tmpEquipmentAttack = 0.0f;
+
+    // 이동 시 Crew 간 공간
+    public float spacing = 0.7f;
 
     void Update()
     {
@@ -33,7 +39,16 @@ public class RTSSelectionManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isDragging = false;
-            SelectCrew();
+
+            float distance = Vector2.Distance(dragStartPos, Input.mousePosition);
+            if (distance < clickThreshold)
+            {
+                SelectSingleCrew();
+            }
+            else
+            {
+                SelectMultipleCrew();
+            }
         }
 
         // 오른쪽 마우스 버튼 클릭: 이동 명령 발동
@@ -87,8 +102,35 @@ public class RTSSelectionManager : MonoBehaviour
         GUI.color = Color.white;
     }
 
-    // 영역 내 또는 클릭한 지점의 선원 선택
-    void SelectCrew()
+    void DeselectAll()
+    {
+        selectedCrew.Clear();
+        CrewMember[] allCrew = GameObject.FindObjectsOfType<CrewMember>();
+        foreach (CrewMember crew in allCrew)
+            crew.GetComponent<Renderer>().material.color = Color.white;
+    }
+
+    // 단일 선원 선택
+    public void SelectSingleCrew()
+    {
+        DeselectAll();
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            CrewMember crew = hit.collider.GetComponent<CrewMember>();
+            if (crew)
+            {
+                selectedCrew.Add(crew);
+                crew.GetComponent<Renderer>().material.color = Color.green;
+            }
+        }
+    }
+
+    // 영역 내 선원 다중 선택
+    void SelectMultipleCrew()
     {
         // 선택 리스트 초기화
         selectedCrew.Clear();
@@ -129,9 +171,18 @@ public class RTSSelectionManager : MonoBehaviour
 
             Debug.Log("이동 목적지: " + destination);
 
-            foreach (CrewMember crew in selectedCrew)
+            int cnt = selectedCrew.Count;
+
+            for (int i = 0; i < cnt; i++)
             {
-                StartCoroutine(MoveCrewMember(crew, destination));
+                Vector3 finalDestination = destination;
+                if (cnt > 1)
+                {
+                    float angle = i * Mathf.PI * 2 / cnt;
+                    Vector3 offset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * spacing;
+                    finalDestination += offset;
+                }
+                StartCoroutine(MoveCrewMember(selectedCrew[i], finalDestination));
             }
         }
         else
