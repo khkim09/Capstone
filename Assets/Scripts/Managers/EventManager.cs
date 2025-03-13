@@ -47,26 +47,26 @@ public class EventManager : MonoBehaviour
     // 위치 이동 시 이벤트 발생
     public void TriggerLocationEvent()
     {
-        var randomEvent = GetRandomEvent(true);
+        RandomEvent randomEvent = GetRandomEvent(true);
         if (randomEvent != null) TriggerEvent(randomEvent);
     }
 
     // 시간 경과 시 이벤트 발생
     public void TriggerDailyEvent()
     {
-        var randomEvent = GetRandomEvent(false);
+        RandomEvent randomEvent = GetRandomEvent(false);
         if (randomEvent != null) TriggerEvent(randomEvent);
     }
 
     // 이벤트 목록에서 랜덤 이벤트 선택
     public RandomEvent GetRandomEvent(bool isLocation)
     {
-        var eventPool = isLocation ? locationEvents : timeEvents;
+        List<RandomEvent> eventPool = isLocation ? locationEvents : timeEvents;
 
         if (eventPool.Count == 0)
             return null;
 
-        var randomIndex = Random.Range(0, eventPool.Count);
+        int randomIndex = Random.Range(0, eventPool.Count);
         return eventPool[randomIndex];
     }
 
@@ -88,8 +88,8 @@ public class EventManager : MonoBehaviour
         if (choiceIndex < 0 || choiceIndex >= currentEvent.choices.Count)
             return;
 
-        var choice = currentEvent.choices[choiceIndex];
-        var outcome = choice.GetRandomOutcome();
+        EventChoice choice = currentEvent.choices[choiceIndex];
+        EventOutcome outcome = choice.GetRandomOutcome();
 
         if (outcome != null)
         {
@@ -97,11 +97,15 @@ public class EventManager : MonoBehaviour
             EventUIManager.Instance.ShowOutcome(outcome.outcomeText);
 
             // 자원 효과 적용
-            foreach (var effect in outcome.resourceEffects)
+            foreach (ResourceEffect effect in outcome.resourceEffects)
                 ResourceManager.Instance.ChangeResource(effect.resourceType, effect.amount);
 
             // 승무원 효과 적용
+<<<<<<< HEAD
             foreach (var effect in outcome.crewEffects) DefaultCrewManagerScript.Instance.ApplyCrewEffect(effect);
+=======
+            foreach (CrewEffect effect in outcome.crewEffects) CrewManager.Instance.ApplyCrewEffect(effect);
+>>>>>>> 147e3aaf8bcacfb75159312104bc6542e730d7e6
 
             // 특수 효과 처리
             ProcessSpecialEffect(outcome);
@@ -110,7 +114,7 @@ public class EventManager : MonoBehaviour
 
     private void ProcessSpecialEffect(EventOutcome outcome)
     {
-        var handler = effectHandlerFactory.GetHandler(outcome.specialEffectType);
+        ISpecialEffectHandler handler = effectHandlerFactory.GetHandler(outcome.specialEffectType);
         handler?.HandleEffect(outcome);
     }
 }
