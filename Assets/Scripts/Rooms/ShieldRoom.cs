@@ -6,7 +6,7 @@ public class ShieldRoom : Room
 
     private readonly int[] maxShieldsPerLevel = { 0, 1, 2 }; // 각 레벨별 최대 쉴드
 
-    private int currentShields;
+    public int currentShields;
 
     private float shieldRechargeTimer;
 
