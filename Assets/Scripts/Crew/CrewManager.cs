@@ -6,6 +6,9 @@ public class CrewManager : MonoBehaviour
     // instance
     public static CrewManager Instance { get; set; }
 
+    // CrewInfoWrapper
+    private CrewInfoWrapper crewInfoWrapper;
+
     // 승무원 리스트
     [SerializeField] private List<CrewMember> crewList = new List<CrewMember>();
     [SerializeField] private GameObject alertAddCrewUI;
@@ -16,13 +19,23 @@ public class CrewManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-
             if (crewList.Count == 0)
                 AlertNeedCrew();
         }
         else
         {
             Destroy(gameObject);
+        }
+
+        // CrewInfoLoader의 LoadedCrewInfo를 가져옵니다.
+        crewInfoWrapper = CrewInfoLoader.crewInfo;
+        if (crewInfoWrapper != null)
+        {
+            Debug.Log("CrewInfo data load 성공");
+        }
+        else
+        {
+            Debug.LogError("CrewInfo data load 실패");
         }
     }
 
@@ -46,12 +59,14 @@ public class CrewManager : MonoBehaviour
 
     public void AddCrewMember(string inputName, CrewRace inputRace, CrewMember newCrew)
     {
+
         switch (inputRace)
         {
             case CrewRace.Human:
                 newCrew.maxHealth = 100.0f;
                 newCrew.attack = 8.0f;
                 newCrew.defense = 8.0f;
+
                 break;
             case CrewRace.Amorphous:
                 newCrew.maxHealth = 100.0f;
