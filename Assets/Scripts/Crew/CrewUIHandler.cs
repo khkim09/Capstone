@@ -4,9 +4,9 @@ using System;
 using UnityEngine.UI;
 using NUnit.Framework.Constraints;
 
-public class UIHandler : MonoBehaviour
+public class CrewUIHandler : MonoBehaviour
 {
-    public static UIHandler Instance; // singleton 참조
+    public static CrewUIHandler Instance; // singleton 참조
 
     [Header("UI Panels")]
     public GameObject mainUIScreen; // 선원 생성하기 메인 화면

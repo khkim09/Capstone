@@ -116,7 +116,7 @@ public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointe
     public void OnPointerClick(PointerEventData eventData)
     {
         // UIHandler 통해 현재 종족 선택 로직 실행
-        UIHandler.Instance.OnRaceButtonClicked(this);
+        CrewUIHandler.Instance.OnRaceButtonClicked(this);
     }
 
     // 현재 버튼이 선택되었을 때(하이라이트)
