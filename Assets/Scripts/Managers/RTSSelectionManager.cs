@@ -20,11 +20,13 @@ public class RTSSelectionManager : MonoBehaviour
 
     // 이동 후 전투를 위한 공격 범위 (추후 조정)
     public float attackRange = 2.0f;
+
     // 임시 장비 공격력 변수
     public float tmpEquipmentAttack = 0.0f;
 
     // 이동 시 Crew 간 공간
     public float spacing = 0.7f;
+    public float speed = 10.0f;
 
     void Update()
     {
@@ -105,7 +107,7 @@ public class RTSSelectionManager : MonoBehaviour
     void DeselectAll()
     {
         selectedCrew.Clear();
-        CrewMember[] allCrew = GameObject.FindObjectsOfType<CrewMember>();
+        CrewMember[] allCrew = GameObject.FindObjectsByType<CrewMember>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         foreach (CrewMember crew in allCrew)
             crew.GetComponent<Renderer>().material.color = Color.white;
     }
@@ -137,7 +139,7 @@ public class RTSSelectionManager : MonoBehaviour
         Rect selectionRect = GetScreenRect(dragStartPos, Input.mousePosition);
 
         // 모든 CrewMember를 찾아서 선택 영역 안에 있는지 확인
-        CrewMember[] allCrew = GameObject.FindObjectsOfType<CrewMember>();
+        CrewMember[] allCrew = GameObject.FindObjectsByType<CrewMember>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         foreach (CrewMember crew in allCrew)
         {
             // 월드 좌표를 스크린 좌표로 변환 (y좌표 보정)
@@ -194,17 +196,19 @@ public class RTSSelectionManager : MonoBehaviour
     // Lerp를 사용한 이동 코루틴 (추후 디테일 조정 가능)
     IEnumerator MoveCrewMember(CrewMember crew, Vector3 destination)
     {
-        float t = 0;
         Vector3 startPos = crew.transform.position;
-        float moveDuration = 1.0f; // 이동 시간 (임시 값)
+        float distance = Vector3.Distance(startPos, destination);
+        float moveDuration = distance / speed;  // 거리에 따른 이동 시간 계산
+
+        float t = 0f;
         while (t < moveDuration)
         {
             t += Time.deltaTime;
-            crew.transform.position = Vector3.Lerp(startPos, destination, t / moveDuration);
+            float fraction = t / moveDuration;
+            crew.transform.position = Vector3.Lerp(startPos, destination, fraction);
             yield return null;
         }
         crew.transform.position = destination;
-        // 이동 완료 후 근처에 적(종족이 다른 선원)이 있는지 확인
         CheckForCombat(crew);
     }
 

@@ -4,15 +4,15 @@ using TMPro;
 
 public class PlanetTooltip : MonoBehaviour
 {
-    [Header("UI References")] [SerializeField]
-    private TextMeshProUGUI planetNameText;
-
+    [Header("UI References")]
+    [SerializeField] private TextMeshProUGUI planetNameText;
     [SerializeField] private TextMeshProUGUI distanceText;
     [SerializeField] private TextMeshProUGUI eventInfoText;
     [SerializeField] private TextMeshProUGUI questInfoText;
     [SerializeField] private TextMeshProUGUI fuelPriceText;
 
-    [Header("Optional Elements")] [SerializeField]
+    [Header("Optional Elements")]
+    [SerializeField]
     private GameObject eventInfoContainer;
 
     [SerializeField] private GameObject questInfoContainer;
