@@ -10,7 +10,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private GameObject resourceManagerPrefab;
     [SerializeField] private GameObject shipManagerPrefab;
     [SerializeField] private GameObject uiManagerPrefab;
-    [SerializeField] private GameObject mapSystemManagerPrefab;
+    [SerializeField] private GameObject gameStateManagerPrefab;
 
     private void Awake()
     {
@@ -23,7 +23,7 @@ public class GameInitializer : MonoBehaviour
         InstantiateIfNotExists<QuestManager>(questManagerPrefab);
         InstantiateIfNotExists<InventoryManager>(inventoryManagerPrefab);
         InstantiateIfNotExists<UIManager>(uiManagerPrefab);
-        InstantiateIfNotExists<MapSystemManager>(mapSystemManagerPrefab);
+        InstantiateIfNotExists<GameStateManager>(gameStateManagerPrefab);
     }
 
     private T InstantiateIfNotExists<T>(GameObject prefab) where T : MonoBehaviour

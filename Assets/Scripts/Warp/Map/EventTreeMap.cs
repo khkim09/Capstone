@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EventTreeMap : MonoBehaviour
 {
+    #region 필드 및 참조
+
     [Header("UI References")] [SerializeField]
     private RectTransform treeContainer;
 
@@ -24,26 +27,29 @@ public class EventTreeMap : MonoBehaviour
     [SerializeField] private Color pirateNodeColor = new(0.8f, 0.2f, 0.2f);
     [SerializeField] private Color spaceStationNodeColor = new(0.2f, 0.6f, 0.8f);
     [SerializeField] private Color randomEventNodeColor = new(0.8f, 0.6f, 0.8f);
-    // TODO: 지금은 색깔로 구분하지만, 나중엔 각 종류마다 프리맵으로 넣어야할 것
 
-    // 위험 지대 색상 설정
     [Header("Danger Node Colors")] [SerializeField]
     private Color dangerNodeColor = new(0.6f, 0.2f, 0.8f); // 보라색
+
+    // 노드 선택 이벤트 정의
+    public delegate void NodeSelectedHandler(EventNode node);
+
+    public event NodeSelectedHandler OnNodeSelected;
 
     private readonly List<EventNode> allNodes = new();
     private readonly List<GameObject> connectionLines = new();
     private List<List<EventNode>> layerNodes = new();
-
-    // 각 레이어의 위험 여부를 저장할 리스트
     private List<bool> layerDangerInfo = new();
 
-    public enum NodeType
+    #endregion
+
+    #region 초기화 및 트리 생성
+
+    // 클래스 초기화 메서드
+    public void Initialize()
     {
-        Start,
-        Pirate,
-        SpaceStation,
-        RandomEvent,
-        End
+        // 초기화 로직
+        ClearCurrentTree();
     }
 
     public void GenerateTreeFromPath(List<Vector2> pathNodes, List<bool> dangerInfo = null)
@@ -70,7 +76,6 @@ public class EventTreeMap : MonoBehaviour
             if (layerDangerInfo.Count > levelCount) layerDangerInfo = layerDangerInfo.GetRange(0, levelCount);
         }
 
-
         GenerateImprovedTree(levelCount);
     }
 
@@ -90,7 +95,6 @@ public class EventTreeMap : MonoBehaviour
         float halfWidth = width / 2;
         float halfHeight = height / 2;
 
-
         // 레이어별 노드 생성
         layerNodes = new List<List<EventNode>>();
 
@@ -107,7 +111,7 @@ public class EventTreeMap : MonoBehaviour
             else
             {
                 // 완전 랜덤한 노드 개수
-                nodeCount = Random.Range(minNodesPerLayer, maxNodesPerLayer + 1);
+                nodeCount = UnityEngine.Random.Range(minNodesPerLayer, maxNodesPerLayer + 1);
 
                 // 선택적: 첫 번째와 마지막 레이어 근처일수록 노드 수 감소
                 int distanceFromEdge = Mathf.Min(layer, layers - 1 - layer);
@@ -174,10 +178,24 @@ public class EventTreeMap : MonoBehaviour
         CreateConnectionLines();
     }
 
+    #endregion
+
+    #region 노드 타입 및 생성
+
+    // 노드 타입 정의 (필요시 외부로 이동 가능)
+    public enum NodeType
+    {
+        Start,
+        Pirate,
+        SpaceStation,
+        RandomEvent,
+        End
+    }
+
     // 노드 타입 결정 함수 수정 - 3가지 타입만 사용
     private NodeType DetermineNodeType(int layer, int totalLayers)
     {
-        float random = Random.value;
+        float random = UnityEngine.Random.value;
 
         // 보스 바로 전 레이어는 우주 정거장 확률 높임
         if (layer == totalLayers - 2)
@@ -265,7 +283,11 @@ public class EventTreeMap : MonoBehaviour
         nodeObj.name = $"Node_{type}_{(isDangerous ? "Danger" : "Safe")}";
     }
 
-    // 완전히 평면적(planar)인 연결만 생성하는 새로운 메서드
+    #endregion
+
+    #region 노드 연결 생성
+
+    // 완전히 평면적(planar)인 연결만 생성하는 메서드
     private void CreateStrictlyPlanarConnections()
     {
         // 모든 연결 초기화
@@ -288,12 +310,12 @@ public class EventTreeMap : MonoBehaviour
             if (layer == 0 && currentLayer.Count == 1)
             {
                 // 최소 1개, 최대 전체 노드 연결
-                int connectionsCount = Random.Range(1, nextLayer.Count + 1);
+                int connectionsCount = UnityEngine.Random.Range(1, nextLayer.Count + 1);
 
                 // 연결할 노드 무작위 선택
                 List<int> indices = Enumerable.Range(0, nextLayer.Count).ToList();
                 for (int i = 0; i < nextLayer.Count - connectionsCount; i++)
-                    indices.RemoveAt(Random.Range(0, indices.Count));
+                    indices.RemoveAt(UnityEngine.Random.Range(0, indices.Count));
 
                 // 정렬하여 아래에서 위로 연결
                 indices.Sort();
@@ -310,7 +332,7 @@ public class EventTreeMap : MonoBehaviour
             {
                 // 하나의 노드에서 여러 노드로: 모든 연결 가능
                 int maxConnections = Mathf.Min(nextLayer.Count, 3); // 최대 3개 연결 제한
-                int connectionsCount = Random.Range(1, maxConnections + 1);
+                int connectionsCount = UnityEngine.Random.Range(1, maxConnections + 1);
 
                 List<int> indices = new();
                 // 항상 가장 바깥쪽 노드들을 포함하여 자연스러운 느낌 부여
@@ -331,7 +353,7 @@ public class EventTreeMap : MonoBehaviour
                     List<int> middleIndices = Enumerable.Range(1, nextLayer.Count - 2).ToList();
                     while (indices.Count < connectionsCount && middleIndices.Count > 0)
                     {
-                        int randomIdx = Random.Range(0, middleIndices.Count);
+                        int randomIdx = UnityEngine.Random.Range(0, middleIndices.Count);
                         indices.Add(middleIndices[randomIdx]);
                         middleIndices.RemoveAt(randomIdx);
                     }
@@ -386,13 +408,13 @@ public class EventTreeMap : MonoBehaviour
                     int connectionCount = possibleConnections.Count;
                     if (connectionCount > 1)
                         // 0.5 확률로 모든 노드 연결, 나머지는 랜덤하게 1~전체
-                        if (Random.value > 0.5f)
-                            connectionCount = Random.Range(1, connectionCount + 1);
+                        if (UnityEngine.Random.value > 0.5f)
+                            connectionCount = UnityEngine.Random.Range(1, connectionCount + 1);
 
                     // 연결할 노드 선택
                     List<int> selectedIndices = new(possibleConnections);
                     while (selectedIndices.Count > connectionCount)
-                        selectedIndices.RemoveAt(Random.Range(0, selectedIndices.Count));
+                        selectedIndices.RemoveAt(UnityEngine.Random.Range(0, selectedIndices.Count));
 
                     // 구간의 양 끝을 우선적으로 유지 (자연스러운 경로 생성)
                     if (possibleConnections.Count > 1 && selectedIndices.Count >= 2)
@@ -403,7 +425,7 @@ public class EventTreeMap : MonoBehaviour
                             if (selectedIndices.Count > connectionCount)
                             {
                                 // 중간 노드 중 하나 제거
-                                int removeIndex = Random.Range(1, selectedIndices.Count - 1);
+                                int removeIndex = UnityEngine.Random.Range(1, selectedIndices.Count - 1);
                                 selectedIndices.RemoveAt(removeIndex);
                             }
                         }
@@ -414,7 +436,7 @@ public class EventTreeMap : MonoBehaviour
                             if (selectedIndices.Count > connectionCount)
                             {
                                 // 중간 노드 중 하나 제거
-                                int removeIndex = Random.Range(1, selectedIndices.Count - 1);
+                                int removeIndex = UnityEngine.Random.Range(1, selectedIndices.Count - 1);
                                 selectedIndices.RemoveAt(removeIndex);
                             }
                         }
@@ -518,6 +540,8 @@ public class EventTreeMap : MonoBehaviour
                 }
             }
     }
+
+    #endregion
 
     private void CreateConnectionLines()
     {
@@ -644,12 +668,6 @@ public class EventTreeMap : MonoBehaviour
         }
     }
 
-    private void OnNodeClicked(EventNode node)
-    {
-        Debug.Log($"Clicked on node: Layer {node.LevelIndex}, Index {node.NodeIndex}");
-        // 여기에 노드 클릭 시 동작 추가
-    }
-
     private void ClearCurrentTree()
     {
         // 기존 노드와 연결선 제거
@@ -666,6 +684,16 @@ public class EventTreeMap : MonoBehaviour
         layerNodes.Clear();
 
         // TreeContainer 내 모든 자식 오브젝트 제거 (혹시 모를 누수 방지)
-        for (int i = treeContainer.childCount - 1; i >= 0; i--) Destroy(treeContainer.GetChild(i).gameObject);
+        for (int i = treeContainer.childCount - 1; i >= 0; i--)
+            Destroy(treeContainer.GetChild(i).gameObject);
+    }
+
+    // 노드 클릭 시 호출되는 메서드 (이벤트 발생)
+    private void OnNodeClicked(EventNode node)
+    {
+        Debug.Log($"Clicked on node: Layer {node.LevelIndex}, Index {node.NodeIndex}");
+
+        // 노드 선택 이벤트 발생
+        OnNodeSelected?.Invoke(node);
     }
 }

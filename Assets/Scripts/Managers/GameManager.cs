@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour
     // 이벤트 및 상태 변화와 관련된 델리게이트
     public delegate void GameStateChangedHandler(GameState newState);
 
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     [SerializeField] private int currentDay = 1;
@@ -113,6 +112,7 @@ public enum GameState
 {
     MainMenu,
     Gameplay,
+    Warp,
     Event,
     Paused,
     GameOver
