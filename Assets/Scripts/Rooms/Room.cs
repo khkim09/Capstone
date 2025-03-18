@@ -18,6 +18,11 @@ public abstract class Room : MonoBehaviour
 
     [SerializeField] protected int[] powerRequirements = { 0, 2, 4 }; // 각 레벨별 필요 전력 (0레벨, 1레벨, 2레벨)
 
+    public RoomType roomType;
+    public int upgradeLevel = 1; // 현재 업그레이드 레벨
+    public int maxUpgradeLevel = 3; // 최대 업그레이드 레벨
+    public float[] upgradeCosts = new float[3] { 0, 500, 1000 }; // 각 레벨별 업그레이드 비용
+
     protected List<Room> adjacentRooms = new(); // 인접한 방들
 
     protected List<Door> connectedDoors = new(); // 연결된 문들
@@ -258,4 +263,19 @@ public abstract class Room : MonoBehaviour
     {
         return currentHealth / maxHealth * 100f;
     }
+}
+
+public enum RoomType
+{
+    Engine, // 엔진실
+    Power, // 전력실
+    Shield, // 배리어실
+    Oxygen, // 산소실
+    Cockpit, // 조종실
+    Weapon, // 조준석
+    Ammunition, // 탄약고
+    MedBay, // 의무실
+    Storage, // 창고
+    Corridor, // 복도
+    CrewQuarters // 선원 숙소
 }
