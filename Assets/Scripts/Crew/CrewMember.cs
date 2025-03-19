@@ -17,13 +17,15 @@ public enum CrewRace
 
 public enum SkillType
 {
-    Piloting, // 조종
-    Engineering, // 엔진
-    Weapons, // 무기
-    Shields, // 방어막
-    Repairs, // 수리
-    Medical, // 의료
-    Combat // 전투
+    None,
+    PilotSkill, // 조종
+    EngineSkill, // 엔진
+    PowerSkill, // 전력
+    ShieldSkill, // 배리어
+    WeaponSkill, // 조준
+    AmmunitionSkill, // 탄약
+    MedBaySkill, // 의무
+    RepairSkill, // 수리
 }
 
 
@@ -31,187 +33,68 @@ public enum SkillType
 public class CrewMember : MonoBehaviour
 {
     // 기본 정보
+    [Header("Basic Info")]
     public string crewName; // 이름
-    public float health; // 현재 체력
-    public CrewStatus status; // 현재 상태 (부상 등)
-    public bool isAlive = true; // 생존 여부
 
     // 디테일 정보
+    [Header("Details")]
     public CrewRace race; // 종족
     public float maxHealth; // 최대 체력
     public float attack; // 공격력
     public float defense; // 방어력
+    public float learningSpeed; // 학습 속도
+    public bool needsOxygen; // 산소 호흡 여부
+
+    // 숙련도
+    [Header("Skill Values")]
+    public float[] maxSkillValueArray = new float[8]; // 최대 숙련도 배열
+    public float maxPilotSkillValue, maxEngineSkillValue, maxPowerSkillValue, maxShieldSkillValue, maxWeaponSkillValue, maxAmmunitionSkillValue, maxMedBaySkillValue, maxRepairSkillValue;
+    public Dictionary<SkillType, float> skills = new Dictionary<SkillType, float>();
+
+    // 이하 - 다른 파트와의 연결 필요
     public float morale = 50f; // 사기 (0-100)
 
-    [Header("Skills")] public Dictionary<SkillType, float> skills = new();
-    public float learningSpeed = 1.0f; // 학습 속도
-
-    [Header("Location")] public Room currentRoom;
+    [Header("Location")]
+    public Room currentRoom;
     public Vector2 position;
     public Vector2 targetPosition;
     public float moveSpeed = 2.0f;
 
-    [Header("Combat")] public float attackPower = 10f;
-    public float defensePower = 10f;
-
-    [Header("Status")] public bool needsOxygen = true; // 산소 필요 여부
-    public bool isMoving = false;
+    [Header("Status")]
+    public float health; // 현재 체력
+    public CrewStatus status; // 현재 상태 (부상 등)
+    public bool isAlive; // 생존 여부
+    public bool isMoving;
 
     private float timeSinceLastSkillIncrease = 0f;
     private float skillIncreaseInterval = 10f; // 10초마다 스킬 증가 체크
+
+    [Header("Equipments")] // 장비
+    public float allCrewEquipment; // 선원 전체 적용 장비
+    public float ownEquipment; // 개인 적용 장비
 
     /*
     // 장비
     public string workAssistant; // 작업 보조 장비
     public string weapon; // 무기 장비
     public string armor; // 방어구 장비
-*/
-
-
-    private void Awake()
-    {
-        // 기본 스킬 초기화
-        InitializeSkills();
-    }
-
-    private void InitializeSkills()
-    {
-        // 종족별 기본 스킬 설정
-        switch (race)
-        {
-            case CrewRace.Human:
-                skills[SkillType.Piloting] = 80f;
-                skills[SkillType.Engineering] = 100f;
-                skills[SkillType.Weapons] = 80f;
-                skills[SkillType.Shields] = 80f;
-                skills[SkillType.Repairs] = 100f;
-                skills[SkillType.Medical] = 80f;
-                skills[SkillType.Combat] = 80f;
-                learningSpeed = 1.5f;
-                needsOxygen = true;
-                break;
-
-            case CrewRace.Amorphous:
-                skills[SkillType.Piloting] = 100f;
-                skills[SkillType.Engineering] = 80f;
-                skills[SkillType.Weapons] = 100f;
-                skills[SkillType.Shields] = 80f;
-                skills[SkillType.Repairs] = 80f;
-                skills[SkillType.Medical] = 100f;
-                skills[SkillType.Combat] = 60f;
-                learningSpeed = 0.8f;
-                needsOxygen = false;
-                break;
-            case CrewRace.MechanicTank:
-                skills[SkillType.Piloting] = 0f;
-                skills[SkillType.Engineering] = 0f;
-                skills[SkillType.Weapons] = 120f;
-                skills[SkillType.Shields] = 0f;
-                skills[SkillType.Repairs] = 0f;
-                skills[SkillType.Medical] = 0f;
-                skills[SkillType.Combat] = 120f;
-                learningSpeed = 0f; // 학습 불가
-                needsOxygen = false;
-                break;
-            case CrewRace.MechanicSup:
-                skills[SkillType.Piloting] = 100f;
-                skills[SkillType.Engineering] = 100f;
-                skills[SkillType.Weapons] = 0f;
-                skills[SkillType.Shields] = 0f;
-                skills[SkillType.Repairs] = 120f;
-                skills[SkillType.Medical] = 120f;
-                skills[SkillType.Combat] = 0f;
-                learningSpeed = 0f; // 학습 불가
-                needsOxygen = false;
-                break;
-            case CrewRace.Beast:
-                skills[SkillType.Piloting] = 50f;
-                skills[SkillType.Engineering] = 40f;
-                skills[SkillType.Weapons] = 60f;
-                skills[SkillType.Shields] = 50f;
-                skills[SkillType.Repairs] = 40f;
-                skills[SkillType.Medical] = 40f;
-                skills[SkillType.Combat] = 100f;
-                learningSpeed = 0.8f;
-                needsOxygen = true;
-                break;
-            case CrewRace.Insect:
-                skills[SkillType.Piloting] = 100f;
-                skills[SkillType.Engineering] = 50f;
-                skills[SkillType.Weapons] = 100f;
-                skills[SkillType.Shields] = 50f;
-                skills[SkillType.Repairs] = 50f;
-                skills[SkillType.Medical] = 80f;
-                skills[SkillType.Combat] = 80f;
-                learningSpeed = 1.0f;
-                needsOxygen = true;
-                break;
-            default:
-                // 기본 스킬 설정
-                foreach (SkillType skill in Enum.GetValues(typeof(SkillType))) skills[skill] = 50f;
-                break;
-        }
-
-        // 종족별 기본 능력치 설정
-        SetRaceAttributes();
-    }
-
-    private void SetRaceAttributes()
-    {
-        switch (race)
-        {
-            case CrewRace.Human:
-                maxHealth = 100f;
-                attackPower = 8f;
-                defensePower = 8f;
-                break;
-
-            case CrewRace.Amorphous:
-                maxHealth = 100f;
-                attackPower = 9f;
-                defensePower = 6f;
-                break;
-
-            case CrewRace.MechanicTank:
-                maxHealth = 120f;
-                attackPower = 14f;
-                defensePower = 10f;
-                break;
-            case CrewRace.MechanicSup:
-                maxHealth = 70f;
-                attackPower = 5f;
-                defensePower = 5f;
-                break;
-            case CrewRace.Beast:
-                maxHealth = 120f;
-                attackPower = 12f;
-                defensePower = 12f;
-                break;
-
-            case CrewRace.Insect:
-                maxHealth = 120f;
-                attackPower = 10f;
-                defensePower = 15f;
-                break;
-        }
-
-        health = maxHealth;
-    }
+    */
 
     private void Update()
     {
         // 이동 처리
-        if (isMoving) UpdateMovement();
+        if (isMoving)
+            UpdateMovement();
 
         // 스킬 증가 체크
         timeSinceLastSkillIncrease += Time.deltaTime;
         if (timeSinceLastSkillIncrease >= skillIncreaseInterval)
         {
             timeSinceLastSkillIncrease = 0f;
-            CheckSkillImprovement();
+            CheckSkillImprovement(); // 숙련도 증가
         }
 
-        // 산소 체크
+        // 산소 농도 체크 - 체력 감소
         CheckOxygenStatus();
     }
 
@@ -228,45 +111,63 @@ public class CrewMember : MonoBehaviour
             isMoving = false;
 
             // 새 방에 도착한 경우 처리
-            if (currentRoom != null) currentRoom.OnCrewEnter(this);
+            if (currentRoom != null)
+                currentRoom.OnCrewEnter(this);
         }
     }
 
     private void CheckSkillImprovement()
     {
         // 현재 수행 중인 작업에 따라 관련 스킬 증가
-        if (currentRoom == null) return;
+        if (currentRoom == null)
+            return;
 
-        SkillType skillToImprove = SkillType.Repairs; // 기본값
+        // 기본값 세팅
+        SkillType skillToImprove = SkillType.None; // 숙련도 타입
+        float skillIncreaseAmount = 0.0f; // 증가량
 
         // 방 타입에 따라 향상될 스킬 결정
         switch (currentRoom.roomType)
         {
             case RoomType.Cockpit:
-                skillToImprove = SkillType.Piloting;
+                skillToImprove = SkillType.PilotSkill;
+                skillIncreaseAmount = 0.1f;
                 break;
             case RoomType.Engine:
-                skillToImprove = SkillType.Engineering;
+                skillToImprove = SkillType.EngineSkill;
+                skillIncreaseAmount = 0.1f;
                 break;
-            case RoomType.Weapon:
-                skillToImprove = SkillType.Weapons;
+            case RoomType.Power:
+                skillToImprove = SkillType.PowerSkill;
+                skillIncreaseAmount = 0.1f;
                 break;
             case RoomType.Shield:
-                skillToImprove = SkillType.Shields;
+                skillToImprove = SkillType.ShieldSkill;
+                skillIncreaseAmount = 0.1f;
+                break;
+            case RoomType.Weapon:
+                skillToImprove = SkillType.WeaponSkill;
+                skillIncreaseAmount = 0.1f;
+                break;
+            case RoomType.Ammunition:
+                skillToImprove = SkillType.AmmunitionSkill;
+                skillIncreaseAmount = 0.1f;
                 break;
             case RoomType.MedBay:
-                skillToImprove = SkillType.Medical;
+                skillToImprove = SkillType.MedBaySkill;
+                skillIncreaseAmount = 0.1f;
                 break;
-            // 다른 방 타입들...
         }
 
         // 학습 속도에 따라 스킬 증가
-        if (learningSpeed > 0) ImproveSkill(skillToImprove, 0.1f * learningSpeed);
+        if (learningSpeed > 0)
+            ImproveSkill(skillToImprove, skillIncreaseAmount * learningSpeed);
     }
 
     private void CheckOxygenStatus()
     {
-        if (!needsOxygen) return; // 산소가 필요 없는 종족
+        if (!needsOxygen)
+            return;
 
         // 현재 방의 산소 레벨 확인
         if (currentRoom != null)
@@ -275,31 +176,56 @@ public class CrewMember : MonoBehaviour
 
             // 산소 부족 시 데미지
             if (roomOxygen == OxygenLevel.None)
-                TakeDamage(10f * Time.deltaTime); // 산소 없음: 초당 10 데미지
-            else if (roomOxygen == OxygenLevel.Critical) TakeDamage(5f * Time.deltaTime); // 위험 수준: 초당 5 데미지
+                GetDamage(10f * Time.deltaTime); // 산소 없음: 초당 10 데미지
+            else if (roomOxygen == OxygenLevel.Critical)
+                GetDamage(5f * Time.deltaTime); // 위험 수준: 초당 5 데미지
         }
     }
 
     // 스킬 향상
     public void ImproveSkill(SkillType skill, float amount)
     {
-        if (!skills.ContainsKey(skill)) skills[skill] = 0f;
+        if (!skills.ContainsKey(skill))
+            skills[skill] = 0f;
 
-        // 스킬 최대치 설정 (종족별로 다름)
-        float maxSkill = 120f;
-        if (race == CrewRace.Human)
-            maxSkill = 120f;
-        else if (race == CrewRace.Amorphous) maxSkill = 150f;
-
+        float maxSkillValue = 0.0f;
+        switch (skill)
+        {
+            case SkillType.PilotSkill:
+                maxSkillValue = maxPilotSkillValue;
+                break;
+            case SkillType.EngineSkill:
+                maxSkillValue = maxEngineSkillValue;
+                break;
+            case SkillType.PowerSkill:
+                maxSkillValue = maxPowerSkillValue;
+                break;
+            case SkillType.ShieldSkill:
+                maxSkillValue = maxShieldSkillValue;
+                break;
+            case SkillType.WeaponSkill:
+                maxSkillValue = maxWeaponSkillValue;
+                break;
+            case SkillType.AmmunitionSkill:
+                maxSkillValue = maxAmmunitionSkillValue;
+                break;
+            case SkillType.MedBaySkill:
+                maxSkillValue = maxMedBaySkillValue;
+                break;
+            case SkillType.RepairSkill:
+                maxSkillValue = maxRepairSkillValue;
+                break;
+        }
         // 스킬 향상
-        skills[skill] = Mathf.Min(skills[skill] + amount, maxSkill);
+        skills[skill] = Mathf.Min(skills[skill] + amount, maxSkillValue);
     }
 
     // 방 이동
     public void MoveToRoom(Room targetRoom, Vector2 roomPosition)
     {
         // 현재 방에서 나감
-        if (currentRoom != null) currentRoom.OnCrewExit(this);
+        if (currentRoom != null)
+            currentRoom.OnCrewExit(this);
 
         // 새 방으로 설정
         currentRoom = targetRoom;
@@ -309,12 +235,22 @@ public class CrewMember : MonoBehaviour
         isMoving = true;
     }
 
-    // 데미지 처리
-    public void TakeDamage(float damage)
+    // 공격
+    public void Attack(CrewMember target)
     {
-        // 방어력 적용
-        float reducedDamage = damage * (100f - defensePower) / 100f;
-        health -= reducedDamage;
+        // 공격 가하는 crew의 공격력 인자로 넘김
+        float measuredAttack = attack + allCrewEquipment + ownEquipment; // 기본 공격력 + 장비
+        measuredAttack = (float)Math.Round(measuredAttack, 2);
+        target.GetDamage(measuredAttack);
+    }
+
+    // 데미지 처리 - ocAttack : opponent Crew Attack (공격 가하는 crew의 공격력 + 장비)
+    public void GetDamage(float ocAttack)
+    {
+        // 방어력 적용 - 최종 피해량
+        float receivedDamage = ocAttack * (100.0f - (defense + allCrewEquipment + ownEquipment)) / 100.0f;
+        receivedDamage = (float)Math.Round(receivedDamage, 2); // 소수점 셋째자리에서 반올림
+        health -= receivedDamage;
 
         // 사망 체크
         if (health <= 0)
@@ -324,57 +260,37 @@ public class CrewMember : MonoBehaviour
         }
     }
 
-    // 체력 회복
-    public void Heal(float amount)
-    {
-        health = Mathf.Min(health + amount, maxHealth);
-    }
-
     // 선원 사망
     private void Die()
     {
-        // 사망 처리
-        gameObject.SetActive(false);
+        // 사망 처리 - 0.5초 후 사라짐
+        Destroy(gameObject, 0.5f);
 
         // 현재 방에서 제거
-        if (currentRoom != null) currentRoom.OnCrewExit(this);
+        if (currentRoom != null)
+            currentRoom.OnCrewExit(this);
 
         // 사망 이벤트 발생 등 추가 처리
-    }
-
-    // 사기 보너스 적용
-    public void AddMoraleBonus(float bonus)
-    {
-        morale += bonus;
-        morale = Mathf.Clamp(morale, 0f, 100f);
-    }
-
-    // 공격
-    public void Attack(CrewMember target)
-    {
-        // 공격력 + 전투 스킬 보너스로 데미지 계산
-        float combatSkillBonus = skills.ContainsKey(SkillType.Combat) ? skills[SkillType.Combat] / 100f : 0f;
-        float damage = attackPower * (1f + combatSkillBonus);
-
-        // 상대방에게 데미지
-        target.TakeDamage(damage);
-
-        // 전투 스킬 향상
-        ImproveSkill(SkillType.Combat, 0.2f);
     }
 
     // 수리 작업
     public void RepairFacility(Room room, float amount)
     {
         // 수리 스킬에 따른 수리량 계산
-        float repairSkillBonus = skills.ContainsKey(SkillType.Repairs) ? skills[SkillType.Repairs] / 100f : 0f;
-        float repairAmount = amount * (1f + repairSkillBonus);
+        // float repairSkillBonus = skills.ContainsKey(SkillType.RepairSkill) ? skills[SkillType.RepairSkill] / 100f : 0f;
+        float repairAmount = amount;
 
         // 수리 실행
         room.Repair(repairAmount);
 
         // 수리 스킬 향상
-        ImproveSkill(SkillType.Repairs, 0.2f);
+        ImproveSkill(SkillType.RepairSkill, 0.5f);
+    }
+
+    // 체력 회복
+    public void Heal(float amount)
+    {
+        health = Mathf.Min(health + amount, maxHealth);
     }
 
     // 치료 필요 여부
@@ -383,10 +299,25 @@ public class CrewMember : MonoBehaviour
         return health < maxHealth;
     }
 
+    /*
+        // 장비 적용
+        public void AddEquipment(EquipmentType eq, float eqValue)
+        {
+
+        }
+    */
+    // 사기 보너스 적용
+    public void AddMoraleBonus(float bonus)
+    {
+        morale += bonus;
+        morale = Mathf.Clamp(morale, 0f, 100f);
+    }
+
     // 스킬 레벨 가져오기
     public float GetSkillLevel(SkillType skill)
     {
-        if (skills.ContainsKey(skill)) return skills[skill];
+        if (skills.ContainsKey(skill))
+            return skills[skill];
         return 0f;
     }
 }

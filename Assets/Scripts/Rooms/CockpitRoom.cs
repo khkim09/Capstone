@@ -34,7 +34,7 @@
 
         // 선원 숙련도 반영
         float crewBonus = 0f;
-        foreach (CrewMember crew in crewInRoom) crewBonus += crew.GetSkillLevel(SkillType.Piloting) * 0.5f;
+        foreach (CrewMember crew in crewInRoom) crewBonus += crew.GetSkillLevel(SkillType.PilotSkill) * 0.5f;
 
         dodgeRate = baseRate + crewBonus;
 
@@ -63,7 +63,7 @@
 
         // 선원 숙련도 반영
         float crewBonus = 0f;
-        foreach (CrewMember crew in crewInRoom) crewBonus += crew.GetSkillLevel(SkillType.Piloting) * 0.2f;
+        foreach (CrewMember crew in crewInRoom) crewBonus += crew.GetSkillLevel(SkillType.PilotSkill) * 0.2f;
 
         fuelEfficiency = baseEfficiency + crewBonus;
 
