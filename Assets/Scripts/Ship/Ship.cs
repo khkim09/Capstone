@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Ship : MonoBehaviour
 {
-    [Header("Ship Info")]
-    [SerializeField] private string shipName = "Milky";
+    [Header("Ship Info")] [SerializeField] private string shipName = "Milky";
     [SerializeField] private float hull = 100f;
     [SerializeField] private float maxHull = 100f;
     [SerializeField] private float fuel = 500f;
@@ -19,25 +19,42 @@ public class Ship : MonoBehaviour
 
     private readonly Dictionary<Vector2Int, Room> roomGrid = new();
 
-    [Header("Room Prefabs")]
-    [SerializeField] private EngineRoom engineRoomPrefab;
-    [SerializeField] private PowerRoom powerRoomPrefab;
-    [SerializeField] private ShieldRoom shieldRoomPrefab;
-    [SerializeField] private OxygenRoom oxygenRoomPrefab;
-    [SerializeField] private CockpitRoom cockpitRoomPrefab;
-    [SerializeField] private WeaponControlRoom weaponControlRoomPrefab;
-    [SerializeField] private AmmunitionRoom ammunitionRoomPrefab;
-    [SerializeField] private StorageRoom storageRoomPrefab;
-    [SerializeField] private CrewQuartersRoom crewQuartersRoomPrefab;
-    [SerializeField] private LifeSupportRoom lifeSupportRoomPrefab;
+    [FormerlySerializedAs("engineRoomBasePrefab")] [Header("Room Prefabs")] [SerializeField]
+    private EngineRoom engineRoomPrefab;
+
+    [FormerlySerializedAs("powerRoomBasePrefab")] [SerializeField]
+    private PowerRoom powerRoomPrefab;
+
+    [FormerlySerializedAs("shieldRoomBasePrefab")] [SerializeField]
+    private ShieldRoom shieldRoomPrefab;
+
+    [FormerlySerializedAs("oxygenRoomBasePrefab")] [SerializeField]
+    private OxygenRoom oxygenRoomPrefab;
+
+    [FormerlySerializedAs("cockpitRoomBasePrefab")] [SerializeField]
+    private CockpitRoom cockpitRoomPrefab;
+
+    [FormerlySerializedAs("weaponControlRoomBasePrefab")] [SerializeField]
+    private WeaponControlRoom weaponControlRoomPrefab;
+
+    [FormerlySerializedAs("ammunitionRoomBasePrefab")] [SerializeField]
+    private AmmunitionRoom ammunitionRoomPrefab;
+
+    [FormerlySerializedAs("storageRoomBasePrefab")] [SerializeField]
+    private StorageRoom storageRoomPrefab;
+
+    [FormerlySerializedAs("crewQuartersRoomBasePrefab")] [SerializeField]
+    private CrewQuartersRoom crewQuartersRoomPrefab;
+
+    [FormerlySerializedAs("lifeSupportRoomBasePrefab")] [SerializeField]
+    private LifeSupportRoom lifeSupportRoomPrefab;
+
     [SerializeField] private Door doorPrefab;
 
-    [Header("Weapons")]
-    [SerializeField] private List<ShipWeapon> weapons = new();
+    [Header("Weapons")] [SerializeField] private List<ShipWeapon> weapons = new();
     [SerializeField] private int maxWeaponSlots = 4;
 
-    [Header("Crew")]
-    [SerializeField] private List<CrewMember> crew = new();
+    [Header("Crew")] [SerializeField] private List<CrewMember> crew = new();
     [SerializeField] private int maxCrew = 6; // 최대 선원 수
 
     private readonly List<Door> doors = new();
@@ -71,20 +88,18 @@ public class Ship : MonoBehaviour
 
     public bool AddRoom(Room room, Vector2Int position)
     {
-        if (!IsValidPosition(position, room.size))
+        if (!IsValidPosition(position, room.GetSize()))
             return false;
 
         room.position = position;
         rooms.Add(room);
 
         // 그리드에 방 등록
-        for (int x = 0; x < room.size.x; x++)
+        for (int x = 0; x < room.GetSize().x; x++)
+        for (int y = 0; y < room.GetSize().y; y++)
         {
-            for (int y = 0; y < room.size.y; y++)
-            {
-                Vector2Int gridPos = position + new Vector2Int(x, y);
-                roomGrid[gridPos] = room;
-            }
+            Vector2Int gridPos = position + new Vector2Int(x, y);
+            roomGrid[gridPos] = room;
         }
 
         room.OnPlaced();
@@ -173,13 +188,11 @@ public class Ship : MonoBehaviour
         if (!rooms.Contains(room))
             return false;
 
-        for (int x = 0; x < room.size.x; x++)
+        for (int x = 0; x < room.GetSize().x; x++)
+        for (int y = 0; y < room.GetSize().y; y++)
         {
-            for (int y = 0; y < room.size.y; y++)
-            {
-                Vector2Int gridPos = room.position + new Vector2Int(x, y);
-                roomGrid.Remove(gridPos);
-            }
+            Vector2Int gridPos = room.position + new Vector2Int(x, y);
+            roomGrid.Remove(gridPos);
         }
 
         rooms.Remove(room);
@@ -193,17 +206,14 @@ public class Ship : MonoBehaviour
         if (powerRoom == null || !powerRoom.IsOperational())
             return;
 
-        float availablePower = powerRoom.powerGeneration;
+        float availablePower = powerRoom.GetCurrentLevelData().powerRequirement;
 
         List<Room> criticalRooms = new()
         {
-            GetRoomOfType<OxygenRoom>(),
-            GetRoomOfType<EngineRoom>(),
-            GetRoomOfType<CockpitRoom>()
+            GetRoomOfType<OxygenRoom>(), GetRoomOfType<EngineRoom>(), GetRoomOfType<CockpitRoom>()
         };
 
         foreach (Room room in criticalRooms)
-        {
             if (room != null)
             {
                 float powerNeeded = room.GetPowerConsumption();
@@ -217,7 +227,6 @@ public class Ship : MonoBehaviour
                     room.PowerDown();
                 }
             }
-        }
 
         List<Room> otherRooms = rooms
             .Where(r => !criticalRooms.Contains(r) && r != powerRoom)
@@ -239,38 +248,6 @@ public class Ship : MonoBehaviour
         }
     }
 
-    private float CalculateFuelCost(float distance)
-    {
-        float baseCost = distance * 10f;
-        EngineRoom engineRoom = GetRoomOfType<EngineRoom>();
-        CockpitRoom cockpitRoom = GetRoomOfType<CockpitRoom>();
-
-        float efficiencyBonus = 0f;
-        if (engineRoom != null && engineRoom.IsOperational())
-            efficiencyBonus += engineRoom.fuelEfficiency;
-        if (cockpitRoom != null && cockpitRoom.IsOperational())
-            efficiencyBonus += cockpitRoom.fuelEfficiency;
-
-        efficiencyBonus = Mathf.Min(efficiencyBonus, 50f);
-        baseCost *= 1f - efficiencyBonus / 100f;
-
-        return baseCost;
-    }
-
-    public float GetDodgeChance()
-    {
-        float totalDodge = 0f;
-        EngineRoom engineRoom = GetRoomOfType<EngineRoom>();
-        if (engineRoom != null && engineRoom.IsOperational())
-            totalDodge += engineRoom.dodgeRate;
-
-        CockpitRoom cockpitRoom = GetRoomOfType<CockpitRoom>();
-        if (cockpitRoom != null && cockpitRoom.IsOperational())
-            totalDodge += cockpitRoom.dodgeRate;
-
-        return totalDodge;
-    }
-
     private void OnShipDestroyed()
     {
         Debug.Log("Ship destroyed!");
@@ -280,10 +257,8 @@ public class Ship : MonoBehaviour
     public T GetRoomOfType<T>() where T : Room
     {
         foreach (Room room in rooms)
-        {
             if (room is T typedRoom)
                 return typedRoom;
-        }
         return null;
     }
 
@@ -295,14 +270,13 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
+        for (int y = 0; y < size.y; y++)
         {
-            for (int y = 0; y < size.y; y++)
-            {
-                Vector2Int checkPos = pos + new Vector2Int(x, y);
-                if (roomGrid.ContainsKey(checkPos))
-                    return false;
-            }
+            Vector2Int checkPos = pos + new Vector2Int(x, y);
+            if (roomGrid.ContainsKey(checkPos))
+                return false;
         }
+
         return true;
     }
 
@@ -338,28 +312,9 @@ public class Ship : MonoBehaviour
         AddDoor(new Vector2Int(7, 3), true);
 
         // 기본 무기 추가 - 새 ShipWeapon 필드에 맞게 초기화
-        AddWeapon(new ShipWeapon
-        {
-            weaponName = "SLS-1 레이저건",
-            damage = 80,
-            fireRate = 1f,
-            range = 100f
-        });
+        AddWeapon(new ShipWeapon { weaponName = "SLS-1 레이저건", damage = 80, fireRate = 1f, range = 100f });
     }
 
-    public bool UpgradeRoom(Room room)
-    {
-        if (room.upgradeLevel >= room.maxUpgradeLevel)
-            return false;
-
-        float cost = room.upgradeCosts[room.upgradeLevel];
-        if (scrap < cost)
-            return false;
-
-        scrap -= (int)cost;
-        room.upgradeLevel++;
-        return true;
-    }
 
     public bool RefuelShip(float amount, int cost)
     {
@@ -411,13 +366,10 @@ public class Ship : MonoBehaviour
     private bool HasStorageSpaceFor(TradableItem item, int quantity)
     {
         foreach (Room room in rooms)
-        {
             if (room is StorageRoom storage)
-            {
                 if (IsStorageCompatibleWithItem(storage, item))
                     return true;
-            }
-        }
+
         return false;
     }
 
@@ -471,10 +423,8 @@ public class Ship : MonoBehaviour
     {
         int totalCapacity = 0;
         foreach (Room room in rooms)
-        {
             if (room is CrewQuartersRoom crewQuarters)
                 totalCapacity += crewQuarters.maxCrewCapacity;
-        }
         maxCrew = totalCapacity;
     }
 

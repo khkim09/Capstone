@@ -27,12 +27,6 @@ public class ShieldRoom : Room
         GetCrewCount();
     }
 
-    protected override void ApplyCurrentLevelEffects()
-    {
-        // 현재 레벨에 맞는 최대 쉴드 설정
-        if (currentShields > maxShieldsPerLevel[currentPowerLevel])
-            currentShields = maxShieldsPerLevel[currentPowerLevel];
-    }
 
     public void TakeShieldDamage(int damage)
     {

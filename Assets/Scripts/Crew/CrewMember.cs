@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public enum CrewRace
 {
@@ -46,7 +47,9 @@ public class CrewMember : MonoBehaviour
     [Header("Skills")] public Dictionary<SkillType, float> skills = new();
     public float learningSpeed = 1.0f; // 학습 속도
 
-    [Header("Location")] public Room currentRoom;
+    [FormerlySerializedAs("currentRoomBase")] [Header("Location")]
+    public Room currentRoom;
+
     public Vector2 position;
     public Vector2 targetPosition;
     public float moveSpeed = 2.0f;

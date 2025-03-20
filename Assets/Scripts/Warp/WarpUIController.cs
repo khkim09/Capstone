@@ -463,8 +463,6 @@ public class WarpUIController : MonoBehaviour, IUIController
     /// </summary>
     private void HandlePathCompleted(List<Vector2> completedPath, List<bool> dangers)
     {
-        Debug.Log("Path planning completed");
-
         // 경로 데이터 저장
         SetPathData(completedPath, dangers);
 
@@ -477,8 +475,6 @@ public class WarpUIController : MonoBehaviour, IUIController
     /// </summary>
     private void HandleEventNodeSelected(EventNode selectedNode)
     {
-        Debug.Log($"Event node selected: {selectedNode.name}");
-
         // 이벤트 발생
         OnEventNodeSelected?.Invoke(selectedNode);
     }

@@ -1,31 +1,39 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿// 비제네릭 기본 Room 클래스
 
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Serialization;
+
+/// <summary>
+/// 함선 내의 모든 방의 기본 클래스
+/// </summary>
 public abstract class Room : MonoBehaviour
 {
-    public Vector2Int size = Vector2Int.one;
+    [SerializeField] protected RoomData roomData; // 기본 타입으로 참조
 
-    public Vector2Int position;
+    [HideInInspector] public Vector2Int position;
 
-    [SerializeField] protected float maxHealth = 100f; // 최대 체력
-    [SerializeField] protected float currentHealth; // 현재 체력
+    [HideInInspector] public int currentLevel;
 
-    [SerializeField] protected OxygenLevel oxygenLevel = OxygenLevel.Normal; // 현재 산소 레벨
+    [HideInInspector] public int maxLevel;
 
-    [SerializeField] protected int minCrewRequired; // 작동에 필요한 최소 선원 수
+    [SerializeField] [HideInInspector] public int maxlevel;
 
-    [SerializeField] protected int maxPowerLevel = 2; // 방의 최대 레벨 (예: 2단계 방어막 방이면 2)
+    [SerializeField] [HideInInspector] protected float currentHitPoints; // 현재 체력
 
-    [SerializeField] protected int[] powerRequirements = { 0, 2, 4 }; // 각 레벨별 필요 전력 (0레벨, 1레벨, 2레벨)
+    [SerializeField] [HideInInspector] protected OxygenLevel oxygenLevel = OxygenLevel.Normal; // 현재 산소 레벨
 
     public RoomType roomType;
-    public int upgradeLevel = 1; // 현재 업그레이드 레벨
-    public int maxUpgradeLevel = 3; // 최대 업그레이드 레벨
-    public float[] upgradeCosts = new float[3] { 0, 500, 1000 }; // 각 레벨별 업그레이드 비용
 
-    protected List<Room> adjacentRooms = new(); // 인접한 방들
+    [HideInInspector] protected List<Room> adjacentRooms = new(); // 인접한 방들
 
-    protected List<Door> connectedDoors = new(); // 연결된 문들
+    [HideInInspector] protected List<Door> connectedDoors = new(); // 연결된 문들
+
+    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
+    [SerializeField] protected AudioSource roomSound;
+
+    public event Action<Room> OnRoomStateChanged;
 
     protected Dictionary<OxygenLevel, float> crewDamagePerOxygen = new()
     {
@@ -37,8 +45,8 @@ public abstract class Room : MonoBehaviour
     };
 
     protected List<CrewMember> crewInRoom;
+
     protected int currentPowerLevel; // 현재 실제로 작동 중인 레벨
-    protected float efficiency = 1.0f; // 방의 효율 (업그레이드, 상태에 따라 변동)
 
     protected Dictionary<OxygenLevel, float> fireExtinguishRatePerLevel = new()
     {
@@ -50,16 +58,30 @@ public abstract class Room : MonoBehaviour
     };
 
     protected bool isActive = true; // 활성화 상태
+
     protected bool isPowered; // 전력 공급 상태
+
     protected Color lowOxygenColor = new(1f, 0.8f, 0.8f); // 산소 부족시 색상
 
     protected Color normalColor = Color.white; // 기본 방 색상
-    protected float powerConsumption;
+
     protected SpriteRenderer roomRenderer; // 방 렌더러
 
-    [SerializeField] protected SpriteRenderer spriteRenderer;
-
     public bool isPlaced { get; protected set; }
+
+    // 시작 시 StatsManager에 등록
+    protected virtual void Start()
+    {
+        if (ShipManager.Instance == null) Debug.LogError("ShipManager is null");
+
+        if (ShipManager.Instance != null) ShipManager.Instance.RegisterRoom(this);
+    }
+
+    // 파괴 시 StatsManager 등록 해제
+    protected virtual void OnDestroy()
+    {
+        if (ShipManager.Instance != null) ShipManager.Instance.UnregisterRoom(this);
+    }
 
     public virtual void Update()
     {
@@ -87,38 +109,58 @@ public abstract class Room : MonoBehaviour
         crewInRoom.Remove(crew);
     }
 
-
     protected virtual void UpdateRoom()
     {
     } // 매 프레임/틱마다 방의 상태 업데이트
 
-    protected virtual void UpdatePowerLevel()
+
+    protected virtual void UpdateEffects()
     {
-        // 체력 기반으로 수용 가능한 최대 전력 계산
-        float healthRatio = currentHealth / maxHealth;
-        int availablePower = Mathf.FloorToInt(powerRequirements[maxPowerLevel] * healthRatio);
+        if (roomRenderer == null) return;
 
-        // 가능한 최대 레벨 찾기
-        currentPowerLevel = 0;
-        isPowered = false;
+        // 산소 레벨에 따른 방 색상 조정
+        Color targetColor = normalColor;
 
-        for (int level = maxPowerLevel; level > 0; level--)
-            if (availablePower >= powerRequirements[level])
-            {
-                currentPowerLevel = level;
-                isPowered = true;
+        switch (oxygenLevel)
+        {
+            case OxygenLevel.Low:
+                targetColor = Color.Lerp(normalColor, lowOxygenColor, 0.3f);
                 break;
+            case OxygenLevel.Critical:
+                targetColor = Color.Lerp(normalColor, lowOxygenColor, 0.6f);
+                break;
+            case OxygenLevel.None:
+                targetColor = Color.Lerp(normalColor, lowOxygenColor, 1f);
+                break;
+        }
+
+        roomRenderer.color = targetColor;
+
+        if (!IsOperational())
+        {
+            // 비작동 효과
+            if (roomParticles != null && roomParticles.isPlaying)
+                roomParticles.Stop();
+
+            if (roomSound != null && roomSound.isPlaying)
+                roomSound.Stop();
+        }
+        else
+        {
+            // 작동 효과
+            if (roomParticles != null && !roomParticles.isPlaying)
+                roomParticles.Play();
+
+            if (roomSound != null && !roomSound.isPlaying)
+                roomSound.Play();
+
+            // 파티클 효과 조정
+            if (roomParticles != null)
+            {
+                ParticleSystem.EmissionModule emission = roomParticles.emission;
+                emission.rateOverTime = 10f * currentLevel;
             }
-
-        // 현재 레벨에 맞는 성능 설정
-        ApplyCurrentLevelEffects();
-    }
-
-    // 각 방 타입별로 오버라이드하여 레벨별 효과 구현
-    protected virtual void ApplyCurrentLevelEffects()
-    {
-        // 기본 구현은 비어있음
-        // 각 방 타입별로 구현
+        }
     }
 
     protected virtual bool HasFire()
@@ -140,7 +182,7 @@ public abstract class Room : MonoBehaviour
 
     public virtual void Initialize()
     {
-        currentHealth = maxHealth;
+        currentHitPoints = roomData.GetRoomData(currentLevel).hitPoint;
         crewInRoom = new List<CrewMember>();
     }
 
@@ -152,7 +194,9 @@ public abstract class Room : MonoBehaviour
 
     public bool HasEnoughCrew()
     {
-        return crewInRoom.Count >= minCrewRequired;
+        // TODO : 테스트 용으로 일단 true, 나중엔 실제로 선원 세야함
+        return true;
+        return crewInRoom.Count >= roomData.GetRoomData(currentLevel).crewRequirement;
     }
 
     // 상태 체크 함수들
@@ -163,71 +207,36 @@ public abstract class Room : MonoBehaviour
 
     public bool NeedsRepair()
     {
-        return currentHealth < maxHealth;
+        return currentHitPoints < roomData.GetRoomData(currentLevel).hitPoint;
     }
 
     public virtual void SetOxygenLevel(OxygenLevel level)
     {
         oxygenLevel = level;
-        UpdateRoomVisuals();
-        UpdateRoomEffects();
-    }
+        UpdateEffects();
 
-    protected virtual void UpdateRoomVisuals()
-    {
-        if (roomRenderer == null) return;
-
-        // 산소 레벨에 따른 방 색상 조정
-        Color targetColor = normalColor;
-
-        switch (oxygenLevel)
-        {
-            case OxygenLevel.Low:
-                targetColor = Color.Lerp(normalColor, lowOxygenColor, 0.3f);
-                break;
-            case OxygenLevel.Critical:
-                targetColor = Color.Lerp(normalColor, lowOxygenColor, 0.6f);
-                break;
-            case OxygenLevel.None:
-                targetColor = Color.Lerp(normalColor, lowOxygenColor, 1f);
-                break;
-        }
-
-        roomRenderer.color = targetColor;
-    }
-
-
-    protected virtual void UpdateRoomEffects()
-    {
-        // 현재 방에 있는 선원들에게 데미지 적용
-        if (crewDamagePerOxygen[oxygenLevel] > 0)
-            foreach (CrewMember crew in crewInRoom)
-            {
-                //crew.TakeDamage(crewDamagePerOxygen[(int)oxygenLevel] * Time.deltaTime);
-            }
-
-        // 화재 진압 속도 조정
-        if (HasFire())
-            UpdateFireExtinguishRate(fireExtinguishRatePerLevel[oxygenLevel]);
+        // 스탯 기여도 변화 알림
+        NotifyStateChanged();
     }
 
 
     // 데미지 처리
     public virtual void TakeDamage(float damage)
     {
-        currentHealth = Mathf.Max(0, currentHealth - damage);
-        if (currentHealth <= 0) OnDisabled();
+        currentHitPoints = Mathf.Max(0, currentHitPoints - damage);
+        if (currentHitPoints <= 0) OnDisabled();
 
-        // 체력에 따른 효율/전력소비 조정
-        efficiency = currentHealth / maxHealth;
-        powerConsumption *= efficiency;
+        // 스탯 기여도 변화 알림
+        NotifyStateChanged();
     }
 
     // 수리 처리
     public virtual void Repair(float amount)
     {
-        currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
-        efficiency = currentHealth / maxHealth;
+        currentHitPoints = Mathf.Min(roomData.GetRoomData(currentLevel).hitPoint, currentHitPoints + amount);
+
+        // 스탯 기여도 변화 알림
+        NotifyStateChanged();
     }
 
     // 방 비활성화시 호출
@@ -235,47 +244,222 @@ public abstract class Room : MonoBehaviour
     {
         isActive = false;
         // 방별 비활성화 처리
+
+        // 스탯 기여도 변화 알림
+        NotifyStateChanged();
     }
 
     // 전력 관련
     public virtual void PowerUp()
     {
         isPowered = true;
+
+        // 스탯 기여도 변화 알림
+        NotifyStateChanged();
     }
 
     public virtual void PowerDown()
     {
         isPowered = false;
-    }
 
-    // getter 함수들
-    public float GetEfficiency()
-    {
-        return efficiency;
-    }
-
-    public float GetPowerConsumption()
-    {
-        return powerConsumption;
+        // 스탯 기여도 변화 알림
+        NotifyStateChanged();
     }
 
     public float GetHealthPercentage()
     {
-        return currentHealth / maxHealth * 100f;
+        return currentHitPoints / roomData.GetRoomData(currentLevel).hitPoint * 100f;
+    }
+
+    // ===== 스탯 시스템 관련 코드 =====
+
+    /// <summary>
+    /// 이 방이 함선 스탯에 기여하는 값을 반환
+    /// 각 파생 클래스에서 구현해야 함
+    /// </summary>
+    public virtual Dictionary<ShipStat, float> GetStatContributions()
+    {
+        // 기본 빈 구현 (모든 방이 기본적으로 기여하는 스탯이 없음)
+        Dictionary<ShipStat, float> contributions = new();
+
+        // 방 상태가 작동 불능이면 아무런 기여도 없음
+        if (!IsOperational())
+            return contributions;
+
+        // 방의 건강 상태에 따라 기여도에 효율 적용
+        // 파생 클래스는 이 베이스 메서드를 호출하고 반환된 Dictionary에 값을 추가/조정해야 함
+
+        return contributions;
+    }
+
+    /// <summary>
+    /// 다음 업그레이드 레벨에서의 스탯 기여도 미리보기 반환
+    /// </summary>
+    public virtual Dictionary<ShipStat, float> GetNextLevelStatContributions()
+    {
+        // 이미 최대 레벨이면 현재 기여도 반환
+        if (currentLevel >= maxLevel)
+            return GetStatContributions();
+
+        // 임시로 업그레이드 레벨 증가
+        int originalLevel = currentLevel;
+        currentLevel++;
+
+        // 새 레벨에서의 기여도 가져오기
+        Dictionary<ShipStat, float> nextLevelContributions = GetStatContributions();
+
+        // 업그레이드 레벨 복원
+        currentLevel = originalLevel;
+
+        return nextLevelContributions;
+    }
+
+    /// <summary>
+    /// 방 업그레이드 - 스탯 시스템 관련 코드 추가
+    /// </summary>
+    public virtual bool Upgrade()
+    {
+        // 이미 최대 레벨이면 실패
+        if (currentLevel >= maxLevel)
+            return false;
+
+        // 비용 처리 로직은 여기에 (필요시)
+
+        // 업그레이드 실행
+        currentLevel++;
+
+        UpdateRoom();
+
+        // 스탯 기여도 변화 알림
+        NotifyStateChanged();
+
+        return true;
+    }
+
+    /// <summary>
+    /// 상태 변경을 ShipStatsManager에 알림
+    /// </summary>
+    protected virtual void NotifyStateChanged()
+    {
+        OnRoomStateChanged?.Invoke(this);
+    }
+
+    /// <summary>
+    /// 현재 업그레이드 레벨 반환
+    /// </summary>
+    public int GetCurrentLevel()
+    {
+        return currentLevel;
+    }
+
+    /// <summary>
+    /// 최대 업그레이드 레벨 반환
+    /// </summary>
+    public int GetMaxLevel()
+    {
+        return maxLevel;
+    }
+
+    public float GetPowerConsumption()
+    {
+        return roomData.GetRoomData(currentLevel).powerRequirement;
+    }
+
+    public Vector2Int GetSize()
+    {
+        return roomData.GetRoomData(currentLevel).size;
+    }
+
+    public float GetMaxHitPoints()
+    {
+        return roomData.GetRoomData(currentLevel).hitPoint;
     }
 }
 
-public enum RoomType
+// 제네릭 버전의 Room 클래스
+/// <summary>
+/// 함선 내의 특화된 방 타입을 위한 제네릭 기본 클래스
+/// </summary>
+public abstract class Room<TData, TLevel> : Room
+    where TData : RoomData
+    where TLevel : RoomData.RoomLevel
 {
-    Engine, // 엔진실
-    Power, // 전력실
-    Shield, // 배리어실
-    Oxygen, // 산소실
-    Cockpit, // 조종실
-    Weapon, // 조준석
-    Ammunition, // 탄약고
-    MedBay, // 의무실
-    Storage, // 창고
-    Corridor, // 복도
-    CrewQuarters // 선원 숙소
+    // 명확한 타입으로 재정의 (property 사용)
+    public new TData roomData
+    {
+        get => (TData)base.roomData;
+        set => base.roomData = value;
+    }
+
+    // 현재 방 레벨 데이터 캐싱
+    protected TLevel currentRoomLevelData;
+
+    // 타입 캐스팅 없이 특화된 레벨 데이터 가져오기
+    public TLevel GetCurrentLevelData()
+    {
+        // 데이터가 없거나 레벨이 변경되었을 때 업데이트
+        if (currentRoomLevelData == null ||
+            (currentRoomLevelData != null && currentRoomLevelData.level != currentLevel))
+            UpdateRoomLevelData();
+
+        return currentRoomLevelData;
+    }
+
+    /// <summary>
+    /// 모든 방 타입에서 공통으로 사용할 수 있는 레벨 데이터 업데이트 메서드
+    /// </summary>
+    protected virtual void UpdateRoomLevelData()
+    {
+        if (roomData != null)
+        {
+            currentRoomLevelData = (roomData as RoomData<TLevel>).GetTypedRoomData(currentLevel);
+            if (currentRoomLevelData == null)
+                Debug.LogWarning($"No {GetType().Name} data found for level {currentLevel}");
+        }
+    }
+
+    // Start에서 초기 레벨 데이터 로드
+    protected override void Start()
+    {
+        // roomData가 null이면 초기화 건너뛰기
+        if (roomData == null)
+        {
+            Debug.LogError($"roomData is null in {GetType().Name}.Start()");
+        }
+        else
+        {
+            Initialize();
+            // ShipManager에 등록
+            if (ShipManager.Instance != null)
+                ShipManager.Instance.RegisterRoom(this);
+
+            // 레벨 데이터 초기화
+            UpdateRoomLevelData();
+        }
+    }
+
+    // 레벨 업그레이드 시 데이터 업데이트
+    public override bool Upgrade()
+    {
+        bool result = base.Upgrade();
+        if (result) UpdateRoomLevelData();
+        return result;
+    }
+
+    // 초기화 시 레벨 데이터 업데이트
+    public override void Initialize()
+    {
+        // roomData가 null인지 확인
+        if (roomData == null)
+        {
+            Debug.LogError($"roomData is null in {GetType().Name}.Initialize()");
+            crewInRoom = new List<CrewMember>();
+            return;
+        }
+
+        currentLevel = 1;
+
+        base.Initialize();
+        UpdateRoomLevelData();
+    }
 }

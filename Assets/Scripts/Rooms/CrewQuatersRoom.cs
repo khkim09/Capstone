@@ -14,7 +14,7 @@
     private void ApplyMoraleBonus()
     {
         // 레벨에 따른 사기 보너스
-        switch (upgradeLevel)
+        switch (currentLevel)
         {
             case 1: // 일반 생활관
                 moraleBonus = 0;

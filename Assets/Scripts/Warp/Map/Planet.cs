@@ -60,8 +60,6 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Planet clicked: " + planetName);
-
         // 클릭 시 툴팁 숨기기
         HideTooltip();
 

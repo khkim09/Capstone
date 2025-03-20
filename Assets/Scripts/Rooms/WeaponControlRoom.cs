@@ -31,8 +31,5 @@
         foreach (CrewMember crew in crewInRoom) crewBonus += crew.GetSkillLevel(SkillType.Weapons) * 0.5f;
 
         accuracyBonus = baseBonus + crewBonus;
-
-        // 방 효율(체력) 반영
-        accuracyBonus *= efficiency;
     }
 }

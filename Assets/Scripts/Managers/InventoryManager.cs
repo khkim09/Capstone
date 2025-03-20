@@ -41,7 +41,7 @@ public class InventoryManager : MonoBehaviour
     public bool AddItem(string itemId)
     {
         // 실제 구현에서는 아이템 데이터베이스에서 ID로 아이템 정보 조회
-        var newItem = new InventoryItem
+        InventoryItem newItem = new()
         {
             id = itemId,
             name = "Item " + itemId,
@@ -56,7 +56,7 @@ public class InventoryManager : MonoBehaviour
     public bool AddItem(InventoryItem item)
     {
         // 이미 같은 아이템이 있는지 확인
-        var existingItem = items.Find(i => i.id == item.id);
+        InventoryItem existingItem = items.Find(i => i.id == item.id);
 
         if (existingItem != null)
             // 중첩 가능한 아이템인 경우
@@ -82,7 +82,7 @@ public class InventoryManager : MonoBehaviour
 
     public bool RemoveItem(string itemId, int quantity = 1)
     {
-        var item = items.Find(i => i.id == itemId);
+        InventoryItem item = items.Find(i => i.id == itemId);
 
         if (item != null)
         {
@@ -107,7 +107,7 @@ public class InventoryManager : MonoBehaviour
 
     public bool UseItem(string itemId)
     {
-        var item = items.Find(i => i.id == itemId);
+        InventoryItem item = items.Find(i => i.id == itemId);
 
         if (item != null)
             // 아이템 유형에 따른 사용 효과
@@ -142,17 +142,17 @@ public class InventoryManager : MonoBehaviour
         if (item.id == "medkit")
         {
             // 특정 상태의 크루원 회복
-            var sickCrewIndices = new List<int>();
+            List<int> sickCrewIndices = new();
 
-            for (var i = 0; i < DefaultCrewManagerScript.Instance.GetAliveCrewCount(); i++)
+            for (int i = 0; i < DefaultCrewManagerScript.Instance.GetAliveCrewCount(); i++)
             {
-                var crewMember = DefaultCrewManagerScript.Instance.GetCrewMember(i);
+                CrewMember crewMember = DefaultCrewManagerScript.Instance.GetCrewMember(i);
                 if (crewMember != null && crewMember.status == CrewStatus.Sick) sickCrewIndices.Add(i);
             }
 
             if (sickCrewIndices.Count > 0)
             {
-                var targetIndex = sickCrewIndices[Random.Range(0, sickCrewIndices.Count)];
+                int targetIndex = sickCrewIndices[Random.Range(0, sickCrewIndices.Count)];
 
                 DefaultCrewManagerScript.Instance.ApplyCrewEffect(new CrewEffect
                 {
@@ -163,16 +163,14 @@ public class InventoryManager : MonoBehaviour
 
                 DefaultCrewManagerScript.Instance.ApplyCrewEffect(new CrewEffect
                 {
-                    effectType = CrewEffectType.Heal,
-                    targetCrewIndex = targetIndex,
-                    healthChange = 20f
+                    effectType = CrewEffectType.Heal, targetCrewIndex = targetIndex, healthChange = 20f
                 });
             }
         }
         else if (item.id == "repairkit")
         {
             // 선박 수리 효과
-            ResourceManager.Instance.ChangeResource(ResourceType.Scrap, 5);
+            ResourceManager.Instance.ChangeResource(ResourceType.COMA, 5);
         }
     }
 
@@ -189,7 +187,7 @@ public class InventoryManager : MonoBehaviour
             else
             {
                 // 같은 유형의 장착된 아이템 해제
-                foreach (var equippedItem in items)
+                foreach (InventoryItem equippedItem in items)
                     if (equippedItem.type == item.type && equippedItem.isEquipped)
                         equippedItem.isEquipped = false;
 

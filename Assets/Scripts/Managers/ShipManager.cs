@@ -4,13 +4,28 @@ using UnityEngine;
 
 public class ShipManager : MonoBehaviour
 {
-    // 선박 변경 이벤트
-    public delegate void ShipSystemChangedHandler(int systemIndex, ShipSystem system);
+    [Header("기본 스탯 설정")] [SerializeField] private float baseDodgeChance = 0f;
+    [SerializeField] private float baseHitPoints;
+    [SerializeField] private float baseEnergyEfficiency;
+    [SerializeField] private float baseFuelCapacity;
+    [SerializeField] private float baseFuelConsumptionRate;
+    [SerializeField] private float baseWarpSpeed;
+    [SerializeField] private float baseSensorRange;
+    [SerializeField] private float baseWeaponDamage;
+    [SerializeField] private float baseShieldCapacity;
+    [SerializeField] private float baseRepairSpeed;
 
-    [SerializeField] private string currentShipId = "default";
+    [Header("디버깅")] [SerializeField] private bool showDebugInfo = false;
 
-    [SerializeField] private List<ShipSystem> shipSystems = new();
-    [SerializeField] private List<string> unlockedShips = new();
+    private Dictionary<ShipStat, float> currentStats = new();
+
+    private Dictionary<string, Dictionary<ShipStat, float>> roomContributions = new();
+    public event Action OnStatsChanged;
+
+    private List<Room> allRooms = new();
+
+    private Dictionary<RoomType, List<Room>> roomsByType = new();
+
     public static ShipManager Instance { get; private set; }
 
     private void Awake()
@@ -19,197 +34,260 @@ public class ShipManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
-            // 기본 시스템 초기화
-            if (shipSystems.Count == 0) InitializeDefaultSystems();
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
+
+        InitializeBaseStats();
     }
 
-    public event ShipSystemChangedHandler OnShipSystemChanged;
-
-    private void InitializeDefaultSystems()
+    private void Start()
     {
-        // 기본 선박 시스템 추가
-        shipSystems.Add(new ShipSystem { name = "Engines", health = 100f });
-        shipSystems.Add(new ShipSystem { name = "Shields", health = 100f });
-        shipSystems.Add(new ShipSystem { name = "Weapons", health = 100f });
-        shipSystems.Add(new ShipSystem { name = "Life Support", health = 100f });
-        shipSystems.Add(new ShipSystem { name = "Sensors", health = 100f });
+        // 초기 스탯 계산
+        RecalculateAllStats();
     }
 
-    public void DamageSystem(string systemName, float amount)
+    private void OnDestroy()
     {
-        var index = shipSystems.FindIndex(s => s.name == systemName);
-        if (index >= 0)
+        // 이벤트 구독 해제
+        foreach (Room room in allRooms)
+            if (room != null)
+                room.OnRoomStateChanged -= OnRoomStateChanged;
+    }
+
+    /// <summary>
+    /// 모든 기본 스탯을 초기화합니다.
+    /// </summary>
+    private void InitializeBaseStats()
+    {
+        currentStats.Clear();
+
+        // 기본 스탯 설정
+        currentStats[ShipStat.DodgeChance] = baseDodgeChance;
+        currentStats[ShipStat.HitPoints] = baseHitPoints;
+        currentStats[ShipStat.FuelEfficiency] = baseEnergyEfficiency;
+        currentStats[ShipStat.FuelConsumption] = baseFuelConsumptionRate;
+        currentStats[ShipStat.WarpSpeed] = baseWarpSpeed;
+        currentStats[ShipStat.SensorRange] = baseSensorRange;
+        currentStats[ShipStat.WeaponDamage] = baseWeaponDamage;
+        currentStats[ShipStat.ShieldCapacity] = baseShieldCapacity;
+        currentStats[ShipStat.RepairSpeed] = baseRepairSpeed;
+    }
+
+    /// <summary>
+    /// 방의 상태가 변경되었을 때 호출되는 콜백 메서드
+    /// </summary>
+    private void OnRoomStateChanged(Room room)
+    {
+        if (showDebugInfo)
+            Debug.Log($"Room state changed: {room.name}");
+
+        RecalculateAllStats();
+    }
+
+    /// <summary>
+    /// 모든 스탯을 재계산합니다.
+    /// </summary>
+    public void RecalculateAllStats()
+    {
+        // 기본값으로 초기화
+        InitializeBaseStats();
+
+        // 디버깅용 기여도 초기화
+        roomContributions.Clear();
+
+        // 각 방의 기여도 추가
+        foreach (Room room in allRooms)
         {
-            var system = shipSystems[index];
-            system.health = Mathf.Max(0, system.health - amount);
+            if (room == null) continue;
 
-            // 시스템이 완전히 손상되면 비활성화
-            if (system.health <= 0)
-            {
-                system.isActive = false;
-                system.efficiency = 0f;
+            Dictionary<ShipStat, float> contributions = room.GetStatContributions();
 
-                // 치명적인 시스템 손상에 따른 효과
-                HandleSystemFailure(systemName);
-            }
-            else
-            {
-                // 손상 정도에 따른 효율성 계산
-                system.efficiency = system.health / system.maxHealth;
-            }
+            // 디버깅용 기여도 저장
+            roomContributions[room.name] = new Dictionary<ShipStat, float>(contributions);
 
-            OnShipSystemChanged?.Invoke(index, system);
-        }
-    }
-
-    public void RepairSystem(string systemName, float amount)
-    {
-        var index = shipSystems.FindIndex(s => s.name == systemName);
-        if (index >= 0)
-        {
-            var system = shipSystems[index];
-
-            var prevHealth = system.health;
-            system.health = Mathf.Min(system.maxHealth, system.health + amount);
-
-            // 시스템이 복구되면 재활성화
-            if (prevHealth <= 0 && system.health > 0) system.isActive = true;
-
-            // 효율성 업데이트
-            system.efficiency = system.health / system.maxHealth;
-
-            OnShipSystemChanged?.Invoke(index, system);
-        }
-    }
-
-    private void HandleSystemFailure(string systemName)
-    {
-        // 특정 시스템 손상에 따른 특별 효과
-        switch (systemName)
-        {
-            case "Life Support":
-                // 생명 유지 장치 손상 시 승무원 건강 영향
-                Debug.Log("Life Support system failure! Crew is in danger.");
-                DefaultCrewManagerScript.Instance.ApplyEffectToAllCrew(new CrewEffect
+            // 스탯에 기여도 적용
+            foreach (KeyValuePair<ShipStat, float> contribution in contributions)
+                if (currentStats.ContainsKey(contribution.Key))
                 {
-                    effectType = CrewEffectType.Damage,
-                    healthChange = -10f
-                });
-                break;
-
-            case "Engines":
-                // 엔진 손상 시 이동 불가
-                Debug.Log("Engine failure! Ship cannot move until repaired.");
-                break;
-
-            case "Shields":
-                // 방어막 손상 시 손상 증가
-                Debug.Log("Shield failure! Ship is vulnerable to damage.");
-                break;
-
-            case "Sensors":
-                // 센서 손상 시 이벤트 선택지 제한
-                Debug.Log("Sensor failure! Limited information available.");
-                break;
+                    // 스탯 타입에 따라 다르게 적용 (가산 또는 곱셈)
+                    if (IsAdditiveStatType(contribution.Key))
+                        // 가산 스탯 (예: 회피율, 에너지 효율 등)
+                        currentStats[contribution.Key] += contribution.Value;
+                    else if (IsMultiplicativeStatType(contribution.Key))
+                        // 곱셈 스탯 (예: 내구도 보너스 %)
+                        currentStats[contribution.Key] *= 1 + contribution.Value / 100f;
+                }
         }
+
+        // 특별한 스탯 처리 (필요시)
+        ProcessSpecialStats();
+
+        // 디버깅 정보 출력
+        if (showDebugInfo)
+            PrintDebugStatInfo();
+
+        // 스탯 변경 이벤트 발생
+        OnStatsChanged?.Invoke();
     }
 
-    public void UpgradeSystem(string systemName)
+    /// <summary>
+    /// 가산적으로 적용되는 스탯인지 확인
+    /// </summary>
+    private bool IsAdditiveStatType(ShipStat statType)
     {
-        var index = shipSystems.FindIndex(s => s.name == systemName);
-        if (index >= 0)
+        switch (statType)
         {
-            var system = shipSystems[index];
-
-            // 업그레이드에 필요한 자원 확인
-            var scrapCost = system.level * 10;
-
-            if (ResourceManager.Instance.GetResource(ResourceType.Scrap) >= scrapCost)
-            {
-                // 자원 소비
-                ResourceManager.Instance.ChangeResource(ResourceType.Scrap, -scrapCost);
-
-                // 시스템 업그레이드
-                system.level++;
-                system.maxHealth += 20f;
-                system.health = system.maxHealth; // 업그레이드 시 완전 수리
-                system.efficiency = 1.0f;
-
-                OnShipSystemChanged?.Invoke(index, system);
-
-                Debug.Log($"{systemName} upgraded to level {system.level}!");
-            }
-            else
-            {
-                Debug.Log($"Not enough scrap for upgrade! Need {scrapCost}.");
-            }
+            case ShipStat.DodgeChance:
+            case ShipStat.FuelEfficiency:
+            case ShipStat.SensorRange:
+            case ShipStat.FuelConsumption:
+                return true;
+            default:
+                return false;
         }
     }
 
-    public void UnlockShip(string shipId)
+    /// <summary>
+    /// 곱셈적으로 적용되는 스탯인지 확인 (보통 %로 표현됨)
+    /// </summary>
+    private bool IsMultiplicativeStatType(ShipStat statType)
     {
-        if (!unlockedShips.Contains(shipId))
+        switch (statType)
         {
-            unlockedShips.Add(shipId);
-            Debug.Log($"New ship unlocked: {shipId}");
+            case ShipStat.HitPoints:
+            case ShipStat.ShieldCapacity:
+            case ShipStat.WeaponDamage:
+            case ShipStat.RepairSpeed:
+                return true;
+            default:
+                return false;
         }
     }
 
-    public void SwitchShip(string shipId)
+    /// <summary>
+    /// 상호작용이나 특별한 계산이 필요한 스탯 처리
+    /// </summary>
+    private void ProcessSpecialStats()
     {
-        if (unlockedShips.Contains(shipId))
+        // 예: 연료 소모율은 에너지 효율에 반비례
+        float energyEfficiency = currentStats[ShipStat.FuelEfficiency];
+        if (energyEfficiency > 0)
         {
-            currentShipId = shipId;
-
-            // 선박 변경에 따른 시스템 재설정
-            ResetShipSystems();
-
-            Debug.Log($"Switched to ship: {shipId}");
+            float reduction = energyEfficiency / 100f;
+            currentStats[ShipStat.FuelConsumption] *= 1f - Mathf.Min(0.75f, reduction);
         }
+
+        // 다른 특수 스탯 상호작용...
     }
 
-    private void ResetShipSystems()
+    /// <summary>
+    /// 디버깅 정보 출력
+    /// </summary>
+    private void PrintDebugStatInfo()
     {
-        // 새 선박에 맞게 시스템 초기화
-        // 실제 구현에서는 선박 데이터베이스에서 정보 로드
-        shipSystems.Clear();
-        InitializeDefaultSystems();
+        Debug.Log("=== Ship Stats ===");
+        foreach (KeyValuePair<ShipStat, float> stat in currentStats) Debug.Log($"{stat.Key}: {stat.Value}");
 
-        // 선박 유형에 따라 특화 시스템 추가
-        switch (currentShipId)
+        Debug.Log("=== Room Contributions ===");
+        foreach (KeyValuePair<string, Dictionary<ShipStat, float>> room in roomContributions)
         {
-            case "combat":
-                shipSystems.Add(new ShipSystem { name = "Advanced Weapons", health = 100f });
-                break;
-
-            case "explorer":
-                shipSystems.Add(new ShipSystem { name = "Long Range Scanners", health = 100f });
-                break;
-
-            case "cargo":
-                shipSystems.Add(new ShipSystem { name = "Cargo Hold", health = 100f });
-                break;
+            Debug.Log($"{room.Key}:");
+            foreach (KeyValuePair<ShipStat, float> stat in room.Value) Debug.Log($"  {stat.Key}: {stat.Value}");
         }
     }
 
-    public ShipSystem GetSystem(string systemName)
+    /// <summary>
+    /// 특정 스탯의 현재 값을 가져옵니다.
+    /// </summary>
+    public float GetStat(ShipStat statType)
     {
-        return shipSystems.Find(s => s.name == systemName);
+        if (currentStats.TryGetValue(statType, out float value))
+            return value;
+
+        Debug.LogWarning($"Stat {statType} not found!");
+        return 0f;
     }
 
-    public List<ShipSystem> GetAllSystems()
+    /// <summary>
+    /// 특정 방의 스탯 기여도를 가져옵니다 (디버깅용).
+    /// </summary>
+    public Dictionary<ShipStat, float> GetRoomContributions(string roomName)
     {
-        return shipSystems;
+        if (roomContributions.TryGetValue(roomName, out Dictionary<ShipStat, float> contributions))
+            return contributions;
+
+        return new Dictionary<ShipStat, float>();
     }
 
-    public List<string> GetUnlockedShips()
+    /// <summary>
+    /// 새로운 방을 등록합니다.
+    /// </summary>
+    public void RegisterRoom(Room room)
     {
-        return unlockedShips;
+        Debug.Log("RegisterRoom 호출");
+        if (!allRooms.Contains(room))
+        {
+            allRooms.Add(room);
+
+            // 타입별 사전에 추가
+            if (!roomsByType.ContainsKey(room.roomType)) roomsByType[room.roomType] = new List<Room>();
+            roomsByType[room.roomType].Add(room);
+
+            room.OnRoomStateChanged += OnRoomStateChanged;
+            RecalculateAllStats();
+        }
+    }
+
+    /// <summary>
+    /// 특정 종류의 방들을 빠르게 가져옴.
+    /// </summary>
+    /// <param name="type">방의 종류</param>
+    /// <returns>해당하는 방들 리스트</returns>
+    public List<Room> GetRoomsByType(RoomType type)
+    {
+        if (roomsByType.ContainsKey(type)) return roomsByType[type];
+        return new List<Room>();
+    }
+
+    /// <summary>
+    /// 방을 해제합니다.
+    /// </summary>
+    public void UnregisterRoom(Room room)
+    {
+        if (allRooms.Contains(room))
+        {
+            room.OnRoomStateChanged -= OnRoomStateChanged;
+            allRooms.Remove(room);
+            RecalculateAllStats();
+        }
+    }
+
+    public bool Warp()
+    {
+        float fuelConsumption = GetStat(ShipStat.FuelConsumption);
+        float fuelEfficiency = GetStat(ShipStat.FuelEfficiency);
+        fuelConsumption *= 1 - fuelEfficiency;
+
+        if (ResourceManager.Instance.GetResource(ResourceType.Fuel) < fuelConsumption) return false;
+
+        List<Room> enginRooms = GetRoomsByType(RoomType.Engine);
+        List<Room> cockpitRooms = GetRoomsByType(RoomType.Cockpit);
+
+
+        foreach (Room enginRoom in enginRooms)
+            if (!enginRoom.HasEnoughCrew())
+                return false;
+
+        foreach (Room cockpitRoom in cockpitRooms)
+            if (!cockpitRoom.HasEnoughCrew())
+                return false;
+
+        ResourceManager.Instance.ChangeResource(ResourceType.Fuel, -fuelConsumption);
+
+        return true;
     }
 }

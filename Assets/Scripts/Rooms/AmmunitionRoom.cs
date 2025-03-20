@@ -34,9 +34,6 @@
         foreach (CrewMember crew in crewInRoom) crewBonus += crew.GetSkillLevel(SkillType.Weapons) * 0.5f;
 
         weaponDamageBonus = baseBonus + crewBonus;
-
-        // 방 효율(체력) 반영
-        weaponDamageBonus *= efficiency;
     }
 
     private void CalculateReloadSpeedBonus()
@@ -60,8 +57,5 @@
         foreach (CrewMember crew in crewInRoom) crewBonus += crew.GetSkillLevel(SkillType.Weapons) * 0.5f;
 
         reloadSpeedBonus = baseBonus + crewBonus;
-
-        // 방 효율(체력) 반영
-        reloadSpeedBonus *= efficiency;
     }
 }
