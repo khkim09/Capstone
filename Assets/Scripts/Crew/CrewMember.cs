@@ -51,6 +51,11 @@ public class CrewMember : MonoBehaviour
     public float maxPilotSkillValue, maxEngineSkillValue, maxPowerSkillValue, maxShieldSkillValue, maxWeaponSkillValue, maxAmmunitionSkillValue, maxMedBaySkillValue, maxRepairSkillValue;
     public Dictionary<SkillType, float> skills = new Dictionary<SkillType, float>();
 
+    // 장비
+    [Header("Equipments")]
+    public float allCrewEquipment = 0.0f; // 선원 전체 적용 장비
+    public float ownEquipment = 0.0f; // 개인 적용 장비
+
     // 이하 - 다른 파트와의 연결 필요
     public float morale = 50f; // 사기 (0-100)
 
@@ -68,17 +73,6 @@ public class CrewMember : MonoBehaviour
 
     private float timeSinceLastSkillIncrease = 0f;
     private float skillIncreaseInterval = 10f; // 10초마다 스킬 증가 체크
-
-    [Header("Equipments")] // 장비
-    public float allCrewEquipment; // 선원 전체 적용 장비
-    public float ownEquipment; // 개인 적용 장비
-
-    /*
-    // 장비
-    public string workAssistant; // 작업 보조 장비
-    public string weapon; // 무기 장비
-    public string armor; // 방어구 장비
-    */
 
     private void Update()
     {
@@ -299,13 +293,20 @@ public class CrewMember : MonoBehaviour
         return health < maxHealth;
     }
 
-    /*
-        // 장비 적용
-        public void AddEquipment(EquipmentType eq, float eqValue)
+    // 개인 장비 적용 - 보조 장비비
+    public void AddAssistantEquipment(EquipmentItem eqItem)
+    {
+        if (eqItem.eqType != EquipmentType.AssistantEquipment)
         {
-
+            Debug.LogWarning("보조 장비비 아님");
+            return;
         }
-    */
+
+        // 보조 장치 효과
+        ownEquipment = 0.0f; // 기존 착용 보조 장비 해제
+        // ownEquipment += 1.0f; (수정 필요)
+    }
+
     // 사기 보너스 적용
     public void AddMoraleBonus(float bonus)
     {

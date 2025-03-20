@@ -11,7 +11,7 @@ public class CrewManager : MonoBehaviour
 
     // 승무원 리스트
     [Header("Crew List")]
-    [SerializeField] private List<CrewMember> crewList = new List<CrewMember>();
+    [SerializeField] public List<CrewMember> crewList = new List<CrewMember>();
 
     [Header("Crew UI")]
     [SerializeField] private GameObject alertAddCrewUI;
@@ -106,6 +106,25 @@ public class CrewManager : MonoBehaviour
         newCrew.skills[SkillType.RepairSkill] = settings.initialRepairSkill;
     }
 
+    public void AddGlobalEquipment(EquipmentItem eqItem)
+    {
+        // global 장비는 WeaponEquipment와 ShieldEquipment 타입으로 구분합니다.
+        if (eqItem.eqType != EquipmentType.WeaponEquipment && eqItem.eqType != EquipmentType.ShieldEquipment)
+        {
+            Debug.LogWarning("이 장비는 모든 선원에게 적용되는 타입이 아닙니다.");
+            return;
+        }
+
+        foreach (CrewMember crew in crewList)
+        {
+            // 예시: 공격력과 방어력 보너스를 더해줍니다.
+            crew.allCrewEquipment += eqItem.eqAttackBonus;  // 무기라면 공격력 보너스
+            crew.allCrewEquipment += eqItem.eqDefenseBonus;   // 방어구라면 방어력 보너스 (혹은 별도의 변수를 사용)
+            // 체력 보너스 등도 필요하면 추가
+        }
+        Debug.Log($"모든 선원에게 {eqItem.eqName} 장비 효과 적용 완료.");
+    }
+
     public void AddCrewMember(string inputName, CrewRace selectedRace)
     {
         Vector3 startPos = new Vector3(-8.0f, 0.0f, 0.0f);
@@ -121,14 +140,8 @@ public class CrewManager : MonoBehaviour
         newCrew.crewName = inputName;
         newCrew.race = selectedRace;
 
+        // 선원 정보 세팅
         InitializeCrewSetting(newCrew, selectedRace);
-
-        /*
-                // 기본 장비 설정 (수정 필요)
-                newCrew.equipment.workAssistant = "Basic workAssistant";
-                newCrew.equipment.weapon = "Basic weapon";
-                newCrew.equipment.armor = "Basic armor";
-        */
 
         // 크루 추가
         crewList.Add(newCrew);

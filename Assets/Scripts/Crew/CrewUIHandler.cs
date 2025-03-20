@@ -13,6 +13,7 @@ public class CrewUIHandler : MonoBehaviour
     public GameObject mainUIScreen; // 선원 생성하기 메인 화면
     public GameObject createUIScreen; // 선원 생성 요청 화면
     public GameObject customizeShipUIScreen; // 함선 제작 화면
+    public GameObject addEquipmentUIScreen; // 장비 구매 화면
 
     [Header("Input Fields")]
     [SerializeField] private TMP_InputField nameInputField; // input 선원 이름
@@ -94,24 +95,10 @@ public class CrewUIHandler : MonoBehaviour
     // submit button click
     public void OnSubmitButtonClicked()
     {
-        /* cube 대신 img로 선원 생성 -> 선택한 선원 별 다르게 (kimchi run 참고) */
-
-        // 1) InputField에서 입력값 가져오기
         string inputName = nameInputField.text;
 
+        // 선원 추가
         CrewManager.Instance.AddCrewMember(inputName, selectedRace);
-
-        /*
-                // 2) Cube 생성 및 위치 초기화
-                GameObject newCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                Vector3 startPos = new Vector3(-8.0f, 0.0f, 0.0f);
-                newCube.name = $"Name: {inputName}, Race: {selectedRace}";
-                newCube.transform.position = new Vector3(i++ * 1.5f, 0.0f, 0.0f) + startPos;
-
-                // 3) component 추가
-                CrewMember crewComp = newCube.AddComponent<CrewMember>();
-                CrewManager.Instance.AddCrewMember(inputName, selectedRace, crewComp);
-        */
 
         // 초기화
         currentSelectedButton.SetHighlighted(false);
@@ -121,5 +108,12 @@ public class CrewUIHandler : MonoBehaviour
 
         createUIScreen.SetActive(false);
         mainUIScreen.SetActive(true);
+    }
+
+    // add equipment button click
+    public void OnAddEquipmentButtonClicked()
+    {
+        mainUIScreen.SetActive(false);
+        addEquipmentUIScreen.SetActive(true);
     }
 }
