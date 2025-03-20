@@ -28,7 +28,7 @@
 
         // 선원 숙련도 반영
         float crewBonus = 0f;
-        foreach (CrewMember crew in crewInRoom) crewBonus += crew.GetSkillLevel(SkillType.Weapons) * 0.5f;
+        foreach (CrewMember crew in crewInRoom) crewBonus += crew.GetSkillLevel(SkillType.WeaponSkill) * 0.5f;
 
         accuracyBonus = baseBonus + crewBonus;
     }

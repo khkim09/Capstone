@@ -10,9 +10,18 @@ public class CrewManager : MonoBehaviour
     private CrewInfoWrapper crewInfoWrapper;
 
     // 승무원 리스트
+    [Header("Crew List")]
     [SerializeField] private List<CrewMember> crewList = new List<CrewMember>();
+
+    [Header("Crew UI")]
     [SerializeField] private GameObject alertAddCrewUI;
     [SerializeField] private GameObject mainUI;
+
+    [Header("Crew Prefabs")]
+    [SerializeField] private GameObject[] crewPrefabs;
+
+    [Header("Crew Race Settings")]
+    [SerializeField] private CrewRaceSettings[] raceSettings;
 
     private void Awake()
     {
@@ -57,50 +66,62 @@ public class CrewManager : MonoBehaviour
         mainUI.SetActive(false);
     }
 
-    public void AddCrewMember(string inputName, CrewRace inputRace, CrewMember newCrew)
+    private void InitializeCrewSetting(CrewMember newCrew, CrewRace newCrewRace)
     {
-
-        switch (inputRace)
+        CrewRaceSettings settings = System.Array.Find(raceSettings, s => s.race == newCrewRace);
+        if (settings == null)
         {
-            case CrewRace.Human:
-                newCrew.maxHealth = 100.0f;
-                newCrew.attack = 8.0f;
-                newCrew.defense = 8.0f;
-
-                break;
-            case CrewRace.Amorphous:
-                newCrew.maxHealth = 100.0f;
-                newCrew.attack = 9.0f;
-                newCrew.defense = 6.0f;
-                break;
-            case CrewRace.MechanicTank:
-                newCrew.maxHealth = 120.0f;
-                newCrew.attack = 5.0f;
-                newCrew.defense = 5.0f;
-                break;
-            case CrewRace.MechanicSup:
-                newCrew.maxHealth = 70.0f;
-                newCrew.attack = 5.0f;
-                newCrew.defense = 5.0f;
-                break;
-            case CrewRace.Beast:
-                newCrew.maxHealth = 120.0f;
-                newCrew.attack = 12.0f;
-                newCrew.defense = 12.0f;
-                break;
-            case CrewRace.Insect:
-                newCrew.maxHealth = 120.0f;
-                newCrew.attack = 10.0f;
-                newCrew.defense = 15.0f;
-                break;
+            Debug.LogWarning($"설정 에셋이 {newCrewRace} 종족에 대해 할당 안 됨");
+            return;
         }
+
+        newCrew.maxHealth = settings.maxHealth;
+        newCrew.attack = settings.attack;
+        newCrew.defense = settings.defense;
+        newCrew.learningSpeed = settings.learningSpeed;
+        newCrew.needsOxygen = settings.needsOxygen;
+
+        newCrew.health = newCrew.maxHealth;
+        newCrew.status = CrewStatus.Normal;
+        newCrew.isAlive = true;
+        newCrew.isMoving = false;
+
+        newCrew.maxSkillValueArray = (float[])settings.maxSkillValueArray.Clone();
+        newCrew.maxPilotSkillValue = newCrew.maxSkillValueArray[0];
+        newCrew.maxEngineSkillValue = newCrew.maxSkillValueArray[1];
+        newCrew.maxPowerSkillValue = newCrew.maxSkillValueArray[2];
+        newCrew.maxShieldSkillValue = newCrew.maxSkillValueArray[3];
+        newCrew.maxWeaponSkillValue = newCrew.maxSkillValueArray[4];
+        newCrew.maxAmmunitionSkillValue = newCrew.maxSkillValueArray[5];
+        newCrew.maxMedBaySkillValue = newCrew.maxSkillValueArray[6];
+        newCrew.maxRepairSkillValue = newCrew.maxSkillValueArray[7];
+
+        newCrew.skills[SkillType.PilotSkill] = settings.initialPilotSkill;
+        newCrew.skills[SkillType.EngineSkill] = settings.initialEngineSkill;
+        newCrew.skills[SkillType.PowerSkill] = settings.initialPowerSkill;
+        newCrew.skills[SkillType.ShieldSkill] = settings.initialShieldSkill;
+        newCrew.skills[SkillType.WeaponSkill] = settings.initialWeaponSkill;
+        newCrew.skills[SkillType.AmmunitionSkill] = settings.initialAmmunitionSkill;
+        newCrew.skills[SkillType.MedBaySkill] = settings.initialMedBaySkill;
+        newCrew.skills[SkillType.RepairSkill] = settings.initialRepairSkill;
+    }
+
+    public void AddCrewMember(string inputName, CrewRace selectedRace)
+    {
+        Vector3 startPos = new Vector3(-8.0f, 0.0f, 0.0f);
+
+        // 겹쳐서 생성되는거 수정필요
+
+        // 새 crew 생성
+        CrewMember newCrew = Instantiate(crewPrefabs[(int)selectedRace - 1], startPos, Quaternion.identity, null).GetComponent<CrewMember>();
+        newCrew.name = $"Name: {inputName}, Race: {selectedRace}";
+        newCrew.transform.localScale = new Vector3(4.0f, 4.0f, 4.0f);
 
         // 기본 정보 초기화
         newCrew.crewName = inputName;
-        newCrew.health = newCrew.maxHealth; // 초기 현재 체력 = maxHealth
-        newCrew.status = CrewStatus.Normal;
-        newCrew.isAlive = true;
-        newCrew.race = inputRace;
+        newCrew.race = selectedRace;
+
+        InitializeCrewSetting(newCrew, selectedRace);
 
         /*
                 // 기본 장비 설정 (수정 필요)
@@ -111,7 +132,8 @@ public class CrewManager : MonoBehaviour
 
         // 크루 추가
         crewList.Add(newCrew);
+
+        // 확인용 로그
+        Debug.Log($"새로운 선원 : {newCrew.crewName} {newCrew.race}");
     }
-
-
 }

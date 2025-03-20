@@ -3,6 +3,7 @@ using TMPro;
 using System;
 using UnityEngine.UI;
 using NUnit.Framework.Constraints;
+using UnityEditor.ShaderGraph;
 
 public class CrewUIHandler : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class CrewUIHandler : MonoBehaviour
     public RaceButtonController[] raceButtonControllers; // inspector 할당
     [SerializeField] private RaceButtonController currentSelectedButton;
     [SerializeField] private CrewRace selectedRace = CrewRace.None; // 선원 종류
-    [SerializeField] private int i = 0;
 
     [Header("UI Buttons")]
     public Button submitButton;
@@ -87,10 +87,6 @@ public class CrewUIHandler : MonoBehaviour
     // create button click
     public void OnCreateButtonClicked()
     {
-        currentSelectedButton = null;
-        selectedRace = CrewRace.None;
-        nameInputField.text = "";
-
         mainUIScreen.SetActive(false);
         createUIScreen.SetActive(true);
     }
@@ -103,20 +99,26 @@ public class CrewUIHandler : MonoBehaviour
         // 1) InputField에서 입력값 가져오기
         string inputName = nameInputField.text;
 
-        // 2) Cube 생성 및 위치 초기화
-        GameObject newCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        Vector3 startPos = new Vector3(-8.0f, 0.0f, 0.0f);
-        newCube.name = $"Name: {inputName}, Race: {selectedRace}";
-        newCube.transform.position = new Vector3(i++ * 1.5f, 0.0f, 0.0f) + startPos;
+        CrewManager.Instance.AddCrewMember(inputName, selectedRace);
 
-        // 3) component 추가
-        CrewMember crewComp = newCube.AddComponent<CrewMember>();
-        CrewManager.Instance.AddCrewMember(inputName, selectedRace, crewComp);
+        /*
+                // 2) Cube 생성 및 위치 초기화
+                GameObject newCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                Vector3 startPos = new Vector3(-8.0f, 0.0f, 0.0f);
+                newCube.name = $"Name: {inputName}, Race: {selectedRace}";
+                newCube.transform.position = new Vector3(i++ * 1.5f, 0.0f, 0.0f) + startPos;
 
-        // 확인용 로그
-        Debug.Log($"새로운 선원 : {crewComp.crewName} {crewComp.race}");
+                // 3) component 추가
+                CrewMember crewComp = newCube.AddComponent<CrewMember>();
+                CrewManager.Instance.AddCrewMember(inputName, selectedRace, crewComp);
+        */
 
         // 초기화
+        currentSelectedButton.SetHighlighted(false);
+        currentSelectedButton = null;
+        selectedRace = CrewRace.None;
+        nameInputField.text = "";
+
         createUIScreen.SetActive(false);
         mainUIScreen.SetActive(true);
     }

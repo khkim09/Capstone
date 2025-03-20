@@ -2,6 +2,14 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.Serialization;
+
+public enum ItemStorageType
+{
+    Normal,
+    Temperature,
+    Animal
+}
 
 public class Ship : MonoBehaviour
 {
@@ -10,7 +18,7 @@ public class Ship : MonoBehaviour
     [SerializeField] private float maxHull = 100f;
     [SerializeField] private float fuel = 500f;
     [SerializeField] private float maxFuel = 1000f;
-    [SerializeField] private int scrap = 100; // 스크랩(재화)
+    [SerializeField] private int COMA = 100; // 스크랩(재화)
     [SerializeField] private Vector2Int gridSize = new(20, 20);
     [SerializeField] private float shields = 0f;
     [SerializeField] private float maxShields = 0f;
@@ -320,10 +328,10 @@ public class Ship : MonoBehaviour
     {
         if (fuel >= maxFuel)
             return false;
-        if (scrap < cost)
+        if (COMA < cost)
             return false;
 
-        scrap -= cost;
+        COMA -= cost;
         fuel = Mathf.Min(fuel + amount, maxFuel);
         return true;
     }
@@ -332,74 +340,190 @@ public class Ship : MonoBehaviour
     {
         if (hull >= maxHull)
             return false;
-        if (scrap < cost)
+        if (COMA < cost)
             return false;
 
-        scrap -= cost;
+        COMA -= cost;
         hull = Mathf.Min(hull + amount, maxHull);
         return true;
     }
 
     public bool BuyItem(TradableItem item, int quantity)
     {
-        int totalCost = item.currentPrice * quantity;
-        if (scrap < totalCost)
+        // GetCurrentPrice()를 사용하여 가격 변동 적용 및 정수형으로 변환
+        int totalCost = Mathf.RoundToInt(item.GetCurrentPrice() * quantity);
+
+        // 스크랩 충분한지 확인
+        if (COMA < totalCost)
             return false;
+
+        // 창고 공간 확인 (호환성 체크 로직이 필요하면 수정)
         if (!HasStorageSpaceFor(item, quantity))
             return false;
 
-        scrap -= totalCost;
+        // 거래 완료
+        COMA -= totalCost;
         AddItemToStorage(item, quantity);
+
         return true;
     }
+
 
     public bool SellItem(TradableItem item, int quantity)
     {
+        // 아이템 소유 여부 확인
         if (!HasItem(item, quantity))
             return false;
-        int totalValue = item.currentPrice * quantity;
+
+        // 판매 단가는 현재 가격의 90%로 가정 (10% 할인)
+        int totalValue = Mathf.RoundToInt(item.GetCurrentPrice() * 0.9f * quantity);
+
+        // 거래 완료
         RemoveItemFromStorage(item, quantity);
-        scrap += totalValue;
+        COMA += totalValue;
+
         return true;
     }
 
-    private bool HasStorageSpaceFor(TradableItem item, int quantity)
+    // TradableItem의 category 값을 기반으로 ItemStorageType으로 매핑하는 함수
+// TradableItem의 category 값을 StorageType으로 매핑하는 헬퍼 함수
+    private StorageType GetMappedStorageType(TradableItem item)
     {
-        foreach (Room room in rooms)
-            if (room is StorageRoom storage)
-                if (IsStorageCompatibleWithItem(storage, item))
-                    return true;
-
-        return false;
-    }
-
-    private bool IsStorageCompatibleWithItem(StorageRoom storage, TradableItem item)
-    {
-        switch (item.storageType)
+        switch (item.category)
         {
-            case ItemStorageType.Normal:
-                return storage.storageType == StorageType.Normal;
-            case ItemStorageType.Temperature:
-                return storage.storageType == StorageType.Temperature;
-            case ItemStorageType.Animal:
-                return storage.storageType == StorageType.Animal;
+            case "향신료":
+                return StorageType.Normal;
+            case "소재":
+                return StorageType.Temperature;
+            case "보석":
+                return StorageType.Normal;
+            case "사치품":
+                return StorageType.Normal;
+            case "식량":
+                return StorageType.Temperature;
+            case "동물":
+                return StorageType.Animal;
+            case "유물":
+                return StorageType.Normal;
+            case "광물":
+                return StorageType.Normal;
+            case "무기":
+                return StorageType.Normal;
             default:
-                return false;
+                return StorageType.Normal;
         }
     }
 
-    private bool HasItem(TradableItem item, int quantity)
+// StorageRoom과 TradableItem 간 호환성 검사 함수
+    private bool IsStorageCompatibleWithItem(StorageRoom storage, TradableItem item)
     {
-        return true;
+        // 기존 StorageType enum을 사용하여 비교
+        return storage.storageType == GetMappedStorageType(item);
     }
 
-    private void AddItemToStorage(TradableItem item, int quantity)
-    {
-    }
 
-    private void RemoveItemFromStorage(TradableItem item, int quantity)
+// 창고에 아이템 추가 가능한 공간이 충분한지 검사
+private bool HasStorageSpaceFor(TradableItem item, int quantity)
+{
+    foreach (Room room in rooms)
     {
+        if (room is StorageRoom storageRoom)
+        {
+            if (IsStorageCompatibleWithItem(storageRoom, item))
+            {
+                // Storage 컴포넌트 가져오기
+                Storage storageComponent = storageRoom.GetComponent<Storage>();
+                if (storageComponent != null)
+                {
+                    int currentQuantity = storageComponent.GetItemQuantity(item);
+                    int available = item.maxStackAmount - currentQuantity;
+                    if (available >= quantity)
+                        return true;
+                }
+            }
+        }
     }
+    return false;
+}
+
+// 창고에 해당 아이템이 충분히 있는지 검사
+private bool HasItem(TradableItem item, int quantity)
+{
+    foreach (Room room in rooms)
+    {
+        if (room is StorageRoom storageRoom)
+        {
+            if (IsStorageCompatibleWithItem(storageRoom, item))
+            {
+                Storage storageComponent = storageRoom.GetComponent<Storage>();
+                if (storageComponent != null)
+                {
+                    int currentQuantity = storageComponent.GetItemQuantity(item);
+                    if (currentQuantity >= quantity)
+                        return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+// 창고에 아이템을 추가 (여러 StorageRoom에 걸쳐 추가 가능)
+private void AddItemToStorage(TradableItem item, int quantity)
+{
+    int remaining = quantity;
+    foreach (Room room in rooms)
+    {
+        if (room is StorageRoom storageRoom)
+        {
+            if (IsStorageCompatibleWithItem(storageRoom, item))
+            {
+                Storage storageComponent = storageRoom.GetComponent<Storage>();
+                if (storageComponent != null)
+                {
+                    int currentQuantity = storageComponent.GetItemQuantity(item);
+                    int available = item.maxStackAmount - currentQuantity;
+                    if (available > 0)
+                    {
+                        int toAdd = Mathf.Min(available, remaining);
+                        storageComponent.AddItem(item, toAdd);
+                        remaining -= toAdd;
+                        if (remaining <= 0)
+                            break;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 창고에서 아이템을 제거 (여러 StorageRoom에서 분할 제거 가능)
+private void RemoveItemFromStorage(TradableItem item, int quantity)
+{
+    int remaining = quantity;
+    foreach (Room room in rooms)
+    {
+        if (room is StorageRoom storageRoom)
+        {
+            if (IsStorageCompatibleWithItem(storageRoom, item))
+            {
+                Storage storageComponent = storageRoom.GetComponent<Storage>();
+                if (storageComponent != null)
+                {
+                    int currentQuantity = storageComponent.GetItemQuantity(item);
+                    if (currentQuantity > 0)
+                    {
+                        int toRemove = Mathf.Min(currentQuantity, remaining);
+                        storageComponent.RemoveItem(item, toRemove);
+                        remaining -= toRemove;
+                        if (remaining <= 0)
+                            break;
+                    }
+                }
+            }
+        }
+    }
+}
 
     public bool AddCrewMember(CrewMember newCrew)
     {
@@ -434,20 +558,20 @@ public class Ship : MonoBehaviour
             crewMember.AddMoraleBonus(bonus);
     }
 
-    public int GetScrap()
+    public int GetCOMA()
     {
-        return scrap;
+        return COMA;
     }
 
-    public void AddScrap(int amount)
+    public void AddCOMA(int amount)
     {
-        scrap += amount;
+        COMA += amount;
     }
 
-    public bool SpendScrap(int amount)
+    public bool SpendCOMA(int amount)
     {
-        if (scrap < amount) return false;
-        scrap -= amount;
+        if (COMA < amount) return false;
+        COMA -= amount;
         return true;
     }
 
