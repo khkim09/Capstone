@@ -6,65 +6,30 @@ using System.Text;
 public class RaceTooltip : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI raceNameText;
-    [SerializeField] private TextMeshProUGUI statsText;
-    CrewInfoWrapper crewInfoWrapper;
+    [SerializeField] private TextMeshProUGUI raceInfoText;
 
     // 예시: 각 종족의 능력치를 설정하는 함수
-    public void SetupTooltip(CrewRace raceType)
+    public void SetupTooltip(CrewRaceSettings raceSettings)
     {
-        // json data 가져오기
-        crewInfoWrapper = CrewInfoLoader.crewInfo;
-
-        if (crewInfoWrapper == null)
-        {
-            statsText.text = "No data available";
-            Debug.LogError("CrewInfo 데이터가 로드되지 않았습니다!");
+        if (raceSettings == null)
             return;
-        }
 
-        raceNameText.text = raceType.ToString();
+        // Race Name 설정
+        raceNameText.text = raceSettings.race.ToString();
 
-        // 선택한 종족에 해당하는 CrewData 가져오기
-        CrewData crewData = null;
-        switch (raceType)
-        {
-            case CrewRace.Human:
-                crewData = crewInfoWrapper.인간형;
-                break;
-            case CrewRace.Amorphous:
-                crewData = crewInfoWrapper.부정형;
-                break;
-            case CrewRace.MechanicTank:
-                crewData = crewInfoWrapper.돌격기계형;
-                break;
-            case CrewRace.MechanicSup:
-                crewData = crewInfoWrapper.지원기계형;
-                break;
-            case CrewRace.Beast:
-                crewData = crewInfoWrapper.짐승형;
-                break;
-            case CrewRace.Insect:
-                crewData = crewInfoWrapper.곤충형;
-                break;
-        }
-
-        if (crewData == null)
-        {
-            statsText.text = "해당 종족의 데이터가 없습니다.";
-            return;
-        }
-
-        // Reflection을 사용하여 CrewData의 모든 필드를 순회합니다.
-        FieldInfo[] fields = typeof(CrewData).GetFields();
-        StringBuilder sb = new StringBuilder();
-        foreach (FieldInfo field in fields)
-        {
-            object value = field.GetValue(crewData);
-            // 각 필드의 이름과 값을 "필드명 : 값" 형태로 추가합니다.
-            sb.AppendLine($"{field.Name} : {value}");
-        }
-
-        // 완성된 문자열을 statsText.text에 할당합니다.
-        statsText.text = sb.ToString();
+        // Race Info 설정 (maxSkillValueArray는 제외)
+        raceInfoText.text = $"Max Health : {raceSettings.maxHealth}\n" +
+                            $"Attack : {raceSettings.attack}\n" +
+                            $"Defense : {raceSettings.defense}\n" +
+                            $"Learning Speed : {raceSettings.learningSpeed}\n" +
+                            $"Needs Oxygen : {(raceSettings.needsOxygen ? "Yes" : "No")}\n" +
+                            $"Pilot Skill : {raceSettings.initialPilotSkill}\n" +
+                            $"Engine Skill : {raceSettings.initialEngineSkill}\n" +
+                            $"Power Skill : {raceSettings.initialPowerSkill}\n" +
+                            $"Shield Skill : {raceSettings.initialShieldSkill}\n" +
+                            $"Weapon Skill : {raceSettings.initialWeaponSkill}\n" +
+                            $"Ammunition Skill : {raceSettings.initialAmmunitionSkill}\n" +
+                            $"MedBay Skill : {raceSettings.initialMedBaySkill}\n" +
+                            $"Repair Skill : {raceSettings.initialRepairSkill}";
     }
 }

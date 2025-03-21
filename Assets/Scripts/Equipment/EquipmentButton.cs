@@ -1,29 +1,48 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class EquipmentButton : MonoBehaviour
 {
+    [Header("UI Elements")]
     public Image iconImage;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI priceText;
     public Button myButton;
 
+    [Header("Equipment Data")]
     public EquipmentItem linkedItem; // ScriptableObject(장비 데이터) 연결
 
-    // 팝업을 띄우는 매니저(혹은 UI 핸들러)에 대한 참조
+    [Header("UI Handler")]
     public EquipmentUIHandler uiHandler;
 
-    // 이 버튼이 어떤 장비를 나타내는지 설정하는 함수
-    public void SetItem(EquipmentItem eqItem, EquipmentUIHandler handler)
+    private void Awake()
     {
-        linkedItem = eqItem;
-        uiHandler = handler;
+        if (linkedItem)
+            UpdateUI();
+    }
 
-        // UI 갱신
-        iconImage.sprite = eqItem.eqIcon;           // 아이콘 이미지
-        nameText.text = eqItem.eqName;     // 장비명
-        priceText.text = eqItem.eqPrice.ToString(); // 가격
+    private void OnValidate()
+    {
+        // 에디터에서 변경 사항이 있을 때 자동 업데이트
+        if (linkedItem)
+        {
+            UpdateUI();
+        }
+    }
+
+    // UI를 자동으로 갱신하는 함수
+    private void UpdateUI()
+    {
+        if (linkedItem == null)
+            return;
+
+        Debug.Log("ui update가능");
+        // ScriptableObject의 데이터를 UI에 반영
+        iconImage.sprite = linkedItem.eqIcon;
+        nameText.text = linkedItem.eqName;
+        priceText.text = linkedItem.eqPrice.ToString();
     }
 
     // 버튼 클릭 시 호출될 함수

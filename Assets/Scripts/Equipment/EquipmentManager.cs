@@ -19,16 +19,14 @@ public class EquipmentManager : MonoBehaviour
     // 선원 전체 적용 장비 (무기, 방어구)
     public void PurchaseAndEquipGlobal(EquipmentItem eqItem)
     {
-        // 가격 체크, 재화 차감 등 로직
-
         // 장비 착용
         CrewManager.Instance.AddGlobalEquipment(eqItem);
     }
 
     // 선원 개인 적용 장비 (보조 장비)
-    public void PurchaseAndEquipAssistant(CrewMember crew, EquipmentItem eqItem)
+    public void PurchaseAndEquipPersonal(CrewMember crew, EquipmentItem eqItem)
     {
         // 가격 체크, 재화 차감 등 로직은 생략하고 바로 장착
-        crew.AddAssistantEquipment(eqItem);
+        crew.AddPersonalEquipment(eqItem);
     }
 }

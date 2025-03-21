@@ -15,9 +15,10 @@ public class EquipmentItem : ScriptableObject
     public string eqName;
     public EquipmentType eqType;
     public int eqPrice;
+    public bool isGlobalEquip;
 
     // 장비가 부여하는 능력치 보너스 (필요한 값들을 추가)
-    [Header("Global Bonus")]
+    [Header("Attack/Defense Bonus")]
     public float eqAttackBonus;
     public float eqDefenseBonus;
     public float eqHealthBonus;

@@ -6,8 +6,9 @@ using TMPro;
 public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [Header("Race Data")]
-    public CrewRace raceType;                  // 이 버튼이 어떤 종족인지
-    public GameObject raceTooltipPrefab;       // RaceTooltip 프리팹 할당
+    public CrewRace raceType; // 버튼 종족
+    public CrewRaceSettings crewRaceSettings; // scriptable object 할당
+    public GameObject raceTooltipPrefab; // RaceTooltip 프리팹 할당
 
     private GameObject activeTooltip;
 
@@ -51,9 +52,10 @@ public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private void ShowTooltip()
     {
-        if (raceTooltipPrefab == null) return;
+        if (raceTooltipPrefab == null)
+            return;
 
-        // 씬 내 Canvas 찾기
+        // Canvas 찾기
         Canvas canvas = FindAnyObjectByType<Canvas>();
         if (canvas == null)
         {
@@ -61,21 +63,25 @@ public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointe
             return;
         }
 
-        // RaceTooltip 프리팹 인스턴스화
+        // RaceTooltip 프리팹 생성
         activeTooltip = Instantiate(raceTooltipPrefab, canvas.transform);
 
-        // RaceTooltip 스크립트 세팅
+        // RaceTooltip 설정
         RaceTooltip tooltip = activeTooltip.GetComponent<RaceTooltip>();
-        if (tooltip != null)
-        {
-            // 종족 데이터에 맞춰 툴팁 내용 업데이트
-            tooltip.SetupTooltip(raceType);
-            Debug.Log("종족 별 tooltip 호출 성공");
-        }
+        tooltip.SetupTooltip(crewRaceSettings);
 
-        // 툴팁의 위치를 마우스 근처로 배치 (예시)
+        // 스크린 → 월드 좌표로 변환
         RectTransform tooltipRect = activeTooltip.GetComponent<RectTransform>();
-        tooltipRect.position = Input.mousePosition;
+
+        // 월드 좌표 → UI 좌표로 변환
+        Vector3 worldPosition = new Vector3(4.6f, 2.5f, 0.0f);
+        Vector2 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
+
+        Vector2 localPoint;
+        RectTransform canvasRect = canvas.GetComponent<RectTransform>();
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPosition, canvas.worldCamera, out localPoint);
+
+        tooltipRect.localPosition = localPoint;
     }
 
     private void HideTooltip()
