@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 함선의 산소실을 나타내는 클래스
+/// </summary>
 public class OxygenRoom : Room<OxygenRoomData, OxygenRoomData.OxygenLevel>
 {
-    [Header("산소실 효과")] [SerializeField] private ParticleSystem OxygenParticles;
-    [SerializeField] private AudioSource oxygenSound;
-
     protected override void Start()
     {
         base.Start();
@@ -30,7 +30,7 @@ public class OxygenRoom : Room<OxygenRoomData, OxygenRoomData.OxygenLevel>
         {
             // 산소실 레벨 데이터에서 기여도
             contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
-            contributions[ShipStat.OxygenPerSecond] = currentRoomLevelData.oxygenSupplyPerSecond;
+            contributions[ShipStat.OxygenGeneratePerSecond] = currentRoomLevelData.oxygenSupplyPerSecond;
         }
         else
         {
@@ -42,7 +42,7 @@ public class OxygenRoom : Room<OxygenRoomData, OxygenRoomData.OxygenLevel>
                 {
                     OxygenRoomData.OxygenLevel weakedRoomLevelData = roomData.GetTypedRoomData(currentLevel - 1);
                     contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
-                    contributions[ShipStat.OxygenPerSecond] = weakedRoomLevelData.oxygenSupplyPerSecond;
+                    contributions[ShipStat.OxygenGeneratePerSecond] = weakedRoomLevelData.oxygenSupplyPerSecond;
                 }
                 else if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
                 {

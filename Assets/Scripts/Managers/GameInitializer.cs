@@ -18,7 +18,6 @@ public class GameInitializer : MonoBehaviour
         InstantiateIfNotExists<GameManager>(gameManagerPrefab);
         InstantiateIfNotExists<ResourceManager>(resourceManagerPrefab);
         InstantiateIfNotExists<CrewManager>(crewManagerPrefab);
-        InstantiateIfNotExists<ShipManager>(shipManagerPrefab);
         InstantiateIfNotExists<EventManager>(eventManagerPrefab);
         InstantiateIfNotExists<QuestManager>(questManagerPrefab);
         InstantiateIfNotExists<InventoryManager>(inventoryManagerPrefab);

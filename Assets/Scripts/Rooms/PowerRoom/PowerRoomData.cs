@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 /// <summary>
-/// 산소실의 레벨별 데이터를 저장하는 ScriptableObject
+/// 전력실의 레벨별 데이터를 저장하는 ScriptableObject
 /// </summary>
 [CreateAssetMenu(fileName = "PowerRoomData", menuName = "RoomData/PowerRoom Data")]
 public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
@@ -15,7 +15,7 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
     }
 
     /// <summary>
-    /// 기본 산소실 레벨 데이터 초기화
+    /// 기본 전력실 레벨 데이터 초기화
     /// </summary>
     protected override void InitializeDefaultLevels()
     {
@@ -23,11 +23,12 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
         {
             new()
             {
+                roomName = "room.power.level1",
                 level = 1,
                 hitPoint = 200,
                 size = new Vector2Int(2, 2),
-                cost = 4000,
-                powerRequirement = 300f,
+                cost = 2000,
+                powerRequirement = 3000f,
                 crewRequirement = 0,
                 damageHitPointRate =
                     new Dictionary<RoomDamageLevel, float>()
@@ -37,11 +38,12 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
             },
             new()
             {
+                roomName = "room.power.level2",
                 level = 2,
                 hitPoint = 300,
                 size = new Vector2Int(3, 3),
                 cost = 8000,
-                powerRequirement = 700f,
+                powerRequirement = 7000f,
                 crewRequirement = 0,
                 damageHitPointRate =
                     new Dictionary<RoomDamageLevel, float>()
@@ -51,6 +53,7 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
             },
             new()
             {
+                roomName = "room.power.level3",
                 level = 3,
                 hitPoint = 400,
                 size = new Vector2Int(4, 4),

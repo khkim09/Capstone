@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 함선의 전력실을 나타내는 클래스
+/// </summary>
 public class PowerRoom : Room<PowerRoomData, PowerRoomData.PowerRoomLevel>
 {
-    [Header("전력실 효과")] [SerializeField] private ParticleSystem PowerParticles;
-    [SerializeField] private AudioSource PowerSound;
-
     protected override void Start()
     {
         base.Start();

@@ -12,6 +12,7 @@ public abstract class RoomData : ScriptableObject
 {
     public class RoomLevel
     {
+        public string roomName;
         public int level;
         public int hitPoint;
         public Vector2Int size;
@@ -19,10 +20,20 @@ public abstract class RoomData : ScriptableObject
         public int crewRequirement;
         public float powerRequirement;
         public Dictionary<RoomDamageLevel, float> damageHitPointRate = new();
+
+        public Sprite roomSprite;
+        // TODO: 스프라이트 완성되면 각 Scriptable Object 에 스프라이트 추가할 것
     }
 
     // 추상 메서드로 RoomLevel 데이터 가져오기
     public abstract RoomLevel GetRoomData(int level);
+
+    protected abstract void InitializeDefaultLevels();
+
+    protected virtual void OnEnable()
+    {
+        InitializeDefaultLevels();
+    }
 }
 
 public enum RoomDamageLevel
@@ -46,12 +57,5 @@ public abstract class RoomData<T> : RoomData where T : RoomData.RoomLevel
         if (level <= 0 || level > RoomLevels.Count)
             return null;
         return RoomLevels[level - 1];
-    }
-
-    protected abstract void InitializeDefaultLevels();
-
-    protected virtual void OnEnable()
-    {
-        InitializeDefaultLevels();
     }
 }

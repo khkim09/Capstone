@@ -343,6 +343,72 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &515748512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 515748514}
+  - component: {fileID: 515748513}
+  m_Layer: 0
+  m_Name: PlayerShip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &515748513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515748512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a89c58ba5c4d5b8a0644fb9af8742d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipName: Milky
+  hull: 100
+  maxHull: 100
+  gridSize: {x: 20, y: 20}
+  showDebugInfo: 1
+  engineRoomPrefab: {fileID: 1012999896}
+  powerRoomPrefab: {fileID: 0}
+  shieldRoomPrefab: {fileID: 0}
+  oxygenRoomPrefab: {fileID: 0}
+  cockpitRoomPrefab: {fileID: 1491316654}
+  weaponControlRoomPrefab: {fileID: 0}
+  ammunitionRoomPrefab: {fileID: 0}
+  storageRoomPrefab: {fileID: 0}
+  crewQuartersRoomPrefab: {fileID: 0}
+  lifeSupportRoomPrefab: {fileID: 0}
+  doorPrefab: {fileID: 0}
+  weapons: []
+  maxWeaponSlots: 4
+  crew: []
+  maxCrew: 6
+--- !u!4 &515748514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515748512}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3171.2805, y: -1321.982, z: 82.809296}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1012999897}
+  - {fileID: 1491316655}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &618951575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -534,13 +600,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1012999895}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6340.78, y: -2643.964, z: 50}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3169.4993, y: -1321.982, z: -32.809296}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 746258988}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 515748514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1154339154
 GameObject:
@@ -668,13 +734,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491316653}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3597.8647, y: 535.1024, z: -26.929203}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -426.58423, y: 1857.0845, z: -109.738495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 458238420}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 515748514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -683,5 +749,4 @@ SceneRoots:
   - {fileID: 618951575}
   - {fileID: 492219882}
   - {fileID: 1154339157}
-  - {fileID: 1012999897}
-  - {fileID: 1491316655}
+  - {fileID: 515748514}

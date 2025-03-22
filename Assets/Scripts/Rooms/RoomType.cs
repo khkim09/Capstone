@@ -12,5 +12,7 @@ public enum RoomType
     MedBay, // 의무실
     Storage, // 창고
     Corridor, // 복도
-    CrewQuarters // 선원 숙소
+    CrewQuarters, // 선원 숙소
+    LifeSupport, // 생활 시설
+    Teleporter //텔레포터
 }

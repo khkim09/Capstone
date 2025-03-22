@@ -1,30 +1,28 @@
-﻿// 비제네릭 기본 Room 클래스
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// 함선 내의 모든 방의 기본 클래스
 /// </summary>
-public abstract class Room : MonoBehaviour
+public abstract class Room : MonoBehaviour, IShipStatContributor
 {
     [SerializeField] protected RoomData roomData; // 기본 타입으로 참조
 
     [HideInInspector] public Vector2Int position;
 
-    [HideInInspector] public int currentLevel;
+    public int currentLevel;
 
     [HideInInspector] public int maxLevel;
-
-    [SerializeField] [HideInInspector] public int maxlevel;
 
     [SerializeField] [HideInInspector] protected float currentHitPoints; // 현재 체력
 
     [SerializeField] [HideInInspector] protected OxygenLevel oxygenLevel = OxygenLevel.Normal; // 현재 산소 레벨
 
     public RoomType roomType;
+
+    private bool isDamageable;
 
     [HideInInspector] protected List<Room> adjacentRooms = new(); // 인접한 방들
 
@@ -46,8 +44,6 @@ public abstract class Room : MonoBehaviour
 
     protected List<CrewMember> crewInRoom;
 
-    protected int currentPowerLevel; // 현재 실제로 작동 중인 레벨
-
     protected Dictionary<OxygenLevel, float> fireExtinguishRatePerLevel = new()
     {
         { OxygenLevel.None, 2.0f },
@@ -61,6 +57,8 @@ public abstract class Room : MonoBehaviour
 
     protected bool isPowered; // 전력 공급 상태
 
+    protected bool isPowerRequested; // 유저가 파워를 요청했는지 여부
+
     protected Color lowOxygenColor = new(1f, 0.8f, 0.8f); // 산소 부족시 색상
 
     protected Color normalColor = Color.white; // 기본 방 색상
@@ -69,18 +67,22 @@ public abstract class Room : MonoBehaviour
 
     public bool isPlaced { get; protected set; }
 
-    // 시작 시 StatsManager에 등록
+    // 직접 Ship 참조 추가
+    protected Ship parentShip;
+
+    // 시작 시 초기화 (ShipManager 대신 Ship에 등록)
     protected virtual void Start()
     {
-        if (ShipManager.Instance == null) Debug.LogError("ShipManager is null");
+        // 부모 Ship 컴포넌트 찾기
+        parentShip = GetComponentInParent<Ship>();
+        if (parentShip == null)
+            // 부모가 없다면 씬에서 찾기 시도
+            parentShip = FindObjectOfType<Ship>();
 
-        if (ShipManager.Instance != null) ShipManager.Instance.RegisterRoom(this);
-    }
+        if (parentShip == null) Debug.LogError($"No Ship found for {name}");
 
-    // 파괴 시 StatsManager 등록 해제
-    protected virtual void OnDestroy()
-    {
-        if (ShipManager.Instance != null) ShipManager.Instance.UnregisterRoom(this);
+        Initialize();
+        parentShip.AddRoom(this, new Vector2Int(Random.Range(0, 100), Random.Range(0, 100)));
     }
 
     public virtual void Update()
@@ -113,6 +115,41 @@ public abstract class Room : MonoBehaviour
     {
     } // 매 프레임/틱마다 방의 상태 업데이트
 
+    public void InitializeIsDamageable()
+    {
+        // NOTE: 방 종류 추가할 때마다 이 함수에 데미지 여부 등록하기
+        switch (roomType)
+        {
+            case RoomType.Power:
+            case RoomType.MedBay:
+            case RoomType.Shield:
+            case RoomType.Oxygen:
+            case RoomType.Engine:
+                isDamageable = true;
+                break;
+            case RoomType.CrewQuarters:
+            case RoomType.Storage:
+                isDamageable = false;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public bool GetIsPowered()
+    {
+        return isPowered;
+    }
+
+    public bool GetIsPowerRequested()
+    {
+        return isPowerRequested;
+    }
+
+    public bool GetIsDamageable()
+    {
+        return isDamageable;
+    }
 
     protected virtual void UpdateEffects()
     {
@@ -182,7 +219,9 @@ public abstract class Room : MonoBehaviour
 
     public virtual void Initialize()
     {
+        currentLevel = 1;
         currentHitPoints = roomData.GetRoomData(currentLevel).hitPoint;
+        InitializeIsDamageable();
         crewInRoom = new List<CrewMember>();
     }
 
@@ -196,12 +235,14 @@ public abstract class Room : MonoBehaviour
     {
         // TODO : 테스트 용으로 일단 true, 나중엔 실제로 선원 세야함
         return true;
-        return crewInRoom.Count >= roomData.GetRoomData(currentLevel).crewRequirement;
+        // return crewInRoom.Count >= roomData.GetRoomData(currentLevel).crewRequirement;
     }
 
     // 상태 체크 함수들
     public bool IsOperational()
     {
+        // TODO : 임시로 True 로 설정
+        return true;
         return isActive && isPowered && HasEnoughCrew();
     }
 
@@ -250,21 +291,16 @@ public abstract class Room : MonoBehaviour
     }
 
     // 전력 관련
-    public virtual void PowerUp()
-    {
-        isPowered = true;
 
-        // 스탯 기여도 변화 알림
+// Room.cs에 추가할 메서드
+    public virtual void SetPowerStatus(bool powered, bool requested)
+    {
+        isPowered = powered;
+        isPowerRequested = requested;
+        UpdateEffects();
         NotifyStateChanged();
     }
 
-    public virtual void PowerDown()
-    {
-        isPowered = false;
-
-        // 스탯 기여도 변화 알림
-        NotifyStateChanged();
-    }
 
     public float GetHealthPercentage()
     {
@@ -337,7 +373,7 @@ public abstract class Room : MonoBehaviour
     }
 
     /// <summary>
-    /// 상태 변경을 ShipStatsManager에 알림
+    /// 상태 변경을 Ship에 알림
     /// </summary>
     protected virtual void NotifyStateChanged()
     {
@@ -415,12 +451,16 @@ public abstract class Room<TData, TLevel> : Room
             currentRoomLevelData = (roomData as RoomData<TLevel>).GetTypedRoomData(currentLevel);
             if (currentRoomLevelData == null)
                 Debug.LogWarning($"No {GetType().Name} data found for level {currentLevel}");
+
+            UpdateRoomVisual();
         }
     }
 
     // Start에서 초기 레벨 데이터 로드
     protected override void Start()
     {
+        base.Start();
+
         // roomData가 null이면 초기화 건너뛰기
         if (roomData == null)
         {
@@ -429,10 +469,6 @@ public abstract class Room<TData, TLevel> : Room
         else
         {
             Initialize();
-            // ShipManager에 등록
-            if (ShipManager.Instance != null)
-                ShipManager.Instance.RegisterRoom(this);
-
             // 레벨 데이터 초기화
             UpdateRoomLevelData();
         }
@@ -457,9 +493,17 @@ public abstract class Room<TData, TLevel> : Room
             return;
         }
 
-        currentLevel = 1;
+        UpdateRoomVisual();
+
 
         base.Initialize();
         UpdateRoomLevelData();
+    }
+
+    private void UpdateRoomVisual()
+    {
+        roomRenderer = GetComponent<SpriteRenderer>();
+        if (roomRenderer != null && GetCurrentLevelData()?.roomSprite != null)
+            roomRenderer.sprite = GetCurrentLevelData().roomSprite;
     }
 }

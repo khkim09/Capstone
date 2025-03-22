@@ -4,6 +4,10 @@ using UnityEngine;
 // 게임 매니저 - 게임 전체 상태 관리
 public class GameManager : MonoBehaviour
 {
+    private Ship playerShip;
+    private Ship currentEnemyShip;
+
+
     public delegate void DayChangedHandler(int newDay);
 
     // 이벤트 및 상태 변화와 관련된 델리게이트
@@ -41,6 +45,9 @@ public class GameManager : MonoBehaviour
     {
         // 다른 매니저들이 모두 초기화되었는지 확인
         StartCoroutine(WaitForManagers());
+
+        // TODO: 임시로 씬에서 설치된 배를 찾아 플레이어 배로 등록
+        playerShip = GameObject.Find("PlayerShip").GetComponent<Ship>();
     }
 
     private IEnumerator WaitForManagers()
@@ -52,6 +59,22 @@ public class GameManager : MonoBehaviour
             CrewManager.Instance != null
         );
     }
+
+    public Ship GetPlayerShip()
+    {
+        return playerShip;
+    }
+
+    public Ship GetCurrentEnemyShip()
+    {
+        return currentEnemyShip;
+    }
+
+    public void SetCurrentEnemyShip(Ship enemyShip)
+    {
+        currentEnemyShip = enemyShip;
+    }
+
 
     // 게임 상태 변경
     public void ChangeGameState(GameState newState)

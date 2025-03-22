@@ -13,7 +13,6 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
     public class CockpitRoomLevel : RoomLevel
     {
         public float fuelEfficiency; // 에너지 효율 (%)
-
         public float avoidEfficiency; // 회피 효율 (%)
     }
 
@@ -26,6 +25,7 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
         {
             new()
             {
+                roomName = "room.cockpit.level1",
                 level = 1,
                 hitPoint = 100,
                 size = new Vector2Int(2, 2),
@@ -42,6 +42,7 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
             },
             new()
             {
+                roomName = "room.cockpit.level3",
                 level = 2,
                 hitPoint = 150,
                 size = new Vector2Int(2, 3),
@@ -58,6 +59,7 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
             },
             new()
             {
+                roomName = "room.cockpit.level3",
                 level = 3,
                 hitPoint = 200,
                 size = new Vector2Int(3, 3),

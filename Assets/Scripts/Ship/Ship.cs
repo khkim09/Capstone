@@ -1,108 +1,87 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.Serialization;
-
-public enum ItemStorageType
-{
-    Normal,
-    Temperature,
-    Animal
-}
 
 public class Ship : MonoBehaviour
 {
     [Header("Ship Info")] [SerializeField] private string shipName = "Milky";
     [SerializeField] private float hull = 100f;
     [SerializeField] private float maxHull = 100f;
-    [SerializeField] private float fuel = 500f;
-    [SerializeField] private float maxFuel = 1000f;
-    [SerializeField] private int COMA = 100; // 스크랩(재화)
     [SerializeField] private Vector2Int gridSize = new(20, 20);
-    [SerializeField] private float shields = 0f;
-    [SerializeField] private float maxShields = 0f;
-    [SerializeField] private float dodgeChance = 0f;
-    [SerializeField] private float hullDamageReduction = 0f;
+    [SerializeField] private bool showDebugInfo = true;
 
-    private readonly Dictionary<Vector2Int, Room> roomGrid = new();
-
-    [FormerlySerializedAs("engineRoomBasePrefab")] [Header("Room Prefabs")] [SerializeField]
+    [Header("Room Prefabs")] [SerializeField]
     private EngineRoom engineRoomPrefab;
 
-    [FormerlySerializedAs("powerRoomBasePrefab")] [SerializeField]
-    private PowerRoom powerRoomPrefab;
-
-    [FormerlySerializedAs("shieldRoomBasePrefab")] [SerializeField]
-    private ShieldRoom shieldRoomPrefab;
-
-    [FormerlySerializedAs("oxygenRoomBasePrefab")] [SerializeField]
-    private OxygenRoom oxygenRoomPrefab;
-
-    [FormerlySerializedAs("cockpitRoomBasePrefab")] [SerializeField]
-    private CockpitRoom cockpitRoomPrefab;
-
-    [FormerlySerializedAs("weaponControlRoomBasePrefab")] [SerializeField]
-    private WeaponControlRoom weaponControlRoomPrefab;
-
-    [FormerlySerializedAs("ammunitionRoomBasePrefab")] [SerializeField]
-    private AmmunitionRoom ammunitionRoomPrefab;
-
-    [FormerlySerializedAs("storageRoomBasePrefab")] [SerializeField]
-    private StorageRoom storageRoomPrefab;
-
-    [FormerlySerializedAs("crewQuartersRoomBasePrefab")] [SerializeField]
-    private CrewQuartersRoom crewQuartersRoomPrefab;
-
-    [FormerlySerializedAs("lifeSupportRoomBasePrefab")] [SerializeField]
-    private LifeSupportRoom lifeSupportRoomPrefab;
-
+    [SerializeField] private PowerRoom powerRoomPrefab;
+    [SerializeField] private ShieldRoom shieldRoomPrefab;
+    [SerializeField] private OxygenRoom oxygenRoomPrefab;
+    [SerializeField] private CockpitRoom cockpitRoomPrefab;
+    [SerializeField] private WeaponControlRoom weaponControlRoomPrefab;
+    [SerializeField] private AmmunitionRoom ammunitionRoomPrefab;
+    [SerializeField] private StorageRoom storageRoomPrefab;
+    [SerializeField] private CrewQuartersRoom crewQuartersRoomPrefab;
+    [SerializeField] private LifeSupportRoom lifeSupportRoomPrefab;
     [SerializeField] private Door doorPrefab;
 
     [Header("Weapons")] [SerializeField] private List<ShipWeapon> weapons = new();
     [SerializeField] private int maxWeaponSlots = 4;
 
     [Header("Crew")] [SerializeField] private List<CrewMember> crew = new();
-    [SerializeField] private int maxCrew = 6; // 최대 선원 수
+    [SerializeField] private int maxCrew = 6;
 
+    private readonly Dictionary<Vector2Int, Room> roomGrid = new();
     private readonly List<Door> doors = new();
-    private Planet destinationPlanet;
-    private int totalYears = 0; // 총 경과 연도
+    private readonly List<Room> allRooms = new();
+    private readonly Dictionary<RoomType, List<Room>> roomsByType = new();
+    private readonly Dictionary<ShipStat, float> currentStats = new();
+    private readonly Dictionary<string, Dictionary<ShipStat, float>> roomContributions = new();
 
-    private readonly List<Room> rooms = new();
-
-    // 실시간 계산 속성
-    public float HullPercentage => hull / maxHull * 100f;
-    public float FuelPercentage => fuel / maxFuel * 100f;
-    public bool CanWarp => GetRoomOfType<EngineRoom>() != null && GetRoomOfType<CockpitRoom>() != null;
+    public event Action OnStatsChanged;
 
     private void Awake()
     {
-        // 초기화
-        InitializeShip();
+        InitializeBaseStats();
+    }
+
+    private void Start()
+    {
+        RecalculateAllStats();
     }
 
     private void Update()
     {
-        // ShipWeapon은 자체 Update()를 사용하므로 별도 업데이트 호출 제거
-        ManagePower();
     }
 
-    private void InitializeShip()
+    private void OnDestroy()
     {
-        // 기본 함선 설정
-        SetupDefaultShip();
+        // 이벤트 구독 해제
+        foreach (Room room in allRooms)
+            if (room != null)
+                room.OnRoomStateChanged -= OnRoomStateChanged;
     }
+
+    // ===== Room Management =====
 
     public bool AddRoom(Room room, Vector2Int position)
     {
-        if (!IsValidPosition(position, room.GetSize()))
-            return false;
+        // TODO: 테스트용으로 임시로 검사 안함
+        //  if (!IsValidPosition(position, room.GetSize()))
+        //    return false;
 
         room.position = position;
-        rooms.Add(room);
+        allRooms.Add(room);
 
-        // 그리드에 방 등록
+        // Add to type dictionary
+        if (!roomsByType.ContainsKey(room.roomType))
+            roomsByType[room.roomType] = new List<Room>();
+        roomsByType[room.roomType].Add(room);
+
+        // Register for events
+        room.OnRoomStateChanged += OnRoomStateChanged;
+
+        // Add to grid
         for (int x = 0; x < room.GetSize().x; x++)
         for (int y = 0; y < room.GetSize().y; y++)
         {
@@ -111,91 +90,19 @@ public class Ship : MonoBehaviour
         }
 
         room.OnPlaced();
+
+        // Recalculate stats
+        RecalculateAllStats();
+
         return true;
-    }
-
-    public bool AddDoor(Vector2Int position, bool isVertical)
-    {
-        if (position.x < 0 || position.y < 0 || position.x >= gridSize.x || position.y >= gridSize.y)
-            return false;
-
-        Door door = Instantiate(doorPrefab);
-        door.transform.position = new Vector3(position.x, position.y, 0);
-
-        if (isVertical)
-            door.transform.rotation = Quaternion.Euler(0, 0, 90);
-
-        doors.Add(door);
-        return true;
-    }
-
-    public bool AddWeapon(ShipWeapon weapon)
-    {
-        if (weapons.Count >= maxWeaponSlots)
-            return false;
-
-        weapons.Add(weapon);
-        return true;
-    }
-
-    public bool RemoveWeapon(int index)
-    {
-        if (index < 0 || index >= weapons.Count)
-            return false;
-
-        weapons.RemoveAt(index);
-        return true;
-    }
-
-    // 함선 무기 공격 메서드 (간단화 버전)
-    public void FireWeapon(int weaponIndex, Ship targetShip)
-    {
-        if (weaponIndex < 0 || weaponIndex >= weapons.Count)
-            return;
-
-        ShipWeapon weapon = weapons[weaponIndex];
-        Debug.Log($"{weapon.weaponName} fired.");
-
-        // 단순히 weapon.damage를 targetShip에 적용합니다.
-        float finalDamage = weapon.damage;
-        targetShip.TakeDamage(finalDamage);
-    }
-
-    // 선체 피해 적용 (weaponType 관련 로직 제거)
-    public void TakeDamage(float damage)
-    {
-        ShieldRoom shieldRoom = GetRoomOfType<ShieldRoom>();
-        if (shieldRoom != null && shieldRoom.currentShields > 0)
-        {
-            shieldRoom.TakeShieldDamage(1);
-            return;
-        }
-
-        damage *= 1f - hullDamageReduction / 100f;
-        hull -= damage;
-        ApplyDamageToRandomRoom(damage);
-
-        if (hull <= 0)
-        {
-            hull = 0;
-            OnShipDestroyed();
-        }
-    }
-
-    private void ApplyDamageToRandomRoom(float damage)
-    {
-        if (rooms.Count == 0) return;
-
-        int randomIndex = Random.Range(0, rooms.Count);
-        Room targetRoom = rooms[randomIndex];
-        targetRoom.TakeDamage(damage);
     }
 
     public bool RemoveRoom(Room room)
     {
-        if (!rooms.Contains(room))
+        if (!allRooms.Contains(room))
             return false;
 
+        // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
         for (int y = 0; y < room.GetSize().y; y++)
         {
@@ -203,71 +110,21 @@ public class Ship : MonoBehaviour
             roomGrid.Remove(gridPos);
         }
 
-        rooms.Remove(room);
+        // Remove from room type dictionary
+        if (roomsByType.ContainsKey(room.roomType))
+            roomsByType[room.roomType].Remove(room);
+
+        // Unregister event
+        room.OnRoomStateChanged -= OnRoomStateChanged;
+
+        // Remove from list
+        allRooms.Remove(room);
         Destroy(room.gameObject);
+
+        // Recalculate stats
+        RecalculateAllStats();
+
         return true;
-    }
-
-    private void ManagePower()
-    {
-        PowerRoom powerRoom = GetRoomOfType<PowerRoom>();
-        if (powerRoom == null || !powerRoom.IsOperational())
-            return;
-
-        float availablePower = powerRoom.GetCurrentLevelData().powerRequirement;
-
-        List<Room> criticalRooms = new()
-        {
-            GetRoomOfType<OxygenRoom>(), GetRoomOfType<EngineRoom>(), GetRoomOfType<CockpitRoom>()
-        };
-
-        foreach (Room room in criticalRooms)
-            if (room != null)
-            {
-                float powerNeeded = room.GetPowerConsumption();
-                if (availablePower >= powerNeeded)
-                {
-                    room.PowerUp();
-                    availablePower -= powerNeeded;
-                }
-                else
-                {
-                    room.PowerDown();
-                }
-            }
-
-        List<Room> otherRooms = rooms
-            .Where(r => !criticalRooms.Contains(r) && r != powerRoom)
-            .OrderByDescending(r => r.GetPowerConsumption())
-            .ToList();
-
-        foreach (Room room in otherRooms)
-        {
-            float powerNeeded = room.GetPowerConsumption();
-            if (availablePower >= powerNeeded)
-            {
-                room.PowerUp();
-                availablePower -= powerNeeded;
-            }
-            else
-            {
-                room.PowerDown();
-            }
-        }
-    }
-
-    private void OnShipDestroyed()
-    {
-        Debug.Log("Ship destroyed!");
-        // 게임 오버 처리 로직
-    }
-
-    public T GetRoomOfType<T>() where T : Room
-    {
-        foreach (Room room in rooms)
-            if (room is T typedRoom)
-                return typedRoom;
-        return null;
     }
 
     private bool IsValidPosition(Vector2Int pos, Vector2Int size)
@@ -288,249 +145,360 @@ public class Ship : MonoBehaviour
         return true;
     }
 
-    public void SetupDefaultShip()
+    public bool AddDoor(Vector2Int position, bool isVertical)
     {
-        EngineRoom engineRoom = Instantiate(engineRoomPrefab);
-        AddRoom(engineRoom, new Vector2Int(0, 0));
-
-        PowerRoom powerRoom = Instantiate(powerRoomPrefab);
-        AddRoom(powerRoom, new Vector2Int(3, 0));
-
-        CockpitRoom cockpitRoom = Instantiate(cockpitRoomPrefab);
-        AddRoom(cockpitRoom, new Vector2Int(0, 3));
-
-        OxygenRoom oxygenRoom = Instantiate(oxygenRoomPrefab);
-        AddRoom(oxygenRoom, new Vector2Int(3, 3));
-
-        StorageRoom storageRoom = Instantiate(storageRoomPrefab);
-        storageRoom.storageType = StorageType.Normal;
-        AddRoom(storageRoom, new Vector2Int(6, 0));
-
-        CrewQuartersRoom crewQuarters = Instantiate(crewQuartersRoomPrefab);
-        AddRoom(crewQuarters, new Vector2Int(6, 3));
-
-        WeaponControlRoom weaponRoom = Instantiate(weaponControlRoomPrefab);
-        AddRoom(weaponRoom, new Vector2Int(9, 0));
-
-        AddDoor(new Vector2Int(2, 1), false);
-        AddDoor(new Vector2Int(1, 2), true);
-        AddDoor(new Vector2Int(4, 1), false);
-        AddDoor(new Vector2Int(4, 3), true);
-        AddDoor(new Vector2Int(7, 1), false);
-        AddDoor(new Vector2Int(7, 3), true);
-
-        // 기본 무기 추가 - 새 ShipWeapon 필드에 맞게 초기화
-        AddWeapon(new ShipWeapon { weaponName = "SLS-1 레이저건", damage = 80, fireRate = 1f, range = 100f });
-    }
-
-
-    public bool RefuelShip(float amount, int cost)
-    {
-        if (fuel >= maxFuel)
-            return false;
-        if (COMA < cost)
+        if (position.x < 0 || position.y < 0 || position.x >= gridSize.x || position.y >= gridSize.y)
             return false;
 
-        COMA -= cost;
-        fuel = Mathf.Min(fuel + amount, maxFuel);
+        Door door = Instantiate(doorPrefab);
+        door.transform.position = new Vector3(position.x, position.y, 0);
+
+        if (isVertical)
+            door.transform.rotation = Quaternion.Euler(0, 0, 90);
+
+        doors.Add(door);
         return true;
     }
+
+    public T GetRoomOfType<T>() where T : Room
+    {
+        foreach (Room room in allRooms)
+            if (room is T typedRoom)
+                return typedRoom;
+        return null;
+    }
+
+    public List<Room> GetRoomsByType(RoomType type)
+    {
+        if (roomsByType.ContainsKey(type))
+            return roomsByType[type];
+        return new List<Room>();
+    }
+
+    private void InitializeBaseStats()
+    {
+        currentStats.Clear();
+
+        // 기본 스탯 설정
+        currentStats[ShipStat.DodgeChance] = 0f;
+        currentStats[ShipStat.HitPointsMax] = 0f;
+        currentStats[ShipStat.FuelEfficiency] = 0f;
+        currentStats[ShipStat.FuelConsumption] = 0f;
+        currentStats[ShipStat.ShieldMaxAmount] = 0f;
+        currentStats[ShipStat.PowerUsing] = 0f;
+        currentStats[ShipStat.PowerCapacity] = 0f;
+        currentStats[ShipStat.OxygenGeneratePerSecond] = 0f;
+        currentStats[ShipStat.OxygenUsingPerSecond] = 0f;
+        currentStats[ShipStat.ShieldRespawnTime] = 0f;
+        currentStats[ShipStat.ShieldRegeneratePerSecond] = 0f;
+        currentStats[ShipStat.HealPerSecond] = 0f;
+        currentStats[ShipStat.CrewCapacity] = 0f;
+        currentStats[ShipStat.DamageReduction] = 0f;
+    }
+
+    private void OnRoomStateChanged(Room room)
+    {
+        if (showDebugInfo)
+            Debug.Log($"Room state changed: {room.name}");
+
+        RecalculateAllStats();
+    }
+
+    public void RecalculateAllStats()
+    {
+        // 기본값으로 초기화
+        InitializeBaseStats();
+
+        // 디버깅용 기여도 초기화
+        roomContributions.Clear();
+
+        // 각 방의 기여도 추가
+        foreach (Room room in allRooms)
+        {
+            if (room == null) continue;
+
+            Dictionary<ShipStat, float> contributions = room.GetStatContributions();
+
+            // 디버깅용 기여도 저장
+            roomContributions[room.name] = new Dictionary<ShipStat, float>(contributions);
+
+            // 스탯에 기여도 적용
+            foreach (KeyValuePair<ShipStat, float> contribution in contributions)
+                if (currentStats.ContainsKey(contribution.Key))
+                {
+                    // 스탯 타입에 따라 다르게 적용 (가산 또는 곱셈)
+                    if (IsAdditiveStatType(contribution.Key))
+                        // 가산 스탯 (예: 회피율, 에너지 효율 등)
+                        currentStats[contribution.Key] += contribution.Value;
+                    else if (IsMultiplicativeStatType(contribution.Key))
+                        // 곱셈 스탯 (예: 내구도 보너스 %)
+                        currentStats[contribution.Key] *= 1 + contribution.Value / 100f;
+                }
+        }
+
+        // TODO: 방을 제외한 ShipStatContributions 반영해야함 (ex : 외갑판)
+
+        // 특별한 스탯 처리 (필요시)
+        ProcessSpecialStats();
+
+        // 디버깅 정보 출력
+        if (showDebugInfo)
+            PrintDebugStatInfo();
+
+        // 스탯 변경 이벤트 발생
+        OnStatsChanged?.Invoke();
+    }
+
+    // TODO: 스탯 추가할 때마다 합연산인지 곱연산인지 분류
+
+    private bool IsAdditiveStatType(ShipStat statType)
+    {
+        switch (statType)
+        {
+            case ShipStat.DodgeChance:
+            case ShipStat.FuelEfficiency:
+            case ShipStat.FuelConsumption:
+            case ShipStat.PowerUsing:
+            case ShipStat.PowerCapacity:
+            case ShipStat.HitPointsMax:
+            case ShipStat.ShieldMaxAmount:
+            case ShipStat.OxygenGeneratePerSecond:
+            case ShipStat.OxygenUsingPerSecond:
+            case ShipStat.ShieldRespawnTime:
+            case ShipStat.ShieldRegeneratePerSecond:
+            case ShipStat.HealPerSecond:
+            case ShipStat.CrewCapacity:
+            case ShipStat.DamageReduction:
+
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private bool IsMultiplicativeStatType(ShipStat statType)
+    {
+        switch (statType)
+        {
+            default:
+                return false;
+        }
+    }
+
+    private void ProcessSpecialStats()
+    {
+        // 다른 특수 스탯 상호작용...
+    }
+
+    private void PrintDebugStatInfo()
+    {
+        Debug.Log($"=== {shipName} Ship Stats ===");
+        foreach (KeyValuePair<ShipStat, float> stat in currentStats)
+            Debug.Log($"{stat.Key}: {stat.Value}");
+
+        Debug.Log("=== Room Contributions ===");
+        foreach (KeyValuePair<string, Dictionary<ShipStat, float>> room in roomContributions)
+        {
+            Debug.Log($"{room.Key}:");
+            foreach (KeyValuePair<ShipStat, float> stat in room.Value)
+                Debug.Log($"  {stat.Key}: {stat.Value}");
+        }
+    }
+
+    public float GetStat(ShipStat statType)
+    {
+        if (currentStats.TryGetValue(statType, out float value))
+            return value;
+
+        Debug.LogWarning($"Stat {statType} not found!");
+        return 0f;
+    }
+
+    public Dictionary<ShipStat, float> GetRoomContributions(string roomName)
+    {
+        if (roomContributions.TryGetValue(roomName, out Dictionary<ShipStat, float> contributions))
+            return contributions;
+
+        return new Dictionary<ShipStat, float>();
+    }
+
+    // ===== Power Management =====
+    public bool RequestPowerForRoom(Room room, bool powerOn)
+    {
+        if (!powerOn)
+        {
+            // 전원을 끄는 경우는 항상 성공
+            room.SetPowerStatus(false, false);
+            RecalculateAllStats();
+            return true;
+        }
+
+        // 전원을 켜려는 경우, 충분한 전력이 있는지 확인
+        float availablePower = GetStat(ShipStat.PowerCapacity);
+        float usedPower = GetStat(ShipStat.PowerUsing);
+        float remainingPower = availablePower - usedPower;
+        float requiredPower = room.GetPowerConsumption();
+
+        if (remainingPower >= requiredPower)
+        {
+            // 충분한 전력이 있으면 전원 켜기
+            room.SetPowerStatus(true, true);
+            RecalculateAllStats();
+            return true;
+        }
+        else
+        {
+            // 전력이 부족하면 요청만 설정하고 실제로는 켜지 않음
+            room.SetPowerStatus(false, true);
+            return false;
+        }
+    }
+
+    // ===== Combat System =====
+    public bool AddWeapon(ShipWeapon weapon)
+    {
+        if (weapons.Count >= maxWeaponSlots)
+            return false;
+
+        weapons.Add(weapon);
+        return true;
+    }
+
+    public bool RemoveWeapon(int index)
+    {
+        if (index < 0 || index >= weapons.Count)
+            return false;
+
+        weapons.RemoveAt(index);
+        return true;
+    }
+
+    public void FireWeapon(int weaponIndex, Ship targetShip)
+    {
+        if (weaponIndex < 0 || weaponIndex >= weapons.Count)
+            return;
+
+        ShipWeapon weapon = weapons[weaponIndex];
+        Debug.Log($"{weapon.weaponName} fired.");
+
+        // Add dodge calculation
+        float dodgeChance = targetShip.GetStat(ShipStat.DodgeChance);
+        if (UnityEngine.Random.value < dodgeChance / 100f)
+        {
+            Debug.Log($"{targetShip.shipName} dodged the attack!");
+            return;
+        }
+
+        float finalDamage = weapon.damage;
+        targetShip.TakeDamage(finalDamage);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        // TODO : 방어막 관련 계산 수행
+        // ShieldRoom shieldRoom = GetRoomOfType<ShieldRoom>();
+        // if (shieldRoom != null && shieldRoom.GetCurrentShields() > 0)
+        // {
+        //     shieldRoom.TakeShieldDamage(damage);
+        //     return;
+        // }
+
+        // Apply hull damage reduction
+
+        /*
+         *
+        float hullDamageReduction = GetStat(ShipStat.DamageReduction);
+        damage *= 1f - hullDamageReduction / 100f;
+
+        hull -= damage;
+        ApplyDamageToRandomRoom(damage);
+
+        if (hull <= 0)
+        {
+            hull = 0;
+            OnShipDestroyed();
+        }
+         *
+         */
+    }
+
+    private void ApplyDamageToRandomRoom(float damage)
+    {
+        if (allRooms.Count == 0) return;
+
+        int randomIndex = UnityEngine.Random.Range(0, allRooms.Count);
+        Room targetRoom = allRooms[randomIndex];
+        targetRoom.TakeDamage(damage * 0.5f); // Only apply part of the damage to the room
+    }
+
+    private void OnShipDestroyed()
+    {
+        Debug.Log($"Ship {shipName} destroyed!");
+        // Implement game over logic
+    }
+
+    // ===== Warp System =====
+
+    public bool Warp()
+    {
+        float fuelCost = CalculateWarpFuelCost();
+
+        if (ResourceManager.Instance.GetResource(ResourceType.Fuel) < fuelCost)
+            return false;
+
+        List<Room> engineRooms = GetRoomsByType(RoomType.Engine);
+        List<Room> cockpitRooms = GetRoomsByType(RoomType.Cockpit);
+
+        // Check if crew requirement is met
+        foreach (Room engineRoom in engineRooms)
+            if (!engineRoom.HasEnoughCrew())
+                return false;
+
+        foreach (Room cockpitRoom in cockpitRooms)
+            if (!cockpitRoom.HasEnoughCrew())
+                return false;
+
+        ResourceManager.Instance.ChangeResource(ResourceType.Fuel, -fuelCost);
+        return true;
+    }
+
+    public float CalculateWarpFuelCost()
+    {
+        float fuelCost = GetStat(ShipStat.FuelConsumption);
+        float fuelEfficiency = GetStat(ShipStat.FuelEfficiency);
+        fuelCost *= 1 - fuelEfficiency / 100f;
+
+        if (showDebugInfo)
+            Debug.Log($"Warp fuel cost: {fuelCost}");
+
+        return fuelCost;
+    }
+
+    // ===== Ship Repairs =====
 
     public bool RepairHull(float amount, int cost)
     {
-        if (hull >= maxHull)
-            return false;
-        if (COMA < cost)
+        /*
+         *   if (hull >= maxHull)
             return false;
 
-        COMA -= cost;
+        if (!ResourceManager.Instance.SpendResource(ResourceType.COMA, cost))
+            return false;
+
         hull = Mathf.Min(hull + amount, maxHull);
-        return true;
-    }
-
-    public bool BuyItem(TradableItem item, int quantity)
-    {
-        // GetCurrentPrice()를 사용하여 가격 변동 적용 및 정수형으로 변환
-        int totalCost = Mathf.RoundToInt(item.GetCurrentPrice() * quantity);
-
-        // 스크랩 충분한지 확인
-        if (COMA < totalCost)
-            return false;
-
-        // 창고 공간 확인 (호환성 체크 로직이 필요하면 수정)
-        if (!HasStorageSpaceFor(item, quantity))
-            return false;
-
-        // 거래 완료
-        COMA -= totalCost;
-        AddItemToStorage(item, quantity);
+         */
 
         return true;
     }
 
-
-    public bool SellItem(TradableItem item, int quantity)
-    {
-        // 아이템 소유 여부 확인
-        if (!HasItem(item, quantity))
-            return false;
-
-        // 판매 단가는 현재 가격의 90%로 가정 (10% 할인)
-        int totalValue = Mathf.RoundToInt(item.GetCurrentPrice() * 0.9f * quantity);
-
-        // 거래 완료
-        RemoveItemFromStorage(item, quantity);
-        COMA += totalValue;
-
-        return true;
-    }
-
-    // TradableItem의 category 값을 기반으로 ItemStorageType으로 매핑하는 함수
-// TradableItem의 category 값을 StorageType으로 매핑하는 헬퍼 함수
-    private StorageType GetMappedStorageType(TradableItem item)
-    {
-        switch (item.category)
-        {
-            case "향신료":
-                return StorageType.Normal;
-            case "소재":
-                return StorageType.Temperature;
-            case "보석":
-                return StorageType.Normal;
-            case "사치품":
-                return StorageType.Normal;
-            case "식량":
-                return StorageType.Temperature;
-            case "동물":
-                return StorageType.Animal;
-            case "유물":
-                return StorageType.Normal;
-            case "광물":
-                return StorageType.Normal;
-            case "무기":
-                return StorageType.Normal;
-            default:
-                return StorageType.Normal;
-        }
-    }
-
-// StorageRoom과 TradableItem 간 호환성 검사 함수
-    private bool IsStorageCompatibleWithItem(StorageRoom storage, TradableItem item)
-    {
-        // 기존 StorageType enum을 사용하여 비교
-        return storage.storageType == GetMappedStorageType(item);
-    }
-
-
-// 창고에 아이템 추가 가능한 공간이 충분한지 검사
-private bool HasStorageSpaceFor(TradableItem item, int quantity)
-{
-    foreach (Room room in rooms)
-    {
-        if (room is StorageRoom storageRoom)
-        {
-            if (IsStorageCompatibleWithItem(storageRoom, item))
-            {
-                // Storage 컴포넌트 가져오기
-                Storage storageComponent = storageRoom.GetComponent<Storage>();
-                if (storageComponent != null)
-                {
-                    int currentQuantity = storageComponent.GetItemQuantity(item);
-                    int available = item.maxStackAmount - currentQuantity;
-                    if (available >= quantity)
-                        return true;
-                }
-            }
-        }
-    }
-    return false;
-}
-
-// 창고에 해당 아이템이 충분히 있는지 검사
-private bool HasItem(TradableItem item, int quantity)
-{
-    foreach (Room room in rooms)
-    {
-        if (room is StorageRoom storageRoom)
-        {
-            if (IsStorageCompatibleWithItem(storageRoom, item))
-            {
-                Storage storageComponent = storageRoom.GetComponent<Storage>();
-                if (storageComponent != null)
-                {
-                    int currentQuantity = storageComponent.GetItemQuantity(item);
-                    if (currentQuantity >= quantity)
-                        return true;
-                }
-            }
-        }
-    }
-    return false;
-}
-
-// 창고에 아이템을 추가 (여러 StorageRoom에 걸쳐 추가 가능)
-private void AddItemToStorage(TradableItem item, int quantity)
-{
-    int remaining = quantity;
-    foreach (Room room in rooms)
-    {
-        if (room is StorageRoom storageRoom)
-        {
-            if (IsStorageCompatibleWithItem(storageRoom, item))
-            {
-                Storage storageComponent = storageRoom.GetComponent<Storage>();
-                if (storageComponent != null)
-                {
-                    int currentQuantity = storageComponent.GetItemQuantity(item);
-                    int available = item.maxStackAmount - currentQuantity;
-                    if (available > 0)
-                    {
-                        int toAdd = Mathf.Min(available, remaining);
-                        storageComponent.AddItem(item, toAdd);
-                        remaining -= toAdd;
-                        if (remaining <= 0)
-                            break;
-                    }
-                }
-            }
-        }
-    }
-}
-
-// 창고에서 아이템을 제거 (여러 StorageRoom에서 분할 제거 가능)
-private void RemoveItemFromStorage(TradableItem item, int quantity)
-{
-    int remaining = quantity;
-    foreach (Room room in rooms)
-    {
-        if (room is StorageRoom storageRoom)
-        {
-            if (IsStorageCompatibleWithItem(storageRoom, item))
-            {
-                Storage storageComponent = storageRoom.GetComponent<Storage>();
-                if (storageComponent != null)
-                {
-                    int currentQuantity = storageComponent.GetItemQuantity(item);
-                    if (currentQuantity > 0)
-                    {
-                        int toRemove = Mathf.Min(currentQuantity, remaining);
-                        storageComponent.RemoveItem(item, toRemove);
-                        remaining -= toRemove;
-                        if (remaining <= 0)
-                            break;
-                    }
-                }
-            }
-        }
-    }
-}
+    // ===== Crew Management =====
 
     public bool AddCrewMember(CrewMember newCrew)
     {
         if (crew.Count >= maxCrew)
             return false;
+
         crew.Add(newCrew);
-        UpdateCrewQuarters();
         return true;
     }
 
@@ -538,18 +506,10 @@ private void RemoveItemFromStorage(TradableItem item, int quantity)
     {
         if (!crew.Contains(crewToRemove))
             return false;
-        crew.Remove(crewToRemove);
-        UpdateCrewQuarters();
-        return true;
-    }
 
-    private void UpdateCrewQuarters()
-    {
-        int totalCapacity = 0;
-        foreach (Room room in rooms)
-            if (room is CrewQuartersRoom crewQuarters)
-                totalCapacity += crewQuarters.maxCrewCapacity;
-        maxCrew = totalCapacity;
+        crew.Remove(crewToRemove);
+
+        return true;
     }
 
     public void ApplyMoraleBonusToAllCrew(float bonus)
@@ -558,22 +518,7 @@ private void RemoveItemFromStorage(TradableItem item, int quantity)
             crewMember.AddMoraleBonus(bonus);
     }
 
-    public int GetCOMA()
-    {
-        return COMA;
-    }
-
-    public void AddCOMA(int amount)
-    {
-        COMA += amount;
-    }
-
-    public bool SpendCOMA(int amount)
-    {
-        if (COMA < amount) return false;
-        COMA -= amount;
-        return true;
-    }
+    // ===== Getters =====
 
     public float GetHull()
     {
@@ -583,16 +528,6 @@ private void RemoveItemFromStorage(TradableItem item, int quantity)
     public float GetMaxHull()
     {
         return maxHull;
-    }
-
-    public float GetFuel()
-    {
-        return fuel;
-    }
-
-    public float GetMaxFuel()
-    {
-        return maxFuel;
     }
 
     public int GetCrewCount()
@@ -605,14 +540,9 @@ private void RemoveItemFromStorage(TradableItem item, int quantity)
         return maxCrew;
     }
 
-    public int GetTotalYears()
-    {
-        return totalYears;
-    }
-
     public List<Room> GetAllRooms()
     {
-        return rooms;
+        return allRooms;
     }
 
     public List<Door> GetAllDoors()

@@ -26,12 +26,14 @@ public class EngineRoom : Room<EngineRoomData, EngineRoomData.EngineRoomLevel>
         if (!IsOperational() || currentRoomLevelData == null)
             return contributions;
 
+
         if (currentLevel == 1)
         {
             // 엔진실 레벨 데이터에서 기여도 추가
             contributions[ShipStat.DodgeChance] = currentRoomLevelData.avoidEfficiency;
             contributions[ShipStat.FuelEfficiency] = currentRoomLevelData.fuelEfficiency;
             contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
+            contributions[ShipStat.FuelConsumption] = currentRoomLevelData.fuelConsumption;
         }
         else
         {
@@ -45,6 +47,7 @@ public class EngineRoom : Room<EngineRoomData, EngineRoomData.EngineRoomLevel>
                     contributions[ShipStat.DodgeChance] = weakedRoomLevelData.avoidEfficiency;
                     contributions[ShipStat.FuelEfficiency] = weakedRoomLevelData.fuelEfficiency;
                     contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
+                    contributions[ShipStat.FuelConsumption] = weakedRoomLevelData.fuelConsumption;
                 }
                 else if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
                 {
