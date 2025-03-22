@@ -294,11 +294,11 @@ public class CrewMember : MonoBehaviour
     }
 
     // 개인 장비 적용 - 보조 장비비
-    public void AddAssistantEquipment(EquipmentItem eqItem)
+    public void AddPersonalEquipment(EquipmentItem eqItem)
     {
         if (eqItem.eqType != EquipmentType.AssistantEquipment)
         {
-            Debug.LogWarning("보조 장비비 아님");
+            Debug.LogWarning("보조 장비 아님");
             return;
         }
 

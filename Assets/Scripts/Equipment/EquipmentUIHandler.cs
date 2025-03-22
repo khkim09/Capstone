@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public class EquipmentUIHandler : MonoBehaviour
 {
     [Header("Tip Panel References")]
-    public GameObject itemTipPanel;
+    public GameObject itemBuyPanel;
     public Image tipItemImage;
     public TextMeshProUGUI tipItemName;
     public TextMeshProUGUI tipItemPrice;
@@ -25,7 +25,8 @@ public class EquipmentUIHandler : MonoBehaviour
     private EquipmentButton currentSelectedButton;
 
     // 구매한 아이템 목록
-    private HashSet<EquipmentItem> purchasedItems = new HashSet<EquipmentItem>();
+    public HashSet<EquipmentItem> purchasedItems = new HashSet<EquipmentItem>();
+
 
     // 임시로 플레이어 보유 재화를 관리 (실제론 GameManager 등 다른 스크립트에서 관리 가능)
     public int playerCOMA = 10000;
@@ -33,7 +34,7 @@ public class EquipmentUIHandler : MonoBehaviour
     private void Start()
     {
         // 팝업 비활성화
-        itemTipPanel.SetActive(false);
+        itemBuyPanel.SetActive(false);
     }
 
 
@@ -61,7 +62,7 @@ public class EquipmentUIHandler : MonoBehaviour
         }
 
         // 팝업 표시
-        itemTipPanel.SetActive(true);
+        itemBuyPanel.SetActive(true);
     }
 
     public void OnClickBuy()
@@ -76,19 +77,22 @@ public class EquipmentUIHandler : MonoBehaviour
         playerCOMA -= currentSelectedItem.eqPrice;
         purchasedItems.Add(currentSelectedItem);
 
+        // 장비 타입 확인 (global, personal)
+        if (currentSelectedButton.linkedItem.isGlobalEquip)
+        {
+
+        }
 
         // 팝업 닫기
-        itemTipPanel.SetActive(false);
+        itemBuyPanel.SetActive(false);
 
         // 버튼 색 변경
         currentSelectedButton.MarkAsPurchased(purchasedButtonColor);
-
-        Debug.Log($"{currentSelectedItem.eqName} 구매 완료! 남은 골드: {playerCOMA}");
     }
 
     public void OnClickBack()
     {
         // 팝업 닫기
-        itemTipPanel.SetActive(false);
+        itemBuyPanel.SetActive(false);
     }
 }
