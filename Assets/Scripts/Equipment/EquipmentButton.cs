@@ -38,7 +38,6 @@ public class EquipmentButton : MonoBehaviour
         if (linkedItem == null)
             return;
 
-        Debug.Log("ui update가능");
         // ScriptableObject의 데이터를 UI에 반영
         iconImage.sprite = linkedItem.eqIcon;
         nameText.text = linkedItem.eqName;

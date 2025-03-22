@@ -11,7 +11,7 @@ public class GridGuide : MonoBehaviour
 
     [Header("Line Renderer Settings")]
     public Material lineMaterial;
-    public float lineWidth = 0.02f;
+    public float lineWidth = 0.03f;
     public int sortingOrder = 100;
 
     void Start()

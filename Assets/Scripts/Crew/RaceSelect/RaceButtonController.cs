@@ -58,10 +58,7 @@ public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointe
         // Canvas 찾기
         Canvas canvas = FindAnyObjectByType<Canvas>();
         if (canvas == null)
-        {
-            Debug.LogWarning("씬에 Canvas가 없습니다!");
             return;
-        }
 
         // RaceTooltip 프리팹 생성
         activeTooltip = Instantiate(raceTooltipPrefab, canvas.transform);

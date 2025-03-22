@@ -298,7 +298,7 @@ public class CrewMember : MonoBehaviour
     {
         if (eqItem.eqType != EquipmentType.AssistantEquipment)
         {
-            Debug.LogWarning("보조 장비비 아님");
+            Debug.LogWarning("보조 장비 아님");
             return;
         }
 

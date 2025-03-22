@@ -88,8 +88,6 @@ public class EquipmentUIHandler : MonoBehaviour
 
         // 버튼 색 변경
         currentSelectedButton.MarkAsPurchased(purchasedButtonColor);
-
-        Debug.Log($"{currentSelectedItem.eqName} 구매 완료! 남은 골드: {playerCOMA}");
     }
 
     public void OnClickBack()
