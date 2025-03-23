@@ -10,20 +10,18 @@ public class TradeManager : MonoBehaviour
     [SerializeField] private int playerCOMA = 1000;
 
     // 창고(Storage) 시스템 참조 (Storage.cs에 AddItem, HasItem, RemoveItem 메서드가 구현되어 있다고 가정)
-    [SerializeField] private Storage warehouse;
-
+    // TODO: 배에 중앙화하는 패턴 구현 중이라, 배에서 창고 물품 가져오게 배를 참조하면 될 것 같아.
+    //[SerializeField] private Storage warehouse;
     private void Start()
     {
         // TradeDataLoader가 할당되지 않았다면 씬에서 찾아봅니다.
-        if (tradeDataLoader == null)
-        {
-            tradeDataLoader = FindObjectOfType<TradeDataLoader>();
-        }
-        // 창고 참조도 확인합니다.
-        if (warehouse == null)
-        {
-            warehouse = FindObjectOfType<Storage>();
-        }
+        if (tradeDataLoader == null) tradeDataLoader = FindObjectOfType<TradeDataLoader>();
+
+        // // 창고 참조도 확인합니다.
+        // if (warehouse == null)
+        // {
+        //     warehouse = FindObjectOfType<Storage>();
+        // }
     }
 
     /// <summary>
@@ -55,11 +53,11 @@ public class TradeManager : MonoBehaviour
             // 재화 차감
             playerCOMA -= Mathf.RoundToInt(totalCost);
 
-            // 창고에 아이템 추가 (창고 내 최대 적층량 등의 체크는 Storage 내부에서 처리)
-            if (warehouse != null)
-            {
-                warehouse.AddItem(item, quantity);
-            }
+            // // 창고에 아이템 추가 (창고 내 최대 적층량 등의 체크는 Storage 내부에서 처리)
+            // if (warehouse != null)
+            // {
+            //     warehouse.AddItem(item, quantity);
+            // }
 
             Debug.Log($"Purchased {quantity} of {item.itemName} for {totalCost} COMA. Remaining coma: {playerCOMA}");
             return true;
@@ -81,30 +79,30 @@ public class TradeManager : MonoBehaviour
     /// <returns>판매 성공 여부</returns>
     public bool SellItem(TradableItem item, int quantity)
     {
-        // 창고가 할당되어 있지 않으면 오류 처리
-        if (warehouse == null)
-        {
-            Debug.LogError("Warehouse is not assigned.");
-            return false;
-        }
-
-        // 창고에 아이템이 충분한지 확인합니다.
-        if (!warehouse.HasItem(item, quantity))
-        {
-            Debug.Log("Not enough items in storage to sell " + item.itemName);
-            return false;
-        }
-
-        // 판매 단가는 현재 가격의 90%로 계산 (10% 할인)
-        float sellUnitPrice = item.GetCurrentPrice() * 0.9f;
-        float totalRevenue = sellUnitPrice * quantity;
-
-        // 창고에서 아이템 제거
-        warehouse.RemoveItem(item, quantity);
-
-        // 판매 대금으로 재화 추가
-        playerCOMA += Mathf.RoundToInt(totalRevenue);
-        Debug.Log($"Sold {quantity} of {item.itemName} for {totalRevenue} COMA. New coma total: {playerCOMA}");
+        // // 창고가 할당되어 있지 않으면 오류 처리
+        // if (warehouse == null)
+        // {
+        //     Debug.LogError("Warehouse is not assigned.");
+        //     return false;
+        // }
+        //
+        // // 창고에 아이템이 충분한지 확인합니다.
+        // if (!warehouse.HasItem(item, quantity))
+        // {
+        //     Debug.Log("Not enough items in storage to sell " + item.itemName);
+        //     return false;
+        // }
+        //
+        // // 판매 단가는 현재 가격의 90%로 계산 (10% 할인)
+        // float sellUnitPrice = item.GetCurrentPrice() * 0.9f;
+        // float totalRevenue = sellUnitPrice * quantity;
+        //
+        // // 창고에서 아이템 제거
+        // warehouse.RemoveItem(item, quantity);
+        //
+        // // 판매 대금으로 재화 추가
+        // playerCOMA += Mathf.RoundToInt(totalRevenue);
+        // Debug.Log($"Sold {quantity} of {item.itemName} for {totalRevenue} COMA. New coma total: {playerCOMA}");
         return true;
     }
 

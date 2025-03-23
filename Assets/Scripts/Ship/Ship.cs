@@ -11,20 +11,6 @@ public class Ship : MonoBehaviour
     [SerializeField] private Vector2Int gridSize = new(20, 20);
     [SerializeField] private bool showDebugInfo = true;
 
-    [Header("Room Prefabs")] [SerializeField]
-    private EngineRoom engineRoomPrefab;
-
-    [SerializeField] private PowerRoom powerRoomPrefab;
-    [SerializeField] private ShieldRoom shieldRoomPrefab;
-    [SerializeField] private OxygenRoom oxygenRoomPrefab;
-    [SerializeField] private CockpitRoom cockpitRoomPrefab;
-    [SerializeField] private WeaponControlRoom weaponControlRoomPrefab;
-    [SerializeField] private AmmunitionRoom ammunitionRoomPrefab;
-    [SerializeField] private StorageRoom storageRoomPrefab;
-    [SerializeField] private CrewQuartersRoom crewQuartersRoomPrefab;
-    [SerializeField] private LifeSupportRoom lifeSupportRoomPrefab;
-    [SerializeField] private Door doorPrefab;
-
     [Header("Weapons")] [SerializeField] private List<ShipWeapon> weapons = new();
     [SerializeField] private int maxWeaponSlots = 4;
 
@@ -147,16 +133,6 @@ public class Ship : MonoBehaviour
 
     public bool AddDoor(Vector2Int position, bool isVertical)
     {
-        if (position.x < 0 || position.y < 0 || position.x >= gridSize.x || position.y >= gridSize.y)
-            return false;
-
-        Door door = Instantiate(doorPrefab);
-        door.transform.position = new Vector3(position.x, position.y, 0);
-
-        if (isVertical)
-            door.transform.rotation = Quaternion.Euler(0, 0, 90);
-
-        doors.Add(door);
         return true;
     }
 

@@ -3,15 +3,16 @@ using UnityEngine.UI;
 
 public class TradeItemUI : MonoBehaviour
 {
-    [Header("UI References")]
-    [SerializeField] private Text itemNameText;       // 아이템 이름 표시
-    [SerializeField] private Text categoryText;       // 분류 표시
-    [SerializeField] private Text priceText;          // 현재 가격 표시
-    [SerializeField] private Text maxStackText;       // 최대 적층량 표시
-    [SerializeField] private Text descriptionText;    // 아이템 설명 표시
+    [Header("UI References")] [SerializeField]
+    private Text itemNameText; // 아이템 이름 표시
+
+    [SerializeField] private Text categoryText; // 분류 표시
+    [SerializeField] private Text priceText; // 현재 가격 표시
+    [SerializeField] private Text maxStackText; // 최대 적층량 표시
+    [SerializeField] private Text descriptionText; // 아이템 설명 표시
     [SerializeField] private InputField quantityInputField; // 구매/판매 수량 입력
-    [SerializeField] private Button buyButton;        // 구매 버튼
-    [SerializeField] private Button sellButton;       // 판매 버튼
+    [SerializeField] private Button buyButton; // 구매 버튼
+    [SerializeField] private Button sellButton; // 판매 버튼
 
     // 데이터 참조
     private TradableItem tradableItem;
@@ -33,8 +34,8 @@ public class TradeItemUI : MonoBehaviour
         // UI 텍스트 초기화
         if (itemNameText != null)
             itemNameText.text = tradableItem.itemName;
-        if (categoryText != null)
-            categoryText.text = tradableItem.category;
+        //  if (categoryText != null)
+        //   categoryText.text = tradableItem.category;
         if (maxStackText != null)
             maxStackText.text = "Max Stack: " + tradableItem.maxStackAmount.ToString();
         if (descriptionText != null)
@@ -67,15 +68,10 @@ public class TradeItemUI : MonoBehaviour
     private void OnBuyButtonClicked()
     {
         int quantity = 1;
-        if (quantityInputField != null)
-        {
-            int.TryParse(quantityInputField.text, out quantity);
-        }
+        if (quantityInputField != null) int.TryParse(quantityInputField.text, out quantity);
         if (tradeManager.BuyItem(tradableItem, quantity))
-        {
             // 구매 성공 시 재화 업데이트
             tradeUI.UpdatePlayerCOMA();
-        }
     }
 
     /// <summary>
@@ -84,14 +80,9 @@ public class TradeItemUI : MonoBehaviour
     private void OnSellButtonClicked()
     {
         int quantity = 1;
-        if (quantityInputField != null)
-        {
-            int.TryParse(quantityInputField.text, out quantity);
-        }
+        if (quantityInputField != null) int.TryParse(quantityInputField.text, out quantity);
         if (tradeManager.SellItem(tradableItem, quantity))
-        {
             // 판매 성공 시 재화 업데이트
             tradeUI.UpdatePlayerCOMA();
-        }
     }
 }

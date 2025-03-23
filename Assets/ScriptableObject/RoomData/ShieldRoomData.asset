@@ -9,25 +9,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaf83f70b99e4d33b92ba7d7b9e9f046, type: 3}
-  m_Name: MedBayRoom
+  m_Script: {fileID: 11500000, guid: ae078ba822564bb2ba5651c85eae8dd1, type: 3}
+  m_Name: ShieldRoomData
   m_EditorClassIdentifier: 
   RoomLevels:
-  - roomName: room.medbay.level1
+  - roomName: room.shield.level1
     level: 1
-    hitPoint: 100
-    size: {x: 2, y: 2}
+    hitPoint: 200
+    size: {x: 2, y: 3}
     cost: 2000
     crewRequirement: 0
-    powerRequirement: 10
+    powerRequirement: 30
     roomSprite: {fileID: 0}
-    healPerSecond: 5
-  - roomName: room.medbay.level2
+    shieldRespawnTime: 30
+    shieldMaxAmount: 100
+    shieldReneratePerSecond: 5
+  - roomName: room.shield.level2
     level: 2
-    hitPoint: 120
+    hitPoint: 300
     size: {x: 2, y: 3}
     cost: 4000
     crewRequirement: 0
-    powerRequirement: 20
+    powerRequirement: 50
     roomSprite: {fileID: 0}
-    healPerSecond: 8
+    shieldRespawnTime: 25
+    shieldMaxAmount: 200
+    shieldReneratePerSecond: 8

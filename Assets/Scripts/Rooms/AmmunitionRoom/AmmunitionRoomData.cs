@@ -4,34 +4,36 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 /// <summary>
-/// 의무실의 레벨별 데이터를 저장하는 ScriptableObject
+/// 탄약고의 레벨별 데이터를 저장하는 ScriptableObject
 /// </summary>
-[CreateAssetMenu(fileName = "MedBayRoomData", menuName = "RoomData/MedBayRoom Data")]
-public class MedBayRoomData : RoomData<MedBayRoomData.MedBayRoomLevel>
+[CreateAssetMenu(fileName = "AmmunitionRoomData", menuName = "RoomData/AmmunitionRoom Data")]
+public class AmmunitionRoomData : RoomData<AmmunitionRoomData.AmmunitionRoomLevel>
 {
     [System.Serializable]
-    public class MedBayRoomLevel : RoomLevel
+    public class AmmunitionRoomLevel : RoomLevel
     {
-        public float healPerSecond;
+        public float reloadTimeBonus;
+        public float damageBonus;
     }
 
     /// <summary>
-    /// 기본 의무실 레벨 데이터 초기화
+    /// 기본 탄약고 레벨 데이터 초기화
     /// </summary>
     protected override void InitializeDefaultLevels()
     {
-        RoomLevels = new List<MedBayRoomLevel>
+        RoomLevels = new List<AmmunitionRoomLevel>
         {
             new()
             {
-                roomName = "room.medbay.level1",
+                roomName = "room.ammunition.level1",
                 level = 1,
                 hitPoint = 100,
-                size = new Vector2Int(2, 2),
-                cost = 2000,
-                powerRequirement = 10f,
+                size = new Vector2Int(2, 1),
+                cost = 1800,
+                powerRequirement = 40f,
                 crewRequirement = 0,
-                healPerSecond = 5f,
+                reloadTimeBonus = 10f,
+                damageBonus = 0f,
                 damageHitPointRate =
                     new Dictionary<RoomDamageLevel, float>()
                     {
@@ -40,14 +42,15 @@ public class MedBayRoomData : RoomData<MedBayRoomData.MedBayRoomLevel>
             },
             new()
             {
-                roomName = "room.medbay.level2",
+                roomName = "room.ammunition.level2",
                 level = 2,
-                hitPoint = 120,
-                size = new Vector2Int(2, 3),
-                cost = 4000,
-                powerRequirement = 20f,
+                hitPoint = 200,
+                size = new Vector2Int(2, 1),
+                cost = 3000,
+                powerRequirement = 60f,
                 crewRequirement = 0,
-                healPerSecond = 8f,
+                reloadTimeBonus = 20f,
+                damageBonus = 10f,
                 damageHitPointRate =
                     new Dictionary<RoomDamageLevel, float>()
                     {

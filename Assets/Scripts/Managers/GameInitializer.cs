@@ -5,7 +5,6 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private GameObject crewManagerPrefab;
     [SerializeField] private GameObject eventManagerPrefab;
     [SerializeField] private GameObject gameManagerPrefab;
-    [SerializeField] private GameObject inventoryManagerPrefab;
     [SerializeField] private GameObject questManagerPrefab;
     [SerializeField] private GameObject resourceManagerPrefab;
     [SerializeField] private GameObject shipManagerPrefab;
@@ -20,7 +19,6 @@ public class GameInitializer : MonoBehaviour
         InstantiateIfNotExists<CrewManager>(crewManagerPrefab);
         InstantiateIfNotExists<EventManager>(eventManagerPrefab);
         InstantiateIfNotExists<QuestManager>(questManagerPrefab);
-        InstantiateIfNotExists<InventoryManager>(inventoryManagerPrefab);
         InstantiateIfNotExists<UIManager>(uiManagerPrefab);
         InstantiateIfNotExists<GameStateManager>(gameStateManagerPrefab);
     }

@@ -9,11 +9,12 @@ using UnityEngine.Serialization;
  *       즉, 이 클래스를 수정할 경우 무조건 무조건 생성된 Scriptable Object 에 값을 할당할 것!!!!
  *       값이 날라갔을 때를 대비하여 기본값을 하단에 명기함.
  *
- *  생활관 : roomName = "room.crewquarters.basic", maxCrewCapacity = 6, size = (2,4), cost = 1200
- *  큰 생활관 : roomName = "room.crewquarters.big", maxCrewCapacity = 10, size = (3,4), cost = 2000
- *  개인 생활관 : roomName = "room.crewquarters.personal", maxCrewCapcity = 1, size = (2,1), cost = 500, crewMoraleBonus = 1
- *  호화 생활관 : roomName = "room.crewquarters.goodpersonal", maxCrewCapacity = 1, size = (2,1), cost = 700, powerRequirement = 5, crewMoraleBonus = 3
+ *  생활관 : roomName = "room.crewquarters.basic", hitPoint = 100, maxCrewCapacity = 6, size = (2,4), cost = 1200
+ *  큰 생활관 : roomName = "room.crewquarters.big", hitPoint = 160, maxCrewCapacity = 10, size = (3,4), cost = 2000
+ *  개인 생활관 : roomName = "room.crewquarters.personal", hitPoint = 80, maxCrewCapcity = 1, size = (2,1), cost = 600, crewMoraleBonus = 1
+ *  호화 생활관 : roomName = "room.crewquarters.goodpersonal", hitPoint = 80, maxCrewCapacity = 1, size = (2,1), cost = 800, powerRequirement = 5, crewMoraleBonus = 3
  *
+ *  숙소들의 피해 단계는 1단계는 존재하지 않고 2단계만 존재한다 (25%)
  */
 
 /// <summary>

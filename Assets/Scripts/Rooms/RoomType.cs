@@ -7,7 +7,7 @@ public enum RoomType
     Shield, // 배리어실
     Oxygen, // 산소실
     Cockpit, // 조종실
-    Weapon, // 조준석
+    WeaponControl, // 조준석
     Ammunition, // 탄약고
     MedBay, // 의무실
     Storage, // 창고

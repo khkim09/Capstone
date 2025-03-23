@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 /// <summary>
 /// 배리어실의 레벨별 데이터를 저장하는 ScriptableObject
 /// </summary>
-[CreateAssetMenu(fileName = "ShieldRoom", menuName = "RoomData/ShieldRoom Data")]
+[CreateAssetMenu(fileName = "ShieldRoomData", menuName = "RoomData/ShieldRoom Data")]
 public class ShieldRoomData : RoomData<ShieldRoomData.ShieldRoomLevel>
 {
     [System.Serializable]

@@ -22,5 +22,8 @@ public enum ShipStat
     ShieldRegeneratePerSecond, // 초당 쉴드 재생량
     HealPerSecond, // 의무실에서 초당 회복량
     CrewCapacity, // 선원 최대 고용수
-    DamageReduction // 함선 무기 경감률
+    DamageReduction, // 함선 무기 피격 데미지 경감률
+    Accuracy, // 명중률 (%)
+    ReloadTimeBonus, // 재장전 시간 보너스
+    DamageBonus // 피해량 보너스
 }

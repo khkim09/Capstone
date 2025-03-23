@@ -12,6 +12,8 @@ public class TeleportRoomData : RoomData<TeleportRoomData.TeleportRoomLevel>
     [System.Serializable]
     public class TeleportRoomLevel : RoomLevel
     {
+        public float teleportWaitingTime = 0.5f; // 이동 시전 후 딜레이
+        public float teleportRespawnTime = 1.0f; // 재소환 딜레이
     }
     // TODO: 텔레포터 관련 스탯 더 세부적으로 정해야할 것
 
@@ -34,7 +36,7 @@ public class TeleportRoomData : RoomData<TeleportRoomData.TeleportRoomLevel>
                 damageHitPointRate =
                     new Dictionary<RoomDamageLevel, float>()
                     {
-                        { RoomDamageLevel.DamageLevelOne, 50f }, { RoomDamageLevel.DamageLevelTwo, 25f }
+                        { RoomDamageLevel.DamageLevelOne, 40f }, { RoomDamageLevel.DamageLevelTwo, 0f }
                     }
             }
         };
