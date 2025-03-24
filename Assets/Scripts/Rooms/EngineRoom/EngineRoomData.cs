@@ -27,6 +27,7 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
         {
             new()
             {
+                roomName = "room.engine.level1",
                 level = 1,
                 hitPoint = 100,
                 size = new Vector2Int(2, 2),
@@ -44,6 +45,7 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
             },
             new()
             {
+                roomName = "room.engine.level2",
                 level = 2,
                 hitPoint = 200,
                 size = new Vector2Int(2, 3),
@@ -61,6 +63,7 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
             },
             new()
             {
+                roomName = "room.engine.level3",
                 level = 3,
                 hitPoint = 300,
                 size = new Vector2Int(3, 3),

@@ -58,18 +58,18 @@ public class QuestManager : MonoBehaviour
 
     public void UpdateQuestObjective(string questId, int objectiveIndex, int amount)
     {
-        var quest = activeQuests.Find(q => q.id == questId);
+        Quest quest = activeQuests.Find(q => q.id == questId);
         if (quest != null && objectiveIndex >= 0 && objectiveIndex < quest.objectives.Count)
         {
-            var objective = quest.objectives[objectiveIndex];
+            QuestObjective objective = quest.objectives[objectiveIndex];
             objective.currentAmount += amount;
             objective.isCompleted = objective.currentAmount >= objective.requiredAmount;
 
             OnQuestUpdated?.Invoke(quest);
 
             // 모든 목표가 완료되었는지 확인
-            var allCompleted = true;
-            foreach (var obj in quest.objectives)
+            bool allCompleted = true;
+            foreach (QuestObjective obj in quest.objectives)
                 if (!obj.isCompleted)
                 {
                     allCompleted = false;
@@ -91,7 +91,7 @@ public class QuestManager : MonoBehaviour
         completedQuests.Add(quest);
 
         // 보상 지급
-        foreach (var reward in quest.rewards)
+        foreach (QuestReward reward in quest.rewards)
             switch (reward.type)
             {
                 case RewardType.Resource:
@@ -99,7 +99,6 @@ public class QuestManager : MonoBehaviour
                     break;
 
                 case RewardType.Item:
-                    if (InventoryManager.Instance != null) InventoryManager.Instance.AddItem(reward.itemId);
                     break;
 
                 case RewardType.Crew:

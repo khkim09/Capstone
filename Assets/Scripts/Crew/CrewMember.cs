@@ -26,18 +26,26 @@ public enum SkillType
     WeaponSkill, // 조준
     AmmunitionSkill, // 탄약
     MedBaySkill, // 의무
-    RepairSkill, // 수리
+    RepairSkill // 수리
 }
 
 
 [Serializable]
 public class CrewMember : MonoBehaviour
 {
+<<<<<<< HEAD
     [Header("Basic Info")]
     public string crewName; // 이름
 
     [Header("Details")]
     public CrewRace race; // 종족
+=======
+    // 기본 정보
+    [Header("Basic Info")] public string crewName; // 이름
+
+    // 디테일 정보
+    [Header("Details")] public CrewRace race; // 종족
+>>>>>>> b104a99a76e7385d96d07e1865d1dfe7daabe525
     public float maxHealth; // 최대 체력
     public float attack; // 공격력
     public float defense; // 방어력
@@ -45,6 +53,7 @@ public class CrewMember : MonoBehaviour
     public bool needsOxygen; // 산소 호흡 여부
 
     // 숙련도
+<<<<<<< HEAD
     [Header("Skill Values")]
     public float[] maxSkillValueArray = new float[8]; // 최대 숙련도 배열
     public float maxPilotSkillValue, maxEngineSkillValue, maxPowerSkillValue, maxShieldSkillValue, maxWeaponSkillValue, maxAmmunitionSkillValue, maxMedBaySkillValue, maxRepairSkillValue;
@@ -56,15 +65,34 @@ public class CrewMember : MonoBehaviour
     public EquipmentItem equippedWeapon;
     public EquipmentItem equippedShield;
     public EquipmentItem equippedAssistant;
+=======
+    [Header("Skill Values")] public float[] maxSkillValueArray = new float[8]; // 최대 숙련도 배열
 
-    [Header("Location")]
-    public Room currentRoom;
+    public float maxPilotSkillValue,
+        maxEngineSkillValue,
+        maxPowerSkillValue,
+        maxShieldSkillValue,
+        maxWeaponSkillValue,
+        maxAmmunitionSkillValue,
+        maxMedBaySkillValue,
+        maxRepairSkillValue;
+
+    public Dictionary<SkillType, float> skills = new();
+
+    // 장비
+    [Header("Equipments")] public float allCrewEquipment = 0.0f; // 선원 전체 적용 장비
+    public float ownEquipment = 0.0f; // 개인 적용 장비
+
+    // 이하 - 다른 파트와의 연결 필요
+    public float morale = 50f; // 사기 (0-100)
+>>>>>>> b104a99a76e7385d96d07e1865d1dfe7daabe525
+
+    [Header("Location")] public Room currentRoom;
     public Vector2 position;
     public Vector2 targetPosition;
     public float moveSpeed = 2.0f;
 
-    [Header("Status")]
-    public float health; // 현재 체력
+    [Header("Status")] public float health; // 현재 체력
     public CrewStatus status; // 현재 상태 (부상 등)
     public bool isAlive; // 생존 여부
     public bool isMoving;
@@ -138,7 +166,7 @@ public class CrewMember : MonoBehaviour
                 skillToImprove = SkillType.ShieldSkill;
                 skillIncreaseAmount = 0.1f;
                 break;
-            case RoomType.Weapon:
+            case RoomType.WeaponControl:
                 skillToImprove = SkillType.WeaponSkill;
                 skillIncreaseAmount = 0.1f;
                 break;
@@ -209,6 +237,7 @@ public class CrewMember : MonoBehaviour
                 maxSkillValue = maxRepairSkillValue;
                 break;
         }
+
         // 스킬 향상
         skills[skill] = Mathf.Min(skills[skill] + amount, maxSkillValue);
     }

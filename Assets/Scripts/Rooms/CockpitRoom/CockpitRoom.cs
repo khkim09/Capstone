@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class CockpitRoom : Room<CockpitRoomData, CockpitRoomData.CockpitRoomLevel>
 {
@@ -24,31 +23,28 @@ public class CockpitRoom : Room<CockpitRoomData, CockpitRoomData.CockpitRoomLeve
         if (!IsOperational() || currentRoomLevelData == null)
             return contributions;
 
-        if (currentLevel == 1)
+        // 현재 체력 비율에 따른 기여도 계산
+        float healthRate = currentHitPoints / GetMaxHitPoints();
+
+        if (currentLevel == 1 || healthRate > currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
         {
-            // 조종실 레벨 데이터에서 기여도 추가
+            // 정상 상태일 때 기여도
             contributions[ShipStat.DodgeChance] = currentRoomLevelData.avoidEfficiency;
             contributions[ShipStat.FuelEfficiency] = currentRoomLevelData.fuelEfficiency;
             contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
         }
+        else if (healthRate > currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
+        {
+            // 중간 데미지 상태일 때 기여도 감소
+            CockpitRoomData.CockpitRoomLevel weakedRoomLevelData = roomData.GetTypedRoomData(currentLevel - 1);
+            contributions[ShipStat.DodgeChance] = weakedRoomLevelData.avoidEfficiency;
+            contributions[ShipStat.FuelEfficiency] = weakedRoomLevelData.fuelEfficiency;
+            contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
+        }
         else
         {
-            if (currentHitPoints < GetMaxHitPoints())
-            {
-                float healthRate = currentHitPoints / GetMaxHitPoints();
-
-                if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
-                {
-                    CockpitRoomData.CockpitRoomLevel weakedRoomLevelData = roomData.GetTypedRoomData(currentLevel - 1);
-                    contributions[ShipStat.DodgeChance] = weakedRoomLevelData.avoidEfficiency;
-                    contributions[ShipStat.FuelEfficiency] = weakedRoomLevelData.fuelEfficiency;
-                    contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
-                }
-                else if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
-                {
-                    isActive = false;
-                }
-            }
+            // 심각한 데미지 상태일 때 비활성화
+            isActive = false;
         }
 
         return contributions;

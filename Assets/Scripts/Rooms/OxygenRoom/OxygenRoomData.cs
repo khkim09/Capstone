@@ -24,6 +24,7 @@ public class OxygenRoomData : RoomData<OxygenRoomData.OxygenLevel>
         {
             new()
             {
+                roomName = "room.oxygen.level1",
                 level = 1,
                 hitPoint = 80,
                 size = new Vector2Int(2, 1),
@@ -39,6 +40,7 @@ public class OxygenRoomData : RoomData<OxygenRoomData.OxygenLevel>
             },
             new()
             {
+                roomName = "room.oxygen.level2",
                 level = 2,
                 hitPoint = 160,
                 size = new Vector2Int(2, 1),

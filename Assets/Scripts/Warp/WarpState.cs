@@ -139,7 +139,7 @@ public class WarpState : IGameState
                 // 이벤트 노드가 선택되었는지 직접 확인
                 if (IsEventNodeSelected())
                 {
-                    bool success = ShipManager.Instance.Warp();
+                    bool success = GameManager.Instance.GetPlayerShip().Warp();
 
                     if (success)
                     {
