@@ -11,7 +11,7 @@ public class EquipmentUIHandler : MonoBehaviour
     public Image tipItemImage;
     public TextMeshProUGUI tipItemName;
     public TextMeshProUGUI tipItemPrice;
-    public TextMeshProUGUI tipItemDetaiils;
+    public TextMeshProUGUI tipItemDetails;
     public TextMeshProUGUI tipCurrencyText;
     public Button buyButton;
     public Button backButton;
@@ -21,8 +21,8 @@ public class EquipmentUIHandler : MonoBehaviour
     public Color defaultButtonColor = Color.white;
 
     // 현재 선택된 장비
-    private EquipmentItem currentSelectedItem;
-    private EquipmentButton currentSelectedButton;
+    public EquipmentItem currentSelectedItem;
+    public EquipmentButton currentSelectedButton;
 
     // 구매한 아이템 목록
     public HashSet<EquipmentItem> purchasedItems = new HashSet<EquipmentItem>();
@@ -37,7 +37,6 @@ public class EquipmentUIHandler : MonoBehaviour
         itemBuyPanel.SetActive(false);
     }
 
-
     public void ShowItemTip(EquipmentItem eqItem, EquipmentButton eqButton)
     {
         currentSelectedItem = eqItem;
@@ -47,7 +46,7 @@ public class EquipmentUIHandler : MonoBehaviour
         tipItemImage.sprite = eqItem.eqIcon;
         tipItemName.text = eqItem.eqName;
         tipItemPrice.text = eqItem.eqPrice.ToString();
-        // tipItemDetaiils = eqItem.Details;
+        // tipItemDetails = eqItem.Details;
         tipCurrencyText.text = "COMA: " + playerCOMA;
 
         // 이미 구매한 아이템이면 buy 버튼 비활성화
@@ -77,10 +76,27 @@ public class EquipmentUIHandler : MonoBehaviour
         playerCOMA -= currentSelectedItem.eqPrice;
         purchasedItems.Add(currentSelectedItem);
 
-        // 장비 타입 확인 (global, personal)
-        if (currentSelectedButton.linkedItem.isGlobalEquip)
-        {
+        EquipmentItem eq = currentSelectedItem;
 
+        // 장비 타입 확인 (global, personal)
+        if (eq.isGlobalEquip) // global
+        {
+            Debug.Log("장비 전체 적용 명령");
+            EquipmentManager.Instance.PurchaseAndEquipGlobal(eq); // 오류
+
+            // 전체 crewList에 장비 적용 UI 추가 필요 (discord 참조)
+        }
+        else // personal
+        {
+            CrewMember selectedCrew = CrewManager.Instance.GetSelectedCrew();
+
+            if (selectedCrew == null)
+            {
+                // 장비 착용할 선원 경고 UI 필요
+                Debug.LogWarning("장비 착용 실패, 선택된 선원 X");
+                return;
+            }
+            EquipmentManager.Instance.PurchaseAndEquipPersonal(selectedCrew, eq);
         }
 
         // 팝업 닫기

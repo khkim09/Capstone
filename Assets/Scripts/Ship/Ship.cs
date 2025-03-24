@@ -13,7 +13,7 @@ public enum ItemStorageType
 
 public class Ship : MonoBehaviour
 {
-    [Header("Ship Info")] [SerializeField] private string shipName = "Milky";
+    [Header("Ship Info")][SerializeField] private string shipName = "Milky";
     [SerializeField] private float hull = 100f;
     [SerializeField] private float maxHull = 100f;
     [SerializeField] private float fuel = 500f;
@@ -27,42 +27,53 @@ public class Ship : MonoBehaviour
 
     private readonly Dictionary<Vector2Int, Room> roomGrid = new();
 
-    [FormerlySerializedAs("engineRoomBasePrefab")] [Header("Room Prefabs")] [SerializeField]
+    [FormerlySerializedAs("engineRoomBasePrefab")]
+    [Header("Room Prefabs")]
+    [SerializeField]
     private EngineRoom engineRoomPrefab;
 
-    [FormerlySerializedAs("powerRoomBasePrefab")] [SerializeField]
+    [FormerlySerializedAs("powerRoomBasePrefab")]
+    [SerializeField]
     private PowerRoom powerRoomPrefab;
 
-    [FormerlySerializedAs("shieldRoomBasePrefab")] [SerializeField]
+    [FormerlySerializedAs("shieldRoomBasePrefab")]
+    [SerializeField]
     private ShieldRoom shieldRoomPrefab;
 
-    [FormerlySerializedAs("oxygenRoomBasePrefab")] [SerializeField]
+    [FormerlySerializedAs("oxygenRoomBasePrefab")]
+    [SerializeField]
     private OxygenRoom oxygenRoomPrefab;
 
-    [FormerlySerializedAs("cockpitRoomBasePrefab")] [SerializeField]
+    [FormerlySerializedAs("cockpitRoomBasePrefab")]
+    [SerializeField]
     private CockpitRoom cockpitRoomPrefab;
 
-    [FormerlySerializedAs("weaponControlRoomBasePrefab")] [SerializeField]
+    [FormerlySerializedAs("weaponControlRoomBasePrefab")]
+    [SerializeField]
     private WeaponControlRoom weaponControlRoomPrefab;
 
-    [FormerlySerializedAs("ammunitionRoomBasePrefab")] [SerializeField]
+    [FormerlySerializedAs("ammunitionRoomBasePrefab")]
+    [SerializeField]
     private AmmunitionRoom ammunitionRoomPrefab;
 
-    [FormerlySerializedAs("storageRoomBasePrefab")] [SerializeField]
+    [FormerlySerializedAs("storageRoomBasePrefab")]
+    [SerializeField]
     private StorageRoom storageRoomPrefab;
 
-    [FormerlySerializedAs("crewQuartersRoomBasePrefab")] [SerializeField]
+    [FormerlySerializedAs("crewQuartersRoomBasePrefab")]
+    [SerializeField]
     private CrewQuartersRoom crewQuartersRoomPrefab;
 
-    [FormerlySerializedAs("lifeSupportRoomBasePrefab")] [SerializeField]
+    [FormerlySerializedAs("lifeSupportRoomBasePrefab")]
+    [SerializeField]
     private LifeSupportRoom lifeSupportRoomPrefab;
 
     [SerializeField] private Door doorPrefab;
 
-    [Header("Weapons")] [SerializeField] private List<ShipWeapon> weapons = new();
+    [Header("Weapons")][SerializeField] private List<ShipWeapon> weapons = new();
     [SerializeField] private int maxWeaponSlots = 4;
 
-    [Header("Crew")] [SerializeField] private List<CrewMember> crew = new();
+    [Header("Crew")][SerializeField] private List<CrewMember> crew = new();
     [SerializeField] private int maxCrew = 6; // 최대 선원 수
 
     private readonly List<Door> doors = new();
@@ -104,11 +115,11 @@ public class Ship : MonoBehaviour
 
         // 그리드에 방 등록
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
-        {
-            Vector2Int gridPos = position + new Vector2Int(x, y);
-            roomGrid[gridPos] = room;
-        }
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = position + new Vector2Int(x, y);
+                roomGrid[gridPos] = room;
+            }
 
         room.OnPlaced();
         return true;
@@ -197,11 +208,11 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
-        {
-            Vector2Int gridPos = room.position + new Vector2Int(x, y);
-            roomGrid.Remove(gridPos);
-        }
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = room.position + new Vector2Int(x, y);
+                roomGrid.Remove(gridPos);
+            }
 
         rooms.Remove(room);
         Destroy(room.gameObject);
@@ -278,12 +289,12 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-        for (int y = 0; y < size.y; y++)
-        {
-            Vector2Int checkPos = pos + new Vector2Int(x, y);
-            if (roomGrid.ContainsKey(checkPos))
-                return false;
-        }
+            for (int y = 0; y < size.y; y++)
+            {
+                Vector2Int checkPos = pos + new Vector2Int(x, y);
+                if (roomGrid.ContainsKey(checkPos))
+                    return false;
+            }
 
         return true;
     }
@@ -386,7 +397,7 @@ public class Ship : MonoBehaviour
     }
 
     // TradableItem의 category 값을 기반으로 ItemStorageType으로 매핑하는 함수
-// TradableItem의 category 값을 StorageType으로 매핑하는 헬퍼 함수
+    // TradableItem의 category 값을 StorageType으로 매핑하는 헬퍼 함수
     private StorageType GetMappedStorageType(TradableItem item)
     {
         switch (item.category)
@@ -414,7 +425,7 @@ public class Ship : MonoBehaviour
         }
     }
 
-// StorageRoom과 TradableItem 간 호환성 검사 함수
+    // StorageRoom과 TradableItem 간 호환성 검사 함수
     private bool IsStorageCompatibleWithItem(StorageRoom storage, TradableItem item)
     {
         // 기존 StorageType enum을 사용하여 비교
@@ -422,108 +433,108 @@ public class Ship : MonoBehaviour
     }
 
 
-// 창고에 아이템 추가 가능한 공간이 충분한지 검사
-private bool HasStorageSpaceFor(TradableItem item, int quantity)
-{
-    foreach (Room room in rooms)
+    // 창고에 아이템 추가 가능한 공간이 충분한지 검사
+    private bool HasStorageSpaceFor(TradableItem item, int quantity)
     {
-        if (room is StorageRoom storageRoom)
+        foreach (Room room in rooms)
         {
-            if (IsStorageCompatibleWithItem(storageRoom, item))
+            if (room is StorageRoom storageRoom)
             {
-                // Storage 컴포넌트 가져오기
-                Storage storageComponent = storageRoom.GetComponent<Storage>();
-                if (storageComponent != null)
+                if (IsStorageCompatibleWithItem(storageRoom, item))
                 {
-                    int currentQuantity = storageComponent.GetItemQuantity(item);
-                    int available = item.maxStackAmount - currentQuantity;
-                    if (available >= quantity)
-                        return true;
-                }
-            }
-        }
-    }
-    return false;
-}
-
-// 창고에 해당 아이템이 충분히 있는지 검사
-private bool HasItem(TradableItem item, int quantity)
-{
-    foreach (Room room in rooms)
-    {
-        if (room is StorageRoom storageRoom)
-        {
-            if (IsStorageCompatibleWithItem(storageRoom, item))
-            {
-                Storage storageComponent = storageRoom.GetComponent<Storage>();
-                if (storageComponent != null)
-                {
-                    int currentQuantity = storageComponent.GetItemQuantity(item);
-                    if (currentQuantity >= quantity)
-                        return true;
-                }
-            }
-        }
-    }
-    return false;
-}
-
-// 창고에 아이템을 추가 (여러 StorageRoom에 걸쳐 추가 가능)
-private void AddItemToStorage(TradableItem item, int quantity)
-{
-    int remaining = quantity;
-    foreach (Room room in rooms)
-    {
-        if (room is StorageRoom storageRoom)
-        {
-            if (IsStorageCompatibleWithItem(storageRoom, item))
-            {
-                Storage storageComponent = storageRoom.GetComponent<Storage>();
-                if (storageComponent != null)
-                {
-                    int currentQuantity = storageComponent.GetItemQuantity(item);
-                    int available = item.maxStackAmount - currentQuantity;
-                    if (available > 0)
+                    // Storage 컴포넌트 가져오기
+                    Storage storageComponent = storageRoom.GetComponent<Storage>();
+                    if (storageComponent != null)
                     {
-                        int toAdd = Mathf.Min(available, remaining);
-                        storageComponent.AddItem(item, toAdd);
-                        remaining -= toAdd;
-                        if (remaining <= 0)
-                            break;
+                        int currentQuantity = storageComponent.GetItemQuantity(item);
+                        int available = item.maxStackAmount - currentQuantity;
+                        if (available >= quantity)
+                            return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    // 창고에 해당 아이템이 충분히 있는지 검사
+    private bool HasItem(TradableItem item, int quantity)
+    {
+        foreach (Room room in rooms)
+        {
+            if (room is StorageRoom storageRoom)
+            {
+                if (IsStorageCompatibleWithItem(storageRoom, item))
+                {
+                    Storage storageComponent = storageRoom.GetComponent<Storage>();
+                    if (storageComponent != null)
+                    {
+                        int currentQuantity = storageComponent.GetItemQuantity(item);
+                        if (currentQuantity >= quantity)
+                            return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    // 창고에 아이템을 추가 (여러 StorageRoom에 걸쳐 추가 가능)
+    private void AddItemToStorage(TradableItem item, int quantity)
+    {
+        int remaining = quantity;
+        foreach (Room room in rooms)
+        {
+            if (room is StorageRoom storageRoom)
+            {
+                if (IsStorageCompatibleWithItem(storageRoom, item))
+                {
+                    Storage storageComponent = storageRoom.GetComponent<Storage>();
+                    if (storageComponent != null)
+                    {
+                        int currentQuantity = storageComponent.GetItemQuantity(item);
+                        int available = item.maxStackAmount - currentQuantity;
+                        if (available > 0)
+                        {
+                            int toAdd = Mathf.Min(available, remaining);
+                            storageComponent.AddItem(item, toAdd);
+                            remaining -= toAdd;
+                            if (remaining <= 0)
+                                break;
+                        }
                     }
                 }
             }
         }
     }
-}
 
-// 창고에서 아이템을 제거 (여러 StorageRoom에서 분할 제거 가능)
-private void RemoveItemFromStorage(TradableItem item, int quantity)
-{
-    int remaining = quantity;
-    foreach (Room room in rooms)
+    // 창고에서 아이템을 제거 (여러 StorageRoom에서 분할 제거 가능)
+    private void RemoveItemFromStorage(TradableItem item, int quantity)
     {
-        if (room is StorageRoom storageRoom)
+        int remaining = quantity;
+        foreach (Room room in rooms)
         {
-            if (IsStorageCompatibleWithItem(storageRoom, item))
+            if (room is StorageRoom storageRoom)
             {
-                Storage storageComponent = storageRoom.GetComponent<Storage>();
-                if (storageComponent != null)
+                if (IsStorageCompatibleWithItem(storageRoom, item))
                 {
-                    int currentQuantity = storageComponent.GetItemQuantity(item);
-                    if (currentQuantity > 0)
+                    Storage storageComponent = storageRoom.GetComponent<Storage>();
+                    if (storageComponent != null)
                     {
-                        int toRemove = Mathf.Min(currentQuantity, remaining);
-                        storageComponent.RemoveItem(item, toRemove);
-                        remaining -= toRemove;
-                        if (remaining <= 0)
-                            break;
+                        int currentQuantity = storageComponent.GetItemQuantity(item);
+                        if (currentQuantity > 0)
+                        {
+                            int toRemove = Mathf.Min(currentQuantity, remaining);
+                            storageComponent.RemoveItem(item, toRemove);
+                            remaining -= toRemove;
+                            if (remaining <= 0)
+                                break;
+                        }
                     }
                 }
             }
         }
     }
-}
 
     public bool AddCrewMember(CrewMember newCrew)
     {
@@ -554,8 +565,7 @@ private void RemoveItemFromStorage(TradableItem item, int quantity)
 
     public void ApplyMoraleBonusToAllCrew(float bonus)
     {
-        foreach (CrewMember crewMember in crew)
-            crewMember.AddMoraleBonus(bonus);
+        // foreach (CrewMember crewMember in crew) crewMember.AddMoraleBonus(bonus);
     }
 
     public int GetCOMA()

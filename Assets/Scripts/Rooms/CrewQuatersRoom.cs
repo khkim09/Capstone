@@ -39,6 +39,6 @@
         }
 
         // 배정된 선원에게 사기 보너스 적용
-        foreach (CrewMember crew in crewInRoom) crew.AddMoraleBonus(moraleBonus);
+        // foreach (CrewMember crew in crewInRoom) crew.AddMoraleBonus(moraleBonus);
     }
 }
