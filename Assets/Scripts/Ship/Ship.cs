@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    [Header("Ship Info")] [SerializeField] private string shipName = "Milky";
+    [Header("Ship Info")][SerializeField] private string shipName = "Milky";
     [SerializeField] private float hull = 100f;
     [SerializeField] private float maxHull = 100f;
     [SerializeField] private Vector2Int gridSize = new(20, 20);
     [SerializeField] private bool showDebugInfo = true;
 
-    [Header("Weapons")] [SerializeField] private List<ShipWeapon> weapons = new();
+    [Header("Weapons")][SerializeField] private List<ShipWeapon> weapons = new();
     [SerializeField] private int maxWeaponSlots = 4;
 
-    [Header("Crew")] [SerializeField] private List<CrewMember> crew = new();
+    [Header("Crew")][SerializeField] private List<CrewMember> crew = new();
     [SerializeField] private int maxCrew = 6;
 
     private readonly Dictionary<Vector2Int, Room> roomGrid = new();
@@ -69,11 +69,11 @@ public class Ship : MonoBehaviour
 
         // Add to grid
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
-        {
-            Vector2Int gridPos = position + new Vector2Int(x, y);
-            roomGrid[gridPos] = room;
-        }
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = position + new Vector2Int(x, y);
+                roomGrid[gridPos] = room;
+            }
 
         room.OnPlaced();
 
@@ -90,11 +90,11 @@ public class Ship : MonoBehaviour
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
-        {
-            Vector2Int gridPos = room.position + new Vector2Int(x, y);
-            roomGrid.Remove(gridPos);
-        }
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = room.position + new Vector2Int(x, y);
+                roomGrid.Remove(gridPos);
+            }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -121,12 +121,12 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-        for (int y = 0; y < size.y; y++)
-        {
-            Vector2Int checkPos = pos + new Vector2Int(x, y);
-            if (roomGrid.ContainsKey(checkPos))
-                return false;
-        }
+            for (int y = 0; y < size.y; y++)
+            {
+                Vector2Int checkPos = pos + new Vector2Int(x, y);
+                if (roomGrid.ContainsKey(checkPos))
+                    return false;
+            }
 
         return true;
     }
@@ -490,8 +490,7 @@ public class Ship : MonoBehaviour
 
     public void ApplyMoraleBonusToAllCrew(float bonus)
     {
-        foreach (CrewMember crewMember in crew)
-            crewMember.AddMoraleBonus(bonus);
+        // foreach (CrewMember crewMember in crew) crewMember.AddMoraleBonus(bonus);
     }
 
     // ===== Getters =====

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
@@ -16,17 +17,24 @@ public class EquipmentManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    // 선원 전체 적용 장비 (무기, 방어구)
     public void PurchaseAndEquipGlobal(EquipmentItem eqItem)
     {
-        // 장비 착용
-        CrewManager.Instance.AddGlobalEquipment(eqItem);
+        if (!eqItem.isGlobalEquip)
+            return;
+
+        List<CrewMember> list = CrewManager.Instance.crewList;
+        foreach (CrewMember crew in list)
+        {
+            crew.ApplyPersonalEquipment(eqItem);
+        }
     }
 
-    // 선원 개인 적용 장비 (보조 장비)
+    // 선원 장비 적용
     public void PurchaseAndEquipPersonal(CrewMember crew, EquipmentItem eqItem)
     {
-        // 가격 체크, 재화 차감 등 로직은 생략하고 바로 장착
-        crew.AddPersonalEquipment(eqItem);
+        if (eqItem.isGlobalEquip)
+            return;
+
+        crew.ApplyPersonalEquipment(eqItem);
     }
 }
