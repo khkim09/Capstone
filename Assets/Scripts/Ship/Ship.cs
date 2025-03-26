@@ -24,6 +24,8 @@ public class Ship : MonoBehaviour
     private readonly Dictionary<ShipStat, float> currentStats = new();
     private readonly Dictionary<string, Dictionary<ShipStat, float>> roomContributions = new();
 
+    private Dictionary<Type, ShipSystem> systems = new();
+
     public event Action OnStatsChanged;
 
     private void Awake()
@@ -38,6 +40,8 @@ public class Ship : MonoBehaviour
 
     private void Update()
     {
+        // 모든 시스템 업데이트
+        foreach (ShipSystem system in systems.Values) system.Update(Time.deltaTime);
     }
 
     private void OnDestroy()
@@ -77,6 +81,8 @@ public class Ship : MonoBehaviour
 
         room.OnPlaced();
 
+        // TODO: MoraleManager에서 사기 계산하기 해야됨
+
         // Recalculate stats
         RecalculateAllStats();
 
@@ -106,6 +112,8 @@ public class Ship : MonoBehaviour
         // Remove from list
         allRooms.Remove(room);
         Destroy(room.gameObject);
+
+        // TODO: MoraleManager에서 사기 계산하기 해야됨
 
         // Recalculate stats
         RecalculateAllStats();
@@ -149,6 +157,25 @@ public class Ship : MonoBehaviour
         if (roomsByType.ContainsKey(type))
             return roomsByType[type];
         return new List<Room>();
+    }
+
+    private void InitializeSystems()
+    {
+        // TODO : 방 시스템 만들 때마다 여기에 등록
+        RegisterSystem(new ShieldSystem());
+    }
+
+    private T RegisterSystem<T>(T system) where T : ShipSystem
+    {
+        system.Initialize(this);
+        systems[typeof(T)] = system;
+        return system;
+    }
+
+    public T GetSystem<T>() where T : ShipSystem
+    {
+        if (systems.TryGetValue(typeof(T), out ShipSystem system)) return system as T;
+        return null;
     }
 
     private void InitializeBaseStats()
@@ -286,7 +313,6 @@ public class Ship : MonoBehaviour
         if (currentStats.TryGetValue(statType, out float value))
             return value;
 
-        Debug.LogWarning($"Stat {statType} not found!");
         return 0f;
     }
 
@@ -299,36 +325,7 @@ public class Ship : MonoBehaviour
     }
 
     // ===== Power Management =====
-    public bool RequestPowerForRoom(Room room, bool powerOn)
-    {
-        if (!powerOn)
-        {
-            // 전원을 끄는 경우는 항상 성공
-            room.SetPowerStatus(false, false);
-            RecalculateAllStats();
-            return true;
-        }
 
-        // 전원을 켜려는 경우, 충분한 전력이 있는지 확인
-        float availablePower = GetStat(ShipStat.PowerCapacity);
-        float usedPower = GetStat(ShipStat.PowerUsing);
-        float remainingPower = availablePower - usedPower;
-        float requiredPower = room.GetPowerConsumption();
-
-        if (remainingPower >= requiredPower)
-        {
-            // 충분한 전력이 있으면 전원 켜기
-            room.SetPowerStatus(true, true);
-            RecalculateAllStats();
-            return true;
-        }
-        else
-        {
-            // 전력이 부족하면 요청만 설정하고 실제로는 켜지 않음
-            room.SetPowerStatus(false, true);
-            return false;
-        }
-    }
 
     // ===== Combat System =====
     public bool AddWeapon(ShipWeapon weapon)
@@ -347,26 +344,6 @@ public class Ship : MonoBehaviour
 
         weapons.RemoveAt(index);
         return true;
-    }
-
-    public void FireWeapon(int weaponIndex, Ship targetShip)
-    {
-        if (weaponIndex < 0 || weaponIndex >= weapons.Count)
-            return;
-
-        ShipWeapon weapon = weapons[weaponIndex];
-        Debug.Log($"{weapon.weaponName} fired.");
-
-        // Add dodge calculation
-        float dodgeChance = targetShip.GetStat(ShipStat.DodgeChance);
-        if (UnityEngine.Random.value < dodgeChance / 100f)
-        {
-            Debug.Log($"{targetShip.shipName} dodged the attack!");
-            return;
-        }
-
-        float finalDamage = weapon.damage;
-        targetShip.TakeDamage(finalDamage);
     }
 
     public void TakeDamage(float damage)
@@ -486,11 +463,6 @@ public class Ship : MonoBehaviour
         crew.Remove(crewToRemove);
 
         return true;
-    }
-
-    public void ApplyMoraleBonusToAllCrew(float bonus)
-    {
-        // foreach (CrewMember crewMember in crew) crewMember.AddMoraleBonus(bonus);
     }
 
     // ===== Getters =====

@@ -25,5 +25,6 @@ public enum ShipStat
     DamageReduction, // 함선 무기 피격 데미지 경감률
     Accuracy, // 명중률 (%)
     ReloadTimeBonus, // 재장전 시간 보너스
-    DamageBonus // 피해량 보너스
+    DamageBonus, // 피해량 보너스
+    CrewMoraleBonus // 전체 적용 사기 보너스
 }

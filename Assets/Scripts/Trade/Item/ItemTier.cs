@@ -1,7 +1,7 @@
 ﻿public class ItemTier
 {
-    private ItemTierLevel tierType;
-    private string displayName;
+    public ItemTierLevel tierType;
+    public string displayName;
 }
 
 public enum ItemTierLevel
