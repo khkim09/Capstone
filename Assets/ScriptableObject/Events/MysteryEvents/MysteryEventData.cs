@@ -4,10 +4,12 @@ using UnityEngine;
 public class MysteryEventData : ScriptableObject
 {
     public string eventName;
-    [TextArea]
-    public string eventDescription;
+    [TextArea] public string eventDescription;
 
+    public Sprite icon;
+    public AudioClip sfx;
     public int durationYears;
+    public bool isStackable = false;
     public MoraleEffect[] moraleEffects;
 }
 
