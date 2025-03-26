@@ -306,9 +306,9 @@ public class CrewMember : MonoBehaviour
 
             float baseSkill = skills.ContainsKey(skill) ? skills[skill] : 0f;
             float equipmentBonus = equipAdditionalSkills.ContainsKey(skill) ? equipAdditionalSkills[skill] : 0f;
-            // float moraleBonus = GetMoraleSkillBonus(skill); // 향후 보완 예정
+            float moraleBonus = MoraleManager.Instance.GetTotalMoraleBonus(this); // 향후 보완 예정 -> morale manager 생성
 
-            float total = baseSkill + equipmentBonus;// + moraleBonus;
+            float total = baseSkill + equipmentBonus + moraleBonus;
             totalSkills[skill] = total;
         }
 
