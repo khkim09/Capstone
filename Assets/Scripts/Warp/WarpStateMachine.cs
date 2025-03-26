@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// 워프 과정의 상태를 관리하는 클래스
 /// 맵 시스템을 직접 제어하고 워프 프로세스의 전체 흐름을 관리함
 /// </summary>
-public class WarpState : IGameState
+public class WarpStateMachine : IGameStateMachine
 {
     // 워프 과정의 단계를 정의하는 열거형
     public enum WarpPhase
@@ -493,7 +493,7 @@ public class WarpState : IGameState
         // GameStateManager.Instance.ChangeState(new PlanetExplorationState()); // 예시
 
         // 테스트용: 다시 워프 상태로 돌아가기
-        GameStateManager.Instance.ChangeState(new WarpState());
+        GameStateManager.Instance.ChangeState(new WarpStateMachine());
     }
 
     #region 이벤트 핸들러

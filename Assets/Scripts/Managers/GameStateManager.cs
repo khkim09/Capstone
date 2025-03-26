@@ -4,7 +4,7 @@ public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager Instance { get; private set; }
 
-    private IGameState currentState;
+    private IGameStateMachine currentStateMachine;
 
     private void Awake()
     {
@@ -22,24 +22,24 @@ public class GameStateManager : MonoBehaviour
     private void Start()
     {
         // 초기 상태 설정
-        ChangeState(new WarpState());
+        ChangeState(new WarpStateMachine());
     }
 
     private void Update()
     {
         // 현재 상태 업데이트
-        currentState?.Update();
+        currentStateMachine?.Update();
     }
 
-    public void ChangeState(IGameState newState)
+    public void ChangeState(IGameStateMachine newStateMachine)
     {
         // 현재 상태 종료
-        currentState?.Exit();
+        currentStateMachine?.Exit();
 
         // 새 상태로 전환
-        currentState = newState;
+        currentStateMachine = newStateMachine;
 
         // 새 상태 진입
-        currentState?.Enter();
+        currentStateMachine?.Enter();
     }
 }

@@ -10,6 +10,7 @@ public class WeaponSystem : ShipSystem
         foreach (ShipWeapon weapon in weapons)
             // 일반 쿨다운 업데이트
             weapon.UpdateCooldown(deltaTime);
+
         // Optionally: Auto-fire logic could go here if needed
         // if (weapon.IsReady() && autoFireEnabled)
         // {
@@ -38,7 +39,7 @@ public class WeaponSystem : ShipSystem
         if (weapon != null && weapon.IsReady())
         {
             // 실제 발사 처리는 CombatManager에 위임
-            bool fired = CombatManager.Instance.RequestWeaponFire(
+            bool fired = CombatManager.Instance.outerShipCombatController.RequestWeaponFire(
                 parentShip, // 발사 주체
                 weapon, // 발사할 무기
                 target, // 목표물

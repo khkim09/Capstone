@@ -325,6 +325,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         if (!IsOperational())
             return contributions;
 
+        contributions[ShipStat.HitPointsMax] = roomData.GetRoomData(currentLevel).hitPoint;
+
         // 방의 건강 상태에 따라 기여도에 효율 적용
         // 파생 클래스는 이 베이스 메서드를 호출하고 반환된 Dictionary에 값을 추가/조정해야 함
 

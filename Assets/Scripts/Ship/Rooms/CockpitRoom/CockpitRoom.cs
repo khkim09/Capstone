@@ -19,9 +19,11 @@ public class CockpitRoom : Room<CockpitRoomData, CockpitRoomData.CockpitRoomLeve
         // 기본 기여도 가져오기 (작동 상태 체크 등)
         Dictionary<ShipStat, float> contributions = base.GetStatContributions();
 
+        Debug.LogError("여기");
         // 작동 상태가 아니면 기여도 없음
         if (!IsOperational() || currentRoomLevelData == null)
             return contributions;
+        Debug.LogError("여기");
 
         // 현재 체력 비율에 따른 기여도 계산
         float healthRate = currentHitPoints / GetMaxHitPoints();

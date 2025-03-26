@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 
-public class CombatManager : MonoBehaviour
+public class CombatManager : MonoBehaviour, IGameStateMachine
 {
     public static CombatManager Instance { get; private set; }
+    public OuterShipCombatController outerShipCombatController;
+
+    // 현재 단계
+    private CombatPhase currentPhase;
+
+    private CombatUIController uiController;
 
     // [SerializeField] private ProjectilePool projectilePool; // 탄환 풀링
 
@@ -20,76 +26,31 @@ public class CombatManager : MonoBehaviour
     }
 
 
-    // 무기 발사 요청 처리
-    public bool RequestWeaponFire(Ship shooter, ShipWeapon weapon, Transform target, float cooldown)
+    public void Enter()
     {
-        // 무기 타입에 따라 다른 처리
-        switch (weapon.GetWeaponType())
+        currentPhase = CombatPhase.Initialize;
+    }
+
+    public void Update()
+    {
+        switch (currentPhase)
         {
-            case WeaponType.Laser:
-                return FireLaser(shooter, weapon, target);
-
-            case WeaponType.Railgun:
-                return FireRailgun(shooter, weapon, target);
-
-            case WeaponType.Missile:
-                return FireMissile(shooter, weapon, target);
-
+            case CombatPhase.Initialize:
+                break;
+            case CombatPhase.Combat:
+                break;
+            case CombatPhase.DestroyAnimation:
+                break;
+            case CombatPhase.Reward:
+                break;
+            case CombatPhase.End:
+                break;
             default:
-                return false;
+                break;
         }
     }
 
-    // 발사체 무기 처리
-    private bool FireLaser(Ship shooter, ShipWeapon weapon, Transform target)
+    public void Exit()
     {
-        // 1. 발사체 인스턴스 생성 (풀링 시스템에서)
-        // Projectile projectile = projectilePool.GetProjectile(weapon.Data.projectilePrefab);
-
-
-        // 3. 발사 효과 재생
-
-        // 4. 사운드 재생
-
-        return true;
-    }
-
-    // 빔 무기 처리
-    private bool FireRailgun(Ship shooter, ShipWeapon weapon, Transform target)
-    {
-        // 빔 무기 구현
-
-        return true;
-    }
-
-    // 미사일 무기 처리
-    private bool FireMissile(Ship shooter, ShipWeapon weapon, Transform target)
-    {
-        // 미사일 무기 구현
-
-        return true;
-    }
-
-
-    // 함선 파괴 처리
-    private void HandleShipDestroyed(Ship destroyed, Ship destroyer)
-    {
-        // 파괴 이펙트
-
-        // 파괴음 재생
-        // AudioManager.Instance.PlaySound(destroyed.DestructionSound, destroyed.transform.position);
-
-        // 보상 처리
-        //  if (destroyer != null && destroyer.IsPlayerShip) GameManager.Instance.AddScore(destroyed.ScoreValue);
-
-        // 잔해 생성
-        CreateDebris(destroyed);
-    }
-
-    // 잔해 생성
-    private void CreateDebris(Ship ship)
-    {
-        // 함선 크기에 따라 잔해 생성
-        // ...
     }
 }

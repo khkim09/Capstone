@@ -51,18 +51,23 @@ public class ShieldSystem : ShipSystem
         return GetShipStat(ShipStat.ShieldMaxAmount);
     }
 
-    public void TakeDamage(float damage)
+    public float TakeDamage(float damage)
     {
-        currentShield -= damage;
-
-        // 쉴드가 0 이하가 되면 파괴된 상태로 설정
-        if (currentShield <= 0)
+        float afterShieldDamage;
+        if (currentShield > damage)
         {
+            afterShieldDamage = 0;
+            currentShield -= damage;
+        }
+        else
+        {
+            afterShieldDamage = damage - currentShield;
             currentShield = 0;
             isShieldDestroyed = true;
             shieldRespawnTimer = GetShipStat(ShipStat.ShieldRespawnTime);
-            Debug.Log($"Shield destroyed! Will fully recharge in {shieldRespawnTimer} seconds");
         }
+
+        return afterShieldDamage;
     }
 
     public bool IsShieldActive()
