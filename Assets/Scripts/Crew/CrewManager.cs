@@ -23,6 +23,11 @@ public class CrewManager : MonoBehaviour
     [Header("Crew Race Settings")]
     [SerializeField] private CrewRaceSettings[] raceSettings;
 
+    [Header("Default Equipments")]
+    public EquipmentItem defaultWeapon;
+    public EquipmentItem defaultShield;
+    public EquipmentItem defaultAssistant;
+
     private void Awake()
     {
         if (Instance == null)
@@ -104,25 +109,36 @@ public class CrewManager : MonoBehaviour
         newCrew.skills[SkillType.AmmunitionSkill] = settings.initialAmmunitionSkill;
         newCrew.skills[SkillType.MedBaySkill] = settings.initialMedBaySkill;
         newCrew.skills[SkillType.RepairSkill] = settings.initialRepairSkill;
+
+        newCrew.equipAdditionalSkills[SkillType.PilotSkill] = 0.0f;
+        newCrew.equipAdditionalSkills[SkillType.EngineSkill] = 0.0f;
+        newCrew.equipAdditionalSkills[SkillType.PowerSkill] = 0.0f;
+        newCrew.equipAdditionalSkills[SkillType.ShieldSkill] = 0.0f;
+        newCrew.equipAdditionalSkills[SkillType.WeaponSkill] = 0.0f;
+        newCrew.equipAdditionalSkills[SkillType.AmmunitionSkill] = 0.0f;
+        newCrew.equipAdditionalSkills[SkillType.MedBaySkill] = 0.0f;
+        newCrew.equipAdditionalSkills[SkillType.RepairSkill] = 0.0f;
     }
 
-    public void AddGlobalEquipment(EquipmentItem eqItem)
+    public void EquipDefaultItemsToCrew(CrewMember crew)
     {
-        // global 장비는 WeaponEquipment와 ShieldEquipment 타입으로 구분합니다.
-        if (eqItem.eqType != EquipmentType.WeaponEquipment && eqItem.eqType != EquipmentType.ShieldEquipment)
+        if (defaultWeapon != null)
         {
-            Debug.LogWarning("이 장비는 모든 선원에게 적용되는 타입이 아닙니다.");
-            return;
+            crew.equippedWeapon = defaultWeapon;
+            crew.RecalculateEquipmentBonus(crew.equippedWeapon, true);
         }
 
-        foreach (CrewMember crew in crewList)
+        if (defaultShield != null)
         {
-            // 예시: 공격력과 방어력 보너스를 더해줍니다.
-            crew.allCrewEquipment += eqItem.eqAttackBonus;  // 무기라면 공격력 보너스
-            crew.allCrewEquipment += eqItem.eqDefenseBonus;   // 방어구라면 방어력 보너스 (혹은 별도의 변수를 사용)
-            // 체력 보너스 등도 필요하면 추가
+            crew.equippedShield = defaultShield;
+            crew.RecalculateEquipmentBonus(crew.equippedShield, true);
         }
-        Debug.Log($"모든 선원에게 {eqItem.eqName} 장비 효과 적용 완료.");
+
+        if (defaultAssistant != null)
+        {
+            crew.equippedAssistant = defaultAssistant;
+            crew.RecalculateEquipmentBonus(crew.equippedAssistant, true);
+        }
     }
 
     public void AddCrewMember(string inputName, CrewRace selectedRace)
@@ -143,10 +159,19 @@ public class CrewManager : MonoBehaviour
         // 선원 정보 세팅
         InitializeCrewSetting(newCrew, selectedRace);
 
+        // 기본 장비 장착
+        EquipDefaultItemsToCrew(newCrew);
+
         // 크루 추가
         crewList.Add(newCrew);
 
         // 확인용 로그
         Debug.Log($"새로운 선원 : {newCrew.crewName} {newCrew.race}");
+    }
+
+    public CrewMember GetSelectedCrew()
+    {
+        // crewList UI (discord 참조)에서 유저가 선택하도록 수정 필요
+        return crewList.Count > 0 ? crewList[0] : null; // 예시: 첫 번째 선원
     }
 }

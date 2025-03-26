@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -32,11 +33,11 @@ public enum SkillType
 [Serializable]
 public class CrewMember : MonoBehaviour
 {
-    // 기본 정보
-    [Header("Basic Info")] public string crewName; // 이름
+    [Header("Basic Info")]
+    public string crewName; // 이름
 
-    // 디테일 정보
-    [Header("Details")] public CrewRace race; // 종족
+    [Header("Details")]
+    public CrewRace race; // 종족
     public float maxHealth; // 최대 체력
     public float attack; // 공격력
     public float defense; // 방어력
@@ -44,32 +45,26 @@ public class CrewMember : MonoBehaviour
     public bool needsOxygen; // 산소 호흡 여부
 
     // 숙련도
-    [Header("Skill Values")] public float[] maxSkillValueArray = new float[8]; // 최대 숙련도 배열
+    [Header("Skill Values")]
+    public float[] maxSkillValueArray = new float[8]; // 최대 숙련도 배열
+    public float maxPilotSkillValue, maxEngineSkillValue, maxPowerSkillValue, maxShieldSkillValue, maxWeaponSkillValue, maxAmmunitionSkillValue, maxMedBaySkillValue, maxRepairSkillValue;
+    public Dictionary<SkillType, float> skills = new Dictionary<SkillType, float>(); // 선원 기본 숙련도
+    public Dictionary<SkillType, float> equipAdditionalSkills = new Dictionary<SkillType, float>(); // 장비로 인한 추가 숙련도
 
-    public float maxPilotSkillValue,
-        maxEngineSkillValue,
-        maxPowerSkillValue,
-        maxShieldSkillValue,
-        maxWeaponSkillValue,
-        maxAmmunitionSkillValue,
-        maxMedBaySkillValue,
-        maxRepairSkillValue;
+    // 착용 장비
+    [Header("Equipped Items")]
+    public EquipmentItem equippedWeapon;
+    public EquipmentItem equippedShield;
+    public EquipmentItem equippedAssistant;
 
-    public Dictionary<SkillType, float> skills = new();
-
-    // 장비
-    [Header("Equipments")] public float allCrewEquipment = 0.0f; // 선원 전체 적용 장비
-    public float ownEquipment = 0.0f; // 개인 적용 장비
-
-    // 이하 - 다른 파트와의 연결 필요
-    public float morale = 50f; // 사기 (0-100)
-
-    [Header("Location")] public Room currentRoom;
+    [Header("Location")]
+    public Room currentRoom;
     public Vector2 position;
     public Vector2 targetPosition;
     public float moveSpeed = 2.0f;
 
-    [Header("Status")] public float health; // 현재 체력
+    [Header("Status")]
+    public float health; // 현재 체력
     public CrewStatus status; // 현재 상태 (부상 등)
     public bool isAlive; // 생존 여부
     public bool isMoving;
@@ -113,6 +108,7 @@ public class CrewMember : MonoBehaviour
         }
     }
 
+    // 시설 숙련도 증가 (기획서 27p 참고) - 수정 필요
     private void CheckSkillImprovement()
     {
         // 현재 수행 중인 작업에 따라 관련 스킬 증가
@@ -179,7 +175,7 @@ public class CrewMember : MonoBehaviour
         }
     }
 
-    // 스킬 향상
+    // 숙련도 증가
     public void ImproveSkill(SkillType skill, float amount)
     {
         if (!skills.ContainsKey(skill))
@@ -233,12 +229,12 @@ public class CrewMember : MonoBehaviour
         isMoving = true;
     }
 
+    // 전투 관련
     // 공격
     public void Attack(CrewMember target)
     {
         // 공격 가하는 crew의 공격력 인자로 넘김
-        float measuredAttack = attack + allCrewEquipment + ownEquipment; // 기본 공격력 + 장비
-        measuredAttack = (float)Math.Round(measuredAttack, 2);
+        float measuredAttack = (float)Math.Round(attack, 2);
         target.GetDamage(measuredAttack);
     }
 
@@ -246,7 +242,8 @@ public class CrewMember : MonoBehaviour
     public void GetDamage(float ocAttack)
     {
         // 방어력 적용 - 최종 피해량
-        float receivedDamage = ocAttack * (100.0f - (defense + allCrewEquipment + ownEquipment)) / 100.0f;
+        float measuredDefense = (float)Math.Round(defense, 2);
+        float receivedDamage = ocAttack * (100.0f - measuredDefense) / 100.0f;
         receivedDamage = (float)Math.Round(receivedDamage, 2); // 소수점 셋째자리에서 반올림
         health -= receivedDamage;
 
@@ -297,25 +294,145 @@ public class CrewMember : MonoBehaviour
         return health < maxHealth;
     }
 
-    // 개인 장비 적용 - 보조 장비비
-    public void AddPersonalEquipment(EquipmentItem eqItem)
+    // 숙련도 넘기기 - 사기 (morale) 추가 필요
+    public Dictionary<SkillType, float> GetCrewSkillValue()
     {
-        if (eqItem.eqType != EquipmentType.AssistantEquipment)
+        Dictionary<SkillType, float> totalSkills = new Dictionary<SkillType, float>();
+
+        foreach (SkillType skill in Enum.GetValues(typeof(SkillType)))
         {
-            Debug.LogWarning("보조 장비 아님");
-            return;
+            if (skill == SkillType.None)
+                continue;
+
+            float baseSkill = skills.ContainsKey(skill) ? skills[skill] : 0f;
+            float equipmentBonus = equipAdditionalSkills.ContainsKey(skill) ? equipAdditionalSkills[skill] : 0f;
+            float moraleBonus = MoraleManager.Instance.GetTotalMoraleBonus(this); // 향후 보완 예정 -> morale manager 생성
+
+            float total = baseSkill + equipmentBonus + moraleBonus;
+            totalSkills[skill] = total;
         }
 
-        // 보조 장치 효과
-        ownEquipment = 0.0f; // 기존 착용 보조 장비 해제
-        // ownEquipment += 1.0f; (수정 필요)
+        return totalSkills;
     }
 
-    // 사기 보너스 적용
-    public void AddMoraleBonus(float bonus)
+    // 장비 효과 계산
+    public void RecalculateEquipmentBonus(EquipmentItem item, bool isAdding)
     {
-        morale += bonus;
-        morale = Mathf.Clamp(morale, 0f, 100f);
+        float sign = isAdding ? 1f : -1f;
+
+        attack += sign * item.eqAttackBonus;
+        defense += sign * item.eqDefenseBonus;
+        maxHealth += sign * item.eqHealthBonus;
+        health += sign * item.eqHealthBonus;
+
+        // Assistant일 경우 숙련도 보너스
+        if (item.eqType == EquipmentType.AssistantEquipment)
+        {
+            equipAdditionalSkills[SkillType.PilotSkill] += sign * item.eqAdditionalPilotSkill;
+            equipAdditionalSkills[SkillType.EngineSkill] += sign * item.eqAdditionalEngineSkill;
+            equipAdditionalSkills[SkillType.PowerSkill] += sign * item.eqAdditionalPowerSkill;
+            equipAdditionalSkills[SkillType.ShieldSkill] += sign * item.eqAdditionalShieldSkill;
+            equipAdditionalSkills[SkillType.WeaponSkill] += sign * item.eqAdditionalWeaponSkill;
+            equipAdditionalSkills[SkillType.AmmunitionSkill] += sign * item.eqAdditionalAmmunitionSkill;
+            equipAdditionalSkills[SkillType.MedBaySkill] += sign * item.eqAdditionalMedBaySkill;
+            equipAdditionalSkills[SkillType.RepairSkill] += sign * item.eqAdditionalRepairSkill;
+        }
+    }
+
+    // 현재 착용중인 장비 호출
+    private EquipmentItem GetEquippedItem(EquipmentType type)
+    {
+        return type switch
+        {
+            EquipmentType.WeaponEquipment => equippedWeapon,
+            EquipmentType.ShieldEquipment => equippedShield,
+            EquipmentType.AssistantEquipment => equippedAssistant,
+            _ => null
+        };
+    }
+
+    // 장비 착용
+    private void SetEquippedItem(EquipmentType type, EquipmentItem newItem)
+    {
+        switch (type)
+        {
+            case EquipmentType.WeaponEquipment:
+                equippedWeapon = newItem;
+                break;
+            case EquipmentType.ShieldEquipment:
+                equippedShield = newItem;
+                break;
+            case EquipmentType.AssistantEquipment:
+                equippedAssistant = newItem;
+                break;
+        }
+    }
+
+    // 장비 교체
+    public void SwapEquipment(EquipmentItem newItem)
+    {
+        if (newItem == null)
+            return;
+
+        // 기본 장비 호출
+        EquipmentItem oldItem = GetEquippedItem(newItem.eqType);
+
+        // 기존 장비 해제
+        if (oldItem != null)
+            RecalculateEquipmentBonus(oldItem, false);
+
+        // 새 장비 장착
+        SetEquippedItem(newItem.eqType, newItem);
+
+        // 새 장비 효과 적용
+        RecalculateEquipmentBonus(newItem, true);
+    }
+
+    // 개인 별 장비 착용
+    public void ApplyPersonalEquipment(EquipmentItem eqItem)
+    {
+        if (eqItem == null)
+            return;
+
+        SwapEquipment(eqItem); // 기존 장비 해제, 효과 해제 -> 새 장비 착용, 효과 적용
+
+        Debug.Log($"{crewName}에 개인 장비 {eqItem.eqName} 적용 완료.");
+    }
+
+    // 전체 선원 장비 적용
+    public void AddGlobalEquipment(EquipmentItem eqItem)
+    {
+        List<CrewMember> people = CrewManager.Instance.crewList;
+        foreach (CrewMember person in people)
+        {
+            person.ApplyPersonalEquipment(eqItem);
+        }
+    }
+
+    // 장비 기본 타입으로 지정 - 타 장비 해제 후 미할당
+    public void UnequipAndRevertToDefault(EquipmentType type)
+    {
+        EquipmentItem currentItem = GetEquippedItem(type);
+
+        // 기존 장비 효과 제거
+        if (currentItem != null)
+            RecalculateEquipmentBonus(currentItem, false);
+
+        // 기본 장비 불러오기
+        EquipmentItem defaultItem = type switch
+        {
+            EquipmentType.WeaponEquipment => CrewManager.Instance.defaultWeapon,
+            EquipmentType.ShieldEquipment => CrewManager.Instance.defaultShield,
+            EquipmentType.AssistantEquipment => CrewManager.Instance.defaultAssistant,
+            _ => null
+        };
+
+        if (defaultItem != null)
+        {
+            SetEquippedItem(type, defaultItem);
+            RecalculateEquipmentBonus(defaultItem, true);
+            Debug.Log($"{crewName} {type} 장비 해제 → 기본 장비 {defaultItem.eqName} 착용");
+        }
     }
 
     // 스킬 레벨 가져오기

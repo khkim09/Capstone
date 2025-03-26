@@ -1960,7 +1960,7 @@ MonoBehaviour:
   createUIScreen: {fileID: 888385238}
   customizeShipUIScreen: {fileID: 6720098792130356490}
   addEquipmentUIScreen: {fileID: 569775630}
-  equipmentUIHandler: {fileID: 0}
+  equipmentUIHandler: {fileID: 569775634}
   nameInputField: {fileID: 1861003424}
   raceButtonControllers: []
   currentSelectedButton: {fileID: 0}
@@ -2841,12 +2841,14 @@ MonoBehaviour:
   tipItemImage: {fileID: 862858244}
   tipItemName: {fileID: 997940302}
   tipItemPrice: {fileID: 143210481}
-  tipItemDetaiils: {fileID: 0}
+  tipItemDetails: {fileID: 0}
   tipCurrencyText: {fileID: 1252471607}
   buyButton: {fileID: 1426830029}
   backButton: {fileID: 1579387393}
   purchasedButtonColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   defaultButtonColor: {r: 1, g: 1, b: 1, a: 1}
+  currentSelectedItem: {fileID: 0}
+  currentSelectedButton: {fileID: 0}
   playerCOMA: 10000
 --- !u!1 &570787633
 GameObject:
@@ -3758,6 +3760,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b222af876f0ae845967a52cabdc7b8f, type: 2}
   - {fileID: 11400000, guid: b724fa7a2ebaca9479afaa8fbf15b9df, type: 2}
   - {fileID: 11400000, guid: 3501baaaabafbb44fbade6c5e6e1989d, type: 2}
+  defaultWeapon: {fileID: 11400000, guid: 16bacd5ce61106e4698dcc2df772e2e2, type: 2}
+  defaultShield: {fileID: 11400000, guid: d23df5b380a76614d8c94c5a0de73202, type: 2}
+  defaultAssistant: {fileID: 11400000, guid: 6a15db8d6d7744e4290b17ee138b5b62, type: 2}
 --- !u!4 &759268560
 Transform:
   m_ObjectHideFlags: 0
@@ -8650,6 +8655,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540109977}
   m_CullTransparentMesh: 1
+--- !u!1 &1550317425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1550317427}
+  - component: {fileID: 1550317426}
+  m_Layer: 0
+  m_Name: EquipmentManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1550317426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550317425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212c20817ad81e944886634e8386041e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableGlobalEquipments: []
+  availableAssistantEquipments: []
+--- !u!4 &1550317427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550317425}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.9250453, y: -0.25896502, z: 85.09206}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1579387391
 GameObject:
   m_ObjectHideFlags: 0
@@ -12415,5 +12466,6 @@ SceneRoots:
   - {fileID: 425519868}
   - {fileID: 1229872892}
   - {fileID: 759268560}
+  - {fileID: 1550317427}
   - {fileID: 1172479711}
   - {fileID: 1973394280}

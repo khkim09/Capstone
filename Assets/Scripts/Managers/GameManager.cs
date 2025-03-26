@@ -13,11 +13,16 @@ public class GameManager : MonoBehaviour
     // 이벤트 및 상태 변화와 관련된 델리게이트
     public delegate void GameStateChangedHandler(GameState newState);
 
-    [Header("Game State")] [SerializeField]
+    [Header("Game State")]
+    [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     [SerializeField] private int currentDay = 1;
     [SerializeField] private int maxDays = 30;
+
+    [SerializeField] private int currentYear = 0; // 게임 시작 년도 (수정 가능)
+    public int CurrentYear => currentYear;
+
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -128,6 +133,19 @@ public class GameManager : MonoBehaviour
         // 게임 오버 처리 로직
         Debug.Log("Game Over! You survived " + currentDay + " days.");
         // UI 업데이트, 점수 계산 등
+    }
+
+    // 워프 실행 시 1년 흐름
+    public void AddYearByWarp()
+    {
+        currentYear++;
+
+        // 워프로 인한 이벤트 처리
+        // EventManager.Instance.TriggerYearlyWarpEvent();
+
+        Debug.Log($"[워프 완료] 현재 연도 : {currentYear}");
+
+        EventMoraleEffectManager.Instance.CheckEventExpirations(currentYear); // 불가사의 지속 기간 체크
     }
 }
 
