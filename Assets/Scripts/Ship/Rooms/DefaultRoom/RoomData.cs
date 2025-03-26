@@ -32,8 +32,11 @@ public abstract class RoomData : ScriptableObject
 
     protected virtual void OnEnable()
     {
-        InitializeDefaultLevels();
+        bool needsInitialization = CheckIfNeedsInitialization();
+        if (needsInitialization) InitializeDefaultLevels();
     }
+
+    protected abstract bool CheckIfNeedsInitialization();
 }
 
 public enum RoomDamageLevel
@@ -57,5 +60,11 @@ public abstract class RoomData<T> : RoomData where T : RoomData.RoomLevel
         if (level <= 0 || level > RoomLevels.Count)
             return null;
         return RoomLevels[level - 1];
+    }
+
+    protected override bool CheckIfNeedsInitialization()
+    {
+        // RoomLevels가 비어있거나 null이면 초기화 필요
+        return RoomLevels == null || RoomLevels.Count == 0;
     }
 }

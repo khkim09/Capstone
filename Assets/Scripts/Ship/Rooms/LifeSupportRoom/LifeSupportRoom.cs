@@ -27,7 +27,7 @@ public class LifeSupportRoom : Room<LifeSupportRoomData, LifeSupportRoomData.Lif
             return contributions;
 
         contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
-        contributions[ShipStat.CrewCapacity] = currentRoomLevelData.crewMoraleBonus;
+        contributions[ShipStat.CrewMoraleBonus] = currentRoomLevelData.crewMoraleBonus;
 
         return contributions;
     }

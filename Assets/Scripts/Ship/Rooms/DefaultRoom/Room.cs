@@ -286,6 +286,9 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         isActive = false;
         // 방별 비활성화 처리
 
+        // TODO: MoraleManager 에서 사기 계산하게 해야됨.
+
+
         // 스탯 기여도 변화 알림
         NotifyStateChanged();
     }
