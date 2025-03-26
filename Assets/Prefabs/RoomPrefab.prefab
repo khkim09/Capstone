@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8936849294174134202
+--- !u!1 &5100038958941788606
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6812457356172772198}
-  - component: {fileID: 6264216328100297767}
-  - component: {fileID: 2536019885985235029}
-  - component: {fileID: 8633412785706413951}
+  - component: {fileID: 4406026572849402667}
+  - component: {fileID: 1799867291188985419}
+  - component: {fileID: 4605093932382175989}
   m_Layer: 0
-  m_Name: Amorphous
+  m_Name: RoomPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6812457356172772198
+--- !u!4 &4406026572849402667
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8936849294174134202}
+  m_GameObject: {fileID: 5100038958941788606}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -34,13 +33,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6264216328100297767
+--- !u!212 &1799867291188985419
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8936849294174134202}
+  m_GameObject: {fileID: 5100038958941788606}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -78,98 +77,37 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4798675217036010138, guid: 1e3b8d7c1c69c9644ba33ea4be5b457c, type: 3}
+  m_Sprite: {fileID: -8792476101264038367, guid: ecc72283f0ad89945896a87c4430f7cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.22, y: 0.21}
+  m_Size: {x: 2.03125, y: 2.03125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2536019885985235029
+--- !u!114 &4605093932382175989
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8936849294174134202}
+  m_GameObject: {fileID: 5100038958941788606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 791b09b089bf46908c4be15a222db189, type: 3}
+  m_Script: {fileID: 11500000, guid: af80f4fc6fa44d9db059cbd79bb932ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crewName: 
-  isPlayerControlled: 0
-  race: 2
-  maxHealth: 0
-  attack: 0
-  defense: 0
-  learningSpeed: 0
-  needsOxygen: 0
-  maxSkillValueArray:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  maxPilotSkillValue: 0
-  maxEngineSkillValue: 0
-  maxPowerSkillValue: 0
-  maxShieldSkillValue: 0
-  maxWeaponSkillValue: 0
-  maxAmmunitionSkillValue: 0
-  maxMedBaySkillValue: 0
-  maxRepairSkillValue: 0
-  equippedWeapon: {fileID: 0}
-  equippedShield: {fileID: 0}
-  equippedAssistant: {fileID: 0}
-  currentRoom: {fileID: 0}
+  roomData: {fileID: 0}
   position: {x: 0, y: 0}
-  targetPosition: {x: 0, y: 0}
-  moveSpeed: 2
-  health: 0
-  status: 0
-  isAlive: 0
-  isMoving: 0
---- !u!58 &8633412785706413951
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8936849294174134202}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.0022982955, y: -0.033325464}
-  m_Radius: 0.34719744
+  currentLevel: 0
+  maxLevel: 0
+  currentHitPoints: 0
+  oxygenLevel: 4
+  roomType: 0
+  roomParticles: {fileID: 0}
+  roomSound: {fileID: 0}
+  crewInRoom: []
+  gridSize: {x: 2, y: 2}

@@ -35,6 +35,7 @@ public class CrewMember : MonoBehaviour
 {
     [Header("Basic Info")]
     public string crewName; // 이름
+    public bool isPlayerControlled; // 아군(true) ? 적군(false) ?
 
     [Header("Details")]
     public CrewRace race; // 종족
@@ -450,5 +451,14 @@ public class CrewMember : MonoBehaviour
         if (skills.ContainsKey(skill))
             return skills[skill];
         return 0f;
+    }
+
+
+
+
+    // 전투 관련
+    public bool IsEnemyOf(CrewMember other)
+    {
+        return this.isPlayerControlled != other.isPlayerControlled;
     }
 }

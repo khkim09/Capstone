@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3984247936802545802}
   - component: {fileID: 2455931983704410413}
   - component: {fileID: 9009535237384570495}
+  - component: {fileID: 2993177813363100732}
   m_Layer: 0
   m_Name: Beast_PlaceHolder
   m_TagString: Untagged
@@ -101,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crewName: 
+  isPlayerControlled: 0
   race: 5
   maxHealth: 0
   attack: 0
@@ -124,7 +126,9 @@ MonoBehaviour:
   maxAmmunitionSkillValue: 0
   maxMedBaySkillValue: 0
   maxRepairSkillValue: 0
-  morale: 50
+  equippedWeapon: {fileID: 0}
+  equippedShield: {fileID: 0}
+  equippedAssistant: {fileID: 0}
   currentRoom: {fileID: 0}
   position: {x: 0, y: 0}
   targetPosition: {x: 0, y: 0}
@@ -133,5 +137,60 @@ MonoBehaviour:
   status: 0
   isAlive: 0
   isMoving: 0
-  allCrewEquipment: 0
-  ownEquipment: 0
+--- !u!60 &2993177813363100732
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645735730300291757}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.27, y: 0.19}
+    newSize: {x: 0.27, y: 0.19}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.078262806, y: 0.09523879}
+      - {x: -0.0047266167, y: 0.017961152}
+      - {x: -0.13175625, y: -0.009328061}
+      - {x: -0.13256718, y: -0.04228921}
+      - {x: -0.069058225, y: -0.09485423}
+      - {x: 0.032015823, y: -0.095}
+      - {x: 0.102562584, y: -0.06770619}
+      - {x: 0.13231726, y: 0.039809976}
+      - {x: 0.13337813, y: 0.059861}
+      - {x: 0.10067195, y: 0.09418906}
+  m_UseDelaunayMesh: 0

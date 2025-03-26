@@ -154,6 +154,7 @@ public class CrewManager : MonoBehaviour
 
         // 기본 정보 초기화
         newCrew.crewName = inputName;
+        newCrew.isPlayerControlled = true;
         newCrew.race = selectedRace;
 
         // 선원 정보 세팅

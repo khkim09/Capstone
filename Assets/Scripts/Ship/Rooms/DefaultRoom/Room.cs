@@ -16,9 +16,9 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     [HideInInspector] public int maxLevel;
 
-    [SerializeField] [HideInInspector] protected float currentHitPoints; // 현재 체력
+    [SerializeField][HideInInspector] protected float currentHitPoints; // 현재 체력
 
-    [SerializeField] [HideInInspector] protected OxygenLevel oxygenLevel = OxygenLevel.Normal; // 현재 산소 레벨
+    [SerializeField][HideInInspector] protected OxygenLevel oxygenLevel = OxygenLevel.Normal; // 현재 산소 레벨
 
     public RoomType roomType;
 
@@ -28,7 +28,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     [HideInInspector] protected List<Door> connectedDoors = new(); // 연결된 문들
 
-    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
+    [Header("방 효과")][SerializeField] protected ParticleSystem roomParticles;
     [SerializeField] protected AudioSource roomSound;
 
     public event Action<Room> OnRoomStateChanged;
@@ -42,7 +42,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         { OxygenLevel.Normal, 0f }
     };
 
-    protected List<CrewMember> crewInRoom;
+    public List<CrewMember> crewInRoom = new List<CrewMember>();
 
     protected Dictionary<OxygenLevel, float> fireExtinguishRatePerLevel = new()
     {
@@ -77,7 +77,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         parentShip = GetComponentInParent<Ship>();
         if (parentShip == null)
             // 부모가 없다면 씬에서 찾기 시도
-            parentShip = FindObjectOfType<Ship>();
+            parentShip = FindAnyObjectByType<Ship>();
 
         if (parentShip == null) Debug.LogError($"No Ship found for {name}");
 
@@ -103,12 +103,14 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     public virtual void OnCrewEnter(CrewMember crew)
     {
-        crewInRoom.Add(crew);
+        if (!crewInRoom.Contains(crew))
+            crewInRoom.Add(crew);
     }
 
     public virtual void OnCrewExit(CrewMember crew)
     {
-        crewInRoom.Remove(crew);
+        if (crewInRoom.Contains(crew))
+            crewInRoom.Remove(crew);
     }
 
     protected virtual void UpdateRoom()
@@ -243,7 +245,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     {
         // TODO : 임시로 True 로 설정
         return true;
-        return isActive && isPowered && HasEnoughCrew();
+        // return isActive && isPowered && HasEnoughCrew();
     }
 
     public bool NeedsRepair()
@@ -295,7 +297,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     // 전력 관련
 
-// Room.cs에 추가할 메서드
+    // Room.cs에 추가할 메서드
     public virtual void SetPowerStatus(bool powered, bool requested)
     {
         isPowered = powered;
@@ -413,6 +415,12 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     {
         return roomData.GetRoomData(currentLevel).hitPoint;
     }
+
+
+
+
+    // 전투 관련
+    public Vector2Int gridSize = new Vector2Int(2, 2);
 }
 
 // 제네릭 버전의 Room 클래스
