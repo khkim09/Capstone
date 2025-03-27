@@ -36,9 +36,6 @@ public class Ship : MonoBehaviour
         Room testRoom1 = Instantiate(testRoomPrefab1).GetComponent<Room>();
         Room testRoom2 = Instantiate(testRoomPrefab2).GetComponent<Room>();
         InitializeSystems();
-        AddRoom(testRoom1, Vector2Int.zero);
-        AddRoom(testRoom2, new Vector2Int(10, 10));
-
         RecalculateAllStats();
 
         GameManager.Instance.SetPlayerShip(this);

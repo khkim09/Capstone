@@ -24,6 +24,7 @@ public class CrewSystem : ShipSystem
         if (crews.Count >= GetShipStat(ShipStat.CrewCapacity))
             return false;
 
+        parentShip.RecalculateAllStats();
 
         crews.Add(newCrew);
         return true;
