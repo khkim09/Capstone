@@ -23,26 +23,30 @@ public class TradeManager : MonoBehaviour
 
     public bool BuyItem(TradableItem item, int quantity)
     {
-        float totalCost = GetTotalPrice(item, quantity);
+        Storage warehouse = FindObjectOfType<Storage>();
+        if (warehouse == null)
+        {
+            Debug.LogError("No Storage found.");
+            return false;
+        }
 
+        // 구매 가능한지 미리 체크 (방법 1)
+        if (!warehouse.CanAddItem(item, quantity))
+        {
+            Debug.Log("Cannot purchase " + item.itemName + " because it would exceed the maximum stack amount.");
+            return false;
+        }
+
+        float totalCost = GetTotalPrice(item, quantity);
         if (playerCOMA >= totalCost)
         {
             playerCOMA -= Mathf.RoundToInt(totalCost);
-
-            // Storage에 아이템을 추가하는 로직 (warehouse가 올바른 Storage 인스턴스를 참조하고 있어야 합니다)
-            Storage warehouse = FindObjectOfType<Storage>();
-            if (warehouse != null)
+            bool added = warehouse.AddItem(item, quantity);
+            if (!added)
             {
-                bool added = warehouse.AddItem(item, quantity);
-                if (!added)
-                {
-                    Debug.LogWarning("Failed to add item to storage.");
-                    return false;
-                }
-            }
-            else
-            {
-                Debug.LogError("No Storage found.");
+                // 만약 추가가 실패하면, 돈 환불 처리 (옵션)
+                playerCOMA += Mathf.RoundToInt(totalCost);
+                Debug.LogWarning("Failed to add item to storage, money refunded.");
                 return false;
             }
 
@@ -74,7 +78,7 @@ public class TradeManager : MonoBehaviour
         }
 
         // 판매 단가를 현재 가격의 90%로 가정합니다.
-        float sellUnitPrice = item.GetCurrentPrice() * 0.9f;
+        float sellUnitPrice = item.GetCurrentPrice();
         float totalRevenue = sellUnitPrice * quantity;
 
         // 창고에서 아이템 제거
