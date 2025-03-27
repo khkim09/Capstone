@@ -27,6 +27,19 @@ public class Storage : MonoBehaviour
     public List<StoredItem> storedItems = new List<StoredItem>();
 
     /// <summary>
+    /// 아이템 추가 가능한지 체크
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="quantity"></param>
+    /// <returns></returns>
+    public bool CanAddItem(TradableItem item, int quantity)
+    {
+        StoredItem stored = storedItems.Find(x => x.item.itemName == item.itemName);
+        int currentQuantity = stored != null ? stored.quantity : 0;
+        return (currentQuantity + quantity) <= item.maxStackAmount;
+    }
+
+    /// <summary>
     /// 창고에 아이템을 추가합니다.
     /// 이미 저장된 아이템의 경우, 총 수량이 maxStackAmount를 넘지 않는지 확인합니다.
     /// </summary>

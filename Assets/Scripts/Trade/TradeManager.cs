@@ -23,12 +23,33 @@ public class TradeManager : MonoBehaviour
 
     public bool BuyItem(TradableItem item, int quantity)
     {
-        float totalCost = GetTotalPrice(item, quantity);
+        Storage warehouse = FindObjectOfType<Storage>();
+        if (warehouse == null)
+        {
+            Debug.LogError("No Storage found.");
+            return false;
+        }
 
+        // 구매 가능한지 미리 체크 (방법 1)
+        if (!warehouse.CanAddItem(item, quantity))
+        {
+            Debug.Log("Cannot purchase " + item.itemName + " because it would exceed the maximum stack amount.");
+            return false;
+        }
+
+        float totalCost = GetTotalPrice(item, quantity);
         if (playerCOMA >= totalCost)
         {
             playerCOMA -= Mathf.RoundToInt(totalCost);
-            // Storage에 아이템 추가 등 추가 로직을 여기에 넣을 수 있습니다.
+            bool added = warehouse.AddItem(item, quantity);
+            if (!added)
+            {
+                // 만약 추가가 실패하면, 돈 환불 처리 (옵션)
+                playerCOMA += Mathf.RoundToInt(totalCost);
+                Debug.LogWarning("Failed to add item to storage, money refunded.");
+                return false;
+            }
+
             Debug.Log($"Purchased {quantity} of {item.itemName} for {totalCost} COMA. Remaining COMA: {playerCOMA}");
             return true;
         }
@@ -41,7 +62,37 @@ public class TradeManager : MonoBehaviour
 
     public bool SellItem(TradableItem item, int quantity)
     {
-        // 판매 로직 구현 (예: 90% 가격 등)
+        // Storage를 찾습니다.
+        Storage warehouse = FindObjectOfType<Storage>();
+        if (warehouse == null)
+        {
+            Debug.LogError("No Storage found.");
+            return false;
+        }
+
+        // 창고에 아이템이 충분히 있는지 확인합니다.
+        if (!warehouse.HasItem(item, quantity))
+        {
+            Debug.Log("Not enough items in storage to sell " + item.itemName);
+            return false;
+        }
+
+        // 판매 단가를 현재 가격의 90%로 가정합니다.
+        float sellUnitPrice = item.GetCurrentPrice();
+        float totalRevenue = sellUnitPrice * quantity;
+
+        // 창고에서 아이템 제거
+        bool removed = warehouse.RemoveItem(item, quantity);
+        if (!removed)
+        {
+            Debug.LogWarning("Failed to remove item from storage.");
+            return false;
+        }
+
+        // 플레이어의 재화를 증가시킵니다.
+        // 예를 들어, playerCOMA에 판매 금액을 더합니다.
+        playerCOMA += Mathf.RoundToInt(totalRevenue);
+        Debug.Log($"Sold {quantity} of {item.itemName} for {totalRevenue} COMA. New COMA total: {playerCOMA}");
         return true;
     }
 

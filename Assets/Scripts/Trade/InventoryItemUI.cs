@@ -25,7 +25,7 @@ public class InventoryItemUI : MonoBehaviour
             itemNameText.text = storedItem.item.itemName;
 
         if (priceText != null)
-            priceText.text = storedItem.item.basePrice.ToString();
+            priceText.text = storedItem.item.GetCurrentPrice().ToString("F2");
 
         if (quantityText != null)
             quantityText.text = storedItem.quantity.ToString();

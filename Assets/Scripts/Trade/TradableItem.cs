@@ -27,13 +27,40 @@ public class TradableItem
 
     [Tooltip("아이템 설명")] [TextArea] public string description;
 
+    // 한 번 계산된 최종 가격을 캐싱할 변수
+    private float? cachedPrice = null;
+    // 처음 호출되었는지 여부 (한 번만 초기화할지 판단)
+    private bool priceInitialized = false;
+
     /// <summary>
-    /// /// 현재 가격을 계산합니다.
-    /// 기본 가격에서 변동폭 만큼 랜덤하게 + 또는 - 된 값을 반환합니다.
+    /// 현재 가격을 반환합니다.
+    /// - 아직 초기화되지 않았다면 RecalculatePrice()를 한 번 호출하여
+    ///   basePrice ± fluctuation 범위에서 랜덤으로 결정하고,
+    ///   이후에는 동일한 값을 반환합니다.
     /// </summary>
-    /// <returns>변동 적용된 가격</returns>
     public float GetCurrentPrice()
     {
-        return UnityEngine.Random.Range(basePrice - fluctuation, basePrice + fluctuation);
+        // 최초 한 번만 가격 결정
+        if (!priceInitialized)
+        {
+            RecalculatePrice();
+            priceInitialized = true;
+        }
+        return cachedPrice.Value;
+    }
+
+    /// <summary>
+    /// 10년 주기 등 외부에서 가격을 다시 갱신해야 할 때 호출합니다.
+    /// basePrice ± fluctuation 범위에서 새로 랜덤 계산합니다.
+    /// </summary>
+    public void RecalculatePrice()
+    {
+        cachedPrice = UnityEngine.Random.Range(basePrice - fluctuation, basePrice + fluctuation);
+
+        // 음수가 되지 않도록 보정
+        if (cachedPrice < 0)
+            cachedPrice = 0;
+
+        Debug.Log($"[RecalculatePrice] {itemName} new price = {cachedPrice.Value}");
     }
 }
