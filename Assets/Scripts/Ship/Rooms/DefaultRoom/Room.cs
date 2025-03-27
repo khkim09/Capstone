@@ -42,7 +42,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         { OxygenLevel.Normal, 0f }
     };
 
-    public List<CrewMember> crewInRoom = new List<CrewMember>();
+    public List<CrewBase> crewInRoom = new List<CrewBase>();
 
     protected Dictionary<OxygenLevel, float> fireExtinguishRatePerLevel = new()
     {
@@ -101,13 +101,13 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         isPlaced = true;
     }
 
-    public virtual void OnCrewEnter(CrewMember crew)
+    public virtual void OnCrewEnter(CrewBase crew)
     {
         if (!crewInRoom.Contains(crew))
             crewInRoom.Add(crew);
     }
 
-    public virtual void OnCrewExit(CrewMember crew)
+    public virtual void OnCrewExit(CrewBase crew)
     {
         if (crewInRoom.Contains(crew))
             crewInRoom.Remove(crew);
@@ -224,7 +224,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         currentLevel = 1;
         currentHitPoints = roomData.GetRoomData(currentLevel).hitPoint;
         InitializeIsDamageable();
-        crewInRoom = new List<CrewMember>();
+        crewInRoom = new List<CrewBase>();
     }
 
     // 선원 관련 함수들
@@ -502,7 +502,7 @@ public abstract class Room<TData, TLevel> : Room
         if (roomData == null)
         {
             Debug.LogError($"roomData is null in {GetType().Name}.Initialize()");
-            crewInRoom = new List<CrewMember>();
+            crewInRoom = new List<CrewBase>();
             return;
         }
 

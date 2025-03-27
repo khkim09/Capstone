@@ -11,27 +11,24 @@ public class CrewUIHandler : MonoBehaviour
 {
     public static CrewUIHandler Instance; // singleton 참조
 
-    [Header("UI Panels")]
-    public GameObject mainUIScreen; // 선원 생성하기 메인 화면
+    [Header("UI Panels")] public GameObject mainUIScreen; // 선원 생성하기 메인 화면
     public GameObject createUIScreen; // 선원 생성 요청 화면
     public GameObject customizeShipUIScreen; // 함선 제작 화면
     public GameObject addEquipmentUIScreen; // 장비 구매 화면
     public GameObject fullCrewUIScreen; // 선원 full 화면
 
-    [Header("Equipment UI Handler")]
-    public EquipmentUIHandler equipmentUIHandler;
+    [Header("Equipment UI Handler")] public EquipmentUIHandler equipmentUIHandler;
 
-    [Header("Input Fields")]
-    [SerializeField] private TMP_InputField nameInputField; // input 선원 이름
+    [Header("Input Fields")] [SerializeField]
+    private TMP_InputField nameInputField; // input 선원 이름
+
     public RaceButtonController[] raceButtonControllers; // inspector 할당
     [SerializeField] private RaceButtonController currentSelectedButton;
     [SerializeField] private CrewRace selectedRace = CrewRace.None; // 선원 종류
 
-    [Header("UI Buttons")]
-    public Button submitButton;
+    [Header("UI Buttons")] public Button submitButton;
 
-    [Header("Race Buttons")]
-    public Button humanButton;
+    [Header("Race Buttons")] public Button humanButton;
     public Button amorphousButton;
     public Button mechanicTankButton;
     public Button mechanicSupButton;
@@ -41,21 +38,21 @@ public class CrewUIHandler : MonoBehaviour
     // GridPlacer
     // public GridPlacer gridPlacer;
 
-    private Stack<GameObject> uiHistory = new Stack<GameObject>(); // stack 구조
+    private Stack<GameObject> uiHistory = new(); // stack 구조
 
-    void Awake()
+    private void Awake()
     {
         Instance = this;
     }
 
     // click 함수 연결 (editor에서 연결이 일반적이지만 어떻게 할 건지 논의 후 수정)
-    void Start()
+    private void Start()
     {
         // 초기 submit 버튼 비활성화
         submitButton.interactable = false;
     }
 
-    void Update()
+    private void Update()
     {
         // 종족, 이름 모두 입력 시 submit 버튼 활성화화
         if (selectedRace != CrewRace.None && nameInputField.text != "")
@@ -87,6 +84,7 @@ public class CrewUIHandler : MonoBehaviour
             uiHistory.Push(currentUI);
             currentUI.SetActive(false);
         }
+
         targetUI.SetActive(true);
 
         if (targetUI != mainUIScreen && MenuUIManager.Instance != null)
@@ -178,7 +176,8 @@ public class CrewUIHandler : MonoBehaviour
             ResetCrewCreateUI();
 
         // 선원 꽉 참
-        if (CrewManager.Instance.currentCrewCount >= CrewManager.Instance.maxCrewCount)
+        if (GameManager.Instance.GetPlayerShip().GetCrewCount() >=
+            GameManager.Instance.GetPlayerShip().GetMaxCrew())
         {
             ActiveFullCrewUI();
             Invoke("InActiveFullCrewUI", 2f);
