@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    [Header("Ship Info")] [SerializeField] private string shipName = "Milky";
+    [Header("Ship Info")][SerializeField] private string shipName = "Milky";
     [SerializeField] private float hull = 100f;
     [SerializeField] private float maxHull = 100f;
     [SerializeField] private Vector2Int gridSize = new(20, 20);
     [SerializeField] private bool showDebugInfo = true;
 
-    [Header("Weapons")] [SerializeField] private List<ShipWeapon> weapons = new();
+    [Header("Weapons")][SerializeField] private List<ShipWeapon> weapons = new();
     [SerializeField] private int maxWeaponSlots = 4;
 
-    [Header("Crew")] [SerializeField] private List<CrewMember> crew = new();
+    [Header("Crew")][SerializeField] private List<CrewMember> crew = new();
     [SerializeField] private int maxCrew = 6;
 
     private readonly Dictionary<Vector2Int, Room> roomGrid = new();
@@ -23,6 +23,8 @@ public class Ship : MonoBehaviour
     private readonly Dictionary<RoomType, List<Room>> roomsByType = new();
     private readonly Dictionary<ShipStat, float> currentStats = new();
     private readonly Dictionary<string, Dictionary<ShipStat, float>> roomContributions = new();
+
+    private Dictionary<Type, ShipSystem> systems = new();
 
     public event Action OnStatsChanged;
 
@@ -38,6 +40,8 @@ public class Ship : MonoBehaviour
 
     private void Update()
     {
+        // 모든 시스템 업데이트
+        foreach (ShipSystem system in systems.Values) system.Update(Time.deltaTime);
     }
 
     private void OnDestroy()
@@ -69,13 +73,15 @@ public class Ship : MonoBehaviour
 
         // Add to grid
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
-        {
-            Vector2Int gridPos = position + new Vector2Int(x, y);
-            roomGrid[gridPos] = room;
-        }
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = position + new Vector2Int(x, y);
+                roomGrid[gridPos] = room;
+            }
 
         room.OnPlaced();
+
+        // TODO: MoraleManager에서 사기 계산하기 해야됨
 
         // Recalculate stats
         RecalculateAllStats();
@@ -90,11 +96,11 @@ public class Ship : MonoBehaviour
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
-        {
-            Vector2Int gridPos = room.position + new Vector2Int(x, y);
-            roomGrid.Remove(gridPos);
-        }
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = room.position + new Vector2Int(x, y);
+                roomGrid.Remove(gridPos);
+            }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -106,6 +112,8 @@ public class Ship : MonoBehaviour
         // Remove from list
         allRooms.Remove(room);
         Destroy(room.gameObject);
+
+        // TODO: MoraleManager에서 사기 계산하기 해야됨
 
         // Recalculate stats
         RecalculateAllStats();
@@ -121,12 +129,12 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-        for (int y = 0; y < size.y; y++)
-        {
-            Vector2Int checkPos = pos + new Vector2Int(x, y);
-            if (roomGrid.ContainsKey(checkPos))
-                return false;
-        }
+            for (int y = 0; y < size.y; y++)
+            {
+                Vector2Int checkPos = pos + new Vector2Int(x, y);
+                if (roomGrid.ContainsKey(checkPos))
+                    return false;
+            }
 
         return true;
     }
@@ -149,6 +157,25 @@ public class Ship : MonoBehaviour
         if (roomsByType.ContainsKey(type))
             return roomsByType[type];
         return new List<Room>();
+    }
+
+    private void InitializeSystems()
+    {
+        // TODO : 방 시스템 만들 때마다 여기에 등록
+        RegisterSystem(new ShieldSystem());
+    }
+
+    private T RegisterSystem<T>(T system) where T : ShipSystem
+    {
+        system.Initialize(this);
+        systems[typeof(T)] = system;
+        return system;
+    }
+
+    public T GetSystem<T>() where T : ShipSystem
+    {
+        if (systems.TryGetValue(typeof(T), out ShipSystem system)) return system as T;
+        return null;
     }
 
     private void InitializeBaseStats()
@@ -286,7 +313,6 @@ public class Ship : MonoBehaviour
         if (currentStats.TryGetValue(statType, out float value))
             return value;
 
-        Debug.LogWarning($"Stat {statType} not found!");
         return 0f;
     }
 
@@ -299,36 +325,7 @@ public class Ship : MonoBehaviour
     }
 
     // ===== Power Management =====
-    public bool RequestPowerForRoom(Room room, bool powerOn)
-    {
-        if (!powerOn)
-        {
-            // 전원을 끄는 경우는 항상 성공
-            room.SetPowerStatus(false, false);
-            RecalculateAllStats();
-            return true;
-        }
 
-        // 전원을 켜려는 경우, 충분한 전력이 있는지 확인
-        float availablePower = GetStat(ShipStat.PowerCapacity);
-        float usedPower = GetStat(ShipStat.PowerUsing);
-        float remainingPower = availablePower - usedPower;
-        float requiredPower = room.GetPowerConsumption();
-
-        if (remainingPower >= requiredPower)
-        {
-            // 충분한 전력이 있으면 전원 켜기
-            room.SetPowerStatus(true, true);
-            RecalculateAllStats();
-            return true;
-        }
-        else
-        {
-            // 전력이 부족하면 요청만 설정하고 실제로는 켜지 않음
-            room.SetPowerStatus(false, true);
-            return false;
-        }
-    }
 
     // ===== Combat System =====
     public bool AddWeapon(ShipWeapon weapon)
@@ -347,26 +344,6 @@ public class Ship : MonoBehaviour
 
         weapons.RemoveAt(index);
         return true;
-    }
-
-    public void FireWeapon(int weaponIndex, Ship targetShip)
-    {
-        if (weaponIndex < 0 || weaponIndex >= weapons.Count)
-            return;
-
-        ShipWeapon weapon = weapons[weaponIndex];
-        Debug.Log($"{weapon.weaponName} fired.");
-
-        // Add dodge calculation
-        float dodgeChance = targetShip.GetStat(ShipStat.DodgeChance);
-        if (UnityEngine.Random.value < dodgeChance / 100f)
-        {
-            Debug.Log($"{targetShip.shipName} dodged the attack!");
-            return;
-        }
-
-        float finalDamage = weapon.damage;
-        targetShip.TakeDamage(finalDamage);
     }
 
     public void TakeDamage(float damage)
@@ -486,12 +463,6 @@ public class Ship : MonoBehaviour
         crew.Remove(crewToRemove);
 
         return true;
-    }
-
-    public void ApplyMoraleBonusToAllCrew(float bonus)
-    {
-        foreach (CrewMember crewMember in crew)
-            crewMember.AddMoraleBonus(bonus);
     }
 
     // ===== Getters =====

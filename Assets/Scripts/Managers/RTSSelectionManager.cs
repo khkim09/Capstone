@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class RTSSelectionManager : MonoBehaviour
 {
@@ -30,26 +31,30 @@ public class RTSSelectionManager : MonoBehaviour
 
     void Update()
     {
+        bool isMainUI = IsMainUIActive();
+
         // 왼쪽 마우스 버튼 눌림: 선택 시작
         if (Input.GetMouseButtonDown(0))
         {
-            dragStartPos = Input.mousePosition;
-            isDragging = true;
+            if (isMainUI)
+            {
+                dragStartPos = Input.mousePosition;
+                isDragging = true;
+            }
         }
 
         // 왼쪽 마우스 버튼 뗌: 선택 완료
         if (Input.GetMouseButtonUp(0))
         {
-            isDragging = false;
+            if (isDragging)
+            {
+                isDragging = false;
 
-            float distance = Vector2.Distance(dragStartPos, Input.mousePosition);
-            if (distance < clickThreshold)
-            {
-                SelectSingleCrew();
-            }
-            else
-            {
-                SelectMultipleCrew();
+                float distance = Vector2.Distance(dragStartPos, Input.mousePosition);
+                if (distance < clickThreshold)
+                    SelectSingleCrew();
+                else
+                    SelectMultipleCrew();
             }
         }
 
@@ -60,10 +65,16 @@ public class RTSSelectionManager : MonoBehaviour
         }
     }
 
+    private bool IsMainUIActive()
+    {
+        return CrewUIHandler.Instance != null && CrewUIHandler.Instance.mainUIScreen != null && CrewUIHandler.Instance.mainUIScreen.activeSelf;
+    }
+
+
     // OnGUI를 이용하여 드래그 사각형 표시
     void OnGUI()
     {
-        if (isDragging)
+        if (isDragging && IsMainUIActive())
         {
             Rect rect = GetScreenRect(dragStartPos, Input.mousePosition);
             DrawScreenRect(rect, new Color(0.8f, 0.8f, 0.95f, 0.25f));
@@ -117,13 +128,13 @@ public class RTSSelectionManager : MonoBehaviour
     {
         DeselectAll();
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        if (hit.collider != null)
         {
             CrewMember crew = hit.collider.GetComponent<CrewMember>();
-            if (crew)
+            if (crew != null)
             {
                 selectedCrew.Add(crew);
                 crew.GetComponent<Renderer>().material.color = Color.green;
