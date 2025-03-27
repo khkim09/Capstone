@@ -1,4 +1,4 @@
-﻿public interface IGameState
+﻿public interface IGameStateMachine
 {
     void Enter(); // 상태 진입 시 호출
     void Update(); // 매 프레임 호출

@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    [Header("Ship Info")][SerializeField] private string shipName = "Milky";
+    [Header("Ship Info")] [SerializeField] private string shipName = "Milky";
     [SerializeField] private float hull = 100f;
     [SerializeField] private float maxHull = 100f;
     [SerializeField] private Vector2Int gridSize = new(20, 20);
     [SerializeField] private bool showDebugInfo = true;
 
-    [Header("Weapons")][SerializeField] private List<ShipWeapon> weapons = new();
+    [Header("Weapons")] [SerializeField] private List<ShipWeapon> weapons = new();
     [SerializeField] private int maxWeaponSlots = 4;
 
-    [Header("Crew")][SerializeField] private List<CrewMember> crew = new();
+    [Header("Crew")] [SerializeField] private List<CrewMember> crew = new();
     [SerializeField] private int maxCrew = 6;
 
     private readonly Dictionary<Vector2Int, Room> roomGrid = new();
@@ -73,11 +73,11 @@ public class Ship : MonoBehaviour
 
         // Add to grid
         for (int x = 0; x < room.GetSize().x; x++)
-            for (int y = 0; y < room.GetSize().y; y++)
-            {
-                Vector2Int gridPos = position + new Vector2Int(x, y);
-                roomGrid[gridPos] = room;
-            }
+        for (int y = 0; y < room.GetSize().y; y++)
+        {
+            Vector2Int gridPos = position + new Vector2Int(x, y);
+            roomGrid[gridPos] = room;
+        }
 
         room.OnPlaced();
 
@@ -96,11 +96,11 @@ public class Ship : MonoBehaviour
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-            for (int y = 0; y < room.GetSize().y; y++)
-            {
-                Vector2Int gridPos = room.position + new Vector2Int(x, y);
-                roomGrid.Remove(gridPos);
-            }
+        for (int y = 0; y < room.GetSize().y; y++)
+        {
+            Vector2Int gridPos = room.position + new Vector2Int(x, y);
+            roomGrid.Remove(gridPos);
+        }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -129,12 +129,12 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-            for (int y = 0; y < size.y; y++)
-            {
-                Vector2Int checkPos = pos + new Vector2Int(x, y);
-                if (roomGrid.ContainsKey(checkPos))
-                    return false;
-            }
+        for (int y = 0; y < size.y; y++)
+        {
+            Vector2Int checkPos = pos + new Vector2Int(x, y);
+            if (roomGrid.ContainsKey(checkPos))
+                return false;
+        }
 
         return true;
     }
@@ -163,6 +163,9 @@ public class Ship : MonoBehaviour
     {
         // TODO : 방 시스템 만들 때마다 여기에 등록
         RegisterSystem(new ShieldSystem());
+        RegisterSystem(new WeaponSystem());
+        RegisterSystem(new OuterHullSystem());
+        RegisterSystem(new HitPointSystem());
     }
 
     private T RegisterSystem<T>(T system) where T : ShipSystem
@@ -346,45 +349,31 @@ public class Ship : MonoBehaviour
         return true;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool isMissileAttack)
     {
-        // TODO : 방어막 관련 계산 수행
-        // ShieldRoom shieldRoom = GetRoomOfType<ShieldRoom>();
-        // if (shieldRoom != null && shieldRoom.GetCurrentShields() > 0)
-        // {
-        //     shieldRoom.TakeShieldDamage(damage);
-        //     return;
-        // }
+        // TODO: 미사일의 경우 주위 8칸 80% 데미지 받는 코드 추가해야됨.
+        //      그럼 랜덤 방이 아니라 랜덤 칸을 뽑고 데미지를 입히는 방식이어야되는 것 아닌가?
+        HitPointSystem hitPointSystem = GetSystem<HitPointSystem>();
+        hitPointSystem.ChangeHitPoint(-damage);
 
-        // Apply hull damage reduction
-
-        /*
-         *
-        float hullDamageReduction = GetStat(ShipStat.DamageReduction);
-        damage *= 1f - hullDamageReduction / 100f;
-
-        hull -= damage;
+        if (hitPointSystem.GetHitPoint() <= 0f) OnShipDestroyed();
         ApplyDamageToRandomRoom(damage);
-
-        if (hull <= 0)
-        {
-            hull = 0;
-            OnShipDestroyed();
-        }
-         *
-         */
     }
 
     private void ApplyDamageToRandomRoom(float damage)
     {
-        if (allRooms.Count == 0) return;
+        List<Room> validRooms = allRooms.FindAll(room => room.GetHealthPercentage() > 0);
 
-        int randomIndex = UnityEngine.Random.Range(0, allRooms.Count);
-        Room targetRoom = allRooms[randomIndex];
-        targetRoom.TakeDamage(damage * 0.5f); // Only apply part of the damage to the room
+        if (validRooms.Count == 0) return;
+
+        int randomIndex = UnityEngine.Random.Range(0, validRooms.Count);
+        Room targetRoom = validRooms[randomIndex];
+
+        targetRoom.TakeDamage(damage * 0.5f);
     }
 
-    private void OnShipDestroyed()
+
+    public void OnShipDestroyed()
     {
         Debug.Log($"Ship {shipName} destroyed!");
         // Implement game over logic
@@ -505,5 +494,10 @@ public class Ship : MonoBehaviour
     public List<ShipWeapon> GetAllWeapons()
     {
         return weapons;
+    }
+
+    public float GetCurrentHitPoints()
+    {
+        return GetSystem<HitPointSystem>().GetHitPoint();
     }
 }
