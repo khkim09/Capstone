@@ -12,7 +12,8 @@ public class TileVisualRenderer : MonoBehaviour
             {
                 Vector2Int gridPos = new Vector2Int(x, y);
                 Vector2 worldPos = ShipGridManager.Instance.GridToWorldPosition(gridPos);
-                Instantiate(tileVisualPrefab, worldPos, Quaternion.identity, transform);
+                GameObject tile = Instantiate(tileVisualPrefab, worldPos, Quaternion.identity, transform);
+                tile.transform.localScale = Vector3.one * ShipGridManager.Instance.tileSize; // 중요!
             }
         }
     }
