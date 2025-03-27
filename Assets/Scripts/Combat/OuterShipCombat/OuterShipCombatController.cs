@@ -2,50 +2,34 @@
 
 public class OuterShipCombatController
 {
-    public bool WeaponFire(Ship attacker, Ship target, ShipWeapon weapon)
+    public bool WeaponFire(Ship attacker, ShipWeapon weapon)
     {
+        // TODO : attacker 가 플레이어면 타겟이 적, 적이면 플레이어로 설정해야함.
+        Ship targetShip = GameManager.Instance.GetCurrentEnemyShip();
         // if target 파괴됨 -> return false;
 
         if (!weapon.IsReady()) return false;
 
         float attackDamage = attacker.GetSystem<WeaponSystem>().GetActualDamage(weapon.GetDamage());
 
-        if (weapon.GetWeaponType() == WeaponType.Railgun && target.GetSystem<ShieldSystem>().IsShieldActive())
+        if (weapon.GetWeaponType() == WeaponType.Railgun && targetShip.GetSystem<ShieldSystem>().IsShieldActive())
             attackDamage *= 1.5f;
 
-        float damageAfterShield = target.GetSystem<ShieldSystem>().TakeDamage(attackDamage);
-        damageAfterShield = target.GetSystem<OuterHullSystem>().ReduceDamage(damageAfterShield);
+        float damageAfterShield = targetShip.GetSystem<ShieldSystem>().TakeDamage(attackDamage);
+        damageAfterShield = targetShip.GetSystem<OuterHullSystem>().ReduceDamage(damageAfterShield);
 
         if (weapon.GetWeaponType() == WeaponType.Missile)
-        {
-            target.TakeDamage(damageAfterShield, true);
-        }
+            targetShip.TakeDamage(damageAfterShield, true);
         else
-        {
-            target.TakeDamage(damageAfterShield, false);
-        }
+            targetShip.TakeDamage(damageAfterShield, false);
+
+        // TODO: 공격이 실제로 날라가는 애니메이션 내지 투사체가 육안으로 확인이 되어야하는데,
+        //       그러면 TakeDamage 내부에 있는 TakeRandomDamage함수가 밖으로 나와야하는 것 아닌가?
+        //       Ship의 랜덤 칸을 반환하는 함수가 필요할지도.
+        //       만약 그런 것이 존재한다면, weapon.Fire(target의 랜덤 칸) 같은 함수가 필요.
+        //       weapon.Fire()함수는 발사 애니메이션과 폭발 애니메이션 보여주는 함수, 실제 데미지는 적용 X
 
         return true;
-    }
-
-    // 무기 발사 요청 처리
-    public bool RequestWeaponFire(Ship shooter, ShipWeapon weapon, Transform target, float cooldown)
-    {
-        // 무기 타입에 따라 다른 처리
-        switch (weapon.GetWeaponType())
-        {
-            case WeaponType.Laser:
-                return FireLaser(shooter, weapon, target);
-
-            case WeaponType.Railgun:
-                return FireRailgun(shooter, weapon, target);
-
-            case WeaponType.Missile:
-                return FireMissile(shooter, weapon, target);
-
-            default:
-                return false;
-        }
     }
 
     // 발사체 무기 처리
