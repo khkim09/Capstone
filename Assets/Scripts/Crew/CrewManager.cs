@@ -6,11 +6,6 @@ public class CrewManager : MonoBehaviour
     // instance
     public static CrewManager Instance { get; set; }
 
-    // 승무원 리스트
-    [Header("Crew List")] public int currentCrewCount = 0; // 현재 선원 수
-    public int maxCrewCount = 1; // 총 고용 가능 선원 수
-    public List<CrewBase> crewList = new();
-
     [Header("Crew UI")] [SerializeField] private GameObject alertAddCrewUI;
     [SerializeField] private GameObject mainUI;
 
@@ -27,15 +22,17 @@ public class CrewManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
-        {
             Instance = this;
-            if (crewList.Count == 0)
-                AlertNeedCrew();
-        }
+        // TODO : 임시로 작동되게 해놓음. 최종적으론 삭제 예정
+        /*
+         *
+         *         if (GameManager.Instance.GetPlayerShip().GetCrewCount() == 0)
+            AlertNeedCrew();
+         */
+
+
         else
-        {
             Destroy(gameObject);
-        }
     }
 
     private void Update()
@@ -70,9 +67,9 @@ public class CrewManager : MonoBehaviour
         newCrew.isPlayerControlled = true;
         newCrew.race = selectedRace;
 
-        // 크루 추가
-        crewList.Add(newCrew);
-        RefreshCrewList(crewList.Count, maxCrewCount);
+        // TODO : 임시로 작동되게 해놓음. 최종적으론 삭제 예정
+
+        GameManager.Instance.GetPlayerShip().GetSystem<CrewSystem>().AddCrewMember(newCrew);
 
         // 확인용 로그
         Debug.Log($"새로운 선원 : {newCrew.crewName} {newCrew.race}");
@@ -81,25 +78,24 @@ public class CrewManager : MonoBehaviour
     // 현재 선원 수 가져오기
     public int GetCurrentCrewCount()
     {
-        return currentCrewCount;
+        // TODO : 임시로 작동되게 해놓음. 최종적으론 삭제 예정
+        return GameManager.Instance.GetPlayerShip().GetCrewCount();
     }
 
     // 현재 수용 가능 선원 수 가져오기 (총 고용 가능 수)
     public int GetMaxCrewCount()
     {
-        return maxCrewCount;
+        return GameManager.Instance.GetPlayerShip().GetMaxCrew();
     }
 
-    // 선원 수 갱신
-    public void RefreshCrewList(int currentCnt, int maxCnt)
-    {
-        currentCrewCount = currentCnt;
-        maxCrewCount = maxCnt;
-    }
 
     public CrewBase GetSelectedCrew()
     {
+        // TODO : 임시로 작동되게 해놓음. 최종적으론 삭제 예정
+
+        return GameManager.Instance.GetPlayerShip().GetCrewCount() > 0
+            ? GameManager.Instance.GetPlayerShip().GetAllCrew()[0]
+            : null;
         // crewList UI (discord 참조)에서 유저가 선택하도록 수정 필요
-        return crewList.Count > 0 ? crewList[0] : null; // 예시: 첫 번째 선원
     }
 }

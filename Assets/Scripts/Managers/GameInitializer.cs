@@ -10,6 +10,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private GameObject shipManagerPrefab;
     [SerializeField] private GameObject uiManagerPrefab;
     [SerializeField] private GameObject gameStateManagerPrefab;
+    [SerializeField] private GameObject moraleMangerPrefab;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class GameInitializer : MonoBehaviour
         InstantiateIfNotExists<QuestManager>(questManagerPrefab);
         InstantiateIfNotExists<UIManager>(uiManagerPrefab);
         InstantiateIfNotExists<GameStateManager>(gameStateManagerPrefab);
+        InstantiateIfNotExists<MoraleManager>(moraleMangerPrefab);
     }
 
     private T InstantiateIfNotExists<T>(GameObject prefab) where T : MonoBehaviour

@@ -20,6 +20,9 @@ public class Ship : MonoBehaviour
 
     private Dictionary<Type, ShipSystem> systems = new();
 
+    // 테스트용 룸 프리팹
+    public GameObject testRoomPrefab1;
+    public GameObject testRoomPrefab2;
 
     public event Action OnStatsChanged;
 
@@ -30,7 +33,15 @@ public class Ship : MonoBehaviour
 
     private void Start()
     {
+        Room testRoom1 = Instantiate(testRoomPrefab1).GetComponent<Room>();
+        Room testRoom2 = Instantiate(testRoomPrefab2).GetComponent<Room>();
+        InitializeSystems();
+        AddRoom(testRoom1, Vector2Int.zero);
+        AddRoom(testRoom2, new Vector2Int(10, 10));
+
         RecalculateAllStats();
+
+        GameManager.Instance.SetPlayerShip(this);
     }
 
     private void Update()
@@ -446,7 +457,7 @@ public class Ship : MonoBehaviour
         return doors;
     }
 
-    public List<CrewMember> GetAllCrew()
+    public List<CrewBase> GetAllCrew()
     {
         return GetSystem<CrewSystem>().GetCrews();
     }

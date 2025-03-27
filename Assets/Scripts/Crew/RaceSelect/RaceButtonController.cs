@@ -68,7 +68,7 @@ public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointe
 
         // RaceTooltip 설정
         RaceTooltip tooltip = activeTooltip.GetComponent<RaceTooltip>();
-        tooltip.SetupTooltip(crewRaceStat);
+        tooltip.SetupTooltip(crewRaceStat, raceType);
 
         // 스크린 → 월드 좌표로 변환
         RectTransform tooltipRect = activeTooltip.GetComponent<RectTransform>();

@@ -3,20 +3,32 @@ using UnityEngine;
 
 public class CrewSystem : ShipSystem
 {
-    private List<CrewMember> crews = new();
+    private List<CrewBase> crews = new();
+
+    public override void Initialize(Ship ship)
+    {
+        base.Initialize(ship);
+
+        if (GetCrewCount() == 0)
+        {
+            // AlertNeedCrew();
+        }
+    }
 
     public override void Update(float deltaTime)
     {
     }
 
-    public bool AddCrewMember(CrewMember newCrew)
+    public bool AddCrewMember(CrewBase newCrew)
     {
         if (crews.Count >= GetShipStat(ShipStat.CrewCapacity))
             return false;
 
+
         crews.Add(newCrew);
         return true;
     }
+
 
     public bool RemoveCrewMember(CrewMember crewToRemove)
     {
@@ -33,7 +45,7 @@ public class CrewSystem : ShipSystem
         return crews.Count;
     }
 
-    public List<CrewMember> GetCrews()
+    public List<CrewBase> GetCrews()
     {
         return crews;
     }

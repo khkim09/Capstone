@@ -90,7 +90,7 @@ public abstract class CrewBase : MonoBehaviour
         isAlive = true;
         isMoving = false;
 
-        maxSkillValueArray = crewRaceStat.ByRace[race].maxSkillValueArray;
+        maxSkillValueArray = crewRaceStat.ByRace[race].GetMaxSkillValueDictionary();
         maxPilotSkillValue = maxSkillValueArray[SkillType.PilotSkill];
         maxEngineSkillValue = maxSkillValueArray[SkillType.EngineSkill];
         maxPowerSkillValue = maxSkillValueArray[SkillType.PowerSkill];
@@ -294,14 +294,23 @@ public abstract class CrewBase : MonoBehaviour
         if (currentRoom != null)
             currentRoom.OnCrewExit(this);
 
+        // TODO : 임시로 작동되게 해놓음.
 
-        // 사망 이벤트 발생 등 추가 처리
+        if (currentShip.GetAllCrew().Contains(this)) currentShip.GetAllCrew().Remove(this);
+
+        // 아래는 원래 코드
+        /*
+         *  // 사망 이벤트 발생 등 추가 처리
         if (CrewManager.Instance.crewList.Contains(this))
         {
             CrewManager.Instance.crewList.Remove(this); // 해당 선원 찾아 제외
             CrewManager.Instance.RefreshCrewList(CrewManager.Instance.crewList.Count,
                 CrewManager.Instance.maxCrewCount); // 총 선원 수 갱신
         }
+
+         *
+         */
+
 
         // 사망 처리 - 0.5초 후 사라짐
         Destroy(gameObject, 0.5f);
@@ -426,39 +435,6 @@ public abstract class CrewBase : MonoBehaviour
         SwapEquipment(eqItem); // 기존 장비 해제, 효과 해제 -> 새 장비 착용, 효과 적용
 
         Debug.Log($"{crewName}에 개인 장비 {eqItem.eqName} 적용 완료.");
-    }
-
-    // 전체 선원 장비 적용
-    public void AddGlobalEquipment(EquipmentItem eqItem)
-    {
-        List<CrewBase> people = CrewManager.Instance.crewList;
-        foreach (CrewBase person in people) person.ApplyPersonalEquipment(eqItem);
-    }
-
-    // 장비 기본 타입으로 지정 - 타 장비 해제 후 미할당
-    public void UnequipAndRevertToDefault(EquipmentType type)
-    {
-        EquipmentItem currentItem = GetEquippedItem(type);
-
-        // 기존 장비 효과 제거
-        if (currentItem != null)
-            RecalculateEquipmentBonus(currentItem, false);
-
-        // 기본 장비 불러오기
-        EquipmentItem defaultItem = type switch
-        {
-            EquipmentType.WeaponEquipment => CrewManager.Instance.defaultWeapon,
-            EquipmentType.ShieldEquipment => CrewManager.Instance.defaultShield,
-            EquipmentType.AssistantEquipment => CrewManager.Instance.defaultAssistant,
-            _ => null
-        };
-
-        if (defaultItem != null)
-        {
-            SetEquippedItem(type, defaultItem);
-            RecalculateEquipmentBonus(defaultItem, true);
-            Debug.Log($"{crewName} {type} 장비 해제 → 기본 장비 {defaultItem.eqName} 착용");
-        }
     }
 
     // 스킬 레벨 가져오기

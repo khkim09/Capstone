@@ -22,7 +22,7 @@ public class EquipmentManager : MonoBehaviour
         if (!eqItem.isGlobalEquip)
             return;
 
-        List<CrewBase> list = CrewManager.Instance.crewList;
+        List<CrewBase> list = GameManager.Instance.GetPlayerShip().GetAllCrew();
         foreach (CrewMember crew in list) crew.ApplyPersonalEquipment(eqItem);
     }
 
