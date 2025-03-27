@@ -27,13 +27,21 @@ public class TradableItem
 
     [Tooltip("아이템 설명")] [TextArea] public string description;
 
+    // 한 번 계산된 최종 가격을 캐싱할 변수
+    private float? cachedPrice = null;
+
     /// <summary>
-    /// /// 현재 가격을 계산합니다.
-    /// 기본 가격에서 변동폭 만큼 랜덤하게 + 또는 - 된 값을 반환합니다.
+    /// 최초 호출 시, basePrice ± fluctuation 범위 내에서 랜덤으로 가격을 결정하고,
+    /// 이후에는 그 값을 재사용합니다.
     /// </summary>
-    /// <returns>변동 적용된 가격</returns>
+    /// <returns>고정된 최종 가격</returns>
     public float GetCurrentPrice()
     {
-        return UnityEngine.Random.Range(basePrice - fluctuation, basePrice + fluctuation);
+        if (cachedPrice.HasValue)
+            return cachedPrice.Value;
+
+        // 한 번만 계산해서 캐싱:
+        cachedPrice = UnityEngine.Random.Range(basePrice - fluctuation, basePrice + fluctuation);
+        return cachedPrice.Value;
     }
 }

@@ -10,6 +10,7 @@ public class MiddlePanelUI : MonoBehaviour
     [SerializeField] private TMP_InputField tradeNumInputField;    // 거래 수량 입력 필드
     [SerializeField] private Button buyButton;                   // 구매 버튼
     [SerializeField] private Button sellButton;                  // 판매 버튼
+    [SerializeField] private TMP_Text playerComaText;            // 플레이어 재화 텍스트
 
     private TradableItem selectedItem;
     private TradeManager tradeManager;
@@ -22,6 +23,8 @@ public class MiddlePanelUI : MonoBehaviour
             buyButton.onClick.AddListener(OnBuyClicked);
         if (sellButton != null)
             sellButton.onClick.AddListener(OnSellClicked);
+
+        UpdatePlayerComa();
     }
 
     /// <summary>
@@ -49,6 +52,13 @@ public class MiddlePanelUI : MonoBehaviour
         if (tradeManager.BuyItem(selectedItem, quantity))
         {
             Debug.Log($"구매 성공: {selectedItem.itemName} x {quantity}");
+            UpdatePlayerComa();
+            // 인벤토리 UI 갱신
+            InventoryUI invUI = FindObjectOfType<InventoryUI>();
+            if (invUI != null)
+            {
+                invUI.PopulateInventory();
+            }
         }
     }
 
@@ -62,6 +72,21 @@ public class MiddlePanelUI : MonoBehaviour
         if (tradeManager.SellItem(selectedItem, quantity))
         {
             Debug.Log($"판매 성공: {selectedItem.itemName} x {quantity}");
+            UpdatePlayerComa();
+            // 인벤토리 UI 갱신
+            InventoryUI invUI = FindObjectOfType<InventoryUI>();
+            if (invUI != null)
+            {
+                invUI.PopulateInventory();
+            }
         }
     }
+    public void UpdatePlayerComa()
+    {
+        if (playerComaText != null && tradeManager != null)
+        {
+            playerComaText.text = "COMA: " + tradeManager.GetPlayerCOMA();
+        }
+    }
+
 }
