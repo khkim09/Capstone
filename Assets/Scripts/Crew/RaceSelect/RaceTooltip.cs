@@ -9,27 +9,28 @@ public class RaceTooltip : MonoBehaviour
     [SerializeField] private TextMeshProUGUI raceInfoText;
 
     // 예시: 각 종족의 능력치를 설정하는 함수
-    public void SetupTooltip(CrewRaceSettings raceSettings)
+    public void SetupTooltip(CrewRaceStat raceStat)
     {
-        if (raceSettings == null)
+        if (raceStat == null)
             return;
 
         // Race Name 설정
-        raceNameText.text = raceSettings.race.ToString();
+        raceNameText.text = raceStat.race.ToString();
+        raceNameText.text =
 
         // Race Info 설정 (maxSkillValueArray는 제외)
-        raceInfoText.text = $"Max Health : {raceSettings.maxHealth}\n" +
-                            $"Attack : {raceSettings.attack}\n" +
-                            $"Defense : {raceSettings.defense}\n" +
-                            $"Learning Speed : {raceSettings.learningSpeed}\n" +
-                            $"Needs Oxygen : {(raceSettings.needsOxygen ? "Yes" : "No")}\n" +
-                            $"Pilot Skill : {raceSettings.initialPilotSkill}\n" +
-                            $"Engine Skill : {raceSettings.initialEngineSkill}\n" +
-                            $"Power Skill : {raceSettings.initialPowerSkill}\n" +
-                            $"Shield Skill : {raceSettings.initialShieldSkill}\n" +
-                            $"Weapon Skill : {raceSettings.initialWeaponSkill}\n" +
-                            $"Ammunition Skill : {raceSettings.initialAmmunitionSkill}\n" +
-                            $"MedBay Skill : {raceSettings.initialMedBaySkill}\n" +
-                            $"Repair Skill : {raceSettings.initialRepairSkill}";
+        raceInfoText.text = $"Max Health : {raceStat.maxHealth}\n" +
+                            $"Attack : {raceStat.attack}\n" +
+                            $"Defense : {raceStat.defense}\n" +
+                            $"Learning Speed : {raceStat.learningSpeed}\n" +
+                            $"Needs Oxygen : {(raceStat.needsOxygen ? "Yes" : "No")}\n" +
+                            $"Pilot Skill : {raceStat.initialPilotSkill}\n" +
+                            $"Engine Skill : {raceStat.initialEngineSkill}\n" +
+                            $"Power Skill : {raceStat.initialPowerSkill}\n" +
+                            $"Shield Skill : {raceStat.initialShieldSkill}\n" +
+                            $"Weapon Skill : {raceStat.initialWeaponSkill}\n" +
+                            $"Ammunition Skill : {raceStat.initialAmmunitionSkill}\n" +
+                            $"MedBay Skill : {raceStat.initialMedBaySkill}\n" +
+                            $"Repair Skill : {raceStat.initialRepairSkill}";
     }
 }

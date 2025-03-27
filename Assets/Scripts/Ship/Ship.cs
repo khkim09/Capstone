@@ -11,12 +11,6 @@ public class Ship : MonoBehaviour
     [SerializeField] private Vector2Int gridSize = new(20, 20);
     [SerializeField] private bool showDebugInfo = true;
 
-    [Header("Weapons")] [SerializeField] private List<ShipWeapon> weapons = new();
-    [SerializeField] private int maxWeaponSlots = 4;
-
-    [Header("Crew")] [SerializeField] private List<CrewMember> crew = new();
-    [SerializeField] private int maxCrew = 6;
-
     private readonly Dictionary<Vector2Int, Room> roomGrid = new();
     private readonly List<Door> doors = new();
     private readonly List<Room> allRooms = new();
@@ -25,6 +19,7 @@ public class Ship : MonoBehaviour
     private readonly Dictionary<string, Dictionary<ShipStat, float>> roomContributions = new();
 
     private Dictionary<Type, ShipSystem> systems = new();
+
 
     public event Action OnStatsChanged;
 
@@ -166,6 +161,7 @@ public class Ship : MonoBehaviour
         RegisterSystem(new WeaponSystem());
         RegisterSystem(new OuterHullSystem());
         RegisterSystem(new HitPointSystem());
+        RegisterSystem(new CrewSystem());
     }
 
     private T RegisterSystem<T>(T system) where T : ShipSystem
@@ -330,25 +326,6 @@ public class Ship : MonoBehaviour
     // ===== Power Management =====
 
 
-    // ===== Combat System =====
-    public bool AddWeapon(ShipWeapon weapon)
-    {
-        if (weapons.Count >= maxWeaponSlots)
-            return false;
-
-        weapons.Add(weapon);
-        return true;
-    }
-
-    public bool RemoveWeapon(int index)
-    {
-        if (index < 0 || index >= weapons.Count)
-            return false;
-
-        weapons.RemoveAt(index);
-        return true;
-    }
-
     public void TakeDamage(float damage, bool isMissileAttack)
     {
         // TODO: 미사일의 경우 주위 8칸 80% 데미지 받는 코드 추가해야됨.
@@ -435,24 +412,6 @@ public class Ship : MonoBehaviour
 
     // ===== Crew Management =====
 
-    public bool AddCrewMember(CrewMember newCrew)
-    {
-        if (crew.Count >= maxCrew)
-            return false;
-
-        crew.Add(newCrew);
-        return true;
-    }
-
-    public bool RemoveCrewMember(CrewMember crewToRemove)
-    {
-        if (!crew.Contains(crewToRemove))
-            return false;
-
-        crew.Remove(crewToRemove);
-
-        return true;
-    }
 
     // ===== Getters =====
 
@@ -466,14 +425,15 @@ public class Ship : MonoBehaviour
         return maxHull;
     }
 
+
     public int GetCrewCount()
     {
-        return crew.Count;
+        return GetSystem<CrewSystem>().GetCrewCount();
     }
 
     public int GetMaxCrew()
     {
-        return maxCrew;
+        return (int)currentStats[ShipStat.CrewCapacity];
     }
 
     public List<Room> GetAllRooms()
@@ -488,12 +448,12 @@ public class Ship : MonoBehaviour
 
     public List<CrewMember> GetAllCrew()
     {
-        return crew;
+        return GetSystem<CrewSystem>().GetCrews();
     }
 
     public List<ShipWeapon> GetAllWeapons()
     {
-        return weapons;
+        return GetSystem<WeaponSystem>().GetWeapons();
     }
 
     public float GetCurrentHitPoints()

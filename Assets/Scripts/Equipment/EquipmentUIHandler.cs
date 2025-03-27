@@ -6,8 +6,7 @@ using System.Collections.Generic;
 
 public class EquipmentUIHandler : MonoBehaviour
 {
-    [Header("Tip Panel References")]
-    public GameObject itemBuyPanel;
+    [Header("Tip Panel References")] public GameObject itemBuyPanel;
     public Image tipItemImage;
     public TextMeshProUGUI tipItemName;
     public TextMeshProUGUI tipItemPrice;
@@ -16,8 +15,7 @@ public class EquipmentUIHandler : MonoBehaviour
     public Button buyButton;
     public Button backButton;
 
-    [Header("Color Settings")]
-    public Color purchasedButtonColor = Color.gray;
+    [Header("Color Settings")] public Color purchasedButtonColor = Color.gray;
     public Color defaultButtonColor = Color.white;
 
     // 현재 선택된 장비
@@ -25,7 +23,7 @@ public class EquipmentUIHandler : MonoBehaviour
     public EquipmentButton currentSelectedButton;
 
     // 구매한 아이템 목록
-    public HashSet<EquipmentItem> purchasedItems = new HashSet<EquipmentItem>();
+    public HashSet<EquipmentItem> purchasedItems = new();
 
 
     // 임시로 플레이어 보유 재화를 관리 (실제론 GameManager 등 다른 스크립트에서 관리 가능)
@@ -51,14 +49,10 @@ public class EquipmentUIHandler : MonoBehaviour
 
         // 이미 구매한 아이템이면 buy 버튼 비활성화
         if (purchasedItems.Contains(eqItem))
-        {
             buyButton.interactable = false;
-        }
         else
-        {
             // 구매 가능 여부 확인
-            buyButton.interactable = (playerCOMA >= eqItem.eqPrice);
-        }
+            buyButton.interactable = playerCOMA >= eqItem.eqPrice;
 
         // 팝업 표시
         itemBuyPanel.SetActive(true);
@@ -88,7 +82,7 @@ public class EquipmentUIHandler : MonoBehaviour
         }
         else // personal
         {
-            CrewMember selectedCrew = CrewManager.Instance.GetSelectedCrew();
+            CrewBase selectedCrew = CrewManager.Instance.GetSelectedCrew();
 
             if (selectedCrew == null)
             {
@@ -96,6 +90,7 @@ public class EquipmentUIHandler : MonoBehaviour
                 Debug.LogWarning("장비 착용 실패, 선택된 선원 X");
                 return;
             }
+
             EquipmentManager.Instance.PurchaseAndEquipPersonal(selectedCrew, eq);
         }
 
