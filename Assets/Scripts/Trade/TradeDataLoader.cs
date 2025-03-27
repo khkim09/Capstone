@@ -24,7 +24,7 @@ public class TradeDataLoader : MonoBehaviour
     private void LoadTradeData()
     {
         // Assets/Data 폴더 내의 "PlanetTrade.json" 파일 경로 설정
-        string path = System.IO.Path.Combine(Application.dataPath, "Data", "PlanetTrade.json");
+        string path = System.IO.Path.Combine(Application.dataPath, "Data", "PlanetTradeTest.json");
 
         if (!System.IO.File.Exists(path))
         {

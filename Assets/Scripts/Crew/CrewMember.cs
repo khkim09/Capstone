@@ -35,6 +35,7 @@ public class CrewMember : MonoBehaviour
 {
     [Header("Basic Info")]
     public string crewName; // 이름
+    public bool isPlayerControlled; // 아군(true) ? 적군(false) ?
 
     [Header("Details")]
     public CrewRace race; // 종족
@@ -258,14 +259,23 @@ public class CrewMember : MonoBehaviour
     // 선원 사망
     private void Die()
     {
-        // 사망 처리 - 0.5초 후 사라짐
-        Destroy(gameObject, 0.5f);
+        isAlive = false;
 
         // 현재 방에서 제거
         if (currentRoom != null)
             currentRoom.OnCrewExit(this);
 
         // 사망 이벤트 발생 등 추가 처리
+        if (CrewManager.Instance.crewList.Contains(this))
+        {
+            CrewManager.Instance.crewList.Remove(this); // 해당 선원 찾아 제외
+            CrewManager.Instance.RefreshCrewList(CrewManager.Instance.crewList.Count, CrewManager.Instance.maxCrewCount); // 총 선원 수 갱신
+        }
+
+        // 사망 처리 - 0.5초 후 사라짐
+        Destroy(gameObject, 0.5f);
+
+        Debug.Log($"{crewName} 사망 처리 완료");
     }
 
     // 수리 작업
@@ -441,5 +451,14 @@ public class CrewMember : MonoBehaviour
         if (skills.ContainsKey(skill))
             return skills[skill];
         return 0f;
+    }
+
+
+
+
+    // 전투 관련
+    public bool IsEnemyOf(CrewMember other)
+    {
+        return this.isPlayerControlled != other.isPlayerControlled;
     }
 }

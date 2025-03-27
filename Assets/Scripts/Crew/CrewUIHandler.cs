@@ -16,6 +16,7 @@ public class CrewUIHandler : MonoBehaviour
     public GameObject createUIScreen; // 선원 생성 요청 화면
     public GameObject customizeShipUIScreen; // 함선 제작 화면
     public GameObject addEquipmentUIScreen; // 장비 구매 화면
+    public GameObject fullCrewUIScreen; // 선원 full 화면
 
     [Header("Equipment UI Handler")]
     public EquipmentUIHandler equipmentUIHandler;
@@ -38,7 +39,7 @@ public class CrewUIHandler : MonoBehaviour
     public Button insectButton;
 
     // GridPlacer
-    public GridPlacer gridPlacer;
+    // public GridPlacer gridPlacer;
 
     private Stack<GameObject> uiHistory = new Stack<GameObject>(); // stack 구조
 
@@ -127,8 +128,10 @@ public class CrewUIHandler : MonoBehaviour
     // 함선 세팅 UI 초기화
     private void ResetCustomizeShipUI()
     {
+        /*
         if (gridPlacer)
             gridPlacer.ClearGrid();
+        */
     }
 
     // customize button click
@@ -139,8 +142,10 @@ public class CrewUIHandler : MonoBehaviour
 
     public void OnCancelButtonClicked()
     {
+        /*
         if (gridPlacer)
             gridPlacer.ClearGrid();
+        */
 
         customizeShipUIScreen.SetActive(false);
         mainUIScreen.SetActive(true);
@@ -155,15 +160,35 @@ public class CrewUIHandler : MonoBehaviour
         nameInputField.text = "";
     }
 
-    // create button click
+    // 수용 가능 선원 꽉 참 UI 생성
+    private void ActiveFullCrewUI()
+    {
+        fullCrewUIScreen.SetActive(true);
+    }
+
+    private void InActiveFullCrewUI()
+    {
+        fullCrewUIScreen.SetActive(false);
+    }
+
+    // 선원 추가
     public void OnCreateButtonClicked()
     {
         if (currentSelectedButton || nameInputField.text != "")
             ResetCrewCreateUI();
+
+        // 선원 꽉 참
+        if (CrewManager.Instance.currentCrewCount >= CrewManager.Instance.maxCrewCount)
+        {
+            ActiveFullCrewUI();
+            Invoke("InActiveFullCrewUI", 2f);
+            return;
+        }
+
         ShowUI(createUIScreen);
     }
 
-    // submit button click
+    // 선원 추가 커밋
     public void OnSubmitButtonClicked()
     {
         string inputName = nameInputField.text;

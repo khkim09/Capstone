@@ -11,7 +11,9 @@ public class CrewManager : MonoBehaviour
 
     // 승무원 리스트
     [Header("Crew List")]
-    [SerializeField] public List<CrewMember> crewList = new List<CrewMember>();
+    public int currentCrewCount = 0; // 현재 선원 수
+    public int maxCrewCount = 1; // 총 고용 가능 선원 수
+    public List<CrewMember> crewList = new List<CrewMember>();
 
     [Header("Crew UI")]
     [SerializeField] private GameObject alertAddCrewUI;
@@ -145,8 +147,6 @@ public class CrewManager : MonoBehaviour
     {
         Vector3 startPos = new Vector3(-8.0f, 0.0f, 0.0f);
 
-        // 겹쳐서 생성되는거 수정필요
-
         // 새 crew 생성
         CrewMember newCrew = Instantiate(crewPrefabs[(int)selectedRace - 1], startPos, Quaternion.identity, null).GetComponent<CrewMember>();
         newCrew.name = $"Name: {inputName}, Race: {selectedRace}";
@@ -154,6 +154,7 @@ public class CrewManager : MonoBehaviour
 
         // 기본 정보 초기화
         newCrew.crewName = inputName;
+        newCrew.isPlayerControlled = true;
         newCrew.race = selectedRace;
 
         // 선원 정보 세팅
@@ -164,9 +165,29 @@ public class CrewManager : MonoBehaviour
 
         // 크루 추가
         crewList.Add(newCrew);
+        RefreshCrewList(crewList.Count, maxCrewCount);
 
         // 확인용 로그
         Debug.Log($"새로운 선원 : {newCrew.crewName} {newCrew.race}");
+    }
+
+    // 현재 선원 수 가져오기
+    public int GetCurrentCrewCount()
+    {
+        return currentCrewCount;
+    }
+
+    // 현재 수용 가능 선원 수 가져오기 (총 고용 가능 수)
+    public int GetMaxCrewCount()
+    {
+        return maxCrewCount;
+    }
+
+    // 선원 수 갱신
+    public void RefreshCrewList(int currentCnt, int maxCnt)
+    {
+        currentCrewCount = currentCnt;
+        maxCrewCount = maxCnt;
     }
 
     public CrewMember GetSelectedCrew()

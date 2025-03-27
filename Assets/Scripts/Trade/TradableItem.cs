@@ -7,13 +7,13 @@ public class TradableItem
     // JSON 데이터 셋을 불러와서 저장
     [Tooltip("행성 코드 (예: SIS, CCK 등)")] public string planet;
 
-    [Tooltip("티어 (예: T1, T2, T3 등)")] public ItemTier tier;
+    [Tooltip("티어 (예: T1, T2, T3 등)")] public ItemTierLevel tier;
 
     [Tooltip("아이템 이름")] public string itemName;
 
     [Tooltip("아이템 상태")] public ItemState itemState;
 
-    [Tooltip("분류 (예: 향신료, 소재, 보석 등)")] public ItemType category;
+    [Tooltip("분류 (예: 향신료, 소재, 보석 등)")] public ItemCategory category;
 
     [Tooltip("최소 보관 온도 (℃)")] public float minStorageTemperature;
 

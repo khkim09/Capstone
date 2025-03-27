@@ -1,18 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TradeItemUI : MonoBehaviour
 {
-    [Header("UI References")] [SerializeField]
-    private Text itemNameText; // 아이템 이름 표시
-
-    [SerializeField] private Text categoryText; // 분류 표시
-    [SerializeField] private Text priceText; // 현재 가격 표시
-    [SerializeField] private Text maxStackText; // 최대 적층량 표시
-    [SerializeField] private Text descriptionText; // 아이템 설명 표시
-    [SerializeField] private InputField quantityInputField; // 구매/판매 수량 입력
-    [SerializeField] private Button buyButton; // 구매 버튼
-    [SerializeField] private Button sellButton; // 판매 버튼
+    [Header("UI References")]
+    [SerializeField] private TMP_Text itemNameText;       // 아이템 이름 표시
+    [SerializeField] private TMP_Text categoryText;       // 분류 표시
+    [SerializeField] private TMP_Text priceText;          // 현재 가격 표시
+    [SerializeField] private TMP_Text maxStackText;       // 최대 적층량 표시
+    [SerializeField] private TMP_Text descriptionText;    // 아이템 설명 표시
+    [SerializeField] private TMP_InputField quantityInputField; // 구매/판매 수량 입력
+    [SerializeField] private Button buyButton;        // 구매 버튼
+    [SerializeField] private Button sellButton;       // 판매 버튼
 
     // 데이터 참조
     private TradableItem tradableItem;

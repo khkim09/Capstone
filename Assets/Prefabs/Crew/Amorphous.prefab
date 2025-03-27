@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6812457356172772198}
   - component: {fileID: 6264216328100297767}
   - component: {fileID: 2536019885985235029}
+  - component: {fileID: 8633412785706413951}
   m_Layer: 0
   m_Name: Amorphous
   m_TagString: Untagged
@@ -101,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crewName: 
+  isPlayerControlled: 0
   race: 2
   maxHealth: 0
   attack: 0
@@ -124,7 +126,9 @@ MonoBehaviour:
   maxAmmunitionSkillValue: 0
   maxMedBaySkillValue: 0
   maxRepairSkillValue: 0
-  morale: 50
+  equippedWeapon: {fileID: 0}
+  equippedShield: {fileID: 0}
+  equippedAssistant: {fileID: 0}
   currentRoom: {fileID: 0}
   position: {x: 0, y: 0}
   targetPosition: {x: 0, y: 0}
@@ -133,5 +137,39 @@ MonoBehaviour:
   status: 0
   isAlive: 0
   isMoving: 0
-  allCrewEquipment: 0
-  ownEquipment: 0
+--- !u!58 &8633412785706413951
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936849294174134202}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.0022982955, y: -0.033325464}
+  m_Radius: 0.34719744

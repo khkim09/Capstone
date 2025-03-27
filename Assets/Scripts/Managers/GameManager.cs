@@ -143,9 +143,9 @@ public class GameManager : MonoBehaviour
         // 워프로 인한 이벤트 처리
         // EventManager.Instance.TriggerYearlyWarpEvent();
 
-        Debug.Log($"[워프 완료] 현재 연도 : {currentYear}");
-
         EventMoraleEffectManager.Instance.CheckEventExpirations(currentYear); // 불가사의 지속 기간 체크
+
+        Debug.Log($"[워프 완료] 현재 연도 : {currentYear}");
     }
 }
 
