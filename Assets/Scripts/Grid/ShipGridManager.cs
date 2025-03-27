@@ -4,9 +4,9 @@ public class ShipGridManager : MonoBehaviour
 {
     public static ShipGridManager Instance;
 
-    public int gridWidth = 20;
+    public int gridWidth = 20; // 함선 커스터마이징 가능 영역
     public int gridHeight = 20;
-    public float tileSize = 1f;
+    public float tileSize = 0.5f;
     public Vector2 gridOrigin = new Vector2(-10, -10);
 
     private void Awake()
