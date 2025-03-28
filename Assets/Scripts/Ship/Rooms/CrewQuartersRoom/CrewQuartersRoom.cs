@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// 함선의 승무원 선실을 나타내는 클래스
 /// </summary>
-public abstract class CrewQuartersRoom : Room<CrewQuartersRoomData, CrewQuartersRoomData.CrewQuartersRoomLevel>
+public class CrewQuartersRoom : Room<CrewQuartersRoomData, CrewQuartersRoomData.CrewQuartersRoomLevel>
 {
     public bool isPersonalRoom;
 
@@ -38,5 +38,8 @@ public abstract class CrewQuartersRoom : Room<CrewQuartersRoomData, CrewQuarters
     /// 이 방이 개인 전용 방인지 여부를 반환
     /// </summary>
     /// <returns>개인 전용 방이라면 true, 그렇지 않다면 false</returns>
-    public abstract bool GetIsPersonalRoom();
+    public bool GetIsPersonalRoom()
+    {
+        return isPersonalRoom;
+    }
 }

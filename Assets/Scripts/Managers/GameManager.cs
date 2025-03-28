@@ -13,8 +13,7 @@ public class GameManager : MonoBehaviour
     // 이벤트 및 상태 변화와 관련된 델리게이트
     public delegate void GameStateChangedHandler(GameState newState);
 
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     [SerializeField] private int currentDay = 1;
@@ -50,9 +49,6 @@ public class GameManager : MonoBehaviour
     {
         // 다른 매니저들이 모두 초기화되었는지 확인
         StartCoroutine(WaitForManagers());
-
-        // TODO: 임시로 씬에서 설치된 배를 찾아 플레이어 배로 등록
-        playerShip = GameObject.Find("PlayerShip").GetComponent<Ship>();
     }
 
     private IEnumerator WaitForManagers()
@@ -68,6 +64,11 @@ public class GameManager : MonoBehaviour
     public Ship GetPlayerShip()
     {
         return playerShip;
+    }
+
+    public Ship SetPlayerShip(Ship ship)
+    {
+        return playerShip = ship;
     }
 
     public Ship GetCurrentEnemyShip()

@@ -6,7 +6,7 @@ public class EquipmentManager : MonoBehaviour
     public static EquipmentManager Instance { get; private set; }
 
     // UI에서 선택할 수 있는 장비 목록 (예시)
-    [SerializeField] private EquipmentItem[] availableGlobalEquipments;    // 무기, 방어구
+    [SerializeField] private EquipmentItem[] availableGlobalEquipments; // 무기, 방어구
     [SerializeField] private EquipmentItem[] availableAssistantEquipments; // 보조장치
 
     private void Awake()
@@ -22,15 +22,12 @@ public class EquipmentManager : MonoBehaviour
         if (!eqItem.isGlobalEquip)
             return;
 
-        List<CrewMember> list = CrewManager.Instance.crewList;
-        foreach (CrewMember crew in list)
-        {
-            crew.ApplyPersonalEquipment(eqItem);
-        }
+        List<CrewBase> list = GameManager.Instance.GetPlayerShip().GetAllCrew();
+        foreach (CrewMember crew in list) crew.ApplyPersonalEquipment(eqItem);
     }
 
     // 선원 장비 적용
-    public void PurchaseAndEquipPersonal(CrewMember crew, EquipmentItem eqItem)
+    public void PurchaseAndEquipPersonal(CrewBase crew, EquipmentItem eqItem)
     {
         if (eqItem.isGlobalEquip)
             return;

@@ -2,12 +2,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [Header("Race Data")]
-    public CrewRace raceType; // 버튼 종족
-    public CrewRaceSettings crewRaceSettings; // scriptable object 할당
+    [Header("Race Data")] public CrewRace raceType; // 버튼 종족
+
+    [FormerlySerializedAs("crewRaceSettings")]
+    public CrewRaceStat crewRaceStat; // scriptable object 할당
+
     public GameObject raceTooltipPrefab; // RaceTooltip 프리팹 할당
 
     private GameObject activeTooltip;
@@ -65,18 +68,19 @@ public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointe
 
         // RaceTooltip 설정
         RaceTooltip tooltip = activeTooltip.GetComponent<RaceTooltip>();
-        tooltip.SetupTooltip(crewRaceSettings);
+        tooltip.SetupTooltip(crewRaceStat, raceType);
 
         // 스크린 → 월드 좌표로 변환
         RectTransform tooltipRect = activeTooltip.GetComponent<RectTransform>();
 
         // 월드 좌표 → UI 좌표로 변환
-        Vector3 worldPosition = new Vector3(4.6f, 2.5f, 0.0f);
+        Vector3 worldPosition = new(4.6f, 2.5f, 0.0f);
         Vector2 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
 
         Vector2 localPoint;
         RectTransform canvasRect = canvas.GetComponent<RectTransform>();
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPosition, canvas.worldCamera, out localPoint);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPosition, canvas.worldCamera,
+            out localPoint);
 
         tooltipRect.localPosition = localPoint;
     }
