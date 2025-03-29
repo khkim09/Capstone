@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class CrewBase : MonoBehaviour
+public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 {
     [Header("Basic Info")] public string crewName; // 이름
     public bool isPlayerControlled; // 아군(true) ? 적군(false) ?
@@ -199,9 +199,7 @@ public abstract class CrewBase : MonoBehaviour
 
             // 산소 부족 시 데미지
             if (roomOxygen == OxygenLevel.None)
-                GetDamage(10f * Time.deltaTime); // 산소 없음: 초당 10 데미지
-            else if (roomOxygen == OxygenLevel.Critical)
-                GetDamage(5f * Time.deltaTime); // 위험 수준: 초당 5 데미지
+                TakeAttack(10f * Time.deltaTime); // 산소 없음: 초당 10 데미지
         }
     }
 
@@ -265,19 +263,24 @@ public abstract class CrewBase : MonoBehaviour
     {
         // 공격 가하는 crew의 공격력 인자로 넘김
         float measuredAttack = (float)Math.Round(attack, 2);
-        target.GetDamage(measuredAttack);
+        target.TakeAttack(measuredAttack);
     }
 
     // 데미지 처리 - ocAttack : opponent Crew Attack (공격 가하는 crew의 공격력 + 장비)
-    public void GetDamage(float ocAttack)
+    public void TakeAttack(float ocAttack)
     {
         // 방어력 적용 - 최종 피해량
         float measuredDefense = (float)Math.Round(defense, 2);
         float receivedDamage = ocAttack * (100.0f - measuredDefense) / 100.0f;
         receivedDamage = (float)Math.Round(receivedDamage, 2); // 소수점 셋째자리에서 반올림
-        health -= receivedDamage;
 
-        // 사망 체크
+        TakeDamage(receivedDamage);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+
         if (health <= 0)
         {
             health = 0;
@@ -450,5 +453,18 @@ public abstract class CrewBase : MonoBehaviour
     public bool IsEnemyOf(CrewMember other)
     {
         return isPlayerControlled != other.isPlayerControlled;
+    }
+
+    public Dictionary<ShipStat, float> GetStatContributions()
+    {
+        Dictionary<ShipStat, float> contributions = new();
+
+        // 죽어있으면 해당 안됨
+        if (!isAlive) return contributions;
+
+        // 산소 호흡을 하는 종이면 산소 1초에 1% 소모
+        if (needsOxygen) contributions[ShipStat.OxygenUsingPerSecond] = 1.0f;
+
+        return contributions;
     }
 }

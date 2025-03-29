@@ -170,6 +170,7 @@ public class Ship : MonoBehaviour
         RegisterSystem(new OuterHullSystem());
         RegisterSystem(new HitPointSystem());
         RegisterSystem(new CrewSystem());
+        RegisterSystem(new MoraleSystem());
     }
 
     private T RegisterSystem<T>(T system) where T : ShipSystem
@@ -222,7 +223,7 @@ public class Ship : MonoBehaviour
         // 디버깅용 기여도 초기화
         roomContributions.Clear();
 
-        MoraleManager.Instance.SetAllCrewMorale(CalculateGlobalMorale());
+        MoraleManager.Instance.SetAllCrewMorale(GetSystem<MoraleSystem>().CalculateGlobalMorale());
 
         // 각 방의 기여도 추가
         foreach (Room room in allRooms)
@@ -248,7 +249,16 @@ public class Ship : MonoBehaviour
                 }
         }
 
-        // TODO: 방을 제외한 ShipStatContributions 반영해야함 (ex : 외갑판)
+        // TODO: 방을 제외한 ShipStatContributions 반영해야함 (ex : 외갑판, 선원)
+        List<CrewBase> crews = GetSystem<CrewSystem>().GetCrews();
+
+        foreach (CrewBase crew in crews)
+        {
+            Dictionary<ShipStat, float> crewContributions = crew.GetStatContributions();
+
+            if (crewContributions.TryGetValue(ShipStat.OxygenUsingPerSecond, out float oxygenUsage))
+                currentStats[ShipStat.OxygenUsingPerSecond] += oxygenUsage;
+        }
 
         // 특별한 스탯 처리 (필요시)
         ProcessSpecialStats();
@@ -469,26 +479,5 @@ public class Ship : MonoBehaviour
     public float GetCurrentHitPoints()
     {
         return GetSystem<HitPointSystem>().GetHitPoint();
-    }
-
-    public float CalculateGlobalMorale()
-    {
-        roomContributions.Clear();
-
-        float resultMorale = 0, crewCapacity = 0;
-
-        foreach (Room room in allRooms)
-        {
-            if (room is LifeSupportRoom lifeSupportRoom)
-                resultMorale += lifeSupportRoom.GetStatContributions()[ShipStat.CrewMoraleBonus];
-
-            if (room is CrewQuartersRoom crewQuartersRoom)
-                crewCapacity += crewQuartersRoom.GetStatContributions()[ShipStat.CrewCapacity];
-        }
-
-        if (crewCapacity < GetCrewCount()) resultMorale -= GetCrewCount() - crewCapacity;
-
-
-        return resultMorale;
     }
 }
