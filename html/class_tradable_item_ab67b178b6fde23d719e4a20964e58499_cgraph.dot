@@ -1,0 +1,12 @@
+digraph "TradableItem.GetCurrentPrice"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="TradableItem.GetCurrentPrice",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="현재 가격을 반환합니다."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="TradableItem.Recalculate\lPrice",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_tradable_item.html#a489fb9d4a846f4e4f0fc245c1eb39a29",tooltip="10년 주기 등 외부에서 가격을 다시 갱신해야 할 때 호출합니다. basePrice ± fluctuation 범위에서 새로 랜덤 계산합니다."];
+}

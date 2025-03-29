@@ -222,6 +222,8 @@ public class Ship : MonoBehaviour
         // 디버깅용 기여도 초기화
         roomContributions.Clear();
 
+        MoraleManager.Instance.SetAllCrewMorale(CalculateGlobalMorale());
+
         // 각 방의 기여도 추가
         foreach (Room room in allRooms)
         {
@@ -467,5 +469,26 @@ public class Ship : MonoBehaviour
     public float GetCurrentHitPoints()
     {
         return GetSystem<HitPointSystem>().GetHitPoint();
+    }
+
+    public float CalculateGlobalMorale()
+    {
+        roomContributions.Clear();
+
+        float resultMorale = 0, crewCapacity = 0;
+
+        foreach (Room room in allRooms)
+        {
+            if (room is LifeSupportRoom lifeSupportRoom)
+                resultMorale += lifeSupportRoom.GetStatContributions()[ShipStat.CrewMoraleBonus];
+
+            if (room is CrewQuartersRoom crewQuartersRoom)
+                crewCapacity += crewQuartersRoom.GetStatContributions()[ShipStat.CrewCapacity];
+        }
+
+        if (crewCapacity < GetCrewCount()) resultMorale -= GetCrewCount() - crewCapacity;
+
+
+        return resultMorale;
     }
 }

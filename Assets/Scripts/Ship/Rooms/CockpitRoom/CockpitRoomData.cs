@@ -76,9 +76,4 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
             }
         };
     }
-
-    protected override void OnEnable()
-    {
-        InitializeDefaultLevels();
-    }
 }
