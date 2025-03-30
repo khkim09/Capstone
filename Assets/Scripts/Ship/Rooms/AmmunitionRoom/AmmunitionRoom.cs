@@ -37,7 +37,8 @@ public class AmmunitionRoom : Room<AmmunitionRoomData, AmmunitionRoomData.Ammuni
         {
             if (currentHitPoints < GetMaxHitPoints())
             {
-                float healthRate = currentHitPoints / GetMaxHitPoints();
+                float healthRate = GetHealthPercentage();
+
 
                 if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
                 {

@@ -36,7 +36,7 @@ public class WeaponControlRoom : Room<WeaponControlRoomData, WeaponControlRoomDa
         {
             if (currentHitPoints < GetMaxHitPoints())
             {
-                float healthRate = currentHitPoints / GetMaxHitPoints();
+                float healthRate = GetHealthPercentage();
 
                 if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
                 {

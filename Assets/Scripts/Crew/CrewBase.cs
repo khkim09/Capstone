@@ -74,7 +74,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         }
 
         // 산소 농도 체크 - 체력 감소
-        CheckOxygenStatus();
+        ApplyOxygenDamage();
     }
 
     public void Initialize()
@@ -187,7 +187,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
             ImproveSkill(skillToImprove, skillIncreaseAmount * learningSpeed);
     }
 
-    private void CheckOxygenStatus()
+    private void ApplyOxygenDamage()
     {
         if (!needsOxygen)
             return;
@@ -198,8 +198,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
             OxygenLevel roomOxygen = currentRoom.GetOxygenLevel();
 
             // 산소 부족 시 데미지
-            if (roomOxygen == OxygenLevel.None)
-                TakeAttack(10f * Time.deltaTime); // 산소 없음: 초당 10 데미지
+            if (roomOxygen == OxygenLevel.None) TakeDamage(maxHealth * 0.01f); // 최대 체력의 1%만큼 데미지
         }
     }
 

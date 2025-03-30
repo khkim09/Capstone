@@ -36,7 +36,7 @@ public class MedBayRoom : Room<MedBayRoomData, MedBayRoomData.MedBayRoomLevel>
         {
             if (currentHitPoints < GetMaxHitPoints())
             {
-                float healthRate = currentHitPoints / GetMaxHitPoints();
+                float healthRate = GetHealthPercentage();
 
                 if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
                 {

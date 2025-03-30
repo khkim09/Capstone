@@ -344,31 +344,71 @@ public class Ship : MonoBehaviour
     }
 
     // ===== Power Management =====
-
-
-    public void TakeDamage(float damage, bool isMissileAttack)
+    public void TakeAttack(float damage, WeaponType weaponType, Vector2Int hitPosition)
     {
-        // TODO: 미사일의 경우 주위 8칸 80% 데미지 받는 코드 추가해야됨.
-        //      그럼 랜덤 방이 아니라 랜덤 칸을 뽑고 데미지를 입히는 방식이어야되는 것 아닌가?
+        ShieldSystem shieldSystem = GetSystem<ShieldSystem>();
+        if (shieldSystem.IsShieldActive()) damage = shieldSystem.TakeDamage(damage, weaponType);
+        OuterHullSystem hullSystem = GetSystem<OuterHullSystem>();
+        float finalDamage = hullSystem.ReduceDamage(damage);
+
+        if (finalDamage > 0)
+        {
+            // 함선 전체에 데미지 적용
+            TakeDamage(finalDamage);
+
+            // 방과 선원에 대한 데미지 처리
+            if (weaponType == WeaponType.Missile)
+                // 미사일 폭발 위치를 중심으로 3x3 영역에 데미지
+                ApplySplashDamageToRoomsAndCrews(hitPosition, finalDamage * 0.8f);
+            else
+                // 단일 지점 데미지
+                ApplyDamageToRoomAndCrews(hitPosition, finalDamage);
+        }
+    }
+
+
+    public void TakeDamage(float damage)
+    {
         HitPointSystem hitPointSystem = GetSystem<HitPointSystem>();
         hitPointSystem.ChangeHitPoint(-damage);
 
         if (hitPointSystem.GetHitPoint() <= 0f) OnShipDestroyed();
-        ApplyDamageToRandomRoom(damage);
     }
 
-    private void ApplyDamageToRandomRoom(float damage)
+    private void ApplyDamageToCrewsInRoom(Room room, float damage)
     {
-        List<Room> validRooms = allRooms.FindAll(room => room.GetHealthPercentage() > 0);
-
-        if (validRooms.Count == 0) return;
-
-        int randomIndex = UnityEngine.Random.Range(0, validRooms.Count);
-        Room targetRoom = validRooms[randomIndex];
-
-        targetRoom.TakeDamage(damage * 0.5f);
+        List<CrewBase> crewsInRoom = room.crewInRoom;
+        foreach (CrewBase crew in crewsInRoom) crew.TakeDamage(damage);
     }
 
+    private void ApplyDamageToRoomAndCrews(Vector2Int position, float damage)
+    {
+        if (roomGrid.TryGetValue(position, out Room room))
+        {
+            room.TakeDamage(damage);
+            ApplyDamageToCrewsInRoom(room, damage * 0.7f);
+        }
+    }
+
+    private void ApplySplashDamageToRoomsAndCrews(Vector2Int centerPosition, float damage)
+    {
+        // 3x3 범위 내의 모든 타일 검사
+        for (int x = -1; x <= 1; x++)
+        for (int y = -1; y <= 1; y++)
+        {
+            Vector2Int checkPos = centerPosition + new Vector2Int(x, y);
+
+            // 해당 위치에 방이 있는지 확인
+            if (roomGrid.TryGetValue(checkPos, out Room room))
+            {
+                // 방 데미지
+                room.TakeDamage(damage);
+
+                // 그 방에 있는 선원들에게 데미지 적용
+                ApplyDamageToCrewsInRoom(room, damage * 0.7f);
+            }
+        }
+    }
 
     public void OnShipDestroyed()
     {
@@ -479,5 +519,26 @@ public class Ship : MonoBehaviour
     public float GetCurrentHitPoints()
     {
         return GetSystem<HitPointSystem>().GetHitPoint();
+    }
+
+    public Vector2Int GetRandomTargetPosition()
+    {
+        // 실제 구현에서는 함선의 경계 내에서 랜덤 위치 반환
+        // 또는 실제 방의 위치 반환
+        Room randomRoom = GetRandomTargettableRoom();
+
+        if (randomRoom == null) return Vector2Int.zero;
+
+        return randomRoom.position;
+    }
+
+    private Room GetRandomTargettableRoom()
+    {
+        List<Room> validRooms = GetAllRooms().FindAll(room => room.GetIsDamageable() && room.GetHealthPercentage() > 0);
+
+        if (validRooms.Count == 0) return null;
+
+        int randomIndex = UnityEngine.Random.Range(0, validRooms.Count);
+        return validRooms[randomIndex];
     }
 }

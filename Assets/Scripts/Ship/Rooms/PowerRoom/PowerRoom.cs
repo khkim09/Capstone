@@ -35,7 +35,7 @@ public class PowerRoom : Room<PowerRoomData, PowerRoomData.PowerRoomLevel>
         {
             if (currentHitPoints < GetMaxHitPoints())
             {
-                float healthRate = currentHitPoints / GetMaxHitPoints();
+                float healthRate = GetHealthPercentage();
 
                 if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
                 {

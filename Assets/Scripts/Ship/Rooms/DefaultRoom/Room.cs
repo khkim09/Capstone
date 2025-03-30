@@ -16,9 +16,9 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     [HideInInspector] public int maxLevel;
 
-    [SerializeField][HideInInspector] protected float currentHitPoints; // 현재 체력
+    [SerializeField] [HideInInspector] protected float currentHitPoints; // 현재 체력
 
-    [SerializeField][HideInInspector] protected OxygenLevel oxygenLevel = OxygenLevel.Normal; // 현재 산소 레벨
+    [SerializeField] [HideInInspector] protected OxygenLevel oxygenLevel = OxygenLevel.Normal; // 현재 산소 레벨
 
     public RoomType roomType;
 
@@ -28,7 +28,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     [HideInInspector] protected List<Door> connectedDoors = new(); // 연결된 문들
 
-    [Header("방 효과")][SerializeField] protected ParticleSystem roomParticles;
+    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
     [SerializeField] protected AudioSource roomSound;
 
     public event Action<Room> OnRoomStateChanged;
@@ -42,7 +42,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         { OxygenLevel.Normal, 0f }
     };
 
-    public List<CrewBase> crewInRoom = new List<CrewBase>();
+    public List<CrewBase> crewInRoom = new();
 
     protected Dictionary<OxygenLevel, float> fireExtinguishRatePerLevel = new()
     {
@@ -309,6 +309,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     public float GetHealthPercentage()
     {
+        if (roomData.GetRoomData(currentLevel).hitPoint == 0) return 0;
         return currentHitPoints / roomData.GetRoomData(currentLevel).hitPoint * 100f;
     }
 
@@ -419,10 +420,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     }
 
 
-
-
     // 전투 관련
-    public Vector2Int gridSize = new Vector2Int(2, 2);
+    public Vector2Int gridSize = new(2, 2);
 }
 
 // 제네릭 버전의 Room 클래스

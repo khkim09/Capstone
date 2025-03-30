@@ -6,6 +6,8 @@ public class ShipWeapon : MonoBehaviour
 
     public ShipWeaponData weaponData;
 
+    [SerializeField] private Transform firePoint;
+
     public ShipWeapon(ShipWeaponData data)
     {
         weaponData = data;
@@ -56,5 +58,10 @@ public class ShipWeapon : MonoBehaviour
     public WeaponType GetWeaponType()
     {
         return weaponData.GetWeaponType();
+    }
+
+    public Vector2 GetFirePosition()
+    {
+        return new Vector2(firePoint.position.x, firePoint.position.y);
     }
 }

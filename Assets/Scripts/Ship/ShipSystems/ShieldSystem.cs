@@ -51,9 +51,12 @@ public class ShieldSystem : ShipSystem
         return GetShipStat(ShipStat.ShieldMaxAmount);
     }
 
-    public float TakeDamage(float damage)
+    public float TakeDamage(float damage, WeaponType weaponType)
     {
         float afterShieldDamage;
+
+        if (weaponType == WeaponType.Railgun) damage = 1.5f;
+
         if (currentShield > damage)
         {
             afterShieldDamage = 0;
