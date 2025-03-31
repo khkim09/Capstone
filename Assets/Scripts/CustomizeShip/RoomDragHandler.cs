@@ -32,6 +32,9 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             placedRoomParent = found.transform;
     }
 
+    /// <summary>
+    /// 드래그 중 우클릭 시 마다, 설치할 방의 실루엣을 시계 방향으로 90도 회전합니다.
+    /// </summary>
     private void Update()
     {
         if (!isDragging || previewInstance == null)
@@ -45,6 +48,11 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
     }
 
+    /// <summary>
+    /// 호출해 온 방 정보를 이용하여 방 설치에 필요한 정보들을 초기화합니다.
+    /// </summary>
+    /// <param name="data"></param>
+    /// <param name="level"></param>
     public void InitializeFromRoomData(RoomData data, int level)
     {
         roomData = data;

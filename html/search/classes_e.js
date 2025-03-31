@@ -14,6 +14,6 @@ var searchData=
   ['roomdata_2d1_2dg_11',['RoomData-1-g',['../class_room_data-1-g.html',1,'']]],
   ['roomdraghandler_12',['RoomDragHandler',['../class_room_drag_handler.html',1,'']]],
   ['roomlevel_13',['RoomLevel',['../class_room_data_1_1_room_level.html',1,'RoomData']]],
-  ['roomplacementpreview_14',['RoomPlacementPreview',['../class_room_placement_preview.html',1,'']]],
+  ['roomsinventorytooltipui_14',['RoomsInventoryTooltipUI',['../class_rooms_inventory_tooltip_u_i.html',1,'']]],
   ['rtsselectionmanager_15',['RTSSelectionManager',['../class_r_t_s_selection_manager.html',1,'']]]
 ];

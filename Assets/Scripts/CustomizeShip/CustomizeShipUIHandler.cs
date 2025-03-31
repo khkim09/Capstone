@@ -23,7 +23,12 @@ public class CustomizeShipUIHandler : MonoBehaviour
     public ShipLayoutValidator layoutValidator;
 
     /// <summary>
-    /// 저장/취소 버튼 이벤트 처리, 피드백 UI
+    /// CustomizeShipUI 활성화 시 아래 작업 수행 :
+    /// 그리드 생성 및 그리드 저장 오브젝트 활성화
+    /// 방 저장 오브젝트 활성화
+    /// 기존에 있던 모든 모듈 제거
+    /// 마지막 저장된 함선 정보 호출
+    /// 소유한 방 (커스텀하기 위해 구매한 모든 방) 목록 최신화
     /// </summary>
     private void OnEnable()
     {
@@ -35,6 +40,11 @@ public class CustomizeShipUIHandler : MonoBehaviour
         inventoryTooltipUI.RefreshInventory(); // 구매한 방 list 갱신
     }
 
+    /// <summary>
+    /// CustomizeShipUI 비활성화 시 아래 작업 수행 :
+    /// 그리드 저장 오브젝트, 방 저장 오브젝트 비활성화
+    /// 모든 모듈 제거
+    /// </summary>
     private void OnDisable()
     {
         gridTiles.SetActive(false);
@@ -42,6 +52,9 @@ public class CustomizeShipUIHandler : MonoBehaviour
         customizationManager.ClearAllModules();
     }
 
+    /// <summary>
+    /// 함선 커스터마이징 마친 후 save 버튼 클릭 시 함선 저장장
+    /// </summary>
     public void OnSaveClicked()
     {
         // 함선 저장 로직 연결 예정
@@ -60,6 +73,10 @@ public class CustomizeShipUIHandler : MonoBehaviour
         mainUI.SetActive(true);
     }
 
+    /// <summary>
+    /// 함선 커스터마이징 도중 cancel 버튼 클릭 시 이전 mainUI 화면으로 복귀
+    /// 이 때, 저장하지 않은 모든 작업은 사라집니다.
+    /// </summary>
     public void OnCancelClicked()
     {
         customizationManager.ClearAllModules();
@@ -69,7 +86,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     }
 
     /// <summary>
-    /// 기존 저장한 함선 호출
+    /// 가장 최신 함선 정보 호출
     /// </summary>
     /// <param name="ship"></param>
     private void LoadShipLayout(Ship ship)
@@ -80,7 +97,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     }
 
     /// <summary>
-    /// 함선 저장
+    /// 함선 layout 저장
     /// </summary>
     /// <param name="ship"></param>
     private void SaveShipLayout(Ship ship)

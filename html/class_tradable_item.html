@@ -103,6 +103,9 @@ $(function(){initNavTree('class_tradable_item.html',''); initResizable(true); })
   <div class="headertitle"><div class="title">TradableItem Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_tradable_item.html" title="TradableItem 클래스는 거래 가능한 아이템의 데이터를 담고 있으며, 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다.">TradableItem</a> 클래스는 거래 가능한 아이템의 데이터를 담고 있으며, 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for TradableItem:</div>
 <div class="dyncontent">
@@ -112,50 +115,63 @@ Collaboration diagram for TradableItem:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab67b178b6fde23d719e4a20964e58499" id="r_ab67b178b6fde23d719e4a20964e58499"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab67b178b6fde23d719e4a20964e58499">GetCurrentPrice</a> ()</td></tr>
-<tr class="memdesc:ab67b178b6fde23d719e4a20964e58499"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 가격을 반환합니다.  <br /></td></tr>
+<tr class="memdesc:ab67b178b6fde23d719e4a20964e58499"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 가격을 반환합니다. 아직 초기화되지 않았다면 <a class="el" href="#a489fb9d4a846f4e4f0fc245c1eb39a29" title="외부에서 가격을 갱신할 필요가 있을 때 호출합니다. basePrice ± fluctuation 범위 내에서 새로 랜덤으로 가격을 계산합니다. 음수가 되지 않도록 보정합니다.">RecalculatePrice()</a>를 호출하여 basePrice ± fluctuation 범위에서 랜덤으로 결정한 후, 동일한 값을 반환합니다.  <br /></td></tr>
 <tr class="separator:ab67b178b6fde23d719e4a20964e58499"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a489fb9d4a846f4e4f0fc245c1eb39a29" id="r_a489fb9d4a846f4e4f0fc245c1eb39a29"><td class="memItemLeft" align="right" valign="top"><a id="a489fb9d4a846f4e4f0fc245c1eb39a29" name="a489fb9d4a846f4e4f0fc245c1eb39a29"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>RecalculatePrice</b> ()</td></tr>
-<tr class="memdesc:a489fb9d4a846f4e4f0fc245c1eb39a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">10년 주기 등 외부에서 가격을 다시 갱신해야 할 때 호출합니다. basePrice ± fluctuation 범위에서 새로 랜덤 계산합니다. <br /></td></tr>
+<tr class="memdesc:a489fb9d4a846f4e4f0fc245c1eb39a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">외부에서 가격을 갱신할 필요가 있을 때 호출합니다. basePrice ± fluctuation 범위 내에서 새로 랜덤으로 가격을 계산합니다. 음수가 되지 않도록 보정합니다. <br /></td></tr>
 <tr class="separator:a489fb9d4a846f4e4f0fc245c1eb39a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a3977c6ccc1e6598fd59b99d11627be57" id="r_a3977c6ccc1e6598fd59b99d11627be57"><td class="memItemLeft" align="right" valign="top"><a id="a3977c6ccc1e6598fd59b99d11627be57" name="a3977c6ccc1e6598fd59b99d11627be57"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>planet</b></td></tr>
+<tr class="memdesc:a3977c6ccc1e6598fd59b99d11627be57"><td class="mdescLeft">&#160;</td><td class="mdescRight">행성 코드 (예: SIS, CCK 등) <br /></td></tr>
 <tr class="separator:a3977c6ccc1e6598fd59b99d11627be57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a218b6adb6a1ad96d013fc995c62b3dde" id="r_a218b6adb6a1ad96d013fc995c62b3dde"><td class="memItemLeft" align="right" valign="top"><a id="a218b6adb6a1ad96d013fc995c62b3dde" name="a218b6adb6a1ad96d013fc995c62b3dde"></a>
 ItemTierLevel&#160;</td><td class="memItemRight" valign="bottom"><b>tier</b></td></tr>
+<tr class="memdesc:a218b6adb6a1ad96d013fc995c62b3dde"><td class="mdescLeft">&#160;</td><td class="mdescRight">티어 (예: T1, T2, T3 등) <br /></td></tr>
 <tr class="separator:a218b6adb6a1ad96d013fc995c62b3dde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9c7d8b21d31be12220681204af48b83" id="r_ab9c7d8b21d31be12220681204af48b83"><td class="memItemLeft" align="right" valign="top"><a id="ab9c7d8b21d31be12220681204af48b83" name="ab9c7d8b21d31be12220681204af48b83"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>itemName</b></td></tr>
+<tr class="memdesc:ab9c7d8b21d31be12220681204af48b83"><td class="mdescLeft">&#160;</td><td class="mdescRight">아이템 이름 <br /></td></tr>
 <tr class="separator:ab9c7d8b21d31be12220681204af48b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ae0434872da531b45c71ae77d2a8879" id="r_a6ae0434872da531b45c71ae77d2a8879"><td class="memItemLeft" align="right" valign="top"><a id="a6ae0434872da531b45c71ae77d2a8879" name="a6ae0434872da531b45c71ae77d2a8879"></a>
 ItemState&#160;</td><td class="memItemRight" valign="bottom"><b>itemState</b></td></tr>
+<tr class="memdesc:a6ae0434872da531b45c71ae77d2a8879"><td class="mdescLeft">&#160;</td><td class="mdescRight">아이템 상태 <br /></td></tr>
 <tr class="separator:a6ae0434872da531b45c71ae77d2a8879"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4f7daea94e9f4fd7dcea873697091d6" id="r_aa4f7daea94e9f4fd7dcea873697091d6"><td class="memItemLeft" align="right" valign="top"><a id="aa4f7daea94e9f4fd7dcea873697091d6" name="aa4f7daea94e9f4fd7dcea873697091d6"></a>
 ItemCategory&#160;</td><td class="memItemRight" valign="bottom"><b>category</b></td></tr>
+<tr class="memdesc:aa4f7daea94e9f4fd7dcea873697091d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">분류 (예: 향신료, 소재, 보석 등) <br /></td></tr>
 <tr class="separator:aa4f7daea94e9f4fd7dcea873697091d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6c0a333feb22b2f946dc398150fa9e2" id="r_aa6c0a333feb22b2f946dc398150fa9e2"><td class="memItemLeft" align="right" valign="top"><a id="aa6c0a333feb22b2f946dc398150fa9e2" name="aa6c0a333feb22b2f946dc398150fa9e2"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>minStorageTemperature</b></td></tr>
+<tr class="memdesc:aa6c0a333feb22b2f946dc398150fa9e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">최소 보관 온도 (℃) <br /></td></tr>
 <tr class="separator:aa6c0a333feb22b2f946dc398150fa9e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a013d098638d4b79e9033e9ed577f52ba" id="r_a013d098638d4b79e9033e9ed577f52ba"><td class="memItemLeft" align="right" valign="top"><a id="a013d098638d4b79e9033e9ed577f52ba" name="a013d098638d4b79e9033e9ed577f52ba"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>maxStorageTemperature</b></td></tr>
+<tr class="memdesc:a013d098638d4b79e9033e9ed577f52ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">최대 보관 온도 (℃) <br /></td></tr>
 <tr class="separator:a013d098638d4b79e9033e9ed577f52ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2ea66e85be3b4210c0ebba3cf946a30" id="r_ad2ea66e85be3b4210c0ebba3cf946a30"><td class="memItemLeft" align="right" valign="top"><a id="ad2ea66e85be3b4210c0ebba3cf946a30" name="ad2ea66e85be3b4210c0ebba3cf946a30"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>basePrice</b></td></tr>
+<tr class="memdesc:ad2ea66e85be3b4210c0ebba3cf946a30"><td class="mdescLeft">&#160;</td><td class="mdescRight">기본 가격 (COMA/kg) <br /></td></tr>
 <tr class="separator:ad2ea66e85be3b4210c0ebba3cf946a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90b4981c31841722a68c829bc44f8756" id="r_a90b4981c31841722a68c829bc44f8756"><td class="memItemLeft" align="right" valign="top"><a id="a90b4981c31841722a68c829bc44f8756" name="a90b4981c31841722a68c829bc44f8756"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>maxStackAmount</b></td></tr>
+<tr class="memdesc:a90b4981c31841722a68c829bc44f8756"><td class="mdescLeft">&#160;</td><td class="mdescRight">최대 적층량 (kg) <br /></td></tr>
 <tr class="separator:a90b4981c31841722a68c829bc44f8756"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab41c19547961f6370acb13cb47fed110" id="r_ab41c19547961f6370acb13cb47fed110"><td class="memItemLeft" align="right" valign="top"><a id="ab41c19547961f6370acb13cb47fed110" name="ab41c19547961f6370acb13cb47fed110"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>fluctuation</b></td></tr>
+<tr class="memdesc:ab41c19547961f6370acb13cb47fed110"><td class="mdescLeft">&#160;</td><td class="mdescRight">가격 변동폭 <br /></td></tr>
 <tr class="separator:ab41c19547961f6370acb13cb47fed110"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae67d6841511fd4536c057b0d4bd478fe" id="r_ae67d6841511fd4536c057b0d4bd478fe"><td class="memItemLeft" align="right" valign="top"><a id="ae67d6841511fd4536c057b0d4bd478fe" name="ae67d6841511fd4536c057b0d4bd478fe"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>description</b></td></tr>
+<tr class="memdesc:ae67d6841511fd4536c057b0d4bd478fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">아이템 설명 <br /></td></tr>
 <tr class="separator:ae67d6841511fd4536c057b0d4bd478fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_tradable_item.html" title="TradableItem 클래스는 거래 가능한 아이템의 데이터를 담고 있으며, 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다.">TradableItem</a> 클래스는 거래 가능한 아이템의 데이터를 담고 있으며, 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab67b178b6fde23d719e4a20964e58499" name="ab67b178b6fde23d719e4a20964e58499"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab67b178b6fde23d719e4a20964e58499">&#9670;&#160;</a></span>GetCurrentPrice()</h2>
 
@@ -179,10 +195,8 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>description</b></td
 </table>
 </div><div class="memdoc">
 
-<p>현재 가격을 반환합니다. </p>
-<ul>
-<li>아직 초기화되지 않았다면 <a class="el" href="#a489fb9d4a846f4e4f0fc245c1eb39a29" title="10년 주기 등 외부에서 가격을 다시 갱신해야 할 때 호출합니다. basePrice ± fluctuation 범위에서 새로 랜덤 계산합니다.">RecalculatePrice()</a>를 한 번 호출하여 basePrice ± fluctuation 범위에서 랜덤으로 결정하고, 이후에는 동일한 값을 반환합니다. </li>
-</ul>
+<p>현재 가격을 반환합니다. 아직 초기화되지 않았다면 <a class="el" href="#a489fb9d4a846f4e4f0fc245c1eb39a29" title="외부에서 가격을 갱신할 필요가 있을 때 호출합니다. basePrice ± fluctuation 범위 내에서 새로 랜덤으로 가격을 계산합니다. 음수가 되지 않도록 보정합니다.">RecalculatePrice()</a>를 호출하여 basePrice ± fluctuation 범위에서 랜덤으로 결정한 후, 동일한 값을 반환합니다. </p>
+<dl class="section return"><dt>Returns</dt><dd>현재 계산된 가격</dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -191,7 +205,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_tradable_item_ab67b178b6fde23d719e4a20964e58499_icgraph.svg" width="654" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_tradable_item_ab67b178b6fde23d719e4a20964e58499_icgraph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>

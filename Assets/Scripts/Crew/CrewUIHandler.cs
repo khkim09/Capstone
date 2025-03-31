@@ -7,11 +7,23 @@ using UnityEditor.ShaderGraph;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// 선원과 관련된 UI 모두 관리하는 Handler
+/// </summary>
 public class CrewUIHandler : MonoBehaviour
 {
     public static CrewUIHandler Instance; // singleton 참조
 
-    [Header("UI Panels")] public GameObject mainUIScreen; // 선원 생성하기 메인 화면
+    /// <summary>
+    /// UI Panels
+    //  - mainUIScreen : 선원 생성하기 메인 화면
+    /// - createUIScreen : 선원 생성 요청 화면
+    /// - customizeShipUIScreen : 함선 제작 화면
+    /// - addEquipmentUIScreen : 장비 구매 화면
+    /// - fullCrewUIScreen : 선원 full 화면
+    /// </summary>
+    [Header("UI Panels")]
+    public GameObject mainUIScreen; // 선원 생성하기 메인 화면
     public GameObject createUIScreen; // 선원 생성 요청 화면
     public GameObject customizeShipUIScreen; // 함선 제작 화면
     public GameObject addEquipmentUIScreen; // 장비 구매 화면
@@ -19,7 +31,8 @@ public class CrewUIHandler : MonoBehaviour
 
     [Header("Equipment UI Handler")] public EquipmentUIHandler equipmentUIHandler;
 
-    [Header("Input Fields")] [SerializeField]
+    [Header("Input Fields")]
+    [SerializeField]
     private TMP_InputField nameInputField; // input 선원 이름
 
     public RaceButtonController[] raceButtonControllers; // inspector 할당
@@ -45,6 +58,7 @@ public class CrewUIHandler : MonoBehaviour
         Instance = this;
     }
 
+
     // click 함수 연결 (editor에서 연결이 일반적이지만 어떻게 할 건지 논의 후 수정)
     private void Start()
     {
@@ -52,6 +66,9 @@ public class CrewUIHandler : MonoBehaviour
         submitButton.interactable = false;
     }
 
+    /// <summary>
+    /// 종족, 이름 모두 입력 시 submit 버튼 활성화
+    /// </summary>
     private void Update()
     {
         // 종족, 이름 모두 입력 시 submit 버튼 활성화화
@@ -61,6 +78,10 @@ public class CrewUIHandler : MonoBehaviour
             submitButton.interactable = false;
     }
 
+    /// <summary>
+    /// 현재 활성화 되어 있는 UI 반환
+    /// </summary>
+    /// <returns></returns>
     private GameObject GetCurrentActiveUI()
     {
         if (mainUIScreen.activeSelf)
@@ -75,6 +96,10 @@ public class CrewUIHandler : MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// 인자로 받은 UI 활성화
+    /// </summary>
+    /// <param name="targetUI"></param>
     public void ShowUI(GameObject targetUI)
     {
         // UI history 저장
@@ -91,7 +116,9 @@ public class CrewUIHandler : MonoBehaviour
             MenuUIManager.Instance.ForceCloseMenu();
     }
 
-    // 뒤로 가기
+    /// <summary>
+    /// UIHistory 개념으로 인터넷 뒤로 가기 버튼과 동일한 기능
+    /// </summary>
     public void OnBackButtonClicked()
     {
         if (uiHistory.Count > 0)
@@ -99,9 +126,7 @@ public class CrewUIHandler : MonoBehaviour
             GameObject currentUI = GetCurrentActiveUI();
             if (currentUI)
             {
-                if (currentUI == customizeShipUIScreen)
-                    ResetCustomizeShipUI();
-                else if (currentUI == addEquipmentUIScreen)
+                if (currentUI == addEquipmentUIScreen)
                     ResetEquipmentUI();
                 currentUI.SetActive(false);
             }
@@ -111,7 +136,10 @@ public class CrewUIHandler : MonoBehaviour
         }
     }
 
-    // race 선택 button click
+    /// <summary>
+    /// 종족 선택하는 버튼 클릭 시 호출
+    /// </summary>
+    /// <param name="clickedButton"></param>
     public void OnRaceButtonClicked(RaceButtonController clickedButton)
     {
         // 이미 선택된 버튼 (선택 해제)
@@ -123,33 +151,26 @@ public class CrewUIHandler : MonoBehaviour
         selectedRace = clickedButton.raceType;
     }
 
-    // 함선 세팅 UI 초기화
-    private void ResetCustomizeShipUI()
-    {
-        /*
-        if (gridPlacer)
-            gridPlacer.ClearGrid();
-        */
-    }
-
-    // customize button click
+    /// <summary>
+    /// 함선 커스터마이즈를 위한 버튼 클릭 시 호출
+    /// </summary>
     public void OnCustomizeButtonClicked()
     {
         ShowUI(customizeShipUIScreen);
     }
 
+    /// <summary>
+    /// 함선 커스터마이즈 취소 버튼 클릭 시 호출
+    /// </summary>
     public void OnCancelButtonClicked()
     {
-        /*
-        if (gridPlacer)
-            gridPlacer.ClearGrid();
-        */
-
         customizeShipUIScreen.SetActive(false);
         mainUIScreen.SetActive(true);
     }
 
-    // 선원 생성 UI 초기화
+    /// <summary>
+    /// 선원 생성 시 UI 초기화
+    /// </summary>
     private void ResetCrewCreateUI()
     {
         currentSelectedButton.SetHighlighted(false);
@@ -158,18 +179,25 @@ public class CrewUIHandler : MonoBehaviour
         nameInputField.text = "";
     }
 
-    // 수용 가능 선원 꽉 참 UI 생성
+    /// <summary>
+    /// 수용 가능 선원 꽉 참 UI 생성
+    /// </summary>
     private void ActiveFullCrewUI()
     {
         fullCrewUIScreen.SetActive(true);
     }
 
+    /// <summary>
+    /// 수용 가능 선원 꽉 참 UI 해제
+    /// </summary>
     private void InActiveFullCrewUI()
     {
         fullCrewUIScreen.SetActive(false);
     }
 
-    // 선원 추가
+    /// <summary>
+    /// 선원 추가를 위한 UI로 이동 버튼 클릭 시 호출
+    /// </summary>
     public void OnCreateButtonClicked()
     {
         if (currentSelectedButton || nameInputField.text != "")
@@ -187,6 +215,9 @@ public class CrewUIHandler : MonoBehaviour
         ShowUI(createUIScreen);
     }
 
+    /// <summary>
+    /// 선원 정보 입력 후 실제 생성하는 버튼 클릭 시 호출
+    /// </summary>
     // 선원 추가 커밋
     public void OnSubmitButtonClicked()
     {
@@ -202,13 +233,18 @@ public class CrewUIHandler : MonoBehaviour
         mainUIScreen.SetActive(true);
     }
 
+    /// <summary>
+    /// 장비 구매를 물어보는 UI 해제
+    /// </summary>
     private void ResetEquipmentUI()
     {
         if (equipmentUIHandler.itemBuyPanel.activeSelf)
             equipmentUIHandler.itemBuyPanel.SetActive(false);
     }
 
-    // add equipment button click
+    /// <summary>
+    /// 장비 구매 UI로의 이동 버튼 클릭 시 호출
+    /// </summary>
     public void OnAddEquipmentButtonClicked()
     {
         ShowUI(addEquipmentUIScreen);

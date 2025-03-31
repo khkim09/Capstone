@@ -120,7 +120,7 @@ Collaboration diagram for Storage:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a89456bd4743723cd67022ab124bf56f0" id="r_a89456bd4743723cd67022ab124bf56f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89456bd4743723cd67022ab124bf56f0">CanAddItem</a> (<a class="el" href="class_tradable_item.html">TradableItem</a> item, int quantity)</td></tr>
-<tr class="memdesc:a89456bd4743723cd67022ab124bf56f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">아이템 추가 가능한지 체크  <br /></td></tr>
+<tr class="memdesc:a89456bd4743723cd67022ab124bf56f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">주어진 아이템을 추가할 수 있는지 확인합니다.  <br /></td></tr>
 <tr class="separator:a89456bd4743723cd67022ab124bf56f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ba0632988450a80b278a334d9b59b15" id="r_a7ba0632988450a80b278a334d9b59b15"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ba0632988450a80b278a334d9b59b15">AddItem</a> (<a class="el" href="class_tradable_item.html">TradableItem</a> item, int quantity)</td></tr>
 <tr class="memdesc:a7ba0632988450a80b278a334d9b59b15"><td class="mdescLeft">&#160;</td><td class="mdescRight">창고에 아이템을 추가합니다. 이미 저장된 아이템의 경우, 총 수량이 maxStackAmount를 넘지 않는지 확인합니다.  <br /></td></tr>
@@ -139,6 +139,7 @@ Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:abd00c6f6919a661087a1553b6e7e1653" id="r_abd00c6f6919a661087a1553b6e7e1653"><td class="memItemLeft" align="right" valign="top"><a id="abd00c6f6919a661087a1553b6e7e1653" name="abd00c6f6919a661087a1553b6e7e1653"></a>
 List&lt; <a class="el" href="class_stored_item.html">StoredItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>storedItems</b> = new List&lt;<a class="el" href="class_stored_item.html">StoredItem</a>&gt;()</td></tr>
+<tr class="memdesc:abd00c6f6919a661087a1553b6e7e1653"><td class="mdescLeft">&#160;</td><td class="mdescRight">창고에 저장된 아이템 목록입니다. <br /></td></tr>
 <tr class="separator:abd00c6f6919a661087a1553b6e7e1653"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -174,12 +175,17 @@ List&lt; <a class="el" href="class_stored_item.html">StoredItem</a> &gt;&#160;</
 <p>창고에 아이템을 추가합니다. 이미 저장된 아이템의 경우, 총 수량이 maxStackAmount를 넘지 않는지 확인합니다. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">item</td><td>추가할 아이템</td></tr>
-    <tr><td class="paramname">quantity</td><td>추가할 수량</td></tr>
+    <tr><td class="paramname">item</td><td>추가할 <a class="el" href="class_tradable_item.html" title="TradableItem 클래스는 거래 가능한 아이템의 데이터를 담고 있으며, 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다.">TradableItem</a> 객체.</td></tr>
+    <tr><td class="paramname">quantity</td><td>추가할 수량.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>추가 성공 여부</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>아이템 추가가 성공하면 true, 그렇지 않으면 false.</dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_storage_a7ba0632988450a80b278a334d9b59b15_icgraph.svg" width="336" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -210,15 +216,20 @@ List&lt; <a class="el" href="class_stored_item.html">StoredItem</a> &gt;&#160;</
 </table>
 </div><div class="memdoc">
 
-<p>아이템 추가 가능한지 체크 </p>
+<p>주어진 아이템을 추가할 수 있는지 확인합니다. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">item</td><td></td></tr>
-    <tr><td class="paramname">quantity</td><td></td></tr>
+    <tr><td class="paramname">item</td><td>추가하려는 <a class="el" href="class_tradable_item.html" title="TradableItem 클래스는 거래 가능한 아이템의 데이터를 담고 있으며, 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다.">TradableItem</a> 객체.</td></tr>
+    <tr><td class="paramname">quantity</td><td>추가하려는 수량.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>아이템을 추가할 수 있으면 true, 그렇지 않으면 false.</dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_storage_a89456bd4743723cd67022ab124bf56f0_icgraph.svg" width="360" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -248,11 +259,11 @@ List&lt; <a class="el" href="class_stored_item.html">StoredItem</a> &gt;&#160;</
 <p>창고에 저장된 특정 아이템의 총 수량을 반환합니다. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">item</td><td>확인할 아이템</td></tr>
+    <tr><td class="paramname">item</td><td>확인할 <a class="el" href="class_tradable_item.html" title="TradableItem 클래스는 거래 가능한 아이템의 데이터를 담고 있으며, 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다.">TradableItem</a> 객체.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>저장된 수량 (없으면 0)</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>저장된 수량. 아이템이 없으면 0을 반환합니다.</dd></dl>
 
 </div>
 </div>
@@ -286,12 +297,17 @@ List&lt; <a class="el" href="class_stored_item.html">StoredItem</a> &gt;&#160;</
 <p>창고에 해당 아이템이 일정 수량 이상 있는지 확인합니다. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">item</td><td>확인할 아이템</td></tr>
-    <tr><td class="paramname">quantity</td><td>요청 수량</td></tr>
+    <tr><td class="paramname">item</td><td>확인할 <a class="el" href="class_tradable_item.html" title="TradableItem 클래스는 거래 가능한 아이템의 데이터를 담고 있으며, 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다.">TradableItem</a> 객체.</td></tr>
+    <tr><td class="paramname">quantity</td><td>요청하는 수량.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>해당 수량 이상이면 true, 아니면 false</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>창고에 아이템이 충분하면 true, 그렇지 않으면 false.</dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_storage_a9584057c3384863205337f5f38817435_icgraph.svg" width="336" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -325,12 +341,17 @@ List&lt; <a class="el" href="class_stored_item.html">StoredItem</a> &gt;&#160;</
 <p>창고에서 지정한 아이템의 수량을 제거합니다. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">item</td><td>제거할 아이템</td></tr>
-    <tr><td class="paramname">quantity</td><td>제거할 수량</td></tr>
+    <tr><td class="paramname">item</td><td>제거할 <a class="el" href="class_tradable_item.html" title="TradableItem 클래스는 거래 가능한 아이템의 데이터를 담고 있으며, 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다.">TradableItem</a> 객체.</td></tr>
+    <tr><td class="paramname">quantity</td><td>제거할 수량.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>제거 성공 여부</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>아이템 제거가 성공하면 true, 그렇지 않으면 false.</dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_storage_a1d8b71a4c34ce1510237c49728842fb2_icgraph.svg" width="360" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
