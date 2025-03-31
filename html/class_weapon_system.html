@@ -102,10 +102,13 @@ $(function(){initNavTree('class_weapon_system.html',''); initResizable(true); })
   <div class="headertitle"><div class="title">WeaponSystem Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>함선의 무기 시스템. 무기의 추가/제거, 발사, 쿨다운 관리 및 스탯 보정을 적용한 데미지/쿨타임 계산을 담당합니다.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for WeaponSystem:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_weapon_system__inherit__graph.svg" width="159" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_weapon_system__inherit__graph.svg" width="230" height="519"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for WeaponSystem:</div>
@@ -115,52 +118,384 @@ Collaboration diagram for WeaponSystem:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4664bc232783de0d119664f701436a6b" id="r_a4664bc232783de0d119664f701436a6b"><td class="memItemLeft" align="right" valign="top"><a id="a4664bc232783de0d119664f701436a6b" name="a4664bc232783de0d119664f701436a6b"></a>
-override void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> (float deltaTime)</td></tr>
+<tr class="memitem:a4664bc232783de0d119664f701436a6b" id="r_a4664bc232783de0d119664f701436a6b"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4664bc232783de0d119664f701436a6b">Update</a> (float deltaTime)</td></tr>
+<tr class="memdesc:a4664bc232783de0d119664f701436a6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">매 프레임마다 호출되어 각 무기의 쿨다운 상태를 업데이트합니다.  <br /></td></tr>
 <tr class="separator:a4664bc232783de0d119664f701436a6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9309a5c0647f08d245392dbf3624d73c" id="r_a9309a5c0647f08d245392dbf3624d73c"><td class="memItemLeft" align="right" valign="top"><a id="a9309a5c0647f08d245392dbf3624d73c" name="a9309a5c0647f08d245392dbf3624d73c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>AddWeapon</b> (<a class="el" href="class_ship_weapon_data.html">ShipWeaponData</a> weaponData)</td></tr>
+<tr class="memitem:a9309a5c0647f08d245392dbf3624d73c" id="r_a9309a5c0647f08d245392dbf3624d73c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9309a5c0647f08d245392dbf3624d73c">AddWeapon</a> (<a class="el" href="class_ship_weapon_data.html">ShipWeaponData</a> weaponData)</td></tr>
+<tr class="memdesc:a9309a5c0647f08d245392dbf3624d73c"><td class="mdescLeft">&#160;</td><td class="mdescRight">새로운 무기를 시스템에 추가합니다.  <br /></td></tr>
 <tr class="separator:a9309a5c0647f08d245392dbf3624d73c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f1c4d4acd03aa194a33dc089ff53243" id="r_a9f1c4d4acd03aa194a33dc089ff53243"><td class="memItemLeft" align="right" valign="top"><a id="a9f1c4d4acd03aa194a33dc089ff53243" name="a9f1c4d4acd03aa194a33dc089ff53243"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>RemoveWeapon</b> (int index)</td></tr>
+<tr class="memitem:a9f1c4d4acd03aa194a33dc089ff53243" id="r_a9f1c4d4acd03aa194a33dc089ff53243"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f1c4d4acd03aa194a33dc089ff53243">RemoveWeapon</a> (int index)</td></tr>
+<tr class="memdesc:a9f1c4d4acd03aa194a33dc089ff53243"><td class="mdescLeft">&#160;</td><td class="mdescRight">지정한 인덱스의 무기를 제거합니다.  <br /></td></tr>
 <tr class="separator:a9f1c4d4acd03aa194a33dc089ff53243"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64079bfedade35f6d709125c2e037aa6" id="r_a64079bfedade35f6d709125c2e037aa6"><td class="memItemLeft" align="right" valign="top"><a id="a64079bfedade35f6d709125c2e037aa6" name="a64079bfedade35f6d709125c2e037aa6"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>FireWeapon</b> (int index, Transform target)</td></tr>
+<tr class="memitem:a64079bfedade35f6d709125c2e037aa6" id="r_a64079bfedade35f6d709125c2e037aa6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64079bfedade35f6d709125c2e037aa6">FireWeapon</a> (int index, Transform target)</td></tr>
+<tr class="memdesc:a64079bfedade35f6d709125c2e037aa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">지정한 인덱스의 무기를 대상에게 발사합니다. 무기가 준비된 상태일 경우에만 발사됩니다.  <br /></td></tr>
 <tr class="separator:a64079bfedade35f6d709125c2e037aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a624ae04a45c9a1472b259d8b8ce4cfa0" id="r_a624ae04a45c9a1472b259d8b8ce4cfa0"><td class="memItemLeft" align="right" valign="top"><a id="a624ae04a45c9a1472b259d8b8ce4cfa0" name="a624ae04a45c9a1472b259d8b8ce4cfa0"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GetActualCooldown</b> (float baseCooldown)</td></tr>
+<tr class="memitem:a624ae04a45c9a1472b259d8b8ce4cfa0" id="r_a624ae04a45c9a1472b259d8b8ce4cfa0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a624ae04a45c9a1472b259d8b8ce4cfa0">GetActualCooldown</a> (float baseCooldown)</td></tr>
+<tr class="memdesc:a624ae04a45c9a1472b259d8b8ce4cfa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">실제 적용될 쿨다운 시간을 계산합니다. 쿨다운 보너스를 고려하여 기본 쿨타임을 감소시킵니다.  <br /></td></tr>
 <tr class="separator:a624ae04a45c9a1472b259d8b8ce4cfa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76fad11c0e7c6d587a635081322f4b4f" id="r_a76fad11c0e7c6d587a635081322f4b4f"><td class="memItemLeft" align="right" valign="top"><a id="a76fad11c0e7c6d587a635081322f4b4f" name="a76fad11c0e7c6d587a635081322f4b4f"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GetActualDamage</b> (float damage)</td></tr>
+<tr class="memitem:a76fad11c0e7c6d587a635081322f4b4f" id="r_a76fad11c0e7c6d587a635081322f4b4f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76fad11c0e7c6d587a635081322f4b4f">GetActualDamage</a> (float damage)</td></tr>
+<tr class="memdesc:a76fad11c0e7c6d587a635081322f4b4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">실제 적용될 데미지를 계산합니다. 데미지 보너스를 적용하여 최종 데미지를 산출합니다.  <br /></td></tr>
 <tr class="separator:a76fad11c0e7c6d587a635081322f4b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5e6758d3084f4cc090cdfc92a5aad2a" id="r_aa5e6758d3084f4cc090cdfc92a5aad2a"><td class="memItemLeft" align="right" valign="top"><a id="aa5e6758d3084f4cc090cdfc92a5aad2a" name="aa5e6758d3084f4cc090cdfc92a5aad2a"></a>
-List&lt; <a class="el" href="class_ship_weapon.html">ShipWeapon</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetWeapons</b> ()</td></tr>
+<tr class="memitem:aa5e6758d3084f4cc090cdfc92a5aad2a" id="r_aa5e6758d3084f4cc090cdfc92a5aad2a"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_ship_weapon.html">ShipWeapon</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5e6758d3084f4cc090cdfc92a5aad2a">GetWeapons</a> ()</td></tr>
+<tr class="memdesc:aa5e6758d3084f4cc090cdfc92a5aad2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 장착된 모든 무기 리스트를 반환합니다.  <br /></td></tr>
 <tr class="separator:aa5e6758d3084f4cc090cdfc92a5aad2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a759ffe81166835b38f3e2d161a6b56da" id="r_a759ffe81166835b38f3e2d161a6b56da"><td class="memItemLeft" align="right" valign="top"><a id="a759ffe81166835b38f3e2d161a6b56da" name="a759ffe81166835b38f3e2d161a6b56da"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetWeaponCount</b> ()</td></tr>
+<tr class="memitem:a759ffe81166835b38f3e2d161a6b56da" id="r_a759ffe81166835b38f3e2d161a6b56da"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a759ffe81166835b38f3e2d161a6b56da">GetWeaponCount</a> ()</td></tr>
+<tr class="memdesc:a759ffe81166835b38f3e2d161a6b56da"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 장착된 무기 수를 반환합니다.  <br /></td></tr>
 <tr class="separator:a759ffe81166835b38f3e2d161a6b56da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1a69763e53a9e39d89483b749f3f99b" id="r_ae1a69763e53a9e39d89483b749f3f99b"><td class="memItemLeft" align="right" valign="top"><a id="ae1a69763e53a9e39d89483b749f3f99b" name="ae1a69763e53a9e39d89483b749f3f99b"></a>
-<a class="el" href="class_ship_weapon.html">ShipWeapon</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetWeapon</b> (int index)</td></tr>
+<tr class="memitem:ae1a69763e53a9e39d89483b749f3f99b" id="r_ae1a69763e53a9e39d89483b749f3f99b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_ship_weapon.html">ShipWeapon</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1a69763e53a9e39d89483b749f3f99b">GetWeapon</a> (int index)</td></tr>
+<tr class="memdesc:ae1a69763e53a9e39d89483b749f3f99b"><td class="mdescLeft">&#160;</td><td class="mdescRight">지정한 인덱스의 무기를 반환합니다.  <br /></td></tr>
 <tr class="separator:ae1a69763e53a9e39d89483b749f3f99b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_ship_system"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_ship_system')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_ship_system.html">ShipSystem</a></td></tr>
-<tr class="memitem:ab0e5623073f8bfb48c02955484cfcd4e inherit pub_methods_class_ship_system" id="r_ab0e5623073f8bfb48c02955484cfcd4e"><td class="memItemLeft" align="right" valign="top">
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Initialize</b> (<a class="el" href="class_ship.html">Ship</a> ship)</td></tr>
+<tr class="memitem:ab0e5623073f8bfb48c02955484cfcd4e inherit pub_methods_class_ship_system" id="r_ab0e5623073f8bfb48c02955484cfcd4e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship_system.html#ab0e5623073f8bfb48c02955484cfcd4e">Initialize</a> (<a class="el" href="class_ship.html">Ship</a> ship)</td></tr>
+<tr class="memdesc:ab0e5623073f8bfb48c02955484cfcd4e inherit pub_methods_class_ship_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">시스템을 초기화합니다. 함선 참조를 저장하여 시스템 동작에 사용됩니다.  <br /></td></tr>
 <tr class="separator:ab0e5623073f8bfb48c02955484cfcd4e inherit pub_methods_class_ship_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f1ebffcf06a9801e1d82cdb63f996af inherit pub_methods_class_ship_system" id="r_a6f1ebffcf06a9801e1d82cdb63f996af"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> (float deltaTime)</td></tr>
+<tr class="memitem:a6f1ebffcf06a9801e1d82cdb63f996af inherit pub_methods_class_ship_system" id="r_a6f1ebffcf06a9801e1d82cdb63f996af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship_system.html#a6f1ebffcf06a9801e1d82cdb63f996af">Update</a> (float deltaTime)</td></tr>
+<tr class="memdesc:a6f1ebffcf06a9801e1d82cdb63f996af inherit pub_methods_class_ship_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">매 프레임마다 호출되는 시스템 업데이트 함수입니다. 구체적인 동작은 각 서브 클래스에서 구현됩니다.  <br /></td></tr>
 <tr class="separator:a6f1ebffcf06a9801e1d82cdb63f996af inherit pub_methods_class_ship_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_class_ship_system"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_ship_system')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_ship_system.html">ShipSystem</a></td></tr>
-<tr class="memitem:a0c4c206aa7e875dc6810ea122e46b332 inherit pro_methods_class_ship_system" id="r_a0c4c206aa7e875dc6810ea122e46b332"><td class="memItemLeft" align="right" valign="top">
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GetShipStat</b> (ShipStat stat)</td></tr>
+<tr class="memitem:a0c4c206aa7e875dc6810ea122e46b332 inherit pro_methods_class_ship_system" id="r_a0c4c206aa7e875dc6810ea122e46b332"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship_system.html#a0c4c206aa7e875dc6810ea122e46b332">GetShipStat</a> (ShipStat stat)</td></tr>
+<tr class="memdesc:a0c4c206aa7e875dc6810ea122e46b332 inherit pro_methods_class_ship_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 함선의 특정 스탯 값을 가져옵니다.  <br /></td></tr>
 <tr class="separator:a0c4c206aa7e875dc6810ea122e46b332 inherit pro_methods_class_ship_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_ship_system"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_ship_system')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_ship_system.html">ShipSystem</a></td></tr>
 <tr class="memitem:adde74af44fb3cbdc3b002e1c5a09092c inherit pro_attribs_class_ship_system" id="r_adde74af44fb3cbdc3b002e1c5a09092c"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="class_ship.html">Ship</a>&#160;</td><td class="memItemRight" valign="bottom"><b>parentShip</b></td></tr>
+<tr class="memdesc:adde74af44fb3cbdc3b002e1c5a09092c inherit pro_attribs_class_ship_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">이 시스템이 소속된 함선 객체입니다. <br /></td></tr>
 <tr class="separator:adde74af44fb3cbdc3b002e1c5a09092c inherit pro_attribs_class_ship_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>함선의 무기 시스템. 무기의 추가/제거, 발사, 쿨다운 관리 및 스탯 보정을 적용한 데미지/쿨타임 계산을 담당합니다. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9309a5c0647f08d245392dbf3624d73c" name="a9309a5c0647f08d245392dbf3624d73c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9309a5c0647f08d245392dbf3624d73c">&#9670;&#160;</a></span>AddWeapon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool WeaponSystem.AddWeapon </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_ship_weapon_data.html">ShipWeaponData</a></td>          <td class="paramname"><span class="paramname"><em>weaponData</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>새로운 무기를 시스템에 추가합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">weaponData</td><td>추가할 무기 데이터.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>항상 true 반환 (현재는 실패 조건 없음).</dd></dl>
+
+</div>
+</div>
+<a id="a64079bfedade35f6d709125c2e037aa6" name="a64079bfedade35f6d709125c2e037aa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64079bfedade35f6d709125c2e037aa6">&#9670;&#160;</a></span>FireWeapon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool WeaponSystem.FireWeapon </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Transform</td>          <td class="paramname"><span class="paramname"><em>target</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>지정한 인덱스의 무기를 대상에게 발사합니다. 무기가 준비된 상태일 경우에만 발사됩니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>발사할 무기의 인덱스.</td></tr>
+    <tr><td class="paramname">target</td><td>공격 대상 Transform.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>발사에 성공하면 true, 실패하면 false.</dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_weapon_system_a64079bfedade35f6d709125c2e037aa6_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a624ae04a45c9a1472b259d8b8ce4cfa0" name="a624ae04a45c9a1472b259d8b8ce4cfa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a624ae04a45c9a1472b259d8b8ce4cfa0">&#9670;&#160;</a></span>GetActualCooldown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float WeaponSystem.GetActualCooldown </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>baseCooldown</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>실제 적용될 쿨다운 시간을 계산합니다. 쿨다운 보너스를 고려하여 기본 쿨타임을 감소시킵니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">baseCooldown</td><td>기본 쿨다운 시간.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>보정된 쿨다운 시간.</dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_weapon_system_a624ae04a45c9a1472b259d8b8ce4cfa0_cgraph.svg" width="628" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_weapon_system_a624ae04a45c9a1472b259d8b8ce4cfa0_icgraph.svg" width="638" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a76fad11c0e7c6d587a635081322f4b4f" name="a76fad11c0e7c6d587a635081322f4b4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76fad11c0e7c6d587a635081322f4b4f">&#9670;&#160;</a></span>GetActualDamage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float WeaponSystem.GetActualDamage </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>damage</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>실제 적용될 데미지를 계산합니다. 데미지 보너스를 적용하여 최종 데미지를 산출합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">damage</td><td>기본 데미지 값.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>보정된 데미지 값.</dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_weapon_system_a76fad11c0e7c6d587a635081322f4b4f_cgraph.svg" width="608" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ae1a69763e53a9e39d89483b749f3f99b" name="ae1a69763e53a9e39d89483b749f3f99b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1a69763e53a9e39d89483b749f3f99b">&#9670;&#160;</a></span>GetWeapon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_ship_weapon.html">ShipWeapon</a> WeaponSystem.GetWeapon </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>지정한 인덱스의 무기를 반환합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>무기 인덱스.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>해당 무기 객체. 유효하지 않은 경우 null.</dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_weapon_system_ae1a69763e53a9e39d89483b749f3f99b_icgraph.svg" width="559" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a759ffe81166835b38f3e2d161a6b56da" name="a759ffe81166835b38f3e2d161a6b56da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a759ffe81166835b38f3e2d161a6b56da">&#9670;&#160;</a></span>GetWeaponCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int WeaponSystem.GetWeaponCount </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>현재 장착된 무기 수를 반환합니다. </p>
+<dl class="section return"><dt>Returns</dt><dd>무기 개수.</dd></dl>
+
+</div>
+</div>
+<a id="aa5e6758d3084f4cc090cdfc92a5aad2a" name="aa5e6758d3084f4cc090cdfc92a5aad2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5e6758d3084f4cc090cdfc92a5aad2a">&#9670;&#160;</a></span>GetWeapons()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="class_ship_weapon.html">ShipWeapon</a> &gt; WeaponSystem.GetWeapons </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>현재 장착된 모든 무기 리스트를 반환합니다. </p>
+<dl class="section return"><dt>Returns</dt><dd>무기 리스트.</dd></dl>
+
+</div>
+</div>
+<a id="a9f1c4d4acd03aa194a33dc089ff53243" name="a9f1c4d4acd03aa194a33dc089ff53243"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f1c4d4acd03aa194a33dc089ff53243">&#9670;&#160;</a></span>RemoveWeapon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool WeaponSystem.RemoveWeapon </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>지정한 인덱스의 무기를 제거합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>제거할 무기의 인덱스.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>제거에 성공하면 true, 유효하지 않은 인덱스이면 false.</dd></dl>
+
+</div>
+</div>
+<a id="a4664bc232783de0d119664f701436a6b" name="a4664bc232783de0d119664f701436a6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4664bc232783de0d119664f701436a6b">&#9670;&#160;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void WeaponSystem.Update </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>deltaTime</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>매 프레임마다 호출되어 각 무기의 쿨다운 상태를 업데이트합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaTime</td><td>경과 시간 (초).</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_weapon_system_a4664bc232783de0d119664f701436a6b_cgraph.svg" width="548" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Ship/ShipSystems/<b>WeaponSystem.cs</b></li>
 </ul>

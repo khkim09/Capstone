@@ -116,148 +116,183 @@ Collaboration diagram for MechanicTank:</div>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_methods_class_crew_member"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_crew_member')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_crew_member.html">CrewMember</a></td></tr>
 <tr class="memitem:ada36e0f0dda48ed61720d400cd3edcfe inherit pub_methods_class_crew_member" id="r_ada36e0f0dda48ed61720d400cd3edcfe"><td class="memItemLeft" align="right" valign="top">virtual Dictionary&lt; SkillType, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_member.html#ada36e0f0dda48ed61720d400cd3edcfe">GetCrewSkillValue</a> ()</td></tr>
+<tr class="memdesc:ada36e0f0dda48ed61720d400cd3edcfe inherit pub_methods_class_crew_member"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 선원의 모든 스킬 값을 계산하여 반환합니다. 기본 숙련도, 장비 보너스, 사기 보너스를 포함합니다.  <br /></td></tr>
 <tr class="separator:ada36e0f0dda48ed61720d400cd3edcfe inherit pub_methods_class_crew_member"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_crew_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_crew_base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_crew_base.html">CrewBase</a></td></tr>
 <tr class="memitem:a2f78dabd7abef459a1fa3b1a4bbbf83b inherit pub_methods_class_crew_base" id="r_a2f78dabd7abef459a1fa3b1a4bbbf83b"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Initialize</b> ()</td></tr>
+<tr class="memdesc:a2f78dabd7abef459a1fa3b1a4bbbf83b inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">선원의 스탯과 스킬을 종족 정보에 따라 초기화합니다. <br /></td></tr>
 <tr class="separator:a2f78dabd7abef459a1fa3b1a4bbbf83b inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a186f7b2292966c554c5dabc126baeb11 inherit pub_methods_class_crew_base" id="r_a186f7b2292966c554c5dabc126baeb11"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ImproveSkill</b> (SkillType skill, float amount)</td></tr>
+<tr class="memitem:a186f7b2292966c554c5dabc126baeb11 inherit pub_methods_class_crew_base" id="r_a186f7b2292966c554c5dabc126baeb11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_base.html#a186f7b2292966c554c5dabc126baeb11">ImproveSkill</a> (SkillType skill, float amount)</td></tr>
+<tr class="memdesc:a186f7b2292966c554c5dabc126baeb11 inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">특정 스킬을 주어진 수치만큼 향상시키며 최대치를 넘지 않도록 제한합니다.  <br /></td></tr>
 <tr class="separator:a186f7b2292966c554c5dabc126baeb11 inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa803cd9315d55f5d9a5082ae326ce0a4 inherit pub_methods_class_crew_base" id="r_aa803cd9315d55f5d9a5082ae326ce0a4"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>MoveToRoom</b> (<a class="el" href="class_room.html">Room</a> targetRoom, Vector2 roomPosition)</td></tr>
+<tr class="memitem:aa803cd9315d55f5d9a5082ae326ce0a4 inherit pub_methods_class_crew_base" id="r_aa803cd9315d55f5d9a5082ae326ce0a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_base.html#aa803cd9315d55f5d9a5082ae326ce0a4">MoveToRoom</a> (<a class="el" href="class_room.html">Room</a> targetRoom, Vector2 roomPosition)</td></tr>
+<tr class="memdesc:aa803cd9315d55f5d9a5082ae326ce0a4 inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">선원을 지정된 방으로 이동시키며 이동 애니메이션을 시작합니다.  <br /></td></tr>
 <tr class="separator:aa803cd9315d55f5d9a5082ae326ce0a4 inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2511f2fc49a8f2c8ad5f03d9ab53d6f5 inherit pub_methods_class_crew_base" id="r_a2511f2fc49a8f2c8ad5f03d9ab53d6f5"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Attack</b> (<a class="el" href="class_crew_member.html">CrewMember</a> target)</td></tr>
+<tr class="memitem:a2511f2fc49a8f2c8ad5f03d9ab53d6f5 inherit pub_methods_class_crew_base" id="r_a2511f2fc49a8f2c8ad5f03d9ab53d6f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_base.html#a2511f2fc49a8f2c8ad5f03d9ab53d6f5">Attack</a> (<a class="el" href="class_crew_member.html">CrewMember</a> target)</td></tr>
+<tr class="memdesc:a2511f2fc49a8f2c8ad5f03d9ab53d6f5 inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">지정된 적 선원을 공격합니다. 공격력은 반올림 처리됩니다.  <br /></td></tr>
 <tr class="separator:a2511f2fc49a8f2c8ad5f03d9ab53d6f5 inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ddd282ca775cb5f0a59faecc5a73f9a inherit pub_methods_class_crew_base" id="r_a2ddd282ca775cb5f0a59faecc5a73f9a"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>TakeAttack</b> (float ocAttack)</td></tr>
+<tr class="memitem:a2ddd282ca775cb5f0a59faecc5a73f9a inherit pub_methods_class_crew_base" id="r_a2ddd282ca775cb5f0a59faecc5a73f9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_base.html#a2ddd282ca775cb5f0a59faecc5a73f9a">TakeAttack</a> (float ocAttack)</td></tr>
+<tr class="memdesc:a2ddd282ca775cb5f0a59faecc5a73f9a inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">적 선원에게 공격을 받을 때 호출됩니다. 방어력을 반영하여 최종 데미지를 계산합니다.  <br /></td></tr>
 <tr class="separator:a2ddd282ca775cb5f0a59faecc5a73f9a inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec2c7a794a9d4f6690b8302de37b155e inherit pub_methods_class_crew_base" id="r_aec2c7a794a9d4f6690b8302de37b155e"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>TakeDamage</b> (float damage)</td></tr>
+<tr class="memitem:aec2c7a794a9d4f6690b8302de37b155e inherit pub_methods_class_crew_base" id="r_aec2c7a794a9d4f6690b8302de37b155e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_base.html#aec2c7a794a9d4f6690b8302de37b155e">TakeDamage</a> (float damage)</td></tr>
+<tr class="memdesc:aec2c7a794a9d4f6690b8302de37b155e inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">체력에 데미지를 적용하고, 체력이 0 이하가 되면 사망 처리합니다.  <br /></td></tr>
 <tr class="separator:aec2c7a794a9d4f6690b8302de37b155e inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ca4eb5a3f4a9c83c3c93634c9da77df inherit pub_methods_class_crew_base" id="r_a6ca4eb5a3f4a9c83c3c93634c9da77df"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>RepairFacility</b> (<a class="el" href="class_room.html">Room</a> room, float amount)</td></tr>
+<tr class="memitem:a6ca4eb5a3f4a9c83c3c93634c9da77df inherit pub_methods_class_crew_base" id="r_a6ca4eb5a3f4a9c83c3c93634c9da77df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_base.html#a6ca4eb5a3f4a9c83c3c93634c9da77df">RepairFacility</a> (<a class="el" href="class_room.html">Room</a> room, float amount)</td></tr>
+<tr class="memdesc:a6ca4eb5a3f4a9c83c3c93634c9da77df inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">특정 방을 수리하며 수리 스킬을 향상시킵니다.  <br /></td></tr>
 <tr class="separator:a6ca4eb5a3f4a9c83c3c93634c9da77df inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c79bd56a9f0d3f96d639128ec419514 inherit pub_methods_class_crew_base" id="r_a6c79bd56a9f0d3f96d639128ec419514"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Heal</b> (float amount)</td></tr>
+<tr class="memitem:a6c79bd56a9f0d3f96d639128ec419514 inherit pub_methods_class_crew_base" id="r_a6c79bd56a9f0d3f96d639128ec419514"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_base.html#a6c79bd56a9f0d3f96d639128ec419514">Heal</a> (float amount)</td></tr>
+<tr class="memdesc:a6c79bd56a9f0d3f96d639128ec419514 inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">선원의 체력을 회복합니다. 최대 체력을 초과하지 않습니다.  <br /></td></tr>
 <tr class="separator:a6c79bd56a9f0d3f96d639128ec419514 inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a406c423f7d556cda4a42ad7d8b19e230 inherit pub_methods_class_crew_base" id="r_a406c423f7d556cda4a42ad7d8b19e230"><td class="memItemLeft" align="right" valign="top">
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>NeedsHealing</b> ()</td></tr>
+<tr class="memitem:a406c423f7d556cda4a42ad7d8b19e230 inherit pub_methods_class_crew_base" id="r_a406c423f7d556cda4a42ad7d8b19e230"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_base.html#a406c423f7d556cda4a42ad7d8b19e230">NeedsHealing</a> ()</td></tr>
+<tr class="memdesc:a406c423f7d556cda4a42ad7d8b19e230 inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">체력이 최대치보다 낮은지 여부를 반환합니다.  <br /></td></tr>
 <tr class="separator:a406c423f7d556cda4a42ad7d8b19e230 inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a233fbdc4519521e27786d8c0799dcd44 inherit pub_methods_class_crew_base" id="r_a233fbdc4519521e27786d8c0799dcd44"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>RecalculateEquipmentBonus</b> (<a class="el" href="class_equipment_item.html">EquipmentItem</a> item, bool isAdding)</td></tr>
+<tr class="memitem:a233fbdc4519521e27786d8c0799dcd44 inherit pub_methods_class_crew_base" id="r_a233fbdc4519521e27786d8c0799dcd44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_base.html#a233fbdc4519521e27786d8c0799dcd44">RecalculateEquipmentBonus</a> (<a class="el" href="class_equipment_item.html">EquipmentItem</a> item, bool isAdding)</td></tr>
+<tr class="memdesc:a233fbdc4519521e27786d8c0799dcd44 inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">장비 효과를 스탯에 반영하거나 제거합니다.  <br /></td></tr>
 <tr class="separator:a233fbdc4519521e27786d8c0799dcd44 inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae85c44a76273e19c8d76f3eb61a24d49 inherit pub_methods_class_crew_base" id="r_ae85c44a76273e19c8d76f3eb61a24d49"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SwapEquipment</b> (<a class="el" href="class_equipment_item.html">EquipmentItem</a> newItem)</td></tr>
+<tr class="memitem:ae85c44a76273e19c8d76f3eb61a24d49 inherit pub_methods_class_crew_base" id="r_ae85c44a76273e19c8d76f3eb61a24d49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_base.html#ae85c44a76273e19c8d76f3eb61a24d49">SwapEquipment</a> (<a class="el" href="class_equipment_item.html">EquipmentItem</a> newItem)</td></tr>
+<tr class="memdesc:ae85c44a76273e19c8d76f3eb61a24d49 inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">기존 장비를 해제하고 새 장비를 장착합니다.  <br /></td></tr>
 <tr class="separator:ae85c44a76273e19c8d76f3eb61a24d49 inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dddfbc358fd94633bac8de4575e4f8a inherit pub_methods_class_crew_base" id="r_a9dddfbc358fd94633bac8de4575e4f8a"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ApplyPersonalEquipment</b> (<a class="el" href="class_equipment_item.html">EquipmentItem</a> eqItem)</td></tr>
+<tr class="memitem:a9dddfbc358fd94633bac8de4575e4f8a inherit pub_methods_class_crew_base" id="r_a9dddfbc358fd94633bac8de4575e4f8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_base.html#a9dddfbc358fd94633bac8de4575e4f8a">ApplyPersonalEquipment</a> (<a class="el" href="class_equipment_item.html">EquipmentItem</a> eqItem)</td></tr>
+<tr class="memdesc:a9dddfbc358fd94633bac8de4575e4f8a inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">개인 장비를 착용합니다. 기존 장비는 해제되며 효과도 반영됩니다.  <br /></td></tr>
 <tr class="separator:a9dddfbc358fd94633bac8de4575e4f8a inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68eecbddd324268327edbc31c96d269f inherit pub_methods_class_crew_base" id="r_a68eecbddd324268327edbc31c96d269f"><td class="memItemLeft" align="right" valign="top">
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GetSkillLevel</b> (SkillType skill)</td></tr>
+<tr class="memitem:a68eecbddd324268327edbc31c96d269f inherit pub_methods_class_crew_base" id="r_a68eecbddd324268327edbc31c96d269f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_base.html#a68eecbddd324268327edbc31c96d269f">GetSkillLevel</a> (SkillType skill)</td></tr>
+<tr class="memdesc:a68eecbddd324268327edbc31c96d269f inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">특정 스킬의 현재 레벨을 반환합니다.  <br /></td></tr>
 <tr class="separator:a68eecbddd324268327edbc31c96d269f inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18bdc7789c50375ffc53d11690ba679f inherit pub_methods_class_crew_base" id="r_a18bdc7789c50375ffc53d11690ba679f"><td class="memItemLeft" align="right" valign="top">
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsEnemyOf</b> (<a class="el" href="class_crew_member.html">CrewMember</a> other)</td></tr>
+<tr class="memitem:a18bdc7789c50375ffc53d11690ba679f inherit pub_methods_class_crew_base" id="r_a18bdc7789c50375ffc53d11690ba679f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_base.html#a18bdc7789c50375ffc53d11690ba679f">IsEnemyOf</a> (<a class="el" href="class_crew_member.html">CrewMember</a> other)</td></tr>
+<tr class="memdesc:a18bdc7789c50375ffc53d11690ba679f inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">다른 선원이 적대적인 대상인지 확인합니다.  <br /></td></tr>
 <tr class="separator:a18bdc7789c50375ffc53d11690ba679f inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c35d7b81e7bbda6c1187cd56da46b19 inherit pub_methods_class_crew_base" id="r_a0c35d7b81e7bbda6c1187cd56da46b19"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; ShipStat, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crew_base.html#a0c35d7b81e7bbda6c1187cd56da46b19">GetStatContributions</a> ()</td></tr>
+<tr class="memdesc:a0c35d7b81e7bbda6c1187cd56da46b19 inherit pub_methods_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">선원이 함선 스탯에 기여하는 수치를 반환합니다. 예: 산소 소모량 등.  <br /></td></tr>
 <tr class="separator:a0c35d7b81e7bbda6c1187cd56da46b19 inherit pub_methods_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_class_crew_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_crew_base')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_crew_base.html">CrewBase</a></td></tr>
 <tr class="memitem:a916946f11b6a8e81f89c1f6daa526147 inherit pub_attribs_class_crew_base" id="r_a916946f11b6a8e81f89c1f6daa526147"><td class="memItemLeft" align="right" valign="top">
 string&#160;</td><td class="memItemRight" valign="bottom"><b>crewName</b></td></tr>
+<tr class="memdesc:a916946f11b6a8e81f89c1f6daa526147 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">선원 이름. <br /></td></tr>
 <tr class="separator:a916946f11b6a8e81f89c1f6daa526147 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24c27571ccbe1263b7bcc0b1edf78010 inherit pub_attribs_class_crew_base" id="r_a24c27571ccbe1263b7bcc0b1edf78010"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isPlayerControlled</b></td></tr>
+<tr class="memdesc:a24c27571ccbe1263b7bcc0b1edf78010 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">플레이어 소속 여부 (true = 아군, false = 적군). <br /></td></tr>
 <tr class="separator:a24c27571ccbe1263b7bcc0b1edf78010 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1436cf3a9044799c191a7d520756e5db inherit pub_attribs_class_crew_base" id="r_a1436cf3a9044799c191a7d520756e5db"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="class_crew_race_stat.html">CrewRaceStat</a>&#160;</td><td class="memItemRight" valign="bottom"><b>crewRaceStat</b></td></tr>
+<tr class="memdesc:a1436cf3a9044799c191a7d520756e5db inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">선원 종족에 따른 기본 스탯 데이터. <br /></td></tr>
 <tr class="separator:a1436cf3a9044799c191a7d520756e5db inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a53b04defdcf26f6be526e1dd7c4910 inherit pub_attribs_class_crew_base" id="r_a5a53b04defdcf26f6be526e1dd7c4910"><td class="memItemLeft" align="right" valign="top">
 CrewRace&#160;</td><td class="memItemRight" valign="bottom"><b>race</b></td></tr>
+<tr class="memdesc:a5a53b04defdcf26f6be526e1dd7c4910 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">선원의 종족. <br /></td></tr>
 <tr class="separator:a5a53b04defdcf26f6be526e1dd7c4910 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45320e06eadb3f7a51df9040ff464973 inherit pub_attribs_class_crew_base" id="r_a45320e06eadb3f7a51df9040ff464973"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>maxHealth</b></td></tr>
+<tr class="memdesc:a45320e06eadb3f7a51df9040ff464973 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">최대 체력. <br /></td></tr>
 <tr class="separator:a45320e06eadb3f7a51df9040ff464973 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7ba770907db7fc91ef38ae08066c43d inherit pub_attribs_class_crew_base" id="r_ad7ba770907db7fc91ef38ae08066c43d"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>attack</b></td></tr>
+<tr class="memdesc:ad7ba770907db7fc91ef38ae08066c43d inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">공격력. <br /></td></tr>
 <tr class="separator:ad7ba770907db7fc91ef38ae08066c43d inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21015f193776314b53984f22276e933b inherit pub_attribs_class_crew_base" id="r_a21015f193776314b53984f22276e933b"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>defense</b></td></tr>
+<tr class="memdesc:a21015f193776314b53984f22276e933b inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">방어력. <br /></td></tr>
 <tr class="separator:a21015f193776314b53984f22276e933b inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a288e9a6051a7d62d3969f5ae9d68deb8 inherit pub_attribs_class_crew_base" id="r_a288e9a6051a7d62d3969f5ae9d68deb8"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>learningSpeed</b></td></tr>
+<tr class="memdesc:a288e9a6051a7d62d3969f5ae9d68deb8 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">스킬 학습 속도. <br /></td></tr>
 <tr class="separator:a288e9a6051a7d62d3969f5ae9d68deb8 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa013b1f70d4f6d5737ce118baee45d69 inherit pub_attribs_class_crew_base" id="r_aa013b1f70d4f6d5737ce118baee45d69"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>needsOxygen</b></td></tr>
+<tr class="memdesc:aa013b1f70d4f6d5737ce118baee45d69 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">산소가 필요한 종족 여부. <br /></td></tr>
 <tr class="separator:aa013b1f70d4f6d5737ce118baee45d69 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cc506cbc88ad7dd8d46fc296327b314 inherit pub_attribs_class_crew_base" id="r_a4cc506cbc88ad7dd8d46fc296327b314"><td class="memItemLeft" align="right" valign="top">
 Dictionary&lt; SkillType, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>maxSkillValueArray</b> = new()</td></tr>
+<tr class="memdesc:a4cc506cbc88ad7dd8d46fc296327b314 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">스킬 타입별 최대 숙련도 값 딕셔너리. 종족별 초기값에 따라 설정됩니다. <br /></td></tr>
 <tr class="separator:a4cc506cbc88ad7dd8d46fc296327b314 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9f8363cc4b49d58eca3feffdbb2f9f4 inherit pub_attribs_class_crew_base" id="r_ae9f8363cc4b49d58eca3feffdbb2f9f4"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>maxPilotSkillValue</b></td></tr>
+<tr class="memdesc:ae9f8363cc4b49d58eca3feffdbb2f9f4 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">조종(Pilot) 스킬 최대 숙련도. <br /></td></tr>
 <tr class="separator:ae9f8363cc4b49d58eca3feffdbb2f9f4 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c623f04849e607006621e28ff84b096 inherit pub_attribs_class_crew_base" id="r_a0c623f04849e607006621e28ff84b096"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>maxEngineSkillValue</b></td></tr>
+<tr class="memdesc:a0c623f04849e607006621e28ff84b096 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">엔진(Engine) 스킬 최대 숙련도. <br /></td></tr>
 <tr class="separator:a0c623f04849e607006621e28ff84b096 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a415986baf7c5088aa885e7ffda05b4c0 inherit pub_attribs_class_crew_base" id="r_a415986baf7c5088aa885e7ffda05b4c0"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>maxPowerSkillValue</b></td></tr>
+<tr class="memdesc:a415986baf7c5088aa885e7ffda05b4c0 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">전력(Power) 스킬 최대 숙련도. <br /></td></tr>
 <tr class="separator:a415986baf7c5088aa885e7ffda05b4c0 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66bf90b457dd4c0c0fa042ec8ffd57f4 inherit pub_attribs_class_crew_base" id="r_a66bf90b457dd4c0c0fa042ec8ffd57f4"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>maxShieldSkillValue</b></td></tr>
+<tr class="memdesc:a66bf90b457dd4c0c0fa042ec8ffd57f4 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">방어막(Shield) 스킬 최대 숙련도. <br /></td></tr>
 <tr class="separator:a66bf90b457dd4c0c0fa042ec8ffd57f4 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f210cecc18d2c47b72075e201531f22 inherit pub_attribs_class_crew_base" id="r_a3f210cecc18d2c47b72075e201531f22"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>maxWeaponSkillValue</b></td></tr>
+<tr class="memdesc:a3f210cecc18d2c47b72075e201531f22 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">무기(Weapon) 스킬 최대 숙련도. <br /></td></tr>
 <tr class="separator:a3f210cecc18d2c47b72075e201531f22 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17c7cc5495de04b887d2b6d85acdaae2 inherit pub_attribs_class_crew_base" id="r_a17c7cc5495de04b887d2b6d85acdaae2"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>maxAmmunitionSkillValue</b></td></tr>
+<tr class="memdesc:a17c7cc5495de04b887d2b6d85acdaae2 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">탄약(Ammunition) 스킬 최대 숙련도. <br /></td></tr>
 <tr class="separator:a17c7cc5495de04b887d2b6d85acdaae2 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e558032761637457f5abbb71835a4ee inherit pub_attribs_class_crew_base" id="r_a3e558032761637457f5abbb71835a4ee"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>maxMedBaySkillValue</b></td></tr>
+<tr class="memdesc:a3e558032761637457f5abbb71835a4ee inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">의무실(MedBay) 스킬 최대 숙련도. <br /></td></tr>
 <tr class="separator:a3e558032761637457f5abbb71835a4ee inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac6e00a0924949bda22ea86609bdf7ff inherit pub_attribs_class_crew_base" id="r_aac6e00a0924949bda22ea86609bdf7ff"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>maxRepairSkillValue</b></td></tr>
+<tr class="memdesc:aac6e00a0924949bda22ea86609bdf7ff inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">수리(Repair) 스킬 최대 숙련도. <br /></td></tr>
 <tr class="separator:aac6e00a0924949bda22ea86609bdf7ff inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0412004e817734bab43a62c793d45cdb inherit pub_attribs_class_crew_base" id="r_a0412004e817734bab43a62c793d45cdb"><td class="memItemLeft" align="right" valign="top">
 Dictionary&lt; SkillType, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>skills</b> = new()</td></tr>
+<tr class="memdesc:a0412004e817734bab43a62c793d45cdb inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 스킬 레벨을 나타내는 딕셔너리. 레벨은 실제 사용 중인 스킬 수치를 의미하며, 학습을 통해 증가합니다. <br /></td></tr>
 <tr class="separator:a0412004e817734bab43a62c793d45cdb inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0242579bbf8a0289be79ecb26182f88b inherit pub_attribs_class_crew_base" id="r_a0242579bbf8a0289be79ecb26182f88b"><td class="memItemLeft" align="right" valign="top">
 Dictionary&lt; SkillType, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>equipAdditionalSkills</b> = new()</td></tr>
+<tr class="memdesc:a0242579bbf8a0289be79ecb26182f88b inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">장비 장착에 의해 추가된 보너스 스킬 값. 기본 스킬과는 별도로 합산되어 사용됩니다. <br /></td></tr>
 <tr class="separator:a0242579bbf8a0289be79ecb26182f88b inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af24e32cdeeee12b9f2a45b88a0bef2e5 inherit pub_attribs_class_crew_base" id="r_af24e32cdeeee12b9f2a45b88a0bef2e5"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="class_equipment_item.html">EquipmentItem</a>&#160;</td><td class="memItemRight" valign="bottom"><b>equippedWeapon</b></td></tr>
+<tr class="memdesc:af24e32cdeeee12b9f2a45b88a0bef2e5 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">착용 중인 무기 장비. <br /></td></tr>
 <tr class="separator:af24e32cdeeee12b9f2a45b88a0bef2e5 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d57ff0d91892589b29b17b2bdf4f919 inherit pub_attribs_class_crew_base" id="r_a4d57ff0d91892589b29b17b2bdf4f919"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="class_equipment_item.html">EquipmentItem</a>&#160;</td><td class="memItemRight" valign="bottom"><b>equippedShield</b></td></tr>
+<tr class="memdesc:a4d57ff0d91892589b29b17b2bdf4f919 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">착용 중인 무기 장비. <br /></td></tr>
 <tr class="separator:a4d57ff0d91892589b29b17b2bdf4f919 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9e50598947dde72ca04a35781a39989 inherit pub_attribs_class_crew_base" id="r_ad9e50598947dde72ca04a35781a39989"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="class_equipment_item.html">EquipmentItem</a>&#160;</td><td class="memItemRight" valign="bottom"><b>equippedAssistant</b></td></tr>
+<tr class="memdesc:ad9e50598947dde72ca04a35781a39989 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">착용 중인 어시스턴트 장비 (스킬 보조). <br /></td></tr>
 <tr class="separator:ad9e50598947dde72ca04a35781a39989 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26aadf40cb40eb684fb9a5dbec380491 inherit pub_attribs_class_crew_base" id="r_a26aadf40cb40eb684fb9a5dbec380491"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="class_room.html">Room</a>&#160;</td><td class="memItemRight" valign="bottom"><b>currentRoom</b></td></tr>
+<tr class="memdesc:a26aadf40cb40eb684fb9a5dbec380491 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">착용 중인 어시스턴트 장비 (스킬 보조). <br /></td></tr>
 <tr class="separator:a26aadf40cb40eb684fb9a5dbec380491 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac09565f60ab6c2d9bf1bbfc3f24ed0d0 inherit pub_attribs_class_crew_base" id="r_ac09565f60ab6c2d9bf1bbfc3f24ed0d0"><td class="memItemLeft" align="right" valign="top">
 Vector2&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
+<tr class="memdesc:ac09565f60ab6c2d9bf1bbfc3f24ed0d0 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 좌표 (월드 또는 로컬 좌표계 기반). <br /></td></tr>
 <tr class="separator:ac09565f60ab6c2d9bf1bbfc3f24ed0d0 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a523370340a8b3450069ee3dcec24260c inherit pub_attribs_class_crew_base" id="r_a523370340a8b3450069ee3dcec24260c"><td class="memItemLeft" align="right" valign="top">
 Vector2&#160;</td><td class="memItemRight" valign="bottom"><b>targetPosition</b></td></tr>
+<tr class="memdesc:a523370340a8b3450069ee3dcec24260c inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 좌표 (월드 또는 로컬 좌표계 기반). <br /></td></tr>
 <tr class="separator:a523370340a8b3450069ee3dcec24260c inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4c9651c030151345da1640e05de8f45 inherit pub_attribs_class_crew_base" id="r_ae4c9651c030151345da1640e05de8f45"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>moveSpeed</b> = 2.0f</td></tr>
+<tr class="memdesc:ae4c9651c030151345da1640e05de8f45 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">이동 속도 (초당 거리). <br /></td></tr>
 <tr class="separator:ae4c9651c030151345da1640e05de8f45 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a387a18a6fd0627064c66a5471d8fcee7 inherit pub_attribs_class_crew_base" id="r_a387a18a6fd0627064c66a5471d8fcee7"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>health</b></td></tr>
+<tr class="memdesc:a387a18a6fd0627064c66a5471d8fcee7 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 체력. <br /></td></tr>
 <tr class="separator:a387a18a6fd0627064c66a5471d8fcee7 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a359fc3807991aad5aa4384d618454d79 inherit pub_attribs_class_crew_base" id="r_a359fc3807991aad5aa4384d618454d79"><td class="memItemLeft" align="right" valign="top">
 CrewStatus&#160;</td><td class="memItemRight" valign="bottom"><b>status</b></td></tr>
+<tr class="memdesc:a359fc3807991aad5aa4384d618454d79 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 선원의 상태 (예: 정상, 부상 등). <br /></td></tr>
 <tr class="separator:a359fc3807991aad5aa4384d618454d79 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a234dad1a8fd8847879f0922fb0b17996 inherit pub_attribs_class_crew_base" id="r_a234dad1a8fd8847879f0922fb0b17996"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAlive</b></td></tr>
+<tr class="memdesc:a234dad1a8fd8847879f0922fb0b17996 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">생존 여부 (false = 사망). <br /></td></tr>
 <tr class="separator:a234dad1a8fd8847879f0922fb0b17996 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab78b5a4de7a4515d545bf97fa28b6cc9 inherit pub_attribs_class_crew_base" id="r_ab78b5a4de7a4515d545bf97fa28b6cc9"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isMoving</b></td></tr>
+<tr class="memdesc:ab78b5a4de7a4515d545bf97fa28b6cc9 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">이동 중 여부. <br /></td></tr>
 <tr class="separator:ab78b5a4de7a4515d545bf97fa28b6cc9 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5bc82e72ae13e47df0d37bd92fdd417 inherit pub_attribs_class_crew_base" id="r_ab5bc82e72ae13e47df0d37bd92fdd417"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="class_ship.html">Ship</a>&#160;</td><td class="memItemRight" valign="bottom"><b>currentShip</b></td></tr>
+<tr class="memdesc:ab5bc82e72ae13e47df0d37bd92fdd417 inherit pub_attribs_class_crew_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 선원이 속한 함선 참조. <br /></td></tr>
 <tr class="separator:ab5bc82e72ae13e47df0d37bd92fdd417 inherit pub_attribs_class_crew_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>

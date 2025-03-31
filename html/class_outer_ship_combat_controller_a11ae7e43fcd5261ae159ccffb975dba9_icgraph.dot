@@ -1,0 +1,12 @@
+digraph "OuterShipCombatController.WeaponFire"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,fontname=Consolas fontsize=10 style=filled height=0.2 width=0.4 margin=0.1];
+  rankdir="RL";
+  Node1 [id="Node000001",label="OuterShipCombatController.\lWeaponFire",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="지정된 함선이 무기를 발사하도록 시도합니다. 무기가 준비되지 않았거나 대상이 없으면 실패합니다."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="WeaponSystem.FireWeapon",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_weapon_system.html#a64079bfedade35f6d709125c2e037aa6",tooltip="지정한 인덱스의 무기를 대상에게 발사합니다. 무기가 준비된 상태일 경우에만 발사됩니다."];
+}

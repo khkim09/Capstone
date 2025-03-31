@@ -1,10 +1,19 @@
 var searchData=
 [
-  ['additem_0',['AddItem',['../class_storage_room_base.html#ad82805733c13778b8bdac8070b8b92e1',1,'StorageRoomBase.AddItem()'],['../class_storage.html#a7ba0632988450a80b278a334d9b59b15',1,'Storage.AddItem()']]],
-  ['addquesteffecthandler_1',['AddQuestEffectHandler',['../class_add_quest_effect_handler.html',1,'']]],
-  ['ammunitionroom_2',['AmmunitionRoom',['../class_ammunition_room.html',1,'']]],
-  ['ammunitionroomdata_3',['AmmunitionRoomData',['../class_ammunition_room_data.html',1,'']]],
-  ['ammunitionroomlevel_4',['AmmunitionRoomLevel',['../class_ammunition_room_data_1_1_ammunition_room_level.html',1,'AmmunitionRoomData']]],
-  ['amorphous_5',['Amorphous',['../class_amorphous.html',1,'']]],
-  ['assistantequipment_6',['AssistantEquipment',['../class_assistant_equipment.html',1,'']]]
+  ['addcrewmember_0',['AddCrewMember',['../class_crew_system.html#ac905556b3519b6e4be328933edae06b7',1,'CrewSystem']]],
+  ['adddoor_1',['AddDoor',['../class_ship.html#a1018b97eda4c9cb5ea0cd78ac9493d0a',1,'Ship']]],
+  ['additem_2',['AddItem',['../class_storage_room_base.html#ad82805733c13778b8bdac8070b8b92e1',1,'StorageRoomBase.AddItem()'],['../class_storage.html#a7ba0632988450a80b278a334d9b59b15',1,'Storage.AddItem()']]],
+  ['addquesteffecthandler_3',['AddQuestEffectHandler',['../class_add_quest_effect_handler.html',1,'']]],
+  ['addroom_4',['AddRoom',['../class_ship.html#a49933abe7fdaac6c26deeb0e90a9046d',1,'Ship']]],
+  ['addweapon_5',['AddWeapon',['../class_weapon_system.html#a9309a5c0647f08d245392dbf3624d73c',1,'WeaponSystem']]],
+  ['adjacentrooms_6',['adjacentRooms',['../class_room.html#a9d060d005fd9719f87f5045656fdf7f0',1,'Room']]],
+  ['ammunitionroom_7',['AmmunitionRoom',['../class_ammunition_room.html',1,'']]],
+  ['ammunitionroomdata_8',['AmmunitionRoomData',['../class_ammunition_room_data.html',1,'']]],
+  ['ammunitionroomlevel_9',['AmmunitionRoomLevel',['../class_ammunition_room_data_1_1_ammunition_room_level.html',1,'AmmunitionRoomData']]],
+  ['amorphous_10',['Amorphous',['../class_amorphous.html',1,'']]],
+  ['applypersonalequipment_11',['ApplyPersonalEquipment',['../class_crew_base.html#a9dddfbc358fd94633bac8de4575e4f8a',1,'CrewBase']]],
+  ['assistantequipment_12',['AssistantEquipment',['../class_assistant_equipment.html',1,'']]],
+  ['attack_13',['Attack',['../class_crew_base.html#a2511f2fc49a8f2c8ad5f03d9ab53d6f5',1,'CrewBase']]],
+  ['attack_14',['attack',['../class_crew_base.html#ad7ba770907db7fc91ef38ae08066c43d',1,'CrewBase']]],
+  ['avoidefficiency_15',['avoidEfficiency',['../class_cockpit_room_data_1_1_cockpit_room_level.html#a9716ec632cfec0ab28c25acc7bf7957e',1,'CockpitRoomData.CockpitRoomLevel.avoidEfficiency'],['../class_engine_room_data_1_1_engine_room_level.html#ae86919545ed124779d290507aa9f311c',1,'EngineRoomData.EngineRoomLevel.avoidEfficiency']]]
 ];

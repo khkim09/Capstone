@@ -1,0 +1,12 @@
+digraph "GridPlacer.PlaceRoom"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,fontname=Consolas fontsize=10 style=filled height=0.2 width=0.4 margin=0.1];
+  rankdir="RL";
+  Node1 [id="Node000001",label="GridPlacer.PlaceRoom",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="실제로 호버한 위치에 해당 영역에 방을 설치합니다. 방을 설치하고자 하는 위치에 설치 가능 여부를 검사해, 설치를 진행합니다."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="RoomDragHandler.OnEndDrag",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_room_drag_handler.html#a2dd674585eac9f7268c01c9665612d46",tooltip="드래그 종료 후 작업입니다. 현재 마우스 위치에 방을 설치하고, preview (실루엣)을 삭제합니다."];
+}

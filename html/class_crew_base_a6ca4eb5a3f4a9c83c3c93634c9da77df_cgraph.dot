@@ -1,0 +1,16 @@
+digraph "CrewBase.RepairFacility"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,fontname=Consolas fontsize=10 style=filled height=0.2 width=0.4 margin=0.1];
+  rankdir="LR";
+  Node1 [id="Node000001",label="CrewBase.RepairFacility",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="특정 방을 수리하며 수리 스킬을 향상시킵니다."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="CrewBase.ImproveSkill",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_crew_base.html#a186f7b2292966c554c5dabc126baeb11",tooltip="특정 스킬을 주어진 수치만큼 향상시키며 최대치를 넘지 않도록 제한합니다."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Room.Repair",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_room.html#a346c3936a442595bf111782a08891dfa",tooltip="지정된 양만큼 체력을 회복시킵니다."];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Room.NotifyStateChanged",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_room.html#ac222ae4ac4c382283f339a4cfc3cded6",tooltip="상태 변경을 알립니다."];
+}

@@ -103,39 +103,66 @@ $(function(){initNavTree('class_outer_hull.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 
-<p>외갑판 업그레이드를 나타내는 클래스 방처럼 배치되지 않고 전체 스탯에 영향을 주는 구성 요소  
+<p>외갑판 업그레이드를 나타내는 클래스. 방처럼 배치되지는 않지만, 전체 함선 스탯에 영향을 주는 구성 요소입니다.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for OuterHull:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_outer_hull__inherit__graph.svg" width="291" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_outer_hull__inherit__graph.svg" width="376" height="272"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for OuterHull:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_outer_hull__coll__graph.svg" width="291" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_outer_hull__coll__graph.svg" width="376" height="272"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a31a9be70325554c4230263b1f808e497" id="r_a31a9be70325554c4230263b1f808e497"><td class="memItemLeft" align="right" valign="top"><a id="a31a9be70325554c4230263b1f808e497" name="a31a9be70325554c4230263b1f808e497"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Initialize</b> ()</td></tr>
-<tr class="memdesc:a31a9be70325554c4230263b1f808e497"><td class="mdescLeft">&#160;</td><td class="mdescRight">외갑판 레벨 데이터 초기화 <br /></td></tr>
+<tr class="memdesc:a31a9be70325554c4230263b1f808e497"><td class="mdescLeft">&#160;</td><td class="mdescRight">외갑판 레벨 데이터를 초기화합니다. <br /></td></tr>
 <tr class="separator:a31a9be70325554c4230263b1f808e497"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe182cd8d3a62a2e75b1ba2594b6697d" id="r_abe182cd8d3a62a2e75b1ba2594b6697d"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; ShipStat, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe182cd8d3a62a2e75b1ba2594b6697d">GetStatContributions</a> ()</td></tr>
-<tr class="memdesc:abe182cd8d3a62a2e75b1ba2594b6697d"><td class="mdescLeft">&#160;</td><td class="mdescRight">외갑판이 함선에 기여하는 스탯 반환  <br /></td></tr>
+<tr class="memdesc:abe182cd8d3a62a2e75b1ba2594b6697d"><td class="mdescLeft">&#160;</td><td class="mdescRight">외갑판이 함선에 기여하는 스탯을 반환합니다. 현재는 피해 감소(DamageReduction) 스탯만 제공됩니다.  <br /></td></tr>
 <tr class="separator:abe182cd8d3a62a2e75b1ba2594b6697d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21b3b1b44018f50a243163f33299e0e2" id="r_a21b3b1b44018f50a243163f33299e0e2"><td class="memItemLeft" align="right" valign="top"><a id="a21b3b1b44018f50a243163f33299e0e2" name="a21b3b1b44018f50a243163f33299e0e2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Upgrade</b> ()</td></tr>
-<tr class="memdesc:a21b3b1b44018f50a243163f33299e0e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">외갑판 레벨 업그레이드 <br /></td></tr>
+<tr class="memitem:a21b3b1b44018f50a243163f33299e0e2" id="r_a21b3b1b44018f50a243163f33299e0e2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21b3b1b44018f50a243163f33299e0e2">Upgrade</a> ()</td></tr>
+<tr class="memdesc:a21b3b1b44018f50a243163f33299e0e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">외갑판을 한 단계 업그레이드합니다. 다음 레벨의 데이터가 존재하면 업그레이드에 성공합니다.  <br /></td></tr>
 <tr class="separator:a21b3b1b44018f50a243163f33299e0e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26f5102c6fbaf01bafcd8e4014348f5d" id="r_a26f5102c6fbaf01bafcd8e4014348f5d"><td class="memItemLeft" align="right" valign="top"><a id="a26f5102c6fbaf01bafcd8e4014348f5d" name="a26f5102c6fbaf01bafcd8e4014348f5d"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetCurrentLevel</b> ()</td></tr>
+<tr class="memitem:a26f5102c6fbaf01bafcd8e4014348f5d" id="r_a26f5102c6fbaf01bafcd8e4014348f5d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26f5102c6fbaf01bafcd8e4014348f5d">GetCurrentLevel</a> ()</td></tr>
+<tr class="memdesc:a26f5102c6fbaf01bafcd8e4014348f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 외갑판의 레벨을 반환합니다.  <br /></td></tr>
 <tr class="separator:a26f5102c6fbaf01bafcd8e4014348f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>외갑판 업그레이드를 나타내는 클래스 방처럼 배치되지 않고 전체 스탯에 영향을 주는 구성 요소 </p>
+<div class="textblock"><p>외갑판 업그레이드를 나타내는 클래스. 방처럼 배치되지는 않지만, 전체 함선 스탯에 영향을 주는 구성 요소입니다. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a26f5102c6fbaf01bafcd8e4014348f5d" name="a26f5102c6fbaf01bafcd8e4014348f5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26f5102c6fbaf01bafcd8e4014348f5d">&#9670;&#160;</a></span>GetCurrentLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int OuterHull.GetCurrentLevel </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>현재 외갑판의 레벨을 반환합니다. </p>
+<dl class="section return"><dt>Returns</dt><dd>현재 레벨 값.</dd></dl>
+
+</div>
+</div>
 <a id="abe182cd8d3a62a2e75b1ba2594b6697d" name="abe182cd8d3a62a2e75b1ba2594b6697d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abe182cd8d3a62a2e75b1ba2594b6697d">&#9670;&#160;</a></span>GetStatContributions()</h2>
 
@@ -159,9 +186,38 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetCurrentLevel</b> ()
 </table>
 </div><div class="memdoc">
 
-<p>외갑판이 함선에 기여하는 스탯 반환 </p>
+<p>외갑판이 함선에 기여하는 스탯을 반환합니다. 현재는 피해 감소(DamageReduction) 스탯만 제공됩니다. </p>
+<dl class="section return"><dt>Returns</dt><dd>스탯 종류와 수치가 담긴 딕셔너리.</dd></dl>
 
 <p>Implements <a class="el" href="interface_i_ship_stat_contributor.html">IShipStatContributor</a>.</p>
+
+</div>
+</div>
+<a id="a21b3b1b44018f50a243163f33299e0e2" name="a21b3b1b44018f50a243163f33299e0e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21b3b1b44018f50a243163f33299e0e2">&#9670;&#160;</a></span>Upgrade()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool OuterHull.Upgrade </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>외갑판을 한 단계 업그레이드합니다. 다음 레벨의 데이터가 존재하면 업그레이드에 성공합니다. </p>
+<dl class="section return"><dt>Returns</dt><dd>업그레이드 성공 시 true, 실패 시 false.</dd></dl>
 
 </div>
 </div>

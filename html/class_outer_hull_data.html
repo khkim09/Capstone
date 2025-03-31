@@ -106,45 +106,83 @@ $(function(){initNavTree('class_outer_hull_data.html',''); initResizable(true); 
 </div><!--header-->
 <div class="contents">
 
-<p>외갑판의 데이터를 담는 ScriptableObject  
+<p>외갑판의 업그레이드 정보를 담는 ScriptableObject. 레벨별 이름, 비용, 피해 감소 수치 등을 포함합니다.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for OuterHullData:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_outer_hull_data__inherit__graph.svg" width="147" height="219"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_outer_hull_data__inherit__graph.svg" width="223" height="234"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for OuterHullData:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_outer_hull_data__coll__graph.svg" width="147" height="219"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_outer_hull_data__coll__graph.svg" width="223" height="234"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_outer_hull_data_1_1_outer_hull_level.html">OuterHullLevel</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">외갑판의 개별 레벨 정보를 담는 클래스.  <a href="class_outer_hull_data_1_1_outer_hull_level.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a51ad6d062c547a1cad0fb2c08ff593eb" id="r_a51ad6d062c547a1cad0fb2c08ff593eb"><td class="memItemLeft" align="right" valign="top"><a id="a51ad6d062c547a1cad0fb2c08ff593eb" name="a51ad6d062c547a1cad0fb2c08ff593eb"></a>
-<a class="el" href="class_outer_hull_data_1_1_outer_hull_level.html">OuterHullLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetOuterHullData</b> (int level)</td></tr>
+<tr class="memitem:a51ad6d062c547a1cad0fb2c08ff593eb" id="r_a51ad6d062c547a1cad0fb2c08ff593eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_outer_hull_data_1_1_outer_hull_level.html">OuterHullLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51ad6d062c547a1cad0fb2c08ff593eb">GetOuterHullData</a> (int level)</td></tr>
+<tr class="memdesc:a51ad6d062c547a1cad0fb2c08ff593eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">지정한 레벨에 해당하는 외갑판 데이터를 반환합니다.  <br /></td></tr>
 <tr class="separator:a51ad6d062c547a1cad0fb2c08ff593eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:ab4a1bf2d0d5fd3aed091557773e7f1f7" id="r_ab4a1bf2d0d5fd3aed091557773e7f1f7"><td class="memItemLeft" align="right" valign="top"><a id="ab4a1bf2d0d5fd3aed091557773e7f1f7" name="ab4a1bf2d0d5fd3aed091557773e7f1f7"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>OnEnable</b> ()</td></tr>
+<tr class="memdesc:ab4a1bf2d0d5fd3aed091557773e7f1f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">ScriptableObject가 활성화될 때 자동으로 호출됩니다. 기본 레벨 데이터를 설정합니다. <br /></td></tr>
 <tr class="separator:ab4a1bf2d0d5fd3aed091557773e7f1f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ad642be7f764d8bb4d8b816e60a1dc932" id="r_ad642be7f764d8bb4d8b816e60a1dc932"><td class="memItemLeft" align="right" valign="top"><a id="ad642be7f764d8bb4d8b816e60a1dc932" name="ad642be7f764d8bb4d8b816e60a1dc932"></a>
 List&lt; <a class="el" href="class_outer_hull_data_1_1_outer_hull_level.html">OuterHullLevel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OuterHullLevels</b> = new()</td></tr>
+<tr class="memdesc:ad642be7f764d8bb4d8b816e60a1dc932"><td class="mdescLeft">&#160;</td><td class="mdescRight">외갑판의 모든 레벨 데이터를 저장하는 리스트입니다. <br /></td></tr>
 <tr class="separator:ad642be7f764d8bb4d8b816e60a1dc932"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>외갑판의 데이터를 담는 ScriptableObject </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<div class="textblock"><p>외갑판의 업그레이드 정보를 담는 ScriptableObject. 레벨별 이름, 비용, 피해 감소 수치 등을 포함합니다. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a51ad6d062c547a1cad0fb2c08ff593eb" name="a51ad6d062c547a1cad0fb2c08ff593eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51ad6d062c547a1cad0fb2c08ff593eb">&#9670;&#160;</a></span>GetOuterHullData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_outer_hull_data_1_1_outer_hull_level.html">OuterHullLevel</a> OuterHullData.GetOuterHullData </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>level</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>지정한 레벨에 해당하는 외갑판 데이터를 반환합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level</td><td>가져올 외갑판 레벨 (0부터 시작하는 인덱스).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>해당 레벨의 외갑판 데이터.</dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Ship/<b>OuterHullData.cs</b></li>
 </ul>
 </div><!-- contents -->

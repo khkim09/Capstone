@@ -1,0 +1,16 @@
+digraph "Room-2-g.Start"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,fontname=Consolas fontsize=10 style=filled height=0.2 width=0.4 margin=0.1];
+  rankdir="LR";
+  Node1 [id="Node000001",label="Room-2-g.Start",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Start 시 roomData가 유효하다면 초기화 및 레벨 데이터 갱신을 수행합니다."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Room.Initialize",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_room.html#a720815f09708c239f108c42889a676cc",tooltip="방을 초기화합니다."];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Room.InitializeIsDamageable",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_room.html#a0689a22affd036af39a621cb1c6232d7",tooltip="이 방이 데미지를 받을 수 있는지 여부를 초기화합니다."];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Room-2-g.UpdateRoomLevelData",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_room-2-g.html#a991f10d83518af889058b13763fd3e25",tooltip="레벨 데이터 캐시를 갱신합니다. roomData에서 현재 레벨에 맞는 데이터를 가져오고, 시각적 요소도 함께 갱신됩니다."];
+}

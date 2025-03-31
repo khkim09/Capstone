@@ -103,59 +103,367 @@ $(function(){initNavTree('class_ship_weapon.html',''); initResizable(true); });
   <div class="headertitle"><div class="title">ShipWeapon Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>실제 무기 인스턴스를 나타내는 클래스. 무기 데이터와 쿨다운 상태를 포함하며, 발사 위치 및 각종 무기 정보를 제공합니다.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for ShipWeapon:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ship_weapon__inherit__graph.svg" width="152" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ship_weapon__inherit__graph.svg" width="216" height="402"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for ShipWeapon:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_ship_weapon__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ship_weapon__coll__graph.svg" width="342" height="588"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abe7520d9bc4d5e461afcb1da62481522" id="r_abe7520d9bc4d5e461afcb1da62481522"><td class="memItemLeft" align="right" valign="top"><a id="abe7520d9bc4d5e461afcb1da62481522" name="abe7520d9bc4d5e461afcb1da62481522"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ShipWeapon</b> (<a class="el" href="class_ship_weapon_data.html">ShipWeaponData</a> data)</td></tr>
+<tr class="memitem:abe7520d9bc4d5e461afcb1da62481522" id="r_abe7520d9bc4d5e461afcb1da62481522"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe7520d9bc4d5e461afcb1da62481522">ShipWeapon</a> (<a class="el" href="class_ship_weapon_data.html">ShipWeaponData</a> data)</td></tr>
+<tr class="memdesc:abe7520d9bc4d5e461afcb1da62481522"><td class="mdescLeft">&#160;</td><td class="mdescRight">무기 데이터를 기반으로 무기를 초기화합니다.  <br /></td></tr>
 <tr class="separator:abe7520d9bc4d5e461afcb1da62481522"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1af36c3085a542d72b8b745f2a416f4a" id="r_a1af36c3085a542d72b8b745f2a416f4a"><td class="memItemLeft" align="right" valign="top"><a id="a1af36c3085a542d72b8b745f2a416f4a" name="a1af36c3085a542d72b8b745f2a416f4a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateCooldown</b> (float deltaTime)</td></tr>
+<tr class="memitem:a1af36c3085a542d72b8b745f2a416f4a" id="r_a1af36c3085a542d72b8b745f2a416f4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1af36c3085a542d72b8b745f2a416f4a">UpdateCooldown</a> (float deltaTime)</td></tr>
+<tr class="memdesc:a1af36c3085a542d72b8b745f2a416f4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">매 프레임 호출되어 쿨다운 시간을 감소시킵니다.  <br /></td></tr>
 <tr class="separator:a1af36c3085a542d72b8b745f2a416f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72518cf9b3021beca098c19c438dbc5f" id="r_a72518cf9b3021beca098c19c438dbc5f"><td class="memItemLeft" align="right" valign="top"><a id="a72518cf9b3021beca098c19c438dbc5f" name="a72518cf9b3021beca098c19c438dbc5f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsReady</b> ()</td></tr>
+<tr class="memitem:a72518cf9b3021beca098c19c438dbc5f" id="r_a72518cf9b3021beca098c19c438dbc5f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72518cf9b3021beca098c19c438dbc5f">IsReady</a> ()</td></tr>
+<tr class="memdesc:a72518cf9b3021beca098c19c438dbc5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">무기가 발사 가능한 상태인지 확인합니다.  <br /></td></tr>
 <tr class="separator:a72518cf9b3021beca098c19c438dbc5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e523885eee82be78af8cd03f5ff458a" id="r_a7e523885eee82be78af8cd03f5ff458a"><td class="memItemLeft" align="right" valign="top"><a id="a7e523885eee82be78af8cd03f5ff458a" name="a7e523885eee82be78af8cd03f5ff458a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetCooldown</b> ()</td></tr>
+<tr class="memdesc:a7e523885eee82be78af8cd03f5ff458a"><td class="mdescLeft">&#160;</td><td class="mdescRight">무기의 쿨다운을 기본값으로 초기화합니다. <br /></td></tr>
 <tr class="separator:a7e523885eee82be78af8cd03f5ff458a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4adb1453d46510d91db1cfe5005dc33d" id="r_a4adb1453d46510d91db1cfe5005dc33d"><td class="memItemLeft" align="right" valign="top"><a id="a4adb1453d46510d91db1cfe5005dc33d" name="a4adb1453d46510d91db1cfe5005dc33d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetCooldown</b> (float cooldown)</td></tr>
+<tr class="memitem:a4adb1453d46510d91db1cfe5005dc33d" id="r_a4adb1453d46510d91db1cfe5005dc33d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4adb1453d46510d91db1cfe5005dc33d">ResetCooldown</a> (float cooldown)</td></tr>
+<tr class="memdesc:a4adb1453d46510d91db1cfe5005dc33d"><td class="mdescLeft">&#160;</td><td class="mdescRight">무기의 쿨다운을 지정한 값으로 설정합니다.  <br /></td></tr>
 <tr class="separator:a4adb1453d46510d91db1cfe5005dc33d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7bc58dd55023002947b1f497a082e5a" id="r_ae7bc58dd55023002947b1f497a082e5a"><td class="memItemLeft" align="right" valign="top"><a id="ae7bc58dd55023002947b1f497a082e5a" name="ae7bc58dd55023002947b1f497a082e5a"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>GetWeaponName</b> ()</td></tr>
+<tr class="memitem:ae7bc58dd55023002947b1f497a082e5a" id="r_ae7bc58dd55023002947b1f497a082e5a"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7bc58dd55023002947b1f497a082e5a">GetWeaponName</a> ()</td></tr>
+<tr class="memdesc:ae7bc58dd55023002947b1f497a082e5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">무기 이름을 반환합니다.  <br /></td></tr>
 <tr class="separator:ae7bc58dd55023002947b1f497a082e5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d0c8b9cb45cd7470fb3868d9feb826d" id="r_a5d0c8b9cb45cd7470fb3868d9feb826d"><td class="memItemLeft" align="right" valign="top"><a id="a5d0c8b9cb45cd7470fb3868d9feb826d" name="a5d0c8b9cb45cd7470fb3868d9feb826d"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GetDamage</b> ()</td></tr>
+<tr class="memitem:a5d0c8b9cb45cd7470fb3868d9feb826d" id="r_a5d0c8b9cb45cd7470fb3868d9feb826d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d0c8b9cb45cd7470fb3868d9feb826d">GetDamage</a> ()</td></tr>
+<tr class="memdesc:a5d0c8b9cb45cd7470fb3868d9feb826d"><td class="mdescLeft">&#160;</td><td class="mdescRight">무기 이름을 반환합니다.  <br /></td></tr>
 <tr class="separator:a5d0c8b9cb45cd7470fb3868d9feb826d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cfdbb4b7bbb679b2f6a0982eafacfee" id="r_a8cfdbb4b7bbb679b2f6a0982eafacfee"><td class="memItemLeft" align="right" valign="top"><a id="a8cfdbb4b7bbb679b2f6a0982eafacfee" name="a8cfdbb4b7bbb679b2f6a0982eafacfee"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GetAccuracy</b> ()</td></tr>
-<tr class="separator:a8cfdbb4b7bbb679b2f6a0982eafacfee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82b4d38e2852ab59ca14c75abaa23c0a" id="r_a82b4d38e2852ab59ca14c75abaa23c0a"><td class="memItemLeft" align="right" valign="top"><a id="a82b4d38e2852ab59ca14c75abaa23c0a" name="a82b4d38e2852ab59ca14c75abaa23c0a"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GetBaseCooldown</b> ()</td></tr>
+<tr class="memitem:a82b4d38e2852ab59ca14c75abaa23c0a" id="r_a82b4d38e2852ab59ca14c75abaa23c0a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82b4d38e2852ab59ca14c75abaa23c0a">GetBaseCooldown</a> ()</td></tr>
+<tr class="memdesc:a82b4d38e2852ab59ca14c75abaa23c0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">무기의 기본 쿨다운 시간을 반환합니다.  <br /></td></tr>
 <tr class="separator:a82b4d38e2852ab59ca14c75abaa23c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7000e4dcb1a15943afba4709b71c13a9" id="r_a7000e4dcb1a15943afba4709b71c13a9"><td class="memItemLeft" align="right" valign="top"><a id="a7000e4dcb1a15943afba4709b71c13a9" name="a7000e4dcb1a15943afba4709b71c13a9"></a>
-WeaponType&#160;</td><td class="memItemRight" valign="bottom"><b>GetWeaponType</b> ()</td></tr>
+<tr class="memitem:a7000e4dcb1a15943afba4709b71c13a9" id="r_a7000e4dcb1a15943afba4709b71c13a9"><td class="memItemLeft" align="right" valign="top">WeaponType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7000e4dcb1a15943afba4709b71c13a9">GetWeaponType</a> ()</td></tr>
+<tr class="memdesc:a7000e4dcb1a15943afba4709b71c13a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">무기의 타입을 반환합니다.  <br /></td></tr>
 <tr class="separator:a7000e4dcb1a15943afba4709b71c13a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa577ecb44927339cdd0cb15ae4ae76e8" id="r_aa577ecb44927339cdd0cb15ae4ae76e8"><td class="memItemLeft" align="right" valign="top"><a id="aa577ecb44927339cdd0cb15ae4ae76e8" name="aa577ecb44927339cdd0cb15ae4ae76e8"></a>
-Vector2&#160;</td><td class="memItemRight" valign="bottom"><b>GetFirePosition</b> ()</td></tr>
+<tr class="memitem:aa577ecb44927339cdd0cb15ae4ae76e8" id="r_aa577ecb44927339cdd0cb15ae4ae76e8"><td class="memItemLeft" align="right" valign="top">Vector2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa577ecb44927339cdd0cb15ae4ae76e8">GetFirePosition</a> ()</td></tr>
+<tr class="memdesc:aa577ecb44927339cdd0cb15ae4ae76e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">무기의 타입을 반환합니다.  <br /></td></tr>
 <tr class="separator:aa577ecb44927339cdd0cb15ae4ae76e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a954f16c27c8f13d52291b5356818e031" id="r_a954f16c27c8f13d52291b5356818e031"><td class="memItemLeft" align="right" valign="top"><a id="a954f16c27c8f13d52291b5356818e031" name="a954f16c27c8f13d52291b5356818e031"></a>
 <a class="el" href="class_ship_weapon_data.html">ShipWeaponData</a>&#160;</td><td class="memItemRight" valign="bottom"><b>weaponData</b></td></tr>
+<tr class="memdesc:a954f16c27c8f13d52291b5356818e031"><td class="mdescLeft">&#160;</td><td class="mdescRight">이 무기에 해당하는 무기 데이터입니다. <br /></td></tr>
 <tr class="separator:a954f16c27c8f13d52291b5356818e031"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>실제 무기 인스턴스를 나타내는 클래스. 무기 데이터와 쿨다운 상태를 포함하며, 발사 위치 및 각종 무기 정보를 제공합니다. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="abe7520d9bc4d5e461afcb1da62481522" name="abe7520d9bc4d5e461afcb1da62481522"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe7520d9bc4d5e461afcb1da62481522">&#9670;&#160;</a></span>ShipWeapon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ShipWeapon.ShipWeapon </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_ship_weapon_data.html">ShipWeaponData</a></td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>무기 데이터를 기반으로 무기를 초기화합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>초기화할 무기 데이터.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ship_weapon_abe7520d9bc4d5e461afcb1da62481522_cgraph.svg" width="559" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a82b4d38e2852ab59ca14c75abaa23c0a" name="a82b4d38e2852ab59ca14c75abaa23c0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82b4d38e2852ab59ca14c75abaa23c0a">&#9670;&#160;</a></span>GetBaseCooldown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ShipWeapon.GetBaseCooldown </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>무기의 기본 쿨다운 시간을 반환합니다. </p>
+<dl class="section return"><dt>Returns</dt><dd>기본 쿨다운 시간.</dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ship_weapon_a82b4d38e2852ab59ca14c75abaa23c0a_icgraph.svg" width="599" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a5d0c8b9cb45cd7470fb3868d9feb826d" name="a5d0c8b9cb45cd7470fb3868d9feb826d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d0c8b9cb45cd7470fb3868d9feb826d">&#9670;&#160;</a></span>GetDamage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ShipWeapon.GetDamage </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>무기 이름을 반환합니다. </p>
+<dl class="section return"><dt>Returns</dt><dd>무기 이름 문자열.</dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_ship_weapon_a5d0c8b9cb45cd7470fb3868d9feb826d_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="aa577ecb44927339cdd0cb15ae4ae76e8" name="aa577ecb44927339cdd0cb15ae4ae76e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa577ecb44927339cdd0cb15ae4ae76e8">&#9670;&#160;</a></span>GetFirePosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2 ShipWeapon.GetFirePosition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>무기의 타입을 반환합니다. </p>
+<dl class="section return"><dt>Returns</dt><dd>무기 타입 enum 값.</dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_ship_weapon_aa577ecb44927339cdd0cb15ae4ae76e8_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="ae7bc58dd55023002947b1f497a082e5a" name="ae7bc58dd55023002947b1f497a082e5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7bc58dd55023002947b1f497a082e5a">&#9670;&#160;</a></span>GetWeaponName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ShipWeapon.GetWeaponName </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>무기 이름을 반환합니다. </p>
+<dl class="section return"><dt>Returns</dt><dd>무기 이름 문자열.</dd></dl>
+
+</div>
+</div>
+<a id="a7000e4dcb1a15943afba4709b71c13a9" name="a7000e4dcb1a15943afba4709b71c13a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7000e4dcb1a15943afba4709b71c13a9">&#9670;&#160;</a></span>GetWeaponType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WeaponType ShipWeapon.GetWeaponType </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>무기의 타입을 반환합니다. </p>
+<dl class="section return"><dt>Returns</dt><dd>무기 타입 enum 값.</dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_ship_weapon_a7000e4dcb1a15943afba4709b71c13a9_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a72518cf9b3021beca098c19c438dbc5f" name="a72518cf9b3021beca098c19c438dbc5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72518cf9b3021beca098c19c438dbc5f">&#9670;&#160;</a></span>IsReady()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ShipWeapon.IsReady </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>무기가 발사 가능한 상태인지 확인합니다. </p>
+<dl class="section return"><dt>Returns</dt><dd>쿨다운이 완료되었으면 true.</dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_ship_weapon_a72518cf9b3021beca098c19c438dbc5f_icgraph.svg" width="100%" height="377"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a4adb1453d46510d91db1cfe5005dc33d" name="a4adb1453d46510d91db1cfe5005dc33d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4adb1453d46510d91db1cfe5005dc33d">&#9670;&#160;</a></span>ResetCooldown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ShipWeapon.ResetCooldown </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>cooldown</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>무기의 쿨다운을 지정한 값으로 설정합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cooldown</td><td>설정할 쿨다운 시간.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1af36c3085a542d72b8b745f2a416f4a" name="a1af36c3085a542d72b8b745f2a416f4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1af36c3085a542d72b8b745f2a416f4a">&#9670;&#160;</a></span>UpdateCooldown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ShipWeapon.UpdateCooldown </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>deltaTime</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>매 프레임 호출되어 쿨다운 시간을 감소시킵니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaTime</td><td>경과 시간 (초).</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ship_weapon_a1af36c3085a542d72b8b745f2a416f4a_icgraph.svg" width="548" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Ship/Weapons/<b>ShipWeapon.cs</b></li>
 </ul>
