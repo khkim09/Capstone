@@ -16,13 +16,14 @@ public abstract class RoomData : ScriptableObject
         public int level;
         public int hitPoint;
         public Vector2Int size;
+        public int rotation;
         public int cost;
         public int crewRequirement;
         public float powerRequirement;
         public Dictionary<RoomDamageLevel, float> damageHitPointRate = new();
 
         public Sprite roomSprite;
-        // TODO: 스프라이트 완성되면 각 Scriptable Object 에 스프라이트 추가할 것
+        // TODO: 스프라이트 완성되면 각 Scriptable Object 에 스프라이트 추가할 것, rotation, roomPrefab(실제 배치될 방 prefab), previewPrefab(roomPrefab에서 alpha값만 0.5)
     }
 
     // 추상 메서드로 RoomLevel 데이터 가져오기

@@ -8,9 +8,12 @@ using Random = UnityEngine.Random;
 /// </summary>
 public abstract class Room : MonoBehaviour, IShipStatContributor
 {
-    [SerializeField] protected RoomData roomData; // 기본 타입으로 참조
+    [SerializeField] public RoomData roomData; // 기본 타입으로 참조
 
-    [HideInInspector] public Vector2Int position;
+
+    // customize ship 관련
+    public RoomType roomType;
+    public Vector2Int position;
 
     public int currentLevel;
 
@@ -19,8 +22,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [SerializeField][HideInInspector] protected float currentHitPoints; // 현재 체력
 
     [SerializeField][HideInInspector] protected OxygenLevel oxygenLevel = OxygenLevel.Normal; // 현재 산소 레벨
-
-    public RoomType roomType;
 
     private bool isDamageable;
 
@@ -422,7 +423,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
 
     // 전투 관련
-    public Vector2Int gridSize = new Vector2Int(2, 2);
 }
 
 // 제네릭 버전의 Room 클래스
