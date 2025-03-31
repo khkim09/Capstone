@@ -2,25 +2,50 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
+/// <summary>
+/// TradableItemList는 TradableItem 배열을 포함하는 컨테이너 클래스입니다.
+/// JSON 데이터 파싱에 사용됩니다.
+/// </summary>
 [System.Serializable]
 public class TradableItemList
 {
+    /// <summary>
+    /// 로드된 TradableItem 배열입니다.
+    /// </summary>
     public TradableItem[] items;
 }
 
+/// <summary>
+/// TradeDataLoader는 JSON 파일에서 거래 가능한 아이템 데이터를 로드하는 기능을 제공합니다.
+/// 로드된 데이터는 tradableItems 리스트에 저장됩니다.
+/// </summary>
 public class TradeDataLoader : MonoBehaviour
 {
-    // Resources 폴더 내의 JSON 파일 이름 (확장자 제외)
+    /// <summary>
+    /// Resources 폴더 내의 JSON 파일 이름 (확장자 제외).
+    /// 현재 사용되지 않지만, 추후 파일 이름 지정에 활용할 수 있습니다.
+    /// </summary>
     [SerializeField] private string jsonFileName = "행성";
 
-    // 로드된 TradableItem 데이터를 리스트로 보관
+    /// <summary>
+    /// 로드된 TradableItem 데이터를 저장하는 리스트입니다.
+    /// </summary>
     public List<TradableItem> tradableItems;
 
+    /// <summary>
+    /// Awake 메서드.
+    /// 컴포넌트 초기화 시 JSON 데이터를 로드합니다.
+    /// </summary>
     private void Awake()
     {
         LoadTradeData();
     }
 
+    /// <summary>
+    /// JSON 파일에서 거래 가능한 아이템 데이터를 로드합니다.
+    /// 파일 경로: Assets/Data/PlanetTradeTest.json
+    /// JSON 파일의 형식이 딕셔너리 형태일 경우, 불필요한 키를 제거하여 배열 형태로 변환 후 파싱합니다.
+    /// </summary>
     private void LoadTradeData()
     {
         // Assets/Data 폴더 내의 "PlanetTrade.json" 파일 경로 설정

@@ -2,19 +2,58 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// MiddlePanelUI는 중간 패널의 UI를 관리하며, 선택된 아이템의 상세 정보와 거래(구매, 판매) 기능을 제공합니다.
+/// </summary>
 public class MiddlePanelUI : MonoBehaviour
 {
-    [Header("UI References")]
-    [SerializeField] private TMP_Text selectedItemNameText;     // 선택된 아이템 이름
-    [SerializeField] private TMP_Text selectedItemDescriptionText; // 선택된 아이템 설명
-    [SerializeField] private TMP_InputField tradeNumInputField;    // 거래 수량 입력 필드
-    [SerializeField] private Button buyButton;                   // 구매 버튼
-    [SerializeField] private Button sellButton;                  // 판매 버튼
-    [SerializeField] private TMP_Text playerComaText;            // 플레이어 재화 텍스트
+    #region UI References
 
+    /// <summary>
+    /// 선택된 아이템 이름을 표시하는 텍스트 UI 요소입니다.
+    /// </summary>
+    [Header("UI References")]
+    [SerializeField] private TMP_Text selectedItemNameText;
+
+    /// <summary>
+    /// 선택된 아이템 설명을 표시하는 텍스트 UI 요소입니다.
+    /// </summary>
+    [SerializeField] private TMP_Text selectedItemDescriptionText;
+    /// <summary>
+    /// 거래 수량을 입력받는 텍스트 입력 필드입니다.
+    /// </summary>
+    [SerializeField] private TMP_InputField tradeNumInputField;
+    /// <summary>
+    /// 구매 버튼입니다.
+    /// </summary>
+    [SerializeField] private Button buyButton;
+    /// <summary>
+    /// 판매 버튼입니다.
+    /// </summary>
+    [SerializeField] private Button sellButton;
+    /// <summary>
+    /// 플레이어의 재화(Coma)를 표시하는 텍스트 UI 요소입니다.
+    /// </summary>
+    [SerializeField] private TMP_Text playerComaText;
+
+    #endregion
+
+    #region Private Fields
+
+    /// <summary>
+    /// 현재 선택된 TradableItem입니다.
+    /// </summary>
     private TradableItem selectedItem;
+    /// <summary>
+    /// 거래 관련 로직을 담당하는 TradeManager 컴포넌트입니다.
+    /// </summary>
     private TradeManager tradeManager;
 
+    #endregion
+
+    /// <summary>
+    /// 초기화 작업을 수행하고 버튼 이벤트를 등록하는 메서드입니다.
+    /// </summary>
     private void Start()
     {
         tradeManager = FindObjectOfType<TradeManager>();
@@ -28,9 +67,9 @@ public class MiddlePanelUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 왼쪽 인벤토리 아이템 클릭 시 호출되어 선택된 아이템의 상세정보를 표시합니다.
+    /// 선택된 아이템의 상세 정보를 UI에 표시하는 메서드입니다.
     /// </summary>
-    /// <param name="item">선택된 TradableItem</param>
+    /// <param name="item">UI에 표시할 선택된 TradableItem입니다.</param>
     public void SetSelectedItem(TradableItem item)
     {
         selectedItem = item;
@@ -42,6 +81,10 @@ public class MiddlePanelUI : MonoBehaviour
             tradeNumInputField.text = "1"; // 기본 거래 수량 1
     }
 
+    /// <summary>
+    /// 구매 버튼 클릭 시 호출되는 메서드입니다.
+    /// 선택된 아이템의 구매를 시도하고, 성공 시 인벤토리 UI를 갱신합니다.
+    /// </summary>
     private void OnBuyClicked()
     {
         if (selectedItem == null) return;
@@ -62,6 +105,10 @@ public class MiddlePanelUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 판매 버튼 클릭 시 호출되는 메서드입니다.
+    /// 선택된 아이템의 판매를 시도하고, 성공 시 인벤토리 UI를 갱신합니다.
+    /// </summary>
     private void OnSellClicked()
     {
         if (selectedItem == null) return;
@@ -81,6 +128,9 @@ public class MiddlePanelUI : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// 플레이어의 COMA(재화)를 UI에 갱신하는 메서드입니다.
+    /// </summary>
     public void UpdatePlayerComa()
     {
         if (playerComaText != null && tradeManager != null)

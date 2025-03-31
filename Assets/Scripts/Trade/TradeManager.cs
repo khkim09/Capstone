@@ -1,26 +1,51 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
+/// <summary>
+/// TradeManager는 무역 거래를 관리하는 클래스입니다.
+/// 플레이어의 재화(COMA)를 관리하며, 아이템의 구매 및 판매 기능을 제공합니다.
+/// </summary>
 public class TradeManager : MonoBehaviour
 {
-    // TradeDataLoader를 통해 로드된 데이터 참조
+    /// <summary>
+    /// TradeDataLoader를 통해 로드된 데이터의 참조입니다.
+    /// </summary>
     [SerializeField] private TradeDataLoader tradeDataLoader;
 
-    // 플레이어의 현재 재화 (COMA)
+    /// <summary>
+    /// 플레이어의 현재 재화(COMA)입니다. 초기값은 1000입니다.
+    /// </summary>
     [SerializeField] private int playerCOMA = 1000;
 
+    /// <summary>
+    /// MonoBehaviour의 Start 메서드입니다.
+    /// TradeDataLoader가 할당되지 않은 경우 씬에서 찾아 할당합니다.
+    /// </summary>
     private void Start()
     {
         if (tradeDataLoader == null)
             tradeDataLoader = FindObjectOfType<TradeDataLoader>();
     }
 
+    /// <summary>
+    /// 지정된 아이템과 수량에 대한 총 가격을 계산합니다.
+    /// </summary>
+    /// <param name="item">거래할 TradableItem 객체</param>
+    /// <param name="quantity">아이템 수량</param>
+    /// <returns>총 가격 (COMA 단위)</returns>
     public float GetTotalPrice(TradableItem item, int quantity)
     {
         float unitPrice = item.GetCurrentPrice();
         return unitPrice * quantity;
     }
 
+    /// <summary>
+    /// 지정된 아이템을 구매하는 메서드입니다.
+    /// 구매가 가능하면 아이템을 창고에 추가하고, 플레이어의 COMA를 차감합니다.
+    /// </summary>
+    /// <param name="item">구매할 TradableItem 객체</param>
+    /// <param name="quantity">구매할 수량</param>
+    /// <returns>구매 성공 시 true, 실패 시 false</returns>
     public bool BuyItem(TradableItem item, int quantity)
     {
         Storage warehouse = FindObjectOfType<Storage>();
@@ -60,6 +85,13 @@ public class TradeManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 지정된 아이템을 판매하는 메서드입니다.
+    /// 창고에 충분한 아이템이 있는 경우 판매하고, 판매 금액만큼 플레이어의 COMA를 증가시킵니다.
+    /// </summary>
+    /// <param name="item">판매할 TradableItem 객체</param>
+    /// <param name="quantity">판매할 수량</param>
+    /// <returns>판매 성공 시 true, 실패 시 false</returns>
     public bool SellItem(TradableItem item, int quantity)
     {
         // Storage를 찾습니다.
@@ -96,6 +128,10 @@ public class TradeManager : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// 현재 플레이어의 COMA(재화)를 반환합니다.
+    /// </summary>
+    /// <returns>플레이어의 현재 COMA 값</returns>
     public int GetPlayerCOMA()
     {
         return playerCOMA;
