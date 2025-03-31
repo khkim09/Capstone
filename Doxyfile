@@ -74,7 +74,7 @@ PROJECT_ICON           =
 # entered, it will be relative to the location where Doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       =
+OUTPUT_DIRECTORY       = docs/
 
 # If the CREATE_SUBDIRS tag is set to YES then Doxygen will create up to 4096
 # sub-directories (in 2 levels) under the output directory of each output format
@@ -2567,7 +2567,7 @@ HAVE_DOT               = YES
 # Minimum value: 0, maximum value: 32, default value: 0.
 # This tag requires that the tag HAVE_DOT is set to YES.
 
-DOT_NUM_THREADS        = 2
+DOT_NUM_THREADS        = 8
 
 # DOT_COMMON_ATTR is common attributes for nodes, edges and labels of
 # subgraphs. When you want a differently looking font in the dot files that
@@ -2580,7 +2580,7 @@ DOT_NUM_THREADS        = 2
 # The default value is: fontname=Helvetica,fontsize=10.
 # This tag requires that the tag HAVE_DOT is set to YES.
 
-DOT_COMMON_ATTR        = "fontname=Helvetica,fontsize=10"
+DOT_COMMON_ATTR = "concentrate=true, overlap=false"
 
 # DOT_EDGE_ATTR is concatenated with DOT_COMMON_ATTR. For elegant style you can
 # add 'arrowhead=open, arrowtail=open, arrowsize=0.5'. <a
@@ -2589,7 +2589,7 @@ DOT_COMMON_ATTR        = "fontname=Helvetica,fontsize=10"
 # The default value is: labelfontname=Helvetica,labelfontsize=10.
 # This tag requires that the tag HAVE_DOT is set to YES.
 
-DOT_EDGE_ATTR          = "labelfontname=Helvetica,labelfontsize=10"
+DOT_EDGE_ATTR          = "dir=forward, splines=ortho, fontname=Consolas, minlen=1"
 
 # DOT_NODE_ATTR is concatenated with DOT_COMMON_ATTR. For view without boxes
 # around nodes set 'shape=plain' or 'shape=plaintext' <a
@@ -2597,7 +2597,7 @@ DOT_EDGE_ATTR          = "labelfontname=Helvetica,labelfontsize=10"
 # The default value is: shape=box,height=0.2,width=0.4.
 # This tag requires that the tag HAVE_DOT is set to YES.
 
-DOT_NODE_ATTR          = "shape=box,height=0.2,width=0.4"
+DOT_NODE_ATTR          = "shape=box, style=bold, fontname=Consolas, fontsize=12"
 
 # You can set the path where dot can find font specified with fontname in
 # DOT_COMMON_ATTR and others dot attributes.
@@ -2919,11 +2919,3 @@ MSCGEN_TOOL            =
 
 MSCFILE_DIRS           =
 
-# 그래프 속성 설정
-DOT_GRAPH_ATTR = "bgcolor=#FAFAFA" "rankdir=LR"
-
-# 노드(클래스) 속성 설정
-DOT_NODE_ATTR = "fontname=Consolas" "fontsize=10" "style=filled" "height=0.2" "width=0.4" "margin=0.1"
-
-# 엣지(관계) 속성 설정
-#DOT_EDGE_ATTR = "color=#306080" "fontname=Consolas" "fontsize=8" "arrowhead=vee" "arrowsize=0.6" "style=solid"
