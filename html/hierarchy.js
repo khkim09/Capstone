@@ -7,12 +7,15 @@ var hierarchy =
     [ "EventChoice", "class_event_choice.html", null ],
     [ "EventOutcome", "class_event_outcome.html", null ],
     [ "IBeginDragHandler", null, [
+      [ "PlacedRoomInteraction", "class_placed_room_interaction.html", null ],
       [ "RoomDragHandler", "class_room_drag_handler.html", null ]
     ] ],
     [ "IDragHandler", null, [
+      [ "PlacedRoomInteraction", "class_placed_room_interaction.html", null ],
       [ "RoomDragHandler", "class_room_drag_handler.html", null ]
     ] ],
     [ "IEndDragHandler", null, [
+      [ "PlacedRoomInteraction", "class_placed_room_interaction.html", null ],
       [ "RoomDragHandler", "class_room_drag_handler.html", null ]
     ] ],
     [ "IGameStateMachine", "interface_i_game_state_machine.html", [
@@ -20,6 +23,7 @@ var hierarchy =
       [ "WarpStateMachine", "class_warp_state_machine.html", null ]
     ] ],
     [ "IPointerClickHandler", null, [
+      [ "PlacedRoomInteraction", "class_placed_room_interaction.html", null ],
       [ "Planet", "class_planet.html", null ],
       [ "RaceButtonController", "class_race_button_controller.html", null ]
     ] ],
@@ -32,6 +36,16 @@ var hierarchy =
       [ "RaceButtonController", "class_race_button_controller.html", null ]
     ] ],
     [ "IShipStatContributor", "interface_i_ship_stat_contributor.html", [
+      [ "CrewBase", "class_crew_base.html", [
+        [ "CrewMember", "class_crew_member.html", [
+          [ "Amorphous", "class_amorphous.html", null ],
+          [ "Beast", "class_beast.html", null ],
+          [ "Human", "class_human.html", null ],
+          [ "Insect", "class_insect.html", null ],
+          [ "MechanicSup", "class_mechanic_sup.html", null ],
+          [ "MechanicTank", "class_mechanic_tank.html", null ]
+        ] ]
+      ] ],
       [ "OuterHull", "class_outer_hull.html", null ],
       [ "Room", "class_room.html", [
         [ "Room< TData, TLevel >", "class_room-2-g.html", [
@@ -65,21 +79,13 @@ var hierarchy =
     ] ],
     [ "MonoBehaviour", null, [
       [ "AssistantEquipment", "class_assistant_equipment.html", null ],
+      [ "CameraZoomController", "class_camera_zoom_controller.html", null ],
       [ "CombatManager", "class_combat_manager.html", null ],
-      [ "CrewBase", "class_crew_base.html", [
-        [ "CrewMember", "class_crew_member.html", [
-          [ "Amorphous", "class_amorphous.html", null ],
-          [ "Beast", "class_beast.html", null ],
-          [ "Human", "class_human.html", null ],
-          [ "Insect", "class_insect.html", null ],
-          [ "MechanicSup", "class_mechanic_sup.html", null ],
-          [ "MechanicTank", "class_mechanic_tank.html", null ]
-        ] ]
-      ] ],
+      [ "CrewBase", "class_crew_base.html", null ],
       [ "CrewInfoLoader", "class_crew_info_loader.html", null ],
       [ "CrewManager", "class_crew_manager.html", null ],
       [ "CrewUIHandler", "class_crew_u_i_handler.html", null ],
-      [ "CustomizeShipCameraController", "class_customize_ship_camera_controller.html", null ],
+      [ "CustomizeShipUIHandler", "class_customize_ship_u_i_handler.html", null ],
       [ "DefaultCrewManagerScript", "class_default_crew_manager_script.html", null ],
       [ "Door", "class_door.html", null ],
       [ "EquipmentButton", "class_equipment_button.html", null ],
@@ -103,8 +109,11 @@ var hierarchy =
       [ "NewMonoBehaviourScript", "class_new_mono_behaviour_script.html", null ],
       [ "NodePlacementMap", "class_node_placement_map.html", null ],
       [ "OuterHull", "class_outer_hull.html", null ],
+      [ "PlacedRoomInteraction", "class_placed_room_interaction.html", null ],
       [ "Planet", "class_planet.html", null ],
       [ "PlanetTooltip", "class_planet_tooltip.html", null ],
+      [ "Projectile", "class_projectile.html", null ],
+      [ "ProjectileManager", "class_projectile_manager.html", null ],
       [ "QuestManager", "class_quest_manager.html", null ],
       [ "QuestUIManager", "class_quest_u_i_manager.html", null ],
       [ "RTSSelectionManager", "class_r_t_s_selection_manager.html", null ],
@@ -113,7 +122,7 @@ var hierarchy =
       [ "ResourceManager", "class_resource_manager.html", null ],
       [ "Room", "class_room.html", null ],
       [ "RoomDragHandler", "class_room_drag_handler.html", null ],
-      [ "RoomPlacementPreview", "class_room_placement_preview.html", null ],
+      [ "RoomsInventoryTooltipUI", "class_rooms_inventory_tooltip_u_i.html", null ],
       [ "SheildEquipment", "class_sheild_equipment.html", null ],
       [ "Ship", "class_ship.html", null ],
       [ "ShipCustomizationManager", "class_ship_customization_manager.html", null ],
@@ -123,7 +132,6 @@ var hierarchy =
       [ "ShipWeapon", "class_ship_weapon.html", null ],
       [ "Storage", "class_storage.html", null ],
       [ "TestPlayerItems", "class_test_player_items.html", null ],
-      [ "TileVisualRenderer", "class_tile_visual_renderer.html", null ],
       [ "TradeDataLoader", "class_trade_data_loader.html", null ],
       [ "TradeItemUI", "class_trade_item_u_i.html", null ],
       [ "TradeManager", "class_trade_manager.html", null ],
@@ -168,6 +176,7 @@ var hierarchy =
       [ "ItemTypes", "class_item_types.html", null ],
       [ "MysteryEventData", "class_mystery_event_data.html", null ],
       [ "OuterHullData", "class_outer_hull_data.html", null ],
+      [ "PlanetTradeData", "class_planet_trade_data.html", null ],
       [ "RandomEvent", "class_random_event.html", null ],
       [ "RandomQuest", "class_random_quest.html", null ],
       [ "RoomData", "class_room_data.html", [
@@ -195,6 +204,7 @@ var hierarchy =
     [ "ShipSystem", "class_ship_system.html", [
       [ "CrewSystem", "class_crew_system.html", null ],
       [ "HitPointSystem", "class_hit_point_system.html", null ],
+      [ "MoraleSystem", "class_morale_system.html", null ],
       [ "OuterHullSystem", "class_outer_hull_system.html", null ],
       [ "OxygenSystem", "class_oxygen_system.html", null ],
       [ "PowerSystem", "class_power_system.html", null ],

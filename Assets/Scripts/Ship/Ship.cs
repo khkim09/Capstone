@@ -66,6 +66,7 @@ public class Ship : MonoBehaviour
     public GameObject testRoomPrefab2;
 
     public event Action OnStatsChanged;
+    public event Action OnRoomChanged;
 
     /// <summary>
     /// 함선의 초기 상태를 설정합니다.
@@ -127,6 +128,9 @@ public class Ship : MonoBehaviour
         room.position = position;
         allRooms.Add(room);
 
+        // 방 갱신
+        OnRoomChanged?.Invoke(); // 방 바뀔 때마다 알림
+
         // Add to type dictionary
         if (!roomsByType.ContainsKey(room.roomType))
             roomsByType[room.roomType] = new List<Room>();
@@ -180,7 +184,7 @@ public class Ship : MonoBehaviour
 
         // Remove from list
         allRooms.Remove(room);
-        Destroy(room.gameObject);
+        OnRoomChanged?.Invoke(); // 방 갱신
 
         // TODO: MoraleManager에서 사기 계산하기 해야됨
 

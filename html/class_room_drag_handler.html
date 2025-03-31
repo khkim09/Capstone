@@ -99,44 +99,181 @@ $(function(){initNavTree('class_room_drag_handler.html',''); initResizable(true)
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_room_drag_handler-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">RoomDragHandler Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>방 설치, 회전, 삭제, 이동까지 담당하는 드래그 핸들러  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for RoomDragHandler:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_room_drag_handler__inherit__graph.svg" width="502" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_room_drag_handler__inherit__graph.svg" width="502" height="390"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for RoomDragHandler:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_room_drag_handler__coll__graph.svg" width="502" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_room_drag_handler__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9c16eddb910a27beb0370af2ed8db9d8" id="r_a9c16eddb910a27beb0370af2ed8db9d8"><td class="memItemLeft" align="right" valign="top"><a id="a9c16eddb910a27beb0370af2ed8db9d8" name="a9c16eddb910a27beb0370af2ed8db9d8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnBeginDrag</b> (PointerEventData eventData)</td></tr>
+<tr class="memitem:acc9dba2f2fb1cd7eb4fa92a7e5fed81f" id="r_acc9dba2f2fb1cd7eb4fa92a7e5fed81f"><td class="memItemLeft" align="right" valign="top"><a id="acc9dba2f2fb1cd7eb4fa92a7e5fed81f" name="acc9dba2f2fb1cd7eb4fa92a7e5fed81f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>InitializeFromRoomData</b> (<a class="el" href="class_room_data.html">RoomData</a> data, int level)</td></tr>
+<tr class="separator:acc9dba2f2fb1cd7eb4fa92a7e5fed81f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c16eddb910a27beb0370af2ed8db9d8" id="r_a9c16eddb910a27beb0370af2ed8db9d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c16eddb910a27beb0370af2ed8db9d8">OnBeginDrag</a> (PointerEventData eventData)</td></tr>
+<tr class="memdesc:a9c16eddb910a27beb0370af2ed8db9d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">드래그를 시작할 때의 작업입니다. preview (실루엣)를 생성하고 alpha값을 0.5로 조정합니다. (SetAlpha() 호출) UI와 겹치지 않기 위해 z값을 조정합니다. (MoveToFront() 호출)  <br /></td></tr>
 <tr class="separator:a9c16eddb910a27beb0370af2ed8db9d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbda651fd176e4855927af958a172776" id="r_acbda651fd176e4855927af958a172776"><td class="memItemLeft" align="right" valign="top"><a id="acbda651fd176e4855927af958a172776" name="acbda651fd176e4855927af958a172776"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnDrag</b> (PointerEventData eventData)</td></tr>
+<tr class="memitem:acbda651fd176e4855927af958a172776" id="r_acbda651fd176e4855927af958a172776"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbda651fd176e4855927af958a172776">OnDrag</a> (PointerEventData eventData)</td></tr>
+<tr class="memdesc:acbda651fd176e4855927af958a172776"><td class="mdescLeft">&#160;</td><td class="mdescRight">드래그 하는 동안의 작업입니다. 항상 n x n 사이즈 블록의 가장 좌측 하단의 블록을 기준점으로 설치하도록 합니다. 설치 가능 여부에 따라 (canPlace 값) preview (실루엣)의 색상 변동을 구현합니다. 드래그 하는 동안 우클릭 시, 시계 방향으로 90도 씩 회전합니다.  <br /></td></tr>
 <tr class="separator:acbda651fd176e4855927af958a172776"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dd674585eac9f7268c01c9665612d46" id="r_a2dd674585eac9f7268c01c9665612d46"><td class="memItemLeft" align="right" valign="top"><a id="a2dd674585eac9f7268c01c9665612d46" name="a2dd674585eac9f7268c01c9665612d46"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnEndDrag</b> (PointerEventData eventData)</td></tr>
+<tr class="memitem:a2dd674585eac9f7268c01c9665612d46" id="r_a2dd674585eac9f7268c01c9665612d46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dd674585eac9f7268c01c9665612d46">OnEndDrag</a> (PointerEventData eventData)</td></tr>
+<tr class="memdesc:a2dd674585eac9f7268c01c9665612d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">드래그 종료 후 작업입니다. 현재 마우스 위치에 방을 설치하고, preview (실루엣)을 삭제합니다.  <br /></td></tr>
 <tr class="separator:a2dd674585eac9f7268c01c9665612d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:a7a9d5c6927845e8a654ed2b19bfc0b58" id="r_a7a9d5c6927845e8a654ed2b19bfc0b58"><td class="memItemLeft" align="right" valign="top"><a id="a7a9d5c6927845e8a654ed2b19bfc0b58" name="a7a9d5c6927845e8a654ed2b19bfc0b58"></a>
+<a class="el" href="class_room_data.html">RoomData</a>&#160;</td><td class="memItemRight" valign="bottom"><b>roomData</b></td></tr>
+<tr class="separator:a7a9d5c6927845e8a654ed2b19bfc0b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a933dcb5bb3b99221a02c69efc11a8e58" id="r_a933dcb5bb3b99221a02c69efc11a8e58"><td class="memItemLeft" align="right" valign="top"><a id="a933dcb5bb3b99221a02c69efc11a8e58" name="a933dcb5bb3b99221a02c69efc11a8e58"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>roomPrefab</b></td></tr>
+<tr class="separator:a933dcb5bb3b99221a02c69efc11a8e58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a893818078e0f0bbd24f276da0301f00e" id="r_a893818078e0f0bbd24f276da0301f00e"><td class="memItemLeft" align="right" valign="top"><a id="a893818078e0f0bbd24f276da0301f00e" name="a893818078e0f0bbd24f276da0301f00e"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>previewPrefab</b></td></tr>
 <tr class="separator:a893818078e0f0bbd24f276da0301f00e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a785baafc95e4db8e03084da5220d3d0d" id="r_a785baafc95e4db8e03084da5220d3d0d"><td class="memItemLeft" align="right" valign="top"><a id="a785baafc95e4db8e03084da5220d3d0d" name="a785baafc95e4db8e03084da5220d3d0d"></a>
-Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><b>roomSize</b> = new Vector2Int(2, 2)</td></tr>
+Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><b>roomSize</b></td></tr>
 <tr class="separator:a785baafc95e4db8e03084da5220d3d0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eb5c0a75c3ce94a76207105f69e86c3" id="r_a5eb5c0a75c3ce94a76207105f69e86c3"><td class="memItemLeft" align="right" valign="top"><a id="a5eb5c0a75c3ce94a76207105f69e86c3" name="a5eb5c0a75c3ce94a76207105f69e86c3"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>rotation</b></td></tr>
+<tr class="separator:a5eb5c0a75c3ce94a76207105f69e86c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3bd9d2d9cf4e84638e5aff7eb6cc207" id="r_ae3bd9d2d9cf4e84638e5aff7eb6cc207"><td class="memItemLeft" align="right" valign="top"><a id="ae3bd9d2d9cf4e84638e5aff7eb6cc207" name="ae3bd9d2d9cf4e84638e5aff7eb6cc207"></a>
+SpriteRenderer&#160;</td><td class="memItemRight" valign="bottom"><b>previewSR</b></td></tr>
+<tr class="separator:ae3bd9d2d9cf4e84638e5aff7eb6cc207"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a20cc8b32a8bc766fb315ad61fc3a95b2" id="r_a20cc8b32a8bc766fb315ad61fc3a95b2"><td class="memItemLeft" align="right" valign="top"><a id="a20cc8b32a8bc766fb315ad61fc3a95b2" name="a20cc8b32a8bc766fb315ad61fc3a95b2"></a>
+static <a class="el" href="class_room_drag_handler.html">RoomDragHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b></td></tr>
+<tr class="separator:a20cc8b32a8bc766fb315ad61fc3a95b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>방 설치, 회전, 삭제, 이동까지 담당하는 드래그 핸들러 </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9c16eddb910a27beb0370af2ed8db9d8" name="a9c16eddb910a27beb0370af2ed8db9d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c16eddb910a27beb0370af2ed8db9d8">&#9670;&#160;</a></span>OnBeginDrag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoomDragHandler.OnBeginDrag </td>
+          <td>(</td>
+          <td class="paramtype">PointerEventData</td>          <td class="paramname"><span class="paramname"><em>eventData</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>드래그를 시작할 때의 작업입니다. preview (실루엣)를 생성하고 alpha값을 0.5로 조정합니다. (SetAlpha() 호출) UI와 겹치지 않기 위해 z값을 조정합니다. (MoveToFront() 호출) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eventData</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acbda651fd176e4855927af958a172776" name="acbda651fd176e4855927af958a172776"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbda651fd176e4855927af958a172776">&#9670;&#160;</a></span>OnDrag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoomDragHandler.OnDrag </td>
+          <td>(</td>
+          <td class="paramtype">PointerEventData</td>          <td class="paramname"><span class="paramname"><em>eventData</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>드래그 하는 동안의 작업입니다. 항상 n x n 사이즈 블록의 가장 좌측 하단의 블록을 기준점으로 설치하도록 합니다. 설치 가능 여부에 따라 (canPlace 값) preview (실루엣)의 색상 변동을 구현합니다. 드래그 하는 동안 우클릭 시, 시계 방향으로 90도 씩 회전합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eventData</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_room_drag_handler_acbda651fd176e4855927af958a172776_cgraph.svg" width="416" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a2dd674585eac9f7268c01c9665612d46" name="a2dd674585eac9f7268c01c9665612d46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dd674585eac9f7268c01c9665612d46">&#9670;&#160;</a></span>OnEndDrag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoomDragHandler.OnEndDrag </td>
+          <td>(</td>
+          <td class="paramtype">PointerEventData</td>          <td class="paramname"><span class="paramname"><em>eventData</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>드래그 종료 후 작업입니다. 현재 마우스 위치에 방을 설치하고, preview (실루엣)을 삭제합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eventData</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_room_drag_handler_a2dd674585eac9f7268c01c9665612d46_cgraph.svg" width="642" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Assets/Scripts/Placement/<b>RoomDragHandler.cs</b></li>
+<li>Assets/Scripts/CustomizeShip/<b>RoomDragHandler.cs</b></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

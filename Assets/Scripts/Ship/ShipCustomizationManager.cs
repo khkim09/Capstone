@@ -140,4 +140,33 @@ public class ShipCustomizationManager : MonoBehaviour
         placedModules.Clear();
         Debug.Log("모든 모듈이 삭제되었습니다.");
     }
+
+    /// <summary>
+    /// 저장된 room 배치
+    /// </summary>
+    /// <param name="savedRoom"></param>
+    public void PlaceSavedRoom(Room savedRoom)
+    {
+        Vector3 placePos = GridCenter(savedRoom.position);
+        GameObject prefab = GetPrefabByRoomType(savedRoom.roomType);
+        if (prefab == null) return;
+
+        GameObject newRoomObj = Instantiate(prefab, placePos, Quaternion.identity, modulesContainer);
+        Room roomInstance = newRoomObj.GetComponent<Room>();
+        roomInstance.roomData = savedRoom.roomData;
+        roomInstance.position = savedRoom.position;
+        placedModules[savedRoom.position] = newRoomObj;
+    }
+
+    private GameObject GetPrefabByRoomType(RoomType type)
+    {
+        // RoomType별 프리팹을 반환
+        switch (type)
+        {
+            case RoomType.Corridor: return corridorPrefab;
+            // case RoomType.Door: return doorPrefab;
+            // 필요시 추가
+            default: return null;
+        }
+    }
 }

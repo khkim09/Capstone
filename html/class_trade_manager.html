@@ -102,6 +102,9 @@ $(function(){initNavTree('class_trade_manager.html',''); initResizable(true); })
   <div class="headertitle"><div class="title">TradeManager Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>TradeManager는 무역 거래를 관리하는 클래스입니다. 플레이어의 재화(COMA)를 관리하며, 아이템의 구매 및 판매 기능을 제공합니다.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for TradeManager:</div>
 <div class="dyncontent">
@@ -115,19 +118,187 @@ Collaboration diagram for TradeManager:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aef559d6f0f6b8529909ae3db8def5934" id="r_aef559d6f0f6b8529909ae3db8def5934"><td class="memItemLeft" align="right" valign="top"><a id="aef559d6f0f6b8529909ae3db8def5934" name="aef559d6f0f6b8529909ae3db8def5934"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GetTotalPrice</b> (<a class="el" href="class_tradable_item.html">TradableItem</a> item, int quantity)</td></tr>
+<tr class="memitem:aef559d6f0f6b8529909ae3db8def5934" id="r_aef559d6f0f6b8529909ae3db8def5934"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef559d6f0f6b8529909ae3db8def5934">GetTotalPrice</a> (<a class="el" href="class_tradable_item.html">TradableItem</a> item, int quantity)</td></tr>
+<tr class="memdesc:aef559d6f0f6b8529909ae3db8def5934"><td class="mdescLeft">&#160;</td><td class="mdescRight">지정된 아이템과 수량에 대한 총 가격을 계산합니다.  <br /></td></tr>
 <tr class="separator:aef559d6f0f6b8529909ae3db8def5934"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a539ec72e8f406214e1424e963641c9ca" id="r_a539ec72e8f406214e1424e963641c9ca"><td class="memItemLeft" align="right" valign="top"><a id="a539ec72e8f406214e1424e963641c9ca" name="a539ec72e8f406214e1424e963641c9ca"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>BuyItem</b> (<a class="el" href="class_tradable_item.html">TradableItem</a> item, int quantity)</td></tr>
+<tr class="memitem:a539ec72e8f406214e1424e963641c9ca" id="r_a539ec72e8f406214e1424e963641c9ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a539ec72e8f406214e1424e963641c9ca">BuyItem</a> (<a class="el" href="class_tradable_item.html">TradableItem</a> item, int quantity)</td></tr>
+<tr class="memdesc:a539ec72e8f406214e1424e963641c9ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">지정된 아이템을 구매하는 메서드입니다. 구매가 가능하면 아이템을 창고에 추가하고, 플레이어의 COMA를 차감합니다.  <br /></td></tr>
 <tr class="separator:a539ec72e8f406214e1424e963641c9ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d33a8cd0cf2452b8442bdcfb97dd6c9" id="r_a3d33a8cd0cf2452b8442bdcfb97dd6c9"><td class="memItemLeft" align="right" valign="top"><a id="a3d33a8cd0cf2452b8442bdcfb97dd6c9" name="a3d33a8cd0cf2452b8442bdcfb97dd6c9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>SellItem</b> (<a class="el" href="class_tradable_item.html">TradableItem</a> item, int quantity)</td></tr>
+<tr class="memitem:a3d33a8cd0cf2452b8442bdcfb97dd6c9" id="r_a3d33a8cd0cf2452b8442bdcfb97dd6c9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d33a8cd0cf2452b8442bdcfb97dd6c9">SellItem</a> (<a class="el" href="class_tradable_item.html">TradableItem</a> item, int quantity)</td></tr>
+<tr class="memdesc:a3d33a8cd0cf2452b8442bdcfb97dd6c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">지정된 아이템을 판매하는 메서드입니다. 창고에 충분한 아이템이 있는 경우 판매하고, 판매 금액만큼 플레이어의 COMA를 증가시킵니다.  <br /></td></tr>
 <tr class="separator:a3d33a8cd0cf2452b8442bdcfb97dd6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad882b09e13ed5e0b71df3746f1e221b7" id="r_ad882b09e13ed5e0b71df3746f1e221b7"><td class="memItemLeft" align="right" valign="top"><a id="ad882b09e13ed5e0b71df3746f1e221b7" name="ad882b09e13ed5e0b71df3746f1e221b7"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetPlayerCOMA</b> ()</td></tr>
+<tr class="memitem:ad882b09e13ed5e0b71df3746f1e221b7" id="r_ad882b09e13ed5e0b71df3746f1e221b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad882b09e13ed5e0b71df3746f1e221b7">GetPlayerCOMA</a> ()</td></tr>
+<tr class="memdesc:ad882b09e13ed5e0b71df3746f1e221b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 플레이어의 COMA(재화)를 반환합니다.  <br /></td></tr>
 <tr class="separator:ad882b09e13ed5e0b71df3746f1e221b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>TradeManager는 무역 거래를 관리하는 클래스입니다. 플레이어의 재화(COMA)를 관리하며, 아이템의 구매 및 판매 기능을 제공합니다. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a539ec72e8f406214e1424e963641c9ca" name="a539ec72e8f406214e1424e963641c9ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a539ec72e8f406214e1424e963641c9ca">&#9670;&#160;</a></span>BuyItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TradeManager.BuyItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_tradable_item.html">TradableItem</a></td>          <td class="paramname"><span class="paramname"><em>item</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>quantity</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>지정된 아이템을 구매하는 메서드입니다. 구매가 가능하면 아이템을 창고에 추가하고, 플레이어의 COMA를 차감합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>구매할 <a class="el" href="class_tradable_item.html" title="TradableItem 클래스는 거래 가능한 아이템의 데이터를 담고 있으며, 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다.">TradableItem</a> 객체</td></tr>
+    <tr><td class="paramname">quantity</td><td>구매할 수량</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>구매 성공 시 true, 실패 시 false</dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_trade_manager_a539ec72e8f406214e1424e963641c9ca_cgraph.svg" width="100%" height="410"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="ad882b09e13ed5e0b71df3746f1e221b7" name="ad882b09e13ed5e0b71df3746f1e221b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad882b09e13ed5e0b71df3746f1e221b7">&#9670;&#160;</a></span>GetPlayerCOMA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int TradeManager.GetPlayerCOMA </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>현재 플레이어의 COMA(재화)를 반환합니다. </p>
+<dl class="section return"><dt>Returns</dt><dd>플레이어의 현재 COMA 값</dd></dl>
+
+</div>
+</div>
+<a id="aef559d6f0f6b8529909ae3db8def5934" name="aef559d6f0f6b8529909ae3db8def5934"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef559d6f0f6b8529909ae3db8def5934">&#9670;&#160;</a></span>GetTotalPrice()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TradeManager.GetTotalPrice </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_tradable_item.html">TradableItem</a></td>          <td class="paramname"><span class="paramname"><em>item</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>quantity</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>지정된 아이템과 수량에 대한 총 가격을 계산합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>거래할 <a class="el" href="class_tradable_item.html" title="TradableItem 클래스는 거래 가능한 아이템의 데이터를 담고 있으며, 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다.">TradableItem</a> 객체</td></tr>
+    <tr><td class="paramname">quantity</td><td>아이템 수량</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>총 가격 (COMA 단위)</dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_trade_manager_aef559d6f0f6b8529909ae3db8def5934_cgraph.svg" width="660" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_trade_manager_aef559d6f0f6b8529909ae3db8def5934_icgraph.svg" width="404" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a3d33a8cd0cf2452b8442bdcfb97dd6c9" name="a3d33a8cd0cf2452b8442bdcfb97dd6c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d33a8cd0cf2452b8442bdcfb97dd6c9">&#9670;&#160;</a></span>SellItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TradeManager.SellItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_tradable_item.html">TradableItem</a></td>          <td class="paramname"><span class="paramname"><em>item</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>quantity</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>지정된 아이템을 판매하는 메서드입니다. 창고에 충분한 아이템이 있는 경우 판매하고, 판매 금액만큼 플레이어의 COMA를 증가시킵니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>판매할 <a class="el" href="class_tradable_item.html" title="TradableItem 클래스는 거래 가능한 아이템의 데이터를 담고 있으며, 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다.">TradableItem</a> 객체</td></tr>
+    <tr><td class="paramname">quantity</td><td>판매할 수량</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>판매 성공 시 true, 실패 시 false</dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_trade_manager_a3d33a8cd0cf2452b8442bdcfb97dd6c9_cgraph.svg" width="630" height="147"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Trade/<b>TradeManager.cs</b></li>
 </ul>

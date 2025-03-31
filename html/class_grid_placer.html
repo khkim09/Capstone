@@ -107,28 +107,47 @@ $(function(){initNavTree('class_grid_placer.html',''); initResizable(true); });
 <div class="dynheader">
 Inheritance diagram for GridPlacer:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_grid_placer__inherit__graph.svg" width="135" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_grid_placer__inherit__graph.svg" width="135" height="368"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for GridPlacer:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_grid_placer__coll__graph.svg" width="222" height="220"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_grid_placer__coll__graph.svg" width="222" height="348"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a94a705ed808a4defa523f89672b82906" id="r_a94a705ed808a4defa523f89672b82906"><td class="memItemLeft" align="right" valign="top"><a id="a94a705ed808a4defa523f89672b82906" name="a94a705ed808a4defa523f89672b82906"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>CanPlaceRoom</b> (Vector2Int startGrid, Vector2Int roomSize)</td></tr>
+<tr class="memitem:a1903444fb2ff22b35e6dab2bfea054de" id="r_a1903444fb2ff22b35e6dab2bfea054de"><td class="memItemLeft" align="right" valign="top"><a id="a1903444fb2ff22b35e6dab2bfea054de" name="a1903444fb2ff22b35e6dab2bfea054de"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>GenerateTiles</b> ()</td></tr>
+<tr class="memdesc:a1903444fb2ff22b35e6dab2bfea054de"><td class="mdescLeft">&#160;</td><td class="mdescRight">함선 커스터마이징에 사용할 그리드 생성 모든 tile object는 gridTiles 오브젝트의 자식으로 생성됩니다. <br /></td></tr>
+<tr class="separator:a1903444fb2ff22b35e6dab2bfea054de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94a705ed808a4defa523f89672b82906" id="r_a94a705ed808a4defa523f89672b82906"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94a705ed808a4defa523f89672b82906">CanPlaceRoom</a> (Vector2Int startGrid, Vector2Int roomSize)</td></tr>
+<tr class="memdesc:a94a705ed808a4defa523f89672b82906"><td class="mdescLeft">&#160;</td><td class="mdescRight">방 설치 전, 드래그 중인 방에 대해 해당 위치에 설치 가능한지 여부를 판단합니다. (preview 형식 - 실루엣) 해당 영역에 방 설치가 가능하다면 true 반환 (색상 : 초록색, alpha : 0.5f) 방 설치 불가하다면 false 반환 (색상 : 빨간색, alpha : 0.5f)  <br /></td></tr>
 <tr class="separator:a94a705ed808a4defa523f89672b82906"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f5eb95d8ac38a1a08075213b52844fd" id="r_a2f5eb95d8ac38a1a08075213b52844fd"><td class="memItemLeft" align="right" valign="top"><a id="a2f5eb95d8ac38a1a08075213b52844fd" name="a2f5eb95d8ac38a1a08075213b52844fd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>PlaceRoom</b> (Vector2Int startGrid, Vector2Int roomSize)</td></tr>
-<tr class="separator:a2f5eb95d8ac38a1a08075213b52844fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accae6dd63410e18f1ebb323755ae8cdf" id="r_accae6dd63410e18f1ebb323755ae8cdf"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accae6dd63410e18f1ebb323755ae8cdf">PlaceRoom</a> (Vector2Int startGrid, Vector2Int roomSize, GameObject roomPrefab, int rotation)</td></tr>
+<tr class="memdesc:accae6dd63410e18f1ebb323755ae8cdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">실제로 호버한 위치에 해당 영역에 방을 설치합니다. 방을 설치하고자 하는 위치에 설치 가능 여부를 검사해, 설치를 진행합니다.  <br /></td></tr>
+<tr class="separator:accae6dd63410e18f1ebb323755ae8cdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aff764b1840caed8ae6c1ac2c6452d8b9" id="r_aff764b1840caed8ae6c1ac2c6452d8b9"><td class="memItemLeft" align="right" valign="top"><a id="aff764b1840caed8ae6c1ac2c6452d8b9" name="aff764b1840caed8ae6c1ac2c6452d8b9"></a>
-GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>roomPrefab</b></td></tr>
-<tr class="separator:aff764b1840caed8ae6c1ac2c6452d8b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3bed6db43534f52cebd7c29b19bd05e" id="r_aa3bed6db43534f52cebd7c29b19bd05e"><td class="memItemLeft" align="right" valign="top"><a id="aa3bed6db43534f52cebd7c29b19bd05e" name="aa3bed6db43534f52cebd7c29b19bd05e"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>tilePrefab</b></td></tr>
+<tr class="separator:aa3bed6db43534f52cebd7c29b19bd05e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dd503c7d477fed2852aac32eebc8650" id="r_a7dd503c7d477fed2852aac32eebc8650"><td class="memItemLeft" align="right" valign="top"><a id="a7dd503c7d477fed2852aac32eebc8650" name="a7dd503c7d477fed2852aac32eebc8650"></a>
+Transform&#160;</td><td class="memItemRight" valign="bottom"><b>gridTiles</b></td></tr>
+<tr class="separator:a7dd503c7d477fed2852aac32eebc8650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a311be7b7466a85b6012d2adedf3f3eb8" id="r_a311be7b7466a85b6012d2adedf3f3eb8"><td class="memItemLeft" align="right" valign="top"><a id="a311be7b7466a85b6012d2adedf3f3eb8" name="a311be7b7466a85b6012d2adedf3f3eb8"></a>
+Transform&#160;</td><td class="memItemRight" valign="bottom"><b>placedRooms</b></td></tr>
+<tr class="separator:a311be7b7466a85b6012d2adedf3f3eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63bf9f04c2fd7a73e6ee9edb7dc5baf8" id="r_a63bf9f04c2fd7a73e6ee9edb7dc5baf8"><td class="memItemLeft" align="right" valign="top"><a id="a63bf9f04c2fd7a73e6ee9edb7dc5baf8" name="a63bf9f04c2fd7a73e6ee9edb7dc5baf8"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>width</b> = 60</td></tr>
+<tr class="separator:a63bf9f04c2fd7a73e6ee9edb7dc5baf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee4e76589049c693d7e0396cb34891f5" id="r_aee4e76589049c693d7e0396cb34891f5"><td class="memItemLeft" align="right" valign="top"><a id="aee4e76589049c693d7e0396cb34891f5" name="aee4e76589049c693d7e0396cb34891f5"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>height</b> = 60</td></tr>
+<tr class="separator:aee4e76589049c693d7e0396cb34891f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48e86d4c5413a64ac7487d52f2d8083e" id="r_a48e86d4c5413a64ac7487d52f2d8083e"><td class="memItemLeft" align="right" valign="top"><a id="a48e86d4c5413a64ac7487d52f2d8083e" name="a48e86d4c5413a64ac7487d52f2d8083e"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>tileSize</b> = 1f</td></tr>
+<tr class="separator:a48e86d4c5413a64ac7487d52f2d8083e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -136,8 +155,112 @@ Static Public Attributes</h2></td></tr>
 static <a class="el" href="class_grid_placer.html">GridPlacer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b></td></tr>
 <tr class="separator:a1264a50e5c4a55244b9acde3bc28f2d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a94a705ed808a4defa523f89672b82906" name="a94a705ed808a4defa523f89672b82906"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94a705ed808a4defa523f89672b82906">&#9670;&#160;</a></span>CanPlaceRoom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GridPlacer.CanPlaceRoom </td>
+          <td>(</td>
+          <td class="paramtype">Vector2Int</td>          <td class="paramname"><span class="paramname"><em>startGrid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector2Int</td>          <td class="paramname"><span class="paramname"><em>roomSize</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>방 설치 전, 드래그 중인 방에 대해 해당 위치에 설치 가능한지 여부를 판단합니다. (preview 형식 - 실루엣) 해당 영역에 방 설치가 가능하다면 true 반환 (색상 : 초록색, alpha : 0.5f) 방 설치 불가하다면 false 반환 (색상 : 빨간색, alpha : 0.5f) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startGrid</td><td></td></tr>
+    <tr><td class="paramname">roomSize</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_grid_placer_a94a705ed808a4defa523f89672b82906_icgraph.svg" width="666" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="accae6dd63410e18f1ebb323755ae8cdf" name="accae6dd63410e18f1ebb323755ae8cdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accae6dd63410e18f1ebb323755ae8cdf">&#9670;&#160;</a></span>PlaceRoom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject GridPlacer.PlaceRoom </td>
+          <td>(</td>
+          <td class="paramtype">Vector2Int</td>          <td class="paramname"><span class="paramname"><em>startGrid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector2Int</td>          <td class="paramname"><span class="paramname"><em>roomSize</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GameObject</td>          <td class="paramname"><span class="paramname"><em>roomPrefab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>rotation</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>실제로 호버한 위치에 해당 영역에 방을 설치합니다. 방을 설치하고자 하는 위치에 설치 가능 여부를 검사해, 설치를 진행합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startGrid</td><td></td></tr>
+    <tr><td class="paramname">roomSize</td><td></td></tr>
+    <tr><td class="paramname">roomPrefab</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_grid_placer_accae6dd63410e18f1ebb323755ae8cdf_cgraph.svg" width="392" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_grid_placer_accae6dd63410e18f1ebb323755ae8cdf_icgraph.svg" width="415" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Assets/Scripts/Placement/<b>GridPlacer.cs</b></li>
+<li>Assets/Scripts/CustomizeShip/<b>GridPlacer.cs</b></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

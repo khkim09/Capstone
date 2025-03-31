@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['recalculateprice_0',['RecalculatePrice',['../class_tradable_item.html#a489fb9d4a846f4e4f0fc245c1eb39a29',1,'TradableItem']]],
-  ['removeitem_1',['RemoveItem',['../class_storage_room_base.html#aaa27b8228736eea1f176d77694099368',1,'StorageRoomBase.RemoveItem()'],['../class_storage.html#a1d8b71a4c34ce1510237c49728842fb2',1,'Storage.RemoveItem()']]],
-  ['removemodule_2',['RemoveModule',['../class_ship_customization_manager.html#a5efe2c2e4d83efd4f902c04538016649',1,'ShipCustomizationManager']]]
+  ['placemodule_0',['PlaceModule',['../class_ship_customization_manager.html#af3240d0321663cfc9886a3e4e5d56895',1,'ShipCustomizationManager']]],
+  ['placeroom_1',['PlaceRoom',['../class_grid_placer.html#accae6dd63410e18f1ebb323755ae8cdf',1,'GridPlacer']]],
+  ['placesavedroom_2',['PlaceSavedRoom',['../class_ship_customization_manager.html#ad55b979e1fa9b5a0e4da27352c39523d',1,'ShipCustomizationManager']]],
+  ['populateinventory_3',['PopulateInventory',['../class_inventory_u_i.html#af02748a53515b07d308d2a3d5907c365',1,'InventoryUI']]]
 ];

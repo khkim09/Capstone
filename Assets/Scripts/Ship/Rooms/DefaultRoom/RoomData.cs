@@ -28,6 +28,9 @@ public abstract class RoomData : ScriptableObject
         /// <summary>업그레이드 비용.</summary>
         public int cost;
 
+        /// <summary> 방 회전 상태 </summary>
+        public int rotation;
+
         /// <summary>작동에 필요한 최소 선원 수.</summary>
         public int crewRequirement;
 
@@ -39,7 +42,7 @@ public abstract class RoomData : ScriptableObject
 
         /// <summary>해당 레벨의 방 스프라이트.</summary>
         public Sprite roomSprite;
-        // TODO: 스프라이트 완성되면 각 Scriptable Object 에 스프라이트 추가할 것
+        // TODO: 스프라이트 완성되면 각 Scriptable Object 에 스프라이트 추가할 것, rotation, roomPrefab(실제 배치될 방 prefab), previewPrefab(roomPrefab에서 alpha값만 0.5)
     }
 
     /// <summary>
