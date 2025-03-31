@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['racebuttoncontroller_0',['RaceButtonController',['../class_race_button_controller.html',1,'']]],
+  ['racestat_1',['RaceStat',['../class_crew_race_stat_1_1_race_stat.html',1,'CrewRaceStat']]],
+  ['racetooltip_2',['RaceTooltip',['../class_race_tooltip.html',1,'']]],
+  ['randomevent_3',['RandomEvent',['../class_random_event.html',1,'']]],
+  ['randomquest_4',['RandomQuest',['../class_random_quest.html',1,'']]],
+  ['recalculateprice_5',['RecalculatePrice',['../class_tradable_item.html#a489fb9d4a846f4e4f0fc245c1eb39a29',1,'TradableItem']]],
+  ['removeitem_6',['RemoveItem',['../class_storage_room_base.html#aaa27b8228736eea1f176d77694099368',1,'StorageRoomBase.RemoveItem()'],['../class_storage.html#a1d8b71a4c34ce1510237c49728842fb2',1,'Storage.RemoveItem()']]],
+  ['removemodule_7',['RemoveModule',['../class_ship_customization_manager.html#a5efe2c2e4d83efd4f902c04538016649',1,'ShipCustomizationManager']]],
+  ['resourcedata_8',['ResourceData',['../class_resource_manager_1_1_resource_data.html',1,'ResourceManager']]],
+  ['resourceeffect_9',['ResourceEffect',['../class_resource_effect.html',1,'']]],
+  ['resourcemanager_10',['ResourceManager',['../class_resource_manager.html',1,'']]],
+  ['rewardtype_11',['RewardType',['../class_random_quest.html#a8051ade6438ae670880fcb02b381bf11',1,'RandomQuest']]],
+  ['room_12',['Room',['../class_room.html',1,'']]],
+  ['room_2d2_2dg_13',['Room-2-g',['../class_room-2-g.html',1,'']]],
+  ['roomdata_14',['RoomData',['../class_room_data.html',1,'']]],
+  ['roomdata_2d1_2dg_15',['RoomData-1-g',['../class_room_data-1-g.html',1,'']]],
+  ['roomdraghandler_16',['RoomDragHandler',['../class_room_drag_handler.html',1,'']]],
+  ['roomlevel_17',['RoomLevel',['../class_room_data_1_1_room_level.html',1,'RoomData']]],
+  ['roomplacementpreview_18',['RoomPlacementPreview',['../class_room_placement_preview.html',1,'']]],
+  ['rtsselectionmanager_19',['RTSSelectionManager',['../class_r_t_s_selection_manager.html',1,'']]]
+];

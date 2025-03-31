@@ -38,7 +38,7 @@ public class ShieldRoom : Room<ShieldRoomData, ShieldRoomData.ShieldRoomLevel>
         {
             if (currentHitPoints < GetMaxHitPoints())
             {
-                float healthRate = currentHitPoints / GetMaxHitPoints();
+                float healthRate = GetHealthPercentage();
 
                 if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
                 {

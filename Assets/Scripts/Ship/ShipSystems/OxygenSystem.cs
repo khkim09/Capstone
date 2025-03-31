@@ -12,5 +12,16 @@ public class OxygenSystem : ShipSystem
 
     public override void Update(float deltaTime)
     {
+        currentOxygenRate += CalculateOxygenChange() * deltaTime;
+
+        currentOxygenRate = Mathf.Clamp(currentOxygenRate, 0, 100);
+    }
+
+    public float CalculateOxygenChange()
+    {
+        float oxygenGeneratePerSecond = GetShipStat(ShipStat.OxygenGeneratePerSecond);
+        float oxygenUsingPerSecond = GetShipStat(ShipStat.OxygenUsingPerSecond);
+
+        return oxygenGeneratePerSecond - oxygenUsingPerSecond;
     }
 }

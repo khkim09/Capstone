@@ -24,7 +24,7 @@ public class CockpitRoom : Room<CockpitRoomData, CockpitRoomData.CockpitRoomLeve
             return contributions;
 
         // 현재 체력 비율에 따른 기여도 계산
-        float healthRate = currentHitPoints / GetMaxHitPoints();
+        float healthRate = GetHealthPercentage();
 
         if (currentLevel == 1 || healthRate > currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
         {

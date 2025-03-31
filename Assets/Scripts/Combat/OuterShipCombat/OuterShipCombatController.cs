@@ -6,22 +6,27 @@ public class OuterShipCombatController
     {
         // TODO : attacker 가 플레이어면 타겟이 적, 적이면 플레이어로 설정해야함.
         Ship targetShip = GameManager.Instance.GetCurrentEnemyShip();
+        if (targetShip == null) return false;
         // if target 파괴됨 -> return false;
 
         if (!weapon.IsReady()) return false;
 
         float attackDamage = attacker.GetSystem<WeaponSystem>().GetActualDamage(weapon.GetDamage());
 
-        if (weapon.GetWeaponType() == WeaponType.Railgun && targetShip.GetSystem<ShieldSystem>().IsShieldActive())
-            attackDamage *= 1.5f;
+        Vector2Int targetPosition = targetShip.GetRandomTargetPosition();
 
-        float damageAfterShield = targetShip.GetSystem<ShieldSystem>().TakeDamage(attackDamage);
-        damageAfterShield = targetShip.GetSystem<OuterHullSystem>().ReduceDamage(damageAfterShield);
 
-        if (weapon.GetWeaponType() == WeaponType.Missile)
-            targetShip.TakeDamage(damageAfterShield, true);
-        else
-            targetShip.TakeDamage(damageAfterShield, false);
+        ProjectileManager.Instance.FireProjectile(
+            weapon.GetFirePosition(), // 발사 위치
+            targetPosition, // 목표 위치
+            weapon.GetWeaponType(), // 무기 타입
+            () =>
+            {
+                // 투사체 도착 시 콜백 (실제 데미지 적용)
+                targetShip.TakeAttack(attackDamage, weapon.GetWeaponType(), targetPosition);
+            }
+        );
+
 
         // TODO: 공격이 실제로 날라가는 애니메이션 내지 투사체가 육안으로 확인이 되어야하는데,
         //       그러면 TakeDamage 내부에 있는 TakeRandomDamage함수가 밖으로 나와야하는 것 아닌가?
