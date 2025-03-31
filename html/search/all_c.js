@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['onaddequipmentbuttonclicked_0',['OnAddEquipmentButtonClicked',['../class_crew_u_i_handler.html#adc64cd9fb9c94d6cd30dfea9b8ef5c81',1,'CrewUIHandler']]],
   ['onbackbuttonclicked_1',['OnBackButtonClicked',['../class_crew_u_i_handler.html#aa1f9892a6d408e42fde14d2cd0c4ad2b',1,'CrewUIHandler']]],
   ['onbegindrag_2',['OnBeginDrag',['../class_placed_room_interaction.html#a1701a5ea53d840859c695b44ed932a78',1,'PlacedRoomInteraction.OnBeginDrag()'],['../class_room_drag_handler.html#a9c16eddb910a27beb0370af2ed8db9d8',1,'RoomDragHandler.OnBeginDrag()']]],
@@ -23,4 +24,19 @@ var searchData=
   ['oxygenroom_20',['OxygenRoom',['../class_oxygen_room.html',1,'']]],
   ['oxygenroomdata_21',['OxygenRoomData',['../class_oxygen_room_data.html',1,'']]],
   ['oxygensystem_22',['OxygenSystem',['../class_oxygen_system.html',1,'']]]
+=======
+  ['onbegindrag_0',['OnBeginDrag',['../class_room_drag_handler.html#a9c16eddb910a27beb0370af2ed8db9d8',1,'RoomDragHandler']]],
+  ['ondrag_1',['OnDrag',['../class_room_drag_handler.html#acbda651fd176e4855927af958a172776',1,'RoomDragHandler']]],
+  ['onenddrag_2',['OnEndDrag',['../class_room_drag_handler.html#a2dd674585eac9f7268c01c9665612d46',1,'RoomDragHandler']]],
+  ['onitemclicked_3',['OnItemClicked',['../class_inventory_item_u_i.html#abb57f9268b60cda4a8fbb4465b7227e6',1,'InventoryItemUI']]],
+  ['outerhull_4',['OuterHull',['../class_outer_hull.html',1,'']]],
+  ['outerhulldata_5',['OuterHullData',['../class_outer_hull_data.html',1,'']]],
+  ['outerhulllevel_6',['OuterHullLevel',['../class_outer_hull_data_1_1_outer_hull_level.html',1,'OuterHullData']]],
+  ['outerhullsystem_7',['OuterHullSystem',['../class_outer_hull_system.html',1,'']]],
+  ['outershipcombatcontroller_8',['OuterShipCombatController',['../class_outer_ship_combat_controller.html',1,'']]],
+  ['oxygenlevel_9',['OxygenLevel',['../class_oxygen_room_data_1_1_oxygen_level.html',1,'OxygenRoomData']]],
+  ['oxygenroom_10',['OxygenRoom',['../class_oxygen_room.html',1,'']]],
+  ['oxygenroomdata_11',['OxygenRoomData',['../class_oxygen_room_data.html',1,'']]],
+  ['oxygensystem_12',['OxygenSystem',['../class_oxygen_system.html',1,'']]]
+>>>>>>> 78dd249f8bad10ce1751d9a39751e5fa51ca3dfb
 ];

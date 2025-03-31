@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+<<<<<<< HEAD
 "class_storage_room_base.html#a7cb00abfdb353857d9d43fd882b4a4cb":[0,0,120,5],
 "class_storage_room_base.html#a8afb0b3e8bb79548cf7276a43c6f95c5":[0,0,120,3],
 "class_storage_room_base.html#aaa27b8228736eea1f176d77694099368":[0,0,120,6],
@@ -20,6 +21,8 @@ var NAVTREEINDEX1 =
 "class_teleport_room.html#a8e8196e6aa87b8c720c3b8b413cbcfda":[0,0,125,0],
 "class_teleport_room_data.html":[0,0,126],
 "class_teleport_room_data.html#a7cdcf2a8c691f73efc3034a546c5b3d3":[0,0,126,1],
+=======
+>>>>>>> 78dd249f8bad10ce1751d9a39751e5fa51ca3dfb
 "class_teleport_room_data_1_1_teleport_room_level.html":[0,0,126,0],
 "class_test_player_items.html":[0,0,127],
 "class_tradable_item.html":[0,0,128],

@@ -22,6 +22,7 @@ var searchData=
   ['shipweapon_19',['ShipWeapon',['../class_ship_weapon.html',1,'']]],
   ['shipweapondata_20',['ShipWeaponData',['../class_ship_weapon_data.html',1,'']]],
   ['showquest_21',['ShowQuest',['../class_quest_u_i_manager.html#a70b967286af9736078bdfada290776ee',1,'QuestUIManager']]],
+<<<<<<< HEAD
   ['showui_22',['ShowUI',['../class_crew_u_i_handler.html#ad6d30e28e6b12254a7284d840395058b',1,'CrewUIHandler']]],
   ['skillvalue_23',['SkillValue',['../class_crew_race_stat_1_1_skill_value.html',1,'CrewRaceStat']]],
   ['specialeffecthandlerfactory_24',['SpecialEffectHandlerFactory',['../class_special_effect_handler_factory.html',1,'']]],
@@ -37,4 +38,20 @@ var searchData=
   ['storeditem_34',['StoredItem',['../class_stored_item.html',1,'StoredItem'],['../class_stored_item.html#a62689c4d5c5281657908c916fcdcdc35',1,'StoredItem.StoredItem()']]],
   ['storeditems_35',['storedItems',['../class_storage.html#abd00c6f6919a661087a1553b6e7e1653',1,'Storage']]],
   ['synchronizewithuicontroller_36',['SynchronizeWithUIController',['../class_map_system_manager.html#a4efea01a8c5d2e71d29fe62f1b950e8a',1,'MapSystemManager']]]
+=======
+  ['skillvalue_22',['SkillValue',['../class_crew_race_stat_1_1_skill_value.html',1,'CrewRaceStat']]],
+  ['specialeffecthandlerfactory_23',['SpecialEffectHandlerFactory',['../class_special_effect_handler_factory.html',1,'']]],
+  ['statetype_24',['stateType',['../class_item_types.html#a733e3508afd14ff1f81f8ce6ee1912a0',1,'ItemTypes']]],
+  ['statlimit_25',['StatLimit',['../class_ship_stat_settings_1_1_stat_limit.html',1,'ShipStatSettings']]],
+  ['storage_26',['Storage',['../class_storage.html',1,'']]],
+  ['storageroomanimal_27',['StorageRoomAnimal',['../class_storage_room_animal.html',1,'']]],
+  ['storageroombase_28',['StorageRoomBase',['../class_storage_room_base.html',1,'']]],
+  ['storageroombasedata_29',['StorageRoomBaseData',['../class_storage_room_base_data.html',1,'']]],
+  ['storageroombaselevel_30',['StorageRoomBaseLevel',['../class_storage_room_base_data_1_1_storage_room_base_level.html',1,'StorageRoomBaseData']]],
+  ['storageroomregular_31',['StorageRoomRegular',['../class_storage_room_regular.html',1,'']]],
+  ['storageroomtemperature_32',['StorageRoomTemperature',['../class_storage_room_temperature.html',1,'']]],
+  ['storeditem_33',['StoredItem',['../class_stored_item.html',1,'StoredItem'],['../class_stored_item.html#a62689c4d5c5281657908c916fcdcdc35',1,'StoredItem.StoredItem()']]],
+  ['storeditems_34',['storedItems',['../class_storage.html#abd00c6f6919a661087a1553b6e7e1653',1,'Storage']]],
+  ['synchronizewithuicontroller_35',['SynchronizeWithUIController',['../class_map_system_manager.html#a4efea01a8c5d2e71d29fe62f1b950e8a',1,'MapSystemManager']]]
+>>>>>>> 78dd249f8bad10ce1751d9a39751e5fa51ca3dfb
 ];

@@ -4,20 +4,27 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 /// <summary>
-/// 조종실의 레벨별 데이터를 저장하는 ScriptableObject
+/// 조종실의 레벨별 데이터를 저장하는 ScriptableObject.
+/// 각 레벨마다 회피 효율, 연료 효율 등의 수치를 정의합니다.
 /// </summary>
 [CreateAssetMenu(fileName = "CockpitRoomData", menuName = "RoomData/CockpitRoom Data")]
 public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
 {
+    /// <summary>
+    /// 조종실의 레벨별 데이터 구조.
+    /// </summary>
     [System.Serializable]
     public class CockpitRoomLevel : RoomLevel
     {
-        public float fuelEfficiency; // 에너지 효율 (%)
-        public float avoidEfficiency; // 회피 효율 (%)
+        /// <summary>연료 효율 보너스 (%).</summary>
+        public float fuelEfficiency;
+
+        /// <summary>회피 확률 보너스 (%).</summary>
+        public float avoidEfficiency;
     }
 
     /// <summary>
-    /// 기본 조종실 레벨 데이터 초기화
+    /// 기본 조종실 레벨 데이터를 초기화합니다.
     /// </summary>
     protected override void InitializeDefaultLevels()
     {

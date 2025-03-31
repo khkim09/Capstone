@@ -2,10 +2,14 @@
 using UnityEngine;
 
 /// <summary>
-/// 함선의 엔진실을 나타내는 클래스
+/// 함선의 엔진실(RoomType.Engine)을 나타내는 클래스.
+/// 회피율, 연료 효율, 연료 소모량 등에 기여하며, 손상 상태에 따라 성능이 저하됩니다.
 /// </summary>
 public class EngineRoom : Room<EngineRoomData, EngineRoomData.EngineRoomLevel>
 {
+    /// <summary>
+    /// 초기화 시 방 타입을 엔진실로 설정합니다.
+    /// </summary>
     protected override void Start()
     {
         base.Start();
@@ -14,9 +18,12 @@ public class EngineRoom : Room<EngineRoomData, EngineRoomData.EngineRoomLevel>
         roomType = RoomType.Engine;
     }
 
+
     /// <summary>
-    /// 이 방의 스탯 기여도 계산
+    /// 이 방이 함선 스탯에 기여하는 값을 계산합니다.
+    /// 작동 상태 및 손상 정도에 따라 수치가 조정됩니다.
     /// </summary>
+    /// <returns>스탯 기여도 딕셔너리.</returns>
     public override Dictionary<ShipStat, float> GetStatContributions()
     {
         // 기본 기여도 가져오기 (작동 상태 체크 등)
@@ -60,8 +67,10 @@ public class EngineRoom : Room<EngineRoomData, EngineRoomData.EngineRoomLevel>
     }
 
     /// <summary>
-    /// 엔진실 손상 처리
+    /// 엔진실이 피해를 받을 때 호출됩니다.
+    /// 효과를 갱신하고, 손상 시 시각 효과를 적용할 수 있습니다.
     /// </summary>
+    /// <param name="damage">받는 피해량.</param>
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);

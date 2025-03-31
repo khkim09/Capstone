@@ -42,7 +42,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
+<<<<<<< HEAD
 "class_storage_room_base.html#a7cb00abfdb353857d9d43fd882b4a4cb"
+=======
+"class_teleport_room_data_1_1_teleport_room_level.html"
+>>>>>>> 78dd249f8bad10ce1751d9a39751e5fa51ca3dfb
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

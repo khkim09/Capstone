@@ -8,7 +8,12 @@ var searchData=
   ['setuistate_5',['SetUIState',['../class_warp_u_i_controller.html#a110d44cdb4f2f48c57ea2d0dfc88f43b',1,'WarpUIController']]],
   ['setup_6',['Setup',['../class_inventory_item_u_i.html#acd038c55a9fc872068093d0779a0e106',1,'InventoryItemUI.Setup()'],['../class_trade_item_u_i.html#a8034d7ff5a7cee4acd650f3bde651e5e',1,'TradeItemUI.Setup()']]],
   ['showquest_7',['ShowQuest',['../class_quest_u_i_manager.html#a70b967286af9736078bdfada290776ee',1,'QuestUIManager']]],
+<<<<<<< HEAD
   ['showui_8',['ShowUI',['../class_crew_u_i_handler.html#ad6d30e28e6b12254a7284d840395058b',1,'CrewUIHandler']]],
   ['storeditem_9',['StoredItem',['../class_stored_item.html#a62689c4d5c5281657908c916fcdcdc35',1,'StoredItem']]],
   ['synchronizewithuicontroller_10',['SynchronizeWithUIController',['../class_map_system_manager.html#a4efea01a8c5d2e71d29fe62f1b950e8a',1,'MapSystemManager']]]
+=======
+  ['storeditem_8',['StoredItem',['../class_stored_item.html#a62689c4d5c5281657908c916fcdcdc35',1,'StoredItem']]],
+  ['synchronizewithuicontroller_9',['SynchronizeWithUIController',['../class_map_system_manager.html#a4efea01a8c5d2e71d29fe62f1b950e8a',1,'MapSystemManager']]]
+>>>>>>> 78dd249f8bad10ce1751d9a39751e5fa51ca3dfb
 ];

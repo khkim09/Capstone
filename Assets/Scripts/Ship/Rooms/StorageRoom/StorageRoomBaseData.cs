@@ -8,11 +8,16 @@ using UnityEngine;
  */
 
 /// <summary>
-/// 모든 창고 타입의 기본 데이터 클래스
+/// 모든 창고 타입의 기본 데이터를 저장하는 ScriptableObject.
+/// 창고는 레벨이 아닌 종류로 구분되며, ScriptableObject 인스턴스에 직접 데이터 입력이 필요합니다.
 /// </summary>
 [CreateAssetMenu(fileName = "StorageRoomData", menuName = "RoomData/StorageRoom Data")]
 public class StorageRoomBaseData : RoomData<StorageRoomBaseData.StorageRoomBaseLevel>
 {
+    /// <summary>
+    /// 공통 창고 데이터 구조.
+    /// 종류별 저장 용량 등을 정의합니다.
+    /// </summary>
     [System.Serializable]
     public class StorageRoomBaseLevel : RoomLevel
     {
@@ -20,6 +25,9 @@ public class StorageRoomBaseData : RoomData<StorageRoomBaseData.StorageRoomBaseL
         public int storageCapacity; // 기본 저장 용량
     }
 
+    /// <summary>
+    /// 기본 창고 데이터를 초기화합니다. (테스트 목적의 최소값만 설정)
+    /// </summary>
     protected override void InitializeDefaultLevels()
     {
         RoomLevels = new List<StorageRoomBaseLevel> { new() { level = 1, hitPoint = 100 } };

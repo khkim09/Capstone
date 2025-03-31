@@ -2,10 +2,15 @@
 using UnityEngine;
 
 /// <summary>
-/// 함선의 배리어실을 나타내는 클래스
+/// 함선의 배리어실(RoomType.Shield)을 나타내는 클래스.
+/// 방어막 최대량, 재생 시간, 초당 재생량 등에 기여하며,
+/// 손상 상태에 따라 성능이 저하됩니다.
 /// </summary>
 public class ShieldRoom : Room<ShieldRoomData, ShieldRoomData.ShieldRoomLevel>
 {
+    /// <summary>
+    /// 초기화 시 방 타입을 Shield로 설정합니다.
+    /// </summary>
     protected override void Start()
     {
         base.Start();
@@ -15,8 +20,10 @@ public class ShieldRoom : Room<ShieldRoomData, ShieldRoomData.ShieldRoomLevel>
     }
 
     /// <summary>
-    /// 이 방의 스탯 기여도 계산
+    /// 이 방이 함선 스탯에 기여하는 값을 계산합니다.
+    /// 작동 여부 및 손상 상태에 따라 배리어 관련 수치가 조정됩니다.
     /// </summary>
+    /// <returns>스탯 기여도 딕셔너리.</returns>
     public override Dictionary<ShipStat, float> GetStatContributions()
     {
         // 기본 기여도 가져오기 (작동 상태 체크 등)
@@ -59,8 +66,10 @@ public class ShieldRoom : Room<ShieldRoomData, ShieldRoomData.ShieldRoomLevel>
     }
 
     /// <summary>
-    /// 배리어실 손상 처리
+    /// 배리어실이 피해를 받을 때 호출됩니다.
+    /// 이펙트를 갱신합니다.
     /// </summary>
+    /// <param name="damage">받은 피해량.</param>
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);

@@ -26,10 +26,13 @@ var NAVTREEINDEX0 =
 "class_crew_info_loader.html":[0,0,14],
 "class_crew_info_wrapper.html":[0,0,15],
 "class_crew_manager.html":[0,0,16],
+<<<<<<< HEAD
 "class_crew_manager.html#a1d68c72d66800bb71a1ab3fd3fd5284f":[0,0,16,0],
 "class_crew_manager.html#a28f5be272326f4778daa84d07cca93ec":[0,0,16,2],
 "class_crew_manager.html#a36e5875a9975965ce5563a0d0c813e6e":[0,0,16,1],
 "class_crew_manager.html#a91ea88b0604270f09282217ee1252550":[0,0,16,3],
+=======
+>>>>>>> 78dd249f8bad10ce1751d9a39751e5fa51ca3dfb
 "class_crew_member.html":[0,0,17],
 "class_crew_quarters_room.html":[0,0,18],
 "class_crew_quarters_room.html#a965bc15ed50ac92f3a1a08f8d88bc50e":[0,0,18,0],
@@ -42,6 +45,7 @@ var NAVTREEINDEX0 =
 "class_crew_race_stat_1_1_skill_value.html":[0,0,20,1],
 "class_crew_system.html":[0,0,21],
 "class_crew_u_i_handler.html":[0,0,22],
+<<<<<<< HEAD
 "class_crew_u_i_handler.html#a22bad1caab3c0a3183de081a6257d08b":[0,0,22,6],
 "class_crew_u_i_handler.html#a25fe54aa5427f0bcdc856b95714bfd34":[0,0,22,3],
 "class_crew_u_i_handler.html#a45a753651a66f7896431a39f5d7f76ed":[0,0,22,4],
@@ -54,6 +58,9 @@ var NAVTREEINDEX0 =
 "class_customize_ship_u_i_handler.html":[0,0,23],
 "class_customize_ship_u_i_handler.html#a74055f8b84c55ab348ac506093a07d20":[0,0,23,1],
 "class_customize_ship_u_i_handler.html#aee02d77ae2c7a38a34f5c38d307c7111":[0,0,23,0],
+=======
+"class_customize_ship_u_i_handler.html":[0,0,23],
+>>>>>>> 78dd249f8bad10ce1751d9a39751e5fa51ca3dfb
 "class_default_crew_manager_script.html":[0,0,24],
 "class_door.html":[0,0,25],
 "class_engine_room.html":[0,0,26],
@@ -144,10 +151,13 @@ var NAVTREEINDEX0 =
 "class_oxygen_room_data_1_1_oxygen_level.html":[0,0,76,0],
 "class_oxygen_system.html":[0,0,77],
 "class_placed_room_interaction.html":[0,0,78],
+<<<<<<< HEAD
 "class_placed_room_interaction.html#a0cfa51995260839818f57945fe71106f":[0,0,78,1],
 "class_placed_room_interaction.html#a1701a5ea53d840859c695b44ed932a78":[0,0,78,0],
 "class_placed_room_interaction.html#a4d6642091ccd01f421aaf35168105417":[0,0,78,3],
 "class_placed_room_interaction.html#a6ad02e6715795c00f6a4b33dc736db3b":[0,0,78,2],
+=======
+>>>>>>> 78dd249f8bad10ce1751d9a39751e5fa51ca3dfb
 "class_planet.html":[0,0,79],
 "class_planet_names_data.html":[0,0,80],
 "class_planet_tooltip.html":[0,0,81],
@@ -204,10 +214,16 @@ var NAVTREEINDEX0 =
 "class_room_data.html":[0,0,99],
 "class_room_data_1_1_room_level.html":[0,0,99,0],
 "class_room_drag_handler.html":[0,0,101],
+<<<<<<< HEAD
 "class_room_drag_handler.html#a2dd674585eac9f7268c01c9665612d46":[0,0,101,3],
 "class_room_drag_handler.html#a9c16eddb910a27beb0370af2ed8db9d8":[0,0,101,1],
 "class_room_drag_handler.html#acbda651fd176e4855927af958a172776":[0,0,101,2],
 "class_room_drag_handler.html#acc9dba2f2fb1cd7eb4fa92a7e5fed81f":[0,0,101,0],
+=======
+"class_room_drag_handler.html#a2dd674585eac9f7268c01c9665612d46":[0,0,101,2],
+"class_room_drag_handler.html#a9c16eddb910a27beb0370af2ed8db9d8":[0,0,101,0],
+"class_room_drag_handler.html#acbda651fd176e4855927af958a172776":[0,0,101,1],
+>>>>>>> 78dd249f8bad10ce1751d9a39751e5fa51ca3dfb
 "class_rooms_inventory_tooltip_u_i.html":[0,0,102],
 "class_rooms_inventory_tooltip_u_i.html#acb3438559352db6528bd535c9ea46b50":[0,0,102,0],
 "class_sheild_equipment.html":[0,0,104],
@@ -249,5 +265,29 @@ var NAVTREEINDEX0 =
 "class_storage_room_animal.html#a1449dd5c33b750aa0023d29bd92e32ce":[0,0,119,0],
 "class_storage_room_base.html":[0,0,120],
 "class_storage_room_base.html#a63b742f6c0350014bcb9c44134354261":[0,0,120,4],
+<<<<<<< HEAD
 "class_storage_room_base.html#a7869de85353c4da9363c36f2d1b0548c":[0,0,120,1]
+=======
+"class_storage_room_base.html#a7869de85353c4da9363c36f2d1b0548c":[0,0,120,1],
+"class_storage_room_base.html#a7cb00abfdb353857d9d43fd882b4a4cb":[0,0,120,5],
+"class_storage_room_base.html#a8afb0b3e8bb79548cf7276a43c6f95c5":[0,0,120,3],
+"class_storage_room_base.html#aaa27b8228736eea1f176d77694099368":[0,0,120,6],
+"class_storage_room_base.html#ad82805733c13778b8bdac8070b8b92e1":[0,0,120,0],
+"class_storage_room_base.html#aec6670542e8f9a3a142d048f97ec0980":[0,0,120,2],
+"class_storage_room_base_data.html":[0,0,121],
+"class_storage_room_base_data_1_1_storage_room_base_level.html":[0,0,121,0],
+"class_storage_room_regular.html":[0,0,122],
+"class_storage_room_regular.html#a21b05be56f9ad58f3fb933883575e6c8":[0,0,122,0],
+"class_storage_room_temperature.html":[0,0,123],
+"class_storage_room_temperature.html#ae338273ef609907df3e16f2aab414a67":[0,0,123,0],
+"class_stored_item.html":[0,0,124],
+"class_stored_item.html#a3f1b91b49b9c9fcd6e287e8d1c305f0f":[0,0,124,2],
+"class_stored_item.html#a62689c4d5c5281657908c916fcdcdc35":[0,0,124,0],
+"class_stored_item.html#af2d9df99ee3db6b20842671665ceda28":[0,0,124,1],
+"class_teleport_room.html":[0,0,125],
+"class_teleport_room.html#a49c52dabbd74e1b01f921003f2434c51":[0,0,125,1],
+"class_teleport_room.html#a8e8196e6aa87b8c720c3b8b413cbcfda":[0,0,125,0],
+"class_teleport_room_data.html":[0,0,126],
+"class_teleport_room_data.html#a7cdcf2a8c691f73efc3034a546c5b3d3":[0,0,126,1]
+>>>>>>> 78dd249f8bad10ce1751d9a39751e5fa51ca3dfb
 };

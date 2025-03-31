@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['mainuiscreen_0',['mainUIScreen',['../class_crew_u_i_handler.html#ae9069232231c9c4379af8f5664423adf',1,'CrewUIHandler']]],
   ['mapsystemmanager_1',['MapSystemManager',['../class_map_system_manager.html',1,'']]],
   ['maximumtemperature_2',['maximumTemperature',['../class_item_types.html#a1cbfdbccb042130f249fb43df4a4941f',1,'ItemTypes']]],
@@ -19,4 +20,24 @@ var searchData=
   ['moralemanager_16',['MoraleManager',['../class_morale_manager.html',1,'']]],
   ['moralesystem_17',['MoraleSystem',['../class_morale_system.html',1,'']]],
   ['mysteryeventdata_18',['MysteryEventData',['../class_mystery_event_data.html',1,'']]]
+=======
+  ['mapsystemmanager_0',['MapSystemManager',['../class_map_system_manager.html',1,'']]],
+  ['maximumtemperature_1',['maximumTemperature',['../class_item_types.html#a1cbfdbccb042130f249fb43df4a4941f',1,'ItemTypes']]],
+  ['maxstackamount_2',['maxStackAmount',['../class_item_types.html#aba6c2a7a080d740dbd3e83bff65ee375',1,'ItemTypes.maxStackAmount'],['../class_tradable_item.html#a90b4981c31841722a68c829bc44f8756',1,'TradableItem.maxStackAmount']]],
+  ['maxstoragetemperature_3',['maxStorageTemperature',['../class_tradable_item.html#a013d098638d4b79e9033e9ed577f52ba',1,'TradableItem']]],
+  ['mechanicsup_4',['MechanicSup',['../class_mechanic_sup.html',1,'']]],
+  ['mechanictank_5',['MechanicTank',['../class_mechanic_tank.html',1,'']]],
+  ['medbayroom_6',['MedBayRoom',['../class_med_bay_room.html',1,'']]],
+  ['medbayroomdata_7',['MedBayRoomData',['../class_med_bay_room_data.html',1,'']]],
+  ['medbayroomlevel_8',['MedBayRoomLevel',['../class_med_bay_room_data_1_1_med_bay_room_level.html',1,'MedBayRoomData']]],
+  ['menuuimanager_9',['MenuUIManager',['../class_menu_u_i_manager.html',1,'']]],
+  ['middlepanelui_10',['MiddlePanelUI',['../class_middle_panel_u_i.html',1,'']]],
+  ['minimumtemperature_11',['minimumTemperature',['../class_item_types.html#a2a2d7e4f2a184722d7d609c435cb7480',1,'ItemTypes']]],
+  ['minstoragetemperature_12',['minStorageTemperature',['../class_tradable_item.html#aa6c0a333feb22b2f946dc398150fa9e2',1,'TradableItem']]],
+  ['moraleeffect_13',['MoraleEffect',['../struct_morale_effect.html',1,'']]],
+  ['moraleeffectevent_14',['MoraleEffectEvent',['../class_morale_effect_event.html',1,'']]],
+  ['moralemanager_15',['MoraleManager',['../class_morale_manager.html',1,'']]],
+  ['moralesystem_16',['MoraleSystem',['../class_morale_system.html',1,'']]],
+  ['mysteryeventdata_17',['MysteryEventData',['../class_mystery_event_data.html',1,'']]]
+>>>>>>> 78dd249f8bad10ce1751d9a39751e5fa51ca3dfb
 ];
