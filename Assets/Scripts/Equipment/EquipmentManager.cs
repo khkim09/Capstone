@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 장비 구매 및 착용 담당 Manager
+/// </summary>
 public class EquipmentManager : MonoBehaviour
 {
     public static EquipmentManager Instance { get; private set; }
@@ -17,6 +20,10 @@ public class EquipmentManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+    /// <summary>
+    /// 선원 전체에게 적용되는 장비 구매 시 호출
+    /// </summary>
+    /// <param name="eqItem"></param>
     public void PurchaseAndEquipGlobal(EquipmentItem eqItem)
     {
         if (!eqItem.isGlobalEquip)
@@ -26,7 +33,11 @@ public class EquipmentManager : MonoBehaviour
         foreach (CrewMember crew in list) crew.ApplyPersonalEquipment(eqItem);
     }
 
-    // 선원 장비 적용
+    /// <summary>
+    /// 선원 개인에게 장비 적용
+    /// </summary>
+    /// <param name="crew"></param>
+    /// <param name="eqItem"></param>
     public void PurchaseAndEquipPersonal(CrewBase crew, EquipmentItem eqItem)
     {
         if (eqItem.isGlobalEquip)

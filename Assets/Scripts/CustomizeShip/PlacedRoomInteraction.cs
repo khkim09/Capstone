@@ -9,6 +9,10 @@ public class PlacedRoomInteraction : MonoBehaviour, IPointerClickHandler, IBegin
     public RoomData roomData;
     public int rotation;
 
+    /// <summary>
+    /// 방 삭제, 수리 툴팁 생성
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
@@ -26,12 +30,20 @@ public class PlacedRoomInteraction : MonoBehaviour, IPointerClickHandler, IBegin
         }
     }
 
+    /// <summary>
+    /// 방 이동 시작
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnBeginDrag(PointerEventData eventData)
     {
         // transform.localScale *= 1.1f;
         Debug.Log("방 이동 시작");
     }
 
+    /// <summary>
+    /// 방 이동 중중
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnDrag(PointerEventData eventData)
     {
         Vector3 pos = Camera.main.ScreenToWorldPoint(eventData.position);
@@ -39,6 +51,10 @@ public class PlacedRoomInteraction : MonoBehaviour, IPointerClickHandler, IBegin
         transform.position = pos;
     }
 
+    /// <summary>
+    /// 방 이동 완료
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnEndDrag(PointerEventData eventData)
     {
         Vector2Int gridPos = ShipGridManager.Instance.WorldToGridPosition(transform.position);

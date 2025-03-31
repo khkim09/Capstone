@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// 상하 스크롤만 가능하도록 제한하는 스크립트
+/// </summary>
 public class NonDraggableScrollRect : ScrollRect
 {
     private bool IsScrollbarHandle(PointerEventData eventData)

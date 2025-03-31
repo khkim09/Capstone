@@ -4,9 +4,16 @@ using TMPro;
 using Unity.VisualScripting;
 using System.Collections.Generic;
 
+/// <summary>
+/// 장비 관련 UI 담당 Handler
+/// </summary>
 public class EquipmentUIHandler : MonoBehaviour
 {
-    [Header("Tip Panel References")] public GameObject itemBuyPanel;
+    /// <summary>
+    /// 장비 구매 시 나올 구매 창에 사용할 변수
+    /// </summary>
+    [Header("Tip Panel References")]
+    public GameObject itemBuyPanel;
     public Image tipItemImage;
     public TextMeshProUGUI tipItemName;
     public TextMeshProUGUI tipItemPrice;
@@ -15,14 +22,22 @@ public class EquipmentUIHandler : MonoBehaviour
     public Button buyButton;
     public Button backButton;
 
-    [Header("Color Settings")] public Color purchasedButtonColor = Color.gray;
+    /// <summary>
+    /// 구매 시 표시를 위한 color settings
+    /// </summary>
+    [Header("Color Settings")]
+    public Color purchasedButtonColor = Color.gray;
     public Color defaultButtonColor = Color.white;
 
-    // 현재 선택된 장비
+    /// <summary>
+    /// 현재 선택된 장비
+    /// </summary>
     public EquipmentItem currentSelectedItem;
     public EquipmentButton currentSelectedButton;
 
-    // 구매한 아이템 목록
+    /// <summary>
+    /// 구매한 아이템 목록
+    /// </summary>
     public HashSet<EquipmentItem> purchasedItems = new();
 
 
@@ -35,6 +50,11 @@ public class EquipmentUIHandler : MonoBehaviour
         itemBuyPanel.SetActive(false);
     }
 
+    /// <summary>
+    /// 구매 창 호출
+    /// </summary>
+    /// <param name="eqItem"></param>
+    /// <param name="eqButton"></param>
     public void ShowItemTip(EquipmentItem eqItem, EquipmentButton eqButton)
     {
         currentSelectedItem = eqItem;
@@ -58,6 +78,9 @@ public class EquipmentUIHandler : MonoBehaviour
         itemBuyPanel.SetActive(true);
     }
 
+    /// <summary>
+    /// 구매 클릭 시, 현재 보유 재화와 비교 후 구매 진행 및 장비 효과 적용
+    /// </summary>
     public void OnClickBuy()
     {
         // 이미 구매했거나 골드 부족하면 return
@@ -101,6 +124,9 @@ public class EquipmentUIHandler : MonoBehaviour
         currentSelectedButton.MarkAsPurchased(purchasedButtonColor);
     }
 
+    /// <summary>
+    /// 장비 구매 창 닫기
+    /// </summary>
     public void OnClickBack()
     {
         // 팝업 닫기

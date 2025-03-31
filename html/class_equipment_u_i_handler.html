@@ -103,6 +103,9 @@ $(function(){initNavTree('class_equipment_u_i_handler.html',''); initResizable(t
   <div class="headertitle"><div class="title">EquipmentUIHandler Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>장비 관련 UI 담당 Handler  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for EquipmentUIHandler:</div>
 <div class="dyncontent">
@@ -116,20 +119,23 @@ Collaboration diagram for EquipmentUIHandler:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af76a35490750a6aa407ce6877b022a02" id="r_af76a35490750a6aa407ce6877b022a02"><td class="memItemLeft" align="right" valign="top"><a id="af76a35490750a6aa407ce6877b022a02" name="af76a35490750a6aa407ce6877b022a02"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ShowItemTip</b> (<a class="el" href="class_equipment_item.html">EquipmentItem</a> eqItem, <a class="el" href="class_equipment_button.html">EquipmentButton</a> eqButton)</td></tr>
+<tr class="memitem:af76a35490750a6aa407ce6877b022a02" id="r_af76a35490750a6aa407ce6877b022a02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af76a35490750a6aa407ce6877b022a02">ShowItemTip</a> (<a class="el" href="class_equipment_item.html">EquipmentItem</a> eqItem, <a class="el" href="class_equipment_button.html">EquipmentButton</a> eqButton)</td></tr>
+<tr class="memdesc:af76a35490750a6aa407ce6877b022a02"><td class="mdescLeft">&#160;</td><td class="mdescRight">구매 창 호출  <br /></td></tr>
 <tr class="separator:af76a35490750a6aa407ce6877b022a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36609bab2603d9760f69e61c2ff4dbde" id="r_a36609bab2603d9760f69e61c2ff4dbde"><td class="memItemLeft" align="right" valign="top"><a id="a36609bab2603d9760f69e61c2ff4dbde" name="a36609bab2603d9760f69e61c2ff4dbde"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnClickBuy</b> ()</td></tr>
+<tr class="memdesc:a36609bab2603d9760f69e61c2ff4dbde"><td class="mdescLeft">&#160;</td><td class="mdescRight">구매 클릭 시, 현재 보유 재화와 비교 후 구매 진행 및 장비 효과 적용 <br /></td></tr>
 <tr class="separator:a36609bab2603d9760f69e61c2ff4dbde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af95ab5984739d8edebea16a2a3fad5b1" id="r_af95ab5984739d8edebea16a2a3fad5b1"><td class="memItemLeft" align="right" valign="top"><a id="af95ab5984739d8edebea16a2a3fad5b1" name="af95ab5984739d8edebea16a2a3fad5b1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnClickBack</b> ()</td></tr>
+<tr class="memdesc:af95ab5984739d8edebea16a2a3fad5b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">장비 구매 창 닫기 <br /></td></tr>
 <tr class="separator:af95ab5984739d8edebea16a2a3fad5b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a9c99d63bc44c54b221d45dec7a7e871e" id="r_a9c99d63bc44c54b221d45dec7a7e871e"><td class="memItemLeft" align="right" valign="top"><a id="a9c99d63bc44c54b221d45dec7a7e871e" name="a9c99d63bc44c54b221d45dec7a7e871e"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>itemBuyPanel</b></td></tr>
+<tr class="memdesc:a9c99d63bc44c54b221d45dec7a7e871e"><td class="mdescLeft">&#160;</td><td class="mdescRight">장비 구매 시 나올 구매 창에 사용할 변수 <br /></td></tr>
 <tr class="separator:a9c99d63bc44c54b221d45dec7a7e871e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68a791aae9e8f36d921650dbed88e28e" id="r_a68a791aae9e8f36d921650dbed88e28e"><td class="memItemLeft" align="right" valign="top"><a id="a68a791aae9e8f36d921650dbed88e28e" name="a68a791aae9e8f36d921650dbed88e28e"></a>
 Image&#160;</td><td class="memItemRight" valign="bottom"><b>tipItemImage</b></td></tr>
@@ -154,23 +160,67 @@ Button&#160;</td><td class="memItemRight" valign="bottom"><b>backButton</b></td>
 <tr class="separator:a61b2b1255c12b03beed1421c0d9d3851"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27b6363ce56190ca7d1f88eb5ae948b4" id="r_a27b6363ce56190ca7d1f88eb5ae948b4"><td class="memItemLeft" align="right" valign="top"><a id="a27b6363ce56190ca7d1f88eb5ae948b4" name="a27b6363ce56190ca7d1f88eb5ae948b4"></a>
 Color&#160;</td><td class="memItemRight" valign="bottom"><b>purchasedButtonColor</b> = Color.gray</td></tr>
+<tr class="memdesc:a27b6363ce56190ca7d1f88eb5ae948b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">구매 시 표시를 위한 color settings <br /></td></tr>
 <tr class="separator:a27b6363ce56190ca7d1f88eb5ae948b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f8ffc8f69a638a6feb86ae019f12a9c" id="r_a2f8ffc8f69a638a6feb86ae019f12a9c"><td class="memItemLeft" align="right" valign="top"><a id="a2f8ffc8f69a638a6feb86ae019f12a9c" name="a2f8ffc8f69a638a6feb86ae019f12a9c"></a>
 Color&#160;</td><td class="memItemRight" valign="bottom"><b>defaultButtonColor</b> = Color.white</td></tr>
 <tr class="separator:a2f8ffc8f69a638a6feb86ae019f12a9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf891bface8a02bb0ea1447d67f163bb" id="r_adf891bface8a02bb0ea1447d67f163bb"><td class="memItemLeft" align="right" valign="top"><a id="adf891bface8a02bb0ea1447d67f163bb" name="adf891bface8a02bb0ea1447d67f163bb"></a>
 <a class="el" href="class_equipment_item.html">EquipmentItem</a>&#160;</td><td class="memItemRight" valign="bottom"><b>currentSelectedItem</b></td></tr>
+<tr class="memdesc:adf891bface8a02bb0ea1447d67f163bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 선택된 장비 <br /></td></tr>
 <tr class="separator:adf891bface8a02bb0ea1447d67f163bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2e188368aea3f86f997861804f56b3d" id="r_ad2e188368aea3f86f997861804f56b3d"><td class="memItemLeft" align="right" valign="top"><a id="ad2e188368aea3f86f997861804f56b3d" name="ad2e188368aea3f86f997861804f56b3d"></a>
 <a class="el" href="class_equipment_button.html">EquipmentButton</a>&#160;</td><td class="memItemRight" valign="bottom"><b>currentSelectedButton</b></td></tr>
 <tr class="separator:ad2e188368aea3f86f997861804f56b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c1488caa7af13e14938bc7791aecb3c" id="r_a0c1488caa7af13e14938bc7791aecb3c"><td class="memItemLeft" align="right" valign="top"><a id="a0c1488caa7af13e14938bc7791aecb3c" name="a0c1488caa7af13e14938bc7791aecb3c"></a>
 HashSet&lt; <a class="el" href="class_equipment_item.html">EquipmentItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>purchasedItems</b> = new()</td></tr>
+<tr class="memdesc:a0c1488caa7af13e14938bc7791aecb3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">구매한 아이템 목록 <br /></td></tr>
 <tr class="separator:a0c1488caa7af13e14938bc7791aecb3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29c554639c3ecdd365d03e277f01c124" id="r_a29c554639c3ecdd365d03e277f01c124"><td class="memItemLeft" align="right" valign="top"><a id="a29c554639c3ecdd365d03e277f01c124" name="a29c554639c3ecdd365d03e277f01c124"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>playerCOMA</b> = 10000</td></tr>
 <tr class="separator:a29c554639c3ecdd365d03e277f01c124"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>장비 관련 UI 담당 Handler </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="af76a35490750a6aa407ce6877b022a02" name="af76a35490750a6aa407ce6877b022a02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af76a35490750a6aa407ce6877b022a02">&#9670;&#160;</a></span>ShowItemTip()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EquipmentUIHandler.ShowItemTip </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_equipment_item.html">EquipmentItem</a></td>          <td class="paramname"><span class="paramname"><em>eqItem</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_equipment_button.html">EquipmentButton</a></td>          <td class="paramname"><span class="paramname"><em>eqButton</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>구매 창 호출 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eqItem</td><td></td></tr>
+    <tr><td class="paramname">eqButton</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Equipment/<b>EquipmentUIHandler.cs</b></li>
 </ul>

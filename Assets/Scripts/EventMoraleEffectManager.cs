@@ -2,10 +2,16 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 이벤트로 발생한 사기 증감 관리 매니저
+/// </summary>
 public class EventMoraleEffectManager : MonoBehaviour
 {
     public static EventMoraleEffectManager Instance { get; private set; }
 
+    /// <summary>
+    /// 현재 작용중인 불가사의
+    /// </summary>
     private List<MoraleEffectEvent> activeEvents = new List<MoraleEffectEvent>();
 
     private void Awake()
@@ -22,14 +28,20 @@ public class EventMoraleEffectManager : MonoBehaviour
         CheckEventExpirations(GameManager.Instance.CurrentYear);
     }
 
-    // 새로운 불가사의/이벤트 사기 효과 등록
+    /// <summary>
+    /// 새로운 불가사의/이벤트 사기 효과 등록
+    /// </summary>
+    /// <param name="moraleEvent"></param>
     public void RegisterMoraleEffect(MoraleEffectEvent moraleEvent)
     {
         activeEvents.Add(moraleEvent);
         ApplyMoraleEffect(moraleEvent);
     }
 
-    // 현재 이벤트 상태 확인 후 만료된 효과 제거
+    /// <summary>
+    /// 현재 이벤트 상태 확인 후 만료된 효과 제거
+    /// </summary>
+    /// <param name="currentYear"></param>
     public void CheckEventExpirations(int currentYear)
     {
         for (int i = activeEvents.Count - 1; i >= 0; i--)
@@ -42,7 +54,10 @@ public class EventMoraleEffectManager : MonoBehaviour
         }
     }
 
-    // 효과 적용 (종족 또는 전체)
+    /// <summary>
+    /// 사기 증감 효과 적용 (종족 또는 전체)
+    /// </summary>
+    /// <param name="effect"></param>
     private void ApplyMoraleEffect(MoraleEffectEvent effect)
     {
         if (effect.isGlobal)
@@ -57,7 +72,10 @@ public class EventMoraleEffectManager : MonoBehaviour
         }
     }
 
-    // 효과 제거 (종족 또는 전체)
+    /// <summary>
+    /// 효과 제거 (종족 또는 전체)
+    /// </summary>
+    /// <param name="effect"></param>
     private void RemoveMoraleEffect(MoraleEffectEvent effect)
     {
         if (effect.isGlobal)
@@ -72,7 +90,10 @@ public class EventMoraleEffectManager : MonoBehaviour
         }
     }
 
-    // 불가사의 적용
+    /// <summary>
+    /// 불가사의 적용
+    /// </summary>
+    /// <param name="data"></param>
     public void RegisterMysteryEvent(MysteryEventData data)
     {
         int currentYear = GameManager.Instance.CurrentYear;
@@ -93,6 +114,9 @@ public class EventMoraleEffectManager : MonoBehaviour
     }
 }
 
+/// <summary>
+/// 사기 효과
+/// </summary>
 [Serializable]
 public class MoraleEffectEvent
 {

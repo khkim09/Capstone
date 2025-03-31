@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 불가사의를 위한 Scriptable Object
+/// </summary>
 [CreateAssetMenu(fileName = "MysteryEventData", menuName = "MysteryEvent/MysteryEventData")]
 public class MysteryEventData : ScriptableObject
 {
@@ -13,6 +16,9 @@ public class MysteryEventData : ScriptableObject
     public MoraleEffect[] moraleEffects;
 }
 
+/// <summary>
+/// 사기 효과 적용 범위, 대상, 값
+/// </summary>
 [System.Serializable]
 public struct MoraleEffect
 {

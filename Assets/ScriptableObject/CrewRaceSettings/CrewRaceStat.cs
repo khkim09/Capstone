@@ -2,9 +2,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 종족 별 기본 값값
+/// </summary>
 [CreateAssetMenu(fileName = "CrewRaceStat", menuName = "Crew/CrewRaceStat")]
 public class CrewRaceStat : ScriptableObject
 {
+    /// <summary>
+    /// 종족의 숙련도
+    /// </summary>
     [Serializable]
     public class SkillValue
     {
@@ -12,6 +18,10 @@ public class CrewRaceStat : ScriptableObject
         public float maxValue;
     }
 
+    /// <summary>
+    /// 종족 별 기본 정보
+    /// 최대 체력, 공격력, 방어력, 학습속도, 산소 호흡 여부
+    /// </summary>
     [Serializable]
     public class RaceStat
     {
@@ -22,9 +32,15 @@ public class CrewRaceStat : ScriptableObject
         public float learningSpeed;
         public bool needsOxygen;
 
+        /// <summary>
+        /// 최대 숙련도 저장 리스트트
+        /// </summary>
         [SerializeField] private List<SkillValue> maxSkillValues = new();
 
-        // 직렬화 가능한 개별 필드
+        /// <summary>
+        /// 기관별 최초 숙련도
+        /// 직렬화 가능한 개별 필드
+        /// </summary>
         public float initialPilotSkill;
         public float initialEngineSkill;
         public float initialPowerSkill;
@@ -34,7 +50,11 @@ public class CrewRaceStat : ScriptableObject
         public float initialMedBaySkill;
         public float initialRepairSkill;
 
-        // 런타임에 Dictionary로 변환하는 메서드
+        /// <summary>
+        /// 숙련도 기관별 최대 숙련도를 호출합니다.
+        /// 런타임에 Dictionary로 변환하는 메서드
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<SkillType, float> GetMaxSkillValueDictionary()
         {
             Dictionary<SkillType, float> dict = new();
@@ -42,7 +62,10 @@ public class CrewRaceStat : ScriptableObject
             return dict;
         }
 
-        // Dictionary에서 List로 값을 설정하는 메서드
+        /// <summary>
+        /// Dictionary에서 List로 값을 설정하는 메서드
+        /// </summary>
+        /// <param name="dictionary"></param>
         public void SetMaxSkillValuesFromDictionary(Dictionary<SkillType, float> dictionary)
         {
             maxSkillValues.Clear();
@@ -51,10 +74,14 @@ public class CrewRaceStat : ScriptableObject
         }
     }
 
-    // 인스펙터에서 보이도록 직렬화 가능한 리스트 사용
+    /// <summary>
+    /// 인스펙터에서 보이도록 직렬화 가능한 리스트 사용
+    /// </summary>
     [SerializeField] private List<RaceStat> raceStats = new();
 
-    // 런타임에만 사용할 Dictionary
+    /// <summary>
+    /// 런타임에만 사용할 Dictionary
+    /// </summary>
     private Dictionary<CrewRace, RaceStat> byRace;
 
     public Dictionary<CrewRace, RaceStat> ByRace
@@ -66,6 +93,9 @@ public class CrewRaceStat : ScriptableObject
         }
     }
 
+    /// <summary>
+    /// 숙련도 초기화
+    /// </summary>
     private void InitializeDictionaryFromList()
     {
         byRace = new Dictionary<CrewRace, RaceStat>();
@@ -85,6 +115,9 @@ public class CrewRaceStat : ScriptableObject
         InitializeDictionaryFromList();
     }
 
+    /// <summary>
+    /// 종족 별 기본 값 세팅
+    /// </summary>
     private void InitializeDefaultStats()
     {
         raceStats = new List<RaceStat>();
