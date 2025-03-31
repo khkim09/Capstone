@@ -1,5 +1,0 @@
-var class_crew_race_stat =
-[
-    [ "RaceStat", "class_crew_race_stat_1_1_race_stat.html", "class_crew_race_stat_1_1_race_stat" ],
-    [ "SkillValue", "class_crew_race_stat_1_1_skill_value.html", null ]
-];

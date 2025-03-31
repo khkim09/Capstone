@@ -45,16 +45,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>현재 방에 존재하는 선원 목록.</summary>
     public List<CrewBase> crewInRoom = new();
 
-    protected Dictionary<OxygenLevel, float> fireExtinguishRatePerLevel = new()
-    {
-        { OxygenLevel.None, 2.0f },
-        { OxygenLevel.Critical, 1.5f },
-        { OxygenLevel.Low, 1.0f },
-        { OxygenLevel.Medium, 1.0f },
-        { OxygenLevel.Normal, 1.0f }
-    };
-
-    protected bool isActive = true; // 활성화 상태
+    /// <summary>방이 활성화되어 있는지 여부.</summary>
+    protected bool isActive = true;
 
     /// <summary>전력이 공급되고 있는지 여부.</summary>
     protected bool isPowered;
