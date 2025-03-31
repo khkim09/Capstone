@@ -1,8 +1,18 @@
 var searchData=
 [
-  ['uimanager_0',['UIManager',['../class_u_i_manager.html',1,'']]],
-  ['unlockitemeffecthandler_1',['UnlockItemEffectHandler',['../class_unlock_item_effect_handler.html',1,'']]],
-  ['unlockshipeffecthandler_2',['UnlockShipEffectHandler',['../class_unlock_ship_effect_handler.html',1,'']]],
-  ['updateroomleveldata_3',['UpdateRoomLevelData',['../class_room-2-g.html#a991f10d83518af889058b13763fd3e25',1,'Room-2-g']]],
-  ['upgrade_4',['Upgrade',['../class_outer_hull.html#a21b3b1b44018f50a243163f33299e0e2',1,'OuterHull.Upgrade()'],['../class_room.html#ac65f4adc7c29c1c951144f60c8ecc16a',1,'Room.Upgrade()'],['../class_room-2-g.html#a2f0a2ecde33aaee53ca649d85a5b8e8b',1,'Room-2-g.Upgrade()']]]
+  ['takedamage_0',['TakeDamage',['../class_ammunition_room.html#a91a186937b59c8a69153c39f2e599c3a',1,'AmmunitionRoom.TakeDamage()'],['../class_cockpit_room.html#a880a1fede814a820a18d9e7748eb1c7d',1,'CockpitRoom.TakeDamage()'],['../class_engine_room.html#ac1882c34210ca198c26f240e79b683b8',1,'EngineRoom.TakeDamage()'],['../class_med_bay_room.html#a1e49d6c973c964fae7fbe2edfcbef65f',1,'MedBayRoom.TakeDamage()'],['../class_oxygen_room.html#a2dc3b22e85ad44f277942613498a80cd',1,'OxygenRoom.TakeDamage()'],['../class_power_room.html#a246105c449141ac2f30f6ecee6dd85b9',1,'PowerRoom.TakeDamage()'],['../class_shield_room.html#afa7e239bc2838e85d5a15809223c1167',1,'ShieldRoom.TakeDamage()'],['../class_teleport_room.html#a49c52dabbd74e1b01f921003f2434c51',1,'TeleportRoom.TakeDamage()'],['../class_weapon_control_room.html#a37753586dd9d667cbefeaecbe7f2c44b',1,'WeaponControlRoom.TakeDamage()']]],
+  ['teleportroom_1',['TeleportRoom',['../class_teleport_room.html',1,'']]],
+  ['teleportroomdata_2',['TeleportRoomData',['../class_teleport_room_data.html',1,'']]],
+  ['teleportroomlevel_3',['TeleportRoomLevel',['../class_teleport_room_data_1_1_teleport_room_level.html',1,'TeleportRoomData']]],
+  ['testplayeritems_4',['TestPlayerItems',['../class_test_player_items.html',1,'']]],
+  ['tier_5',['tier',['../class_tradable_item.html#a218b6adb6a1ad96d013fc995c62b3dde',1,'TradableItem']]],
+  ['tiertype_6',['tierType',['../class_item_types.html#af546a4192f12009b5634bb1491ccf924',1,'ItemTypes']]],
+  ['toquest_7',['ToQuest',['../class_random_quest.html#a887894227efa6a2e3970f73fd896114a',1,'RandomQuest']]],
+  ['tradableitem_8',['TradableItem',['../class_tradable_item.html',1,'']]],
+  ['tradableitemlist_9',['TradableItemList',['../class_tradable_item_list.html',1,'']]],
+  ['tradableitems_10',['tradableItems',['../class_trade_data_loader.html#a4adef222af0728698fe78837d21af409',1,'TradeDataLoader']]],
+  ['tradedataloader_11',['TradeDataLoader',['../class_trade_data_loader.html',1,'']]],
+  ['tradeitemui_12',['TradeItemUI',['../class_trade_item_u_i.html',1,'']]],
+  ['trademanager_13',['TradeManager',['../class_trade_manager.html',1,'']]],
+  ['tradeui_14',['TradeUI',['../class_trade_u_i.html',1,'']]]
 ];

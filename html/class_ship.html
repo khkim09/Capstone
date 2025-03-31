@@ -107,12 +107,12 @@ $(function(){initNavTree('class_ship.html',''); initResizable(true); });
 <div class="dynheader">
 Inheritance diagram for Ship:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ship__inherit__graph.svg" width="176" height="432"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ship__inherit__graph.svg" width="176" height="454"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for Ship:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ship__coll__graph.svg" width="176" height="432"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ship__coll__graph.svg" width="176" height="454"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -142,9 +142,12 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>GetStat</b> (ShipSta
 <tr class="memitem:a15c164c9be73dd1b0254153b1434d78d" id="r_a15c164c9be73dd1b0254153b1434d78d"><td class="memItemLeft" align="right" valign="top"><a id="a15c164c9be73dd1b0254153b1434d78d" name="a15c164c9be73dd1b0254153b1434d78d"></a>
 Dictionary&lt; ShipStat, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetRoomContributions</b> (string roomName)</td></tr>
 <tr class="separator:a15c164c9be73dd1b0254153b1434d78d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1bf27d9bec0351387adb74a9b3a4561" id="r_ab1bf27d9bec0351387adb74a9b3a4561"><td class="memItemLeft" align="right" valign="top"><a id="ab1bf27d9bec0351387adb74a9b3a4561" name="ab1bf27d9bec0351387adb74a9b3a4561"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>TakeDamage</b> (float damage, bool isMissileAttack)</td></tr>
-<tr class="separator:ab1bf27d9bec0351387adb74a9b3a4561"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25d0e4e1201ebf27ff37a82f1eade78f" id="r_a25d0e4e1201ebf27ff37a82f1eade78f"><td class="memItemLeft" align="right" valign="top"><a id="a25d0e4e1201ebf27ff37a82f1eade78f" name="a25d0e4e1201ebf27ff37a82f1eade78f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>TakeAttack</b> (float damage, WeaponType weaponType, Vector2Int hitPosition)</td></tr>
+<tr class="separator:a25d0e4e1201ebf27ff37a82f1eade78f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac61b02cdac21a64fd326753ccb8ae96a" id="r_ac61b02cdac21a64fd326753ccb8ae96a"><td class="memItemLeft" align="right" valign="top"><a id="ac61b02cdac21a64fd326753ccb8ae96a" name="ac61b02cdac21a64fd326753ccb8ae96a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>TakeDamage</b> (float damage)</td></tr>
+<tr class="separator:ac61b02cdac21a64fd326753ccb8ae96a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96161da9757b06a2b12edfe591119abb" id="r_a96161da9757b06a2b12edfe591119abb"><td class="memItemLeft" align="right" valign="top"><a id="a96161da9757b06a2b12edfe591119abb" name="a96161da9757b06a2b12edfe591119abb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnShipDestroyed</b> ()</td></tr>
 <tr class="separator:a96161da9757b06a2b12edfe591119abb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,12 +187,15 @@ List&lt; <a class="el" href="class_ship_weapon.html">ShipWeapon</a> &gt;&#160;</
 <tr class="memitem:ae4377c57fedfa3f2af2c69d82986a344" id="r_ae4377c57fedfa3f2af2c69d82986a344"><td class="memItemLeft" align="right" valign="top"><a id="ae4377c57fedfa3f2af2c69d82986a344" name="ae4377c57fedfa3f2af2c69d82986a344"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>GetCurrentHitPoints</b> ()</td></tr>
 <tr class="separator:ae4377c57fedfa3f2af2c69d82986a344"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae98a03675b6c302e439fb37cea88d071" id="r_ae98a03675b6c302e439fb37cea88d071"><td class="memItemLeft" align="right" valign="top"><a id="ae98a03675b6c302e439fb37cea88d071" name="ae98a03675b6c302e439fb37cea88d071"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>CalculateGlobalMorale</b> ()</td></tr>
-<tr class="separator:ae98a03675b6c302e439fb37cea88d071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73217557e08511f1436830db223bfc4e" id="r_a73217557e08511f1436830db223bfc4e"><td class="memItemLeft" align="right" valign="top"><a id="a73217557e08511f1436830db223bfc4e" name="a73217557e08511f1436830db223bfc4e"></a>
+Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><b>GetRandomTargetPosition</b> ()</td></tr>
+<tr class="separator:a73217557e08511f1436830db223bfc4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:af599b88e73de0cc462dd44e041958a30" id="r_af599b88e73de0cc462dd44e041958a30"><td class="memItemLeft" align="right" valign="top"><a id="af599b88e73de0cc462dd44e041958a30" name="af599b88e73de0cc462dd44e041958a30"></a>
+List&lt; <a class="el" href="class_room.html">Room</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>allRooms</b> = new List&lt;<a class="el" href="class_room.html">Room</a>&gt;()</td></tr>
+<tr class="separator:af599b88e73de0cc462dd44e041958a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f8ae3e4b05896dd17e28dea8f4f6613" id="r_a6f8ae3e4b05896dd17e28dea8f4f6613"><td class="memItemLeft" align="right" valign="top"><a id="a6f8ae3e4b05896dd17e28dea8f4f6613" name="a6f8ae3e4b05896dd17e28dea8f4f6613"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>testRoomPrefab1</b></td></tr>
 <tr class="separator:a6f8ae3e4b05896dd17e28dea8f4f6613"><td class="memSeparator" colspan="2">&#160;</td></tr>

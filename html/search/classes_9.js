@@ -11,5 +11,6 @@ var searchData=
   ['moraleeffect_8',['MoraleEffect',['../struct_morale_effect.html',1,'']]],
   ['moraleeffectevent_9',['MoraleEffectEvent',['../class_morale_effect_event.html',1,'']]],
   ['moralemanager_10',['MoraleManager',['../class_morale_manager.html',1,'']]],
-  ['mysteryeventdata_11',['MysteryEventData',['../class_mystery_event_data.html',1,'']]]
+  ['moralesystem_11',['MoraleSystem',['../class_morale_system.html',1,'']]],
+  ['mysteryeventdata_12',['MysteryEventData',['../class_mystery_event_data.html',1,'']]]
 ];

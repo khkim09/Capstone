@@ -32,6 +32,7 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ],
         [ "Enumerations", "functions_enum.html", null ]
       ] ]
     ] ]
@@ -41,7 +42,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_weapon_system.html"
+"class_teleport_room_data_1_1_teleport_room_level.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

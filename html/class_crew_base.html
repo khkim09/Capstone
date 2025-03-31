@@ -128,9 +128,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>MoveToRoom</b> (<a cl
 <tr class="memitem:a2511f2fc49a8f2c8ad5f03d9ab53d6f5" id="r_a2511f2fc49a8f2c8ad5f03d9ab53d6f5"><td class="memItemLeft" align="right" valign="top"><a id="a2511f2fc49a8f2c8ad5f03d9ab53d6f5" name="a2511f2fc49a8f2c8ad5f03d9ab53d6f5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Attack</b> (<a class="el" href="class_crew_member.html">CrewMember</a> target)</td></tr>
 <tr class="separator:a2511f2fc49a8f2c8ad5f03d9ab53d6f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5466764f2617d6832a1fc65a01bd0cff" id="r_a5466764f2617d6832a1fc65a01bd0cff"><td class="memItemLeft" align="right" valign="top"><a id="a5466764f2617d6832a1fc65a01bd0cff" name="a5466764f2617d6832a1fc65a01bd0cff"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>GetDamage</b> (float ocAttack)</td></tr>
-<tr class="separator:a5466764f2617d6832a1fc65a01bd0cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ddd282ca775cb5f0a59faecc5a73f9a" id="r_a2ddd282ca775cb5f0a59faecc5a73f9a"><td class="memItemLeft" align="right" valign="top"><a id="a2ddd282ca775cb5f0a59faecc5a73f9a" name="a2ddd282ca775cb5f0a59faecc5a73f9a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>TakeAttack</b> (float ocAttack)</td></tr>
+<tr class="separator:a2ddd282ca775cb5f0a59faecc5a73f9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec2c7a794a9d4f6690b8302de37b155e" id="r_aec2c7a794a9d4f6690b8302de37b155e"><td class="memItemLeft" align="right" valign="top"><a id="aec2c7a794a9d4f6690b8302de37b155e" name="aec2c7a794a9d4f6690b8302de37b155e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>TakeDamage</b> (float damage)</td></tr>
+<tr class="separator:aec2c7a794a9d4f6690b8302de37b155e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ca4eb5a3f4a9c83c3c93634c9da77df" id="r_a6ca4eb5a3f4a9c83c3c93634c9da77df"><td class="memItemLeft" align="right" valign="top"><a id="a6ca4eb5a3f4a9c83c3c93634c9da77df" name="a6ca4eb5a3f4a9c83c3c93634c9da77df"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>RepairFacility</b> (<a class="el" href="class_room.html">Room</a> room, float amount)</td></tr>
 <tr class="separator:a6ca4eb5a3f4a9c83c3c93634c9da77df"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -158,6 +161,8 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>GetSkillLevel</b> (S
 <tr class="memitem:a18bdc7789c50375ffc53d11690ba679f" id="r_a18bdc7789c50375ffc53d11690ba679f"><td class="memItemLeft" align="right" valign="top"><a id="a18bdc7789c50375ffc53d11690ba679f" name="a18bdc7789c50375ffc53d11690ba679f"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsEnemyOf</b> (<a class="el" href="class_crew_member.html">CrewMember</a> other)</td></tr>
 <tr class="separator:a18bdc7789c50375ffc53d11690ba679f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c35d7b81e7bbda6c1187cd56da46b19" id="r_a0c35d7b81e7bbda6c1187cd56da46b19"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; ShipStat, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c35d7b81e7bbda6c1187cd56da46b19">GetStatContributions</a> ()</td></tr>
+<tr class="separator:a0c35d7b81e7bbda6c1187cd56da46b19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -258,6 +263,34 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isMoving</b></td></tr
 <a class="el" href="class_ship.html">Ship</a>&#160;</td><td class="memItemRight" valign="bottom"><b>currentShip</b></td></tr>
 <tr class="separator:ab5bc82e72ae13e47df0d37bd92fdd417"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0c35d7b81e7bbda6c1187cd56da46b19" name="a0c35d7b81e7bbda6c1187cd56da46b19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c35d7b81e7bbda6c1187cd56da46b19">&#9670;&#160;</a></span>GetStatContributions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dictionary&lt; ShipStat, float &gt; CrewBase.GetStatContributions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="interface_i_ship_stat_contributor.html">IShipStatContributor</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Crew/<b>CrewBase.cs</b></li>
 </ul>
