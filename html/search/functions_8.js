@@ -1,24 +1,14 @@
 var searchData=
 [
-<<<<<<< HEAD
-  ['onaddequipmentbuttonclicked_0',['OnAddEquipmentButtonClicked',['../class_crew_u_i_handler.html#adc64cd9fb9c94d6cd30dfea9b8ef5c81',1,'CrewUIHandler']]],
-  ['onbackbuttonclicked_1',['OnBackButtonClicked',['../class_crew_u_i_handler.html#aa1f9892a6d408e42fde14d2cd0c4ad2b',1,'CrewUIHandler']]],
-  ['onbegindrag_2',['OnBeginDrag',['../class_placed_room_interaction.html#a1701a5ea53d840859c695b44ed932a78',1,'PlacedRoomInteraction.OnBeginDrag()'],['../class_room_drag_handler.html#a9c16eddb910a27beb0370af2ed8db9d8',1,'RoomDragHandler.OnBeginDrag()']]],
-  ['oncancelbuttonclicked_3',['OnCancelButtonClicked',['../class_crew_u_i_handler.html#aabc89e9c69adf5a72b4324ff866a5110',1,'CrewUIHandler']]],
-  ['oncancelclicked_4',['OnCancelClicked',['../class_customize_ship_u_i_handler.html#aee02d77ae2c7a38a34f5c38d307c7111',1,'CustomizeShipUIHandler']]],
-  ['oncreatebuttonclicked_5',['OnCreateButtonClicked',['../class_crew_u_i_handler.html#a25fe54aa5427f0bcdc856b95714bfd34',1,'CrewUIHandler']]],
-  ['oncustomizebuttonclicked_6',['OnCustomizeButtonClicked',['../class_crew_u_i_handler.html#a45a753651a66f7896431a39f5d7f76ed',1,'CrewUIHandler']]],
-  ['ondrag_7',['OnDrag',['../class_placed_room_interaction.html#a0cfa51995260839818f57945fe71106f',1,'PlacedRoomInteraction.OnDrag()'],['../class_room_drag_handler.html#acbda651fd176e4855927af958a172776',1,'RoomDragHandler.OnDrag()']]],
-  ['onenddrag_8',['OnEndDrag',['../class_placed_room_interaction.html#a6ad02e6715795c00f6a4b33dc736db3b',1,'PlacedRoomInteraction.OnEndDrag()'],['../class_room_drag_handler.html#a2dd674585eac9f7268c01c9665612d46',1,'RoomDragHandler.OnEndDrag()']]],
-  ['onitemclicked_9',['OnItemClicked',['../class_inventory_item_u_i.html#abb57f9268b60cda4a8fbb4465b7227e6',1,'InventoryItemUI']]],
-  ['onpointerclick_10',['OnPointerClick',['../class_placed_room_interaction.html#a4d6642091ccd01f421aaf35168105417',1,'PlacedRoomInteraction']]],
-  ['onracebuttonclicked_11',['OnRaceButtonClicked',['../class_crew_u_i_handler.html#a836663b4d3ffe30f66baaeac349a35cc',1,'CrewUIHandler']]],
-  ['onsaveclicked_12',['OnSaveClicked',['../class_customize_ship_u_i_handler.html#a74055f8b84c55ab348ac506093a07d20',1,'CustomizeShipUIHandler']]],
-  ['onsubmitbuttonclicked_13',['OnSubmitButtonClicked',['../class_crew_u_i_handler.html#a22bad1caab3c0a3183de081a6257d08b',1,'CrewUIHandler']]]
-=======
-  ['onbegindrag_0',['OnBeginDrag',['../class_room_drag_handler.html#a9c16eddb910a27beb0370af2ed8db9d8',1,'RoomDragHandler']]],
-  ['ondrag_1',['OnDrag',['../class_room_drag_handler.html#acbda651fd176e4855927af958a172776',1,'RoomDragHandler']]],
-  ['onenddrag_2',['OnEndDrag',['../class_room_drag_handler.html#a2dd674585eac9f7268c01c9665612d46',1,'RoomDragHandler']]],
-  ['onitemclicked_3',['OnItemClicked',['../class_inventory_item_u_i.html#abb57f9268b60cda4a8fbb4465b7227e6',1,'InventoryItemUI']]]
->>>>>>> 78dd249f8bad10ce1751d9a39751e5fa51ca3dfb
+  ['improveskill_0',['ImproveSkill',['../class_crew_base.html#a186f7b2292966c554c5dabc126baeb11',1,'CrewBase']]],
+  ['initialize_1',['Initialize',['../class_projectile.html#aae9fbade4d955a480a8a856748621e1c',1,'Projectile.Initialize()'],['../class_crew_base.html#a2f78dabd7abef459a1fa3b1a4bbbf83b',1,'CrewBase.Initialize()'],['../class_outer_hull.html#a31a9be70325554c4230263b1f808e497',1,'OuterHull.Initialize()'],['../class_room.html#a720815f09708c239f108c42889a676cc',1,'Room.Initialize()'],['../class_room-2-g.html#a6d8f72199c47950be30e0928f4a63eec',1,'Room-2-g.Initialize()'],['../class_crew_system.html#ad9fa8a9d39ab44589b80012f3e80c642',1,'CrewSystem.Initialize()'],['../class_hit_point_system.html#a1922a765f4716727a403ae198456c49a',1,'HitPointSystem.Initialize()'],['../class_morale_system.html#a45098df6e8f387de82d8462f32475430',1,'MoraleSystem.Initialize()'],['../class_oxygen_system.html#ab132ddfc48df11f104012d52f52e55d5',1,'OxygenSystem.Initialize()'],['../class_shield_system.html#a76f58c76950f395e01789c54e35c00df',1,'ShieldSystem.Initialize()'],['../class_ship_system.html#ab0e5623073f8bfb48c02955484cfcd4e',1,'ShipSystem.Initialize()']]],
+  ['initializedefaultlevels_2',['InitializeDefaultLevels',['../class_ammunition_room_data.html#a41c84cf59312a995f31bc89bd849bfbe',1,'AmmunitionRoomData.InitializeDefaultLevels()'],['../class_cockpit_room_data.html#ad6400022e1ba10494f474eec3ddc4d0e',1,'CockpitRoomData.InitializeDefaultLevels()'],['../class_crew_quarters_room_data.html#a0c8b062fd9e11209e619408e67181d91',1,'CrewQuartersRoomData.InitializeDefaultLevels()'],['../class_room_data.html#ab2cb8d9f0508ad65caa10cdee09c8e3b',1,'RoomData.InitializeDefaultLevels()'],['../class_engine_room_data.html#ad6adc197e0677e05817f49282dc057a7',1,'EngineRoomData.InitializeDefaultLevels()'],['../class_life_support_room_data.html#a8a857e6b346132b34fcf78807de46936',1,'LifeSupportRoomData.InitializeDefaultLevels()'],['../class_med_bay_room_data.html#a5324678afeb359777956d7c4b5aa7e46',1,'MedBayRoomData.InitializeDefaultLevels()'],['../class_oxygen_room_data.html#a46e28f20ea8a839557c8fc26c2d483e5',1,'OxygenRoomData.InitializeDefaultLevels()'],['../class_power_room_data.html#a68f1ed6d8336bc0f1ec31a953a19a5bd',1,'PowerRoomData.InitializeDefaultLevels()'],['../class_shield_room_data.html#aa7ac361e9c1684fab2b9cf8392d37f67',1,'ShieldRoomData.InitializeDefaultLevels()'],['../class_storage_room_base_data.html#adaa0244a1824595856223cb55dca529e',1,'StorageRoomBaseData.InitializeDefaultLevels()'],['../class_teleport_room_data.html#a7cdcf2a8c691f73efc3034a546c5b3d3',1,'TeleportRoomData.InitializeDefaultLevels()'],['../class_weapon_control_room_data.html#a123599d2c6ce391c89b29c90fcc275ac',1,'WeaponControlRoomData.InitializeDefaultLevels()']]],
+  ['initializeeventselectionui_3',['InitializeEventSelectionUI',['../class_warp_u_i_controller.html#a74247887ba8c41e27429cf53fa6e3f80',1,'WarpUIController']]],
+  ['initializefromroomdata_4',['InitializeFromRoomData',['../class_room_drag_handler.html#acc9dba2f2fb1cd7eb4fa92a7e5fed81f',1,'RoomDragHandler']]],
+  ['initializeisdamageable_5',['InitializeIsDamageable',['../class_room.html#a0689a22affd036af39a621cb1c6232d7',1,'Room']]],
+  ['initializerouteplanningui_6',['InitializeRoutePlanningUI',['../class_warp_u_i_controller.html#a5b278d789e2ccfe802507fa130df0f99',1,'WarpUIController']]],
+  ['isenemyof_7',['IsEnemyOf',['../class_crew_base.html#a18bdc7789c50375ffc53d11690ba679f',1,'CrewBase']]],
+  ['isoperational_8',['IsOperational',['../class_room.html#a0f32e752b4605a8bba077145b76b8e98',1,'Room']]],
+  ['isready_9',['IsReady',['../class_ship_weapon.html#a72518cf9b3021beca098c19c438dbc5f',1,'ShipWeapon']]],
+  ['isshieldactive_10',['IsShieldActive',['../class_shield_system.html#a63973bec7496fe95c79b57638c0b00fe',1,'ShieldSystem']]]
 ];

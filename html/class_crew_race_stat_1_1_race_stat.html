@@ -103,6 +103,9 @@ $(function(){initNavTree('class_crew_race_stat_1_1_race_stat.html',''); initResi
   <div class="headertitle"><div class="title">CrewRaceStat.RaceStat Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>종족 별 기본 정보 최대 체력, 공격력, 방어력, 학습속도, 산소 호흡 여부  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for CrewRaceStat.RaceStat:</div>
 <div class="dyncontent">
@@ -111,11 +114,11 @@ Collaboration diagram for CrewRaceStat.RaceStat:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a95533d6d4e8447ab2bfbc3b02d66d2f6" id="r_a95533d6d4e8447ab2bfbc3b02d66d2f6"><td class="memItemLeft" align="right" valign="top"><a id="a95533d6d4e8447ab2bfbc3b02d66d2f6" name="a95533d6d4e8447ab2bfbc3b02d66d2f6"></a>
-Dictionary&lt; SkillType, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetMaxSkillValueDictionary</b> ()</td></tr>
+<tr class="memitem:a95533d6d4e8447ab2bfbc3b02d66d2f6" id="r_a95533d6d4e8447ab2bfbc3b02d66d2f6"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; SkillType, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95533d6d4e8447ab2bfbc3b02d66d2f6">GetMaxSkillValueDictionary</a> ()</td></tr>
+<tr class="memdesc:a95533d6d4e8447ab2bfbc3b02d66d2f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">숙련도 기관별 최대 숙련도를 호출합니다. 런타임에 Dictionary로 변환하는 메서드  <br /></td></tr>
 <tr class="separator:a95533d6d4e8447ab2bfbc3b02d66d2f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ba7593e361347d042f11ff83525eb44" id="r_a2ba7593e361347d042f11ff83525eb44"><td class="memItemLeft" align="right" valign="top"><a id="a2ba7593e361347d042f11ff83525eb44" name="a2ba7593e361347d042f11ff83525eb44"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMaxSkillValuesFromDictionary</b> (Dictionary&lt; SkillType, float &gt; dictionary)</td></tr>
+<tr class="memitem:a2ba7593e361347d042f11ff83525eb44" id="r_a2ba7593e361347d042f11ff83525eb44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ba7593e361347d042f11ff83525eb44">SetMaxSkillValuesFromDictionary</a> (Dictionary&lt; SkillType, float &gt; dictionary)</td></tr>
+<tr class="memdesc:a2ba7593e361347d042f11ff83525eb44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dictionary에서 List로 값을 설정하는 메서드  <br /></td></tr>
 <tr class="separator:a2ba7593e361347d042f11ff83525eb44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -140,6 +143,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>needsOxygen</b></td><
 <tr class="separator:aadd6f91ed316236954c5f95a3907c19b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab21331ff65e7dce78b60ecc1b8ec0829" id="r_ab21331ff65e7dce78b60ecc1b8ec0829"><td class="memItemLeft" align="right" valign="top"><a id="ab21331ff65e7dce78b60ecc1b8ec0829" name="ab21331ff65e7dce78b60ecc1b8ec0829"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>initialPilotSkill</b></td></tr>
+<tr class="memdesc:ab21331ff65e7dce78b60ecc1b8ec0829"><td class="mdescLeft">&#160;</td><td class="mdescRight">기관별 최초 숙련도 직렬화 가능한 개별 필드 <br /></td></tr>
 <tr class="separator:ab21331ff65e7dce78b60ecc1b8ec0829"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a533768286b17066184f09508715196f1" id="r_a533768286b17066184f09508715196f1"><td class="memItemLeft" align="right" valign="top"><a id="a533768286b17066184f09508715196f1" name="a533768286b17066184f09508715196f1"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>initialEngineSkill</b></td></tr>
@@ -163,6 +167,70 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>initialMedBaySkill</
 float&#160;</td><td class="memItemRight" valign="bottom"><b>initialRepairSkill</b></td></tr>
 <tr class="separator:ad4dde2672f45b9a939f957b352a3b055"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>종족 별 기본 정보 최대 체력, 공격력, 방어력, 학습속도, 산소 호흡 여부 </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a95533d6d4e8447ab2bfbc3b02d66d2f6" name="a95533d6d4e8447ab2bfbc3b02d66d2f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95533d6d4e8447ab2bfbc3b02d66d2f6">&#9670;&#160;</a></span>GetMaxSkillValueDictionary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dictionary&lt; SkillType, float &gt; CrewRaceStat.RaceStat.GetMaxSkillValueDictionary </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>숙련도 기관별 최대 숙련도를 호출합니다. 런타임에 Dictionary로 변환하는 메서드 </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a2ba7593e361347d042f11ff83525eb44" name="a2ba7593e361347d042f11ff83525eb44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ba7593e361347d042f11ff83525eb44">&#9670;&#160;</a></span>SetMaxSkillValuesFromDictionary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CrewRaceStat.RaceStat.SetMaxSkillValuesFromDictionary </td>
+          <td>(</td>
+          <td class="paramtype">Dictionary&lt; SkillType, float &gt;</td>          <td class="paramname"><span class="paramname"><em>dictionary</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dictionary에서 List로 값을 설정하는 메서드 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dictionary</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/ScriptableObject/CrewRaceSettings/<b>CrewRaceStat.cs</b></li>
 </ul>

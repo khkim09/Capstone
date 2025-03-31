@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['planet_0',['planet',['../class_tradable_item.html#a3977c6ccc1e6598fd59b99d11627be57',1,'TradableItem']]],
-  ['planetcode_1',['planetCode',['../class_planet_trade_data.html#aa2fc0f639936d225e3ce79665b829deb',1,'PlanetTradeData']]],
-  ['planettype_2',['planetType',['../class_item_types.html#a0d9dfb39a0b5a5a7f8b1b5295854caa8',1,'ItemTypes']]],
-  ['price_3',['price',['../class_item_types.html#a05babb6cc86dc532eabde237b5e4c9d7',1,'ItemTypes']]]
+  ['globalmorale_0',['globalMorale',['../class_morale_manager.html#a97ce8cfac147a9a2afa37072ea1cb380',1,'MoraleManager']]],
+  ['gridsize_1',['gridSize',['../class_room.html#a8e329c8f19e45622182d87794d334d9d',1,'Room']]],
+  ['gridwidth_2',['gridWidth',['../class_ship_grid_manager.html#a8697b62c0ec355e22b3452186e2b554c',1,'ShipGridManager']]]
 ];

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 장비 타입 - 무기, 방어구, 보조 장치
+/// </summary>
 public enum EquipmentType
 {
     WeaponEquipment, // 무기 - 모든 선원 적용
@@ -7,6 +10,9 @@ public enum EquipmentType
     AssistantEquipment   // 보조 장치 - 개별 선원 적용
 }
 
+/// <summary>
+/// 각 장비 별 필요한 필드 정리
+/// </summary>
 [CreateAssetMenu(fileName = "EquipmentItem", menuName = "Equipment/EquipmentItem")]
 public class EquipmentItem : ScriptableObject
 {

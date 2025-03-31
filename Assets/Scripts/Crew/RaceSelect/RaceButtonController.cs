@@ -4,17 +4,32 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Serialization;
 
+/// <summary>
+/// 선원 생성 시, UI를 통한 종족 선택
+/// </summary>
 public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    /// <summary>
+    /// 종족 타입
+    /// </summary>
     [Header("Race Data")] public CrewRace raceType; // 버튼 종족
 
+    /// <summary>
+    /// 종족 별 기본 스텟
+    /// </summary>
     [FormerlySerializedAs("crewRaceSettings")]
     public CrewRaceStat crewRaceStat; // scriptable object 할당
 
+    /// <summary>
+    /// 종족 선택 시 호출될 tooltip
+    /// </summary>
     public GameObject raceTooltipPrefab; // RaceTooltip 프리팹 할당
 
     private GameObject activeTooltip;
 
+    /// <summary>
+    /// 버튼 highlight를 위한 참조
+    /// </summary>
     // 버튼 하이라이트를 위해 참조
     private Button button;
     private Color normalColor;
@@ -27,32 +42,47 @@ public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointe
             normalColor = button.image.color;
     }
 
-    // 마우스가 버튼에 들어왔을 때(hover)
+    /// <summary>
+    /// 마우스가 버튼에 들어왔을 때(hover)
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
         ShowTooltip();
     }
 
-    // 마우스가 버튼에서 나갔을 때
+    /// <summary>
+    /// 마우스가 버튼에서 나갔을 때
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
         HideTooltip();
     }
 
-    // 버튼 클릭
+    /// <summary>
+    /// 버튼 클릭
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         // UIHandler 통해 현재 종족 선택 로직 실행
         CrewUIHandler.Instance.OnRaceButtonClicked(this);
     }
 
-    // 현재 버튼이 선택되었을 때(하이라이트)
+    /// <summary>
+    /// 현재 버튼이 선택되었을 때(하이라이트)
+    /// </summary>
+    /// <param name="highlighted"></param>
     public void SetHighlighted(bool highlighted)
     {
         if (button != null)
             button.image.color = highlighted ? highlightColor : normalColor;
     }
 
+    /// <summary>
+    /// 실제 tooltip 게임 화면에 띄우기
+    /// </summary>
     private void ShowTooltip()
     {
         if (raceTooltipPrefab == null)
@@ -85,6 +115,9 @@ public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointe
         tooltipRect.localPosition = localPoint;
     }
 
+    /// <summary>
+    /// tooltip 가리기
+    /// </summary>
     private void HideTooltip()
     {
         if (activeTooltip != null)

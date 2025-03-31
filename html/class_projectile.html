@@ -102,6 +102,9 @@ $(function(){initNavTree('class_projectile.html',''); initResizable(true); });
   <div class="headertitle"><div class="title">Projectile Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>전투 중 발사된 투사체의 이동 및 충돌을 처리하는 클래스입니다. 목표 지점까지 이동하며, 충돌 시 지정된 콜백을 실행합니다.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Projectile:</div>
 <div class="dyncontent">
@@ -115,10 +118,56 @@ Collaboration diagram for Projectile:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aae9fbade4d955a480a8a856748621e1c" id="r_aae9fbade4d955a480a8a856748621e1c"><td class="memItemLeft" align="right" valign="top"><a id="aae9fbade4d955a480a8a856748621e1c" name="aae9fbade4d955a480a8a856748621e1c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Initialize</b> (Vector2 target, Action onHit)</td></tr>
+<tr class="memitem:aae9fbade4d955a480a8a856748621e1c" id="r_aae9fbade4d955a480a8a856748621e1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae9fbade4d955a480a8a856748621e1c">Initialize</a> (Vector2 target, Action onHit)</td></tr>
+<tr class="memdesc:aae9fbade4d955a480a8a856748621e1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">투사체를 초기화합니다. 목표 위치와 충돌 콜백을 지정합니다.  <br /></td></tr>
 <tr class="separator:aae9fbade4d955a480a8a856748621e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>전투 중 발사된 투사체의 이동 및 충돌을 처리하는 클래스입니다. 목표 지점까지 이동하며, 충돌 시 지정된 콜백을 실행합니다. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aae9fbade4d955a480a8a856748621e1c" name="aae9fbade4d955a480a8a856748621e1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae9fbade4d955a480a8a856748621e1c">&#9670;&#160;</a></span>Initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Projectile.Initialize </td>
+          <td>(</td>
+          <td class="paramtype">Vector2</td>          <td class="paramname"><span class="paramname"><em>target</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Action</td>          <td class="paramname"><span class="paramname"><em>onHit</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>투사체를 초기화합니다. 목표 위치와 충돌 콜백을 지정합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>목표 위치 (월드 좌표).</td></tr>
+    <tr><td class="paramname">onHit</td><td>충돌 시 실행할 콜백 함수.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_projectile_aae9fbade4d955a480a8a856748621e1c_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Combat/<b>Proejctile.cs</b></li>
 </ul>

@@ -103,6 +103,9 @@ $(function(){initNavTree('class_projectile_manager.html',''); initResizable(true
   <div class="headertitle"><div class="title">ProjectileManager Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>투사체의 생성, 발사, 애니메이션 및 충돌 처리를 담당하는 매니저 클래스입니다. 무기 타입에 따라 적절한 투사체 프리팹을 로드하고 초기화합니다.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for ProjectileManager:</div>
 <div class="dyncontent">
@@ -116,16 +119,80 @@ Collaboration diagram for ProjectileManager:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afff6c926105524f2bd5b1cc1225d98d7" id="r_afff6c926105524f2bd5b1cc1225d98d7"><td class="memItemLeft" align="right" valign="top"><a id="afff6c926105524f2bd5b1cc1225d98d7" name="afff6c926105524f2bd5b1cc1225d98d7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>FireProjectile</b> (Vector2 startPosition, Vector2 targetPosition, WeaponType weaponType, System.Action onHit)</td></tr>
+<tr class="memitem:afff6c926105524f2bd5b1cc1225d98d7" id="r_afff6c926105524f2bd5b1cc1225d98d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afff6c926105524f2bd5b1cc1225d98d7">FireProjectile</a> (Vector2 startPosition, Vector2 targetPosition, WeaponType weaponType, System.Action onHit)</td></tr>
+<tr class="memdesc:afff6c926105524f2bd5b1cc1225d98d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">투사체를 생성하고 발사합니다. 무기 타입에 따라 프리팹을 선택하고, 목표 위치까지 이동시키며, 도착 시 콜백을 실행합니다.  <br /></td></tr>
 <tr class="separator:afff6c926105524f2bd5b1cc1225d98d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a41a618a94d4b2adfb4fc530b047d0199" id="r_a41a618a94d4b2adfb4fc530b047d0199"><td class="memItemLeft" align="right" valign="top"><a id="a41a618a94d4b2adfb4fc530b047d0199" name="a41a618a94d4b2adfb4fc530b047d0199"></a>
 static <a class="el" href="class_projectile_manager.html">ProjectileManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b><code> [get]</code></td></tr>
+<tr class="memdesc:a41a618a94d4b2adfb4fc530b047d0199"><td class="mdescLeft">&#160;</td><td class="mdescRight">싱글톤 인스턴스입니다. <br /></td></tr>
 <tr class="separator:a41a618a94d4b2adfb4fc530b047d0199"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>투사체의 생성, 발사, 애니메이션 및 충돌 처리를 담당하는 매니저 클래스입니다. 무기 타입에 따라 적절한 투사체 프리팹을 로드하고 초기화합니다. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="afff6c926105524f2bd5b1cc1225d98d7" name="afff6c926105524f2bd5b1cc1225d98d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afff6c926105524f2bd5b1cc1225d98d7">&#9670;&#160;</a></span>FireProjectile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ProjectileManager.FireProjectile </td>
+          <td>(</td>
+          <td class="paramtype">Vector2</td>          <td class="paramname"><span class="paramname"><em>startPosition</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector2</td>          <td class="paramname"><span class="paramname"><em>targetPosition</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">WeaponType</td>          <td class="paramname"><span class="paramname"><em>weaponType</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.Action</td>          <td class="paramname"><span class="paramname"><em>onHit</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>투사체를 생성하고 발사합니다. 무기 타입에 따라 프리팹을 선택하고, 목표 위치까지 이동시키며, 도착 시 콜백을 실행합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startPosition</td><td>발사 시작 위치.</td></tr>
+    <tr><td class="paramname">targetPosition</td><td>목표 위치.</td></tr>
+    <tr><td class="paramname">weaponType</td><td>무기 타입.</td></tr>
+    <tr><td class="paramname">onHit</td><td>도달 시 실행할 콜백.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_projectile_manager_afff6c926105524f2bd5b1cc1225d98d7_cgraph.svg" width="392" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_projectile_manager_afff6c926105524f2bd5b1cc1225d98d7_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Combat/<b>ProjectileManager.cs</b></li>
 </ul>

@@ -1,17 +1,17 @@
 <map id="StorageRoomBase" name="StorageRoomBase">
-<area shape="rect" id="Node000001" title="모든 창고 타입의 기본 클래스" alt="" coords="148,1296,308,1536"/>
-<area shape="rect" id="Node000006" href="$class_storage_room_animal.html" title="동물 우리를 나타내는 클래스" alt="" coords="5,1605,136,1696"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="142,1549,102,1607,98,1604,137,1546"/>
-<area shape="rect" id="Node000007" href="$class_storage_room_regular.html" title="일반 창고를 나타내는 클래스" alt="" coords="160,1605,296,1696"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="231,1551,231,1606,225,1606,225,1551"/>
-<area shape="rect" id="Node000008" href="$class_storage_room_temperature.html" title="온도 조절 창고를 나타내는 클래스" alt="" coords="320,1584,483,1717"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="319,1535,355,1583,351,1586,315,1538"/>
-<area shape="rect" id="Node000002" href="$class_room-2-g.html" title="함선 내의 특화된 방 타입을 위한 제네릭 기본 클래스" alt="" coords="144,1072,312,1248"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="231,1263,231,1296,225,1296,225,1263"/>
-<area shape="rect" id="Node000003" href="$class_room.html" title="함선 내의 모든 방의 기본 클래스" alt="" coords="136,123,320,1024"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="231,1039,231,1072,225,1072,225,1039"/>
+<area shape="rect" id="Node000001" title="모든 창고 타입의 기본 클래스. 저장 가능한 아이템의 타입, 보관/제거/저하 로직 등을 공통으로 정의합니다." alt="" coords="148,1147,308,1387"/>
+<area shape="rect" id="Node000006" href="$class_storage_room_animal.html" title="동물 우리(StorageType.Animal)를 나타내는 특화 창고 클래스. 동물 카테고리 아이템만 보관할 수 있습니다." alt="" coords="5,1456,136,1547"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="142,1400,102,1458,98,1455,137,1397"/>
+<area shape="rect" id="Node000007" href="$class_storage_room_regular.html" title="일반 창고(StorageType.Regular)를 나타내는 클래스. 상온 보관이 가능한 아이템만 저장할 수 있습니다." alt="" coords="160,1456,296,1547"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="231,1402,231,1456,225,1456,225,1402"/>
+<area shape="rect" id="Node000008" href="$class_storage_room_temperature.html" title="온도 조절 창고(StorageType.Temperature)를 나타내는 클래스. 전력이 공급되면 냉장/냉동 보관 가능, 전력이 끊기면 일반 창고처럼 작동합니다." alt="" coords="320,1435,483,1568"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="319,1386,355,1434,351,1437,315,1389"/>
+<area shape="rect" id="Node000002" href="$class_room-2-g.html" title="함선 내의 특화된 방 타입을 위한 제네릭 기본 클래스. RoomData 및 RoomLevel 타입에 따라 세부 동작과 데이터를 확장할 수 있도록 설계되었습니다." alt="" coords="144,923,312,1099"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="231,1114,231,1147,225,1147,225,1114"/>
+<area shape="rect" id="Node000003" href="$class_room.html" title="함선 내의 모든 방의 기본 클래스. 방의 상태, 작동 여부, 산소 레벨, 데미지 처리 등을 관리합니다." alt="" coords="137,123,319,875"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="231,890,231,923,225,923,225,890"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="102,5,202,75"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="162,89,166,122,161,123,156,90"/>
-<area shape="rect" id="Node000005" href="$interface_i_ship_stat_contributor.html" title="ShipStat 에 영향을 주는 객체 인터페이스 모든 방들과 모든 선원은 전부 이에 해당한다. 방의 경우엔 RoomData 에 등록된 정보를 바탕으로 Ship에서 Contribute..." alt="" coords="227,5,381,75"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="300,90,295,123,290,122,294,89"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="163,89,168,122,163,123,157,90"/>
+<area shape="rect" id="Node000005" href="$interface_i_ship_stat_contributor.html" title="함선의 ShipStat에 영향을 주는 객체 인터페이스. 방(Room)과 선원(Crew)은 모두 이 인터페이스를 통해 스탯에 기여합니다." alt="" coords="227,5,381,75"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="299,90,293,123,288,122,293,89"/>
 </map>

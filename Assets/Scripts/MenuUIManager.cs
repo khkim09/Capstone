@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
+/// <summary>
+/// 모든 오브젝트 및 UI 중 가장 상위에서 관리되어 언제나 유저에게 보이는 MenuUI를 관리하는 Manager
+/// </summary>
 public class MenuUIManager : MonoBehaviour
 {
     public RectTransform mainUI;  // MainUI 패널
@@ -26,6 +29,9 @@ public class MenuUIManager : MonoBehaviour
         menuButton.onClick.AddListener(ToggleMenu); // 버튼 클릭 이벤트 추가
     }
 
+    /// <summary>
+    /// 열려있는 Menu UI를 강제로 닫습니다.
+    /// </summary>
     public void ForceCloseMenu()
     {
         if (!isMenuOpen)
@@ -38,6 +44,9 @@ public class MenuUIManager : MonoBehaviour
         isMenuOpen = false;
     }
 
+    /// <summary>
+    /// Menu UI를 토글형식으로 열었다가 닫을 수 있습니다.
+    /// </summary>
     public void ToggleMenu()
     {
         StopAllCoroutines();
@@ -45,6 +54,11 @@ public class MenuUIManager : MonoBehaviour
         isMenuOpen = !isMenuOpen;
     }
 
+    /// <summary>
+    /// Menu UI 클릭 시 UI가 애니메이션 형태로 우에서 좌로 Slide되어 나타납니다.
+    /// </summary>
+    /// <param name="targetPosition"></param>
+    /// <returns></returns>
     private IEnumerator SlideMenu(Vector2 targetPosition)
     {
         float elapsedTime = 0f;

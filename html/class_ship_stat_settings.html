@@ -105,7 +105,7 @@ $(function(){initNavTree('class_ship_stat_settings.html',''); initResizable(true
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="class_ship.html">Ship</a> 스탯의 최소값과 최대값을 관리하는 ScriptableObject.  
+<p><a class="el" href="class_ship.html" title="함선의 전체 기능과 상태를 관리하는 클래스. 방 배치, 시스템 초기화, 전투 처리, 자원 계산, 스탯 갱신 등의 기능을 포함합니다.">Ship</a> 스탯의 최소값과 최대값을 관리하는 ScriptableObject. 밸런스 조정 및 수치 안정성을 위한 범위 제한 기능을 제공합니다.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for ShipStatSettings:</div>
@@ -121,13 +121,13 @@ Collaboration diagram for ShipStatSettings:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship_stat_settings_1_1_stat_limit.html">StatLimit</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">특정 ShipStat에 대한 제한 설정입니다.  <a href="class_ship_stat_settings_1_1_stat_limit.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0cf4982d2398174be34a5fd3f0dadf8c" id="r_a0cf4982d2398174be34a5fd3f0dadf8c"><td class="memItemLeft" align="right" valign="top"><a id="a0cf4982d2398174be34a5fd3f0dadf8c" name="a0cf4982d2398174be34a5fd3f0dadf8c"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GetMaxValue</b> (ShipStat stat)</td></tr>
-<tr class="memdesc:a0cf4982d2398174be34a5fd3f0dadf8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">특정 스탯의 최대값을 반환합니다. <br /></td></tr>
+<tr class="memitem:a0cf4982d2398174be34a5fd3f0dadf8c" id="r_a0cf4982d2398174be34a5fd3f0dadf8c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cf4982d2398174be34a5fd3f0dadf8c">GetMaxValue</a> (ShipStat stat)</td></tr>
+<tr class="memdesc:a0cf4982d2398174be34a5fd3f0dadf8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">특정 스탯의 최대값을 반환합니다.  <br /></td></tr>
 <tr class="separator:a0cf4982d2398174be34a5fd3f0dadf8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8610985e2ab454b9226f18cb8ce6f16" id="r_aa8610985e2ab454b9226f18cb8ce6f16"><td class="memItemLeft" align="right" valign="top"><a id="aa8610985e2ab454b9226f18cb8ce6f16" name="aa8610985e2ab454b9226f18cb8ce6f16"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>GetMinValue</b> (ShipStat stat)</td></tr>
@@ -146,11 +146,52 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>ClampValue</b> (Ship
 Public Attributes</h2></td></tr>
 <tr class="memitem:a151c9630bad7b78ed72dee05f900b319" id="r_a151c9630bad7b78ed72dee05f900b319"><td class="memItemLeft" align="right" valign="top"><a id="a151c9630bad7b78ed72dee05f900b319" name="a151c9630bad7b78ed72dee05f900b319"></a>
 List&lt; <a class="el" href="class_ship_stat_settings_1_1_stat_limit.html">StatLimit</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>StatLimits</b> = new()</td></tr>
+<tr class="memdesc:a151c9630bad7b78ed72dee05f900b319"><td class="mdescLeft">&#160;</td><td class="mdescRight">해당 스탯에 대한 설명 또는 메모. <br /></td></tr>
 <tr class="separator:a151c9630bad7b78ed72dee05f900b319"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_ship.html">Ship</a> 스탯의 최소값과 최대값을 관리하는 ScriptableObject. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<div class="textblock"><p><a class="el" href="class_ship.html" title="함선의 전체 기능과 상태를 관리하는 클래스. 방 배치, 시스템 초기화, 전투 처리, 자원 계산, 스탯 갱신 등의 기능을 포함합니다.">Ship</a> 스탯의 최소값과 최대값을 관리하는 ScriptableObject. 밸런스 조정 및 수치 안정성을 위한 범위 제한 기능을 제공합니다. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0cf4982d2398174be34a5fd3f0dadf8c" name="a0cf4982d2398174be34a5fd3f0dadf8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cf4982d2398174be34a5fd3f0dadf8c">&#9670;&#160;</a></span>GetMaxValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ShipStatSettings.GetMaxValue </td>
+          <td>(</td>
+          <td class="paramtype">ShipStat</td>          <td class="paramname"><span class="paramname"><em>stat</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>특정 스탯의 최대값을 반환합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stat</td><td>조회할 스탯.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>최대값.</dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ship_stat_settings_a0cf4982d2398174be34a5fd3f0dadf8c_icgraph.svg" width="454" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Ship/<b>ShipStatSettings.cs</b></li>
 </ul>
 </div><!-- contents -->

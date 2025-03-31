@@ -102,6 +102,9 @@ $(function(){initNavTree('class_outer_hull_system.html',''); initResizable(true)
   <div class="headertitle"><div class="title">OuterHullSystem Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>외갑판 시스템. 공격에 대한 피해를 감소시키는 기능을 담당합니다.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for OuterHullSystem:</div>
 <div class="dyncontent">
@@ -115,31 +118,112 @@ Collaboration diagram for OuterHullSystem:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a753bc0167e077ab9d8c27fd020bb4ea8" id="r_a753bc0167e077ab9d8c27fd020bb4ea8"><td class="memItemLeft" align="right" valign="top"><a id="a753bc0167e077ab9d8c27fd020bb4ea8" name="a753bc0167e077ab9d8c27fd020bb4ea8"></a>
-override void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> (float deltaTime)</td></tr>
+<tr class="memitem:a753bc0167e077ab9d8c27fd020bb4ea8" id="r_a753bc0167e077ab9d8c27fd020bb4ea8"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a753bc0167e077ab9d8c27fd020bb4ea8">Update</a> (float deltaTime)</td></tr>
+<tr class="memdesc:a753bc0167e077ab9d8c27fd020bb4ea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">매 프레임마다 호출되어 시스템 상태를 갱신합니다.  <br /></td></tr>
 <tr class="separator:a753bc0167e077ab9d8c27fd020bb4ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a546cc38872f4b8e97bb31c84214e0d5d" id="r_a546cc38872f4b8e97bb31c84214e0d5d"><td class="memItemLeft" align="right" valign="top"><a id="a546cc38872f4b8e97bb31c84214e0d5d" name="a546cc38872f4b8e97bb31c84214e0d5d"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>ReduceDamage</b> (float damage)</td></tr>
+<tr class="memitem:a546cc38872f4b8e97bb31c84214e0d5d" id="r_a546cc38872f4b8e97bb31c84214e0d5d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a546cc38872f4b8e97bb31c84214e0d5d">ReduceDamage</a> (float damage)</td></tr>
+<tr class="memdesc:a546cc38872f4b8e97bb31c84214e0d5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">외부 선체의 피해 감소율을 적용하여 실질적인 피해량을 계산합니다.  <br /></td></tr>
 <tr class="separator:a546cc38872f4b8e97bb31c84214e0d5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_ship_system"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_ship_system')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_ship_system.html">ShipSystem</a></td></tr>
-<tr class="memitem:ab0e5623073f8bfb48c02955484cfcd4e inherit pub_methods_class_ship_system" id="r_ab0e5623073f8bfb48c02955484cfcd4e"><td class="memItemLeft" align="right" valign="top">
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Initialize</b> (<a class="el" href="class_ship.html">Ship</a> ship)</td></tr>
+<tr class="memitem:ab0e5623073f8bfb48c02955484cfcd4e inherit pub_methods_class_ship_system" id="r_ab0e5623073f8bfb48c02955484cfcd4e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship_system.html#ab0e5623073f8bfb48c02955484cfcd4e">Initialize</a> (<a class="el" href="class_ship.html">Ship</a> ship)</td></tr>
+<tr class="memdesc:ab0e5623073f8bfb48c02955484cfcd4e inherit pub_methods_class_ship_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">시스템을 초기화합니다. 함선 참조를 저장하여 시스템 동작에 사용됩니다.  <br /></td></tr>
 <tr class="separator:ab0e5623073f8bfb48c02955484cfcd4e inherit pub_methods_class_ship_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f1ebffcf06a9801e1d82cdb63f996af inherit pub_methods_class_ship_system" id="r_a6f1ebffcf06a9801e1d82cdb63f996af"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> (float deltaTime)</td></tr>
+<tr class="memitem:a6f1ebffcf06a9801e1d82cdb63f996af inherit pub_methods_class_ship_system" id="r_a6f1ebffcf06a9801e1d82cdb63f996af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship_system.html#a6f1ebffcf06a9801e1d82cdb63f996af">Update</a> (float deltaTime)</td></tr>
+<tr class="memdesc:a6f1ebffcf06a9801e1d82cdb63f996af inherit pub_methods_class_ship_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">매 프레임마다 호출되는 시스템 업데이트 함수입니다. 구체적인 동작은 각 서브 클래스에서 구현됩니다.  <br /></td></tr>
 <tr class="separator:a6f1ebffcf06a9801e1d82cdb63f996af inherit pub_methods_class_ship_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_class_ship_system"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_ship_system')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_ship_system.html">ShipSystem</a></td></tr>
-<tr class="memitem:a0c4c206aa7e875dc6810ea122e46b332 inherit pro_methods_class_ship_system" id="r_a0c4c206aa7e875dc6810ea122e46b332"><td class="memItemLeft" align="right" valign="top">
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GetShipStat</b> (ShipStat stat)</td></tr>
+<tr class="memitem:a0c4c206aa7e875dc6810ea122e46b332 inherit pro_methods_class_ship_system" id="r_a0c4c206aa7e875dc6810ea122e46b332"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship_system.html#a0c4c206aa7e875dc6810ea122e46b332">GetShipStat</a> (ShipStat stat)</td></tr>
+<tr class="memdesc:a0c4c206aa7e875dc6810ea122e46b332 inherit pro_methods_class_ship_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 함선의 특정 스탯 값을 가져옵니다.  <br /></td></tr>
 <tr class="separator:a0c4c206aa7e875dc6810ea122e46b332 inherit pro_methods_class_ship_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_ship_system"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_ship_system')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_ship_system.html">ShipSystem</a></td></tr>
 <tr class="memitem:adde74af44fb3cbdc3b002e1c5a09092c inherit pro_attribs_class_ship_system" id="r_adde74af44fb3cbdc3b002e1c5a09092c"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="class_ship.html">Ship</a>&#160;</td><td class="memItemRight" valign="bottom"><b>parentShip</b></td></tr>
+<tr class="memdesc:adde74af44fb3cbdc3b002e1c5a09092c inherit pro_attribs_class_ship_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">이 시스템이 소속된 함선 객체입니다. <br /></td></tr>
 <tr class="separator:adde74af44fb3cbdc3b002e1c5a09092c inherit pro_attribs_class_ship_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>외갑판 시스템. 공격에 대한 피해를 감소시키는 기능을 담당합니다. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a546cc38872f4b8e97bb31c84214e0d5d" name="a546cc38872f4b8e97bb31c84214e0d5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a546cc38872f4b8e97bb31c84214e0d5d">&#9670;&#160;</a></span>ReduceDamage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float OuterHullSystem.ReduceDamage </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>damage</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>외부 선체의 피해 감소율을 적용하여 실질적인 피해량을 계산합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">damage</td><td>입력된 원래 피해량.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>피해 감소가 적용된 최종 피해량.</dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_outer_hull_system_a546cc38872f4b8e97bb31c84214e0d5d_cgraph.svg" width="446" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_outer_hull_system_a546cc38872f4b8e97bb31c84214e0d5d_icgraph.svg" width="396" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a753bc0167e077ab9d8c27fd020bb4ea8" name="a753bc0167e077ab9d8c27fd020bb4ea8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a753bc0167e077ab9d8c27fd020bb4ea8">&#9670;&#160;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void OuterHullSystem.Update </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>deltaTime</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>매 프레임마다 호출되어 시스템 상태를 갱신합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaTime</td><td>경과 시간 (초).</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Ship/ShipSystems/<b>OuterHullSystem.cs</b></li>
 </ul>

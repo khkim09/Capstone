@@ -103,7 +103,7 @@ $(function(){initNavTree('interface_i_ship_stat_contributor.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 
-<p>ShipStat 에 영향을 주는 객체 인터페이스 모든 방들과 모든 선원은 전부 이에 해당한다. 방의 경우엔 <a class="el" href="class_room_data.html" title="모든 방 유형의 기본 데이터를 정의하는 추상 ScriptableObject">RoomData</a> 에 등록된 정보를 바탕으로 Ship에서 Contributes 를 합쳐서 배 전체의 Stat을 계산한다. TODO :선원의 경우에 산소 호흡을 하는 선원의 경우 산소 소모를 초당 1% 한다. 즉, 이런 정보들도 선원에게 인터페이스를 달면 <a class="el" href="class_ship.html">Ship</a> 에서 산소 계산을 구현할 때 stat에서 빼와서 쉽게 구현 가능할 것이다.  
+<p>함선의 ShipStat에 영향을 주는 객체 인터페이스. 방(Room)과 선원(Crew)은 모두 이 인터페이스를 통해 스탯에 기여합니다.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for IShipStatContributor:</div>
@@ -122,7 +122,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8937611705cc586ef7284314966b2a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>ShipStat 에 영향을 주는 객체 인터페이스 모든 방들과 모든 선원은 전부 이에 해당한다. 방의 경우엔 <a class="el" href="class_room_data.html" title="모든 방 유형의 기본 데이터를 정의하는 추상 ScriptableObject">RoomData</a> 에 등록된 정보를 바탕으로 Ship에서 Contributes 를 합쳐서 배 전체의 Stat을 계산한다. TODO :선원의 경우에 산소 호흡을 하는 선원의 경우 산소 소모를 초당 1% 한다. 즉, 이런 정보들도 선원에게 인터페이스를 달면 <a class="el" href="class_ship.html">Ship</a> 에서 산소 계산을 구현할 때 stat에서 빼와서 쉽게 구현 가능할 것이다. </p>
+<div class="textblock"><p>함선의 ShipStat에 영향을 주는 객체 인터페이스. 방(Room)과 선원(Crew)은 모두 이 인터페이스를 통해 스탯에 기여합니다. </p>
+<p>Ship은 이 인터페이스를 구현한 모든 컴포넌트의 스탯을 수집하여 전체 함선의 능력치를 계산합니다.</p>
+<p>향후 선원 스탯 (예: 산소 소모량 등)도 이 구조로 통합 가능하도록 설계되어 있습니다. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8937611705cc586ef7284314966b2a33" name="a8937611705cc586ef7284314966b2a33"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8937611705cc586ef7284314966b2a33">&#9670;&#160;</a></span>GetStatContributions()</h2>
@@ -139,7 +141,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="class_ammunition_room.html#a012c56f5c2f19743ed9cf120aefb8309">AmmunitionRoom</a>, <a class="el" href="class_cockpit_room.html#af833aa863276c6bc42615c39a355c313">CockpitRoom</a>, <a class="el" href="class_crew_quarters_room.html#aae7e91ce32018b33e56be132e905ffb0">CrewQuartersRoom</a>, <a class="el" href="class_engine_room.html#a9fc4568124314c8f33d8a34835f94839">EngineRoom</a>, <a class="el" href="class_life_support_room.html#a69349638c35e9882650c5df3c699a9bc">LifeSupportRoom</a>, <a class="el" href="class_med_bay_room.html#a75a59c7fa045fb29df402c27871a8757">MedBayRoom</a>, <a class="el" href="class_outer_hull.html#abe182cd8d3a62a2e75b1ba2594b6697d">OuterHull</a>, <a class="el" href="class_oxygen_room.html#a103b113ef388bb74136d5e69602ea653">OxygenRoom</a>, <a class="el" href="class_power_room.html#ad9c7015d49b585675a4da437c37d413d">PowerRoom</a>, <a class="el" href="class_room.html#a99469af3a1771eba3a5ded55618dadac">Room</a>, <a class="el" href="class_shield_room.html#a0e069dba29de8d01cf788925860bd76c">ShieldRoom</a>, <a class="el" href="class_storage_room_base.html#a63b742f6c0350014bcb9c44134354261">StorageRoomBase</a>, <a class="el" href="class_teleport_room.html#a8e8196e6aa87b8c720c3b8b413cbcfda">TeleportRoom</a>, and <a class="el" href="class_weapon_control_room.html#afc42aa6a0418c1e6276ea271414baf17">WeaponControlRoom</a>.</p>
+<p>Implemented in <a class="el" href="class_ammunition_room.html#a012c56f5c2f19743ed9cf120aefb8309">AmmunitionRoom</a>, <a class="el" href="class_cockpit_room.html#af833aa863276c6bc42615c39a355c313">CockpitRoom</a>, <a class="el" href="class_crew_base.html#a0c35d7b81e7bbda6c1187cd56da46b19">CrewBase</a>, <a class="el" href="class_crew_quarters_room.html#aae7e91ce32018b33e56be132e905ffb0">CrewQuartersRoom</a>, <a class="el" href="class_engine_room.html#a9fc4568124314c8f33d8a34835f94839">EngineRoom</a>, <a class="el" href="class_life_support_room.html#a69349638c35e9882650c5df3c699a9bc">LifeSupportRoom</a>, <a class="el" href="class_med_bay_room.html#a75a59c7fa045fb29df402c27871a8757">MedBayRoom</a>, <a class="el" href="class_outer_hull.html#abe182cd8d3a62a2e75b1ba2594b6697d">OuterHull</a>, <a class="el" href="class_oxygen_room.html#a103b113ef388bb74136d5e69602ea653">OxygenRoom</a>, <a class="el" href="class_power_room.html#ad9c7015d49b585675a4da437c37d413d">PowerRoom</a>, <a class="el" href="class_room.html#a99469af3a1771eba3a5ded55618dadac">Room</a>, <a class="el" href="class_shield_room.html#a0e069dba29de8d01cf788925860bd76c">ShieldRoom</a>, <a class="el" href="class_storage_room_base.html#a63b742f6c0350014bcb9c44134354261">StorageRoomBase</a>, <a class="el" href="class_teleport_room.html#a8e8196e6aa87b8c720c3b8b413cbcfda">TeleportRoom</a>, and <a class="el" href="class_weapon_control_room.html#afc42aa6a0418c1e6276ea271414baf17">WeaponControlRoom</a>.</p>
 
 </div>
 </div>

@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class Ship : MonoBehaviour
 {
-    [Header("Ship Info")] [SerializeField] private string shipName = "Milky";
+    [Header("Ship Info")][SerializeField] private string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -35,7 +35,7 @@ public class Ship : MonoBehaviour
     /// <summary>
     /// 함선에 배치된 모든 룸 객체 리스트.
     /// </summary>
-    private readonly List<Room> allRooms = new();
+    public readonly List<Room> allRooms = new();
 
     /// <summary>
     /// 룸 타입별로 분류된 룸 리스트 딕셔너리.
@@ -141,11 +141,11 @@ public class Ship : MonoBehaviour
 
         // Add to grid
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
-        {
-            Vector2Int gridPos = position + new Vector2Int(x, y);
-            roomGrid[gridPos] = room;
-        }
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = position + new Vector2Int(x, y);
+                roomGrid[gridPos] = room;
+            }
 
         room.OnPlaced();
 
@@ -169,11 +169,11 @@ public class Ship : MonoBehaviour
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
-        {
-            Vector2Int gridPos = room.position + new Vector2Int(x, y);
-            roomGrid.Remove(gridPos);
-        }
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = room.position + new Vector2Int(x, y);
+                roomGrid.Remove(gridPos);
+            }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -209,12 +209,12 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-        for (int y = 0; y < size.y; y++)
-        {
-            Vector2Int checkPos = pos + new Vector2Int(x, y);
-            if (roomGrid.ContainsKey(checkPos))
-                return false;
-        }
+            for (int y = 0; y < size.y; y++)
+            {
+                Vector2Int checkPos = pos + new Vector2Int(x, y);
+                if (roomGrid.ContainsKey(checkPos))
+                    return false;
+            }
 
         return true;
     }
@@ -584,20 +584,20 @@ public class Ship : MonoBehaviour
     {
         // 3x3 범위 내의 모든 타일 검사
         for (int x = -1; x <= 1; x++)
-        for (int y = -1; y <= 1; y++)
-        {
-            Vector2Int checkPos = centerPosition + new Vector2Int(x, y);
-
-            // 해당 위치에 방이 있는지 확인
-            if (roomGrid.TryGetValue(checkPos, out Room room))
+            for (int y = -1; y <= 1; y++)
             {
-                // 방 데미지
-                room.TakeDamage(damage);
+                Vector2Int checkPos = centerPosition + new Vector2Int(x, y);
 
-                // 그 방에 있는 선원들에게 데미지 적용
-                ApplyDamageToCrewsInRoom(room, damage * 0.7f);
+                // 해당 위치에 방이 있는지 확인
+                if (roomGrid.TryGetValue(checkPos, out Room room))
+                {
+                    // 방 데미지
+                    room.TakeDamage(damage);
+
+                    // 그 방에 있는 선원들에게 데미지 적용
+                    ApplyDamageToCrewsInRoom(room, damage * 0.7f);
+                }
             }
-        }
     }
 
     /// <summary>

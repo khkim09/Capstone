@@ -104,6 +104,9 @@ $(function(){initNavTree('class_ship_grid_manager.html',''); initResizable(true)
   <div class="headertitle"><div class="title">ShipGridManager Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>함선 커스터마이징 시 나타날 그리드 관련 매니저입니다.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for ShipGridManager:</div>
 <div class="dyncontent">
@@ -117,17 +120,18 @@ Collaboration diagram for ShipGridManager:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a31670d8ea32d67fcc6d02d8c9db510fb" id="r_a31670d8ea32d67fcc6d02d8c9db510fb"><td class="memItemLeft" align="right" valign="top"><a id="a31670d8ea32d67fcc6d02d8c9db510fb" name="a31670d8ea32d67fcc6d02d8c9db510fb"></a>
-Vector2&#160;</td><td class="memItemRight" valign="bottom"><b>GridToWorldPosition</b> (Vector2Int gridPos)</td></tr>
+<tr class="memitem:a31670d8ea32d67fcc6d02d8c9db510fb" id="r_a31670d8ea32d67fcc6d02d8c9db510fb"><td class="memItemLeft" align="right" valign="top">Vector2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31670d8ea32d67fcc6d02d8c9db510fb">GridToWorldPosition</a> (Vector2Int gridPos)</td></tr>
+<tr class="memdesc:a31670d8ea32d67fcc6d02d8c9db510fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">그리드에서 선택한 좌표를 world 좌표로 변환합니다.  <br /></td></tr>
 <tr class="separator:a31670d8ea32d67fcc6d02d8c9db510fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4eb71c384e2c38f8118ee5e18b05c046" id="r_a4eb71c384e2c38f8118ee5e18b05c046"><td class="memItemLeft" align="right" valign="top"><a id="a4eb71c384e2c38f8118ee5e18b05c046" name="a4eb71c384e2c38f8118ee5e18b05c046"></a>
-Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><b>WorldToGridPosition</b> (Vector2 worldPos)</td></tr>
+<tr class="memitem:a4eb71c384e2c38f8118ee5e18b05c046" id="r_a4eb71c384e2c38f8118ee5e18b05c046"><td class="memItemLeft" align="right" valign="top">Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4eb71c384e2c38f8118ee5e18b05c046">WorldToGridPosition</a> (Vector2 worldPos)</td></tr>
+<tr class="memdesc:a4eb71c384e2c38f8118ee5e18b05c046"><td class="mdescLeft">&#160;</td><td class="mdescRight">world 좌표를 그리드에서의 좌표로 변환합니다.  <br /></td></tr>
 <tr class="separator:a4eb71c384e2c38f8118ee5e18b05c046"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a8697b62c0ec355e22b3452186e2b554c" id="r_a8697b62c0ec355e22b3452186e2b554c"><td class="memItemLeft" align="right" valign="top"><a id="a8697b62c0ec355e22b3452186e2b554c" name="a8697b62c0ec355e22b3452186e2b554c"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>gridWidth</b> = 60</td></tr>
+<tr class="memdesc:a8697b62c0ec355e22b3452186e2b554c"><td class="mdescLeft">&#160;</td><td class="mdescRight">그리드 총 높이, 넓이 (60 x 60) tile 1개 사이즈 (1) 그리드 중심 (-30, 30) <br /></td></tr>
 <tr class="separator:a8697b62c0ec355e22b3452186e2b554c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a432d01376bc54fbc3d6ef8c9e78c77" id="r_a4a432d01376bc54fbc3d6ef8c9e78c77"><td class="memItemLeft" align="right" valign="top"><a id="a4a432d01376bc54fbc3d6ef8c9e78c77" name="a4a432d01376bc54fbc3d6ef8c9e78c77"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>gridHeight</b> = 60</td></tr>
@@ -145,6 +149,87 @@ Static Public Attributes</h2></td></tr>
 static <a class="el" href="class_ship_grid_manager.html">ShipGridManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b></td></tr>
 <tr class="separator:a9af07c66f0d2baa1889b0bfd45d6b733"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>함선 커스터마이징 시 나타날 그리드 관련 매니저입니다. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a31670d8ea32d67fcc6d02d8c9db510fb" name="a31670d8ea32d67fcc6d02d8c9db510fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31670d8ea32d67fcc6d02d8c9db510fb">&#9670;&#160;</a></span>GridToWorldPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2 ShipGridManager.GridToWorldPosition </td>
+          <td>(</td>
+          <td class="paramtype">Vector2Int</td>          <td class="paramname"><span class="paramname"><em>gridPos</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>그리드에서 선택한 좌표를 world 좌표로 변환합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridPos</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_ship_grid_manager_a31670d8ea32d67fcc6d02d8c9db510fb_icgraph.svg" width="100%" height="454"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a4eb71c384e2c38f8118ee5e18b05c046" name="a4eb71c384e2c38f8118ee5e18b05c046"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eb71c384e2c38f8118ee5e18b05c046">&#9670;&#160;</a></span>WorldToGridPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2Int ShipGridManager.WorldToGridPosition </td>
+          <td>(</td>
+          <td class="paramtype">Vector2</td>          <td class="paramname"><span class="paramname"><em>worldPos</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>world 좌표를 그리드에서의 좌표로 변환합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPos</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ship_grid_manager_a4eb71c384e2c38f8118ee5e18b05c046_icgraph.svg" width="456" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/CustomizeShip/<b>ShipGridManager.cs</b></li>
 </ul>

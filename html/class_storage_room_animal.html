@@ -104,7 +104,7 @@ $(function(){initNavTree('class_storage_room_animal.html',''); initResizable(tru
 </div><!--header-->
 <div class="contents">
 
-<p>동물 우리를 나타내는 클래스  
+<p>동물 우리(StorageType.Animal)를 나타내는 특화 창고 클래스. 동물 카테고리 아이템만 보관할 수 있습니다.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for StorageRoomAnimal:</div>
@@ -119,157 +119,162 @@ Collaboration diagram for StorageRoomAnimal:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1449dd5c33b750aa0023d29bd92e32ce" id="r_a1449dd5c33b750aa0023d29bd92e32ce"><td class="memItemLeft" align="right" valign="top"><a id="a1449dd5c33b750aa0023d29bd92e32ce" name="a1449dd5c33b750aa0023d29bd92e32ce"></a>
-override bool&#160;</td><td class="memItemRight" valign="bottom"><b>CanStoreItem</b> (<a class="el" href="class_tradable_item.html">TradableItem</a> item)</td></tr>
-<tr class="memdesc:a1449dd5c33b750aa0023d29bd92e32ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">동물 우리는 동물 카테고리 물품만 보관 가능 <br /></td></tr>
+<tr class="memitem:a1449dd5c33b750aa0023d29bd92e32ce" id="r_a1449dd5c33b750aa0023d29bd92e32ce"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1449dd5c33b750aa0023d29bd92e32ce">CanStoreItem</a> (<a class="el" href="class_tradable_item.html">TradableItem</a> item)</td></tr>
+<tr class="memdesc:a1449dd5c33b750aa0023d29bd92e32ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">동물 카테고리의 아이템만 저장이 가능합니다.  <br /></td></tr>
 <tr class="separator:a1449dd5c33b750aa0023d29bd92e32ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_storage_room_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_storage_room_base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_storage_room_base.html">StorageRoomBase</a></td></tr>
 <tr class="memitem:a63b742f6c0350014bcb9c44134354261 inherit pub_methods_class_storage_room_base" id="r_a63b742f6c0350014bcb9c44134354261"><td class="memItemLeft" align="right" valign="top">override Dictionary&lt; ShipStat, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_storage_room_base.html#a63b742f6c0350014bcb9c44134354261">GetStatContributions</a> ()</td></tr>
-<tr class="memdesc:a63b742f6c0350014bcb9c44134354261 inherit pub_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">이 방의 스탯 기여도 계산 (공통 로직)  <br /></td></tr>
+<tr class="memdesc:a63b742f6c0350014bcb9c44134354261 inherit pub_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">이 방이 함선 스탯에 기여하는 값을 계산합니다. 작동 여부에 따라 전력 사용량을 기여합니다.  <br /></td></tr>
 <tr class="separator:a63b742f6c0350014bcb9c44134354261 inherit pub_methods_class_storage_room_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cb00abfdb353857d9d43fd882b4a4cb inherit pub_methods_class_storage_room_base" id="r_a7cb00abfdb353857d9d43fd882b4a4cb"><td class="memItemLeft" align="right" valign="top">
 StorageType&#160;</td><td class="memItemRight" valign="bottom"><b>GetStorageType</b> ()</td></tr>
-<tr class="memdesc:a7cb00abfdb353857d9d43fd882b4a4cb inherit pub_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">창고 타입 반환 <br /></td></tr>
+<tr class="memdesc:a7cb00abfdb353857d9d43fd882b4a4cb inherit pub_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 창고의 저장 타입을 반환합니다. <br /></td></tr>
 <tr class="separator:a7cb00abfdb353857d9d43fd882b4a4cb inherit pub_methods_class_storage_room_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7869de85353c4da9363c36f2d1b0548c inherit pub_methods_class_storage_room_base" id="r_a7869de85353c4da9363c36f2d1b0548c"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>CanStoreItem</b> (<a class="el" href="class_tradable_item.html">TradableItem</a> item)</td></tr>
-<tr class="memdesc:a7869de85353c4da9363c36f2d1b0548c inherit pub_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">물품 보관 가능 여부 확인 (타입별 오버라이드) <br /></td></tr>
+<tr class="memdesc:a7869de85353c4da9363c36f2d1b0548c inherit pub_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">해당 아이템을 저장할 수 있는지 여부를 반환합니다. 파생 클래스에서 구현합니다. <br /></td></tr>
 <tr class="separator:a7869de85353c4da9363c36f2d1b0548c inherit pub_methods_class_storage_room_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad82805733c13778b8bdac8070b8b92e1 inherit pub_methods_class_storage_room_base" id="r_ad82805733c13778b8bdac8070b8b92e1"><td class="memItemLeft" align="right" valign="top">
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>AddItem</b> (<a class="el" href="class_tradable_item.html">TradableItem</a> item, int quantity)</td></tr>
-<tr class="memdesc:ad82805733c13778b8bdac8070b8b92e1 inherit pub_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">물품 추가 <br /></td></tr>
+<tr class="memdesc:ad82805733c13778b8bdac8070b8b92e1 inherit pub_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">아이템을 창고에 추가합니다. <br /></td></tr>
 <tr class="separator:ad82805733c13778b8bdac8070b8b92e1 inherit pub_methods_class_storage_room_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa27b8228736eea1f176d77694099368 inherit pub_methods_class_storage_room_base" id="r_aaa27b8228736eea1f176d77694099368"><td class="memItemLeft" align="right" valign="top">
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>RemoveItem</b> (<a class="el" href="class_tradable_item.html">TradableItem</a> item, int quantity)</td></tr>
-<tr class="memdesc:aaa27b8228736eea1f176d77694099368 inherit pub_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">물품 제거 <br /></td></tr>
+<tr class="memdesc:aaa27b8228736eea1f176d77694099368 inherit pub_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">아이템을 창고에서 제거합니다. <br /></td></tr>
 <tr class="separator:aaa27b8228736eea1f176d77694099368 inherit pub_methods_class_storage_room_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec6670542e8f9a3a142d048f97ec0980 inherit pub_methods_class_storage_room_base" id="r_aec6670542e8f9a3a142d048f97ec0980"><td class="memItemLeft" align="right" valign="top">
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>CheckItemsAfterWarp</b> ()</td></tr>
-<tr class="memdesc:aec6670542e8f9a3a142d048f97ec0980 inherit pub_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">워프 후 아이템 상태 체크 <br /></td></tr>
+<tr class="memdesc:aec6670542e8f9a3a142d048f97ec0980 inherit pub_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">워프 후 아이템 상태를 확인 및 갱신합니다. <br /></td></tr>
 <tr class="separator:aec6670542e8f9a3a142d048f97ec0980 inherit pub_methods_class_storage_room_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_room-2-g"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_room-2-g')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_room-2-g.html">Room&lt; TData, TLevel &gt;</a></td></tr>
-<tr class="memitem:a1726ecaf3cf53bd576215060616ddc4f inherit pub_methods_class_room-2-g" id="r_a1726ecaf3cf53bd576215060616ddc4f"><td class="memItemLeft" align="right" valign="top">
-TLevel&#160;</td><td class="memItemRight" valign="bottom"><b>GetCurrentLevelData</b> ()</td></tr>
+<tr class="memitem:a1726ecaf3cf53bd576215060616ddc4f inherit pub_methods_class_room-2-g" id="r_a1726ecaf3cf53bd576215060616ddc4f"><td class="memItemLeft" align="right" valign="top">TLevel&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room-2-g.html#a1726ecaf3cf53bd576215060616ddc4f">GetCurrentLevelData</a> ()</td></tr>
+<tr class="memdesc:a1726ecaf3cf53bd576215060616ddc4f inherit pub_methods_class_room-2-g"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 방의 레벨에 해당하는 TLevel 데이터를 반환합니다. 내부적으로 필요 시 데이터를 갱신합니다.  <br /></td></tr>
 <tr class="separator:a1726ecaf3cf53bd576215060616ddc4f inherit pub_methods_class_room-2-g"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f0a2ecde33aaee53ca649d85a5b8e8b inherit pub_methods_class_room-2-g" id="r_a2f0a2ecde33aaee53ca649d85a5b8e8b"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room-2-g.html#a2f0a2ecde33aaee53ca649d85a5b8e8b">Upgrade</a> ()</td></tr>
-<tr class="memdesc:a2f0a2ecde33aaee53ca649d85a5b8e8b inherit pub_methods_class_room-2-g"><td class="mdescLeft">&#160;</td><td class="mdescRight">방 업그레이드 - 스탯 시스템 관련 코드 추가  <br /></td></tr>
+<tr class="memdesc:a2f0a2ecde33aaee53ca649d85a5b8e8b inherit pub_methods_class_room-2-g"><td class="mdescLeft">&#160;</td><td class="mdescRight">방을 업그레이드한 후 레벨 데이터도 갱신합니다.  <br /></td></tr>
 <tr class="separator:a2f0a2ecde33aaee53ca649d85a5b8e8b inherit pub_methods_class_room-2-g"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d8f72199c47950be30e0928f4a63eec inherit pub_methods_class_room-2-g" id="r_a6d8f72199c47950be30e0928f4a63eec"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room-2-g.html#a6d8f72199c47950be30e0928f4a63eec">Initialize</a> ()</td></tr>
+<tr class="memdesc:a6d8f72199c47950be30e0928f4a63eec inherit pub_methods_class_room-2-g"><td class="mdescLeft">&#160;</td><td class="mdescRight">방 초기화 시 기본 초기화 이후 레벨 데이터도 갱신합니다.  <br /></td></tr>
 <tr class="separator:a6d8f72199c47950be30e0928f4a63eec inherit pub_methods_class_room-2-g"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_room"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_room')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_room.html">Room</a></td></tr>
 <tr class="memitem:acb5d9a496450f8b76c2e44ebfd607a44 inherit pub_methods_class_room" id="r_acb5d9a496450f8b76c2e44ebfd607a44"><td class="memItemLeft" align="right" valign="top">
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
+<tr class="memdesc:acb5d9a496450f8b76c2e44ebfd607a44 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">매 프레임마다 방의 상태를 업데이트합니다. <br /></td></tr>
 <tr class="separator:acb5d9a496450f8b76c2e44ebfd607a44 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b563b10b8677195f3900ba7acf9f47d inherit pub_methods_class_room" id="r_a7b563b10b8677195f3900ba7acf9f47d"><td class="memItemLeft" align="right" valign="top">
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>CanBePlaced</b> (Vector2Int newPosition, <a class="el" href="class_ship.html">Ship</a> ship)</td></tr>
+<tr class="memitem:a7b563b10b8677195f3900ba7acf9f47d inherit pub_methods_class_room" id="r_a7b563b10b8677195f3900ba7acf9f47d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a7b563b10b8677195f3900ba7acf9f47d">CanBePlaced</a> (Vector2Int newPosition, <a class="el" href="class_ship.html">Ship</a> ship)</td></tr>
+<tr class="memdesc:a7b563b10b8677195f3900ba7acf9f47d inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">방이 배치 가능한 위치인지 검사합니다.  <br /></td></tr>
 <tr class="separator:a7b563b10b8677195f3900ba7acf9f47d inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9218da90ca2b255af955b1069e7376e3 inherit pub_methods_class_room" id="r_a9218da90ca2b255af955b1069e7376e3"><td class="memItemLeft" align="right" valign="top">
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>OnPlaced</b> ()</td></tr>
+<tr class="memdesc:a9218da90ca2b255af955b1069e7376e3 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">방이 실제 배치되었을 때 호출됩니다. <br /></td></tr>
 <tr class="separator:a9218da90ca2b255af955b1069e7376e3 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58a4d40430d900b91de26d000f94e514 inherit pub_methods_class_room" id="r_a58a4d40430d900b91de26d000f94e514"><td class="memItemLeft" align="right" valign="top">
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>OnCrewEnter</b> (<a class="el" href="class_crew_base.html">CrewBase</a> crew)</td></tr>
+<tr class="memdesc:a58a4d40430d900b91de26d000f94e514 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">선원이 방에 진입할 때 호출됩니다. <br /></td></tr>
 <tr class="separator:a58a4d40430d900b91de26d000f94e514 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a088c97dd42a74ff349cd831ff01947d3 inherit pub_methods_class_room" id="r_a088c97dd42a74ff349cd831ff01947d3"><td class="memItemLeft" align="right" valign="top">
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>OnCrewExit</b> (<a class="el" href="class_crew_base.html">CrewBase</a> crew)</td></tr>
+<tr class="memdesc:a088c97dd42a74ff349cd831ff01947d3 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">선원이 방에서 나갈 때 호출됩니다. <br /></td></tr>
 <tr class="separator:a088c97dd42a74ff349cd831ff01947d3 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0689a22affd036af39a621cb1c6232d7 inherit pub_methods_class_room" id="r_a0689a22affd036af39a621cb1c6232d7"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>InitializeIsDamageable</b> ()</td></tr>
+<tr class="memdesc:a0689a22affd036af39a621cb1c6232d7 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">이 방이 데미지를 받을 수 있는지 여부를 초기화합니다. <br /></td></tr>
 <tr class="separator:a0689a22affd036af39a621cb1c6232d7 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a457f641130ad87857e9605b1ecb1e893 inherit pub_methods_class_room" id="r_a457f641130ad87857e9605b1ecb1e893"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetIsPowered</b> ()</td></tr>
+<tr class="memdesc:a457f641130ad87857e9605b1ecb1e893 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">이 방이 전력 공급 중인지 확인합니다. <br /></td></tr>
 <tr class="separator:a457f641130ad87857e9605b1ecb1e893 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a761ba482aa81f7f966aa661d0767e2a3 inherit pub_methods_class_room" id="r_a761ba482aa81f7f966aa661d0767e2a3"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetIsPowerRequested</b> ()</td></tr>
+<tr class="memdesc:a761ba482aa81f7f966aa661d0767e2a3 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">전력 공급 요청 여부를 확인합니다. <br /></td></tr>
 <tr class="separator:a761ba482aa81f7f966aa661d0767e2a3 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a490bd6c136a40055f5456a486ac628fe inherit pub_methods_class_room" id="r_a490bd6c136a40055f5456a486ac628fe"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetIsDamageable</b> ()</td></tr>
+<tr class="memdesc:a490bd6c136a40055f5456a486ac628fe inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">이 방이 데미지를 받을 수 있는지 확인합니다. <br /></td></tr>
 <tr class="separator:a490bd6c136a40055f5456a486ac628fe inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ce2adedce9c250687876f7a54598e0b inherit pub_methods_class_room" id="r_a1ce2adedce9c250687876f7a54598e0b"><td class="memItemLeft" align="right" valign="top">
-OxygenLevel&#160;</td><td class="memItemRight" valign="bottom"><b>GetOxygenLevel</b> ()</td></tr>
-<tr class="separator:a1ce2adedce9c250687876f7a54598e0b inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add41f70042342d4f1956febb8b42c405 inherit pub_methods_class_room" id="r_add41f70042342d4f1956febb8b42c405"><td class="memItemLeft" align="right" valign="top">
 int&#160;</td><td class="memItemRight" valign="bottom"><b>GetCrewCount</b> ()</td></tr>
+<tr class="memdesc:add41f70042342d4f1956febb8b42c405 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 방에 있는 선원 수를 반환합니다. <br /></td></tr>
 <tr class="separator:add41f70042342d4f1956febb8b42c405 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1b0593323548d524469df0f159d5cbc inherit pub_methods_class_room" id="r_ae1b0593323548d524469df0f159d5cbc"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>HasEnoughCrew</b> ()</td></tr>
+<tr class="memdesc:ae1b0593323548d524469df0f159d5cbc inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">필요한 선원이 충분한지 확인합니다. <br /></td></tr>
 <tr class="separator:ae1b0593323548d524469df0f159d5cbc inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f32e752b4605a8bba077145b76b8e98 inherit pub_methods_class_room" id="r_a0f32e752b4605a8bba077145b76b8e98"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsOperational</b> ()</td></tr>
+<tr class="memdesc:a0f32e752b4605a8bba077145b76b8e98 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">방이 작동 가능한 상태인지 확인합니다. <br /></td></tr>
 <tr class="separator:a0f32e752b4605a8bba077145b76b8e98 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72281e34aa2616cb141cffe2bff2c889 inherit pub_methods_class_room" id="r_a72281e34aa2616cb141cffe2bff2c889"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>NeedsRepair</b> ()</td></tr>
+<tr class="memdesc:a72281e34aa2616cb141cffe2bff2c889 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">수리가 필요한 상태인지 확인합니다. <br /></td></tr>
 <tr class="separator:a72281e34aa2616cb141cffe2bff2c889 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40ea0756d0b0dbbff509bdcb16c04b81 inherit pub_methods_class_room" id="r_a40ea0756d0b0dbbff509bdcb16c04b81"><td class="memItemLeft" align="right" valign="top">
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetOxygenLevel</b> (OxygenLevel level)</td></tr>
-<tr class="separator:a40ea0756d0b0dbbff509bdcb16c04b81 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63f96250fb818be0143df9bffb9ea754 inherit pub_methods_class_room" id="r_a63f96250fb818be0143df9bffb9ea754"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a63f96250fb818be0143df9bffb9ea754">TakeDamage</a> (float damage)</td></tr>
+<tr class="memdesc:a63f96250fb818be0143df9bffb9ea754 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">지정된 피해만큼 체력을 감소시킵니다.  <br /></td></tr>
 <tr class="separator:a63f96250fb818be0143df9bffb9ea754 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a346c3936a442595bf111782a08891dfa inherit pub_methods_class_room" id="r_a346c3936a442595bf111782a08891dfa"><td class="memItemLeft" align="right" valign="top">
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Repair</b> (float amount)</td></tr>
+<tr class="memdesc:a346c3936a442595bf111782a08891dfa inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">지정된 양만큼 체력을 회복시킵니다. <br /></td></tr>
 <tr class="separator:a346c3936a442595bf111782a08891dfa inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab76d9c0997d31eac663a984e487655cd inherit pub_methods_class_room" id="r_ab76d9c0997d31eac663a984e487655cd"><td class="memItemLeft" align="right" valign="top">
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPowerStatus</b> (bool powered, bool requested)</td></tr>
+<tr class="memitem:ab76d9c0997d31eac663a984e487655cd inherit pub_methods_class_room" id="r_ab76d9c0997d31eac663a984e487655cd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#ab76d9c0997d31eac663a984e487655cd">SetPowerStatus</a> (bool powered, bool requested)</td></tr>
+<tr class="memdesc:ab76d9c0997d31eac663a984e487655cd inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">전력 공급 상태를 설정합니다.  <br /></td></tr>
 <tr class="separator:ab76d9c0997d31eac663a984e487655cd inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9d1b6dc1c2391ceae8e6e09d7b48772 inherit pub_methods_class_room" id="r_aa9d1b6dc1c2391ceae8e6e09d7b48772"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>GetHealthPercentage</b> ()</td></tr>
+<tr class="memdesc:aa9d1b6dc1c2391ceae8e6e09d7b48772 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">체력 퍼센티지를 반환합니다. <br /></td></tr>
 <tr class="separator:aa9d1b6dc1c2391ceae8e6e09d7b48772 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf5957c928b44ff6462c72a50efff69a inherit pub_methods_class_room" id="r_abf5957c928b44ff6462c72a50efff69a"><td class="memItemLeft" align="right" valign="top">
 virtual Dictionary&lt; ShipStat, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetNextLevelStatContributions</b> ()</td></tr>
-<tr class="memdesc:abf5957c928b44ff6462c72a50efff69a inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">다음 업그레이드 레벨에서의 스탯 기여도 미리보기 반환 <br /></td></tr>
+<tr class="memdesc:abf5957c928b44ff6462c72a50efff69a inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">다음 레벨에서의 스탯 기여도를 반환합니다. <br /></td></tr>
 <tr class="separator:abf5957c928b44ff6462c72a50efff69a inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4a663b2f77e2f742229d37dfd466fb3 inherit pub_methods_class_room" id="r_ac4a663b2f77e2f742229d37dfd466fb3"><td class="memItemLeft" align="right" valign="top">
 int&#160;</td><td class="memItemRight" valign="bottom"><b>GetCurrentLevel</b> ()</td></tr>
-<tr class="memdesc:ac4a663b2f77e2f742229d37dfd466fb3 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 업그레이드 레벨 반환 <br /></td></tr>
+<tr class="memdesc:ac4a663b2f77e2f742229d37dfd466fb3 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 업그레이드 레벨을 반환합니다. <br /></td></tr>
 <tr class="separator:ac4a663b2f77e2f742229d37dfd466fb3 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf87d5afcbc3ddc116a42b3140ada748 inherit pub_methods_class_room" id="r_aaf87d5afcbc3ddc116a42b3140ada748"><td class="memItemLeft" align="right" valign="top">
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetMaxLevel</b> ()</td></tr>
-<tr class="memdesc:aaf87d5afcbc3ddc116a42b3140ada748 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">최대 업그레이드 레벨 반환 <br /></td></tr>
-<tr class="separator:aaf87d5afcbc3ddc116a42b3140ada748 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0eb6348919c66331123fa24ad1abbcba inherit pub_methods_class_room" id="r_a0eb6348919c66331123fa24ad1abbcba"><td class="memItemLeft" align="right" valign="top">
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GetPowerConsumption</b> ()</td></tr>
+<tr class="memitem:a0eb6348919c66331123fa24ad1abbcba inherit pub_methods_class_room" id="r_a0eb6348919c66331123fa24ad1abbcba"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a0eb6348919c66331123fa24ad1abbcba">GetPowerConsumption</a> ()</td></tr>
+<tr class="memdesc:a0eb6348919c66331123fa24ad1abbcba inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">최대 업그레이드 레벨을 반환합니다.  <br /></td></tr>
 <tr class="separator:a0eb6348919c66331123fa24ad1abbcba inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e2b4f59e53e2762095ac1e11401a535 inherit pub_methods_class_room" id="r_a6e2b4f59e53e2762095ac1e11401a535"><td class="memItemLeft" align="right" valign="top">
 Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
+<tr class="memdesc:a6e2b4f59e53e2762095ac1e11401a535 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">방의 크기를 반환합니다. <br /></td></tr>
 <tr class="separator:a6e2b4f59e53e2762095ac1e11401a535 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86dd72d940f51a27a678c96490ae8139 inherit pub_methods_class_room" id="r_a86dd72d940f51a27a678c96490ae8139"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>GetMaxHitPoints</b> ()</td></tr>
+<tr class="memdesc:a86dd72d940f51a27a678c96490ae8139 inherit pub_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">최대 체력을 반환합니다. <br /></td></tr>
 <tr class="separator:a86dd72d940f51a27a678c96490ae8139 inherit pub_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a5ec7bc5242606bef11d6d89bb788481a" id="r_a5ec7bc5242606bef11d6d89bb788481a"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ec7bc5242606bef11d6d89bb788481a">Start</a> ()</td></tr>
+<tr class="memdesc:a5ec7bc5242606bef11d6d89bb788481a"><td class="mdescLeft">&#160;</td><td class="mdescRight">초기화 시 저장 타입을 Animal로 설정합니다.  <br /></td></tr>
 <tr class="separator:a5ec7bc5242606bef11d6d89bb788481a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_storage_room_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_storage_room_base')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_storage_room_base.html">StorageRoomBase</a></td></tr>
 <tr class="memitem:a63e5e32e885160725acef465d584a722 inherit pro_methods_class_storage_room_base" id="r_a63e5e32e885160725acef465d584a722"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_storage_room_base.html#a63e5e32e885160725acef465d584a722">Start</a> ()</td></tr>
+<tr class="memdesc:a63e5e32e885160725acef465d584a722 inherit pro_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">초기화 시 방 타입을 Storage로 설정합니다.  <br /></td></tr>
 <tr class="separator:a63e5e32e885160725acef465d584a722 inherit pro_methods_class_storage_room_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8afb0b3e8bb79548cf7276a43c6f95c5 inherit pro_methods_class_storage_room_base" id="r_a8afb0b3e8bb79548cf7276a43c6f95c5"><td class="memItemLeft" align="right" valign="top">
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>DegradeItemState</b> (<a class="el" href="class_tradable_item.html">TradableItem</a> item)</td></tr>
-<tr class="memdesc:a8afb0b3e8bb79548cf7276a43c6f95c5 inherit pro_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">물품 상태 저하 <br /></td></tr>
+<tr class="memdesc:a8afb0b3e8bb79548cf7276a43c6f95c5 inherit pro_methods_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">아이템의 상태를 저하시킵니다. 아이템은 점점 더 손상된 상태로 변경됩니다. <br /></td></tr>
 <tr class="separator:a8afb0b3e8bb79548cf7276a43c6f95c5 inherit pro_methods_class_storage_room_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_room-2-g"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_room-2-g')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_room-2-g.html">Room&lt; TData, TLevel &gt;</a></td></tr>
 <tr class="memitem:a991f10d83518af889058b13763fd3e25 inherit pro_methods_class_room-2-g" id="r_a991f10d83518af889058b13763fd3e25"><td class="memItemLeft" align="right" valign="top">
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateRoomLevelData</b> ()</td></tr>
-<tr class="memdesc:a991f10d83518af889058b13763fd3e25 inherit pro_methods_class_room-2-g"><td class="mdescLeft">&#160;</td><td class="mdescRight">모든 방 타입에서 공통으로 사용할 수 있는 레벨 데이터 업데이트 메서드 <br /></td></tr>
+<tr class="memdesc:a991f10d83518af889058b13763fd3e25 inherit pro_methods_class_room-2-g"><td class="mdescLeft">&#160;</td><td class="mdescRight">레벨 데이터 캐시를 갱신합니다. roomData에서 현재 레벨에 맞는 데이터를 가져오고, 시각적 요소도 함께 갱신됩니다. <br /></td></tr>
 <tr class="separator:a991f10d83518af889058b13763fd3e25 inherit pro_methods_class_room-2-g"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_room"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_room')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_room.html">Room</a></td></tr>
-<tr class="memitem:a7767a1981cb5588b28174320309f73c2 inherit pro_methods_class_room" id="r_a7767a1981cb5588b28174320309f73c2"><td class="memItemLeft" align="right" valign="top">
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateRoom</b> ()</td></tr>
+<tr class="memitem:a7767a1981cb5588b28174320309f73c2 inherit pro_methods_class_room" id="r_a7767a1981cb5588b28174320309f73c2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a7767a1981cb5588b28174320309f73c2">UpdateRoom</a> ()</td></tr>
+<tr class="memdesc:a7767a1981cb5588b28174320309f73c2 inherit pro_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">방의 상태를 매 프레임 업데이트합니다.  <br /></td></tr>
 <tr class="separator:a7767a1981cb5588b28174320309f73c2 inherit pro_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae27efaeaba4cd66e7edf0cb42232e131 inherit pro_methods_class_room" id="r_ae27efaeaba4cd66e7edf0cb42232e131"><td class="memItemLeft" align="right" valign="top">
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateEffects</b> ()</td></tr>
+<tr class="memdesc:ae27efaeaba4cd66e7edf0cb42232e131 inherit pro_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">방의 이펙트(색상, 파티클 등)를 업데이트합니다. <br /></td></tr>
 <tr class="separator:ae27efaeaba4cd66e7edf0cb42232e131 inherit pro_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65f5c95f02f60acb28b2ccd96bbf37cb inherit pro_methods_class_room" id="r_a65f5c95f02f60acb28b2ccd96bbf37cb"><td class="memItemLeft" align="right" valign="top">
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>HasFire</b> ()</td></tr>
-<tr class="separator:a65f5c95f02f60acb28b2ccd96bbf37cb inherit pro_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf1050d438fe374fe8282667d5675f99 inherit pro_methods_class_room" id="r_acf1050d438fe374fe8282667d5675f99"><td class="memItemLeft" align="right" valign="top">
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateFireExtinguishRate</b> (float rate)</td></tr>
-<tr class="separator:acf1050d438fe374fe8282667d5675f99 inherit pro_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b1f80a980997eaec4b645a9a6b39f81 inherit pro_methods_class_room" id="r_a1b1f80a980997eaec4b645a9a6b39f81"><td class="memItemLeft" align="right" valign="top">
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>OnDisabled</b> ()</td></tr>
+<tr class="memdesc:a1b1f80a980997eaec4b645a9a6b39f81 inherit pro_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">방이 작동 불능 상태가 되었을 때 호출됩니다. <br /></td></tr>
 <tr class="separator:a1b1f80a980997eaec4b645a9a6b39f81 inherit pro_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac222ae4ac4c382283f339a4cfc3cded6 inherit pro_methods_class_room" id="r_ac222ae4ac4c382283f339a4cfc3cded6"><td class="memItemLeft" align="right" valign="top">
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>NotifyStateChanged</b> ()</td></tr>
-<tr class="memdesc:ac222ae4ac4c382283f339a4cfc3cded6 inherit pro_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">상태 변경을 Ship에 알림 <br /></td></tr>
+<tr class="memdesc:ac222ae4ac4c382283f339a4cfc3cded6 inherit pro_methods_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">상태 변경을 알립니다. <br /></td></tr>
 <tr class="separator:ac222ae4ac4c382283f339a4cfc3cded6 inherit pro_methods_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -277,57 +282,63 @@ Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_attribs_class_room"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_room')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_room.html">Room</a></td></tr>
 <tr class="memitem:a8ca6630bb536c3f37476a885a8c0b320 inherit pub_attribs_class_room" id="r_a8ca6630bb536c3f37476a885a8c0b320"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="class_room_data.html">RoomData</a>&#160;</td><td class="memItemRight" valign="bottom"><b>roomData</b></td></tr>
+<tr class="memdesc:a8ca6630bb536c3f37476a885a8c0b320 inherit pub_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">방의 데이터 ScriptableObject 참조. <br /></td></tr>
 <tr class="separator:a8ca6630bb536c3f37476a885a8c0b320 inherit pub_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3c65a99bdd6a3a80c985b82021b5b6d inherit pub_attribs_class_room" id="r_ab3c65a99bdd6a3a80c985b82021b5b6d"><td class="memItemLeft" align="right" valign="top">
 Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
+<tr class="memdesc:ab3c65a99bdd6a3a80c985b82021b5b6d inherit pub_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">격자상의 방 위치 (좌측 상단 기준). <br /></td></tr>
 <tr class="separator:ab3c65a99bdd6a3a80c985b82021b5b6d inherit pub_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace5c8ee9b2aaf90f5f8af56f6257ea8a inherit pub_attribs_class_room" id="r_ace5c8ee9b2aaf90f5f8af56f6257ea8a"><td class="memItemLeft" align="right" valign="top">
 int&#160;</td><td class="memItemRight" valign="bottom"><b>currentLevel</b></td></tr>
+<tr class="memdesc:ace5c8ee9b2aaf90f5f8af56f6257ea8a inherit pub_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 방의 업그레이드 레벨. <br /></td></tr>
 <tr class="separator:ace5c8ee9b2aaf90f5f8af56f6257ea8a inherit pub_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6c7abf02d295dc24a8eb1e6f6bf146d inherit pub_attribs_class_room" id="r_ae6c7abf02d295dc24a8eb1e6f6bf146d"><td class="memItemLeft" align="right" valign="top">
-int&#160;</td><td class="memItemRight" valign="bottom"><b>maxLevel</b></td></tr>
-<tr class="separator:ae6c7abf02d295dc24a8eb1e6f6bf146d inherit pub_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ac9dc808a5c0b830ea41ae336bbb79c inherit pub_attribs_class_room" id="r_a2ac9dc808a5c0b830ea41ae336bbb79c"><td class="memItemLeft" align="right" valign="top">
 RoomType&#160;</td><td class="memItemRight" valign="bottom"><b>roomType</b></td></tr>
+<tr class="memdesc:a2ac9dc808a5c0b830ea41ae336bbb79c inherit pub_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">방의 타입. <br /></td></tr>
 <tr class="separator:a2ac9dc808a5c0b830ea41ae336bbb79c inherit pub_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7539ffb34b53847ecbc2be9fa292c7c inherit pub_attribs_class_room" id="r_ad7539ffb34b53847ecbc2be9fa292c7c"><td class="memItemLeft" align="right" valign="top">
 List&lt; <a class="el" href="class_crew_base.html">CrewBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>crewInRoom</b> = new()</td></tr>
+<tr class="memdesc:ad7539ffb34b53847ecbc2be9fa292c7c inherit pub_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 방에 존재하는 선원 목록. <br /></td></tr>
 <tr class="separator:ad7539ffb34b53847ecbc2be9fa292c7c inherit pub_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e329c8f19e45622182d87794d334d9d inherit pub_attribs_class_room" id="r_a8e329c8f19e45622182d87794d334d9d"><td class="memItemLeft" align="right" valign="top">
 Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><b>gridSize</b> = new(2, 2)</td></tr>
+<tr class="memdesc:a8e329c8f19e45622182d87794d334d9d inherit pub_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">방의 그리드 크기 (에디터 전용). <br /></td></tr>
 <tr class="separator:a8e329c8f19e45622182d87794d334d9d inherit pub_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_storage_room_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_storage_room_base')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_storage_room_base.html">StorageRoomBase</a></td></tr>
 <tr class="memitem:a454ad672ac9f30c533af4ec6fcae3877 inherit pro_attribs_class_storage_room_base" id="r_a454ad672ac9f30c533af4ec6fcae3877"><td class="memItemLeft" align="right" valign="top">
 StorageType&#160;</td><td class="memItemRight" valign="bottom"><b>storageType</b></td></tr>
+<tr class="memdesc:a454ad672ac9f30c533af4ec6fcae3877 inherit pro_attribs_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">이 창고의 저장 타입 (예: 식량, 자원, 상품 등). <br /></td></tr>
 <tr class="separator:a454ad672ac9f30c533af4ec6fcae3877 inherit pro_attribs_class_storage_room_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dc957f77d9e2ccb01aa65c05a49fb08 inherit pro_attribs_class_storage_room_base" id="r_a7dc957f77d9e2ccb01aa65c05a49fb08"><td class="memItemLeft" align="right" valign="top">
 Dictionary&lt; string, <a class="el" href="class_tradable_item.html">TradableItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>storedItems</b> = new()</td></tr>
+<tr class="memdesc:a7dc957f77d9e2ccb01aa65c05a49fb08 inherit pro_attribs_class_storage_room_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">저장된 아이템 목록. <br /></td></tr>
 <tr class="separator:a7dc957f77d9e2ccb01aa65c05a49fb08 inherit pro_attribs_class_storage_room_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_room-2-g"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_room-2-g')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_room-2-g.html">Room&lt; TData, TLevel &gt;</a></td></tr>
 <tr class="memitem:aef1c93f94f164ed3151ec3d3301a1988 inherit pro_attribs_class_room-2-g" id="r_aef1c93f94f164ed3151ec3d3301a1988"><td class="memItemLeft" align="right" valign="top">
 TLevel&#160;</td><td class="memItemRight" valign="bottom"><b>currentRoomLevelData</b></td></tr>
+<tr class="memdesc:aef1c93f94f164ed3151ec3d3301a1988 inherit pro_attribs_class_room-2-g"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 방 레벨에 해당하는 데이터 캐시. <br /></td></tr>
 <tr class="separator:aef1c93f94f164ed3151ec3d3301a1988 inherit pro_attribs_class_room-2-g"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_room"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_room')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_room.html">Room</a></td></tr>
 <tr class="memitem:a13e2f7b1f2ab7547fa475d68a7b25170 inherit pro_attribs_class_room" id="r_a13e2f7b1f2ab7547fa475d68a7b25170"><td class="memItemLeft" align="right" valign="top">
 float&#160;</td><td class="memItemRight" valign="bottom"><b>currentHitPoints</b></td></tr>
+<tr class="memdesc:a13e2f7b1f2ab7547fa475d68a7b25170 inherit pro_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 체력. <br /></td></tr>
 <tr class="separator:a13e2f7b1f2ab7547fa475d68a7b25170 inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a341daabb4b5648ddbb7b3ba5d1c1768d inherit pro_attribs_class_room" id="r_a341daabb4b5648ddbb7b3ba5d1c1768d"><td class="memItemLeft" align="right" valign="top">
-OxygenLevel&#160;</td><td class="memItemRight" valign="bottom"><b>oxygenLevel</b> = OxygenLevel.Normal</td></tr>
-<tr class="separator:a341daabb4b5648ddbb7b3ba5d1c1768d inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d060d005fd9719f87f5045656fdf7f0 inherit pro_attribs_class_room" id="r_a9d060d005fd9719f87f5045656fdf7f0"><td class="memItemLeft" align="right" valign="top">
 List&lt; <a class="el" href="class_room.html">Room</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>adjacentRooms</b> = new()</td></tr>
+<tr class="memdesc:a9d060d005fd9719f87f5045656fdf7f0 inherit pro_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">인접한 방 리스트. <br /></td></tr>
 <tr class="separator:a9d060d005fd9719f87f5045656fdf7f0 inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62969e3e1a00996d52dc11b8de11e38f inherit pro_attribs_class_room" id="r_a62969e3e1a00996d52dc11b8de11e38f"><td class="memItemLeft" align="right" valign="top">
 List&lt; <a class="el" href="class_door.html">Door</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>connectedDoors</b> = new()</td></tr>
+<tr class="memdesc:a62969e3e1a00996d52dc11b8de11e38f inherit pro_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">인접한 방 리스트. <br /></td></tr>
 <tr class="separator:a62969e3e1a00996d52dc11b8de11e38f inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7abba6b28c033a0378827bdac3b30ef5 inherit pro_attribs_class_room" id="r_a7abba6b28c033a0378827bdac3b30ef5"><td class="memItemLeft" align="right" valign="top">
 ParticleSystem&#160;</td><td class="memItemRight" valign="bottom"><b>roomParticles</b></td></tr>
+<tr class="memdesc:a7abba6b28c033a0378827bdac3b30ef5 inherit pro_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">방 작동 시 시각 효과 파티클. <br /></td></tr>
 <tr class="separator:a7abba6b28c033a0378827bdac3b30ef5 inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1c11bff52ba8d99da5dc19fe8de3483 inherit pro_attribs_class_room" id="r_aa1c11bff52ba8d99da5dc19fe8de3483"><td class="memItemLeft" align="right" valign="top">
 AudioSource&#160;</td><td class="memItemRight" valign="bottom"><b>roomSound</b></td></tr>
+<tr class="memdesc:aa1c11bff52ba8d99da5dc19fe8de3483 inherit pro_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">방 작동 시 사운드 효과. <br /></td></tr>
 <tr class="separator:aa1c11bff52ba8d99da5dc19fe8de3483 inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11a5cd79ddf82916e0b1418b782ba19d inherit pro_attribs_class_room" id="r_a11a5cd79ddf82916e0b1418b782ba19d"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; OxygenLevel, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a11a5cd79ddf82916e0b1418b782ba19d">crewDamagePerOxygen</a></td></tr>
-<tr class="separator:a11a5cd79ddf82916e0b1418b782ba19d inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ac26425a9bb519557db069d760e5c12 inherit pro_attribs_class_room" id="r_a4ac26425a9bb519557db069d760e5c12"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; OxygenLevel, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a4ac26425a9bb519557db069d760e5c12">fireExtinguishRatePerLevel</a></td></tr>
 <tr class="separator:a4ac26425a9bb519557db069d760e5c12 inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc49fafd8d29b719361e26093b5103cd inherit pro_attribs_class_room" id="r_acc49fafd8d29b719361e26093b5103cd"><td class="memItemLeft" align="right" valign="top">
@@ -335,38 +346,73 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> = true</
 <tr class="separator:acc49fafd8d29b719361e26093b5103cd inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeab1a2f52964f4b948c9b3b9c4f78275 inherit pro_attribs_class_room" id="r_aeab1a2f52964f4b948c9b3b9c4f78275"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isPowered</b></td></tr>
+<tr class="memdesc:aeab1a2f52964f4b948c9b3b9c4f78275 inherit pro_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">전력이 공급되고 있는지 여부. <br /></td></tr>
 <tr class="separator:aeab1a2f52964f4b948c9b3b9c4f78275 inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1967c8ee1f86422562e2d9f4c99a53c7 inherit pro_attribs_class_room" id="r_a1967c8ee1f86422562e2d9f4c99a53c7"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isPowerRequested</b></td></tr>
+<tr class="memdesc:a1967c8ee1f86422562e2d9f4c99a53c7 inherit pro_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">전력 공급이 요청되었는지 여부. <br /></td></tr>
 <tr class="separator:a1967c8ee1f86422562e2d9f4c99a53c7 inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58aeafee0561e2cb490b6e05ccacd57d inherit pro_attribs_class_room" id="r_a58aeafee0561e2cb490b6e05ccacd57d"><td class="memItemLeft" align="right" valign="top">
-Color&#160;</td><td class="memItemRight" valign="bottom"><b>lowOxygenColor</b> = new(1f, 0.8f, 0.8f)</td></tr>
-<tr class="separator:a58aeafee0561e2cb490b6e05ccacd57d inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af368c0db8e5791ca9462db635e3e8db5 inherit pro_attribs_class_room" id="r_af368c0db8e5791ca9462db635e3e8db5"><td class="memItemLeft" align="right" valign="top">
-Color&#160;</td><td class="memItemRight" valign="bottom"><b>normalColor</b> = Color.white</td></tr>
-<tr class="separator:af368c0db8e5791ca9462db635e3e8db5 inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a952f1cde387d90f99d19dad3e17d01ce inherit pro_attribs_class_room" id="r_a952f1cde387d90f99d19dad3e17d01ce"><td class="memItemLeft" align="right" valign="top">
 SpriteRenderer&#160;</td><td class="memItemRight" valign="bottom"><b>roomRenderer</b></td></tr>
+<tr class="memdesc:a952f1cde387d90f99d19dad3e17d01ce inherit pro_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">방의 시각적 렌더러. <br /></td></tr>
 <tr class="separator:a952f1cde387d90f99d19dad3e17d01ce inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6dc8302e2f44c32b0d01bbcf4c4bab1 inherit pro_attribs_class_room" id="r_af6dc8302e2f44c32b0d01bbcf4c4bab1"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="class_ship.html">Ship</a>&#160;</td><td class="memItemRight" valign="bottom"><b>parentShip</b></td></tr>
+<tr class="memdesc:af6dc8302e2f44c32b0d01bbcf4c4bab1 inherit pro_attribs_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">소속된 <a class="el" href="class_ship.html" title="함선의 전체 기능과 상태를 관리하는 클래스. 방 배치, 시스템 초기화, 전투 처리, 자원 계산, 스탯 갱신 등의 기능을 포함합니다.">Ship</a> 참조. <br /></td></tr>
 <tr class="separator:af6dc8302e2f44c32b0d01bbcf4c4bab1 inherit pro_attribs_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_class_room-2-g"><td colspan="2" onclick="javascript:dynsection.toggleInherit('properties_class_room-2-g')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="class_room-2-g.html">Room&lt; TData, TLevel &gt;</a></td></tr>
 <tr class="memitem:a2ceb9fa0e776c6956db8ad2fc1001f8d inherit properties_class_room-2-g" id="r_a2ceb9fa0e776c6956db8ad2fc1001f8d"><td class="memItemLeft" align="right" valign="top">
 new TData&#160;</td><td class="memItemRight" valign="bottom"><b>roomData</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:a2ceb9fa0e776c6956db8ad2fc1001f8d inherit properties_class_room-2-g"><td class="mdescLeft">&#160;</td><td class="mdescRight">방의 RoomData를 명확한 제네릭 타입으로 재정의한 프로퍼티. <br /></td></tr>
 <tr class="separator:a2ceb9fa0e776c6956db8ad2fc1001f8d inherit properties_class_room-2-g"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_class_room"><td colspan="2" onclick="javascript:dynsection.toggleInherit('properties_class_room')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="class_room.html">Room</a></td></tr>
 <tr class="memitem:a40b54dd195b2256f6d00456732680f55 inherit properties_class_room" id="r_a40b54dd195b2256f6d00456732680f55"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isPlaced</b><code> [get, protected set]</code></td></tr>
+<tr class="memdesc:a40b54dd195b2256f6d00456732680f55 inherit properties_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">해당 방이 실제로 배치되었는지 여부. <br /></td></tr>
 <tr class="separator:a40b54dd195b2256f6d00456732680f55 inherit properties_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header events_class_room"><td colspan="2" onclick="javascript:dynsection.toggleInherit('events_class_room')"><img src="closed.png" alt="-"/>&#160;Events inherited from <a class="el" href="class_room.html">Room</a></td></tr>
 <tr class="memitem:a4137ee0a4186e30ec8395fea73f241ac inherit events_class_room" id="r_a4137ee0a4186e30ec8395fea73f241ac"><td class="memItemLeft" align="right" valign="top">
 Action&lt; <a class="el" href="class_room.html">Room</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnRoomStateChanged</b></td></tr>
+<tr class="memdesc:a4137ee0a4186e30ec8395fea73f241ac inherit events_class_room"><td class="mdescLeft">&#160;</td><td class="mdescRight">방의 상태가 변경되었을 때 호출되는 이벤트. <br /></td></tr>
 <tr class="separator:a4137ee0a4186e30ec8395fea73f241ac inherit events_class_room"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>동물 우리를 나타내는 클래스 </p>
+<div class="textblock"><p>동물 우리(StorageType.Animal)를 나타내는 특화 창고 클래스. 동물 카테고리 아이템만 보관할 수 있습니다. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1449dd5c33b750aa0023d29bd92e32ce" name="a1449dd5c33b750aa0023d29bd92e32ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1449dd5c33b750aa0023d29bd92e32ce">&#9670;&#160;</a></span>CanStoreItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override bool StorageRoomAnimal.CanStoreItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_tradable_item.html">TradableItem</a></td>          <td class="paramname"><span class="paramname"><em>item</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>동물 카테고리의 아이템만 저장이 가능합니다. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>보관 대상 아이템.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>보관 가능 여부.</dd></dl>
+
+</div>
+</div>
 <a id="a5ec7bc5242606bef11d6d89bb788481a" name="a5ec7bc5242606bef11d6d89bb788481a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5ec7bc5242606bef11d6d89bb788481a">&#9670;&#160;</a></span>Start()</h2>
 
@@ -390,7 +436,9 @@ Action&lt; <a class="el" href="class_room.html">Room</a> &gt;&#160;</td><td clas
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_room-2-g.html">Room&lt; TData, TLevel &gt;</a>.</p>
+<p>초기화 시 저장 타입을 Animal로 설정합니다. </p>
+
+<p>Reimplemented from <a class="el" href="class_room-2-g.html#a48e9fcd083d5f11c6dfca873960fd3c5">Room&lt; TData, TLevel &gt;</a>.</p>
 
 </div>
 </div>

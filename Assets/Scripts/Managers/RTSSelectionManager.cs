@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
+/// <summary>
+/// 선원 단일 선택, 다중 선택 관리 Manager
+/// </summary>
 public class RTSSelectionManager : MonoBehaviour
 {
     // 드래그 시 표시할 텍스처 (Inspector에서 할당)
@@ -29,6 +32,10 @@ public class RTSSelectionManager : MonoBehaviour
     public float spacing = 0.7f;
     public float speed = 10.0f;
 
+    /// <summary>
+    /// 좌클릭 감지 - 다중 선택 시 영역 표시
+    /// 우클릭 감지 - 선택한 선원 이동 명령
+    /// </summary>
     void Update()
     {
         bool isMainUI = IsMainUIActive();
@@ -65,13 +72,19 @@ public class RTSSelectionManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// MainUI에서만 RTS기능이 동작하도록 제한하는 함수
+    /// </summary>
+    /// <returns></returns>
     private bool IsMainUIActive()
     {
         return CrewUIHandler.Instance != null && CrewUIHandler.Instance.mainUIScreen != null && CrewUIHandler.Instance.mainUIScreen.activeSelf;
     }
 
 
-    // OnGUI를 이용하여 드래그 사각형 표시
+    /// <summary>
+    /// OnGUI를 이용하여 드래그 영역의 사각형 표시
+    /// </summary>
     void OnGUI()
     {
         if (isDragging && IsMainUIActive())
@@ -82,7 +95,12 @@ public class RTSSelectionManager : MonoBehaviour
         }
     }
 
-    // 두 스크린 좌표로 사각형 영역 계산 (y좌표 보정 포함)
+    /// <summary>
+    /// 두 스크린 좌표로 사각형 영역 계산 (y좌표 보정 포함)
+    /// </summary>
+    /// <param name="screenPosition1"></param>
+    /// <param name="screenPosition2"></param>
+    /// <returns></returns>
     Rect GetScreenRect(Vector2 screenPosition1, Vector2 screenPosition2)
     {
         screenPosition1.y = Screen.height - screenPosition1.y;
@@ -92,7 +110,11 @@ public class RTSSelectionManager : MonoBehaviour
         return Rect.MinMaxRect(topLeft.x, topLeft.y, bottomRight.x, bottomRight.y);
     }
 
-    // 사각형 내부 채우기
+    /// <summary>
+    /// 사각형 내부 채우기
+    /// </summary>
+    /// <param name="rect"></param>
+    /// <param name="color"></param>
     void DrawScreenRect(Rect rect, Color color)
     {
         GUI.color = color;
@@ -100,7 +122,12 @@ public class RTSSelectionManager : MonoBehaviour
         GUI.color = Color.white;
     }
 
-    // 사각형 테두리 그리기
+    /// <summary>
+    /// 사각형 테두리 그리기
+    /// </summary>
+    /// <param name="rect"></param>
+    /// <param name="thickness"></param>
+    /// <param name="color"></param>
     void DrawScreenRectBorder(Rect rect, float thickness, Color color)
     {
         GUI.color = color;
@@ -115,6 +142,9 @@ public class RTSSelectionManager : MonoBehaviour
         GUI.color = Color.white;
     }
 
+    /// <summary>
+    /// 선택한 선원 모두 해제
+    /// </summary>
     void DeselectAll()
     {
         selectedCrew.Clear();
@@ -123,7 +153,9 @@ public class RTSSelectionManager : MonoBehaviour
             crew.GetComponent<Renderer>().material.color = Color.white;
     }
 
-    // 단일 선원 선택
+    /// <summary>
+    /// 단일 선원 선택
+    /// </summary>
     public void SelectSingleCrew()
     {
         DeselectAll();
@@ -142,7 +174,9 @@ public class RTSSelectionManager : MonoBehaviour
         }
     }
 
-    // 영역 내 선원 다중 선택
+    /// <summary>
+    /// 영역 내 선원 다중 선택
+    /// </summary>
     void SelectMultipleCrew()
     {
         // 선택 리스트 초기화
@@ -172,7 +206,9 @@ public class RTSSelectionManager : MonoBehaviour
         }
     }
 
-    // 우클릭한 위치로 이동 명령 전달
+    /// <summary>
+    /// 우클릭한 위치로 이동 명령 전달
+    /// </summary>
     void IssueMoveCommand()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -204,7 +240,12 @@ public class RTSSelectionManager : MonoBehaviour
         }
     }
 
-    // Lerp를 사용한 이동 코루틴 (추후 디테일 조정 가능)
+    /// <summary>
+    /// Lerp를 사용한 이동 코루틴 (추후 디테일 조정 가능)
+    /// </summary>
+    /// <param name="crew"></param>
+    /// <param name="destination"></param>
+    /// <returns></returns>
     IEnumerator MoveCrewMember(CrewMember crew, Vector3 destination)
     {
         Vector3 startPos = crew.transform.position;
@@ -223,7 +264,10 @@ public class RTSSelectionManager : MonoBehaviour
         CheckForCombat(crew);
     }
 
-    // 일정 범위 내에 적이 있다면 전투 실행
+    /// <summary>
+    /// 일정 범위 내에 적이 있다면 전투 실행
+    /// </summary>
+    /// <param name="crew"></param>
     void CheckForCombat(CrewMember crew)
     {
         Collider[] colliders = Physics.OverlapSphere(crew.transform.position, attackRange);
@@ -241,7 +285,11 @@ public class RTSSelectionManager : MonoBehaviour
         }
     }
 
-    // 전투 메서드: 1 hit 당 피해량 계산 후 체력 차감, 체력이 0 이하이면 죽음 처리
+    /// <summary>
+    /// 전투 메서드: 1 hit 당 피해량 계산 후 체력 차감, 체력이 0 이하이면 죽음 처리
+    /// </summary>
+    /// <param name="attacker"></param>
+    /// <param name="target"></param>
     void Attack(CrewMember attacker, CrewMember target)
     {
         // 피해량 계산식: (공격 주체 기본 공격 + 장비 공격력(tmp)) * (1 - (상대 방어력 / 100))
