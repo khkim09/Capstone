@@ -2,31 +2,57 @@
 using UnityEngine;
 
 /// <summary>
-/// Ship 스탯의 최소값과 최대값을 관리하는 ScriptableObject
+/// Ship 스탯의 최소값과 최대값을 관리하는 ScriptableObject.
+/// 밸런스 조정 및 수치 안정성을 위한 범위 제한 기능을 제공합니다.
 /// </summary>
 [CreateAssetMenu(fileName = "ShipStatSettings", menuName = "Ship/Stat Settings")]
 public class ShipStatSettings : ScriptableObject
 {
+    /// <summary>
+    /// 특정 ShipStat에 대한 제한 설정입니다.
+    /// </summary>
     [System.Serializable]
     public class StatLimit
     {
+        /// <summary>대상 스탯.</summary>
         public ShipStat Stat;
-        public float MinValue; // 최소값 추가
+
+        /// <summary>허용되는 최소값.</summary>
+        public float MinValue;
+
+        /// <summary>허용되는 최대값.</summary>
         public float MaxValue;
-        public bool HasMinLimit; // 최소값 제한 여부
-        [TextArea(1, 3)] public string Description; // 스탯에 대한 설명이나 메모
+
+        /// <summary>최소값 제한 여부.</summary>
+        public bool HasMinLimit;
+
+        /// <summary>해당 스탯에 대한 설명 또는 메모.</summary>
+        [TextArea(1, 3)] public string Description;
     }
 
+    /// <summary>해당 스탯에 대한 설명 또는 메모.</summary>
     [Tooltip("각 스탯에 대한 최소/최대값 설정")] public List<StatLimit> StatLimits = new();
 
-    // 기본값 설정 (인스펙터에서 설정하지 않은 경우 사용됨)
+
+    /// <summary>
+    /// 설정되지 않은 스탯에 대한 기본 최대값.
+    /// </summary>
     [SerializeField] private float defaultMaxValue = float.MaxValue;
+
+    /// <summary>
+    /// 설정되지 않은 스탯에 대한 기본 최소값.
+    /// </summary>
     [SerializeField] private float defaultMinValue = 0f;
 
-    // 캐싱을 위한 사전
+    /// <summary>
+    /// 빠른 조회를 위한 내부 캐시 딕셔너리.
+    /// </summary>
     private Dictionary<ShipStat, StatLimit> _limitsCache;
 
-    // Unity 이벤트: 스크립트가 로드될 때 호출됨
+    /// <summary>
+    /// ScriptableObject가 활성화될 때 자동으로 호출됩니다.
+    /// 기본값과 캐시 초기화를 수행합니다.
+    /// </summary>
     private void OnEnable()
     {
         // 값이 비어있으면 기본값으로 초기화
@@ -35,14 +61,19 @@ public class ShipStatSettings : ScriptableObject
         InitializeCache();
     }
 
-    // 캐시 초기화
+    /// <summary>
+    /// 내부 캐시를 초기화합니다.
+    /// </summary>
     private void InitializeCache()
     {
         _limitsCache = new Dictionary<ShipStat, StatLimit>();
         foreach (StatLimit limit in StatLimits) _limitsCache[limit.Stat] = limit;
     }
 
-    // 기본값으로 초기화
+    /// <summary>
+    /// 기본 스탯 제한 값들을 설정합니다.
+    /// StatLimits가 비어 있는 경우에만 호출됩니다.
+    /// </summary>
     private void InitializeDefaultValues()
     {
         StatLimits = new List<StatLimit>
@@ -189,6 +220,8 @@ public class ShipStatSettings : ScriptableObject
     /// <summary>
     /// 특정 스탯의 최대값을 반환합니다.
     /// </summary>
+    /// <param name="stat">조회할 스탯.</param>
+    /// <returns>최대값.</returns>
     public float GetMaxValue(ShipStat stat)
     {
         if (_limitsCache == null) InitializeCache();

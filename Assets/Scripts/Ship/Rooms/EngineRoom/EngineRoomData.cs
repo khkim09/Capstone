@@ -4,22 +4,31 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 /// <summary>
-/// 엔진실의 레벨별 데이터를 저장하는 ScriptableObject
+/// 엔진실의 레벨별 데이터를 저장하는 ScriptableObject.
+/// 연료 소모, 회피율, 연료 효율 등의 값을 레벨별로 정의합니다.
 /// </summary>
 [CreateAssetMenu(fileName = "EngineRoomData", menuName = "RoomData/EngineRoom Data")]
 public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
 {
+    /// <summary>
+    /// 엔진실의 레벨별 데이터 구조.
+    /// </summary>
     [System.Serializable]
     public class EngineRoomLevel : RoomLevel
     {
-        public float fuelConsumption; // 워프 시 연료 소모량
-        public float fuelEfficiency; // 에너지 효율 (%)
-        public float avoidEfficiency; // 회피 효율 (%)
+        /// <summary>워프 시 연료 소모량.</summary>
+        public float fuelConsumption;
+
+        /// <summary>연료 효율 보너스 (%).</summary>
+        public float fuelEfficiency;
+
+        /// <summary>회피 확률 보너스 (%).</summary>
+        public float avoidEfficiency;
     }
 
 
     /// <summary>
-    /// 기본 엔진 레벨 데이터 초기화
+    /// 기본 엔진 레벨 데이터를 초기화합니다.
     /// </summary>
     protected override void InitializeDefaultLevels()
     {

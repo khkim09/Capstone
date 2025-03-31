@@ -1,11 +1,30 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// 함선의 전력 공급을 관리하는 시스템.
+/// 각 방에 전원을 요청하거나 차단하며, 전체 전력 사용량을 기반으로 제어합니다.
+/// </summary>
 public class PowerSystem : ShipSystem
 {
+    /// <summary>
+    /// 매 프레임마다 호출되어 시스템 상태를 갱신합니다.
+    /// </summary>
+    /// <param name="deltaTime">경과 시간 (초).</param>
     public override void Update(float deltaTime)
     {
     }
 
+    /// <summary>
+    /// 특정 방에 전원을 공급하거나 차단합니다.
+    /// 전원을 끄는 요청은 항상 성공하며, 전원을 켜는 경우엔 남은 전력을 확인합니다.
+    /// </summary>
+    /// <param name="room">전원을 제어할 대상 방.</param>
+    /// <param name="powerOn">true면 전원 공급 요청, false면 차단 요청.</param>
+    /// <returns>
+    /// 요청 처리 결과.
+    /// - 전원 끄기 요청이면 항상 true
+    /// - 전원 켜기 요청은 전력이 충분하면 true, 부족하면 false
+    /// </returns>
     public bool RequestPowerForRoom(Room room, bool powerOn)
     {
         if (!powerOn)

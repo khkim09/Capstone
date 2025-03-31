@@ -5,60 +5,138 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// 모든 선원의 베이스 클래스.
+/// 종족, 체력, 장비, 스킬, 이동, 전투, 스탯 기여 등 다양한 기능을 포함합니다.
+/// </summary>
 public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 {
+    /// <summary>선원 이름.</summary>
     [Header("Basic Info")] public string crewName; // 이름
-    public bool isPlayerControlled; // 아군(true) ? 적군(false) ?
 
+    // TODO : 어차피 crewmember, crewenemy(가칭) 으로 나눌 거니 이 작업은 굳이 필요 없을 듯
+    //         나중에 게터로 is crewmember 반환하면 되니까
+    /// <summary>플레이어 소속 여부 (true = 아군, false = 적군).</summary>
+    public bool isPlayerControlled;
+
+    /// <summary>선원 종족에 따른 기본 스탯 데이터.</summary>
     [Header("Crew Stats")] public CrewRaceStat crewRaceStat;
 
-    [Header("Details")] public CrewRace race; // 종족
-    public float maxHealth; // 최대 체력
-    public float attack; // 공격력
-    public float defense; // 방어력
-    public float learningSpeed; // 학습 속도
-    public bool needsOxygen; // 산소 호흡 여부
+    /// <summary>선원의 종족.</summary>
+    [Header("Details")] public CrewRace race;
 
-    // 숙련도
-    [Header("Skill Values")] public Dictionary<SkillType, float> maxSkillValueArray = new(); // 최대 숙련도 배열
+    /// <summary>최대 체력.</summary>
+    public float maxHealth;
 
-    public float maxPilotSkillValue,
-        maxEngineSkillValue,
-        maxPowerSkillValue,
-        maxShieldSkillValue,
-        maxWeaponSkillValue,
-        maxAmmunitionSkillValue,
-        maxMedBaySkillValue,
-        maxRepairSkillValue;
+    /// <summary>공격력.</summary>
+    public float attack;
 
-    public Dictionary<SkillType, float> skills = new(); // 선원 기본 숙련도
-    public Dictionary<SkillType, float> equipAdditionalSkills = new(); // 장비로 인한 추가 숙련도
+    /// <summary>방어력.</summary>
+    public float defense;
 
-    // 착용 장비
+    /// <summary>스킬 학습 속도.</summary>
+    public float learningSpeed;
+
+    /// <summary>산소가 필요한 종족 여부.</summary>
+    public bool needsOxygen;
+
+    /// <summary>
+    /// 스킬 타입별 최대 숙련도 값 딕셔너리.
+    /// 종족별 초기값에 따라 설정됩니다.
+    /// </summary>
+    [Header("Skill Values")] public Dictionary<SkillType, float> maxSkillValueArray = new();
+
+    /// <summary>조종(Pilot) 스킬 최대 숙련도.</summary>
+    public float maxPilotSkillValue;
+
+    /// <summary>엔진(Engine) 스킬 최대 숙련도.</summary>
+    public float maxEngineSkillValue;
+
+    /// <summary>전력(Power) 스킬 최대 숙련도.</summary>
+    public float maxPowerSkillValue;
+
+    /// <summary>방어막(Shield) 스킬 최대 숙련도.</summary>
+    public float maxShieldSkillValue;
+
+    /// <summary>무기(Weapon) 스킬 최대 숙련도.</summary>
+    public float maxWeaponSkillValue;
+
+    /// <summary>탄약(Ammunition) 스킬 최대 숙련도.</summary>
+    public float maxAmmunitionSkillValue;
+
+    /// <summary>의무실(MedBay) 스킬 최대 숙련도.</summary>
+    public float maxMedBaySkillValue;
+
+    /// <summary>수리(Repair) 스킬 최대 숙련도.</summary>
+    public float maxRepairSkillValue;
+
+    /// <summary>
+    /// 현재 스킬 레벨을 나타내는 딕셔너리.
+    /// 레벨은 실제 사용 중인 스킬 수치를 의미하며, 학습을 통해 증가합니다.
+    /// </summary>
+    public Dictionary<SkillType, float> skills = new();
+
+    /// <summary>
+    /// 장비 장착에 의해 추가된 보너스 스킬 값.
+    /// 기본 스킬과는 별도로 합산되어 사용됩니다.
+    /// </summary>
+    public Dictionary<SkillType, float> equipAdditionalSkills = new();
+
+    /// <summary>착용 중인 무기 장비.</summary>
     [Header("Equipped Items")] public EquipmentItem equippedWeapon;
+
+    /// <summary>착용 중인 무기 장비.</summary>
     public EquipmentItem equippedShield;
+
+    /// <summary>착용 중인 어시스턴트 장비 (스킬 보조).</summary>
     public EquipmentItem equippedAssistant;
 
+    /// <summary>착용 중인 어시스턴트 장비 (스킬 보조).</summary>
     [Header("Location")] public Room currentRoom;
+
+    /// <summary>현재 좌표 (월드 또는 로컬 좌표계 기반).</summary>
     public Vector2 position;
+
+    /// <summary>현재 좌표 (월드 또는 로컬 좌표계 기반).</summary>
     public Vector2 targetPosition;
+
+    /// <summary>이동 속도 (초당 거리).</summary>
     public float moveSpeed = 2.0f;
 
-    [Header("Status")] public float health; // 현재 체력
-    public CrewStatus status; // 현재 상태 (부상 등)
-    public bool isAlive; // 생존 여부
+    /// <summary>현재 체력.</summary>
+    [Header("Status")] public float health;
+
+    /// <summary>현재 선원의 상태 (예: 정상, 부상 등).</summary>
+    public CrewStatus status;
+
+    /// <summary>생존 여부 (false = 사망).</summary>
+    public bool isAlive;
+
+    /// <summary>이동 중 여부.</summary>
     public bool isMoving;
 
+    /// <summary>마지막 스킬 상승 이후 경과 시간.</summary>
     private float timeSinceLastSkillIncrease = 0f;
+
+    /// <summary>스킬 상승 주기 (초 단위).</summary>
     private float skillIncreaseInterval = 10f; // 10초마다 스킬 증가 체크
 
+    /// <summary>현재 선원이 속한 함선 참조.</summary>
     public Ship currentShip;
 
+    /// <summary>
+    /// Unity 생명주기 메서드.
+    /// 게임 시작 시 선원의 초기 데이터를 설정합니다.
+    /// </summary>
     private void Start()
     {
         Initialize();
     }
 
+    /// <summary>
+    /// 매 프레임 호출되는 Unity 생명주기 메서드.
+    /// 이동 처리, 스킬 성장 체크, 산소 부족 데미지를 처리합니다.
+    /// </summary>
     private void Update()
     {
         // 이동 처리
@@ -77,6 +155,9 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         ApplyOxygenDamage();
     }
 
+    /// <summary>
+    /// 선원의 스탯과 스킬을 종족 정보에 따라 초기화합니다.
+    /// </summary>
     public void Initialize()
     {
         maxHealth = crewRaceStat.ByRace[race].maxHealth;
@@ -119,7 +200,9 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         equipAdditionalSkills[SkillType.RepairSkill] = 0.0f;
     }
 
-
+    /// <summary>
+    /// 선원의 위치를 목표 좌표로 갱신하며, 도착 시 방 입장 처리를 합니다.
+    /// </summary>
     private void UpdateMovement()
     {
         // 목표 위치로 이동
@@ -138,6 +221,10 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         }
     }
 
+
+    /// <summary>
+    /// 선원이 현재 위치한 방에 따라 관련 스킬을 자동 향상시킵니다.
+    /// </summary>
     // 시설 숙련도 증가 (기획서 27p 참고) - 수정 필요
     private void CheckSkillImprovement()
     {
@@ -187,22 +274,24 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
             ImproveSkill(skillToImprove, skillIncreaseAmount * learningSpeed);
     }
 
+    /// <summary>
+    /// 산소가 필요한 종족일 경우, 산소 부족 시 체력 데미지를 적용합니다.
+    /// </summary>
     private void ApplyOxygenDamage()
     {
         if (!needsOxygen)
             return;
 
-        // 현재 방의 산소 레벨 확인
-        if (currentRoom != null)
-        {
-            OxygenLevel roomOxygen = currentRoom.GetOxygenLevel();
-
-            // 산소 부족 시 데미지
-            if (roomOxygen == OxygenLevel.None) TakeDamage(maxHealth * 0.01f); // 최대 체력의 1%만큼 데미지
-        }
+        if (currentShip != null)
+            if (currentShip.GetOxygenLevel() == OxygenLevel.None)
+                TakeDamage(maxHealth * 0.01f); // 최대 체력의 1%만큼 데미지
     }
 
-    // 숙련도 증가
+    /// <summary>
+    /// 특정 스킬을 주어진 수치만큼 향상시키며 최대치를 넘지 않도록 제한합니다.
+    /// </summary>
+    /// <param name="skill">향상시킬 스킬 종류.</param>
+    /// <param name="amount">향상할 수치.</param>
     public void ImproveSkill(SkillType skill, float amount)
     {
         if (!skills.ContainsKey(skill))
@@ -241,7 +330,11 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         skills[skill] = Mathf.Min(skills[skill] + amount, maxSkillValue);
     }
 
-    // 방 이동
+    /// <summary>
+    /// 선원을 지정된 방으로 이동시키며 이동 애니메이션을 시작합니다.
+    /// </summary>
+    /// <param name="targetRoom">목표 방.</param>
+    /// <param name="roomPosition">목표 위치 좌표.</param>
     public void MoveToRoom(Room targetRoom, Vector2 roomPosition)
     {
         // 현재 방에서 나감
@@ -257,7 +350,11 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     }
 
     // 전투 관련
-    // 공격
+
+    /// <summary>
+    /// 지정된 적 선원을 공격합니다. 공격력은 반올림 처리됩니다.
+    /// </summary>
+    /// <param name="target">공격 대상 선원.</param>
     public void Attack(CrewMember target)
     {
         // 공격 가하는 crew의 공격력 인자로 넘김
@@ -265,7 +362,10 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         target.TakeAttack(measuredAttack);
     }
 
-    // 데미지 처리 - ocAttack : opponent Crew Attack (공격 가하는 crew의 공격력 + 장비)
+    /// <summary>
+    /// 적 선원에게 공격을 받을 때 호출됩니다. 방어력을 반영하여 최종 데미지를 계산합니다.
+    /// </summary>
+    /// <param name="ocAttack">공격자의 공격력.</param>
     public void TakeAttack(float ocAttack)
     {
         // 방어력 적용 - 최종 피해량
@@ -276,6 +376,10 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         TakeDamage(receivedDamage);
     }
 
+    /// <summary>
+    /// 체력에 데미지를 적용하고, 체력이 0 이하가 되면 사망 처리합니다.
+    /// </summary>
+    /// <param name="damage">적용할 데미지.</param>
     public void TakeDamage(float damage)
     {
         health -= damage;
@@ -287,7 +391,9 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         }
     }
 
-    // 선원 사망
+    /// <summary>
+    /// 선원이 사망했을 때 호출됩니다. 함선 및 방에서 제거되고 오브젝트가 파괴됩니다.
+    /// </summary>
     private void Die()
     {
         isAlive = false;
@@ -320,7 +426,11 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         Debug.Log($"{crewName} 사망 처리 완료");
     }
 
-    // 수리 작업
+    /// <summary>
+    /// 특정 방을 수리하며 수리 스킬을 향상시킵니다.
+    /// </summary>
+    /// <param name="room">수리 대상 방.</param>
+    /// <param name="amount">수리량.</param>
     public void RepairFacility(Room room, float amount)
     {
         // 수리 스킬에 따른 수리량 계산
@@ -334,19 +444,29 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         ImproveSkill(SkillType.RepairSkill, 0.5f);
     }
 
-    // 체력 회복
+    /// <summary>
+    /// 선원의 체력을 회복합니다. 최대 체력을 초과하지 않습니다.
+    /// </summary>
+    /// <param name="amount">회복량.</param>
     public void Heal(float amount)
     {
         health = Mathf.Min(health + amount, maxHealth);
     }
 
-    // 치료 필요 여부
+    /// <summary>
+    /// 체력이 최대치보다 낮은지 여부를 반환합니다.
+    /// </summary>
+    /// <returns>치료가 필요하면 true.</returns>
     public bool NeedsHealing()
     {
         return health < maxHealth;
     }
 
-    // 숙련도 넘기기 - 사기 (morale) 추가 필요
+
+    /// <summary>
+    /// 선원의 숙련도를 반환합니다. 추후 사기 수치 등도 반영 예정입니다.
+    /// </summary>
+    /// <returns>스킬 타입별 현재 숙련도 딕셔너리.</returns>
     public virtual Dictionary<SkillType, float> GetCrewSkillValue()
     {
         Dictionary<SkillType, float> totalSkills = new();
@@ -355,7 +475,11 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         return totalSkills;
     }
 
-    // 장비 효과 계산
+    /// <summary>
+    /// 장비 효과를 스탯에 반영하거나 제거합니다.
+    /// </summary>
+    /// <param name="item">적용할 장비.</param>
+    /// <param name="isAdding">true면 적용, false면 해제.</param>
     public void RecalculateEquipmentBonus(EquipmentItem item, bool isAdding)
     {
         float sign = isAdding ? 1f : -1f;
@@ -379,7 +503,11 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         }
     }
 
-    // 현재 착용중인 장비 호출
+    /// <summary>
+    /// 현재 장착 중인 장비를 반환합니다.
+    /// </summary>
+    /// <param name="type">장비 타입.</param>
+    /// <returns>장착된 장비 또는 null.</returns>
     private EquipmentItem GetEquippedItem(EquipmentType type)
     {
         return type switch
@@ -391,7 +519,11 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         };
     }
 
-    // 장비 착용
+    /// <summary>
+    /// 장비를 지정된 슬롯에 장착합니다.
+    /// </summary>
+    /// <param name="type">장비 타입.</param>
+    /// <param name="newItem">장착할 장비.</param>
     private void SetEquippedItem(EquipmentType type, EquipmentItem newItem)
     {
         switch (type)
@@ -408,7 +540,10 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         }
     }
 
-    // 장비 교체
+    /// <summary>
+    /// 기존 장비를 해제하고 새 장비를 장착합니다.
+    /// </summary>
+    /// <param name="newItem">장착할 새 장비.</param>
     public void SwapEquipment(EquipmentItem newItem)
     {
         if (newItem == null)
@@ -428,7 +563,10 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         RecalculateEquipmentBonus(newItem, true);
     }
 
-    // 개인 별 장비 착용
+    /// <summary>
+    /// 개인 장비를 착용합니다. 기존 장비는 해제되며 효과도 반영됩니다.
+    /// </summary>
+    /// <param name="eqItem">장착할 장비.</param>
     public void ApplyPersonalEquipment(EquipmentItem eqItem)
     {
         if (eqItem == null)
@@ -439,7 +577,11 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         Debug.Log($"{crewName}에 개인 장비 {eqItem.eqName} 적용 완료.");
     }
 
-    // 스킬 레벨 가져오기
+    /// <summary>
+    /// 특정 스킬의 현재 레벨을 반환합니다.
+    /// </summary>
+    /// <param name="skill">조회할 스킬.</param>
+    /// <returns>현재 스킬 레벨.</returns>
     public float GetSkillLevel(SkillType skill)
     {
         if (skills.ContainsKey(skill))
@@ -447,13 +589,20 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         return 0f;
     }
 
-
-    // 전투 관련
+    /// <summary>
+    /// 다른 선원이 적대적인 대상인지 확인합니다.
+    /// </summary>
+    /// <param name="other">다른 선원.</param>
+    /// <returns>적이면 true.</returns>
     public bool IsEnemyOf(CrewMember other)
     {
         return isPlayerControlled != other.isPlayerControlled;
     }
 
+    /// <summary>
+    /// 선원이 함선 스탯에 기여하는 수치를 반환합니다.
+    /// 예: 산소 소모량 등.
+    /// </summary>
     public Dictionary<ShipStat, float> GetStatContributions()
     {
         Dictionary<ShipStat, float> contributions = new();

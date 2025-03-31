@@ -4,20 +4,27 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 /// <summary>
-/// 탄약고의 레벨별 데이터를 저장하는 ScriptableObject
+/// 탄약고의 레벨별 데이터를 저장하는 ScriptableObject.
+/// 각 레벨에서 재장전 보너스와 데미지 보너스를 정의합니다.
 /// </summary>
 [CreateAssetMenu(fileName = "AmmunitionRoomData", menuName = "RoomData/AmmunitionRoom Data")]
 public class AmmunitionRoomData : RoomData<AmmunitionRoomData.AmmunitionRoomLevel>
 {
+    /// <summary>
+    /// 탄약고의 각 레벨별 데이터 구조.
+    /// </summary>
     [System.Serializable]
     public class AmmunitionRoomLevel : RoomLevel
     {
+        /// <summary>재장전 속도 보너스 (%).</summary>
         public float reloadTimeBonus;
+
+        /// <summary>데미지 보너스 (%).</summary>
         public float damageBonus;
     }
 
     /// <summary>
-    /// 기본 탄약고 레벨 데이터 초기화
+    /// 기본 탄약고 레벨 데이터를 초기화합니다.
     /// </summary>
     protected override void InitializeDefaultLevels()
     {

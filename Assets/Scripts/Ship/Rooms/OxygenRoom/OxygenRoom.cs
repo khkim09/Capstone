@@ -2,10 +2,14 @@
 using UnityEngine;
 
 /// <summary>
-/// 함선의 산소실을 나타내는 클래스
+/// 함선의 산소실(RoomType.Oxygen)을 나타내는 클래스.
+/// 산소 생성량 및 전력 사용량에 기여하며, 손상 상태에 따라 작동이 제한됩니다.
 /// </summary>
 public class OxygenRoom : Room<OxygenRoomData, OxygenRoomData.OxygenLevel>
 {
+    /// <summary>
+    /// 초기화 시 방 타입을 Oxygen으로 설정합니다.
+    /// </summary>
     protected override void Start()
     {
         base.Start();
@@ -15,8 +19,10 @@ public class OxygenRoom : Room<OxygenRoomData, OxygenRoomData.OxygenLevel>
     }
 
     /// <summary>
-    /// 이 방의 스탯 기여도 계산
+    /// 이 방이 함선 스탯에 기여하는 값을 계산합니다.
+    /// 작동 여부 및 손상 상태에 따라 산소 생성량과 전력 소비량이 조정됩니다.
     /// </summary>
+    /// <returns>스탯 기여도 딕셔너리.</returns>
     public override Dictionary<ShipStat, float> GetStatContributions()
     {
         // 기본 기여도 가져오기 (작동 상태 체크 등)
@@ -56,8 +62,10 @@ public class OxygenRoom : Room<OxygenRoomData, OxygenRoomData.OxygenLevel>
     }
 
     /// <summary>
-    /// 산소실 손상 처리
+    /// 산소실이 피해를 받을 때 호출됩니다.
+    /// 이펙트를 갱신합니다.
     /// </summary>
+    /// <param name="damage">받은 피해량.</param>
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);

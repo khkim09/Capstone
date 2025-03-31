@@ -1,7 +1,18 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// 우주선 전투에서 실제 무기 발사를 제어하는 컨트롤러 클래스입니다.
+/// 무기 종류별 발사 처리, 타격 판정, 투사체 관리 등을 담당합니다.
+/// </summary>
 public class OuterShipCombatController
 {
+    /// <summary>
+    /// 지정된 함선이 무기를 발사하도록 시도합니다.
+    /// 무기가 준비되지 않았거나 대상이 없으면 실패합니다.
+    /// </summary>
+    /// <param name="attacker">공격을 시도하는 함선.</param>
+    /// <param name="weapon">발사할 무기.</param>
+    /// <returns>발사 성공 여부.</returns>
     public bool WeaponFire(Ship attacker, ShipWeapon weapon)
     {
         // TODO : attacker 가 플레이어면 타겟이 적, 적이면 플레이어로 설정해야함.
@@ -27,17 +38,16 @@ public class OuterShipCombatController
             }
         );
 
-
-        // TODO: 공격이 실제로 날라가는 애니메이션 내지 투사체가 육안으로 확인이 되어야하는데,
-        //       그러면 TakeDamage 내부에 있는 TakeRandomDamage함수가 밖으로 나와야하는 것 아닌가?
-        //       Ship의 랜덤 칸을 반환하는 함수가 필요할지도.
-        //       만약 그런 것이 존재한다면, weapon.Fire(target의 랜덤 칸) 같은 함수가 필요.
-        //       weapon.Fire()함수는 발사 애니메이션과 폭발 애니메이션 보여주는 함수, 실제 데미지는 적용 X
-
         return true;
     }
 
-    // 발사체 무기 처리
+    /// <summary>
+    /// 레이저(발사체) 무기 발사를 처리합니다.
+    /// </summary>
+    /// <param name="shooter">발사하는 함선.</param>
+    /// <param name="weapon">사용할 무기.</param>
+    /// <param name="target">목표 트랜스폼.</param>
+    /// <returns>발사 성공 여부.</returns>
     private bool FireLaser(Ship shooter, ShipWeapon weapon, Transform target)
     {
         // 1. 발사체 인스턴스 생성 (풀링 시스템에서)
@@ -51,7 +61,13 @@ public class OuterShipCombatController
         return true;
     }
 
-    // 빔 무기 처리
+    /// <summary>
+    /// 레일건(빔) 무기 발사를 처리합니다.
+    /// </summary>
+    /// <param name="shooter">발사하는 함선.</param>
+    /// <param name="weapon">사용할 무기.</param>
+    /// <param name="target">목표 트랜스폼.</param>
+    /// <returns>발사 성공 여부.</returns>
     private bool FireRailgun(Ship shooter, ShipWeapon weapon, Transform target)
     {
         // 빔 무기 구현
@@ -59,7 +75,13 @@ public class OuterShipCombatController
         return true;
     }
 
-    // 미사일 무기 처리
+    /// <summary>
+    /// 미사일 무기 발사를 처리합니다.
+    /// </summary>
+    /// <param name="shooter">발사하는 함선.</param>
+    /// <param name="weapon">사용할 무기.</param>
+    /// <param name="target">목표 트랜스폼.</param>
+    /// <returns>발사 성공 여부.</returns>
     private bool FireMissile(Ship shooter, ShipWeapon weapon, Transform target)
     {
         // 미사일 무기 구현
@@ -68,7 +90,11 @@ public class OuterShipCombatController
     }
 
 
-    // 함선 파괴 처리
+    /// <summary>
+    /// 함선이 파괴되었을 때 호출되어, 이펙트 및 보상을 처리합니다.
+    /// </summary>
+    /// <param name="destroyed">파괴된 함선.</param>
+    /// <param name="destroyer">파괴한 함선 (null일 수 있음).</param>
     private void HandleShipDestroyed(Ship destroyed, Ship destroyer)
     {
         // 파괴 이펙트
@@ -83,7 +109,10 @@ public class OuterShipCombatController
         CreateDebris(destroyed);
     }
 
-    // 잔해 생성
+    /// <summary>
+    /// 함선 파괴 시 잔해를 생성합니다.
+    /// </summary>
+    /// <param name="ship">잔해를 생성할 원본 함선.</param>
     private void CreateDebris(Ship ship)
     {
         // 함선 크기에 따라 잔해 생성

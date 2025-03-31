@@ -2,10 +2,15 @@
 using UnityEngine;
 
 /// <summary>
-/// 함선의 조준석을 나타내는 클래스
+/// 함선의 조준석(RoomType.WeaponControl)을 나타내는 클래스.
+/// 명중률(Accuracy)에 기여하며, 전력을 소비합니다.
+/// 손상 시 성능이 저하되거나 비작동 상태가 됩니다.
 /// </summary>
 public class WeaponControlRoom : Room<WeaponControlRoomData, WeaponControlRoomData.WeaponControlRoomLevel>
 {
+    /// <summary>
+    /// 초기화 시 방 타입을 WeaponControl로 설정합니다.
+    /// </summary>
     protected override void Start()
     {
         base.Start();
@@ -15,7 +20,8 @@ public class WeaponControlRoom : Room<WeaponControlRoomData, WeaponControlRoomDa
     }
 
     /// <summary>
-    /// 이 방의 스탯 기여도 계산
+    /// 이 방이 함선 스탯에 기여하는 값을 계산합니다.
+    /// 작동 상태 및 손상 정도에 따라 전력 사용량과 명중률 보너스가 달라집니다.
     /// </summary>
     public override Dictionary<ShipStat, float> GetStatContributions()
     {
@@ -56,7 +62,8 @@ public class WeaponControlRoom : Room<WeaponControlRoomData, WeaponControlRoomDa
     }
 
     /// <summary>
-    /// 조준석 손상 처리
+    /// 조준석이 피해를 받을 때 호출됩니다.
+    /// 이펙트를 갱신합니다.
     /// </summary>
     public override void TakeDamage(float damage)
     {

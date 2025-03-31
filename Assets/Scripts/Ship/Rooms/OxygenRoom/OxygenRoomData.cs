@@ -4,19 +4,25 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 /// <summary>
-/// 산소실의 레벨별 데이터를 저장하는 ScriptableObject
+/// 산소실의 레벨별 데이터를 저장하는 ScriptableObject.
+/// 레벨에 따라 산소 공급량과 전력 소비량 등이 달라집니다.
 /// </summary>
 [CreateAssetMenu(fileName = "OxygenRoomData", menuName = "RoomData/OxygenRoom Data")]
 public class OxygenRoomData : RoomData<OxygenRoomData.OxygenLevel>
 {
+    /// <summary>
+    /// 산소실의 레벨별 데이터 구조.
+    /// </summary>
     [System.Serializable]
     public class OxygenLevel : RoomLevel
     {
+        /// <summary>초당 산소 공급량.</summary>
         public float oxygenSupplyPerSecond; // 초당 산소 공급량
     }
 
+
     /// <summary>
-    /// 기본 산소실 레벨 데이터 초기화
+    /// 기본 산소실 레벨 데이터를 초기화합니다.
     /// </summary>
     protected override void InitializeDefaultLevels()
     {

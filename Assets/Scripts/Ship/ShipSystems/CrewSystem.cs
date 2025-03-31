@@ -1,10 +1,21 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 함선의 크루(승무원) 관리 시스템.
+/// 크루의 추가, 제거 및 크루 수 관련 기능을 담당.
+/// </summary>
 public class CrewSystem : ShipSystem
 {
+    /// <summary>
+    /// 현재 배치된 크루들의 목록입니다.
+    /// </summary>
     private List<CrewBase> crews = new();
 
+    /// <summary>
+    /// 시스템을 초기화합니다. 크루가 없는 경우 경고를 표시할 수 있습니다.
+    /// </summary>
+    /// <param name="ship">초기화할 대상 함선 객체.</param>
     public override void Initialize(Ship ship)
     {
         base.Initialize(ship);
@@ -15,10 +26,19 @@ public class CrewSystem : ShipSystem
         }
     }
 
+    /// <summary>
+    /// 매 프레임마다 호출되어 시스템 상태를 갱신합니다.
+    /// </summary>
+    /// <param name="deltaTime">경과 시간 (초).</param>
     public override void Update(float deltaTime)
     {
     }
 
+    /// <summary>
+    /// 새로운 크루 멤버를 추가합니다.
+    /// </summary>
+    /// <param name="newCrew">추가할 크루 멤버.</param>
+    /// <returns>추가에 성공하면 true, 크루 정원이 초과되었으면 false.</returns>
     public bool AddCrewMember(CrewBase newCrew)
     {
         if (crews.Count >= GetShipStat(ShipStat.CrewCapacity))
@@ -30,7 +50,11 @@ public class CrewSystem : ShipSystem
         return true;
     }
 
-
+    /// <summary>
+    /// 기존의 크루 멤버를 제거합니다.
+    /// </summary>
+    /// <param name="crewToRemove">제거할 크루 멤버.</param>
+    /// <returns>제거에 성공하면 true, 해당 크루가 존재하지 않으면 false.</returns>
     public bool RemoveCrewMember(CrewMember crewToRemove)
     {
         if (!crews.Contains(crewToRemove))
@@ -41,11 +65,19 @@ public class CrewSystem : ShipSystem
         return true;
     }
 
+    /// <summary>
+    /// 현재 탑승 중인 크루의 수를 반환합니다.
+    /// </summary>
+    /// <returns>현재 크루 수.</returns>
     public int GetCrewCount()
     {
         return crews.Count;
     }
 
+    /// <summary>
+    /// 현재 탑승 중인 모든 크루 객체의 목록을 반환합니다.
+    /// </summary>
+    /// <returns>크루 객체 리스트.</returns>
     public List<CrewBase> GetCrews()
     {
         return crews;

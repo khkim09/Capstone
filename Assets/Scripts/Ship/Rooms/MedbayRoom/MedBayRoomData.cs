@@ -4,19 +4,24 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 /// <summary>
-/// 의무실의 레벨별 데이터를 저장하는 ScriptableObject
+/// 의무실의 레벨별 데이터를 저장하는 ScriptableObject.
+/// 회복량(초당 힐량)을 포함한 의무실 스탯을 정의합니다.
 /// </summary>
 [CreateAssetMenu(fileName = "MedBayRoomData", menuName = "RoomData/MedBayRoom Data")]
 public class MedBayRoomData : RoomData<MedBayRoomData.MedBayRoomLevel>
 {
+    /// <summary>
+    /// 의무실의 레벨별 데이터 구조.
+    /// </summary>
     [System.Serializable]
     public class MedBayRoomLevel : RoomLevel
     {
+        /// <summary>초당 체력 회복량.</summary>
         public float healPerSecond;
     }
 
     /// <summary>
-    /// 기본 의무실 레벨 데이터 초기화
+    /// 기본 의무실 레벨 데이터를 초기화합니다.
     /// </summary>
     protected override void InitializeDefaultLevels()
     {

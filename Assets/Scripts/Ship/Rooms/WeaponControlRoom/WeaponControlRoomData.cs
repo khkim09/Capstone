@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 /// <summary>
-/// 조준석의 레벨별 데이터를 저장하는 ScriptableObject
+/// 조준석(WeaponControlRoom)의 레벨별 데이터를 저장하는 ScriptableObject.
+/// 명중률(Accuracy)과 전력 소비량을 정의합니다.
 /// </summary>
 [CreateAssetMenu(fileName = "WeaponControlRoom", menuName = "RoomData/WeaponControlRoom Data")]
 public class WeaponControlRoomData : RoomData<WeaponControlRoomData.WeaponControlRoomLevel>
 {
+    /// <summary>
+    /// 조준석의 레벨별 데이터 구조.
+    /// </summary>
     [System.Serializable]
     public class WeaponControlRoomLevel : RoomLevel
     {
@@ -16,7 +20,7 @@ public class WeaponControlRoomData : RoomData<WeaponControlRoomData.WeaponContro
     }
 
     /// <summary>
-    /// 기본 조준석 레벨 데이터 초기화
+    /// 기본 조준석 레벨 데이터를 초기화합니다.
     /// </summary>
     protected override void InitializeDefaultLevels()
     {

@@ -17,11 +17,15 @@ using UnityEngine.Serialization;
  */
 
 /// <summary>
-/// 생활 시설의 데이터를 저장하는 ScriptableObject
+/// 생활 시설의 데이터를 저장하는 ScriptableObject.
+/// 종류별로 선원 사기 보너스를 제공하며, 일부는 전력을 소비합니다.
 /// </summary>
 [CreateAssetMenu(fileName = "LifeSupportRoomData", menuName = "RoomData/LifeSupportRoom Data")]
 public class LifeSupportRoomData : RoomData<LifeSupportRoomData.LifeSupportRoomLevel>
 {
+    /// <summary>
+    /// 생활 시설의 개별 종류 데이터를 정의하는 클래스.
+    /// </summary>
     [System.Serializable]
     public class LifeSupportRoomLevel : RoomLevel
     {
@@ -29,7 +33,8 @@ public class LifeSupportRoomData : RoomData<LifeSupportRoomData.LifeSupportRoomL
     }
 
     /// <summary>
-    /// 기본 생활 시설 데이터 초기화
+    /// 기본 생활 시설 데이터를 초기화합니다.
+    /// (※ 최소값만 설정되며, 실제 값은 ScriptableObject 인스펙터에서 수동 입력 필요)
     /// </summary>
     protected override void InitializeDefaultLevels()
     {

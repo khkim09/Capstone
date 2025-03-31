@@ -2,12 +2,19 @@
 using UnityEngine;
 
 /// <summary>
-/// 함선의 승무원 선실을 나타내는 클래스
+/// 함선의 승무원 선실(CrewQuarters)을 나타내는 클래스.
+/// 선원 수용량에 기여하며, 전력을 소비합니다.
 /// </summary>
 public class CrewQuartersRoom : Room<CrewQuartersRoomData, CrewQuartersRoomData.CrewQuartersRoomLevel>
 {
+    /// <summary>
+    /// 이 방이 개인 전용 방인지 여부.
+    /// </summary>
     public bool isPersonalRoom;
 
+    /// <summary>
+    /// 초기화 시 방 타입을 CrewQuarters로 설정합니다.
+    /// </summary>
     protected override void Start()
     {
         base.Start();
@@ -17,7 +24,7 @@ public class CrewQuartersRoom : Room<CrewQuartersRoomData, CrewQuartersRoomData.
     }
 
     /// <summary>
-    /// 이 방의 스탯 기여도 계산
+    /// 초기화 시 방 타입을 CrewQuarters로 설정합니다.
     /// </summary>
     public override Dictionary<ShipStat, float> GetStatContributions()
     {
@@ -35,9 +42,9 @@ public class CrewQuartersRoom : Room<CrewQuartersRoomData, CrewQuartersRoomData.
     }
 
     /// <summary>
-    /// 이 방이 개인 전용 방인지 여부를 반환
+    /// 이 방이 개인 전용 방인지 여부를 반환합니다.
     /// </summary>
-    /// <returns>개인 전용 방이라면 true, 그렇지 않다면 false</returns>
+    /// <returns>개인 전용 방일 경우 true.</returns>
     public bool GetIsPersonalRoom()
     {
         return isPersonalRoom;
