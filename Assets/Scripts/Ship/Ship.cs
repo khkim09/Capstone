@@ -33,9 +33,9 @@ public class Ship : MonoBehaviour
     private readonly List<Door> doors = new();
 
     /// <summary>
-    /// 함선에 배치된 모든 룸 객체 리스트.
+    /// 함선을 이루고 있는 이미 배치된 모든 룸 객체 리스트.
     /// </summary>
-    public readonly List<Room> allRooms = new();
+    public List<Room> allRooms = new();
 
     /// <summary>
     /// 룸 타입별로 분류된 룸 리스트 딕셔너리.
@@ -64,6 +64,7 @@ public class Ship : MonoBehaviour
     // 테스트용 룸 프리팹
     public GameObject testRoomPrefab1;
     public GameObject testRoomPrefab2;
+    public GameObject testRoomPrefab3;
 
     public event Action OnStatsChanged;
     public event Action OnRoomChanged;
@@ -84,6 +85,7 @@ public class Ship : MonoBehaviour
     {
         Room testRoom1 = Instantiate(testRoomPrefab1).GetComponent<Room>();
         Room testRoom2 = Instantiate(testRoomPrefab2).GetComponent<Room>();
+        Room testRoom3 = Instantiate(testRoomPrefab2).GetComponent<Room>();
         InitializeSystems();
         RecalculateAllStats();
 
@@ -192,6 +194,18 @@ public class Ship : MonoBehaviour
         RecalculateAllStats();
 
         return true;
+    }
+
+    /// <summary>
+    /// 현재 유저가 함선의 구성 요소로 설치한 모든 방을 List로 전달합니다. (allRooms의 data만 반환)
+    /// </summary>
+    /// <returns></returns>
+    public List<RoomData> GetInstalledRoomDataList()
+    {
+        Debug.Log("설치한 모든 방의 정보를 가져옴");
+        // return allRooms.Select(r => r.roomData).Distinct().ToList(); // 중복 제거 (동일한 방 scriptable object면 무조건 1개로 취급)
+
+        return allRooms.Select(r => r.roomData).ToList(); // 그냥 싹 다 넘김 (중복 체크 X)
     }
 
     /// <summary>

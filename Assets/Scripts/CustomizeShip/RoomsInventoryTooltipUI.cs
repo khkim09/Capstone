@@ -15,7 +15,8 @@ public class RoomsInventoryTooltipUI : MonoBehaviour
     public GameObject roomButtonPrefab;         // 드래그 가능한 룸 UI 프리팹
     public Transform contentRoot;               // ScrollView > Viewport > Content
     public Ship playerShip;                     // 현재 플레이어가 작업 중인 Ship
-    public List<RoomData> allOwnedRoomData; // 구매한 전체 방 들
+    public List<RoomData> allOwnedRoomData = new List<RoomData>(); // 구매한 전체 방 data list
+    public List<RoomData> installedRoomData = new List<RoomData>(); // 유저가 설치한 방 data list
 
     private const float unitSize = 40f;         // 타일 1칸에 해당하는 버튼 높이(px)
     private const float verticalSpacing = 20f;  // VerticalLayoutGroup의 spacing
@@ -39,7 +40,18 @@ public class RoomsInventoryTooltipUI : MonoBehaviour
         }
 
         // 현재 설치된 항목 불러오기
-        List<RoomData> installed = playerShip.allRooms.Select(r => r.roomData).ToList();
+        installedRoomData = playerShip.GetInstalledRoomDataList(); // room data는 crewquartersroomdata 와 같은 scriptable object를 가져오는 작업
+        Debug.Log($"설치된 방 개수 : {installedRoomData.Count}");
+
+        // 디버깅 (scriptable object 가져오는 것 확인 완료)
+        foreach (RoomData data in installedRoomData)
+        {
+            Debug.Log($"{data}");
+        }
+
+        // 무슨 말이냐면 getinstalledroomdatalist()하면 방 타입에 따른 그 방의 initialize 정보만 가져오기 때문에, (scriptable object)
+        // 타입은 같지만, 다른 위치에 설치된 방 2개에 대해서 동일하다고 판단함. (-> room으로 가져와야 될 듯)
+        // ui 개편해서 하면 roomdata로 가져오는게 오히려 이득일듯 ? -> 인벤토리 UI확장 idea.txt 확인
 
         // 기존 항목 제거
         foreach (Transform child in contentRoot)
@@ -78,8 +90,8 @@ public class RoomsInventoryTooltipUI : MonoBehaviour
         foreach (RoomData roomData in allOwnedRoomData)
         {
             // 설치된 방이면 스킵
-            if (installed.Contains(roomData))
-                continue;
+            //if (installedRoomData.Contains(roomData))
+            //    continue;
 
             var levelData = roomData.GetRoomData(1);
             GameObject btn = Instantiate(roomButtonPrefab, contentRoot);

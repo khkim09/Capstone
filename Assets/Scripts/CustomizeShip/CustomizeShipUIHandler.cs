@@ -37,6 +37,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
         customizationManager.ClearAllModules();
         LoadShipLayout(playerShip);
+        inventoryTooltipUI.allOwnedRoomData = playerShip.GetInstalledRoomDataList(); // GetInstalledRoom()아님 -> 이건 이미 설치된 방임
+        // Debug.Log($"가져온 방 개수 : {inventoryTooltipUI.allOwnedRoomData.Count}");
         inventoryTooltipUI.RefreshInventory(); // 구매한 방 list 갱신
     }
 

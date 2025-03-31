@@ -13,13 +13,13 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [SerializeField] public RoomData roomData;
 
     /// <summary>격자상의 방 위치 (좌측 상단 기준).</summary>
-    [HideInInspector] public Vector2Int position;
+    public Vector2Int position;
 
     /// <summary>현재 방의 업그레이드 레벨.</summary>
     public int currentLevel;
 
     /// <summary>현재 체력.</summary>
-    [SerializeField] [HideInInspector] protected float currentHitPoints;
+    [SerializeField][HideInInspector] protected float currentHitPoints;
 
     /// <summary>방의 타입.</summary>
     public RoomType roomType;
@@ -34,7 +34,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [HideInInspector] protected List<Door> connectedDoors = new();
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
-    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
+    [Header("방 효과")][SerializeField] protected ParticleSystem roomParticles;
 
     /// <summary>방 작동 시 사운드 효과.</summary>
     [SerializeField] protected AudioSource roomSound;
