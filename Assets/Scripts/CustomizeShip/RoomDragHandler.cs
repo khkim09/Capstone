@@ -16,10 +16,12 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     [HideInInspector] public Vector2Int roomSize;
     [HideInInspector] public int rotation;
+    [HideInInspector] public int roomLevel;
 
     [Header("Preview Settings")]
     public SpriteRenderer previewSR;
     private GameObject previewInstance;
+    private bool isDragging = false;
 
     private Transform placedRoomParent;
 
@@ -29,24 +31,26 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (found != null)
             placedRoomParent = found.transform;
     }
-    /*
-        private void Update()
-        {
-            if (previewInstance == null)
-                return;
 
-            if (Input.GetMouseButtonDown(1))
-            {
-                RotatePreview();
-            }
-            UpdatePreviewPosition();
+    private void Update()
+    {
+        if (!isDragging || previewInstance == null)
+            return;
+
+        if (Input.GetMouseButtonDown(1)) // 우클릭 때마다 시계 방향으로 90도 회전
+        {
+            Debug.Log("회전 90도");
+            rotation = (rotation + 90) % 360;
+            previewInstance.transform.Rotate(0, 0, -90);
         }
-    */
+    }
+
     public void InitializeFromRoomData(RoomData data, int level)
     {
         roomData = data;
-        var levelData = data.GetRoomData(level);
+        roomLevel = level;
 
+        var levelData = data.GetRoomData(level);
         if (levelData == null)
         {
             Debug.LogError("Invalid RoomData or Level");
@@ -67,6 +71,7 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     /// <param name="eventData"></param>
     public void OnBeginDrag(PointerEventData eventData)
     {
+        isDragging = true;
         previewInstance = Instantiate(previewPrefab);
         previewSR = previewInstance.GetComponentInChildren<SpriteRenderer>();
         SetAlpha(previewInstance, 0.5f);
@@ -97,12 +102,14 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         float dy = roomSize.y / 2.0f - 0.5f;
         previewInstance.transform.position = basePos + new Vector3(dx, dy, 0);
 
-        if (Input.GetMouseButtonDown(1)) // 우클릭 90도 회전
-        {
-            Debug.Log("회전 90도");
-            rotation = (rotation + 90) % 360; // 시계 방향으로 90도씩 돌리면 rotation + 90 이 맞는지 (왜냐면 방 정보 저장할 때 rotation값도 저장해줘야 함선 호출 시 제대로 배치 가능)
-            previewInstance.transform.Rotate(0, 0, -90);
-        }
+        /*
+                if (Input.GetMouseButtonDown(1)) // 우클릭 90도 회전
+                {
+                    Debug.Log("회전 90도");
+                    rotation = (rotation + 90) % 360; // 시계 방향으로 90도씩 돌리면 rotation + 90 이 맞는지 (왜냐면 방 정보 저장할 때 rotation값도 저장해줘야 함선 호출 시 제대로 배치 가능)
+                    previewInstance.transform.Rotate(0, 0, -90);
+                }
+        */
     }
 
     /// <summary>
@@ -112,6 +119,8 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     /// <param name="eventData"></param>
     public void OnEndDrag(PointerEventData eventData)
     {
+        isDragging = false;
+
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
         Vector2Int gridPos = ShipGridManager.Instance.WorldToGridPosition(worldPos);
 
@@ -119,11 +128,13 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (placedRoom != null)
         {
             var roomComp = placedRoom.GetComponent<PlacedRoomInteraction>();
-            if (roomComp != null)
-            {
-                roomComp.roomData = roomData;
-                roomComp.rotation = rotation;
-            }
+            roomComp.roomData = roomData;
+            roomComp.rotation = rotation;
+
+            var sr = placedRoom.GetComponent<SpriteRenderer>();
+            sr.sprite = roomData.GetRoomData(roomLevel).roomSprite;
+
+            RoomsInventoryTooltipUI.Instance.RefreshInventory(); // 설치 후 인벤토리 갱신
         }
         Destroy(previewInstance);
     }

@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 /// </summary>
 public abstract class Room : MonoBehaviour, IShipStatContributor
 {
-    [SerializeField] protected RoomData roomData; // 기본 타입으로 참조
+    [SerializeField] public RoomData roomData; // 기본 타입으로 참조
 
     [HideInInspector] public Vector2Int position;
 
@@ -16,9 +16,9 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     [HideInInspector] public int maxLevel;
 
-    [SerializeField] [HideInInspector] protected float currentHitPoints; // 현재 체력
+    [SerializeField][HideInInspector] protected float currentHitPoints; // 현재 체력
 
-    [SerializeField] [HideInInspector] protected OxygenLevel oxygenLevel = OxygenLevel.Normal; // 현재 산소 레벨
+    [SerializeField][HideInInspector] protected OxygenLevel oxygenLevel = OxygenLevel.Normal; // 현재 산소 레벨
 
     public RoomType roomType;
 
@@ -28,7 +28,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     [HideInInspector] protected List<Door> connectedDoors = new(); // 연결된 문들
 
-    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
+    [Header("방 효과")][SerializeField] protected ParticleSystem roomParticles;
     [SerializeField] protected AudioSource roomSound;
 
     public event Action<Room> OnRoomStateChanged;

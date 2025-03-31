@@ -25,6 +25,7 @@ public class Ship : MonoBehaviour
     public GameObject testRoomPrefab2;
 
     public event Action OnStatsChanged;
+    public event Action OnRoomChanged;
 
     private void Awake()
     {
@@ -65,6 +66,9 @@ public class Ship : MonoBehaviour
 
         room.position = position;
         allRooms.Add(room);
+
+        // 방 갱신
+        OnRoomChanged?.Invoke(); // 방 바뀔 때마다 알림
 
         // Add to type dictionary
         if (!roomsByType.ContainsKey(room.roomType))
@@ -114,7 +118,7 @@ public class Ship : MonoBehaviour
 
         // Remove from list
         allRooms.Remove(room);
-        Destroy(room.gameObject);
+        OnRoomChanged?.Invoke(); // 방 갱신
 
         // TODO: MoraleManager에서 사기 계산하기 해야됨
 
@@ -394,20 +398,20 @@ public class Ship : MonoBehaviour
     {
         // 3x3 범위 내의 모든 타일 검사
         for (int x = -1; x <= 1; x++)
-        for (int y = -1; y <= 1; y++)
-        {
-            Vector2Int checkPos = centerPosition + new Vector2Int(x, y);
-
-            // 해당 위치에 방이 있는지 확인
-            if (roomGrid.TryGetValue(checkPos, out Room room))
+            for (int y = -1; y <= 1; y++)
             {
-                // 방 데미지
-                room.TakeDamage(damage);
+                Vector2Int checkPos = centerPosition + new Vector2Int(x, y);
 
-                // 그 방에 있는 선원들에게 데미지 적용
-                ApplyDamageToCrewsInRoom(room, damage * 0.7f);
+                // 해당 위치에 방이 있는지 확인
+                if (roomGrid.TryGetValue(checkPos, out Room room))
+                {
+                    // 방 데미지
+                    room.TakeDamage(damage);
+
+                    // 그 방에 있는 선원들에게 데미지 적용
+                    ApplyDamageToCrewsInRoom(room, damage * 0.7f);
+                }
             }
-        }
     }
 
     public void OnShipDestroyed()

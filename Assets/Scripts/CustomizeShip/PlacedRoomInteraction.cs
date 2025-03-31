@@ -16,7 +16,8 @@ public class PlacedRoomInteraction : MonoBehaviour, IPointerClickHandler, IBegin
             // 삭제
             Debug.Log("방 삭제");
             Destroy(gameObject);
-            // RoomsInventoryTooltipUI.Instance.AddRoom(roomData); // 인벤토리로 되돌리기
+            RoomsInventoryTooltipUI.Instance.AddRoom(roomData); // 인벤토리로 되돌리기
+            RoomsInventoryTooltipUI.Instance.RefreshInventory(); // 인벤토리 갱신
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
