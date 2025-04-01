@@ -5,7 +5,7 @@ using UnityEngine;
 
 /// <summary>
 /// 함선의 전체 기능과 상태를 관리하는 클래스.
-/// 방 배치, 시스템 초기화, 전투 처리, 자원 계산, 스탯 갱신 등의 기능을 포함합니다. xxxxxxxx
+/// 방 배치, 시스템 초기화, 전투 처리, 자원 계산, 스탯 갱신 등의 기능을 포함합니다. xnjnjnjn
 /// </summary>
 public class Ship : MonoBehaviour
 {
