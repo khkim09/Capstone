@@ -9,9 +9,12 @@ public class OxygenSystem : ShipSystem
     /// <summary>
     /// 현재 산소 수치 (% 단위, 0 ~ 100).
     /// </summary>
-    public float currentOxygenRate;
+    private float currentOxygenRate;
 
-    public OxygenLevel currentOxygenLevel;
+    /// <summary>
+    /// 현재 산소 레벨 (총 5단계)
+    /// </summary>
+    private OxygenLevel currentOxygenLevel;
 
 
     /// <summary>
@@ -69,6 +72,10 @@ public class OxygenSystem : ShipSystem
         return currentOxygenRate;
     }
 
+    /// <summary>
+    /// 현재 산소 레벨을 반환합니다.
+    /// </summary>
+    /// <returns>현재 산소 레벨.</returns>
     public OxygenLevel GetOxygenLevel()
     {
         return currentOxygenLevel;

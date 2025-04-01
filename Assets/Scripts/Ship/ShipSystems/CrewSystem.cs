@@ -82,4 +82,21 @@ public class CrewSystem : ShipSystem
     {
         return crews;
     }
+
+    /// <summary>
+    /// 특정 위치에 있는 모든 선원들을 반환합니다.
+    /// </summary>
+    /// <param name="position">확인할 격자 위치</param>
+    /// <returns>해당 위치에 있는 선원들의 리스트</returns>
+    public List<CrewBase> GetCrewsAtPosition(Vector2Int position)
+    {
+        List<CrewBase> crewsAtPosition = new();
+
+        foreach (CrewBase crew in crews)
+            // crew.position이 선원의 현재 위치를 가지고 있다고 가정
+            if (crew.position == position)
+                crewsAtPosition.Add(crew);
+
+        return crewsAtPosition;
+    }
 }

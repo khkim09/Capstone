@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class Ship : MonoBehaviour
 {
-    [Header("Ship Info")][SerializeField] private string shipName = "Milky";
+    [Header("Ship Info")] [SerializeField] private string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -143,11 +143,11 @@ public class Ship : MonoBehaviour
 
         // Add to grid
         for (int x = 0; x < room.GetSize().x; x++)
-            for (int y = 0; y < room.GetSize().y; y++)
-            {
-                Vector2Int gridPos = position + new Vector2Int(x, y);
-                roomGrid[gridPos] = room;
-            }
+        for (int y = 0; y < room.GetSize().y; y++)
+        {
+            Vector2Int gridPos = position + new Vector2Int(x, y);
+            roomGrid[gridPos] = room;
+        }
 
         room.OnPlaced();
 
@@ -171,11 +171,11 @@ public class Ship : MonoBehaviour
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-            for (int y = 0; y < room.GetSize().y; y++)
-            {
-                Vector2Int gridPos = room.position + new Vector2Int(x, y);
-                roomGrid.Remove(gridPos);
-            }
+        for (int y = 0; y < room.GetSize().y; y++)
+        {
+            Vector2Int gridPos = room.position + new Vector2Int(x, y);
+            roomGrid.Remove(gridPos);
+        }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -223,12 +223,12 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-            for (int y = 0; y < size.y; y++)
-            {
-                Vector2Int checkPos = pos + new Vector2Int(x, y);
-                if (roomGrid.ContainsKey(checkPos))
-                    return false;
-            }
+        for (int y = 0; y < size.y; y++)
+        {
+            Vector2Int checkPos = pos + new Vector2Int(x, y);
+            if (roomGrid.ContainsKey(checkPos))
+                return false;
+        }
 
         return true;
     }
@@ -537,15 +537,25 @@ public class Ship : MonoBehaviour
             // 함선 전체에 데미지 적용
             TakeDamage(finalDamage);
 
-            // 방과 선원에 대한 데미지 처리
             if (weaponType == WeaponType.Missile)
-                // 미사일 폭발 위치를 중심으로 3x3 영역에 데미지
-                ApplySplashDamageToRoomsAndCrews(hitPosition, finalDamage * 0.8f);
+            {
+                // 미사일이 직접 떨어진 위치의 방에만 데미지 적용
+                if (roomGrid.TryGetValue(hitPosition, out Room hitRoom)) hitRoom.TakeDamage(finalDamage);
+
+                // 직접 타격 지점과 주변 8칸에 있는 선원들에게 데미지 적용
+                ApplyDamageToCrewsInArea(hitPosition, finalDamage, true); // true = 3x3 영역 스플래시
+            }
             else
-                // 단일 지점 데미지
-                ApplyDamageToRoomAndCrews(hitPosition, finalDamage);
+            {
+                // 단일 지점 데미지 - 방에 데미지 적용
+                if (roomGrid.TryGetValue(hitPosition, out Room hitRoom)) hitRoom.TakeDamage(finalDamage);
+
+                // 그 위치에 있는 선원들에게 데미지 적용
+                ApplyDamageToCrewsInArea(hitPosition, finalDamage, false); // false = 단일 지점
+            }
         }
     }
+
 
     /// <summary>
     /// 함선에 직접 피해를 적용합니다.
@@ -573,44 +583,40 @@ public class Ship : MonoBehaviour
 
 
     /// <summary>
-    /// 지정된 위치에 있는 방과 그 안의 크루에게 피해를 적용합니다.
-    /// 크루는 방보다 70%의 피해만 받습니다.
+    /// 지정된 위치에 있는 크루에게 데미지를 적용합니다.
     /// </summary>
     /// <param name="position">피격된 격자 좌표.</param>
     /// <param name="damage">적용할 원 피해량.</param>
-    private void ApplyDamageToRoomAndCrews(Vector2Int position, float damage)
+    private void ApplyDamageToCrewsAtPosition(Vector2Int position, float damage)
     {
-        if (roomGrid.TryGetValue(position, out Room room))
-        {
-            room.TakeDamage(damage);
-            ApplyDamageToCrewsInRoom(room, damage * 0.7f);
-        }
+        List<CrewBase> crewsAtPosition = GetSystem<CrewSystem>().GetCrewsAtPosition(position);
+        foreach (CrewBase crew in crewsAtPosition) crew.TakeDamage(damage);
     }
 
-
     /// <summary>
-    /// 중심 좌표를 기준으로 3x3 영역 내의 모든 방과 크루에게 스플래시 피해를 적용합니다.
-    /// 크루는 방보다 70%의 피해만 받습니다.
+    /// 해당하는 좌표에 있는 크루에게 데미지를 적용합니다.
+    /// 만약 스플래쉬 데미지일 경우 중심 좌표를 기준으로 3x3 영역(주위 8칸)에는 80%의 데미지를 입힙니다.
     /// </summary>
-    /// <param name="centerPosition">스플래시 중심 좌표.</param>
-    /// <param name="damage">스플래시 피해량.</param>
-    private void ApplySplashDamageToRoomsAndCrews(Vector2Int centerPosition, float damage)
+    /// <param name="position">피격된 격자 좌표.</param>
+    /// <param name="damage">적용할 원 피해량.</param>
+    /// <param name="isSplash">스플래쉬 데미지 여부.</param>
+    private void ApplyDamageToCrewsInArea(Vector2Int position, float damage, bool isSplash)
     {
-        // 3x3 범위 내의 모든 타일 검사
-        for (int x = -1; x <= 1; x++)
+        // 단일 지점에 있는 선원들에게 데미지 적용
+        ApplyDamageToCrewsAtPosition(position, damage);
+
+
+        if (isSplash)
+            // 3x3 영역 내 선원들에게 데미지 적용
+            for (int x = -1; x <= 1; x++)
             for (int y = -1; y <= 1; y++)
             {
-                Vector2Int checkPos = centerPosition + new Vector2Int(x, y);
+                if (x == 0 && y == 0) continue;
 
-                // 해당 위치에 방이 있는지 확인
-                if (roomGrid.TryGetValue(checkPos, out Room room))
-                {
-                    // 방 데미지
-                    room.TakeDamage(damage);
+                Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                    // 그 방에 있는 선원들에게 데미지 적용
-                    ApplyDamageToCrewsInRoom(room, damage * 0.7f);
-                }
+                // 해당 위치에 있는 선원들에게 데미지 적용
+                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
             }
     }
 
