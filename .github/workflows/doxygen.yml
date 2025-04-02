@@ -24,20 +24,17 @@ jobs:
       - name: Generate Doxygen documentation
         run: doxygen Doxyfile
 
-      - name: Push HTML to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/html
-          destination_dir: ./html
-          publish_branch: gh-pages
-          force_orphan: true
+      - name: Create combined documentation directory
+        run: |
+          mkdir -p ./docs/combined
+          cp -r ./docs/html/* ./docs/combined/
+          mkdir -p ./docs/combined/xml
+          cp -r ./docs/xml/* ./docs/combined/xml/
 
-      - name: Push XML to gh-pages branch
+      - name: Push to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/xml
-          destination_dir: ./xml
+          publish_dir: ./docs/combined
           publish_branch: gh-pages
           force_orphan: true
