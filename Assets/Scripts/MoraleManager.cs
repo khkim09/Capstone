@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 사기 관련 이벤트 생성에 따른 사기 효과 적용 관리 Manager
+/// 사기 관련 이벤트 생성에 따른 사기 효과 적용 관리 Manager.
 /// </summary>
 public class MoraleManager : MonoBehaviour
 {
