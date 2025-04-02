@@ -24,10 +24,20 @@ jobs:
       - name: Generate Doxygen documentation
         run: doxygen Doxyfile
 
-      - name: Push to gh-pages branch
+      - name: Push HTML to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/html
+          destination_dir: ./
           publish_branch: gh-pages
-          force_orphan: true
+          force_orphan: false
+
+      - name: Push XML to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/xml
+          destination_dir: ./xml
+          publish_branch: gh-pages
+          force_orphan: false
