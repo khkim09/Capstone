@@ -8,11 +8,19 @@ using Unity.VisualScripting;
 /// </summary>
 public class RTSSelectionManager : MonoBehaviour
 {
-    // 드래그 시 표시할 텍스처 (Inspector에서 할당)
+    /// <summary>
+    /// 드래그 선택 시 표시할 텍스처입니다.
+    /// </summary>
     public Texture2D selectionTexture;
+
+    /// <summary>
+    /// 이동 가능 지면으로 인식할 레이어입니다.
+    /// </summary>
     public LayerMask groundLayer;
 
-    // 드래그 영역의 시작점
+    /// <summary>
+    /// 드래그 시작 위치입니다.
+    /// </summary>
     private Vector2 dragStartPos;
     private bool isDragging = false;
 

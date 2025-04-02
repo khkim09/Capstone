@@ -3,13 +3,31 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// 행성의 주요 종족 타입
+/// </summary>
 public enum SpeciesType
 {
-    Aquatic, // 어인
-    Avian, // 조류
-    Ancient, // 선인
-    Humanoid, // 인간형
-    Amorphous // 부정형
+    /// <summary>
+    /// 어인
+    /// </summary>
+    Aquatic,
+    /// <summary>
+    /// 조류
+    /// </summary>
+    Avian,
+    /// <summary>
+    /// 선인
+    /// </summary>
+    Ancient,
+    /// <summary>
+    /// 인간형
+    /// </summary>
+    Humanoid,
+    /// <summary>
+    /// 부정형
+    /// </summary>
+    Amorphous
 }
 
 public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
@@ -34,6 +52,9 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     // 노드 배치 함수 참조 델리게이트
     public System.Action<GameObject> OnPlanetClickedCallback;
 
+    /// <summary>
+    /// 매 프레임마다 툴팁이 활성화되어 있다면 위치를 주기적으로 업데이트합니다.
+    /// </summary>
     private void Update()
     {
         // 툴팁 활성화 상태에서만 위치 업데이트
@@ -46,18 +67,30 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             }
     }
 
+    /// <summary>
+    /// 마우스가 행성 위에 올라가면 툴팁을 표시합니다.
+    /// </summary>
+    /// <param name="eventData">포인터 이벤트 데이터</param>
     public void OnPointerEnter(PointerEventData eventData)
     {
         // 간단하게 툴팁 표시만 처리
         ShowTooltip();
     }
 
+    /// <summary>
+    /// 마우스가 행성 위에서 벗어나면 툴팁을 숨깁니다.
+    /// </summary>
+    /// <param name="eventData">포인터 이벤트 데이터</param>
     public void OnPointerExit(PointerEventData eventData)
     {
         // 간단하게 툴팁 숨기기만 처리
         HideTooltip();
     }
 
+    /// <summary>
+    /// 행성을 클릭했을 때 툴팁을 숨기고 NodePlacementMap에 알립니다.
+    /// </summary>
+    /// <param name="eventData">포인터 이벤트 데이터</param>
     public void OnPointerClick(PointerEventData eventData)
     {
         // 클릭 시 툴팁 숨기기
@@ -71,6 +104,9 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     }
 
 
+    /// <summary>
+    /// 툴팁을 제거하고 비활성화합니다.
+    /// </summary>
     private void HideTooltip()
     {
         if (activeTooltip != null)
@@ -80,6 +116,10 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         }
     }
 
+    /// <summary>
+    /// Planet 컴포넌트가 시작될 때 랜덤한 이름과 설정을 초기화하고
+    /// EventTrigger 이벤트를 구성합니다.
+    /// </summary>
     private void Start()
     {
         // If name is not set yet, generate a random name
@@ -122,7 +162,9 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         eventTrigger.triggers.Add(clickEntry);
     }
 
-    // Generate a random name based on our pattern
+    /// <summary>
+    /// 행성 이름을 랜덤하게 생성합니다. (종족 접두어 + 숫자 + 알파벳)
+    /// </summary>
     private void GenerateRandomName()
     {
         // Get prefix based on dominant species
@@ -138,7 +180,11 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         planetName = $"{prefix}-{randomNumber}{randomLetter}";
     }
 
-    // Get prefix based on species type
+    /// <summary>
+    /// 종족 유형에 따라 행성 이름 접두어를 반환합니다.
+    /// </summary>
+    /// <param name="species">종족 타입</param>
+    /// <returns>종족 접두어 문자열</returns>
     private string GetSpeciesPrefix(SpeciesType species)
     {
         switch (species)
@@ -158,7 +204,10 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         }
     }
 
-    // Calculate light years based on Unity distance
+    /// <summary>
+    /// 기준 위치로부터 유니티 좌표상의 거리를 라이트 이어로 변환하여 저장합니다.
+    /// </summary>
+    /// <param name="referencePosition">기준 위치</param>
     public void SetLightYearsFromUnityDistance(Vector2 referencePosition)
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
@@ -168,6 +217,9 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         distanceInLightYears = unityDistance;
     }
 
+    /// <summary>
+    /// 툴팁을 생성하고 PlanetTooltip 컴포넌트를 초기화합니다.
+    /// </summary>
     private void ShowTooltip()
     {
         if (tooltipPrefab == null)
@@ -209,6 +261,10 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         PositionTooltipOnMap();
     }
 
+    /// <summary>
+    /// 툴팁을 행성 위치 기준으로 동적으로 배치합니다.
+    /// 맵의 위치에 따라 피벗과 오프셋이 조절됩니다.
+    /// </summary>
     private void PositionTooltipOnMap()
     {
         if (activeTooltip == null) return;

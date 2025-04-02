@@ -4,17 +4,29 @@ using TMPro;
 using System;
 
 /// <summary>
-/// 각 장비 버튼입니다.
+/// 장비 하나를 나타내는 UI 버튼 클래스.
+/// 이미지, 이름, 가격 등의 정보를 표시하고, 클릭 시 장비 상세 정보를 보여줍니다.
 /// </summary>
 public class EquipmentButton : MonoBehaviour
 {
     /// <summary>
-    /// 장비 별 이미지, 장비명, 가격
+    /// 장비 아이콘 이미지입니다.
     /// </summary>
-    [Header("UI Elements")]
-    public Image iconImage;
+    [Header("UI Elements")] public Image iconImage;
+
+    /// <summary>
+    /// 장비 이름 텍스트입니다.
+    /// </summary>
     public TextMeshProUGUI nameText;
+
+    /// <summary>
+    /// 장비 가격 텍스트입니다.
+    /// </summary>
     public TextMeshProUGUI priceText;
+
+    /// <summary>
+    /// 장비 버튼 자체입니다.
+    /// </summary>
     public Button myButton;
 
     /// <summary>
@@ -29,12 +41,18 @@ public class EquipmentButton : MonoBehaviour
     [Header("UI Handler")]
     public EquipmentUIHandler uiHandler;
 
+    /// <summary>
+    /// 시작 시 연결된 장비가 있다면 UI를 초기화합니다.
+    /// </summary>
     private void Awake()
     {
         if (linkedItem)
             UpdateUI();
     }
 
+    /// <summary>
+    /// 에디터에서 값이 변경될 경우 자동으로 UI를 갱신합니다.
+    /// </summary>
     private void OnValidate()
     {
         // 에디터에서 변경 사항이 있을 때 자동 업데이트
@@ -45,7 +63,7 @@ public class EquipmentButton : MonoBehaviour
     }
 
     /// <summary>
-    /// UI를 자동으로 갱신합니다.
+    /// 연결된 장비 데이터를 바탕으로 UI를 갱신합니다.
     /// </summary>
     private void UpdateUI()
     {

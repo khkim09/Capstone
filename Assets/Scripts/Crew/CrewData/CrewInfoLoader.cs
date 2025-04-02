@@ -1,9 +1,22 @@
 using UnityEngine;
 using System.IO;
 
+/// <summary>
+/// 크루원 정보(CrewInfo)를 JSON 파일에서 불러와 정적 변수에 저장하는 로더.
+/// JsonUtility를 사용하며, JSON 키의 공백을 제거해 필드명과 매칭시킵니다.
+/// </summary>
 public class CrewInfoLoader : MonoBehaviour
 {
+    /// <summary>
+    /// 로드된 크루 정보 데이터입니다.
+    /// CrewInfoWrapper는 다양한 크루 유형별 데이터를 포함합니다.
+    /// </summary>
     public static CrewInfoWrapper crewInfo;
+
+    /// <summary>
+    /// 게임 오브젝트가 생성될 때 호출됩니다.
+    /// CrewInfo.json 파일을 로드하고 공백 키를 제거한 후 파싱합니다.
+    /// </summary>
     void Awake()
     {
         // Application.dataPath는 프로젝트의 Assets 폴더 경로를 반환합니다.

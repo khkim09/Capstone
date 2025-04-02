@@ -2,6 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 이벤트 트리 맵으로 전환합니다. 기존 NodePlacementMap은 비활성화됩니다.
+/// 저장된 경로와 위험 정보를 기반으로 트리를 재생성합니다.
+/// </summary>
 public class MapSystemManager : MonoBehaviour
 {
     [Header("Map Systems")] [SerializeField]
@@ -33,6 +37,10 @@ public class MapSystemManager : MonoBehaviour
 
     public static MapSystemManager Instance { get; private set; }
 
+    /// <summary>
+    /// 싱글톤 인스턴스를 초기화합니다.
+    /// 이미 인스턴스가 존재할 경우 중복 생성을 방지합니다.
+    /// </summary>
     private void Awake()
     {
         if (Instance == null)
@@ -46,6 +54,11 @@ public class MapSystemManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 맵 관련 오브젝트들을 초기화합니다.
+    /// 캔버스를 생성하고, EventTreeMap 및 NodePlacementMap 프리팹을 인스턴스화하여 비활성화된 상태로 배치합니다.
+    /// 초기 맵 상태는 NodePlacementMap으로 설정됩니다.
+    /// </summary>
     private void Start()
     {
         // 맵 캔버스가 없으면 생성
@@ -78,6 +91,10 @@ public class MapSystemManager : MonoBehaviour
         SwitchToPlacementMap();
     }
 
+    /// <summary>
+    /// 이벤트 트리 맵으로 전환합니다. 기존 NodePlacementMap은 비활성화됩니다.
+    /// 저장된 경로와 위험 정보를 기반으로 트리를 재생성합니다.
+    /// </summary>
     public void SwitchToEventTreeMap()
     {
         placementMap.gameObject.SetActive(false);
@@ -95,6 +112,9 @@ public class MapSystemManager : MonoBehaviour
         OnMapStateChanged?.Invoke(currentMapType);
     }
 
+    /// <summary>
+    /// 노드 배치 맵으로 전환합니다. 기존 이벤트 트리 맵은 비활성화됩니다.
+    /// </summary>
     public void SwitchToPlacementMap()
     {
         eventTreeMap.gameObject.SetActive(false);
@@ -107,7 +127,11 @@ public class MapSystemManager : MonoBehaviour
         OnMapStateChanged?.Invoke(currentMapType);
     }
 
-    // NodePlacementMap으로부터 경로 정보를 받아 저장
+    /// <summary>
+    /// NodePlacementMap으로부터 전달받은 경로 정보를 저장합니다.
+    /// 저장 후 위험 정보가 존재하면 트리 생성 이벤트를 발생시킵니다.
+    /// </summary>
+    /// <param name="nodes">노드 경로 리스트.</param>
     public void SetPathNodes(List<Vector2> nodes)
     {
         pathNodes = new List<Vector2>(nodes);
@@ -117,7 +141,11 @@ public class MapSystemManager : MonoBehaviour
             OnRoutePlanningCompleted(pathNodes, pathDangerInfo);
     }
 
-    // NodePlacementMap으로부터 위험 정보를 받아 저장
+    /// <summary>
+    /// NodePlacementMap으로부터 전달받은 위험 정보를 저장합니다.
+    /// 저장 후 경로 정보가 존재하면 트리 생성 이벤트를 발생시킵니다.
+    /// </summary>
+    /// <param name="dangerInfo">경로별 위험 여부 리스트.</param>
     public void SetPathDangerInfo(List<bool> dangerInfo)
     {
         pathDangerInfo = new List<bool>(dangerInfo);

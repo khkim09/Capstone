@@ -52,7 +52,9 @@ public class WarpStateMachine : IGameStateMachine
     private int numberOfPlanets = 20;
     private float maxPlacementDistance = 100f;
 
-    // 상태 진입 시 호출
+    /// <summary>
+    /// 상태 진입 시 호출됩니다. 초기 변수와 컴포넌트를 설정하고 이벤트를 구독합니다.
+    /// </summary>
     public void Enter()
     {
         // UI 컨트롤러 및 맵 컴포넌트 참조 얻기
@@ -73,7 +75,9 @@ public class WarpStateMachine : IGameStateMachine
         arrivalTime = 0f;
     }
 
-    // 필요한 컴포넌트 초기화 및 이벤트 구독
+    /// <summary>
+    /// UI 컨트롤러 및 맵 컴포넌트를 초기화하고 이벤트를 구독합니다.
+    /// </summary>
     private void InitializeComponents()
     {
         // UI 컨트롤러 참조 얻기
@@ -113,7 +117,9 @@ public class WarpStateMachine : IGameStateMachine
         uiController.Show();
     }
 
-    // 상태 업데이트 시 호출
+    /// <summary>
+    /// 상태 업데이트 시 매 프레임 호출됩니다. 현재 워프 단계에 따라 로직을 처리합니다.
+    /// </summary>
     public void Update()
     {
         // 현재 단계에 따른 처리
@@ -181,7 +187,9 @@ public class WarpStateMachine : IGameStateMachine
         }
     }
 
-    // 상태 종료 시 호출
+    /// <summary>
+    /// 상태 종료 시 호출됩니다. 모든 구독을 해제하고 UI를 정리합니다.
+    /// </summary>
     public void Exit()
     {
         Debug.Log("Exiting WarpState");
@@ -226,7 +234,9 @@ public class WarpStateMachine : IGameStateMachine
 
     #region 상태 전환 메서드
 
-    // 경로 계획 단계로 전환
+    /// <summary>
+    /// 경로 계획 단계로 전환합니다.
+    /// </summary>
     private void TransitionToRoutePlanning()
     {
         currentPhase = WarpPhase.PlanningRoute;
@@ -239,7 +249,9 @@ public class WarpStateMachine : IGameStateMachine
         pathNodeSelected = false;
     }
 
-    // 이벤트 선택 단계로 전환
+    /// <summary>
+    /// 이벤트 선택 단계로 전환합니다.
+    /// </summary>
     private void TransitionToEventSelection()
     {
         currentPhase = WarpPhase.SelectingEvents;
@@ -251,7 +263,9 @@ public class WarpStateMachine : IGameStateMachine
         eventNodeSelected = false;
     }
 
-    // 워프 실행 단계로 전환
+    /// <summary>
+    /// 워프 실행 단계로 전환합니다.
+    /// </summary>
     private void TransitionToWarpExecution()
     {
         currentPhase = WarpPhase.ExecutingWarp;
@@ -264,7 +278,9 @@ public class WarpStateMachine : IGameStateMachine
         warpAnimationDuration = 2.0f;
     }
 
-    // 이벤트 처리 단계로 전환
+    /// <summary>
+    /// 이벤트 처리 단계로 전환합니다.
+    /// </summary>
     private void TransitionToEventProcessing()
     {
         currentPhase = WarpPhase.ProcessingEvent;
@@ -276,7 +292,9 @@ public class WarpStateMachine : IGameStateMachine
         eventChoiceSelected = false;
     }
 
-    // 도착 단계로 전환
+    /// <summary>
+    /// 도착 단계로 전환합니다.
+    /// </summary>
     private void TransitionToArrival()
     {
         currentPhase = WarpPhase.Arriving;
@@ -293,7 +311,9 @@ public class WarpStateMachine : IGameStateMachine
 
     #region 상태 확인 메서드
 
-    // 경로 계획이 완료되었는지 확인
+    /// <summary>
+    /// 경로 계획 완료 여부를 확인합니다.
+    /// </summary>
     private bool IsRoutePlanningComplete()
     {
         // 이미 완료 플래그가 설정되었으면 true 반환
@@ -310,7 +330,9 @@ public class WarpStateMachine : IGameStateMachine
         return false;
     }
 
-    // 이벤트 노드가 선택되었는지 확인
+    /// <summary>
+    /// 이벤트 노드가 선택되었는지 확인합니다.
+    /// </summary>
     private bool IsEventNodeSelected()
     {
         // 이미 선택 플래그가 설정되었으면 true 반환
@@ -327,19 +349,25 @@ public class WarpStateMachine : IGameStateMachine
         return false;
     }
 
-    // 워프 애니메이션이 완료되었는지 확인
+    /// <summary>
+    /// 워프 애니메이션이 완료되었는지 확인합니다.
+    /// </summary>
     private bool IsWarpAnimationComplete()
     {
         return warpAnimationTime >= warpAnimationDuration;
     }
 
-    // 이벤트 선택이 완료되었는지 확인
+    /// <summary>
+    /// 이벤트 선택이 완료되었는지 확인합니다.
+    /// </summary>
     private bool IsEventChoiceSelected()
     {
         return eventChoiceSelected;
     }
 
-    // 도착 단계가 완료되었는지 확인
+    /// <summary>
+    /// 도착 단계가 완료되었는지 확인합니다.
+    /// </summary>
     private bool IsArrivalComplete()
     {
         return arrivalTime >= arrivalDuration;
@@ -349,21 +377,27 @@ public class WarpStateMachine : IGameStateMachine
 
     #region 상태 업데이트 메서드
 
-    // 경로 계획 상태 업데이트
+    /// <summary>
+    /// 경로 계획 상태를 업데이트합니다.
+    /// </summary>
     private void UpdateRoutePlanningState()
     {
         // 필요한 경우 경로 계획 관련 UI나 안내 업데이트
         // NodePlacementMap은 자체적으로 사용자 입력을 처리함
     }
 
-    // 이벤트 선택 상태 업데이트
+    /// <summary>
+    /// 이벤트 선택 상태를 업데이트합니다.
+    /// </summary>
     private void UpdateEventSelectionState()
     {
         // 필요한 경우 이벤트 선택 관련 UI나 안내 업데이트
         // EventTreeMap은 자체적으로 사용자 입력을 처리함
     }
 
-    // 워프 애니메이션 업데이트
+    /// <summary>
+    /// 워프 애니메이션 상태를 업데이트합니다.
+    /// </summary>
     private void UpdateWarpAnimation()
     {
         // 워프 애니메이션 타이머 업데이트
@@ -374,13 +408,17 @@ public class WarpStateMachine : IGameStateMachine
         // 예: uiController.UpdateWarpAnimationProgress(progress);
     }
 
-    // 이벤트 처리 상태 업데이트
+    /// <summary>
+    /// 이벤트 처리 상태를 업데이트합니다.
+    /// </summary>
     private void UpdateEventProcessingState()
     {
         // 필요한 경우 이벤트 처리 관련 UI나 안내 업데이트
     }
 
-    // 도착 상태 업데이트
+    /// <summary>
+    /// 도착 처리 상태를 업데이트합니다.
+    /// </summary>
     private void UpdateArrivalState()
     {
         // 도착 애니메이션 타이머 업데이트
@@ -395,7 +433,9 @@ public class WarpStateMachine : IGameStateMachine
 
     #region 단계별 초기화 메서드
 
-    // 경로 계획 단계 초기화
+    /// <summary>
+    /// 경로 계획 단계에서 UI와 맵을 초기화합니다.
+    /// </summary>
     private void InitializeRoutePlanning()
     {
         // UI 상태 설정
@@ -417,7 +457,9 @@ public class WarpStateMachine : IGameStateMachine
         }
     }
 
-    // 이벤트 선택 단계 초기화
+    /// <summary>
+    /// 이벤트 선택 단계에서 UI와 맵을 초기화합니다.
+    /// </summary>
     private void InitializeEventSelection()
     {
         // UI 상태 설정
@@ -439,7 +481,9 @@ public class WarpStateMachine : IGameStateMachine
         }
     }
 
-    // 워프 애니메이션 초기화
+    /// <summary>
+    /// 워프 애니메이션 시작 시 UI 상태를 설정합니다.
+    /// </summary>
     private void InitializeWarpAnimation()
     {
         // 모든 맵 비활성화
@@ -451,7 +495,9 @@ public class WarpStateMachine : IGameStateMachine
         uiController.SetUIState(WarpUIController.WarpUIState.WarpAnimation);
     }
 
-    // 이벤트 처리 초기화
+    /// <summary>
+    /// 이벤트 처리 UI를 초기화하고 선택지를 표시합니다.
+    /// </summary>
     private void InitializeEventProcessing()
     {
         // 이벤트 처리 UI 표시
@@ -466,7 +512,9 @@ public class WarpStateMachine : IGameStateMachine
         uiController.SetEventInfo(title, description, choices);
     }
 
-    // 도착 단계 초기화
+    /// <summary>
+    /// 도착 단계 UI를 초기화하고 행성 정보를 표시합니다.
+    /// </summary>
     private void InitializeArrival()
     {
         // 도착 UI 표시
@@ -486,7 +534,9 @@ public class WarpStateMachine : IGameStateMachine
 
     #endregion
 
-    // 워프 과정 완료 처리
+    /// <summary>
+    /// 워프 프로세스가 완료되었을 때 호출됩니다. 다음 상태로 전환합니다.
+    /// </summary>
     private void CompleteWarpProcess()
     {
         // 도착한 행성에서의 상태로 전환
@@ -498,20 +548,26 @@ public class WarpStateMachine : IGameStateMachine
 
     #region 이벤트 핸들러
 
-    // UI 상태 변경 이벤트 핸들러
+    /// <summary>
+    /// UI 상태 변경 시 호출되는 이벤트 핸들러입니다.
+    /// </summary>
     private void HandleUIStateChanged(WarpUIController.WarpUIState newState)
     {
         // UI 상태에 따른 워프 단계 동기화 필요시 여기서 처리
     }
 
-    // 계속 버튼 클릭 이벤트 핸들러
+    /// <summary>
+    /// 계속 버튼 클릭 시 호출되는 이벤트 핸들러입니다.
+    /// </summary>
     private void HandleContinueButtonClicked()
     {
         // 현재 단계가 도착 단계라면 도착 처리 완료로 마킹
         if (currentPhase == WarpPhase.Arriving) arrivalTime = arrivalDuration; // 강제로 도착 시간 완료 처리
     }
 
-    // 이벤트 선택지 선택 이벤트 핸들러
+    /// <summary>
+    /// 이벤트 선택지 클릭 시 호출되는 이벤트 핸들러입니다.
+    /// </summary>
     private void HandleEventChoiceSelected(int choiceIndex)
     {
         // 이벤트 선택 처리 (실제로는 여기서 게임 상태에 영향을 주는 로직 구현)
@@ -521,7 +577,9 @@ public class WarpStateMachine : IGameStateMachine
         // 여기서는 상태 전환을 직접 호출하지 않고 Update에서 판단
     }
 
-    // 이벤트 노드 선택 이벤트 핸들러
+    /// <summary>
+    /// 이벤트 노드 선택 시 호출되는 이벤트 핸들러입니다.
+    /// </summary>
     private void HandleEventNodeSelected(EventNode node)
     {
         // 선택된 이벤트 노드 저장
@@ -531,7 +589,9 @@ public class WarpStateMachine : IGameStateMachine
         // 여기서는 상태 전환을 직접 호출하지 않고 Update에서 판단
     }
 
-    // 경로 계획 완료 이벤트 핸들러
+    /// <summary>
+    /// 경로 계획 완료 시 호출되는 이벤트 핸들러입니다.
+    /// </summary>
     private void HandlePathCompleted(List<Vector2> pathNodes, List<bool> dangerInfo)
     {
         // 경로 데이터 저장

@@ -9,18 +9,49 @@ using UnityEngine.UI;
 /// </summary>
 public class RoomsInventoryTooltipUI : MonoBehaviour
 {
+    /// <summary>
+    /// 싱글턴 인스턴스입니다.
+    /// </summary>
     public static RoomsInventoryTooltipUI Instance;
 
-    [Header("Inventory References")]
-    public GameObject roomButtonPrefab;         // 드래그 가능한 룸 UI 프리팹
+    /// <summary>
+    /// 드래그 가능한 방 UI 프리팹입니다.
+    /// </summary>
+    [Header("Inventory References")] public GameObject roomButtonPrefab;
+
+    /// <summary>
+    /// ScrollView 내부 Content 트랜스폼입니다.
+    /// </summary>
     public Transform contentRoot;               // ScrollView > Viewport > Content
+
+    /// <summary>
+    /// 현재 작업 중인 플레이어의 Ship 객체입니다.
+    /// </summary>
     public Ship playerShip;                     // 현재 플레이어가 작업 중인 Ship
+
+    /// <summary>
+    /// 구매한 모든 방 데이터를 저장하는 리스트입니다.
+    /// </summary>
     public List<RoomData> allOwnedRoomData = new List<RoomData>(); // 구매한 전체 방 data list
+
+    /// <summary>
+    /// 현재 설치된 방 데이터 리스트입니다.
+    /// </summary>
     public List<RoomData> installedRoomData = new List<RoomData>(); // 유저가 설치한 방 data list
 
+    /// <summary>
+    /// 방 하나당 버튼의 높이(px)입니다.
+    /// </summary>
     private const float unitSize = 40f;         // 타일 1칸에 해당하는 버튼 높이(px)
+
+    /// <summary>
+    /// 버튼 간 세로 간격(px)입니다.
+    /// </summary>
     private const float verticalSpacing = 20f;  // VerticalLayoutGroup의 spacing
 
+    /// <summary>
+    /// 시작 시 RoomChanged 이벤트에 인벤토리 갱신 함수를 연결합니다.
+    /// </summary>
     private void Start()
     {
         if (playerShip != null)
@@ -113,6 +144,10 @@ public class RoomsInventoryTooltipUI : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentRoot.GetComponent<RectTransform>());
     }
 
+    /// <summary>
+    /// 새롭게 획득한 방을 인벤토리에 추가하고 UI를 갱신합니다.
+    /// </summary>
+    /// <param name="data">추가할 방의 RoomData.</param>
     public void AddRoom(RoomData data)
     {
         if (!allOwnedRoomData.Contains(data))

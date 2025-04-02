@@ -8,10 +8,22 @@ using System.Text;
 /// </summary>
 public class RaceTooltip : MonoBehaviour
 {
+    /// <summary>
+    /// 종족 이름을 표시하는 TextMeshPro UI 텍스트입니다.
+    /// </summary>
     [SerializeField] private TextMeshProUGUI raceNameText;
+
+    /// <summary>
+    /// 종족 능력치 상세 정보를 표시하는 TextMeshPro UI 텍스트입니다.
+    /// </summary>
     [SerializeField] private TextMeshProUGUI raceInfoText;
 
-    // 예시: 각 종족의 능력치를 설정하는 함수
+    /// <summary>
+    /// 전달된 종족 능력치 데이터를 기반으로 툴팁 UI를 구성합니다.
+    /// 능력치 정보는 텍스트로 출력되며, maxSkillValueArray는 제외됩니다.
+    /// </summary>
+    /// <param name="raceStat">종족별 능력치 정보를 포함하는 데이터 객체.</param>
+    /// <param name="race">표시할 대상 종족.</param>
     public void SetupTooltip(CrewRaceStat raceStat, CrewRace race)
     {
         if (raceStat == null)

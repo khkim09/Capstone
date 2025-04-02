@@ -17,7 +17,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject commonHUD;
     [SerializeField] private GameObject pauseMenu;
 
-
+    /// <summary>
+    /// 인스턴스를 초기화하고 싱글톤을 설정합니다.
+    /// </summary>
     private void Awake()
     {
         // 싱글톤 설정
@@ -32,7 +34,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // 게임 상태 변경에 따른 UI 전환
+    /// <summary>
+    /// 게임 상태 전환 시, 해당 상태에 맞는 UI를 활성화합니다.
+    /// 이전 UI는 모두 비활성화됩니다.
+    /// </summary>
+    /// <param name="stateType">전환할 게임 상태.</param>
     public void SwitchToGameState(GameState stateType)
     {
         // 모든 UI 컨트롤러 비활성화
@@ -48,12 +54,20 @@ public class UIManager : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// 현재 활성화된 모든 UI 컨트롤러를 비활성화합니다.
+    /// </summary>
     public void DisalbeAllUI()
     {
         warpUIControllerPrefab.gameObject.SetActive(false);
         // 여기에다가 각 UI컨트롤러 만들 때마다 비활성화 코드 추가
     }
 
+    /// <summary>
+    /// 워프 UI 컨트롤러를 가져오거나, 없으면 새로 생성합니다.
+    /// </summary>
+    /// <returns>활성화된 WarpUIController 인스턴스.</returns>
     public WarpUIController GetOrCreateWarpUIController()
     {
         if (activeWarpUIController == null)
@@ -65,12 +79,18 @@ public class UIManager : MonoBehaviour
         return activeWarpUIController;
     }
 
-    // 공통 UI 기능
+    /// <summary>
+    /// 워프 UI 컨트롤러를 가져오거나, 없으면 새로 생성합니다.
+    /// </summary>
+    /// <returns>활성화된 WarpUIController 인스턴스.</returns>
     public void ShowPauseMenu()
     {
         pauseMenu.SetActive(true);
     }
 
+    /// <summary>
+    /// 일시정지 메뉴를 숨깁니다.
+    /// </summary>
     public void HidePauseMenu()
     {
         pauseMenu.SetActive(false);

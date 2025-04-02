@@ -18,6 +18,9 @@ public class MenuUIManager : MonoBehaviour
 
     public static MenuUIManager Instance { get; set; }
 
+    /// <summary>
+    /// 메뉴 UI의 초기 설정을 하고, 메뉴 버튼에 클릭 이벤트를 추가합니다.
+    /// </summary>
     void Start()
     {
         // UI의 숨겨진 위치와 보이는 위치 설정

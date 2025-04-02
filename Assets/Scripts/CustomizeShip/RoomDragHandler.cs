@@ -1,30 +1,70 @@
-// 기존 코드 - 정상 작동 (버튼 드래그 앤 드랍)
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// 방 설치, 회전, 삭제, 이동까지 담당하는 드래그 핸들러
+/// 방 설치, 회전, 삭제, 이동까지 담당하는 드래그 핸들러.
+/// 방 프리뷰를 생성하고 배치 가능 여부를 시각적으로 표시합니다.
 /// </summary>
 public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    /// <summary>
+    /// 싱글턴 인스턴스입니다.
+    /// </summary>
     public static RoomDragHandler Instance;
 
-    [Header("Room Info")]
-    public RoomData roomData;
+    /// <summary>
+    /// 설치할 방의 데이터입니다.
+    /// </summary>
+    [Header("Room Info")] public RoomData roomData;
+
+    /// <summary>
+    /// 설치될 방의 프리팹입니다.
+    /// </summary>
     public GameObject roomPrefab;
+
+    /// <summary>
+    /// 방 설치 시 미리보기용 프리팹입니다.
+    /// </summary>
     public GameObject previewPrefab;
 
+    /// <summary>
+    /// 설치될 방의 크기입니다.
+    /// </summary>
     [HideInInspector] public Vector2Int roomSize;
+
+    /// <summary>
+    /// 현재 회전 각도입니다.
+    /// </summary>
     [HideInInspector] public int rotation;
+
+    /// <summary>
+    /// 설치될 방의 레벨 정보입니다.
+    /// </summary>
     [HideInInspector] public int roomLevel;
 
-    [Header("Preview Settings")]
-    public SpriteRenderer previewSR;
+    /// <summary>
+    /// 프리뷰용 SpriteRenderer 컴포넌트입니다.
+    /// </summary>
+    [Header("Preview Settings")] public SpriteRenderer previewSR;
+
+    /// <summary>
+    /// 생성된 프리뷰 인스턴스입니다.
+    /// </summary>
     private GameObject previewInstance;
+
+    /// <summary>
+    /// 드래그 중 여부입니다.
+    /// </summary>
     private bool isDragging = false;
 
+    /// <summary>
+    /// 배치된 방들의 부모 오브젝트입니다.
+    /// </summary>
     private Transform placedRoomParent;
 
+    /// <summary>
+    /// 시작 시 PlacedRooms 오브젝트를 찾아 설정합니다.
+    /// </summary>
     private void Start()
     {
         GameObject found = GameObject.Find("PlacedRooms");
@@ -49,10 +89,10 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     /// <summary>
-    /// 호출해 온 방 정보를 이용하여 방 설치에 필요한 정보들을 초기화합니다.
+    /// 외부에서 전달된 방 데이터로 내부 정보 초기화.
     /// </summary>
-    /// <param name="data"></param>
-    /// <param name="level"></param>
+    /// <param name="data">설치할 방 데이터.</param>
+    /// <param name="level">설치할 방의 레벨.</param>
     public void InitializeFromRoomData(RoomData data, int level)
     {
         roomData = data;
@@ -72,11 +112,10 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     /// <summary>
-    /// 드래그를 시작할 때의 작업입니다.
-    /// preview (실루엣)를 생성하고 alpha값을 0.5로 조정합니다. (SetAlpha() 호출)
-    /// UI와 겹치지 않기 위해 z값을 조정합니다. (MoveToFront() 호출)
+    /// 드래그 시작 시 호출됩니다.
+    /// 프리뷰 생성 및 alpha 설정, z값 조정 처리.
     /// </summary>
-    /// <param name="eventData"></param>
+    /// <param name="eventData">드래그 이벤트 데이터.</param>
     public void OnBeginDrag(PointerEventData eventData)
     {
         isDragging = true;
@@ -87,12 +126,10 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     /// <summary>
-    /// 드래그 하는 동안의 작업입니다.
-    /// 항상 n x n 사이즈 블록의 가장 좌측 하단의 블록을 기준점으로 설치하도록 합니다.
-    /// 설치 가능 여부에 따라 (canPlace 값) preview (실루엣)의 색상 변동을 구현합니다.
-    /// 드래그 하는 동안 우클릭 시, 시계 방향으로 90도 씩 회전합니다.
+    /// 드래그 중 실시간 위치 이동 및 설치 가능 여부에 따라 프리뷰 색상 표시.
+    /// 기준점은 좌측 하단입니다.
     /// </summary>
-    /// <param name="eventData"></param>
+    /// <param name="eventData">드래그 이벤트 데이터.</param>
     public void OnDrag(PointerEventData eventData)
     {
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
@@ -121,10 +158,10 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     /// <summary>
-    /// 드래그 종료 후 작업입니다.
-    /// 현재 마우스 위치에 방을 설치하고, preview (실루엣)을 삭제합니다.
+    /// 드래그 종료 후 방을 설치하고 프리뷰를 제거합니다.
+    /// 설치 성공 시 인벤토리를 갱신합니다.
     /// </summary>
-    /// <param name="eventData"></param>
+    /// <param name="eventData">드래그 이벤트 데이터.</param>
     public void OnEndDrag(PointerEventData eventData)
     {
         isDragging = false;
@@ -148,10 +185,10 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     /// <summary>
-    /// alpha 값 조정
+    /// 오브젝트의 alpha 값을 설정합니다.
     /// </summary>
-    /// <param name="obj"></param>
-    /// <param name="alpha"></param>
+    /// <param name="obj">대상 오브젝트.</param>
+    /// <param name="alpha">적용할 alpha 값.</param>
     private void SetAlpha(GameObject obj, float alpha)
     {
         var sr = obj.GetComponent<SpriteRenderer>();
@@ -164,9 +201,9 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     /// <summary>
-    /// UI와 겹치지 않기 위해 z값 수정
+    /// 오브젝트의 z값을 조정해 UI보다 위에 표시되도록 합니다.
     /// </summary>
-    /// <param name="obj"></param>
+    /// <param name="obj">대상 오브젝트.</param>
     private void MoveToFront(GameObject obj)
     {
         obj.transform.position += new Vector3(0, 0, -0.5f);

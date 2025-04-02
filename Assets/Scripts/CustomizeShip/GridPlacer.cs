@@ -2,26 +2,64 @@ using System.Collections.Generic;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 
+/// <summary>
+/// 함선 커스터마이징을 위한 그리드 시스템을 생성하고 방 배치를 관리하는 클래스.
+/// 타일 생성, 배치 가능 여부 판단, 실제 설치 등을 처리합니다.
+/// </summary>
 public class GridPlacer : MonoBehaviour
 {
+    /// <summary>
+    /// 싱글턴 인스턴스입니다.
+    /// </summary>
     public static GridPlacer Instance;
 
+    /// <summary>
+    /// 생성할 타일의 프리팹입니다.
+    /// </summary>
     public GameObject tilePrefab;
+
+    /// <summary>
+    /// 생성된 그리드 타일들의 부모 오브젝트입니다.
+    /// </summary>
     public Transform gridTiles;
+
+    /// <summary>
+    /// 실제 배치된 방들의 부모 오브젝트입니다.
+    /// </summary>
     public Transform placedRooms;
 
+    /// <summary>
+    /// 그리드의 가로 길이입니다.
+    /// </summary>
     public int width = 60;
+
+    /// <summary>
+    /// 그리드의 세로 길이입니다.
+    /// </summary>
     public int height = 60;
+
+    /// <summary>
+    /// 각 타일의 크기입니다.
+    /// </summary>
     public float tileSize = 1f;
 
+    /// <summary>
+    /// 타일이 이미 사용 중인지 여부를 저장하는 2차원 배열입니다.
+    /// </summary>
     private bool[,] gridOccupied;
 
+    /// <summary>
+    /// 인스턴스를 설정하고, 그리드 사용 상태 배열을 초기화합니다.
+    /// </summary>
     private void Awake()
     {
         Instance = this;
         gridOccupied = new bool[width, height];
     }
 
+    /// <summary>
+    /// 게임 시작 시 그리드 타일을 생성합니다.
+    /// </summary>
     private void Start()
     {
         GenerateTiles();
@@ -46,13 +84,12 @@ public class GridPlacer : MonoBehaviour
     }
 
     /// <summary>
-    /// 방 설치 전, 드래그 중인 방에 대해 해당 위치에 설치 가능한지 여부를 판단합니다. (preview 형식 - 실루엣)
-    /// 해당 영역에 방 설치가 가능하다면 true 반환 (색상 : 초록색, alpha : 0.5f)
-    /// 방 설치 불가하다면 false 반환 (색상 : 빨간색, alpha : 0.5f)
+    /// 지정된 영역에 방 설치가 가능한지 여부를 판단합니다.
+    /// 설치 가능 시 true 반환 (초록색), 불가능 시 false 반환 (빨간색).
     /// </summary>
-    /// <param name="startGrid"></param>
-    /// <param name="roomSize"></param>
-    /// <returns></returns>
+    /// <param name="startGrid">방 설치 시작 위치 (그리드 좌표).</param>
+    /// <param name="roomSize">방의 크기 (가로, 세로).</param>
+    /// <returns>설치 가능 여부.</returns>
     public bool CanPlaceRoom(Vector2Int startGrid, Vector2Int roomSize)
     {
         for (int x = 0; x < roomSize.x; x++)
@@ -69,12 +106,14 @@ public class GridPlacer : MonoBehaviour
     }
 
     /// <summary>
-    /// 실제로 호버한 위치에 해당 영역에 방을 설치합니다.
-    /// 방을 설치하고자 하는 위치에 설치 가능 여부를 검사해, 설치를 진행합니다.
+    /// 실제 지정된 위치에 방을 배치합니다.
+    /// 설치 가능 여부를 검사한 뒤, 배치를 수행하고 해당 영역을 점유 처리합니다.
     /// </summary>
-    /// <param name="startGrid"></param>
-    /// <param name="roomSize"></param>
-    /// <param name="roomPrefab"></param>
+    /// <param name="startGrid">방 설치 시작 위치 (그리드 좌표).</param>
+    /// <param name="roomSize">방의 크기 (가로, 세로).</param>
+    /// <param name="roomPrefab">설치할 방 프리팹.</param>
+    /// <param name="rotation">회전 각도 (Z축 기준).</param>
+    /// <returns>생성된 방 GameObject. 실패 시 null.</returns>
     public GameObject PlaceRoom(Vector2Int startGrid, Vector2Int roomSize, GameObject roomPrefab, int rotation)
     {
         if (!CanPlaceRoom(startGrid, roomSize))

@@ -5,6 +5,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// 노드 생성 맵을 생성하고 시각화하는 매니저.새
+/// 클릭을 하여 노드를 찍고, 행성을 클릭하면 이벤트 트리 맵을 생성하게 호출한다.
+/// </summary>
 public class NodePlacementMap : MonoBehaviour
 {
     #region 필드 및 프로퍼티
@@ -51,6 +55,9 @@ public class NodePlacementMap : MonoBehaviour
 
     #region 초기화 메서드
 
+    /// <summary>
+    /// 초기화 시 호출되어 EventSystem을 설정합니다.
+    /// </summary>
     private void Awake()
     {
         // EventSystem 참조 가져오기
@@ -59,7 +66,10 @@ public class NodePlacementMap : MonoBehaviour
             Debug.LogError("EventSystem not found in the scene!");
     }
 
-    // 클래스 초기화 메서드
+    /// <summary>
+    /// 외부에서 노드 맵을 초기화할 때 호출됩니다.
+    /// 맵과 경로 데이터, 배치 상태를 초기화합니다.
+    /// </summary>
     public void Initialize()
     {
         // 기존 초기화 로직
@@ -71,7 +81,11 @@ public class NodePlacementMap : MonoBehaviour
         nodePlacementCompleted = false;
     }
 
-    // 맵 초기화 메서드
+    /// <summary>
+    /// 행성 개수 및 배치 거리 설정 후 맵을 초기화합니다.
+    /// </summary>
+    /// <param name="planetCount">행성 개수</param>
+    /// <param name="maxDistance">최대 배치 거리</param>
     public void InitializeMap(int planetCount, float maxDistance)
     {
         // 매개변수 저장
@@ -94,6 +108,9 @@ public class NodePlacementMap : MonoBehaviour
 
     #region 업데이트 및 이벤트 처리
 
+    /// <summary>
+    /// 매 프레임마다 유효 범위 표시기를 갱신합니다.
+    /// </summary>
     private void Update()
     {
         // 유효 범위 표시기 계속 갱신
@@ -101,6 +118,10 @@ public class NodePlacementMap : MonoBehaviour
             UpdateValidRangeIndicator(currentIndicatorPosition);
     }
 
+    /// <summary>
+    /// 맵 클릭 시 호출되어 노드 배치를 시도합니다.
+    /// </summary>
+    /// <param name="eventData">PointerEventData</param>
     public void OnMapClick(BaseEventData eventData)
     {
         if (eventData is PointerEventData pointerData)
@@ -117,6 +138,10 @@ public class NodePlacementMap : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 행성 클릭 시 경로에 추가하고 배치를 종료합니다.
+    /// </summary>
+    /// <param name="planet">클릭된 행성 오브젝트</param>
     private void OnPlanetClicked(GameObject planet)
     {
         // 이미 노드 배치가 완료된 경우 무시
@@ -148,6 +173,10 @@ public class NodePlacementMap : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 노드 배치를 시도합니다.
+    /// </summary>
+    /// <param name="position">배치할 위치</param>
     private void TryPlaceNode(Vector2 position)
     {
         // 노드 배치가 완료된 경우 무시
@@ -176,6 +205,10 @@ public class NodePlacementMap : MonoBehaviour
 
     #region 맵 생성 및 관리
 
+    /// <summary>
+    /// 랜덤한 위치에 행성들을 배치합니다.
+    /// </summary>
+    /// <param name="count">배치할 행성 수</param>
     public void GenerateRandomPlanets(int count)
     {
         ClearPlanets();
@@ -241,6 +274,9 @@ public class NodePlacementMap : MonoBehaviour
         pathDangerInfo.Clear();
     }
 
+    /// <summary>
+    /// 위험지역을 생성합니다.
+    /// </summary>
     private void GenerateDangerZones()
     {
         // 기존 위험지역 제거
@@ -274,6 +310,9 @@ public class NodePlacementMap : MonoBehaviour
         EnsurePlanetsOnTop();
     }
 
+    /// <summary>
+    /// 유효 범위 표시기를 초기화합니다.
+    /// </summary>
     private void InitializeValidRangeIndicator()
     {
         // 가장 왼쪽에 있는 행성 찾기 (행성이 없으면 기본값 사용)
@@ -318,6 +357,10 @@ public class NodePlacementMap : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 유효 범위 표시기의 위치를 업데이트합니다.
+    /// </summary>
+    /// <param name="localPosition">새 위치</param>
     private void UpdateValidRangeIndicator(Vector2 localPosition)
     {
         if (!validRangeIndicatorInstance) return;
@@ -336,6 +379,9 @@ public class NodePlacementMap : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 맵 요소(행성, 노드, 위험지역)를 초기화합니다.
+    /// </summary>
     private void ClearMapContents()
     {
         ClearPlanets();
@@ -353,6 +399,9 @@ public class NodePlacementMap : MonoBehaviour
         currentIndicatorPosition = Vector2.zero;
     }
 
+    /// <summary>
+    /// 기존 행성들을 제거합니다.
+    /// </summary>
     private void ClearPlanets()
     {
         // 기존 행성 제거
@@ -364,6 +413,9 @@ public class NodePlacementMap : MonoBehaviour
         endPlanet = null;
     }
 
+    /// <summary>
+    /// 배치된 노드를 초기화합니다.
+    /// </summary>
     private void ClearNodes()
     {
         // 기존 노드 제거
@@ -377,6 +429,9 @@ public class NodePlacementMap : MonoBehaviour
         pathNodes.Clear();
     }
 
+    /// <summary>
+    /// 기존 위험지역을 초기화합니다.
+    /// </summary>
     private void ClearDangerZones()
     {
         foreach (GameObject zone in dangerZones)
@@ -386,6 +441,9 @@ public class NodePlacementMap : MonoBehaviour
         dangerZones.Clear();
     }
 
+    /// <summary>
+    /// 행성들이 UI 상에서 가장 위에 표시되도록 합니다.
+    /// </summary>
     private void EnsurePlanetsOnTop()
     {
         foreach (GameObject planet in planets)
@@ -396,6 +454,9 @@ public class NodePlacementMap : MonoBehaviour
 
     #region 헬퍼 메서드
 
+    /// <summary>
+    /// 행성을 배치할 수 있는 유효한 위치를 찾습니다.
+    /// </summary>
     private Vector2 FindValidPlanetPosition(float width, float height)
     {
         Vector2 position;
@@ -424,6 +485,9 @@ public class NodePlacementMap : MonoBehaviour
         return position;
     }
 
+    /// <summary>
+    /// 해당 위치가 다른 행성과 충분히 떨어져 있는지 확인합니다.
+    /// </summary>
     private bool IsFarEnoughFromOtherPlanets(Vector2 position)
     {
         foreach (GameObject planet in planets)
@@ -439,6 +503,9 @@ public class NodePlacementMap : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// 위험지역의 유효 위치를 찾습니다.
+    /// </summary>
     private Vector2 FindValidDangerZonePosition(float width, float height)
     {
         Vector2 position;
@@ -461,6 +528,9 @@ public class NodePlacementMap : MonoBehaviour
         return position;
     }
 
+    /// <summary>
+    /// 해당 위치가 행성 또는 위험지역과 충돌하지 않는지 확인합니다.
+    /// </summary>
     private bool IsFarEnoughFromOtherObjects(Vector2 position)
     {
         // 행성들과의 거리 확인
@@ -486,6 +556,9 @@ public class NodePlacementMap : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// 주어진 위치가 위험지역 안에 있는지 확인합니다.
+    /// </summary>
     private bool IsPositionInDangerZone(Vector2 position)
     {
         foreach (GameObject zone in dangerZones)
@@ -500,6 +573,9 @@ public class NodePlacementMap : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// 가장 왼쪽에 있는 행성을 찾습니다.
+    /// </summary>
     private GameObject FindLeftmostPlanet()
     {
         if (planets.Count == 0) return null;
@@ -520,6 +596,9 @@ public class NodePlacementMap : MonoBehaviour
         return leftmostPlanet;
     }
 
+    /// <summary>
+    /// 가장 오른쪽에 있는 행성을 찾습니다.
+    /// </summary>
     private GameObject FindRightmostPlanet()
     {
         if (planets.Count == 0) return null;
@@ -540,12 +619,18 @@ public class NodePlacementMap : MonoBehaviour
         return rightmostPlanet;
     }
 
+    /// <summary>
+    /// 주어진 위치가 현재 배치 기준점으로부터 유효한 거리인지 확인합니다.
+    /// </summary>
     private bool IsValidPlacement(Vector2 position)
     {
         // 현재 기준점으로부터의 거리가 최대 배치 거리 이내인지 확인
         return Vector2.Distance(currentIndicatorPosition, position) <= maxPlacementDistance;
     }
 
+    /// <summary>
+    /// 실제 노드를 생성하여 UI에 배치합니다.
+    /// </summary>
     private void CreateNodeUI(Vector2 position)
     {
         // 노드 생성
@@ -559,7 +644,9 @@ public class NodePlacementMap : MonoBehaviour
 
     #region 경로 완료 처리
 
-    // 경로 완료 처리 메서드
+    /// <summary>
+    /// 노드 배치가 완료되었을 때 호출되며, 최종 경로를 생성합니다.
+    /// </summary>
     private void CompletePlacementMap()
     {
         if (nodePlacementCompleted) return;
@@ -574,6 +661,9 @@ public class NodePlacementMap : MonoBehaviour
         OnPathCompleted?.Invoke(completePath, pathDangerInfo);
     }
 
+    /// <summary>
+    /// 현재까지의 배치된 노드 경로를 수집합니다.
+    /// </summary>
     private List<Vector2> CollectNodePath()
     {
         List<Vector2> path = new();
@@ -624,7 +714,10 @@ public class NodePlacementMap : MonoBehaviour
 
     #endregion
 
-    // NodePlacementMap.cs에 새 메서드 추가
+    /// <summary>
+    /// Planet.cs에서 행성 클릭 시 호출되는 메서드입니다.
+    /// </summary>
+    /// <param name="planet">클릭된 행성</param>
     public void OnPlanetClickedFromComponent(GameObject planet)
     {
         // 기존 OnPlanetClicked 메서드와 동일한 내용

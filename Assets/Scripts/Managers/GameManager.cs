@@ -1,29 +1,56 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-// 게임 매니저 - 게임 전체 상태 관리
+/// <summary>
+/// 게임의 전체 상태와 흐름을 관리하는 매니저.
+/// 게임 상태 전환, 날짜 및 연도 진행, 플레이어/적 함선 정보 등을 통합적으로 제어합니다.
+/// </summary>
 public class GameManager : MonoBehaviour
 {
+    /// <summary>
+    /// 현재 플레이어가 조종 중인 함선입니다.
+    /// </summary>
     private Ship playerShip;
+
+    /// <summary>
+    /// 현재 전투 중인 적 함선입니다.
+    /// </summary>
     private Ship currentEnemyShip;
 
-
+    /// <summary>
+    /// 날짜 변경 이벤트 델리게이트입니다.
+    /// </summary>
     public delegate void DayChangedHandler(int newDay);
 
-    // 이벤트 및 상태 변화와 관련된 델리게이트
+    /// <summary>
+    /// 게임 상태 변경 이벤트 델리게이트입니다.
+    /// </summary>
     public delegate void GameStateChangedHandler(GameState newState);
 
+    /// <summary>
+    /// 현재 게임 상태입니다.
+    /// </summary>
     [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
-    [SerializeField] private int currentDay = 1;
-    [SerializeField] private int maxDays = 30;
-
+    /// <summary>
+    /// 현재 게임 연도입니다.
+    /// </summary>
     [SerializeField] private int currentYear = 0; // 게임 시작 년도 (수정 가능)
+
+    /// <summary>
+    /// 현재 연도 (읽기 전용).
+    /// </summary>
     public int CurrentYear => currentYear;
 
+    /// <summary>
+    /// 싱글턴 인스턴스입니다.
+    /// </summary>
     public static GameManager Instance { get; private set; }
 
+    /// <summary>
+    /// 게임 상태 변경 이벤트 델리게이트입니다.
+    /// </summary>
     private void Awake()
     {
         // 싱글톤 패턴 구현
@@ -41,16 +68,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 게임 상태 변경 시 호출되는 이벤트입니다.
+    /// </summary>
     public event GameStateChangedHandler OnGameStateChanged;
+
+    /// <summary>
+    /// 날짜 변경 시 호출되는 이벤트입니다.
+    /// </summary>
     public event DayChangedHandler OnDayChanged;
 
-    // 게임 초기화
+
+    /// <summary>
+    /// 게임 초기화 로직을 수행합니다.
+    /// </summary>
     private void InitializeGame()
     {
         // 다른 매니저들이 모두 초기화되었는지 확인
         StartCoroutine(WaitForManagers());
     }
 
+
+    /// <summary>
+    /// 다른 중요 매니저가 초기화될 때까지 대기합니다.
+    /// </summary>
     private IEnumerator WaitForManagers()
     {
         // 다른 중요 매니저들이 초기화될 때까지 기다림
@@ -61,28 +102,42 @@ public class GameManager : MonoBehaviour
         );
     }
 
+    /// <summary>
+    /// 현재 플레이어 함선을 반환합니다.
+    /// </summary>
     public Ship GetPlayerShip()
     {
         return playerShip;
     }
 
+    /// <summary>
+    /// 플레이어 함선을 설정합니다.
+    /// </summary>
     public Ship SetPlayerShip(Ship ship)
     {
         return playerShip = ship;
     }
 
+    /// <summary>
+    /// 현재 적 함선을 반환합니다.
+    /// </summary>
     public Ship GetCurrentEnemyShip()
     {
         return currentEnemyShip;
     }
 
+    /// <summary>
+    /// 적 함선을 설정합니다.
+    /// </summary>
     public void SetCurrentEnemyShip(Ship enemyShip)
     {
         currentEnemyShip = enemyShip;
     }
 
-
-    // 게임 상태 변경
+    /// <summary>
+    /// 게임 상태를 변경하고 상태에 따라 관련 처리를 수행합니다.
+    /// </summary>
+    /// <param name="newState">변경할 게임 상태.</param>
     public void ChangeGameState(GameState newState)
     {
         if (currentState != newState)
@@ -109,34 +164,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // 다음 날로 진행
-    public void AdvanceDay()
-    {
-        currentDay++;
-        OnDayChanged?.Invoke(currentDay);
 
-        if (currentDay > maxDays)
-            ChangeGameState(GameState.GameOver);
-        else
-            // 다음 날 시작 이벤트 발생
-            EventManager.Instance.TriggerDailyEvent();
-    }
-
-    // 이벤트 처리 완료 후 호출
+    /// <summary>
+    /// 이벤트 처리 완료 후 호출됩니다.
+    /// 현재는 빈 함수이며, 후속 처리 로직을 연결할 수 있습니다.
+    /// </summary>
     public void OnEventCompleted()
     {
-        // 이벤트 후 게임 상태 체크
-        if (DefaultCrewManagerScript.Instance.GetAliveCrewCount() <= 0) ChangeGameState(GameState.GameOver);
+
     }
 
+    /// <summary>
+    /// 게임 오버 상태 진입 시 호출됩니다.
+    /// UI 업데이트, 점수 계산 등 게임 오버 관련 처리를 담당합니다.
+    /// </summary>
     private void HandleGameOver()
     {
         // 게임 오버 처리 로직
-        Debug.Log("Game Over! You survived " + currentDay + " days.");
+
         // UI 업데이트, 점수 계산 등
     }
 
-    // 워프 실행 시 1년 흐름
+    /// <summary>
+    /// 워프 실행 시 1년을 경과시키고, 관련 효과나 이벤트를 처리합니다.
+    /// 불가사의 지속 효과 갱신을 포함합니다.
+    /// </summary>
     public void AddYearByWarp()
     {
         currentYear++;
@@ -150,12 +202,27 @@ public class GameManager : MonoBehaviour
     }
 }
 
+/// <summary>
+/// 게임의 상태를 나타내는 열거형입니다.
+/// 게임 흐름 제어에 사용됩니다.
+/// </summary>
 public enum GameState
 {
+    /// <summary>메인 메뉴 화면 상태입니다.</summary>
     MainMenu,
+
+    /// <summary>게임이 실제로 진행 중인 상태입니다.</summary>
     Gameplay,
+
+    /// <summary>워프(연도 진행) 중 상태입니다.</summary>=
     Warp,
+
+    /// <summary>이벤트 처리 중 상태입니다.</summary>
     Event,
+
+    /// <summary>게임이 일시정지된 상태입니다.</summary>
     Paused,
+
+    /// <summary>게임 오버 상태입니다.</summary>
     GameOver
 }

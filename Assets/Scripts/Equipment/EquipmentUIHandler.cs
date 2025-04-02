@@ -10,40 +10,80 @@ using System.Collections.Generic;
 public class EquipmentUIHandler : MonoBehaviour
 {
     /// <summary>
-    /// 장비 구매 시 나올 구매 창에 사용할 변수
+    /// 장비 구매 팝업 패널입니다.
     /// </summary>
-    [Header("Tip Panel References")]
-    public GameObject itemBuyPanel;
+    [Header("Tip Panel References")] public GameObject itemBuyPanel;
+
+    /// <summary>
+    /// 팝업 내 장비 아이콘 이미지입니다.
+    /// </summary>
     public Image tipItemImage;
+
+    /// <summary>
+    /// 팝업 내 장비 이름 텍스트입니다.
+    /// </summary>
     public TextMeshProUGUI tipItemName;
+
+    /// <summary>
+    /// 팝업 내 장비 가격 텍스트입니다.
+    /// </summary>
     public TextMeshProUGUI tipItemPrice;
+
+    /// <summary>
+    /// 팝업 내 장비 설명 텍스트입니다.
+    /// </summary>
     public TextMeshProUGUI tipItemDetails;
+
+    /// <summary>
+    /// 팝업 내 현재 보유 재화 표시 텍스트입니다.
+    /// </summary>
     public TextMeshProUGUI tipCurrencyText;
+
+    /// <summary>
+    /// 구매 버튼입니다.
+    /// </summary>
     public Button buyButton;
+
+    /// <summary>
+    /// 뒤로 가기 버튼입니다.
+    /// </summary>
     public Button backButton;
 
     /// <summary>
-    /// 구매 시 표시를 위한 color settings
+    /// 장비 구매 완료 시 버튼에 적용할 색상입니다.
     /// </summary>
-    [Header("Color Settings")]
-    public Color purchasedButtonColor = Color.gray;
+    [Header("Color Settings")] public Color purchasedButtonColor = Color.gray;
+
+    /// <summary>
+    /// 장비 버튼의 기본 색상입니다.
+    /// </summary>
     public Color defaultButtonColor = Color.white;
 
     /// <summary>
-    /// 현재 선택된 장비
+    /// 현재 선택된 장비 데이터입니다.
     /// </summary>
     public EquipmentItem currentSelectedItem;
+
+    /// <summary>
+    /// 현재 선택된 장비 버튼입니다.
+    /// </summary>
     public EquipmentButton currentSelectedButton;
 
     /// <summary>
-    /// 구매한 아이템 목록
+    /// 구매한 장비 목록입니다.
+    /// 중복 구매를 방지하기 위해 HashSet으로 관리됩니다.
     /// </summary>
     public HashSet<EquipmentItem> purchasedItems = new();
 
 
-    // 임시로 플레이어 보유 재화를 관리 (실제론 GameManager 등 다른 스크립트에서 관리 가능)
+    /// <summary>
+    /// 임시로 관리하는 플레이어 보유 재화(COMAs)입니다.
+    /// </summary>
     public int playerCOMA = 10000;
 
+    /// <summary>
+    /// 시작 시 장비 팝업을 비활성화합니다.
+    /// </summary>
     private void Start()
     {
         // 팝업 비활성화
@@ -51,10 +91,11 @@ public class EquipmentUIHandler : MonoBehaviour
     }
 
     /// <summary>
-    /// 구매 창 호출
+    /// 장비 버튼 클릭 시 팝업을 띄우고 UI 요소를 채웁니다.
+    /// 이미 구매했거나 재화 부족 시 구매 불가 처리도 포함됩니다.
     /// </summary>
-    /// <param name="eqItem"></param>
-    /// <param name="eqButton"></param>
+    /// <param name="eqItem">선택된 장비 아이템.</param>
+    /// <param name="eqButton">선택된 장비 버튼.</param>
     public void ShowItemTip(EquipmentItem eqItem, EquipmentButton eqButton)
     {
         currentSelectedItem = eqItem;
@@ -79,7 +120,8 @@ public class EquipmentUIHandler : MonoBehaviour
     }
 
     /// <summary>
-    /// 구매 클릭 시, 현재 보유 재화와 비교 후 구매 진행 및 장비 효과 적용
+    /// 구매 버튼 클릭 시 호출됩니다.
+    /// 재화를 차감하고, 장비 효과를 적용하며, 버튼 색상도 변경됩니다.
     /// </summary>
     public void OnClickBuy()
     {
@@ -125,7 +167,7 @@ public class EquipmentUIHandler : MonoBehaviour
     }
 
     /// <summary>
-    /// 장비 구매 창 닫기
+    /// 장비 구매 팝업을 닫습니다.
     /// </summary>
     public void OnClickBack()
     {

@@ -67,12 +67,19 @@ public class WarpUIController : MonoBehaviour, IUIController
 
     #region 초기화 및 이벤트 설정
 
+    /// <summary>
+    /// 컴포넌트들을 초기화하고 이벤트 리스너를 등록하는 메서드입니다.
+    /// 이 메서드는 객체가 활성화될 때 호출되어 필요한 초기 설정을 처리합니다.
+    /// </summary>
     private void Awake()
     {
         InitializeComponents();
         RegisterEventListeners();
     }
 
+    /// <summary>
+    /// UI 컨트롤러의 컴포넌트를 초기화합니다. 맵 및 패널 참조를 설정하고 기본 패널을 비활성화합니다.
+    /// </summary>
     private void InitializeComponents()
     {
         // 컴포넌트 참조 찾기 (Inspector에서 할당되지 않은 경우)
@@ -89,6 +96,9 @@ public class WarpUIController : MonoBehaviour, IUIController
         HideAllPanels();
     }
 
+    /// <summary>
+    /// UI 이벤트 리스너들을 등록합니다. 버튼 클릭과 맵 이벤트들을 구독합니다.
+    /// </summary>
     private void RegisterEventListeners()
     {
         // 계속 버튼 이벤트 등록
@@ -113,12 +123,18 @@ public class WarpUIController : MonoBehaviour, IUIController
             eventTreeMap.OnNodeSelected += HandleEventNodeSelected;
     }
 
+    /// <summary>
+    /// 오브젝트가 파괴될 때 호출되며 이벤트 리스너들을 해제합니다.
+    /// </summary>
     private void OnDestroy()
     {
         // 이벤트 핸들러 해제
         UnregisterEventListeners();
     }
 
+    /// <summary>
+    /// UI 관련 모든 이벤트 리스너들을 해제합니다.
+    /// </summary>
     private void UnregisterEventListeners()
     {
         if (nodePlacementMap != null)
@@ -140,6 +156,9 @@ public class WarpUIController : MonoBehaviour, IUIController
 
     #region IUIController 인터페이스 구현
 
+    /// <summary>
+    /// IUIController 인터페이스 초기화 메서드. 모든 패널을 숨기고 맵들을 초기화합니다.
+    /// </summary>
     public void Initialize()
     {
         // 초기화 로직
@@ -153,18 +172,28 @@ public class WarpUIController : MonoBehaviour, IUIController
             eventTreeMap.Initialize();
     }
 
+    /// <summary>
+    /// UI 컨트롤러를 활성화하고 경로 계획 상태로 진입합니다.
+    /// </summary>
     public void Show()
     {
         gameObject.SetActive(true);
         SetUIState(WarpUIState.RoutePlanning); // 기본적으로 경로 계획 상태로 시작
     }
 
+    /// <summary>
+    /// UI 컨트롤러를 비활성화하고 상태를 Hidden으로 설정합니다.
+    /// </summary>
     public void Hide()
     {
         SetUIState(WarpUIState.Hidden);
         gameObject.SetActive(false);
     }
 
+
+    /// <summary>
+    /// UI 상태에 따라 매 프레임 호출되는 업데이트 메서드입니다.
+    /// </summary>
     public void Update()
     {
         // 상태에 따른 업데이트 로직
@@ -233,6 +262,9 @@ public class WarpUIController : MonoBehaviour, IUIController
         OnUIStateChanged?.Invoke(state);
     }
 
+    /// <summary>
+    /// 현재 UI 상태에 따른 리소스를 정리합니다. 패널이나 이펙트 등을 비활성화합니다.
+    /// </summary>
     private void CleanupCurrentState()
     {
         switch (currentUIState)
@@ -257,6 +289,9 @@ public class WarpUIController : MonoBehaviour, IUIController
         }
     }
 
+    /// <summary>
+    /// 모든 UI 패널과 맵 컴포넌트를 숨깁니다.
+    /// </summary>
     private void HideAllPanels()
     {
         //routePlanningPanel?.SetActive(false);
@@ -277,6 +312,9 @@ public class WarpUIController : MonoBehaviour, IUIController
 
     #region 워프 애니메이션 관련 메소드
 
+    /// <summary>
+    /// 워프 애니메이션을 시작하고 이펙트와 오디오를 재생합니다.
+    /// </summary>
     private void StartWarpAnimation()
     {
         if (warpEffectImage != null)
@@ -296,6 +334,9 @@ public class WarpUIController : MonoBehaviour, IUIController
             warpAudioSource.Play();
     }
 
+    /// <summary>
+    /// 워프 애니메이션이 진행되는 동안 이미지 fillAmount를 업데이트합니다.
+    /// </summary>
     private void UpdateWarpAnimation()
     {
         if (warpEffectImage != null)
@@ -303,6 +344,9 @@ public class WarpUIController : MonoBehaviour, IUIController
             warpEffectImage.fillAmount = Mathf.MoveTowards(warpEffectImage.fillAmount, 1f, Time.deltaTime * 0.5f);
     }
 
+    /// <summary>
+    /// 워프 애니메이션이 종료될 때 이펙트와 오디오를 중지합니다.
+    /// </summary>
     private void StopWarpAnimation()
     {
         if (warpParticleSystem != null)
@@ -316,16 +360,26 @@ public class WarpUIController : MonoBehaviour, IUIController
 
     #region 도착 시퀀스 관련 메소드
 
+    /// <summary>
+    /// 도착 시퀀스를 시작합니다. 도착 효과음 재생 등의 초기 처리를 수행합니다.
+    /// </summary>
     private void StartArrivalSequence()
     {
         // 도착 효과음 재생 등의 로직
     }
 
+    /// <summary>
+    /// 도착 UI를 주기적으로 업데이트합니다. 도착 애니메이션 등의 진행 상태를 반영할 수 있습니다.
+    /// </summary>
     private void UpdateArrivalUI()
     {
         // 도착 UI 업데이트 로직
     }
 
+
+    /// <summary>
+    /// 도착 시퀀스를 종료하고 관련 리소스를 정리합니다.
+    /// </summary>
     private void StopArrivalSequence()
     {
         // 도착 시퀀스 정리 로직

@@ -8,58 +8,125 @@ using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
-/// 선원과 관련된 UI 모두 관리하는 Handler
+/// 선원 생성, 종족 선택, 장비 구매 등 크루 관련 UI 전체를 관리하는 핸들러.
+/// 화면 전환, 입력 처리, 버튼 이벤트 등 UI 흐름을 통합적으로 제어합니다.
 /// </summary>
 public class CrewUIHandler : MonoBehaviour
 {
-    public static CrewUIHandler Instance; // singleton 참조
+    /// <summary>
+    /// 싱글턴 인스턴스입니다.
+    /// </summary>
+    public static CrewUIHandler Instance;
 
     /// <summary>
-    /// UI Panels
-    //  - mainUIScreen : 선원 생성하기 메인 화면
-    /// - createUIScreen : 선원 생성 요청 화면
-    /// - customizeShipUIScreen : 함선 제작 화면
-    /// - addEquipmentUIScreen : 장비 구매 화면
-    /// - fullCrewUIScreen : 선원 full 화면
+    /// 선원 생성 메인 화면입니다.
     /// </summary>
-    [Header("UI Panels")]
-    public GameObject mainUIScreen; // 선원 생성하기 메인 화면
-    public GameObject createUIScreen; // 선원 생성 요청 화면
-    public GameObject customizeShipUIScreen; // 함선 제작 화면
-    public GameObject addEquipmentUIScreen; // 장비 구매 화면
-    public GameObject fullCrewUIScreen; // 선원 full 화면
+    [Header("UI Panels")] public GameObject mainUIScreen;
 
+    /// <summary>
+    /// 선원 생성 요청 화면입니다.
+    /// </summary>
+    public GameObject createUIScreen;
+
+    /// <summary>
+    /// 함선 커스터마이즈 UI 화면입니다.
+    /// </summary>
+    public GameObject customizeShipUIScreen;
+
+    /// <summary>
+    /// 장비 구매 UI 화면입니다.
+    /// </summary>
+    public GameObject addEquipmentUIScreen;
+
+    /// <summary>
+    /// 선원 최대 수용 시 표시되는 UI 화면입니다.
+    /// </summary>
+    public GameObject fullCrewUIScreen;
+
+    /// <summary>
+    /// 장비 UI 핸들러 참조입니다.
+    /// </summary>
     [Header("Equipment UI Handler")] public EquipmentUIHandler equipmentUIHandler;
 
-    [Header("Input Fields")]
-    [SerializeField]
-    private TMP_InputField nameInputField; // input 선원 이름
 
-    public RaceButtonController[] raceButtonControllers; // inspector 할당
+    /// <summary>
+    /// 선원 이름 입력 필드입니다.
+    /// </summary>
+    [Header("Input Fields")] [SerializeField] private TMP_InputField nameInputField;
+
+    /// <summary>
+    /// 각 종족 선택 버튼 컨트롤러 배열입니다.
+    /// </summary>
+    public RaceButtonController[] raceButtonControllers;
+
+    /// <summary>
+    /// 현재 선택된 종족 버튼입니다.
+    /// </summary>
     [SerializeField] private RaceButtonController currentSelectedButton;
-    [SerializeField] private CrewRace selectedRace = CrewRace.None; // 선원 종류
 
+    /// <summary>
+    /// 현재 선택된 종족 정보입니다.
+    /// </summary>
+    [SerializeField] private CrewRace selectedRace = CrewRace.None;
+
+
+    /// <summary>
+    /// 최종 제출 버튼입니다.
+    /// </summary>
     [Header("UI Buttons")] public Button submitButton;
 
+    /// <summary>
+    /// 인간형 종족 선택 버튼입니다.
+    /// </summary>
     [Header("Race Buttons")] public Button humanButton;
+
+    /// <summary>
+    /// 부정형(아모르프) 종족 선택 버튼입니다.
+    /// </summary>
     public Button amorphousButton;
+
+    /// <summary>
+    /// 돌격 기계형 종족 선택 버튼입니다.
+    /// </summary>
     public Button mechanicTankButton;
+
+    /// <summary>
+    /// 지원 기계형 종족 선택 버튼입니다.
+    /// </summary>
     public Button mechanicSupButton;
+
+    /// <summary>
+    /// 짐승형 종족 선택 버튼입니다.
+    /// </summary>
     public Button beastButton;
+
+    /// <summary>
+    /// 곤충형 종족 선택 버튼입니다.
+    /// </summary>
     public Button insectButton;
 
     // GridPlacer
     // public GridPlacer gridPlacer;
 
+    /// <summary>
+    /// UI 화면 이동 이력을 저장하는 스택 구조입니다.
+    /// 뒤로 가기 기능에 사용됩니다.
+    /// </summary>
     private Stack<GameObject> uiHistory = new(); // stack 구조
 
+    /// <summary>
+    /// 싱글턴 인스턴스를 초기화합니다.
+    /// </summary>
     private void Awake()
     {
         Instance = this;
     }
 
 
-    // click 함수 연결 (editor에서 연결이 일반적이지만 어떻게 할 건지 논의 후 수정)
+    /// <summary>
+    /// UI 초기 상태를 설정합니다.
+    /// Submit 버튼을 비활성화하며, 버튼 이벤트 연결은 에디터에서 처리합니다.
+    /// </summary>
     private void Start()
     {
         // 초기 submit 버튼 비활성화

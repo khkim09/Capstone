@@ -368,7 +368,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         return currentLevel;
     }
 
-    /// <summary>최대 업그레이드 레벨을 반환합니다.</summary>
+    ///최대 업그레이드 레벨을 반환합니다.
     // public int GetMaxLevel()
     // {
     //     return maxLevel;

@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// 행성의 정보를 UI 툴팁 형태로 표시하는 컴포넌트입니다.
+/// </summary>
 public class PlanetTooltip : MonoBehaviour
 {
     [Header("UI References")]
@@ -17,7 +20,10 @@ public class PlanetTooltip : MonoBehaviour
 
     [SerializeField] private GameObject questInfoContainer;
 
-    // Setup the tooltip with planet data
+    /// <summary>
+    /// 전달받은 행성 데이터를 바탕으로 툴팁을 설정합니다.
+    /// </summary>
+    /// <param name="planet">표시할 정보를 가진 Planet 객체입니다.</param>
     public void SetupTooltip(Planet planet)
     {
         // Set basic info

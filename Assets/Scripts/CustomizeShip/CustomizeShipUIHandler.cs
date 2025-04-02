@@ -1,25 +1,65 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 함선 커스터마이징 UI를 제어하는 핸들러.
+/// UI 전환, 모듈 배치, 저장 및 취소 기능을 관리합니다.
+/// </summary>
 public class CustomizeShipUIHandler : MonoBehaviour
 {
-    [Header("UI")]
-    public GameObject mainUI;
+    /// <summary>
+    /// 메인 화면 UI입니다.
+    /// </summary>
+    [Header("UI")] public GameObject mainUI;
+
+    /// <summary>
+    /// 커스터마이즈 UI 화면입니다.
+    /// </summary>
     public GameObject customizeUI;
+
+    /// <summary>
+    /// 보유한 방 목록 툴팁 UI입니다.
+    /// </summary>
     public RoomsInventoryTooltipUI inventoryTooltipUI;
 
-    [Header("Parent Object")]
-    public GameObject gridTiles;
+    /// <summary>
+    /// 그리드 타일이 배치되는 부모 오브젝트입니다.
+    /// </summary>
+    [Header("Parent Object")] public GameObject gridTiles;
+
+    /// <summary>
+    /// 배치된 방을 담는 부모 오브젝트입니다.
+    /// </summary>
     public GameObject placedRooms;
 
-    [Header("Buttons")]
-    public Button saveButton;
+    /// <summary>
+    /// 저장 버튼입니다.
+    /// </summary>
+    [Header("Buttons")] public Button saveButton;
+
+    /// <summary>
+    /// 취소 버튼입니다.
+    /// </summary>
     public Button cancelButton;
+
+    /// <summary>
+    /// 저장 또는 유효성 검사 결과를 표시할 텍스트입니다.
+    /// </summary>
     public Text feedbackText;
 
-    [Header("Ship")]
-    public Ship playerShip; // 플레이어 함선
+    /// <summary>
+    /// 현재 커스터마이징 중인 플레이어 함선입니다.
+    /// </summary>
+    [Header("Ship")] public Ship playerShip; // 플레이어 함선
+
+    /// <summary>
+    /// 함선 커스터마이징 로직을 담당하는 매니저입니다.
+    /// </summary>
     public ShipCustomizationManager customizationManager;
+
+    /// <summary>
+    /// 배치된 레이아웃의 유효성을 검사하는 유효성 검사기입니다.
+    /// </summary>
     public ShipLayoutValidator layoutValidator;
 
     /// <summary>

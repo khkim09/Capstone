@@ -4,6 +4,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 이벤트 트리 맵을 생성하고 시각화하는 매니저.
+/// 노드를 자동으로 배치하고, 위험 여부를 표시하며, 연결선까지 구성합니다.
+/// 노드 클릭 시 선택 이벤트를 발생시킵니다.
+/// </summary>
 public class EventTreeMap : MonoBehaviour
 {
     #region 필드 및 참조
@@ -45,13 +50,18 @@ public class EventTreeMap : MonoBehaviour
 
     #region 초기화 및 트리 생성
 
-    // 클래스 초기화 메서드
+    /// <summary>
+    /// 트리 맵 초기화. 기존 노드와 연결을 모두 제거합니다.
+    /// </summary>
     public void Initialize()
     {
         // 초기화 로직
         ClearCurrentTree();
     }
 
+    /// <summary>
+    /// 외부 경로 정보(pathNodes)와 위험 정보(dangerInfo)를 받아 트리를 생성합니다.
+    /// </summary>
     public void GenerateTreeFromPath(List<Vector2> pathNodes, List<bool> dangerInfo = null)
     {
         if (pathNodes == null || pathNodes.Count < 2)
@@ -79,6 +89,10 @@ public class EventTreeMap : MonoBehaviour
         GenerateImprovedTree(levelCount);
     }
 
+    /// <summary>
+    /// 레이어 수(layers)를 기반으로 트리를 생성합니다.
+    /// 각 레이어는 랜덤한 노드 개수를 갖고, 노드는 평면적으로 연결됩니다.
+    /// </summary>
     public void GenerateImprovedTree(int layers)
     {
         ClearCurrentTree();
@@ -192,7 +206,9 @@ public class EventTreeMap : MonoBehaviour
         End
     }
 
-    // 노드 타입 결정 함수 수정 - 3가지 타입만 사용
+    /// <summary>
+    /// 노드 타입을 결정합니다. 위치(layer)에 따라 우선순위를 다르게 적용합니다.
+    /// </summary>
     private NodeType DetermineNodeType(int layer, int totalLayers)
     {
         float random = UnityEngine.Random.value;
@@ -217,6 +233,9 @@ public class EventTreeMap : MonoBehaviour
             return NodeType.RandomEvent;
     }
 
+    /// <summary>
+    /// 노드를 생성하고 위치, 색상, 클릭 이벤트 등을 설정합니다.
+    /// </summary>
     private EventNode CreateNode(Vector2 position, int layer, int index, NodeType type, bool isDangerous)
     {
         GameObject nodeObj = Instantiate(eventNodePrefab, treeContainer);
@@ -246,6 +265,9 @@ public class EventTreeMap : MonoBehaviour
         return nodeComponent;
     }
 
+    /// <summary>
+    /// 노드의 색상과 스타일을 적용합니다. 위험 지역 여부에 따라 색상이 다릅니다.
+    /// </summary>
     private void ApplyNodeStyle(GameObject nodeObj, NodeType type, bool isDangerous)
     {
         Image image = nodeObj.GetComponent<Image>();
@@ -287,7 +309,10 @@ public class EventTreeMap : MonoBehaviour
 
     #region 노드 연결 생성
 
-    // 완전히 평면적(planar)인 연결만 생성하는 메서드
+    /// <summary>
+    /// 평면성을 유지하면서 노드들을 계층적으로 연결합니다.
+    /// 연결 로직은 중복 방지, 균형 유지, 연결 누락 보정까지 처리합니다.
+    /// </summary>
     private void CreateStrictlyPlanarConnections()
     {
         // 모든 연결 초기화
@@ -489,7 +514,9 @@ public class EventTreeMap : MonoBehaviour
         VerifyAndFixConnections();
     }
 
-    // 최종 연결 검증 및 수정
+    /// <summary>
+    /// 모든 연결 관계를 검사하고, 연결이 없는 노드를 보정합니다.
+    /// </summary>
     private void VerifyAndFixConnections()
     {
         // 1. 시작 노드가 적어도 하나의 연결을 가지는지 확인
@@ -543,6 +570,10 @@ public class EventTreeMap : MonoBehaviour
 
     #endregion
 
+    /// <summary>
+    /// 생성된 노드 간의 연결선을 시각적으로 생성합니다.
+    /// 중복 연결은 방지됩니다.
+    /// </summary>
     private void CreateConnectionLines()
     {
         // 기존 연결선 제거
@@ -575,6 +606,9 @@ public class EventTreeMap : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 연결선 오브젝트를 생성하고, 위치/회전/길이를 자동으로 설정합니다.
+    /// </summary>
     private GameObject CreateConnectionLine(RectTransform startNode, RectTransform endNode)
     {
         if (connectionLinePrefab == null)
@@ -631,7 +665,9 @@ public class EventTreeMap : MonoBehaviour
         return lineObj;
     }
 
-    // 노드의 가장자리 위치를 정확하게 계산하는 함수
+    /// <summary>
+    /// 노드의 중심 위치에서 가장자리까지의 연결 지점을 계산합니다.
+    /// </summary>
     private Vector2 CalculateNodeEdgePosition(Vector2 nodeCenter, Vector2 direction, float halfWidth, float halfHeight)
     {
         // 방향 벡터 정규화
@@ -668,6 +704,9 @@ public class EventTreeMap : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 트리 내부의 모든 노드와 연결선을 제거하고 초기화합니다.
+    /// </summary>
     private void ClearCurrentTree()
     {
         // 기존 노드와 연결선 제거
@@ -688,7 +727,10 @@ public class EventTreeMap : MonoBehaviour
             Destroy(treeContainer.GetChild(i).gameObject);
     }
 
-    // 노드 클릭 시 호출되는 메서드 (이벤트 발생)
+    /// <summary>
+    /// 노드 클릭 시 발생하는 내부 메서드입니다.
+    /// OnNodeSelected 이벤트를 트리거합니다.
+    /// </summary>
     private void OnNodeClicked(EventNode node)
     {
         Debug.Log($"Clicked on node: Layer {node.LevelIndex}, Index {node.NodeIndex}");
