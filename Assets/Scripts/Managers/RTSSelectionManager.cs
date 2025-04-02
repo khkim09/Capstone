@@ -36,7 +36,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// 좌클릭 감지 - 다중 선택 시 영역 표시
     /// 우클릭 감지 - 선택한 선원 이동 명령
     /// </summary>
-    void Update()
+    private void Update()
     {
         bool isMainUI = IsMainUIActive();
 
@@ -85,7 +85,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// OnGUI를 이용하여 드래그 영역의 사각형 표시
     /// </summary>
-    void OnGUI()
+    private void OnGUI()
     {
         if (isDragging && IsMainUIActive())
         {
@@ -101,7 +101,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <param name="screenPosition1"></param>
     /// <param name="screenPosition2"></param>
     /// <returns></returns>
-    Rect GetScreenRect(Vector2 screenPosition1, Vector2 screenPosition2)
+    private Rect GetScreenRect(Vector2 screenPosition1, Vector2 screenPosition2)
     {
         screenPosition1.y = Screen.height - screenPosition1.y;
         screenPosition2.y = Screen.height - screenPosition2.y;
@@ -115,7 +115,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// </summary>
     /// <param name="rect"></param>
     /// <param name="color"></param>
-    void DrawScreenRect(Rect rect, Color color)
+    private void DrawScreenRect(Rect rect, Color color)
     {
         GUI.color = color;
         GUI.DrawTexture(rect, selectionTexture);
@@ -128,7 +128,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <param name="rect"></param>
     /// <param name="thickness"></param>
     /// <param name="color"></param>
-    void DrawScreenRectBorder(Rect rect, float thickness, Color color)
+    private void DrawScreenRectBorder(Rect rect, float thickness, Color color)
     {
         GUI.color = color;
         // 위쪽 테두리
@@ -145,7 +145,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 선택한 선원 모두 해제
     /// </summary>
-    void DeselectAll()
+    private void DeselectAll()
     {
         selectedCrew.Clear();
         CrewMember[] allCrew = GameObject.FindObjectsByType<CrewMember>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
@@ -177,7 +177,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 영역 내 선원 다중 선택
     /// </summary>
-    void SelectMultipleCrew()
+    public void SelectMultipleCrew()
     {
         // 선택 리스트 초기화
         selectedCrew.Clear();
@@ -209,7 +209,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 우클릭한 위치로 이동 명령 전달
     /// </summary>
-    void IssueMoveCommand()
+    public void IssueMoveCommand()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -246,7 +246,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <param name="crew"></param>
     /// <param name="destination"></param>
     /// <returns></returns>
-    IEnumerator MoveCrewMember(CrewMember crew, Vector3 destination)
+    public IEnumerator MoveCrewMember(CrewMember crew, Vector3 destination)
     {
         Vector3 startPos = crew.transform.position;
         float distance = Vector3.Distance(startPos, destination);
@@ -268,7 +268,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// 일정 범위 내에 적이 있다면 전투 실행
     /// </summary>
     /// <param name="crew"></param>
-    void CheckForCombat(CrewMember crew)
+    public void CheckForCombat(CrewMember crew)
     {
         Collider[] colliders = Physics.OverlapSphere(crew.transform.position, attackRange);
         foreach (Collider col in colliders)
@@ -290,7 +290,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// </summary>
     /// <param name="attacker"></param>
     /// <param name="target"></param>
-    void Attack(CrewMember attacker, CrewMember target)
+    public void Attack(CrewMember attacker, CrewMember target)
     {
         // 피해량 계산식: (공격 주체 기본 공격 + 장비 공격력(tmp)) * (1 - (상대 방어력 / 100))
         float damage = (attacker.attack + tmpEquipmentAttack) * (1 - target.defense / 100f);
