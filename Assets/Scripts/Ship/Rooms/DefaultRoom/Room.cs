@@ -466,17 +466,18 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         return new DoorPosition(newPos, newDir);
     }
 
+    // TODO : 나중엔 이런 월드 좌표가 아니라, 싱글턴 그리드 좌표에 맞는 월드 좌표로 변환하는 함수가 필요하다.
+
     /// <summary>
     /// 그리드 위치를 월드 위치로 변환
     /// </summary>
-    private Vector3 GridToWorldPosition(Vector2Int gridPos)
+    private Vector2 GridToWorldPosition(Vector2Int gridPos)
     {
         // 그리드 크기와 오프셋에 따라 계산
         float cellSize = 1.0f; // 그리드 셀 크기
         return transform.position + new Vector3(
             gridPos.x * cellSize + cellSize/2,
-            gridPos.y * cellSize + cellSize/2,
-            0
+            gridPos.y * cellSize + cellSize/2
         );
     }
 
@@ -551,6 +552,11 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         // 가능한 문 위치 목록에서 해당 위치/방향 확인
         return roomLevel.possibleDoorPositions.Any(
             doorPos => doorPos.position == gridPosition && doorPos.direction == direction);
+    }
+
+    public List<Door> GetConnectedDoors()
+    {
+        return connectedDoors;
     }
 }
 
