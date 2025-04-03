@@ -89,8 +89,11 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
-        gridTiles.SetActive(false);
-        placedRooms.SetActive(false);
+        if (gridTiles != null)
+            gridTiles.SetActive(false);
+
+        if (placedRooms != null)
+            placedRooms.SetActive(false);
         customizationManager.ClearAllModules();
     }
 
