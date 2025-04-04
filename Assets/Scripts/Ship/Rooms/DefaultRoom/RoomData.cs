@@ -45,6 +45,14 @@ public abstract class RoomData : ScriptableObject
         // TODO: 스프라이트 완성되면 각 Scriptable Object 에 스프라이트 추가할 것, rotation, roomPrefab(실제 배치될 방 prefab), previewPrefab(roomPrefab에서 alpha값만 0.5)
     }
 
+
+    /// <summary>
+    /// 해당 방 데이터에 대응하는 프리팹.
+    /// 실제 Room 생성 시 사용.
+    /// </summary>
+    public GameObject prefab;
+
+
     /// <summary>
     /// 주어진 레벨에 해당하는 RoomLevel 데이터를 반환합니다.
     /// 각 파생 클래스에서 구현해야 합니다.
@@ -96,7 +104,7 @@ public enum RoomDamageLevel
 public abstract class RoomData<T> : RoomData where T : RoomData.RoomLevel
 {
     /// <summary>레벨별 방 데이터 리스트.</summary>
-    [SerializeField] protected List<T> RoomLevels = new();
+    [SerializeField] public List<T> RoomLevels = new();
 
     /// <summary>
     /// 주어진 레벨에 해당하는 RoomLevel 데이터를 반환합니다.
@@ -130,3 +138,39 @@ public abstract class RoomData<T> : RoomData where T : RoomData.RoomLevel
         return RoomLevels == null || RoomLevels.Count == 0;
     }
 }
+
+/*
+public class RoomLevel
+{
+    /// <summary>레벨 이름 또는 표시용 이름.</summary>
+    public string roomName;
+
+    /// <summary>해당 레벨 번호.</summary>
+    public int level;
+
+    /// <summary>최대 체력.</summary>
+    public int hitPoint;
+
+    /// <summary>방 크기 (격자 단위, 가로x세로).</summary>
+    public Vector2Int size;
+
+    /// <summary>업그레이드 비용.</summary>
+    public int cost;
+
+    /// <summary> 방 회전 상태 </summary>
+    public int rotation;
+
+    /// <summary>작동에 필요한 최소 선원 수.</summary>
+    public int crewRequirement;
+
+    /// <summary>요구 전력량.</summary>
+    public float powerRequirement;
+
+    /// <summary>피해 단계별 체력 비율 (예: 연기, 화재 등).</summary>
+    public Dictionary<RoomDamageLevel, float> damageHitPointRate = new();
+
+    /// <summary>해당 레벨의 방 스프라이트.</summary>
+    public Sprite roomSprite;
+    // TODO: 스프라이트 완성되면 각 Scriptable Object 에 스프라이트 추가할 것, rotation, roomPrefab(실제 배치될 방 prefab), previewPrefab(roomPrefab에서 alpha값만 0.5)
+}
+*/

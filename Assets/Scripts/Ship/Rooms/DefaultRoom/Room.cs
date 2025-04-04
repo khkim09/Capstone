@@ -19,7 +19,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     public int currentLevel;
 
     /// <summary>현재 체력.</summary>
-    [SerializeField][HideInInspector] protected float currentHitPoints;
+    [SerializeField][HideInInspector] public float currentHitPoints;
 
     /// <summary>방의 타입.</summary>
     public RoomType roomType;

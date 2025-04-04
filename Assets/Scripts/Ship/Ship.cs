@@ -196,6 +196,8 @@ public class Ship : MonoBehaviour
         return true;
     }
 
+    // ---------------- 함선 커스터마이징 관련 추가 <기현> ----------------
+
     /// <summary>
     /// 현재 유저가 함선의 구성 요소로 설치한 모든 방을 List로 전달합니다. (allRooms의 data만 반환)
     /// </summary>
@@ -207,6 +209,68 @@ public class Ship : MonoBehaviour
 
         return allRooms.Select(r => r.roomData).ToList(); // 그냥 싹 다 넘김 (중복 체크 X)
     }
+
+    /// <summary>
+    /// 현재 함선에 포함된 모든 방의 가격 합을 반환.
+    /// </summary>
+    public int GetTotalShipValue()
+    {
+        int total = 0;
+        foreach (Room room in allRooms)
+        {
+            total += room.roomData.GetRoomData(room.currentLevel).cost;
+        }
+        return total;
+    }
+
+    /// <summary>
+    /// 현재 함선의 모든 방에 대해 내구도 100%인지 여부 반환
+    /// </summary>
+    public bool IsFullHitPoint()
+    {
+        foreach (Room room in allRooms)
+        {
+            if (room.currentHitPoints != room.GetMaxHitPoints())
+                return false;
+        }
+        return true;
+    }
+
+
+    /// <summary>
+    /// 현재 설계도를 실제 함선 구조로 반영.
+    /// 기존 함선은 삭제되고 설계도 기반으로 재구성.
+    /// </summary>
+    public void ReplaceShipWithBlueprint(List<BlueprintRoom> blueprintRooms)
+    {
+        // 기존 함선 판매
+        ResourceManager.Instance.ChangeResource(ResourceType.COMA, GetTotalShipValue());
+
+        // 기존 함선 삭제
+        foreach (Room room in allRooms)
+            Destroy(room.gameObject);
+
+        allRooms.Clear();
+
+        // 설계도 -> 함선으로 적용
+        foreach (BlueprintRoom blueprint in blueprintRooms)
+        {
+            GameObject roomGO = Instantiate(blueprint.roomData.prefab);
+            Room room = roomGO.GetComponent<Room>();
+            room.roomData = blueprint.roomData;
+            room.currentLevel = blueprint.levelIndex;
+            room.position = blueprint.position;
+
+            allRooms.Add(room);
+            // 추가 작업 필요: 위치 반영, 격자 등록 등
+        }
+
+        // 설계도 함선 구매 (재화량 차감)
+        ResourceManager.Instance.ChangeResource(ResourceType.COMA, -1 * BlueprintManager.Instance.totalBlueprintCost);
+    }
+
+
+    // ---------------- <기현> 여기까지 --------------------
 
     /// <summary>
     /// 주어진 위치와 크기로 방을 배치할 수 있는지 검사합니다.
