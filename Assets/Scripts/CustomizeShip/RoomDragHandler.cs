@@ -106,7 +106,6 @@ public class RoomDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
 
         roomSize = levelData.size;
-        rotation = levelData.rotation;
         // roomPrefab = levelData.roomPrefab;
         // previewPrefab = levelData.previewPrefab;
     }

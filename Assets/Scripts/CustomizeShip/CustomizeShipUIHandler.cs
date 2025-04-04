@@ -60,7 +60,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// <summary>
     /// 배치된 레이아웃의 유효성을 검사하는 유효성 검사기입니다.
     /// </summary>
-    public ShipLayoutValidator layoutValidator;
+    public ShipValidationHelper ValidatonHelper;
 
     /// <summary>
     /// CustomizeShipUI 활성화 시 아래 작업 수행 :
@@ -99,12 +99,13 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// </summary>
     public void OnSaveClicked()
     {
+        // TODO: ValidatonHelper 완성 후에 규격에 맞게 매개변수 넣어야함
         // 함선 저장 로직 연결 예정
-        if (!layoutValidator.ValidateLayout())
-        {
-            Debug.LogWarning("모든 방이 연결되어 있어야 저장 가능");
-            return;
-        }
+        // if (!ValidatonHelper.ValidateLayout())
+        // {
+        //     Debug.LogWarning("모든 방이 연결되어 있어야 저장 가능");
+        //     return;
+        // }
 
         SaveShipLayout(playerShip);
         Debug.Log("Ship Data 저장됨.");

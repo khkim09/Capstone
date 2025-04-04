@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -30,8 +31,11 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>인접한 방 리스트.</summary>
     [HideInInspector] protected List<Room> adjacentRooms = new();
 
-    /// <summary>인접한 방 리스트.</summary>
+    /// <summary>이 방에 연결된 문들</summary>
     [HideInInspector] protected List<Door> connectedDoors = new();
+
+    /// <summary>방의 현재 회전 값</summary>
+    [SerializeField] protected RoomRotation currentRotation;
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
     [Header("방 효과")][SerializeField] protected ParticleSystem roomParticles;
@@ -394,6 +398,166 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     /// <summary>방의 그리드 크기 (에디터 전용).</summary>
     public Vector2Int gridSize = new(2, 2);
+
+    /// <summary>
+    /// 방 회전시키기
+    /// </summary>
+    public void RotateRoom(int rotationSteps)
+    {
+        // enum 값 순환 (0->1->2->3->0)
+        currentRotation = (RoomRotation)(((int)currentRotation + 1) % 4);
+
+        // 실제 방 GameObject 회전 적용
+        transform.rotation = Quaternion.Euler(0, 0, (int)currentRotation * 90f);
+
+        // 방에 부착된 문들의 상대적 위치와 방향 업데이트
+        UpdateDoorsPositionAndRotation();
+    }
+
+    /// <summary>
+    /// 방 회전에 따라 문들의 위치와 방향 업데이트
+    /// </summary>
+    private void UpdateDoorsPositionAndRotation()
+    {
+        RoomData.RoomLevel roomLevel = roomData.GetRoomData(currentLevel);
+        if (roomLevel == null) return;
+
+        // 기존 가능한 문 위치 정보와 현재 부착된 문들을 비교하여 업데이트
+        foreach (Door door in connectedDoors)
+        {
+            // 문의 원래 그리드 위치와 방향 (회전 전)
+            Vector2Int originalGridPos = door.OriginalGridPosition;
+            DoorDirection originalDir = door.OriginalDirection;
+
+            // 회전된 위치와 방향 계산
+            DoorPosition rotatedPos = CalculateRotatedDoorPosition(
+                originalGridPos, originalDir, (int)currentRotation, roomLevel.size);
+
+            // 문의 새 월드 위치 계산
+            Vector3 newWorldPos = GridToWorldPosition(rotatedPos.position);
+            door.transform.position = newWorldPos;
+
+            // 문의 방향 설정
+            door.SetDirection(rotatedPos.direction);
+        }
+    }
+
+    /// <summary>
+    /// 회전에 따른 문의 위치와 방향 계산
+    /// </summary>
+    private DoorPosition CalculateRotatedDoorPosition(
+        Vector2Int originalPos, DoorDirection originalDir, int rotation, Vector2Int roomSize)
+    {
+        Vector2Int newPos = originalPos;
+        DoorDirection newDir = originalDir;
+
+        // rotation 횟수만큼 90도씩 회전
+        for (int i = 0; i < rotation; i++)
+        {
+            // 위치 회전: (x, y) -> (y, size.x-1-x)
+            int tempX = newPos.x;
+            newPos.x = newPos.y;
+            newPos.y = roomSize.x - 1 - tempX;
+
+            // 방향도 90도씩 회전
+            newDir = (DoorDirection)(((int)newDir + 1) % 4);
+        }
+
+        return new DoorPosition(newPos, newDir);
+    }
+
+    // TODO : 나중엔 이런 월드 좌표가 아니라, 싱글턴 그리드 좌표에 맞는 월드 좌표로 변환하는 함수가 필요하다.
+
+    /// <summary>
+    /// 그리드 위치를 월드 위치로 변환
+    /// </summary>
+    private Vector2 GridToWorldPosition(Vector2Int gridPos)
+    {
+        // 그리드 크기와 오프셋에 따라 계산
+        float cellSize = 1.0f; // 그리드 셀 크기
+        return transform.position + new Vector3(
+            gridPos.x * cellSize + cellSize/2,
+            gridPos.y * cellSize + cellSize/2
+        );
+    }
+
+    /// <summary>
+    /// 문 추가
+    /// </summary>
+    public bool AddDoor(DoorPosition doorPos, DoorData doorData, int doorLevel = 1)
+    {
+        // 유효한 문 위치인지 확인
+        if (!IsValidDoorPosition(doorPos.position, doorPos.direction))
+            return false;
+
+        // 이미 해당 위치에 문이 있는지 확인
+        if (GetDoorAtPosition(doorPos.position, doorPos.direction) != null)
+            return false;
+
+        // 문 생성 및 설정
+        GameObject doorObject = new GameObject("Door");
+        Door door = doorObject.AddComponent<Door>();
+        door.Initialize(doorData, doorLevel, doorPos.direction);
+
+        // 원래 그리드 위치와 방향 저장 (회전 기준점)
+        door.OriginalGridPosition = doorPos.position;
+        door.OriginalDirection = doorPos.direction;
+
+        // 문의 위치 설정
+        doorObject.transform.SetParent(transform);
+        doorObject.transform.position = GridToWorldPosition(doorPos.position);
+
+        // 문 목록에 추가
+        connectedDoors.Add(door);
+
+        // 현재 회전에 맞게 문 위치와 방향 설정
+        if (currentRotation > 0)
+        {
+            DoorPosition rotatedPos = CalculateRotatedDoorPosition(
+                doorPos.position, doorPos.direction, (int)currentRotation, roomData.GetRoomData(currentLevel).size);
+
+            doorObject.transform.position = GridToWorldPosition(rotatedPos.position);
+            door.SetDirection(rotatedPos.direction);
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// 방향에 맞는 문 찾기
+    /// </summary>
+    public Door GetDoorInDirection(DoorDirection direction)
+    {
+        return connectedDoors.Find(door => door.Direction == direction);
+    }
+
+    /// <summary>
+    /// 해당 위치와 방향의 문 가져오기
+    /// </summary>
+    public Door GetDoorAtPosition(Vector2Int gridPosition, DoorDirection direction)
+    {
+        // 구현...
+        return null;
+    }
+
+    /// <summary>
+    /// 유효한 문 위치인지 확인
+    /// </summary>
+    public bool IsValidDoorPosition(Vector2Int gridPosition, DoorDirection direction)
+    {
+        // 방의 데이터와 레벨 확인
+        RoomData.RoomLevel roomLevel = roomData.GetRoomData(currentLevel);
+        if (roomLevel == null) return false;
+
+        // 가능한 문 위치 목록에서 해당 위치/방향 확인
+        return roomLevel.possibleDoorPositions.Any(
+            doorPos => doorPos.position == gridPosition && doorPos.direction == direction);
+    }
+
+    public List<Door> GetConnectedDoors()
+    {
+        return connectedDoors;
+    }
 }
 
 /// <summary>
