@@ -13,9 +13,26 @@ public class TradeManager : MonoBehaviour
     [SerializeField] private TradeDataLoader tradeDataLoader;
 
     /// <summary>
+    /// 현재 행성의 판매 데이터를 저장하는 변수입니다.
+    /// 이 변수는 플레이어가 도착한 행성의 PlanetTradeData 에셋을 참조합니다.
+    /// </summary>
+    [SerializeField]
+    private PlanetTradeData currentPlanetTradeData;
+
+
+    /// <summary>
     /// 플레이어의 현재 재화(COMA)입니다. 초기값은 1000입니다.
     /// </summary>
     [SerializeField] private int playerCOMA = 1000;
+
+    /// <summary>
+    /// 현재 행성 판매 데이터를 외부에서 읽을 수 있도록 하는 프로퍼티입니다.
+    /// </summary>
+    public PlanetTradeData CurrentPlanetTradeData
+    {
+        get { return currentPlanetTradeData; }
+    }
+
 
     /// <summary>
     /// MonoBehaviour의 Start 메서드입니다.
@@ -136,4 +153,15 @@ public class TradeManager : MonoBehaviour
     {
         return playerCOMA;
     }
+    /// <summary>
+    /// 현재 행성 판매 데이터를 설정합니다. 이 데이터는 무역 거래 시 사용됩니다.
+    /// </summary>
+    /// <param name="data">선택한 행성의 판매 물품 데이터</param>
+    public void SetCurrentPlanetTradeData(PlanetTradeData data)
+    {
+        // TradeManager 내부에서 현재 행성 데이터를 저장하고, 필요에 따라 무역 로직에 반영합니다.
+        currentPlanetTradeData = data;
+        Debug.Log("TradeManager: 현재 행성 데이터가 설정되었습니다: " + data.planetCode);
+    }
+
 }

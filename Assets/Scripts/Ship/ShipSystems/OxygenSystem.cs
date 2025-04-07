@@ -47,7 +47,8 @@ public class OxygenSystem : ShipSystem
             currentOxygenLevel = OxygenLevel.Low;
         else if (currentOxygenRate > 20)
             currentOxygenLevel = OxygenLevel.Critical;
-        else if (currentOxygenRate == 0) currentOxygenLevel = OxygenLevel.None;
+        else if (currentOxygenRate == 0)
+            currentOxygenLevel = OxygenLevel.None;
     }
 
     /// <summary>

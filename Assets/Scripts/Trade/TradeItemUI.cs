@@ -17,39 +17,9 @@ public class TradeItemUI : MonoBehaviour
     [SerializeField] private TMP_Text itemNameText;
 
     /// <summary>
-    /// 아이템 분류를 표시하는 텍스트 UI 요소입니다.
-    /// </summary>
-    [SerializeField] private TMP_Text categoryText;
-
-    /// <summary>
     /// 아이템의 현재 가격을 표시하는 텍스트 UI 요소입니다.
     /// </summary>
     [SerializeField] private TMP_Text priceText;
-
-    /// <summary>
-    /// 아이템의 최대 적층량을 표시하는 텍스트 UI 요소입니다.
-    /// </summary>
-    [SerializeField] private TMP_Text maxStackText;
-
-    /// <summary>
-    /// 아이템 설명을 표시하는 텍스트 UI 요소입니다.
-    /// </summary>
-    [SerializeField] private TMP_Text descriptionText;
-
-    /// <summary>
-    /// 구매/판매 수량을 입력받는 입력 필드입니다.
-    /// </summary>
-    [SerializeField] private TMP_InputField quantityInputField;
-
-    /// <summary>
-    /// 구매 버튼입니다.
-    /// </summary>
-    [SerializeField] private Button buyButton;
-
-    /// <summary>
-    /// 판매 버튼입니다.
-    /// </summary>
-    [SerializeField] private Button sellButton;
 
     #endregion
 
@@ -89,20 +59,7 @@ public class TradeItemUI : MonoBehaviour
         // UI 텍스트 초기화
         if (itemNameText != null)
             itemNameText.text = tradableItem.itemName;
-        //  if (categoryText != null)
-        //   categoryText.text = tradableItem.category;
-        if (maxStackText != null)
-            maxStackText.text = "Max Stack: " + tradableItem.maxStackAmount.ToString();
-        if (descriptionText != null)
-            descriptionText.text = tradableItem.description;
-
         UpdatePriceText();
-
-        // 버튼 클릭 이벤트 등록
-        if (buyButton != null)
-            buyButton.onClick.AddListener(OnBuyButtonClicked);
-        if (sellButton != null)
-            sellButton.onClick.AddListener(OnSellButtonClicked);
     }
 
     /// <summary>
@@ -114,33 +71,7 @@ public class TradeItemUI : MonoBehaviour
         if (priceText != null && tradableItem != null)
         {
             float currentPrice = tradableItem.GetCurrentPrice();
-            priceText.text = "Price: " + currentPrice.ToString("F2") + " coma/kg";
+            priceText.text = currentPrice.ToString("F2");
         }
-    }
-
-    /// <summary>
-    /// 구매 버튼 클릭 이벤트를 처리합니다.
-    /// 입력된 수량만큼 아이템을 구매하고, 성공 시 TradeUI를 통해 재화를 업데이트합니다.
-    /// </summary>
-    private void OnBuyButtonClicked()
-    {
-        int quantity = 1;
-        if (quantityInputField != null) int.TryParse(quantityInputField.text, out quantity);
-        if (tradeManager.BuyItem(tradableItem, quantity))
-            // 구매 성공 시 재화 업데이트
-            tradeUI.UpdatePlayerCOMA();
-    }
-
-    /// <summary>
-    /// 판매 버튼 클릭 이벤트를 처리합니다.
-    /// 입력된 수량만큼 아이템을 판매하고, 성공 시 TradeUI를 통해 재화를 업데이트합니다.
-    /// </summary>
-    private void OnSellButtonClicked()
-    {
-        int quantity = 1;
-        if (quantityInputField != null) int.TryParse(quantityInputField.text, out quantity);
-        if (tradeManager.SellItem(tradableItem, quantity))
-            // 판매 성공 시 재화 업데이트
-            tradeUI.UpdatePlayerCOMA();
     }
 }
