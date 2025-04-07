@@ -118,15 +118,24 @@ public class Door : MonoBehaviour
     /// <summary>
     /// 방향을 반시계 방향으로 90도 회전
     /// </summary>
-    private DoorDirection RotateDirectionCounterClockwise(DoorDirection dir)
+    public void RotateDirectionClockwise()
     {
-        switch (dir)
+        switch (direction)
         {
-            case DoorDirection.North: return DoorDirection.West;
-            case DoorDirection.East: return DoorDirection.North;
-            case DoorDirection.South: return DoorDirection.East;
-            case DoorDirection.West: return DoorDirection.South;
-            default: return dir;
+            case DoorDirection.North:
+                SetDirection(DoorDirection.East);
+                break;
+            case DoorDirection.East:
+                SetDirection(DoorDirection.South);
+                break;
+            case DoorDirection.South:
+                SetDirection(DoorDirection.West);
+                break;
+            case DoorDirection.West:
+                SetDirection(DoorDirection.North);
+                break;
+            default:
+                return;
         }
     }
 

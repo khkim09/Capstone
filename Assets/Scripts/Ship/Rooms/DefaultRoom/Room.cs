@@ -425,45 +425,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         // 기존 가능한 문 위치 정보와 현재 부착된 문들을 비교하여 업데이트
         foreach (Door door in connectedDoors)
         {
-            // 문의 원래 그리드 위치와 방향 (회전 전)
-            Vector2Int originalGridPos = door.OriginalGridPosition;
-            DoorDirection originalDir = door.OriginalDirection;
-
-            // 회전된 위치와 방향 계산
-            DoorPosition rotatedPos = CalculateRotatedDoorPosition(
-                originalGridPos, originalDir, (int)currentRotation, roomLevel.size);
-
-            // 문의 새 월드 위치 계산
-            Vector3 newWorldPos = GridToWorldPosition(rotatedPos.position);
-            door.transform.position = newWorldPos;
-
-            // 문의 방향 설정
-            door.SetDirection(rotatedPos.direction);
+            door.RotateDirectionClockwise();
         }
-    }
-
-    /// <summary>
-    /// 회전에 따른 문의 위치와 방향 계산
-    /// </summary>
-    private DoorPosition CalculateRotatedDoorPosition(
-        Vector2Int originalPos, DoorDirection originalDir, int rotation, Vector2Int roomSize)
-    {
-        Vector2Int newPos = originalPos;
-        DoorDirection newDir = originalDir;
-
-        // rotation 횟수만큼 90도씩 회전
-        for (int i = 0; i < rotation; i++)
-        {
-            // 위치 회전: (x, y) -> (y, size.x-1-x)
-            int tempX = newPos.x;
-            newPos.x = newPos.y;
-            newPos.y = roomSize.x - 1 - tempX;
-
-            // 방향도 90도씩 회전
-            newDir = (DoorDirection)(((int)newDir + 1) % 4);
-        }
-
-        return new DoorPosition(newPos, newDir);
     }
 
     // TODO : 나중엔 이런 월드 좌표가 아니라, 싱글턴 그리드 좌표에 맞는 월드 좌표로 변환하는 함수가 필요하다.
@@ -509,16 +472,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
         // 문 목록에 추가
         connectedDoors.Add(door);
-
-        // 현재 회전에 맞게 문 위치와 방향 설정
-        if (currentRotation > 0)
-        {
-            DoorPosition rotatedPos = CalculateRotatedDoorPosition(
-                doorPos.position, doorPos.direction, (int)currentRotation, roomData.GetRoomData(currentLevel).size);
-
-            doorObject.transform.position = GridToWorldPosition(rotatedPos.position);
-            door.SetDirection(rotatedPos.direction);
-        }
 
         return true;
     }
