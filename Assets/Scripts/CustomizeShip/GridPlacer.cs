@@ -49,6 +49,16 @@ public class GridPlacer : MonoBehaviour
     private bool[,] gridOccupied;
 
     /// <summary>
+    /// 배치가 이루어질 설계도
+    /// </summary>
+    public BlueprintShip targetBlueprintShip;
+
+    /// <summary>
+    /// 공통 roomPrefab
+    /// </summary>
+    public GameObject roomPrefab;
+
+    /// <summary>
     /// 인스턴스를 설정하고, 그리드 사용 상태 배열을 초기화합니다.
     /// </summary>
     private void Awake()
@@ -83,56 +93,98 @@ public class GridPlacer : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 지정된 영역에 방 설치가 가능한지 여부를 판단합니다.
-    /// 설치 가능 시 true 반환 (초록색), 불가능 시 false 반환 (빨간색).
-    /// </summary>
-    /// <param name="startGrid">방 설치 시작 위치 (그리드 좌표).</param>
-    /// <param name="roomSize">방의 크기 (가로, 세로).</param>
-    /// <returns>설치 가능 여부.</returns>
-    public bool CanPlaceRoom(Vector2Int startGrid, Vector2Int roomSize)
-    {
-        for (int x = 0; x < roomSize.x; x++)
+    /*
+        /// <summary>
+        /// 지정된 영역에 방 설치가 가능한지 여부를 판단합니다.
+        /// 설치 가능 시 true 반환 (초록색), 불가능 시 false 반환 (빨간색).
+        /// </summary>
+        /// <param name="startGrid">방 설치 시작 위치 (그리드 좌표).</param>
+        /// <param name="roomSize">방의 크기 (가로, 세로).</param>
+        /// <returns>설치 가능 여부.</returns>
+        public bool CanPlaceRoom(Vector2Int startGrid, Vector2Int roomSize)
         {
-            for (int y = 0; y < roomSize.y; y++)
+            for (int x = 0; x < roomSize.x; x++)
             {
-                Vector2Int checkPos = startGrid + new Vector2Int(x, y);
+                for (int y = 0; y < roomSize.y; y++)
+                {
+                    Vector2Int checkPos = startGrid + new Vector2Int(x, y);
 
-                if (checkPos.x < 0 || checkPos.x >= width || checkPos.y < 0 || checkPos.y >= height || gridOccupied[checkPos.x, checkPos.y])
-                    return false;
+                    if (checkPos.x < 0 || checkPos.x >= width || checkPos.y < 0 || checkPos.y >= height || gridOccupied[checkPos.x, checkPos.y])
+                        return false;
+                }
             }
+            return true;
         }
+
+        /// <summary>
+        /// 실제 지정된 위치에 방을 배치합니다.
+        /// 설치 가능 여부를 검사한 뒤, 배치를 수행하고 해당 영역을 점유 처리합니다.
+        /// </summary>
+        /// <param name="startGrid">방 설치 시작 위치 (그리드 좌표).</param>
+        /// <param name="roomSize">방의 크기 (가로, 세로).</param>
+        /// <param name="roomPrefab">설치할 방 프리팹.</param>
+        /// <param name="rotation">회전 각도 (Z축 기준).</param>
+        /// <returns>생성된 방 GameObject. 실패 시 null.</returns>
+        public GameObject PlaceRoom(Vector2Int startGrid, Vector2Int roomSize, RoomData data, int rotation)
+        {
+            if (!CanPlaceRoom(startGrid, roomSize))
+            {
+                Debug.LogWarning("설치 실패 : 이미 설치됨");
+                return null;
+            }
+
+            Vector2 centerOffset = new Vector2((roomSize.x - 1) * 0.5f, (roomSize.y - 1) * 0.5f);
+            Vector3 worldPos = ShipGridManager.Instance.GridToWorldPosition(startGrid) + centerOffset;
+            GameObject room = Instantiate(data.prefab, worldPos, Quaternion.identity, placedRooms);
+
+            room.transform.Rotate(0, 0, -rotation);
+            room.transform.position += new Vector3(0, 0, 16); // UI보다 뒤, grid보다 앞
+
+            for (int x = 0; x < roomSize.x; x++)
+                for (int y = 0; y < roomSize.y; y++)
+                    gridOccupied[startGrid.x + x, startGrid.y + y] = true;
+
+            return room;
+        }
+    */
+
+    /// <summary>
+    /// 주어진 좌표에 해당 방을 배치할 수 있는지 확인
+    /// </summary>
+    public bool CanPlaceRoom(RoomData data, int level, Vector2Int position, int rotation)
+    {
+        RoomData.RoomLevel levelData = data.GetRoomData(level);
+        Vector2Int size = levelData.size;
+
+        // 겹침 체크
+        foreach (BlueprintRoom room in targetBlueprintShip.PlacedBlueprintRooms)
+        {
+            RectInt existing = new(room.position, room.roomSize);
+            RectInt candidate = new(position, size);
+            if (existing.Overlaps(candidate))
+                return false;
+        }
+
         return true;
     }
 
     /// <summary>
-    /// 실제 지정된 위치에 방을 배치합니다.
-    /// 설치 가능 여부를 검사한 뒤, 배치를 수행하고 해당 영역을 점유 처리합니다.
+    /// 실제 방을 해당 위치에 배치함
     /// </summary>
-    /// <param name="startGrid">방 설치 시작 위치 (그리드 좌표).</param>
-    /// <param name="roomSize">방의 크기 (가로, 세로).</param>
-    /// <param name="roomPrefab">설치할 방 프리팹.</param>
-    /// <param name="rotation">회전 각도 (Z축 기준).</param>
-    /// <returns>생성된 방 GameObject. 실패 시 null.</returns>
-    public GameObject PlaceRoom(Vector2Int startGrid, Vector2Int roomSize, GameObject roomPrefab, int rotation)
+    public void PlaceRoom(RoomData data, int level, Vector2Int position, int rotation)
     {
-        if (!CanPlaceRoom(startGrid, roomSize))
-        {
-            Debug.LogWarning("설치 실패 : 이미 설치됨");
-            return null;
-        }
+        RoomData.RoomLevel levelData = data.GetRoomData(level);
+        float dx = levelData.size.x / 2f - 0.5f;
+        float dy = levelData.size.y / 2f - 0.5f;
 
-        Vector2 centerOffset = new Vector2((roomSize.x - 1) * 0.5f, (roomSize.y - 1) * 0.5f);
-        Vector3 worldPos = ShipGridManager.Instance.GridToWorldPosition(startGrid) + centerOffset;
-        GameObject room = Instantiate(roomPrefab, worldPos, Quaternion.identity, placedRooms);
+        GameObject placed = Instantiate(roomPrefab, targetBlueprintShip.transform);
+        placed.transform.position = new Vector3(position.x + dx, position.y + dy, 0);
+        placed.transform.rotation = Quaternion.Euler(0, 0, -rotation);
 
-        room.transform.Rotate(0, 0, -rotation);
-        room.transform.position += new Vector3(0, 0, 16); // UI보다 뒤, grid보다 앞
+        BlueprintRoom blueprintRoom = placed.GetComponent<BlueprintRoom>();
+        blueprintRoom.Initialize(data, level, position, rotation);
+        blueprintRoom.SetBlueprint(targetBlueprintShip);
 
-        for (int x = 0; x < roomSize.x; x++)
-            for (int y = 0; y < roomSize.y; y++)
-                gridOccupied[startGrid.x + x, startGrid.y + y] = true;
-
-        return room;
+        targetBlueprintShip.AddRoom(blueprintRoom);
     }
 }

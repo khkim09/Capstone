@@ -18,11 +18,6 @@ public class CustomizeShipUIHandler : MonoBehaviour
     public GameObject customizeUI;
 
     /// <summary>
-    /// 보유한 방 목록 툴팁 UI입니다.
-    /// </summary>
-    public RoomsInventoryTooltipUI inventoryTooltipUI;
-
-    /// <summary>
     /// 그리드 타일이 배치되는 부모 오브젝트입니다.
     /// </summary>
     [Header("Parent Object")] public GameObject gridTiles;
@@ -77,9 +72,9 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
         customizationManager.ClearAllModules();
         LoadShipLayout(playerShip);
-        inventoryTooltipUI.allOwnedRoomData = playerShip.GetInstalledRoomDataList(); // GetInstalledRoom()아님 -> 이건 이미 설치된 방임
+        // inventoryTooltipUI.allOwnedRoomData = playerShip.GetInstalledRoomDataList(); // GetInstalledRoom()아님 -> 이건 이미 설치된 방임
         // Debug.Log($"가져온 방 개수 : {inventoryTooltipUI.allOwnedRoomData.Count}");
-        inventoryTooltipUI.RefreshInventory(); // 구매한 방 list 갱신
+        // inventoryTooltipUI.RefreshInventory(); // 구매한 방 list 갱신
     }
 
     /// <summary>
@@ -110,7 +105,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
         SaveShipLayout(playerShip);
         Debug.Log("Ship Data 저장됨.");
 
-        inventoryTooltipUI.RefreshInventory();
+        // inventoryTooltipUI.RefreshInventory();
 
         customizeUI.SetActive(false);
         mainUI.SetActive(true);

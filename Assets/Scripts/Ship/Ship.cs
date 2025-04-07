@@ -241,7 +241,7 @@ public class Ship : MonoBehaviour
     /// 현재 설계도를 실제 함선 구조로 반영.
     /// 기존 함선은 삭제되고 설계도 기반으로 재구성.
     /// </summary>
-    public void ReplaceShipWithBlueprint(List<BlueprintRoom> blueprintRooms)
+    public void ReplaceShipWithBlueprint(BlueprintShip blueprintShip)
     {
         // 기존 함선 판매
         ResourceManager.Instance.ChangeResource(ResourceType.COMA, GetTotalShipValue());
@@ -253,8 +253,9 @@ public class Ship : MonoBehaviour
         allRooms.Clear();
 
         // 설계도 -> 함선으로 적용
-        foreach (BlueprintRoom blueprint in blueprintRooms)
+        foreach (BlueprintRoom blueprint in blueprintShip.PlacedBlueprintRooms)
         {
+            /*
             GameObject roomGO = Instantiate(blueprint.roomData.prefab);
             Room room = roomGO.GetComponent<Room>();
             room.roomData = blueprint.roomData;
@@ -262,11 +263,13 @@ public class Ship : MonoBehaviour
             room.position = blueprint.position;
 
             allRooms.Add(room);
+            room.transform.SetParent(transform);
             // 추가 작업 필요: 위치 반영, 격자 등록 등
+            */
         }
 
         // 설계도 함선 구매 (재화량 차감)
-        ResourceManager.Instance.ChangeResource(ResourceType.COMA, -1 * BlueprintManager.Instance.totalBlueprintCost);
+        ResourceManager.Instance.ChangeResource(ResourceType.COMA, -1 * blueprintShip.totalBlueprintCost);
     }
 
 

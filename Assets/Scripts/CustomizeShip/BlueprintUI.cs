@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class BlueprintUI : MonoBehaviour
 {
+    [Header("UI")]
     /// <summary>
     /// 설계도 UI 루트 패널.
     /// </summary>
@@ -15,40 +17,32 @@ public class BlueprintUI : MonoBehaviour
     /// <summary>
     /// 총 설계도 가격을 표시할 텍스트 UI.
     /// </summary>
-    public Text totalCostText;
+    public TMP_Text totalCostText;
 
     /// <summary>
     /// 함선 제작 버튼.
     /// </summary>
     public Button buildButton;
 
+    [Header("Connections")]
     /// <summary>
-    /// UI 표시 여부 토글 상태.
+    /// 제작한 설계도
     /// </summary>
-    private bool isActive = false;
+    public BlueprintShip targetBlueprintShip;
 
-    private void Start()
-    {
-        blueprintRoot.SetActive(false);
-    }
+    /// <summary>
+    /// 현재 소유 함선
+    /// </summary>
+    public Ship playerShip;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
+        if (targetBlueprintShip != null && playerShip != null)
         {
-            isActive = !isActive;
-            blueprintRoot.SetActive(isActive);
-        }
+            totalCostText.text = $"Blueprint Cost: {targetBlueprintShip.totalBlueprintCost}";
 
-        if (isActive)
-        {
-            totalCostText.text = $"설계도 가격: {BlueprintManager.Instance.totalBlueprintCost}";
-
-            Ship ship = FindAnyObjectByType<Ship>();
             int currentCurrency = (int)ResourceManager.Instance.GetResource(ResourceType.COMA);
-            bool canExchange = ship.IsFullHitPoint();
-
-            buildButton.interactable = BlueprintManager.Instance.CanBuildShip(currentCurrency, canExchange);
+            buildButton.interactable = currentCurrency >= targetBlueprintShip.totalBlueprintCost && playerShip.IsFullHitPoint();
         }
     }
 
@@ -57,7 +51,9 @@ public class BlueprintUI : MonoBehaviour
     /// </summary>
     public void OnClickBuild()
     {
-        var ship = FindAnyObjectByType<Ship>();
-        BlueprintManager.Instance.ApplyBlueprintToShip(ship, (int)ResourceManager.Instance.GetResource(ResourceType.COMA));
+        if (targetBlueprintShip != null && playerShip != null)
+            playerShip.ReplaceShipWithBlueprint(targetBlueprintShip);
+        // var ship = FindAnyObjectByType<Ship>();
+        // BlueprintShip.ApplyBlueprintToShip(ship, (int)ResourceManager.Instance.GetResource(ResourceType.COMA));
     }
 }

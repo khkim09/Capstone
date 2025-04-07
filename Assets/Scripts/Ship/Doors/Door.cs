@@ -22,8 +22,8 @@ public class Door : MonoBehaviour
     /// <summary>현재 문이 열려있는지 여부</summary>
     [SerializeField] private bool isOpen = false;
 
-   /// <summary>문의 원래 그리드 위치 (방 회전 전)</summary>
-   [SerializeField] private Vector2Int originalGridPosition;
+    /// <summary>문의 원래 그리드 위치 (방 회전 전)</summary>
+    [SerializeField] private Vector2Int originalGridPosition;
 
     /// <summary>원래 그리드 위치 프로퍼티</summary>
     public Vector2Int OriginalGridPosition

@@ -28,7 +28,7 @@ public class OuterShipCombatController
 
 
         ProjectileManager.Instance.FireProjectile(
-            weapon.GetFirePosition(), // 발사 위치
+            weapon.GetFirePosition().position, // 발사 위치
             targetPosition, // 목표 위치
             weapon.GetWeaponType(), // 무기 타입
             () =>

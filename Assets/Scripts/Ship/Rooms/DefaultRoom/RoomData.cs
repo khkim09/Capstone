@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -45,13 +46,11 @@ public abstract class RoomData : ScriptableObject
         public List<DoorPosition> possibleDoorPositions = new List<DoorPosition>();
     }
 
-
     /// <summary>
-    /// 해당 방 데이터에 대응하는 프리팹.
-    /// 실제 Room 생성 시 사용.
+    /// 이 RoomData에 포함된 모든 레벨을 반환합니다.
     /// </summary>
-    public GameObject prefab;
-
+    /// <returns></returns>
+    public abstract List<RoomLevel> GetAllLevels();
 
     /// <summary>
     /// 주어진 레벨에 해당하는 RoomLevel 데이터를 반환합니다.
@@ -105,6 +104,15 @@ public abstract class RoomData<T> : RoomData where T : RoomData.RoomLevel
 {
     /// <summary>레벨별 방 데이터 리스트.</summary>
     [SerializeField] public List<T> RoomLevels = new();
+
+    /// <summary>
+    /// 모든 레벨 반환
+    /// </summary>
+    /// <returns></returns>
+    public override List<RoomLevel> GetAllLevels()
+    {
+        return RoomLevels.Cast<RoomLevel>().ToList();
+    }
 
     /// <summary>
     /// 주어진 레벨에 해당하는 RoomLevel 데이터를 반환합니다.
