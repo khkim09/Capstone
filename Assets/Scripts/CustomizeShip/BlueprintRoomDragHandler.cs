@@ -43,7 +43,8 @@ public class BlueprintRoomDragHandler : MonoBehaviour
         previewRenderer.sprite = levelData.roomSprite;
         previewRenderer.color = validColor;
 
-        previewGO.transform.localScale = new Vector3(currentSize.x, currentSize.y, 1);
+        // previewGO.transform.localScale = new Vector3(currentSize.x, currentSize.y, 1);
+        previewGO.transform.rotation = Quaternion.identity;
     }
 
     private void Update()

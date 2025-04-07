@@ -54,7 +54,7 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.sprite = levelData.roomSprite;
 
-        transform.localScale = new Vector3(levelData.size.x, levelData.size.y, 1);
+        // transform.localScale = new Vector3(levelData.size.x, levelData.size.y, 1);
         // transform.position = new Vector3(pos.x, pos.y, 0);
         transform.rotation = Quaternion.Euler(0, 0, -rotation);
     }

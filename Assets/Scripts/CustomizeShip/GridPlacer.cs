@@ -155,13 +155,13 @@ public class GridPlacer : MonoBehaviour
     {
         RoomData.RoomLevel levelData = data.GetRoomData(level);
         Vector2Int size = levelData.size;
+        RectInt area = new(position, size);
 
         // 겹침 체크
         foreach (BlueprintRoom room in targetBlueprintShip.PlacedBlueprintRooms)
         {
-            RectInt existing = new(room.position, room.roomSize);
-            RectInt candidate = new(position, size);
-            if (existing.Overlaps(candidate))
+            RectInt other = new(room.position, room.roomSize);
+            if (area.Overlaps(other))
                 return false;
         }
 
