@@ -9,10 +9,10 @@ using UnityEngine.Serialization;
  *       즉, 이 클래스를 수정할 경우 무조건 무조건 생성된 Scriptable Object 에 값을 할당할 것!!!!
  *       값이 날라갔을 때를 대비하여 기본값을 하단에 명기함.
  *
- *  오락실 : roomName = "room.lifesupport.game", size = (2,3), cost = 1200, powerRequirement = 20, crewMoraleBonus = 3
+ *  오락실 : roomName = "room.lifesupport.game", size = (3,2), cost = 1200, powerRequirement = 20, crewMoraleBonus = 3
  *  수면실 : roomName = "room.lifesupport.sleep", size = (2,2), cost = 1200, crewMoraleBonus = 1
- *  사우나 : roomName = "room.lifesupport.sauna", size = (2,2), cost = 1500, crewMoraleBonus = 1
- *  영화관 : roomName = "room.lifesupport.theater",  size = (3,4), cost = 2000, powerRequirement = 20, crewMoraleBonus = 4
+ *  사우나 : roomName = "room.lifesupport.sauna", size = (3,2), cost = 1500, crewMoraleBonus = 1
+ *  영화관 : roomName = "room.lifesupport.theater",  size = (4,3), cost = 2000, powerRequirement = 20, crewMoraleBonus = 4
  *
  */
 

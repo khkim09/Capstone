@@ -57,7 +57,7 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
                 roomName = "room.engine.level2",
                 level = 2,
                 hitPoint = 200,
-                size = new Vector2Int(2, 3),
+                size = new Vector2Int(3, 2),
                 cost = 4000,
                 powerRequirement = 75f,
                 crewRequirement = 1,

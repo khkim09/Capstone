@@ -52,7 +52,7 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
                 roomName = "room.cockpit.level3",
                 level = 2,
                 hitPoint = 150,
-                size = new Vector2Int(2, 3),
+                size = new Vector2Int(3, 2),
                 cost = 4000,
                 powerRequirement = 35f,
                 crewRequirement = 1,
