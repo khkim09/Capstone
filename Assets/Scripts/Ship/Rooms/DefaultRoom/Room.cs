@@ -47,7 +47,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     public event Action<Room> OnRoomStateChanged;
 
     /// <summary>현재 방에 존재하는 선원 목록.</summary>
-    public List<CrewBase> crewInRoom = new();
+    protected List<CrewBase> crewInRoom = new();
 
     /// <summary>방이 활성화되어 있는지 여부.</summary>
     protected bool isActive = true;
@@ -511,6 +511,11 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     {
         return connectedDoors;
     }
+
+    public List<CrewBase> GetCrewInRoom()
+    {
+        return crewInRoom;
+    }
 }
 
 /// <summary>
@@ -614,6 +619,8 @@ public abstract class Room<TData, TLevel> : Room
 
         UpdateRoomVisual();
 
+        InitializeIsDamageable();
+        InitializeDoor();
 
         base.Initialize();
         UpdateRoomLevelData();
@@ -633,6 +640,30 @@ public abstract class Room<TData, TLevel> : Room
 
             // 그리드 단위로 크기 조정 (기본 타일 크기 : 1 x 1 유닛)
             transform.localScale = new Vector3(levelData.size.x, levelData.size.y, 1);
+        }
+    }
+
+    private void InitializeDoor()
+    {
+        // 현재 레벨에 해당하는 방 데이터 가져오기
+        var roomLevel = roomData.GetRoomData(currentLevel);
+        if (roomLevel == null || roomLevel.possibleDoorPositions == null || roomLevel.possibleDoorPositions.Count == 0)
+        {
+            Debug.LogWarning($"No door positions defined for room {name} at level {currentLevel}");
+            return;
+        }
+
+        // 기본 문 데이터 가져오기 (리소스에서 로드 또는 참조)
+        DoorData doorData = parentShip.GetDoorData();
+
+        // 가능한 각 문 위치에 문 설치
+        foreach (var doorPos in roomLevel.possibleDoorPositions)
+        {
+            // 문 생성 및 설치
+            if (!AddDoor(doorPos, doorData))
+            {
+                Debug.LogWarning($"Failed to add door at position {doorPos.position} with direction {doorPos.direction} for room {name}");
+            }
         }
     }
 }

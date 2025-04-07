@@ -22,7 +22,7 @@ public class OuterShipCombatController
 
         if (!weapon.IsReady()) return false;
 
-        float attackDamage = attacker.GetSystem<WeaponSystem>().GetActualDamage(weapon.GetDamage());
+        float attackDamage = attacker.GetActualDamage(weapon.GetDamage());
 
         Vector2Int targetPosition = targetShip.GetRandomTargetPosition();
 

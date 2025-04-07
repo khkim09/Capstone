@@ -82,7 +82,7 @@ public class CrewManager : MonoBehaviour
 
         // TODO : 임시로 작동되게 해놓음. 최종적으론 삭제 예정
 
-        GameManager.Instance.GetPlayerShip().GetSystem<CrewSystem>().AddCrewMember(newCrew);
+        GameManager.Instance.GetPlayerShip().AddCrewMember(newCrew);
 
         // 확인용 로그
         Debug.Log($"새로운 선원 : {newCrew.crewName} {newCrew.race}");

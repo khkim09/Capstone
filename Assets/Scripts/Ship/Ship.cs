@@ -26,16 +26,14 @@ public class Ship : MonoBehaviour
     /// </summary>
     private readonly Dictionary<Vector2Int, Room> roomGrid = new();
 
-
-    /// <summary>
-    /// 함선 내의 모든 문(도어) 객체 리스트.
-    /// </summary>
-    private readonly List<Door> doors = new();
-
     /// <summary>
     /// 함선을 이루고 있는 이미 배치된 모든 룸 객체 리스트.
     /// </summary>
     public List<Room> allRooms = new();
+
+    [SerializeField] private DoorData doorData;
+
+    private int doorLevel;
 
     /// <summary>
     /// 룸 타입별로 분류된 룸 리스트 딕셔너리.
@@ -272,7 +270,6 @@ public class Ship : MonoBehaviour
         ResourceManager.Instance.ChangeResource(ResourceType.COMA, -1 * blueprintShip.totalBlueprintCost);
     }
 
-
     // ---------------- <기현> 여기까지 --------------------
 
     /// <summary>
@@ -300,16 +297,7 @@ public class Ship : MonoBehaviour
         return true;
     }
 
-    /// <summary>
-    /// 지정된 위치에 문(Door)을 추가합니다. (미구현)
-    /// </summary>
-    /// <param name="position">문을 추가할 격자 위치.</param>
-    /// <param name="isVertical">세로 방향이면 true, 가로 방향이면 false.</param>
-    /// <returns>성공 여부 (현재는 항상 true).</returns>
-    public bool AddDoor(Vector2Int position, bool isVertical)
-    {
-        return true;
-    }
+
 
     /// <summary>
     /// 특정 타입의 방(Room)을 검색하여 반환합니다.
@@ -336,6 +324,8 @@ public class Ship : MonoBehaviour
             return roomsByType[type];
         return new List<Room>();
     }
+
+    #region 시스템
 
     /// <summary>
     /// 함선에 필요한 시스템들을 초기화하고 등록합니다.
@@ -371,12 +361,17 @@ public class Ship : MonoBehaviour
     /// </summary>
     /// <typeparam name="T">요청할 시스템 타입.</typeparam>
     /// <returns>시스템 인스턴스. 없으면 null.</returns>
-    public T GetSystem<T>() where T : ShipSystem
+    private T GetSystem<T>() where T : ShipSystem
     {
         if (systems.TryGetValue(typeof(T), out ShipSystem system)) return system as T;
         return null;
     }
 
+    #endregion
+
+
+
+    #region 함선 스탯
     /// <summary>
     /// 함선의 기본 스탯을 초기화합니다.
     /// 모든 ShipStat 값을 0으로 설정하여 이후 계산의 기준을 만듭니다.
@@ -400,19 +395,6 @@ public class Ship : MonoBehaviour
         currentStats[ShipStat.HealPerSecond] = 0f;
         currentStats[ShipStat.CrewCapacity] = 0f;
         currentStats[ShipStat.DamageReduction] = 0f;
-    }
-
-    /// <summary>
-    /// 룸의 상태가 변경되었을 때 호출되는 콜백 함수입니다.
-    /// 디버그 로그를 출력하고 전체 스탯을 다시 계산합니다.
-    /// </summary>
-    /// <param name="room">상태가 변경된 룸 객체.</param>
-    private void OnRoomStateChanged(Room room)
-    {
-        if (showDebugInfo)
-            Debug.Log($"Room state changed: {room.name}");
-
-        RecalculateAllStats();
     }
 
     /// <summary>
@@ -463,9 +445,6 @@ public class Ship : MonoBehaviour
             if (crewContributions.TryGetValue(ShipStat.OxygenUsingPerSecond, out float oxygenUsage))
                 currentStats[ShipStat.OxygenUsingPerSecond] += oxygenUsage;
         }
-
-        // 특별한 스탯 처리 (필요시)
-        ProcessSpecialStats();
 
         // 디버깅 정보 출력
         if (showDebugInfo)
@@ -526,16 +505,6 @@ public class Ship : MonoBehaviour
     }
 
     /// <summary>
-    /// 특정 스탯 간의 상호작용이나 추가 계산이 필요한 경우에 호출됩니다.
-    /// 예: 파생 스탯 계산, 제한 조건 반영 등.
-    /// 현재는 비어 있으며 확장용으로 예약되어 있습니다.
-    /// </summary>
-    private void ProcessSpecialStats()
-    {
-        // 다른 특수 스탯 상호작용...
-    }
-
-    /// <summary>
     /// 현재 함선의 스탯과 룸별 스탯 기여도를 콘솔에 출력합니다.
     /// 디버깅 모드가 활성화된 경우에만 호출되며, 전체 스탯 상태를 확인할 수 있습니다.
     /// </summary>
@@ -584,9 +553,196 @@ public class Ship : MonoBehaviour
         return new Dictionary<ShipStat, float>();
     }
 
-    // ===== Power Management =====
+    #endregion
+
 
     /// <summary>
+    /// 룸의 상태가 변경되었을 때 호출되는 콜백 함수입니다.
+    /// 디버그 로그를 출력하고 전체 스탯을 다시 계산합니다.
+    /// </summary>
+    /// <param name="room">상태가 변경된 룸 객체.</param>
+    private void OnRoomStateChanged(Room room)
+    {
+        if (showDebugInfo)
+            Debug.Log($"Room state changed: {room.name}");
+
+        RecalculateAllStats();
+    }
+
+
+    // ===== Power Management =====
+
+
+
+    /// <summary>
+    /// 함선이 파괴되었을 때 호출되는 함수입니다.
+    /// 게임 오버 로직 등을 처리할 수 있습니다.
+    /// </summary>
+    public void OnShipDestroyed()
+    {
+        Debug.Log($"Ship {shipName} destroyed!");
+        // Implement game over logic
+    }
+
+    // ===== Warp System =====
+
+    public bool Warp()
+    {
+        float fuelCost = CalculateWarpFuelCost();
+
+        if (ResourceManager.Instance.GetResource(ResourceType.Fuel) < fuelCost)
+            return false;
+
+        List<Room> engineRooms = GetRoomsByType(RoomType.Engine);
+        List<Room> cockpitRooms = GetRoomsByType(RoomType.Cockpit);
+
+        // Check if crew requirement is met
+        foreach (Room engineRoom in engineRooms)
+            if (!engineRoom.HasEnoughCrew())
+                return false;
+
+        foreach (Room cockpitRoom in cockpitRooms)
+            if (!cockpitRoom.HasEnoughCrew())
+                return false;
+
+        ResourceManager.Instance.ChangeResource(ResourceType.Fuel, -fuelCost);
+        return true;
+    }
+
+    /// <summary>
+    /// 워프 시 필요한 연료 소모량을 계산합니다.
+    /// </summary>
+    /// <returns>연료 비용.</returns>
+    public float CalculateWarpFuelCost()
+    {
+        float fuelCost = GetStat(ShipStat.FuelConsumption);
+        float fuelEfficiency = GetStat(ShipStat.FuelEfficiency);
+        fuelCost *= 1 - fuelEfficiency / 100f;
+
+        if (showDebugInfo)
+            Debug.Log($"Warp fuel cost: {fuelCost}");
+
+        return fuelCost;
+    }
+
+    #region 승무원
+
+    /// <summary>
+    /// 현재 탑승 중인 크루 수를 반환합니다.
+    /// </summary>
+    public int GetCrewCount()
+    {
+        return GetSystem<CrewSystem>().GetCrewCount();
+    }
+
+    /// <summary>
+    /// 최대 크루 수(수용 가능 인원)를 반환합니다.
+    /// </summary>
+    public int GetMaxCrew()
+    {
+        return (int)currentStats[ShipStat.CrewCapacity];
+    }
+
+    /// <summary>
+    /// 현재 함선에 탑승 중인 모든 크루를 반환합니다.
+    /// </summary>
+    /// <returns>CrewBase 객체들의 리스트.</returns>
+    public List<CrewBase> GetAllCrew()
+    {
+        return GetSystem<CrewSystem>().GetCrews();
+    }
+
+
+    /// <summary>
+    /// 새로운 승무원을 함선에 추가합니다.
+    /// </summary>
+    /// <param name="newCrew">함선에 추가할 승무원 정보. 이름, 종족, 속성 등을 포함합니다.</param>
+    /// <returns>승무원이 성공적으로 추가되었으면 True, 그렇지 않으면 False를 반환합니다.</returns>
+    public bool AddCrewMember(CrewBase newCrew)
+    {
+        return GetSystem<CrewSystem>().AddCrewMember(newCrew);
+    }
+
+    #endregion
+
+
+    /// <summary>
+    /// 모든 룸 정보를 반환합니다.
+    /// </summary>
+    public List<Room> GetAllRooms()
+    {
+        return allRooms;
+    }
+
+    #region 무기
+
+    /// <summary>
+    /// 현재 탑재 중인 모든 무기를 반환합니다.
+    /// </summary>
+    public List<ShipWeapon> GetAllWeapons()
+    {
+        return GetSystem<WeaponSystem>().GetWeapons();
+    }
+
+    /// <summary>
+    /// 무기 시스템 수정자를 적용한 후의 실제 피해량을 계산합니다.
+    /// </summary>
+    /// <param name="damage">수정 전 원래 피해 값.</param>
+    /// <returns>무기 특유 효과를 고려한 수정된 피해 값.</returns>
+    public float GetActualDamage(float damage)
+    {
+        return GetSystem<WeaponSystem>().GetActualDamage(damage);
+    }
+
+    #endregion
+
+    #region 체력
+
+    /// <summary>
+    /// 현재 함선의 내구도(Hit Point)를 반환합니다.
+    /// </summary>
+    /// <returns>현재 남아 있는 함선의 체력 값.</returns>
+    public float GetCurrentHitPoints()
+    {
+        return GetSystem<HitPointSystem>().GetHitPoint();
+    }
+
+    #endregion
+
+    #region 피격
+
+    /// <summary>
+    /// 무작위로 타겟팅 가능한 방의 위치를 반환합니다.
+    /// 방이 없는 경우 (모두 파괴되었거나 타겟 불가) Vector2Int.zero를 반환합니다.
+    /// </summary>
+    /// <returns>타겟팅 가능한 방의 격자 좌표.</returns>
+    public Vector2Int GetRandomTargetPosition()
+    {
+        // 실제 구현에서는 함선의 경계 내에서 랜덤 위치 반환
+        // 또는 실제 방의 위치 반환
+        Room randomRoom = GetRandomTargettableRoom();
+
+        if (randomRoom == null) return Vector2Int.zero;
+
+        return randomRoom.position;
+    }
+
+    /// <summary>
+    /// 공격 대상으로 선택 가능한 방 중 하나를 무작위로 반환합니다.
+    /// 피해를 받을 수 있고 체력이 남아 있는 방만 대상이 됩니다.
+    /// </summary>
+    /// <returns>타겟팅 가능한 방 객체. 없으면 null.</returns>
+    private Room GetRandomTargettableRoom()
+    {
+        List<Room> validRooms = GetAllRooms().FindAll(room => room.GetIsDamageable() && room.GetHealthPercentage() > 0);
+
+        if (validRooms.Count == 0) return null;
+
+        int randomIndex = UnityEngine.Random.Range(0, validRooms.Count);
+        return validRooms[randomIndex];
+    }
+
+        /// <summary>
     /// 무기 및 외부 방어 시스템을 포함한 실제 피해 계산 및 적용을 수행합니다.
     /// </summary>
     /// <param name="damage">입력된 피해량.</param>
@@ -644,7 +800,7 @@ public class Ship : MonoBehaviour
     /// <param name="damage">적용할 피해량.</param>
     private void ApplyDamageToCrewsInRoom(Room room, float damage)
     {
-        List<CrewBase> crewsInRoom = room.crewInRoom;
+        List<CrewBase> crewsInRoom = room.GetCrewInRoom();
         foreach (CrewBase crew in crewsInRoom) crew.TakeDamage(damage);
     }
 
@@ -687,152 +843,9 @@ public class Ship : MonoBehaviour
                 }
     }
 
-    /// <summary>
-    /// 함선이 파괴되었을 때 호출되는 함수입니다.
-    /// 게임 오버 로직 등을 처리할 수 있습니다.
-    /// </summary>
-    public void OnShipDestroyed()
-    {
-        Debug.Log($"Ship {shipName} destroyed!");
-        // Implement game over logic
-    }
+    #endregion
 
-    // ===== Warp System =====
-
-    public bool Warp()
-    {
-        float fuelCost = CalculateWarpFuelCost();
-
-        if (ResourceManager.Instance.GetResource(ResourceType.Fuel) < fuelCost)
-            return false;
-
-        List<Room> engineRooms = GetRoomsByType(RoomType.Engine);
-        List<Room> cockpitRooms = GetRoomsByType(RoomType.Cockpit);
-
-        // Check if crew requirement is met
-        foreach (Room engineRoom in engineRooms)
-            if (!engineRoom.HasEnoughCrew())
-                return false;
-
-        foreach (Room cockpitRoom in cockpitRooms)
-            if (!cockpitRoom.HasEnoughCrew())
-                return false;
-
-        ResourceManager.Instance.ChangeResource(ResourceType.Fuel, -fuelCost);
-        return true;
-    }
-
-    /// <summary>
-    /// 워프 시 필요한 연료 소모량을 계산합니다.
-    /// </summary>
-    /// <returns>연료 비용.</returns>
-    public float CalculateWarpFuelCost()
-    {
-        float fuelCost = GetStat(ShipStat.FuelConsumption);
-        float fuelEfficiency = GetStat(ShipStat.FuelEfficiency);
-        fuelCost *= 1 - fuelEfficiency / 100f;
-
-        if (showDebugInfo)
-            Debug.Log($"Warp fuel cost: {fuelCost}");
-
-        return fuelCost;
-    }
-
-    // ===== Crew Management =====
-
-
-    // ===== Getters =====
-
-    /// <summary>
-    /// 현재 탑승 중인 크루 수를 반환합니다.
-    /// </summary>
-    public int GetCrewCount()
-    {
-        return GetSystem<CrewSystem>().GetCrewCount();
-    }
-
-    /// <summary>
-    /// 최대 크루 수(수용 가능 인원)를 반환합니다.
-    /// </summary>
-    public int GetMaxCrew()
-    {
-        return (int)currentStats[ShipStat.CrewCapacity];
-    }
-
-    /// <summary>
-    /// 모든 룸 정보를 반환합니다.
-    /// </summary>
-    public List<Room> GetAllRooms()
-    {
-        return allRooms;
-    }
-
-    /// <summary>
-    /// 함선에 존재하는 모든 문(Door) 객체를 반환합니다.
-    /// </summary>
-    /// <returns>Door 객체들의 리스트.</returns>
-    public List<Door> GetAllDoors()
-    {
-        return doors;
-    }
-
-
-    /// <summary>
-    /// 현재 함선에 탑승 중인 모든 크루를 반환합니다.
-    /// </summary>
-    /// <returns>CrewBase 객체들의 리스트.</returns>
-    public List<CrewBase> GetAllCrew()
-    {
-        return GetSystem<CrewSystem>().GetCrews();
-    }
-
-    /// <summary>
-    /// 현재 탑재 중인 모든 무기를 반환합니다.
-    /// </summary>
-    public List<ShipWeapon> GetAllWeapons()
-    {
-        return GetSystem<WeaponSystem>().GetWeapons();
-    }
-
-    /// <summary>
-    /// 현재 함선의 내구도(Hit Point)를 반환합니다.
-    /// </summary>
-    /// <returns>현재 남아 있는 함선의 체력 값.</returns>
-    public float GetCurrentHitPoints()
-    {
-        return GetSystem<HitPointSystem>().GetHitPoint();
-    }
-
-    /// <summary>
-    /// 무작위로 타겟팅 가능한 방의 위치를 반환합니다.
-    /// 방이 없는 경우 (모두 파괴되었거나 타겟 불가) Vector2Int.zero를 반환합니다.
-    /// </summary>
-    /// <returns>타겟팅 가능한 방의 격자 좌표.</returns>
-    public Vector2Int GetRandomTargetPosition()
-    {
-        // 실제 구현에서는 함선의 경계 내에서 랜덤 위치 반환
-        // 또는 실제 방의 위치 반환
-        Room randomRoom = GetRandomTargettableRoom();
-
-        if (randomRoom == null) return Vector2Int.zero;
-
-        return randomRoom.position;
-    }
-
-    /// <summary>
-    /// 공격 대상으로 선택 가능한 방 중 하나를 무작위로 반환합니다.
-    /// 피해를 받을 수 있고 체력이 남아 있는 방만 대상이 됩니다.
-    /// </summary>
-    /// <returns>타겟팅 가능한 방 객체. 없으면 null.</returns>
-    private Room GetRandomTargettableRoom()
-    {
-        List<Room> validRooms = GetAllRooms().FindAll(room => room.GetIsDamageable() && room.GetHealthPercentage() > 0);
-
-        if (validRooms.Count == 0) return null;
-
-        int randomIndex = UnityEngine.Random.Range(0, validRooms.Count);
-        return validRooms[randomIndex];
-    }
+    #region 산소
 
     /// <summary>
     /// 현재 산소량을 반환합니다.
@@ -851,4 +864,30 @@ public class Ship : MonoBehaviour
     {
         return GetSystem<OxygenSystem>().GetOxygenLevel();
     }
+
+    #endregion
+
+    #region 문
+
+    /// <summary>
+    /// 문 데이터를 반환합니다.
+    /// </summary>
+    /// <returns>문과 관련된 정보 및 구성 데이터를 포함하는 <see cref="DoorData"/> 객체를 반환합니다.</returns>
+    public DoorData GetDoorData()
+    {
+        return doorData;
+    }
+
+    /// <summary>
+    /// 현재 함선의 문 레벨을 반환합니다.
+    /// </summary>
+    /// <returns>현재 문 레벨 값.</returns>
+    public int GetDoorLevel()
+    {
+        return doorLevel;
+    }
+
+    #endregion
+
+
 }
