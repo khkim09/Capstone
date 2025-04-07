@@ -476,8 +476,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         // 그리드 크기와 오프셋에 따라 계산
         float cellSize = 1.0f; // 그리드 셀 크기
         return transform.position + new Vector3(
-            gridPos.x * cellSize + cellSize/2,
-            gridPos.y * cellSize + cellSize/2
+            gridPos.x * cellSize + cellSize / 2,
+            gridPos.y * cellSize + cellSize / 2
         );
     }
 
@@ -672,7 +672,14 @@ public abstract class Room<TData, TLevel> : Room
     private void UpdateRoomVisual()
     {
         roomRenderer = GetComponent<SpriteRenderer>();
-        if (roomRenderer != null && GetCurrentLevelData()?.roomSprite != null)
-            roomRenderer.sprite = GetCurrentLevelData().roomSprite;
+
+        var levelData = GetCurrentLevelData();
+        if (roomRenderer != null && levelData?.roomSprite != null)
+        {
+            roomRenderer.sprite = levelData.roomSprite;
+
+            // 그리드 단위로 크기 조정 (기본 타일 크기 : 1 x 1 유닛)
+            transform.localScale = new Vector3(levelData.size.x, levelData.size.y, 1);
+        }
     }
 }
