@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -40,6 +41,8 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     /// <summary>해당 레벨의 크기</summary>
     public Vector2Int roomSize => levelData.size;
 
+    public List<Vector2Int> OccupiedTiles { get; private set; } = new();
+
     /// <summary>
     /// 설치 시 초기화
     /// </summary>
@@ -51,10 +54,12 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         rotation = rot;
 
         RoomData.RoomLevel levelData = data.GetRoomData(level);
+        Vector2Int rotatedSize = RoomRotationUtility.GetRotatedSize(levelData.size, rotation);
+        OccupiedTiles = RoomRotationUtility.GetOccupiedTiles(pos, rotatedSize, rot);
+
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.sprite = levelData.roomSprite;
 
-        // transform.position = new Vector3(pos.x, pos.y, 0);
         transform.rotation = Quaternion.Euler(0, 0, -rotation);
     }
 
