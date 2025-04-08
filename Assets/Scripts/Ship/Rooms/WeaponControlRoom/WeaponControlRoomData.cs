@@ -29,6 +29,7 @@ public class WeaponControlRoomData : RoomData<WeaponControlRoomData.WeaponContro
             new()
             {
                 roomName = "room.weaponcontrol.level1",
+                roomType = RoomType.WeaponControl,
                 level = 1,
                 hitPoint = 100,
                 size = new Vector2Int(2, 1),
@@ -36,15 +37,14 @@ public class WeaponControlRoomData : RoomData<WeaponControlRoomData.WeaponContro
                 powerRequirement = 30f,
                 crewRequirement = 0,
                 accuracy = 10f,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 60f }, { RoomDamageLevel.DamageLevelTwo, 30f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(60f, 30f),
+                possibleDoorPositions =
+                    new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) }
             },
             new()
             {
                 roomName = "room.weaponcontrol.level2",
+                roomType = RoomType.WeaponControl,
                 level = 2,
                 hitPoint = 120,
                 size = new Vector2Int(2, 1),
@@ -52,11 +52,9 @@ public class WeaponControlRoomData : RoomData<WeaponControlRoomData.WeaponContro
                 powerRequirement = 50f,
                 crewRequirement = 0,
                 accuracy = 20,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 60f }, { RoomDamageLevel.DamageLevelTwo, 30f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(60f, 30f),
+                possibleDoorPositions =
+                    new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) }
             }
         };
     }

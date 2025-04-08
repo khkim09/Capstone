@@ -237,7 +237,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         float skillIncreaseAmount = 0.0f; // 증가량
 
         // 방 타입에 따라 향상될 스킬 결정
-        switch (currentRoom.roomType)
+        switch (currentRoom.GetRoomType())
         {
             case RoomType.Cockpit:
                 skillToImprove = SkillType.PilotSkill;

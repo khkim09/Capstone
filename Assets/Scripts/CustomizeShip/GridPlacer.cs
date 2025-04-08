@@ -82,14 +82,12 @@ public class GridPlacer : MonoBehaviour
     public void GenerateTiles()
     {
         for (int x = 0; x < width; x++)
+        for (int y = 0; y < height; y++)
         {
-            for (int y = 0; y < height; y++)
-            {
-                Vector3 pos = ShipGridManager.Instance.GridToWorldPosition(new Vector2Int(x, y));
-                GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
-                tile.transform.localScale = Vector3.one * tileSize;
-                tile.transform.position += new Vector3(0, 0, 17);
-            }
+            Vector3 pos = ShipGridManager.Instance.GridToWorldPosition(new Vector2Int(x, y));
+            GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
+            tile.transform.localScale = Vector3.one * tileSize;
+            tile.transform.position += new Vector3(0, 0, 17);
         }
     }
 
@@ -153,7 +151,7 @@ public class GridPlacer : MonoBehaviour
     /// </summary>
     public bool CanPlaceRoom(RoomData data, int level, Vector2Int position, int rotation)
     {
-        RoomData.RoomLevel levelData = data.GetRoomData(level);
+        RoomData.RoomLevel levelData = data.GetRoomDataByLevel(level);
         Vector2Int size = levelData.size;
         RectInt area = new(position, size);
 
@@ -173,7 +171,7 @@ public class GridPlacer : MonoBehaviour
     /// </summary>
     public void PlaceRoom(RoomData data, int level, Vector2Int position, int rotation)
     {
-        RoomData.RoomLevel levelData = data.GetRoomData(level);
+        RoomData.RoomLevel levelData = data.GetRoomDataByLevel(level);
         float dx = levelData.size.x / 2f - 0.5f;
         float dy = levelData.size.y / 2f - 0.5f;
 

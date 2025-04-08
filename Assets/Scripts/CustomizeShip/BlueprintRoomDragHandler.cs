@@ -12,8 +12,7 @@ public class BlueprintRoomDragHandler : MonoBehaviour
     [Header("배치 유효성을 검사하고 실제 배치하는 GridPlacer 참조")]
     public GridPlacer gridPlacer;
 
-    [Header("preview sprite color")]
-    public Color validColor = new(0, 1, 0, 0.5f);
+    [Header("preview sprite color")] public Color validColor = new(0, 1, 0, 0.5f);
     public Color invalidColor = new(1, 0, 0, 0.5f);
 
     private GameObject previewGO;
@@ -35,7 +34,7 @@ public class BlueprintRoomDragHandler : MonoBehaviour
         currentRotation = 0;
         isDragging = true;
 
-        RoomData.RoomLevel levelData = data.GetRoomData(level);
+        RoomData.RoomLevel levelData = data.GetRoomDataByLevel(level);
         currentSize = levelData.size;
 
         previewGO = Instantiate(previewPrefab);

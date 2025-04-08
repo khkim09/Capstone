@@ -37,6 +37,7 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
             new()
             {
                 roomName = "room.engine.level1",
+                roomType = RoomType.Engine,
                 level = 1,
                 hitPoint = 100,
                 size = new Vector2Int(2, 2),
@@ -46,15 +47,13 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
                 fuelConsumption = 10f,
                 fuelEfficiency = 0f,
                 avoidEfficiency = 0f,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 60f }, { RoomDamageLevel.DamageLevelTwo, 20f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(60f, 20f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) }
             },
             new()
             {
                 roomName = "room.engine.level2",
+                roomType = RoomType.Engine,
                 level = 2,
                 hitPoint = 200,
                 size = new Vector2Int(3, 2),
@@ -64,15 +63,13 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
                 fuelConsumption = 8f,
                 fuelEfficiency = 5f,
                 avoidEfficiency = 2f,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 60f }, { RoomDamageLevel.DamageLevelTwo, 20f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(60f, 20f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(2, 1), DoorDirection.East) }
             },
             new()
             {
                 roomName = "room.engine.level3",
+                roomType = RoomType.Engine,
                 level = 3,
                 hitPoint = 300,
                 size = new Vector2Int(3, 3),
@@ -82,11 +79,8 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
                 fuelConsumption = 5f,
                 fuelEfficiency = 10f,
                 avoidEfficiency = 5f,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 60f }, { RoomDamageLevel.DamageLevelTwo, 20f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(60f, 20f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 1), DoorDirection.South) }
             }
         };
     }

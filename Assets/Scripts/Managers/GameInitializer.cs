@@ -6,9 +6,6 @@
 /// </summary>
 public class GameInitializer : MonoBehaviour
 {
-    /// <summary>승무원 매니저 프리팹.</summary>
-    [SerializeField] private GameObject crewManagerPrefab;
-
     /// <summary>이벤트 매니저 프리팹.</summary>
     [SerializeField] private GameObject eventManagerPrefab;
 
@@ -39,7 +36,6 @@ public class GameInitializer : MonoBehaviour
         // 필요한 매니저들 초기화 (실제 게임에서는 Prefab 또는 Resources에서 로드)
         InstantiateIfNotExists<GameManager>(gameManagerPrefab);
         InstantiateIfNotExists<ResourceManager>(resourceManagerPrefab);
-        InstantiateIfNotExists<CrewManager>(crewManagerPrefab);
         InstantiateIfNotExists<EventManager>(eventManagerPrefab);
         InstantiateIfNotExists<QuestManager>(questManagerPrefab);
         InstantiateIfNotExists<UIManager>(uiManagerPrefab);

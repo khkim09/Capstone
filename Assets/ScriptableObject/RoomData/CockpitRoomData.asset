@@ -15,34 +15,69 @@ MonoBehaviour:
   RoomLevels:
   - roomName: room.cockpit.level1
     level: 1
+    roomType: 4
     hitPoint: 100
     size: {x: 2, y: 2}
     cost: 2500
     crewRequirement: 1
     powerRequirement: 25
+    damageHitPointRate:
+      damageLevelOne: 50
+      damageLevelTwo: 10
+      pairs:
+      - damageLevel: 0
+        hitPointRate: 50
+      - damageLevel: 1
+        hitPointRate: 10
     roomSprite: {fileID: 6510923536364130792, guid: fa5dca080b8e54f40b1d3a4216405357, type: 3}
-    possibleDoorPositions: []
+    possibleDoorPositions:
+    - position: {x: 0, y: 0}
+      direction: 2
     fuelEfficiency: 0
     avoidEfficiency: 0
-  - roomName: room.cockpit.level2
+  - roomName: room.cockpit.level3
     level: 2
+    roomType: 4
     hitPoint: 150
     size: {x: 3, y: 2}
     cost: 4000
     crewRequirement: 1
     powerRequirement: 35
+    damageHitPointRate:
+      damageLevelOne: 50
+      damageLevelTwo: 10
+      pairs:
+      - damageLevel: 0
+        hitPointRate: 50
+      - damageLevel: 1
+        hitPointRate: 10
     roomSprite: {fileID: -5926108167383933799, guid: fa5dca080b8e54f40b1d3a4216405357, type: 3}
-    possibleDoorPositions: []
+    possibleDoorPositions:
+    - position: {x: 1, y: 0}
+      direction: 2
     fuelEfficiency: 5
     avoidEfficiency: 2
   - roomName: room.cockpit.level3
     level: 3
+    roomType: 4
     hitPoint: 200
     size: {x: 3, y: 3}
     cost: 7000
     crewRequirement: 1
     powerRequirement: 45
+    damageHitPointRate:
+      damageLevelOne: 50
+      damageLevelTwo: 10
+      pairs:
+      - damageLevel: 0
+        hitPointRate: 50
+      - damageLevel: 1
+        hitPointRate: 10
     roomSprite: {fileID: 5617219014421984843, guid: fa5dca080b8e54f40b1d3a4216405357, type: 3}
-    possibleDoorPositions: []
+    possibleDoorPositions:
+    - position: {x: 0, y: 0}
+      direction: 3
+    - position: {x: 2, y: 0}
+      direction: 1
     fuelEfficiency: 10
     avoidEfficiency: 5

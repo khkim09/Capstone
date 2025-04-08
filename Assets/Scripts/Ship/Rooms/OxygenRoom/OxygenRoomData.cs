@@ -31,22 +31,20 @@ public class OxygenRoomData : RoomData<OxygenRoomData.OxygenLevel>
             new()
             {
                 roomName = "room.oxygen.level1",
+                roomType = RoomType.Oxygen,
                 level = 1,
                 hitPoint = 80,
                 size = new Vector2Int(2, 1),
                 cost = 500,
                 powerRequirement = 10f,
                 crewRequirement = 0,
-                oxygenSupplyPerSecond = 5f,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 80f }, { RoomDamageLevel.DamageLevelTwo, 30f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(80f, 30f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) }
             },
             new()
             {
                 roomName = "room.oxygen.level2",
+                roomType = RoomType.Oxygen,
                 level = 2,
                 hitPoint = 160,
                 size = new Vector2Int(2, 1),
@@ -54,11 +52,8 @@ public class OxygenRoomData : RoomData<OxygenRoomData.OxygenLevel>
                 powerRequirement = 15f,
                 crewRequirement = 0,
                 oxygenSupplyPerSecond = 8f,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 80f }, { RoomDamageLevel.DamageLevelTwo, 30f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(80f, 30f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) }
             }
         };
     }

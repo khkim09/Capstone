@@ -30,6 +30,7 @@ public class StorageRoomBaseData : RoomData<StorageRoomBaseData.StorageRoomBaseL
     /// </summary>
     protected override void InitializeDefaultLevels()
     {
-        RoomLevels = new List<StorageRoomBaseLevel> { new() { level = 1, hitPoint = 100 } };
+        RoomLevels =
+            new List<StorageRoomBaseLevel> { new() { roomType = RoomType.Storage, level = 1, hitPoint = 100 } };
     }
 }

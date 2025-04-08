@@ -33,6 +33,7 @@ public class AmmunitionRoomData : RoomData<AmmunitionRoomData.AmmunitionRoomLeve
             new()
             {
                 roomName = "room.ammunition.level1",
+                roomType = RoomType.Ammunition,
                 level = 1,
                 hitPoint = 100,
                 size = new Vector2Int(2, 1),
@@ -41,15 +42,13 @@ public class AmmunitionRoomData : RoomData<AmmunitionRoomData.AmmunitionRoomLeve
                 crewRequirement = 0,
                 reloadTimeBonus = 10f,
                 damageBonus = 0f,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 60f }, { RoomDamageLevel.DamageLevelTwo, 30f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(60f, 30f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) }
             },
             new()
             {
                 roomName = "room.ammunition.level2",
+                roomType = RoomType.Ammunition,
                 level = 2,
                 hitPoint = 200,
                 size = new Vector2Int(2, 1),
@@ -58,11 +57,8 @@ public class AmmunitionRoomData : RoomData<AmmunitionRoomData.AmmunitionRoomLeve
                 crewRequirement = 0,
                 reloadTimeBonus = 20f,
                 damageBonus = 10f,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 60f }, { RoomDamageLevel.DamageLevelTwo, 30f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(60f, 30f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) }
             }
         };
     }

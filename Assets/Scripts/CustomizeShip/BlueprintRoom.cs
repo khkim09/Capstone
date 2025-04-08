@@ -32,7 +32,7 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     private bool isDragging = false;
 
     /// <summary>레벨별 데이터 접근자</summary>
-    public RoomData.RoomLevel levelData => roomData.GetRoomData(levelIndex);
+    public RoomData.RoomLevel levelData => roomData.GetRoomDataByLevel(levelIndex);
 
     /// <summary>해당 레벨의 설치 비용</summary>
     public int roomCost => levelData.cost;
@@ -50,7 +50,7 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         position = pos;
         rotation = rot;
 
-        RoomData.RoomLevel levelData = data.GetRoomData(level);
+        RoomData.RoomLevel levelData = data.GetRoomDataByLevel(level);
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.sprite = levelData.roomSprite;
 

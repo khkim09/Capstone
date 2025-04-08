@@ -34,17 +34,15 @@ public class TeleportRoomData : RoomData<TeleportRoomData.TeleportRoomLevel>
             new()
             {
                 roomName = "room.teleport.level1",
+                roomType = RoomType.Teleporter,
                 level = 1,
                 hitPoint = 100,
                 size = new Vector2Int(1, 1),
                 cost = 700,
                 powerRequirement = 20f,
                 crewRequirement = 0,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 40f }, { RoomDamageLevel.DamageLevelTwo, 0f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(40f, 0f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(0, 0), DoorDirection.East) }
             }
         };
     }

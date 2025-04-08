@@ -33,6 +33,7 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
             new()
             {
                 roomName = "room.cockpit.level1",
+                roomType = RoomType.Cockpit,
                 level = 1,
                 hitPoint = 100,
                 size = new Vector2Int(2, 2),
@@ -41,15 +42,13 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
                 crewRequirement = 1,
                 fuelEfficiency = 0f,
                 avoidEfficiency = 0f,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 50f }, { RoomDamageLevel.DamageLevelTwo, 10f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(50f, 10f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(0, 0), DoorDirection.South) }
             },
             new()
             {
                 roomName = "room.cockpit.level3",
+                roomType = RoomType.Cockpit,
                 level = 2,
                 hitPoint = 150,
                 size = new Vector2Int(3, 2),
@@ -58,15 +57,13 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
                 crewRequirement = 1,
                 fuelEfficiency = 5f,
                 avoidEfficiency = 2f,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 50f }, { RoomDamageLevel.DamageLevelTwo, 10f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(50f, 10f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.South) }
             },
             new()
             {
                 roomName = "room.cockpit.level3",
+                roomType = RoomType.Cockpit,
                 level = 3,
                 hitPoint = 200,
                 size = new Vector2Int(3, 3),
@@ -75,11 +72,7 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
                 crewRequirement = 1,
                 fuelEfficiency = 10f,
                 avoidEfficiency = 5f,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 50f }, { RoomDamageLevel.DamageLevelTwo, 10f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(50f, 10f)
             }
         };
     }

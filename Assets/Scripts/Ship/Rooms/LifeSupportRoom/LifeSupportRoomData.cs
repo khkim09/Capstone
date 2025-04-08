@@ -38,6 +38,7 @@ public class LifeSupportRoomData : RoomData<LifeSupportRoomData.LifeSupportRoomL
     /// </summary>
     protected override void InitializeDefaultLevels()
     {
-        RoomLevels = new List<LifeSupportRoomLevel> { new() { level = 1, hitPoint = 100 } };
+        RoomLevels =
+            new List<LifeSupportRoomLevel> { new() { roomType = RoomType.LifeSupport, level = 1, hitPoint = 100 } };
     }
 }

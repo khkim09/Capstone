@@ -3,32 +3,25 @@ using UnityEngine;
 
 public class ShipCustomizationManager : MonoBehaviour
 {
-    [Header("Grid Settings")]
-    public float cellSize = 1.0f;
-    public Vector2 gridMin = new Vector2(-5.0f, -4.0f);
-    public Vector2 gridMax = new Vector2(5.0f, 4.0f);
+    [Header("Grid Settings")] public float cellSize = 1.0f;
+    public Vector2 gridMin = new(-5.0f, -4.0f);
+    public Vector2 gridMax = new(5.0f, 4.0f);
 
-    [Header("Module Prefabs")]
-    public GameObject corridorPrefab;
+    [Header("Module Prefabs")] public GameObject corridorPrefab;
     public GameObject doorPrefab;
     // 다른 모듈 프리팹 추가 가능 (예: 무기 모듈 등)
 
-    [Header("Customization Settings")]
-    public Transform modulesContainer;  // 커스터마이징된 모듈들이 붙을 부모 Transform
-    public int currency = 1000;         // 시작 재화
+    [Header("Customization Settings")] public Transform modulesContainer; // 커스터마이징된 모듈들이 붙을 부모 Transform
+    public int currency = 1000; // 시작 재화
 
-    [Header("Cost Settings")]
-    public int corridorCost = 10;
+    [Header("Cost Settings")] public int corridorCost = 10;
     public int doorCost = 15;
     // 모듈별 추가 비용 설정 가능
 
     // 현재 배치된 모듈들을 그리드 좌표로 관리
-    private Dictionary<Vector2Int, GameObject> placedModules = new Dictionary<Vector2Int, GameObject>();
+    private Dictionary<Vector2Int, GameObject> placedModules = new();
 
-    public Dictionary<Vector2Int, GameObject> PlacedModules
-    {
-        get { return placedModules; }
-    }
+    public Dictionary<Vector2Int, GameObject> PlacedModules => placedModules;
 
     /// <summary>
     /// 주어진 월드 좌표에 모듈 프리팹을 배치합니다.
@@ -42,6 +35,7 @@ public class ShipCustomizationManager : MonoBehaviour
             Debug.LogWarning("그리드 범위를 벗어났습니다.");
             return false;
         }
+
         if (placedModules.ContainsKey(gridPos))
         {
             Debug.LogWarning("해당 그리드 셀에 이미 모듈이 배치되어 있습니다.");
@@ -78,6 +72,7 @@ public class ShipCustomizationManager : MonoBehaviour
             Debug.Log($"모듈 삭제됨 (위치: {gridPos}).");
             return true;
         }
+
         return false;
     }
 
@@ -133,10 +128,7 @@ public class ShipCustomizationManager : MonoBehaviour
     /// </summary>
     public void ClearAllModules()
     {
-        foreach (var module in placedModules.Values)
-        {
-            Destroy(module);
-        }
+        foreach (GameObject module in placedModules.Values) Destroy(module);
         placedModules.Clear();
         Debug.Log("모든 모듈이 삭제되었습니다.");
     }
@@ -153,7 +145,7 @@ public class ShipCustomizationManager : MonoBehaviour
 
         GameObject newRoomObj = Instantiate(prefab, placePos, Quaternion.identity, modulesContainer);
         Room roomInstance = newRoomObj.GetComponent<Room>();
-        roomInstance.roomData = savedRoom.roomData;
+        roomInstance.SetRoomData(savedRoom.GetRoomData());
         roomInstance.position = savedRoom.position;
         placedModules[savedRoom.position] = newRoomObj;
     }

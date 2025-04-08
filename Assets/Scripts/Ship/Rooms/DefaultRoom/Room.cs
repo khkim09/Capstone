@@ -11,16 +11,16 @@ using Random = UnityEngine.Random;
 public abstract class Room : MonoBehaviour, IShipStatContributor
 {
     /// <summary>방의 데이터 ScriptableObject 참조.</summary>
-    [SerializeField] public RoomData roomData;
+    [SerializeField] protected RoomData roomData;
 
     /// <summary>격자상의 방 위치 (좌측 상단 기준).</summary>
     public Vector2Int position;
 
     /// <summary>현재 방의 업그레이드 레벨.</summary>
-    public int currentLevel;
+    protected int currentLevel;
 
     /// <summary>현재 체력.</summary>
-    [SerializeField][HideInInspector] public float currentHitPoints;
+    [SerializeField] [HideInInspector] public float currentHitPoints;
 
     /// <summary>방의 타입.</summary>
     public RoomType roomType;
@@ -38,7 +38,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [SerializeField] protected RoomRotation currentRotation;
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
-    [Header("방 효과")][SerializeField] protected ParticleSystem roomParticles;
+    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
 
     /// <summary>방 작동 시 사운드 효과.</summary>
     [SerializeField] protected AudioSource roomSound;
@@ -68,20 +68,10 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     protected Ship parentShip;
 
     /// <summary>
-    /// 방 초기화 및 Ship에 등록하는 Start 메서드.
+    /// 방 초기화
     /// </summary>
     protected virtual void Start()
     {
-        // 부모 Ship 컴포넌트 찾기
-        parentShip = GetComponentInParent<Ship>();
-        if (parentShip == null)
-            // 부모가 없다면 씬에서 찾기 시도
-            parentShip = FindAnyObjectByType<Ship>();
-
-        if (parentShip == null) Debug.LogError($"No Ship found for {name}");
-
-        Initialize();
-        parentShip.AddRoom(this, new Vector2Int(Random.Range(0, 100), Random.Range(0, 100)));
     }
 
     /// <summary>
@@ -160,6 +150,21 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         }
     }
 
+    public RoomData GetRoomData()
+    {
+        return roomData;
+    }
+
+    public RoomType GetRoomType()
+    {
+        return roomType;
+    }
+
+    public void SetRoomData(RoomData roomData)
+    {
+        this.roomData = roomData;
+    }
+
     /// <summary>이 방이 전력 공급 중인지 확인합니다.</summary>
     public bool GetIsPowered()
     {
@@ -210,16 +215,24 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         }
     }
 
-
-    // getter
-
     /// <summary>방을 초기화합니다.</summary>
-    public virtual void Initialize()
+    public virtual void Initialize(int level)
     {
-        currentLevel = 1;
-        currentHitPoints = roomData.GetRoomData(currentLevel).hitPoint;
+        currentHitPoints = roomData.GetRoomDataByLevel(level).hitPoint;
         InitializeIsDamageable();
         crewInRoom = new List<CrewBase>();
+        currentLevel = level;
+        roomRenderer = gameObject.AddComponent<SpriteRenderer>();
+
+        roomRenderer.sortingOrder = SortingOrderConstants.Room;
+
+        // 부모 Ship 컴포넌트 찾기
+        parentShip = GetComponentInParent<Ship>();
+        if (parentShip == null)
+            // 부모가 없다면 씬에서 찾기 시도
+            parentShip = FindAnyObjectByType<Ship>();
+
+        if (parentShip == null) Debug.LogError($"No Ship found for {name}");
     }
 
     /// <summary>현재 방에 있는 선원 수를 반환합니다.</summary>
@@ -233,7 +246,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     {
         // TODO : 테스트 용으로 일단 true, 나중엔 실제로 선원 세야함
         return true;
-        // return crewInRoom.Count >= roomData.GetRoomData(currentLevel).crewRequirement;
+        // return crewInRoom.Count >= roomData.GetRoomDataByLevel(currentLevel).crewRequirement;
     }
 
     /// <summary>방이 작동 가능한 상태인지 확인합니다.</summary>
@@ -247,7 +260,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>수리가 필요한 상태인지 확인합니다.</summary>
     public bool NeedsRepair()
     {
-        return currentHitPoints < roomData.GetRoomData(currentLevel).hitPoint;
+        return currentHitPoints < roomData.GetRoomDataByLevel(currentLevel).hitPoint;
     }
 
     /// <summary>지정된 피해만큼 체력을 감소시킵니다.</summary>
@@ -263,7 +276,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>지정된 양만큼 체력을 회복시킵니다.</summary>
     public virtual void Repair(float amount)
     {
-        currentHitPoints = Mathf.Min(roomData.GetRoomData(currentLevel).hitPoint, currentHitPoints + amount);
+        currentHitPoints = Mathf.Min(roomData.GetRoomDataByLevel(currentLevel).hitPoint, currentHitPoints + amount);
 
         // 스탯 기여도 변화 알림
         NotifyStateChanged();
@@ -296,8 +309,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>체력 퍼센티지를 반환합니다.</summary>
     public float GetHealthPercentage()
     {
-        if (roomData.GetRoomData(currentLevel).hitPoint == 0) return 0;
-        return currentHitPoints / roomData.GetRoomData(currentLevel).hitPoint * 100f;
+        if (roomData.GetRoomDataByLevel(currentLevel).hitPoint == 0) return 0;
+        return currentHitPoints / roomData.GetRoomDataByLevel(currentLevel).hitPoint * 100f;
     }
 
     // ===== 스탯 시스템 관련 코드 =====
@@ -312,7 +325,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         if (!IsOperational())
             return contributions;
 
-        contributions[ShipStat.HitPointsMax] = roomData.GetRoomData(currentLevel).hitPoint;
+        contributions[ShipStat.HitPointsMax] = roomData.GetRoomDataByLevel(currentLevel).hitPoint;
 
         // 방의 건강 상태에 따라 기여도에 효율 적용
         // 파생 클래스는 이 베이스 메서드를 호출하고 반환된 Dictionary에 값을 추가/조정해야 함
@@ -372,6 +385,11 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         return currentLevel;
     }
 
+    public void SetCurrentLevel(int level)
+    {
+        currentLevel = level;
+    }
+
     ///최대 업그레이드 레벨을 반환합니다.
     // public int GetMaxLevel()
     // {
@@ -381,19 +399,19 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>현재 전력 요구량을 반환합니다.</summary>
     public float GetPowerConsumption()
     {
-        return roomData.GetRoomData(currentLevel).powerRequirement;
+        return roomData.GetRoomDataByLevel(currentLevel).powerRequirement;
     }
 
     /// <summary>방의 크기를 반환합니다.</summary>
     public Vector2Int GetSize()
     {
-        return roomData.GetRoomData(currentLevel).size;
+        return roomData.GetRoomDataByLevel(currentLevel).size;
     }
 
     /// <summary>최대 체력을 반환합니다.</summary>
     public float GetMaxHitPoints()
     {
-        return roomData.GetRoomData(currentLevel).hitPoint;
+        return roomData.GetRoomDataByLevel(currentLevel).hitPoint;
     }
 
     /// <summary>방의 그리드 크기 (에디터 전용).</summary>
@@ -419,14 +437,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// </summary>
     private void UpdateDoorsPositionAndRotation()
     {
-        RoomData.RoomLevel roomLevel = roomData.GetRoomData(currentLevel);
-        if (roomLevel == null) return;
-
         // 기존 가능한 문 위치 정보와 현재 부착된 문들을 비교하여 업데이트
-        foreach (Door door in connectedDoors)
-        {
-            door.RotateDirectionClockwise();
-        }
+        foreach (Door door in connectedDoors) door.RotateDirectionClockwise();
     }
 
     // TODO : 나중엔 이런 월드 좌표가 아니라, 싱글턴 그리드 좌표에 맞는 월드 좌표로 변환하는 함수가 필요하다.
@@ -458,7 +470,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             return false;
 
         // 문 생성 및 설정
-        GameObject doorObject = new GameObject("Door");
+        GameObject doorObject = new("Door");
         Door door = doorObject.AddComponent<Door>();
         door.Initialize(doorData, doorLevel, doorPos.direction);
 
@@ -466,14 +478,137 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         door.OriginalGridPosition = doorPos.position;
         door.OriginalDirection = doorPos.direction;
 
-        // 문의 위치 설정
-        doorObject.transform.SetParent(transform);
-        doorObject.transform.position = GridToWorldPosition(doorPos.position);
+        // 중요: 문을 방의 자식으로 설정
+        doorObject.transform.SetParent(transform, false);
+
+        // 방 좌표계에서의 문 위치 설정 (로컬 좌표 사용)
+        Vector2 localDoorPosition = GetLocalDoorPosition(doorPos);
+        doorObject.transform.localPosition = new Vector3(localDoorPosition.x, localDoorPosition.y, 0);
+
+        // 방 좌표계에서의 문 회전 설정 (로컬 회전 사용)
+        doorObject.transform.localRotation = GetLocalDoorRotation(doorPos.direction);
 
         // 문 목록에 추가
         connectedDoors.Add(door);
 
         return true;
+    }
+
+    /// <summary>
+    /// 방 좌표계에서의 문 위치를 계산합니다.
+    /// </summary>
+    private Vector2 GetLocalDoorPosition(DoorPosition doorPos)
+    {
+        // 방 크기 정보 가져오기
+        Vector2Int roomSize = roomData.GetRoomDataByLevel(currentLevel).size;
+
+        // 방의 절반 크기 (피벗이 중앙에 있다고 가정)
+        float halfWidth = roomSize.x * 0.5f;
+        float halfHeight = roomSize.y * 0.5f;
+
+        float doorThickness = GridConstants.CELL_SIZE * 0.1f;
+
+        // 정확한 테두리 위치 계산
+        Vector2 localPos = Vector2.zero;
+
+        switch (doorPos.direction)
+        {
+            case DoorDirection.North: // 위쪽 테두리
+                // x 위치: doorPos.position.x의 상대적 위치 계산
+                // doorPos.position.x - 방의 좌측 시작점(왼쪽 테두리부터의 거리)
+                localPos.x = doorPos.position.x - roomSize.x / 2.0f + 0.5f;
+                // y 위치: 위쪽 테두리 정확히
+                localPos.y = halfHeight + 0.5f - doorThickness;
+                break;
+
+            case DoorDirection.East: // 오른쪽 테두리
+                // x 위치: 오른쪽 테두리 정확히
+                localPos.x = halfWidth - 0.5f + doorThickness;
+                // y 위치: doorPos.position.y의 상대적 위치 계산
+                localPos.y = doorPos.position.y - roomSize.y / 2.0f + 0.5f;
+                break;
+
+            case DoorDirection.South: // 아래쪽 테두리
+                // x 위치: 북쪽과 동일한 계산
+                localPos.x = doorPos.position.x - roomSize.x / 2.0f + 0.5f;
+                // y 위치: 아래쪽 테두리 정확히
+                localPos.y = -halfHeight - 0.5f + doorThickness;
+                break;
+
+            case DoorDirection.West: // 왼쪽 테두리
+                // x 위치: 왼쪽 테두리 정확히
+                localPos.x = -halfWidth + 0.5f - doorThickness;
+                // y 위치: 동쪽과 동일한 계산
+                localPos.y = doorPos.position.y - roomSize.y / 2.0f + 0.5f;
+                break;
+        }
+
+        // 문 자체의 크기가 있다면 그에 맞게 미세 조정할 수 있음
+        // 예: Door 컴포넌트에서 문의 크기를 가져와 방 테두리에 정확히 걸쳐지도록 조정
+
+        return localPos;
+    }
+
+    // /// <summary>
+    // /// 방 좌표계에서의 문 위치를 계산합니다.
+    // /// 방 중심 기준으로 정확한 위치를 반환합니다.
+    // /// </summary>
+    // private Vector2 GetLocalDoorPosition(DoorPosition doorPos)
+    // {
+    //     Vector2Int roomSize = roomData.GetRoomDataByLevel(currentLevel).size;
+    //     float cellSize = GridConstants.CELL_SIZE;
+    //
+    //     // 방 전체 크기의 절반 (피벗 중심 좌표 기준)
+    //     Vector2 roomPivotOffset = new Vector2(roomSize.x, roomSize.y) * 0.5f;
+    //
+    //     // 문의 중심 위치 계산 (그리드 셀 중심 기준)
+    //     Vector2 doorCellCenter = new(doorPos.position.x + 0.5f, doorPos.position.y + 0.5f);
+    //
+    //     // 방향에 따른 문 위치 보정
+    //     Vector2 offset = Vector2.zero;
+    //     float doorThicknessOffset = 0.1f; // 필요에 따라 미세 조정 가능
+    //
+    //     switch (doorPos.direction)
+    //     {
+    //         case DoorDirection.North:
+    //             offset.y = 0.5f + doorThicknessOffset;
+    //             break;
+    //         case DoorDirection.South:
+    //             offset.y = -0.5f - doorThicknessOffset;
+    //             break;
+    //         case DoorDirection.East:
+    //             offset.x = 0.5f + doorThicknessOffset;
+    //             break;
+    //         case DoorDirection.West:
+    //             offset.x = -0.5f - doorThicknessOffset;
+    //             break;
+    //     }
+    //
+    //     // 최종 로컬 좌표 계산
+    //     Vector2 localPos = (doorCellCenter - roomPivotOffset + offset) * cellSize;
+    //     return localPos;
+    // }
+
+
+    /// <summary>
+    /// 방 좌표계에서의 문 회전을 계산합니다.
+    /// </summary>
+    private Quaternion GetLocalDoorRotation(DoorDirection direction)
+    {
+        // 방향에 따른 회전 설정
+        switch (direction)
+        {
+            case DoorDirection.North:
+                return Quaternion.Euler(0, 0, 0);
+            case DoorDirection.East:
+                return Quaternion.Euler(0, 0, 90);
+            case DoorDirection.South:
+                return Quaternion.Euler(0, 0, 180);
+            case DoorDirection.West:
+                return Quaternion.Euler(0, 0, 270);
+            default:
+                return Quaternion.identity;
+        }
     }
 
     /// <summary>
@@ -499,7 +634,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     public bool IsValidDoorPosition(Vector2Int gridPosition, DoorDirection direction)
     {
         // 방의 데이터와 레벨 확인
-        RoomData.RoomLevel roomLevel = roomData.GetRoomData(currentLevel);
+        RoomData.RoomLevel roomLevel = roomData.GetRoomDataByLevel(currentLevel);
         if (roomLevel == null) return false;
 
         // 가능한 문 위치 목록에서 해당 위치/방향 확인
@@ -533,8 +668,8 @@ public abstract class Room<TData, TLevel> : Room
     /// </summary>
     public new TData roomData
     {
-        get => (TData)base.roomData;
-        set => base.roomData = value;
+        get => (TData)GetRoomData();
+        set => SetRoomData(value);
     }
 
     /// <summary>
@@ -549,11 +684,6 @@ public abstract class Room<TData, TLevel> : Room
     /// <returns>현재 레벨의 방 데이터.</returns>
     public TLevel GetCurrentLevelData()
     {
-        // 데이터가 없거나 레벨이 변경되었을 때 업데이트
-        if (currentRoomLevelData == null ||
-            (currentRoomLevelData != null && currentRoomLevelData.level != currentLevel))
-            UpdateRoomLevelData();
-
         return currentRoomLevelData;
     }
 
@@ -582,15 +712,10 @@ public abstract class Room<TData, TLevel> : Room
 
         // roomData가 null이면 초기화 건너뛰기
         if (roomData == null)
-        {
             Debug.LogError($"roomData is null in {GetType().Name}.Start()");
-        }
         else
-        {
-            Initialize();
             // 레벨 데이터 초기화
             UpdateRoomLevelData();
-        }
     }
 
     /// <summary>
@@ -607,9 +732,10 @@ public abstract class Room<TData, TLevel> : Room
     /// <summary>
     /// 방 초기화 시 기본 초기화 이후 레벨 데이터도 갱신합니다.
     /// </summary>
-    public override void Initialize()
+    public override void Initialize(int level)
     {
-        // roomData가 null인지 확인
+        base.Initialize(level);
+
         if (roomData == null)
         {
             Debug.LogError($"roomData is null in {GetType().Name}.Initialize()");
@@ -617,12 +743,11 @@ public abstract class Room<TData, TLevel> : Room
             return;
         }
 
-        UpdateRoomVisual();
 
         InitializeIsDamageable();
         InitializeDoor();
 
-        base.Initialize();
+
         UpdateRoomLevelData();
     }
 
@@ -631,39 +756,35 @@ public abstract class Room<TData, TLevel> : Room
     /// </summary>
     private void UpdateRoomVisual()
     {
-        roomRenderer = GetComponent<SpriteRenderer>();
-
-        var levelData = GetCurrentLevelData();
-        if (roomRenderer != null && levelData?.roomSprite != null)
-        {
-            roomRenderer.sprite = levelData.roomSprite;
-
-            // 그리드 단위로 크기 조정 (기본 타일 크기 : 1 x 1 유닛)
-            transform.localScale = new Vector3(levelData.size.x, levelData.size.y, 1);
-        }
+        TLevel levelData = GetCurrentLevelData();
+        if (roomRenderer != null && levelData?.roomSprite != null) roomRenderer.sprite = levelData.roomSprite;
     }
 
     private void InitializeDoor()
     {
         // 현재 레벨에 해당하는 방 데이터 가져오기
-        var roomLevel = roomData.GetRoomData(currentLevel);
+        RoomData.RoomLevel roomLevel = roomData.GetRoomDataByLevel(currentLevel);
         if (roomLevel == null || roomLevel.possibleDoorPositions == null || roomLevel.possibleDoorPositions.Count == 0)
         {
             Debug.LogWarning($"No door positions defined for room {name} at level {currentLevel}");
             return;
         }
 
-        // 기본 문 데이터 가져오기 (리소스에서 로드 또는 참조)
-        DoorData doorData = parentShip.GetDoorData();
+        // Ship에서 문 데이터 가져오기
+        DoorData shipDoorData = parentShip.GetDoorData();
+        int doorLevel = parentShip.GetDoorLevel();
+
+        if (shipDoorData == null)
+        {
+            Debug.LogError("Ship door data not found. Make sure it's assigned in Ship component.");
+            return;
+        }
 
         // 가능한 각 문 위치에 문 설치
-        foreach (var doorPos in roomLevel.possibleDoorPositions)
-        {
+        foreach (DoorPosition doorPos in roomLevel.possibleDoorPositions)
             // 문 생성 및 설치
-            if (!AddDoor(doorPos, doorData))
-            {
-                Debug.LogWarning($"Failed to add door at position {doorPos.position} with direction {doorPos.direction} for room {name}");
-            }
-        }
+            if (!AddDoor(doorPos, shipDoorData, doorLevel))
+                Debug.LogWarning(
+                    $"Failed to add door at position {doorPos.position} with direction {doorPos.direction} for room {name}");
     }
 }
