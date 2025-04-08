@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 /// <summary>
@@ -9,11 +7,6 @@ using UnityEngine;
 /// </summary>
 public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
 {
-    /// <summary>
-    /// 싱글턴 인스턴스입니다.
-    /// </summary>
-    public static GridPlacer Instance;
-
     /// <summary>
     /// 생성할 타일의 프리팹입니다.
     /// </summary>
@@ -47,22 +40,13 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     [SerializeField] private Vector2Int gridSize = new(60, 60);
     [SerializeField] private Vector3 gridOrigin = Vector3.zero;
 
-
-    /// <summary>
-    /// 인스턴스를 설정하고, 그리드 사용 상태 배열을 초기화합니다.
-    /// </summary>
-    private void Awake()
-    {
-        Instance = this;
-    }
-
     /// <summary>
     /// 게임 시작 시 그리드 타일을 생성합니다.
     /// </summary>
     private void Start()
     {
         GenerateTiles();
-        gridOrigin = new Vector3(-gridSize.x / 2f * tileSize, -gridSize.y / 2f * tileSize, 0f);
+        // gridOrigin = new Vector3(-gridSize.x / 2f * tileSize, -gridSize.y / 2f * tileSize, 0f);
     }
 
     /// <summary>
@@ -100,11 +84,6 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     /// <returns>해당 위치의 그리드 좌표.</returns>
     public Vector2Int WorldToGridPosition(Vector2 worldPos)
     {
-        /*
-        int x = (int)(Mathf.FloorToInt(worldPos.x / tileSize) - gridOrigin.x);
-        int y = (int)(Mathf.FloorToInt(worldPos.y / tileSize) - gridOrigin.y);
-        return new Vector2Int(x, y);
-        */
         Vector3 local = new Vector3(worldPos.x, worldPos.y, 0) - gridOrigin;
         return new Vector2Int(Mathf.FloorToInt(local.x), Mathf.FloorToInt(local.y));
     }
@@ -133,6 +112,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
         Vector2Int size = RoomRotationUtility.GetRotatedSize(data.GetRoomData(level).size, rotation);
         RectInt area = new(position, size);
 
+        List<Vector2Int> candidateTiles = RoomRotationUtility.GetOccupiedTiles(position, size, rotation);
         // 그리드 범위 벗어나는지 체크
         if (position.x < 0 || position.y < 0 || position.x + size.x > gridSize.x || position.y + size.y > gridSize.y)
             return false;
@@ -140,9 +120,9 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
         // 겹침 체크
         foreach (BlueprintRoom room in targetBlueprintShip.PlacedBlueprintRooms)
         {
-            RectInt other = new(room.position, room.roomSize);
-            if (area.Overlaps(other))
-                return false;
+            foreach (var tile in candidateTiles)
+                if (room.OccupiedTiles.Contains(tile))
+                    return false;
         }
 
         return true;
