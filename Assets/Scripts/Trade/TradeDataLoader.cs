@@ -25,7 +25,7 @@ public class TradeDataLoader : MonoBehaviour
     /// Resources 폴더 내의 JSON 파일 이름 (확장자 제외).
     /// 현재 사용되지 않지만, 추후 파일 이름 지정에 활용할 수 있습니다.
     /// </summary>
-    [SerializeField] private string jsonFileName = "행성";
+    [SerializeField] private string jsonFileName = "PlanetTradeTest";
 
     /// <summary>
     /// 로드된 TradableItem 데이터를 저장하는 리스트입니다.

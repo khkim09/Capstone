@@ -100,4 +100,15 @@ public class TradableItem
 
         Debug.Log($"[RecalculatePrice] {itemName} new price = {cachedPrice.Value}");
     }
+
+    /// <summary>
+    /// 원본 가격(BasePrice)을 반환합니다.
+    /// 변동폭이나 기타 가격 계산 로직과 무관하게, JSON에 정의된 기본 가격을 그대로 반환합니다.
+    /// 인벤토리 아이템의 가격을 나타낼 때 사용됩니다.
+    /// </summary>
+    /// <returns>아이템의 기본 가격(basePrice)</returns>
+    public float GetBasePrice()
+    {
+        return basePrice;
+    }
 }
