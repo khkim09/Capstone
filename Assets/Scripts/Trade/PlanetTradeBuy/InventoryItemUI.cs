@@ -40,25 +40,13 @@ public class InventoryItemUI : MonoBehaviour
         if (itemNameText != null)
             itemNameText.text = storedItem.item.itemName;
 
+        // 인벤토리 가격은 원본 가격으로 보이게 설정합니다.
         if (priceText != null)
-            priceText.text = storedItem.item.GetCurrentPrice().ToString("F2");
+            priceText.text = storedItem.item.GetBasePrice().ToString("F2");
 
         if (quantityText != null)
             quantityText.text = storedItem.quantity.ToString();
         // 아이콘 설정이 필요하다면, storedItem.item에 아이콘 정보가 있어야 하며 여기서 적용합니다.
     }
 
-    /// <summary>
-    /// 이 슬롯이 클릭되었을 때 호출됩니다.
-    /// Inspector에서 Button의 OnClick 이벤트에 이 함수를 연결하세요.
-    /// </summary>
-    public void OnItemClicked()
-    {
-        // MiddlePanelUI를 찾아서 선택된 아이템을 전달
-        MiddlePanelUI middlePanel = FindObjectOfType<MiddlePanelUI>();
-        if (middlePanel != null && currentStoredItem != null)
-        {
-            middlePanel.SetSelectedItem(currentStoredItem.item);
-        }
-    }
 }
