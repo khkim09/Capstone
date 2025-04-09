@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 /// <summary>
@@ -9,6 +10,7 @@ public class BlueprintShip : MonoBehaviour
 {
     [SerializeField] private Vector2Int gridSize = new(60, 60);
     [SerializeField] private List<BlueprintRoom> placedBlueprintRooms = new();
+    [SerializeField] private HashSet<Vector2Int> occupiedTiles = new();
 
     /// <summary>
     /// 현재 설계도에 배치된 방 리스트
@@ -18,7 +20,7 @@ public class BlueprintShip : MonoBehaviour
     /// <summary>
     /// 현재 설계도의 총 가격
     /// </summary>
-    public int totalBlueprintCost => placedBlueprintRooms.Sum(r => r.roomCost);
+    public int totalBlueprintCost => placedBlueprintRooms.Sum(r => r.bpRoomCost);
 
     /// <summary>
     /// 유저가 배치한 방들의 중심값 호출 (함선의 중심을 기준으로 유저에게 보이는 UI 설계)
@@ -29,10 +31,10 @@ public class BlueprintShip : MonoBehaviour
         {
             if (placedBlueprintRooms.Count == 0) // 수정 필요
                 return gridSize / 2;
-            int minX = placedBlueprintRooms.Min(r => r.position.x);
-            int maxX = placedBlueprintRooms.Max(r => r.position.x + r.roomSize.x);
-            int minY = placedBlueprintRooms.Min(r => r.position.y);
-            int maxY = placedBlueprintRooms.Max(r => r.position.y + r.roomSize.y);
+            int minX = placedBlueprintRooms.Min(r => r.bpPosition.x);
+            int maxX = placedBlueprintRooms.Max(r => r.bpPosition.x + r.bpRoomSize.x);
+            int minY = placedBlueprintRooms.Min(r => r.bpPosition.y);
+            int maxY = placedBlueprintRooms.Max(r => r.bpPosition.y + r.bpRoomSize.y);
             return new Vector2Int((minX + maxX) / 2, (minY + maxY) / 2);
         }
     }
@@ -46,10 +48,10 @@ public class BlueprintShip : MonoBehaviour
     {
         foreach (BlueprintRoom room in placedBlueprintRooms)
         {
-            for (int x = 0; x < room.roomSize.x; x++)
-                for (int y = 0; y < room.roomSize.y; y++)
+            for (int x = 0; x < room.bpRoomSize.x; x++)
+                for (int y = 0; y < room.bpRoomSize.y; y++)
                 {
-                    if (room.position + new Vector2Int(x, y) == gridPos)
+                    if (room.bpPosition + new Vector2Int(x, y) == gridPos)
                         return room;
                 }
         }

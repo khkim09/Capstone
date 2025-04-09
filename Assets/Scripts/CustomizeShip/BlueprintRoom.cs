@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,15 +12,13 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     public RoomData roomData;
 
     /// <summary>선택된 레벨 인덱스 (0~2)</summary>
-    public int levelIndex;
+    public int bpLevelIndex;
+
+    /// <summary>회전 각</summary>
+    public int bpRotation;
 
     /// <summary>배치 위치</summary>
-    public Vector2Int position;
-
-    /// <summary>
-    /// 회전 각
-    /// </summary>
-    public int rotation;
+    public Vector2Int bpPosition;
 
     /// <summary>
     /// 설계도 함선
@@ -31,14 +30,16 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     /// </summary>
     private bool isDragging = false;
 
-    /// <summary>레벨별 데이터 접근자</summary>
-    public RoomData.RoomLevel levelData => roomData.GetRoomDataByLevel(levelIndex);
-
     /// <summary>해당 레벨의 설치 비용</summary>
-    public int roomCost => levelData.cost;
+    public int bpRoomCost;
 
     /// <summary>해당 레벨의 크기</summary>
-    public Vector2Int roomSize => levelData.size;
+    public Vector2Int bpRoomSize;
+
+    /// <summary>
+    /// 실제 점유 타일
+    /// </summary>
+    public List<Vector2Int> occupiedTiles = new();
 
     /// <summary>
     /// 설치 시 초기화
@@ -46,17 +47,21 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     public void Initialize(RoomData data, int level, Vector2Int pos, int rot)
     {
         roomData = data;
-        levelIndex = level;
-        position = pos;
-        rotation = rot;
+        bpLevelIndex = level;
+        bpPosition = pos;
+        bpRotation = rot;
 
         RoomData.RoomLevel levelData = data.GetRoomDataByLevel(level);
+        bpRoomCost = levelData.cost;
+        bpRoomSize = levelData.size;
+
+        bpRoomSize = RoomRotationUtility.GetRotatedSize(bpRoomSize, bpRotation);
+        occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(bpPosition, bpRoomSize, bpRotation);
+
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.sprite = levelData.roomSprite;
 
-        // transform.localScale = new Vector3(levelData.size.x, levelData.size.y, 1);
-        // transform.position = new Vector3(pos.x, pos.y, 0);
-        transform.rotation = Quaternion.Euler(0, 0, -rotation);
+        transform.rotation = Quaternion.Euler(0, 0, -bpRotation);
     }
 
     public void SetBlueprint(BlueprintShip bpShip)
@@ -92,7 +97,7 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         Vector2Int newPos = new(Mathf.FloorToInt(mouseWorld.x), Mathf.FloorToInt(mouseWorld.y));
 
         blueprintShip.RemoveRoom(this);
-        position = newPos;
+        bpPosition = newPos;
         transform.position = new Vector3(newPos.x, newPos.y, 0);
         blueprintShip.AddRoom(this);
     }

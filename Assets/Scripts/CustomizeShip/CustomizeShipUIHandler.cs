@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,14 +24,15 @@ public class CustomizeShipUIHandler : MonoBehaviour
     [Header("Parent Object")] public GameObject gridTiles;
 
     /// <summary>
-    /// 배치된 방을 담는 부모 오브젝트입니다.
+    /// 설계도 -> 실제 함선으로 교체 (bpRoom -> room)
     /// </summary>
-    public GameObject placedRooms;
+    public Button buildButton;
 
     /// <summary>
     /// 저장 버튼입니다.
     /// </summary>
-    [Header("Buttons")] public Button saveButton;
+    [Header("Buttons")]
+    public Button saveButton;
 
     /// <summary>
     /// 취소 버튼입니다.
@@ -43,9 +45,21 @@ public class CustomizeShipUIHandler : MonoBehaviour
     public Text feedbackText;
 
     /// <summary>
+    /// 총 설계도 가격을 표시할 텍스트 UI.
+    /// </summary>
+    public TMP_Text totalCostText;
+
+    /// <summary>
     /// 현재 커스터마이징 중인 플레이어 함선입니다.
     /// </summary>
     [Header("Ship")] public Ship playerShip; // 플레이어 함선
+
+    public GridPlacer gridPlacer;
+
+    /// <summary>
+    /// 제작한 설계도
+    /// </summary>
+    public BlueprintShip targetBlueprintShip;
 
     /// <summary>
     /// 함선 커스터마이징 로직을 담당하는 매니저입니다.
@@ -56,6 +70,17 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// 배치된 레이아웃의 유효성을 검사하는 유효성 검사기입니다.
     /// </summary>
     public ShipValidationHelper ValidatonHelper;
+
+    private void Update()
+    {
+        if (targetBlueprintShip != null && playerShip != null)
+        {
+            totalCostText.text = $"Blueprint Cost: {targetBlueprintShip.totalBlueprintCost}";
+
+            int currentCurrency = (int)ResourceManager.Instance.GetResource(ResourceType.COMA);
+            buildButton.interactable = currentCurrency >= targetBlueprintShip.totalBlueprintCost && playerShip.IsFullHitPoint();
+        }
+    }
 
     /// <summary>
     /// CustomizeShipUI 활성화 시 아래 작업 수행 :
@@ -68,13 +93,16 @@ public class CustomizeShipUIHandler : MonoBehaviour
     private void OnEnable()
     {
         gridTiles.SetActive(true);
-        placedRooms.SetActive(true);
+
+        Vector3 startPos = gridPlacer.GetCameraStartPosition();
+        Camera.main.transform.position = new Vector3(startPos.x, startPos.y, Camera.main.transform.position.z);
+
+        var cameraDrag = Camera.main.GetComponent<CameraZoomController>();
+        if (cameraDrag != null)
+            cameraDrag.StartPanFrom(Input.mousePosition); // 현재 마우스 위치 기준으로 초기화
 
         customizationManager.ClearAllModules();
         LoadShipLayout(playerShip);
-        // inventoryTooltipUI.allOwnedRoomData = playerShip.GetInstalledRoomDataList(); // GetInstalledRoom()아님 -> 이건 이미 설치된 방임
-        // Debug.Log($"가져온 방 개수 : {inventoryTooltipUI.allOwnedRoomData.Count}");
-        // inventoryTooltipUI.RefreshInventory(); // 구매한 방 list 갱신
     }
 
     /// <summary>
@@ -85,8 +113,18 @@ public class CustomizeShipUIHandler : MonoBehaviour
     private void OnDisable()
     {
         gridTiles.SetActive(false);
-        placedRooms.SetActive(false);
         customizationManager.ClearAllModules();
+    }
+
+    /// <summary>
+    /// '함선 제작' 버튼 클릭 시 호출.
+    /// </summary>
+    public void OnClickBuild()
+    {
+        if (targetBlueprintShip != null && playerShip != null)
+            playerShip.ReplaceShipWithBlueprint(targetBlueprintShip);
+        // var ship = FindAnyObjectByType<Ship>();
+        // BlueprintShip.ApplyBlueprintToShip(ship, (int)ResourceManager.Instance.GetResource(ResourceType.COMA));
     }
 
     /// <summary>

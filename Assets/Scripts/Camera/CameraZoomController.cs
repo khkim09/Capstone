@@ -60,6 +60,7 @@ public class CameraZoomController : MonoBehaviour
 
         if (isDragging)
         {
+            Debug.Log("드래그 시작");
             Vector3 delta = cam.ScreenToWorldPoint(lastMousePos) - cam.ScreenToWorldPoint(Input.mousePosition);
             if (CheckBounds(cam.transform.position + delta))
             {
@@ -85,7 +86,7 @@ public class CameraZoomController : MonoBehaviour
     private bool IsMouseInGameView()
     {
         Vector3 mousePos = Input.mousePosition;
-        return (mousePos.x >= 0 && mousePos.x <= Screen.width && mousePos.y >= 0 && mousePos.y <= Screen.height);
+        return mousePos.x >= 0 && mousePos.x <= Screen.width && mousePos.y >= 0 && mousePos.y <= Screen.height;
     }
 
     /// <summary>
@@ -96,14 +97,24 @@ public class CameraZoomController : MonoBehaviour
     /// <returns></returns>
     private bool CheckBounds(Vector3 simulatePos)
     {
-        float minX = -28f;
-        float maxX = 25f;
-        float minY = -28f;
-        float maxY = 28f;
+        float minX = 0f;
+        float maxX = 58f;
+        float minY = 0f;
+        float maxY = 59f;
 
         if (minX <= simulatePos.x && simulatePos.x <= maxX && minY <= simulatePos.y && simulatePos.y <= maxY)
             return true;
         else
             return false;
+    }
+
+    /// <summary>
+    /// 드래그 위치 초기화 함수
+    /// </summary>
+    /// <param name="mouseScreenPos"></param>
+    public void StartPanFrom(Vector3 mouseScreenPos)
+    {
+        lastMousePos = mouseScreenPos;
+        isDragging = false;
     }
 }
