@@ -10,7 +10,7 @@ public enum CrewRace
     /// <summary>인간 종족. 균형 잡힌 능력치를 가집니다.</summary>
     Human,
 
-    /// <summary>액체형 생명체. 산소가 필요 없고 체력 회복이 빠릅니다.</summary>
+    /// <summary>부정형 생명체. 산소가 필요 없고 체력 회복이 빠릅니다.</summary>
     Amorphous,
 
     /// <summary>기계형 탱커. 높은 체력과 방어력을 가집니다.</summary>

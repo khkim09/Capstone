@@ -89,8 +89,8 @@ public class Ship : MonoBehaviour
         GameManager.Instance.SetPlayerShip(this);
 
         AddRoom(3, testRoomPrefab1.GetComponent<Room>().GetRoomData(), new Vector2Int(0, 0));
-        AddRoom(1, testRoomPrefab2.GetComponent<Room>().GetRoomData(), new Vector2Int(1, 0));
-        AddRoom(3, testRoomPrefab3.GetComponent<Room>().GetRoomData(), new Vector2Int(5, 5));
+        AddRoom(1, testRoomPrefab2.GetComponent<Room>().GetRoomData(), new Vector2Int(3, 0));
+        AddRoom(3, testRoomPrefab3.GetComponent<Room>().GetRoomData(), new Vector2Int(-3, -1));
     }
 
     /// <summary>
