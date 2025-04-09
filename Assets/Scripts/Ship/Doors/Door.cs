@@ -59,23 +59,19 @@ public class Door : MonoBehaviour
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
+        spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+        animator = gameObject.AddComponent<Animator>();
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     private void Start()
     {
-        InitializeDoor();
     }
 
     private void Update()
     {
         // 쿨다운 타이머 업데이트
-        if (passTimer > 0)
-        {
-            passTimer -= Time.deltaTime;
-        }
+        if (passTimer > 0) passTimer -= Time.deltaTime;
     }
 
     /// <summary>
@@ -84,9 +80,9 @@ public class Door : MonoBehaviour
     public void Initialize(DoorData doorData, int level, DoorDirection dir)
     {
         this.doorData = doorData;
-        this.currentLevel = level;
-        this.direction = dir;
-        this.originalDirection = dir;  // 초기 방향 저장
+        currentLevel = level;
+        direction = dir;
+        originalDirection = dir; // 초기 방향 저장
 
         // 다른 초기화 작업
         InitializeDoor();
@@ -98,9 +94,10 @@ public class Door : MonoBehaviour
     private void InitializeDoor()
     {
         DoorData.DoorLevel level = doorData.GetDoorData(currentLevel);
-        if (level == null) return;
 
+        if (level == null) return;
         spriteRenderer.sprite = level.doorSprite;
+        spriteRenderer.sortingOrder = SortingOrderConstants.Door;
 
         // 방향에 따른 회전 설정
         SetDoorRotation();
@@ -111,7 +108,7 @@ public class Door : MonoBehaviour
     /// </summary>
     public void SetDirection(DoorDirection newDirection)
     {
-        this.direction = newDirection;
+        direction = newDirection;
         SetDoorRotation();
     }
 
@@ -146,7 +143,7 @@ public class Door : MonoBehaviour
     public void SetGridPosition(Vector2Int newPosition)
     {
         // 그리드 위치 업데이트 (실제 transform.position은 Room에서 관리)
-        this.originalGridPosition = newPosition;
+        originalGridPosition = newPosition;
     }
 
     /// <summary>
@@ -238,10 +235,7 @@ public class Door : MonoBehaviour
         if (level == null || level.powerRequirement <= 0) return;
 
         // 자동문이지만 전력이 없으면 닫기
-        if (isOpen && !HasEnoughPower())
-        {
-            CloseDoor();
-        }
+        if (isOpen && !HasEnoughPower()) CloseDoor();
     }
 
     /// <summary>

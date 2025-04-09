@@ -124,6 +124,9 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// <summary>현재 선원이 속한 함선 참조.</summary>
     public Ship currentShip;
 
+    /// <summary>스프라이트 렌더러.</summary>
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     /// <summary>
     /// Unity 생명주기 메서드.
     /// 게임 시작 시 선원의 초기 데이터를 설정합니다.
@@ -198,6 +201,8 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         equipAdditionalSkills[SkillType.AmmunitionSkill] = 0.0f;
         equipAdditionalSkills[SkillType.MedBaySkill] = 0.0f;
         equipAdditionalSkills[SkillType.RepairSkill] = 0.0f;
+
+        spriteRenderer.sortingOrder = SortingOrderConstants.Character;
     }
 
     /// <summary>
@@ -237,7 +242,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         float skillIncreaseAmount = 0.0f; // 증가량
 
         // 방 타입에 따라 향상될 스킬 결정
-        switch (currentRoom.roomType)
+        switch (currentRoom.GetRoomType())
         {
             case RoomType.Cockpit:
                 skillToImprove = SkillType.PilotSkill;

@@ -37,7 +37,7 @@ public class BlueprintRoomDragHandler : MonoBehaviour
         draggingRotation = 0;
         isDragging = true;
 
-        RoomData.RoomLevel levelData = data.GetRoomData(level);
+        RoomData.RoomLevel levelData = data.GetRoomDataByLevel(level);
         roomSize = levelData.size;
 
         previewGO = Instantiate(previewPrefab);

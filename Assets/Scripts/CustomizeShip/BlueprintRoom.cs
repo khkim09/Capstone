@@ -51,7 +51,7 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         bpPosition = pos;
         bpRotation = rot;
 
-        RoomData.RoomLevel levelData = data.GetRoomData(level);
+        RoomData.RoomLevel levelData = data.GetRoomDataByLevel(level);
         bpRoomCost = levelData.cost;
         bpRoomSize = levelData.size;
 

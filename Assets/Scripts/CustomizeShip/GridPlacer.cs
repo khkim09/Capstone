@@ -176,7 +176,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     /// <returns></returns>
     public bool CanPlaceRoom(RoomData data, int level, Vector2Int origin, int rotation)
     {
-        RoomData.RoomLevel levelData = data.GetRoomData(level);
+        RoomData.RoomLevel levelData = data.GetRoomDataByLevel(level);
         Vector2Int size = RoomRotationUtility.GetRotatedSize(levelData.size, rotation);
 
         List<Vector2Int> tilesToOccupy = RoomRotationUtility.GetOccupiedGridPositions(origin, size, rotation);
@@ -203,7 +203,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     /// <param name="rotation"></param>
     public void PlaceRoom(RoomData data, int level, Vector2Int position, int rotation)
     {
-        Vector2Int size = RoomRotationUtility.GetRotatedSize(data.GetRoomData(level).size, rotation);
+        Vector2Int size = RoomRotationUtility.GetRotatedSize(data.GetRoomDataByLevel(level).size, rotation);
         Vector2 offset = RoomRotationUtility.GetRotationOffset(size, rotation);
         Vector3 worldPos = GridToWorldPosition(position) + (Vector3)offset;
 

@@ -29,31 +29,31 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
             new()
             {
                 roomName = "room.power.level1",
+                roomType = RoomType.Power,
                 level = 1,
                 hitPoint = 200,
                 size = new Vector2Int(2, 2),
                 cost = 2000,
                 powerRequirement = 3000f,
                 crewRequirement = 0,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 50f }, { RoomDamageLevel.DamageLevelTwo, 10f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(50f, 10f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 1), DoorDirection.East) }
             },
             new()
             {
                 roomName = "room.power.level2",
+                roomType = RoomType.Power,
                 level = 2,
                 hitPoint = 300,
                 size = new Vector2Int(3, 3),
                 cost = 8000,
                 powerRequirement = 7000f,
                 crewRequirement = 0,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
+                damageHitPointRate = RoomDamageRates.Create(50f, 10f),
+                possibleDoorPositions =
+                    new List<DoorPosition>()
                     {
-                        { RoomDamageLevel.DamageLevelOne, 50f }, { RoomDamageLevel.DamageLevelTwo, 10f }
+                        new(new Vector2Int(0, 1), DoorDirection.West), new(new Vector2Int(2, 1), DoorDirection.East)
                     }
             },
             new()
@@ -65,11 +65,11 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
                 cost = 12000,
                 powerRequirement = 12000f,
                 crewRequirement = 0,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 50f }, { RoomDamageLevel.DamageLevelTwo, 10f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(50f, 10f),
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new(new Vector2Int(0, 2), DoorDirection.West), new(new Vector2Int(3, 1), DoorDirection.East)
+                }
             }
         };
     }

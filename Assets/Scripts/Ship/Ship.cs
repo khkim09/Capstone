@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class Ship : MonoBehaviour
 {
-    [Header("Ship Info")][SerializeField] private string shipName = "Milky";
+    [Header("Ship Info")] [SerializeField] private string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -81,13 +81,16 @@ public class Ship : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        Room testRoom1 = Instantiate(testRoomPrefab1).GetComponent<Room>();
-        Room testRoom2 = Instantiate(testRoomPrefab2).GetComponent<Room>();
-        Room testRoom3 = Instantiate(testRoomPrefab2).GetComponent<Room>();
         InitializeSystems();
+
         RecalculateAllStats();
 
+        doorLevel = 1;
         GameManager.Instance.SetPlayerShip(this);
+
+        AddRoom(3, testRoomPrefab1.GetComponent<Room>().GetRoomData(), new Vector2Int(0, 0));
+        AddRoom(1, testRoomPrefab2.GetComponent<Room>().GetRoomData(), new Vector2Int(3, 0));
+        AddRoom(3, testRoomPrefab3.GetComponent<Room>().GetRoomData(), new Vector2Int(-3, -1));
     }
 
     /// <summary>
@@ -114,47 +117,141 @@ public class Ship : MonoBehaviour
     // ===== Room Management =====
 
     /// <summary>
-    /// 룸을 해당 위치에 배치하고 관련 정보를 갱신합니다.
+    /// 룸을 생성하고 배치하며, 초기화는 Room의 Initialize 메서드를 사용합니다.
     /// </summary>
-    /// <param name="room">추가할 룸 객체.</param>
-    /// <param name="position">배치 위치 (왼쪽 상단 기준).</param>
-    /// <returns>배치 성공 여부.</returns>
-    public bool AddRoom(Room room, Vector2Int position)
+    public bool AddRoom(int level, RoomData roomData, Vector2Int position)
     {
-        // TODO: 테스트용으로 임시로 검사 안함
-        //  if (!IsValidPosition(position, room.GetSize()))
-        //    return false;
+        // 룸 타입 확인
+        RoomType roomType = roomData.GetRoomType();
 
+        // 룸 오브젝트 생성
+        GameObject roomObject = new($"Room_{roomData.name}");
+        roomObject.transform.SetParent(transform);
+
+        // 타입에 맞는 컴포넌트 추가
+        Room room = AddRoomComponent(roomObject, roomType);
+        if (room == null)
+        {
+            Debug.LogError($"Failed to create room component for {roomData.name}");
+            Destroy(roomObject);
+            return false;
+        }
+
+        // 필수 데이터 설정 (Initialize 전에 필요한 기본 설정)
+        room.SetRoomData(roomData);
+        room.roomType = roomType;
         room.position = position;
+
+        // 룸 위치 설정
+        Vector2Int size = roomData.GetRoomDataByLevel(level).size;
+        SetRoomWorldPosition(roomObject, position, size);
+
+        // 룸 초기화 - 캡슐화된 방식으로 내부 속성 초기화
+        room.Initialize(level);
+
+        // 룸 목록에 추가
         allRooms.Add(room);
 
-        // 방 갱신
-        OnRoomChanged?.Invoke(); // 방 바뀔 때마다 알림
+        // 방 갱신 이벤트 발생
+        OnRoomChanged?.Invoke();
 
-        // Add to type dictionary
-        if (!roomsByType.ContainsKey(room.roomType))
-            roomsByType[room.roomType] = new List<Room>();
-        roomsByType[room.roomType].Add(room);
+        // 타입별 딕셔너리에 추가
+        if (!roomsByType.ContainsKey(roomType))
+            roomsByType[roomType] = new List<Room>();
+        roomsByType[roomType].Add(room);
 
-        // Register for events
+        // 룸 상태 변경 이벤트 등록
         room.OnRoomStateChanged += OnRoomStateChanged;
 
-        // Add to grid
-        for (int x = 0; x < room.GetSize().x; x++)
-            for (int y = 0; y < room.GetSize().y; y++)
-            {
-                Vector2Int gridPos = position + new Vector2Int(x, y);
-                roomGrid[gridPos] = room;
-            }
+        // 그리드에 추가
+        AddRoomToGrid(room, position, size);
 
+        // 배치 완료 알림
         room.OnPlaced();
 
-        // TODO: MoraleManager에서 사기 계산하기 해야됨
-
-        // Recalculate stats
+        // 스탯 재계산
         RecalculateAllStats();
 
         return true;
+    }
+
+    /// <summary>
+    /// 그리드에 룸을 추가합니다.
+    /// </summary>
+    private void AddRoomToGrid(Room room, Vector2Int position, Vector2Int size)
+    {
+        for (int x = 0; x < size.x; x++)
+        for (int y = 0; y < size.y; y++)
+        {
+            Vector2Int gridPos = position + new Vector2Int(x, y);
+            roomGrid[gridPos] = room;
+        }
+    }
+
+    /// <summary>
+    /// 룸의 월드 위치를 설정합니다.
+    /// </summary>
+    private void SetRoomWorldPosition(GameObject roomObject, Vector2Int gridPosition, Vector2Int size)
+    {
+        // 룸 크기의 절반
+        float halfWidth = size.x * 0.5f;
+        float halfHeight = size.y * 0.5f;
+
+        // 그리드 위치 + 룸 크기의 절반 = 룸 중심 위치
+        Vector3 worldPosition = new(
+            gridPosition.x + halfWidth,
+            gridPosition.y + halfHeight,
+            0
+        );
+
+        roomObject.transform.position = worldPosition;
+    }
+
+    /// <summary>
+    /// 지정된 그리드 위치에 있는 룸을 반환합니다.
+    /// </summary>
+    public Room GetRoomAtPosition(Vector2Int position)
+    {
+        if (roomGrid.TryGetValue(position, out Room room))
+            return room;
+        return null;
+    }
+
+    /// <summary>
+    /// 룸 타입에 맞는 컴포넌트를 추가합니다.
+    /// </summary>
+    private Room AddRoomComponent(GameObject roomObject, RoomType roomType)
+    {
+        // 타입에 따라 적절한 컴포넌트 추가
+        switch (roomType)
+        {
+            case RoomType.Power:
+                return roomObject.AddComponent<PowerRoom>();
+            case RoomType.Cockpit:
+                return roomObject.AddComponent<CockpitRoom>();
+            case RoomType.Teleporter:
+                return roomObject.AddComponent<TeleportRoom>();
+            case RoomType.LifeSupport:
+                return roomObject.AddComponent<LifeSupportRoom>();
+            case RoomType.Ammunition:
+                return roomObject.AddComponent<AmmunitionRoom>();
+            case RoomType.WeaponControl:
+                return roomObject.AddComponent<WeaponControlRoom>();
+            case RoomType.MedBay:
+                return roomObject.AddComponent<MedBayRoom>();
+            case RoomType.Shield:
+                return roomObject.AddComponent<ShieldRoom>();
+            case RoomType.Engine:
+                return roomObject.AddComponent<EngineRoom>();
+            case RoomType.Oxygen:
+                return roomObject.AddComponent<OxygenRoom>();
+            case RoomType.CrewQuarters:
+                return roomObject.AddComponent<CrewQuartersRoom>();
+            case RoomType.Storage:
+                return roomObject.AddComponent<StorageRoomBase>();
+            default:
+                return null;
+        }
     }
 
     /// <summary>
@@ -169,11 +266,11 @@ public class Ship : MonoBehaviour
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-            for (int y = 0; y < room.GetSize().y; y++)
-            {
-                Vector2Int gridPos = room.position + new Vector2Int(x, y);
-                roomGrid.Remove(gridPos);
-            }
+        for (int y = 0; y < room.GetSize().y; y++)
+        {
+            Vector2Int gridPos = room.position + new Vector2Int(x, y);
+            roomGrid.Remove(gridPos);
+        }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -206,7 +303,7 @@ public class Ship : MonoBehaviour
         Debug.Log("설치한 모든 방의 정보를 가져옴");
         // return allRooms.Select(r => r.roomData).Distinct().ToList(); // 중복 제거 (동일한 방 scriptable object면 무조건 1개로 취급)
 
-        return allRooms.Select(r => r.roomData).ToList(); // 그냥 싹 다 넘김 (중복 체크 X)
+        return allRooms.Select(r => r.GetRoomData()).ToList(); // 그냥 싹 다 넘김 (중복 체크 X)
     }
 
     /// <summary>
@@ -215,10 +312,7 @@ public class Ship : MonoBehaviour
     public int GetTotalShipValue()
     {
         int total = 0;
-        foreach (Room room in allRooms)
-        {
-            total += room.roomData.GetRoomData(room.currentLevel).cost;
-        }
+        foreach (Room room in allRooms) total += room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).cost;
         return total;
     }
 
@@ -228,10 +322,8 @@ public class Ship : MonoBehaviour
     public bool IsFullHitPoint()
     {
         foreach (Room room in allRooms)
-        {
             if (room.currentHitPoints != room.GetMaxHitPoints())
                 return false;
-        }
         return true;
     }
 
@@ -289,16 +381,15 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-            for (int y = 0; y < size.y; y++)
-            {
-                Vector2Int checkPos = pos + new Vector2Int(x, y);
-                if (roomGrid.ContainsKey(checkPos))
-                    return false;
-            }
+        for (int y = 0; y < size.y; y++)
+        {
+            Vector2Int checkPos = pos + new Vector2Int(x, y);
+            if (roomGrid.ContainsKey(checkPos))
+                return false;
+        }
 
         return true;
     }
-
 
 
     /// <summary>
@@ -372,8 +463,8 @@ public class Ship : MonoBehaviour
     #endregion
 
 
-
     #region 함선 스탯
+
     /// <summary>
     /// 함선의 기본 스탯을 초기화합니다.
     /// 모든 ShipStat 값을 0으로 설정하여 이후 계산의 기준을 만듭니다.
@@ -573,7 +664,6 @@ public class Ship : MonoBehaviour
 
 
     // ===== Power Management =====
-
 
 
     /// <summary>
@@ -834,15 +924,15 @@ public class Ship : MonoBehaviour
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
-                for (int y = -1; y <= 1; y++)
-                {
-                    if (x == 0 && y == 0) continue;
+            for (int y = -1; y <= 1; y++)
+            {
+                if (x == 0 && y == 0) continue;
 
-                    Vector2Int checkPos = position + new Vector2Int(x, y);
+                Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                    // 해당 위치에 있는 선원들에게 데미지 적용
-                    ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
-                }
+                // 해당 위치에 있는 선원들에게 데미지 적용
+                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
+            }
     }
 
     #endregion
@@ -889,7 +979,10 @@ public class Ship : MonoBehaviour
         return doorLevel;
     }
 
+    public DoorData.DoorLevel GetCurrentDoorData()
+    {
+        return doorData.GetDoorData(doorLevel);
+    }
+
     #endregion
-
-
 }

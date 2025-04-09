@@ -36,38 +36,34 @@ public class ShieldRoomData : RoomData<ShieldRoomData.ShieldRoomLevel>
             new()
             {
                 roomName = "room.shield.level1",
+                roomType = RoomType.Shield,
                 level = 1,
                 hitPoint = 200,
-                size = new Vector2Int(3,2),
+                size = new Vector2Int(3, 2),
                 cost = 2000,
                 powerRequirement = 30f,
                 crewRequirement = 0,
                 shieldRespawnTime = 30f,
                 shieldMaxAmount = 100f,
                 shieldReneratePerSecond = 5,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 50f }, { RoomDamageLevel.DamageLevelTwo, 25f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(50f, 25f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(2, 0), DoorDirection.South) }
             },
             new()
             {
                 roomName = "room.shield.level2",
+                roomType = RoomType.Shield,
                 level = 2,
                 hitPoint = 300,
-                size = new Vector2Int(3,2),
+                size = new Vector2Int(3, 2),
                 cost = 4000,
                 powerRequirement = 50f,
                 crewRequirement = 0,
                 shieldRespawnTime = 25f,
                 shieldMaxAmount = 200f,
                 shieldReneratePerSecond = 8,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 50f }, { RoomDamageLevel.DamageLevelTwo, 25f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(50f, 25f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(2, 0), DoorDirection.South) }
             }
         };
     }

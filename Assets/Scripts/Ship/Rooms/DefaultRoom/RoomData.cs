@@ -12,6 +12,7 @@ using UnityEngine.Serialization;
 /// </summary>
 public abstract class RoomData : ScriptableObject
 {
+    [Serializable]
     public class RoomLevel
     {
         /// <summary>레벨 이름 또는 표시용 이름.</summary>
@@ -19,6 +20,9 @@ public abstract class RoomData : ScriptableObject
 
         /// <summary>해당 레벨 번호.</summary>
         public int level;
+
+        /// <summary>방의타입</summary>
+        public RoomType roomType;
 
         /// <summary>최대 체력.</summary>
         public int hitPoint;
@@ -35,15 +39,15 @@ public abstract class RoomData : ScriptableObject
         /// <summary>요구 전력량.</summary>
         public float powerRequirement;
 
-        /// <summary>피해 단계별 체력 비율 (예: 연기, 화재 등).</summary>
-        public Dictionary<RoomDamageLevel, float> damageHitPointRate = new();
+        /// <summary>피해 단계별 체력 비율</summary>
+        public RoomDamageRates damageHitPointRate;
 
         /// <summary>해당 레벨의 방 스프라이트.</summary>
         public Sprite roomSprite;
         // TODO: 스프라이트 완성되면 각 Scriptable Object 에 스프라이트 추가할 것, roomPrefab(실제 배치될 방 prefab), previewPrefab(roomPrefab에서 alpha값만 0.5)
 
         /// <summary>이 방에 가능한 모든 문의 위치와 방향 목록</summary>
-        public List<DoorPosition> possibleDoorPositions = new List<DoorPosition>();
+        public List<DoorPosition> possibleDoorPositions = new();
     }
 
     /// <summary>
@@ -58,7 +62,7 @@ public abstract class RoomData : ScriptableObject
     /// </summary>
     /// <param name="level">조회할 레벨 번호.</param>
     /// <returns>RoomLevel 데이터.</returns>
-    public abstract RoomLevel GetRoomData(int level);
+    public abstract RoomLevel GetRoomDataByLevel(int level);
 
     /// <summary>
     /// 기본 레벨 데이터를 초기화합니다.
@@ -81,11 +85,17 @@ public abstract class RoomData : ScriptableObject
     /// </summary>
     /// <returns>초기화 필요 여부.</returns>
     protected abstract bool CheckIfNeedsInitialization();
+
+    public RoomType GetRoomType()
+    {
+        return GetRoomDataByLevel(1).roomType;
+    }
 }
 
 /// <summary>
 /// 방의 피해 단계 수준을 나타내는 열거형입니다.
 /// </summary>
+[Serializable]
 public enum RoomDamageLevel
 {
     /// <summary>1단계 피해 (경미한 손상 등).</summary>
@@ -119,7 +129,7 @@ public abstract class RoomData<T> : RoomData where T : RoomData.RoomLevel
     /// </summary>
     /// <param name="level">조회할 레벨 번호.</param>
     /// <returns>RoomLevel 데이터.</returns>
-    public override RoomLevel GetRoomData(int level)
+    public override RoomLevel GetRoomDataByLevel(int level)
     {
         return GetTypedRoomData(level);
     }

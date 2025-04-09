@@ -30,6 +30,7 @@ public class MedBayRoomData : RoomData<MedBayRoomData.MedBayRoomLevel>
             new()
             {
                 roomName = "room.medbay.level1",
+                roomType = RoomType.MedBay,
                 level = 1,
                 hitPoint = 100,
                 size = new Vector2Int(2, 2),
@@ -37,27 +38,22 @@ public class MedBayRoomData : RoomData<MedBayRoomData.MedBayRoomLevel>
                 powerRequirement = 10f,
                 crewRequirement = 0,
                 healPerSecond = 5f,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 60f }, { RoomDamageLevel.DamageLevelTwo, 30f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(60f, 30f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) }
             },
             new()
             {
                 roomName = "room.medbay.level2",
+                roomType = RoomType.MedBay,
                 level = 2,
                 hitPoint = 120,
-                size = new Vector2Int(3,2),
+                size = new Vector2Int(3, 2),
                 cost = 4000,
                 powerRequirement = 20f,
                 crewRequirement = 0,
                 healPerSecond = 8f,
-                damageHitPointRate =
-                    new Dictionary<RoomDamageLevel, float>()
-                    {
-                        { RoomDamageLevel.DamageLevelOne, 60f }, { RoomDamageLevel.DamageLevelTwo, 30f }
-                    }
+                damageHitPointRate = RoomDamageRates.Create(60f, 30f),
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(0, 0), DoorDirection.West) }
             }
         };
     }
