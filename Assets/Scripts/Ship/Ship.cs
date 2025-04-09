@@ -194,6 +194,7 @@ public class Ship : MonoBehaviour
         return true;
     }
 
+    #region 설계도
     // ---------------- 함선 커스터마이징 관련 추가 <기현> ----------------
 
     /// <summary>
@@ -271,6 +272,7 @@ public class Ship : MonoBehaviour
     }
 
     // ---------------- <기현> 여기까지 --------------------
+    #endregion
 
     /// <summary>
     /// 주어진 위치와 크기로 방을 배치할 수 있는지 검사합니다.
@@ -742,7 +744,7 @@ public class Ship : MonoBehaviour
         return validRooms[randomIndex];
     }
 
-        /// <summary>
+    /// <summary>
     /// 무기 및 외부 방어 시스템을 포함한 실제 피해 계산 및 적용을 수행합니다.
     /// </summary>
     /// <param name="damage">입력된 피해량.</param>
