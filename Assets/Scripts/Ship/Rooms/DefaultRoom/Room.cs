@@ -35,7 +35,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [HideInInspector] protected List<Door> connectedDoors = new();
 
     /// <summary>방의 현재 회전 값</summary>
-    [SerializeField] protected RoomRotation currentRotation;
+    [SerializeField] public RoomRotation currentRotation;
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
     [Header("방 효과")][SerializeField] protected ParticleSystem roomParticles;

@@ -17,9 +17,10 @@ public class BlueprintRoomDragHandler : MonoBehaviour
     private GameObject previewGO;
     private SpriteRenderer previewRenderer;
 
-    private RoomData currentRoomData;
-    private int currentLevel;
-    private int currentRotation; // 0, 90, 180, 270
+    private RoomData draggingRoomData;
+    private int draggingLevel;
+    private int draggingRotation; // 0, 90, 180, 270
+
     private bool isDragging = false;
     private Vector2Int roomSize;
 
@@ -31,9 +32,9 @@ public class BlueprintRoomDragHandler : MonoBehaviour
         if (previewGO != null)
             Destroy(previewGO);
 
-        currentRoomData = data;
-        currentLevel = level;
-        currentRotation = 0;
+        draggingRoomData = data;
+        draggingLevel = level;
+        draggingRotation = 0;
         isDragging = true;
 
         RoomData.RoomLevel levelData = data.GetRoomData(level);
@@ -50,35 +51,40 @@ public class BlueprintRoomDragHandler : MonoBehaviour
 
     private void Update()
     {
-        if (!isDragging || currentRoomData == null || previewGO == null)
+        if (!isDragging || draggingRoomData == null || previewGO == null)
             return;
 
         Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2Int gridPos = gridPlacer.WorldToGridPosition(mouseWorld);
         Vector3 basePos = gridPlacer.GridToWorldPosition(gridPos);
 
-        Vector2Int rotatedSize = RoomRotationUtility.GetRotatedSize(roomSize, currentRotation);
-        Vector2 offset = RoomRotationUtility.GetRotationOffset(rotatedSize, currentRotation);
+        Vector2Int rotatedSize = RoomRotationUtility.GetRotatedSize(roomSize, draggingRotation);
+        Vector2 offset = RoomRotationUtility.GetRotationOffset(rotatedSize, draggingRotation);
 
         // 좌측 하단 블록 기준 설치
         previewGO.transform.position = basePos + (Vector3)offset;
-        previewGO.transform.rotation = Quaternion.Euler(0, 0, -currentRotation);
+        previewGO.transform.rotation = Quaternion.Euler(0, 0, -draggingRotation);
 
         // 설치 가능 여부 시각화
-        bool canPlace = gridPlacer.CanPlaceRoom(currentRoomData, currentLevel, gridPos, currentRotation);
+        bool canPlace = gridPlacer.CanPlaceRoom(draggingRoomData, draggingLevel, gridPos, draggingRotation);
         previewRenderer.color = canPlace ? validColor : invalidColor;
 
         // 회전
         if (Input.GetMouseButtonDown(1))
-            currentRotation = (currentRotation + 90) % 360;
+            draggingRotation = (draggingRotation + 90) % 360;
 
         // 설치
-        if (Input.GetMouseButtonUp(0) && canPlace)
+        if (Input.GetMouseButtonUp(0))
         {
-            gridPlacer.PlaceRoom(currentRoomData, currentLevel, gridPos, currentRotation);
+            if (!canPlace)
+                Destroy(previewGO);
+            else
+            {
+                gridPlacer.PlaceRoom(draggingRoomData, draggingLevel, gridPos, draggingRotation);
 
-            Destroy(previewGO);
-            isDragging = false;
+                Destroy(previewGO);
+                isDragging = false;
+            }
         }
     }
 }

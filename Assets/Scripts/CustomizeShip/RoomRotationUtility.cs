@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,7 +35,7 @@ public static class RoomRotationUtility
                 break;
         }
 
-        // 짝수 크기 보정
+        // 짝수 tilesize에 대해 회전각 보정
         if (size.x % 2 == 0 || size.y % 2 == 0)
         {
             if (size.x == size.y)
@@ -60,28 +61,38 @@ public static class RoomRotationUtility
     }
 
     /// <summary>
-    /// 기준 타일(anchor)과 회전 상태에 따른 실제 점유 타일 목록 반환
+    /// 회전된 타일 오프셋을 기준으로 기준점(origin)에 맞춘 점유 타일 좌표를 반환합니다.
     /// </summary>
-    public static List<Vector2Int> GetOccupiedTiles(Vector2Int anchor, Vector2Int size, int rotation)
+    public static List<Vector2Int> GetOccupiedGridPositions(Vector2Int origin, Vector2Int size, int rot)
     {
-        List<Vector2Int> tiles = new();
+        List<Vector2Int> result = new();
 
-        for (int x = 0; x < size.x; x++)
+        switch (rot)
         {
-            for (int y = 0; y < size.y; y++)
-            {
-                Vector2Int offset = rotation switch
-                {
-                    0 => new Vector2Int(x, y),
-                    90 => new Vector2Int(size.y - 1 - y, x),
-                    180 => new Vector2Int(size.x - 1 - x, size.y - 1 - y),
-                    270 => new Vector2Int(y, size.x - 1 - x),
-                    _ => Vector2Int.zero,
-                };
-                tiles.Add(anchor + offset);
-            }
+            case 0:
+                for (int j = origin.y; j < origin.y + size.y; j++)
+                    for (int i = origin.x; i < origin.x + size.x; i++)
+                        result.Add(new Vector2Int(i, j));
+                break;
+            case 90:
+                for (int j = origin.y; j > origin.y - size.y; j--)
+                    for (int i = origin.x; i < origin.x + size.x; i++)
+                        result.Add(new Vector2Int(i, j));
+                break;
+            case 180:
+                for (int j = origin.y; j > origin.y - size.y; j--)
+                    for (int i = origin.x; i > origin.x - size.x; i--)
+                        result.Add(new Vector2Int(i, j));
+                break;
+            case 270:
+                for (int j = origin.y; j < origin.y + size.y; j++)
+                    for (int i = origin.x; i > origin.x - size.x; i++)
+                        result.Add(new Vector2Int(i, j));
+                break;
         }
 
-        return tiles;
+        return result;
     }
+
+
 }

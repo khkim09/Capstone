@@ -18,11 +18,6 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     public Transform gridTiles;
 
     /// <summary>
-    /// 실제 배치된 방들의 부모 오브젝트입니다.
-    /// </summary>
-    public Transform placedRooms;
-
-    /// <summary>
     /// 각 타일의 크기입니다.
     /// </summary>
     public float tileSize = 1f;
@@ -37,6 +32,11 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     public GameObject roomPrefab;
 
+    /// <summary>
+    /// 현재 도안 설계 상태에서 점유된 타일들 (모든 BlueprintRoom 기준)
+    /// </summary>
+    private readonly HashSet<Vector2Int> occupiedGridTiles = new();
+
     [SerializeField] private Vector2Int gridSize = new(60, 60);
     [SerializeField] private Vector3 gridOrigin = Vector3.zero;
 
@@ -46,7 +46,6 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     private void Start()
     {
         GenerateTiles();
-        // gridOrigin = new Vector3(-gridSize.x / 2f * tileSize, -gridSize.y / 2f * tileSize, 0f);
     }
 
     /// <summary>
@@ -88,42 +87,109 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
         return new Vector2Int(Mathf.FloorToInt(local.x), Mathf.FloorToInt(local.y));
     }
 
-    public void SetGridOrigin(Vector3 newOrigin)
+    /// <summary>
+    /// 설게도 화면에서 camera의 시작 위치 보정
+    /// 설계도에 방이 없을 시 그리드 중앙 시작
+    /// 설계도에 방이 있을 경우 방 들의 중앙 위치에서 시작
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 GetCameraStartPosition()
     {
-        gridOrigin = newOrigin;
-    }
+        BlueprintRoom[] allBPRooms = targetBlueprintShip.GetComponentsInChildren<BlueprintRoom>();
 
-    public Vector3 GetGridCenter()
-    {
-        return gridOrigin + new Vector3(gridSize.x / 2f, gridSize.y / 2f, 0f);
-    }
+        // 배치된 방 없으면 그리드 중앙
+        if (allBPRooms.Length == 0)
+            return GridToWorldPosition(gridSize / 2);
 
-    public Vector2Int GetGridSize()
-    {
-        return gridSize;
+        // 전체 타일 평균 위치 계산
+        List<Vector2Int> allTiles = new();
+        foreach (BlueprintRoom room in allBPRooms)
+            allTiles.AddRange(room.occupiedTiles);
+
+        Vector2 average = Vector2.zero;
+        foreach (Vector2Int tile in allTiles)
+            average += (Vector2)tile;
+
+        average /= allTiles.Count;
+
+        return GridToWorldPosition(Vector2Int.RoundToInt(average));
     }
 
     /// <summary>
-    /// 주어진 좌표에 해당 방을 배치할 수 있는지 확인
+    /// 해당 타일이 그리드 범위 내에 있는지 검사
     /// </summary>
-    public bool CanPlaceRoom(RoomData data, int level, Vector2Int position, int rotation)
+    /// <param name="tile"></param>
+    /// <returns></returns>
+    public bool IsInGrid(Vector2Int tile)
+    {
+        if (tile.x < 0 || tile.x >= gridSize.x || tile.y < 0 || tile.y >= gridSize.y)
+            return false;
+        return true;
+    }
+
+    /// <summary>
+    /// 해당 타일이 현재 다른 방에 의해 점유되어 있는지 검사
+    /// </summary>
+    /// <param name="tile"></param>
+    /// <returns></returns>
+    public bool IsTileOccupied(Vector2Int tile)
+    {
+        return occupiedGridTiles.Contains(tile);
+    }
+
+    /// <summary>
+    /// 해당 방이 점유하고 있는 모든 타일을 전체 점유 목록에 추가
+    /// </summary>
+    /// <param name="room"></param>
+    public void MarkRoomOccupied(BlueprintRoom room)
+    {
+        foreach (Vector2Int tile in room.occupiedTiles)
+            occupiedGridTiles.Add(tile);
+    }
+
+    /// <summary>
+    /// 특정 방 제거, 되돌릴 경우 점유 타일 목록에서 제거
+    /// </summary>
+    /// <param name="room"></param>
+    public void UnMarkRoomOccupied(BlueprintRoom room)
+    {
+        foreach (Vector2Int tile in room.occupiedTiles)
+            occupiedGridTiles.Remove(tile);
+    }
+
+    /// <summary>
+    /// 디버깅 용 점유 타일 반환
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerable<Vector2Int> GetAllOccupiedTiles()
+    {
+        return occupiedGridTiles;
+    }
+
+    /// <summary>
+    /// 해당 방을 현재 위치와 회전 상태로 배치 가능한지 검사
+    /// </summary>
+    /// <param name="data">방 데이터</param>
+    /// <param name="level">레벨</param>
+    /// <param name="position">좌하단 기준 시작 위치</param>
+    /// <param name="rotation">회전 각도</param>
+    /// <returns></returns>
+    public bool CanPlaceRoom(RoomData data, int level, Vector2Int origin, int rotation)
     {
         RoomData.RoomLevel levelData = data.GetRoomData(level);
-        Vector2Int size = RoomRotationUtility.GetRotatedSize(data.GetRoomData(level).size, rotation);
-        RectInt area = new(position, size);
+        Vector2Int size = RoomRotationUtility.GetRotatedSize(levelData.size, rotation);
 
-        List<Vector2Int> candidateTiles = RoomRotationUtility.GetOccupiedTiles(position, size, rotation);
+        List<Vector2Int> tilesToOccupy = RoomRotationUtility.GetOccupiedGridPositions(origin, size, rotation);
+
         // 그리드 범위 벗어나는지 체크
-        if (position.x < 0 || position.y < 0 || position.x + size.x > gridSize.x || position.y + size.y > gridSize.y)
-            return false;
+        foreach (Vector2Int tile in tilesToOccupy)
+            if (!IsInGrid(tile))
+                return false;
 
         // 겹침 체크
-        foreach (BlueprintRoom room in targetBlueprintShip.PlacedBlueprintRooms)
-        {
-            foreach (var tile in candidateTiles)
-                if (room.OccupiedTiles.Contains(tile))
-                    return false;
-        }
+        foreach (Vector2Int tile in tilesToOccupy)
+            if (IsTileOccupied(tile))
+                return false;
 
         return true;
     }
@@ -131,20 +197,26 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     /// <summary>
     /// 실제 방을 해당 위치에 배치함
     /// </summary>
+    /// <param name="data"></param>
+    /// <param name="level"></param>
+    /// <param name="position"></param>
+    /// <param name="rotation"></param>
     public void PlaceRoom(RoomData data, int level, Vector2Int position, int rotation)
     {
         Vector2Int size = RoomRotationUtility.GetRotatedSize(data.GetRoomData(level).size, rotation);
         Vector2 offset = RoomRotationUtility.GetRotationOffset(size, rotation);
         Vector3 worldPos = GridToWorldPosition(position) + (Vector3)offset;
 
-        GameObject placed = Instantiate(roomPrefab, targetBlueprintShip.transform);
-        placed.transform.position = worldPos;
-        placed.transform.rotation = Quaternion.Euler(0, 0, -rotation);
+        GameObject bpRoomGO = Instantiate(roomPrefab, targetBlueprintShip.transform);
+        bpRoomGO.transform.position = worldPos + new Vector3(0, 0, 10f);
+        bpRoomGO.transform.rotation = Quaternion.Euler(0, 0, -rotation);
 
-        BlueprintRoom blueprintRoom = placed.GetComponent<BlueprintRoom>();
-        blueprintRoom.Initialize(data, level, position, rotation);
-        blueprintRoom.SetBlueprint(targetBlueprintShip);
+        BlueprintRoom bpRoom = bpRoomGO.GetComponent<BlueprintRoom>();
+        bpRoom.Initialize(data, level, position, rotation);
+        bpRoom.SetBlueprint(targetBlueprintShip);
 
-        targetBlueprintShip.AddRoom(blueprintRoom);
+        MarkRoomOccupied(bpRoom);
+
+        targetBlueprintShip.AddRoom(bpRoom);
     }
 }

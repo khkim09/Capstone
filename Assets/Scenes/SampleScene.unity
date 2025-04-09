@@ -695,9 +695,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 7791042327150427279, guid: d3e08e441d4bf074184e15ff600bfcba, type: 3}
   gridTiles: {fileID: 556564442}
-  placedRooms: {fileID: 1315968473}
-  width: 60
-  height: 60
   tileSize: 1
   targetBlueprintShip: {fileID: 1769631652}
   roomPrefab: {fileID: 2726010895847266727, guid: d561be2d92c94f1468e4cd103b756d75, type: 3}
@@ -733,7 +730,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 556564442}
-  - {fileID: 1315968473}
   - {fileID: 1769631651}
   - {fileID: 343238956}
   - {fileID: 791471449}
@@ -994,7 +990,7 @@ MonoBehaviour:
   gridMax: {x: 5, y: 4}
   corridorPrefab: {fileID: 2019523521706311458, guid: c4b7cdafe4b78c84ca402eb6793f2d94, type: 3}
   doorPrefab: {fileID: 0}
-  modulesContainer: {fileID: 1315968473}
+  modulesContainer: {fileID: 0}
   currency: 1000
   corridorCost: 10
   doorCost: 15
@@ -1024,7 +1020,6 @@ GameObject:
   - component: {fileID: 843603324}
   - component: {fileID: 843603327}
   - component: {fileID: 843603326}
-  - component: {fileID: 843603325}
   - component: {fileID: 843603328}
   m_Layer: 0
   m_Name: BlueprintUI
@@ -1053,23 +1048,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -430}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &843603325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843603323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c543311144a5c964f9a952db3f9d6344, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blueprintRoot: {fileID: 843603323}
-  totalCostText: {fileID: 284831785}
-  buildButton: {fileID: 1858435063}
-  targetBlueprintShip: {fileID: 1769631652}
-  playerShip: {fileID: 1470065966}
 --- !u!114 &843603326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1441,37 +1419,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1315968472
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1315968473}
-  m_Layer: 0
-  m_Name: PlacedRooms
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1315968473
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1315968472}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 573525895}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1405049002
 GameObject:
@@ -2407,8 +2354,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 843603325}
-        m_TargetAssemblyTypeName: BlueprintUI, Assembly-CSharp
+      - m_Target: {fileID: 2588132299027531993}
+        m_TargetAssemblyTypeName: CustomizeShipUIHandler, Assembly-CSharp
         m_MethodName: OnClickBuild
         m_Mode: 1
         m_Arguments:
@@ -7860,11 +7807,14 @@ MonoBehaviour:
   mainUI: {fileID: 3193338988408996985}
   customizeUI: {fileID: 734046459958949239}
   gridTiles: {fileID: 556564441}
-  placedRooms: {fileID: 1315968472}
+  buildButton: {fileID: 1858435063}
   saveButton: {fileID: 107794011}
   cancelButton: {fileID: 3948766609991166006}
   feedbackText: {fileID: 0}
+  totalCostText: {fileID: 284831785}
   playerShip: {fileID: 1470065966}
+  gridPlacer: {fileID: 556564443}
+  targetBlueprintShip: {fileID: 1769631652}
   customizationManager: {fileID: 791471448}
 --- !u!114 &2588660719178445929
 MonoBehaviour:
