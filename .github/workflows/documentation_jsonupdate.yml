@@ -39,25 +39,38 @@ jobs:
           publish_branch: gh-pages
           force_orphan: true
 
-  json-update:
+  check-excel-changes:
     runs-on: ubuntu-latest
     needs: build-docs
-    if: always()
-
+    outputs:
+      has_xlsx_changes: ${{ steps.check_excel.outputs.has_changes }}
+    
     steps:
       - name: Checkout source
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 2  # Need to fetch HEAD and HEAD^ to compare
 
       - name: Check if Excel file was modified
         id: check_excel
         run: |
           echo "🔍 Checking for modified .xlsx files in DataSheet/"
-          changed=$(git diff --name-only HEAD^ HEAD | grep '^DataSheet/.*\.xlsx' || true)
-          echo "modified_xlsx=$changed" >> $GITHUB_OUTPUT
+          if git diff --name-only HEAD^ HEAD | grep -q '^DataSheet/.*\.xlsx'; then
+            echo "Excel files were modified"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "🛑 No Excel changes detected."
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
 
-      - name: Skip if no Excel changes
-        if: steps.check_excel.outputs.modified_xlsx == ''
-        run: echo "🛑 No Excel changes detected. Skipping JSON update." && exit 0
+  json-update:
+    runs-on: ubuntu-latest
+    needs: check-excel-changes
+    if: needs.check-excel-changes.outputs.has_xlsx_changes == 'true'
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
