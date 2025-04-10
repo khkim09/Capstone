@@ -3,7 +3,7 @@ import os
 import json
 
 input_dir = "DataSheet"  # 엑셀 파일이 있는 폴더
-output_dir = "Assets/StreamingAssets/"   # json 저장할 폴더
+output_dir = "json_output"   # json 저장할 폴더
 
 os.makedirs(output_dir, exist_ok=True)
 
