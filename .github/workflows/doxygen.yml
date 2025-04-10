@@ -1,4 +1,4 @@
-name: Build and Push Doxygen Docs to gh-pages
+name: Build and Push Doxygen Docs and JSON
 
 on:
   push:
@@ -38,6 +38,15 @@ jobs:
           publish_dir: ./docs/combined
           publish_branch: gh-pages
           force_orphan: true
+
+  json-update:
+    runs-on: ubuntu-latest
+    needs: build-docs  # 문서 작업이 끝난 후 실행
+    if: ${{ contains(join(github.event.commits.*.modified, ' '), 'DataSheet') || contains(join(github.event.commits.*.added, ' '), 'DataSheet') }}
+    
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
