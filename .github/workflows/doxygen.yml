@@ -38,3 +38,28 @@ jobs:
           publish_dir: ./docs/combined
           publish_branch: gh-pages
           force_orphan: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Python packages
+        run: pip install pandas openpyxl
+
+      - name: Convert Excel to JSON
+        run: python excel_to_json.py
+
+      - name: Ensure StreamingAssets directory exists
+        run: mkdir -p ./Assets/StreamingAssets
+
+      - name: Copy JSON files to StreamingAssets
+        run: cp -r json_output/*.json ./Assets/StreamingAssets/
+
+      - name: Commit generated JSON to repository
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add ./Assets/StreamingAssets/*.json
+          git commit -m "Auto-update JSON files from Excel" || echo "No changes to commit"
+          git push
