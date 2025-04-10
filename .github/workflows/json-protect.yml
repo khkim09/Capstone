@@ -1,0 +1,15 @@
+name: Prevent manual JSON edits
+
+on:
+  pull_request:
+    paths:
+      - 'Assets/StreamingAssets/*.json'
+
+jobs:
+  check-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for manual JSON edits
+        run: |
+          echo "❌ JSON 파일은 자동 생성됩니다. 수동으로 수정하지 마세요."
+          exit 1
