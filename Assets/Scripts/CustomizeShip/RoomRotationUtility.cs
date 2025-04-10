@@ -86,7 +86,7 @@ public static class RoomRotationUtility
                 break;
             case 270:
                 for (int j = origin.y; j < origin.y + size.y; j++)
-                    for (int i = origin.x; i > origin.x - size.x; i++)
+                    for (int i = origin.x; i > origin.x - size.x; i--)
                         result.Add(new Vector2Int(i, j));
                 break;
         }

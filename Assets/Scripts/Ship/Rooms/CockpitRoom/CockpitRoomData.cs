@@ -34,6 +34,7 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
             {
                 roomName = "room.cockpit.level1",
                 roomType = RoomType.Cockpit,
+                category = RoomCategory.Essential,
                 level = 1,
                 hitPoint = 100,
                 size = new Vector2Int(2, 2),

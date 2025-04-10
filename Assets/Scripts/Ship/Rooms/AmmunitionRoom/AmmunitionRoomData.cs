@@ -34,6 +34,7 @@ public class AmmunitionRoomData : RoomData<AmmunitionRoomData.AmmunitionRoomLeve
             {
                 roomName = "room.ammunition.level1",
                 roomType = RoomType.Ammunition,
+                category = RoomCategory.Auxiliary,
                 level = 1,
                 hitPoint = 100,
                 size = new Vector2Int(2, 1),
