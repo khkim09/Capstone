@@ -12,7 +12,6 @@ public class StorageRoomRegular : StorageRoomBase
     protected override void Start()
     {
         base.Start();
-        storageType = StorageType.Regular;
     }
 
     /// <summary>
@@ -20,7 +19,7 @@ public class StorageRoomRegular : StorageRoomBase
     /// </summary>
     /// <param name="item">보관할 아이템.</param>
     /// <returns>보관 가능 여부.</returns>
-    public override bool CanStoreItem(TradableItem item)
+    public override bool CanStoreItemType(ItemCategory itemType)
     {
         // 상온 보관 가능한 아이템인지 확인
         return false;
