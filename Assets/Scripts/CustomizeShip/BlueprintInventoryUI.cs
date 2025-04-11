@@ -20,6 +20,9 @@ public class BlueprintInventoryUI : MonoBehaviour
         LoadInventory();
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     private void LoadInventory()
     {
         foreach (RoomData data in allRooms)
