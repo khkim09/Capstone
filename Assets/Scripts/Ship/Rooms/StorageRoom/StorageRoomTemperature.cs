@@ -15,7 +15,6 @@ public class StorageRoomTemperature : StorageRoomBase
     protected override void Start()
     {
         base.Start();
-        storageType = StorageType.Temperature;
     }
 
     /// <summary>
@@ -33,7 +32,7 @@ public class StorageRoomTemperature : StorageRoomBase
     /// 전력이 공급되면 냉장/냉동 아이템 보관 가능,
     /// 공급되지 않으면 상온 아이템만 보관 가능합니다.
     /// </summary>
-    public override bool CanStoreItem(TradableItem item)
+    public override bool CanStoreItemType(ItemCategory itemType)
     {
         if (!hasEnoughPower)
         {

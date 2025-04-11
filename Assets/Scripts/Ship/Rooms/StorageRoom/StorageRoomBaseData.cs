@@ -14,6 +14,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StorageRoomData", menuName = "RoomData/StorageRoom Data")]
 public class StorageRoomBaseData : RoomData<StorageRoomBaseData.StorageRoomBaseLevel>
 {
+    public StorageType storageType;
+
     /// <summary>
     /// 공통 창고 데이터 구조.
     /// 종류별 저장 용량 등을 정의합니다.
@@ -32,5 +34,10 @@ public class StorageRoomBaseData : RoomData<StorageRoomBaseData.StorageRoomBaseL
     {
         RoomLevels =
             new List<StorageRoomBaseLevel> { new() { roomType = RoomType.Storage, level = 1, hitPoint = 100 } };
+    }
+
+    public StorageType GetStorageType()
+    {
+        return storageType;
     }
 }

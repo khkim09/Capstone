@@ -12,7 +12,6 @@ public class StorageRoomAnimal : StorageRoomBase
     protected override void Start()
     {
         base.Start();
-        storageType = StorageType.Animal;
     }
 
     /// <summary>
@@ -20,7 +19,7 @@ public class StorageRoomAnimal : StorageRoomBase
     /// </summary>
     /// <param name="item">보관 대상 아이템.</param>
     /// <returns>보관 가능 여부.</returns>
-    public override bool CanStoreItem(TradableItem item)
+    public override bool CanStoreItemType(ItemCategory itemType)
     {
         // 동물 카테고리 아이템인지 확인
         // return item.category == TradableItem.Category.Animal;

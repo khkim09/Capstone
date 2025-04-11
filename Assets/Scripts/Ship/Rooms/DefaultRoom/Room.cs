@@ -131,7 +131,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// </summary>
     public void InitializeIsDamageable()
     {
-        // NOTE: 방 종류 추가할 때마다 이 함수에 데미지 여부 등록하기
+        // TODO: 방 종류 추가할 때마다 이 함수에 데미지 여부 등록하기
         switch (roomType)
         {
             case RoomType.Power:
@@ -223,6 +223,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         crewInRoom = new List<CrewBase>();
         currentLevel = level;
         roomRenderer = gameObject.AddComponent<SpriteRenderer>();
+        gridSize = roomData.GetRoomDataByLevel(level).size;
 
         roomRenderer.sortingOrder = SortingOrderConstants.Room;
 
@@ -415,20 +416,41 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     }
 
     /// <summary>방의 그리드 크기 (에디터 전용).</summary>
-    public Vector2Int gridSize = new(2, 2);
+    private Vector2Int gridSize = new(2, 2);
 
     /// <summary>
     /// 방 회전시키기
     /// </summary>
     public void RotateRoom(int rotationSteps)
     {
-        // enum 값 순환 (0->1->2->3->0)
-        currentRotation = (RoomRotation)(((int)currentRotation + 1) % 4);
+        // 방의 그리드 좌표 (좌측 하단 기준점)
+        Vector2Int gridPos = position;
 
-        // 실제 방 GameObject 회전 적용
-        transform.rotation = Quaternion.Euler(0, 0, (int)currentRotation * 90f);
+        // 현재 크기
+        Vector2Int originalSize = GetSize();
 
-        // 방에 부착된 문들의 상대적 위치와 방향 업데이트
+        // 회전 상태 업데이트
+        currentRotation = (RoomRotation)(((int)currentRotation + rotationSteps) % 4);
+
+        // 방 오브젝트 회전
+        transform.rotation = Quaternion.Euler(0, 0, -(int)currentRotation * 90f);
+
+        // 새 크기 계산 (90도/270도 회전 시 가로세로 바뀜)
+        Vector2Int newSize = originalSize;
+        if ((int)currentRotation % 2 != 0) // 90도 또는 270도
+            newSize = new Vector2Int(originalSize.y, originalSize.x);
+
+        // gridSize 업데이트
+        gridSize = newSize;
+
+        // 새 월드 위치 계산 - 항상 같은 그리드 위치(좌측 하단)를 유지
+        // 중요: 좌표계는 그리드 좌측 하단이 (0,0)이라고 가정
+        Vector3 newPosition = ShipGridHelper.GetRoomWorldPosition(position, gridSize);
+
+        // 위치 적용
+        transform.position = newPosition;
+
+        // 문 위치와 방향 업데이트
         UpdateDoorsPositionAndRotation();
     }
 
@@ -548,47 +570,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
         return localPos;
     }
-
-    // /// <summary>
-    // /// 방 좌표계에서의 문 위치를 계산합니다.
-    // /// 방 중심 기준으로 정확한 위치를 반환합니다.
-    // /// </summary>
-    // private Vector2 GetLocalDoorPosition(DoorPosition doorPos)
-    // {
-    //     Vector2Int roomSize = roomData.GetRoomDataByLevel(currentLevel).size;
-    //     float cellSize = GridConstants.CELL_SIZE;
-    //
-    //     // 방 전체 크기의 절반 (피벗 중심 좌표 기준)
-    //     Vector2 roomPivotOffset = new Vector2(roomSize.x, roomSize.y) * 0.5f;
-    //
-    //     // 문의 중심 위치 계산 (그리드 셀 중심 기준)
-    //     Vector2 doorCellCenter = new(doorPos.position.x + 0.5f, doorPos.position.y + 0.5f);
-    //
-    //     // 방향에 따른 문 위치 보정
-    //     Vector2 offset = Vector2.zero;
-    //     float doorThicknessOffset = 0.1f; // 필요에 따라 미세 조정 가능
-    //
-    //     switch (doorPos.direction)
-    //     {
-    //         case DoorDirection.North:
-    //             offset.y = 0.5f + doorThicknessOffset;
-    //             break;
-    //         case DoorDirection.South:
-    //             offset.y = -0.5f - doorThicknessOffset;
-    //             break;
-    //         case DoorDirection.East:
-    //             offset.x = 0.5f + doorThicknessOffset;
-    //             break;
-    //         case DoorDirection.West:
-    //             offset.x = -0.5f - doorThicknessOffset;
-    //             break;
-    //     }
-    //
-    //     // 최종 로컬 좌표 계산
-    //     Vector2 localPos = (doorCellCenter - roomPivotOffset + offset) * cellSize;
-    //     return localPos;
-    // }
-
 
     /// <summary>
     /// 방 좌표계에서의 문 회전을 계산합니다.

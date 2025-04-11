@@ -88,8 +88,9 @@ public class Ship : MonoBehaviour
         doorLevel = 1;
         GameManager.Instance.SetPlayerShip(this);
 
+        /// TODO: 테스트를 위해 임시 방 설치. 나중에 제거할 것
         AddRoom(3, testRoomPrefab1.GetComponent<Room>().GetRoomData(), new Vector2Int(0, 0));
-        AddRoom(1, testRoomPrefab2.GetComponent<Room>().GetRoomData(), new Vector2Int(3, 0));
+        AddRoom(1, testRoomPrefab2.GetComponent<Room>().GetRoomData(), new Vector2Int(4, 1));
         AddRoom(3, testRoomPrefab3.GetComponent<Room>().GetRoomData(), new Vector2Int(-3, -1));
     }
 
@@ -128,8 +129,9 @@ public class Ship : MonoBehaviour
         GameObject roomObject = new($"Room_{roomData.name}");
         roomObject.transform.SetParent(transform);
 
+
         // 타입에 맞는 컴포넌트 추가
-        Room room = AddRoomComponent(roomObject, roomType);
+        Room room = AddRoomComponent(roomObject, roomType, roomData);
         if (room == null)
         {
             Debug.LogError($"Failed to create room component for {roomData.name}");
@@ -144,7 +146,7 @@ public class Ship : MonoBehaviour
 
         // 룸 위치 설정
         Vector2Int size = roomData.GetRoomDataByLevel(level).size;
-        SetRoomWorldPosition(roomObject, position, size);
+        room.gameObject.transform.position = ShipGridHelper.GetRoomWorldPosition(position, size);
 
         // 룸 초기화 - 캡슐화된 방식으로 내부 속성 초기화
         room.Initialize(level);
@@ -189,25 +191,6 @@ public class Ship : MonoBehaviour
     }
 
     /// <summary>
-    /// 룸의 월드 위치를 설정합니다.
-    /// </summary>
-    private void SetRoomWorldPosition(GameObject roomObject, Vector2Int gridPosition, Vector2Int size)
-    {
-        // 룸 크기의 절반
-        float halfWidth = size.x * 0.5f;
-        float halfHeight = size.y * 0.5f;
-
-        // 그리드 위치 + 룸 크기의 절반 = 룸 중심 위치
-        Vector3 worldPosition = new(
-            gridPosition.x + halfWidth,
-            gridPosition.y + halfHeight,
-            0
-        );
-
-        roomObject.transform.position = worldPosition;
-    }
-
-    /// <summary>
     /// 지정된 그리드 위치에 있는 룸을 반환합니다.
     /// </summary>
     public Room GetRoomAtPosition(Vector2Int position)
@@ -220,9 +203,11 @@ public class Ship : MonoBehaviour
     /// <summary>
     /// 룸 타입에 맞는 컴포넌트를 추가합니다.
     /// </summary>
-    private Room AddRoomComponent(GameObject roomObject, RoomType roomType)
+    /// <summary>
+    /// 룸 타입에 맞는 컴포넌트를 추가합니다.
+    /// </summary>
+    private Room AddRoomComponent(GameObject roomObject, RoomType roomType, RoomData roomData)
     {
-        // 타입에 따라 적절한 컴포넌트 추가
         switch (roomType)
         {
             case RoomType.Power:
@@ -248,11 +233,31 @@ public class Ship : MonoBehaviour
             case RoomType.CrewQuarters:
                 return roomObject.AddComponent<CrewQuartersRoom>();
             case RoomType.Storage:
-                return roomObject.AddComponent<StorageRoomBase>();
+                // RoomData에서 StorageType 가져오기
+                if (roomData is StorageRoomBaseData storageData)
+                {
+                    StorageType storageType = storageData.storageType;
+
+                    StorageRoomBase room = storageType switch
+                    {
+                        StorageType.Regular => roomObject.AddComponent<StorageRoomRegular>(),
+                        StorageType.Temperature => roomObject.AddComponent<StorageRoomTemperature>(),
+                        StorageType.Animal => roomObject.AddComponent<StorageRoomAnimal>(),
+                        _ => roomObject.AddComponent<StorageRoomRegular>()
+                    };
+
+                    room.SetStorageType(storageType); // setter 사용
+                    return room;
+                }
+
+                break;
             default:
                 return null;
         }
+
+        return null;
     }
+
 
     /// <summary>
     /// 지정한 룸을 함선에서 제거합니다.
@@ -292,6 +297,7 @@ public class Ship : MonoBehaviour
     }
 
     #region 설계도
+
     // ---------------- 함선 커스터마이징 관련 추가 <기현> ----------------
 
     /// <summary>
@@ -364,6 +370,7 @@ public class Ship : MonoBehaviour
     }
 
     // ---------------- <기현> 여기까지 --------------------
+
     #endregion
 
     /// <summary>

@@ -7,14 +7,21 @@ public enum ItemPlanet
 {
     /// <summary>SIS 행성</summary>
     SIS,
+
     /// <summary>CCK 행성</summary>
     CCK,
+
     /// <summary>ICM 행성</summary>
     ICM,
+
     /// <summary>RCE 행성</summary>
     RCE,
+
     /// <summary>KTL 행성</summary>
-    KTL
+    KTL,
+
+    /// <summary>기본</summary>
+    Default
 }
 
 /// <summary>
@@ -24,10 +31,15 @@ public enum ItemTierLevel
 {
     /// <summary>T1 티어</summary>
     T1,
+
     /// <summary>T2 티어</summary>
     T2,
+
     /// <summary>T3 티어</summary>
-    T3
+    T3,
+
+    /// <summary>기본</summary>
+    Default
 }
 
 /// <summary>
@@ -37,22 +49,33 @@ public enum ItemCategory
 {
     /// <summary>광물</summary>
     Mineral,
+
     /// <summary>동물</summary>
     Livestock,
+
     /// <summary>무기</summary>
     Weapon,
+
     /// <summary>보석</summary>
     Gem,
+
     /// <summary>사치품</summary>
     Luxury,
+
     /// <summary>소재</summary>
     Material,
+
     /// <summary>식량</summary>
     Food,
+
     /// <summary>유물</summary>
     Artifact,
+
     /// <summary>향신료</summary>
-    Spice
+    Spice,
+
+    /// <summary>기본</summary>
+    Default
 }
 
 /// <summary>
@@ -62,10 +85,13 @@ public enum ItemState
 {
     /// <summary>정상</summary>
     Normal,
+
     /// <summary>조금 훼손됨 (가치 25% 하락)</summary>
     SlightlyDamaged,
+
     /// <summary>다소 훼손됨 (가치 50% 하락)</summary>
     ModeratelyDamaged,
+
     /// <summary>판매 불가 (가치 100% 하락)</summary>
     Unsellable
 }
@@ -82,8 +108,7 @@ public class ItemTypes : ScriptableObject
     /// <summary>
     /// 아이템이 속한 행성 타입입니다.
     /// </summary>
-    [Header("Item Information")]
-    public ItemPlanet planetType;
+    [Header("Item Information")] public ItemPlanet planetType;
 
     /// <summary>
     /// 아이템의 티어(등급)입니다.
@@ -112,8 +137,7 @@ public class ItemTypes : ScriptableObject
     /// <summary>
     /// 아이템의 최소 보관 온도 (℃)입니다.
     /// </summary>
-    [Header("Item Attributes")]
-    public float minimumTemperature;
+    [Header("Item Attributes")] public float minimumTemperature;
 
     /// <summary>
     /// 아이템의 최대 보관 온도 (℃)입니다.
