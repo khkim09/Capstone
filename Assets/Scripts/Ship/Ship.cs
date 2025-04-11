@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class Ship : MonoBehaviour
 {
-    [Header("Ship Info")] [SerializeField] private string shipName = "Milky";
+    [Header("Ship Info")][SerializeField] private string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -181,11 +181,11 @@ public class Ship : MonoBehaviour
     private void AddRoomToGrid(Room room, Vector2Int position, Vector2Int size)
     {
         for (int x = 0; x < size.x; x++)
-        for (int y = 0; y < size.y; y++)
-        {
-            Vector2Int gridPos = position + new Vector2Int(x, y);
-            roomGrid[gridPos] = room;
-        }
+            for (int y = 0; y < size.y; y++)
+            {
+                Vector2Int gridPos = position + new Vector2Int(x, y);
+                roomGrid[gridPos] = room;
+            }
     }
 
     /// <summary>
@@ -266,11 +266,11 @@ public class Ship : MonoBehaviour
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
-        {
-            Vector2Int gridPos = room.position + new Vector2Int(x, y);
-            roomGrid.Remove(gridPos);
-        }
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = room.position + new Vector2Int(x, y);
+                roomGrid.Remove(gridPos);
+            }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -293,19 +293,6 @@ public class Ship : MonoBehaviour
 
     #region 설계도
     // ---------------- 함선 커스터마이징 관련 추가 <기현> ----------------
-
-    /// <summary>
-    /// 현재 유저가 함선의 구성 요소로 설치한 모든 방을 List로 전달합니다. (allRooms의 data만 반환)
-    /// </summary>
-    /// <returns></returns>
-    public List<RoomData> GetInstalledRoomDataList()
-    {
-        Debug.Log("설치한 모든 방의 정보를 가져옴");
-        // return allRooms.Select(r => r.roomData).Distinct().ToList(); // 중복 제거 (동일한 방 scriptable object면 무조건 1개로 취급)
-
-        return allRooms.Select(r => r.GetRoomData()).ToList(); // 그냥 싹 다 넘김 (중복 체크 X)
-    }
-
     /// <summary>
     /// 현재 함선에 포함된 모든 방의 가격 합을 반환.
     /// </summary>
@@ -332,7 +319,7 @@ public class Ship : MonoBehaviour
     /// 현재 설계도를 실제 함선 구조로 반영.
     /// 기존 함선은 삭제되고 설계도 기반으로 재구성.
     /// </summary>
-    public void ReplaceShipWithBlueprint(BlueprintShip blueprintShip)
+    public void ReplaceShipWithBlueprint(BlueprintShip bpShip)
     {
         // 기존 함선 판매
         ResourceManager.Instance.ChangeResource(ResourceType.COMA, GetTotalShipValue());
@@ -344,23 +331,11 @@ public class Ship : MonoBehaviour
         allRooms.Clear();
 
         // 설계도 -> 함선으로 적용
-        foreach (BlueprintRoom blueprint in blueprintShip.PlacedBlueprintRooms)
-        {
-            /*
-            GameObject roomGO = Instantiate(blueprint.roomData.prefab);
-            Room room = roomGO.GetComponent<Room>();
-            room.roomData = blueprint.roomData;
-            room.currentLevel = blueprint.levelIndex;
-            room.position = blueprint.position;
-
-            allRooms.Add(room);
-            room.transform.SetParent(transform);
-            // 추가 작업 필요: 위치 반영, 격자 등록 등
-            */
-        }
+        foreach (BlueprintRoom bpRoom in bpShip.GetComponentsInChildren<BlueprintRoom>())
+            AddRoom(bpRoom.bpLevelIndex, bpRoom.bpRoomData, bpRoom.bpPosition);
 
         // 설계도 함선 구매 (재화량 차감)
-        ResourceManager.Instance.ChangeResource(ResourceType.COMA, -1 * blueprintShip.totalBlueprintCost);
+        ResourceManager.Instance.ChangeResource(ResourceType.COMA, -bpShip.totalBlueprintCost);
     }
 
     // ---------------- <기현> 여기까지 --------------------
@@ -381,12 +356,12 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-        for (int y = 0; y < size.y; y++)
-        {
-            Vector2Int checkPos = pos + new Vector2Int(x, y);
-            if (roomGrid.ContainsKey(checkPos))
-                return false;
-        }
+            for (int y = 0; y < size.y; y++)
+            {
+                Vector2Int checkPos = pos + new Vector2Int(x, y);
+                if (roomGrid.ContainsKey(checkPos))
+                    return false;
+            }
 
         return true;
     }
@@ -924,15 +899,15 @@ public class Ship : MonoBehaviour
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
-            for (int y = -1; y <= 1; y++)
-            {
-                if (x == 0 && y == 0) continue;
+                for (int y = -1; y <= 1; y++)
+                {
+                    if (x == 0 && y == 0) continue;
 
-                Vector2Int checkPos = position + new Vector2Int(x, y);
+                    Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                // 해당 위치에 있는 선원들에게 데미지 적용
-                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
-            }
+                    // 해당 위치에 있는 선원들에게 데미지 적용
+                    ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
+                }
     }
 
     #endregion

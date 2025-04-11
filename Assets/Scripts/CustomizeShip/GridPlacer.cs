@@ -212,6 +212,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
         bpRoomGO.transform.rotation = Quaternion.Euler(0, 0, -rotation);
 
         BlueprintRoom bpRoom = bpRoomGO.GetComponent<BlueprintRoom>();
+        bpRoom.SetGridPlacer(this);
         bpRoom.Initialize(data, level, position, rotation);
         bpRoom.SetBlueprint(targetBlueprintShip);
 

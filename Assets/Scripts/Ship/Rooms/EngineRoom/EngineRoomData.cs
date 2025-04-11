@@ -38,6 +38,7 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
             {
                 roomName = "room.engine.level1",
                 roomType = RoomType.Engine,
+                category = RoomCategory.Essential,
                 level = 1,
                 hitPoint = 100,
                 size = new Vector2Int(2, 2),
@@ -54,6 +55,7 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
             {
                 roomName = "room.engine.level2",
                 roomType = RoomType.Engine,
+                category = RoomCategory.Essential,
                 level = 2,
                 hitPoint = 200,
                 size = new Vector2Int(3, 2),
@@ -70,6 +72,7 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
             {
                 roomName = "room.engine.level3",
                 roomType = RoomType.Engine,
+                category = RoomCategory.Essential,
                 level = 3,
                 hitPoint = 300,
                 size = new Vector2Int(3, 3),
