@@ -7,11 +7,23 @@ using UnityEngine;
 /// </summary>
 public static class RoomRotationUtility
 {
+    /// <summary>
+    /// 회전한 이후 방 사이즈 다시 계산
+    /// </summary>
+    /// <param name="originalSize">기존 방 사이즈(roomData)</param>
+    /// <param name="rotation">기존 방 회전 각</param>
+    /// <returns></returns>
     public static Vector2Int GetRotatedSize(Vector2Int originalSize, int rotation)
     {
         return (rotation % 180 == 0) ? originalSize : new Vector2Int(originalSize.y, originalSize.x);
     }
 
+    /// <summary>
+    /// 방의 좌하단 블록 좌표 반환
+    /// </summary>
+    /// <param name="size">방 사이즈</param>
+    /// <param name="rotation">회전각</param>
+    /// <returns></returns>
     public static Vector2 GetRotationOffset(Vector2Int size, int rotation)
     {
         Vector2 baseOffset;
@@ -63,6 +75,10 @@ public static class RoomRotationUtility
     /// <summary>
     /// 회전된 타일 오프셋을 기준으로 기준점(origin)에 맞춘 점유 타일 좌표를 반환합니다.
     /// </summary>
+    /// <param name="origin">좌하단 기준 좌표</param>
+    /// <param name="size">회전각 적용된 방 사이즈</param>
+    /// <param name="rot">회전각</param>
+    /// <returns></returns>
     public static List<Vector2Int> GetOccupiedGridPositions(Vector2Int origin, Vector2Int size, int rot)
     {
         List<Vector2Int> result = new();
@@ -86,13 +102,11 @@ public static class RoomRotationUtility
                 break;
             case 270:
                 for (int j = origin.y; j < origin.y + size.y; j++)
-                    for (int i = origin.x; i > origin.x - size.x; i++)
+                    for (int i = origin.x; i > origin.x - size.x; i--)
                         result.Add(new Vector2Int(i, j));
                 break;
         }
 
         return result;
     }
-
-
 }

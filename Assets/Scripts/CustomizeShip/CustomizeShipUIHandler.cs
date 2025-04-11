@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,8 +53,12 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// <summary>
     /// 현재 커스터마이징 중인 플레이어 함선입니다.
     /// </summary>
-    [Header("Ship")] public Ship playerShip; // 플레이어 함선
+    [Header("Ship")]
+    public Ship playerShip;
 
+    /// <summary>
+    /// 그리드 타일 배치 작업을 위한 오브젝트
+    /// </summary>
     public GridPlacer gridPlacer;
 
     /// <summary>
@@ -62,134 +67,107 @@ public class CustomizeShipUIHandler : MonoBehaviour
     public BlueprintShip targetBlueprintShip;
 
     /// <summary>
-    /// 함선 커스터마이징 로직을 담당하는 매니저입니다.
-    /// </summary>
-    public ShipCustomizationManager customizationManager;
-
-    /// <summary>
     /// 배치된 레이아웃의 유효성을 검사하는 유효성 검사기입니다.
     /// </summary>
     public ShipValidationHelper ValidatonHelper;
 
+    /// <summary>
+    /// 현재 설계도의 가격 지속 갱신
+    /// 설계도로 함선 교체 가능 조건
+    /// 1. (설계도 가격 - 기존 함선 가격) <= 보유 재화량
+    /// 2. 기존 함선 모든 방 내구도 100%
+    /// </summary>
     private void Update()
     {
         if (targetBlueprintShip != null && playerShip != null)
         {
-            totalCostText.text = $"Blueprint Cost: {targetBlueprintShip.totalBlueprintCost}";
+            int totalBPCost = targetBlueprintShip.totalBlueprintCost; // 설계도 가격
+            int currentShipCost = playerShip.GetTotalShipValue();// 기존 함선 가격
+            int currentCurrency = (int)ResourceManager.Instance.GetResource(ResourceType.COMA); // 보유 재화량
 
-            int currentCurrency = (int)ResourceManager.Instance.GetResource(ResourceType.COMA);
-            buildButton.interactable = currentCurrency >= targetBlueprintShip.totalBlueprintCost && playerShip.IsFullHitPoint();
+            totalCostText.text = $"Blueprint Cost: {totalBPCost}";
+
+            // 조건 체크
+            if (totalBPCost - currentShipCost <= currentCurrency && playerShip.IsFullHitPoint())
+                buildButton.interactable = true;
+            else
+                buildButton.interactable = false;
         }
     }
 
     /// <summary>
     /// CustomizeShipUI 활성화 시 아래 작업 수행 :
     /// 그리드 생성 및 그리드 저장 오브젝트 활성화
-    /// 방 저장 오브젝트 활성화
-    /// 기존에 있던 모든 모듈 제거
-    /// 마지막 저장된 함선 정보 호출
-    /// 소유한 방 (커스텀하기 위해 구매한 모든 방) 목록 최신화
+    /// 작업하던 설계도 방 호출, 배치
+    /// 카메라 중앙값 세팅
     /// </summary>
     private void OnEnable()
     {
         gridTiles.SetActive(true);
 
-        Vector3 startPos = gridPlacer.GetCameraStartPosition();
-        Camera.main.transform.position = new Vector3(startPos.x, startPos.y, Camera.main.transform.position.z);
+        // 설계도 방 호출, 배치
+        GetSavedBPRooms();
 
-        var cameraDrag = Camera.main.GetComponent<CameraZoomController>();
-        if (cameraDrag != null)
-            cameraDrag.StartPanFrom(Input.mousePosition); // 현재 마우스 위치 기준으로 초기화
-
-        customizationManager.ClearAllModules();
-        LoadShipLayout(playerShip);
+        // 카메라 세팅
+        CenterCamera();
     }
 
     /// <summary>
     /// CustomizeShipUI 비활성화 시 아래 작업 수행 :
-    /// 그리드 저장 오브젝트, 방 저장 오브젝트 비활성화
-    /// 모든 모듈 제거
+    /// 그리드 저장 오브젝트 비활성화
+    /// 설계도 설치한 방 데이터 모두 저장 후 제거
     /// </summary>
     private void OnDisable()
     {
         gridTiles.SetActive(false);
-        customizationManager.ClearAllModules();
+
+        // 설계도 설치한 방 데이터 모두 저장 후 제거
+        SaveBPRoomsandDestroy();
+    }
+
+    /// <summary>
+    /// 설계도도 UI 호출 시 카메라 중앙값 보정
+    /// </summary>
+    private void CenterCamera()
+    {
+        Vector3 startPos = gridPlacer.GetCameraStartPosition();
+        Camera.main.transform.position = new Vector3(startPos.x, startPos.y, Camera.main.transform.position.z);
+
+        CameraZoomController cameraDrag = Camera.main.GetComponent<CameraZoomController>();
+        if (cameraDrag != null)
+            cameraDrag.StartPanFrom(Input.mousePosition); // 현재 마우스 위치 기준으로 초기화
+    }
+
+    /// <summary>
+    /// 기존에 작업중이던 설계도의 모든 방 데이터 호출 및 배치
+    /// </summary>
+    private void GetSavedBPRooms()
+    {
+        List<BlueprintRoomSaveData> layout = BlueprintLayoutSaver.LoadLayout();
+
+        foreach (BlueprintRoomSaveData saved in layout)
+            gridPlacer.PlaceRoom(saved.bpRoomData, saved.bpLevelIndex, saved.bpPosition, saved.bpRotation);
+    }
+
+    /// <summary>
+    /// 작업중이던 설계도 저장 및 방 제거
+    /// </summary>
+    private void SaveBPRoomsandDestroy()
+    {
+        BlueprintRoom[] bpRooms = targetBlueprintShip.GetComponentsInChildren<BlueprintRoom>();
+        BlueprintLayoutSaver.SaveLayout(bpRooms);
+
+        // 설치했던 모든 설계도 방 제거
+        foreach (BlueprintRoom r in bpRooms)
+            Destroy(r.gameObject);
     }
 
     /// <summary>
     /// '함선 제작' 버튼 클릭 시 호출.
+    /// 조건 만족 시 기존 함선을 설계도의 함선으로 교체합니다.
     /// </summary>
     public void OnClickBuild()
     {
-        if (targetBlueprintShip != null && playerShip != null)
-            playerShip.ReplaceShipWithBlueprint(targetBlueprintShip);
-        // var ship = FindAnyObjectByType<Ship>();
-        // BlueprintShip.ApplyBlueprintToShip(ship, (int)ResourceManager.Instance.GetResource(ResourceType.COMA));
-    }
-
-    /// <summary>
-    /// 함선 커스터마이징 마친 후 save 버튼 클릭 시 함선 저장장
-    /// </summary>
-    public void OnSaveClicked()
-    {
-        // TODO: ValidatonHelper 완성 후에 규격에 맞게 매개변수 넣어야함
-        // 함선 저장 로직 연결 예정
-        // if (!ValidatonHelper.ValidateLayout())
-        // {
-        //     Debug.LogWarning("모든 방이 연결되어 있어야 저장 가능");
-        //     return;
-        // }
-
-        SaveShipLayout(playerShip);
-        Debug.Log("Ship Data 저장됨.");
-
-        // inventoryTooltipUI.RefreshInventory();
-
-        customizeUI.SetActive(false);
-        mainUI.SetActive(true);
-    }
-
-    /// <summary>
-    /// 함선 커스터마이징 도중 cancel 버튼 클릭 시 이전 mainUI 화면으로 복귀
-    /// 이 때, 저장하지 않은 모든 작업은 사라집니다.
-    /// </summary>
-    public void OnCancelClicked()
-    {
-        customizationManager.ClearAllModules();
-
-        customizeUI.SetActive(false);
-        mainUI.SetActive(true);
-    }
-
-    /// <summary>
-    /// 가장 최신 함선 정보 호출
-    /// </summary>
-    /// <param name="ship"></param>
-    private void LoadShipLayout(Ship ship)
-    {
-        foreach (Room room in ship.allRooms)
-            customizationManager.PlaceSavedRoom(room);
-        Debug.Log($"{ship.allRooms}");
-    }
-
-    /// <summary>
-    /// 함선 layout 저장
-    /// </summary>
-    /// <param name="ship"></param>
-    private void SaveShipLayout(Ship ship)
-    {
-        ship.allRooms.Clear();
-
-        foreach (var kvp in customizationManager.PlacedModules)
-        {
-            GameObject obj = kvp.Value;
-            Room room = obj.GetComponent<Room>();
-            if (room != null)
-            {
-                room.position = kvp.Key;
-                ship.allRooms.Add(room);
-                Debug.Log("방 추가");
-            }
-        }
+        playerShip.ReplaceShipWithBlueprint(targetBlueprintShip);
     }
 }

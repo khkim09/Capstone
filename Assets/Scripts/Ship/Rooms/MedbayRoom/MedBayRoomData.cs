@@ -31,6 +31,7 @@ public class MedBayRoomData : RoomData<MedBayRoomData.MedBayRoomLevel>
             {
                 roomName = "room.medbay.level1",
                 roomType = RoomType.MedBay,
+                category = RoomCategory.Auxiliary,
                 level = 1,
                 hitPoint = 100,
                 size = new Vector2Int(2, 2),
@@ -45,6 +46,7 @@ public class MedBayRoomData : RoomData<MedBayRoomData.MedBayRoomLevel>
             {
                 roomName = "room.medbay.level2",
                 roomType = RoomType.MedBay,
+                category = RoomCategory.Auxiliary,
                 level = 2,
                 hitPoint = 120,
                 size = new Vector2Int(3, 2),

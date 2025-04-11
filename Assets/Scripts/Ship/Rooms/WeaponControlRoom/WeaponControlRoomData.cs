@@ -30,6 +30,7 @@ public class WeaponControlRoomData : RoomData<WeaponControlRoomData.WeaponContro
             {
                 roomName = "room.weaponcontrol.level1",
                 roomType = RoomType.WeaponControl,
+                category = RoomCategory.Auxiliary,
                 level = 1,
                 hitPoint = 100,
                 size = new Vector2Int(2, 1),
@@ -45,6 +46,7 @@ public class WeaponControlRoomData : RoomData<WeaponControlRoomData.WeaponContro
             {
                 roomName = "room.weaponcontrol.level2",
                 roomType = RoomType.WeaponControl,
+                category = RoomCategory.Auxiliary,
                 level = 2,
                 hitPoint = 120,
                 size = new Vector2Int(2, 1),

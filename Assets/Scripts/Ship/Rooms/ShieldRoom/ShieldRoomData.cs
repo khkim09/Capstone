@@ -37,6 +37,7 @@ public class ShieldRoomData : RoomData<ShieldRoomData.ShieldRoomLevel>
             {
                 roomName = "room.shield.level1",
                 roomType = RoomType.Shield,
+                category = RoomCategory.Auxiliary,
                 level = 1,
                 hitPoint = 200,
                 size = new Vector2Int(3, 2),
@@ -53,6 +54,7 @@ public class ShieldRoomData : RoomData<ShieldRoomData.ShieldRoomLevel>
             {
                 roomName = "room.shield.level2",
                 roomType = RoomType.Shield,
+                category = RoomCategory.Auxiliary,
                 level = 2,
                 hitPoint = 300,
                 size = new Vector2Int(3, 2),

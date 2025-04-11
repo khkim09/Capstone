@@ -1,10 +1,29 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 
+/// <summary>
+/// 방의 피해 단계 수준을 나타내는 열거형입니다.
+/// </summary>
+[Serializable]
+public enum RoomDamageLevel
+{
+    /// <summary>1단계 피해 (경미한 손상 등).</summary>
+    DamageLevelOne,
+
+    /// <summary>2단계 피해 (심각한 손상 등).</summary>
+    DamageLevelTwo
+}
+
+public enum RoomCategory
+{
+    Essential, // 필수 시설
+    Auxiliary, // 보조 시설
+    Living, // 생활 시설
+    Storage, // 저장고
+    Etc // 기타 (복도)
+}
 
 /// <summary>
 /// 모든 방 유형의 기본 데이터를 정의하는 추상 ScriptableObject.
@@ -21,8 +40,11 @@ public abstract class RoomData : ScriptableObject
         /// <summary>해당 레벨 번호.</summary>
         public int level;
 
-        /// <summary>방의타입</summary>
+        /// <summary>방의 타입</summary>
         public RoomType roomType;
+
+        /// <summary>방 카테고리</summary>
+        public RoomCategory category;
 
         /// <summary>최대 체력.</summary>
         public int hitPoint;
@@ -93,19 +115,6 @@ public abstract class RoomData : ScriptableObject
 }
 
 /// <summary>
-/// 방의 피해 단계 수준을 나타내는 열거형입니다.
-/// </summary>
-[Serializable]
-public enum RoomDamageLevel
-{
-    /// <summary>1단계 피해 (경미한 손상 등).</summary>
-    DamageLevelOne,
-
-    /// <summary>2단계 피해 (심각한 손상 등).</summary>
-    DamageLevelTwo
-}
-
-/// <summary>
 /// RoomData의 제네릭 확장 버전.
 /// 각 방 타입에 특화된 RoomLevel 데이터를 제네릭으로 정의할 수 있습니다.
 /// </summary>
@@ -157,38 +166,3 @@ public abstract class RoomData<T> : RoomData where T : RoomData.RoomLevel
     }
 }
 
-/*
-public class RoomLevel
-{
-    /// <summary>레벨 이름 또는 표시용 이름.</summary>
-    public string roomName;
-
-    /// <summary>해당 레벨 번호.</summary>
-    public int level;
-
-    /// <summary>최대 체력.</summary>
-    public int hitPoint;
-
-    /// <summary>방 크기 (격자 단위, 가로x세로).</summary>
-    public Vector2Int size;
-
-    /// <summary>업그레이드 비용.</summary>
-    public int cost;
-
-    /// <summary> 방 회전 상태 </summary>
-    public int rotation;
-
-    /// <summary>작동에 필요한 최소 선원 수.</summary>
-    public int crewRequirement;
-
-    /// <summary>요구 전력량.</summary>
-    public float powerRequirement;
-
-    /// <summary>피해 단계별 체력 비율 (예: 연기, 화재 등).</summary>
-    public Dictionary<RoomDamageLevel, float> damageHitPointRate = new();
-
-    /// <summary>해당 레벨의 방 스프라이트.</summary>
-    public Sprite roomSprite;
-    // TODO: 스프라이트 완성되면 각 Scriptable Object 에 스프라이트 추가할 것, rotation, roomPrefab(실제 배치될 방 prefab), previewPrefab(roomPrefab에서 alpha값만 0.5)
-}
-*/

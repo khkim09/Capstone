@@ -35,6 +35,7 @@ public class TeleportRoomData : RoomData<TeleportRoomData.TeleportRoomLevel>
             {
                 roomName = "room.teleport.level1",
                 roomType = RoomType.Teleporter,
+                category = RoomCategory.Essential,
                 level = 1,
                 hitPoint = 100,
                 size = new Vector2Int(1, 1),

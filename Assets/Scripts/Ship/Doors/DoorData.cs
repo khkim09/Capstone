@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// 문의 기본 데이터를 정의하는 ScriptableObject
 /// </summary>
-[CreateAssetMenu(fileName = "DoorData", menuName = "Ship Data/Door Data")]
+[CreateAssetMenu(fileName = "DoorData", menuName = "Ship/Door Data")]
 public class DoorData : ScriptableObject
 {
     [Serializable]
@@ -38,17 +38,14 @@ public class DoorData : ScriptableObject
     }
 
     /// <summary>문의 레벨별 데이터</summary>
-    [SerializeField] private List<DoorLevel> doorLevels = new List<DoorLevel>();
+    [SerializeField] private List<DoorLevel> doorLevels = new();
 
     /// <summary>
     /// ScriptableObject가 활성화될 때 호출되며, 필요한 경우 기본 데이터를 초기화합니다.
     /// </summary>
     private void OnEnable()
     {
-        if (doorLevels == null || doorLevels.Count == 0)
-        {
-            InitializeDefaultLevels();
-        }
+        if (doorLevels == null || doorLevels.Count == 0) InitializeDefaultLevels();
     }
 
     /// <summary>
@@ -58,21 +55,21 @@ public class DoorData : ScriptableObject
     {
         doorLevels = new List<DoorLevel>
         {
-            new DoorLevel
+            new()
             {
                 doorName = "door.level1",
                 level = 1,
                 passThroughDelay = 0.2f,
                 cost = 10,
-                powerRequirement = 0f, // 전력 소모 없음
+                powerRequirement = 0f // 전력 소모 없음
             },
-            new DoorLevel
+            new()
             {
                 doorName = "door.level2",
                 level = 2,
                 passThroughDelay = 0.0f,
                 cost = 30,
-                powerRequirement = 1f, // 1kW 전력 소모
+                powerRequirement = 1f // 1kW 전력 소모
             }
         };
     }

@@ -44,7 +44,15 @@ public class CrewQuartersRoomData : RoomData<CrewQuartersRoomData.CrewQuartersRo
     /// </summary>
     protected override void InitializeDefaultLevels()
     {
-        RoomLevels =
-            new List<CrewQuartersRoomLevel> { new() { roomType = RoomType.CrewQuarters, level = 1, hitPoint = 100 } };
+        RoomLevels = new List<CrewQuartersRoomLevel>
+        {
+            new()
+            {
+                roomType = RoomType.CrewQuarters,
+                category = RoomCategory.Essential,
+                level = 1,
+                hitPoint = 100
+            }
+        };
     }
 }
