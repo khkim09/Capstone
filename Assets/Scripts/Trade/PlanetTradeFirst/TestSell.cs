@@ -57,7 +57,7 @@ public class TestSell : MonoBehaviour
             bool added = storage.AddItem(randomItem, quantityToGive);
             Debug.Log($"TestPlayerItems: {randomItem.itemName} x {quantityToGive} 지급 - 성공 여부: {added}");
         }
-        InventorySellUI invUI = FindObjectOfType<InventorySellUI>();
+        InventoryUI invUI = FindObjectOfType<InventoryUI>();
         if (invUI != null)
         {
             invUI.PopulateInventory();

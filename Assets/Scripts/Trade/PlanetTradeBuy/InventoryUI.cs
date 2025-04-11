@@ -53,10 +53,14 @@ public class InventoryUI : MonoBehaviour
             // 프리팹 인스턴스 생성
             GameObject newItemUI = Instantiate(inventoryItemPrefab, contentPanel);
             InventoryItemUI itemUI = newItemUI.GetComponent<InventoryItemUI>();
-
+            InventoryItemSellUI itemSellUI = newItemUI.GetComponent<InventoryItemSellUI>();
             if (itemUI != null)
             {
                 itemUI.Setup(storedItem);
+            }
+            if (itemSellUI != null)
+            {
+                itemSellUI.Setup(storedItem);
             }
         }
     }

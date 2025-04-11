@@ -2,6 +2,8 @@
 {
     None,
     TriggerNextEvent,
+    Battle,
+    RoomDamage,
     AddQuest,
     UnlockShip,
     UnlockItem

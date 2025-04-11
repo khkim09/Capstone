@@ -52,7 +52,9 @@ public enum ItemCategory
     /// <summary>유물</summary>
     Artifact,
     /// <summary>향신료</summary>
-    Spice
+    Spice,
+    /// <summary>의약품</summary>
+    Medicine
 }
 
 /// <summary>
