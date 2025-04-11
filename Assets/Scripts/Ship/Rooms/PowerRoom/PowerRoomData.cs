@@ -30,6 +30,7 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
             {
                 roomName = "room.power.level1",
                 roomType = RoomType.Power,
+                category = RoomCategory.Essential,
                 level = 1,
                 hitPoint = 200,
                 size = new Vector2Int(2, 2),
@@ -43,6 +44,7 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
             {
                 roomName = "room.power.level2",
                 roomType = RoomType.Power,
+                category = RoomCategory.Essential,
                 level = 2,
                 hitPoint = 300,
                 size = new Vector2Int(3, 3),
@@ -59,6 +61,8 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
             new()
             {
                 roomName = "room.power.level3",
+                roomType = RoomType.Power,
+                category = RoomCategory.Essential,
                 level = 3,
                 hitPoint = 400,
                 size = new Vector2Int(4, 4),

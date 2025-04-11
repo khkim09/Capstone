@@ -10,7 +10,6 @@ public class BlueprintShip : MonoBehaviour
 {
     [SerializeField] private Vector2Int gridSize = new(60, 60);
     [SerializeField] private List<BlueprintRoom> placedBlueprintRooms = new();
-    [SerializeField] private HashSet<Vector2Int> occupiedTiles = new();
 
     /// <summary>
     /// 현재 설계도에 배치된 방 리스트
