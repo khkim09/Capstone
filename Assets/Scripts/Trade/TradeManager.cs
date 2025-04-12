@@ -23,7 +23,7 @@ public class TradeManager : MonoBehaviour
     /// <summary>
     /// 플레이어의 현재 재화(COMA)입니다. 초기값은 1000입니다.
     /// </summary>
-    [SerializeField] private int playerCOMA = 1000;
+    [SerializeField] private float playerCOMA = 1000.00f;
 
     /// <summary>
     /// 현재 행성 판매 데이터를 외부에서 읽을 수 있도록 하는 프로퍼티입니다.
@@ -149,7 +149,7 @@ public class TradeManager : MonoBehaviour
     /// 현재 플레이어의 COMA(재화)를 반환합니다.
     /// </summary>
     /// <returns>플레이어의 현재 COMA 값</returns>
-    public int GetPlayerCOMA()
+    public float GetPlayerCOMA()
     {
         return playerCOMA;
     }

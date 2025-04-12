@@ -147,6 +147,10 @@ public class RandomEventEditor : Editor
 
                     EditorGUILayout.PropertyField(probabilityProp, new GUIContent("확률 (%)"));
 
+                    // 행성 효과
+                    var planetEffectsProp = outcomeProp.FindPropertyRelative("planetEffects");
+                    EditorGUILayout.PropertyField(planetEffectsProp, new GUIContent("행성 효과"), true);
+
                     // 자원 효과
                     var resourceEffectsProp = outcomeProp.FindPropertyRelative("resourceEffects");
                     EditorGUILayout.PropertyField(resourceEffectsProp, new GUIContent("자원 효과"), true);
