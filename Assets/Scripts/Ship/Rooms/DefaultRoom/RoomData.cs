@@ -34,10 +34,10 @@ public abstract class RoomData : ScriptableObject
     [Serializable]
     public class RoomLevel
     {
-        /// <summary>레벨 이름 또는 표시용 이름.</summary>
+        /// <summary>레벨 이름 또는 표시용 이름</summary>
         public string roomName;
 
-        /// <summary>해당 레벨 번호.</summary>
+        /// <summary>해당 레벨 번호</summary>
         public int level;
 
         /// <summary>방의 타입</summary>
@@ -46,25 +46,25 @@ public abstract class RoomData : ScriptableObject
         /// <summary>방 카테고리</summary>
         public RoomCategory category;
 
-        /// <summary>최대 체력.</summary>
+        /// <summary>최대 체력</summary>
         public int hitPoint;
 
-        /// <summary>방 크기 (격자 단위, 가로x세로).</summary>
+        /// <summary>방 크기 (격자 단위, 가로x세로)</summary>
         public Vector2Int size;
 
-        /// <summary>업그레이드 비용.</summary>
+        /// <summary>업그레이드 비용</summary>
         public int cost;
 
-        /// <summary>작동에 필요한 최소 선원 수.</summary>
+        /// <summary>작동에 필요한 최소 선원 수</summary>
         public int crewRequirement;
 
-        /// <summary>요구 전력량.</summary>
+        /// <summary>요구 전력량</summary>
         public float powerRequirement;
 
         /// <summary>피해 단계별 체력 비율</summary>
         public RoomDamageRates damageHitPointRate;
 
-        /// <summary>해당 레벨의 방 스프라이트.</summary>
+        /// <summary>해당 레벨의 방 스프라이트</summary>
         public Sprite roomSprite;
         // TODO: 스프라이트 완성되면 각 Scriptable Object 에 스프라이트 추가할 것, roomPrefab(실제 배치될 방 prefab), previewPrefab(roomPrefab에서 alpha값만 0.5)
 

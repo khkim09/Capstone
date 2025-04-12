@@ -13,8 +13,7 @@ public class BlueprintInventoryUI : MonoBehaviour
     [Header("RoomData 직접 등록")]
     public List<RoomData> allRooms;
 
-    // [Header("UI Reference")]
-
+    [Header("UI Reference")]
     /// <summary>
     /// 모든 방 콘텐츠 넣을 공간
     /// </summary>

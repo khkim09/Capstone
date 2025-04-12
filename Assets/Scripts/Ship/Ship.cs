@@ -299,9 +299,11 @@ public class Ship : MonoBehaviour
     #region 설계도
 
     // ---------------- 함선 커스터마이징 관련 추가 <기현> ----------------
+
     /// <summary>
-    /// 현재 함선에 포함된 모든 방의 가격 합을 반환.
+    /// 현재 함선에 포함된 모든 방의 가격 합을 반환
     /// </summary>
+    /// <returns>모든 방 가격의 합</returns>
     public int GetTotalShipValue()
     {
         int total = 0;
@@ -312,6 +314,7 @@ public class Ship : MonoBehaviour
     /// <summary>
     /// 현재 함선의 모든 방에 대해 내구도 100%인지 여부 반환
     /// </summary>
+    /// <returns>내구도 100% 여부</returns>
     public bool IsFullHitPoint()
     {
         foreach (Room room in allRooms)
@@ -320,11 +323,11 @@ public class Ship : MonoBehaviour
         return true;
     }
 
-
     /// <summary>
-    /// 현재 설계도를 실제 함선 구조로 반영.
-    /// 기존 함선은 삭제되고 설계도 기반으로 재구성.
+    /// 현재 설계도를 실제 함선 구조로 반영
+    /// 기존 함선은 삭제되고 설계도 기반으로 재구성
     /// </summary>
+    /// <param name="bpShip">설계도 함선</param>
     public void ReplaceShipWithBlueprint(BlueprintShip bpShip)
     {
         // 기존 함선 판매

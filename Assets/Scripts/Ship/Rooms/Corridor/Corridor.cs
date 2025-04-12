@@ -6,6 +6,9 @@ using UnityEngine;
 /// </summary>
 public class CorridorRoom : Room<CorridorRoomData, CorridorRoomData.CorridorRoomLevel>
 {
+    /// <summary>
+    /// 초기화 시 방 타입을 복도로 설정정
+    /// </summary>
     protected override void Start()
     {
         base.Start();
@@ -30,6 +33,10 @@ public class CorridorRoom : Room<CorridorRoomData, CorridorRoomData.CorridorRoom
             crew.moveSpeed /= 1.1f;
     }
 
+    /// <summary>
+    /// 복도가 함선 스탯에 기여하는 값을 계산
+    /// </summary>
+    /// <returns>스탯 기여도 딕셔너리</returns>
     public override Dictionary<ShipStat, float> GetStatContributions()
     {
         return new Dictionary<ShipStat, float>(); // 복도는 기여 없음
