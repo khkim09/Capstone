@@ -16,13 +16,23 @@ MonoBehaviour:
   - roomName: room.storage.temperature.small
     level: 1
     roomType: 8
+    category: 3
     hitPoint: 100
     size: {x: 2, y: 2}
     cost: 700
     crewRequirement: 0
     powerRequirement: 20
+    damageHitPointRate:
+      damageLevelOne: 50
+      damageLevelTwo: 10
+      pairs:
+      - damageLevel: 0
+        hitPointRate: 50
+      - damageLevel: 1
+        hitPointRate: 10
     roomSprite: {fileID: 5556176171705983306, guid: a7f090f64c7692d42b2c2e47e16bf324, type: 3}
     possibleDoorPositions:
     - position: {x: 0, y: 1}
       direction: 3
     storageCapacity: 0
+  storageType: 0

@@ -16,11 +16,20 @@ MonoBehaviour:
   - roomName: room.storage.animal.big
     level: 1
     roomType: 8
+    category: 3
     hitPoint: 100
     size: {x: 4, y: 4}
     cost: 1500
     crewRequirement: 0
     powerRequirement: 0
+    damageHitPointRate:
+      damageLevelOne: 50
+      damageLevelTwo: 10
+      pairs:
+      - damageLevel: 0
+        hitPointRate: 50
+      - damageLevel: 1
+        hitPointRate: 10
     roomSprite: {fileID: -1745984851020712559, guid: 714dd9c706f8e2043b563aaf0e17085c, type: 3}
     possibleDoorPositions:
     - position: {x: 0, y: 0}
@@ -28,3 +37,4 @@ MonoBehaviour:
     - position: {x: 3, y: 3}
       direction: 1
     storageCapacity: 0
+  storageType: 0

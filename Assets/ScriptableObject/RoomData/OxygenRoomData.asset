@@ -16,11 +16,20 @@ MonoBehaviour:
   - roomName: room.oxygen.level1
     level: 1
     roomType: 3
+    category: 1
     hitPoint: 80
     size: {x: 2, y: 1}
     cost: 500
     crewRequirement: 0
     powerRequirement: 10
+    damageHitPointRate:
+      damageLevelOne: 50
+      damageLevelTwo: 10
+      pairs:
+      - damageLevel: 0
+        hitPointRate: 50
+      - damageLevel: 1
+        hitPointRate: 10
     roomSprite: {fileID: 1069061438158383270, guid: 531d20491fe717c499ac184bd8deb93f, type: 3}
     possibleDoorPositions:
     - position: {x: 1, y: 0}
@@ -29,11 +38,20 @@ MonoBehaviour:
   - roomName: room.oxygen.level2
     level: 2
     roomType: 3
+    category: 1
     hitPoint: 160
     size: {x: 2, y: 1}
     cost: 1500
     crewRequirement: 0
     powerRequirement: 15
+    damageHitPointRate:
+      damageLevelOne: 50
+      damageLevelTwo: 10
+      pairs:
+      - damageLevel: 0
+        hitPointRate: 50
+      - damageLevel: 1
+        hitPointRate: 10
     roomSprite: {fileID: -4376161200878859939, guid: 531d20491fe717c499ac184bd8deb93f, type: 3}
     possibleDoorPositions:
     - position: {x: 1, y: 0}
