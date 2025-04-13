@@ -9,7 +9,8 @@ using UnityEngine.EventSystems;
 /// 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다.
 /// </summary>
 [Serializable]
-public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler,
+    IGridPlaceable
 {
     /// <summary>
     /// 아이템 상태
@@ -163,9 +164,10 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             parentPosition.y + GridConstants.CELL_SIZE * 2);
     }
 
+    // IDraggableItem 인터페이스 구현
     public void Rotate(RotationConstants.Rotation newRotation)
     {
-        rotation = newRotation;
+        rotation = (RotationConstants.Rotation)newRotation;
         int spriteIndex = (int)rotation % boxSprites.Length;
         boxRenderer.sprite = boxSprites[spriteIndex];
         boxGrid = ItemShape.Instance.itemShapes[itemData.shape][(int)rotation];
@@ -173,6 +175,21 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         PositionFrameAtGridCenter();
         // 콜라이더 크기 업데이트
         UpdateColliderSize();
+    }
+
+    public object GetRotation()
+    {
+        return rotation;
+    }
+
+    public Vector2Int GetGridPosition()
+    {
+        return gridPosition;
+    }
+
+    public void SetGridPosition(Vector2Int position)
+    {
+        gridPosition = position;
     }
 
     // 부모 스토리지 설정
@@ -209,7 +226,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             else
                 Debug.Log($"[TradingItem] {GetInstanceID()} 부모 스토리지 없음, 선택 불가");
         }
-        // 우클릭 회전 비활성화 - 드래그 중에만 회전 가능하도록 변경
     }
 
     // 드래그 시작 시 호출

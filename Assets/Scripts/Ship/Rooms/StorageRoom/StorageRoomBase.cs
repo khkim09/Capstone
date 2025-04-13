@@ -6,7 +6,8 @@ using UnityEngine.UIElements;
 /// 모든 창고 타입의 기본 클래스.
 /// 저장 가능한 아이템의 타입, 보관/제거/저하 로직 등을 공통으로 정의합니다.
 /// </summary>
-public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel>
+public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel>,
+    IWorldGridSwitcher
 {
     /// <summary>저장된 아이템 목록.</summary>
     public List<TradingItem> storedItems = new();
@@ -426,7 +427,6 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
         int gridY = Mathf.FloorToInt(relY / GridConstants.CELL_SIZE);
 
         Vector2Int result = new(gridX, gridY);
-        // Debug.Log($"[StorageRoomBase] {GetInstanceID()} 월드->그리드 변환: {worldPos} -> {result}");
 
         return result;
     }
@@ -458,7 +458,6 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
 
         // 월드 좌표로 변환
         Vector3 worldPos = transform.TransformPoint(localPos);
-        Debug.Log($"[StorageRoomBase] {GetInstanceID()} 그리드->월드 변환: {gridPos} -> {worldPos}");
 
         return worldPos;
     }

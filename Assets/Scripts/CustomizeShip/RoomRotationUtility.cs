@@ -13,9 +13,12 @@ public static class RoomRotationUtility
     /// <param name="originalSize">기존 방 사이즈(roomData)</param>
     /// <param name="rotation">기존 방 회전 각</param>
     /// <returns></returns>
-    public static Vector2Int GetRotatedSize(Vector2Int originalSize, int rotation)
+    public static Vector2Int GetRotatedSize(Vector2Int originalSize, RotationConstants.Rotation rotation)
     {
-        return (rotation % 180 == 0) ? originalSize : new Vector2Int(originalSize.y, originalSize.x);
+        if (rotation == RotationConstants.Rotation.Rotation0 || rotation == RotationConstants.Rotation.Rotation180)
+            return originalSize;
+
+        return new Vector2Int(originalSize.y, originalSize.x);
     }
 
     /// <summary>
@@ -24,22 +27,22 @@ public static class RoomRotationUtility
     /// <param name="size">방 사이즈</param>
     /// <param name="rotation">회전각</param>
     /// <returns></returns>
-    public static Vector2 GetRotationOffset(Vector2Int size, int rotation)
+    public static Vector2 GetRotationOffset(Vector2Int size, RotationConstants.Rotation rotation)
     {
         Vector2 baseOffset;
 
-        switch (rotation % 360)
+        switch (rotation)
         {
-            case 0:
+            case RotationConstants.Rotation.Rotation0:
                 baseOffset = new Vector2(size.x / 2f - 0.5f, size.y / 2f - 0.5f);
                 break;
-            case 90:
+            case RotationConstants.Rotation.Rotation90:
                 baseOffset = new Vector2(size.y / 2f - 0.5f, -size.x / 2f + 0.5f);
                 break;
-            case 180:
+            case RotationConstants.Rotation.Rotation180:
                 baseOffset = new Vector2(-size.x / 2f + 0.5f, -size.y / 2f + 0.5f);
                 break;
-            case 270:
+            case RotationConstants.Rotation.Rotation270:
                 baseOffset = new Vector2(-size.y / 2f + 0.5f, size.x / 2f - 0.5f);
                 break;
             default:
@@ -55,16 +58,16 @@ public static class RoomRotationUtility
 
             if (Mathf.Abs(size.x - size.y) == 1)
             {
-                if (rotation % 360 == 90)
+                if (rotation == RotationConstants.Rotation.Rotation90)
                     baseOffset -= new Vector2(0.5f, 0.5f);
-                else if (rotation % 360 == 270)
+                else if (rotation == RotationConstants.Rotation.Rotation270)
                     baseOffset += new Vector2(0.5f, 0.5f);
             }
             else
             {
-                if (rotation % 360 == 90)
+                if (rotation == RotationConstants.Rotation.Rotation90)
                     baseOffset -= new Vector2(1.0f, 1.0f);
-                else if (rotation % 360 == 270)
+                else if (rotation == RotationConstants.Rotation.Rotation270)
                     baseOffset += new Vector2(1.0f, 1.0f);
             }
         }
@@ -79,31 +82,32 @@ public static class RoomRotationUtility
     /// <param name="size">회전각 적용된 방 사이즈</param>
     /// <param name="rot">회전각</param>
     /// <returns></returns>
-    public static List<Vector2Int> GetOccupiedGridPositions(Vector2Int origin, Vector2Int size, int rot)
+    public static List<Vector2Int> GetOccupiedGridPositions(Vector2Int origin, Vector2Int size,
+        RotationConstants.Rotation rot)
     {
         List<Vector2Int> result = new();
 
         switch (rot)
         {
-            case 0:
+            case RotationConstants.Rotation.Rotation0:
                 for (int j = origin.y; j < origin.y + size.y; j++)
-                    for (int i = origin.x; i < origin.x + size.x; i++)
-                        result.Add(new Vector2Int(i, j));
+                for (int i = origin.x; i < origin.x + size.x; i++)
+                    result.Add(new Vector2Int(i, j));
                 break;
-            case 90:
+            case RotationConstants.Rotation.Rotation90:
                 for (int j = origin.y; j > origin.y - size.y; j--)
-                    for (int i = origin.x; i < origin.x + size.x; i++)
-                        result.Add(new Vector2Int(i, j));
+                for (int i = origin.x; i < origin.x + size.x; i++)
+                    result.Add(new Vector2Int(i, j));
                 break;
-            case 180:
+            case RotationConstants.Rotation.Rotation180:
                 for (int j = origin.y; j > origin.y - size.y; j--)
-                    for (int i = origin.x; i > origin.x - size.x; i--)
-                        result.Add(new Vector2Int(i, j));
+                for (int i = origin.x; i > origin.x - size.x; i--)
+                    result.Add(new Vector2Int(i, j));
                 break;
-            case 270:
+            case RotationConstants.Rotation.Rotation270:
                 for (int j = origin.y; j < origin.y + size.y; j++)
-                    for (int i = origin.x; i > origin.x - size.x; i--)
-                        result.Add(new Vector2Int(i, j));
+                for (int i = origin.x; i > origin.x - size.x; i--)
+                    result.Add(new Vector2Int(i, j));
                 break;
         }
 
