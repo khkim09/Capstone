@@ -15,7 +15,7 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     /// <summary>
     /// 아이템 상태
     /// </summary>
-    [Tooltip("아이템 상태")] public ItemState itemState;
+    [Tooltip("아이템 상태")] private ItemState itemState;
 
     [SerializeField] private TradingItemData itemData;
 
@@ -32,8 +32,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     private Sprite[] boxSprites;
 
     public bool[][] boxGrid;
-
-    private Image itemImage;
 
     private StorageRoomBase parentStorage;
 
@@ -121,7 +119,7 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     public void RecalculatePrice()
     {
         // 가격 계산 로직 구현
-        float basePrice = itemData.costBase;
+        float basePrice = GetBasePrice();
         float fluctuation = basePrice * itemData.costChangerate;
 
         float minPrice = Mathf.Max(0, basePrice - fluctuation);
@@ -155,6 +153,11 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     public void HideItemFrame()
     {
         frameRenderer.enabled = false;
+    }
+
+    public Sprite GetItemSprite()
+    {
+        return itemData.itemSprite;
     }
 
     public Vector2 GetWorldPosition()
@@ -485,5 +488,87 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     public bool GetIsDragMode()
     {
         return isDragMode;
+    }
+
+    public int GetItemId()
+    {
+        return itemData.id;
+    }
+
+    public ItemState GetItemState()
+    {
+        return itemState;
+    }
+
+    public void SetItemState(ItemState state)
+    {
+        itemState = state;
+    }
+
+    public ItemPlanet GetItemPlanet()
+    {
+        return itemData.planet;
+    }
+
+    public ItemTierLevel GetItemTierLevel()
+    {
+        return itemData.tier;
+    }
+
+    public string GetItemName()
+    {
+        return itemData.itemName;
+    }
+
+    public ItemCategory GetItemCategory()
+    {
+        return itemData.type;
+    }
+
+    public int GetItemShape()
+    {
+        return itemData.shape;
+    }
+
+    public float GetTemperaturMin()
+    {
+        return itemData.temperatureMin;
+    }
+
+    public float GetTemperaturMax()
+    {
+        return itemData.temperatureMax;
+    }
+
+    public int GetCapacity()
+    {
+        return itemData.capacity;
+    }
+
+    public int GetCostMin()
+    {
+        return itemData.costMin;
+    }
+
+    public int GetCostMax()
+    {
+        return itemData.costMax;
+    }
+
+    public string GetDescription()
+    {
+        return itemData.description;
+    }
+
+    public float GetCostChangeRate()
+    {
+        return itemData.costChangerate;
+    }
+
+    public int GetRandomCost()
+    {
+        // TODO : 현재는 아이템 인스턴스 하나 별로 가격을 책정하고 있는데, 같은 무역 아이템이라면 같이 올라가거나 해야될 것 같다.
+        //        같은 ID가 아니더라도, 같은 카테고리 등의 요소로도 가격 책정이 동일해야할 수 있으니 일단 보류
+        return UnityEngine.Random.Range(GetCostMin(), GetCostMax());
     }
 }

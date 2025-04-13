@@ -119,12 +119,26 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     }
 
     // IDraggableItem 인터페이스 구현
+    /// <summary>
+    /// 드래그 모드 설정 (BlueprintRoom은 드래그 모드에서 시각적 변경만 적용)
+    /// </summary>
     public void SetDragMode(bool isDragging)
     {
-        // BlueprintRoom은 드래그 모드를 사용하지 않음
-        // 필요한 경우 여기에 구현
+        // 드래그 중일 때 반투명하게 처리
+        if (sr != null)
+        {
+            if (isDragging)
+                // 드래그 모드 활성화 시 반투명하게
+                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.5f);
+            else
+                // 드래그 모드 비활성화 시 원래 색상으로
+                sr.color = Color.white;
+        }
     }
 
+    /// <summary>
+    /// 오브젝트 회전
+    /// </summary>
     public void Rotate(RotationConstants.Rotation rotation)
     {
         RotationConstants.Rotation newRotation = rotation;
@@ -133,16 +147,25 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         transform.rotation = Quaternion.Euler(0, 0, -(int)bpRotation * 90);
     }
 
+    /// <summary>
+    /// 현재 회전 상태 반환
+    /// </summary>
     public object GetRotation()
     {
         return bpRotation;
     }
 
+    /// <summary>
+    /// 현재 그리드 위치 반환
+    /// </summary>
     public Vector2Int GetGridPosition()
     {
         return bpPosition;
     }
 
+    /// <summary>
+    /// 그리드 위치 설정
+    /// </summary>
     public void SetGridPosition(Vector2Int position)
     {
         bpPosition = position;

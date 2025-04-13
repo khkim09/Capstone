@@ -357,18 +357,18 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
     /// </summary>
     protected virtual void DegradeItemState(TradingItem item)
     {
-        switch (item.itemState)
+        switch (item.GetItemState())
         {
             case ItemState.Normal:
-                item.itemState = ItemState.SlightlyDamaged;
+                item.SetItemState(ItemState.SlightlyDamaged);
                 Debug.Log($"Item {item.GetItemData().itemName} is slightly damaged. Value decreased by 25%.");
                 break;
             case ItemState.SlightlyDamaged:
-                item.itemState = ItemState.ModeratelyDamaged;
+                item.SetItemState(ItemState.ModeratelyDamaged);
                 Debug.Log($"Item {item.GetItemData().itemName} is moderately damaged. Value decreased by 50%.");
                 break;
             case ItemState.ModeratelyDamaged:
-                item.itemState = ItemState.Unsellable;
+                item.SetItemState(ItemState.Unsellable);
                 Debug.Log($"Item {item.GetItemData().itemName} is completely damaged and unsellable.");
                 break;
         }
@@ -520,5 +520,25 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
         if (cachedSize == Vector2Int.zero)
             cachedSize = base.GetSize();
         return cachedSize;
+    }
+
+    public List<TradingItem> GetStoredItems()
+    {
+        return storedItems;
+    }
+
+    public List<TradingItem> GetStoredItemsById(int id)
+    {
+        return storedItems.FindAll(item => item.GetItemId() == id);
+    }
+
+    public List<TradingItem> GetStoredItemsByName(string name)
+    {
+        return storedItems.FindAll(item => item.GetItemName() == name);
+    }
+
+    public List<TradingItem> GetStoredItemsByCategory(ItemCategory category)
+    {
+        return storedItems.FindAll(item => item.GetItemCategory() == category);
     }
 }

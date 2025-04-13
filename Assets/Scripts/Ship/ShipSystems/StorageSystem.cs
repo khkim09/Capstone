@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// </summary>
@@ -18,5 +19,45 @@ public class StorageSystem : ShipSystem
     /// <param name="deltaTime">경과 시간 (초).</param>
     public override void Update(float deltaTime)
     {
+    }
+
+    public List<TradingItem> GetAllItems()
+    {
+        List<TradingItem> allItems = new();
+        foreach (Room room in parentShip.GetAllRooms())
+            if (room is StorageRoomBase storageRoom)
+                allItems.AddRange(storageRoom.GetStoredItems());
+
+        return allItems;
+    }
+
+    public List<TradingItem> GetAllItemsByCategory(ItemCategory category)
+    {
+        List<TradingItem> allItems = new();
+        foreach (Room room in parentShip.GetAllRooms())
+            if (room is StorageRoomBase storageRoom)
+                allItems.AddRange(storageRoom.GetStoredItemsByCategory(category));
+
+        return allItems;
+    }
+
+    public List<TradingItem> GetAllItemsById(int id)
+    {
+        List<TradingItem> allItems = new();
+        foreach (Room room in parentShip.GetAllRooms())
+            if (room is StorageRoomBase storageRoom)
+                allItems.AddRange(storageRoom.GetStoredItemsById(id));
+
+        return allItems;
+    }
+
+    public List<TradingItem> GetAllItemsByName(string name)
+    {
+        List<TradingItem> allItems = new();
+        foreach (Room room in parentShip.GetAllRooms())
+            if (room is StorageRoomBase storageRoom)
+                allItems.AddRange(storageRoom.GetStoredItemsByName(name));
+
+        return allItems;
     }
 }
