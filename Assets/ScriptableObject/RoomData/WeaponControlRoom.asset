@@ -16,11 +16,20 @@ MonoBehaviour:
   - roomName: room.weaponcontrol.level1
     level: 1
     roomType: 5
+    category: 1
     hitPoint: 100
     size: {x: 2, y: 1}
     cost: 2000
     crewRequirement: 0
     powerRequirement: 30
+    damageHitPointRate:
+      damageLevelOne: 50
+      damageLevelTwo: 10
+      pairs:
+      - damageLevel: 0
+        hitPointRate: 50
+      - damageLevel: 1
+        hitPointRate: 10
     roomSprite: {fileID: -3733305111816746346, guid: 9777d266c10a0894a93b88b418a9a1fa, type: 3}
     possibleDoorPositions:
     - position: {x: 1, y: 0}
@@ -29,11 +38,20 @@ MonoBehaviour:
   - roomName: room.weaponcontrol.level2
     level: 2
     roomType: 5
+    category: 1
     hitPoint: 120
     size: {x: 2, y: 1}
     cost: 3500
     crewRequirement: 0
     powerRequirement: 50
+    damageHitPointRate:
+      damageLevelOne: 50
+      damageLevelTwo: 10
+      pairs:
+      - damageLevel: 0
+        hitPointRate: 50
+      - damageLevel: 1
+        hitPointRate: 10
     roomSprite: {fileID: -3743538940792449898, guid: 9777d266c10a0894a93b88b418a9a1fa, type: 3}
     possibleDoorPositions:
     - position: {x: 1, y: 0}
