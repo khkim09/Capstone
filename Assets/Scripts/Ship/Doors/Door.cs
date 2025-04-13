@@ -154,16 +154,16 @@ public class Door : MonoBehaviour
         switch (direction)
         {
             case DoorDirection.North:
-                transform.rotation = Quaternion.Euler(0, 0, 180);
+                transform.rotation = Quaternion.Euler(0, 0, 0);
                 break;
             case DoorDirection.East:
-                transform.rotation = Quaternion.Euler(0, 0, 90);
+                transform.rotation = Quaternion.Euler(0, 0, 270);
                 break;
             case DoorDirection.South:
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 break;
             case DoorDirection.West:
-                transform.rotation = Quaternion.Euler(0, 0, 270);
+                transform.rotation = Quaternion.Euler(0, 0, 90);
                 break;
         }
     }

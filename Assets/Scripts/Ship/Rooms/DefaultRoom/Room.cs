@@ -35,7 +35,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [HideInInspector] protected List<Door> connectedDoors = new();
 
     /// <summary>방의 현재 회전 값</summary>
-    [SerializeField] public RoomRotation currentRotation;
+    [SerializeField] public RotationConstants.Rotation currentRotation;
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
     [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
@@ -423,14 +423,11 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// </summary>
     public void RotateRoom(int rotationSteps)
     {
-        // 방의 그리드 좌표 (좌측 하단 기준점)
-        Vector2Int gridPos = position;
-
         // 현재 크기
         Vector2Int originalSize = GetSize();
 
         // 회전 상태 업데이트
-        currentRotation = (RoomRotation)(((int)currentRotation + rotationSteps) % 4);
+        currentRotation = (RotationConstants.Rotation)(((int)currentRotation + rotationSteps) % 4);
 
         // 방 오브젝트 회전
         transform.rotation = Quaternion.Euler(0, 0, -(int)currentRotation * 90f);
@@ -508,7 +505,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         doorObject.transform.localPosition = new Vector3(localDoorPosition.x, localDoorPosition.y, 0);
 
         // 방 좌표계에서의 문 회전 설정 (로컬 회전 사용)
-        doorObject.transform.localRotation = GetLocalDoorRotation(doorPos.direction);
+        door.SetDirection(doorPos.direction);
 
         // 문 목록에 추가
         connectedDoors.Add(door);
@@ -528,7 +525,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         float halfWidth = roomSize.x * 0.5f;
         float halfHeight = roomSize.y * 0.5f;
 
-        float doorThickness = GridConstants.CELL_SIZE * 0.1f;
+        float doorThickness = GridConstants.CELL_SIZE * 0.0f;
 
         // 정확한 테두리 위치 계산
         Vector2 localPos = Vector2.zero;
@@ -538,7 +535,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             case DoorDirection.North: // 위쪽 테두리
                 // x 위치: doorPos.position.x의 상대적 위치 계산
                 // doorPos.position.x - 방의 좌측 시작점(왼쪽 테두리부터의 거리)
-                localPos.x = doorPos.position.x - roomSize.x / 2.0f + 0.5f;
+                localPos.x = doorPos.position.x - halfWidth + 0.5f;
                 // y 위치: 위쪽 테두리 정확히
                 localPos.y = halfHeight + 0.5f - doorThickness;
                 break;
@@ -547,12 +544,12 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
                 // x 위치: 오른쪽 테두리 정확히
                 localPos.x = halfWidth - 0.5f + doorThickness;
                 // y 위치: doorPos.position.y의 상대적 위치 계산
-                localPos.y = doorPos.position.y - roomSize.y / 2.0f + 0.5f;
+                localPos.y = doorPos.position.y - halfHeight + 0.5f;
                 break;
 
             case DoorDirection.South: // 아래쪽 테두리
                 // x 위치: 북쪽과 동일한 계산
-                localPos.x = doorPos.position.x - roomSize.x / 2.0f + 0.5f;
+                localPos.x = doorPos.position.x - halfWidth / 2.0f + 0.5f;
                 // y 위치: 아래쪽 테두리 정확히
                 localPos.y = -halfHeight - 0.5f + doorThickness;
                 break;
@@ -561,7 +558,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
                 // x 위치: 왼쪽 테두리 정확히
                 localPos.x = -halfWidth + 0.5f - doorThickness;
                 // y 위치: 동쪽과 동일한 계산
-                localPos.y = doorPos.position.y - roomSize.y / 2.0f + 0.5f;
+                localPos.y = doorPos.position.y - halfHeight + 0.5f;
                 break;
         }
 
@@ -571,26 +568,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         return localPos;
     }
 
-    /// <summary>
-    /// 방 좌표계에서의 문 회전을 계산합니다.
-    /// </summary>
-    private Quaternion GetLocalDoorRotation(DoorDirection direction)
-    {
-        // 방향에 따른 회전 설정
-        switch (direction)
-        {
-            case DoorDirection.North:
-                return Quaternion.Euler(0, 0, 0);
-            case DoorDirection.East:
-                return Quaternion.Euler(0, 0, 90);
-            case DoorDirection.South:
-                return Quaternion.Euler(0, 0, 180);
-            case DoorDirection.West:
-                return Quaternion.Euler(0, 0, 270);
-            default:
-                return Quaternion.identity;
-        }
-    }
 
     /// <summary>
     /// 방향에 맞는 문 찾기
