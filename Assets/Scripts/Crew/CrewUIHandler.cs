@@ -52,7 +52,7 @@ public class CrewUIHandler : MonoBehaviour
     /// <summary>
     /// 선원 이름 입력 필드입니다.
     /// </summary>
-    [Header("Input Fields")] [SerializeField] private TMP_InputField nameInputField;
+    [Header("Input Fields")][SerializeField] private TMP_InputField nameInputField;
 
     /// <summary>
     /// 각 종족 선택 버튼 컨트롤러 배열입니다.
@@ -104,6 +104,18 @@ public class CrewUIHandler : MonoBehaviour
     /// 곤충형 종족 선택 버튼입니다.
     /// </summary>
     public Button insectButton;
+
+    /// <summary>
+    /// 선원 이름
+    /// </summary>
+    private String inputName;
+
+    /// <summary>
+    /// 종족별 prefab
+    /// </summary>
+    [Header("Crew Prefabs")]
+    [SerializeField]
+    private GameObject[] crewPrefabs;
 
     // GridPlacer
     // public GridPlacer gridPlacer;
@@ -283,15 +295,41 @@ public class CrewUIHandler : MonoBehaviour
     }
 
     /// <summary>
+    /// 새로운 선원 생성 후 생성한 선원 반환
+    /// </summary>
+    /// <returns></returns>
+    private CrewMember CreateCrewMember()
+    {
+        // 생성할 위치 (예시)
+        Vector3 spawnPosition = new Vector3(-8f, 0f, 0f);
+
+        // 선택된 종족에 맞는 프리팹 가져오기
+        int raceIndex = (int)selectedRace - 1;
+        if (raceIndex < 0 || raceIndex >= crewPrefabs.Length)
+            Debug.LogError("선택된 종족에 맞는 프리팹을 찾을 수 없습니다.");
+
+        GameObject crewGO = Instantiate(crewPrefabs[raceIndex], spawnPosition, Quaternion.identity);
+        CrewMember newCrew = crewGO.GetComponent<CrewMember>();
+        newCrew.crewName = inputName;
+        newCrew.isPlayerControlled = true;
+        newCrew.race = selectedRace;
+
+        // 초기화
+        newCrew.Initialize();
+
+        return newCrew;
+    }
+
+    /// <summary>
     /// 선원 정보 입력 후 실제 생성하는 버튼 클릭 시 호출
     /// </summary>
     // 선원 추가 커밋
     public void OnSubmitButtonClicked()
     {
-        string inputName = nameInputField.text;
+        inputName = nameInputField.text;
 
         // 선원 추가
-        CrewManager.Instance.AddCrewMember(inputName, selectedRace);
+        GameManager.Instance.GetPlayerShip().AddCrewMember(CreateCrewMember());
 
         // 초기화
         ResetCrewCreateUI();
