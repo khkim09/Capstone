@@ -64,9 +64,6 @@ public class TradingItemDragHandler : MonoBehaviour
     /// </summary>
     public void StartDragging(TradingItem item, StorageRoomBase storage, Vector2 mousePosition)
     {
-        Debug.Log(
-            $"[TradingItemDragHandler] StartDragging 호출 - 아이템: {item.GetInstanceID()}, 스토리지: {storage.GetInstanceID()}");
-
         // 아이템 재배치가 허용되지 않으면 드래그 시작하지 않음
         if (!IsItemRepositioningAllowed)
         {
@@ -89,10 +86,8 @@ public class TradingItemDragHandler : MonoBehaviour
         currentRotation = originalRotation; // 현재 회전 상태 초기화
         isDragging = true;
 
-        Debug.Log($"[TradingItemDragHandler] 드래그 정보 설정 - 원래 위치: {originalPosition}, 회전: {originalRotation}");
 
         // 원본 아이템을 임시로 비활성화
-        Debug.Log($"[TradingItemDragHandler] 원본 아이템 드래그 모드 활성화: {item.GetInstanceID()}");
         item.SetDragMode(true);
 
         // 프리뷰 생성
@@ -115,8 +110,6 @@ public class TradingItemDragHandler : MonoBehaviour
         CameraZoomController cameraController = FindObjectOfType<CameraZoomController>();
         if (cameraController != null)
             cameraController.DisablePanning();
-
-        Debug.Log("[TradingItemDragHandler] 드래그 시작 완료");
     }
 
     /// <summary>
@@ -160,13 +153,8 @@ public class TradingItemDragHandler : MonoBehaviour
 
         if (lastLoggedDraggingState != isDragging)
         {
-            Debug.Log($"[TradingItemDragHandler] isDragging 상태 변경: {lastLoggedDraggingState} -> {isDragging}");
-
             // 드래깅 중인 아이템 정보도 함께 출력
-            if (originalItem != null)
-                Debug.Log(
-                    $"[TradingItemDragHandler] 현재 드래그 중인 아이템: {originalItem.GetInstanceID()}, 아이템의 isDragMode: {originalItem.GetIsDragMode()}");
-            else
+            if (originalItem == null)
                 Debug.Log("[TradingItemDragHandler] 드래그 중인 아이템 없음 (originalItem is null)");
 
             lastLoggedDraggingState = isDragging;
@@ -349,14 +337,8 @@ public class TradingItemDragHandler : MonoBehaviour
     /// </summary>
     private void EndDragging(Vector2 mouseWorldPos)
     {
-        if (!isDragging || originalItem == null)
-        {
-            Debug.Log(
-                $"[TradingItemDragHandler] EndDragging 호출 실패 - isDragging: {isDragging}, originalItem: {(originalItem != null ? originalItem.GetInstanceID().ToString() : "null")}");
-            return;
-        }
+        if (!isDragging || originalItem == null) return;
 
-        Debug.Log($"[TradingItemDragHandler] EndDragging 시작 - 아이템: {originalItem.GetInstanceID()}");
         bool success = false;
         TradingItem itemToReset = originalItem; // 참조 저장
 
@@ -367,38 +349,28 @@ public class TradingItemDragHandler : MonoBehaviour
             {
                 // 마우스 위치로부터 그리드 위치 재계산 (최종 위치 확인)
                 Vector2Int gridPos = currentTargetStorage.WorldToGridPosition(mouseWorldPos);
-                Debug.Log($"[TradingItemDragHandler] 최종 그리드 위치 계산: {gridPos}");
 
                 // 해당 위치에 배치 가능한지 마지막으로 한번 더 확인
                 if (currentTargetStorage.CanPlaceItem(originalItem, gridPos, currentRotation))
                 {
-                    Debug.Log($"[TradingItemDragHandler] 위치 {gridPos}에 회전 {currentRotation}으로 배치 가능");
-
                     // 현재 드래그 중인 아이템의 원래 창고와 새 창고가 다른 경우
                     if (sourceStorage != currentTargetStorage)
                     {
-                        Debug.Log(
-                            $"[TradingItemDragHandler] 창고 간 이동: {sourceStorage.GetInstanceID()} -> {currentTargetStorage.GetInstanceID()}");
                         // 새 창고의 AddItem 메서드에서 원 창고에서의 아이템 제거를 처리함
                         success = currentTargetStorage.AddItem(originalItem, gridPos, (int)currentRotation);
-                        Debug.Log($"[TradingItemDragHandler] 새 창고에 추가 결과: {success}");
                     }
                     else
                     {
                         // 같은 창고 내에서 위치만 변경하는 경우
-                        Debug.Log($"[TradingItemDragHandler] 같은 창고 내 위치 변경: {originalPosition} -> {gridPos}");
                         // 먼저 원래 위치에서 제거 (그리드에서만 제거)
                         bool removeSuccess = sourceStorage.RemoveItem(originalItem);
-                        Debug.Log($"[TradingItemDragHandler] 원래 위치에서 제거 결과: {removeSuccess}");
 
                         // 새 위치에 추가
                         success = currentTargetStorage.AddItem(originalItem, gridPos, (int)currentRotation);
-                        Debug.Log($"[TradingItemDragHandler] 새 위치에 추가 결과: {success}");
                     }
                 }
                 else
                 {
-                    Debug.LogWarning($"[TradingItemDragHandler] 위치 {gridPos}에 배치할 수 없음");
                     // 배치할 수 없는 이유에 대한 시각적 피드백
                     if (previewObject != null && previewBoxRenderer != null)
                     {
@@ -421,71 +393,51 @@ public class TradingItemDragHandler : MonoBehaviour
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"[TradingItemDragHandler] 드래그 종료 중 오류: {e.Message}\n{e.StackTrace}");
             success = false;
         }
         finally
         {
             // 배치에 실패한 경우 원래 위치로 복원
             if (!success)
-            {
-                Debug.Log($"[TradingItemDragHandler] 배치 실패, 아이템을 원래 위치 {originalPosition}로 복원");
                 if (originalItem != null && sourceStorage != null)
                 {
                     // 드래그 모드 해제 (렌더러, 콜라이더 활성화)
                     originalItem.SetDragMode(false);
-                    Debug.Log($"[TradingItemDragHandler] 원본 아이템 드래그 모드 해제: {originalItem.GetInstanceID()}");
 
                     // 현재 창고에서 우선 제거 (중복 제거 방지를 위한 확인)
                     if (sourceStorage.storedItems.Contains(originalItem))
                     {
                         bool removeSuccess = sourceStorage.RemoveItem(originalItem);
-                        Debug.Log($"[TradingItemDragHandler] 창고에서 아이템 제거 결과: {removeSuccess}");
                     }
 
                     // 회전과 위치 원래대로 설정
                     originalItem.Rotate(originalRotation);
-                    Debug.Log($"[TradingItemDragHandler] 아이템 회전 복원: {originalRotation}");
 
                     // 명시적으로 다시 추가
                     bool addSuccess = sourceStorage.AddItem(originalItem, originalPosition, (int)originalRotation);
-                    Debug.Log($"[TradingItemDragHandler] 원래 위치에 아이템 추가 결과: {addSuccess}");
 
                     if (!addSuccess)
                     {
-                        Debug.LogError(
-                            $"[TradingItemDragHandler] 드래그 실패 후 원래 위치 복원 실패, 트랜스폼 위치 강제 설정");
-
                         // 최후의 수단: 트랜스폼 직접 설정 및 그리드 위치 업데이트
                         originalItem.gridPosition = originalPosition;
 
                         // 정확한 월드 위치 계산
                         Vector3 worldPos = sourceStorage.GridToWorldPosition(originalPosition);
                         originalItem.transform.position = worldPos;
-                        Debug.Log($"[TradingItemDragHandler] 트랜스폼 위치 강제 설정: {worldPos}");
 
                         // 창고 목록에 추가
                         if (!sourceStorage.storedItems.Contains(originalItem))
-                        {
                             sourceStorage.storedItems.Add(originalItem);
-                            Debug.Log("[TradingItemDragHandler] 창고 목록에 아이템 강제 추가");
-                        }
                     }
                 }
-            }
 
             // 원본 아이템 드래그 모드 해제 - null 체크
             if (itemToReset != null)
             {
-                Debug.Log($"[TradingItemDragHandler] 최종 아이템 드래그 모드 해제: {itemToReset.GetInstanceID()}");
                 itemToReset.SetDragMode(false);
                 // 명시적으로 콜라이더 재활성화 추가
                 BoxCollider2D collider = itemToReset.GetComponent<BoxCollider2D>();
-                if (collider != null)
-                {
-                    collider.enabled = true;
-                    Debug.Log($"[TradingItemDragHandler] 콜라이더 명시적 활성화");
-                }
+                if (collider != null) collider.enabled = true;
             }
 
             // 프리뷰 정리 및 상태 초기화
@@ -496,28 +448,20 @@ public class TradingItemDragHandler : MonoBehaviour
             if (cameraController != null)
                 cameraController.EnablePanning();
 
-            Debug.Log($"[TradingItemDragHandler] 드래그 종료 후 상태 확인 - isDragging: {isDragging}");
-
             // 모든 아이템의 상태 확인
             foreach (StorageRoomBase storage in FindObjectsOfType<StorageRoomBase>())
             foreach (TradingItem item in storage.storedItems)
                 if (item != null)
                 {
-                    Debug.Log(
-                        $"[TradingItemDragHandler] 아이템 {item.GetInstanceID()} 상태 - isDragMode: {item.GetIsDragMode()}");
-
                     // 콜라이더 상태도 함께 확인
                     BoxCollider2D collider = item.GetComponent<BoxCollider2D>();
-                    if (collider != null)
-                        Debug.Log($"[TradingItemDragHandler] 아이템 {item.GetInstanceID()} 콜라이더 활성화: {collider.enabled}");
-                    else
+                    if (collider == null)
                         Debug.LogWarning($"[TradingItemDragHandler] 아이템 {item.GetInstanceID()} 콜라이더 없음!");
                 }
         }
 
         // 드래그 종료 후 아이템 상호작용 활성화를 위한 짧은 지연
         if (resetCoroutine != null) StopCoroutine(resetCoroutine);
-        Debug.Log("[TradingItemDragHandler] ResetAllItemsInteractivity 코루틴 시작");
         resetCoroutine = StartCoroutine(ResetAllItemsInteractivity());
     }
 
@@ -619,7 +563,6 @@ public class TradingItemDragHandler : MonoBehaviour
                 resetCount++;
             }
 
-        Debug.Log($"[TradingItemDragHandler] 총 {resetCount}개 아이템 재활성화 완료");
         resetCoroutine = null;
     }
 
@@ -649,8 +592,6 @@ public class TradingItemDragHandler : MonoBehaviour
         originalItem = null;
         sourceStorage = null;
         currentTargetStorage = null;
-
-        Debug.Log("[TradingItemDragHandler] 드래그 상태 초기화 완료");
     }
 
     /// <summary>
