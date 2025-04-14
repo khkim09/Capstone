@@ -22,22 +22,40 @@ public class RTSSelectionManager : MonoBehaviour
     /// 드래그 시작 위치입니다.
     /// </summary>
     private Vector2 dragStartPos;
+
+    /// <summary>
+    /// 드래그 중인지 여부
+    /// </summary>
     private bool isDragging = false;
 
-    // 단일 클릭 임계값
+    /// <summary>
+    /// 단일 클릭 임계값
+    /// </summary>
     private float clickThreshold = 10f;
 
-    // 선택된 선원 리스트
+    /// <summary>
+    /// 선택된 선원 리스트
+    /// </summary>
     public List<CrewMember> selectedCrew = new List<CrewMember>();
 
-    // 이동 후 전투를 위한 공격 범위 (추후 조정)
+    /// <summary>
+    /// 이동 후 전투를 위한 공격 범위 (추후 조정)
+    /// </summary>
     public float attackRange = 2.0f;
 
-    // 임시 장비 공격력 변수
+    /// <summary>
+    /// 임시 장비 공격력 변수
+    /// </summary>
     public float tmpEquipmentAttack = 0.0f;
 
-    // 이동 시 Crew 간 공간
+    /// <summary>
+    /// 이동 시 Crew 간 공간
+    /// </summary>
     public float spacing = 0.7f;
+
+    /// <summary>
+    /// 이동 명령 시 움직임 속도 (수정 필요)
+    /// </summary>
     public float speed = 10.0f;
 
     /// <summary>
@@ -49,13 +67,10 @@ public class RTSSelectionManager : MonoBehaviour
         bool isMainUI = IsMainUIActive();
 
         // 왼쪽 마우스 버튼 눌림: 선택 시작
-        if (Input.GetMouseButtonDown(0))
+        if (isMainUI && Input.GetMouseButtonDown(0))
         {
-            if (isMainUI)
-            {
-                dragStartPos = Input.mousePosition;
-                isDragging = true;
-            }
+            dragStartPos = Input.mousePosition;
+            isDragging = true;
         }
 
         // 왼쪽 마우스 버튼 뗌: 선택 완료
@@ -215,6 +230,79 @@ public class RTSSelectionManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 클릭한 타일의 중앙 반환
+    /// </summary>
+    /// <param name="worldPos"></param>
+    /// <returns></returns>
+    private Vector3 GetTileCenterFromWorld(Vector3 worldPos)
+    {
+        float tileSize = 1.0f;
+        int gridX = Mathf.FloorToInt(worldPos.x / tileSize);
+        int gridY = Mathf.FloorToInt(worldPos.y / tileSize);
+
+        float centerX = gridX * tileSize + tileSize / 2f;
+        float centerY = gridY * tileSize + tileSize / 2f;
+
+        return new Vector3(centerX, centerY, 0);
+    }
+
+    /// <summary>
+    /// 직선적인 움직임 - 타일 중앙만 거치도록
+    /// (astar Alg 추가 필요)
+    /// (방, 복도 등 이동 가능한 곳만을 통해서 이동, 각 칸에 1명 이상 있을 시 우회)
+    /// </summary>
+    /// <param name="start"></param>
+    /// <param name="end"></param>
+    /// <returns></returns>
+    private List<Vector3> GetPathViaRoomCenters(Vector3 start, Vector3 end)
+    {
+        Vector3 startCenter = GetTileCenterFromWorld(start);
+        Vector3 endCenter = GetTileCenterFromWorld(end);
+
+        List<Vector3> path = new List<Vector3>();
+
+        if (Vector3.Distance(start, startCenter) > 0.01f)
+            path.Add(startCenter);
+
+        if (Mathf.Abs(startCenter.x - endCenter.x) > 0.01f)
+            path.Add(new Vector3(endCenter.x, startCenter.y, 0)); // 가로 이동
+
+        if (Mathf.Abs(startCenter.y - endCenter.y) > 0.01f)
+            path.Add(endCenter); // 세로 이동
+
+        return path;
+    }
+
+    /// <summary>
+    /// 경로 따라 이동
+    /// </summary>
+    /// <param name="crew"></param>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    private IEnumerator MoveAlongPath(CrewMember crew, List<Vector3> path)
+    {
+        foreach (Vector3 waypoint in path)
+        {
+            Vector3 startPos = crew.transform.position;
+            float distance = Vector3.Distance(startPos, waypoint);
+            float moveDuration = distance / speed;
+
+            float t = 0f;
+            while (t < moveDuration)
+            {
+                t += Time.deltaTime;
+                float fraction = t / moveDuration;
+                crew.transform.position = Vector3.Lerp(startPos, waypoint, fraction);
+                yield return null;
+            }
+
+            crew.transform.position = waypoint;
+        }
+
+        CheckForCombat(crew);
+    }
+
+    /// <summary>
     /// 우클릭한 위치로 이동 명령 전달
     /// </summary>
     public void IssueMoveCommand()
@@ -223,16 +311,17 @@ public class RTSSelectionManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
         {
-            Vector3 destination = hit.point;
-            destination.z = 0.0f; // z값 0으로 (화면에서 사라짐 방지)
+            /*
+            Vector3 rawTarget = hit.point;
+            rawTarget.z = 0.0f; // z값 0으로 (화면에서 사라짐 방지)
 
-            Debug.Log("이동 목적지: " + destination);
+            Debug.Log("이동 목적지: " + rawTarget);
 
             int cnt = selectedCrew.Count;
 
             for (int i = 0; i < cnt; i++)
             {
-                Vector3 finalDestination = destination;
+                Vector3 finalDestination = rawTarget;
                 if (cnt > 1)
                 {
                     float angle = i * Mathf.PI * 2 / cnt;
@@ -240,11 +329,16 @@ public class RTSSelectionManager : MonoBehaviour
                     finalDestination += offset;
                 }
                 StartCoroutine(MoveCrewMember(selectedCrew[i], finalDestination));
+            }*/
+
+            Vector3 rawTarget = hit.point;
+            Vector3 targetCenter = GetTileCenterFromWorld(rawTarget);
+
+            foreach (CrewMember crew in selectedCrew)
+            {
+                List<Vector3> path = GetPathViaRoomCenters(crew.transform.position, targetCenter);
+                StartCoroutine(MoveAlongPath(crew, path));
             }
-        }
-        else
-        {
-            Debug.Log("Ground 레이어 찾지 못함");
         }
     }
 

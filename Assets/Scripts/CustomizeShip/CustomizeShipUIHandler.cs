@@ -87,12 +87,30 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
             totalCostText.text = $"Blueprint Cost: {totalBPCost}";
 
+            // 1. 조건 : 자산
+            bool hasEnoughMoney = totalBPCost - currentShipCost <= currentCurrency;
+
+            // 2. 기존 함선 모든 방 내구도 100%
+            bool shipFullyRepaired = playerShip.IsFullHitPoint();
+
+            // 3. 레이아웃 유효성 검사 - 모든 방 연결, 문끼리 연결
+            // ValidationResult result = ValidatonHelper.ValidateShipLayout(targetBlueprintShip);
+
+
+
+            // 현재 ValidateShipLayout(Ship ship)으로 되어있어서 체크 어려움.
+            // 이걸 bp로 바꾸는게 맞나? 아니면 순서를 변경해서 build 후에 체크하도록 해야되나
+            // bpship 과 ship 비교 해봐야 될 듯
+
+
             // 조건 체크
             if (totalBPCost - currentShipCost <= currentCurrency && playerShip.IsFullHitPoint())
                 buildButton.interactable = true;
             else
                 buildButton.interactable = false;
         }
+
+
     }
 
     /// <summary>

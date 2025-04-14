@@ -202,6 +202,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         equipAdditionalSkills[SkillType.MedBaySkill] = 0.0f;
         equipAdditionalSkills[SkillType.RepairSkill] = 0.0f;
 
+        spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = SortingOrderConstants.Character;
     }
 
