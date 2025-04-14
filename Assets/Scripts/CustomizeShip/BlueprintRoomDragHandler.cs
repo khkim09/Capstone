@@ -6,12 +6,10 @@ using UnityEngine;
 /// </summary>
 public class BlueprintRoomDragHandler : MonoBehaviour
 {
-    [Header("Referecnes")]
-    public GameObject previewPrefab;
+    [Header("Referecnes")] public GameObject previewPrefab;
     public GridPlacer gridPlacer;
 
-    [Header("preview sprite color")]
-    public Color validColor = new(0, 1, 0, 0.5f);
+    [Header("preview sprite color")] public Color validColor = new(0, 1, 0, 0.5f);
     public Color invalidColor = new(1, 0, 0, 0.5f);
 
     private GameObject previewGO;
@@ -19,7 +17,7 @@ public class BlueprintRoomDragHandler : MonoBehaviour
 
     private RoomData draggingRoomData;
     private int draggingLevel;
-    private int draggingRotation; // 0, 90, 180, 270
+    private RotationConstants.Rotation draggingRotation;
 
     private bool isDragging = false;
     private Vector2Int roomSize;
@@ -34,7 +32,7 @@ public class BlueprintRoomDragHandler : MonoBehaviour
 
         draggingRoomData = data;
         draggingLevel = level;
-        draggingRotation = 0;
+        draggingRotation = RotationConstants.Rotation.Rotation0;
         isDragging = true;
 
         RoomData.RoomLevel levelData = data.GetRoomDataByLevel(level);
@@ -63,7 +61,7 @@ public class BlueprintRoomDragHandler : MonoBehaviour
 
         // 좌측 하단 블록 기준 설치
         previewGO.transform.position = basePos + (Vector3)offset;
-        previewGO.transform.rotation = Quaternion.Euler(0, 0, -draggingRotation);
+        previewGO.transform.rotation = Quaternion.Euler(0, 0, -(int)draggingRotation * 90);
 
         // 설치 가능 여부 시각화
         bool canPlace = gridPlacer.CanPlaceRoom(draggingRoomData, draggingLevel, gridPos, draggingRotation);
@@ -71,13 +69,15 @@ public class BlueprintRoomDragHandler : MonoBehaviour
 
         // 회전
         if (Input.GetMouseButtonDown(1))
-            draggingRotation = (draggingRotation + 90) % 360;
+            draggingRotation = (RotationConstants.Rotation)(((int)draggingRotation + 1) % 4);
 
         // 설치
         if (Input.GetMouseButtonUp(0))
         {
             if (!canPlace)
+            {
                 Destroy(previewGO);
+            }
             else
             {
                 gridPlacer.PlaceRoom(draggingRoomData, draggingLevel, gridPos, draggingRotation);

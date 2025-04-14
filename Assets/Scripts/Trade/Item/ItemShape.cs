@@ -353,7 +353,7 @@ public class ItemShape
         SetItemShape(9, 3,
             new bool[][]
             {
-                new[] { false, false, false, false, false }, new[] { false, false, true, false, false },
+                new[] { false, false, false, false, false }, new[] { false, false, false, false, false },
                 new[] { false, true, true, false, false }, new[] { false, true, true, false, false },
                 new[] { false, false, false, false, false }
             });
@@ -488,20 +488,20 @@ public class ItemShape
     }
 
     // 블록 모양 설정 헬퍼 메서드
-    private void SetItemShape(int itemId, int rotation, bool[][] visualShape)
+    private void SetItemShape(int shapeId, int rotation, bool[][] visualShape)
     {
         for (int y = 0; y < 5; y++)
         for (int x = 0; x < 5; x++)
             // 시각적으로 위에서 아래로 정의된 배열을
             // 유니티 좌표계(좌하단 원점)에 맞게 y축 반전
-            itemShapes[itemId][rotation][4 - y][x] = visualShape[y][x];
+            itemShapes[shapeId][rotation][x][y] = visualShape[x][y];
     }
 
     // 블록 모양 가져오기
-    public bool[][] GetItemShape(int itemId, int rotation)
+    public bool[][] GetItemShape(int shapeId, int rotation)
     {
-        if (itemId < 0 || itemId >= itemShapes.Length || rotation < 0 || rotation > 3) return null;
+        if (shapeId < 0 || shapeId >= itemShapes.Length || rotation < 0 || rotation > 3) return null;
 
-        return itemShapes[itemId][rotation];
+        return itemShapes[shapeId][rotation];
     }
 }

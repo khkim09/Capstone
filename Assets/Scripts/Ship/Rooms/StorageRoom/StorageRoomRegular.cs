@@ -21,6 +21,7 @@ public class StorageRoomRegular : StorageRoomBase
     /// <returns>보관 가능 여부.</returns>
     public override bool CanStoreItemType(ItemCategory itemType)
     {
+        return true;
         // 상온 보관 가능한 아이템인지 확인
         return false;
         //return item.storageRequirement == ItemData.StorageRequirement.Normal;

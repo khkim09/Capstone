@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.Controls;
@@ -16,6 +17,9 @@ public class CameraZoomController : MonoBehaviour
     private Vector3 lastMousePos;
     private bool isDragging = false;
 
+    // 드래그 가능 여부를 제어하는 플래그
+    private bool isPanningEnabled = true;
+
     private void Start()
     {
         cam = Camera.main;
@@ -24,7 +28,8 @@ public class CameraZoomController : MonoBehaviour
     private void Update()
     {
         HandleZoom();
-        HandlePan();
+        if (isPanningEnabled) // 카메라 이동이 활성화된 경우에만 실행
+            HandlePan();
     }
 
     /// <summary>
@@ -33,14 +38,13 @@ public class CameraZoomController : MonoBehaviour
     /// </summary>
     private void HandleZoom()
     {
-        if (IsMouseOverUI() || !IsMouseInGameView())
+        // UI 위에 있을 때는 줌 비활성화하지만, 창고만 있는 경우에는 줌 허용
+        if ((IsMouseOverUI() && !IsMouseOverStorageOnly()) || !IsMouseInGameView())
             return;
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (Mathf.Abs(scroll) > 0.01f)
-        {
             cam.orthographicSize = Mathf.Clamp(cam.orthographicSize - scroll * zoomSpeed, minSize, maxSize);
-        }
     }
 
     /// <summary>
@@ -49,6 +53,10 @@ public class CameraZoomController : MonoBehaviour
     /// </summary>
     private void HandlePan()
     {
+        // 드래그 중인 아이템이 있을 때는 카메라 이동 비활성화
+        if (!isPanningEnabled)
+            return;
+
         if (Input.GetMouseButtonDown(1)) // 우클릭
         {
             lastMousePos = Input.mousePosition;
@@ -60,7 +68,6 @@ public class CameraZoomController : MonoBehaviour
 
         if (isDragging)
         {
-            Debug.Log("드래그 시작");
             Vector3 delta = cam.ScreenToWorldPoint(lastMousePos) - cam.ScreenToWorldPoint(Input.mousePosition);
             if (CheckBounds(cam.transform.position + delta))
             {
@@ -73,16 +80,52 @@ public class CameraZoomController : MonoBehaviour
     /// <summary>
     /// 유저의 마우스가 UI위에 있는지 여부를 확인합니다.
     /// </summary>
-    /// <returns></returns>
     private bool IsMouseOverUI()
     {
         return EventSystem.current.IsPointerOverGameObject();
     }
 
+    // 마우스가 UI가 아닌 창고 위에만 있는지 확인
+    private bool IsMouseOverStorageOnly()
+    {
+        if (!EventSystem.current.IsPointerOverGameObject())
+            return false; // UI가 아니면 false
+
+        // 마우스 위치에서 레이캐스트
+        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
+
+        // 창고에 맞히고 다른 UI가 없는지 확인
+        if (hit.collider != null && hit.collider.GetComponentInParent<StorageRoomBase>() != null)
+        {
+            // 추가 검사: UI 캔버스에 맞히는지 확인
+            PointerEventData eventData = new(EventSystem.current);
+            eventData.position = Input.mousePosition;
+
+            List<RaycastResult> results = new();
+            EventSystem.current.RaycastAll(eventData, results);
+
+            // UI 요소가 있는지 확인
+            bool hasUIElement = false;
+            foreach (RaycastResult result in results)
+                // Canvas의 자식이거나 UI 레이어인 경우 UI 요소로 간주
+                if (result.gameObject.GetComponentInParent<Canvas>() != null ||
+                    result.gameObject.layer == LayerMask.NameToLayer("UI"))
+                {
+                    hasUIElement = true;
+                    break;
+                }
+
+            // UI 요소가 없고 창고에만 맞힌 경우 true 반환
+            return !hasUIElement;
+        }
+
+        return false;
+    }
+
     /// <summary>
     /// 유저의 마우스가 GameView 내에 위치한지 확인합니다.
     /// </summary>
-    /// <returns></returns>
     private bool IsMouseInGameView()
     {
         Vector3 mousePos = Input.mousePosition;
@@ -93,8 +136,6 @@ public class CameraZoomController : MonoBehaviour
     /// 카메라 화면 이동 가능 영역을 제한합니다.
     /// 가로 축 : -28 ~ 25, 세로 축 : -28 ~ 28 까지 이동 가능합니다.
     /// </summary>
-    /// <param name="simulatePos"></param>
-    /// <returns></returns>
     private bool CheckBounds(Vector3 simulatePos)
     {
         float minX = 0f;
@@ -102,19 +143,34 @@ public class CameraZoomController : MonoBehaviour
         float minY = 0f;
         float maxY = 59f;
 
-        if (minX <= simulatePos.x && simulatePos.x <= maxX && minY <= simulatePos.y && simulatePos.y <= maxY)
-            return true;
-        else
-            return false;
+        return minX <= simulatePos.x && simulatePos.x <= maxX && minY <= simulatePos.y && simulatePos.y <= maxY;
     }
 
     /// <summary>
     /// 드래그 위치 초기화 함수
     /// </summary>
-    /// <param name="mouseScreenPos"></param>
     public void StartPanFrom(Vector3 mouseScreenPos)
     {
         lastMousePos = mouseScreenPos;
         isDragging = false;
+    }
+
+    /// <summary>
+    /// 카메라 이동을 비활성화합니다.
+    /// 아이템 드래그 중일 때 호출됩니다.
+    /// </summary>
+    public void DisablePanning()
+    {
+        isPanningEnabled = false;
+        isDragging = false; // 진행 중이던 카메라 드래그도 중단
+    }
+
+    /// <summary>
+    /// 카메라 이동을 활성화합니다.
+    /// 아이템 드래그가 끝났을 때 호출됩니다.
+    /// </summary>
+    public void EnablePanning()
+    {
+        isPanningEnabled = true;
     }
 }

@@ -6,6 +6,8 @@ public class ItemManager : MonoBehaviour
 
     [SerializeField] private TradingItemDataBase itemDataBase;
 
+    public GameObject ItemPrefabShape;
+
     private void Awake()
     {
         if (Instance == null)
@@ -45,20 +47,18 @@ public class ItemManager : MonoBehaviour
         return itemObject;
     }
 
-    public TradingItem CreateItemInstance(int itemId, int quantity, Vector2Int position)
+    public TradingItem CreateItemInstance(int itemId, int quantity)
     {
         TradingItemData itemData = GetItemData(itemId);
         if (itemData == null) return null;
 
         // 새로운 GameObject 생성
-        GameObject itemObject = new($"Item_{itemId}");
+        GameObject itemObject = Instantiate(ItemPrefabShape);
+        itemObject.name = "Item : " + itemData.debugName;
 
-        // 컴포넌트 부착 및 초기화
-        TradingItem itemInstance = itemObject.AddComponent<TradingItem>();
+        TradingItem itemInstance = itemObject.GetComponent<TradingItem>();
         itemInstance.Initialize(itemData, quantity);
 
-        // 위치 지정 (선택)
-        itemObject.transform.position = new Vector3(position.x, position.y, 0);
 
         return itemInstance;
     }

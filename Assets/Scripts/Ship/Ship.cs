@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class Ship : MonoBehaviour
 {
-    [Header("Ship Info")][SerializeField] private string shipName = "Milky";
+    [Header("Ship Info")] [SerializeField] private string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -91,7 +91,7 @@ public class Ship : MonoBehaviour
         /// TODO: 테스트를 위해 임시 방 설치. 나중에 제거할 것
         AddRoom(3, testRoomPrefab1.GetComponent<Room>().GetRoomData(), new Vector2Int(0, 0));
         AddRoom(1, testRoomPrefab2.GetComponent<Room>().GetRoomData(), new Vector2Int(4, 1));
-        AddRoom(3, testRoomPrefab3.GetComponent<Room>().GetRoomData(), new Vector2Int(-3, -1));
+        AddRoom(1, testRoomPrefab3.GetComponent<Room>().GetRoomData(), new Vector2Int(-3, -1));
     }
 
     /// <summary>
@@ -126,7 +126,7 @@ public class Ship : MonoBehaviour
         RoomType roomType = roomData.GetRoomType();
 
         // 룸 오브젝트 생성
-        GameObject roomObject = new($"Room_{roomData.name}");
+        GameObject roomObject = new($"Room_{roomData.GetRoomDataByLevel(1).roomName}");
         roomObject.transform.SetParent(transform);
 
 
@@ -134,7 +134,7 @@ public class Ship : MonoBehaviour
         Room room = AddRoomComponent(roomObject, roomType, roomData);
         if (room == null)
         {
-            Debug.LogError($"Failed to create room component for {roomData.name}");
+            Debug.LogError($"Failed to create room component for {roomData.GetRoomDataByLevel(1).roomName}");
             Destroy(roomObject);
             return false;
         }
@@ -183,11 +183,11 @@ public class Ship : MonoBehaviour
     private void AddRoomToGrid(Room room, Vector2Int position, Vector2Int size)
     {
         for (int x = 0; x < size.x; x++)
-            for (int y = 0; y < size.y; y++)
-            {
-                Vector2Int gridPos = position + new Vector2Int(x, y);
-                roomGrid[gridPos] = room;
-            }
+        for (int y = 0; y < size.y; y++)
+        {
+            Vector2Int gridPos = position + new Vector2Int(x, y);
+            roomGrid[gridPos] = room;
+        }
     }
 
     /// <summary>
@@ -271,11 +271,11 @@ public class Ship : MonoBehaviour
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-            for (int y = 0; y < room.GetSize().y; y++)
-            {
-                Vector2Int gridPos = room.position + new Vector2Int(x, y);
-                roomGrid.Remove(gridPos);
-            }
+        for (int y = 0; y < room.GetSize().y; y++)
+        {
+            Vector2Int gridPos = room.position + new Vector2Int(x, y);
+            roomGrid.Remove(gridPos);
+        }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -366,12 +366,12 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-            for (int y = 0; y < size.y; y++)
-            {
-                Vector2Int checkPos = pos + new Vector2Int(x, y);
-                if (roomGrid.ContainsKey(checkPos))
-                    return false;
-            }
+        for (int y = 0; y < size.y; y++)
+        {
+            Vector2Int checkPos = pos + new Vector2Int(x, y);
+            if (roomGrid.ContainsKey(checkPos))
+                return false;
+        }
 
         return true;
     }
@@ -909,15 +909,15 @@ public class Ship : MonoBehaviour
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
-                for (int y = -1; y <= 1; y++)
-                {
-                    if (x == 0 && y == 0) continue;
+            for (int y = -1; y <= 1; y++)
+            {
+                if (x == 0 && y == 0) continue;
 
-                    Vector2Int checkPos = position + new Vector2Int(x, y);
+                Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                    // 해당 위치에 있는 선원들에게 데미지 적용
-                    ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
-                }
+                // 해당 위치에 있는 선원들에게 데미지 적용
+                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
+            }
     }
 
     #endregion

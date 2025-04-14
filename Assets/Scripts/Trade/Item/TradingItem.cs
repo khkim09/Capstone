@@ -1,26 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// TradingItem 클래스는 거래 가능한 아이템의 데이터를 담고 있으며,
 /// 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다.
 /// </summary>
 [Serializable]
-public class TradingItem : MonoBehaviour
+public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler,
+    IGridPlaceable
 {
     /// <summary>
     /// 아이템 상태
     /// </summary>
-    [Tooltip("아이템 상태")] public ItemState itemState;
+    [Tooltip("아이템 상태")] private ItemState itemState;
 
     [SerializeField] private TradingItemData itemData;
 
     public int amount;
 
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer boxRenderer;
+    [SerializeField] private SpriteRenderer itemRenderer;
+    [SerializeField] private SpriteRenderer frameRenderer;
 
-    private Image itemImage;
+    private float frameOffsetY = 0.11f;
+
+    public RotationConstants.Rotation rotation;
+
+    private Sprite[] boxSprites;
+
+    public bool[][] boxGrid;
+
+    private StorageRoomBase parentStorage;
+
+    public Vector2Int gridPosition;
 
     // 한 번 계산된 최종 가격을 캐싱할 변수
     private float? cachedPrice = null;
@@ -28,23 +43,54 @@ public class TradingItem : MonoBehaviour
     // 처음 호출되었는지 여부 (한 번만 초기화할지 판단)
     private bool priceInitialized = false;
 
+    // 드래그 관련 변수
+    private bool isDragging = false;
+    private bool isDragMode = false; // 드래그 모드 여부 (프리뷰 사용 중일 때)
+    private Color normalColor;
+    private Color selectedColor = new(0.7f, 0.7f, 1.0f, 1.0f);
+    private int originalSortingOrder;
+
     private void Start()
     {
+        if (boxRenderer != null)
+        {
+            normalColor = boxRenderer.color;
+            originalSortingOrder = boxRenderer.sortingOrder;
+        }
+
+        Debug.Log($"[TradingItem] {GetInstanceID()} 초기화됨. ItemName: {(itemData != null ? itemData.itemName : "미설정")}");
     }
 
     public void Initialize(TradingItemData data, int quantity, ItemState state = ItemState.Normal)
     {
         itemData = data;
-        spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
 
-        InitializeTradingShape();
-        spriteRenderer.sortingOrder = SortingOrderConstants.TradingItem;
+        string boxName = $"lot{itemData.shape}";
+        boxSprites = Resources.LoadAll<Sprite>($"Sprites/Item/{boxName}");
+
+        rotation = RotationConstants.Rotation.Rotation0;
+
+        boxRenderer.sprite = boxSprites[(int)rotation];
+        boxGrid = ItemShape.Instance.itemShapes[itemData.shape][(int)rotation];
+        boxRenderer.sortingOrder = SortingOrderConstants.TradingItemBox;
+
+        frameRenderer.sortingOrder = SortingOrderConstants.TradingItemFrame;
+        PositionFrameAtGridCenter();
+
+        // 아이템 이미지 설정 (예: 아이템별 개별 스프라이트)
+        itemRenderer.sprite = itemData.itemSprite;
         itemState = state;
+
+        itemRenderer.sortingOrder = SortingOrderConstants.TradingItemIcon;
 
         amount = quantity;
         Math.Clamp(amount, 0, data.capacity);
         amount = 1; // 테스트용 하나
         // TODO: 만약 최대치보다 많으면 생성을 못하게 하거나, 두 개 생성해서 나눠야함
+
+        UpdateColliderSize();
+
+        Debug.Log($"[TradingItem] {GetInstanceID()} 초기화 완료. ItemName: {itemData.itemName}, Shape: {itemData.shape}");
     }
 
     /// <summary>
@@ -72,6 +118,14 @@ public class TradingItem : MonoBehaviour
     /// </summary>
     public void RecalculatePrice()
     {
+        // 가격 계산 로직 구현
+        float basePrice = GetBasePrice();
+        float fluctuation = basePrice * itemData.costChangerate;
+
+        float minPrice = Mathf.Max(0, basePrice - fluctuation);
+        float maxPrice = basePrice + fluctuation;
+
+        cachedPrice = UnityEngine.Random.Range(minPrice, maxPrice);
     }
 
     /// <summary>
@@ -90,11 +144,431 @@ public class TradingItem : MonoBehaviour
         return itemData;
     }
 
-    public void InitializeTradingShape()
+    public void ShowItemFrame()
     {
-        string boxName = "lot";
-        Sprite[] sprites = Resources.LoadAll<Sprite>($"Sprites/Item/{boxName}");
+        frameRenderer.enabled = true;
+    }
 
-        spriteRenderer.sprite = sprites[itemData.shape];
+
+    public void HideItemFrame()
+    {
+        frameRenderer.enabled = false;
+    }
+
+    public Sprite GetItemSprite()
+    {
+        return itemData.itemSprite;
+    }
+
+    public Vector2 GetWorldPosition()
+    {
+        Vector2 parentPosition = parentStorage.transform.position;
+        return new Vector2(parentPosition.x + GridConstants.CELL_SIZE * 2,
+            parentPosition.y + GridConstants.CELL_SIZE * 2);
+    }
+
+    // IDraggableItem 인터페이스 구현
+    public void Rotate(RotationConstants.Rotation newRotation)
+    {
+        rotation = (RotationConstants.Rotation)newRotation;
+        int spriteIndex = (int)rotation % boxSprites.Length;
+        boxRenderer.sprite = boxSprites[spriteIndex];
+        boxGrid = ItemShape.Instance.itemShapes[itemData.shape][(int)rotation];
+
+        PositionFrameAtGridCenter();
+        // 콜라이더 크기 업데이트
+        UpdateColliderSize();
+    }
+
+    public object GetRotation()
+    {
+        return rotation;
+    }
+
+    public Vector2Int GetGridPosition()
+    {
+        return gridPosition;
+    }
+
+    public void SetGridPosition(Vector2Int position)
+    {
+        gridPosition = position;
+    }
+
+    // 부모 스토리지 설정
+    public void SetParentStorage(StorageRoomBase storage)
+    {
+        parentStorage = storage;
+    }
+
+    // 클릭 이벤트 처리
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log(
+            $"[TradingItem] {GetInstanceID()} 클릭 감지. ItemName: {(itemData != null ? itemData.itemName : "미설정")}, isDragMode: {isDragMode}, 부모 스토리지: {(parentStorage != null ? "있음" : "없음")}");
+
+        // 드래그 모드일 때는 클릭 이벤트 무시
+        if (isDragMode)
+        {
+            Debug.Log($"[TradingItem] {GetInstanceID()} 드래그 모드 중이므로 클릭 무시");
+            return;
+        }
+
+        // 아이템 재배치가 허용되지 않으면 클릭 이벤트 무시
+        if (!TradingItemDragHandler.IsItemRepositioningAllowed)
+        {
+            Debug.Log($"[TradingItem] {GetInstanceID()} 아이템 재배치가 허용되지 않으므로 클릭 무시");
+            return;
+        }
+
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            // 아이템 선택
+            if (parentStorage != null)
+                parentStorage.SelectItem(this);
+            else
+                Debug.Log($"[TradingItem] {GetInstanceID()} 부모 스토리지 없음, 선택 불가");
+        }
+    }
+
+    // 드래그 시작 시 호출
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        // 드래그 모드일 때는 드래그 이벤트 무시
+        if (isDragMode || parentStorage == null)
+        {
+            Debug.Log($"[TradingItem] {GetInstanceID()} 드래그 모드 중이거나 부모 스토리지 없음, 드래그 무시");
+            return;
+        }
+
+        // 아이템 재배치가 허용되지 않으면 드래그 이벤트 무시
+        if (!TradingItemDragHandler.IsItemRepositioningAllowed)
+        {
+            Debug.Log($"[TradingItem] {GetInstanceID()} 아이템 재배치가 허용되지 않으므로 드래그 무시");
+            return;
+        }
+
+        // 왼쪽 마우스 버튼으로 드래그할 때만 처리
+        if (eventData.button != PointerEventData.InputButton.Left)
+        {
+            Debug.Log($"[TradingItem] {GetInstanceID()} 왼쪽 마우스 버튼이 아님, 드래그 무시");
+            return;
+        }
+
+        // 이제 TradingItemDragHandler로 드래그 처리를 위임
+        TradingItemDragHandler.Instance.StartDragging(this, parentStorage, eventData.position);
+    }
+
+    // 드래그 중 호출 (개선된 핸들러를 사용하므로 빈 구현)
+    public void OnDrag(PointerEventData eventData)
+    {
+        // TradingItemDragHandler에서 처리
+    }
+
+    // 드래그 종료 시 호출 (개선된 핸들러를 사용하므로 빈 구현)
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        // TradingItemDragHandler에서 처리
+    }
+
+    /// <summary>
+    /// 드래그 모드 설정 (프리뷰 사용 중일 때 원본 아이템의 가시성 설정)
+    /// </summary>
+    public void SetDragMode(bool isDragging)
+    {
+        Debug.Log($"[TradingItem] {GetInstanceID()} SetDragMode 호출. 이전 상태: {isDragMode}, 새 상태: {isDragging}");
+
+        isDragMode = isDragging;
+
+        // 드래그 모드일 때 콜라이더 비활성화 추가
+        BoxCollider2D collider = GetComponent<BoxCollider2D>();
+        if (collider != null)
+        {
+            Debug.Log($"[TradingItem] {GetInstanceID()} 콜라이더 활성화 상태 변경: {!isDragging}");
+            collider.enabled = !isDragging;
+        }
+        else
+        {
+            Debug.Log($"[TradingItem] {GetInstanceID()} 콜라이더가 NULL입니다!");
+        }
+
+        // 드래그 모드일 때는 반투명하게 또는 비활성화
+        if (boxRenderer != null)
+        {
+            boxRenderer.enabled = !isDragging;
+            // 소팅 오더 유지
+            if (!isDragging)
+                boxRenderer.sortingOrder = SortingOrderConstants.TradingItemBox;
+        }
+
+        if (itemRenderer != null)
+        {
+            itemRenderer.enabled = !isDragging;
+            // 소팅 오더 유지
+            if (!isDragging)
+                itemRenderer.sortingOrder = SortingOrderConstants.TradingItemIcon;
+        }
+
+        if (frameRenderer != null)
+        {
+            frameRenderer.enabled = !isDragging;
+            // 소팅 오더 유지
+            if (!isDragging)
+                frameRenderer.sortingOrder = SortingOrderConstants.TradingItemFrame;
+        }
+
+        // 드래그 모드가 끝나면 콜라이더 크기 갱신
+        if (!isDragging) UpdateColliderSize();
+    }
+
+    /// <summary>
+    /// boxGrid 정보를 기반으로 아이템 모양에 맞게 BoxCollider2D를 생성합니다.
+    /// </summary>
+    private void UpdateColliderSize()
+    {
+        // 기존 콜라이더 모두 제거
+        foreach (BoxCollider2D collider in GetComponents<BoxCollider2D>()) Destroy(collider);
+
+        // boxGrid가 없다면 종료
+        if (boxGrid == null)
+        {
+            Debug.LogWarning($"[TradingItem] {GetInstanceID()} UpdateColliderSize 실패: boxGrid가 NULL");
+            return;
+        }
+
+        // 스프라이트의 크기 정보 가져오기
+        if (boxRenderer == null || boxRenderer.sprite == null)
+        {
+            Debug.LogWarning($"[TradingItem] {GetInstanceID()} UpdateColliderSize 실패: boxRenderer 또는 sprite가 NULL");
+            return;
+        }
+
+        // 아이템의 점유 영역 찾기
+        int minX = 4, maxX = 0, minY = 4, maxY = 0;
+        bool foundValidCell = false;
+
+        for (int y = 0; y < 5; y++)
+        for (int x = 0; x < 5; x++)
+            if (boxGrid[y][x])
+            {
+                minX = Mathf.Min(minX, x);
+                maxX = Mathf.Max(maxX, x);
+                minY = Mathf.Min(minY, y);
+                maxY = Mathf.Max(maxY, y);
+                foundValidCell = true;
+            }
+
+        if (!foundValidCell)
+        {
+            Debug.LogWarning($"[TradingItem] {GetInstanceID()} 유효한 점유 셀이 없음");
+            return;
+        }
+
+        // 스프라이트의 실제 크기
+        float spriteWidth = boxRenderer.bounds.size.x;
+        float spriteHeight = boxRenderer.bounds.size.y;
+
+        // 각 타일별로 콜라이더 생성
+        for (int y = minY; y <= maxY; y++)
+        for (int x = minX; x <= maxX; x++)
+            if (boxGrid[y][x])
+            {
+                // 새 콜라이더 추가
+                BoxCollider2D newCollider = gameObject.AddComponent<BoxCollider2D>();
+
+                // 아이템의 전체 크기
+                int itemWidth = maxX - minX + 1;
+                int itemHeight = maxY - minY + 1;
+
+                // 각 셀의 크기 계산
+                float cellWidth = spriteWidth / itemWidth;
+                float cellHeight = spriteHeight / itemHeight;
+
+                // 콜라이더 크기 설정 (한 셀 크기)
+                newCollider.size = new Vector2(cellWidth * 0.99f, cellHeight * 0.99f); // 약간 작게 만들어 겹침 방지
+
+                // 스프라이트 좌하단 계산
+                float spriteBottomLeftX = -spriteWidth / 2f;
+                float spriteBottomLeftY = -spriteHeight / 2f;
+
+                // 해당 셀의 중심 위치 계산 (y 좌표는 반전)
+                float cellCenterX = spriteBottomLeftX + (x - minX + 0.5f) * cellWidth;
+                float cellCenterY = spriteBottomLeftY + (maxY - y + 0.5f) * cellHeight;
+
+                // 콜라이더 위치 설정
+                newCollider.offset = new Vector2(cellCenterX, cellCenterY);
+
+                // 이벤트 트리거로 설정
+                newCollider.isTrigger = true;
+            }
+
+        Debug.Log($"[TradingItem] {GetInstanceID()} 콜라이더 업데이트 완료. 아이템 크기: ({maxX - minX + 1}x{maxY - minY + 1})");
+    }
+
+    public SpriteRenderer GetBoxRenderer()
+    {
+        return boxRenderer;
+    }
+
+    private void PositionFrameAtGridCenter()
+    {
+        if (frameRenderer != null)
+        {
+            if (boxGrid == null)
+            {
+                Debug.LogWarning("boxGrid is null, cannot position frame correctly");
+                return;
+            }
+
+            // boxGrid에서 실제 아이템이 차지하는 영역 계산
+            int minX = 4, maxX = 0, minY = 4, maxY = 0;
+            bool foundValidCell = false;
+
+            for (int y = 0; y < 5; y++)
+            for (int x = 0; x < 5; x++)
+                if (boxGrid[y][x])
+                {
+                    minX = Mathf.Min(minX, x);
+                    maxX = Mathf.Max(maxX, x);
+                    minY = Mathf.Min(minY, y);
+                    maxY = Mathf.Max(maxY, y);
+                    foundValidCell = true;
+                }
+
+            if (!foundValidCell)
+            {
+                Debug.LogWarning("No valid cells found in boxGrid");
+                return;
+            }
+
+            // 실제 아이템의 가로/세로 크기
+            int itemWidth = maxX - minX + 1;
+            int itemHeight = maxY - minY + 1;
+
+            // 실제 스프라이트의 가로/세로 크기
+            float spriteWidth = boxRenderer.bounds.size.x;
+            float spriteHeight = boxRenderer.bounds.size.y;
+
+            // 5x5 그리드에서 각 셀의 실제 크기 계산
+            float cellWidth = spriteWidth / itemWidth;
+            float cellHeight = spriteHeight / itemHeight;
+
+            // 스프라이트의 로컬 좌표계에서 좌하단 모서리
+            float spriteBottomLeftX = -spriteWidth / 2f;
+            float spriteBottomLeftY = -spriteHeight / 2f;
+
+            // 그리드 (2,2) 위치에 해당하는 스프라이트 상의 좌표 계산
+            float frameX, frameY;
+
+            // 그리드 (2,2)가 실제 아이템 영역 내에 있는지 확인
+            if (2 >= minX && 2 <= maxX && 2 >= minY && 2 <= maxY)
+            {
+                frameX = spriteBottomLeftX + (2 - minX + 0.5f) * cellWidth;
+
+                int effectiveY = 4 - 2; // 5x5 그리드에서 y좌표 반전 (4는 최대 인덱스)
+                frameY = spriteBottomLeftY + (effectiveY - (4 - maxY) + 0.5f) * cellHeight;
+            }
+            else
+            {
+                frameX = 0;
+                frameY = 0;
+                Debug.LogWarning("Grid position (2,2) is outside the item area, centering frame");
+            }
+
+            // 스프라이트가 입체인 점을 고려하여 살짝 아래로 배치
+            frameY -= GridConstants.CELL_SIZE * frameOffsetY;
+            // 프레임 위치 설정
+            frameRenderer.transform.localPosition = new Vector3(frameX, frameY, 0);
+
+            // 프레임 회전은 항상 정면으로 유지
+            frameRenderer.transform.localRotation = Quaternion.identity;
+        }
+    }
+
+    public bool GetIsDragMode()
+    {
+        return isDragMode;
+    }
+
+    public int GetItemId()
+    {
+        return itemData.id;
+    }
+
+    public ItemState GetItemState()
+    {
+        return itemState;
+    }
+
+    public void SetItemState(ItemState state)
+    {
+        itemState = state;
+    }
+
+    public ItemPlanet GetItemPlanet()
+    {
+        return itemData.planet;
+    }
+
+    public ItemTierLevel GetItemTierLevel()
+    {
+        return itemData.tier;
+    }
+
+    public string GetItemName()
+    {
+        return itemData.itemName;
+    }
+
+    public ItemCategory GetItemCategory()
+    {
+        return itemData.type;
+    }
+
+    public int GetItemShape()
+    {
+        return itemData.shape;
+    }
+
+    public float GetTemperaturMin()
+    {
+        return itemData.temperatureMin;
+    }
+
+    public float GetTemperaturMax()
+    {
+        return itemData.temperatureMax;
+    }
+
+    public int GetCapacity()
+    {
+        return itemData.capacity;
+    }
+
+    public int GetCostMin()
+    {
+        return itemData.costMin;
+    }
+
+    public int GetCostMax()
+    {
+        return itemData.costMax;
+    }
+
+    public string GetDescription()
+    {
+        return itemData.description;
+    }
+
+    public float GetCostChangeRate()
+    {
+        return itemData.costChangerate;
+    }
+
+    public int GetRandomCost()
+    {
+        // TODO : 현재는 아이템 인스턴스 하나 별로 가격을 책정하고 있는데, 같은 무역 아이템이라면 같이 올라가거나 해야될 것 같다.
+        //        같은 ID가 아니더라도, 같은 카테고리 등의 요소로도 가격 책정이 동일해야할 수 있으니 일단 보류
+        return UnityEngine.Random.Range(GetCostMin(), GetCostMax());
     }
 }
