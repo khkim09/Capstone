@@ -1,35 +1,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.Controls;
 
 /// <summary>
 /// 함선 커스터마이징 시 camera의 zoom-in, zoom-out과 우클릭으로의 화면 이동을 관리합니다.
 /// </summary>
 public class CameraZoomController : MonoBehaviour
 {
+    /// <summary>
+    /// 카메라 줌 속도
+    /// </summary>
     public float zoomSpeed = 2f;
-    public float moveSpeed = 0.1f;
+
+    /// <summary>
+    /// 카메라 최대 확대 줌인
+    /// </summary>
     public float minSize = 4.5f;
+
+    /// <summary>
+    /// 카메라 최소치 줌 아웃
+    /// </summary>
     public float maxSize = 15f;
 
-    private Camera cam;
-    private Vector3 lastMousePos;
-    private bool isDragging = false;
+    /// <summary>
+    /// 설계도 화면
+    /// </summary>
+    public GameObject customizeUI;
 
-    // 드래그 가능 여부를 제어하는 플래그
-    private bool isPanningEnabled = true;
+    /// <summary>
+    /// 조정할 메인 카메라
+    /// </summary>
+    private Camera cam;
+
+    /// <summary>
+    /// 가장 최신 줌 사이즈
+    /// </summary>
+    public float lastZoomSize = 5f;
 
     private void Start()
     {
         cam = Camera.main;
+        Camera.main.transform.position = new Vector3(0, 0, Camera.main.transform.position.z);
     }
 
+    /// <summary>
+    /// 설계도 작업 시에만 카메라 컨트롤 적용
+    /// </summary>
     private void Update()
     {
-        HandleZoom();
-        if (isPanningEnabled) // 카메라 이동이 활성화된 경우에만 실행
-            HandlePan();
+        if (CrewUIHandler.Instance.GetCurrentActiveUI() == customizeUI)
+        {
+            HandleZoom();
+            CameraMove();
+        }
     }
 
     /// <summary>
@@ -45,37 +68,70 @@ public class CameraZoomController : MonoBehaviour
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (Mathf.Abs(scroll) > 0.01f)
             cam.orthographicSize = Mathf.Clamp(cam.orthographicSize - scroll * zoomSpeed, minSize, maxSize);
+
+        lastZoomSize = cam.orthographicSize;
     }
 
     /// <summary>
-    /// 우클릭을 이용하여 드래그 시 화면 이동을 구현합니다.
-    /// 이동 가능 영역은 CheckBounds()를 통해 확인합니다.
+    /// 카메라 이동 구현 및 이동 제한
     /// </summary>
-    private void HandlePan()
+    private void CameraMove()
     {
-        // 드래그 중인 아이템이 있을 때는 카메라 이동 비활성화
-        if (!isPanningEnabled)
-            return;
+        Vector3 moveDir = Vector3.zero;
+        int stepSize = (int)cam.orthographicSize; // 줌 레벨 기준 이동 거리
+        KeyCode lastInputKey = KeyCode.None;
 
-        if (Input.GetMouseButtonDown(1)) // 우클릭
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            lastMousePos = Input.mousePosition;
-            isDragging = true;
+            moveDir += Vector3.up;
+            lastInputKey = KeyCode.W;
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            moveDir += Vector3.down;
+            lastInputKey = KeyCode.S;
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            moveDir += Vector3.left;
+            lastInputKey = KeyCode.A;
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            moveDir += Vector3.right;
+            lastInputKey = KeyCode.D;
         }
 
-        if (Input.GetMouseButtonUp(1))
-            isDragging = false;
-
-        if (isDragging)
+        if (moveDir != Vector3.zero)
         {
-            Vector3 delta = cam.ScreenToWorldPoint(lastMousePos) - cam.ScreenToWorldPoint(Input.mousePosition);
-            if (CheckBounds(cam.transform.position + delta))
+            Vector3 newPos = cam.transform.position + moveDir * stepSize;
+            newPos.z = cam.transform.position.z; // z는 그대로 유지
+
+            if (CheckBounds(newPos))
+                cam.transform.position = newPos;
+            else
             {
-                cam.transform.position += delta;
-                lastMousePos = Input.mousePosition;
+                switch (lastInputKey)
+                {
+                    case KeyCode.W:
+                        cam.transform.position = new Vector3(newPos.x, 58.5f, newPos.z);
+                        break;
+                    case KeyCode.S:
+                        cam.transform.position = new Vector3(newPos.x, 1.5f, newPos.z);
+                        break;
+                    case KeyCode.A:
+                        cam.transform.position = new Vector3(4.5f, newPos.y, newPos.z);
+                        break;
+                    case KeyCode.D:
+                        cam.transform.position = new Vector3(55.5f, newPos.y, newPos.z);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
+
 
     /// <summary>
     /// 유저의 마우스가 UI위에 있는지 여부를 확인합니다.
@@ -85,7 +141,10 @@ public class CameraZoomController : MonoBehaviour
         return EventSystem.current.IsPointerOverGameObject();
     }
 
-    // 마우스가 UI가 아닌 창고 위에만 있는지 확인
+    /// <summary>
+    /// 마우스가 UI가 아닌 창고 위에만 있는지 확인
+    /// </summary>
+    /// <returns></returns>
     private bool IsMouseOverStorageOnly()
     {
         if (!EventSystem.current.IsPointerOverGameObject())
@@ -134,43 +193,15 @@ public class CameraZoomController : MonoBehaviour
 
     /// <summary>
     /// 카메라 화면 이동 가능 영역을 제한합니다.
-    /// 가로 축 : -28 ~ 25, 세로 축 : -28 ~ 28 까지 이동 가능합니다.
     /// </summary>
     private bool CheckBounds(Vector3 simulatePos)
     {
-        float minX = 0f;
-        float maxX = 58f;
-        float minY = 0f;
-        float maxY = 59f;
+        // 수정 필요
+        float minX = 4.5f;
+        float maxX = 55.5f;
+        float minY = 1.5f;
+        float maxY = 58.5f;
 
         return minX <= simulatePos.x && simulatePos.x <= maxX && minY <= simulatePos.y && simulatePos.y <= maxY;
-    }
-
-    /// <summary>
-    /// 드래그 위치 초기화 함수
-    /// </summary>
-    public void StartPanFrom(Vector3 mouseScreenPos)
-    {
-        lastMousePos = mouseScreenPos;
-        isDragging = false;
-    }
-
-    /// <summary>
-    /// 카메라 이동을 비활성화합니다.
-    /// 아이템 드래그 중일 때 호출됩니다.
-    /// </summary>
-    public void DisablePanning()
-    {
-        isPanningEnabled = false;
-        isDragging = false; // 진행 중이던 카메라 드래그도 중단
-    }
-
-    /// <summary>
-    /// 카메라 이동을 활성화합니다.
-    /// 아이템 드래그가 끝났을 때 호출됩니다.
-    /// </summary>
-    public void EnablePanning()
-    {
-        isPanningEnabled = true;
     }
 }

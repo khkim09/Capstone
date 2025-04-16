@@ -25,12 +25,19 @@ public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointe
     /// </summary>
     public GameObject raceTooltipPrefab; // RaceTooltip 프리팹 할당
 
+    /// <summary>
+    /// 활성화 된 race tooltip
+    /// </summary>
     private GameObject activeTooltip;
+
+    /// <summary>
+    /// 작업에 필요한 mainCanvas
+    /// </summary>
+    [SerializeField] Canvas mainCanvas;
 
     /// <summary>
     /// 버튼 highlight를 위한 참조
     /// </summary>
-    // 버튼 하이라이트를 위해 참조
     private Button button;
     private Color normalColor;
     public Color highlightColor = Color.yellow;
@@ -89,12 +96,9 @@ public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointe
             return;
 
         // Canvas 찾기
-        Canvas canvas = FindAnyObjectByType<Canvas>();
-        if (canvas == null)
-            return;
 
         // RaceTooltip 프리팹 생성
-        activeTooltip = Instantiate(raceTooltipPrefab, canvas.transform);
+        activeTooltip = Instantiate(raceTooltipPrefab, mainCanvas.transform);
 
         // RaceTooltip 설정
         RaceTooltip tooltip = activeTooltip.GetComponent<RaceTooltip>();
@@ -104,6 +108,9 @@ public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointe
         RectTransform tooltipRect = activeTooltip.GetComponent<RectTransform>();
 
         // 월드 좌표 → UI 좌표로 변환
+        tooltipRect.anchoredPosition = new Vector2(1500f, -270f);
+
+        /*
         Vector3 worldPosition = new(4.6f, 2.5f, 0.0f);
         Vector2 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
 
@@ -113,6 +120,7 @@ public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointe
             out localPoint);
 
         tooltipRect.localPosition = localPoint;
+        */
     }
 
     /// <summary>

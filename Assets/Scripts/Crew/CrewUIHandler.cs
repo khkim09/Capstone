@@ -161,7 +161,7 @@ public class CrewUIHandler : MonoBehaviour
     /// 현재 활성화 되어 있는 UI 반환
     /// </summary>
     /// <returns></returns>
-    private GameObject GetCurrentActiveUI()
+    public GameObject GetCurrentActiveUI()
     {
         if (mainUIScreen.activeSelf)
             return mainUIScreen;
