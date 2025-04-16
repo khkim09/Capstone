@@ -203,7 +203,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         // 드래그 모드일 때는 클릭 이벤트 무시
         if (isDragMode)
         {
-            Debug.Log($"[TradingItem] {GetInstanceID()} 드래그 모드 중이므로 클릭 무시");
             return;
         }
 
