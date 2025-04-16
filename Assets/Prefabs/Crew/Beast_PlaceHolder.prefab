@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3984247936802545802}
   - component: {fileID: 2455931983704410413}
   - component: {fileID: 9009535237384570495}
-  - component: {fileID: 2993177813363100732}
+  - component: {fileID: 8525252561949665378}
   m_Layer: 0
   m_Name: Beast_PlaceHolder
   m_TagString: Untagged
@@ -78,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3073018370354668190, guid: 807b07c435a8e1747a379ade067902b9, type: 3}
+  m_Sprite: {fileID: -6348806237195144154, guid: b74d281bca9746b4281fb74def00f0de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.27, y: 0.19}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -130,8 +130,9 @@ MonoBehaviour:
   isAlive: 0
   isMoving: 0
   currentShip: {fileID: 0}
---- !u!60 &2993177813363100732
-PolygonCollider2D:
+  spriteRenderer: {fileID: 0}
+--- !u!61 &8525252561949665378
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -168,22 +169,11 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.27, y: 0.19}
-    newSize: {x: 0.27, y: 0.19}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.078262806, y: 0.09523879}
-      - {x: -0.0047266167, y: 0.017961152}
-      - {x: -0.13175625, y: -0.009328061}
-      - {x: -0.13256718, y: -0.04228921}
-      - {x: -0.069058225, y: -0.09485423}
-      - {x: 0.032015823, y: -0.095}
-      - {x: 0.102562584, y: -0.06770619}
-      - {x: 0.13231726, y: 0.039809976}
-      - {x: 0.13337813, y: 0.059861}
-      - {x: 0.10067195, y: 0.09418906}
-  m_UseDelaunayMesh: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

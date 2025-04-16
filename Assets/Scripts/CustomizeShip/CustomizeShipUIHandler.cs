@@ -30,17 +30,6 @@ public class CustomizeShipUIHandler : MonoBehaviour
     public Button buildButton;
 
     /// <summary>
-    /// 저장 버튼입니다.
-    /// </summary>
-    [Header("Buttons")]
-    public Button saveButton;
-
-    /// <summary>
-    /// 취소 버튼입니다.
-    /// </summary>
-    public Button cancelButton;
-
-    /// <summary>
     /// 저장 또는 유효성 검사 결과를 표시할 텍스트입니다.
     /// </summary>
     public Text feedbackText;
@@ -87,12 +76,30 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
             totalCostText.text = $"Blueprint Cost: {totalBPCost}";
 
+            // 1. 조건 : 자산
+            bool hasEnoughMoney = totalBPCost - currentShipCost <= currentCurrency;
+
+            // 2. 기존 함선 모든 방 내구도 100%
+            bool shipFullyRepaired = playerShip.IsFullHitPoint();
+
+            // 3. 레이아웃 유효성 검사 - 모든 방 연결, 문끼리 연결
+            // ValidationResult result = ValidatonHelper.ValidateShipLayout(targetBlueprintShip);
+
+
+
+            // 현재 ValidateShipLayout(Ship ship)으로 되어있어서 체크 어려움.
+            // 이걸 bp로 바꾸는게 맞나? 아니면 순서를 변경해서 build 후에 체크하도록 해야되나
+            // bpship 과 ship 비교 해봐야 될 듯
+
+
             // 조건 체크
             if (totalBPCost - currentShipCost <= currentCurrency && playerShip.IsFullHitPoint())
                 buildButton.interactable = true;
             else
                 buildButton.interactable = false;
         }
+
+
     }
 
     /// <summary>
@@ -119,23 +126,35 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
-        gridTiles.SetActive(false);
+        if (gridTiles.activeInHierarchy)
+            gridTiles.SetActive(false);
 
         // 설계도 설치한 방 데이터 모두 저장 후 제거
         SaveBPRoomsandDestroy();
+
+        // 카메라 세팅
+        ResetCameraPos();
     }
 
     /// <summary>
-    /// 설계도도 UI 호출 시 카메라 중앙값 보정
+    /// 설계도 UI 호출 시 카메라 중앙값 보정
     /// </summary>
     private void CenterCamera()
     {
         Vector3 startPos = gridPlacer.GetCameraStartPosition();
         Camera.main.transform.position = new Vector3(startPos.x, startPos.y, Camera.main.transform.position.z);
 
-        CameraZoomController cameraDrag = Camera.main.GetComponent<CameraZoomController>();
-        if (cameraDrag != null)
-            cameraDrag.StartPanFrom(Input.mousePosition); // 현재 마우스 위치 기준으로 초기화
+        CameraZoomController cameraController = Camera.main.GetComponent<CameraZoomController>();
+        Camera.main.orthographicSize = cameraController.lastZoomSize;
+
+        // if (cameraDrag != null)
+        // cameraDrag.StartPanFrom(Input.mousePosition); // 현재 마우스 위치 기준으로 초기화
+    }
+
+    private void ResetCameraPos()
+    {
+        Camera.main.transform.position = new Vector3(0, 0, Camera.main.transform.position.z);
+        Camera.main.orthographicSize = 5;
     }
 
     /// <summary>

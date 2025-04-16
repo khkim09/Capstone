@@ -27,6 +27,8 @@ public class GameInitializer : MonoBehaviour
     /// <summary>사기치 매니저 프리팹.</summary>
     [SerializeField] private GameObject moraleMangerPrefab;
 
+    [SerializeField] private GameObject itemManagerPrefab;
+
 
     /// <summary>
     /// 게임 시작 시 필요한 매니저들을 생성합니다.
@@ -41,6 +43,7 @@ public class GameInitializer : MonoBehaviour
         InstantiateIfNotExists<UIManager>(uiManagerPrefab);
         InstantiateIfNotExists<GameStateManager>(gameStateManagerPrefab);
         InstantiateIfNotExists<MoraleManager>(moraleMangerPrefab);
+        InstantiateIfNotExists<ItemManager>(itemManagerPrefab);
     }
 
     /// <summary>

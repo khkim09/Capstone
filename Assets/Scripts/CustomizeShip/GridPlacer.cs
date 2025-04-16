@@ -18,11 +18,6 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     public Transform gridTiles;
 
     /// <summary>
-    /// 각 타일의 크기입니다.
-    /// </summary>
-    public float tileSize = 1f;
-
-    /// <summary>
     /// 배치가 이루어질 설계도
     /// </summary>
     public BlueprintShip targetBlueprintShip;
@@ -55,14 +50,12 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     public void GenerateTiles()
     {
         for (int x = 0; x < gridSize.x; x++)
+        for (int y = 0; y < gridSize.y; y++)
         {
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                Vector3 pos = GridToWorldPosition(new Vector2Int(x, y));
-                GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
-                tile.transform.localScale = Vector3.one * tileSize;
-                tile.transform.position += new Vector3(0, 0, 17);
-            }
+            Vector3 pos = GridToWorldPosition(new Vector2Int(x, y));
+            GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
+            tile.transform.localScale = Vector3.one * GridConstants.CELL_SIZE;
+            tile.transform.position += new Vector3(0, 0, 17);
         }
     }
 
@@ -73,7 +66,8 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     /// <returns>해당 위치의 월드 좌표.</returns>
     public Vector3 GridToWorldPosition(Vector2Int gridPos)
     {
-        return gridOrigin + new Vector3((gridPos.x + 0.5f) * tileSize, (gridPos.y + 0.5f) * tileSize, 0f);
+        return gridOrigin + new Vector3((gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
+            (gridPos.y + 0.5f) * GridConstants.CELL_SIZE, 0f);
     }
 
     /// <summary>
@@ -84,7 +78,8 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     public Vector2Int WorldToGridPosition(Vector2 worldPos)
     {
         Vector3 local = new Vector3(worldPos.x, worldPos.y, 0) - gridOrigin;
-        return new Vector2Int(Mathf.FloorToInt(local.x), Mathf.FloorToInt(local.y));
+        return new Vector2Int(Mathf.FloorToInt(local.x / GridConstants.CELL_SIZE),
+            Mathf.FloorToInt(local.y / GridConstants.CELL_SIZE));
     }
 
     /// <summary>
@@ -174,7 +169,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     /// <param name="position">좌하단 기준 시작 위치</param>
     /// <param name="rotation">회전 각도</param>
     /// <returns></returns>
-    public bool CanPlaceRoom(RoomData data, int level, Vector2Int origin, int rotation)
+    public bool CanPlaceRoom(RoomData data, int level, Vector2Int origin, RotationConstants.Rotation rotation)
     {
         RoomData.RoomLevel levelData = data.GetRoomDataByLevel(level);
         Vector2Int size = RoomRotationUtility.GetRotatedSize(levelData.size, rotation);
@@ -201,7 +196,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     /// <param name="level"></param>
     /// <param name="position"></param>
     /// <param name="rotation"></param>
-    public void PlaceRoom(RoomData data, int level, Vector2Int position, int rotation)
+    public void PlaceRoom(RoomData data, int level, Vector2Int position, RotationConstants.Rotation rotation)
     {
         Vector2Int size = RoomRotationUtility.GetRotatedSize(data.GetRoomDataByLevel(level).size, rotation);
         Vector2 offset = RoomRotationUtility.GetRotationOffset(size, rotation);
@@ -209,7 +204,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
 
         GameObject bpRoomGO = Instantiate(roomPrefab, targetBlueprintShip.transform);
         bpRoomGO.transform.position = worldPos + new Vector3(0, 0, 10f);
-        bpRoomGO.transform.rotation = Quaternion.Euler(0, 0, -rotation);
+        bpRoomGO.transform.rotation = Quaternion.Euler(0, 0, -(int)rotation * 90);
 
         BlueprintRoom bpRoom = bpRoomGO.GetComponent<BlueprintRoom>();
         bpRoom.SetGridPlacer(this);

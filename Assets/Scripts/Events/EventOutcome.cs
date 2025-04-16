@@ -7,6 +7,7 @@ public class EventOutcome
 {
     public string outcomeText;
     public float probability; // 0-100 사이의 확률
+    public List<PlanetEffect> planetEffects = new();
     public List<ResourceEffect> resourceEffects = new();
     public List<CrewEffect> crewEffects = new();
 

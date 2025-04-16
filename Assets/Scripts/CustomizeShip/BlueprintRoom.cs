@@ -1,16 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
-
 
 /// <summary>
 /// 설계도에 배치된 방 정보.
 /// </summary>
-public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler,
+    IGridPlaceable
 {
     /// <summary>RoomData 참조</summary>
     public RoomData bpRoomData;
@@ -19,7 +16,7 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     public int bpLevelIndex;
 
     /// <summary>회전 각</summary>
-    public int bpRotation;
+    public RotationConstants.Rotation bpRotation;
 
     /// <summary>배치 위치</summary>
     public Vector2Int bpPosition;
@@ -50,9 +47,9 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     private Color invalidColor = new(1f, 0f, 0f, 0.5f);
 
     private Vector2Int originalPos;
-    private int originalRot;
+    private RotationConstants.Rotation originalRot;
     private GridPlacer gridPlacer;
-    RoomData.RoomLevel levelData;
+    private RoomData.RoomLevel levelData;
 
     // collider size 맞춤
     private void Start()
@@ -78,7 +75,7 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
             Vector2Int hoveredTile = gridPlacer.WorldToGridPosition(mouseWorldPos);
 
             // 2. 회전 적용
-            bpRotation = (bpRotation + 90) % 360;
+            bpRotation = (RotationConstants.Rotation)(((int)bpRotation + 1) % 4);
             bpRoomSize = RoomRotationUtility.GetRotatedSize(levelData.size, bpRotation);
 
             // 3. 기준 위치 업데이트
@@ -88,7 +85,7 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
             Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
 
             transform.position = gridPlacer.GridToWorldPosition(bpPosition) + (Vector3)offset;
-            transform.rotation = Quaternion.Euler(0, 0, -bpRotation);
+            transform.rotation = Quaternion.Euler(0, 0, -(int)bpRotation * 90);
 
             // 배치 가능 검사
             bool canPlace = gridPlacer.CanPlaceRoom(bpRoomData, bpLevelIndex, bpPosition, bpRotation);
@@ -99,7 +96,7 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     /// <summary>
     /// 설치 시 초기화
     /// </summary>
-    public void Initialize(RoomData data, int level, Vector2Int pos, int rot)
+    public void Initialize(RoomData data, int level, Vector2Int pos, RotationConstants.Rotation rot)
     {
         occupiedTiles.Clear();
 
@@ -118,7 +115,60 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.sprite = levelData.roomSprite;
 
-        transform.rotation = Quaternion.Euler(0, 0, -bpRotation);
+        transform.rotation = Quaternion.Euler(0, 0, -(int)bpRotation * 90);
+    }
+
+    // IDraggableItem 인터페이스 구현
+    /// <summary>
+    /// 드래그 모드 설정 (BlueprintRoom은 드래그 모드에서 시각적 변경만 적용)
+    /// </summary>
+    public void SetDragMode(bool isDragging)
+    {
+        // 드래그 중일 때 반투명하게 처리
+        if (sr != null)
+        {
+            if (isDragging)
+                // 드래그 모드 활성화 시 반투명하게
+                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.5f);
+            else
+                // 드래그 모드 비활성화 시 원래 색상으로
+                sr.color = Color.white;
+        }
+    }
+
+    /// <summary>
+    /// 오브젝트 회전
+    /// </summary>
+    public void Rotate(RotationConstants.Rotation rotation)
+    {
+        RotationConstants.Rotation newRotation = rotation;
+        bpRotation = newRotation;
+        bpRoomSize = RoomRotationUtility.GetRotatedSize(levelData.size, bpRotation);
+        transform.rotation = Quaternion.Euler(0, 0, -(int)bpRotation * 90);
+    }
+
+    /// <summary>
+    /// 현재 회전 상태 반환
+    /// </summary>
+    public object GetRotation()
+    {
+        return bpRotation;
+    }
+
+    /// <summary>
+    /// 현재 그리드 위치 반환
+    /// </summary>
+    public Vector2Int GetGridPosition()
+    {
+        return bpPosition;
+    }
+
+    /// <summary>
+    /// 그리드 위치 설정
+    /// </summary>
+    public void SetGridPosition(Vector2Int position)
+    {
+        bpPosition = position;
     }
 
     public void SetBlueprint(BlueprintShip bpShip)
@@ -193,7 +243,7 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
 
             Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
             transform.position = gridPlacer.GridToWorldPosition(originalPos) + (Vector3)offset;
-            transform.rotation = Quaternion.Euler(0, 0, -bpRotation);
+            transform.rotation = Quaternion.Euler(0, 0, -(int)bpRotation * 90);
         }
         else
         {
@@ -204,6 +254,7 @@ public class BlueprintRoom : MonoBehaviour, IPointerClickHandler, IBeginDragHand
             // 설치 확정
             RoomSelectionHandler.Instance.SelectRoom(this);
         }
+
         sr.color = Color.white;
     }
 }
