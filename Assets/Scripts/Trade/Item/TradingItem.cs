@@ -57,8 +57,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             normalColor = boxRenderer.color;
             originalSortingOrder = boxRenderer.sortingOrder;
         }
-
-        Debug.Log($"[TradingItem] {GetInstanceID()} 초기화됨. ItemName: {(itemData != null ? itemData.itemName : "미설정")}");
     }
 
     public void Initialize(TradingItemData data, int quantity, ItemState state = ItemState.Normal)
@@ -89,8 +87,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         // TODO: 만약 최대치보다 많으면 생성을 못하게 하거나, 두 개 생성해서 나눠야함
 
         UpdateColliderSize();
-
-        Debug.Log($"[TradingItem] {GetInstanceID()} 초기화 완료. ItemName: {itemData.itemName}, Shape: {itemData.shape}");
     }
 
     /// <summary>
@@ -204,9 +200,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     // 클릭 이벤트 처리
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log(
-            $"[TradingItem] {GetInstanceID()} 클릭 감지. ItemName: {(itemData != null ? itemData.itemName : "미설정")}, isDragMode: {isDragMode}, 부모 스토리지: {(parentStorage != null ? "있음" : "없음")}");
-
         // 드래그 모드일 때는 클릭 이벤트 무시
         if (isDragMode)
         {
@@ -276,21 +269,14 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     /// </summary>
     public void SetDragMode(bool isDragging)
     {
-        Debug.Log($"[TradingItem] {GetInstanceID()} SetDragMode 호출. 이전 상태: {isDragMode}, 새 상태: {isDragging}");
-
         isDragMode = isDragging;
 
         // 드래그 모드일 때 콜라이더 비활성화 추가
         BoxCollider2D collider = GetComponent<BoxCollider2D>();
         if (collider != null)
-        {
-            Debug.Log($"[TradingItem] {GetInstanceID()} 콜라이더 활성화 상태 변경: {!isDragging}");
             collider.enabled = !isDragging;
-        }
         else
-        {
             Debug.Log($"[TradingItem] {GetInstanceID()} 콜라이더가 NULL입니다!");
-        }
 
         // 드래그 모드일 때는 반투명하게 또는 비활성화
         if (boxRenderer != null)
@@ -401,8 +387,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
                 // 이벤트 트리거로 설정
                 newCollider.isTrigger = true;
             }
-
-        Debug.Log($"[TradingItem] {GetInstanceID()} 콜라이더 업데이트 완료. 아이템 크기: ({maxX - minX + 1}x{maxY - minY + 1})");
     }
 
     public SpriteRenderer GetBoxRenderer()
@@ -472,7 +456,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             {
                 frameX = 0;
                 frameY = 0;
-                Debug.LogWarning("Grid position (2,2) is outside the item area, centering frame");
             }
 
             // 스프라이트가 입체인 점을 고려하여 살짝 아래로 배치

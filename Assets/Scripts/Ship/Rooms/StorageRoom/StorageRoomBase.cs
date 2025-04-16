@@ -282,8 +282,6 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
 
             // 저장된 아이템 목록에서도 제거
             storedItems.Remove(item);
-
-            Debug.Log($"Removed item {item.GetItemData().itemName} from storage. Cleared {removedCells} cells.");
             return true;
         }
         catch (System.Exception e)
