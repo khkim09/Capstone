@@ -10,17 +10,17 @@ public class CameraZoomController : MonoBehaviour
     /// <summary>
     /// 카메라 줌 속도
     /// </summary>
-    public float zoomSpeed = 2f;
+    private float zoomSpeed = 2f;
 
     /// <summary>
     /// 카메라 최대 확대 줌인
     /// </summary>
-    public float minSize = 4.5f;
+    private float minSize = 4.5f;
 
     /// <summary>
     /// 카메라 최소치 줌 아웃
     /// </summary>
-    public float maxSize = 15f;
+    private float maxSize = 15f;
 
     /// <summary>
     /// 설계도 화면
@@ -35,7 +35,7 @@ public class CameraZoomController : MonoBehaviour
     /// <summary>
     /// 가장 최신 줌 사이즈
     /// </summary>
-    public float lastZoomSize = 5f;
+    [HideInInspector] public float lastZoomSize = 5f;
 
     private void Start()
     {

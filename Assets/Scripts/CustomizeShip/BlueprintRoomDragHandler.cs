@@ -22,6 +22,8 @@ public class BlueprintRoomDragHandler : MonoBehaviour
     private bool isDragging = false;
     private Vector2Int roomSize;
 
+    public static bool IsRoomBeingDragged { get; private set; }
+
     /// <summary>
     /// 드래그 시작 시 호출됨.
     /// </summary>
@@ -45,6 +47,22 @@ public class BlueprintRoomDragHandler : MonoBehaviour
 
         previewGO.transform.localScale = Vector3.one;
         previewGO.transform.rotation = Quaternion.identity;
+
+        IsRoomBeingDragged = true;
+    }
+
+    /// <summary>
+    /// 드래그 중단
+    /// </summary>
+    public void StopDragging()
+    {
+        if (previewGO != null)
+            Destroy(previewGO);
+
+        previewGO = null;
+        draggingRoomData = null;
+        isDragging = false;
+        IsRoomBeingDragged = false;
     }
 
     private void Update()
@@ -76,14 +94,12 @@ public class BlueprintRoomDragHandler : MonoBehaviour
         {
             if (!canPlace)
             {
-                Destroy(previewGO);
+                StopDragging();
             }
             else
             {
                 gridPlacer.PlaceRoom(draggingRoomData, draggingLevel, gridPos, draggingRotation);
-
-                Destroy(previewGO);
-                isDragging = false;
+                StopDragging();
             }
         }
     }

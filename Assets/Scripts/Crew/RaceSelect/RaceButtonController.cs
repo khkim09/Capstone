@@ -95,8 +95,6 @@ public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointe
         if (raceTooltipPrefab == null)
             return;
 
-        // Canvas 찾기
-
         // RaceTooltip 프리팹 생성
         activeTooltip = Instantiate(raceTooltipPrefab, mainCanvas.transform);
 
@@ -109,18 +107,6 @@ public class RaceButtonController : MonoBehaviour, IPointerEnterHandler, IPointe
 
         // 월드 좌표 → UI 좌표로 변환
         tooltipRect.anchoredPosition = new Vector2(1500f, -270f);
-
-        /*
-        Vector3 worldPosition = new(4.6f, 2.5f, 0.0f);
-        Vector2 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
-
-        Vector2 localPoint;
-        RectTransform canvasRect = canvas.GetComponent<RectTransform>();
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPosition, canvas.worldCamera,
-            out localPoint);
-
-        tooltipRect.localPosition = localPoint;
-        */
     }
 
     /// <summary>

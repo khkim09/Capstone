@@ -65,6 +65,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// 설계도로 함선 교체 가능 조건
     /// 1. (설계도 가격 - 기존 함선 가격) <= 보유 재화량
     /// 2. 기존 함선 모든 방 내구도 100%
+    /// 3. 모든 방, 문 연결성 검사
     /// </summary>
     private void Update()
     {
@@ -93,7 +94,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
 
             // 조건 체크
-            if (totalBPCost - currentShipCost <= currentCurrency && playerShip.IsFullHitPoint())
+            if (hasEnoughMoney && shipFullyRepaired)
                 buildButton.interactable = true;
             else
                 buildButton.interactable = false;
@@ -146,9 +147,6 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
         CameraZoomController cameraController = Camera.main.GetComponent<CameraZoomController>();
         Camera.main.orthographicSize = cameraController.lastZoomSize;
-
-        // if (cameraDrag != null)
-        // cameraDrag.StartPanFrom(Input.mousePosition); // 현재 마우스 위치 기준으로 초기화
     }
 
     private void ResetCameraPos()

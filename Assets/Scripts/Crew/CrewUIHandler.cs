@@ -117,9 +117,6 @@ public class CrewUIHandler : MonoBehaviour
     [SerializeField]
     private GameObject[] crewPrefabs;
 
-    // GridPlacer
-    // public GridPlacer gridPlacer;
-
     /// <summary>
     /// UI 화면 이동 이력을 저장하는 스택 구조입니다.
     /// 뒤로 가기 기능에 사용됩니다.
