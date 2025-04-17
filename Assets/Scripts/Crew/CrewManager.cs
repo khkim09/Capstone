@@ -9,15 +9,13 @@ public class CrewManager : MonoBehaviour
     // instance
     public static CrewManager Instance { get; set; }
 
-    [Header("Crew UI")][SerializeField] private GameObject alertAddCrewUI;
+    [Header("Crew UI")] [SerializeField] private GameObject alertAddCrewUI;
     [SerializeField] private GameObject mainUI;
 
-    [Header("Crew Prefabs")]
-    [SerializeField]
+    [Header("Crew Prefabs")] [SerializeField]
     private GameObject[] crewPrefabs;
 
-    [Header("Crew Race Settings")]
-    [SerializeField]
+    [Header("Crew Race Settings")] [SerializeField]
     private CrewRaceStat[] raceSettings;
 
     [Header("Default Equipments")] public EquipmentItem defaultWeapon;
@@ -71,7 +69,8 @@ public class CrewManager : MonoBehaviour
         Vector3 startPos = new(-8.0f, 0.0f, 0.0f);
 
         // 새 crew 생성
-        CrewMember newCrew = Instantiate(crewPrefabs[(int)selectedRace - 1], startPos, Quaternion.identity, null).GetComponent<CrewMember>();
+        CrewMember newCrew = Instantiate(crewPrefabs[(int)selectedRace - 1], startPos, Quaternion.identity, null)
+            .GetComponent<CrewMember>();
         newCrew.name = $"Name: {inputName}, Race: {selectedRace}";
         newCrew.transform.localScale = new Vector3(4.0f, 4.0f, 4.0f);
 
@@ -82,7 +81,7 @@ public class CrewManager : MonoBehaviour
 
         // TODO : 임시로 작동되게 해놓음. 최종적으론 삭제 예정
 
-        GameManager.Instance.GetPlayerShip().AddCrewMember(newCrew);
+        GameManager.Instance.GetPlayerShip().AddCrew(newCrew);
 
         // 확인용 로그
         Debug.Log($"새로운 선원 : {newCrew.crewName} {newCrew.race}");

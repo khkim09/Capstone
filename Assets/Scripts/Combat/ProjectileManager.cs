@@ -31,13 +31,13 @@ public class ProjectileManager : MonoBehaviour
     /// </summary>
     /// <param name="startPosition">발사 시작 위치.</param>
     /// <param name="targetPosition">목표 위치.</param>
-    /// <param name="weaponType">무기 타입.</param>
+    /// <param name="shipWeaponType">무기 타입.</param>
     /// <param name="onHit">도달 시 실행할 콜백.</param>
-    public void FireProjectile(Vector2 startPosition, Vector2 targetPosition, WeaponType weaponType,
+    public void FireProjectile(Vector2 startPosition, Vector2 targetPosition, ShipWeaponType shipWeaponType,
         System.Action onHit)
     {
         // 무기 타입에 따라 다른 투사체 생성 및 애니메이션 처리
-        GameObject projectilePrefab = GetProjectilePrefab(weaponType);
+        GameObject projectilePrefab = GetProjectilePrefab(shipWeaponType);
 
         // 투사체 생성
         GameObject projectile = Instantiate(projectilePrefab, startPosition, Quaternion.identity);
@@ -79,19 +79,19 @@ public class ProjectileManager : MonoBehaviour
     /// <summary>
     /// 무기 타입에 따른 투사체 프리팹을 반환합니다.
     /// </summary>
-    /// <param name="weaponType">무기 타입.</param>
+    /// <param name="shipWeaponType">무기 타입.</param>
     /// <returns>프리팹 GameObject.</returns>
-    private GameObject GetProjectilePrefab(WeaponType weaponType)
+    private GameObject GetProjectilePrefab(ShipWeaponType shipWeaponType)
     {
         // 실제 구현에서는 무기 타입별 프리팹 반환
         // 이 예시에서는 간단히 리소스 로드
-        switch (weaponType)
+        switch (shipWeaponType)
         {
-            case WeaponType.Laser:
+            case ShipWeaponType.Laser:
                 return Resources.Load<GameObject>("Prefabs/LaserProjectile");
-            case WeaponType.Railgun:
+            case ShipWeaponType.Railgun:
                 return Resources.Load<GameObject>("Prefabs/RailgunProjectile");
-            case WeaponType.Missile:
+            case ShipWeaponType.Missile:
                 return Resources.Load<GameObject>("Prefabs/MissileProjectile");
             default:
                 return Resources.Load<GameObject>("Prefabs/DefaultProjectile");

@@ -32,47 +32,29 @@ public class WeaponSystem : ShipSystem
     /// 새로운 무기를 시스템에 추가합니다.
     /// </summary>
     /// <param name="weaponData">추가할 무기 데이터.</param>
-    /// <returns>항상 true 반환 (현재는 실패 조건 없음).</returns>
-    public bool AddWeapon(ShipWeaponData weaponData)
+    /// <param name="gridPosition">추가할 그리드 좌표./param>
+    /// <returns>만들어진 새로운 무기의 참조.</returns>
+    public ShipWeapon AddWeapon(int weaponId, Vector2Int gridPosition, ShipWeaponAttachedDirection direction)
     {
-        weapons.Add(new ShipWeapon(weaponData));
-        return true;
+        // 무기 인스턴스 생성
+        ShipWeapon weapon = ShipWeaponManager.Instance.CreateWeaponInstance(weaponId);
+
+        // 필요한 속성 설정
+        weapon.SetGridPosition(gridPosition);
+        weapon.SetAttachedDirection(direction);
+
+        weapons.Add(weapon);
+
+        return weapon;
     }
 
-    /// <summary>
-    /// 지정한 인덱스의 무기를 제거합니다.
-    /// </summary>
-    /// <param name="index">제거할 무기의 인덱스.</param>
-    /// <returns>제거에 성공하면 true, 유효하지 않은 인덱스이면 false.</returns>
-    public bool RemoveWeapon(int index)
-    {
-        if (index < 0 || index >= weapons.Count)
-            return false;
 
-        weapons.RemoveAt(index);
-        return true;
-    }
-
-    /// <summary>
-    /// 지정한 인덱스의 무기를 대상에게 발사합니다.
-    /// 무기가 준비된 상태일 경우에만 발사됩니다.
-    /// </summary>
-    /// <param name="index">발사할 무기의 인덱스.</param>
-    /// <param name="target">공격 대상 Transform.</param>
-    /// <returns>발사에 성공하면 true, 실패하면 false.</returns>
-    public bool FireWeapon(int index, Transform target)
+    public bool RemoveWeapon(ShipWeapon weapon)
     {
-        ShipWeapon weapon = GetWeapon(index);
-        if (weapon != null && weapon.IsReady())
+        if (weapons.Contains(weapon))
         {
-            bool fired = CombatManager.Instance.outerShipCombatController.WeaponFire(parentShip, weapon);
-
-            if (fired)
-            {
-                // 발사 성공 시 쿨다운 리셋
-                weapon.ResetCooldown(GetActualCooldown(weapon.GetBaseCooldown()));
-                return true;
-            }
+            weapons.Remove(weapon);
+            return true;
         }
 
         return false;
@@ -122,15 +104,93 @@ public class WeaponSystem : ShipSystem
     }
 
     /// <summary>
-    /// 지정한 인덱스의 무기를 반환합니다.
+    /// 인덱스로 무기를 제거합니다.
     /// </summary>
-    /// <param name="index">무기 인덱스.</param>
-    /// <returns>해당 무기 객체. 유효하지 않은 경우 null.</returns>
+    /// <param name="index">제거할 무기의 인덱스</param>
+    /// <returns>제거 성공 여부</returns>
+    public bool RemoveWeapon(int index)
+    {
+        if (index >= 0 && index < weapons.Count)
+        {
+            ShipWeapon weapon = weapons[index];
+            weapons.RemoveAt(index);
+
+            // 게임 오브젝트 제거
+            if (weapon != null) Object.Destroy(weapon);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// 인덱스로 무기를 가져옵니다.
+    /// </summary>
+    /// <param name="index">무기 인덱스</param>
+    /// <returns>해당 인덱스의 무기 또는 null</returns>
     public ShipWeapon GetWeapon(int index)
     {
-        if (index < 0 || index >= weapons.Count)
-            return null;
+        if (index >= 0 && index < weapons.Count)
+            return weapons[index];
+        return null;
+    }
 
-        return weapons[index];
+    /// <summary>
+    /// 모든 무기가 발사 가능한지 확인합니다.
+    /// </summary>
+    /// <returns>발사 가능한 무기가 있으면 true</returns>
+    public bool IsAnyWeaponReady()
+    {
+        foreach (ShipWeapon weapon in weapons)
+            if (weapon.IsReady() && weapon.IsEnabled())
+                return true;
+        return false;
+    }
+
+    /// <summary>
+    /// 모든 무기의 쿨다운을 업데이트합니다.
+    /// </summary>
+    /// <param name="deltaTime">경과 시간</param>
+    public void UpdateWeaponCooldowns(float deltaTime)
+    {
+        foreach (ShipWeapon weapon in weapons) weapon.UpdateCooldown(deltaTime);
+    }
+
+    /// <summary>
+    /// 특정 타입의 무기만 반환합니다.
+    /// </summary>
+    /// <param name="type">무기 타입</param>
+    /// <returns>해당 타입의 무기 목록</returns>
+    public List<ShipWeapon> GetWeaponsByType(ShipWeaponType type)
+    {
+        return weapons.FindAll(w => w.GetWeaponType() == type);
+    }
+
+    /// <summary>
+    /// 모든 무기의 통계 데이터를 초기화합니다.
+    /// </summary>
+    public void ResetAllWeaponStats()
+    {
+        foreach (ShipWeapon weapon in weapons)
+        {
+            weapon.SetHits(0);
+            weapon.SetTotalDamageDealt(0f);
+        }
+    }
+
+    /// <summary>
+    /// 선택한 타입의 탄두를 필요로 하는 무기 목록을 반환합니다.
+    /// </summary>
+    /// <param name="warheadType">탄두 타입</param>
+    /// <returns>해당 탄두 타입을 사용하는 무기 목록</returns>
+    public List<ShipWeapon> GetWeaponsByWarheadType(WarheadType warheadType)
+    {
+        return weapons.FindAll(w => w.weaponData.warheadType == warheadType);
+    }
+
+    public List<ShipWeapon> GetWeaponsByEffect(ShipWeaponEffectType effectType)
+    {
+        return weapons.FindAll(w => w.weaponData.effectType == effectType);
     }
 }

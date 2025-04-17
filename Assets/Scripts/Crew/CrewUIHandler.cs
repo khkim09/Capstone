@@ -52,7 +52,8 @@ public class CrewUIHandler : MonoBehaviour
     /// <summary>
     /// 선원 이름 입력 필드입니다.
     /// </summary>
-    [Header("Input Fields")][SerializeField] private TMP_InputField nameInputField;
+    [Header("Input Fields")] [SerializeField]
+    private TMP_InputField nameInputField;
 
     /// <summary>
     /// 각 종족 선택 버튼 컨트롤러 배열입니다.
@@ -108,13 +109,12 @@ public class CrewUIHandler : MonoBehaviour
     /// <summary>
     /// 선원 이름
     /// </summary>
-    private String inputName;
+    private string inputName;
 
     /// <summary>
     /// 종족별 prefab
     /// </summary>
-    [Header("Crew Prefabs")]
-    [SerializeField]
+    [Header("Crew Prefabs")] [SerializeField]
     private GameObject[] crewPrefabs;
 
     /// <summary>
@@ -298,7 +298,7 @@ public class CrewUIHandler : MonoBehaviour
     private CrewMember CreateCrewMember()
     {
         // 생성할 위치 (예시)
-        Vector3 spawnPosition = new Vector3(-8f, 0f, 0f);
+        Vector3 spawnPosition = new(-8f, 0f, 0f);
 
         // 선택된 종족에 맞는 프리팹 가져오기
         int raceIndex = (int)selectedRace - 1;
@@ -326,7 +326,7 @@ public class CrewUIHandler : MonoBehaviour
         inputName = nameInputField.text;
 
         // 선원 추가
-        GameManager.Instance.GetPlayerShip().AddCrewMember(CreateCrewMember());
+        GameManager.Instance.GetPlayerShip().AddCrew(CreateCrewMember());
 
         // 초기화
         ResetCrewCreateUI();

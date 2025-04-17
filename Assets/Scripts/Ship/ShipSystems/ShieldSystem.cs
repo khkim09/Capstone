@@ -94,13 +94,13 @@ public class ShieldSystem : ShipSystem
     /// 특정 무기 타입은 피해량 보정이 적용됩니다.
     /// </summary>
     /// <param name="damage">입힌 총 피해량.</param>
-    /// <param name="weaponType">공격 무기 유형.</param>
+    /// <param name="shipWeaponType">공격 무기 유형.</param>
     /// <returns>쉴드를 뚫고 전달된 남은 피해량.</returns>
-    public float TakeDamage(float damage, WeaponType weaponType)
+    public float TakeDamage(float damage, ShipWeaponType shipWeaponType)
     {
         float afterShieldDamage;
 
-        if (weaponType == WeaponType.Railgun) damage = 1.5f;
+        if (shipWeaponType == ShipWeaponType.Railgun) damage = 1.5f;
 
         if (currentShield > damage)
         {
