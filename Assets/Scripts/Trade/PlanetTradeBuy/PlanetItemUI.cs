@@ -12,7 +12,7 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     #region UI References
 
     /// <summary>
-    /// 아이템 이름을 표시하는 TextMeshProUGUI 컴포넌트입니다.
+    /// 아이템 이름을 표시하는 pointerclickTextMeshProUGUI 컴포넌트입니다.
     /// </summary>
     [SerializeField] private TMP_Text itemNameText;
 
@@ -20,6 +20,9 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     /// 아이템 가격을 표시하는 TextMeshProUGUI 컴포넌트입니다.
     /// </summary>
     [SerializeField] private TMP_Text priceText;
+
+    /// <summary>MiddlePanelUI를 Inspector에서 할당받습니다.</summary>
+    [SerializeField] private MiddlePanelUI middlePanel;
 
     #endregion
 
@@ -73,16 +76,24 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
     /// <summary>
     /// 사용자가 이 슬롯을 클릭했을 때 호출됩니다.
-    /// MiddlePanelUI를 찾아서 선택된 아이템의 상세 정보를 전달합니다.
+    /// MiddlePanelUI에 상세 정보를 전달하고, 구매창 서브 패널을 활성화합니다.
     /// </summary>
-    /// <param name="eventData">포인터 클릭 이벤트 데이터</param>
     public void OnPointerClick(PointerEventData eventData)
     {
+        // 1) MiddlePanelUI 에 아이템 정보 전달 (원래 있던 코드)
         MiddlePanelUI middlePanel = FindObjectOfType<MiddlePanelUI>();
         if (middlePanel != null && tradableItem != null)
         {
             middlePanel.SetSelectedItem(tradableItem);
         }
+
+        // 2) TradeUIManager 에 구매 상세·storage 패널 켜라고 알림
+        if (TradeUIManager.Instance != null)
+        {
+            TradeUIManager.Instance.OnBuyItemSelected();
+        }
+        if (middlePanel != null)
+            middlePanel.SetSelectedItem(tradableItem);
     }
 
     /// <summary>

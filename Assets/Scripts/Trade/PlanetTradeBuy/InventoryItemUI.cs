@@ -10,6 +10,9 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    /// <summary>이 슬롯이 클릭 및 하이라이트 가능한지 여부입니다.</summary>
+    public bool isInteractable = true;
+
     /// <summary>
     /// 아이템 이름을 표시하는 텍스트 UI 요소입니다.
     /// </summary>
@@ -30,13 +33,6 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// </summary>
     [SerializeField] private TMP_Text quantityText;
     // (아이콘이 있다면) [SerializeField] private Image itemIcon;
-
-    /// <summary>
-    /// 선택 상태를 표시하는 테두리 강조 오브젝트입니다.
-    /// Inspector에서 프리팹 내부의 테두리 역할 오브젝트(예: Image 컴포넌트가 있는 Panel)를 연결하고,
-    /// 기본 상태에서 비활성화(Off)되어 있어야 합니다.
-    /// </summary>
-    [SerializeField] private GameObject borderHighlight;
 
     /// <summary>
     /// 현재 이 슬롯에 연결된 StoredItem 정보를 저장합니다.
@@ -99,9 +95,6 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
             categoryOriginalColor = categoryText.color;
         }
 
-        // 초기에는 선택 효과 없이 테두리 강조는 비활성화
-        if (borderHighlight != null)
-            borderHighlight.SetActive(false);
         isSelected = false;
 
         // 만약 이 아이템이 이전에 선택된 것과 동일하고, 수량이 남아 있다면 선택 상태 복원
@@ -113,10 +106,23 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
 
     /// <summary>
+    /// 이 슬롯에 연결된 StoredItem의 아이템 이름을 반환합니다.
+    /// TradeUIManager에서 "GetStoredItemName" 으로 호출할 수 있게 해 줍니다.
+    /// </summary>
+    public string GetStoredItemName()
+    {
+        // null 체크 후 이름 반환
+        if (currentStoredItem != null && currentStoredItem.item != null)
+            return currentStoredItem.item.itemName;
+        return string.Empty;
+    }
+
+    /// <summary>
     /// 마우스 오버 시 호출되어 선택되지 않은 경우에만 텍스트 색상을 강조 색상으로 변경합니다.
     /// </summary>
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!isInteractable) return;
         if (!isSelected)
         {
             if (itemNameText != null)
@@ -135,6 +141,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// </summary>
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!isInteractable) return;
         if (!isSelected)
         {
             if (itemNameText != null)
@@ -155,6 +162,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// </summary>
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (!isInteractable) return;
         // 이미 선택되어 있고, 수량이 남아 있다면 아무런 처리를 하지 않고 선택 상태 유지
         if (isSelected)
         {
@@ -190,6 +198,11 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 middlePanel.SetSelectedItem(currentStoredItem.item);
             }
         }
+        // (추가) TradeUIManager에 판매 상세 패널 열라고 알림
+        if (TradeUIManager.Instance != null)
+        {
+            TradeUIManager.Instance.OnSellItemSelected();
+        }
     }
 
     /// <summary>
@@ -199,8 +212,6 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void SetSelected(bool selected)
     {
         isSelected = selected;
-        if (borderHighlight != null)
-            borderHighlight.SetActive(selected);
 
         if (selected)
         {

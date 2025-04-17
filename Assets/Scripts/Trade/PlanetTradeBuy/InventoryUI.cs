@@ -37,7 +37,7 @@ public class InventoryUI : MonoBehaviour
     /// Storage에 저장된 모든 아이템을 기반으로 UI를 동적으로 생성합니다.
     /// 기존의 아이템 UI를 제거한 후 새롭게 생성하여 중복 생성을 방지합니다.
     /// </summary>
-    public void PopulateInventory()
+    public void PopulateInventory(bool makeInteractable = true)
     {
         Debug.Log("Populating...");
         // 기존 아이템 UI 제거 (갱신 시 중복 생성을 방지)
@@ -57,6 +57,8 @@ public class InventoryUI : MonoBehaviour
             {
                 itemUI.Setup(storedItem);
             }
+            /// 슬롯이 클릭 가능할지 여부를 외부에서 결정할 수 있도록 처리
+            itemUI.isInteractable = makeInteractable;
         }
     }
 }
