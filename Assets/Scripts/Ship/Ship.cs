@@ -7,7 +7,7 @@ using UnityEngine;
 /// 함선의 전체 기능과 상태를 관리하는 클래스.
 /// 방 배치, 시스템 초기화, 전투 처리, 자원 계산, 스탯 갱신 등의 기능을 포함합니다. 수정 확인
 /// </summary>
-public class Ship : MonoBehaviour
+public class Ship : MonoBehaviour, IWorldGridSwitcher
 {
     [Header("Ship Info")] [SerializeField] public string shipName = "Milky";
 
@@ -788,9 +788,15 @@ public class Ship : MonoBehaviour
         GetSystem<WeaponSystem>().RemoveWeapon(index);
     }
 
-    public void AddWeapon(ShipWeaponData weaponData, Vector2Int gridPosition)
+    public void RemoveWeapon(ShipWeapon shipWeapon)
     {
-        GetSystem<WeaponSystem>().AddWeapon(weaponData, gridPosition);
+        GetSystem<WeaponSystem>().RemoveWeapon(shipWeapon);
+    }
+
+    public ShipWeapon AddWeapon(int weaponId, Vector2Int gridPosition,
+        ShipWeaponAttachedDirection attachDirection = ShipWeaponAttachedDirection.East)
+    {
+        return GetSystem<WeaponSystem>().AddWeapon(weaponId, gridPosition, attachDirection);
     }
 
     #endregion
@@ -989,6 +995,69 @@ public class Ship : MonoBehaviour
     public DoorData.DoorLevel GetCurrentDoorData()
     {
         return doorData.GetDoorData(doorLevel);
+    }
+
+    #endregion
+
+    #region Grid
+
+    /// <summary>
+    /// 월드 좌표를 그리드 좌표로 변환합니다.
+    /// </summary>
+    public Vector2Int WorldToGridPosition(Vector2 worldPos)
+    {
+        // 로컬 좌표로 변환
+        Vector3 localPos = transform.InverseTransformPoint(worldPos);
+
+        // 그리드 원점 (좌하단)
+        Vector2 gridOrigin = new(
+            -gridSize.x * GridConstants.CELL_SIZE / 2.0f,
+            -gridSize.y * GridConstants.CELL_SIZE / 2.0f
+        );
+
+        // 그리드 좌표 계산
+        float relX = localPos.x - gridOrigin.x;
+        float relY = localPos.y - gridOrigin.y;
+
+        int gridX = Mathf.FloorToInt(relX / GridConstants.CELL_SIZE);
+        int gridY = Mathf.FloorToInt(relY / GridConstants.CELL_SIZE);
+
+        Vector2Int result = new(gridX, gridY);
+
+        return result;
+    }
+
+    /// <summary>
+    /// 그리드 좌표를 월드 좌표로 변환합니다.
+    /// </summary>
+    public Vector3 GridToWorldPosition(Vector2Int gridPos)
+    {
+        // 그리드 원점 (좌하단)
+        Vector2 gridOrigin = new(
+            -gridSize.x * GridConstants.CELL_SIZE / 2.0f,
+            -gridSize.y * GridConstants.CELL_SIZE / 2.0f
+        );
+
+        // 로컬 좌표 계산 (셀 중앙으로)
+        Vector3 localPos = new(
+            gridOrigin.x + (gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
+            gridOrigin.y + (gridPos.y + 0.5f) * GridConstants.CELL_SIZE,
+            0
+        );
+
+        // 정확한 위치를 위해 반올림
+        localPos.x = Mathf.Round(localPos.x * 1000f) / 1000f;
+        localPos.y = Mathf.Round(localPos.y * 1000f) / 1000f;
+
+        // 월드 좌표로 변환
+        Vector3 worldPos = transform.TransformPoint(localPos);
+
+        return worldPos;
+    }
+
+    public Vector2Int GetGridSize()
+    {
+        return gridSize;
     }
 
     #endregion

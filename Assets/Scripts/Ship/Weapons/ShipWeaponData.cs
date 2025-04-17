@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
+using System;
 
 /// <summary>
 /// 무기 정보를 저장하는 ScriptableObject.
@@ -8,33 +8,68 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "New Weapon", menuName = "Ship/Weapon")]
 public class ShipWeaponData : ScriptableObject
 {
-    private int weaponId;
+    /// <summary>
+    /// 무기 고유 ID
+    /// </summary>
+    [SerializeField] public int id;
 
     /// <summary>
     /// 무기 이름입니다.
     /// </summary>
-    private string weaponName;
+    [SerializeField] public string weaponName;
+
+    /// <summary>
+    /// 무기 설명(툴팁 등에 사용)
+    /// </summary>
+    [SerializeField] [TextArea(3, 5)] public string description;
 
     /// <summary>
     /// 무기의 기본 데미지 값입니다.
     /// </summary>
-    private float damage;
+    [SerializeField] public float damage;
 
     /// <summary>
-    /// 무기의 기본 쿨다운 시간입니다.
+    /// 무기의 초당 쿨타임 증가량입니다.
     /// </summary>
-    private float baseCooldown;
+    public float cooldownPerSecond;
 
     /// <summary>
     /// 무기의 타입입니다.
     /// </summary>
-    private ShipWeaponType weaponType;
+    [SerializeField] public ShipWeaponType weaponType;
+
+    /// <summary>
+    /// 무기의 추가 효과
+    /// </summary>
+    [SerializeField] public ShipWeaponEffectType effectType;
+
+    public string effectDescription;
+
+
+    /// <summary>
+    /// 추가 효과 강도 (퍼센트 또는 절대값)
+    /// </summary>
+    [SerializeField] public float effectPower;
+
+    /// <summary>
+    /// 무기 설치 비용
+    /// </summary>
+    [SerializeField] public int cost;
+
+    /// <summary>
+    /// 필요한 탄두 종류
+    /// </summary>
+    public WarheadType warheadType;
 
     /// <summary>
     /// 무기의 아이콘 또는 스프라이트입니다.
     /// </summary>
-    private Sprite weaponSprite;
+    [SerializeField] public Sprite weaponSprite;
 
+    /// <summary>
+    /// 무기 회전 스프라이트(북, 동, 남 방향)
+    /// </summary>
+    [SerializeField] public Sprite[] rotationSprites = new Sprite[3]; // North, East, South
 
     /// <summary>
     /// 무기 이름을 반환합니다.
@@ -54,13 +89,14 @@ public class ShipWeaponData : ScriptableObject
         return damage;
     }
 
+
     /// <summary>
-    /// 무기의 기본 쿨다운 시간을 반환합니다.
+    /// 무기의 초당 쿨타임 증가량을 반환합니다.
     /// </summary>
-    /// <returns>기본 쿨다운 시간.</returns>
-    public float GetBaseCooldown()
+    /// <returns>초당 쿨타임 증가량.</returns>
+    public float GetCooldownPerSecond()
     {
-        return baseCooldown;
+        return cooldownPerSecond;
     }
 
     /// <summary>

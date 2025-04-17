@@ -3,7 +3,7 @@
 /// </summary>
 public enum ShipWeaponEffectType
 {
-    None,
-    Splash,
-    BarriorBonusDamage
+    None = 0,
+    Splash = 1,
+    BarriorBonusDamage = 2
 }

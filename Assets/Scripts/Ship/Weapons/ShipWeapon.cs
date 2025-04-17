@@ -7,9 +7,9 @@ using UnityEngine;
 public class ShipWeapon : MonoBehaviour
 {
     /// <summary>
-    /// 남은 쿨다운 시간입니다.
+    /// 현재 쿨타임.
     /// </summary>
-    private float cooldownRemaining = 0f;
+    private float currentCooldown = 0f;
 
     /// <summary>
     /// 이 무기에 해당하는 무기 데이터입니다.
@@ -44,6 +44,21 @@ public class ShipWeapon : MonoBehaviour
     /// </summary>
     private SpriteRenderer spriteRenderer;
 
+    /// <summary>
+    /// 적중 횟수 (통계용)
+    /// </summary>
+    private int hits = 0;
+
+    /// <summary>
+    /// 입힌 총 피해량 (통계용)
+    /// </summary>
+    private float totalDamageDealt = 0f;
+
+    /// <summary>
+    /// 무기 활성화 상태
+    /// </summary>
+    private bool isEnabled = true;
+
     private void Awake()
     {
         // SpriteRenderer 컴포넌트 가져오기
@@ -53,11 +68,126 @@ public class ShipWeapon : MonoBehaviour
         ApplyRotationSprite();
     }
 
-    public void Initialize(ShipWeaponData data, Vector2Int gridPosition)
+    /// <summary>
+    /// 무기 초기화 (무기 생성 후 필요한 추가 설정)
+    /// </summary>
+    public void Initialize()
     {
-        weaponData = data;
-        this.gridPosition = gridPosition;
-        ResetCooldown();
+        // 스프라이트 설정
+        if (rotationSprites.Length > 0)
+        {
+            // 현재 방향에 맞는 스프라이트 적용
+            int dirIndex = GetDirectionIndex();
+            if (dirIndex >= 0 && dirIndex < rotationSprites.Length && rotationSprites[dirIndex] != null)
+                spriteRenderer.sprite = rotationSprites[dirIndex];
+        }
+    }
+
+    /// <summary>
+    /// 현재 부착 방향에 따른 인덱스 반환 (0: North, 1: East, 2: South)
+    /// </summary>
+    private int GetDirectionIndex()
+    {
+        switch (attachedDirection)
+        {
+            case ShipWeaponAttachedDirection.North: return 0;
+            case ShipWeaponAttachedDirection.East: return 1;
+            case ShipWeaponAttachedDirection.South: return 2;
+            default: return 1; // 기본값은 East
+        }
+    }
+
+    /// <summary>
+    /// 무기 방향 변경 시 스프라이트 업데이트
+    /// </summary>
+    /// <param name="newDirection">새 방향</param>
+    public void SetAttachedDirection(ShipWeaponAttachedDirection newDirection)
+    {
+        attachedDirection = newDirection;
+
+        // 방향에 맞는 스프라이트 적용
+        if (rotationSprites != null && rotationSprites.Length > 0)
+        {
+            int dirIndex = GetDirectionIndex();
+            if (dirIndex >= 0 && dirIndex < rotationSprites.Length && rotationSprites[dirIndex] != null)
+                spriteRenderer.sprite = rotationSprites[dirIndex];
+        }
+    }
+
+    /// <summary>
+    /// 무기 활성화 상태 반환
+    /// </summary>
+    public bool IsEnabled()
+    {
+        return isEnabled;
+    }
+
+    /// <summary>
+    /// 무기 활성화/비활성화
+    /// </summary>
+    public void SetEnabled(bool enabled)
+    {
+        isEnabled = enabled;
+
+        // 비활성화 시 시각적 효과 적용 (반투명 등)
+        if (spriteRenderer != null)
+        {
+            Color color = spriteRenderer.color;
+            color.a = enabled ? 1.0f : 0.5f;
+            spriteRenderer.color = color;
+        }
+
+        // 콜라이더 활성화/비활성화
+        Collider2D collider = GetComponent<Collider2D>();
+        if (collider != null) collider.enabled = enabled;
+    }
+
+    /// <summary>
+    /// 적중 횟수 반환
+    /// </summary>
+    public int GetHits()
+    {
+        return hits;
+    }
+
+    /// <summary>
+    /// 적중 횟수 설정
+    /// </summary>
+    public void SetHits(int value)
+    {
+        hits = Mathf.Max(0, value);
+    }
+
+    /// <summary>
+    /// 적중 추가 (적 타격 시 호출)
+    /// </summary>
+    public void AddHit()
+    {
+        hits++;
+    }
+
+    /// <summary>
+    /// 입힌 총 피해량 반환
+    /// </summary>
+    public float GetTotalDamageDealt()
+    {
+        return totalDamageDealt;
+    }
+
+    /// <summary>
+    /// 입힌 총 피해량 설정
+    /// </summary>
+    public void SetTotalDamageDealt(float value)
+    {
+        totalDamageDealt = Mathf.Max(0, value);
+    }
+
+    /// <summary>
+    /// 피해량 추가 (적 타격 시 호출)
+    /// </summary>
+    public void AddDamageDealt(float damage)
+    {
+        totalDamageDealt += damage;
     }
 
     /// <summary>
@@ -66,8 +196,7 @@ public class ShipWeapon : MonoBehaviour
     /// <param name="deltaTime">경과 시간 (초).</param>
     public void UpdateCooldown(float deltaTime)
     {
-        if (cooldownRemaining > 0)
-            cooldownRemaining -= deltaTime;
+        if (currentCooldown < 100) currentCooldown += deltaTime * GetCooldownPerSecond();
     }
 
     /// <summary>
@@ -76,7 +205,7 @@ public class ShipWeapon : MonoBehaviour
     /// <returns>쿨다운이 완료되었으면 true.</returns>
     public bool IsReady()
     {
-        return cooldownRemaining <= 0;
+        return currentCooldown >= 100;
     }
 
     /// <summary>
@@ -84,7 +213,7 @@ public class ShipWeapon : MonoBehaviour
     /// </summary>
     public void ResetCooldown()
     {
-        cooldownRemaining = weaponData.GetBaseCooldown();
+        currentCooldown = 0f;
     }
 
     /// <summary>
@@ -93,7 +222,7 @@ public class ShipWeapon : MonoBehaviour
     /// <param name="cooldown">설정할 쿨다운 시간.</param>
     public void ResetCooldown(float cooldown)
     {
-        cooldownRemaining = cooldown;
+        currentCooldown = cooldown;
     }
 
     /// <summary>
@@ -114,13 +243,9 @@ public class ShipWeapon : MonoBehaviour
         return weaponData.GetDamage();
     }
 
-    /// <summary>
-    /// 무기의 기본 쿨다운 시간을 반환합니다.
-    /// </summary>
-    /// <returns>기본 쿨다운 시간.</returns>
-    public float GetBaseCooldown()
+    public float GetCooldownPerSecond()
     {
-        return weaponData.GetBaseCooldown();
+        return weaponData.GetCooldownPerSecond();
     }
 
     /// <summary>
@@ -168,15 +293,6 @@ public class ShipWeapon : MonoBehaviour
         return attachedDirection;
     }
 
-    /// <summary>
-    /// 무기가 시설과 연결된 방향(회전 상태)을 설정합니다.
-    /// </summary>
-    /// <param name="direction">설정할 방향.</param>
-    public void SetAttachedDirection(ShipWeaponAttachedDirection direction)
-    {
-        attachedDirection = direction;
-        ApplyRotationSprite();
-    }
 
     /// <summary>
     /// 우클릭 시 호출되어 무기의 회전(힌지 회전) 상태를 변경합니다.
@@ -226,5 +342,41 @@ public class ShipWeapon : MonoBehaviour
 
             spriteRenderer.sprite = rotationSprites[spriteIndex];
         }
+    }
+
+    /// <summary>
+    /// 무기 직렬화 데이터 생성
+    /// </summary>
+    public WeaponSerialization.WeaponSerializationData GetSerializationData()
+    {
+        return new WeaponSerialization.WeaponSerializationData
+        {
+            weaponId = weaponData.id,
+            gridPosition = gridPosition,
+            attachedDirection = attachedDirection,
+            isEnabled = isEnabled,
+            hits = hits,
+            totalDamageDealt = totalDamageDealt
+        };
+    }
+
+    /// <summary>
+    /// 직렬화 데이터에서 무기 상태 복원
+    /// </summary>
+    public void ApplySerializationData(WeaponSerialization.WeaponSerializationData data)
+    {
+        if (data == null)
+            return;
+
+        // 위치 및 방향 설정
+        gridPosition = data.gridPosition;
+        SetAttachedDirection(data.attachedDirection);
+
+        // 상태 설정
+        SetEnabled(data.isEnabled);
+
+        // 통계 설정
+        SetHits(data.hits);
+        SetTotalDamageDealt(data.totalDamageDealt);
     }
 }

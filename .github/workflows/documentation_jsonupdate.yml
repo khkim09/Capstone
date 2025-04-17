@@ -2,7 +2,11 @@ name: Build and Push Doxygen Docs and JSON
 
 on:
   push:
-    branches: [main]
+    branches-ignore:
+      - gh-pages
+    branches:
+      - main
+      - Serializing
 
 permissions:
   contents: write
