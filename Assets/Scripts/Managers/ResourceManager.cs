@@ -61,7 +61,9 @@ public class ResourceManager : MonoBehaviour
             {
                 ResourceData data = new()
                 {
-                    type = type, amount = GetDefaultAmount(type), maxAmount = GetMaxAmount(type)
+                    type = type,
+                    amount = GetDefaultAmount(type),
+                    maxAmount = GetMaxAmount(type)
                 };
 
                 resources.Add(data);
@@ -81,7 +83,7 @@ public class ResourceManager : MonoBehaviour
             case ResourceType.Fuel:
                 return 100;
             case ResourceType.COMA:
-                return 0;
+                return 100000;
             default:
                 return 0;
         }

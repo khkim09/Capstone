@@ -28,7 +28,7 @@ public class BlueprintShip : MonoBehaviour
     {
         get
         {
-            if (placedBlueprintRooms.Count == 0) // 수정 필요
+            if (placedBlueprintRooms.Count == 0)
                 return gridSize / 2;
             int minX = placedBlueprintRooms.Min(r => r.bpPosition.x);
             int maxX = placedBlueprintRooms.Max(r => r.bpPosition.x + r.bpRoomSize.x);

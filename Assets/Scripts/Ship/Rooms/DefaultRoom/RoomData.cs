@@ -112,6 +112,34 @@ public abstract class RoomData : ScriptableObject
     {
         return GetRoomDataByLevel(1).roomType;
     }
+
+    /// <summary>
+    /// 방이 설치된 위치 (basePos)와 회전값 (rot) 기준으로
+    /// 이 방의 문이 실제 어느 위치에 놓이는지 반환
+    /// </summary>
+    /// <param name="levelIndex"></param>
+    /// <param name="basePos"></param>
+    /// <param name="rot"></param>
+    /// <returns></returns>
+    public List<Vector2Int> GetDoorPositions(int levelIndex, Vector2Int basePos, RotationConstants.Rotation rot)
+    {
+        List<Vector2Int> result = new List<Vector2Int>();
+
+        RoomLevel level = GetRoomDataByLevel(levelIndex);
+        if (level == null || level.possibleDoorPositions == null)
+            return result;
+
+        Vector2Int originSize = level.size;
+
+        foreach (DoorPosition door in level.possibleDoorPositions)
+        {
+            Vector2Int rotatedOffset = RoomRotationUtility.RotateTileOffset(door.position, originSize, rot);
+            Vector2Int worldPos = basePos + rotatedOffset;
+            result.Add(worldPos);
+        }
+
+        return result;
+    }
 }
 
 /// <summary>

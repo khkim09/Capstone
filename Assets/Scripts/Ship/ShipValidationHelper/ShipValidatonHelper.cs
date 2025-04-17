@@ -9,6 +9,7 @@ using UnityEngine;
 /// </summary>
 public class ShipValidationHelper
 {
+    #region Ship, Room 버전
     /// <summary>
     /// 함선 배치의 유효성을 검사합니다.
     /// </summary>
@@ -122,7 +123,7 @@ public class ShipValidationHelper
             // 방문하지 못한 방 찾기
             List<Room> unreachableRooms = rooms.Where(r => !visitedRooms.Contains(r)).ToList();
             string roomNames = string.Join(", ", unreachableRooms.Select(r => r.name));
-            return new ValidationResult(ShipValidationError.DisconnectedRooms, $"shipvalidation.error.isolatedroom");
+            return new ValidationResult(ShipValidationError.DisconnectedRooms, "shipvalidation.error.isolatedroom");
         }
 
         return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
@@ -144,7 +145,7 @@ public class ShipValidationHelper
                 // 문이 연결된 방이 있는지 확인
                 if (!IsDoorConnectedToAnotherRoom(door, room, rooms))
                 {
-                    return new ValidationResult(ShipValidationError.InvalidDoorConnection, $"shipvalidation.error.unconnecteddoor");
+                    return new ValidationResult(ShipValidationError.InvalidDoorConnection, "shipvalidation.error.unconnecteddoor");
                 }
             }
         }
@@ -259,8 +260,7 @@ public class ShipValidationHelper
     /// <summary>
     /// 무기의 발사 경로에 방해물이 없는지 확인합니다.
     /// </summary>
-    private bool IsWeaponFiringPathClear(ShipWeapon weapon, Vector2Int weaponPos,
-        Dictionary<Vector2Int, object> gridMap)
+    private bool IsWeaponFiringPathClear(ShipWeapon weapon, Vector2Int weaponPos, Dictionary<Vector2Int, object> gridMap)
     {
         // 무기 오른쪽의 모든 그리드 위치를 검사
         for (int x = weaponPos.x + 1; x < 100; x++) // 충분히 큰 범위로 검사
@@ -491,4 +491,161 @@ public class ShipValidationHelper
         // 예시: 그리드 크기가 1x1인 경우
         return new Vector2Int(Mathf.RoundToInt(worldPosition.x), Mathf.RoundToInt(worldPosition.y));
     }
+    #endregion
+
+    #region bpShip, bpRoom 버전
+    /// <summary>
+    /// 설계도 방 배치, 무기 배치 유효성 검사 클래스
+    /// 설계도에 설치한 모든 방이 서로 연결되어 있고, 각 방의 문이 서로 마주하여 정상 연결되어 있는지 확인
+    /// </summary>
+    /// <param name="bpShip"></param>
+    /// <returns></returns>
+    public ValidationResult ValidateBlueprintLayout(BlueprintShip bpShip)
+    {
+        // 설계도에 설치된 모든 방 list로 호출
+        List<BlueprintRoom> bpRooms = bpShip.PlacedBlueprintRooms.ToList();
+
+        // 설치된 방 0
+        if (bpRooms == null || bpRooms.Count == 0)
+            return new ValidationResult(ShipValidationError.NoRoom, "shipvalidation.error.noroom");
+
+        // 모든 방 연결 확인
+        ValidationResult bpRoomConnectivity = CheckAllBPRoomsConnected(bpRooms);
+        if (!bpRoomConnectivity.IsValid)
+            return bpRoomConnectivity;
+
+        // 문 연결 확인
+        ValidationResult bpDoorConnectivity = CheckAllBPDoorsConnected(bpRooms);
+        if (!bpDoorConnectivity.IsValid)
+            return bpDoorConnectivity;
+
+        // 정상 설계
+        return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+    }
+
+    /// <summary>
+    /// 설계도의 모든 방이 연결되어 있는지 검사 (BFS)
+    /// </summary>
+    /// <param name="bpRooms"></param>
+    /// <returns></returns>
+    private ValidationResult CheckAllBPRoomsConnected(List<BlueprintRoom> bpRooms)
+    {
+        // 방문한 방 추적 HashSet
+        HashSet<BlueprintRoom> visited = new HashSet<BlueprintRoom>();
+
+        // BFS 사용 queue
+        Queue<BlueprintRoom> queue = new Queue<BlueprintRoom>();
+
+        // 첫 번째 방을 시작점으로 설정
+        queue.Enqueue(bpRooms[0]);
+        visited.Add(bpRooms[0]);
+
+        // 모든 연결된 방 순회
+        while (queue.Count > 0)
+        {
+            BlueprintRoom current = queue.Dequeue();
+
+            // dequeue() 한 방에 인접한 모든 방 호출
+            List<BlueprintRoom> connected = GetConnectedBPRooms(current, bpRooms);
+
+            foreach (BlueprintRoom neighbor in connected)
+            {
+                // 아직 방문하지 않은 방만 영토 확장
+                if (!visited.Contains(neighbor))
+                {
+                    visited.Add(neighbor);
+                    queue.Enqueue(neighbor);
+                }
+            }
+        }
+
+        // 남은 방이 있을 경우, 연결 안 된 방임
+        if (visited.Count != bpRooms.Count)
+        {
+            // 방문하지 않은 방 이름 저장 (tooltip에 띄우기 등 고려)
+            List<BlueprintRoom> unreachableBPRooms = bpRooms.Where(r => !visited.Contains(r)).ToList();
+            string unreachableBPRoomNames = string.Join(", ", unreachableBPRooms.Select(r => r.name));
+            return new ValidationResult(ShipValidationError.DisconnectedRooms, "shipvalidation.error.isolatedroom");
+        }
+
+        // 정상 설계
+        return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+    }
+
+    /// <summary>
+    /// 인접한 설계도 방 반환
+    /// </summary>
+    /// <param name="current"></param>
+    /// <param name="allBPRooms"></param>
+    /// <returns></returns>
+    private List<BlueprintRoom> GetConnectedBPRooms(BlueprintRoom current, List<BlueprintRoom> allBPRooms)
+    {
+        List<BlueprintRoom> connected = new List<BlueprintRoom>();
+
+        foreach (BlueprintRoom other in allBPRooms)
+        {
+            if (other == current)
+                continue;
+
+            bool isConnected = false;
+
+            // 현재 bpRoom의 점유 타일과 각 bpRoom의 점유 타일 비교
+            // 한 칸이라도 인접하면 다음 방으로 넘어가는 방식
+            foreach (Vector2Int currentTile in current.occupiedTiles)
+            {
+                foreach (Vector2Int otherTile in other.occupiedTiles)
+                {
+                    if (Vector2Int.Distance(currentTile, otherTile) == 1)
+                    {
+                        connected.Add(other);
+                        isConnected = true;
+                        break;
+                    }
+                }
+                if (isConnected)
+                    break;
+            }
+        }
+
+        return connected;
+    }
+
+    /// <summary>
+    /// 인접한 방 사이 문이 마주보는지 여부
+    /// </summary>
+    /// <param name="bpRooms"></param>
+    /// <returns></returns>
+    private ValidationResult CheckAllBPDoorsConnected(List<BlueprintRoom> bpRooms)
+    {
+        foreach (BlueprintRoom bpRoom in bpRooms)
+        {
+            List<Vector2Int> bpDoors = bpRoom.bpRoomData.GetDoorPositions(bpRoom.bpLevelIndex, bpRoom.bpPosition, bpRoom.bpRotation);
+
+            foreach (Vector2Int doorPos in bpDoors)
+            {
+                bool connected = false;
+
+                foreach (BlueprintRoom other in bpRooms)
+                {
+                    if (other == bpRoom)
+                        continue;
+
+                    List<Vector2Int> otherBPDoors = other.bpRoomData.GetDoorPositions(other.bpLevelIndex, other.bpPosition, other.bpRotation);
+
+                    if (otherBPDoors.Contains(doorPos))
+                    {
+                        connected = true;
+                        break;
+                    }
+                }
+
+                if (!connected)
+                    return new ValidationResult(ShipValidationError.InvalidDoorConnection, "shipvalidation.error.unconnecteddoor");
+            }
+        }
+
+        return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+    }
+
+    #endregion
 }

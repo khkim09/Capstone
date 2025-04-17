@@ -9,6 +9,7 @@ using UnityEngine.Serialization;
 /// 외갑판의 업그레이드 정보를 담는 ScriptableObject.
 /// 레벨별 이름, 비용, 피해 감소 수치 등을 포함합니다.
 /// </summary>
+[CreateAssetMenu(fileName = "OuterHullData", menuName = "OuterHullData/OuterHull Data")]
 public class OuterHullData : ScriptableObject
 {
     /// <summary>

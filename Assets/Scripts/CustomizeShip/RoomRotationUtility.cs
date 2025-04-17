@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using UnityEngine;
 
 /// <summary>
@@ -91,26 +92,48 @@ public static class RoomRotationUtility
         {
             case RotationConstants.Rotation.Rotation0:
                 for (int j = origin.y; j < origin.y + size.y; j++)
-                for (int i = origin.x; i < origin.x + size.x; i++)
-                    result.Add(new Vector2Int(i, j));
+                    for (int i = origin.x; i < origin.x + size.x; i++)
+                        result.Add(new Vector2Int(i, j));
                 break;
             case RotationConstants.Rotation.Rotation90:
                 for (int j = origin.y; j > origin.y - size.y; j--)
-                for (int i = origin.x; i < origin.x + size.x; i++)
-                    result.Add(new Vector2Int(i, j));
+                    for (int i = origin.x; i < origin.x + size.x; i++)
+                        result.Add(new Vector2Int(i, j));
                 break;
             case RotationConstants.Rotation.Rotation180:
                 for (int j = origin.y; j > origin.y - size.y; j--)
-                for (int i = origin.x; i > origin.x - size.x; i--)
-                    result.Add(new Vector2Int(i, j));
+                    for (int i = origin.x; i > origin.x - size.x; i--)
+                        result.Add(new Vector2Int(i, j));
                 break;
             case RotationConstants.Rotation.Rotation270:
                 for (int j = origin.y; j < origin.y + size.y; j++)
-                for (int i = origin.x; i > origin.x - size.x; i--)
-                    result.Add(new Vector2Int(i, j));
+                    for (int i = origin.x; i > origin.x - size.x; i--)
+                        result.Add(new Vector2Int(i, j));
                 break;
         }
 
         return result;
+    }
+
+    /// <summary>
+    /// 문 위치 반환
+    /// </summary>
+    /// <param name="localPos"></param>
+    /// <param name="roomSize"></param>
+    /// <param name="rotation"></param>
+    /// <returns></returns>
+    public static Vector2Int RotateTileOffset(Vector2Int localPos, Vector2Int roomSize, RotationConstants.Rotation rotation)
+    {
+        int w = roomSize.x;
+        int h = roomSize.y;
+
+        return rotation switch
+        {
+            RotationConstants.Rotation.Rotation0 => localPos,
+            RotationConstants.Rotation.Rotation90 => new Vector2Int(h - 1 - localPos.y, localPos.x),
+            RotationConstants.Rotation.Rotation180 => new Vector2Int(w - 1 - localPos.x, h - 1 - localPos.y),
+            RotationConstants.Rotation.Rotation270 => new Vector2Int(localPos.y, w - 1 - localPos.x),
+            _ => localPos
+        };
     }
 }

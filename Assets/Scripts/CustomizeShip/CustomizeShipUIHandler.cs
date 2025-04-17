@@ -32,7 +32,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// <summary>
     /// 저장 또는 유효성 검사 결과를 표시할 텍스트입니다.
     /// </summary>
-    public Text feedbackText;
+    public TMP_Text feedbackText;
 
     /// <summary>
     /// 총 설계도 가격을 표시할 텍스트 UI.
@@ -58,7 +58,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// <summary>
     /// 배치된 레이아웃의 유효성을 검사하는 유효성 검사기입니다.
     /// </summary>
-    public ShipValidationHelper ValidatonHelper;
+    private ShipValidationHelper bpShipValidationHelper = new ShipValidationHelper();
 
     /// <summary>
     /// 현재 설계도의 가격 지속 갱신
@@ -74,6 +74,9 @@ public class CustomizeShipUIHandler : MonoBehaviour
             int totalBPCost = targetBlueprintShip.totalBlueprintCost; // 설계도 가격
             int currentShipCost = playerShip.GetTotalShipValue();// 기존 함선 가격
             int currentCurrency = (int)ResourceManager.Instance.GetResource(ResourceType.COMA); // 보유 재화량
+            ValidationResult layoutResult = bpShipValidationHelper.ValidateBlueprintLayout(targetBlueprintShip); // 방, 문 연결성
+
+            Debug.Log($"{currentCurrency}");
 
             totalCostText.text = $"Blueprint Cost: {totalBPCost}";
 
@@ -84,14 +87,10 @@ public class CustomizeShipUIHandler : MonoBehaviour
             bool shipFullyRepaired = playerShip.IsFullHitPoint();
 
             // 3. 레이아웃 유효성 검사 - 모든 방 연결, 문끼리 연결
-            // ValidationResult result = ValidatonHelper.ValidateShipLayout(targetBlueprintShip);
+            bool isLayoutValid = layoutResult.IsValid;
 
-
-
-            // 현재 ValidateShipLayout(Ship ship)으로 되어있어서 체크 어려움.
-            // 이걸 bp로 바꾸는게 맞나? 아니면 순서를 변경해서 build 후에 체크하도록 해야되나
-            // bpship 과 ship 비교 해봐야 될 듯
-
+            // tooltip에 띄울 피드백
+            feedbackText.text = isLayoutValid ? "" : $"X {layoutResult.Message}";
 
             // 조건 체크
             if (hasEnoughMoney && shipFullyRepaired)
