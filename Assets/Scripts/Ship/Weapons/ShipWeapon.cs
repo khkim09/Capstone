@@ -44,16 +44,6 @@ public class ShipWeapon : MonoBehaviour
     /// </summary>
     private SpriteRenderer spriteRenderer;
 
-    /// <summary>
-    /// 무기 데이터를 기반으로 무기를 초기화합니다.
-    /// </summary>
-    /// <param name="data">초기화할 무기 데이터.</param>
-    public ShipWeapon(ShipWeaponData data)
-    {
-        weaponData = data;
-        ResetCooldown();
-    }
-
     private void Awake()
     {
         // SpriteRenderer 컴포넌트 가져오기
@@ -61,6 +51,13 @@ public class ShipWeapon : MonoBehaviour
 
         // 초기 스프라이트 적용
         ApplyRotationSprite();
+    }
+
+    public void Initialize(ShipWeaponData data, Vector2Int gridPosition)
+    {
+        weaponData = data;
+        this.gridPosition = gridPosition;
+        ResetCooldown();
     }
 
     /// <summary>
@@ -130,7 +127,7 @@ public class ShipWeapon : MonoBehaviour
     /// 무기의 타입을 반환합니다.
     /// </summary>
     /// <returns>무기 타입 enum 값.</returns>
-    public WeaponType GetWeaponType()
+    public ShipWeaponType GetWeaponType()
     {
         return weaponData.GetWeaponType();
     }
@@ -159,7 +156,7 @@ public class ShipWeapon : MonoBehaviour
     /// <param name="position">설정할 그리드 위치.</param>
     public void SetGridPosition(Vector2Int position)
     {
-        this.gridPosition = position;
+        gridPosition = position;
     }
 
     /// <summary>
@@ -177,7 +174,7 @@ public class ShipWeapon : MonoBehaviour
     /// <param name="direction">설정할 방향.</param>
     public void SetAttachedDirection(ShipWeaponAttachedDirection direction)
     {
-        this.attachedDirection = direction;
+        attachedDirection = direction;
         ApplyRotationSprite();
     }
 
@@ -226,6 +223,7 @@ public class ShipWeapon : MonoBehaviour
                     spriteIndex = 2;
                     break;
             }
+
             spriteRenderer.sprite = rotationSprites[spriteIndex];
         }
     }

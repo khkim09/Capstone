@@ -8,6 +8,8 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "New Weapon", menuName = "Ship/Weapon")]
 public class ShipWeaponData : ScriptableObject
 {
+    private int weaponId;
+
     /// <summary>
     /// 무기 이름입니다.
     /// </summary>
@@ -26,12 +28,13 @@ public class ShipWeaponData : ScriptableObject
     /// <summary>
     /// 무기의 타입입니다.
     /// </summary>
-    private WeaponType weaponType;
+    private ShipWeaponType weaponType;
 
     /// <summary>
     /// 무기의 아이콘 또는 스프라이트입니다.
     /// </summary>
     private Sprite weaponSprite;
+
 
     /// <summary>
     /// 무기 이름을 반환합니다.
@@ -64,7 +67,7 @@ public class ShipWeaponData : ScriptableObject
     /// 무기의 타입을 반환합니다.
     /// </summary>
     /// <returns>무기 타입 enum 값.</returns>
-    public WeaponType GetWeaponType()
+    public ShipWeaponType GetWeaponType()
     {
         return weaponType;
     }

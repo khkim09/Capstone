@@ -32,10 +32,14 @@ public class WeaponSystem : ShipSystem
     /// 새로운 무기를 시스템에 추가합니다.
     /// </summary>
     /// <param name="weaponData">추가할 무기 데이터.</param>
+    /// <param name="gridPosition">추가할 그리드 좌표./param>
     /// <returns>항상 true 반환 (현재는 실패 조건 없음).</returns>
-    public bool AddWeapon(ShipWeaponData weaponData)
+    public bool AddWeapon(ShipWeaponData weaponData, Vector2Int gridPosition)
     {
-        weapons.Add(new ShipWeapon(weaponData));
+        GameObject weaponObject = Object.Instantiate(parentShip.weaponPrefab, parentShip.transform);
+        ShipWeapon weaponInstance = weaponObject.GetComponent<ShipWeapon>();
+        weaponInstance.Initialize(weaponData, gridPosition);
+        weapons.Add(weaponInstance);
         return true;
     }
 

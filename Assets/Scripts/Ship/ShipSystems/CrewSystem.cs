@@ -39,7 +39,7 @@ public class CrewSystem : ShipSystem
     /// </summary>
     /// <param name="newCrew">추가할 크루 멤버.</param>
     /// <returns>추가에 성공하면 true, 크루 정원이 초과되었으면 false.</returns>
-    public bool AddCrewMember(CrewBase newCrew)
+    public bool AddCrew(CrewBase newCrew)
     {
         if (crews.Count >= GetShipStat(ShipStat.CrewCapacity))
             return false;
@@ -55,7 +55,7 @@ public class CrewSystem : ShipSystem
     /// </summary>
     /// <param name="crewToRemove">제거할 크루 멤버.</param>
     /// <returns>제거에 성공하면 true, 해당 크루가 존재하지 않으면 false.</returns>
-    public bool RemoveCrewMember(CrewMember crewToRemove)
+    public bool RemoveCrew(CrewBase crewToRemove)
     {
         if (!crews.Contains(crewToRemove))
             return false;
