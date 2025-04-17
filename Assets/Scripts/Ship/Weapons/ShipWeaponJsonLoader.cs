@@ -9,9 +9,9 @@ using Newtonsoft.Json.Linq;
 
 public class ShipWeaponJsonLoader : EditorWindow
 {
-    private string jsonFilePath = "Assets/StreamingAssets/Weapons.json";
-    private string effectJsonPath = "Assets/StreamingAssets/WeaponEffects.json";
-    private string outputFolder = "Assets/ScriptableObjects/Weapons";
+    private string jsonFilePath = "Assets/StreamingAssets/ShipWeapon.json";
+    private string effectJsonPath = "Assets/StreamingAssets/ShipWeaponSpecialEffect.json";
+    private string outputFolder = "Assets/ScriptableObjects/ShipWeapon";
     private ShipWeaponDatabase databaseAsset;
     private bool overwriteExisting = true;
 
@@ -94,16 +94,17 @@ public class ShipWeaponJsonLoader : EditorWindow
     {
         Dictionary<int, EffectInfo> map = new();
         string json = File.ReadAllText(path);
-        JArray array = JArray.Parse(json);
-
-        foreach (JToken item in array)
-        {
-            int id = (int)item["id"];
-            string type = (string)item["type"];
-            string desc = (string)item["description"];
-
-            map[id] = new EffectInfo { type = type, description = desc };
-        }
+        // top-level이 object 형태일 때
+        JObject obj = JObject.Parse(json);
+        foreach (JProperty prop in obj.Properties())
+            // 키가 "0", "1", ... 으로 되어 있다면
+            if (int.TryParse(prop.Name, out int id))
+            {
+                JToken item = prop.Value;
+                string type = (string)item["type"];
+                string desc = (string)item["description"];
+                map[id] = new EffectInfo { type = type, description = desc };
+            }
 
         return map;
     }

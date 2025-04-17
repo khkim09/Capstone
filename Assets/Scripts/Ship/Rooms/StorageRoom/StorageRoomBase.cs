@@ -115,7 +115,7 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
     public bool CanPlaceItem(TradingItem item, Vector2Int position, RotationConstants.Rotation rotation)
     {
         // 아이템이 점유할 타일 계산
-        List<Vector2Int> occupiedTiles = GetOccupiedTiles(item, position, (int)rotation);
+        List<Vector2Int> occupiedTiles = GetOccupiedTiles(item, position, rotation);
 
         // 창고 크기
         Vector2Int storageSize = GetSize();
@@ -145,9 +145,9 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
     /// <summary>
     /// 아이템을 창고에 추가합니다.
     /// </summary>
-    public virtual bool AddItem(TradingItem item, Vector2Int position, int rotation)
+    public virtual bool AddItem(TradingItem item, Vector2Int position, RotationConstants.Rotation rotation)
     {
-        if (!CanPlaceItem(item, position, (RotationConstants.Rotation)rotation)) return false;
+        if (!CanPlaceItem(item, position, rotation)) return false;
 
         // 아이템이 이미 다른 창고에 있다면 먼저 그쪽에서 제거
         StorageRoomBase currentStorage = null;
@@ -164,7 +164,7 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
             if (!removed) return false;
         }
 
-        item.Rotate((RotationConstants.Rotation)rotation);
+        item.Rotate(rotation);
 
         // 아이템을 방의 자식으로 설정
         item.transform.SetParent(transform, false);
@@ -291,6 +291,11 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
         }
     }
 
+    public void RemoveAllItems()
+    {
+        foreach (TradingItem item in new List<TradingItem>(storedItems)) RemoveItem(item);
+    }
+
 
     // 가장 좌하단 타일 찾기 헬퍼 메서드
     private Vector2Int FindBottomLeftTile(List<Vector2Int> tiles)
@@ -375,14 +380,13 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
     /// <summary>
     /// 아이템이 점유하는 모든 타일의 좌표를 반환합니다.
     /// </summary>
-    public List<Vector2Int> GetOccupiedTiles(TradingItem item, Vector2Int position, int rotation)
+    public List<Vector2Int> GetOccupiedTiles(TradingItem item, Vector2Int position, RotationConstants.Rotation rotation)
     {
         List<Vector2Int> occupiedTiles = new();
 
 
         // 회전에 맞는 아이템 박스 그리드 설정
-        RotationConstants.Rotation rotEnum = (RotationConstants.Rotation)rotation;
-        bool[][] blockShape = ItemShape.Instance.itemShapes[item.GetItemData().shape][(int)rotEnum];
+        bool[][] blockShape = ItemShape.Instance.itemShapes[item.GetItemData().shape][(int)rotation];
         item.boxGrid = blockShape;
 
         // 각 점유된 블록에 대해 창고 좌표 계산
@@ -505,7 +509,7 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
         Debug.Log($"[StorageRoomBase] {GetInstanceID()} 아이템 회전됨: {nextRotation}");
 
         // 다시 배치
-        bool addSuccess = AddItem(item, item.gridPosition, (int)nextRotation);
+        bool addSuccess = AddItem(item, item.gridPosition, nextRotation);
         Debug.Log($"[StorageRoomBase] {GetInstanceID()} 회전 후 아이템 재배치 결과: {addSuccess}");
         return addSuccess;
     }
