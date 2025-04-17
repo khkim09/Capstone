@@ -505,7 +505,7 @@ public class ShipValidationHelper
         // 설계도에 설치된 모든 방 list로 호출
         List<BlueprintRoom> bpRooms = bpShip.PlacedBlueprintRooms.ToList();
 
-        // 설치된 방 0
+        // 설치된 방 없음
         if (bpRooms == null || bpRooms.Count == 0)
             return new ValidationResult(ShipValidationError.NoRoom, "shipvalidation.error.noroom");
 
