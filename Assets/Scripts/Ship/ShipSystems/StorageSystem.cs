@@ -60,4 +60,16 @@ public class StorageSystem : ShipSystem
 
         return allItems;
     }
+
+    public void SetOtherRoomsGray()
+    {
+        foreach (Room room in parentShip.GetAllRooms())
+        {
+            if (!(room is StorageRoomBase storageRoom))
+            {
+                SpriteRenderer spriteRenderer = room.GetComponent<SpriteRenderer>();
+                spriteRenderer.color = Color.gray;
+            }
+        }
+    }
 }

@@ -7,14 +7,14 @@ using UnityEngine;
 /// 함선의 전체 기능과 상태를 관리하는 클래스.
 /// 방 배치, 시스템 초기화, 전투 처리, 자원 계산, 스탯 갱신 등의 기능을 포함합니다. 수정 확인
 /// </summary>
-public class Ship : MonoBehaviour
+public class Ship : MonoBehaviour, IWorldGridSwitcher
 {
-    [Header("Ship Info")] [SerializeField] private string shipName = "Milky";
+    [Header("Ship Info")] [SerializeField] public string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
     /// </summary>
-    [SerializeField] private Vector2Int gridSize = new(20, 20);
+    [SerializeField] private Vector2Int gridSize = new(40, 40);
 
     /// <summary>
     /// 디버그용 스탯 및 상태 정보를 출력할지 여부입니다.
@@ -58,6 +58,8 @@ public class Ship : MonoBehaviour
     /// 타입을 키로 하여 각 ShipSystem 서브클래스를 관리합니다.
     /// </summary>
     private Dictionary<Type, ShipSystem> systems = new();
+
+    public GameObject weaponPrefab;
 
     // 테스트용 룸 프리팹
     public GameObject testRoomPrefab1;
@@ -735,9 +737,14 @@ public class Ship : MonoBehaviour
     /// </summary>
     /// <param name="newCrew">함선에 추가할 승무원 정보. 이름, 종족, 속성 등을 포함합니다.</param>
     /// <returns>승무원이 성공적으로 추가되었으면 True, 그렇지 않으면 False를 반환합니다.</returns>
-    public bool AddCrewMember(CrewBase newCrew)
+    public bool AddCrew(CrewBase newCrew)
     {
-        return GetSystem<CrewSystem>().AddCrewMember(newCrew);
+        return GetSystem<CrewSystem>().AddCrew(newCrew);
+    }
+
+    public void RemoveCrew(CrewBase crew)
+    {
+        GetSystem<CrewSystem>().RemoveCrew(crew);
     }
 
     #endregion
@@ -769,6 +776,27 @@ public class Ship : MonoBehaviour
     public float GetActualDamage(float damage)
     {
         return GetSystem<WeaponSystem>().GetActualDamage(damage);
+    }
+
+    public int GetWeaponCount()
+    {
+        return GetSystem<WeaponSystem>().GetWeaponCount();
+    }
+
+    public void RemoveWeapon(int index)
+    {
+        GetSystem<WeaponSystem>().RemoveWeapon(index);
+    }
+
+    public void RemoveWeapon(ShipWeapon shipWeapon)
+    {
+        GetSystem<WeaponSystem>().RemoveWeapon(shipWeapon);
+    }
+
+    public ShipWeapon AddWeapon(int weaponId, Vector2Int gridPosition,
+        ShipWeaponAttachedDirection attachDirection = ShipWeaponAttachedDirection.East)
+    {
+        return GetSystem<WeaponSystem>().AddWeapon(weaponId, gridPosition, attachDirection);
     }
 
     #endregion
@@ -823,12 +851,12 @@ public class Ship : MonoBehaviour
     /// 무기 및 외부 방어 시스템을 포함한 실제 피해 계산 및 적용을 수행합니다.
     /// </summary>
     /// <param name="damage">입력된 피해량.</param>
-    /// <param name="weaponType">공격한 무기 타입.</param>
+    /// <param name="shipWeaponType">공격한 무기 타입.</param>
     /// <param name="hitPosition">피격된 좌표.</param>
-    public void TakeAttack(float damage, WeaponType weaponType, Vector2Int hitPosition)
+    public void TakeAttack(float damage, ShipWeaponType shipWeaponType, Vector2Int hitPosition)
     {
         ShieldSystem shieldSystem = GetSystem<ShieldSystem>();
-        if (shieldSystem.IsShieldActive()) damage = shieldSystem.TakeDamage(damage, weaponType);
+        if (shieldSystem.IsShieldActive()) damage = shieldSystem.TakeDamage(damage, shipWeaponType);
         OuterHullSystem hullSystem = GetSystem<OuterHullSystem>();
         float finalDamage = hullSystem.ReduceDamage(damage);
 
@@ -837,7 +865,7 @@ public class Ship : MonoBehaviour
             // 함선 전체에 데미지 적용
             TakeDamage(finalDamage);
 
-            if (weaponType == WeaponType.Missile)
+            if (shipWeaponType == ShipWeaponType.Missile)
             {
                 // 미사일이 직접 떨어진 위치의 방에만 데미지 적용
                 if (roomGrid.TryGetValue(hitPosition, out Room hitRoom)) hitRoom.TakeDamage(finalDamage);
@@ -967,6 +995,69 @@ public class Ship : MonoBehaviour
     public DoorData.DoorLevel GetCurrentDoorData()
     {
         return doorData.GetDoorData(doorLevel);
+    }
+
+    #endregion
+
+    #region Grid
+
+    /// <summary>
+    /// 월드 좌표를 그리드 좌표로 변환합니다.
+    /// </summary>
+    public Vector2Int WorldToGridPosition(Vector2 worldPos)
+    {
+        // 로컬 좌표로 변환
+        Vector3 localPos = transform.InverseTransformPoint(worldPos);
+
+        // 그리드 원점 (좌하단)
+        Vector2 gridOrigin = new(
+            -gridSize.x * GridConstants.CELL_SIZE / 2.0f,
+            -gridSize.y * GridConstants.CELL_SIZE / 2.0f
+        );
+
+        // 그리드 좌표 계산
+        float relX = localPos.x - gridOrigin.x;
+        float relY = localPos.y - gridOrigin.y;
+
+        int gridX = Mathf.FloorToInt(relX / GridConstants.CELL_SIZE);
+        int gridY = Mathf.FloorToInt(relY / GridConstants.CELL_SIZE);
+
+        Vector2Int result = new(gridX, gridY);
+
+        return result;
+    }
+
+    /// <summary>
+    /// 그리드 좌표를 월드 좌표로 변환합니다.
+    /// </summary>
+    public Vector3 GridToWorldPosition(Vector2Int gridPos)
+    {
+        // 그리드 원점 (좌하단)
+        Vector2 gridOrigin = new(
+            -gridSize.x * GridConstants.CELL_SIZE / 2.0f,
+            -gridSize.y * GridConstants.CELL_SIZE / 2.0f
+        );
+
+        // 로컬 좌표 계산 (셀 중앙으로)
+        Vector3 localPos = new(
+            gridOrigin.x + (gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
+            gridOrigin.y + (gridPos.y + 0.5f) * GridConstants.CELL_SIZE,
+            0
+        );
+
+        // 정확한 위치를 위해 반올림
+        localPos.x = Mathf.Round(localPos.x * 1000f) / 1000f;
+        localPos.y = Mathf.Round(localPos.y * 1000f) / 1000f;
+
+        // 월드 좌표로 변환
+        Vector3 worldPos = transform.TransformPoint(localPos);
+
+        return worldPos;
+    }
+
+    public Vector2Int GetGridSize()
+    {
+        return gridSize;
     }
 
     #endregion

@@ -74,6 +74,9 @@ public enum ItemCategory
     /// <summary>향신료</summary>
     Spice,
 
+    /// <summary>의약품</summary>
+    Medicine,
+
     /// <summary>기본</summary>
     Default
 }
