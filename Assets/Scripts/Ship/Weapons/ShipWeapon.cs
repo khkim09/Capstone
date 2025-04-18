@@ -34,12 +34,6 @@ public class ShipWeapon : MonoBehaviour
     private ShipWeaponAttachedDirection attachedDirection = ShipWeaponAttachedDirection.East;
 
     /// <summary>
-    /// 각 회전 상태에 따른 스프라이트 배열입니다.
-    /// 인덱스 매핑: 0 - Up (North), 1 - Right (East), 2 - Down (South)
-    /// </summary>
-    public Sprite[] rotationSprites;
-
-    /// <summary>
     /// SpriteRenderer 컴포넌트 참조 (회전 시 스프라이트 갱신용)
     /// </summary>
     private SpriteRenderer spriteRenderer;
@@ -73,14 +67,7 @@ public class ShipWeapon : MonoBehaviour
     /// </summary>
     public void Initialize()
     {
-        // 스프라이트 설정
-        if (rotationSprites.Length > 0)
-        {
-            // 현재 방향에 맞는 스프라이트 적용
-            int dirIndex = GetDirectionIndex();
-            if (dirIndex >= 0 && dirIndex < rotationSprites.Length && rotationSprites[dirIndex] != null)
-                spriteRenderer.sprite = rotationSprites[dirIndex];
-        }
+        // TODO: 회전 상태와 외갑판에 따른 스프라이트 설정 필요
     }
 
     /// <summary>
@@ -105,13 +92,7 @@ public class ShipWeapon : MonoBehaviour
     {
         attachedDirection = newDirection;
 
-        // 방향에 맞는 스프라이트 적용
-        if (rotationSprites != null && rotationSprites.Length > 0)
-        {
-            int dirIndex = GetDirectionIndex();
-            if (dirIndex >= 0 && dirIndex < rotationSprites.Length && rotationSprites[dirIndex] != null)
-                spriteRenderer.sprite = rotationSprites[dirIndex];
-        }
+        // TODO: 회전 상태와 외갑판에 따른 스프라이트 설정 필요
     }
 
     /// <summary>
@@ -324,24 +305,7 @@ public class ShipWeapon : MonoBehaviour
     /// </summary>
     private void ApplyRotationSprite()
     {
-        if (rotationSprites != null && rotationSprites.Length >= 3 && spriteRenderer != null)
-        {
-            int spriteIndex = 0;
-            switch (attachedDirection)
-            {
-                case ShipWeaponAttachedDirection.North:
-                    spriteIndex = 0;
-                    break;
-                case ShipWeaponAttachedDirection.East:
-                    spriteIndex = 1;
-                    break;
-                case ShipWeaponAttachedDirection.South:
-                    spriteIndex = 2;
-                    break;
-            }
-
-            spriteRenderer.sprite = rotationSprites[spriteIndex];
-        }
+        // TODO: 회전 상태와 외갑판에 따른 스프라이트 설정 필요
     }
 
     /// <summary>

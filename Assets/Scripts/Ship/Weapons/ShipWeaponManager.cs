@@ -85,10 +85,6 @@ public class ShipWeaponManager : MonoBehaviour
         // 무기 데이터 설정
         weaponInstance.weaponData = weaponData;
 
-        // 로테이션 스프라이트 설정
-        if (weaponData.rotationSprites != null && weaponData.rotationSprites.Length > 0)
-            weaponInstance.rotationSprites = weaponData.rotationSprites;
-
         // 무기 초기화
         weaponInstance.Initialize();
 

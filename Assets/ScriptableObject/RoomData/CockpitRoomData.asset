@@ -16,6 +16,7 @@ MonoBehaviour:
   - roomName: room.cockpit.level1
     level: 1
     roomType: 4
+    category: 0
     hitPoint: 100
     size: {x: 2, y: 2}
     cost: 2500
@@ -33,11 +34,17 @@ MonoBehaviour:
     possibleDoorPositions:
     - position: {x: 0, y: 0}
       direction: 2
+    crewEntryGridPriority:
+    - {x: 1, y: 1}
+    - {x: 0, y: 1}
+    - {x: 1, y: 0}
+    - {x: 0, y: 0}
     fuelEfficiency: 0
     avoidEfficiency: 0
-  - roomName: room.cockpit.level3
+  - roomName: room.cockpit.level2
     level: 2
     roomType: 4
+    category: 0
     hitPoint: 150
     size: {x: 3, y: 2}
     cost: 4000
@@ -55,11 +62,19 @@ MonoBehaviour:
     possibleDoorPositions:
     - position: {x: 1, y: 0}
       direction: 2
+    crewEntryGridPriority:
+    - {x: 1, y: 1}
+    - {x: 0, y: 1}
+    - {x: 2, y: 1}
+    - {x: 0, y: 0}
+    - {x: 2, y: 0}
+    - {x: 1, y: 0}
     fuelEfficiency: 5
     avoidEfficiency: 2
   - roomName: room.cockpit.level3
     level: 3
     roomType: 4
+    category: 0
     hitPoint: 200
     size: {x: 3, y: 3}
     cost: 7000
@@ -74,10 +89,16 @@ MonoBehaviour:
       - damageLevel: 1
         hitPointRate: 10
     roomSprite: {fileID: 5617219014421984843, guid: fa5dca080b8e54f40b1d3a4216405357, type: 3}
-    possibleDoorPositions:
-    - position: {x: 0, y: 0}
-      direction: 3
-    - position: {x: 2, y: 0}
-      direction: 1
+    possibleDoorPositions: []
+    crewEntryGridPriority:
+    - {x: 1, y: 2}
+    - {x: 0, y: 2}
+    - {x: 2, y: 2}
+    - {x: 0, y: 1}
+    - {x: 2, y: 1}
+    - {x: 1, y: 1}
+    - {x: 0, y: 1}
+    - {x: 0, y: 0}
+    - {x: 2, y: 0}
     fuelEfficiency: 10
     avoidEfficiency: 5

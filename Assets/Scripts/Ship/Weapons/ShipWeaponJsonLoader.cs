@@ -11,11 +11,9 @@ public class ShipWeaponJsonLoader : EditorWindow
 {
     private string jsonFilePath = "Assets/StreamingAssets/ShipWeapon.json";
     private string effectJsonPath = "Assets/StreamingAssets/ShipWeaponSpecialEffect.json";
-    private string outputFolder = "Assets/ScriptableObjects/ShipWeapon";
+    private string outputFolder = "Assets/ScriptableObject/ShipWeapon";
     private ShipWeaponDatabase databaseAsset;
     private bool overwriteExisting = true;
-
-    private string spriteFolderPath = "Weapons";
 
     private int updatedWeapons;
     private int newWeapons;
@@ -41,7 +39,6 @@ public class ShipWeaponJsonLoader : EditorWindow
         EditorGUILayout.LabelField("Effect File:", effectJsonPath);
 
         outputFolder = EditorGUILayout.TextField("Output Folder:", outputFolder);
-        spriteFolderPath = EditorGUILayout.TextField("Sprite Folder (in Resources):", spriteFolderPath);
 
         overwriteExisting = EditorGUILayout.Toggle("Overwrite Existing Assets", overwriteExisting);
 
@@ -176,10 +173,14 @@ public class ShipWeaponJsonLoader : EditorWindow
                 string weaponTypeStr = (string)weaponToken["type"];
                 if (Enum.TryParse<ShipWeaponType>(weaponTypeStr, true, out ShipWeaponType weaponType))
                     weaponSO.weaponType = weaponType;
+                else
+                    weaponSO.weaponType = ShipWeaponType.Default;
 
                 string warheadTypeStr = (string)weaponToken["warhead_type"];
                 if (Enum.TryParse<WarheadType>(warheadTypeStr, true, out WarheadType warheadType))
                     weaponSO.warheadType = warheadType;
+                else
+                    weaponSO.warheadType = WarheadType.Default;
 
                 if (weaponToken["effect_id"] != null)
                 {
@@ -199,19 +200,22 @@ public class ShipWeaponJsonLoader : EditorWindow
                 if (weaponToken["effect_power"] != null)
                     weaponSO.effectPower = (float)(double)weaponToken["effect_power"];
 
-                Sprite sprite = Resources.Load<Sprite>($"{spriteFolderPath}/weapon_{weaponId}");
-                if (sprite != null)
-                    weaponSO.weaponSprite = sprite;
+                // TODO : 무기 스프라이트는 배의 외갑판 레벨이 정해지고 나서 외갑판의 스프라이트와 함께 결정한다.
 
-                string[] directions = { "north", "east", "south" };
-                for (int i = 0; i < 3; i++)
-                {
-                    Sprite dirSprite = Resources.Load<Sprite>($"{spriteFolderPath}/weapon_{weaponId}_{directions[i]}");
-                    if (dirSprite != null)
-                        weaponSO.rotationSprites[i] = dirSprite;
-                    else if (i == 1 && weaponSO.weaponSprite != null)
-                        weaponSO.rotationSprites[i] = weaponSO.weaponSprite;
-                }
+                // Sprite sprite = Resources.Load<Sprite>($"{spriteFolderPath}/weapon_{weaponId}");
+                // if (sprite != null)
+                //     weaponSO.weaponSprite = sprite;
+                //
+                // for (int direction = 0; direction < 3; direction++)
+                // {
+                //
+                //
+                //     Sprite dirSprite = Resources.Load<Sprite>($"{spriteFolderPath}/weapon_{weaponId}_{direction}");
+                //     if (dirSprite != null)
+                //         weaponSO.rotationSprites[direction] = dirSprite;
+                //     else if (direction == 1 && weaponSO.weaponSprite != null)
+                //         weaponSO.rotationSprites[direction] = weaponSO.weaponSprite;
+                // }
 
                 if (isNew)
                 {

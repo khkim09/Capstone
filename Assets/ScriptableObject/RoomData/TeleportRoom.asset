@@ -16,14 +16,25 @@ MonoBehaviour:
   - roomName: room.teleport.level1
     level: 1
     roomType: 12
+    category: 0
     hitPoint: 100
     size: {x: 1, y: 1}
     cost: 700
     crewRequirement: 0
     powerRequirement: 20
+    damageHitPointRate:
+      damageLevelOne: 40
+      damageLevelTwo: 0
+      pairs:
+      - damageLevel: 0
+        hitPointRate: 40
+      - damageLevel: 1
+        hitPointRate: 0
     roomSprite: {fileID: 6292824489877327052, guid: 16ff2bfc14f73564197b1cc55a84bdcc, type: 3}
     possibleDoorPositions:
     - position: {x: 0, y: 0}
       direction: 1
+    crewEntryGridPriority:
+    - {x: 0, y: 0}
     teleportWaitingTime: 0.5
     teleportRespawnTime: 1

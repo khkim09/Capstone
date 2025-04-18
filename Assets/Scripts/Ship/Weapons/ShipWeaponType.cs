@@ -17,5 +17,10 @@ public enum ShipWeaponType
     /// <summary>
     /// 레일건 무기.
     /// </summary>
-    Railgun
+    Railgun,
+
+    /// <summary>
+    /// 기본값
+    /// </summary>
+    Default
 }

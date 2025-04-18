@@ -40,7 +40,8 @@ public class WeaponControlRoomData : RoomData<WeaponControlRoomData.WeaponContro
                 accuracy = 10f,
                 damageHitPointRate = RoomDamageRates.Create(60f, 30f),
                 possibleDoorPositions =
-                    new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) }
+                    new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) },
+                crewEntryGridPriority = new List<Vector2Int>() { new(0, 0), new(1, 0) }
             },
             new()
             {
@@ -56,7 +57,8 @@ public class WeaponControlRoomData : RoomData<WeaponControlRoomData.WeaponContro
                 accuracy = 20,
                 damageHitPointRate = RoomDamageRates.Create(60f, 30f),
                 possibleDoorPositions =
-                    new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) }
+                    new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) },
+                crewEntryGridPriority = new List<Vector2Int>() { new(0, 0), new(1, 0) }
             }
         };
     }
