@@ -35,6 +35,8 @@ public class MiddlePanelUI : MonoBehaviour
     /// 플레이어의 재화(Coma)를 표시하는 텍스트 UI 요소입니다.
     /// </summary>
     [SerializeField] private TMP_Text playerComaText;
+    /// <summary>아이템 형태를 보여줄 UI Image</summary>
+    [SerializeField] private Image itemPreviewImage;
 
     #endregion
 
@@ -78,7 +80,18 @@ public class MiddlePanelUI : MonoBehaviour
         if (selectedItemDescriptionText != null)
             selectedItemDescriptionText.text = item.description;
         if (tradeNumInputField != null)
-            tradeNumInputField.text = "1"; // 기본 거래 수량 1
+            tradeNumInputField.text = "0"; // 기본 거래 수량 0
+
+        // Image 컴포넌트에 스프라이트 할당 (구현중)
+        /*if (itemPreviewImage != null && item.itemSprite != null)
+        {
+            itemPreviewImage.sprite  = data.itemSprite;
+            itemPreviewImage.enabled = true;
+        }
+        else if (itemPreviewImage != null)
+        {
+            itemPreviewImage.enabled = false;
+        }*/
     }
 
     /// <summary>

@@ -31,6 +31,11 @@ public class TradeUIManager : MonoBehaviour
     [SerializeField] private InventoryUI buyInventoryUI;
     [SerializeField] private InventoryUI sellInventoryUI;
 
+    /// <summary>
+    /// StorageHighlightManager 컴포넌트 참조입니다.
+    /// </summary>
+    [SerializeField] private StorageHighlightManager highlighter;
+
     [Header("패널 설정")]
     /// <summary>
     /// 메인 화면 패널. 모든 오버레이 창이 닫힐 때 다시 활성화합니다.
@@ -60,6 +65,7 @@ public class TradeUIManager : MonoBehaviour
     /// 오버레이 패널 슬라이드 애니메이션 시간(초)입니다.
     /// </summary>
     public float slideSpeed = 0.3f;
+
 
     // 내부 슬라이드 위치 캐시
     private Vector2 sellPanelHiddenPosition;
@@ -180,6 +186,11 @@ public class TradeUIManager : MonoBehaviour
     public void OnSellItemSelected()
     {
         sellMiddlePanel.SetActive(true);
+
+        string selectedName = InventoryItemUI.currentlySelectedItemName;
+
+        if (highlighter != null)
+            highlighter.HighlightItem(selectedName);
     }
 
     /// <summary>
@@ -199,6 +210,8 @@ public class TradeUIManager : MonoBehaviour
             sellMiddlePanel.SetActive(false);
             // inventoryPanel은 그대로 활성
         }
+        if (highlighter != null)
+            highlighter.ClearHighlights();
     }
 
     /// <summary>
