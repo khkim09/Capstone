@@ -19,7 +19,7 @@ public class InventoryUI : MonoBehaviour
     /// <summary>
     /// 플레이어의 창고나 인벤토리를 관리하는 Storage 컴포넌트를 참조합니다.
     /// </summary>
-    private Storage storage;
+    [SerializeField] private Storage storage;
 
     /// <summary>
     /// MonoBehaviour의 Start 메서드로, 초기화 작업을 수행하고 인벤토리 UI를 생성합니다.

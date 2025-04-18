@@ -214,17 +214,10 @@ public class TradeUIManager : MonoBehaviour
             buySlideCoroutine = null;
         }
 
-        // --- (추가) 인벤토리 목록 갱신 시작 ---
-        if (buyInventoryUI!= null)
+        if (buyInventoryUI != null)
         {
-            buyInventoryUI.PopulateInventory();
+            buyInventoryUI.PopulateInventory(false);  // 클릭 안 되게
         }
-        // --- (추가) 인벤토리 목록 갱신 시작 ---
-        if (sellInventoryUI != null)
-        {
-            sellInventoryUI.PopulateInventory();
-        }
-
 
         if (sellSlideCoroutine != null) StopCoroutine(sellSlideCoroutine);
 
@@ -266,27 +259,40 @@ public class TradeUIManager : MonoBehaviour
     /// </summary>
     public void OpenBuyPanel()
     {
+        // 1. 이전 선택 초기화
+        InventoryItemUI.currentlySelectedItemName = string.Empty;
+
+        // 2. 판매창 닫기
         if (sellSlideCoroutine != null)
         {
             StopCoroutine(sellSlideCoroutine);
             tradeSellPanel.anchoredPosition = sellPanelHiddenPosition;
             sellSlideCoroutine = null;
         }
-        if (buySlideCoroutine != null) StopCoroutine(buySlideCoroutine);
 
+        // 3. 구매창 슬라이드 인
+        if (buySlideCoroutine != null) StopCoroutine(buySlideCoroutine);
         buySlideCoroutine = StartCoroutine(
             SlidePanel(tradeBuyPanel, buyPanelHiddenPosition, buyPanelVisiblePosition)
         );
         tradeBuyPanel.gameObject.SetActive(true);
         tradeSellPanel.gameObject.SetActive(false);
 
-        // 저장된 아이템들만 보여주되 클릭은 못 하게
+        // (이미 있던) BuyInventoryUI 갱신 — 클릭 불가 모드
         buyInventoryUI.PopulateInventory(false);
 
-        // StoragePanel의 모든 InventoryItemUI 비활성화
-        foreach (var itemUI in storagePanelContent.GetComponentsInChildren<InventoryItemUI>())
+        // 4. StoragePanel 전체 비활성화 & 강조 해제
+        var storageGroup = storagePanelContent.GetComponent<CanvasGroup>();
+        if (storageGroup == null)
+            storageGroup = storagePanelContent.gameObject.AddComponent<CanvasGroup>();
+        storageGroup.interactable    = false;  // UI 요소 비인터랙티브
+        storageGroup.blocksRaycasts  = false;  // 클릭 이벤트 차단
+
+        // 기존에 강조된 슬롯이 남아 있다면 모두 해제
+        foreach (var itemUI in storagePanelContent
+                     .GetComponentsInChildren<InventoryItemUI>())
         {
-            itemUI.isInteractable = false;
+            itemUI.SetSelected(false);
         }
     }
 

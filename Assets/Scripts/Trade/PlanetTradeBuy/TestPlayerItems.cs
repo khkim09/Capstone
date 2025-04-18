@@ -61,5 +61,23 @@ public class TestPlayerItems : MonoBehaviour
         {
             invUI.PopulateInventory();
         }
+        // 흑백 처리 코드 구현할 부분
+        /*Ship playerShip = FindObjectOfType<Ship>();
+        if (playerShip == null)
+        {
+            Debug.LogWarning("[TestPlayerItems] 씬에서 Ship을 찾을 수 없습니다.");
+            return;
+        }
+
+        // Ship에 노출된 StorageSystem 인스턴스를 가져옵니다.
+        StorageSystem storageSystem = playerShip.StorageSystem;
+        if (storageSystem == null)
+        {
+            Debug.LogWarning("[TestPlayerItems] Ship에 StorageSystem이 할당되지 않았습니다.");
+            return;
+        }
+
+        // 창고 방을 제외한 나머지 방을 흑백 처리합니다.
+        storageSystem.SetOtherRoomsGray();*/
     }
 }
