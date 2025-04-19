@@ -43,7 +43,11 @@ public class WeaponSystem : ShipSystem
         weapon.SetGridPosition(gridPosition);
         weapon.SetAttachedDirection(direction);
 
+        weapon.transform.SetParent(parentShip.transform);
         weapons.Add(weapon);
+
+        weapon.transform.position = ShipGridHelper.GetRoomWorldPosition(gridPosition, weapon.gridSize);
+
 
         return weapon;
     }
@@ -54,6 +58,7 @@ public class WeaponSystem : ShipSystem
         if (weapons.Contains(weapon))
         {
             weapons.Remove(weapon);
+            if (weapon != null) Object.Destroy(weapon.gameObject);
             return true;
         }
 
@@ -116,7 +121,7 @@ public class WeaponSystem : ShipSystem
             weapons.RemoveAt(index);
 
             // 게임 오브젝트 제거
-            if (weapon != null) Object.Destroy(weapon);
+            if (weapon != null) Object.Destroy(weapon.gameObject);
 
             return true;
         }

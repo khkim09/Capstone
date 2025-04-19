@@ -24,7 +24,9 @@ public class ShipWeapon : MonoBehaviour
     /// <summary>
     /// 무기의 그리드 상 좌표입니다.
     /// </summary>
-    private Vector2Int gridPosition;
+    [SerializeField] private Vector2Int gridPosition;
+
+    public Vector2Int gridSize = new(2, 1);
 
     /// <summary>
     /// 무기가 시설과 연결되어있는 방향(회전 상태)입니다.
@@ -109,18 +111,6 @@ public class ShipWeapon : MonoBehaviour
     public void SetEnabled(bool enabled)
     {
         isEnabled = enabled;
-
-        // 비활성화 시 시각적 효과 적용 (반투명 등)
-        if (spriteRenderer != null)
-        {
-            Color color = spriteRenderer.color;
-            color.a = enabled ? 1.0f : 0.5f;
-            spriteRenderer.color = color;
-        }
-
-        // 콜라이더 활성화/비활성화
-        Collider2D collider = GetComponent<Collider2D>();
-        if (collider != null) collider.enabled = enabled;
     }
 
     /// <summary>
@@ -306,14 +296,15 @@ public class ShipWeapon : MonoBehaviour
     private void ApplyRotationSprite()
     {
         // TODO: 회전 상태와 외갑판에 따른 스프라이트 설정 필요
+        //       그건 무기가 아니라 배에서 해야할 듯. 배가 외갑판 정보를 가지고 있으니
     }
 
     /// <summary>
     /// 무기 직렬화 데이터 생성
     /// </summary>
-    public WeaponSerialization.WeaponSerializationData GetSerializationData()
+    public ShipWeaponSerialization.ShipWeaponSerializationData GetSerializationData()
     {
-        return new WeaponSerialization.WeaponSerializationData
+        return new ShipWeaponSerialization.ShipWeaponSerializationData
         {
             weaponId = weaponData.id,
             gridPosition = gridPosition,
@@ -327,7 +318,7 @@ public class ShipWeapon : MonoBehaviour
     /// <summary>
     /// 직렬화 데이터에서 무기 상태 복원
     /// </summary>
-    public void ApplySerializationData(WeaponSerialization.WeaponSerializationData data)
+    public void ApplySerializationData(ShipWeaponSerialization.ShipWeaponSerializationData data)
     {
         if (data == null)
             return;

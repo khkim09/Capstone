@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.IO;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// 함선의 전체 기능과 상태를 관리하는 클래스.
@@ -59,8 +61,6 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     private Dictionary<Type, ShipSystem> systems = new();
 
-    public GameObject weaponPrefab;
-
     // 테스트용 룸 프리팹
     public GameObject testRoomPrefab1;
     public GameObject testRoomPrefab2;
@@ -94,6 +94,38 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         AddRoom(3, testRoomPrefab1.GetComponent<Room>().GetRoomData(), new Vector2Int(0, 0));
         AddRoom(1, testRoomPrefab2.GetComponent<Room>().GetRoomData(), new Vector2Int(4, 1));
         AddRoom(1, testRoomPrefab3.GetComponent<Room>().GetRoomData(), new Vector2Int(-3, -1));
+
+        ShipWeapon newWeapon = AddWeapon(0, new Vector2Int(3, -1), ShipWeaponAttachedDirection.North);
+        ShipWeapon newWeapon2 = AddWeapon(6, new Vector2Int(-2, -1), ShipWeaponAttachedDirection.East);
+        ShipWeapon newWeapon3 = AddWeapon(10, new Vector2Int(6, 2), ShipWeaponAttachedDirection.North);
+
+
+        List<ShipWeaponSerialization.ShipWeaponSerializationData> data = new()
+        {
+            ShipWeaponSerialization.SerializeWeapon(newWeapon),
+            ShipWeaponSerialization.SerializeWeapon(newWeapon2),
+            ShipWeaponSerialization.SerializeWeapon(newWeapon3)
+        };
+
+        string json = ShipWeaponSerialization.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "/weapon_data.json", json);
+
+        List<ShipWeaponSerialization.ShipWeaponSerializationData> data1 = ShipWeaponSerialization.FromJsonList(json);
+        ShipWeaponSerialization.DeserializeAllWeapons(data1, this);
+
+        CrewBase crewMember = CrewFactory.Instance.CreateCrewInstance(CrewRace.Human);
+        CrewBase crewMember1 = CrewFactory.Instance.CreateCrewInstance(CrewRace.Human);
+        CrewBase crewMember2 = CrewFactory.Instance.CreateCrewInstance(CrewRace.Insect);
+
+        AddCrew(crewMember);
+        AddCrew(crewMember1);
+        AddCrew(crewMember2);
+
+        List<CrewSerialization.CrewSerializationData> crewdata = CrewSerialization.SerializeAllCrews(GetAllCrew());
+        string json1 = CrewSerialization.ToJson(crewdata);
+        File.WriteAllText(Application.persistentDataPath + "/crew_data.json", json1);
+
+        CrewSerialization.DeserializeAllCrews(crewdata, this);
     }
 
     /// <summary>
@@ -747,6 +779,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         GetSystem<CrewSystem>().RemoveCrew(crew);
     }
 
+    public void RemoveAllCrews()
+    {
+        GetSystem<CrewSystem>().RemoveAllCrews();
+    }
+
     #endregion
 
 
@@ -756,6 +793,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     public List<Room> GetAllRooms()
     {
         return allRooms;
+    }
+
+    public Room GetRandomRoom()
+    {
+        return allRooms[Random.Range(0, allRooms.Count)];
     }
 
     #region 무기
@@ -843,7 +885,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
         if (validRooms.Count == 0) return null;
 
-        int randomIndex = UnityEngine.Random.Range(0, validRooms.Count);
+        int randomIndex = Random.Range(0, validRooms.Count);
         return validRooms[randomIndex];
     }
 

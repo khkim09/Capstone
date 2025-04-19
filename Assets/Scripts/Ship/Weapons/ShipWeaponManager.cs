@@ -96,7 +96,7 @@ public class ShipWeaponManager : MonoBehaviour
     /// </summary>
     /// <param name="data">직렬화된 무기 데이터</param>
     /// <returns>생성된 무기 또는 null</returns>
-    public ShipWeapon CreateWeaponFromData(WeaponSerialization.WeaponSerializationData data)
+    public ShipWeapon CreateWeaponFromData(ShipWeaponSerialization.ShipWeaponSerializationData data)
     {
         if (data == null)
             return null;

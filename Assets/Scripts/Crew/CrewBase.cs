@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,9 +19,6 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     //         나중에 게터로 is crewmember 반환하면 되니까
     /// <summary>플레이어 소속 여부 (true = 아군, false = 적군).</summary>
     public bool isPlayerControlled;
-
-    /// <summary>선원 종족에 따른 기본 스탯 데이터.</summary>
-    [Header("Crew Stats")] public CrewRaceStat crewRaceStat;
 
     /// <summary>선원의 종족.</summary>
     [Header("Details")] public CrewRace race;
@@ -89,7 +87,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     public EquipmentItem equippedShield;
 
     /// <summary>착용 중인 어시스턴트 장비 (스킬 보조).</summary>
-    public EquipmentItem equippedAssistant;
+    [CanBeNull] public EquipmentItem equippedAssistant;
 
     /// <summary>착용 중인 어시스턴트 장비 (스킬 보조).</summary>
     [Header("Location")] public Room currentRoom;
@@ -125,20 +123,18 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     public Ship currentShip;
 
     /// <summary>스프라이트 렌더러.</summary>
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
-    /// <summary>
-    /// Unity 생명주기 메서드.
-    /// 게임 시작 시 선원의 초기 데이터를 설정합니다.
-    /// </summary>
     private void Start()
     {
-        Initialize();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sortingOrder = SortingOrderConstants.Character;
+        spriteRenderer.sprite = Resources.Load<Sprite>($"Sprites/Crew/{race.ToString().ToLower()}");
     }
 
     /// <summary>
-    /// 매 프레임 호출되는 Unity 생명주기 메서드.
-    /// 이동 처리, 스킬 성장 체크, 산소 부족 데미지를 처리합니다.
+    /// Unity 생명주기 메서드.
+    /// 매 프레임 호출되어 이동 처리, 스킬 성장 체크, 산소 부족 데미지를 처리합니다.
     /// </summary>
     private void Update()
     {
@@ -156,54 +152,6 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         // 산소 농도 체크 - 체력 감소
         ApplyOxygenDamage();
-    }
-
-    /// <summary>
-    /// 선원의 스탯과 스킬을 종족 정보에 따라 초기화합니다.
-    /// </summary>
-    public void Initialize()
-    {
-        maxHealth = crewRaceStat.ByRace[race].maxHealth;
-        attack = crewRaceStat.ByRace[race].attack;
-        defense = crewRaceStat.ByRace[race].defense;
-        learningSpeed = crewRaceStat.ByRace[race].learningSpeed;
-        needsOxygen = crewRaceStat.ByRace[race].needsOxygen;
-
-        health = maxHealth;
-        status = CrewStatus.Normal;
-        isAlive = true;
-        isMoving = false;
-
-        maxSkillValueArray = crewRaceStat.ByRace[race].GetMaxSkillValueDictionary();
-        maxPilotSkillValue = maxSkillValueArray[SkillType.PilotSkill];
-        maxEngineSkillValue = maxSkillValueArray[SkillType.EngineSkill];
-        maxPowerSkillValue = maxSkillValueArray[SkillType.PowerSkill];
-        maxShieldSkillValue = maxSkillValueArray[SkillType.ShieldSkill];
-        maxWeaponSkillValue = maxSkillValueArray[SkillType.WeaponSkill];
-        maxAmmunitionSkillValue = maxSkillValueArray[SkillType.AmmunitionSkill];
-        maxMedBaySkillValue = maxSkillValueArray[SkillType.MedBaySkill];
-        maxRepairSkillValue = maxSkillValueArray[SkillType.RepairSkill];
-
-        skills[SkillType.PilotSkill] = crewRaceStat.ByRace[race].initialPilotSkill;
-        skills[SkillType.EngineSkill] = crewRaceStat.ByRace[race].initialEngineSkill;
-        skills[SkillType.PowerSkill] = crewRaceStat.ByRace[race].initialPowerSkill;
-        skills[SkillType.ShieldSkill] = crewRaceStat.ByRace[race].initialShieldSkill;
-        skills[SkillType.WeaponSkill] = crewRaceStat.ByRace[race].initialWeaponSkill;
-        skills[SkillType.AmmunitionSkill] = crewRaceStat.ByRace[race].initialAmmunitionSkill;
-        skills[SkillType.MedBaySkill] = crewRaceStat.ByRace[race].initialMedBaySkill;
-        skills[SkillType.RepairSkill] = crewRaceStat.ByRace[race].initialRepairSkill;
-
-        equipAdditionalSkills[SkillType.PilotSkill] = 0.0f;
-        equipAdditionalSkills[SkillType.EngineSkill] = 0.0f;
-        equipAdditionalSkills[SkillType.PowerSkill] = 0.0f;
-        equipAdditionalSkills[SkillType.ShieldSkill] = 0.0f;
-        equipAdditionalSkills[SkillType.WeaponSkill] = 0.0f;
-        equipAdditionalSkills[SkillType.AmmunitionSkill] = 0.0f;
-        equipAdditionalSkills[SkillType.MedBaySkill] = 0.0f;
-        equipAdditionalSkills[SkillType.RepairSkill] = 0.0f;
-
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sortingOrder = SortingOrderConstants.Character;
     }
 
     /// <summary>
@@ -620,5 +568,10 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         if (needsOxygen) contributions[ShipStat.OxygenUsingPerSecond] = 1.0f;
 
         return contributions;
+    }
+
+    public SpriteRenderer GetSpriteRenderer()
+    {
+        return spriteRenderer;
     }
 }
