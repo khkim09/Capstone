@@ -40,8 +40,16 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
         InitializeCollider();
 
         // TODO: 테스트용 코드
-        TradingItem tradingItem = ItemManager.Instance.CreateItemInstance(2, 1);
+        TradingItem tradingItem = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(2, 1);
         AddItem(tradingItem, new Vector2Int(1, 1), 0);
+
+        List<TradingItemSerialization.ItemSerializationData> data =
+            TradingItemSerialization.SerializeAllItems(storedItems);
+        string json = TradingItemSerialization.ToJson(data);
+        System.IO.File.WriteAllText(Application.persistentDataPath + "/item_data.json", json);
+
+        List<TradingItemSerialization.ItemSerializationData> data1 = TradingItemSerialization.FromJsonList(json);
+        TradingItemSerialization.DeserializeAllItems(data1, this);
     }
 
     /// <summary>
@@ -282,6 +290,7 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
 
             // 저장된 아이템 목록에서도 제거
             storedItems.Remove(item);
+
             return true;
         }
         catch (System.Exception e)
@@ -293,7 +302,7 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
 
     public void RemoveAllItems()
     {
-        foreach (TradingItem item in new List<TradingItem>(storedItems)) RemoveItem(item);
+        for (int i = storedItems.Count - 1; i >= 0; i--) RemoveItem(storedItems[i]);
     }
 
 
@@ -331,6 +340,14 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
         Destroy(item.gameObject);
 
         return true;
+    }
+
+    /// <summary>
+    /// 창고의 모든 아이템을 완전히 삭제합니다.
+    /// </summary>
+    public void DestroyAllItems()
+    {
+        for (int i = storedItems.Count - 1; i >= 0; i--) DestroyItem(storedItems[i]);
     }
 
     /// <summary>

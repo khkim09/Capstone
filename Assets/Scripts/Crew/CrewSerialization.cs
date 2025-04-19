@@ -140,7 +140,9 @@ public static class CrewSerialization
             return null;
 
         // 선원 매니저를 통해 선원 생성
-        CrewBase crew = CrewFactory.Instance.CreateCrewInstance(data.race, data.crewName, data.isPlayerControlled);
+        CrewBase crew =
+            GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(data.race, data.crewName,
+                data.isPlayerControlled);
 
         if (crew != null)
         {

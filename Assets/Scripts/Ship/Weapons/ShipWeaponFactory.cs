@@ -5,25 +5,14 @@ using UnityEngine;
 /// 함선 무기 관리 시스템
 /// 무기 데이터 접근 및 무기 인스턴스 생성을 담당합니다.
 /// </summary>
-public class ShipWeaponManager : MonoBehaviour
+public class ShipWeaponFactory : MonoBehaviour
 {
-    public static ShipWeaponManager Instance { get; private set; }
-
     [SerializeField] private ShipWeaponDatabase weaponDatabase;
     [SerializeField] private GameObject weaponPrefab; // 무기 기본 프리팹
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            InitializeWeaponDatabase();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        InitializeWeaponDatabase();
     }
 
     /// <summary>

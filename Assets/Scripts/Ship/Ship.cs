@@ -93,7 +93,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         /// TODO: 테스트를 위해 임시 방 설치. 나중에 제거할 것
         AddRoom(3, testRoomPrefab1.GetComponent<Room>().GetRoomData(), new Vector2Int(0, 0));
         AddRoom(1, testRoomPrefab2.GetComponent<Room>().GetRoomData(), new Vector2Int(4, 1));
-        AddRoom(1, testRoomPrefab3.GetComponent<Room>().GetRoomData(), new Vector2Int(-3, -1));
+        AddRoom(1, testRoomPrefab3.GetComponent<Room>().GetRoomData(), new Vector2Int(-4, -1));
 
         ShipWeapon newWeapon = AddWeapon(0, new Vector2Int(3, -1), ShipWeaponAttachedDirection.North);
         ShipWeapon newWeapon2 = AddWeapon(6, new Vector2Int(-2, -1), ShipWeaponAttachedDirection.East);
@@ -113,19 +113,21 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         List<ShipWeaponSerialization.ShipWeaponSerializationData> data1 = ShipWeaponSerialization.FromJsonList(json);
         ShipWeaponSerialization.DeserializeAllWeapons(data1, this);
 
-        CrewBase crewMember = CrewFactory.Instance.CreateCrewInstance(CrewRace.Human);
-        CrewBase crewMember1 = CrewFactory.Instance.CreateCrewInstance(CrewRace.Human);
-        CrewBase crewMember2 = CrewFactory.Instance.CreateCrewInstance(CrewRace.Insect);
+        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
 
-        AddCrew(crewMember);
-        AddCrew(crewMember1);
-        AddCrew(crewMember2);
+        if (crewBase1 is CrewMember crewMember) AddCrew(crewMember);
+        if (crewBase2 is CrewMember crewMember2) AddCrew(crewMember2);
+        if (crewBase3 is CrewMember crewMember3) AddCrew(crewMember3);
 
         List<CrewSerialization.CrewSerializationData> crewdata = CrewSerialization.SerializeAllCrews(GetAllCrew());
         string json1 = CrewSerialization.ToJson(crewdata);
         File.WriteAllText(Application.persistentDataPath + "/crew_data.json", json1);
+        List<CrewSerialization.CrewSerializationData> data3 = CrewSerialization.FromJsonList(json1);
 
-        CrewSerialization.DeserializeAllCrews(crewdata, this);
+
+        CrewSerialization.DeserializeAllCrews(data3, this);
     }
 
     /// <summary>

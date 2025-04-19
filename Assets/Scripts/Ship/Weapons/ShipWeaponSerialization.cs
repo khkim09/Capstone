@@ -87,7 +87,7 @@ public static class ShipWeaponSerialization
             return null;
 
         // 무기 데이터 로드
-        ShipWeaponData weaponData = ShipWeaponManager.Instance.GetWeaponData(data.weaponId);
+        ShipWeaponData weaponData = GameObjectFactory.Instance.ShipWeaponFactory.GetWeaponData(data.weaponId);
         if (weaponData == null)
         {
             Debug.LogWarning($"무기 데이터를 찾을 수 없음: ID {data.weaponId}");

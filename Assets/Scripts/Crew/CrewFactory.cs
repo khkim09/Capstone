@@ -6,9 +6,6 @@ using UnityEngine;
 /// </summary>
 public class CrewFactory : MonoBehaviour
 {
-    // 싱글톤 인스턴스
-    public static CrewFactory Instance { get; private set; }
-
     [SerializeField] private GameObject crewPrefab; // 선원 프리팹
 
     // 선원 이름 생성을 위한 데이터
@@ -26,17 +23,7 @@ public class CrewFactory : MonoBehaviour
 
     private void Awake()
     {
-        // 싱글톤 패턴 적용
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            InitializeNamePools();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        InitializeNamePools();
     }
 
     /// <summary>
@@ -73,10 +60,10 @@ public class CrewFactory : MonoBehaviour
         crewObject.name = $"Crew_{name}_{race}";
 
         // 선원 컴포넌트 얻기
-        CrewMember crew = crewObject.GetComponent<CrewMember>();
+        CrewBase crew = crewObject.GetComponent<CrewBase>();
         if (crew == null)
             // CrewMember 컴포넌트가 없으면 추가
-            crew = crewObject.AddComponent<CrewMember>();
+            crew = crewObject.AddComponent<CrewBase>();
 
         // 기본 정보 설정
         crew.crewName = name;

@@ -50,6 +50,7 @@ public static class TradingItemSerialization
             gridPosition = item.GetGridPosition(),
             rotation = (RotationConstants.Rotation)item.GetRotation(),
             cachedPrice = item.GetCurrentPrice()
+            // TODO: 창고 ID 기록해야 함.
         };
     }
 
@@ -100,7 +101,7 @@ public static class TradingItemSerialization
             return null;
 
         // 아이템 매니저를 통해 아이템 생성
-        TradingItem item = ItemManager.Instance.CreateItemInstance(data.itemId, data.amount);
+        TradingItem item = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(data.itemId, data.amount);
 
         if (item != null)
         {
@@ -143,7 +144,7 @@ public static class TradingItemSerialization
         int restoredCount = 0;
 
         // 기존 아이템 제거
-        storage.RemoveAllItems();
+        storage.DestroyAllItems();
 
 
         // 아이템 복원

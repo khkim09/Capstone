@@ -37,7 +37,7 @@ public class WeaponSystem : ShipSystem
     public ShipWeapon AddWeapon(int weaponId, Vector2Int gridPosition, ShipWeaponAttachedDirection direction)
     {
         // 무기 인스턴스 생성
-        ShipWeapon weapon = ShipWeaponManager.Instance.CreateWeaponInstance(weaponId);
+        ShipWeapon weapon = GameObjectFactory.Instance.ShipWeaponFactory.CreateWeaponInstance(weaponId);
 
         // 필요한 속성 설정
         weapon.SetGridPosition(gridPosition);

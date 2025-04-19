@@ -27,11 +27,7 @@ public class GameInitializer : MonoBehaviour
     /// <summary>사기치 매니저 프리팹.</summary>
     [SerializeField] private GameObject moraleMangerPrefab;
 
-    [SerializeField] private GameObject itemManagerPrefab;
-
-    [SerializeField] private GameObject shipWeaponManagerPrefab;
-
-    [SerializeField] private GameObject CrewFactoryPrefab;
+    [SerializeField] private GameObject gameObjectFactoryPrefab;
 
 
     /// <summary>
@@ -47,9 +43,7 @@ public class GameInitializer : MonoBehaviour
         InstantiateIfNotExists<UIManager>(uiManagerPrefab);
         InstantiateIfNotExists<GameStateManager>(gameStateManagerPrefab);
         InstantiateIfNotExists<MoraleManager>(moraleMangerPrefab);
-        InstantiateIfNotExists<ItemManager>(itemManagerPrefab);
-        InstantiateIfNotExists<ShipWeaponManager>(shipWeaponManagerPrefab);
-        InstantiateIfNotExists<CrewFactory>(CrewFactoryPrefab);
+        InstantiateIfNotExists<GameObjectFactory>(gameObjectFactoryPrefab);
     }
 
     /// <summary>

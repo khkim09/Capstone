@@ -1,25 +1,14 @@
 ﻿using UnityEngine;
 
-public class ItemManager : MonoBehaviour
+public class ItemFactory : MonoBehaviour
 {
-    public static ItemManager Instance { get; private set; }
-
     [SerializeField] private TradingItemDataBase itemDataBase;
 
     public GameObject ItemPrefabShape;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            InitializeDatabase();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        InitializeDatabase();
     }
 
     private void InitializeDatabase()
