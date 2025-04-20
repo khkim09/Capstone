@@ -25,10 +25,6 @@ public class TradeUI : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject tradeItemPrefab;
 
-    /// <summary>
-    /// 플레이어의 현재 재화(COMA)를 표시하는 텍스트 UI 요소입니다.
-    /// </summary>
-    [SerializeField] private TMP_Text playerCOMAText;
 
     #endregion
 
@@ -60,7 +56,6 @@ public class TradeUI : MonoBehaviour
             tradeDataLoader = FindObjectOfType<TradeDataLoader>();
 
         PopulateTradeItemList();
-        UpdatePlayerCOMA();
     }
 
     /// <summary>
@@ -91,17 +86,6 @@ public class TradeUI : MonoBehaviour
                     Debug.LogWarning("PlanetItemUI 컴포넌트가 프리팹에 없습니다.");
             }
         }
-    }
-
-
-
-    /// <summary>
-    /// 플레이어의 현재 COMA(재화)를 TradeManager에서 가져와 UI 텍스트에 업데이트합니다.
-    /// </summary>
-    public void UpdatePlayerCOMA()
-    {
-        if (playerCOMAText != null && tradeManager != null)
-            playerCOMAText.text = "COMA: " + tradeManager.GetPlayerCOMA();
     }
     /// <summary>
     /// 선택한 행성의 판매 데이터를 기반으로 상점 UI를 갱신합니다.

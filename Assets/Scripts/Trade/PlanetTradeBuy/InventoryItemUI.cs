@@ -177,6 +177,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 SetSelected(false);
                 currentlySelectedItemName = "";
                 currentSelectedItem = null;
+                FindObjectOfType<StorageHighlightManager>()?.ClearHighlights();
             }
         }
         else
@@ -185,6 +186,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
             if (currentSelectedItem != null && currentSelectedItem != this)
             {
                 currentSelectedItem.SetSelected(false);
+                FindObjectOfType<StorageHighlightManager>()?.ClearHighlights();
             }
 
             SetSelected(true);
@@ -202,6 +204,13 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (TradeUIManager.Instance != null)
         {
             TradeUIManager.Instance.OnSellItemSelected();
+        }
+        // 선택된 아이템 이름을 StorageHighlightManager에 전달해서
+        // 창고 그리드 상의 TradingItem들을 강조(on) 합니다.
+        var highlighter = FindObjectOfType<StorageHighlightManager>();
+        if (highlighter != null && currentStoredItem != null)
+        {
+            highlighter.HighlightItem(currentStoredItem.item.itemName);
         }
     }
 
