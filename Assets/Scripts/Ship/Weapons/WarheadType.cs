@@ -3,6 +3,7 @@
 /// </summary>
 public enum WarheadType
 {
+    Default,
     Missile,
     Hypersonic
 }

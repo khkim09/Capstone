@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 종족 별 기본 값값
+/// 종족 별 기본 값
 /// </summary>
 [CreateAssetMenu(fileName = "CrewRaceStat", menuName = "Crew/CrewRaceStat")]
 public class CrewRaceStat : ScriptableObject

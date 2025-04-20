@@ -37,13 +37,17 @@ public class WeaponSystem : ShipSystem
     public ShipWeapon AddWeapon(int weaponId, Vector2Int gridPosition, ShipWeaponAttachedDirection direction)
     {
         // 무기 인스턴스 생성
-        ShipWeapon weapon = ShipWeaponManager.Instance.CreateWeaponInstance(weaponId);
+        ShipWeapon weapon = GameObjectFactory.Instance.ShipWeaponFactory.CreateWeaponInstance(weaponId);
 
         // 필요한 속성 설정
         weapon.SetGridPosition(gridPosition);
         weapon.SetAttachedDirection(direction);
 
+        weapon.transform.SetParent(parentShip.transform);
         weapons.Add(weapon);
+
+        weapon.transform.position = ShipGridHelper.GetRoomWorldPosition(gridPosition, weapon.gridSize);
+
 
         return weapon;
     }
@@ -54,6 +58,7 @@ public class WeaponSystem : ShipSystem
         if (weapons.Contains(weapon))
         {
             weapons.Remove(weapon);
+            if (weapon != null) Object.Destroy(weapon.gameObject);
             return true;
         }
 
@@ -69,7 +74,7 @@ public class WeaponSystem : ShipSystem
     /// <returns>보정된 쿨다운 시간.</returns>
     public float GetActualCooldown(float baseCooldown)
     {
-        return baseCooldown * (1f - GetShipStat(ShipStat.ReloadTimeBonus));
+        return baseCooldown * GetShipStat(ShipStat.ReloadTimeBonus);
     }
 
 
@@ -116,7 +121,7 @@ public class WeaponSystem : ShipSystem
             weapons.RemoveAt(index);
 
             // 게임 오브젝트 제거
-            if (weapon != null) Object.Destroy(weapon);
+            if (weapon != null) Object.Destroy(weapon.gameObject);
 
             return true;
         }
@@ -129,7 +134,7 @@ public class WeaponSystem : ShipSystem
     /// </summary>
     /// <param name="index">무기 인덱스</param>
     /// <returns>해당 인덱스의 무기 또는 null</returns>
-    public ShipWeapon GetWeapon(int index)
+    public ShipWeapon GetWeaponByIndex(int index)
     {
         if (index >= 0 && index < weapons.Count)
             return weapons[index];
@@ -140,7 +145,7 @@ public class WeaponSystem : ShipSystem
     /// 모든 무기가 발사 가능한지 확인합니다.
     /// </summary>
     /// <returns>발사 가능한 무기가 있으면 true</returns>
-    public bool IsAnyWeaponReady()
+    public bool IsEveryWeaponReady()
     {
         foreach (ShipWeapon weapon in weapons)
             if (weapon.IsReady() && weapon.IsEnabled())

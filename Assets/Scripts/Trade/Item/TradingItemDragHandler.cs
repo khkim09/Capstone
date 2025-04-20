@@ -13,8 +13,7 @@ public class TradingItemDragHandler : MonoBehaviour
     // 싱글톤 패턴으로 구현
     public static TradingItemDragHandler Instance { get; private set; }
 
-    [Header("Preview Colors")]
-    [SerializeField]
+    [Header("Preview Colors")] [SerializeField]
     private Color validPlacementColor = new(0, 1, 0, 0.5f);
 
     [SerializeField] private Color invalidPlacementColor = new(1, 0, 0, 0.5f);
@@ -218,7 +217,7 @@ public class TradingItemDragHandler : MonoBehaviour
     private void UpdatePreviewToGridPosition(StorageRoomBase storage, Vector2Int gridPos)
     {
         // 점유 타일 계산
-        List<Vector2Int> occupiedTiles = storage.GetOccupiedTiles(originalItem, gridPos, (int)currentRotation);
+        List<Vector2Int> occupiedTiles = storage.GetOccupiedTiles(originalItem, gridPos, currentRotation);
 
         if (occupiedTiles.Count == 0)
             return;
@@ -358,7 +357,7 @@ public class TradingItemDragHandler : MonoBehaviour
                     if (sourceStorage != currentTargetStorage)
                     {
                         // 새 창고의 AddItem 메서드에서 원 창고에서의 아이템 제거를 처리함
-                        success = currentTargetStorage.AddItem(originalItem, gridPos, (int)currentRotation);
+                        success = currentTargetStorage.AddItem(originalItem, gridPos, currentRotation);
                     }
                     else
                     {
@@ -367,7 +366,7 @@ public class TradingItemDragHandler : MonoBehaviour
                         bool removeSuccess = sourceStorage.RemoveItem(originalItem);
 
                         // 새 위치에 추가
-                        success = currentTargetStorage.AddItem(originalItem, gridPos, (int)currentRotation);
+                        success = currentTargetStorage.AddItem(originalItem, gridPos, currentRotation);
                     }
                 }
                 else
@@ -415,7 +414,7 @@ public class TradingItemDragHandler : MonoBehaviour
                     originalItem.Rotate(originalRotation);
 
                     // 명시적으로 다시 추가
-                    bool addSuccess = sourceStorage.AddItem(originalItem, originalPosition, (int)originalRotation);
+                    bool addSuccess = sourceStorage.AddItem(originalItem, originalPosition, originalRotation);
 
                     if (!addSuccess)
                     {
@@ -452,16 +451,14 @@ public class TradingItemDragHandler : MonoBehaviour
 
             // 모든 아이템의 상태 확인
             foreach (StorageRoomBase storage in FindObjectsOfType<StorageRoomBase>())
-            {
-                foreach (TradingItem item in storage.storedItems)
-                    if (item != null)
-                    {
-                        // 콜라이더 상태도 함께 확인
-                        BoxCollider2D collider = item.GetComponent<BoxCollider2D>();
-                        if (collider == null)
-                            Debug.LogWarning($"[TradingItemDragHandler] 아이템 {item.GetInstanceID()} 콜라이더 없음!");
-                    }
-            }
+            foreach (TradingItem item in storage.storedItems)
+                if (item != null)
+                {
+                    // 콜라이더 상태도 함께 확인
+                    BoxCollider2D collider = item.GetComponent<BoxCollider2D>();
+                    if (collider == null)
+                        Debug.LogWarning($"[TradingItemDragHandler] 아이템 {item.GetInstanceID()} 콜라이더 없음!");
+                }
         }
 
         // 드래그 종료 후 아이템 상호작용 활성화를 위한 짧은 지연
@@ -488,7 +485,7 @@ public class TradingItemDragHandler : MonoBehaviour
 
                 if (!sourceStorage.storedItems.Contains(originalItem))
                 {
-                    bool addSuccess = sourceStorage.AddItem(originalItem, originalPosition, (int)originalRotation);
+                    bool addSuccess = sourceStorage.AddItem(originalItem, originalPosition, originalRotation);
                     if (!addSuccess)
                     {
                         Debug.LogError("Failed to restore item during cancel!");
@@ -555,19 +552,17 @@ public class TradingItemDragHandler : MonoBehaviour
 
         int resetCount = 0;
         foreach (StorageRoomBase storage in allStorages)
-        {
-            foreach (TradingItem item in storage.storedItems)
-                if (item != null)
-                {
-                    // 강제로 드래그 모드 해제 및 콜라이더 활성화
-                    item.SetDragMode(false);
+        foreach (TradingItem item in storage.storedItems)
+            if (item != null)
+            {
+                // 강제로 드래그 모드 해제 및 콜라이더 활성화
+                item.SetDragMode(false);
 
-                    BoxCollider2D collider = item.GetComponent<BoxCollider2D>();
-                    if (collider != null) collider.enabled = true;
+                BoxCollider2D collider = item.GetComponent<BoxCollider2D>();
+                if (collider != null) collider.enabled = true;
 
-                    resetCount++;
-                }
-        }
+                resetCount++;
+            }
 
         resetCoroutine = null;
     }

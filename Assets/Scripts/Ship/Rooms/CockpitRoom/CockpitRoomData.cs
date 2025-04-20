@@ -44,11 +44,13 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
                 fuelEfficiency = 0f,
                 avoidEfficiency = 0f,
                 damageHitPointRate = RoomDamageRates.Create(50f, 10f),
-                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(0, 0), DoorDirection.South) }
+                possibleDoorPositions =
+                    new List<DoorPosition>() { new(new Vector2Int(0, 0), DoorDirection.South) },
+                crewEntryGridPriority = new List<Vector2Int>() { new(1, 1), new(0, 1), new(1, 0), new(0, 0) }
             },
             new()
             {
-                roomName = "room.cockpit.level3",
+                roomName = "room.cockpit.level2",
                 roomType = RoomType.Cockpit,
                 category = RoomCategory.Essential,
                 level = 2,
@@ -60,7 +62,17 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
                 fuelEfficiency = 5f,
                 avoidEfficiency = 2f,
                 damageHitPointRate = RoomDamageRates.Create(50f, 10f),
-                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.South) }
+                possibleDoorPositions =
+                    new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.South) },
+                crewEntryGridPriority = new List<Vector2Int>()
+                {
+                    new(1, 1),
+                    new(0, 1),
+                    new(2, 1),
+                    new(0, 0),
+                    new(2, 0),
+                    new(1, 0)
+                }
             },
             new()
             {
@@ -75,7 +87,19 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
                 crewRequirement = 1,
                 fuelEfficiency = 10f,
                 avoidEfficiency = 5f,
-                damageHitPointRate = RoomDamageRates.Create(50f, 10f)
+                damageHitPointRate = RoomDamageRates.Create(50f, 10f),
+                crewEntryGridPriority = new List<Vector2Int>()
+                {
+                    new(1, 2),
+                    new(0, 2),
+                    new(2, 2),
+                    new(0, 1),
+                    new(2, 1),
+                    new(1, 1),
+                    new(0, 1),
+                    new(0, 0),
+                    new(2, 0)
+                }
             }
         };
     }

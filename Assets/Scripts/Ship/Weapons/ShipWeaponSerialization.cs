@@ -6,13 +6,13 @@ using Newtonsoft.Json;
 /// <summary>
 /// 함선 무기의 직렬화 및 역직렬화를 담당하는 유틸리티 클래스
 /// </summary>
-public static class WeaponSerialization
+public static class ShipWeaponSerialization
 {
     /// <summary>
     /// 무기 직렬화 데이터 클래스
     /// </summary>
     [Serializable]
-    public class WeaponSerializationData
+    public class ShipWeaponSerializationData
     {
         // 무기 데이터 ID (스크립터블 오브젝트 참조용)
         public int weaponId;
@@ -35,12 +35,12 @@ public static class WeaponSerialization
     /// </summary>
     /// <param name="weapon">직렬화할 무기</param>
     /// <returns>직렬화된 무기 데이터</returns>
-    public static WeaponSerializationData SerializeWeapon(ShipWeapon weapon)
+    public static ShipWeaponSerializationData SerializeWeapon(ShipWeapon weapon)
     {
         if (weapon == null || weapon.weaponData == null)
             return null;
 
-        return new WeaponSerializationData
+        return new ShipWeaponSerializationData
         {
             weaponId = weapon.weaponData.id,
             gridPosition = weapon.GetGridPosition(),
@@ -57,9 +57,9 @@ public static class WeaponSerialization
     /// </summary>
     /// <param name="ship">대상 함선</param>
     /// <returns>직렬화된 무기 데이터 목록</returns>
-    public static List<WeaponSerializationData> SerializeAllWeapons(Ship ship)
+    public static List<ShipWeaponSerializationData> SerializeAllWeapons(Ship ship)
     {
-        List<WeaponSerializationData> result = new();
+        List<ShipWeaponSerializationData> result = new();
 
         if (ship == null)
             return result;
@@ -67,7 +67,7 @@ public static class WeaponSerialization
         List<ShipWeapon> weapons = ship.GetAllWeapons();
         foreach (ShipWeapon weapon in weapons)
         {
-            WeaponSerializationData data = SerializeWeapon(weapon);
+            ShipWeaponSerializationData data = SerializeWeapon(weapon);
             if (data != null)
                 result.Add(data);
         }
@@ -81,13 +81,13 @@ public static class WeaponSerialization
     /// <param name="data">직렬화된 무기 데이터</param>
     /// <param name="ship">대상 함선</param>
     /// <returns>생성된 무기 객체</returns>
-    public static ShipWeapon DeserializeWeapon(WeaponSerializationData data, Ship ship)
+    public static ShipWeapon DeserializeWeapon(ShipWeaponSerializationData data, Ship ship)
     {
         if (data == null || ship == null)
             return null;
 
         // 무기 데이터 로드
-        ShipWeaponData weaponData = ShipWeaponManager.Instance.GetWeaponData(data.weaponId);
+        ShipWeaponData weaponData = GameObjectFactory.Instance.ShipWeaponFactory.GetWeaponData(data.weaponId);
         if (weaponData == null)
         {
             Debug.LogWarning($"무기 데이터를 찾을 수 없음: ID {data.weaponId}");
@@ -120,7 +120,7 @@ public static class WeaponSerialization
     /// <param name="weaponDataList">직렬화된 무기 데이터 목록</param>
     /// <param name="ship">대상 함선</param>
     /// <returns>복원된 무기 수</returns>
-    public static int DeserializeAllWeapons(List<WeaponSerializationData> weaponDataList, Ship ship)
+    public static int DeserializeAllWeapons(List<ShipWeaponSerializationData> weaponDataList, Ship ship)
     {
         if (weaponDataList == null || ship == null)
             return 0;
@@ -132,7 +132,7 @@ public static class WeaponSerialization
         foreach (ShipWeapon weapon in existingWeapons) ship.RemoveWeapon(weapon);
 
         // 무기 복원
-        foreach (WeaponSerializationData data in weaponDataList)
+        foreach (ShipWeaponSerializationData data in weaponDataList)
         {
             ShipWeapon weapon = DeserializeWeapon(data, ship);
             if (weapon != null)
@@ -147,7 +147,7 @@ public static class WeaponSerialization
     /// </summary>
     /// <param name="data">직렬화할 무기 데이터</param>
     /// <returns>JSON 문자열</returns>
-    public static string ToJson(WeaponSerializationData data)
+    public static string ToJson(ShipWeaponSerializationData data)
     {
         if (data == null)
             return "{}";
@@ -160,7 +160,7 @@ public static class WeaponSerialization
     /// </summary>
     /// <param name="dataList">직렬화할 무기 데이터 목록</param>
     /// <returns>JSON 문자열</returns>
-    public static string ToJson(List<WeaponSerializationData> dataList)
+    public static string ToJson(List<ShipWeaponSerializationData> dataList)
     {
         if (dataList == null)
             return "[]";
@@ -173,14 +173,14 @@ public static class WeaponSerialization
     /// </summary>
     /// <param name="json">JSON 문자열</param>
     /// <returns>복원된 무기 데이터</returns>
-    public static WeaponSerializationData FromJson(string json)
+    public static ShipWeaponSerializationData FromJson(string json)
     {
         if (string.IsNullOrEmpty(json))
             return null;
 
         try
         {
-            return JsonConvert.DeserializeObject<WeaponSerializationData>(json);
+            return JsonConvert.DeserializeObject<ShipWeaponSerializationData>(json);
         }
         catch (Exception e)
         {
@@ -194,19 +194,19 @@ public static class WeaponSerialization
     /// </summary>
     /// <param name="json">JSON 문자열</param>
     /// <returns>복원된 무기 데이터 목록</returns>
-    public static List<WeaponSerializationData> FromJsonList(string json)
+    public static List<ShipWeaponSerializationData> FromJsonList(string json)
     {
         if (string.IsNullOrEmpty(json))
-            return new List<WeaponSerializationData>();
+            return new List<ShipWeaponSerializationData>();
 
         try
         {
-            return JsonConvert.DeserializeObject<List<WeaponSerializationData>>(json);
+            return JsonConvert.DeserializeObject<List<ShipWeaponSerializationData>>(json);
         }
         catch (Exception e)
         {
             Debug.LogError($"무기 데이터 목록 역직렬화 오류: {e.Message}");
-            return new List<WeaponSerializationData>();
+            return new List<ShipWeaponSerializationData>();
         }
     }
 }

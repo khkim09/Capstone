@@ -24,7 +24,9 @@ public class ShipWeapon : MonoBehaviour
     /// <summary>
     /// 무기의 그리드 상 좌표입니다.
     /// </summary>
-    private Vector2Int gridPosition;
+    [SerializeField] private Vector2Int gridPosition;
+
+    public Vector2Int gridSize = new(2, 1);
 
     /// <summary>
     /// 무기가 시설과 연결되어있는 방향(회전 상태)입니다.
@@ -32,12 +34,6 @@ public class ShipWeapon : MonoBehaviour
     /// 회전 상태는 East → South → North → East 순으로 순환합니다.
     /// </summary>
     private ShipWeaponAttachedDirection attachedDirection = ShipWeaponAttachedDirection.East;
-
-    /// <summary>
-    /// 각 회전 상태에 따른 스프라이트 배열입니다.
-    /// 인덱스 매핑: 0 - Up (North), 1 - Right (East), 2 - Down (South)
-    /// </summary>
-    public Sprite[] rotationSprites;
 
     /// <summary>
     /// SpriteRenderer 컴포넌트 참조 (회전 시 스프라이트 갱신용)
@@ -73,14 +69,7 @@ public class ShipWeapon : MonoBehaviour
     /// </summary>
     public void Initialize()
     {
-        // 스프라이트 설정
-        if (rotationSprites.Length > 0)
-        {
-            // 현재 방향에 맞는 스프라이트 적용
-            int dirIndex = GetDirectionIndex();
-            if (dirIndex >= 0 && dirIndex < rotationSprites.Length && rotationSprites[dirIndex] != null)
-                spriteRenderer.sprite = rotationSprites[dirIndex];
-        }
+        // TODO: 회전 상태와 외갑판에 따른 스프라이트 설정 필요
     }
 
     /// <summary>
@@ -105,13 +94,7 @@ public class ShipWeapon : MonoBehaviour
     {
         attachedDirection = newDirection;
 
-        // 방향에 맞는 스프라이트 적용
-        if (rotationSprites != null && rotationSprites.Length > 0)
-        {
-            int dirIndex = GetDirectionIndex();
-            if (dirIndex >= 0 && dirIndex < rotationSprites.Length && rotationSprites[dirIndex] != null)
-                spriteRenderer.sprite = rotationSprites[dirIndex];
-        }
+        // TODO: 회전 상태와 외갑판에 따른 스프라이트 설정 필요
     }
 
     /// <summary>
@@ -128,18 +111,6 @@ public class ShipWeapon : MonoBehaviour
     public void SetEnabled(bool enabled)
     {
         isEnabled = enabled;
-
-        // 비활성화 시 시각적 효과 적용 (반투명 등)
-        if (spriteRenderer != null)
-        {
-            Color color = spriteRenderer.color;
-            color.a = enabled ? 1.0f : 0.5f;
-            spriteRenderer.color = color;
-        }
-
-        // 콜라이더 활성화/비활성화
-        Collider2D collider = GetComponent<Collider2D>();
-        if (collider != null) collider.enabled = enabled;
     }
 
     /// <summary>
@@ -324,32 +295,16 @@ public class ShipWeapon : MonoBehaviour
     /// </summary>
     private void ApplyRotationSprite()
     {
-        if (rotationSprites != null && rotationSprites.Length >= 3 && spriteRenderer != null)
-        {
-            int spriteIndex = 0;
-            switch (attachedDirection)
-            {
-                case ShipWeaponAttachedDirection.North:
-                    spriteIndex = 0;
-                    break;
-                case ShipWeaponAttachedDirection.East:
-                    spriteIndex = 1;
-                    break;
-                case ShipWeaponAttachedDirection.South:
-                    spriteIndex = 2;
-                    break;
-            }
-
-            spriteRenderer.sprite = rotationSprites[spriteIndex];
-        }
+        // TODO: 회전 상태와 외갑판에 따른 스프라이트 설정 필요
+        //       그건 무기가 아니라 배에서 해야할 듯. 배가 외갑판 정보를 가지고 있으니
     }
 
     /// <summary>
     /// 무기 직렬화 데이터 생성
     /// </summary>
-    public WeaponSerialization.WeaponSerializationData GetSerializationData()
+    public ShipWeaponSerialization.ShipWeaponSerializationData GetSerializationData()
     {
-        return new WeaponSerialization.WeaponSerializationData
+        return new ShipWeaponSerialization.ShipWeaponSerializationData
         {
             weaponId = weaponData.id,
             gridPosition = gridPosition,
@@ -363,7 +318,7 @@ public class ShipWeapon : MonoBehaviour
     /// <summary>
     /// 직렬화 데이터에서 무기 상태 복원
     /// </summary>
-    public void ApplySerializationData(WeaponSerialization.WeaponSerializationData data)
+    public void ApplySerializationData(ShipWeaponSerialization.ShipWeaponSerializationData data)
     {
         if (data == null)
             return;

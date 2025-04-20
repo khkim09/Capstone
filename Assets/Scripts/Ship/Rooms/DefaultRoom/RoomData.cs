@@ -85,6 +85,11 @@ public abstract class RoomData : ScriptableObject
 
         /// <summary>이 방에 가능한 모든 문의 위치와 방향 목록</summary>
         public List<DoorPosition> possibleDoorPositions = new();
+        
+        /// <summary>
+        /// 방의 선원이 입장 시 우선적으로 배치되어야 할 타일의 좌표 목록입니다.
+        /// </summary>
+        public List<Vector2Int> crewEntryGridPriority = new();
     }
 
     /// <summary>

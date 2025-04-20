@@ -46,6 +46,13 @@ public class CrewSystem : ShipSystem
 
         parentShip.RecalculateAllStats();
 
+
+        Room randomRoom = parentShip.GetRandomRoom();
+        randomRoom.OnCrewEnter(newCrew);
+
+        newCrew.transform.position = randomRoom.transform.position;
+        newCrew.transform.SetParent(randomRoom.transform);
+        newCrew.currentRoom = randomRoom;
         crews.Add(newCrew);
         return true;
     }
@@ -61,8 +68,16 @@ public class CrewSystem : ShipSystem
             return false;
 
         crews.Remove(crewToRemove);
+        Object.Destroy(crewToRemove.gameObject);
+
+        // TODO: 방에서 나가는 처리도 해야할 수도 있다. 추후 구현 필요하면 구현할 것
 
         return true;
+    }
+
+    public void RemoveAllCrews()
+    {
+        for (int i = crews.Count - 1; i >= 0; i--) RemoveCrew(crews[i]);
     }
 
     /// <summary>

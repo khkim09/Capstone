@@ -39,7 +39,8 @@ public class CorridorRoomData : RoomData<CorridorRoomData.CorridorRoomLevel>
                     new(new Vector2Int(0, 0), DoorDirection.South),
                     new(new Vector2Int(0, 0), DoorDirection.East),
                     new(new Vector2Int(0, 0), DoorDirection.West)
-                }
+                },
+                crewEntryGridPriority = new List<Vector2Int>() { new(0, 0) }
             }
         };
     }

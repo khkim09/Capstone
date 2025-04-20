@@ -9,13 +9,11 @@ using Newtonsoft.Json.Linq;
 
 public class ShipWeaponJsonLoader : EditorWindow
 {
-    private string jsonFilePath = "Assets/StreamingAssets/Weapons.json";
-    private string effectJsonPath = "Assets/StreamingAssets/WeaponEffects.json";
-    private string outputFolder = "Assets/ScriptableObjects/Weapons";
+    private string jsonFilePath = "Assets/StreamingAssets/ShipWeapon.json";
+    private string effectJsonPath = "Assets/StreamingAssets/ShipWeaponSpecialEffect.json";
+    private string outputFolder = "Assets/ScriptableObject/ShipWeapon";
     private ShipWeaponDatabase databaseAsset;
     private bool overwriteExisting = true;
-
-    private string spriteFolderPath = "Weapons";
 
     private int updatedWeapons;
     private int newWeapons;
@@ -41,7 +39,6 @@ public class ShipWeaponJsonLoader : EditorWindow
         EditorGUILayout.LabelField("Effect File:", effectJsonPath);
 
         outputFolder = EditorGUILayout.TextField("Output Folder:", outputFolder);
-        spriteFolderPath = EditorGUILayout.TextField("Sprite Folder (in Resources):", spriteFolderPath);
 
         overwriteExisting = EditorGUILayout.Toggle("Overwrite Existing Assets", overwriteExisting);
 
@@ -94,16 +91,17 @@ public class ShipWeaponJsonLoader : EditorWindow
     {
         Dictionary<int, EffectInfo> map = new();
         string json = File.ReadAllText(path);
-        JArray array = JArray.Parse(json);
-
-        foreach (JToken item in array)
-        {
-            int id = (int)item["id"];
-            string type = (string)item["type"];
-            string desc = (string)item["description"];
-
-            map[id] = new EffectInfo { type = type, description = desc };
-        }
+        // top-level이 object 형태일 때
+        JObject obj = JObject.Parse(json);
+        foreach (JProperty prop in obj.Properties())
+            // 키가 "0", "1", ... 으로 되어 있다면
+            if (int.TryParse(prop.Name, out int id))
+            {
+                JToken item = prop.Value;
+                string type = (string)item["type"];
+                string desc = (string)item["description"];
+                map[id] = new EffectInfo { type = type, description = desc };
+            }
 
         return map;
     }
@@ -175,10 +173,14 @@ public class ShipWeaponJsonLoader : EditorWindow
                 string weaponTypeStr = (string)weaponToken["type"];
                 if (Enum.TryParse<ShipWeaponType>(weaponTypeStr, true, out ShipWeaponType weaponType))
                     weaponSO.weaponType = weaponType;
+                else
+                    weaponSO.weaponType = ShipWeaponType.Default;
 
                 string warheadTypeStr = (string)weaponToken["warhead_type"];
                 if (Enum.TryParse<WarheadType>(warheadTypeStr, true, out WarheadType warheadType))
                     weaponSO.warheadType = warheadType;
+                else
+                    weaponSO.warheadType = WarheadType.Default;
 
                 if (weaponToken["effect_id"] != null)
                 {
@@ -198,19 +200,22 @@ public class ShipWeaponJsonLoader : EditorWindow
                 if (weaponToken["effect_power"] != null)
                     weaponSO.effectPower = (float)(double)weaponToken["effect_power"];
 
-                Sprite sprite = Resources.Load<Sprite>($"{spriteFolderPath}/weapon_{weaponId}");
-                if (sprite != null)
-                    weaponSO.weaponSprite = sprite;
+                // TODO : 무기 스프라이트는 배의 외갑판 레벨이 정해지고 나서 외갑판의 스프라이트와 함께 결정한다.
 
-                string[] directions = { "north", "east", "south" };
-                for (int i = 0; i < 3; i++)
-                {
-                    Sprite dirSprite = Resources.Load<Sprite>($"{spriteFolderPath}/weapon_{weaponId}_{directions[i]}");
-                    if (dirSprite != null)
-                        weaponSO.rotationSprites[i] = dirSprite;
-                    else if (i == 1 && weaponSO.weaponSprite != null)
-                        weaponSO.rotationSprites[i] = weaponSO.weaponSprite;
-                }
+                // Sprite sprite = Resources.Load<Sprite>($"{spriteFolderPath}/weapon_{weaponId}");
+                // if (sprite != null)
+                //     weaponSO.weaponSprite = sprite;
+                //
+                // for (int direction = 0; direction < 3; direction++)
+                // {
+                //
+                //
+                //     Sprite dirSprite = Resources.Load<Sprite>($"{spriteFolderPath}/weapon_{weaponId}_{direction}");
+                //     if (dirSprite != null)
+                //         weaponSO.rotationSprites[direction] = dirSprite;
+                //     else if (direction == 1 && weaponSO.weaponSprite != null)
+                //         weaponSO.rotationSprites[direction] = weaponSO.weaponSprite;
+                // }
 
                 if (isNew)
                 {
