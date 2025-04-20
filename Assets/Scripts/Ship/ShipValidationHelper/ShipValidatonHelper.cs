@@ -9,7 +9,8 @@ using UnityEngine;
 /// </summary>
 public class ShipValidationHelper
 {
-    #region Ship, Room 버전
+    #region Ship, Room  준영 버전
+    /*
     /// <summary>
     /// 함선 배치의 유효성을 검사합니다.
     /// </summary>
@@ -60,27 +61,32 @@ public class ShipValidationHelper
     /// </summary>
     private ValidationResult CheckRequiredRooms(List<Room> rooms)
     {
-        // 조종실이 있는지 확인
-        bool hasCockpit = rooms.Any(r => r.roomType == RoomType.Cockpit);
-        if (!hasCockpit)
-        {
+        // 조종실 여부
+        bool hasCockpitBP = rooms.Any(r => r.roomType == RoomType.Cockpit);
+        if (!hasCockpitBP)
             return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.nocockpit");
-        }
 
-        // 엔진실이 있는지 확인
-        bool hasEngine = rooms.Any(r => r.roomType == RoomType.Engine);
-        if (!hasEngine)
-        {
+        // 엔진실 여부
+        bool hasEngineBP = rooms.Any(r => r.roomType == RoomType.Engine);
+        if (!hasEngineBP)
             return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.noengineroom");
-        }
 
-        // 전력실이 있는지 확인
-        bool hasPower = rooms.Any(r => r.roomType == RoomType.Power);
-        if (!hasPower)
-        {
+        // 전력실 여부
+        bool hasPowerBP = rooms.Any(r => r.roomType == RoomType.Power);
+        if (!hasPowerBP)
             return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.nopowerroom");
-        }
 
+        // 텔레포트실 여부
+        bool hasTeleportBP = rooms.Any(r => r.roomType == RoomType.Teleporter);
+        if (!hasTeleportBP)
+            return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.noteleportroom");
+
+        // 생활 시설 여부
+        bool hasCrewQuartersBP = rooms.Any(r => r.roomType == RoomType.CrewQuarters);
+        if (!hasCrewQuartersBP)
+            return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.nocrewquartersroom");
+
+        // 모두 정상
         return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
     }
 
@@ -491,9 +497,11 @@ public class ShipValidationHelper
         // 예시: 그리드 크기가 1x1인 경우
         return new Vector2Int(Mathf.RoundToInt(worldPosition.x), Mathf.RoundToInt(worldPosition.y));
     }
+    */
     #endregion
 
     #region bpShip, bpRoom 버전
+    /*
     /// <summary>
     /// 설계도 방 배치, 무기 배치 유효성 검사 클래스
     /// 설계도에 설치한 모든 방이 서로 연결되어 있고, 각 방의 문이 서로 마주하여 정상 연결되어 있는지 확인
@@ -509,6 +517,11 @@ public class ShipValidationHelper
         if (bpRooms == null || bpRooms.Count == 0)
             return new ValidationResult(ShipValidationError.NoRoom, "shipvalidation.error.noroom");
 
+        // 필수 방 배치 확인 (조종실, 엔진실, 전력실, 텔레포트실, 생활 시설)
+        ValidationResult requiredBPRoomsCheck = CheckRequiredBPRooms(bpRooms);
+        if (!requiredBPRoomsCheck.IsValid)
+            return requiredBPRoomsCheck;
+
         // 모든 방 연결 확인
         ValidationResult bpRoomConnectivity = CheckAllBPRoomsConnected(bpRooms);
         if (!bpRoomConnectivity.IsValid)
@@ -520,6 +533,42 @@ public class ShipValidationHelper
             return bpDoorConnectivity;
 
         // 정상 설계
+        return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+    }
+
+    /// <summary>
+    /// 함선에 필요한 필수 시설 배치를 검사
+    /// </summary>
+    /// <param name="bpRooms"></param>
+    /// <returns></returns>
+    private ValidationResult CheckRequiredBPRooms(List<BlueprintRoom> bpRooms)
+    {
+        // 조종실 여부
+        bool hasCockpitBP = bpRooms.Any(r => r.bpRoomData.GetRoomType() == RoomType.Cockpit);
+        if (!hasCockpitBP)
+            return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.nocockpit");
+
+        // 엔진실 여부
+        bool hasEngineBP = bpRooms.Any(r => r.bpRoomData.GetRoomType() == RoomType.Engine);
+        if (!hasEngineBP)
+            return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.noengineroom");
+
+        // 전력실 여부
+        bool hasPowerBP = bpRooms.Any(r => r.bpRoomData.GetRoomType() == RoomType.Power);
+        if (!hasPowerBP)
+            return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.nopowerroom");
+
+        // 텔레포트실 여부
+        bool hasTeleportBP = bpRooms.Any(r => r.bpRoomData.GetRoomType() == RoomType.Teleporter);
+        if (!hasTeleportBP)
+            return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.noteleportroom");
+
+        // 생활 시설 여부
+        bool hasCrewQuartersBP = bpRooms.Any(r => r.bpRoomData.GetRoomType() == RoomType.CrewQuarters);
+        if (!hasCrewQuartersBP)
+            return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.nocrewquartersroom");
+
+        // 모두 정상
         return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
     }
 
@@ -572,17 +621,71 @@ public class ShipValidationHelper
         return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
     }
 
+        private bool IsBPAtPosition(BlueprintRoom bpRoom, Vector2Int pos)
+        {
+            // 복도인 경우 단순 위치 체크 (문 방향 상관 X)
+            if (bpRoom.bpRoomData.GetRoomType() == RoomType.Corridor)
+                return bpRoom.bpPosition.x == pos.x && bpRoom.bpPosition.y == pos.y;
+
+            // 다른 방 경우 영역 체크
+            Vector2Int roomSize = bpRoom.bpRoomSize;
+
+            // 방의 각 타일 위치 확인
+            for (int x = 0; x < roomSize.x; x++)
+            {
+                for (int y = 0; y < roomSize.y; y++)
+                {
+                    Vector2Int tilePos = bpRoom.bpPosition + new Vector2Int(x, y);
+                }
+            }
+        }
+
     /// <summary>
     /// 인접한 설계도 방 반환
     /// </summary>
     /// <param name="current"></param>
     /// <param name="allBPRooms"></param>
     /// <returns></returns>
-    private List<BlueprintRoom> GetConnectedBPRooms(BlueprintRoom current, List<BlueprintRoom> allBPRooms)
+    private List<BlueprintRoom> GetConnectedBPRooms(BlueprintRoom current, List<BlueprintRoom> bpRooms)
     {
         List<BlueprintRoom> connected = new List<BlueprintRoom>();
 
-        foreach (BlueprintRoom other in allBPRooms)
+        // 현재 방이 복도인 경우 예외 처리
+        if (current.bpRoomData.GetRoomType() == RoomType.Corridor)
+        {
+            // 복도는 네 방향 모두 연결 가능
+            Vector2Int corridorPos = current.bpPosition;
+
+            foreach (DoorDirection direction in System.Enum.GetValues(typeof(DoorDirection)))
+            {
+                // 해당 방향의 인접 위치 계산
+                Vector2Int adjacentPos = GetAdjacentPosition(corridorPos, direction);
+
+                // 인접한 방 위치 검색
+                foreach (BlueprintRoom other in bpRooms)
+                {
+                    if (other == current)
+                        continue;
+
+                    if (IsBPAtPosition(other, adjacentPos))
+                    {
+                        // 인접한 방이 복도이면 무조건 연결 가능
+                        if (other.bpRoomData.GetRoomType() == RoomType.Corridor)
+                        {
+                            connected.Add(other);
+                        }
+                        else // 인접한 방이 다른 종류 방일 경우
+                        {
+                            Door otherDoor = other.GetDoorInDirection(GetOppositeDirection(direction));
+                            if (otherDoor != null)
+                                connected.Add(other);
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach (BlueprintRoom other in bpRooms)
         {
             if (other == current)
                 continue;
@@ -619,10 +722,13 @@ public class ShipValidationHelper
     {
         foreach (BlueprintRoom bpRoom in bpRooms)
         {
-            List<Vector2Int> bpDoors = bpRoom.bpRoomData.GetDoorPositions(bpRoom.bpLevelIndex, bpRoom.bpPosition, bpRoom.bpRotation);
+            List<DoorPosition> bpDoors = bpRoom.bpRoomData.GetDoorPositionsWithDirection(bpRoom.bpLevelIndex, bpRoom.bpPosition, bpRoom.bpRotation);
 
-            foreach (Vector2Int doorPos in bpDoors)
+            foreach (DoorPosition door in bpDoors)
             {
+                Vector2Int adjacentPos = GetAdjacentPosition(door.position, door.direction); // 인접
+                DoorDirection oppositeDir = GetOppositeDirection(door.direction); // 반대 방향
+
                 bool connected = false;
 
                 foreach (BlueprintRoom other in bpRooms)
@@ -630,9 +736,9 @@ public class ShipValidationHelper
                     if (other == bpRoom)
                         continue;
 
-                    List<Vector2Int> otherBPDoors = other.bpRoomData.GetDoorPositions(other.bpLevelIndex, other.bpPosition, other.bpRotation);
+                    List<DoorPosition> otherBPDoors = other.bpRoomData.GetDoorPositionsWithDirection(other.bpLevelIndex, other.bpPosition, other.bpRotation);
 
-                    if (otherBPDoors.Contains(doorPos))
+                    if (otherBPDoors.Any(d => d.position == adjacentPos && d.direction == oppositeDir))
                     {
                         connected = true;
                         break;
@@ -645,6 +751,244 @@ public class ShipValidationHelper
         }
 
         return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+    }
+    */
+    #endregion
+
+
+    #region validation 최종 예상 버전
+
+
+    /// <summary>
+    /// 함선 배치의 유효성 검사
+    /// </summary>
+    /// <param name="ship"></param>
+    /// <returns></returns>
+    public ValidationResult ValidateShipLayout(Ship ship)
+    {
+        List<Room> rooms = ship.GetAllRooms();
+
+        // 설치된 방 없음
+        if (rooms == null || rooms.Count == 0)
+            return new ValidationResult(ShipValidationError.NoRoom, "shipvalidation.error.noroom");
+
+        // 필수 방 배치 확인 (조종실, 엔진실, 전력실, 텔레포트실, 생활 시설)
+        ValidationResult requiredRoomsCheck = CheckRequiredRooms(rooms);
+        if (!requiredRoomsCheck.IsValid)
+            return requiredRoomsCheck;
+
+        // 모든 방의 연결성 확인 (선원이 모든 방을 순회하고 원위치로 복귀할 수 있는가)
+        ValidationResult pathConnectivity = CheckAllRoomsPathConnectedByDoors(rooms);
+        if (!pathConnectivity.IsValid)
+            return pathConnectivity;
+
+        // 정상 연결
+        return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+    }
+
+    /// <summary>
+    /// 필수 방이 존재하는지 확인합니다.
+    /// </summary>
+    private ValidationResult CheckRequiredRooms(List<Room> rooms)
+    {
+        // 조종실 여부
+        bool hasCockpitBP = rooms.Any(r => r.roomType == RoomType.Cockpit);
+        if (!hasCockpitBP)
+            return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.nocockpit");
+
+        // 엔진실 여부
+        bool hasEngineBP = rooms.Any(r => r.roomType == RoomType.Engine);
+        if (!hasEngineBP)
+            return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.noengineroom");
+
+        // 전력실 여부
+        bool hasPowerBP = rooms.Any(r => r.roomType == RoomType.Power);
+        if (!hasPowerBP)
+            return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.nopowerroom");
+
+        // 텔레포트실 여부
+        bool hasTeleportBP = rooms.Any(r => r.roomType == RoomType.Teleporter);
+        if (!hasTeleportBP)
+            return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.noteleportroom");
+
+        // 생활 시설 여부
+        bool hasCrewQuartersBP = rooms.Any(r => r.roomType == RoomType.CrewQuarters);
+        if (!hasCrewQuartersBP)
+            return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.nocrewquartersroom");
+
+        // 모두 정상
+        return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+    }
+
+    /// <summary>
+    /// 모든 방이 연결되어 선원이 한 타일에서 이동을 시작하여 모든 방을 순회하고 원위치로 복귀할 수 있는지 확인
+    /// </summary>
+    /// <param name="rooms"></param>
+    /// <returns></returns>
+    private ValidationResult CheckAllRoomsPathConnectedByDoors(List<Room> rooms)
+    {
+        HashSet<Vector2Int> allOccupiedTiles = new HashSet<Vector2Int>();
+        Dictionary<Vector2Int, List<DoorDirection>> doorMap = new Dictionary<Vector2Int, List<DoorDirection>>();
+
+        foreach (Room room in rooms)
+        {
+            Vector2Int basePos = room.position;
+            Vector2Int size = room.GetSize();
+            RotationConstants.Rotation rot = room.currentRotation;
+
+            // 모든 점유 타일 기록
+            List<Vector2Int> occupied = RoomRotationUtility.GetOccupiedGridPositions(basePos, size, rot);
+            foreach (Vector2Int tile in occupied)
+                allOccupiedTiles.Add(tile);
+
+            // 복도: 사방향 문
+            if (room.roomType == RoomType.Corridor)
+            {
+                Vector2Int center = basePos;
+
+                foreach (DoorDirection dir in new[] {
+                    DoorDirection.North, DoorDirection.East, DoorDirection.South, DoorDirection.West
+                })
+                {
+                    Vector2Int doorTile = GetAdjacentPosition(center, dir);
+                    DoorDirection opposite = GetOppositeDirection(dir);
+
+                    // 1. 복도 중심에서 나가는 방향
+                    if (!doorMap.ContainsKey(center))
+                        doorMap[center] = new List<DoorDirection>();
+
+                    doorMap[center].Add(dir);
+
+                    // 2. 문 위치에서 복도로 들어오는 방향
+                    if (!doorMap.ContainsKey(doorTile))
+                        doorMap[doorTile] = new List<DoorDirection>();
+
+                    doorMap[doorTile].Add(opposite);
+                }
+                continue;
+            }
+
+            // 일반 방: 회전 포함 문 위치 등록
+            List<DoorPosition> doors = room.GetRoomData().GetDoorPositionsWithDirection(room.GetCurrentLevel(), basePos, rot);
+
+            foreach (DoorPosition door in doors)
+            {
+                if (!doorMap.ContainsKey(door.position))
+                    doorMap[door.position] = new List<DoorDirection>();
+
+                doorMap[door.position].Add(door.direction);
+            }
+        }
+
+        if (doorMap.Count == 0)
+            return new ValidationResult(ShipValidationError.InvalidDoorConnection, "shipvalidation.error.nodoor");
+
+        // BFS 시작
+        HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
+        Queue<Vector2Int> queue = new Queue<Vector2Int>();
+        Vector2Int start = doorMap.Keys.First();
+
+        queue.Enqueue(start);
+        visited.Add(start);
+
+        while (queue.Count > 0)
+        {
+            Vector2Int current = queue.Dequeue();
+
+            if (!doorMap.ContainsKey(current))
+                continue;
+
+            foreach (DoorDirection dir in doorMap[current])
+            {
+                Vector2Int neighbor = GetAdjacentPosition(current, dir);
+                DoorDirection opposite = GetOppositeDirection(dir);
+
+                if (!doorMap.ContainsKey(neighbor))
+                    continue;
+                if (!doorMap[neighbor].Contains(opposite))
+                    continue;
+                if (visited.Contains(neighbor))
+                    continue;
+
+                visited.Add(neighbor);
+                queue.Enqueue(neighbor);
+            }
+        }
+
+        // 도착한 문에서 연결된 방들 추출
+        HashSet<Room> reachableRooms = new HashSet<Room>();
+        HashSet<Vector2Int> reachableTiles = new HashSet<Vector2Int>();
+
+        foreach (Vector2Int doorTile in visited)
+        {
+            foreach (Room room in rooms)
+            {
+                if (room.OccupiesTile(doorTile) && !reachableRooms.Contains(room))
+                {
+                    // 실제 해당 문이 존재하는지 확인
+                    List<DoorPosition> doors = room.GetRoomData().GetDoorPositionsWithDirection(room.GetCurrentLevel(), room.position, room.currentRotation);
+
+                    bool hasMatchingDoor = doors.Any(d => d.position == doorTile);
+
+                    Debug.Log($"Room {room.name} has matching door at {doorTile}? {hasMatchingDoor}");
+
+                    if (!hasMatchingDoor)
+                        continue;
+
+                    // 해당 방은 문 통해 연결되어 있다고 판단
+                    reachableRooms.Add(room);
+
+                    foreach (Vector2Int tile in room.GetOccupiedTiles())
+                        reachableTiles.Add(tile);
+                }
+            }
+        }
+
+        // 디버깅 시각화
+        GameObject debugGO = GameObject.Find("ShipPathDebugVisualizer");
+        if (debugGO == null)
+        {
+            debugGO = new GameObject("ShipPathDebugVisualizer");
+            debugGO.hideFlags = HideFlags.DontSave;
+        }
+        var visualizer = debugGO.GetComponent<ShipPathDebugVisualizer>();
+        if (visualizer == null)
+            visualizer = debugGO.AddComponent<ShipPathDebugVisualizer>();
+
+        visualizer.visitedDoorTiles = visited.ToList();
+        visualizer.reachableTiles = reachableTiles.ToList();
+        visualizer.startTile = start;
+
+
+        Debug.LogWarning($"reachablecount : {reachableTiles.Count}, alloccupiedtilescount : {allOccupiedTiles.Count}");
+        if (reachableTiles.Count < allOccupiedTiles.Count)
+            return new ValidationResult(ShipValidationError.DisconnectedRooms, "shipvalidation.error.isolatedroom");
+
+        return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+    }
+
+    private Vector2Int GetAdjacentPosition(Vector2Int pos, DoorDirection dir)
+    {
+        return dir switch
+        {
+            DoorDirection.North => pos + Vector2Int.up,
+            DoorDirection.South => pos + Vector2Int.down,
+            DoorDirection.East => pos + Vector2Int.right,
+            DoorDirection.West => pos + Vector2Int.left,
+            _ => pos
+        };
+    }
+
+    private DoorDirection GetOppositeDirection(DoorDirection dir)
+    {
+        return dir switch
+        {
+            DoorDirection.North => DoorDirection.South,
+            DoorDirection.South => DoorDirection.North,
+            DoorDirection.East => DoorDirection.West,
+            DoorDirection.West => DoorDirection.East,
+            _ => dir
+        };
     }
 
     #endregion

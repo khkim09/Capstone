@@ -56,41 +56,42 @@ public class CustomizeShipUIHandler : MonoBehaviour
     public BlueprintShip targetBlueprintShip;
 
     /// <summary>
-    /// 배치된 레이아웃의 유효성을 검사하는 유효성 검사기입니다.
+    /// 기존 사용 중인 함선 가격
     /// </summary>
-    private ShipValidationHelper bpShipValidationHelper = new ShipValidationHelper();
+    private int originalShipCost = 0;
+
+    /// <summary>
+    /// 유효성 검사 결과
+    /// </summary>
+    private ValidationResult validationResult;
 
     /// <summary>
     /// 현재 설계도의 가격 지속 갱신
     /// 설계도로 함선 교체 가능 조건
     /// 1. (설계도 가격 - 기존 함선 가격) <= 보유 재화량
     /// 2. 기존 함선 모든 방 내구도 100%
-    /// 3. 모든 방, 문 연결성 검사
     /// </summary>
     private void Update()
     {
         if (targetBlueprintShip != null && playerShip != null)
         {
             int totalBPCost = targetBlueprintShip.totalBlueprintCost; // 설계도 가격
-            int currentShipCost = playerShip.GetTotalShipValue();// 기존 함선 가격
+            originalShipCost = playerShip.GetTotalShipValue(); // 사용중인 함선 가격
             int currentCurrency = (int)ResourceManager.Instance.GetResource(ResourceType.COMA); // 보유 재화량
-            ValidationResult layoutResult = bpShipValidationHelper.ValidateBlueprintLayout(targetBlueprintShip); // 방, 문 연결성
-
-            Debug.Log($"{currentCurrency}");
 
             totalCostText.text = $"Blueprint Cost: {totalBPCost}";
 
             // 1. 조건 : 자산
-            bool hasEnoughMoney = totalBPCost - currentShipCost <= currentCurrency;
+            bool hasEnoughMoney = totalBPCost - originalShipCost <= currentCurrency;
 
             // 2. 기존 함선 모든 방 내구도 100%
             bool shipFullyRepaired = playerShip.IsFullHitPoint();
 
-            // 3. 레이아웃 유효성 검사 - 모든 방 연결, 문끼리 연결
-            bool isLayoutValid = layoutResult.IsValid;
-
             // tooltip에 띄울 피드백
-            feedbackText.text = isLayoutValid ? "" : $"X {layoutResult.Message}";
+            if (validationResult != null)
+                feedbackText.text = $"{validationResult.Message}";
+            else
+                feedbackText.text = "";
 
             // 조건 체크
             if (hasEnoughMoney && shipFullyRepaired)
@@ -132,7 +133,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 설계도 설치한 방 데이터 모두 저장 후 제거
         SaveBPRoomsandDestroy();
 
-        // 카메라 세팅
+        // 카메라 기존 세팅으로 복구
         ResetCameraPos();
     }
 
@@ -148,6 +149,9 @@ public class CustomizeShipUIHandler : MonoBehaviour
         Camera.main.orthographicSize = cameraController.lastZoomSize;
     }
 
+    /// <summary>
+    /// 카메라 기본 세팅으로 복구
+    /// </summary>
     private void ResetCameraPos()
     {
         Camera.main.transform.position = new Vector3(0, 0, Camera.main.transform.position.z);
@@ -181,9 +185,57 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// <summary>
     /// '함선 제작' 버튼 클릭 시 호출.
     /// 조건 만족 시 기존 함선을 설계도의 함선으로 교체합니다.
+    /// 이후 방, 문의 연결 유효성 검사 수행 후 만족 여부에 따라 실제 함선으로 교체, 다시 설계도로 복구를 수행
     /// </summary>
     public void OnClickBuild()
     {
-        playerShip.ReplaceShipWithBlueprint(targetBlueprintShip);
+        // 1. 기존 함선 가격 저장
+        originalShipCost = playerShip.GetTotalShipValue();
+
+        // 2. 기존 함선 백업
+        playerShip.BackupCurrentShip();
+
+        // 3. 설계도 -> 실제 함선 (bpRoom -> Room) 변환
+        playerShip.ReplaceShipFromBlueprint(targetBlueprintShip);
+
+        // 4. 실제 Ship 상태 기준 유효성 검사 수행
+        validationResult = new ShipValidationHelper().ValidateShipLayout(playerShip);
+
+        // 5. 유효성 검사
+        if (!validationResult.IsValid)
+        {
+            Debug.Log("유효 X");
+            // 실패 -> 기존 함선 복원
+            playerShip.RevertToOriginalShip();
+
+            feedbackText.text = $"X {validationResult.Message}";
+        }
+        else
+        {
+            Debug.Log("유효 O");
+
+            // 성공 -> 함선 교체
+            feedbackText.text = $"O Ship updated successfully\n{validationResult.Message}!";
+
+            // 기존 함선 판매
+            ResourceManager.Instance.ChangeResource(ResourceType.COMA, originalShipCost);
+
+            // 설계도 함선 구매 (재화량 차감)
+            ResourceManager.Instance.ChangeResource(ResourceType.COMA, -targetBlueprintShip.totalBlueprintCost);
+        }
+
+        // backup data 삭제
+        // playerShip.backupRoomDatas.Clear();
+        // playerShip.backupRooms.Clear();
+
+    }
+
+    /// <summary>
+    /// 설계도 초기화 및 점유 타일 초기화
+    /// </summary>
+    public void OnClickClear()
+    {
+        targetBlueprintShip.ClearRooms();
+        gridPlacer.occupiedGridTiles = new HashSet<Vector2Int>();
     }
 }

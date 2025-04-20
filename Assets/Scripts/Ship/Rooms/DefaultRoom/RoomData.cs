@@ -16,6 +16,9 @@ public enum RoomDamageLevel
     DamageLevelTwo
 }
 
+/// <summary>
+/// 방 기능에 따라 나누는 카테고리 분류
+/// </summary>
 public enum RoomCategory
 {
     Essential, // 필수 시설
@@ -23,6 +26,18 @@ public enum RoomCategory
     Living, // 생활 시설
     Storage, // 저장고
     Etc // 기타 (복도)
+}
+
+/// <summary>
+/// 백업해 둘 방 정보 구조체
+/// </summary>
+[Serializable]
+public struct RoomBackupData
+{
+    public RoomData roomData;
+    public int level;
+    public Vector2Int position;
+    public RotationConstants.Rotation rotation;
 }
 
 /// <summary>
@@ -139,6 +154,37 @@ public abstract class RoomData : ScriptableObject
         }
 
         return result;
+    }
+
+    /// <summary>
+    /// 회전 적용된 문 위치 리스트 반환 함수
+    /// </summary>
+    /// <param name="levelIndex"></param>
+    /// <param name="basePos"></param>
+    /// <param name="rot"></param>
+    /// <returns></returns>
+    public List<DoorPosition> GetDoorPositionsWithDirection(int levelIndex, Vector2Int basePos, RotationConstants.Rotation rot)
+    {
+        List<DoorPosition> worldDoorPositions = new List<DoorPosition>();
+
+        RoomLevel level = GetRoomDataByLevel(levelIndex);
+        if (level == null || level.possibleDoorPositions == null)
+            return worldDoorPositions;
+
+
+        foreach (DoorPosition localDoor in level.possibleDoorPositions)
+        {
+            // 회전 적용 좌표
+            Vector2Int rotatedOffset = RoomRotationUtility.RotateTileOffset(localDoor.position, level.size, rot);
+            Vector2Int worldPos = basePos + rotatedOffset;
+
+            // 방향 회전 적용
+            DoorDirection rotatedDir = RoomRotationUtility.RotateDoorDirection(localDoor.direction, rot);
+
+            worldDoorPositions.Add(new DoorPosition(worldPos, rotatedDir));
+        }
+
+        return worldDoorPositions;
     }
 }
 

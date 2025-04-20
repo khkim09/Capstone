@@ -136,4 +136,18 @@ public static class RoomRotationUtility
             _ => localPos
         };
     }
+
+    /// <summary>
+    /// 문 바라보는 방향 회전각 반환
+    /// </summary>
+    /// <param name="original"></param>
+    /// <param name="rotation"></param>
+    /// <returns></returns>
+    public static DoorDirection RotateDoorDirection(DoorDirection original, RotationConstants.Rotation rotation)
+    {
+        int baseDir = (int)original;
+        int rotated = (baseDir + ((int)rotation / 90)) % 4;
+        return (DoorDirection)rotated;
+    }
+
 }

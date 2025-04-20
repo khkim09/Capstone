@@ -61,8 +61,12 @@ public class CameraZoomController : MonoBehaviour
     /// </summary>
     private void HandleZoom()
     {
-        // UI 위에 있을 때는 줌 비활성화하지만, 창고만 있는 경우에는 줌 허용
-        if ((IsMouseOverUI() && !IsMouseOverStorageOnly()) || !IsMouseInGameView())
+        // 마우스가 게임 뷰 위에 있을 때만 줌 활성화
+        if (!IsMouseInGameView())
+            return;
+
+        // 방이 아닌 UI 위에서 줌 금지
+        if (EventSystem.current.IsPointerOverGameObject() && !isMouseOverRoomOrGrid())
             return;
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
@@ -132,15 +136,7 @@ public class CameraZoomController : MonoBehaviour
         }
     }
 
-
-    /// <summary>
-    /// 유저의 마우스가 UI위에 있는지 여부를 확인합니다.
-    /// </summary>
-    private bool IsMouseOverUI()
-    {
-        return EventSystem.current.IsPointerOverGameObject();
-    }
-
+    /* 마우스 창고 위
     /// <summary>
     /// 마우스가 UI가 아닌 창고 위에만 있는지 확인
     /// </summary>
@@ -181,6 +177,7 @@ public class CameraZoomController : MonoBehaviour
 
         return false;
     }
+    */
 
     /// <summary>
     /// 유저의 마우스가 GameView 내에 위치한지 확인합니다.
@@ -189,6 +186,21 @@ public class CameraZoomController : MonoBehaviour
     {
         Vector3 mousePos = Input.mousePosition;
         return mousePos.x >= 0 && mousePos.x <= Screen.width && mousePos.y >= 0 && mousePos.y <= Screen.height;
+    }
+
+    /// <summary>
+    /// 방 ui 위에 있을 때는 줌 가능
+    /// </summary>
+    /// <returns></returns>
+    private bool isMouseOverRoomOrGrid()
+    {
+        Vector2 mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
+
+        if (hit.collider != null)
+            return true;
+
+        return false;
     }
 
     /// <summary>

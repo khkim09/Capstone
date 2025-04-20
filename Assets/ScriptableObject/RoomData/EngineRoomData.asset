@@ -16,6 +16,7 @@ MonoBehaviour:
   - roomName: room.engine.level1
     level: 1
     roomType: 0
+    category: 0
     hitPoint: 100
     size: {x: 2, y: 2}
     cost: 2500
@@ -36,32 +37,10 @@ MonoBehaviour:
     fuelConsumption: 10
     fuelEfficiency: 0
     avoidEfficiency: 0
-  - roomName: room.engine.level3
-    level: 3
-    roomType: 0
-    hitPoint: 300
-    size: {x: 3, y: 3}
-    cost: 7000
-    crewRequirement: 1
-    powerRequirement: 100
-    damageHitPointRate:
-      damageLevelOne: 50
-      damageLevelTwo: 10
-      pairs:
-      - damageLevel: 0
-        hitPointRate: 50
-      - damageLevel: 1
-        hitPointRate: 10
-    roomSprite: {fileID: -4324756457441046433, guid: ecc72283f0ad89945896a87c4430f7cd, type: 3}
-    possibleDoorPositions:
-    - position: {x: 1, y: 1}
-      direction: 2
-    fuelConsumption: 5
-    fuelEfficiency: 10
-    avoidEfficiency: 5
   - roomName: room.engine.level2
     level: 2
     roomType: 0
+    category: 0
     hitPoint: 200
     size: {x: 3, y: 2}
     cost: 4000
@@ -82,3 +61,27 @@ MonoBehaviour:
     fuelConsumption: 8
     fuelEfficiency: 5
     avoidEfficiency: 2
+  - roomName: room.engine.level3
+    level: 3
+    roomType: 0
+    category: 0
+    hitPoint: 300
+    size: {x: 3, y: 3}
+    cost: 7000
+    crewRequirement: 1
+    powerRequirement: 100
+    damageHitPointRate:
+      damageLevelOne: 50
+      damageLevelTwo: 10
+      pairs:
+      - damageLevel: 0
+        hitPointRate: 50
+      - damageLevel: 1
+        hitPointRate: 10
+    roomSprite: {fileID: -4324756457441046433, guid: ecc72283f0ad89945896a87c4430f7cd, type: 3}
+    possibleDoorPositions:
+    - position: {x: 1, y: 1}
+      direction: 2
+    fuelConsumption: 5
+    fuelEfficiency: 10
+    avoidEfficiency: 5
