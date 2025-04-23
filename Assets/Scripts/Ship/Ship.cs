@@ -124,13 +124,8 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         if (crewBase2 is CrewMember crewMember2) AddCrew(crewMember2);
         if (crewBase3 is CrewMember crewMember3) AddCrew(crewMember3);
 
-        List<CrewSerialization.CrewSerializationData> crewdata = CrewSerialization.SerializeAllCrews(GetAllCrew());
-        string json1 = CrewSerialization.ToJson(crewdata);
-        File.WriteAllText(Application.persistentDataPath + "/crew_data.json", json1);
-        List<CrewSerialization.CrewSerializationData> data3 = CrewSerialization.FromJsonList(json1);
-
-
-        CrewSerialization.DeserializeAllCrews(data3, this);
+        CrewSerialization.SaveAllCrews(GetAllCrew(), Application.persistentDataPath + "/crew_data.es3");
+        CrewSerialization.RestoreAllCrewsToShip(Application.persistentDataPath + "/crew_data.es3", this);
     }
 
     /// <summary>

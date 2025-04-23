@@ -44,15 +44,26 @@ public class CrewSystem : ShipSystem
         if (crews.Count >= GetShipStat(ShipStat.CrewCapacity))
             return false;
 
+
         parentShip.RecalculateAllStats();
 
+        if (newCrew.currentRoom == null)
+        {
+            Room randomRoom = parentShip.GetRandomRoom();
+            randomRoom.OnCrewEnter(newCrew);
 
-        Room randomRoom = parentShip.GetRandomRoom();
-        randomRoom.OnCrewEnter(newCrew);
+            newCrew.transform.position = randomRoom.transform.position;
+            newCrew.transform.SetParent(randomRoom.transform);
+            newCrew.currentRoom = randomRoom;
+        }
+        else
+        {
+            newCrew.currentRoom.OnCrewEnter(newCrew);
+            newCrew.transform.position = newCrew.currentRoom.transform.position;
+            newCrew.transform.SetParent(newCrew.currentRoom.transform);
+            Debug.Log("부모로 설정함");
+        }
 
-        newCrew.transform.position = randomRoom.transform.position;
-        newCrew.transform.SetParent(randomRoom.transform);
-        newCrew.currentRoom = randomRoom;
         crews.Add(newCrew);
         return true;
     }
