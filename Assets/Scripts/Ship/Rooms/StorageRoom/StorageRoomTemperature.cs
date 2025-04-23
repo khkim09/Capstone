@@ -9,6 +9,8 @@ public class StorageRoomTemperature : StorageRoomBase
     /// <summary>전력이 충분히 공급되고 있는지 여부.</summary>
     private bool hasEnoughPower = false;
 
+    private int currentTemperature = 0;
+
     /// <summary>
     /// 초기화 시 저장 타입을 Temperature로 설정합니다.
     /// </summary>
@@ -57,5 +59,10 @@ public class StorageRoomTemperature : StorageRoomBase
             CheckItemsAfterWarp();
 
         hasEnoughPower = powered;
+    }
+
+    public int GetCurrentTemperature()
+    {
+        return currentTemperature;
     }
 }

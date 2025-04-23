@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.IO;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// 함선의 전체 기능과 상태를 관리하는 클래스.
@@ -9,7 +11,7 @@ using UnityEngine;
 /// </summary>
 public class Ship : MonoBehaviour, IWorldGridSwitcher
 {
-    [Header("Ship Info")][SerializeField] public string shipName = "Milky";
+    [Header("Ship Info")] [SerializeField] public string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -57,7 +59,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// 함선에 등록된 모든 시스템들.
     /// 타입을 키로 하여 각 ShipSystem 서브클래스를 관리합니다.
     /// </summary>
-    private Dictionary<Type, ShipSystem> systems = new();
+    private Dictionary<Type, ShipSystem> systems = new Dictionary<Type, ShipSystem>();
 
     public GameObject weaponPrefab;
 
@@ -91,9 +93,46 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         GameManager.Instance.SetPlayerShip(this);
 
         /// TODO: 테스트를 위해 임시 방 설치. 나중에 제거할 것
-        AddRoom(3, testRoomPrefab1.GetComponent<Room>().GetRoomData(), new Vector2Int(0, 0), RotationConstants.Rotation.Rotation0);
-        AddRoom(1, testRoomPrefab2.GetComponent<Room>().GetRoomData(), new Vector2Int(4, 1), RotationConstants.Rotation.Rotation90);
-        AddRoom(1, testRoomPrefab3.GetComponent<Room>().GetRoomData(), new Vector2Int(-3, -1), RotationConstants.Rotation.Rotation180);
+        AddRoom(3, testRoomPrefab1.GetComponent<Room>().GetRoomData(), new Vector2Int(0, 0),
+            RotationConstants.Rotation.Rotation0);
+        AddRoom(1, testRoomPrefab2.GetComponent<Room>().GetRoomData(), new Vector2Int(4, 1),
+            RotationConstants.Rotation.Rotation90);
+        AddRoom(1, testRoomPrefab3.GetComponent<Room>().GetRoomData(), new Vector2Int(-4, -1),
+            RotationConstants.Rotation.Rotation0);
+
+        ShipWeapon newWeapon = AddWeapon(0, new Vector2Int(3, -1), ShipWeaponAttachedDirection.North);
+        ShipWeapon newWeapon2 = AddWeapon(6, new Vector2Int(-2, -1), ShipWeaponAttachedDirection.East);
+        ShipWeapon newWeapon3 = AddWeapon(10, new Vector2Int(6, 2), ShipWeaponAttachedDirection.North);
+
+
+        List<ShipWeaponSerialization.ShipWeaponSerializationData> data = new()
+        {
+            ShipWeaponSerialization.SerializeWeapon(newWeapon),
+            ShipWeaponSerialization.SerializeWeapon(newWeapon2),
+            ShipWeaponSerialization.SerializeWeapon(newWeapon3)
+        };
+
+        string json = ShipWeaponSerialization.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "/weapon_data.json", json);
+
+        List<ShipWeaponSerialization.ShipWeaponSerializationData> data1 = ShipWeaponSerialization.FromJsonList(json);
+        ShipWeaponSerialization.DeserializeAllWeapons(data1, this);
+
+        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
+
+        if (crewBase1 is CrewMember crewMember) AddCrew(crewMember);
+        if (crewBase2 is CrewMember crewMember2) AddCrew(crewMember2);
+        if (crewBase3 is CrewMember crewMember3) AddCrew(crewMember3);
+
+        List<CrewSerialization.CrewSerializationData> crewdata = CrewSerialization.SerializeAllCrews(GetAllCrew());
+        string json1 = CrewSerialization.ToJson(crewdata);
+        File.WriteAllText(Application.persistentDataPath + "/crew_data.json", json1);
+        List<CrewSerialization.CrewSerializationData> data3 = CrewSerialization.FromJsonList(json1);
+
+
+        CrewSerialization.DeserializeAllCrews(data3, this);
     }
 
     /// <summary>
@@ -801,6 +840,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         GetSystem<CrewSystem>().RemoveCrew(crew);
     }
 
+    public void RemoveAllCrews()
+    {
+        GetSystem<CrewSystem>().RemoveAllCrews();
+    }
+
     #endregion
 
 
@@ -810,6 +854,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     public List<Room> GetAllRooms()
     {
         return allRooms;
+    }
+
+    public Room GetRandomRoom()
+    {
+        return allRooms[Random.Range(0, allRooms.Count)];
     }
 
     #region 무기
@@ -897,7 +946,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
         if (validRooms.Count == 0) return null;
 
-        int randomIndex = UnityEngine.Random.Range(0, validRooms.Count);
+        int randomIndex = Random.Range(0, validRooms.Count);
         return validRooms[randomIndex];
     }
 
@@ -991,6 +1040,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
+            {
                 for (int y = -1; y <= 1; y++)
                 {
                     if (x == 0 && y == 0) continue;
@@ -1000,6 +1050,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
                     // 해당 위치에 있는 선원들에게 데미지 적용
                     ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
                 }
+            }
     }
 
     #endregion

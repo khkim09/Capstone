@@ -67,19 +67,20 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// <param name="storedItem">UI 설정에 사용되는 StoredItem 데이터</param>
     public void Setup(StoredItem storedItem)
     {
-        Debug.Log($"[InventoryItemUI] Setup called for {storedItem.item.itemName}");
+        Debug.Log($"[InventoryItemUI] Setup called for {storedItem.itemData.itemName}");
         currentStoredItem = storedItem;
 
         if (itemNameText != null)
         {
-            itemNameText.text = storedItem.item.itemName;
+            itemNameText.text = storedItem.itemData.itemName;
             itemNameOriginalColor = itemNameText.color;
         }
 
         if (priceText != null)
         {
             // 현재 가격은 변동폭이 반영된 값으로 표시합니다.
-            priceText.text = storedItem.item.GetCurrentPrice().ToString("F2");
+            // priceText.text = storedItem.itemData.GetCurrentPrice().ToString("F2");
+            priceText.text = storedItem.itemData.costBase.ToString("F2");
             priceOriginalColor = priceText.color;
         }
 
@@ -91,14 +92,14 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         if (categoryText != null)
         {
-            categoryText.text = storedItem.item.category.ToString();
+            categoryText.text = storedItem.itemData.type.ToString();
             categoryOriginalColor = categoryText.color;
         }
 
         isSelected = false;
 
         // 만약 이 아이템이 이전에 선택된 것과 동일하고, 수량이 남아 있다면 선택 상태 복원
-        if (currentlySelectedItemName == storedItem.item.itemName && storedItem.quantity > 0)
+        if (currentlySelectedItemName == storedItem.itemData.itemName && storedItem.quantity > 0)
         {
             SetSelected(true);
             currentSelectedItem = this;
@@ -112,8 +113,8 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public string GetStoredItemName()
     {
         // null 체크 후 이름 반환
-        if (currentStoredItem != null && currentStoredItem.item != null)
-            return currentStoredItem.item.itemName;
+        if (currentStoredItem != null && currentStoredItem.itemData != null)
+            return currentStoredItem.itemData.itemName;
         return string.Empty;
     }
 
@@ -190,14 +191,14 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
             }
 
             SetSelected(true);
-            currentlySelectedItemName = currentStoredItem.item.itemName;
+            currentlySelectedItemName = currentStoredItem.itemData.itemName;
             currentSelectedItem = this;
 
             // 선택된 경우 MiddlePanelUI에 상세 정보 전달
             MiddlePanelUI middlePanel = FindObjectOfType<MiddlePanelUI>();
             if (middlePanel != null && currentStoredItem != null)
             {
-                middlePanel.SetSelectedItem(currentStoredItem.item);
+                middlePanel.SetSelectedItem(currentStoredItem.itemData);
             }
         }
         // (추가) TradeUIManager에 판매 상세 패널 열라고 알림
@@ -210,7 +211,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         var highlighter = FindObjectOfType<StorageHighlightManager>();
         if (highlighter != null && currentStoredItem != null)
         {
-            highlighter.HighlightItem(currentStoredItem.item.itemName);
+            highlighter.HighlightItem(currentStoredItem.itemData.itemName);
         }
     }
 

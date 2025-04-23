@@ -44,7 +44,8 @@ public class AmmunitionRoomData : RoomData<AmmunitionRoomData.AmmunitionRoomLeve
                 reloadTimeBonus = 10f,
                 damageBonus = 0f,
                 damageHitPointRate = RoomDamageRates.Create(60f, 30f),
-                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) }
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) },
+                crewEntryGridPriority = new List<Vector2Int>() {new (0,0), new(1,0)}
             },
             new()
             {
@@ -60,7 +61,8 @@ public class AmmunitionRoomData : RoomData<AmmunitionRoomData.AmmunitionRoomLeve
                 reloadTimeBonus = 20f,
                 damageBonus = 10f,
                 damageHitPointRate = RoomDamageRates.Create(60f, 30f),
-                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) }
+                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) },
+                crewEntryGridPriority = new List<Vector2Int>() {new (0,0), new(1,0)}
             }
         };
     }

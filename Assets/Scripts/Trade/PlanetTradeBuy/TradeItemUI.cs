@@ -26,9 +26,9 @@ public class TradeItemUI : MonoBehaviour
     #region Data References
 
     /// <summary>
-    /// 현재 UI에 표시될 TradableItem 데이터입니다.
+    /// 현재 UI에 표시될 아이템 데이터입니다.
     /// </summary>
-    private TradableItem tradableItem;
+    private TradingItemData itemData;
 
     /// <summary>
     /// 거래 관련 기능을 수행하는 TradeManager의 참조입니다.
@@ -47,30 +47,30 @@ public class TradeItemUI : MonoBehaviour
     /// 아이템 데이터와 거래 관리, UI 업데이트를 위한 참조를 설정하고,
     /// 각 UI 요소의 초기 텍스트를 설정합니다.
     /// </summary>
-    /// <param name="item">초기화할 TradableItem 데이터</param>
+    /// <param name="data">표시할 아이템 데이터</param>
     /// <param name="manager">거래 처리를 위한 TradeManager 참조</param>
-    /// <param name="ui">재화 업데이트를 위한 TradeUI 참조</param>
-    public void Setup(TradableItem item, TradeManager manager, TradeUI ui)
+    /// <param name="ui">UI 업데이트를 위한 TradeUI 참조</param>
+    public void Setup(TradingItemData data, TradeManager manager, TradeUI ui)
     {
-        tradableItem = item;
+        itemData = data;
         tradeManager = manager;
         tradeUI = ui;
 
-        // UI 텍스트 초기화
         if (itemNameText != null)
-            itemNameText.text = tradableItem.itemName;
+            itemNameText.text = itemData.itemName;
+
         UpdatePriceText();
     }
 
     /// <summary>
-    /// TradableItem의 현재 가격을 가져와 UI에 표시합니다.
-    /// 가격은 TradableItem의 GetCurrentPrice 메서드를 통해 계산됩니다.
+    /// 아이템의 현재 가격을 가져와 UI에 표시합니다.
+    /// 가격은 TradeManager의 가격 계산 로직을 통해 얻습니다.
     /// </summary>
     private void UpdatePriceText()
     {
-        if (priceText != null && tradableItem != null)
+        if (priceText != null && itemData != null)
         {
-            float currentPrice = tradableItem.GetCurrentPrice();
+            float currentPrice = tradeManager.CalculatePrice(itemData);
             priceText.text = currentPrice.ToString("F2");
         }
     }

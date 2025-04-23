@@ -6,15 +6,17 @@ public enum ShipWeaponAttachedDirection
     /// <summary>
     /// 시설의 위쪽에 붙어있습니다.
     /// </summary>
-    North,
+    North = 0,
+
     /// <summary>
     /// 시설의 오른쪽에 붙어있습니다.
     /// </summary>
-    East,
+    East = 1,
+
     /// <summary>
     /// 시설의 아래쪽에 붙어있습니다.
     /// </summary>
-    South
+    South = 2
 }
 
 /*

@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 19413732}
   - component: {fileID: 19413734}
   - component: {fileID: 19413733}
-  - component: {fileID: 19413736}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -257,23 +256,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &19413736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19413731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec2dffe0767aea540918779fecce1fe1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoomSpeed: 2
-  minSize: 4.5
-  maxSize: 15
-  customizeUI: {fileID: 0}
-  lastZoomSize: 5
 --- !u!1 &793384909
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +382,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 0}
   firePoint: {fileID: 0}
-  rotationSprites: []
+  gridPosition: {x: 0, y: 0}
+  gridSize: {x: 2, y: 1}
 --- !u!1 &974124114
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,10 +427,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameInitializer
       objectReference: {fileID: 0}
-    - target: {fileID: 1504215768202865360, guid: 1748906791cd29a49aa9f7aedb2a0db5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3786753539494510287, guid: 1748906791cd29a49aa9f7aedb2a0db5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -487,22 +466,6 @@ PrefabInstance:
     - target: {fileID: 3786753539494510287, guid: 1748906791cd29a49aa9f7aedb2a0db5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6995011742236287878, guid: 1748906791cd29a49aa9f7aedb2a0db5, type: 3}
-      propertyPath: uiManagerPrefab
-      value: 
-      objectReference: {fileID: 8322060178203285665, guid: 985e5ddd37a7e8842b90faa25fa3fbdf, type: 3}
-    - target: {fileID: 6995011742236287878, guid: 1748906791cd29a49aa9f7aedb2a0db5, type: 3}
-      propertyPath: crewManagerPrefab
-      value: 
-      objectReference: {fileID: 950342043475234101, guid: d52f2b7f5409fcc4c87f5cac0eb4f313, type: 3}
-    - target: {fileID: 6995011742236287878, guid: 1748906791cd29a49aa9f7aedb2a0db5, type: 3}
-      propertyPath: moraleMangerPrefab
-      value: 
-      objectReference: {fileID: 2151954890979059487, guid: 728994026b462fe44bbe2905630150e6, type: 3}
-    - target: {fileID: 6995011742236287878, guid: 1748906791cd29a49aa9f7aedb2a0db5, type: 3}
-      propertyPath: gameStateManagerPrefab
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -598,7 +561,7 @@ MonoBehaviour:
   doorData: {fileID: 11400000, guid: 4ae33c1f9e1a7c04889fd64d32868f52, type: 2}
   testRoomPrefab1: {fileID: 5879514487618098504, guid: 88bda83abf8f94c42ae539b9b6bdc7d1, type: 3}
   testRoomPrefab2: {fileID: 7375369300968233328, guid: cc1bfd07badd900428f04cc35fd0d2dc, type: 3}
-  testRoomPrefab3: {fileID: 7375369300968233328, guid: bb6850f9bcf6840419ced267032b781c, type: 3}
+  testRoomPrefab3: {fileID: 7375369300968233328, guid: a0485b7cd968c2d499c54304c81c5030, type: 3}
 --- !u!4 &1655537764
 Transform:
   m_ObjectHideFlags: 0

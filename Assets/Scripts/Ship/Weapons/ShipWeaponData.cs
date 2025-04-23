@@ -62,16 +62,6 @@ public class ShipWeaponData : ScriptableObject
     public WarheadType warheadType;
 
     /// <summary>
-    /// 무기의 아이콘 또는 스프라이트입니다.
-    /// </summary>
-    [SerializeField] public Sprite weaponSprite;
-
-    /// <summary>
-    /// 무기 회전 스프라이트(북, 동, 남 방향)
-    /// </summary>
-    [SerializeField] public Sprite[] rotationSprites = new Sprite[3]; // North, East, South
-
-    /// <summary>
     /// 무기 이름을 반환합니다.
     /// </summary>
     /// <returns>무기 이름 문자열.</returns>

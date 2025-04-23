@@ -1,18 +1,19 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
-/// TradableItemList는 TradableItem 배열을 포함하는 컨테이너 클래스입니다.
+/// TradingItemList는 TradingItemData 배열을 포함하는 컨테이너 클래스입니다.
 /// JSON 데이터 파싱에 사용됩니다.
 /// </summary>
 [System.Serializable]
-public class TradableItemList
+public class TradingItemList
 {
     /// <summary>
-    /// 로드된 TradableItem 배열입니다.
+    /// 로드된 TradingItemData 배열입니다.
     /// </summary>
-    public TradableItem[] items;
+    public TradingItemData[] items;
 }
 
 /// <summary>
@@ -28,13 +29,12 @@ public class TradeDataLoader : MonoBehaviour
     [SerializeField] private string jsonFileName = "PlanetTradeTest";
 
     /// <summary>
-    /// 로드된 TradableItem 데이터를 저장하는 리스트입니다.
+    /// 로드된 TradingItemData 데이터를 저장하는 리스트입니다.
     /// </summary>
-    public List<TradableItem> tradableItems;
+    public List<TradingItemData> tradingItems = new List<TradingItemData>();
 
     /// <summary>
-    /// Awake 메서드.
-    /// 컴포넌트 초기화 시 JSON 데이터를 로드합니다.
+    /// 컴포넌트가 활성화될 때 JSON 데이터를 로드합니다.
     /// </summary>
     private void Awake()
     {
@@ -48,7 +48,6 @@ public class TradeDataLoader : MonoBehaviour
     /// </summary>
     private void LoadTradeData()
     {
-        // Assets/Data 폴더 내의 "PlanetTrade.json" 파일 경로 설정
         string path = System.IO.Path.Combine(Application.dataPath, "Data", "PlanetTradeTest.json");
 
         if (!System.IO.File.Exists(path))
@@ -57,28 +56,22 @@ public class TradeDataLoader : MonoBehaviour
             return;
         }
 
-        // 파일 내용을 읽어옵니다.
         string jsonText = System.IO.File.ReadAllText(path);
         string rawJson = jsonText.Trim();
 
-        // JSON이 딕셔너리 형태라면, 양 끝의 중괄호를 제거합니다.
         if (rawJson.StartsWith("{") && rawJson.EndsWith("}"))
         {
             rawJson = rawJson.Substring(1, rawJson.Length - 2);
         }
 
-        // 정규표현식을 이용해 각 항목의 키 (예: "0":, "1": 등)를 제거합니다.
         string pattern = "\"\\d+\"\\s*:\\s*";
-        string replaced = System.Text.RegularExpressions.Regex.Replace(rawJson, pattern, "");
+        string replaced = Regex.Replace(rawJson, pattern, "");
 
-        // 배열 형태의 JSON 문자열로 감쌉니다.
         string arrayJson = "{\"items\":[" + replaced + "]}";
 
-        // 변환된 JSON 문자열을 파싱합니다.
-        TradableItemList itemList = JsonUtility.FromJson<TradableItemList>(arrayJson);
-        tradableItems = new List<TradableItem>(itemList.items);
+        TradingItemList itemList = JsonUtility.FromJson<TradingItemList>(arrayJson);
+        tradingItems = new List<TradingItemData>(itemList.items);
 
-        Debug.Log("TradeDataLoader: " + tradableItems.Count + "개의 무역 아이템 데이터를 로드했습니다.");
+        Debug.Log("TradeDataLoader: " + tradingItems.Count + "개의 무역 아이템 데이터를 로드했습니다.");
     }
-
 }
