@@ -12,6 +12,8 @@ public class EquipmentManager : MonoBehaviour
     /// </summary>
     public static EquipmentManager Instance { get; private set; }
 
+    public EquipmentDatabase equipmentDatabase;
+
 
     /// <summary>
     /// UI에서 선택 가능한 전역 장비 목록입니다. (무기, 방어구 등)
@@ -59,5 +61,22 @@ public class EquipmentManager : MonoBehaviour
             return;
 
         crew.ApplyPersonalEquipment(eqItem);
+    }
+
+    // 장비 타입별로 필터링하는 유틸리티 메소드
+    public List<EquipmentItem> GetEquipmentsByType(EquipmentType type)
+    {
+        return equipmentDatabase.GetEquipmentsByType(type);
+    }
+
+    // 이름으로 장비 찾기
+    public EquipmentItem GetEquipmentByName(string name)
+    {
+        return equipmentDatabase.GetEquipmentByName(name);
+    }
+
+    public EquipmentItem GetEquipmentByTypeAndId(EquipmentType type, int id)
+    {
+        return equipmentDatabase.GetEquipmentByTypeAndId(type, id);
     }
 }

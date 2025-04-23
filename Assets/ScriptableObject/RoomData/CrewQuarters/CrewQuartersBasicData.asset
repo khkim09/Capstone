@@ -16,14 +16,32 @@ MonoBehaviour:
   - roomName: room.crewquarters.basic
     level: 1
     roomType: 10
+    category: 0
     hitPoint: 100
     size: {x: 4, y: 2}
     cost: 1200
     crewRequirement: 0
     powerRequirement: 0
+    damageHitPointRate:
+      damageLevelOne: 50
+      damageLevelTwo: 10
+      pairs:
+      - damageLevel: 0
+        hitPointRate: 50
+      - damageLevel: 1
+        hitPointRate: 10
     roomSprite: {fileID: -7447787064644262063, guid: 9f99a59fda31de1499affd6a3a082a01, type: 3}
     possibleDoorPositions:
     - position: {x: 3, y: 0}
       direction: 1
+    crewEntryGridPriority:
+    - {x: 0, y: 1}
+    - {x: 0, y: 0}
+    - {x: 1, y: 1}
+    - {x: 1, y: 0}
+    - {x: 2, y: 1}
+    - {x: 2, y: 0}
+    - {x: 3, y: 1}
+    - {x: 3, y: 0}
     maxCrewCapacity: 6
     crewMoraleBonus: 0

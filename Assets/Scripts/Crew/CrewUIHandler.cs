@@ -297,24 +297,34 @@ public class CrewUIHandler : MonoBehaviour
     /// <returns></returns>
     private CrewMember CreateCrewMember()
     {
-        // 생성할 위치 (예시)
-        Vector3 spawnPosition = new(-8f, 0f, 0f);
+        CrewBase baseCrew =
+            GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(selectedRace, inputName);
 
-        // 선택된 종족에 맞는 프리팹 가져오기
-        int raceIndex = (int)selectedRace - 1;
-        if (raceIndex < 0 || raceIndex >= crewPrefabs.Length)
-            Debug.LogError("선택된 종족에 맞는 프리팹을 찾을 수 없습니다.");
+        if (baseCrew is CrewMember newCrew)
+        {
+            // 생성할 위치 (예시)
+            Vector3 spawnPosition = new(-8f, 0f, 0f);
 
-        GameObject crewGO = Instantiate(crewPrefabs[raceIndex], spawnPosition, Quaternion.identity);
-        CrewMember newCrew = crewGO.GetComponent<CrewMember>();
-        newCrew.crewName = inputName;
-        newCrew.isPlayerControlled = true;
-        newCrew.race = selectedRace;
+            // 선택된 종족에 맞는 프리팹 가져오기
+            int raceIndex = (int)selectedRace - 1;
+            if (raceIndex < 0 || raceIndex >= crewPrefabs.Length)
+                Debug.LogError("선택된 종족에 맞는 프리팹을 찾을 수 없습니다.");
 
-        // 초기화
-        newCrew.Initialize();
+            // GameObject crewGO = Instantiate(crewPrefabs[raceIndex], spawnPosition, Quaternion.identity);
+            // CrewMember newCrew = crewGO.GetComponent<CrewMember>();
+            // newCrew.crewName = inputName;
+            // newCrew.isPlayerControlled = true;
+            // newCrew.race = selectedRace;
+            //
+            // // 초기화
+            // newCrew.Initialize();
 
-        return newCrew;
+            newCrew.transform.position = spawnPosition;
+
+            return newCrew;
+        }
+
+        return null;
     }
 
     /// <summary>

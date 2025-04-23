@@ -19,23 +19,30 @@ public class MiddlePanelUI : MonoBehaviour
     /// 선택된 아이템 설명을 표시하는 텍스트 UI 요소입니다.
     /// </summary>
     [SerializeField] private TMP_Text selectedItemDescriptionText;
+
     /// <summary>
     /// 거래 수량을 입력받는 텍스트 입력 필드입니다.
     /// </summary>
     [SerializeField] private TMP_InputField tradeNumInputField;
+
     /// <summary>
     /// 구매 버튼입니다.
     /// </summary>
     [SerializeField] private Button buyButton;
+
     /// <summary>
     /// 판매 버튼입니다.
     /// </summary>
     [SerializeField] private Button sellButton;
+
     /// <summary>
     /// 플레이어의 재화(Coma)를 표시하는 텍스트 UI 요소입니다.
     /// </summary>
     [SerializeField] private TMP_Text playerComaText;
-    /// <summary>아이템 형태를 보여줄 UI Image</summary>
+
+    /// <summary>
+    /// 아이템 형태를 보여줄 UI Image입니다.
+    /// </summary>
     [SerializeField] private Image itemPreviewImage;
 
     #endregion
@@ -43,9 +50,10 @@ public class MiddlePanelUI : MonoBehaviour
     #region Private Fields
 
     /// <summary>
-    /// 현재 선택된 TradableItem입니다.
+    /// 현재 선택된 아이템 데이터입니다.
     /// </summary>
-    private TradableItem selectedItem;
+    private TradingItemData selectedItemData;
+
     /// <summary>
     /// 거래 관련 로직을 담당하는 TradeManager 컴포넌트입니다.
     /// </summary>
@@ -59,7 +67,6 @@ public class MiddlePanelUI : MonoBehaviour
     private void Start()
     {
         tradeManager = FindObjectOfType<TradeManager>();
-        // 버튼 이벤트 등록
         if (buyButton != null)
             buyButton.onClick.AddListener(OnBuyClicked);
         if (sellButton != null)
@@ -71,27 +78,32 @@ public class MiddlePanelUI : MonoBehaviour
     /// <summary>
     /// 선택된 아이템의 상세 정보를 UI에 표시하는 메서드입니다.
     /// </summary>
-    /// <param name="item">UI에 표시할 선택된 TradableItem입니다.</param>
-    public void SetSelectedItem(TradableItem item)
+    /// <param name="itemData">UI에 표시할 선택된 아이템 데이터입니다.</param>
+    public void SetSelectedItem(TradingItemData itemData)
     {
-        selectedItem = item;
-        if (selectedItemNameText != null)
-            selectedItemNameText.text = item.itemName;
-        if (selectedItemDescriptionText != null)
-            selectedItemDescriptionText.text = item.description;
-        if (tradeNumInputField != null)
-            tradeNumInputField.text = "0"; // 기본 거래 수량 0
+        selectedItemData = itemData;
 
-        // Image 컴포넌트에 스프라이트 할당 (구현중)
-        /*if (itemPreviewImage != null && item.itemSprite != null)
+        if (selectedItemNameText != null)
+            selectedItemNameText.text = itemData.itemName;
+
+        if (selectedItemDescriptionText != null)
+            selectedItemDescriptionText.text = itemData.description;
+
+        if (tradeNumInputField != null)
+            tradeNumInputField.text = "1";
+
+        if (itemPreviewImage != null)
         {
-            itemPreviewImage.sprite  = data.itemSprite;
-            itemPreviewImage.enabled = true;
+            if (itemData.itemSprite != null)
+            {
+                itemPreviewImage.sprite = itemData.itemSprite;
+                itemPreviewImage.enabled = true;
+            }
+            else
+            {
+                itemPreviewImage.enabled = false;
+            }
         }
-        else if (itemPreviewImage != null)
-        {
-            itemPreviewImage.enabled = false;
-        }*/
     }
 
     /// <summary>
@@ -100,21 +112,19 @@ public class MiddlePanelUI : MonoBehaviour
     /// </summary>
     private void OnBuyClicked()
     {
-        if (selectedItem == null) return;
+        if (selectedItemData == null) return;
 
         int quantity = 1;
         int.TryParse(tradeNumInputField.text, out quantity);
 
-        if (tradeManager.BuyItem(selectedItem, quantity))
+        if (tradeManager.BuyItem(selectedItemData, quantity))
         {
-            Debug.Log($"구매 성공: {selectedItem.itemName} x {quantity}");
+            Debug.Log($"구매 성공: {selectedItemData.itemName} x {quantity}");
             UpdatePlayerComa();
-            // 인벤토리 UI 갱신
+
             InventoryUI invUI = FindObjectOfType<InventoryUI>();
             if (invUI != null)
-            {
                 invUI.PopulateInventory();
-            }
         }
     }
 
@@ -124,23 +134,22 @@ public class MiddlePanelUI : MonoBehaviour
     /// </summary>
     private void OnSellClicked()
     {
-        if (selectedItem == null) return;
+        if (selectedItemData == null) return;
 
         int quantity = 1;
         int.TryParse(tradeNumInputField.text, out quantity);
 
-        if (tradeManager.SellItem(selectedItem, quantity))
+        if (tradeManager.SellItem(selectedItemData, quantity))
         {
-            Debug.Log($"판매 성공: {selectedItem.itemName} x {quantity}");
+            Debug.Log($"판매 성공: {selectedItemData.itemName} x {quantity}");
             UpdatePlayerComa();
-            // 인벤토리 UI 갱신
+
             InventoryUI invUI = FindObjectOfType<InventoryUI>();
             if (invUI != null)
-            {
                 invUI.PopulateInventory();
-            }
         }
     }
+
     /// <summary>
     /// 플레이어의 COMA(재화)를 UI에 갱신하는 메서드입니다.
     /// </summary>
@@ -151,5 +160,4 @@ public class MiddlePanelUI : MonoBehaviour
             playerComaText.text = "COMA: " + tradeManager.GetPlayerCOMA();
         }
     }
-
 }
