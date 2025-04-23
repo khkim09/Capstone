@@ -36,8 +36,8 @@ public class CorridorRoomData : RoomData<CorridorRoomData.CorridorRoomLevel>
                 possibleDoorPositions = new List<DoorPosition>
                 {
                     new(new Vector2Int(0, 0), DoorDirection.North),
-                    new(new Vector2Int(0, 0), DoorDirection.South),
                     new(new Vector2Int(0, 0), DoorDirection.East),
+                    new(new Vector2Int(0, 0), DoorDirection.South),
                     new(new Vector2Int(0, 0), DoorDirection.West)
                 }
             }

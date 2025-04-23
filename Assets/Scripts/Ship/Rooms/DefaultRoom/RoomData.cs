@@ -129,41 +129,13 @@ public abstract class RoomData : ScriptableObject
     }
 
     /// <summary>
-    /// 방이 설치된 위치 (basePos)와 회전값 (rot) 기준으로
-    /// 이 방의 문이 실제 어느 위치에 놓이는지 반환
-    /// </summary>
-    /// <param name="levelIndex"></param>
-    /// <param name="basePos"></param>
-    /// <param name="rot"></param>
-    /// <returns></returns>
-    public List<Vector2Int> GetDoorPositions(int levelIndex, Vector2Int basePos, RotationConstants.Rotation rot)
-    {
-        List<Vector2Int> result = new List<Vector2Int>();
-
-        RoomLevel level = GetRoomDataByLevel(levelIndex);
-        if (level == null || level.possibleDoorPositions == null)
-            return result;
-
-        Vector2Int originSize = level.size;
-
-        foreach (DoorPosition door in level.possibleDoorPositions)
-        {
-            Vector2Int rotatedOffset = RoomRotationUtility.RotateTileOffset(door.position, originSize, rot);
-            Vector2Int worldPos = basePos + rotatedOffset;
-            result.Add(worldPos);
-        }
-
-        return result;
-    }
-
-    /// <summary>
     /// 회전 적용된 문 위치 리스트 반환 함수
     /// </summary>
     /// <param name="levelIndex"></param>
     /// <param name="basePos"></param>
     /// <param name="rot"></param>
     /// <returns></returns>
-    public List<DoorPosition> GetDoorPositionsWithDirection(int levelIndex, Vector2Int basePos, RotationConstants.Rotation rot)
+    public List<DoorPosition> GetDoorPositionsWithDirection(int levelIndex, Vector2Int originalPos, RotationConstants.Rotation rotation)
     {
         List<DoorPosition> worldDoorPositions = new List<DoorPosition>();
 
@@ -171,20 +143,66 @@ public abstract class RoomData : ScriptableObject
         if (level == null || level.possibleDoorPositions == null)
             return worldDoorPositions;
 
-
         foreach (DoorPosition localDoor in level.possibleDoorPositions)
         {
-            // 회전 적용 좌표
-            Vector2Int rotatedOffset = RoomRotationUtility.RotateTileOffset(localDoor.position, level.size, rot);
-            Vector2Int worldPos = basePos + rotatedOffset;
+            // 1. 회전 적용 offset 계산
+            Vector2Int rotatedOffset = RoomRotationUtility.RotateDoorPos(localDoor.position, rotation);
 
-            // 방향 회전 적용
-            DoorDirection rotatedDir = RoomRotationUtility.RotateDoorDirection(localDoor.direction, rot);
+            // 2. 그리드 상 문 위치 게산
+            Vector2Int worldPos = originalPos + rotatedOffset;
+
+            // 3. 문 방향 회전 적용
+            DoorDirection rotatedDir = LocalDirToWorldDir(localDoor.direction, rotation);
 
             worldDoorPositions.Add(new DoorPosition(worldPos, rotatedDir));
         }
 
         return worldDoorPositions;
+    }
+
+    private DoorDirection LocalDirToWorldDir(DoorDirection localDir, RotationConstants.Rotation rotation)
+    {
+        DoorDirection worldDir;
+        switch (rotation)
+        {
+            case RotationConstants.Rotation.Rotation0:
+                worldDir = localDir;
+                break;
+            case RotationConstants.Rotation.Rotation90:
+                if (localDir == DoorDirection.North)
+                    worldDir = DoorDirection.East;
+                else if (localDir == DoorDirection.East)
+                    worldDir = DoorDirection.South;
+                else if (localDir == DoorDirection.South)
+                    worldDir = DoorDirection.West;
+                else
+                    worldDir = DoorDirection.North;
+                break;
+            case RotationConstants.Rotation.Rotation180:
+                if (localDir == DoorDirection.North)
+                    worldDir = DoorDirection.South;
+                else if (localDir == DoorDirection.East)
+                    worldDir = DoorDirection.West;
+                else if (localDir == DoorDirection.South)
+                    worldDir = DoorDirection.North;
+                else
+                    worldDir = DoorDirection.East;
+                break;
+            case RotationConstants.Rotation.Rotation270:
+                if (localDir == DoorDirection.North)
+                    worldDir = DoorDirection.West;
+                else if (localDir == DoorDirection.East)
+                    worldDir = DoorDirection.North;
+                else if (localDir == DoorDirection.South)
+                    worldDir = DoorDirection.East;
+                else
+                    worldDir = DoorDirection.South;
+                break;
+            default:
+                worldDir = localDir;
+                break;
+        }
+        return worldDir;
     }
 }
 

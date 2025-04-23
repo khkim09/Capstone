@@ -482,7 +482,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <returns></returns>
     public List<Vector2Int> GetOccupiedTiles()
     {
-        Vector2Int roomSize = roomData.GetRoomDataByLevel(GetCurrentLevel()).size;
+        RoomData.RoomLevel levelData = roomData.GetRoomDataByLevel(GetCurrentLevel());
+        Vector2Int roomSize = RoomRotationUtility.GetRotatedSize(levelData.size, currentRotation);
 
         return RoomRotationUtility.GetOccupiedGridPositions(position, roomSize, currentRotation);
     }
@@ -497,7 +498,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         return GetOccupiedTiles().Contains(tile);
     }
 
-
+    /*
     /// <summary>
     /// 문 추가
     /// </summary>
@@ -535,6 +536,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
         return true;
     }
+    */
 
     /// <summary>
     /// 방 좌표계에서의 문 위치를 계산합니다.
@@ -761,11 +763,13 @@ public abstract class Room<TData, TLevel> : Room
             return;
         }
 
+        /*
         // 가능한 각 문 위치에 문 설치
         foreach (DoorPosition doorPos in roomLevel.possibleDoorPositions)
             // 문 생성 및 설치
             if (!AddDoor(doorPos, shipDoorData, doorLevel))
                 Debug.LogWarning(
                     $"Failed to add door at position {doorPos.position} with direction {doorPos.direction} for room {name}");
+        */
     }
 }

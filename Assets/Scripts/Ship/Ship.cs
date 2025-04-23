@@ -149,8 +149,12 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
         // 룸 위치 설정
         Vector2Int size = roomData.GetRoomDataByLevel(level).size;
-        room.gameObject.transform.position = ShipGridHelper.GetRoomWorldPosition(position, size);
-        room.gameObject.transform.rotation = Quaternion.Euler(0, 0, -(int)rotation * 90f);
+        Vector2Int rotatedSize = RoomRotationUtility.GetRotatedSize(size, rotation);
+        Vector2 offset = RoomRotationUtility.GetRotationOffset(rotatedSize, rotation);
+        Vector3 worldPos = GridToWorldPosition(position) + (Vector3)offset;
+
+        room.gameObject.transform.position = worldPos + new Vector3(0, 0, 5f);
+        room.gameObject.transform.rotation = Quaternion.Euler(0, 0, -(int)rotation * 90);
 
         // 룸 초기화 - 캡슐화된 방식으로 내부 속성 초기화
         room.Initialize(level);
@@ -170,7 +174,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         room.OnRoomStateChanged += OnRoomStateChanged;
 
         // 그리드에 추가
-        AddRoomToGrid(room, position, size);
+        AddRoomToGrid(room, size);
 
         // 배치 완료 알림
         room.OnPlaced();
@@ -184,14 +188,12 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <summary>
     /// 그리드에 룸을 추가합니다.
     /// </summary>
-    private void AddRoomToGrid(Room room, Vector2Int position, Vector2Int size)
+    private void AddRoomToGrid(Room room, Vector2Int size)
     {
-        for (int x = 0; x < size.x; x++)
-            for (int y = 0; y < size.y; y++)
-            {
-                Vector2Int gridPos = position + new Vector2Int(x, y);
-                roomGrid[gridPos] = room;
-            }
+        List<Vector2Int> occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(room.position, size, room.currentRotation);
+
+        foreach (Vector2Int tile in occupiedTiles)
+            roomGrid[tile] = room;
     }
 
     /// <summary>
@@ -1058,53 +1060,15 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     public Vector2Int WorldToGridPosition(Vector2 worldPos)
     {
-        // 로컬 좌표로 변환
-        Vector3 localPos = transform.InverseTransformPoint(worldPos);
-
-        // 그리드 원점 (좌하단)
-        Vector2 gridOrigin = new(
-            -gridSize.x * GridConstants.CELL_SIZE / 2.0f,
-            -gridSize.y * GridConstants.CELL_SIZE / 2.0f
-        );
-
-        // 그리드 좌표 계산
-        float relX = localPos.x - gridOrigin.x;
-        float relY = localPos.y - gridOrigin.y;
-
-        int gridX = Mathf.FloorToInt(relX / GridConstants.CELL_SIZE);
-        int gridY = Mathf.FloorToInt(relY / GridConstants.CELL_SIZE);
-
-        Vector2Int result = new(gridX, gridY);
-
-        return result;
+        Vector3 local = new Vector3(worldPos.x, worldPos.y, 0) - Vector3.zero;
+        return new Vector2Int(Mathf.FloorToInt(local.x / GridConstants.CELL_SIZE),
+            Mathf.FloorToInt(local.y / GridConstants.CELL_SIZE));
     }
 
-    /// <summary>
-    /// 그리드 좌표를 월드 좌표로 변환합니다.
-    /// </summary>
     public Vector3 GridToWorldPosition(Vector2Int gridPos)
     {
-        // 그리드 원점 (좌하단)
-        Vector2 gridOrigin = new(
-            -gridSize.x * GridConstants.CELL_SIZE / 2.0f,
-            -gridSize.y * GridConstants.CELL_SIZE / 2.0f
-        );
-
-        // 로컬 좌표 계산 (셀 중앙으로)
-        Vector3 localPos = new(
-            gridOrigin.x + (gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
-            gridOrigin.y + (gridPos.y + 0.5f) * GridConstants.CELL_SIZE,
-            0
-        );
-
-        // 정확한 위치를 위해 반올림
-        localPos.x = Mathf.Round(localPos.x * 1000f) / 1000f;
-        localPos.y = Mathf.Round(localPos.y * 1000f) / 1000f;
-
-        // 월드 좌표로 변환
-        Vector3 worldPos = transform.TransformPoint(localPos);
-
-        return worldPos;
+        return Vector3.zero + new Vector3((gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
+            (gridPos.y + 0.5f) * GridConstants.CELL_SIZE, 0f);
     }
 
     public Vector2Int GetGridSize()

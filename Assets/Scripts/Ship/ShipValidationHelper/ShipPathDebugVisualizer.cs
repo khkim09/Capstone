@@ -3,25 +3,33 @@ using UnityEngine;
 
 public class ShipPathDebugVisualizer : MonoBehaviour
 {
-    public List<Vector2Int> visitedDoorTiles = new();
-    public List<Vector2Int> reachableTiles = new();
-    public Vector2Int startTile;
+    public List<Room> visitedRooms = new();
+    public Room startRoom;
+    public List<Room> allRooms = new();
 
     private void OnDrawGizmos()
     {
-        // 시작 문 위치: 녹색
-        Gizmos.color = Color.green;
-        Gizmos.DrawCube((Vector3Int)startTile + Vector3.one * 0.5f, Vector3.one * 0.3f);
+        if (allRooms == null || allRooms.Count == 0)
+        {
+            Debug.LogWarning("no rooms");
+            return;
+        }
 
-        // 방문한 문 위치: 파랑
-        Gizmos.color = Color.blue;
-        foreach (var tile in visitedDoorTiles)
-            Gizmos.DrawCube((Vector3Int)tile + Vector3.one * 0.5f, Vector3.one * 0.2f);
+        foreach (Room room in allRooms)
+        {
+            if (room == null) continue;
 
-        // 연결된 방의 타일: 노랑
-        Gizmos.color = Color.yellow;
-        foreach (var tile in reachableTiles)
-            Gizmos.DrawCube((Vector3Int)tile + Vector3.one * 0.5f, Vector3.one * 0.15f);
+            Vector3 center = room.transform.position;
+            center.z = 0;
+
+            if (room == startRoom)
+                Gizmos.color = Color.green;
+            else if (visitedRooms.Contains(room))
+                Gizmos.color = Color.yellow;
+            else
+                Gizmos.color = Color.red;
+
+            Gizmos.DrawCube(center, Vector3.one * 0.5f);
+        }
     }
-
 }

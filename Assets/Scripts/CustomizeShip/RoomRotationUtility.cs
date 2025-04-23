@@ -122,18 +122,15 @@ public static class RoomRotationUtility
     /// <param name="roomSize"></param>
     /// <param name="rotation"></param>
     /// <returns></returns>
-    public static Vector2Int RotateTileOffset(Vector2Int localPos, Vector2Int roomSize, RotationConstants.Rotation rotation)
+    public static Vector2Int RotateDoorPos(Vector2Int localDoorPos, RotationConstants.Rotation rotation)
     {
-        int w = roomSize.x;
-        int h = roomSize.y;
-
         return rotation switch
         {
-            RotationConstants.Rotation.Rotation0 => localPos,
-            RotationConstants.Rotation.Rotation90 => new Vector2Int(h - 1 - localPos.y, localPos.x),
-            RotationConstants.Rotation.Rotation180 => new Vector2Int(w - 1 - localPos.x, h - 1 - localPos.y),
-            RotationConstants.Rotation.Rotation270 => new Vector2Int(localPos.y, w - 1 - localPos.x),
-            _ => localPos
+            RotationConstants.Rotation.Rotation0 => localDoorPos,
+            RotationConstants.Rotation.Rotation90 => new Vector2Int(localDoorPos.y, -localDoorPos.x),
+            RotationConstants.Rotation.Rotation180 => new Vector2Int(-localDoorPos.x, -localDoorPos.y),
+            RotationConstants.Rotation.Rotation270 => new Vector2Int(-localDoorPos.y, localDoorPos.x),
+            _ => localDoorPos
         };
     }
 
