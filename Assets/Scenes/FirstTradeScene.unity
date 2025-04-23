@@ -196,8 +196,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tradeDataLoader: {fileID: 984445218}
-  warehouse: {fileID: 927924307}
+  storage: {fileID: 927924307}
   numberOfItemsToGive: 20
+  itemDatabase: {fileID: 11400000, guid: b2831f078cf94a447bef4162f866f32b, type: 2}
 --- !u!4 &298355941
 Transform:
   m_ObjectHideFlags: 0
@@ -425,7 +426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jsonFileName: PlanetTradeTest
-  tradableItems: []
+  tradingItems: []
 --- !u!4 &984445219
 Transform:
   m_ObjectHideFlags: 0
@@ -695,10 +696,11 @@ MonoBehaviour:
   showDebugInfo: 0
   allRooms: []
   doorData: {fileID: 11400000, guid: 4ae33c1f9e1a7c04889fd64d32868f52, type: 2}
-  weaponPrefab: {fileID: 0}
   testRoomPrefab1: {fileID: 7375369300968233328, guid: d967efba16181454db8bbe6c738202cf, type: 3}
   testRoomPrefab2: {fileID: 7375369300968233328, guid: a0485b7cd968c2d499c54304c81c5030, type: 3}
   testRoomPrefab3: {fileID: 7375369300968233328, guid: a0485b7cd968c2d499c54304c81c5030, type: 3}
+  backupRooms: []
+  backupRoomDatas: []
 --- !u!4 &1500875757
 Transform:
   m_ObjectHideFlags: 0
@@ -1478,6 +1480,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7692310530240725190, guid: 4c21bda3bcbbdad4197fb80c4386ba5f, type: 3}
+      propertyPath: itemDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: b2831f078cf94a447bef4162f866f32b, type: 2}
+    - target: {fileID: 7692310530240725190, guid: 4c21bda3bcbbdad4197fb80c4386ba5f, type: 3}
       propertyPath: tradeManager
       value: 
       objectReference: {fileID: 917642772}
@@ -1609,7 +1615,8 @@ PrefabInstance:
       propertyPath: inventoryPanelContent
       value: 
       objectReference: {fileID: 788712397}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5241471695110783427, guid: 4c21bda3bcbbdad4197fb80c4386ba5f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4903711840670838406, guid: 4c21bda3bcbbdad4197fb80c4386ba5f, type: 3}

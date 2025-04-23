@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 /// <summary>
 /// PlanetTradeData는 특정 행성의 무역 데이터를 보관하는 ScriptableObject입니다.
 /// 이 클래스는 행성 코드와 해당 행성에서 판매하는 무역 아이템 목록을 포함합니다.
@@ -17,7 +16,8 @@ public class PlanetTradeData : ScriptableObject
 
     /// <summary>
     /// 해당 행성에서 판매하는 무역 아이템 목록입니다.
+    /// TradingItemData는 아이템의 이름, 설명, 이미지, 기본 가격 등의 정보를 포함합니다.
     /// </summary>
     [Tooltip("해당 행성에서 판매하는 물품 목록")]
-    public List<TradableItem> items;
+    public List<TradingItemData> items;
 }

@@ -4,7 +4,7 @@ using TMPro;
 
 /// <summary>
 /// PlanetItemUI는 행성 상점(왼쪽 패널)에서 판매되는 각 아이템 슬롯을 관리하는 컴포넌트입니다.
-/// 이 스크립트는 TradableItem 데이터를 받아 해당 아이템의 이름과 가격을 UI에 표시하고,
+/// 이 스크립트는 TradingItemData 데이터를 받아 해당 아이템의 이름과 가격을 UI에 표시하고,
 /// 슬롯이 클릭되면 MiddlePanelUI로 해당 아이템의 상세 정보를 전달하며, 마우스 오버 시 텍스트 색상이 강조됩니다.
 /// </summary>
 public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
@@ -12,7 +12,7 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     #region UI References
 
     /// <summary>
-    /// 아이템 이름을 표시하는 pointerclickTextMeshProUGUI 컴포넌트입니다.
+    /// 아이템 이름을 표시하는 TextMeshProUGUI 컴포넌트입니다.
     /// </summary>
     [SerializeField] private TMP_Text itemNameText;
 
@@ -21,7 +21,9 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     /// </summary>
     [SerializeField] private TMP_Text priceText;
 
-    /// <summary>MiddlePanelUI를 Inspector에서 할당받습니다.</summary>
+    /// <summary>
+    /// MiddlePanelUI를 Inspector에서 할당받습니다.
+    /// </summary>
     [SerializeField] private MiddlePanelUI middlePanel;
 
     #endregion
@@ -29,9 +31,9 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     #region Data
 
     /// <summary>
-    /// 이 슬롯에 할당된 TradableItem 데이터입니다.
+    /// 이 슬롯에 할당된 TradingItemData 데이터입니다.
     /// </summary>
-    private TradableItem tradableItem;
+    private TradingItemData itemData;
 
     #endregion
 
@@ -58,18 +60,18 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     /// PlanetItemUI를 초기화하고, 아이템 이름과 가격을 UI에 표시합니다.
     /// 또한, 텍스트 컴포넌트의 원래 색상을 저장합니다.
     /// </summary>
-    /// <param name="item">표시할 TradableItem 데이터</param>
-    public void Setup(TradableItem item)
+    /// <param name="data">표시할 TradingItemData 데이터</param>
+    public void Setup(TradingItemData data)
     {
-        tradableItem = item;
+        itemData = data;
         if (itemNameText != null)
         {
-            itemNameText.text = tradableItem.itemName;
+            itemNameText.text = itemData.itemName;
             itemNameOriginalColor = itemNameText.color;
         }
         if (priceText != null)
         {
-            priceText.text = tradableItem.GetCurrentPrice().ToString("F2");
+            priceText.text = itemData.costBase.ToString("F2");
             priceOriginalColor = priceText.color;
         }
     }
@@ -80,20 +82,20 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     /// </summary>
     public void OnPointerClick(PointerEventData eventData)
     {
-        // 1) MiddlePanelUI 에 아이템 정보 전달 (원래 있던 코드)
-        MiddlePanelUI middlePanel = FindObjectOfType<MiddlePanelUI>();
-        if (middlePanel != null && tradableItem != null)
+        if (middlePanel == null)
         {
-            middlePanel.SetSelectedItem(tradableItem);
+            middlePanel = FindObjectOfType<MiddlePanelUI>();
         }
 
-        // 2) TradeUIManager 에 구매 상세·storage 패널 켜라고 알림
+        if (middlePanel != null && itemData != null)
+        {
+            middlePanel.SetSelectedItem(itemData);
+        }
+
         if (TradeUIManager.Instance != null)
         {
             TradeUIManager.Instance.OnBuyItemSelected();
         }
-        if (middlePanel != null)
-            middlePanel.SetSelectedItem(tradableItem);
     }
 
     /// <summary>
