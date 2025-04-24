@@ -61,7 +61,6 @@ public class CrewSystem : ShipSystem
             newCrew.currentRoom.OnCrewEnter(newCrew);
             newCrew.transform.position = newCrew.currentRoom.transform.position;
             newCrew.transform.SetParent(newCrew.currentRoom.transform);
-            Debug.Log("부모로 설정함");
         }
 
         crews.Add(newCrew);

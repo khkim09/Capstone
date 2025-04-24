@@ -48,6 +48,17 @@ public class WeaponSystem : ShipSystem
 
         weapon.transform.position = ShipGridHelper.GetRoomWorldPosition(gridPosition, weapon.gridSize);
 
+        return weapon;
+    }
+
+    public ShipWeapon AddWeapon(ShipWeapon shipWeapon)
+    {
+        ShipWeapon weapon = GameObjectFactory.Instance.ShipWeaponFactory.CreateWeaponObject(shipWeapon);
+
+
+        weapon.transform.SetParent(parentShip.transform);
+        weapon.transform.position = ShipGridHelper.GetRoomWorldPosition(weapon.GetGridPosition(), weapon.gridSize);
+        weapons.Add(weapon);
 
         return weapon;
     }

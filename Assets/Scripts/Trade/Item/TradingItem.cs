@@ -201,10 +201,7 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     public void OnPointerClick(PointerEventData eventData)
     {
         // 드래그 모드일 때는 클릭 이벤트 무시
-        if (isDragMode)
-        {
-            return;
-        }
+        if (isDragMode) return;
 
         // 아이템 재배치가 허용되지 않으면 클릭 이벤트 무시
         if (!TradingItemDragHandler.IsItemRepositioningAllowed)
@@ -552,5 +549,10 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         // TODO : 현재는 아이템 인스턴스 하나 별로 가격을 책정하고 있는데, 같은 무역 아이템이라면 같이 올라가거나 해야될 것 같다.
         //        같은 ID가 아니더라도, 같은 카테고리 등의 요소로도 가격 책정이 동일해야할 수 있으니 일단 보류
         return UnityEngine.Random.Range(GetCostMin(), GetCostMax());
+    }
+
+    public StorageRoomBase GetParentStorage()
+    {
+        return parentStorage;
     }
 }

@@ -30,6 +30,11 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
     protected override void Start()
     {
         base.Start();
+    }
+
+    public override void Initialize(int level)
+    {
+        base.Initialize(level);
         roomType = RoomType.Storage;
 
         // 캐시된 사이즈 초기화 및 그리드 생성
@@ -38,18 +43,6 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
 
         // 콜라이더 초기화
         InitializeCollider();
-
-        // TODO: 테스트용 코드
-        TradingItem tradingItem = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(2, 1);
-        AddItem(tradingItem, new Vector2Int(1, 1), 0);
-
-        List<TradingItemSerialization.ItemSerializationData> data =
-            TradingItemSerialization.SerializeAllItems(storedItems);
-        string json = TradingItemSerialization.ToJson(data);
-        System.IO.File.WriteAllText(Application.persistentDataPath + "/item_data.json", json);
-
-        List<TradingItemSerialization.ItemSerializationData> data1 = TradingItemSerialization.FromJsonList(json);
-        TradingItemSerialization.DeserializeAllItems(data1, this);
     }
 
     /// <summary>

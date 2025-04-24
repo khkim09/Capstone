@@ -1,228 +1,195 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using Newtonsoft.Json;
 
 /// <summary>
-/// 거래 아이템의 직렬화 및 역직렬화를 담당하는 유틸리티 클래스
+/// Easy Save 3를 사용하여 무역 아이템(TradingItem)의 직렬화 및 역직렬화를 담당하는 유틸리티 클래스
 /// </summary>
 public static class TradingItemSerialization
 {
     /// <summary>
-    /// 아이템 직렬화 데이터 클래스
+    /// 모든 무역 아이템을 저장합니다.
     /// </summary>
-    [Serializable]
-    public class ItemSerializationData
+    /// <param name="items">저장할 무역 아이템 목록</param>
+    /// <param name="filename">저장 파일명</param>
+    public static void SaveAllTradingItems(List<TradingItem> items, string filename)
     {
-        // 아이템 데이터 ID (스크립터블 오브젝트 참조용)
-        public int itemId;
+        // 파일이 이미 존재한다면 해당 파일 삭제 (덮어쓰기)
+        if (ES3.FileExists(filename))
+            ES3.DeleteFile(filename);
 
-        // 수량 및 상태 정보
-        public int amount;
-        public ItemState itemState = ItemState.Normal;
+        // 모든 무역 아이템 저장
+        ES3.Save("itemCount", items.Count, filename);
 
-        // 위치 정보
-        public Vector2Int gridPosition;
-        public RotationConstants.Rotation rotation;
-
-        // 가격 관련 정보 (캐싱된 가격이 있는 경우)
-        public float? cachedPrice;
-
-        // 저장된 스토리지 정보 (소속된 창고)
-        public string storageId; // 창고 식별자
+        for (int i = 0; i < items.Count; i++)
+            ES3.Save($"tradingItem_{i}", items[i], filename);
     }
 
     /// <summary>
-    /// 아이템을 직렬화하여 데이터 객체로 변환
+    /// 창고에 저장된 모든 무역 아이템을 저장합니다.
     /// </summary>
-    /// <param name="item">직렬화할 아이템</param>
-    /// <returns>직렬화된 아이템 데이터</returns>
-    public static ItemSerializationData SerializeItem(TradingItem item)
-    {
-        if (item == null)
-            return null;
-
-        return new ItemSerializationData
-        {
-            itemId = item.GetItemId(),
-            amount = item.amount,
-            itemState = item.GetItemState(),
-            gridPosition = item.GetGridPosition(),
-            rotation = (RotationConstants.Rotation)item.GetRotation(),
-            cachedPrice = item.GetCurrentPrice()
-            // TODO: 창고 ID 기록해야 함.
-        };
-    }
-
-    /// <summary>
-    /// 모든 아이템을 직렬화
-    /// </summary>
-    /// <param name="items">직렬화할 아이템 목록</param>
-    /// <returns>직렬화된 아이템 데이터 목록</returns>
-    public static List<ItemSerializationData> SerializeAllItems(List<TradingItem> items)
-    {
-        List<ItemSerializationData> result = new();
-
-        if (items == null)
-            return result;
-
-        foreach (TradingItem item in items)
-        {
-            ItemSerializationData data = SerializeItem(item);
-            if (data != null)
-                result.Add(data);
-        }
-
-        return result;
-    }
-
-    /// <summary>
-    /// 창고의 모든 아이템을 직렬화
-    /// </summary>
-    /// <param name="storage">대상 창고</param>
-    /// <returns>직렬화된 아이템 데이터 목록</returns>
-    public static List<ItemSerializationData> SerializeStorageItems(StorageRoomBase storage)
+    /// <param name="storage">무역 아이템이 저장된 창고</param>
+    /// <param name="filename">저장 파일명</param>
+    public static void SaveStorageItems(StorageRoomBase storage, string filename)
     {
         if (storage == null)
-            return new List<ItemSerializationData>();
+            return;
 
-        return SerializeAllItems(storage.GetStoredItems());
+        SaveAllTradingItems(storage.storedItems, filename);
     }
 
     /// <summary>
-    /// 직렬화된 아이템 데이터로 아이템 객체 생성
+    /// 함선의 모든 창고에 저장된 무역 아이템을 저장합니다.
     /// </summary>
-    /// <param name="data">직렬화된 아이템 데이터</param>
-    /// <param name="storage">배치할 창고</param>
-    /// <returns>생성된 아이템 객체</returns>
-    public static TradingItem DeserializeItem(ItemSerializationData data, StorageRoomBase storage)
+    /// <param name="ship">무역 아이템이 저장된 함선</param>
+    /// <param name="filename">저장 파일명</param>
+    public static void SaveShipItems(Ship ship, string filename)
     {
-        if (data == null || storage == null)
-            return null;
+        if (ship == null)
+            return;
 
-        // 아이템 매니저를 통해 아이템 생성
-        TradingItem item = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(data.itemId, data.amount);
+        List<TradingItem> allItems = new();
 
-        if (item != null)
-        {
-            // 아이템 상태 설정
-            item.SetItemState(data.itemState);
+        foreach (Room room in ship.GetAllRooms())
+            if (room is StorageRoomBase storage)
+                allItems.AddRange(storage.storedItems);
 
-            // 회전 설정
-            item.Rotate(data.rotation);
-
-            // 그리드 위치 설정
-            item.SetGridPosition(data.gridPosition);
-
-            // 부모 스토리지 설정
-            item.SetParentStorage(storage);
-
-            // 가격 설정 (캐싱된 가격이 있는 경우)
-            if (data.cachedPrice.HasValue)
-                // 강제로 가격 초기화를 위한 내부 필드 직접 접근이 필요할 수 있음
-                // 현재 구현에서는 불가능하므로 RecalculatePrice()를 호출하는 방식으로 대체
-                item.RecalculatePrice();
-
-            // 창고에 아이템 배치
-            storage.AddItem(item, data.gridPosition, data.rotation);
-        }
-
-        return item;
+        SaveAllTradingItems(allItems, filename);
     }
 
     /// <summary>
-    /// 창고에 모든 아이템 복원
+    /// 저장된 모든 무역 아이템을 불러옵니다.
     /// </summary>
-    /// <param name="itemDataList">직렬화된 아이템 데이터 목록</param>
+    /// <param name="filename">불러올 파일명</param>
+    /// <returns>불러온 무역 아이템 목록</returns>
+    public static List<TradingItem> LoadAllTradingItems(string filename)
+    {
+        List<TradingItem> items = new();
+
+        if (!ES3.FileExists(filename))
+            return items;
+
+        // 아이템 수 불러오기
+        int itemCount = ES3.Load<int>("itemCount", filename);
+
+        // 각 아이템 불러오기
+        for (int i = 0; i < itemCount; i++)
+            if (ES3.KeyExists($"tradingItem_{i}", filename))
+            {
+                TradingItem item = ES3.Load<TradingItem>($"tradingItem_{i}", filename);
+                if (item != null)
+                    items.Add(item);
+            }
+
+        return items;
+    }
+
+    /// <summary>
+    /// 창고에 모든 무역 아이템을 복원합니다.
+    /// </summary>
+    /// <param name="filename">불러올 파일명</param>
     /// <param name="storage">대상 창고</param>
-    /// <returns>복원된 아이템 수</returns>
-    public static int DeserializeAllItems(List<ItemSerializationData> itemDataList, StorageRoomBase storage)
+    /// <returns>복원된 무역 아이템 수</returns>
+    public static int RestoreAllItemsToStorage(string filename, StorageRoomBase storage)
     {
-        if (itemDataList == null || storage == null)
+        if (!ES3.FileExists(filename) || storage == null)
             return 0;
 
+        // 기존 아이템 제거
+        List<TradingItem> existingItems = new(storage.storedItems);
+        foreach (TradingItem item in existingItems)
+            storage.RemoveItem(item);
+
+        List<TradingItem> items = LoadAllTradingItems(filename);
+
+        // ItemFactory를 통해 아이템 인스턴스 생성 및 추가
+        foreach (TradingItem item in items) storage.AddItem(item, item.GetGridPosition(), item.rotation);
+
+        return items.Count;
+    }
+
+    /// <summary>
+    /// 함선의 모든 창고에 무역 아이템을 복원합니다.
+    /// </summary>
+    /// <param name="filename">불러올 파일명</param>
+    /// <param name="ship">대상 함선</param>
+    /// <returns>복원된 무역 아이템 수</returns>
+    public static int RestoreAllItemsToShip(Ship ship, string filename)
+    {
+        if (!ES3.FileExists(filename) || ship == null)
+            return 0;
+
+        foreach (Room room in ship.GetAllRooms())
+            if (room is StorageRoomBase storage)
+            {
+                List<TradingItem> existingItems = new(storage.storedItems);
+                foreach (TradingItem item in existingItems)
+                    storage.RemoveItem(item);
+            }
+
+        List<TradingItem> items = LoadAllTradingItems(filename);
         int restoredCount = 0;
 
-        // 기존 아이템 제거
-        storage.DestroyAllItems();
-
-
-        // 아이템 복원
-        foreach (ItemSerializationData data in itemDataList)
+        // ItemFactory를 이용해 아이템 인스턴스 재생성
+        ItemFactory itemFactory = GameObject.FindObjectOfType<ItemFactory>();
+        if (itemFactory == null)
         {
-            TradingItem item = DeserializeItem(data, storage);
-            if (item != null)
-                restoredCount++;
+            Debug.LogError("ItemFactory not found in the scene!");
+            return 0;
+        }
+
+        // 각 아이템을 원래 있던 창고에 복원
+        foreach (TradingItem item in items)
+        {
+            // 새 아이템 인스턴스 생성
+            TradingItem newItem = itemFactory.CreateItemInstance(item.GetItemId(), item.amount);
+            if (newItem == null)
+            {
+                Debug.LogWarning($"Failed to create item instance for ID: {item.GetItemId()}");
+                continue;
+            }
+
+            // 아이템 상태 복원
+            newItem.SetItemState(item.GetItemState());
+            newItem.SetGridPosition(item.GetGridPosition());
+            newItem.Rotate(item.rotation);
+
+            // 적절한 창고 찾기
+            StorageRoomBase targetStorage = newItem.GetParentStorage();
+
+            // 적합한 창고를 찾았다면 아이템 추가
+            if (targetStorage != null)
+            {
+                if (targetStorage.AddItem(newItem, newItem.GetGridPosition(), newItem.rotation))
+                    restoredCount++;
+                else
+                    Debug.LogError("문제 있음");
+            }
+            else
+            {
+                GameObject.Destroy(newItem.gameObject); // 창고를 찾지 못한 경우 객체 삭제
+            }
         }
 
         return restoredCount;
     }
 
     /// <summary>
-    /// 아이템 데이터를 JSON 문자열로 변환
+    /// 아이템이 속한 창고를 찾습니다.
     /// </summary>
-    /// <param name="data">직렬화할 아이템 데이터</param>
-    /// <returns>JSON 문자열</returns>
-    public static string ToJson(ItemSerializationData data)
+    /// <param name="item">찾을 아이템</param>
+    /// <returns>아이템이 속한 창고. 없으면 null.</returns>
+    private static StorageRoomBase FindParentStorage(TradingItem item)
     {
-        if (data == null)
-            return "{}";
-
-        return JsonConvert.SerializeObject(data, Formatting.Indented);
-    }
-
-    /// <summary>
-    /// 아이템 데이터 목록을 JSON 문자열로 변환
-    /// </summary>
-    /// <param name="dataList">직렬화할 아이템 데이터 목록</param>
-    /// <returns>JSON 문자열</returns>
-    public static string ToJson(List<ItemSerializationData> dataList)
-    {
-        if (dataList == null)
-            return "[]";
-
-        return JsonConvert.SerializeObject(dataList, Formatting.Indented);
-    }
-
-    /// <summary>
-    /// JSON 문자열에서 아이템 데이터 복원
-    /// </summary>
-    /// <param name="json">JSON 문자열</param>
-    /// <returns>복원된 아이템 데이터</returns>
-    public static ItemSerializationData FromJson(string json)
-    {
-        if (string.IsNullOrEmpty(json))
+        if (item == null)
             return null;
 
-        try
-        {
-            return JsonConvert.DeserializeObject<ItemSerializationData>(json);
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"아이템 데이터 역직렬화 오류: {e.Message}");
-            return null;
-        }
-    }
+        // 모든 스토리지 검색
+        foreach (StorageRoomBase storage in GameObject.FindObjectsOfType<StorageRoomBase>())
+            if (storage.storedItems.Contains(item))
+                return storage;
 
-    /// <summary>
-    /// JSON 문자열에서 아이템 데이터 목록 복원
-    /// </summary>
-    /// <param name="json">JSON 문자열</param>
-    /// <returns>복원된 아이템 데이터 목록</returns>
-    public static List<ItemSerializationData> FromJsonList(string json)
-    {
-        if (string.IsNullOrEmpty(json))
-            return new List<ItemSerializationData>();
-
-        try
-        {
-            return JsonConvert.DeserializeObject<List<ItemSerializationData>>(json);
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"아이템 데이터 목록 역직렬화 오류: {e.Message}");
-            return new List<ItemSerializationData>();
-        }
+        return null;
     }
 }
