@@ -574,4 +574,51 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     {
         return spriteRenderer;
     }
+
+    /// <summary>
+    /// 다른 CrewBase 객체의 데이터를 복사합니다.
+    /// </summary>
+    /// <param name="other">복사할 대상.</param>
+    public void CopyFrom(CrewBase other)
+    {
+        if (other == null) return;
+
+        crewName = other.crewName;
+        isPlayerControlled = other.isPlayerControlled;
+        race = other.race;
+        maxHealth = other.maxHealth;
+        attack = other.attack;
+        defense = other.defense;
+        learningSpeed = other.learningSpeed;
+        needsOxygen = other.needsOxygen;
+
+        // 딥 카피 - Dictionary는 참조형이라 새로 할당
+        maxSkillValueArray = new Dictionary<SkillType, float>(other.maxSkillValueArray);
+        maxPilotSkillValue = other.maxPilotSkillValue;
+        maxEngineSkillValue = other.maxEngineSkillValue;
+        maxPowerSkillValue = other.maxPowerSkillValue;
+        maxShieldSkillValue = other.maxShieldSkillValue;
+        maxWeaponSkillValue = other.maxWeaponSkillValue;
+        maxAmmunitionSkillValue = other.maxAmmunitionSkillValue;
+        maxMedBaySkillValue = other.maxMedBaySkillValue;
+        maxRepairSkillValue = other.maxRepairSkillValue;
+
+        skills = new Dictionary<SkillType, float>(other.skills);
+        equipAdditionalSkills = new Dictionary<SkillType, float>(other.equipAdditionalSkills);
+
+        // 장비는 참조 복사 (필요 시 DeepCopy로 변경 가능)
+        equippedWeapon = other.equippedWeapon;
+        equippedShield = other.equippedShield;
+        equippedAssistant = other.equippedAssistant;
+
+        currentRoom = other.currentRoom;
+        position = other.position;
+        targetPosition = other.targetPosition;
+        moveSpeed = other.moveSpeed;
+        health = other.health;
+        status = other.status;
+        isAlive = other.isAlive;
+        isMoving = other.isMoving;
+        currentShip = other.currentShip;
+    }
 }

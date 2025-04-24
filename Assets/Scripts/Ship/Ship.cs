@@ -92,7 +92,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         doorLevel = 1;
         GameManager.Instance.SetPlayerShip(this);
 
-        /// TODO: 테스트를 위해 임시 방 설치. 나중에 제거할 것
+        ForSerializeTest();
+    }
+
+    public void ForSerializeTest()
+    {
         AddRoom(3, testRoomPrefab1.GetComponent<Room>().GetRoomData(), new Vector2Int(0, 0),
             RotationConstants.Rotation.Rotation0);
         AddRoom(1, testRoomPrefab2.GetComponent<Room>().GetRoomData(), new Vector2Int(4, 1),
@@ -104,19 +108,8 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         ShipWeapon newWeapon2 = AddWeapon(6, new Vector2Int(-2, -1), ShipWeaponAttachedDirection.East);
         ShipWeapon newWeapon3 = AddWeapon(10, new Vector2Int(6, 2), ShipWeaponAttachedDirection.North);
 
-
-        List<ShipWeaponSerialization.ShipWeaponSerializationData> data = new()
-        {
-            ShipWeaponSerialization.SerializeWeapon(newWeapon),
-            ShipWeaponSerialization.SerializeWeapon(newWeapon2),
-            ShipWeaponSerialization.SerializeWeapon(newWeapon3)
-        };
-
-        string json = ShipWeaponSerialization.ToJson(data);
-        File.WriteAllText(Application.persistentDataPath + "/weapon_data.json", json);
-
-        List<ShipWeaponSerialization.ShipWeaponSerializationData> data1 = ShipWeaponSerialization.FromJsonList(json);
-        ShipWeaponSerialization.DeserializeAllWeapons(data1, this);
+        ShipWeaponSerialization.SaveAllWeapons(GetAllWeapons(), Application.persistentDataPath + "/weapon_data.es3");
+        ShipWeaponSerialization.LoadAllWeapons(Application.persistentDataPath + "/weapon_data.es3");
 
         CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
         CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
@@ -126,13 +119,21 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         if (crewBase2 is CrewMember crewMember2) AddCrew(crewMember2);
         if (crewBase3 is CrewMember crewMember3) AddCrew(crewMember3);
 
-        List<CrewSerialization.CrewSerializationData> crewdata = CrewSerialization.SerializeAllCrews(GetAllCrew());
-        string json1 = CrewSerialization.ToJson(crewdata);
-        File.WriteAllText(Application.persistentDataPath + "/crew_data.json", json1);
-        List<CrewSerialization.CrewSerializationData> data3 = CrewSerialization.FromJsonList(json1);
+        //  CrewSerialization.SaveAllCrews(GetAllCrew(), Application.persistentDataPath + "/crew_data.es3");
+        //   CrewSerialization.RestoreAllCrewsToShip(Application.persistentDataPath + "/crew_data.es3", this);
 
+        // TODO: 테스트용 코드
+        TradingItem tradingItem = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(2, 1);
 
-        CrewSerialization.DeserializeAllCrews(data3, this);
+        foreach (Room room in allRooms)
+            if (room is StorageRoomBase)
+            {
+                StorageRoomBase storageRoom = room as StorageRoomBase;
+                storageRoom.AddItem(tradingItem, new Vector2Int(1, 1), 0);
+            }
+
+        TradingItemSerialization.SaveShipItems(this, Application.persistentDataPath + "/item_data.es3");
+        TradingItemSerialization.RestoreAllItemsToShip(this, Application.persistentDataPath + "/item_data.es3");
     }
 
     /// <summary>
@@ -900,6 +901,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         ShipWeaponAttachedDirection attachDirection = ShipWeaponAttachedDirection.East)
     {
         return GetSystem<WeaponSystem>().AddWeapon(weaponId, gridPosition, attachDirection);
+    }
+
+    public ShipWeapon AddWeapon(ShipWeapon shipWeapon)
+    {
+        return GetSystem<WeaponSystem>().AddWeapon(shipWeapon);
     }
 
     #endregion

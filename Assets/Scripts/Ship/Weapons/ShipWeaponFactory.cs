@@ -80,31 +80,19 @@ public class ShipWeaponFactory : MonoBehaviour
         return weaponInstance;
     }
 
-    /// <summary>
-    /// 직렬화 데이터로부터 무기 인스턴스 생성 - 함선에 자동 추가하지 않음
-    /// </summary>
-    /// <param name="data">직렬화된 무기 데이터</param>
-    /// <returns>생성된 무기 또는 null</returns>
-    public ShipWeapon CreateWeaponFromData(ShipWeaponSerialization.ShipWeaponSerializationData data)
+    public ShipWeapon CreateWeaponObject(ShipWeapon shipWeapon)
     {
-        if (data == null)
-            return null;
+        GameObject weaponObject = Instantiate(weaponPrefab);
 
-        ShipWeapon weapon = CreateWeaponInstance(data.weaponId);
+        ShipWeapon weaponComponent = weaponObject.GetComponent<ShipWeapon>();
 
-        if (weapon != null)
-        {
-            // 그리드 위치 설정
-            weapon.SetGridPosition(data.gridPosition);
+        if (weaponComponent == null) weaponComponent = weaponObject.AddComponent<ShipWeapon>();
 
-            // 방향 설정
-            weapon.SetAttachedDirection(data.attachedDirection);
+        weaponComponent.CopyFrom(shipWeapon);
 
-            // 추가 데이터 적용
-            weapon.ApplySerializationData(data);
-        }
+        weaponObject.name = $"weapon_{shipWeapon.name}";
 
-        return weapon;
+        return weaponComponent;
     }
 
     /// <summary>
