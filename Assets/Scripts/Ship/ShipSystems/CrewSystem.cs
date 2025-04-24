@@ -46,14 +46,23 @@ public class CrewSystem : ShipSystem
 
         parentShip.RecalculateAllStats();
 
+        if (newCrew.currentRoom == null)
+        {
+            Room randomRoom = parentShip.GetRandomRoom();
+            randomRoom.OnCrewEnter(newCrew);
 
-        Room randomRoom = parentShip.GetRandomRoom();
-        randomRoom.OnCrewEnter(newCrew);
+            newCrew.transform.position = parentShip.GridToWorldPosition(randomRoom.position);
+            newCrew.transform.SetParent(randomRoom.transform);
+            newCrew.currentRoom = randomRoom;
+            newCrew.position = randomRoom.position;
+        }
+        else
+        {
+            newCrew.currentRoom.OnCrewEnter(newCrew);
+            newCrew.transform.position = parentShip.GridToWorldPosition(newCrew.currentRoom.position);
+            newCrew.transform.SetParent(newCrew.currentRoom.transform);
+        }
 
-        newCrew.transform.position = parentShip.GridToWorldPosition(randomRoom.position);
-        newCrew.transform.SetParent(randomRoom.transform);
-        newCrew.currentRoom = randomRoom;
-        newCrew.position = randomRoom.position;
         crews.Add(newCrew);
         return true;
     }
