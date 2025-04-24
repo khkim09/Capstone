@@ -201,8 +201,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 4. 실제 Ship 상태 기준 유효성 검사 수행
         validationResult = new ShipValidationHelper().ValidateShipLayout(playerShip);
 
-        feedbackText.text = $"{validationResult.Message}";
-        /*
+        // feedbackText.text = $"{validationResult.Message}";
         // 5. 유효성 검사
         if (!validationResult.IsValid)
         {
@@ -225,7 +224,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
             // 설계도 함선 구매 (재화량 차감)
             ResourceManager.Instance.ChangeResource(ResourceType.COMA, -targetBlueprintShip.totalBlueprintCost);
         }
-        */
+
+        playerShip.RecalculateAllStats();
 
         // backup data 삭제
         // playerShip.backupRoomDatas.Clear();

@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class Ship : MonoBehaviour, IWorldGridSwitcher
 {
-    [Header("Ship Info")] [SerializeField] public string shipName = "Milky";
+    [Header("Ship Info")][SerializeField] public string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -347,11 +347,6 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     // ---------------- 함선 커스터마이징 관련 추가 <기현> ----------------
 
     /// <summary>
-    /// 설계도로 되돌리기 작업을 위한 방 저장 리스트
-    /// </summary>
-    public List<Room> backupRooms = new List<Room>();
-
-    /// <summary>
     /// 백업해 둘 방 정보들
     /// </summary>
     public List<RoomBackupData> backupRoomDatas = new List<RoomBackupData>();
@@ -387,7 +382,6 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     public void BackupCurrentShip()
     {
-        backupRooms = GetAllRooms();
         backupRoomDatas.Clear();
 
         foreach (Room room in allRooms)
@@ -420,8 +414,6 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             AddRoom(backupData.level, backupData.roomData, backupData.position, backupData.rotation);
             Room placed = GetRoomAtPosition(backupData.position);
         }
-
-        RecalculateAllStats();
     }
 
     /// <summary>
@@ -431,13 +423,13 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <param name="bpShip">설계도 함선</param>
     public void ReplaceShipFromBlueprint(BlueprintShip bpShip)
     {
-        // 2. 기존 함선 삭제
+        // 1. 기존 함선 삭제
         foreach (Room room in allRooms)
             Destroy(room.gameObject);
 
         allRooms.Clear();
 
-        // 3. 설계도 -> 함선으로 적용
+        // 2. 설계도 -> 함선으로 적용
         foreach (BlueprintRoom bpRoom in bpShip.GetComponentsInChildren<BlueprintRoom>())
             AddRoom(bpRoom.bpLevelIndex, bpRoom.bpRoomData, bpRoom.bpPosition, bpRoom.bpRotation);
     }

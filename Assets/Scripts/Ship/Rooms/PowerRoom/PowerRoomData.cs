@@ -38,8 +38,17 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
                 powerRequirement = 3000f,
                 crewRequirement = 0,
                 damageHitPointRate = RoomDamageRates.Create(50f, 10f),
-                possibleDoorPositions = new List<DoorPosition>() { new(new Vector2Int(1, 1), DoorDirection.East) },
-                crewEntryGridPriority = new List<Vector2Int>() { new(0, 1), new(0, 0), new(1, 0), new(1, 1) }
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new(new Vector2Int(1, 1), DoorDirection.East)
+                },
+                crewEntryGridPriority = new List<Vector2Int>()
+                {
+                    new(0, 0),
+                    new(0, 1),
+                    new(1, 0),
+                    new(1, 1)
+                }
             },
             new()
             {
@@ -53,22 +62,22 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
                 powerRequirement = 7000f,
                 crewRequirement = 0,
                 damageHitPointRate = RoomDamageRates.Create(50f, 10f),
-                possibleDoorPositions =
-                    new List<DoorPosition>()
-                    {
-                        new(new Vector2Int(0, 1), DoorDirection.West), new(new Vector2Int(2, 1), DoorDirection.East)
-                    },
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new(new Vector2Int(0, 1), DoorDirection.West),
+                    new(new Vector2Int(2, 1), DoorDirection.East)
+                },
                 crewEntryGridPriority = new List<Vector2Int>()
                 {
-                    new(1, 1),
-                    new(1, 2),
-                    new(0, 2),
-                    new(2, 0),
-                    new(2, 2),
-                    new(0, 0),
-                    new(1, 0),
-                    new(2, 1),
-                    new(0, 1)
+                    new (0, 2),
+                    new (1, 2),
+                    new (2, 2),
+                    new (0, 0),
+                    new (1, 0),
+                    new (2, 0),
+                    new (1, 1),
+                    new (0, 1),
+                    new (2, 1)
                 }
             },
             new()
@@ -83,29 +92,29 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
                 powerRequirement = 12000f,
                 crewRequirement = 0,
                 damageHitPointRate = RoomDamageRates.Create(50f, 10f),
-                possibleDoorPositions =
-                    new List<DoorPosition>()
-                    {
-                        new(new Vector2Int(0, 2), DoorDirection.West), new(new Vector2Int(3, 1), DoorDirection.East)
-                    },
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new(new Vector2Int(0, 2), DoorDirection.West),
+                    new(new Vector2Int(3, 1), DoorDirection.East)
+                },
                 crewEntryGridPriority = new List<Vector2Int>()
                 {
-                    new(1, 2),
-                    new(2, 2),
-                    new(2, 1),
-                    new(1, 1),
-                    new(0, 3),
-                    new(3, 0),
-                    new(3, 3),
-                    new(0, 0),
-                    new(2, 3),
-                    new(1, 0),
-                    new(1, 3),
-                    new(2, 0),
-                    new(0, 2),
-                    new(3, 1),
-                    new(3, 2),
-                    new(0, 1)
+                    new (0, 3),
+                    new (1, 3),
+                    new (2, 3),
+                    new (3, 3),
+                    new (0, 0),
+                    new (1, 0),
+                    new (2, 0),
+                    new (3, 0),
+                    new (3, 2),
+                    new (2, 2),
+                    new (1, 2),
+                    new (0, 1),
+                    new (1, 1),
+                    new (2, 1),
+                    new (3, 1),
+                    new (0, 2)
                 }
             }
         };

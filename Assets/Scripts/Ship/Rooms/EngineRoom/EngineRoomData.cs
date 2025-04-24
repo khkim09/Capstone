@@ -49,9 +49,17 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
                 fuelEfficiency = 0f,
                 avoidEfficiency = 0f,
                 damageHitPointRate = RoomDamageRates.Create(60f, 20f),
-                possibleDoorPositions =
-                    new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) },
-                crewEntryGridPriority = new List<Vector2Int>() { new(0, 1), new(0, 0), new(1, 0), new(1, 1) }
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new(new Vector2Int(1, 0), DoorDirection.East)
+                },
+                crewEntryGridPriority = new List<Vector2Int>()
+                {
+                    new(0, 1),
+                    new(0, 0),
+                    new(1, 1),
+                    new(1, 0)
+                }
             },
             new()
             {
@@ -67,20 +75,19 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
                 fuelConsumption = 8f,
                 fuelEfficiency = 5f,
                 avoidEfficiency = 2f,
-                damageHitPointRate = RoomDamageRates.Create(60f, 20f),
-                possibleDoorPositions =
-                    new List<DoorPosition>() { new(new Vector2Int(2, 1), DoorDirection.East) },
+                damageHitPointRate = RoomDamageRates.Create(120f, 40f),
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new(new Vector2Int(2, 1), DoorDirection.East)
+                },
                 crewEntryGridPriority = new List<Vector2Int>()
                 {
-                    new(1, 1),
-                    new(1, 2),
-                    new(0, 2),
-                    new(2, 0),
-                    new(2, 2),
-                    new(0, 0),
-                    new(1, 0),
-                    new(2, 1),
-                    new(0, 1)
+                    new (0, 0),
+                    new (0, 1),
+                    new (1, 0),
+                    new (1, 1),
+                    new (2, 0),
+                    new (2, 1)
                 }
             },
             new()
@@ -97,27 +104,22 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
                 fuelConsumption = 5f,
                 fuelEfficiency = 10f,
                 avoidEfficiency = 5f,
-                damageHitPointRate = RoomDamageRates.Create(60f, 20f),
-                possibleDoorPositions =
-                    new List<DoorPosition>() { new(new Vector2Int(1, 1), DoorDirection.South) },
+                damageHitPointRate = RoomDamageRates.Create(180f, 60f),
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new(new Vector2Int(0, 0), DoorDirection.South)
+                },
                 crewEntryGridPriority = new List<Vector2Int>()
                 {
-                    new(1, 2),
-                    new(2, 2),
-                    new(2, 1),
-                    new(1, 1),
-                    new(0, 3),
-                    new(3, 0),
-                    new(3, 3),
-                    new(0, 0),
-                    new(2, 3),
-                    new(1, 0),
-                    new(1, 3),
-                    new(2, 0),
-                    new(0, 2),
-                    new(3, 1),
-                    new(3, 2),
-                    new(0, 1)
+                    new (2, 2),
+                    new (1, 2),
+                    new (0, 2),
+                    new (2, 1),
+                    new (1, 1),
+                    new (0, 1),
+                    new (2, 0),
+                    new (1, 0),
+                    new (0, 0)
                 }
             }
         };

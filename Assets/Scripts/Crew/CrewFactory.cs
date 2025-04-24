@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -76,6 +77,9 @@ public class CrewFactory : MonoBehaviour
 
         // Factory에서 직접 선원 초기화 (스탯, 스킬 설정)
         InitializeCrewStats(crew);
+
+        // collider 초기화
+        InitializeCrewCollider(crew);
 
         return crew;
     }
@@ -157,6 +161,48 @@ public class CrewFactory : MonoBehaviour
         // 스프라이트 렌더러 설정
         SpriteRenderer spriteRenderer = crew.GetComponent<SpriteRenderer>();
         if (spriteRenderer != null) spriteRenderer.sortingOrder = SortingOrderConstants.Character;
+    }
+
+    /// <summary>
+    /// RTS 조작을 위해 선원의 collider 설정
+    /// </summary>
+    /// <param name="crew"></param>
+    private void InitializeCrewCollider(CrewBase crew)
+    {
+        // collider 설정
+        switch (crew.race)
+        {
+            case CrewRace.Human:
+                BoxCollider2D humanCollider = crew.AddComponent<BoxCollider2D>();
+                humanCollider.offset = new Vector2(0.0278020874f, -0.0139010847f);
+                humanCollider.size = new Vector2(0.540258348f, 0.691506088f);
+                break;
+            case CrewRace.Amorphous:
+                CircleCollider2D amorphousCollider = crew.AddComponent<CircleCollider2D>();
+                amorphousCollider.offset = new Vector2(-0.0199999996f, -0.0250000004f);
+                amorphousCollider.radius = 0.3471974f;
+                break;
+            case CrewRace.MechanicTank:
+                BoxCollider2D mechanicTankCollider = crew.AddComponent<BoxCollider2D>();
+                mechanicTankCollider.offset = new Vector2(0, -0.198685423f);
+                mechanicTankCollider.size = new Vector2(1, 0.602629185f);
+                break;
+            case CrewRace.MechanicSup:
+                BoxCollider2D mechanicSupCollider = crew.AddComponent<BoxCollider2D>();
+                mechanicSupCollider.offset = new Vector2(0, 0);
+                mechanicSupCollider.size = new Vector2(1, 1);
+                break;
+            case CrewRace.Beast:
+                BoxCollider2D beastCollider = crew.AddComponent<BoxCollider2D>();
+                beastCollider.offset = new Vector2(0, 0);
+                beastCollider.size = new Vector2(1, 1);
+                break;
+            case CrewRace.Insect:
+                BoxCollider2D insectCollider = crew.AddComponent<BoxCollider2D>();
+                insectCollider.offset = new Vector2(0.0749756098f, 0);
+                insectCollider.size = new Vector2(0.85004878f, 1);
+                break;
+        }
     }
 
     /// <summary>

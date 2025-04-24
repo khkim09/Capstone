@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using UnityEngine;
 
 /// <summary>
 /// 함선의 방 배치와 무기 배치가 유효한지 검증하는 클래스입니다.
 /// 모든 방이 서로 연결되어 있고, 문이 적절히 배치되어 있는지 확인하며,
-/// 무기의 발사 경로를 검증합니다.
+/// 무기의 발사 경로를 검증합니다. (무기 검사 구현 필요 - 필요 시 이전 버전 끌어와서 써야될 듯)
 /// </summary>
 public class ShipValidationHelper
 {

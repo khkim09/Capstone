@@ -50,9 +50,10 @@ public class CrewSystem : ShipSystem
         Room randomRoom = parentShip.GetRandomRoom();
         randomRoom.OnCrewEnter(newCrew);
 
-        newCrew.transform.position = randomRoom.transform.position;
+        newCrew.transform.position = parentShip.GridToWorldPosition(randomRoom.position);
         newCrew.transform.SetParent(randomRoom.transform);
         newCrew.currentRoom = randomRoom;
+        newCrew.position = randomRoom.position;
         crews.Add(newCrew);
         return true;
     }

@@ -52,7 +52,8 @@ public class CrewUIHandler : MonoBehaviour
     /// <summary>
     /// 선원 이름 입력 필드입니다.
     /// </summary>
-    [Header("Input Fields")] [SerializeField]
+    [Header("Input Fields")]
+    [SerializeField]
     private TMP_InputField nameInputField;
 
     /// <summary>
@@ -114,14 +115,15 @@ public class CrewUIHandler : MonoBehaviour
     /// <summary>
     /// 종족별 prefab
     /// </summary>
-    [Header("Crew Prefabs")] [SerializeField]
+    [Header("Crew Prefabs")]
+    [SerializeField]
     private GameObject[] crewPrefabs;
 
     /// <summary>
     /// UI 화면 이동 이력을 저장하는 스택 구조입니다.
     /// 뒤로 가기 기능에 사용됩니다.
     /// </summary>
-    private Stack<GameObject> uiHistory = new(); // stack 구조
+    private Stack<GameObject> uiHistory = new Stack<GameObject>(); // stack 구조
 
     /// <summary>
     /// 싱글턴 인스턴스를 초기화합니다.
@@ -292,42 +294,6 @@ public class CrewUIHandler : MonoBehaviour
     }
 
     /// <summary>
-    /// 새로운 선원 생성 후 생성한 선원 반환
-    /// </summary>
-    /// <returns></returns>
-    private CrewMember CreateCrewMember()
-    {
-        CrewBase baseCrew =
-            GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(selectedRace, inputName);
-
-        if (baseCrew is CrewMember newCrew)
-        {
-            // 생성할 위치 (예시)
-            Vector3 spawnPosition = new(-8f, 0f, 0f);
-
-            // 선택된 종족에 맞는 프리팹 가져오기
-            int raceIndex = (int)selectedRace - 1;
-            if (raceIndex < 0 || raceIndex >= crewPrefabs.Length)
-                Debug.LogError("선택된 종족에 맞는 프리팹을 찾을 수 없습니다.");
-
-            // GameObject crewGO = Instantiate(crewPrefabs[raceIndex], spawnPosition, Quaternion.identity);
-            // CrewMember newCrew = crewGO.GetComponent<CrewMember>();
-            // newCrew.crewName = inputName;
-            // newCrew.isPlayerControlled = true;
-            // newCrew.race = selectedRace;
-            //
-            // // 초기화
-            // newCrew.Initialize();
-
-            newCrew.transform.position = spawnPosition;
-
-            return newCrew;
-        }
-
-        return null;
-    }
-
-    /// <summary>
     /// 선원 정보 입력 후 실제 생성하는 버튼 클릭 시 호출
     /// </summary>
     // 선원 추가 커밋
@@ -336,7 +302,10 @@ public class CrewUIHandler : MonoBehaviour
         inputName = nameInputField.text;
 
         // 선원 추가
-        GameManager.Instance.GetPlayerShip().AddCrew(CreateCrewMember());
+        CrewBase crewBase = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(selectedRace, inputName);
+
+        if (crewBase is CrewMember crewMember)
+            GameManager.Instance.GetPlayerShip().AddCrew(crewMember);
 
         // 초기화
         ResetCrewCreateUI();

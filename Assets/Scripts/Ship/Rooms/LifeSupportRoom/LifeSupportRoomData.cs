@@ -42,10 +42,116 @@ public class LifeSupportRoomData : RoomData<LifeSupportRoomData.LifeSupportRoomL
         {
             new()
             {
+                roomName = "room.lifesupport.sleep",
                 roomType = RoomType.LifeSupport,
                 category = RoomCategory.Living,
                 level = 1,
-                hitPoint = 100
+                hitPoint = 100,
+                size = new Vector2Int(2, 2),
+                cost = 1200,
+                powerRequirement = 0f,
+                crewRequirement = 0,
+                crewMoraleBonus = 1,
+                damageHitPointRate = RoomDamageRates.Create(50f, 10f),
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new (new Vector2Int(1, 0), DoorDirection.East)
+                },
+                crewEntryGridPriority = new List<Vector2Int>()
+                {
+                    new (0, 1),
+                    new (0, 0),
+                    new (1, 1),
+                    new (1, 0)
+                }
+            },
+            new()
+            {
+                roomName = "room.lifesupport.game",
+                roomType = RoomType.LifeSupport,
+                category = RoomCategory.Living,
+                level = 1,
+                hitPoint = 100,
+                size = new Vector2Int(3, 2),
+                cost = 1200,
+                powerRequirement = 20f,
+                crewRequirement = 0,
+                crewMoraleBonus = 3,
+                damageHitPointRate = RoomDamageRates.Create(50f, 10f),
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new (new Vector2Int(2, 0), DoorDirection.South)
+                },
+                crewEntryGridPriority = new List<Vector2Int>()
+                {
+                    new (0, 1),
+                    new (0, 0),
+                    new (1, 1),
+                    new (1, 0),
+                    new (2, 1),
+                    new (2, 0)
+                }
+            },
+            new()
+            {
+                roomName = "room.lifesupport.sauna",
+                roomType = RoomType.LifeSupport,
+                category = RoomCategory.Living,
+                level = 1,
+                hitPoint = 100,
+                size = new Vector2Int(3, 2),
+                cost = 2000,
+                powerRequirement = 0f,
+                crewRequirement = 0,
+                crewMoraleBonus = 2,
+                damageHitPointRate = RoomDamageRates.Create(50f, 10f),
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new (new Vector2Int(2, 0), DoorDirection.South)
+                },
+                crewEntryGridPriority = new List<Vector2Int>()
+                {
+                    new (0, 1),
+                    new (0, 0),
+                    new (1, 1),
+                    new (1, 0),
+                    new (2, 1),
+                    new (2, 0)
+                }
+            },
+            new()
+            {
+                roomName = "room.lifesupport.theater",
+                roomType = RoomType.LifeSupport,
+                category = RoomCategory.Living,
+                level = 1,
+                hitPoint = 100,
+                size = new Vector2Int(4, 3),
+                cost = 3500,
+                powerRequirement = 20f,
+                crewRequirement = 0,
+                crewMoraleBonus = 4,
+                damageHitPointRate = RoomDamageRates.Create(50f, 10f),
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new (new Vector2Int(0, 2), DoorDirection.West),
+                    new (new Vector2Int(3, 2), DoorDirection.East)
+                },
+                crewEntryGridPriority = new List<Vector2Int>()
+                {
+                    new (0, 0),
+                    new (1, 0),
+                    new (2, 0),
+                    new (3, 0),
+                    new (0, 1),
+                    new (1, 1),
+                    new (2, 1),
+                    new (3, 1),
+                    new (1, 2),
+                    new (2, 2),
+                    new (0, 2),
+                    new (3, 2)
+                }
             }
         };
     }
