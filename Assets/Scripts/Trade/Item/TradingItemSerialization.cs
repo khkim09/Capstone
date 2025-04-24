@@ -131,29 +131,12 @@ public static class TradingItemSerialization
         List<TradingItem> items = LoadAllTradingItems(filename);
         int restoredCount = 0;
 
-        // ItemFactory를 이용해 아이템 인스턴스 재생성
-        ItemFactory itemFactory = GameObject.FindObjectOfType<ItemFactory>();
-        if (itemFactory == null)
-        {
-            Debug.LogError("ItemFactory not found in the scene!");
-            return 0;
-        }
-
         // 각 아이템을 원래 있던 창고에 복원
         foreach (TradingItem item in items)
         {
             // 새 아이템 인스턴스 생성
-            TradingItem newItem = itemFactory.CreateItemInstance(item.GetItemId(), item.amount);
-            if (newItem == null)
-            {
-                Debug.LogWarning($"Failed to create item instance for ID: {item.GetItemId()}");
-                continue;
-            }
-
-            // 아이템 상태 복원
-            newItem.SetItemState(item.GetItemState());
-            newItem.SetGridPosition(item.GetGridPosition());
-            newItem.Rotate(item.rotation);
+            TradingItem newItem =
+                GameObjectFactory.Instance.ItemFactory.CreateItemObject(item);
 
             // 적절한 창고 찾기
             StorageRoomBase targetStorage = newItem.GetParentStorage();

@@ -59,7 +59,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// 함선에 등록된 모든 시스템들.
     /// 타입을 키로 하여 각 ShipSystem 서브클래스를 관리합니다.
     /// </summary>
-    private Dictionary<Type, ShipSystem> systems = new Dictionary<Type, ShipSystem>();
+    private Dictionary<Type, ShipSystem> systems = new();
 
     public GameObject weaponPrefab;
 
@@ -104,12 +104,15 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         AddRoom(1, testRoomPrefab3.GetComponent<Room>().GetRoomData(), new Vector2Int(-4, -1),
             RotationConstants.Rotation.Rotation0);
 
+        RoomSerialization.SaveAllRooms(GetAllRooms(), Application.persistentDataPath + "/room_data.es3");
+        RoomSerialization.LoadAllRoomsData(Application.persistentDataPath + "/room_data.es3");
+
         ShipWeapon newWeapon = AddWeapon(0, new Vector2Int(3, -1), ShipWeaponAttachedDirection.North);
         ShipWeapon newWeapon2 = AddWeapon(6, new Vector2Int(-2, -1), ShipWeaponAttachedDirection.East);
         ShipWeapon newWeapon3 = AddWeapon(10, new Vector2Int(6, 2), ShipWeaponAttachedDirection.North);
 
         ShipWeaponSerialization.SaveAllWeapons(GetAllWeapons(), Application.persistentDataPath + "/weapon_data.es3");
-        ShipWeaponSerialization.LoadAllWeapons(Application.persistentDataPath + "/weapon_data.es3");
+        ShipWeaponSerialization.RestoreAllWeaponsToShip(Application.persistentDataPath + "/weapon_data.es3", this);
 
         CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
         CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
@@ -119,20 +122,19 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         if (crewBase2 is CrewMember crewMember2) AddCrew(crewMember2);
         if (crewBase3 is CrewMember crewMember3) AddCrew(crewMember3);
 
-        //  CrewSerialization.SaveAllCrews(GetAllCrew(), Application.persistentDataPath + "/crew_data.es3");
-        //   CrewSerialization.RestoreAllCrewsToShip(Application.persistentDataPath + "/crew_data.es3", this);
+        CrewSerialization.SaveAllCrews(GetAllCrew(), Application.persistentDataPath + "/crew_data.es3");
+        CrewSerialization.RestoreAllCrewsToShip(Application.persistentDataPath + "/crew_data.es3", this);
 
-        // TODO: 테스트용 코드
-        TradingItem tradingItem = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(2, 1);
-
-        foreach (Room room in allRooms)
-            if (room is StorageRoomBase)
-            {
-                StorageRoomBase storageRoom = room as StorageRoomBase;
-                storageRoom.AddItem(tradingItem, new Vector2Int(1, 1), 0);
-            }
-
-        TradingItemSerialization.SaveShipItems(this, Application.persistentDataPath + "/item_data.es3");
+        // TradingItem tradingItem = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(2, 1);
+        //
+        // foreach (Room room in allRooms)
+        //     if (room is StorageRoomBase)
+        //     {
+        //         StorageRoomBase storageRoom = room as StorageRoomBase;
+        //         storageRoom.AddItem(tradingItem, new Vector2Int(1, 1), 0);
+        //     }
+        //
+        // TradingItemSerialization.SaveShipItems(this, Application.persistentDataPath + "/item_data.es3");
         TradingItemSerialization.RestoreAllItemsToShip(this, Application.persistentDataPath + "/item_data.es3");
     }
 
@@ -216,13 +218,15 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         // 그리드에 추가
         AddRoomToGrid(room, size);
 
-        // 배치 완료 알림
-        room.OnPlaced();
-
         // 스탯 재계산
         RecalculateAllStats();
 
         return true;
+    }
+
+    public bool AddRoom(Room room)
+    {
+        return AddRoom(room.GetCurrentLevel(), room.GetRoomData(), room.position, room.currentRotation);
     }
 
     /// <summary>
@@ -230,7 +234,8 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     private void AddRoomToGrid(Room room, Vector2Int size)
     {
-        List<Vector2Int> occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(room.position, size, room.currentRotation);
+        List<Vector2Int> occupiedTiles =
+            RoomRotationUtility.GetOccupiedGridPositions(room.position, size, room.currentRotation);
 
         foreach (Vector2Int tile in occupiedTiles)
             roomGrid[tile] = room;
@@ -246,9 +251,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         return null;
     }
 
-    /// <summary>
-    /// 룸 타입에 맞는 컴포넌트를 추가합니다.
-    /// </summary>
+
     /// <summary>
     /// 룸 타입에 맞는 컴포넌트를 추가합니다.
     /// </summary>
@@ -295,6 +298,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
                     room.SetStorageType(storageType); // setter 사용
                     return room;
                 }
+
                 break;
             case RoomType.Corridor:
                 return roomObject.AddComponent<CorridorRoom>();
@@ -318,11 +322,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-            for (int y = 0; y < room.GetSize().y; y++)
-            {
-                Vector2Int gridPos = room.position + new Vector2Int(x, y);
-                roomGrid.Remove(gridPos);
-            }
+        for (int y = 0; y < room.GetSize().y; y++)
+        {
+            Vector2Int gridPos = room.position + new Vector2Int(x, y);
+            roomGrid.Remove(gridPos);
+        }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -334,6 +338,8 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         // Remove from list
         allRooms.Remove(room);
         OnRoomChanged?.Invoke(); // 방 갱신
+
+        Destroy(room.gameObject);
 
         // TODO: MoraleManager에서 사기 계산하기 해야됨
 
@@ -350,12 +356,12 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <summary>
     /// 설계도로 되돌리기 작업을 위한 방 저장 리스트
     /// </summary>
-    public List<Room> backupRooms = new List<Room>();
+    public List<Room> backupRooms = new();
 
     /// <summary>
     /// 백업해 둘 방 정보들
     /// </summary>
-    public List<RoomBackupData> backupRoomDatas = new List<RoomBackupData>();
+    public List<RoomBackupData> backupRoomDatas = new();
 
     /// <summary>
     /// 현재 함선에 포함된 모든 방의 가격 합을 반환
@@ -364,10 +370,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     public int GetTotalShipValue()
     {
         int total = 0;
-        foreach (Room room in allRooms)
-        {
-            total += room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).cost;
-        }
+        foreach (Room room in allRooms) total += room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).cost;
         return total;
     }
 
@@ -392,7 +395,6 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         backupRoomDatas.Clear();
 
         foreach (Room room in allRooms)
-        {
             backupRoomDatas.Add(new RoomBackupData
             {
                 roomData = room.GetRoomData(),
@@ -400,7 +402,6 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
                 position = room.position,
                 rotation = room.currentRotation
             });
-        }
     }
 
     /// <summary>
@@ -462,12 +463,12 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             return false;
 
         for (int x = 0; x < size.x; x++)
-            for (int y = 0; y < size.y; y++)
-            {
-                Vector2Int checkPos = pos + new Vector2Int(x, y);
-                if (roomGrid.ContainsKey(checkPos))
-                    return false;
-            }
+        for (int y = 0; y < size.y; y++)
+        {
+            Vector2Int checkPos = pos + new Vector2Int(x, y);
+            if (roomGrid.ContainsKey(checkPos))
+                return false;
+        }
 
         return true;
     }
@@ -1046,16 +1047,14 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
+            for (int y = -1; y <= 1; y++)
             {
-                for (int y = -1; y <= 1; y++)
-                {
-                    if (x == 0 && y == 0) continue;
+                if (x == 0 && y == 0) continue;
 
-                    Vector2Int checkPos = position + new Vector2Int(x, y);
+                Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                    // 해당 위치에 있는 선원들에게 데미지 적용
-                    ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
-                }
+                // 해당 위치에 있는 선원들에게 데미지 적용
+                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
             }
     }
 
