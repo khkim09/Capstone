@@ -144,14 +144,20 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         // TODO: 방 종류 추가할 때마다 이 함수에 데미지 여부 등록하기
         switch (roomType)
         {
-            case RoomType.Power:
-            case RoomType.MedBay:
-            case RoomType.Shield:
-            case RoomType.Oxygen:
+            case RoomType.Ammunition:
+            case RoomType.Cockpit:
+            case RoomType.CrewQuarters:
             case RoomType.Engine:
+            case RoomType.MedBay:
+            case RoomType.Oxygen:
+            case RoomType.Power:
+            case RoomType.Shield:
+            case RoomType.Teleporter:
+            case RoomType.WeaponControl:
                 isDamageable = true;
                 break;
-            case RoomType.CrewQuarters:
+            case RoomType.Corridor:
+            case RoomType.LifeSupport:
             case RoomType.Storage:
                 isDamageable = false;
                 break;
