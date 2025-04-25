@@ -22,7 +22,7 @@ public class ShieldRoomData : RoomData<ShieldRoomData.ShieldRoomLevel>
         /// <summary>방어막 최대 수치.</summary>
         public float shieldMaxAmount;
 
-        /// <summary>방어막 최대 수치.</summary>
+        /// <summary>방어막 초당 피해 복구량.</summary>
         public float shieldReneratePerSecond;
     }
 
@@ -74,9 +74,9 @@ public class ShieldRoomData : RoomData<ShieldRoomData.ShieldRoomLevel>
                 powerRequirement = 50f,
                 crewRequirement = 0,
                 shieldRespawnTime = 25f,
-                shieldMaxAmount = 200f,
+                shieldMaxAmount = 800f,
                 shieldReneratePerSecond = 8,
-                damageHitPointRate = RoomDamageRates.Create(50f, 25f),
+                damageHitPointRate = RoomDamageRates.Create(150f, 75f),
                 possibleDoorPositions = new List<DoorPosition>()
                 {
                     new(new Vector2Int(2, 0), DoorDirection.South)

@@ -24,7 +24,6 @@ public class StorageRoomBaseData : RoomData<StorageRoomBaseData.StorageRoomBaseL
     public class StorageRoomBaseLevel : RoomLevel
     {
         // 모든 창고의 공통적인 속성들
-        public int storageCapacity; // 기본 저장 용량
     }
 
     /// <summary>
@@ -38,8 +37,7 @@ public class StorageRoomBaseData : RoomData<StorageRoomBaseData.StorageRoomBaseL
             {
                 roomType = RoomType.Storage,
                 category = RoomCategory.Storage,
-                level = 1,
-                hitPoint = 100
+                level = 1
             }
         };
     }
