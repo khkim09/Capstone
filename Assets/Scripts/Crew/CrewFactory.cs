@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -61,9 +62,6 @@ public class CrewFactory : MonoBehaviour
 
         // 선원 컴포넌트 얻기
         CrewBase crew = crewObject.GetComponent<CrewBase>();
-        if (crew == null)
-            // CrewMember 컴포넌트가 없으면 추가
-            crew = crewObject.AddComponent<CrewBase>();
 
         // 기본 정보 설정
         crew.crewName = name;
@@ -77,7 +75,26 @@ public class CrewFactory : MonoBehaviour
         // Factory에서 직접 선원 초기화 (스탯, 스킬 설정)
         InitializeCrewStats(crew);
 
+        // collider 초기화
+        InitializeCrewCollider(crew);
+
         return crew;
+    }
+
+    public CrewBase CreateCrewObject(CrewBase crew)
+    {
+        GameObject crewObject = Instantiate(crewPrefab);
+
+        CrewBase crewComponent = crewObject.GetComponent<CrewBase>();
+        if (crewComponent == null)
+            // CrewMember 컴포넌트가 없으면 추가
+            crewComponent = crewObject.AddComponent<CrewBase>();
+
+        crewComponent.CopyFrom(crew);
+
+        crewObject.name = $"crew_{crew.race}_{crew.crewName}";
+
+        return crewComponent;
     }
 
     /// <summary>
@@ -160,23 +177,106 @@ public class CrewFactory : MonoBehaviour
     }
 
     /// <summary>
+    /// RTS 조작을 위해 선원의 collider 설정
+    /// </summary>
+    /// <param name="crew"></param>
+    private void InitializeCrewCollider(CrewBase crew)
+    {
+        // collider 설정
+        switch (crew.race)
+        {
+            case CrewRace.Human:
+                BoxCollider2D humanCollider = crew.AddComponent<BoxCollider2D>();
+                humanCollider.offset = new Vector2(0.0278020874f, -0.0139010847f);
+                humanCollider.size = new Vector2(0.540258348f, 0.691506088f);
+                break;
+            case CrewRace.Amorphous:
+                CircleCollider2D amorphousCollider = crew.AddComponent<CircleCollider2D>();
+                amorphousCollider.offset = new Vector2(-0.0199999996f, -0.0250000004f);
+                amorphousCollider.radius = 0.3471974f;
+                break;
+            case CrewRace.MechanicTank:
+                BoxCollider2D mechanicTankCollider = crew.AddComponent<BoxCollider2D>();
+                mechanicTankCollider.offset = new Vector2(0, -0.198685423f);
+                mechanicTankCollider.size = new Vector2(1, 0.602629185f);
+                break;
+            case CrewRace.MechanicSup:
+                BoxCollider2D mechanicSupCollider = crew.AddComponent<BoxCollider2D>();
+                mechanicSupCollider.offset = new Vector2(0, 0);
+                mechanicSupCollider.size = new Vector2(1, 1);
+                break;
+            case CrewRace.Beast:
+                BoxCollider2D beastCollider = crew.AddComponent<BoxCollider2D>();
+                beastCollider.offset = new Vector2(0, 0);
+                beastCollider.size = new Vector2(1, 1);
+                break;
+            case CrewRace.Insect:
+                BoxCollider2D insectCollider = crew.AddComponent<BoxCollider2D>();
+                insectCollider.offset = new Vector2(0.0749756098f, 0);
+                insectCollider.size = new Vector2(0.85004878f, 1);
+                break;
+        }
+    }
+
+    /// <summary>
     /// 저장 데이터에서 선원 복원
     /// </summary>
     /// <param name="data">선원 직렬화 데이터</param>
     /// <returns>복원된 선원 객체</returns>
-    public CrewBase RestoreCrewFromData(CrewSerialization.CrewSerializationData data)
+    /// <summary>
+    /// 저장 데이터에서 선원 복원 (Easy Save 3 사용)
+    /// </summary>
+    /// <param name="savedData">ES3 저장 키 또는 파일 경로</param>
+    /// <returns>복원된 선원 객체</returns>
+    public CrewBase RestoreCrewFromES3(string savedKey, string filename)
     {
-        if (data == null)
+        if (!ES3.FileExists(filename) || !ES3.KeyExists(savedKey, filename))
         {
-            Debug.LogError("선원 데이터가 null입니다!");
+            Debug.LogError($"선원 데이터를 찾을 수 없습니다: {filename}, 키: {savedKey}");
             return null;
         }
 
-        // 기본 선원 객체 생성
-        CrewBase crew = CreateCrewInstance(data.race, data.crewName, data.isPlayerControlled);
+        try
+        {
+            // 직접 선원 객체 복원
+            CrewBase crew = ES3.Load<CrewBase>(savedKey, filename);
 
-        // 데이터가 있는 경우 CrewSerialization에서 처리
-        return CrewSerialization.DeserializeCrew(data);
+            // 객체가 제대로 로드되지 않은 경우 수동으로 생성
+            if (crew == null)
+            {
+                // 기본 정보 로드
+                string crewName = ES3.Load<string>($"{savedKey}.crewName", filename);
+                CrewRace race = ES3.Load<CrewRace>($"{savedKey}.race", filename);
+                bool isPlayerControlled = ES3.Load<bool>($"{savedKey}.isPlayerControlled", filename);
+
+                // 기본 선원 객체 생성
+                crew = CreateCrewInstance(race, crewName, isPlayerControlled);
+
+                // 추가 속성 로드 및 적용
+                if (ES3.KeyExists($"{savedKey}.health", filename))
+                    crew.health = ES3.Load<float>($"{savedKey}.health", filename);
+
+                if (ES3.KeyExists($"{savedKey}.skills", filename))
+                    crew.skills = ES3.Load<Dictionary<SkillType, float>>($"{savedKey}.skills", filename);
+
+                // 필요한 다른 속성 로드...
+            }
+
+            // 스프라이트 등 필요한 리소스 로드
+            SpriteRenderer spriteRenderer = crew.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null && spriteRenderer.sprite == null)
+            {
+                spriteRenderer.sprite = Resources.Load<Sprite>($"Sprites/Crew/{crew.race.ToString().ToLower()}");
+                spriteRenderer.sortingOrder = SortingOrderConstants.Character;
+            }
+
+            return crew;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"선원 복원 중 오류 발생: {e.Message}");
+            return null;
+        }
     }
 
     /// <summary>

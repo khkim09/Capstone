@@ -1,9 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.EventSystems;
 
 /// <summary>
 /// 선원의 데이터를 확장하여 실제 게임 내 선원(Crew)의 기능을 담당하는 클래스입니다.
