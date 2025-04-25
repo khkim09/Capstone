@@ -74,7 +74,8 @@ public class AmmunitionRoomData : RoomData<AmmunitionRoomData.AmmunitionRoomLeve
                 },
                 crewEntryGridPriority = new List<Vector2Int>()
                 {
-                    new (0, 0), new (1, 0)
+                    new (0, 0),
+                    new (1, 0)
                 }
             }
         };

@@ -16,6 +16,9 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
     [System.Serializable]
     public class EngineRoomLevel : RoomLevel
     {
+        /// <summary>연료 보관 용량</summary>
+        public float fuelStoreLiter;
+
         /// <summary>워프 시 연료 소모량.</summary>
         public float fuelConsumption;
 
@@ -45,6 +48,7 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
                 cost = 2500,
                 powerRequirement = 50f,
                 crewRequirement = 1,
+                fuelStoreLiter = 150f,
                 fuelConsumption = 10f,
                 fuelEfficiency = 0f,
                 avoidEfficiency = 0f,
@@ -72,6 +76,7 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
                 cost = 4000,
                 powerRequirement = 75f,
                 crewRequirement = 1,
+                fuelStoreLiter = 200f,
                 fuelConsumption = 8f,
                 fuelEfficiency = 5f,
                 avoidEfficiency = 2f,
@@ -101,6 +106,7 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
                 cost = 7000,
                 powerRequirement = 100f,
                 crewRequirement = 1,
+                fuelStoreLiter = 200f,
                 fuelConsumption = 5f,
                 fuelEfficiency = 10f,
                 avoidEfficiency = 5f,

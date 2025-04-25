@@ -45,9 +45,9 @@ public class ShieldRoomData : RoomData<ShieldRoomData.ShieldRoomLevel>
                 powerRequirement = 30f,
                 crewRequirement = 0,
                 shieldRespawnTime = 30f,
-                shieldMaxAmount = 100f,
+                shieldMaxAmount = 500f,
                 shieldReneratePerSecond = 5,
-                damageHitPointRate = RoomDamageRates.Create(50f, 25f),
+                damageHitPointRate = RoomDamageRates.Create(100f, 50f),
                 possibleDoorPositions = new List<DoorPosition>()
                 {
                     new(new Vector2Int(2, 0), DoorDirection.South)

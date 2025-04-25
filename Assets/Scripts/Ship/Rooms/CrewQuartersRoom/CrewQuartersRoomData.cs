@@ -46,63 +46,9 @@ public class CrewQuartersRoomData : RoomData<CrewQuartersRoomData.CrewQuartersRo
         {
             new()
             {
-                roomName = "room.crewquarters.basic",
                 roomType = RoomType.CrewQuarters,
                 category = RoomCategory.Essential,
-                level = 1,
-                hitPoint = 100,
-                size = new Vector2Int(4, 2),
-                cost = 1200,
-                powerRequirement = 0,
-                crewRequirement = 0,
-                damageHitPointRate = RoomDamageRates.Create(0f, 25f),
-                possibleDoorPositions = new List<DoorPosition>()
-                {
-                    new(new Vector2Int(3, 0), DoorDirection.East)
-                },
-                crewEntryGridPriority = new List<Vector2Int>()
-                {
-                    new (0, 1),
-                    new (0, 0),
-                    new (1, 1),
-                    new (1, 0),
-                    new (2, 1),
-                    new (2, 0),
-                    new (3, 1),
-                    new (3, 0)
-                }
-            },
-            new()
-            {
-                roomName = "room.crewquarters.big",
-                roomType = RoomType.CrewQuarters,
-                category = RoomCategory.Essential,
-                level = 1,
-                hitPoint = 160,
-                size = new Vector2Int(4, 3),
-                cost = 2000,
-                powerRequirement = 0,
-                crewRequirement = 0,
-                damageHitPointRate = RoomDamageRates.Create(0f, 40f),
-                possibleDoorPositions = new List<DoorPosition>()
-                {
-                    new(new Vector2Int(3, 1), DoorDirection.East)
-                },
-                crewEntryGridPriority = new List<Vector2Int>()
-                {
-                    new (0, 2),
-                    new (0, 0),
-                    new (0, 1),
-                    new (1, 2),
-                    new (1, 0),
-                    new (1, 1),
-                    new (2, 2),
-                    new (2, 0),
-                    new (2, 1),
-                    new (3, 2),
-                    new (3, 0),
-                    new (3, 1)
-                }
+                level = 1
             }
         };
     }

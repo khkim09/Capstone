@@ -34,10 +34,10 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
                 level = 1,
                 hitPoint = 200,
                 size = new Vector2Int(2, 2),
-                cost = 2000,
+                cost = 4000,
                 powerRequirement = 3000f,
                 crewRequirement = 0,
-                damageHitPointRate = RoomDamageRates.Create(50f, 10f),
+                damageHitPointRate = RoomDamageRates.Create(100f, 20f),
                 possibleDoorPositions = new List<DoorPosition>()
                 {
                     new(new Vector2Int(1, 1), DoorDirection.East)
@@ -61,7 +61,7 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
                 cost = 8000,
                 powerRequirement = 7000f,
                 crewRequirement = 0,
-                damageHitPointRate = RoomDamageRates.Create(50f, 10f),
+                damageHitPointRate = RoomDamageRates.Create(150f, 30f),
                 possibleDoorPositions = new List<DoorPosition>()
                 {
                     new(new Vector2Int(0, 1), DoorDirection.West),
@@ -91,7 +91,7 @@ public class PowerRoomData : RoomData<PowerRoomData.PowerRoomLevel>
                 cost = 12000,
                 powerRequirement = 12000f,
                 crewRequirement = 0,
-                damageHitPointRate = RoomDamageRates.Create(50f, 10f),
+                damageHitPointRate = RoomDamageRates.Create(200f, 40f),
                 possibleDoorPositions = new List<DoorPosition>()
                 {
                     new(new Vector2Int(0, 2), DoorDirection.West),

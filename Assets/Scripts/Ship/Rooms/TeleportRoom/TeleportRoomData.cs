@@ -43,9 +43,14 @@ public class TeleportRoomData : RoomData<TeleportRoomData.TeleportRoomLevel>
                 powerRequirement = 20f,
                 crewRequirement = 0,
                 damageHitPointRate = RoomDamageRates.Create(40f, 0f),
-                possibleDoorPositions =
-                    new List<DoorPosition>() { new(new Vector2Int(0, 0), DoorDirection.East) },
-                crewEntryGridPriority = new List<Vector2Int>() { new(0, 0) }
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new(new Vector2Int(0, 0), DoorDirection.East)
+                },
+                crewEntryGridPriority = new List<Vector2Int>()
+                {
+                    new(0, 0)
+                }
             }
         };
     }
