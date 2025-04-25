@@ -18,9 +18,6 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
     /// <summary>현재 선택된 아이템</summary>
     protected TradingItem selectedItem;
 
-    /// <summary>방 크기</summary>
-    private Vector2Int cachedSize;
-
     /// <summary>창고 콜라이더</summary>
     [SerializeField] protected BoxCollider2D storageCollider;
 
@@ -37,9 +34,7 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
         base.Initialize(level);
         roomType = RoomType.Storage;
 
-        // 캐시된 사이즈 초기화 및 그리드 생성
-        cachedSize = GetSize();
-        itemGrid = new TradingItem[cachedSize.y, cachedSize.x];
+        itemGrid = new TradingItem[GetSize().y, GetSize().x];
 
         // 콜라이더 초기화
         InitializeCollider();
@@ -522,16 +517,6 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
         bool addSuccess = AddItem(item, item.gridPosition, nextRotation);
         Debug.Log($"[StorageRoomBase] {GetInstanceID()} 회전 후 아이템 재배치 결과: {addSuccess}");
         return addSuccess;
-    }
-
-    /// <summary>
-    /// 방 크기를 반환합니다. (캐싱을 통해 성능 최적화)
-    /// </summary>
-    public new Vector2Int GetSize()
-    {
-        if (cachedSize == Vector2Int.zero)
-            cachedSize = base.GetSize();
-        return cachedSize;
     }
 
     public List<TradingItem> GetStoredItems()

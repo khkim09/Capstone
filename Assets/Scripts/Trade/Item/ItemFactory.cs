@@ -36,6 +36,20 @@ public class ItemFactory : MonoBehaviour
         return itemObject;
     }
 
+    public TradingItem CreateItemObject(TradingItem item)
+    {
+        GameObject itemObject = Instantiate(ItemPrefabShape);
+
+        TradingItem itemComponent = itemObject.GetComponent<TradingItem>();
+        if (itemComponent == null) itemComponent = item.gameObject.AddComponent<TradingItem>();
+
+        itemComponent.CopyFrom(item);
+
+        itemObject.name = $"item_{item.name}";
+
+        return itemComponent;
+    }
+
     public TradingItem CreateItemInstance(int itemId, int quantity)
     {
         TradingItemData itemData = GetItemData(itemId);
