@@ -116,6 +116,27 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     } // 매 프레임/틱마다 방의 상태 업데이트
 
     /// <summary>
+    /// 다른 방의 속성을 복사합니다.
+    /// </summary>
+    /// <param name="other">복사할 소스 방</param>
+    public virtual void CopyFrom(Room other)
+    {
+        // 기본 속성 복사
+        roomData = other.GetRoomData();
+        position = other.position;
+        currentLevel = other.GetCurrentLevel();
+        currentHitPoints = other.currentHitPoints;
+        roomType = other.roomType;
+        currentRotation = other.currentRotation;
+        isActive = other.isActive;
+        isPowered = other.GetIsPowered();
+        isPowerRequested = other.GetIsPowerRequested();
+
+        // 방 초기화 (스프라이트, 체력 등 설정)
+        Initialize(currentLevel);
+    }
+
+    /// <summary>
     /// 이 방이 데미지를 받을 수 있는지 여부를 초기화합니다.
     /// </summary>
     public void InitializeIsDamageable()

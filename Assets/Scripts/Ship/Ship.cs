@@ -101,18 +101,14 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             RotationConstants.Rotation.Rotation0);
         AddRoom(1, testRoomPrefab2.GetComponent<Room>().GetRoomData(), new Vector2Int(4, 1),
             RotationConstants.Rotation.Rotation90);
-        AddRoom(1, testRoomPrefab3.GetComponent<Room>().GetRoomData(), new Vector2Int(-4, -1),
+        AddRoom(1, new Vector2Int(-4, -1),
             RotationConstants.Rotation.Rotation0);
 
-        RoomSerialization.SaveAllRooms(GetAllRooms(), Application.persistentDataPath + "/room_data.es3");
-        RoomSerialization.LoadAllRoomsData(Application.persistentDataPath + "/room_data.es3");
 
         ShipWeapon newWeapon = AddWeapon(0, new Vector2Int(3, -1), ShipWeaponAttachedDirection.North);
         ShipWeapon newWeapon2 = AddWeapon(6, new Vector2Int(-2, -1), ShipWeaponAttachedDirection.East);
         ShipWeapon newWeapon3 = AddWeapon(10, new Vector2Int(6, 2), ShipWeaponAttachedDirection.North);
 
-        ShipWeaponSerialization.SaveAllWeapons(GetAllWeapons(), Application.persistentDataPath + "/weapon_data.es3");
-        ShipWeaponSerialization.RestoreAllWeaponsToShip(Application.persistentDataPath + "/weapon_data.es3", this);
 
         CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
         CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
@@ -122,19 +118,25 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         if (crewBase2 is CrewMember crewMember2) AddCrew(crewMember2);
         if (crewBase3 is CrewMember crewMember3) AddCrew(crewMember3);
 
-        CrewSerialization.SaveAllCrews(GetAllCrew(), Application.persistentDataPath + "/crew_data.es3");
-        CrewSerialization.RestoreAllCrewsToShip(Application.persistentDataPath + "/crew_data.es3", this);
 
-        // TradingItem tradingItem = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(2, 1);
-        //
-        // foreach (Room room in allRooms)
-        //     if (room is StorageRoomBase)
-        //     {
-        //         StorageRoomBase storageRoom = room as StorageRoomBase;
-        //         storageRoom.AddItem(tradingItem, new Vector2Int(1, 1), 0);
-        //     }
-        //
-        // TradingItemSerialization.SaveShipItems(this, Application.persistentDataPath + "/item_data.es3");
+        TradingItem tradingItem = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(2, 1);
+
+        foreach (Room room in allRooms)
+            if (room is StorageRoomBase)
+            {
+                StorageRoomBase storageRoom = room as StorageRoomBase;
+                storageRoom.AddItem(tradingItem, new Vector2Int(1, 1), 0);
+            }
+
+        RoomSerialization.SaveAllRooms(GetAllRooms(), Application.persistentDataPath + "/room_data.es3");
+        ShipWeaponSerialization.SaveAllWeapons(GetAllWeapons(), Application.persistentDataPath + "/weapon_data.es3");
+        CrewSerialization.SaveAllCrews(GetAllCrew(), Application.persistentDataPath + "/crew_data.es3");
+        TradingItemSerialization.SaveShipItems(this, Application.persistentDataPath + "/item_data.es3");
+
+
+        RoomSerialization.RestoreAllRoomsToShip(Application.persistentDataPath + "/room_data.es3", this);
+        CrewSerialization.RestoreAllCrewsToShip(Application.persistentDataPath + "/crew_data.es3", this);
+        ShipWeaponSerialization.RestoreAllWeaponsToShip(Application.persistentDataPath + "/weapon_data.es3", this);
         TradingItemSerialization.RestoreAllItemsToShip(this, Application.persistentDataPath + "/item_data.es3");
     }
 
@@ -227,6 +229,60 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     public bool AddRoom(Room room)
     {
         return AddRoom(room.GetCurrentLevel(), room.GetRoomData(), room.position, room.currentRotation);
+    }
+
+    public bool AddRoom(int level, Vector2Int position, RotationConstants.Rotation rotation)
+    {
+        GameObject roomObject = Instantiate(testRoomPrefab3);
+        Room room = roomObject.GetComponent<Room>();
+
+        RoomData roomData = room.GetRoomData();
+
+        RoomType roomType = roomData.GetRoomType();
+
+        // 룸 오브젝트 생성
+        roomObject.transform.SetParent(transform);
+
+
+        // 필수 데이터 설정 (Initialize 전에 필요한 기본 설정)
+        room.SetRoomData(roomData);
+        room.roomType = roomType;
+        room.position = position;
+        room.currentRotation = rotation;
+
+        // 룸 위치 설정
+        Vector2Int size = roomData.GetRoomDataByLevel(level).size;
+        Vector2Int rotatedSize = RoomRotationUtility.GetRotatedSize(size, rotation);
+        Vector2 offset = RoomRotationUtility.GetRotationOffset(rotatedSize, rotation);
+        Vector3 worldPos = GridToWorldPosition(position) + (Vector3)offset;
+
+        room.gameObject.transform.position = worldPos + new Vector3(0, 0, 5f);
+        room.gameObject.transform.rotation = Quaternion.Euler(0, 0, -(int)rotation * 90);
+
+        // 룸 초기화 - 캡슐화된 방식으로 내부 속성 초기화
+        room.Initialize(level);
+
+        // 룸 목록에 추가
+        allRooms.Add(room);
+
+        // 방 갱신 이벤트 발생
+        OnRoomChanged?.Invoke();
+
+        // 타입별 딕셔너리에 추가
+        if (!roomsByType.ContainsKey(roomType))
+            roomsByType[roomType] = new List<Room>();
+        roomsByType[roomType].Add(room);
+
+        // 룸 상태 변경 이벤트 등록
+        room.OnRoomStateChanged += OnRoomStateChanged;
+
+        // 그리드에 추가
+        AddRoomToGrid(room, size);
+
+        // 스탯 재계산
+        RecalculateAllStats();
+
+        return true;
     }
 
     /// <summary>
@@ -347,6 +403,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         RecalculateAllStats();
 
         return true;
+    }
+
+    public void RemoveAllRooms()
+    {
+        for (int i = allRooms.Count - 1; i >= 0; i--) RemoveRoom(allRooms[i]);
     }
 
     #region 설계도

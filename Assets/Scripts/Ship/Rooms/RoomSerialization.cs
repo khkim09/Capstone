@@ -43,9 +43,9 @@ public static class RoomSerialization
     /// </summary>
     /// <param name="filename">불러올 파일명</param>
     /// <returns>불러온 방 목록</returns>
-    public static List<RoomBackupData> LoadAllRoomsData(string filename)
+    public static List<Room> LoadAllRoomsData(string filename)
     {
-        List<RoomBackupData> roomsData = new();
+        List<Room> roomsData = new();
 
         if (!ES3.FileExists(filename))
             return roomsData;
@@ -58,17 +58,7 @@ public static class RoomSerialization
             if (ES3.KeyExists($"room_{i}", filename))
             {
                 Room room = ES3.Load<Room>($"room_{i}", filename);
-                if (room != null)
-                {
-                    RoomBackupData roomData = new()
-                    {
-                        roomData = room.GetRoomData(),
-                        level = room.GetCurrentLevel(),
-                        position = room.position,
-                        rotation = room.currentRotation
-                    };
-                    roomsData.Add(roomData);
-                }
+                roomsData.Add(room);
             }
 
         return roomsData;
@@ -87,21 +77,17 @@ public static class RoomSerialization
 
         // 기존 방 제거
 
-        foreach (Room room in ship.GetAllRooms()) ship.RemoveRoom(room);
+        ship.RemoveAllRooms();
 
         // 백업 데이터로부터 방 정보 불러오기
-        List<RoomBackupData> roomsData = LoadAllRoomsData(filename);
+        List<Room> roomsData = LoadAllRoomsData(filename);
         int restoredCount = 0;
 
         // RoomFactory를 통해 각 방 생성 및 추가
-        foreach (RoomBackupData roomData in roomsData)
+        foreach (Room roomData in roomsData)
         {
-            Room newRoom = CreateRoom(roomData, ship);
-            if (newRoom != null)
-            {
-                ship.AddRoom(newRoom);
-                restoredCount++;
-            }
+            ship.AddRoom(roomData);
+            restoredCount++;
         }
 
         return restoredCount;

@@ -122,11 +122,7 @@ public static class TradingItemSerialization
 
         foreach (Room room in ship.GetAllRooms())
             if (room is StorageRoomBase storage)
-            {
-                List<TradingItem> existingItems = new(storage.storedItems);
-                foreach (TradingItem item in existingItems)
-                    storage.RemoveItem(item);
-            }
+                storage.DestroyAllItems();
 
         List<TradingItem> items = LoadAllTradingItems(filename);
         int restoredCount = 0;
