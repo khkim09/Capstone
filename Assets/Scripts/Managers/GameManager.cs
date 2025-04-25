@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static GameManager Instance { get; private set; }
 
+
     /// <summary>
     /// 게임 상태 변경 이벤트 델리게이트입니다.
     /// </summary>
@@ -68,6 +69,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        // LocalizationManager 초기화
+        LocalizationManager.Initialize(this);
+        LocalizationManager.OnLanguageChanged += OnLanguageChanged;
+    }
+
     /// <summary>
     /// 게임 상태 변경 시 호출되는 이벤트입니다.
     /// </summary>
@@ -77,6 +85,12 @@ public class GameManager : MonoBehaviour
     /// 날짜 변경 시 호출되는 이벤트입니다.
     /// </summary>
     public event DayChangedHandler OnDayChanged;
+
+    private void OnLanguageChanged(SystemLanguage newLanguage)
+    {
+        // 디버그 로그
+        Debug.Log($"Language changed to: {newLanguage}");
+    }
 
 
     /// <summary>
@@ -171,7 +185,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void OnEventCompleted()
     {
-
     }
 
     /// <summary>

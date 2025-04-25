@@ -13,8 +13,7 @@ public class RoomInventoryButton : MonoBehaviour, IPointerDownHandler, IBeginDra
     /// <summary>
     /// 인벤토리의 방 이미지
     /// </summary>
-    [Header("UI")]
-    public Image icon;
+    [Header("UI")] public Image icon;
 
     /// <summary>
     /// 방 이름 라벨
@@ -44,8 +43,7 @@ public class RoomInventoryButton : MonoBehaviour, IPointerDownHandler, IBeginDra
     /// <summary>
     /// 방 기본 크기 - 가로
     /// </summary>
-    [Header("button size")]
-    private float baseWidth = 130f;
+    [Header("button size")] private float baseWidth = 130f;
 
     // 방 기본 크기 - 세로로
     private float baseHeight = 130f;
@@ -58,7 +56,8 @@ public class RoomInventoryButton : MonoBehaviour, IPointerDownHandler, IBeginDra
     /// <param name="levelData">레벨에 따른 방 세부 데이터</param>
     /// <param name="levelsCount">레벨 개수</param>
     /// <param name="handler">드래그 핸들러</param>
-    public void Initialize(RoomData data, int lvl, RoomData.RoomLevel levelData, int levelsCount, BlueprintRoomDragHandler handler)
+    public void Initialize(RoomData data, int lvl, RoomData.RoomLevel levelData, int levelsCount,
+        BlueprintRoomDragHandler handler)
     {
         roomData = data;
         level = lvl;
@@ -67,9 +66,9 @@ public class RoomInventoryButton : MonoBehaviour, IPointerDownHandler, IBeginDra
         if (label != null)
         {
             if (levelsCount != 1)
-                label.text = $"{levelData.roomName}\n(Lv.{levelData.level})";
+                label.text = $"{levelData.roomName.Localize()}\n(Lv.{levelData.level})";
             else
-                label.text = $"{levelData.roomName}";
+                label.text = $"{levelData.roomName.Localize()}";
         }
 
         if (icon != null)
@@ -116,10 +115,7 @@ public class RoomInventoryButton : MonoBehaviour, IPointerDownHandler, IBeginDra
 
         // 버튼 크기 조정
         RectTransform rt = GetComponent<RectTransform>();
-        if (rt != null)
-        {
-            rt.sizeDelta = new Vector2(baseWidth * widthRatio, baseHeight * heightRatio);
-        }
+        if (rt != null) rt.sizeDelta = new Vector2(baseWidth * widthRatio, baseHeight * heightRatio);
     }
 
     /// <summary>
