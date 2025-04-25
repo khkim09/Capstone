@@ -97,7 +97,12 @@ public class CockpitRoomData : RoomData<CockpitRoomData.CockpitRoomLevel>
                 crewRequirement = 1,
                 fuelEfficiency = 10f,
                 avoidEfficiency = 5f,
-                damageHitPointRate = RoomDamageRates.Create(50f, 10f),
+                damageHitPointRate = RoomDamageRates.Create(100f, 20f),
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new(new Vector2Int(0, 0), DoorDirection.West),
+                    new(new Vector2Int(2, 0), DoorDirection.East)
+                },
                 crewEntryGridPriority = new List<Vector2Int>()
                 {
                     new(0, 2),

@@ -38,7 +38,7 @@ public class MedBayRoomData : RoomData<MedBayRoomData.MedBayRoomLevel>
                 cost = 2000,
                 powerRequirement = 10f,
                 crewRequirement = 0,
-                healPerSecond = 5f,
+                healPerSecond = 3f,
                 damageHitPointRate = RoomDamageRates.Create(60f, 30f),
                 possibleDoorPositions = new List<DoorPosition>()
                 {
@@ -63,8 +63,8 @@ public class MedBayRoomData : RoomData<MedBayRoomData.MedBayRoomLevel>
                 cost = 4000,
                 powerRequirement = 20f,
                 crewRequirement = 0,
-                healPerSecond = 8f,
-                damageHitPointRate = RoomDamageRates.Create(60f, 30f),
+                healPerSecond = 6f,
+                damageHitPointRate = RoomDamageRates.Create(72f, 36f),
                 possibleDoorPositions = new List<DoorPosition>()
                 {
                     new(new Vector2Int(0, 0), DoorDirection.West)

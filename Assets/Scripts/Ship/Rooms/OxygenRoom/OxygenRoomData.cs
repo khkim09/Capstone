@@ -39,7 +39,8 @@ public class OxygenRoomData : RoomData<OxygenRoomData.OxygenLevel>
                 cost = 500,
                 powerRequirement = 10f,
                 crewRequirement = 0,
-                damageHitPointRate = RoomDamageRates.Create(80f, 30f),
+                oxygenSupplyPerSecond = 5f,
+                damageHitPointRate = RoomDamageRates.Create(64f, 24f),
                 possibleDoorPositions = new List<DoorPosition>()
                 {
                     new(new Vector2Int(1, 0), DoorDirection.East)
@@ -62,7 +63,7 @@ public class OxygenRoomData : RoomData<OxygenRoomData.OxygenLevel>
                 powerRequirement = 15f,
                 crewRequirement = 0,
                 oxygenSupplyPerSecond = 8f,
-                damageHitPointRate = RoomDamageRates.Create(80f, 30f),
+                damageHitPointRate = RoomDamageRates.Create(128f, 48f),
                 possibleDoorPositions = new List<DoorPosition>()
                 {
                     new(new Vector2Int(1, 0), DoorDirection.East)
