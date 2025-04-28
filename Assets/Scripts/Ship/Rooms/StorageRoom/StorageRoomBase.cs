@@ -18,9 +18,6 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
     /// <summary>현재 선택된 아이템</summary>
     protected TradingItem selectedItem;
 
-    /// <summary>방 크기</summary>
-    private Vector2Int cachedSize;
-
     /// <summary>창고 콜라이더</summary>
     [SerializeField] protected BoxCollider2D storageCollider;
 
@@ -30,26 +27,17 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
     protected override void Start()
     {
         base.Start();
+    }
+
+    public override void Initialize(int level)
+    {
+        base.Initialize(level);
         roomType = RoomType.Storage;
 
-        // 캐시된 사이즈 초기화 및 그리드 생성
-        cachedSize = GetSize();
-        itemGrid = new TradingItem[cachedSize.y, cachedSize.x];
+        itemGrid = new TradingItem[GetSize().y, GetSize().x];
 
         // 콜라이더 초기화
         InitializeCollider();
-
-        // TODO: 테스트용 코드
-        TradingItem tradingItem = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(2, 1);
-        AddItem(tradingItem, new Vector2Int(1, 1), 0);
-
-        List<TradingItemSerialization.ItemSerializationData> data =
-            TradingItemSerialization.SerializeAllItems(storedItems);
-        string json = TradingItemSerialization.ToJson(data);
-        System.IO.File.WriteAllText(Application.persistentDataPath + "/item_data.json", json);
-
-        List<TradingItemSerialization.ItemSerializationData> data1 = TradingItemSerialization.FromJsonList(json);
-        TradingItemSerialization.DeserializeAllItems(data1, this);
     }
 
     /// <summary>
@@ -529,16 +517,6 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
         bool addSuccess = AddItem(item, item.gridPosition, nextRotation);
         Debug.Log($"[StorageRoomBase] {GetInstanceID()} 회전 후 아이템 재배치 결과: {addSuccess}");
         return addSuccess;
-    }
-
-    /// <summary>
-    /// 방 크기를 반환합니다. (캐싱을 통해 성능 최적화)
-    /// </summary>
-    public new Vector2Int GetSize()
-    {
-        if (cachedSize == Vector2Int.zero)
-            cachedSize = base.GetSize();
-        return cachedSize;
     }
 
     public List<TradingItem> GetStoredItems()

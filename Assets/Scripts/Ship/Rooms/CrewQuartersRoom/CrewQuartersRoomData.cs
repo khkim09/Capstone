@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -11,8 +11,6 @@ using UnityEngine.Serialization;
  *
  *  생활관 : roomName = "room.crewquarters.basic", hitPoint = 100, maxCrewCapacity = 6, size = (4, 2), cost = 1200
  *  큰 생활관 : roomName = "room.crewquarters.big", hitPoint = 160, maxCrewCapacity = 10, size = (4, 3), cost = 2000
- *  개인 생활관 : roomName = "room.crewquarters.personal", hitPoint = 80, maxCrewCapcity = 1, size = (2,1), cost = 600, crewMoraleBonus = 1
- *  호화 생활관 : roomName = "room.crewquarters.goodpersonal", hitPoint = 80, maxCrewCapacity = 1, size = (2,1), cost = 800, powerRequirement = 5, crewMoraleBonus = 3
  *
  *  숙소들의 피해 단계는 1단계는 존재하지 않고 2단계만 존재한다 (25%)
  */
@@ -50,8 +48,7 @@ public class CrewQuartersRoomData : RoomData<CrewQuartersRoomData.CrewQuartersRo
             {
                 roomType = RoomType.CrewQuarters,
                 category = RoomCategory.Essential,
-                level = 1,
-                hitPoint = 100
+                level = 1
             }
         };
     }

@@ -39,10 +39,17 @@ public class OxygenRoomData : RoomData<OxygenRoomData.OxygenLevel>
                 cost = 500,
                 powerRequirement = 10f,
                 crewRequirement = 0,
-                damageHitPointRate = RoomDamageRates.Create(80f, 30f),
-                possibleDoorPositions =
-                    new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) },
-                crewEntryGridPriority = new List<Vector2Int>() { new(0, 0), new(1, 0) }
+                oxygenSupplyPerSecond = 5f,
+                damageHitPointRate = RoomDamageRates.Create(64f, 24f),
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new(new Vector2Int(1, 0), DoorDirection.East)
+                },
+                crewEntryGridPriority = new List<Vector2Int>()
+                {
+                    new(0, 0),
+                    new(1, 0)
+                }
             },
             new()
             {
@@ -56,10 +63,16 @@ public class OxygenRoomData : RoomData<OxygenRoomData.OxygenLevel>
                 powerRequirement = 15f,
                 crewRequirement = 0,
                 oxygenSupplyPerSecond = 8f,
-                damageHitPointRate = RoomDamageRates.Create(80f, 30f),
-                possibleDoorPositions =
-                    new List<DoorPosition>() { new(new Vector2Int(1, 0), DoorDirection.East) },
-                crewEntryGridPriority = new List<Vector2Int>() { new(0, 0), new(1, 0) }
+                damageHitPointRate = RoomDamageRates.Create(128f, 48f),
+                possibleDoorPositions = new List<DoorPosition>()
+                {
+                    new(new Vector2Int(1, 0), DoorDirection.East)
+                },
+                crewEntryGridPriority = new List<Vector2Int>()
+                {
+                    new(0, 0),
+                    new(1, 0)
+                }
             }
         };
     }

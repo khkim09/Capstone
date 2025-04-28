@@ -299,39 +299,22 @@ public class ShipWeapon : MonoBehaviour
         //       그건 무기가 아니라 배에서 해야할 듯. 배가 외갑판 정보를 가지고 있으니
     }
 
-    /// <summary>
-    /// 무기 직렬화 데이터 생성
-    /// </summary>
-    public ShipWeaponSerialization.ShipWeaponSerializationData GetSerializationData()
+    public void CopyFrom(ShipWeapon other)
     {
-        return new ShipWeaponSerialization.ShipWeaponSerializationData
-        {
-            weaponId = weaponData.id,
-            gridPosition = gridPosition,
-            attachedDirection = attachedDirection,
-            isEnabled = isEnabled,
-            hits = hits,
-            totalDamageDealt = totalDamageDealt
-        };
-    }
+        if (other == null) return;
 
-    /// <summary>
-    /// 직렬화 데이터에서 무기 상태 복원
-    /// </summary>
-    public void ApplySerializationData(ShipWeaponSerialization.ShipWeaponSerializationData data)
-    {
-        if (data == null)
-            return;
+        weaponData = other.weaponData;
+        firePoint = other.firePoint;
+        gridPosition = other.gridPosition;
+        gridSize = other.gridSize;
+        attachedDirection = other.attachedDirection;
 
-        // 위치 및 방향 설정
-        gridPosition = data.gridPosition;
-        SetAttachedDirection(data.attachedDirection);
+        currentCooldown = other.currentCooldown;
+        hits = other.hits;
+        totalDamageDealt = other.totalDamageDealt;
+        isEnabled = other.isEnabled;
 
-        // 상태 설정
-        SetEnabled(data.isEnabled);
-
-        // 통계 설정
-        SetHits(data.hits);
-        SetTotalDamageDealt(data.totalDamageDealt);
+        // 스프라이트 렌더러는 직접 복사할 수 없지만 회전 상태에 맞는 스프라이트를 갱신할 수 있음
+        ApplyRotationSprite();
     }
 }

@@ -12,7 +12,7 @@ for filename in os.listdir(input_dir):
         filepath = os.path.join(input_dir, filename)
         excel = pd.ExcelFile(filepath, engine="openpyxl")
         
-        for sheet_name in excel.sheet_names[:8]:  # 처음 8개 시트만
+        for sheet_name in excel.sheet_names[:10]:  # 처음 8개 시트만
             df = excel.parse(sheet_name)
             data = df.to_dict(orient='index')
 
