@@ -131,9 +131,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         isActive = other.isActive;
         isPowered = other.GetIsPowered();
         isPowerRequested = other.GetIsPowerRequested();
-
-        // 방 초기화 (스프라이트, 체력 등 설정)
-        Initialize(currentLevel);
     }
 
     /// <summary>
@@ -240,7 +237,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         currentLevel = level;
         roomRenderer = gameObject.AddComponent<SpriteRenderer>();
         gridSize = roomData.GetRoomDataByLevel(level).size;
-
+        roomType = GetRoomData().GetRoomType();
         roomRenderer.sortingOrder = SortingOrderConstants.Room;
 
         // 부모 Ship 컴포넌트 찾기

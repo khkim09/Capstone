@@ -79,6 +79,8 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         // TODO: 만약 최대치보다 많으면 생성을 못하게 하거나, 두 개 생성해서 나눠야함
 
         UpdateColliderSize();
+
+        if (transform.parent != null) parentStorage = transform.parent.GetComponent<StorageRoomBase>();
     }
 
     public void CopyFrom(TradingItem other)

@@ -81,7 +81,7 @@ public static class CrewSerialization
 
         foreach (CrewBase crew in crews)
         {
-            CrewBase newCrew = GameObjectFactory.Instance.CrewFactory.CreateCrewObject(crew);
+            CrewBase newCrew = GameObjectFactory.Instance.CreateCrewObject(crew);
             ship.AddCrew(newCrew);
         }
 
