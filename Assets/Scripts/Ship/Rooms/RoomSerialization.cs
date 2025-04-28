@@ -17,12 +17,13 @@ public static class RoomSerialization
         // 파일이 이미 존재한다면 해당 파일 삭제 (덮어쓰기)
         if (ES3.FileExists(filename))
             ES3.DeleteFile(filename);
+        ES3Settings settings = new() { referenceMode = ES3.ReferenceMode.ByRef };
 
         // 모든 방 저장
         ES3.Save("roomCount", rooms.Count, filename);
 
         for (int i = 0; i < rooms.Count; i++)
-            ES3.Save($"room_{i}", rooms[i], filename);
+            ES3.Save($"room_{i}", rooms[i], filename, settings);
     }
 
     /// <summary>
@@ -49,6 +50,7 @@ public static class RoomSerialization
 
         if (!ES3.FileExists(filename))
             return roomsData;
+        ES3Settings settings = new() { referenceMode = ES3.ReferenceMode.ByRef };
 
         // 방 수 불러오기
         int roomCount = ES3.Load<int>("roomCount", filename);
@@ -57,7 +59,7 @@ public static class RoomSerialization
         for (int i = 0; i < roomCount; i++)
             if (ES3.KeyExists($"room_{i}", filename))
             {
-                Room room = ES3.Load<Room>($"room_{i}", filename);
+                Room room = ES3.Load<Room>($"room_{i}", filename, settings);
                 roomsData.Add(room);
             }
 
@@ -86,91 +88,12 @@ public static class RoomSerialization
         // RoomFactory를 통해 각 방 생성 및 추가
         foreach (Room roomData in roomsData)
         {
-            ship.AddRoom(roomData);
+            Room newRoom = GameObjectFactory.Instance.CreateRoomObject(roomData);
+            ship.AddRoom(newRoom);
             restoredCount++;
         }
 
         return restoredCount;
-    }
-
-    /// <summary>
-    /// 방 데이터로부터 실제 Room 객체를 생성합니다.
-    /// </summary>
-    /// <param name="roomData">방 백업 데이터</param>
-    /// <param name="ship">방이 추가될 함선</param>
-    /// <returns>생성된 Room 객체</returns>
-    private static Room CreateRoom(RoomBackupData roomData, Ship ship)
-    {
-        if (roomData.roomData == null)
-            return null;
-
-        // 방 타입에 맞는 GameObject 생성
-        GameObject roomObject = new($"{roomData.roomData.GetRoomType()}");
-
-        // 방 타입에 따라 적절한 Room 컴포넌트 추가
-        Room newRoom = null;
-
-        switch (roomData.roomData.GetRoomType())
-        {
-            case RoomType.Power:
-                newRoom = roomObject.AddComponent<PowerRoom>();
-                break;
-            case RoomType.Engine:
-                newRoom = roomObject.AddComponent<EngineRoom>();
-                break;
-            case RoomType.Oxygen:
-                newRoom = roomObject.AddComponent<OxygenRoom>();
-                break;
-            case RoomType.Shield:
-                newRoom = roomObject.AddComponent<ShieldRoom>();
-                break;
-            case RoomType.MedBay:
-                newRoom = roomObject.AddComponent<MedBayRoom>();
-                break;
-            case RoomType.CrewQuarters:
-                newRoom = roomObject.AddComponent<CrewQuartersRoom>();
-                break;
-            case RoomType.Storage:
-                // 창고의 경우 보다 구체적인 타입 (일반, 온도조절, 동물) 확인이 필요
-                // roomData.roomData의 타입을 확인하여 적절한 창고 타입 생성
-                if (roomData.roomData is StorageRoomBaseData storageRoomData)
-                {
-                    if (storageRoomData.GetStorageType() == StorageType.Animal)
-                        newRoom = roomObject.AddComponent<StorageRoomAnimal>();
-                    else if (storageRoomData.GetStorageType() == StorageType.Temperature)
-                        newRoom = roomObject.AddComponent<StorageRoomTemperature>();
-                    else
-                        newRoom = roomObject.AddComponent<StorageRoomRegular>();
-                }
-
-                break;
-
-            // 다른 방 타입들도 필요에 따라 추가
-            default:
-                Debug.LogError($"Unknown room type: {roomData.roomData.GetRoomType()}");
-                GameObject.Destroy(roomObject);
-                return null;
-        }
-
-        // 방 초기화
-        if (newRoom != null)
-        {
-            // 방 데이터 및 위치/회전 설정
-            newRoom.SetRoomData(roomData.roomData);
-            newRoom.position = roomData.position;
-            newRoom.currentRotation = roomData.rotation;
-
-            // 레벨 설정 및 초기화
-            newRoom.Initialize(roomData.level);
-
-            // 함선의 자식으로 설정
-            roomObject.transform.SetParent(ship.transform);
-
-            // 회전 적용
-            newRoom.RotateRoom((int)roomData.rotation);
-        }
-
-        return newRoom;
     }
 
     /// <summary>
@@ -186,24 +109,5 @@ public static class RoomSerialization
 
         List<Room> specificRooms = ship.GetAllRooms().FindAll(room => room.GetRoomType() == roomType);
         SaveAllRooms(specificRooms, filename);
-    }
-
-    /// <summary>
-    /// 특정 방을 직렬화하고 백업 데이터로 반환합니다.
-    /// </summary>
-    /// <param name="room">직렬화할 방</param>
-    /// <returns>방 백업 데이터</returns>
-    public static RoomBackupData SerializeRoomToData(Room room)
-    {
-        if (room == null)
-            return new RoomBackupData();
-
-        return new RoomBackupData
-        {
-            roomData = room.GetRoomData(),
-            level = room.GetCurrentLevel(),
-            position = room.position,
-            rotation = room.currentRotation
-        };
     }
 }

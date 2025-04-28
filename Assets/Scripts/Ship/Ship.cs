@@ -59,7 +59,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// 함선에 등록된 모든 시스템들.
     /// 타입을 키로 하여 각 ShipSystem 서브클래스를 관리합니다.
     /// </summary>
-    private Dictionary<Type, ShipSystem> systems = new Dictionary<Type, ShipSystem>();
+    private Dictionary<Type, ShipSystem> systems = new();
 
     public GameObject weaponPrefab;
 
@@ -77,7 +77,6 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     private void Awake()
     {
-        InitializeBaseStats();
     }
 
     /// <summary>
@@ -85,60 +84,20 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     private void Start()
     {
+    }
+
+    public void Initialize()
+    {
+        InitializeBaseStats();
+
         InitializeSystems();
 
         RecalculateAllStats();
 
         doorLevel = 1;
         GameManager.Instance.SetPlayerShip(this);
-
-        ForSerializeTest();
     }
 
-    public void ForSerializeTest()
-    {
-        AddRoom(3, testRoomPrefab1.GetComponent<Room>().GetRoomData(), new Vector2Int(0, 0),
-            RotationConstants.Rotation.Rotation0);
-        AddRoom(1, testRoomPrefab2.GetComponent<Room>().GetRoomData(), new Vector2Int(4, 1),
-            RotationConstants.Rotation.Rotation90);
-        AddRoom(1, new Vector2Int(-4, -1),
-            RotationConstants.Rotation.Rotation0);
-
-
-        ShipWeapon newWeapon = AddWeapon(0, new Vector2Int(3, -1), ShipWeaponAttachedDirection.North);
-        ShipWeapon newWeapon2 = AddWeapon(6, new Vector2Int(-2, -1), ShipWeaponAttachedDirection.East);
-        ShipWeapon newWeapon3 = AddWeapon(10, new Vector2Int(6, 2), ShipWeaponAttachedDirection.North);
-
-
-        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
-
-        if (crewBase1 is CrewMember crewMember) AddCrew(crewMember);
-        if (crewBase2 is CrewMember crewMember2) AddCrew(crewMember2);
-        if (crewBase3 is CrewMember crewMember3) AddCrew(crewMember3);
-
-
-        TradingItem tradingItem = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(2, 1);
-
-        foreach (Room room in allRooms)
-            if (room is StorageRoomBase)
-            {
-                StorageRoomBase storageRoom = room as StorageRoomBase;
-                storageRoom.AddItem(tradingItem, new Vector2Int(1, 1), 0);
-            }
-
-        RoomSerialization.SaveAllRooms(GetAllRooms(), Application.persistentDataPath + "/room_data.es3");
-        ShipWeaponSerialization.SaveAllWeapons(GetAllWeapons(), Application.persistentDataPath + "/weapon_data.es3");
-        CrewSerialization.SaveAllCrews(GetAllCrew(), Application.persistentDataPath + "/crew_data.es3");
-        TradingItemSerialization.SaveShipItems(this, Application.persistentDataPath + "/item_data.es3");
-
-
-        RoomSerialization.RestoreAllRoomsToShip(Application.persistentDataPath + "/room_data.es3", this);
-        CrewSerialization.RestoreAllCrewsToShip(Application.persistentDataPath + "/crew_data.es3", this);
-        ShipWeaponSerialization.RestoreAllWeaponsToShip(Application.persistentDataPath + "/weapon_data.es3", this);
-        TradingItemSerialization.RestoreAllItemsToShip(this, Application.persistentDataPath + "/item_data.es3");
-    }
 
     /// <summary>
     /// 게임 시작 시 호출되며, 테스트 룸 배치 및 시스템 초기화를 수행합니다.
@@ -200,8 +159,6 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         room.gameObject.transform.position = worldPos + new Vector3(0, 0, 5f);
         room.gameObject.transform.rotation = Quaternion.Euler(0, 0, -(int)rotation * 90);
 
-        // 룸 초기화 - 캡슐화된 방식으로 내부 속성 초기화
-        room.Initialize(level);
 
         // 룸 목록에 추가
         allRooms.Add(room);
@@ -226,63 +183,43 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         return true;
     }
 
-    public bool AddRoom(Room room)
+    public Room AddRoom(Room room, Vector2Int position = new(),
+        RotationConstants.Rotation rotation = RotationConstants.Rotation.Rotation0)
     {
-        return AddRoom(room.GetCurrentLevel(), room.GetRoomData(), room.position, room.currentRotation);
-    }
+        if (position != Vector2Int.zero)
+            room.position = position;
+        else
+            position = room.position;
 
-    public bool AddRoom(int level, Vector2Int position, RotationConstants.Rotation rotation)
-    {
-        GameObject roomObject = Instantiate(testRoomPrefab3);
-        Room room = roomObject.GetComponent<Room>();
+        if (rotation == RotationConstants.Rotation.Rotation0)
+            rotation = room.currentRotation;
 
         RoomData roomData = room.GetRoomData();
-
-        RoomType roomType = roomData.GetRoomType();
-
-        // 룸 오브젝트 생성
-        roomObject.transform.SetParent(transform);
-
-
-        // 필수 데이터 설정 (Initialize 전에 필요한 기본 설정)
-        room.SetRoomData(roomData);
-        room.roomType = roomType;
-        room.position = position;
-        room.currentRotation = rotation;
-
-        // 룸 위치 설정
-        Vector2Int size = roomData.GetRoomDataByLevel(level).size;
+        Vector2Int size = roomData.GetRoomDataByLevel(room.GetCurrentLevel()).size;
         Vector2Int rotatedSize = RoomRotationUtility.GetRotatedSize(size, rotation);
-        Vector2 offset = RoomRotationUtility.GetRotationOffset(rotatedSize, rotation);
-        Vector3 worldPos = GridToWorldPosition(position) + (Vector3)offset;
+        // Vector2 offset = RoomRotationUtility.GetRotationOffset(rotatedSize, rotation);
+        Vector3 worldPos = GridToWorldPosition(position);
 
-        room.gameObject.transform.position = worldPos + new Vector3(0, 0, 5f);
-        room.gameObject.transform.rotation = Quaternion.Euler(0, 0, -(int)rotation * 90);
+        room.transform.SetParent(transform);
+        room.gameObject.transform.position = worldPos;
+        room.RotateRoom((int)rotation);
 
-        // 룸 초기화 - 캡슐화된 방식으로 내부 속성 초기화
-        room.Initialize(level);
-
-        // 룸 목록에 추가
         allRooms.Add(room);
 
-        // 방 갱신 이벤트 발생
-        OnRoomChanged?.Invoke();
+        RoomType roomType = room.GetRoomType();
 
-        // 타입별 딕셔너리에 추가
         if (!roomsByType.ContainsKey(roomType))
             roomsByType[roomType] = new List<Room>();
         roomsByType[roomType].Add(room);
 
-        // 룸 상태 변경 이벤트 등록
+        OnRoomChanged?.Invoke();
         room.OnRoomStateChanged += OnRoomStateChanged;
 
-        // 그리드에 추가
-        AddRoomToGrid(room, size);
+        AddRoomToGrid(room, room.GetSize());
 
-        // 스탯 재계산
         RecalculateAllStats();
 
-        return true;
+        return room;
     }
 
     /// <summary>
@@ -417,7 +354,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <summary>
     /// 백업해 둘 방 정보들
     /// </summary>
-    public List<RoomBackupData> backupRoomDatas = new List<RoomBackupData>();
+    public List<RoomBackupData> backupRoomDatas = new();
 
     /// <summary>
     /// 현재 함선에 포함된 모든 방의 가격 합을 반환
@@ -568,6 +505,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         RegisterSystem(new HitPointSystem());
         RegisterSystem(new CrewSystem());
         RegisterSystem(new MoraleSystem());
+        RegisterSystem(new StorageSystem());
     }
 
     /// <summary>
@@ -1183,6 +1121,20 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     public Vector2Int GetGridSize()
     {
         return gridSize;
+    }
+
+    #endregion
+
+    #region 창고
+
+    public List<TradingItem> GetAllItems()
+    {
+        return GetSystem<StorageSystem>().GetAllItems();
+    }
+
+    public void RemoveAllItems()
+    {
+        GetSystem<StorageSystem>().RemoveAllItems();
     }
 
     #endregion

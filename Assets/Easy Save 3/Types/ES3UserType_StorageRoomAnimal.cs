@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("currentRoomLevelData", "position", "currentLevel", "currentHitPoints", "roomType", "isDamageable", "connectedDoors", "currentRotation", "isActive", "isPowered", "isPowerRequested", "parentShip", "gridSize", "roomData")]
+	[ES3PropertiesAttribute("storedItems", "itemGrid", "currentRoomLevelData", "position", "currentLevel", "currentHitPoints", "roomType", "isDamageable", "connectedDoors", "currentRotation", "isActive", "isPowered", "isPowerRequested", "parentShip", "gridSize", "roomData")]
 	public class ES3UserType_StorageRoomAnimal : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -16,6 +16,8 @@ namespace ES3Types
 		{
 			var instance = (StorageRoomAnimal)obj;
 			
+			writer.WriteProperty("storedItems", instance.storedItems, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<TradingItem>)));
+			writer.WritePrivateField("itemGrid", instance);
 			writer.WritePrivateField("currentRoomLevelData", instance);
 			writer.WriteProperty("position", instance.position, ES3Type_Vector2Int.Instance);
 			writer.WritePrivateField("currentLevel", instance);
@@ -40,6 +42,12 @@ namespace ES3Types
 				switch(propertyName)
 				{
 					
+					case "storedItems":
+						instance.storedItems = reader.Read<System.Collections.Generic.List<TradingItem>>();
+						break;
+					case "itemGrid":
+					instance = (StorageRoomAnimal)reader.SetPrivateField("itemGrid", reader.Read<TradingItem[,]>(), instance);
+					break;
 					case "currentRoomLevelData":
 					instance = (StorageRoomAnimal)reader.SetPrivateField("currentRoomLevelData", reader.Read<StorageRoomBaseData.StorageRoomBaseLevel>(), instance);
 					break;

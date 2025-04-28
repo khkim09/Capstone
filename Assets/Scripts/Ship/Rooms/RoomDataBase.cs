@@ -1,85 +1,190 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 모든 방 관련 데이터를 관리하는 중앙 데이터베이스
+/// 방 데이터베이스 클래스
+/// 모든 방 타입, 창고 타입, 생활시설 타입에 대한 데이터를 관리합니다.
 /// </summary>
-[CreateAssetMenu(fileName = "RoomDatabase", menuName = "RoomData/RoomDatabase")]
+[CreateAssetMenu(fileName = "RoomDatabase", menuName = "Room/Room Database")]
 public class RoomDatabase : ScriptableObject
 {
-    // 방 타입별 RoomData 목록
-    [SerializeField] private List<RoomData> allRoomData = new();
+    [Header("일반 방 데이터")] public List<RoomDataEntry> roomEntries = new();
 
-    // 런타임용 방 타입별 RoomData 딕셔너리
-    private Dictionary<RoomType, RoomData> roomDataByType;
+    [Header("창고 데이터")] public List<StorageRoomDataEntry> storageRoomEntries = new();
 
-    /// <summary>
-    /// 방 타입별 RoomData dictionary 제공
-    /// </summary>
-    public Dictionary<RoomType, RoomData> ByType
+    [Header("생활시설 데이터")] public List<LifeSupportRoomDataEntry> lifeSupportRoomEntries = new();
+
+    [Header("선원 생활관 데이터")] public List<CrewQuartersDataEntry> crewQuartersDataEntries = new();
+
+    // 효율적인 조회를 위한 딕셔너리들
+    private Dictionary<RoomType, RoomData> roomDataMap;
+    private Dictionary<StorageType, Dictionary<StorageSize, StorageRoomBaseData>> storageDataMap;
+    private Dictionary<LifeSupportRoomType, LifeSupportRoomData> lifeSupportDataMap;
+    private Dictionary<CrewQuartersRoomSize, CrewQuartersRoomData> crewQuartersDataMap;
+
+    [Serializable]
+    public class RoomDataEntry
     {
-        get
-        {
-            if (roomDataByType == null || roomDataByType.Count == 0) InitializeDictionary();
-            return roomDataByType;
-        }
+        public RoomType roomType;
+        public RoomData roomData;
+    }
+
+    [Serializable]
+    public class StorageRoomDataEntry
+    {
+        public StorageType storageType;
+        public StorageSize size;
+        public StorageRoomBaseData roomData;
+    }
+
+    [Serializable]
+    public class LifeSupportRoomDataEntry
+    {
+        public LifeSupportRoomType facilityType;
+        public LifeSupportRoomData roomData;
+    }
+
+    [Serializable]
+    public class CrewQuartersDataEntry
+    {
+        public CrewQuartersRoomSize size;
+        public CrewQuartersRoomData roomData;
     }
 
     /// <summary>
-    /// 데이터베이스 초기화
+    /// 모든 딕셔너리 초기화
     /// </summary>
-    public void InitializeDictionary()
+    public void Initialize()
     {
-        roomDataByType = new Dictionary<RoomType, RoomData>();
-        foreach (RoomData data in allRoomData) roomDataByType[data.GetRoomType()] = data;
-
-        Debug.Log($"RoomDatabase 초기화 완료: {roomDataByType.Count}개 방 정보 로드");
+        InitializeRoomDataMap();
+        InitializeStorageDataMap();
+        InitializeLifeSupportDataMap();
+        InitializeCrewQuartersDataMap();
     }
 
     /// <summary>
-    /// Unity 이벤트: ScriptableObject가 로드될 때 호출됨
+    /// 일반 방 데이터 맵 초기화
     /// </summary>
-    private void OnEnable()
+    private void InitializeRoomDataMap()
     {
-        InitializeDictionary();
+        roomDataMap = new Dictionary<RoomType, RoomData>();
+
+        foreach (RoomDataEntry entry in roomEntries)
+            if (entry.roomData != null)
+                roomDataMap[entry.roomType] = entry.roomData;
+            else
+                Debug.LogWarning($"Missing room data for type: {entry.roomType}");
     }
 
     /// <summary>
-    /// 특정 방 타입의 RoomData 반환
+    /// 창고 데이터 맵 초기화
     /// </summary>
-    /// <param name="roomType">방 타입</param>
-    /// <returns>RoomData</returns>
+    private void InitializeStorageDataMap()
+    {
+        storageDataMap = new Dictionary<StorageType, Dictionary<StorageSize, StorageRoomBaseData>>();
+
+        foreach (StorageRoomDataEntry entry in storageRoomEntries)
+            if (entry.roomData != null)
+            {
+                if (!storageDataMap.ContainsKey(entry.storageType))
+                    storageDataMap[entry.storageType] = new Dictionary<StorageSize, StorageRoomBaseData>();
+
+                storageDataMap[entry.storageType][entry.size] = entry.roomData;
+            }
+            else
+            {
+                Debug.LogWarning($"Missing storage room data for type: {entry.storageType}, size: {entry.size}");
+            }
+    }
+
+    /// <summary>
+    /// 생활시설 데이터 맵 초기화
+    /// </summary>
+    private void InitializeLifeSupportDataMap()
+    {
+        lifeSupportDataMap = new Dictionary<LifeSupportRoomType, LifeSupportRoomData>();
+
+        foreach (LifeSupportRoomDataEntry entry in lifeSupportRoomEntries)
+            if (entry.roomData != null)
+                lifeSupportDataMap[entry.facilityType] = entry.roomData;
+            else
+                Debug.LogWarning($"Missing life support room data for type: {entry.facilityType}");
+    }
+
+    private void InitializeCrewQuartersDataMap()
+    {
+        crewQuartersDataMap = new Dictionary<CrewQuartersRoomSize, CrewQuartersRoomData>();
+
+        foreach (CrewQuartersDataEntry entry in crewQuartersDataEntries)
+            if (entry.roomData != null)
+                crewQuartersDataMap[entry.size] = entry.roomData;
+            else
+                Debug.LogWarning($"Missing crew quarters room data for size: {entry.size}");
+    }
+
+    /// <summary>
+    /// 방 유형에 해당하는 데이터 반환
+    /// </summary>
     public RoomData GetRoomData(RoomType roomType)
     {
-        if (roomDataByType == null || roomDataByType.Count == 0) InitializeDictionary();
+        if (roomDataMap == null) InitializeRoomDataMap();
 
-        if (roomDataByType.TryGetValue(roomType, out RoomData data)) return data;
+        if (roomDataMap.TryGetValue(roomType, out RoomData data)) return data;
 
-        Debug.LogWarning($"방 타입 {roomType}에 대한 데이터를 찾을 수 없습니다.");
+        Debug.LogWarning($"Room data not found for type: {roomType}");
         return null;
     }
 
     /// <summary>
-    /// 특정 방 타입의 RoomData를 제네릭 타입으로 반환
+    /// 창고 데이터 반환
     /// </summary>
-    /// <typeparam name="T">RoomData 상속 타입</typeparam>
-    /// <param name="roomType">방 타입</param>
-    /// <returns>요청한 타입의 RoomData</returns>
-    public T GetTypedRoomData<T>(RoomType roomType) where T : RoomData
+    public StorageRoomBaseData GetStorageRoomData(StorageType storageType, StorageSize size)
     {
-        RoomData data = GetRoomData(roomType);
-        if (data is T typedData) return typedData;
+        if (storageDataMap == null) InitializeStorageDataMap();
 
-        Debug.LogWarning($"방 타입 {roomType}에 대한 {typeof(T).Name} 데이터를 찾을 수 없습니다.");
+        if (storageDataMap.TryGetValue(storageType, out Dictionary<StorageSize, StorageRoomBaseData> sizeMap) &&
+            sizeMap.TryGetValue(size, out StorageRoomBaseData data))
+            return data;
+
+        Debug.LogWarning($"Storage room data not found for type: {storageType}, size: {size}");
         return null;
     }
 
     /// <summary>
-    /// 모든 방 데이터 목록을 반환
+    /// 생활시설 데이터 반환
     /// </summary>
-    /// <returns>모든 방 데이터 목록</returns>
+    public LifeSupportRoomData GetLifeSupportRoomData(LifeSupportRoomType facilityType)
+    {
+        if (lifeSupportDataMap == null) InitializeLifeSupportDataMap();
+
+        if (lifeSupportDataMap.TryGetValue(facilityType, out LifeSupportRoomData data)) return data;
+
+        Debug.LogWarning($"Life support room data not found for type: {facilityType}");
+        return null;
+    }
+
+    public CrewQuartersRoomData GetCrewQuartersRoomData(CrewQuartersRoomSize size)
+    {
+        if (crewQuartersDataMap == null) InitializeCrewQuartersDataMap();
+
+        if (crewQuartersDataMap.TryGetValue(size, out CrewQuartersRoomData data)) return data;
+
+        Debug.LogWarning($"Crew quarters room data not found for size: {size}");
+        return null;
+    }
+
+    /// <summary>
+    /// 모든 방 데이터 반환
+    /// </summary>
     public List<RoomData> GetAllRoomData()
     {
-        return new List<RoomData>(allRoomData);
+        List<RoomData> result = new();
+
+        foreach (RoomDataEntry entry in roomEntries)
+            if (entry.roomData != null)
+                result.Add(entry.roomData);
+
+        return result;
     }
 }

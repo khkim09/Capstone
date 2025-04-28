@@ -1,179 +1,341 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// 방 생성 및 관리를 담당하는 클래스
+/// 함선 내의 모든 방을 생성하고 관리하는 팩토리 클래스.
+/// 방 인스턴스 생성, 복제 등을 담당합니다.
 /// </summary>
 public class RoomFactory : MonoBehaviour
 {
-    [SerializeField] private RoomDatabase roomDatabase;
-    [SerializeField] private GameObject roomPrefab; // 방 프리팹
+    [Header("데이터베이스 참조")] [SerializeField] private RoomDatabase roomDatabase;
+
+    [Header("방 프리팹 참조")] [SerializeField] private GameObject roomPrefab; // 모든 방 생성의 기본이 되는 단일 프리팹
 
     private void Awake()
     {
-        InitializeDatabase();
+        InitializeRoomDatabase();
     }
 
     /// <summary>
-    /// 데이터베이스 초기화
+    /// 방 데이터베이스 초기화
     /// </summary>
-    private void InitializeDatabase()
+    private void InitializeRoomDatabase()
     {
         if (roomDatabase != null)
-            roomDatabase.InitializeDictionary();
+            roomDatabase.Initialize();
         else
             Debug.LogError("Room Database not assigned!");
     }
 
     /// <summary>
-    /// 특정 방 타입의 RoomData 반환
+    /// 방 유형에 따른 데이터 반환
     /// </summary>
-    /// <param name="roomType">방 타입</param>
-    /// <returns>RoomData</returns>
+    /// <param name="roomType">방 유형</param>
+    /// <returns>해당 유형의 방 데이터</returns>
     public RoomData GetRoomData(RoomType roomType)
     {
+        if (roomDatabase == null)
+        {
+            Debug.LogError("Room Database is not assigned!");
+            return null;
+        }
+
         return roomDatabase.GetRoomData(roomType);
     }
 
     /// <summary>
-    /// 특정 방 타입의 RoomData를 제네릭 타입으로 반환
+    /// 창고 데이터 반환
     /// </summary>
-    /// <typeparam name="T">RoomData 상속 타입</typeparam>
-    /// <param name="roomType">방 타입</param>
-    /// <returns>요청한 타입의 RoomData</returns>
-    public T GetTypedRoomData<T>(RoomType roomType) where T : RoomData
+    /// <param name="storageType">창고 유형</param>
+    /// <param name="size">창고 크기</param>
+    /// <returns>해당 유형과 크기의 창고 데이터</returns>
+    public StorageRoomBaseData GetStorageRoomData(StorageType storageType, StorageSize size)
     {
-        return roomDatabase.GetTypedRoomData<T>(roomType);
-    }
-
-    /// <summary>
-    /// 새로운 방 인스턴스 생성
-    /// </summary>
-    /// <param name="roomType">방 타입</param>
-    /// <param name="level">방 레벨</param>
-    /// <param name="position">그리드 위치</param>
-    /// <param name="rotation">회전 값</param>
-    /// <returns>생성된 방 인스턴스</returns>
-    public Room CreateRoomInstance(RoomType roomType, int level, Vector2Int position,
-        RotationConstants.Rotation rotation = RotationConstants.Rotation.Rotation0)
-    {
-        // 프리팹 체크
-        if (roomPrefab == null)
+        if (roomDatabase == null)
         {
-            Debug.LogError("방 프리팹이 할당되지 않았습니다!");
+            Debug.LogError("Room Database is not assigned!");
             return null;
         }
 
-        // RoomData 체크
+        return roomDatabase.GetStorageRoomData(storageType, size);
+    }
+
+    /// <summary>
+    /// 생활시설 데이터 반환
+    /// </summary>
+    /// <param name="facilityType">시설 유형</param>
+    /// <returns>해당 유형의 생활시설 데이터</returns>
+    public LifeSupportRoomData GetLifeSupportRoomData(LifeSupportRoomType facilityType)
+    {
+        if (roomDatabase == null)
+        {
+            Debug.LogError("Room Database is not assigned!");
+            return null;
+        }
+
+        return roomDatabase.GetLifeSupportRoomData(facilityType);
+    }
+
+    public CrewQuartersRoomData GetCrewQuartersRoomData(CrewQuartersRoomSize size)
+    {
+        if (roomDatabase == null)
+        {
+            Debug.LogError("Room Database is not assigned!");
+            return null;
+        }
+
+        return roomDatabase.GetCrewQuartersRoomData(size);
+    }
+
+    /// <summary>
+    /// 지정된 방 유형의 인스턴스 생성
+    /// </summary>
+    /// <param name="roomType">생성할 방 유형</param>
+    /// <param name="level">방 레벨</param>
+    /// <returns>생성된 방 인스턴스</returns>
+    public Room CreateRoomInstance(RoomType roomType, int level = 1)
+    {
         RoomData roomData = GetRoomData(roomType);
         if (roomData == null)
         {
-            Debug.LogError($"방 타입 {roomType}에 대한 데이터가 없습니다!");
+            Debug.LogError($"Room data not found for type: {roomType}");
             return null;
         }
 
-        // 방 인스턴스 생성
         GameObject roomObject = Instantiate(roomPrefab);
-        roomObject.name = $"Room_{roomType}_{level}";
+        roomObject.name = $"Room_{roomType}";
 
-        // 방 타입에 맞는 컴포넌트 추가
-        Room room = AddRoomComponent(roomObject, roomType);
-        if (room == null)
+        Room roomInstance = AttachRoomComponent(roomObject, roomType);
+        if (roomInstance == null)
         {
-            Debug.LogError($"방 타입 {roomType}에 대한 컴포넌트를 추가할 수 없습니다!");
+            Debug.LogError($"Failed to create room component for type: {roomType}");
             Destroy(roomObject);
             return null;
         }
 
-        // 방 초기화
-        room.SetRoomData(roomData);
-        room.position = position;
-        room.currentRotation = rotation;
-        room.Initialize(level);
+        roomInstance.SetRoomData(roomData);
+        roomInstance.Initialize(level);
 
-        // 월드 위치 설정
-        Vector2Int roomSize = room.GetSize();
-        // 회전이 있는 경우 사이즈 적용
-        if ((int)rotation % 2 != 0) // 90도 또는 270도
-            roomSize = new Vector2Int(roomSize.y, roomSize.x);
-
-        roomObject.transform.position = ShipGridHelper.GetRoomWorldPosition(position, roomSize);
-        roomObject.transform.rotation = Quaternion.Euler(0, 0, -(int)rotation * 90f);
-
-        return room;
+        return roomInstance;
     }
 
     /// <summary>
-    /// 기존 방 객체를 복제하여 새 인스턴스 생성
+    /// 창고 인스턴스 생성
     /// </summary>
-    /// <param name="room">복제할 방 객체</param>
-    /// <returns>생성된 방 인스턴스</returns>
-    public Room CreateRoomObject(Room room)
+    /// <param name="storageType">창고 유형</param>
+    /// <param name="size">창고 크기</param>
+    /// <param name="level">방 레벨</param>
+    /// <returns>생성된 창고 인스턴스</returns>
+    public StorageRoomBase CreateStorageRoomInstance(StorageType storageType, StorageSize size, int level = 1)
     {
-        if (roomPrefab == null)
+        StorageRoomBaseData storageData = GetStorageRoomData(storageType, size);
+        if (storageData == null)
         {
-            Debug.LogError("방 프리팹이 할당되지 않았습니다!");
+            Debug.LogError($"Storage room data not found for type: {storageType}, size: {size}");
             return null;
         }
 
-        // 새 게임 오브젝트 생성
         GameObject roomObject = Instantiate(roomPrefab);
+        roomObject.name = $"Storage_{storageType}_{size}";
 
-        // 방 타입에 맞는 컴포넌트 추가
-        Room roomComponent = AddRoomComponent(roomObject, room.roomType);
-        if (roomComponent == null)
+        StorageRoomBase storageInstance = AttachStorageRoomComponent(roomObject, storageType);
+        if (storageInstance == null)
         {
-            Debug.LogError($"방 타입 {room.roomType}에 대한 컴포넌트를 추가할 수 없습니다!");
+            Debug.LogError($"Failed to create storage room component for type: {storageType}");
             Destroy(roomObject);
             return null;
         }
 
-        // 속성 복사
-        roomComponent.CopyFrom(room);
+        storageInstance.SetRoomData(storageData);
+        storageInstance.SetCurrentLevel(1);
+        storageInstance.Initialize(level);
 
-        // 이름 설정
-        roomObject.name = $"Room_{room.roomType}_{room.GetCurrentLevel()}";
+        return storageInstance;
+    }
+
+    /// <summary>
+    /// 생활시설 인스턴스 생성
+    /// </summary>
+    /// <param name="facilityType">시설 유형</param>
+    /// <param name="level">방 레벨</param>
+    /// <returns>생성된 생활시설 인스턴스</returns>
+    public LifeSupportRoom CreateLifeSupportRoomInstance(LifeSupportRoomType facilityType, int level = 1)
+    {
+        LifeSupportRoomData lifeSupportData = GetLifeSupportRoomData(facilityType);
+        if (lifeSupportData == null)
+        {
+            Debug.LogError($"Life support room data not found for type: {facilityType}");
+            return null;
+        }
+
+        GameObject roomObject = Instantiate(roomPrefab);
+        roomObject.name = $"LifeSupport_{facilityType}";
+
+        LifeSupportRoom lifeSupportInstance = roomObject.AddComponent<LifeSupportRoom>();
+        lifeSupportInstance.SetRoomData(lifeSupportData);
+        lifeSupportInstance.Initialize(level);
+
+        return lifeSupportInstance;
+    }
+
+    public CrewQuartersRoom CreateCrewQuartersRoomInstance(CrewQuartersRoomSize size, int level = 1)
+    {
+        CrewQuartersRoomData crewQuartersData = GetCrewQuartersRoomData(size);
+        if (crewQuartersData == null)
+        {
+            Debug.LogError($"Crew quarters room data not found for size: {size}");
+            return null;
+        }
+
+        GameObject roomObject = Instantiate(roomPrefab);
+        roomObject.name = $"CrewQuarters_{size}";
+
+        CrewQuartersRoom crewQuartersInstance = roomObject.AddComponent<CrewQuartersRoom>();
+        crewQuartersInstance.SetRoomData(crewQuartersData);
+        crewQuartersInstance.Initialize(level);
+
+        return crewQuartersInstance;
+    }
+
+    /// <summary>
+    /// 기존 방과 동일한 방 인스턴스 생성
+    /// </summary>
+    /// <param name="sourceRoom">복제할 방</param>
+    /// <returns>복제된 방 인스턴스</returns>
+    public Room CreateRoomObject(Room sourceRoom)
+    {
+        if (sourceRoom == null)
+        {
+            Debug.LogError("Source room is null!");
+            return null;
+        }
+
+        GameObject roomObject = Instantiate(roomPrefab);
+        roomObject.name = $"Room_{sourceRoom.name}";
+
+        Room roomInstance;
+
+        // 타입에 따라 적절한 컴포넌트 부착
+        if (sourceRoom is StorageRoomBase storageRoom)
+        {
+            // 스토리지룸인 경우
+            roomInstance = AttachStorageRoomComponent(roomObject, storageRoom.GetStorageType());
+
+            // 스토리지 관련 초기화 호출
+            roomInstance.SetRoomData(sourceRoom.GetRoomData());
+            roomInstance.Initialize(sourceRoom.GetCurrentLevel());
+
+            // 이후 스토리지 특화 데이터 복사
+            roomInstance.CopyFrom(sourceRoom);
+        }
+        else
+        {
+            // 일반 룸인 경우
+            roomInstance = AttachRoomComponent(roomObject, sourceRoom.GetRoomType());
+
+            // 기본 초기화 호출
+            roomInstance.SetRoomData(sourceRoom.GetRoomData());
+            roomInstance.Initialize(sourceRoom.GetCurrentLevel());
+
+            // 이후 데이터 복사
+            roomInstance.CopyFrom(sourceRoom);
+        }
+
+        if (roomInstance == null)
+        {
+            Debug.LogError($"Failed to create room component for room: {sourceRoom.name}");
+            Destroy(roomObject);
+            return null;
+        }
+
+        return roomInstance;
+    }
+
+    /// <summary>
+    /// 방 유형에 따라 적절한 컴포넌트 부착
+    /// </summary>
+    private Room AttachRoomComponent(GameObject roomObject, RoomType roomType)
+    {
+        Room roomComponent = null;
+
+        switch (roomType)
+        {
+            case RoomType.Cockpit:
+                roomComponent = roomObject.AddComponent<CockpitRoom>();
+                break;
+            case RoomType.Engine:
+                // 엔진룸 구현 필요
+                roomComponent = roomObject.AddComponent<EngineRoom>();
+                break;
+            case RoomType.WeaponControl:
+                // 무기 제어실 구현 필요
+                roomComponent = roomObject.AddComponent<WeaponControlRoom>();
+                break;
+            case RoomType.Shield:
+                // 실드 제어실 구현 필요
+                roomComponent = roomObject.AddComponent<ShieldRoom>();
+                break;
+            case RoomType.Power:
+                // 전력실 구현 필요
+                roomComponent = roomObject.AddComponent<PowerRoom>();
+                break;
+            case RoomType.Oxygen:
+                // 산소실 구현 필요
+                roomComponent = roomObject.AddComponent<OxygenRoom>();
+                break;
+            case RoomType.MedBay:
+                // 의무실 구현 필요
+                roomComponent = roomObject.AddComponent<Room>();
+                break;
+            case RoomType.Teleporter:
+                // 텔레포터 구현 필요
+                roomComponent = roomObject.AddComponent<TeleportRoom>();
+                break;
+            case RoomType.Ammunition:
+                // 탄약고 구현 필요
+                roomComponent = roomObject.AddComponent<AmmunitionRoom>();
+                break;
+            case RoomType.CrewQuarters:
+                // 선원실 구현 필요
+                roomComponent = roomObject.AddComponent<CrewQuartersRoom>();
+                break;
+            case RoomType.Corridor:
+                // 복도 구현 필요
+                roomComponent = roomObject.AddComponent<CorridorRoom>();
+                break;
+            case RoomType.LifeSupport:
+                roomComponent = roomObject.AddComponent<LifeSupportRoom>();
+                break;
+            default:
+                Debug.LogError($"Unknown room type: {roomType}");
+                break;
+        }
 
         return roomComponent;
     }
 
     /// <summary>
-    /// 방 타입에 따른 올바른 Room 컴포넌트 추가
+    /// 창고 유형에 따라 적절한 컴포넌트 부착
     /// </summary>
-    /// <param name="roomObject">방 게임오브젝트</param>
-    /// <param name="roomType">방 타입</param>
-    /// <returns>추가된 Room 컴포넌트</returns>
-    private Room AddRoomComponent(GameObject roomObject, RoomType roomType)
+    private StorageRoomBase AttachStorageRoomComponent(GameObject roomObject, StorageType storageType)
     {
-        // 기존 Room 컴포넌트 제거 (있는 경우)
-        Room existingRoom = roomObject.GetComponent<Room>();
-        if (existingRoom != null)
-            Destroy(existingRoom);
+        StorageRoomBase storageComponent = null;
 
-        // 방 타입에 따라 다른 컴포넌트 추가
-        switch (roomType)
+        switch (storageType)
         {
-            case RoomType.Cockpit:
-                return roomObject.AddComponent<CockpitRoom>();
-            case RoomType.Engine:
-                return roomObject.AddComponent<EngineRoom>();
-            // 다른 방 타입들에 대해 추가
-            // case RoomType.Shield:
-            //     return roomObject.AddComponent<ShieldRoom>();
-            // 등등...
+            case StorageType.Regular:
+                storageComponent = roomObject.AddComponent<StorageRoomRegular>();
+                break;
+            case StorageType.Temperature:
+                storageComponent = roomObject.AddComponent<StorageRoomTemperature>();
+                break;
+            case StorageType.Animal:
+                storageComponent = roomObject.AddComponent<StorageRoomAnimal>();
+                break;
             default:
-                Debug.LogWarning($"방 타입 {roomType}에 대한 구체적인 컴포넌트가 정의되지 않았습니다. 기본 Room 컴포넌트를 사용합니다.");
-                return roomObject.AddComponent<Room>();
+                Debug.LogError($"Unknown storage type: {storageType}");
+                break;
         }
-    }
 
-
-    /// <summary>
-    /// 모든 방 데이터 목록을 반환
-    /// </summary>
-    /// <returns>모든 방 데이터 목록</returns>
-    public List<RoomData> GetAllRoomData()
-    {
-        return roomDatabase.GetAllRoomData();
+        return storageComponent;
     }
 }
