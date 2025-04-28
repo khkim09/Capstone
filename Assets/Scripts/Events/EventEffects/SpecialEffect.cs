@@ -5,6 +5,5 @@
     Battle,
     RoomDamage,
     AddQuest,
-    UnlockShip,
     UnlockItem
 }

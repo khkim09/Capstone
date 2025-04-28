@@ -3,54 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 랜덤 퀘스트 정보 관련 클래스
+/// 퀘스트 정의를 담는 ScriptableObject
 /// </summary>
-[CreateAssetMenu(fileName = "NewRandomQuest", menuName = "Quest/Random Quest")]
+[CreateAssetMenu(fileName = "NewQuestDefinition", menuName = "Game/Quest Definition")]
 public class RandomQuest : ScriptableObject
 {
-    public string title;
-    public string description;
-    public QuestStatus status = QuestStatus.Active;
+    [Header("식별 및 상태")]
+    public string questId;                                 // 고유 ID
+    [HideInInspector] public QuestStatus status = QuestStatus.NotStarted;
+
+    [Header("기본 정보")]
+    public string title;                                   // 퀘스트 제목
+    [TextArea] public string description;                  // 퀘스트 설명
+    public Sprite questIcon;                               // 퀘스트 아이콘
+
+    [Header("조건 (Collect Item 전용)")]
     public List<QuestObjective> objectives = new List<QuestObjective>();
+
+    [Header("보상")]
     public List<QuestReward> rewards = new List<QuestReward>();
 
-    /// <summary>
-    /// 퀘스트 상태
-    /// </summary>
     public enum QuestStatus
     {
+        NotStarted,
         Active,
         Completed,
         Failed
     }
 
     /// <summary>
-    /// 퀘스트 설명, 현재 횟수, 필요 횟수, 완료 여부
+    /// 수집형 퀘스트 목표
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class QuestObjective
     {
-        public string description;
-        public int currentAmount;
-        public int requiredAmount;
-        public bool isCompleted;
+        public string targetId;                   // 검사할 아이템 레퍼런스
+        public string description;                        // 목표 설명
+        public int requiredAmount;                        // 요구 수량
+
+        [HideInInspector] public int currentAmount;       // 현재 수량 (런타임에 자동 갱신)
+        [HideInInspector] public bool isCompleted;        // 완료 여부 (런타임에 자동 체크)
     }
 
-    /// <summary>
-    /// 퀘스트 보상 종류, 양, 아이템 종류
-    /// </summary>
-    [System.Serializable]
-    public class QuestReward
-    {
-        public RewardType type;
-        public int amount;
-        public string itemId;
-        // 필요에 따라 ResourceType 등 추가할 수 있습니다.
-    }
-
-    /// <summary>
-    ///  보상의 종류
-    /// </summary>
     public enum RewardType
     {
         Resource,
@@ -60,46 +54,84 @@ public class RandomQuest : ScriptableObject
     }
 
     /// <summary>
-    /// 퀘스트 형 변환 함수
+    /// 퀘스트 보상
     /// </summary>
-    /// <returns></returns>
+    [Serializable]
+    public class QuestReward
+    {
+        public RewardType type;                           // 보상 종류
+        public ResourceType resourceType;                 // Resource 타입일 때
+        public int amount;                                // 수량
+        public string itemId;                             // Item 타입일 때
+        public int itemQuantity = 1;                      // 아이템 수량
+    }
+
+    /// <summary>
+    /// 수락 시 호출
+    /// </summary>
+    public void Accept()
+    {
+        if (status != QuestStatus.NotStarted) return;
+        status = QuestStatus.Active;
+    }
+
+    /// <summary>
+    /// 거절 시 호출
+    /// </summary>
+    public void Decline()
+    {
+        if (status != QuestStatus.NotStarted) return;
+        status = QuestStatus.Failed;
+    }
+
+    /// <summary>
+    /// 목표 달성 여부 자동 체크
+    /// </summary>
+    public void CheckCompletion()
+    {
+        if (status != QuestStatus.Active) return;
+        foreach (var o in objectives)
+            if (!o.isCompleted) return;
+        status = QuestStatus.Completed;
+    }
+
+    /// <summary>
+    /// 런타임 QuestManager로 전달할 QuestData 생성
+    /// </summary>
     public QuestManager.Quest ToQuest()
     {
-        var quest = new QuestManager.Quest();
-        // 적절한 식별자 할당 (예: this.name 사용)
-        quest.id = this.name;
-        quest.title = this.title;
-        quest.description = this.description;
-        // 상태는 기본적으로 Active로 설정 (필요 시 다른 로직 추가)
-        quest.status = QuestManager.QuestStatus.Active;
-
-        // 목표(objectives) 변환
-        quest.objectives = new List<QuestManager.QuestObjective>();
-        foreach (var obj in this.objectives)
+        var q = new QuestManager.Quest
         {
-            quest.objectives.Add(new QuestManager.QuestObjective
+            id          = questId,
+            title       = title,
+            description = description,
+            status      = QuestManager.QuestStatus.Active
+        };
+
+        // 목표 복사
+        foreach (var o in objectives)
+        {
+            q.objectives.Add(new QuestManager.QuestObjective
             {
-                description = obj.description,
-                currentAmount = obj.currentAmount,
-                requiredAmount = obj.requiredAmount,
-                isCompleted = obj.isCompleted
+                description    = o.description,
+                currentAmount  = 0,
+                requiredAmount = o.requiredAmount,
+                isCompleted    = false
             });
         }
 
-        // 보상(rewards) 변환
-        quest.rewards = new List<QuestManager.QuestReward>();
-        foreach (var rew in this.rewards)
+        // 보상 복사
+        foreach (var r in rewards)
         {
-            quest.rewards.Add(new QuestManager.QuestReward
+            q.rewards.Add(new QuestManager.QuestReward
             {
-                // RewardType 변환 시 Enum.Parse를 사용하거나, 직접 매핑할 수 있음
-                type = (QuestManager.RewardType)Enum.Parse(typeof(QuestManager.RewardType), rew.type.ToString()),
-                amount = rew.amount,
-                itemId = rew.itemId,
-                // 만약 ResourceType도 있다면 추가 처리 필요
+                type         = (QuestManager.RewardType)r.type,
+                resourceType = r.resourceType,
+                amount       = r.amount,
+                itemId       = r.itemId
             });
         }
 
-        return quest;
+        return q;
     }
 }

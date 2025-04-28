@@ -18,6 +18,7 @@ public class QuestManager : MonoBehaviour
     /// </summary>
     public enum QuestStatus
     {
+        NotStarted,
         Active,
         Completed,
         Failed

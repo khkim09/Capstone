@@ -1,152 +1,151 @@
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// 퀘스트 UI 관리하는 클래스
-/// </summary>
 public class QuestUIManager : MonoBehaviour
 {
-    [Header("UI References")]
-    [SerializeField] private GameObject questPanel;
-    [SerializeField] private TextMeshProUGUI questTitleText;
-    [SerializeField] private TextMeshProUGUI questDescriptionText;
-    [SerializeField] private Transform objectivesContainer;  // 목표 목록을 표시할 부모 오브젝트
-    [SerializeField] private GameObject objectiveItemPrefab;   // 각 목표 항목 프리팹 (TextMeshProUGUI 포함)
-    [SerializeField] private GameObject rewardsPanel;
-    [SerializeField] private TextMeshProUGUI rewardsText;
-    [SerializeField] private Button completeButton;
+    [Header("제안 UI")]
+    [SerializeField] private GameObject offerPanel;
+    [SerializeField] private TextMeshProUGUI offerTitle;
+    [SerializeField] private TextMeshProUGUI offerDesc;
+    [SerializeField] private Button acceptBtn;
+    [SerializeField] private Button declineBtn;
 
-    [Header("Settings")]
-    [SerializeField] private float textTypingSpeed = 0.05f;
+    [Header("진행 UI")]
+    [SerializeField] private GameObject progressPanel;
+    [SerializeField] private Transform objectivesContainer;
+    [SerializeField] private GameObject objectivePrefab;
+
+    [Header("완료 UI")]
+    [SerializeField] private GameObject completePanel;
+    [SerializeField] private TextMeshProUGUI completeTitle;
+    [SerializeField] private TextMeshProUGUI completeRewards;
+    [SerializeField] private Button confirmBtn;
+
+    [Header("타이핑 효과 속도")]
+    [SerializeField] private float typingSpeed = 0.05f;
 
     private RandomQuest currentQuest;
-    public static QuestUIManager Instance { get; private set; }
 
-    /// <summary>
-    /// 로드될 때 호출
-    /// </summary>
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        acceptBtn.onClick.AddListener(OnAccept);
+        declineBtn.onClick.AddListener(OnDecline);
+        confirmBtn.onClick.AddListener(() => completePanel.SetActive(false));
+
+        // Storage에서 어떤 아이템이 바뀌어도 진행 UI 갱신
+        if (Storage.Instance != null)
+        {
+            Storage.Instance.OnStorageChanged += _ =>
+            {
+                if (currentQuest != null)
+                    RefreshObjectives();
+            };
+        }
     }
 
-    /// <summary>
-    /// 시작시 호출
-    /// </summary>
     private void Start()
     {
-        questPanel.SetActive(false);
-        rewardsPanel.SetActive(false);
-        completeButton.onClick.AddListener(OnCompleteButtonClicked);
+        offerPanel.SetActive(false);
+        progressPanel.SetActive(false);
+        completePanel.SetActive(false);
     }
 
     /// <summary>
-    /// 퀘스트 데이터를 받아 UI에 표시
+    /// 퀘스트 제안창 띄우기
     /// </summary>
-    /// <param name="quest"></param>
-    public void ShowQuest(RandomQuest quest)
+    public void ShowQuestOffer(RandomQuest rq)
     {
-        currentQuest = quest;
-        questPanel.SetActive(true);
+        currentQuest = rq;
+        rq.status = RandomQuest.QuestStatus.NotStarted;
 
-        // 퀘스트 제목 및 설명 설정 (타이핑 효과 적용)
-        questTitleText.text = quest.title;
-        StartCoroutine(TypeText(questDescriptionText, quest.description));
+        offerPanel.SetActive(true);
+        progressPanel.SetActive(false);
+        completePanel.SetActive(false);
 
-        // 목표와 보상 UI 설정
-        SetupObjectives(quest);
-        SetupRewards(quest);
+        offerTitle.text = rq.title;
+        StartCoroutine(TypeText(offerDesc, rq.description));
+    }
 
-        // 모든 목표가 완료된 경우에만 완료 버튼 활성화
-        bool allObjectivesComplete = true;
-        foreach (var objective in quest.objectives)
-        {
-            if (!objective.isCompleted)
-            {
-                allObjectivesComplete = false;
-                break;
-            }
-        }
-        completeButton.interactable = allObjectivesComplete;
+    private void OnAccept()
+    {
+        if (currentQuest == null) return;
+        currentQuest.Accept();
+        offerPanel.SetActive(false);
+
+        // QuestManager에 런타임 데이터 등록
+        QuestManager.Instance.AddQuest(currentQuest.ToQuest());
+
+        // 진행 UI 열기 및 초기 갱신
+        progressPanel.SetActive(true);
+        RefreshObjectives();
+    }
+
+    private void OnDecline()
+    {
+        if (currentQuest == null) return;
+        currentQuest.Decline();
+        offerPanel.SetActive(false);
     }
 
     /// <summary>
-    /// 목표 목록을 UI에 동적으로 생성
+    /// 목표 UI 갱신 및 완료 체크
     /// </summary>
-    /// <param name="quest"></param>
-    private void SetupObjectives(RandomQuest quest)
+    public void RefreshObjectives()
     {
-        // 기존 목표 아이템 제거
-        foreach (Transform child in objectivesContainer)
+        // 1) 각 목표의 targetId로 창고 수량 조회
+        foreach (var o in currentQuest.objectives)
         {
-            Destroy(child.gameObject);
+            int qty = Storage.Instance.GetItemQuantityById(o.targetId);
+            o.currentAmount = qty;
+            o.isCompleted   = (qty >= o.requiredAmount);
         }
 
-        // 각 목표 항목 생성
-        foreach (var objective in quest.objectives)
+        // 2) UI 목록 갱신
+        foreach (Transform t in objectivesContainer)
+            Destroy(t.gameObject);
+
+        foreach (var o in currentQuest.objectives)
         {
-            GameObject objItem = Instantiate(objectiveItemPrefab, objectivesContainer);
-            TextMeshProUGUI objText = objItem.GetComponentInChildren<TextMeshProUGUI>();
-            if (objText != null)
-            {
-                objText.text = $"{objective.description} ({objective.currentAmount}/{objective.requiredAmount})";
-            }
+            var go  = Instantiate(objectivePrefab, objectivesContainer);
+            var txt = go.GetComponentInChildren<TextMeshProUGUI>();
+            txt.text = $"{o.description} ({o.currentAmount}/{o.requiredAmount})";
+            if (o.isCompleted)
+                txt.color = Color.green;
         }
+
+        // 3) 자동 완료 체크
+        currentQuest.CheckCompletion();
+        if (currentQuest.status == RandomQuest.QuestStatus.Completed)
+            ShowCompletion();
     }
 
     /// <summary>
-    /// 퀘스트가 완료된 경우 보상 정보를 UI에 표시
+    /// 완료 UI 표시 및 보상 텍스트
     /// </summary>
-    /// <param name="quest"></param>
-    private void SetupRewards(RandomQuest quest)
+    private void ShowCompletion()
     {
-        // 퀘스트 상태가 완료라면 보상 패널 활성화
-        if (quest.status == RandomQuest.QuestStatus.Completed)
-        {
-            rewardsPanel.SetActive(true);
-            string rewardDetails = "";
-            foreach (var reward in quest.rewards)
-            {
-                rewardDetails += $"{reward.type} : {reward.amount}\n";
-            }
-            rewardsText.text = rewardDetails;
-        }
-        else
-        {
-            rewardsPanel.SetActive(false);
-        }
-    }
+        completePanel.SetActive(true);
+        completeTitle.text = $"퀘스트 완료: {currentQuest.title}";
 
+        string detail = "";
+        foreach (var r in currentQuest.rewards)
+            detail += $"{r.type}: {r.amount}\n";
+        completeRewards.text = detail;
 
-    /// <summary>
-    /// 텍스트 타입
-    /// </summary>
-    /// <param name="textComponent"></param>
-    /// <param name="text"></param>
-    /// <returns></returns>
-    private IEnumerator TypeText(TextMeshProUGUI textComponent, string text)
-    {
-        textComponent.text = "";
-        foreach (var c in text)
-        {
-            textComponent.text += c;
-            yield return new WaitForSeconds(textTypingSpeed);
-        }
-    }
-
-    /// <summary>
-    /// 완료버튼 누를시 호ㅜㄹ
-    /// </summary>
-    private void OnCompleteButtonClicked()
-    {
-        questPanel.SetActive(false);
-        // 퀘스트 완료 처리 (예: QuestManager 메서드 호출)
+        // QuestManager에 완료 알림
         QuestManager.Instance.TriggerQuestCompleted(currentQuest.ToQuest());
+    }
 
+    private IEnumerator TypeText(TextMeshProUGUI comp, string msg)
+    {
+        comp.text = "";
+        foreach (var c in msg)
+        {
+            comp.text += c;
+            yield return new WaitForSeconds(typingSpeed);
+        }
     }
 }
