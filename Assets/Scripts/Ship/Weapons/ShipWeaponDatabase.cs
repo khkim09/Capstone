@@ -80,7 +80,7 @@ public class ShipWeaponDatabase : ScriptableObject
 
         foreach (ShipWeaponData weapon in allWeapons)
             if (weapon != null)
-                if (weapon.effectType == effectType)
+                if (weapon.effectData.effectType == effectType)
                     result.Add(weapon);
 
         return result;

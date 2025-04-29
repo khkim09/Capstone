@@ -12,11 +12,16 @@ public class ShipWeaponJsonLoader : EditorWindow
     private string jsonFilePath = "Assets/StreamingAssets/ShipWeapon.json";
     private string effectJsonPath = "Assets/StreamingAssets/ShipWeaponSpecialEffect.json";
     private string outputFolder = "Assets/ScriptableObject/ShipWeapon";
+    private string effectsFolder = "Assets/ScriptableObject/ShipWeapon/Effects";
+    private string typesFolder = "Assets/ScriptableObject/ShipWeapon/Types";
     private ShipWeaponDatabase databaseAsset;
     private bool overwriteExisting = true;
+    private bool createOrUpdateEffects = true;
 
     private int updatedWeapons;
     private int newWeapons;
+    private int updatedEffects;
+    private int newEffects;
 
     [MenuItem("Game/JSON to Weapon Converter")]
     public static void ShowWindow()
@@ -39,8 +44,11 @@ public class ShipWeaponJsonLoader : EditorWindow
         EditorGUILayout.LabelField("Effect File:", effectJsonPath);
 
         outputFolder = EditorGUILayout.TextField("Output Folder:", outputFolder);
+        effectsFolder = EditorGUILayout.TextField("Effects Folder:", effectsFolder);
+        typesFolder = EditorGUILayout.TextField("Types Folder:", typesFolder);
 
         overwriteExisting = EditorGUILayout.Toggle("Overwrite Existing Assets", overwriteExisting);
+        createOrUpdateEffects = EditorGUILayout.Toggle("Create/Update Effect Assets", createOrUpdateEffects);
 
         if (overwriteExisting)
             EditorGUILayout.HelpBox("Warning: Existing assets will be overwritten.", MessageType.Warning);
@@ -58,11 +66,13 @@ public class ShipWeaponJsonLoader : EditorWindow
 
         GUI.enabled = true;
 
-        if (updatedWeapons > 0 || newWeapons > 0)
+        if (updatedWeapons > 0 || newWeapons > 0 || updatedEffects > 0 || newEffects > 0)
         {
             GUILayout.Label("Conversion Results:", EditorStyles.boldLabel);
             EditorGUILayout.LabelField("Updated Weapons:", updatedWeapons.ToString());
             EditorGUILayout.LabelField("New Weapons:", newWeapons.ToString());
+            EditorGUILayout.LabelField("Updated Effects:", updatedEffects.ToString());
+            EditorGUILayout.LabelField("New Effects:", newEffects.ToString());
             EditorGUILayout.LabelField("Total Weapons:", databaseAsset.allWeapons.Count.ToString());
         }
     }
@@ -83,7 +93,9 @@ public class ShipWeaponJsonLoader : EditorWindow
 
     private class EffectInfo
     {
+        public int id;
         public string type;
+        public string name;
         public string description;
     }
 
@@ -100,10 +112,106 @@ public class ShipWeaponJsonLoader : EditorWindow
                 JToken item = prop.Value;
                 string type = (string)item["type"];
                 string desc = (string)item["description"];
-                map[id] = new EffectInfo { type = type, description = desc };
+                string name = (string)item["name"] ?? $"Effect {id}";
+
+                map[id] = new EffectInfo { id = id, type = type, name = name, description = desc };
             }
 
         return map;
+    }
+
+    private Dictionary<int, WeaponEffectData> CreateOrUpdateEffectAssets(Dictionary<int, EffectInfo> effectMap)
+    {
+        Dictionary<int, WeaponEffectData> effectAssets = new();
+
+        if (!Directory.Exists(effectsFolder))
+            Directory.CreateDirectory(effectsFolder);
+
+        // First collect all existing effect assets by ID
+        Dictionary<int, WeaponEffectData> existingEffects = new();
+        if (overwriteExisting)
+        {
+            string[] guids = AssetDatabase.FindAssets("t:WeaponEffectData", new[] { effectsFolder });
+            foreach (string guid in guids)
+            {
+                string assetPath = AssetDatabase.GUIDToAssetPath(guid);
+                WeaponEffectData effectAsset = AssetDatabase.LoadAssetAtPath<WeaponEffectData>(assetPath);
+                if (effectAsset != null)
+                    existingEffects[effectAsset.id] = effectAsset;
+            }
+        }
+
+        updatedEffects = 0;
+        newEffects = 0;
+
+        foreach (KeyValuePair<int, EffectInfo> effect in effectMap)
+        {
+            int effectId = effect.Key;
+            EffectInfo effectInfo = effect.Value;
+
+            WeaponEffectData effectData = null;
+            bool isNew = true;
+            string assetPath = Path.Combine(effectsFolder, $"Effect_{effectId}.asset");
+
+            // Check if the effect already exists by ID
+            if (overwriteExisting && existingEffects.TryGetValue(effectId, out WeaponEffectData existingEffect))
+            {
+                effectData = existingEffect;
+                assetPath = AssetDatabase.GetAssetPath(effectData);
+                Undo.RecordObject(effectData, "Update Effect");
+                isNew = false;
+                updatedEffects++;
+            }
+            else
+            {
+                effectData = CreateInstance<WeaponEffectData>();
+                newEffects++;
+            }
+
+            // Update effect data
+            effectData.id = effectId;
+            effectData.effectName = effectInfo.name;
+            effectData.description = effectInfo.description;
+
+            // Try to parse the effect type
+            if (Enum.TryParse<ShipWeaponEffectType>(effectInfo.type, true, out ShipWeaponEffectType effectType))
+                effectData.effectType = effectType;
+            else
+                effectData.effectType = ShipWeaponEffectType.None;
+
+            // TODO: Load effect icon if needed
+            // effectData.icon = Resources.Load<Sprite>($"Effects/effect_icon_{effectId}");
+
+            if (isNew)
+            {
+                assetPath = AssetDatabase.GenerateUniqueAssetPath(assetPath);
+                AssetDatabase.CreateAsset(effectData, assetPath);
+            }
+            else
+            {
+                EditorUtility.SetDirty(effectData);
+            }
+
+            effectAssets[effectId] = effectData;
+        }
+
+        return effectAssets;
+    }
+
+    // 기존 무기 타입 데이터를 ID로 찾아서 딕셔너리로 반환
+    private Dictionary<int, ShipWeaponTypeData> LoadExistingTypeAssets()
+    {
+        Dictionary<int, ShipWeaponTypeData> typeAssets = new();
+
+        string[] guids = AssetDatabase.FindAssets("t:ShipWeaponTypeData", new[] { typesFolder });
+        foreach (string guid in guids)
+        {
+            string assetPath = AssetDatabase.GUIDToAssetPath(guid);
+            ShipWeaponTypeData typeAsset = AssetDatabase.LoadAssetAtPath<ShipWeaponTypeData>(assetPath);
+            if (typeAsset != null) typeAssets[typeAsset.id] = typeAsset;
+        }
+
+        return typeAssets;
     }
 
     private void ConvertJsonToScriptableObjects()
@@ -116,6 +224,11 @@ public class ShipWeaponJsonLoader : EditorWindow
 
         string jsonText = File.ReadAllText(jsonFilePath);
         Dictionary<int, EffectInfo> effectMap = LoadEffectMap(effectJsonPath);
+        Dictionary<int, WeaponEffectData> effectAssets = new();
+        Dictionary<int, ShipWeaponTypeData> typeAssets = LoadExistingTypeAssets();
+
+        // Create weapon effect ScriptableObjects if requested
+        if (createOrUpdateEffects) effectAssets = CreateOrUpdateEffectAssets(effectMap);
 
         try
         {
@@ -176,25 +289,44 @@ public class ShipWeaponJsonLoader : EditorWindow
                 else
                     weaponSO.weaponType = ShipWeaponType.Default;
 
+                // Link to the weapon type ScriptableObject if type_id is specified
+                if (weaponToken["type_id"] != null)
+                {
+                    int typeId = (int)weaponToken["type_id"];
+
+                    // Link to the type ScriptableObject
+                    if (typeAssets.TryGetValue(typeId, out ShipWeaponTypeData typeData))
+                        // Assuming you have a weaponTypeData field in ShipWeaponData
+                        // weaponSO.weaponTypeData = typeData;
+                        // If not, you can use the enum value from the type data
+                        weaponSO.weaponType = typeData.weaponType;
+                }
+
                 string warheadTypeStr = (string)weaponToken["warhead_type"];
                 if (Enum.TryParse<WarheadType>(warheadTypeStr, true, out WarheadType warheadType))
                     weaponSO.warheadType = warheadType;
                 else
                     weaponSO.warheadType = WarheadType.Default;
 
-                if (weaponToken["effect_id"] != null)
+                // type_id로 무기 타입 설정
+                if (weaponToken["type_id"] != null)
                 {
-                    int effectId = (int)weaponToken["effect_id"];
+                    int typeId = (int)weaponToken["type_id"];
 
-
-                    if (effectMap.TryGetValue(effectId, out EffectInfo effectInfo))
-                    {
-                        if (Enum.TryParse<ShipWeaponEffectType>(effectInfo.type, true,
-                                out ShipWeaponEffectType parsedEffect))
-                            weaponSO.effectType = parsedEffect;
-
-                        weaponSO.effectDescription = effectInfo.description;
-                    }
+                    // ShipWeaponTypeData에서 ID로 찾기
+                    if (typeAssets.TryGetValue(typeId, out ShipWeaponTypeData typeData))
+                        // TypeData에서 무기 타입 가져오기
+                        weaponSO.weaponType = typeData.weaponType;
+                    // 필요하다면 ShipWeaponData에 typeData 참조 추가
+                    // weaponSO.weaponTypeData = typeData;
+                    else
+                        // type_id는 있지만 해당 ID를 가진 에셋이 없는 경우 기본값 설정
+                        weaponSO.weaponType = ShipWeaponType.Default;
+                }
+                else
+                {
+                    // type_id가 없는 경우 기본값 설정
+                    weaponSO.weaponType = ShipWeaponType.Default;
                 }
 
                 if (weaponToken["effect_power"] != null)
@@ -234,7 +366,8 @@ public class ShipWeaponJsonLoader : EditorWindow
             AssetDatabase.Refresh();
 
             EditorUtility.DisplayDialog("Success",
-                $"변환 완료!\n업데이트: {updatedWeapons}, 새 무기: {newWeapons}, 총: {databaseAsset.allWeapons.Count}", "OK");
+                $"변환 완료!\n업데이트: {updatedWeapons}, 새 무기: {newWeapons}, 총: {databaseAsset.allWeapons.Count}\n" +
+                $"업데이트 효과: {updatedEffects}, 새 효과: {newEffects}", "OK");
         }
         catch (Exception e)
         {

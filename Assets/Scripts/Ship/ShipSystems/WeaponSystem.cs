@@ -207,6 +207,6 @@ public class WeaponSystem : ShipSystem
 
     public List<ShipWeapon> GetWeaponsByEffect(ShipWeaponEffectType effectType)
     {
-        return weapons.FindAll(w => w.weaponData.effectType == effectType);
+        return weapons.FindAll(w => w.weaponData.effectData.effectType == effectType);
     }
 }

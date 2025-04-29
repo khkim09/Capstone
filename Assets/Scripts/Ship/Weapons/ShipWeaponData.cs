@@ -38,12 +38,8 @@ public class ShipWeaponData : ScriptableObject
     /// </summary>
     [SerializeField] public ShipWeaponType weaponType;
 
-    /// <summary>
-    /// 무기의 추가 효과
-    /// </summary>
-    [SerializeField] public ShipWeaponEffectType effectType;
 
-    public string effectDescription;
+    public WeaponEffectData effectData;
 
 
     /// <summary>
