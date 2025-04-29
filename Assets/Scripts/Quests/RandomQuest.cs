@@ -31,26 +31,38 @@ public class RandomQuest : ScriptableObject
         Failed
     }
 
-    /// <summary>
-    /// 수집형 퀘스트 목표
-    /// </summary>
-    [Serializable]
-    public class QuestObjective
+    // 새로 정의하는 목표 타입
+    public enum QuestObjectiveType
     {
-        public string targetId;                   // 검사할 아이템 레퍼런스
-        public string description;                        // 목표 설명
-        public int requiredAmount;                        // 요구 수량
-
-        [HideInInspector] public int currentAmount;       // 현재 수량 (런타임에 자동 갱신)
-        [HideInInspector] public bool isCompleted;        // 완료 여부 (런타임에 자동 체크)
+        PirateHunt,      // 해적 소탕
+        ItemTransport,   // 물품 수송
+        ItemProcurement, // 물품 조달
+        CrewTransport    // 인원 수송
     }
 
     public enum RewardType
     {
         Resource,
         Item,
-        Crew,
-        ShipPart
+        Crew
+    }
+
+    /// <summary>
+    /// 수집형 퀘스트 목표
+    /// </summary>
+    [Serializable]
+    public class QuestObjective
+    {
+        public QuestObjectiveType objectiveType;
+        public string targetId;                   // 검사할 아이템 레퍼런스
+        public string description;                        // 목표 설명
+        public int requiredAmount;                        // 요구 수량
+
+        // 해적 소탕 전용
+        public int killCount;
+
+        [HideInInspector] public int currentAmount;       // 현재 수량 (런타임에 자동 갱신)
+        [HideInInspector] public bool isCompleted;        // 완료 여부 (런타임에 자동 체크)
     }
 
     /// <summary>

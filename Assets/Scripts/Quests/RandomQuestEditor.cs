@@ -75,9 +75,11 @@ public class RandomQuestEditor : Editor
         for (int i = 0; i < objectivesProp.arraySize; i++)
         {
             var objProp    = objectivesProp.GetArrayElementAtIndex(i);
+            var typeProp     = objProp.FindPropertyRelative("objectiveType");
             var targetIdProp = objProp.FindPropertyRelative("targetId");
             var descOProp  = objProp.FindPropertyRelative("description");
             var reqProp    = objProp.FindPropertyRelative("requiredAmount");
+            var killCountProp = objProp.FindPropertyRelative("killCount");
             // currentAmount, isCompleted 은 런타임 전용이라 숨김
 
             // 헤더
@@ -98,9 +100,23 @@ public class RandomQuestEditor : Editor
             if (objectiveFoldouts[i])
             {
                 EditorGUI.indentLevel++;
-                EditorGUILayout.PropertyField(targetIdProp, new GUIContent("대상 아이템 ID"));
-                EditorGUILayout.PropertyField(descOProp,    new GUIContent("설명"));
-                EditorGUILayout.PropertyField(reqProp,      new GUIContent("필요 수량"));
+                EditorGUILayout.PropertyField(typeProp, new GUIContent("조건 타입"));
+                EditorGUILayout.PropertyField(descOProp, new GUIContent("설명"));
+                switch ((RandomQuest.QuestObjectiveType)typeProp.enumValueIndex)
+                {
+                    case RandomQuest.QuestObjectiveType.PirateHunt:
+                        EditorGUILayout.PropertyField(killCountProp, new GUIContent("처치 수"));
+                        break;
+                    case RandomQuest.QuestObjectiveType.ItemTransport:
+                    case RandomQuest.QuestObjectiveType.ItemProcurement:
+                        EditorGUILayout.PropertyField(targetIdProp, new GUIContent("대상 아이템 ID"));
+                        EditorGUILayout.PropertyField(reqProp,     new GUIContent("필요 수량"));
+                        break;
+
+                    case RandomQuest.QuestObjectiveType.CrewTransport:
+                        EditorGUILayout.PropertyField(killCountProp, new GUIContent("임시 선원 수"));
+                        break;
+                }
                 EditorGUI.indentLevel--;
             }
         }
