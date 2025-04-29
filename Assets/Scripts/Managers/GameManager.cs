@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 
         playerShip.Initialize();
         // ForSerializeTest();
-        RoomTest();
+        //RoomTest();
     }
 
     /// <summary>

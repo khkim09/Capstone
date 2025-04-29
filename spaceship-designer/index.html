@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우주선 레이아웃 디자이너</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        /* 그리드 사이의 검은 줄 제거 */
+        #shipGrid {
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-6">
+    <div id="app" class="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-4">우주선 레이아웃 디자이너</h1>
+        
+        <div class="flex flex-wrap mb-4">
+            <input 
+                type="text" 
+                id="shipName"
+                value="해적선 Lv.3" 
+                class="border p-2 rounded mr-4 mb-2"
+                placeholder="함선 이름"
+            />
+            
+            <label class="flex items-center mr-4 mb-2">
+                <input 
+                    type="checkbox" 
+                    id="isPlayer"
+                    class="mr-2"
+                />
+                플레이어 함선
+            </label>
+            
+            <div class="flex">
+                <button 
+                    id="exportBtn"
+                    class="bg-blue-600 text-white px-4 py-2 rounded mr-2 mb-2"
+                >
+                    데이터 내보내기
+                </button>
+                
+                <button 
+                    id="importBtn"
+                    class="bg-green-600 text-white px-4 py-2 rounded mb-2"
+                >
+                    데이터 불러오기
+                </button>
+            </div>
+            
+            <div class="w-full mt-2">
+                <label class="block mb-2">그리드 크기:</label>
+                <div class="flex items-center">
+                    <input 
+                        type="number" 
+                        id="gridWidth" 
+                        class="border p-2 rounded w-16 mr-2" 
+                        value="20"
+                        min="5"
+                        max="60"
+                    />
+                    <span class="mr-2">×</span>
+                    <input 
+                        type="number" 
+                        id="gridHeight" 
+                        class="border p-2 rounded w-16 mr-2" 
+                        value="20" 
+                        min="5" 
+                        max="60"
+                    />
+                    <button 
+                        id="resizeBtn" 
+                        class="bg-purple-600 text-white px-4 py-2 rounded"
+                    >
+                        크기 변경
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex flex-wrap">
+            <div class="mr-4 mb-4 w-full md:w-auto">
+                <h2 class="text-lg font-semibold mb-2">시설 선택</h2>
+                <div id="facilityButtons" class="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
+                    <!-- 시설 버튼들이 여기에 동적으로 추가됨 -->
+                </div>
+            </div>
+            
+            <div class="overflow-auto">
+                <h2 class="text-lg font-semibold mb-2">함선 레이아웃</h2>
+                <div class="p-1 bg-gray-800 inline-block">
+                    <div id="shipGrid" class="grid bg-gray-800">
+                        <!-- 함선 그리드가 여기에 동적으로 추가됨 -->
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <h3 id="shipTitle" class="font-semibold">함선 이름</h3>
+                    <div id="facilityStats" class="flex flex-wrap mt-2">
+                        <!-- 시설 통계가 여기에 동적으로 추가됨 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 불러오기 모달 -->
+        <div id="importModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
+                <h2 class="text-xl font-bold mb-4">함선 데이터 불러오기</h2>
+                <textarea 
+                    id="importData" 
+                    class="w-full h-64 border p-2 rounded mb-4" 
+                    placeholder="여기에 내보내기한 JSON 데이터를 붙여넣으세요..."
+                ></textarea>
+                <div class="flex justify-end">
+                    <button 
+                        id="cancelImportBtn" 
+                        class="bg-gray-500 text-white px-4 py-2 rounded mr-2"
+                    >
+                        취소
+                    </button>
+                    <button 
+                        id="confirmImportBtn" 
+                        class="bg-green-600 text-white px-4 py-2 rounded"
+                    >
+                        불러오기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 시설 타입 정의
+        const facilityTypes = {
+            EMPTY: { name: '비어있음', color: 'bg-gray-200', shortName: '' },
+            ENGINE: { name: '엔진실', color: 'bg-blue-500', shortName: 'ENG' },
+            CONTROL: { name: '조종실', color: 'bg-purple-500', shortName: 'CON' },
+            POWER: { name: '전력실', color: 'bg-yellow-500', shortName: 'PWR' },
+            SHIELD: { name: '배리어실', color: 'bg-cyan-500', shortName: 'SHD' },
+            STORAGE: { name: '창고', color: 'bg-orange-500', shortName: 'STR' },
+            WEAPON: { name: '무기', color: 'bg-red-500', shortName: 'WPN' },
+            CORRIDOR: { name: '복도', color: 'bg-gray-400', shortName: 'CRD' },
+            MEDICAL: { name: '의무실', color: 'bg-green-500', shortName: 'MED' },
+            OXYGEN: { name: '산소실', color: 'bg-teal-500', shortName: 'OXY' },
+            TARGETING: { name: '조준석', color: 'bg-red-400', shortName: 'TRG' },
+            CREW: { name: '선원 숙소', color: 'bg-pink-500', shortName: 'CRW' },
+            TELEPORT: { name: '텔레포터', color: 'bg-indigo-500', shortName: 'TEL' },
+            AMMO: { name: '탄약고', color: 'bg-amber-600', shortName: 'AMM' },
+        };
+
+        // 기본 그리드 크기
+        let gridWidth = 15;
+        let gridHeight = 15;
+
+        // 기본 함선 레이아웃 생성
+        let shipLayout = Array(gridHeight).fill().map(() => Array(gridWidth).fill('EMPTY'));
+
+        // 현재 선택된 시설
+        let selectedFacility = 'EMPTY';
+
+        // DOM 요소
+        const shipNameInput = document.getElementById('shipName');
+        const isPlayerCheckbox = document.getElementById('isPlayer');
+        const exportBtn = document.getElementById('exportBtn');
+        const importBtn = document.getElementById('importBtn');
+        const resizeBtn = document.getElementById('resizeBtn');
+        const gridWidthInput = document.getElementById('gridWidth');
+        const gridHeightInput = document.getElementById('gridHeight');
+        const facilityButtonsContainer = document.getElementById('facilityButtons');
+        const shipGridContainer = document.getElementById('shipGrid');
+        const shipTitleElement = document.getElementById('shipTitle');
+        const facilityStatsContainer = document.getElementById('facilityStats');
+        const importModal = document.getElementById('importModal');
+        const importDataTextarea = document.getElementById('importData');
+        const cancelImportBtn = document.getElementById('cancelImportBtn');
+        const confirmImportBtn = document.getElementById('confirmImportBtn');
+
+        // 간단한 사전 정의 함선 레이아웃 설정 (중앙 부분에 배치)
+        const centerX = Math.floor(gridWidth / 2);
+        const centerY = Math.floor(gridHeight / 2);
+        
+        // 기본 레이아웃 설정
+        shipLayout[centerY-1][centerX-1] = 'ENGINE';
+        shipLayout[centerY-1][centerX] = 'ENGINE';
+        shipLayout[centerY-2][centerX] = 'CONTROL';
+        shipLayout[centerY][centerX] = 'POWER';
+        shipLayout[centerY-1][centerX+1] = 'CORRIDOR';
+        shipLayout[centerY-1][centerX+2] = 'STORAGE';
+        shipLayout[centerY-2][centerX+2] = 'MEDICAL';
+        shipLayout[centerY][centerX+2] = 'OXYGEN';
+        shipLayout[centerY+1][centerX] = 'TARGETING';
+        shipLayout[centerY-3][centerX] = 'SHIELD';
+        shipLayout[centerY-1][centerX+3] = 'CREW';
+        shipLayout[centerY][centerX+1] = 'TELEPORT';
+        shipLayout[centerY-2][centerX+1] = 'AMMO';
+
+        // 시설 버튼 생성
+        function createFacilityButtons() {
+            facilityButtonsContainer.innerHTML = '';
+            
+            Object.entries(facilityTypes).forEach(([key, facility]) => {
+                const button = document.createElement('button');
+                button.className = `p-2 rounded text-sm ${facility.color} ${key === selectedFacility ? 'ring-2 ring-blue-600' : ''}`;
+                button.textContent = facility.name;
+                button.onclick = () => {
+                    selectedFacility = key;
+                    createFacilityButtons(); // 버튼 UI 업데이트
+                };
+                
+                facilityButtonsContainer.appendChild(button);
+            });
+        }
+
+        // 함선 그리드 생성
+        function createShipGrid() {
+            shipGridContainer.innerHTML = '';
+            shipGridContainer.style.gridTemplateColumns = `repeat(${gridWidth}, minmax(0, 1fr))`;
+            
+            shipLayout.forEach((row, rowIndex) => {
+                row.forEach((cell, colIndex) => {
+                    const tile = document.createElement('div');
+                    // 그리드 셀 크기를 약간 줄이고 간격 제거
+                    tile.className = `w-8 h-8 flex items-center justify-center ${facilityTypes[cell].color} border border-gray-700 cursor-pointer text-xs font-bold text-gray-800`;
+                    tile.textContent = facilityTypes[cell].shortName;
+                    tile.onclick = () => {
+                        shipLayout[rowIndex][colIndex] = selectedFacility;
+                        updateUI();
+                    };
+                    
+                    shipGridContainer.appendChild(tile);
+                });
+            });
+        }
+
+        // 시설 통계 업데이트
+        function updateFacilityStats() {
+            facilityStatsContainer.innerHTML = '';
+            
+            // 각 시설 유형 카운트
+            const facilityCounts = {};
+            shipLayout.flat().forEach(cell => {
+                if (cell !== 'EMPTY') {
+                    facilityCounts[cell] = (facilityCounts[cell] || 0) + 1;
+                }
+            });
+            
+            // 통계 UI 생성
+            Object.entries(facilityCounts).forEach(([key, count]) => {
+                const facility = facilityTypes[key];
+                const statElement = document.createElement('div');
+                statElement.className = 'mr-2 mb-2 flex items-center';
+                statElement.innerHTML = `
+                    <div class="w-4 h-4 ${facility.color} mr-1"></div>
+                    <span class="text-sm">${facility.name}: ${count}</span>
+                `;
+                
+                facilityStatsContainer.appendChild(statElement);
+            });
+        }
+
+        // 함선 제목 업데이트
+        function updateShipTitle() {
+            const name = shipNameInput.value;
+            const type = isPlayerCheckbox.checked ? '(플레이어)' : '(NPC)';
+            shipTitleElement.textContent = `${name} ${type}`;
+        }
+
+        // 전체 UI 업데이트
+        function updateUI() {
+            createShipGrid();
+            updateFacilityStats();
+            updateShipTitle();
+        }
+
+        // 데이터 내보내기 함수
+        function exportShipData() {
+            // 시설 카운트
+            const facilityCounts = {};
+            shipLayout.flat().forEach(cell => {
+                if (cell !== 'EMPTY') {
+                    facilityCounts[cell] = (facilityCounts[cell] || 0) + 1;
+                }
+            });
+            
+            // 함선 데이터 생성
+            const shipData = {
+                name: shipNameInput.value,
+                isPlayerShip: isPlayerCheckbox.checked,
+                gridWidth: gridWidth,
+                gridHeight: gridHeight,
+                layout: shipLayout,
+                facilityCounts: facilityCounts
+            };
+            
+            const dataStr = JSON.stringify(shipData, null, 2);
+            alert("함선 데이터가 콘솔에 출력되었습니다. F12를 눌러 확인하세요.");
+            console.log(dataStr);
+            
+            // 클립보드에 복사
+            try {
+                navigator.clipboard.writeText(dataStr).then(() => {
+                    alert("함선 데이터가 클립보드에 복사되었습니다!");
+                });
+            } catch (err) {
+                console.error("클립보드 복사 실패:", err);
+            }
+        }
+
+        // 데이터 불러오기 모달 표시
+        function showImportModal() {
+            importModal.classList.remove('hidden');
+        }
+
+        // 데이터 불러오기 모달 닫기
+        function hideImportModal() {
+            importModal.classList.add('hidden');
+            importDataTextarea.value = '';
+        }
+
+        // 데이터 불러오기 처리
+        function importShipData() {
+            try {
+                const importedData = JSON.parse(importDataTextarea.value);
+                
+                // 필수 필드 검증
+                if (!importedData.layout || !Array.isArray(importedData.layout)) {
+                    throw new Error("유효하지 않은 레이아웃 데이터입니다.");
+                }
+                
+                // 데이터 적용
+                shipNameInput.value = importedData.name || "불러온 함선";
+                isPlayerCheckbox.checked = importedData.isPlayerShip || false;
+                
+                // 그리드 크기 업데이트
+                if (importedData.gridWidth && importedData.gridHeight) {
+                    gridWidth = importedData.gridWidth;
+                    gridHeight = importedData.gridHeight;
+                    gridWidthInput.value = gridWidth;
+                    gridHeightInput.value = gridHeight;
+                } else {
+                    // 기존 레이아웃에서 크기 유추
+                    gridHeight = importedData.layout.length;
+                    gridWidth = importedData.layout[0].length;
+                    gridWidthInput.value = gridWidth;
+                    gridHeightInput.value = gridHeight;
+                }
+                
+                // 레이아웃 데이터 적용
+                shipLayout = importedData.layout;
+                
+                // UI 업데이트
+                updateUI();
+                hideImportModal();
+                
+                alert("함선 데이터를 성공적으로 불러왔습니다!");
+            } catch (error) {
+                alert(`데이터 불러오기 실패: ${error.message}`);
+                console.error("데이터 불러오기 오류:", error);
+            }
+        }
+
+        // 그리드 크기 변경 함수
+        function resizeGrid() {
+            const newWidth = parseInt(gridWidthInput.value);
+            const newHeight = parseInt(gridHeightInput.value);
+            
+            if (isNaN(newWidth) || isNaN(newHeight) || newWidth < 5 || newHeight < 5 || newWidth > 25 || newHeight > 25) {
+                alert("그리드 크기는 5에서 25 사이여야 합니다.");
+                return;
+            }
+            
+            // 새 레이아웃 생성
+            const newLayout = Array(newHeight).fill().map(() => Array(newWidth).fill('EMPTY'));
+            
+            // 기존 데이터 복사 (작은 크기에 맞춰서)
+            const copyHeight = Math.min(shipLayout.length, newHeight);
+            const copyWidth = Math.min(shipLayout[0].length, newWidth);
+            
+            for (let y = 0; y < copyHeight; y++) {
+                for (let x = 0; x < copyWidth; x++) {
+                    newLayout[y][x] = shipLayout[y][x];
+                }
+            }
+            
+            // 새 레이아웃 적용
+            gridWidth = newWidth;
+            gridHeight = newHeight;
+            shipLayout = newLayout;
+            
+            // UI 업데이트
+            updateUI();
+        }
+
+        // 이벤트 리스너
+        shipNameInput.addEventListener('input', updateShipTitle);
+        isPlayerCheckbox.addEventListener('change', updateShipTitle);
+        exportBtn.addEventListener('click', exportShipData);
+        importBtn.addEventListener('click', showImportModal);
+        cancelImportBtn.addEventListener('click', hideImportModal);
+        confirmImportBtn.addEventListener('click', importShipData);
+        resizeBtn.addEventListener('click', resizeGrid);
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !importModal.classList.contains('hidden')) {
+                hideImportModal();
+            }
+        });
+
+        // 초기 UI 세팅
+        createFacilityButtons();
+        updateUI();
+    </script>
+</body>
+</html>

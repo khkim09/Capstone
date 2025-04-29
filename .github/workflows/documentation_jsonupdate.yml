@@ -33,6 +33,11 @@ jobs:
           mkdir -p ./docs/combined/xml
           cp -r ./docs/xml/* ./docs/combined/xml/
 
+      - name: Copy Spaceship Designer to docs
+        run: |
+          mkdir -p ./docs/combined/spaceship
+          cp ./spaceship-designer/index.html ./docs/combined/spaceship/index.html
+
       - name: Push to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
         with:
