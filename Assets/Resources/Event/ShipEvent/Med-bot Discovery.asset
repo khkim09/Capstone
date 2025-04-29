@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Med-bot Discovery
   m_EditorClassIdentifier: 
+  eventId: event.ship.17
   eventTitle: "\uC758\uB8CC \uBD07 \uBC1C\uACAC"
-  eventDescription: "\uD589\uC131\uC5D0\uC11C \uC758\uB8CC\uBD07\uC744 \uBC1C\uACAC\uD558\uC600\uC2B5\uB2C8\uB2E4.\n\uBA40\uCA61\uD558\uAC8C
-    \uC0DD\uACA8\uBCF4\uC5EC\uC11C \uAC00\uB3D9\uD558\uAE30\uB85C \uACB0\uC815\uD588\uC2B5\uB2C8\uB2E4."
+  eventDescription: "\uB5A0\uB2E4\uB2C8\uB294 \uC758\uB8CC\uBD07\uC744 \uBC1C\uACAC\uD558\uC600\uC2B5\uB2C8\uB2E4.\n\uBA40\uCA61\uD55C\uAC83\uCC98\uB7FC
+    \uBCF4\uC774\uB294\uB370, \uAC00\uB3D9\uD560\uAE4C\uC694?"
   eventImage: {fileID: 0}
   choices:
   - choiceText: "\uC758\uB8CC\uBD07\uC744 \uAC00\uB3D9\uD55C\uB2E4"
@@ -44,9 +45,9 @@ MonoBehaviour:
       planetEffects: []
       resourceEffects: []
       crewEffects: []
-      specialEffectType: 3
+      specialEffectType: 0
       nextEvent: {fileID: 0}
-    - outcomeText: "\uC545! \uC758\uB8CC\uBD07\uC774 \uD130\uC838\uBC84\uB838\uC2B5\uB2C8\uB2E4.\n\uC120\uC6D0\uB4E4\uC774
+    - outcomeText: "\uC774\uB7F0! \uC758\uB8CC\uBD07\uC774 \uD130\uC838\uBC84\uB838\uC2B5\uB2C8\uB2E4.\n\uC120\uC6D0\uB4E4\uC774
         \uD30C\uD3B8\uC5D0 \uD53C\uD574\uB97C \uC785\uC5C8\uC2B5\uB2C8\uB2E4.."
       probability: 10
       planetEffects: []
@@ -54,7 +55,7 @@ MonoBehaviour:
       crewEffects:
       - effectType: 1
         raceType: 0
-        healthChange: -3
+        healthChange: -5
         skill: 0
         skillChange: 0
         moralChange:
@@ -62,5 +63,16 @@ MonoBehaviour:
           raceTarget: 0
           value: -1
         statusEffect: 0
-      specialEffectType: 3
+      specialEffectType: 0
+      nextEvent: {fileID: 0}
+  - choiceText: "\uC758\uB8CC\uBD07\uC744 \uAC00\uB3D9\uD558\uC9C0 \uC54A\uB294\uB2E4."
+    possibleOutcomes:
+    - outcomeText: "\uB2F9\uC2E0\uC740 \uC758\uB8CC\uBD07\uC744 \uAC00\uB3D9\uD558\uC9C0
+        \uC54A\uAE30\uB85C \uACB0\uC815\uD588\uC2B5\uB2C8\uB2E4.\n\uC6B0\uC8FC\uB97C
+        \uB5A0\uB2E4\uB2C8\uB294\uB370\uB294 \uC774\uC720\uAC00 \uC788\uACA0\uC8E0!"
+      probability: 100
+      planetEffects: []
+      resourceEffects: []
+      crewEffects: []
+      specialEffectType: 0
       nextEvent: {fileID: 0}

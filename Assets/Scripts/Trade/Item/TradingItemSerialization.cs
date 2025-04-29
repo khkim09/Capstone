@@ -22,8 +22,10 @@ public static class TradingItemSerialization
         // 모든 무역 아이템 저장
         ES3.Save("itemCount", items.Count, filename);
 
+        ES3Settings settings = new() { referenceMode = ES3.ReferenceMode.ByRef };
+
         for (int i = 0; i < items.Count; i++)
-            ES3.Save($"tradingItem_{i}", items[i], filename);
+            ES3.Save($"tradingItem_{i}", items[i], filename, settings);
     }
 
     /// <summary>
@@ -69,7 +71,7 @@ public static class TradingItemSerialization
 
         if (!ES3.FileExists(filename))
             return items;
-
+        ES3Settings settings = new() { referenceMode = ES3.ReferenceMode.ByRef };
         // 아이템 수 불러오기
         int itemCount = ES3.Load<int>("itemCount", filename);
 
@@ -77,7 +79,7 @@ public static class TradingItemSerialization
         for (int i = 0; i < itemCount; i++)
             if (ES3.KeyExists($"tradingItem_{i}", filename))
             {
-                TradingItem item = ES3.Load<TradingItem>($"tradingItem_{i}", filename);
+                TradingItem item = ES3.Load<TradingItem>($"tradingItem_{i}", filename, settings);
                 if (item != null)
                     items.Add(item);
             }
@@ -122,45 +124,27 @@ public static class TradingItemSerialization
 
         foreach (Room room in ship.GetAllRooms())
             if (room is StorageRoomBase storage)
-            {
-                List<TradingItem> existingItems = new(storage.storedItems);
-                foreach (TradingItem item in existingItems)
-                    storage.RemoveItem(item);
-            }
+                storage.DestroyAllItems();
 
         List<TradingItem> items = LoadAllTradingItems(filename);
         int restoredCount = 0;
-
-        // ItemFactory를 이용해 아이템 인스턴스 재생성
-        ItemFactory itemFactory = GameObject.FindObjectOfType<ItemFactory>();
-        if (itemFactory == null)
-        {
-            Debug.LogError("ItemFactory not found in the scene!");
-            return 0;
-        }
 
         // 각 아이템을 원래 있던 창고에 복원
         foreach (TradingItem item in items)
         {
             // 새 아이템 인스턴스 생성
-            TradingItem newItem = itemFactory.CreateItemInstance(item.GetItemId(), item.amount);
-            if (newItem == null)
-            {
-                Debug.LogWarning($"Failed to create item instance for ID: {item.GetItemId()}");
-                continue;
-            }
-
-            // 아이템 상태 복원
-            newItem.SetItemState(item.GetItemState());
-            newItem.SetGridPosition(item.GetGridPosition());
-            newItem.Rotate(item.rotation);
+            TradingItem newItem =
+                GameObjectFactory.Instance.CreateItemObject(item);
 
             // 적절한 창고 찾기
             StorageRoomBase targetStorage = newItem.GetParentStorage();
 
+
             // 적합한 창고를 찾았다면 아이템 추가
             if (targetStorage != null)
             {
+                targetStorage.RemoveAllItems();
+
                 if (targetStorage.AddItem(newItem, newItem.GetGridPosition(), newItem.rotation))
                     restoredCount++;
                 else

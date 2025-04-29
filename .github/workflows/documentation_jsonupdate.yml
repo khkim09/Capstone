@@ -41,11 +41,11 @@ jobs:
           publish_branch: gh-pages
           force_orphan: true
 
-  check-excel-changes:
+  check-csv-changes:
     runs-on: ubuntu-latest
     needs: build-docs
     outputs:
-      has_xlsx_changes: ${{ steps.check_excel.outputs.has_changes }}
+      has_csv_changes: ${{ steps.check_csv.outputs.has_changes }}
     
     steps:
       - name: Checkout source
@@ -53,22 +53,22 @@ jobs:
         with:
           fetch-depth: 2  # Need to fetch HEAD and HEAD^ to compare
 
-      - name: Check if Excel file was modified
-        id: check_excel
+      - name: Check if CSV file was modified
+        id: check_csv
         run: |
-          echo "🔍 Checking for modified .xlsx files in DataSheet/"
-          if git diff --name-only HEAD^ HEAD | grep -q '^DataSheet/.*\.xlsx'; then
-            echo "Excel files were modified"
+          echo "🔍 Checking for modified .csv files in DataSheet/"
+          if git diff --name-only HEAD^ HEAD | grep -i -q '^DataSheet/.*\.csv'; then
+            echo "CSV files were modified"
             echo "has_changes=true" >> $GITHUB_OUTPUT
           else
-            echo "🛑 No Excel changes detected."
+            echo "🛑 No CSV changes detected."
             echo "has_changes=false" >> $GITHUB_OUTPUT
           fi
 
   json-update:
     runs-on: ubuntu-latest
-    needs: check-excel-changes
-    if: needs.check-excel-changes.outputs.has_xlsx_changes == 'true'
+    needs: check-csv-changes
+    if: needs.check-csv-changes.outputs.has_csv_changes == 'true'
 
     steps:
       - name: Checkout source
@@ -80,10 +80,10 @@ jobs:
           python-version: '3.11'
 
       - name: Install Python packages
-        run: pip install pandas openpyxl
+        run: pip install pandas
 
-      - name: Convert Excel to JSON
-        run: python excel_to_json.py
+      - name: Convert CSV to JSON
+        run: python csv_to_json.py
 
       - name: Ensure StreamingAssets directory exists
         run: mkdir -p ./Assets/StreamingAssets
@@ -97,5 +97,5 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git checkout main
           git add ./Assets/StreamingAssets/*.json
-          git commit -m "Auto-update JSON files from Excel" || echo "No changes to commit"
+          git commit -m "Auto-update JSON files from CSV" || echo "No changes to commit"
           git push origin main

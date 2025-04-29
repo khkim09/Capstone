@@ -46,17 +46,9 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     // 드래그 관련 변수
     private bool isDragging = false;
     private bool isDragMode = false; // 드래그 모드 여부 (프리뷰 사용 중일 때)
-    private Color normalColor;
-    private Color selectedColor = new(0.7f, 0.7f, 1.0f, 1.0f);
-    private int originalSortingOrder;
 
     private void Start()
     {
-        if (boxRenderer != null)
-        {
-            normalColor = boxRenderer.color;
-            originalSortingOrder = boxRenderer.sortingOrder;
-        }
     }
 
     public void Initialize(TradingItemData data, int quantity, ItemState state = ItemState.Normal)
@@ -87,6 +79,48 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         // TODO: 만약 최대치보다 많으면 생성을 못하게 하거나, 두 개 생성해서 나눠야함
 
         UpdateColliderSize();
+
+        if (transform.parent != null) parentStorage = transform.parent.GetComponent<StorageRoomBase>();
+    }
+
+    public void CopyFrom(TradingItem other)
+    {
+        if (other == null)
+        {
+            Debug.LogWarning("[TradingItem] 복사 대상이 null입니다.");
+            return;
+        }
+
+        // 기본 데이터 복사
+        itemData = other.itemData;
+        amount = other.amount;
+        itemState = other.itemState;
+        rotation = other.rotation;
+        gridPosition = other.gridPosition;
+
+        // 부모 스토리지 설정 (복사본은 일반적으로 동일 스토리지에 배치)
+        parentStorage = other.parentStorage;
+
+
+        // 박스 스프라이트 관련
+        boxSprites = other.boxSprites;
+        boxGrid = ItemShape.Instance.itemShapes[itemData.shape][(int)rotation];
+        boxRenderer.sprite = boxSprites[(int)rotation];
+
+        // 정렬 순서 맞추기
+        boxRenderer.sortingOrder = SortingOrderConstants.TradingItemBox;
+        itemRenderer.sortingOrder = SortingOrderConstants.TradingItemIcon;
+        frameRenderer.sortingOrder = SortingOrderConstants.TradingItemFrame;
+
+        // 프레임 위치 재설정
+        PositionFrameAtGridCenter();
+
+        // 콜라이더 사이즈 갱신
+        UpdateColliderSize();
+
+        // 가격 캐싱도 복사
+        cachedPrice = other.cachedPrice;
+        priceInitialized = other.priceInitialized;
     }
 
     /// <summary>

@@ -5,7 +5,7 @@ using UnityEngine;
 /// 함선 무기 데이터베이스
 /// 모든 무기 데이터와 효과 데이터를 관리합니다.
 /// </summary>
-[CreateAssetMenu(fileName = "WeaponDatabase", menuName = "Ship/Weapon Database")]
+[CreateAssetMenu(fileName = "WeaponDatabase", menuName = "Ship/Weapon/Weapon DataBase")]
 public class ShipWeaponDatabase : ScriptableObject
 {
     /// <summary>
@@ -62,7 +62,7 @@ public class ShipWeaponDatabase : ScriptableObject
         List<ShipWeaponData> result = new();
 
         foreach (ShipWeaponData weapon in allWeapons)
-            if (weapon != null && weapon.weaponType == type)
+            if (weapon != null && weapon.weaponType.weaponType == type)
                 result.Add(weapon);
 
         return result;
@@ -80,7 +80,7 @@ public class ShipWeaponDatabase : ScriptableObject
 
         foreach (ShipWeaponData weapon in allWeapons)
             if (weapon != null)
-                if (weapon.effectType == effectType)
+                if (weapon.effectData.effectType == effectType)
                     result.Add(weapon);
 
         return result;

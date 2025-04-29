@@ -1,27 +1,13 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// 창고에 저장된 개별 아이템 정보입니다.
-/// </summary>
-[System.Serializable]
+[Serializable]
 public class StoredItem
 {
-    /// <summary>
-    /// 저장된 아이템 데이터입니다.
-    /// </summary>
-    public TradingItemData itemData;
+    public TradingItemData itemData;  // 아이템 데이터
+    public int quantity;              // 수량
 
-    /// <summary>
-    /// 아이템의 수량입니다.
-    /// </summary>
-    public int quantity;
-
-    /// <summary>
-    /// 새로운 StoredItem 인스턴스를 초기화합니다.
-    /// </summary>
-    /// <param name="itemData">저장할 아이템 데이터</param>
-    /// <param name="quantity">저장할 수량</param>
     public StoredItem(TradingItemData itemData, int quantity)
     {
         this.itemData = itemData;
@@ -29,45 +15,52 @@ public class StoredItem
     }
 }
 
-/// <summary>
-/// Storage는 플레이어의 창고 시스템을 관리하는 클래스입니다.
-/// 각 아이템은 TradingItemData에 정의된 최대 적층량 이상 저장할 수 없습니다.
-/// </summary>
 public class Storage : MonoBehaviour
 {
+    public static Storage Instance { get; private set; }
+
     /// <summary>
-    /// 창고에 저장된 아이템 목록입니다.
+    /// 창고에 저장된 아이템 목록
     /// </summary>
     public List<StoredItem> storedItems = new List<StoredItem>();
 
     /// <summary>
-    /// 주어진 아이템을 추가할 수 있는지 확인합니다.
+    /// 아이템 수량 변동 시 발생
     /// </summary>
-    /// <param name="itemData">추가하려는 아이템 데이터</param>
-    /// <param name="quantity">추가하려는 수량</param>
-    /// <returns>추가 가능 여부</returns>
+    public event Action<TradingItemData> OnStorageChanged;
+
+    // ─── 추가 부분 시작 ───
+    [Header("Quest 연동용 ItemDatabase")]
+    [SerializeField] private TradingItemDataBase itemDatabase;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
+        // ItemDatabase 할당이 안 되어 있으면 Resources에서 자동 로드
+        if (itemDatabase == null)
+            itemDatabase = Resources.Load<TradingItemDataBase>("ItemDatabase");
+    }
+    // ─── 추가 부분 끝 ───
+
     public bool CanAddItem(TradingItemData itemData, int quantity)
     {
-        StoredItem stored = storedItems.Find(x => x.itemData.itemName == itemData.itemName);
-        int currentQuantity = stored != null ? stored.quantity : 0;
-        return (currentQuantity + quantity) <= itemData.capacity;
+        var stored = storedItems.Find(x => x.itemData.id == itemData.id);
+        int current = stored != null ? stored.quantity : 0;
+        return (current + quantity) <= itemData.capacity;
     }
 
-    /// <summary>
-    /// 창고에 아이템을 추가합니다.
-    /// 이미 저장된 아이템이라면 수량을 누적하며, 최대 적층량을 초과할 수 없습니다.
-    /// </summary>
-    /// <param name="itemData">추가할 아이템 데이터</param>
-    /// <param name="quantity">추가할 수량</param>
-    /// <returns>성공 여부</returns>
     public bool AddItem(TradingItemData itemData, int quantity)
     {
-        StoredItem stored = storedItems.Find(x => x.itemData.id == itemData.id);
+        var stored = storedItems.Find(x => x.itemData.id == itemData.id);
         if (stored != null)
         {
             if (stored.quantity + quantity > itemData.capacity)
             {
-                Debug.LogWarning($"최대 적재량({itemData.capacity}) 초과로 {itemData.itemName} x {quantity} 추가 불가");
+                Debug.LogWarning($"[{itemData.itemName}] 최대 적재량 초과");
                 return false;
             }
             stored.quantity += quantity;
@@ -76,62 +69,76 @@ public class Storage : MonoBehaviour
         {
             if (quantity > itemData.capacity)
             {
-                Debug.LogWarning($"최대 적재량({itemData.capacity}) 초과로 {itemData.itemName} x {quantity} 추가 불가");
+                Debug.LogWarning($"[{itemData.itemName}] 최대 적재량 초과");
                 return false;
             }
             storedItems.Add(new StoredItem(itemData, quantity));
         }
 
-        Debug.Log($"창고에 {itemData.itemName} x {quantity} 추가됨. 총 수량: {GetItemQuantity(itemData)}");
+        Debug.Log($"[Storage] {itemData.itemName} x{quantity} 추가 (총 {GetItemQuantity(itemData)})");
+        OnStorageChanged?.Invoke(itemData);
         return true;
     }
 
-    /// <summary>
-    /// 창고에 해당 아이템이 일정 수량 이상 있는지 확인합니다.
-    /// </summary>
-    /// <param name="itemData">확인할 아이템 데이터</param>
-    /// <param name="quantity">요구 수량</param>
-    /// <returns>충분한 수량 여부</returns>
-    public bool HasItem(TradingItemData itemData, int quantity)
-    {
-        StoredItem stored = storedItems.Find(x => x.itemData.itemName == itemData.itemName);
-        return stored != null && stored.quantity >= quantity;
-    }
-
-    /// <summary>
-    /// 창고에서 지정한 아이템의 수량을 제거합니다.
-    /// 수량이 0 이하가 되면 아이템 자체를 제거합니다.
-    /// </summary>
-    /// <param name="itemData">제거할 아이템 데이터</param>
-    /// <param name="quantity">제거할 수량</param>
-    /// <returns>성공 여부</returns>
     public bool RemoveItem(TradingItemData itemData, int quantity)
     {
-        StoredItem stored = storedItems.Find(x => x.itemData.itemName == itemData.itemName);
+        var stored = storedItems.Find(x => x.itemData.id == itemData.id);
         if (stored != null && stored.quantity >= quantity)
         {
             stored.quantity -= quantity;
             if (stored.quantity <= 0)
-            {
                 storedItems.Remove(stored);
-            }
 
-            Debug.Log($"창고에서 {itemData.itemName} x {quantity} 제거됨. 남은 수량: {GetItemQuantity(itemData)}");
+            Debug.Log($"[Storage] {itemData.itemName} x{quantity} 제거 (남은 {GetItemQuantity(itemData)})");
+            OnStorageChanged?.Invoke(itemData);
             return true;
         }
 
-        Debug.LogWarning($"{itemData.itemName} x {quantity} 제거 실패: 수량 부족");
+        Debug.LogWarning($"[Storage] {itemData.itemName} 제거 실패 (수량 부족)");
         return false;
     }
 
-    /// <summary>
-    /// 창고에 저장된 특정 아이템의 총 수량을 반환합니다.
-    /// </summary>
-    /// <param name="itemData">확인할 아이템 데이터</param>
-    /// <returns>해당 아이템의 저장 수량</returns>
+    public bool HasItem(TradingItemData itemData, int quantity)
+    {
+        var stored = storedItems.Find(x => x.itemData.id == itemData.id);
+        return stored != null && stored.quantity >= quantity;
+    }
+
     public int GetItemQuantity(TradingItemData itemData)
     {
-        StoredItem stored = storedItems.Find(x => x.itemData.itemName == itemData.itemName);
+        var stored = storedItems.Find(x => x.itemData.id == itemData.id);
         return stored != null ? stored.quantity : 0;
     }
+
+    // ─── 추가 부분 시작 ───
+    /// <summary>
+    /// QuestUIManager용: targetId(string)로 창고 내 수량 조회
+    /// </summary>
+    public int GetItemQuantityById(string targetId)
+    {
+        if (itemDatabase == null)
+        {
+            Debug.LogError("[Storage] ItemDatabase가 할당되지 않았습니다!");
+            return 0;
+        }
+
+        // 문자열 ID를 int로 변환
+        if (!int.TryParse(targetId, out var id))
+        {
+            Debug.LogWarning($"[Storage] 잘못된 ID 포맷: {targetId}");
+            return 0;
+        }
+
+        // 데이터베이스에서 TradingItemData 조회
+        var data = itemDatabase.GetItemData(id);
+        if (data == null)
+        {
+            Debug.LogWarning($"[Storage] 데이터베이스에 ID {id} 아이템이 없습니다.");
+            return 0;
+        }
+
+        // 기존 메서드로 수량 반환
+        return GetItemQuantity(data);
+    }
+    // ─── 추가 부분 끝 ───
 }

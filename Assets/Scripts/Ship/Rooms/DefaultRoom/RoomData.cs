@@ -84,12 +84,12 @@ public abstract class RoomData : ScriptableObject
         // TODO: 스프라이트 완성되면 각 Scriptable Object 에 스프라이트 추가할 것, roomPrefab(실제 배치될 방 prefab), previewPrefab(roomPrefab에서 alpha값만 0.5)
 
         /// <summary>이 방에 가능한 모든 문의 위치와 방향 목록</summary>
-        public List<DoorPosition> possibleDoorPositions = new List<DoorPosition>();
+        public List<DoorPosition> possibleDoorPositions = new();
 
         /// <summary>
         /// 방의 선원이 입장 시 우선적으로 배치되어야 할 타일의 좌표 목록입니다.
         /// </summary>
-        public List<Vector2Int> crewEntryGridPriority = new List<Vector2Int>();
+        public List<Vector2Int> crewEntryGridPriority = new();
     }
 
     /// <summary>
@@ -140,9 +140,10 @@ public abstract class RoomData : ScriptableObject
     /// <param name="basePos"></param>
     /// <param name="rot"></param>
     /// <returns></returns>
-    public List<DoorPosition> GetDoorPositionsWithDirection(int levelIndex, Vector2Int originalPos, RotationConstants.Rotation rotation)
+    public List<DoorPosition> GetDoorPositionsWithDirection(int levelIndex, Vector2Int originalPos,
+        RotationConstants.Rotation rotation)
     {
-        List<DoorPosition> worldDoorPositions = new List<DoorPosition>();
+        List<DoorPosition> worldDoorPositions = new();
 
         RoomLevel level = GetRoomDataByLevel(levelIndex);
         if (level == null || level.possibleDoorPositions == null)
@@ -207,6 +208,7 @@ public abstract class RoomData : ScriptableObject
                 worldDir = localDir;
                 break;
         }
+
         return worldDir;
     }
 }
@@ -262,4 +264,3 @@ public abstract class RoomData<T> : RoomData where T : RoomData.RoomLevel
         return RoomLevels == null || RoomLevels.Count == 0;
     }
 }
-

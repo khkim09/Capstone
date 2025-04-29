@@ -48,8 +48,7 @@ public class CrewUIHandler : MonoBehaviour
     /// <summary>
     /// 선원 이름 입력 필드입니다.
     /// </summary>
-    [Header("Input Fields")]
-    [SerializeField]
+    [Header("Input Fields")] [SerializeField]
     private TMP_InputField nameInputField;
 
     /// <summary>
@@ -111,15 +110,14 @@ public class CrewUIHandler : MonoBehaviour
     /// <summary>
     /// 종족별 prefab
     /// </summary>
-    [Header("Crew Prefabs")]
-    [SerializeField]
+    [Header("Crew Prefabs")] [SerializeField]
     private GameObject[] crewPrefabs;
 
     /// <summary>
     /// UI 화면 이동 이력을 저장하는 스택 구조입니다.
     /// 뒤로 가기 기능에 사용됩니다.
     /// </summary>
-    private Stack<GameObject> uiHistory = new Stack<GameObject>(); // stack 구조
+    private Stack<GameObject> uiHistory = new(); // stack 구조
 
     /// <summary>
     /// 싱글턴 인스턴스를 초기화합니다.
@@ -298,7 +296,7 @@ public class CrewUIHandler : MonoBehaviour
         inputName = nameInputField.text;
 
         // 선원 추가
-        CrewBase crewBase = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(selectedRace, inputName);
+        CrewBase crewBase = GameObjectFactory.Instance.CreateCrewInstance(selectedRace, inputName);
 
         if (crewBase is CrewMember crewMember)
             GameManager.Instance.GetPlayerShip().AddCrew(crewMember);

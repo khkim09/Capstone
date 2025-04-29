@@ -12,38 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: "Fuel Peddler\u2019s Visit"
   m_EditorClassIdentifier: 
-  eventTitle: "\uBC14\uC774\uB7EC\uC2A4 \uC720\uD589"
-  eventDescription: "\uD568\uC120 \uB0B4\uC5D0 \uBC14\uC774\uB7EC\uC2A4\uAC00 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4."
+  eventId: 'event.ship.25 '
+  eventTitle: "\uC5F0\uB8CC \uBC29\uBB38\uC0C1\uC778"
+  eventDescription: "\uC5F0\uB8CC \uBC29\uBB38\uC0C1\uC778\uC774 \uC5F0\uB8CC\uB97C
+    \uD310\uB9E4\uD558\uB824 \uD569\uB2C8\uB2E4.\n\uD3C9\uC18C\uBCF4\uB2E8 \uBE44\uC2FC
+    \uAC00\uACA9\uC774\uC9C0\uB9CC, \uC5F0\uB8CC\uAC00 \uBD80\uC871\uD560\uAC70 \uAC19\uC73C\uBA74
+    \uAD6C\uB9E4\uD558\uB294\uAC83\uB3C4 \uAD1C\uCC2E\uACA0\uAD70\uC694."
   eventImage: {fileID: 0}
   choices:
-  - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
+  - choiceText: "\uAD6C\uB9E4\uD55C\uB2E4.(100COMA)"
     possibleOutcomes:
-    - outcomeText: "\uAE30\uACC4\uD615 \uC120\uC6D0\uC774 \uD589\uB3D9\uBD88\uAC00
-        \uC0C1\uD0DC\uAC00 \uB418\uC5C8\uC2B5\uB2C8\uB2E4.\n\uC218\uB9AC\uD558\uC5EC
-        \uCE58\uB8CC\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+    - outcomeText: "\uC5F0\uB8CC\uC0C1\uC778\uD55C\uD14C \uC5F0\uB8CC\uB97C \uAD6C\uB9E4\uD558\uC600\uC2B5\uB2C8\uB2E4."
+      probability: 100
+      planetEffects: []
+      resourceEffects:
+      - amount: 100
+        resourceType: 0
+      - amount: -100
+        resourceType: 1
+      crewEffects: []
+      specialEffectType: 0
+      nextEvent: {fileID: 0}
+  - choiceText: "\uAD6C\uB9E4\uD558\uC9C0 \uC54A\uB294\uB2E4."
+    possibleOutcomes:
+    - outcomeText: "\uB2F9\uC2E0\uC740 \uD589\uC131\uC5D0 \uB3C4\uCC29\uD560\uB54C\uAE4C\uC9C0
+        \uCDA9\uBD84\uD55C \uC5F0\uB8CC\uAC00 \uC788\uB2E4\uACE0 \uD310\uB2E8\uD558\uC5EC\n\uC5F0\uB8CC\uB97C
+        \uAD6C\uB9E4\uD558\uC9C0 \uC54A\uAE30\uB85C \uACB0\uC815\uD588\uC2B5\uB2C8\uB2E4."
       probability: 100
       planetEffects: []
       resourceEffects: []
-      crewEffects:
-      - effectType: 3
-        raceType: 3
-        healthChange: 0
-        skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 0
-          raceTarget: 0
-          value: 0
-        statusEffect: 3
-      - effectType: 3
-        raceType: 4
-        healthChange: 0
-        skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 0
-          raceTarget: 0
-          value: 0
-        statusEffect: 3
+      crewEffects: []
       specialEffectType: 0
       nextEvent: {fileID: 0}

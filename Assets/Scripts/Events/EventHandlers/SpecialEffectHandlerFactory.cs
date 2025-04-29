@@ -10,7 +10,6 @@ public class SpecialEffectHandlerFactory
         handlers[SpecialEffectType.None] = null;
         handlers[SpecialEffectType.TriggerNextEvent] = new NextEventEffectHandler();
         handlers[SpecialEffectType.AddQuest] = new AddQuestEffectHandler();
-        handlers[SpecialEffectType.UnlockShip] = new UnlockShipEffectHandler();
         handlers[SpecialEffectType.UnlockItem] = new UnlockItemEffectHandler();
     }
 

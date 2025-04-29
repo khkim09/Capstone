@@ -20,7 +20,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     protected int currentLevel;
 
     /// <summary>현재 체력.</summary>
-    [SerializeField][HideInInspector] public float currentHitPoints;
+    [SerializeField] [HideInInspector] public float currentHitPoints;
 
     /// <summary>방의 타입.</summary>
     public RoomType roomType;
@@ -38,7 +38,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [SerializeField] public RotationConstants.Rotation currentRotation;
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
-    [Header("방 효과")][SerializeField] protected ParticleSystem roomParticles;
+    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
 
     /// <summary>방 작동 시 사운드 효과.</summary>
     [SerializeField] protected AudioSource roomSound;
@@ -60,9 +60,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     /// <summary>방의 시각적 렌더러.</summary>
     protected SpriteRenderer roomRenderer; // 방 렌더러
-
-    /// <summary>해당 방이 실제로 배치되었는지 여부.</summary>
-    public bool isPlaced { get; protected set; }
 
     /// <summary>소속된 Ship 참조.</summary>
     protected Ship parentShip;
@@ -104,14 +101,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     {
         // 기본 배치 규칙 검사
         return true;
-    }
-
-    /// <summary>
-    /// 방이 실제 배치되었을 때 호출됩니다.
-    /// </summary>
-    public virtual void OnPlaced()
-    {
-        isPlaced = true;
     }
 
     /// <summary>
@@ -229,6 +218,24 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     }
 
     /// <summary>
+    /// 다른 방의 속성을 복사합니다.
+    /// </summary>
+    /// <param name="other">복사할 소스 방</param>
+    public virtual void CopyFrom(Room other)
+    {
+        // 기본 속성 복사
+        roomData = other.GetRoomData();
+        position = other.position;
+        currentLevel = other.GetCurrentLevel();
+        currentHitPoints = other.currentHitPoints;
+        roomType = other.roomType;
+        currentRotation = other.currentRotation;
+        isActive = other.isActive;
+        isPowered = other.GetIsPowered();
+        isPowerRequested = other.GetIsPowerRequested();
+    }
+
+    /// <summary>
     /// 이 방이 데미지를 받을 수 있는지 여부를 초기화합니다.
     /// </summary>
     public void InitializeIsDamageable()
@@ -332,7 +339,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         currentLevel = level;
         roomRenderer = gameObject.AddComponent<SpriteRenderer>();
         gridSize = roomData.GetRoomDataByLevel(level).size;
-
+        roomType = GetRoomData().GetRoomType();
         roomRenderer.sortingOrder = SortingOrderConstants.Room;
 
         // 부모 Ship 컴포넌트 찾기

@@ -5,7 +5,7 @@ using System;
 /// 무기 정보를 저장하는 ScriptableObject.
 /// 이름, 데미지, 쿨다운, 무기 종류 등의 데이터를 포함합니다.
 /// </summary>
-[CreateAssetMenu(fileName = "New Weapon", menuName = "Ship/Weapon")]
+[CreateAssetMenu(fileName = "New Weapon", menuName = "Ship/Weapon/Weapon")]
 public class ShipWeaponData : ScriptableObject
 {
     /// <summary>
@@ -36,14 +36,12 @@ public class ShipWeaponData : ScriptableObject
     /// <summary>
     /// 무기의 타입입니다.
     /// </summary>
-    [SerializeField] public ShipWeaponType weaponType;
+    [SerializeField] public ShipWeaponTypeData weaponType;
 
     /// <summary>
-    /// 무기의 추가 효과
+    /// 무기의 효과입니다.
     /// </summary>
-    [SerializeField] public ShipWeaponEffectType effectType;
-
-    public string effectDescription;
+    public WeaponEffectData effectData;
 
 
     /// <summary>
@@ -59,7 +57,7 @@ public class ShipWeaponData : ScriptableObject
     /// <summary>
     /// 필요한 탄두 종류
     /// </summary>
-    public WarheadType warheadType;
+    public WarheadTypeData warheadType;
 
     /// <summary>
     /// 무기 이름을 반환합니다.
@@ -95,6 +93,6 @@ public class ShipWeaponData : ScriptableObject
     /// <returns>무기 타입 enum 값.</returns>
     public ShipWeaponType GetWeaponType()
     {
-        return weaponType;
+        return weaponType.weaponType;
     }
 }

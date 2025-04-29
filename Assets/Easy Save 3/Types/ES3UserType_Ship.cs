@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("shipName", "gridSize", "allRooms", "doorData", "doorLevel", "systems", "testRoomPrefab1", "testRoomPrefab2", "testRoomPrefab3", "backupRooms", "backupRoomDatas")]
+	[ES3PropertiesAttribute("shipName", "gridSize", "allRooms", "doorData", "doorLevel", "systems", "backupRoomDatas")]
 	public class ES3UserType_Ship : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -15,16 +15,13 @@ namespace ES3Types
 		protected override void WriteComponent(object obj, ES3Writer writer)
 		{
 			var instance = (Ship)obj;
-
+			
 			writer.WriteProperty("shipName", instance.shipName, ES3Type_string.Instance);
 			writer.WritePrivateField("gridSize", instance);
 			writer.WriteProperty("allRooms", instance.allRooms, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<Room>)));
 			writer.WritePrivateFieldByRef("doorData", instance);
 			writer.WritePrivateField("doorLevel", instance);
 			writer.WritePrivateField("systems", instance);
-			writer.WritePropertyByRef("testRoomPrefab1", instance.testRoomPrefab1);
-			writer.WritePropertyByRef("testRoomPrefab2", instance.testRoomPrefab2);
-			writer.WritePropertyByRef("testRoomPrefab3", instance.testRoomPrefab3);
 			writer.WriteProperty("backupRoomDatas", instance.backupRoomDatas, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<RoomBackupData>)));
 		}
 
@@ -35,7 +32,7 @@ namespace ES3Types
 			{
 				switch(propertyName)
 				{
-
+					
 					case "shipName":
 						instance.shipName = reader.Read<System.String>(ES3Type_string.Instance);
 						break;
@@ -54,15 +51,6 @@ namespace ES3Types
 					case "systems":
 					instance = (Ship)reader.SetPrivateField("systems", reader.Read<System.Collections.Generic.Dictionary<System.Type, ShipSystem>>(), instance);
 					break;
-					case "testRoomPrefab1":
-						instance.testRoomPrefab1 = reader.Read<UnityEngine.GameObject>(ES3Type_GameObject.Instance);
-						break;
-					case "testRoomPrefab2":
-						instance.testRoomPrefab2 = reader.Read<UnityEngine.GameObject>(ES3Type_GameObject.Instance);
-						break;
-					case "testRoomPrefab3":
-						instance.testRoomPrefab3 = reader.Read<UnityEngine.GameObject>(ES3Type_GameObject.Instance);
-						break;
 					case "backupRoomDatas":
 						instance.backupRoomDatas = reader.Read<System.Collections.Generic.List<RoomBackupData>>();
 						break;
