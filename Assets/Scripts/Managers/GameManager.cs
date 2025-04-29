@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 플레이어가 조종 중인 함선입니다.
     /// </summary>
-    private Ship playerShip;
+    public Ship playerShip;
+
 
     /// <summary>
     /// 현재 전투 중인 적 함선입니다.
@@ -71,9 +72,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        playerShip = FindAnyObjectByType<Ship>();
+
         // LocalizationManager 초기화
         LocalizationManager.Initialize(this);
         LocalizationManager.OnLanguageChanged += OnLanguageChanged;
+
+        playerShip.Initialize();
+        ForSerializeTest();
     }
 
     /// <summary>
@@ -212,6 +218,57 @@ public class GameManager : MonoBehaviour
         EventMoraleEffectManager.Instance.CheckEventExpirations(currentYear); // 불가사의 지속 기간 체크
 
         Debug.Log($"[워프 완료] 현재 연도 : {currentYear}");
+    }
+
+
+    public void ForSerializeTest()
+    {
+        // Room room2 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Power, 3);
+        // Room room3 = GameObjectFactory.Instance.RoomFactory.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Big);
+        //
+        // Room room1 =
+        //     GameObjectFactory.Instance.RoomFactory.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+        //
+        // playerShip.AddRoom(room2, new Vector2Int(0, 0), RotationConstants.Rotation.Rotation0);
+        // playerShip.AddRoom(room3, new Vector2Int(4, 1), RotationConstants.Rotation.Rotation90);
+        // playerShip.AddRoom(room1, new Vector2Int(-4, -1), RotationConstants.Rotation.Rotation0);
+        //
+        // ShipWeapon newWeapon = playerShip.AddWeapon(0, new Vector2Int(3, -1), ShipWeaponAttachedDirection.North);
+        // ShipWeapon newWeapon2 = playerShip.AddWeapon(6, new Vector2Int(-2, -1), ShipWeaponAttachedDirection.East);
+        // ShipWeapon newWeapon3 = playerShip.AddWeapon(10, new Vector2Int(6, 2), ShipWeaponAttachedDirection.North);
+        //
+        //
+        // CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        // CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        // CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
+        //
+        // if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
+        // if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
+        // if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
+        //
+        //
+        // TradingItem tradingItem = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(2, 1);
+        //
+        // foreach (Room room in playerShip.allRooms)
+        //     if (room is StorageRoomBase)
+        //     {
+        //         StorageRoomBase storageRoom = room as StorageRoomBase;
+        //         storageRoom.AddItem(tradingItem, new Vector2Int(1, 1), 0);
+        //     }
+        //
+        // ShipSerialization.SaveShip(playerShip, Application.persistentDataPath + "/ship_data.es3");
+        ShipSerialization.LoadShip(Application.persistentDataPath + "/ship_data.es3");
+
+        // RoomSerialization.SaveAllRooms(GetAllRooms(), Application.persistentDataPath + "/room_data.es3");
+        //
+        // TradingItemSerialization.SaveShipItems(this, Application.persistentDataPath + "/item_data.es3");
+        // ShipWeaponSerialization.SaveAllWeapons(GetAllWeapons(), Application.persistentDataPath + "/weapon_data.es3");
+        // CrewSerialization.SaveAllCrews(GetAllCrew(), Application.persistentDataPath + "/crew_data.es3");
+        //
+        // RoomSerialization.RestoreAllRoomsToShip(Application.persistentDataPath + "/room_data.es3", this);
+        // CrewSerialization.RestoreAllCrewsToShip(Application.persistentDataPath + "/crew_data.es3", this);
+        // ShipWeaponSerialization.RestoreAllWeaponsToShip(Application.persistentDataPath + "/weapon_data.es3", this);
+        // TradingItemSerialization.RestoreAllItemsToShip(this, Application.persistentDataPath + "/item_data.es3");
     }
 }
 

@@ -41,6 +41,7 @@ public class CrewSystem : ShipSystem
     /// <returns>추가에 성공하면 true, 크루 정원이 초과되었으면 false.</returns>
     public bool AddCrew(CrewBase newCrew)
     {
+        // TODO : 조건 검사를 밖에서 해서 capacity 부족하다는 걸 전달해야됨
         if (crews.Count >= GetShipStat(ShipStat.CrewCapacity))
             return false;
 
