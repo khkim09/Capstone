@@ -86,8 +86,7 @@ public class GameManager : MonoBehaviour
         LocalizationManager.OnLanguageChanged += OnLanguageChanged;
 
         playerShip.Initialize();
-        // ForSerializeTest();
-        //RoomTest();
+        ForSerializeTest();
     }
 
     /// <summary>
@@ -226,24 +225,6 @@ public class GameManager : MonoBehaviour
         EventMoraleEffectManager.Instance.CheckEventExpirations(currentYear); // 불가사의 지속 기간 체크
 
         Debug.Log($"[워프 완료] 현재 연도 : {currentYear}");
-    }
-
-    public void RoomTest()
-    {
-        playerShip.AddRoom(3, testRoomPrefab1.GetComponent<Room>().GetRoomData(), new Vector2Int(0, 0),
-            RotationConstants.Rotation.Rotation0);
-        playerShip.AddRoom(1, testRoomPrefab2.GetComponent<Room>().GetRoomData(), new Vector2Int(4, 1),
-            RotationConstants.Rotation.Rotation90);
-        playerShip.AddRoom(1, testRoomPrefab3.GetComponent<Room>().GetRoomData(), new Vector2Int(-4, -1),
-            RotationConstants.Rotation.Rotation0);
-
-        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
-
-        if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
-        if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
-        if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
     }
 
     public void ForSerializeTest()
