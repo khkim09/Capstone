@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         LocalizationManager.OnLanguageChanged += OnLanguageChanged;
 
         playerShip.Initialize();
-        ForSerializeTest();
+        //     ForSerializeTest();
     }
 
     /// <summary>
@@ -223,40 +223,40 @@ public class GameManager : MonoBehaviour
 
     public void ForSerializeTest()
     {
-        // Room room2 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Power, 3);
-        // Room room3 = GameObjectFactory.Instance.RoomFactory.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Big);
-        //
-        // Room room1 =
-        //     GameObjectFactory.Instance.RoomFactory.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
-        //
-        // playerShip.AddRoom(room2, new Vector2Int(0, 0), RotationConstants.Rotation.Rotation0);
-        // playerShip.AddRoom(room3, new Vector2Int(4, 1), RotationConstants.Rotation.Rotation90);
-        // playerShip.AddRoom(room1, new Vector2Int(-4, -1), RotationConstants.Rotation.Rotation0);
-        //
-        // ShipWeapon newWeapon = playerShip.AddWeapon(0, new Vector2Int(3, -1), ShipWeaponAttachedDirection.North);
-        // ShipWeapon newWeapon2 = playerShip.AddWeapon(6, new Vector2Int(-2, -1), ShipWeaponAttachedDirection.East);
-        // ShipWeapon newWeapon3 = playerShip.AddWeapon(10, new Vector2Int(6, 2), ShipWeaponAttachedDirection.North);
-        //
-        //
-        // CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        // CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        // CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
-        //
-        // if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
-        // if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
-        // if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
-        //
-        //
-        // TradingItem tradingItem = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(2, 1);
-        //
-        // foreach (Room room in playerShip.allRooms)
-        //     if (room is StorageRoomBase)
-        //     {
-        //         StorageRoomBase storageRoom = room as StorageRoomBase;
-        //         storageRoom.AddItem(tradingItem, new Vector2Int(1, 1), 0);
-        //     }
-        //
-        // ShipSerialization.SaveShip(playerShip, Application.persistentDataPath + "/ship_data.es3");
+        Room room2 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Power, 3);
+        Room room3 = GameObjectFactory.Instance.RoomFactory.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Big);
+
+        Room room1 =
+            GameObjectFactory.Instance.RoomFactory.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+
+        playerShip.AddRoom(room2, new Vector2Int(0, 0), RotationConstants.Rotation.Rotation0);
+        playerShip.AddRoom(room3, new Vector2Int(4, 1), RotationConstants.Rotation.Rotation90);
+        playerShip.AddRoom(room1, new Vector2Int(-4, -1), RotationConstants.Rotation.Rotation0);
+
+        ShipWeapon newWeapon = playerShip.AddWeapon(0, new Vector2Int(3, -1), ShipWeaponAttachedDirection.North);
+        ShipWeapon newWeapon2 = playerShip.AddWeapon(6, new Vector2Int(-2, -1), ShipWeaponAttachedDirection.East);
+        ShipWeapon newWeapon3 = playerShip.AddWeapon(10, new Vector2Int(6, 2), ShipWeaponAttachedDirection.North);
+
+
+        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
+
+        if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
+        if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
+        if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
+
+
+        TradingItem tradingItem = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(2, 1);
+
+        foreach (Room room in playerShip.allRooms)
+            if (room is StorageRoomBase)
+            {
+                StorageRoomBase storageRoom = room as StorageRoomBase;
+                storageRoom.AddItem(tradingItem, new Vector2Int(1, 1), 0);
+            }
+
+        ShipSerialization.SaveShip(playerShip, Application.persistentDataPath + "/ship_data.es3");
         ShipSerialization.LoadShip(Application.persistentDataPath + "/ship_data.es3");
 
         // RoomSerialization.SaveAllRooms(GetAllRooms(), Application.persistentDataPath + "/room_data.es3");
