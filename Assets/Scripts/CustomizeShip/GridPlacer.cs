@@ -23,6 +23,11 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     public BlueprintShip targetBlueprintShip;
 
     /// <summary>
+    /// 기존 함선
+    /// </summary>
+    public Ship playerShip;
+
+    /// <summary>
     /// 공통 roomPrefab
     /// </summary>
     public GameObject roomPrefab;
@@ -88,7 +93,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     /// 설계도에 방이 있을 경우 방 들의 중앙 위치에서 시작
     /// </summary>
     /// <returns></returns>
-    public Vector3 GetCameraStartPosition()
+    public Vector3 GetCameraStartPositionToBP()
     {
         BlueprintRoom[] allBPRooms = targetBlueprintShip.GetComponentsInChildren<BlueprintRoom>();
 
@@ -100,6 +105,32 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
         List<Vector2Int> allTiles = new();
         foreach (BlueprintRoom room in allBPRooms)
             allTiles.AddRange(room.occupiedTiles);
+
+        Vector2 average = Vector2.zero;
+        foreach (Vector2Int tile in allTiles)
+            average += (Vector2)tile;
+
+        average /= allTiles.Count;
+
+        return GridToWorldPosition(Vector2Int.RoundToInt(average));
+    }
+
+    /// <summary>
+    /// 기존 소유 함선을 이루는 방들의 중심으로 카메라 시작 위치 보정
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 GetCameraStartPositionToOriginShip()
+    {
+        List<Room> allRooms = playerShip.GetAllRooms();
+
+        // 배치된 방 없으면 그리드 중앙
+        if (allRooms.Count == 0)
+            return GridToWorldPosition(gridSize / 2);
+
+        // 전체 타일 평균 위치 계산
+        List<Vector2Int> allTiles = new();
+        foreach (Room room in allRooms)
+            allTiles.AddRange(room.GetOccupiedTiles());
 
         Vector2 average = Vector2.zero;
         foreach (Vector2Int tile in allTiles)

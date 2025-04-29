@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
 
 /// <summary>
-/// 선원 단일 선택, 다중 선택 관리 Manager
+/// 선원 RTS 선택 및 이동 명령 관리 (단일, 다중 선택)
 /// </summary>
 public class RTSSelectionManager : MonoBehaviour
 {
@@ -57,6 +57,57 @@ public class RTSSelectionManager : MonoBehaviour
     /// 이동 명령 시 움직임 속도 (수정 필요)
     /// </summary>
     public float speed = 10.0f;
+
+
+    //--- RTS 이동 관련---
+
+    /// <summary>
+    /// 기본 그리드
+    /// </summary>
+    public GridPlacer gridPlacer;
+
+    /// <summary>
+    /// 선원 경로 계산기
+    /// </summary>
+    public CrewPathfinder crewPathfinder;
+
+    /// <summary>
+    /// 선원 이동 가능 검사기
+    /// </summary>
+    public CrewMovementValidator movementValidator;
+
+    /// <summary>
+    /// 함선
+    /// </summary>
+    public Ship playerShip;
+
+    /// <summary>
+    /// 싱글톤 instance
+    /// </summary>
+    public static RTSSelectionManager Instance { get; private set; }
+
+    /// <summary>
+    /// 싱글톤 instance 초기화
+    /// </summary>
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
+    /// <summary>
+    /// 게임 오브젝트 연결 (RTS 이동 검사를 위한 오브젝트)
+    /// </summary>
+    private IEnumerator Start()
+    {
+        yield return null; // 1 frame 대기
+
+        RefreshMovementData();
+    }
 
     /// <summary>
     /// 좌클릭 감지 - 다중 선택 시 영역 표시
@@ -230,148 +281,149 @@ public class RTSSelectionManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 클릭한 타일의 중앙 반환
+    /// RTS 이동을 위한 기여 오브젝트 초기화
     /// </summary>
-    /// <param name="worldPos"></param>
-    /// <returns></returns>
-    private Vector3 GetTileCenterFromWorld(Vector3 worldPos)
+    public void RefreshMovementData()
     {
-        float tileSize = 1.0f;
-        int gridX = Mathf.FloorToInt(worldPos.x / tileSize);
-        int gridY = Mathf.FloorToInt(worldPos.y / tileSize);
-
-        float centerX = gridX * tileSize + tileSize / 2f;
-        float centerY = gridY * tileSize + tileSize / 2f;
-
-        return new Vector3(centerX, centerY, 0);
-    }
-
-    /// <summary>
-    /// 직선적인 움직임 - 타일 중앙만 거치도록
-    /// (astar Alg 추가 필요)
-    /// (방, 복도 등 이동 가능한 곳만을 통해서 이동, 각 칸에 1명 이상 있을 시 우회)
-    /// </summary>
-    /// <param name="start"></param>
-    /// <param name="end"></param>
-    /// <returns></returns>
-    private List<Vector3> GetPathViaRoomCenters(Vector3 start, Vector3 end)
-    {
-        Vector3 startCenter = GetTileCenterFromWorld(start);
-        Vector3 endCenter = GetTileCenterFromWorld(end);
-
-        List<Vector3> path = new List<Vector3>();
-
-        if (Vector3.Distance(start, startCenter) > 0.01f)
-            path.Add(startCenter);
-
-        if (Mathf.Abs(startCenter.x - endCenter.x) > 0.01f)
-            path.Add(new Vector3(endCenter.x, startCenter.y, 0)); // 가로 이동
-
-        if (Mathf.Abs(startCenter.y - endCenter.y) > 0.01f)
-            path.Add(endCenter); // 세로 이동
-
-        return path;
-    }
-
-    /// <summary>
-    /// 경로 따라 이동
-    /// </summary>
-    /// <param name="crew"></param>
-    /// <param name="path"></param>
-    /// <returns></returns>
-    private IEnumerator MoveAlongPath(CrewMember crew, List<Vector3> path)
-    {
-        foreach (Vector3 waypoint in path)
+        if (crewPathfinder != null && movementValidator != null && playerShip != null)
         {
-            Vector3 startPos = crew.transform.position;
-            float distance = Vector3.Distance(startPos, waypoint);
-            float moveDuration = distance / speed;
-
-            float t = 0f;
-            while (t < moveDuration)
-            {
-                t += Time.deltaTime;
-                float fraction = t / moveDuration;
-                crew.transform.position = Vector3.Lerp(startPos, waypoint, fraction);
-                yield return null;
-            }
-
-            crew.transform.position = waypoint;
+            movementValidator.Initialize(playerShip.GetAllRooms());
+            crewPathfinder.Initialize(movementValidator);
         }
-
-        CheckForCombat(crew);
+        else
+            Debug.LogError("CrewPathFinder or MovementValidator가 세팅되지 않음");
     }
 
     /// <summary>
-    /// 우클릭한 위치로 이동 명령 전달
+    /// 선원 이동 명령 최적화
     /// </summary>
     public void IssueMoveCommand()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+
+        if (hit.collider != null)
         {
-            /*
-            Vector3 rawTarget = hit.point;
-            rawTarget.z = 0.0f; // z값 0으로 (화면에서 사라짐 방지)
+            Room targetRoom = hit.collider.GetComponent<Room>();
+            if (targetRoom == null)
+                return;
 
-            Debug.Log("이동 목적지: " + rawTarget);
+            Dictionary<CrewMember, List<Vector2Int>> crewPaths = new Dictionary<CrewMember, List<Vector2Int>>();
 
-            int cnt = selectedCrew.Count;
-
-            for (int i = 0; i < cnt; i++)
-            {
-                Vector3 finalDestination = rawTarget;
-                if (cnt > 1)
-                {
-                    float angle = i * Mathf.PI * 2 / cnt;
-                    Vector3 offset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * spacing;
-                    finalDestination += offset;
-                }
-                StartCoroutine(MoveCrewMember(selectedCrew[i], finalDestination));
-            }*/
-
-            Vector3 rawTarget = hit.point;
-            Vector3 targetCenter = GetTileCenterFromWorld(rawTarget);
-
+            // 1. 선택된 선원별로 이동 가능한 Entry 경로 계산
             foreach (CrewMember crew in selectedCrew)
             {
-                List<Vector3> path = GetPathViaRoomCenters(crew.transform.position, targetCenter);
-                StartCoroutine(MoveAlongPath(crew, path));
+                Debug.LogWarning($"{crew} 감지 완료, 목적지 : {targetRoom} 경로 추적 시작");
+                List<Vector2Int> path = crewPathfinder.FindPathToRoom(crew, targetRoom);
+                if (path != null)
+                    crewPaths[crew] = path;
+            }
+
+            // 2. 최단 경로가 짧은 선원부터 우선순위 할당
+            List<KeyValuePair<CrewMember, List<Vector2Int>>> orderedCrewPaths = crewPaths.OrderBy(x => x.Value.Count).ToList();
+
+            // 3. 방의 회전된 entry 타일 우선순위 가져오기
+            List<Vector2Int> rotatedEntryTiles = targetRoom.GetRotatedCrewEntryGridPriority();
+
+            // 4. 이미 예약된 타일 저장소 (선원 도착 전이라도 중복 할당 방지)
+            HashSet<Vector2Int> globallyReservedTiles = new HashSet<Vector2Int>();
+
+            // 5. 선원 순회하며 타일 하나씩 할당
+            foreach (KeyValuePair<CrewMember, List<Vector2Int>> kvp in orderedCrewPaths)
+            {
+                CrewMember crew = kvp.Key;
+
+                // 6. 현재 선원이 이미 목적지 방의 올바른 타일에 있다면 이동 명령 생략
+                if (crew.currentRoom == targetRoom)
+                {
+                    // 이 방에서 현재 점유 중인 타일
+                    Vector2Int currentTile = crew.GetCurrentTile();
+
+                    // 가장 높은 우선 순위의 비어 있는 타일 검색
+                    Vector2Int? highestPriorityEmptyTile = rotatedEntryTiles.Where
+                    (
+                        t => !targetRoom.IsTileOccupiedByCrew(t)
+                    ).FirstOrDefault();
+
+                    // 가장 높은 우선순위 타일이 현재 타일이면 이동 안함
+                    if (highestPriorityEmptyTile.HasValue && highestPriorityEmptyTile.Value == currentTile)
+                        continue;
+
+                    // 만약 현재 타일이 entry list 안에 있고 앞쪽 타일이 비어있지 않으면 이동 안함
+                    if (!highestPriorityEmptyTile.HasValue)
+                        continue;
+                }
+
+                // 사용할 타일 검색 (방 내부 타일 중 미점유 + 예약 X)
+                Vector2Int? assignedTile = null;
+                foreach (Vector2Int tile in rotatedEntryTiles)
+                {
+                    // 해당 타일 선원 점유 여부
+                    if (!targetRoom.IsTileOccupiedByCrew(tile)
+                    && !IsTileOccupiedByCrewGlobal(tile)
+                    && !globallyReservedTiles.Contains(tile))
+                    {
+                        assignedTile = tile;
+                        globallyReservedTiles.Add(tile); // 예약 타일 기록
+                        break;
+                    }
+                }
+
+                if (assignedTile == null)
+                {
+                    Debug.LogWarning("모든 타일 꽉 참");
+                    continue;
+                }
+
+                // 7. 현재 선원 위치에서 배정된 타일까지 경로 다시 계산
+                List<Vector2Int> finalPath = AStar.FindPath(crew.GetCurrentTile(), assignedTile.Value, movementValidator);
+
+                if (finalPath != null)
+                {
+                    // 현재 이동 중인 상태에서 새로운 이동 명령 수신
+                    if (crew.isMoving)
+                        crew.CancelAndRedirect(finalPath);
+                    else // 정지 상태에서 새로운 이동 명령 수신
+                        crew.AssignPathAndMove(finalPath);
+
+                    // 선원 예약 목적지 기록
+                    crew.reservedRoom = targetRoom;
+                    crew.reservedTile = assignedTile.Value;
+                }
+                else
+                    Debug.LogWarning($"선원 {crew.crewName}이(가) {assignedTile}로 가는 경로를 찾지 못했습니다.");
             }
         }
     }
 
     /// <summary>
-    /// Lerp를 사용한 이동 코루틴 (추후 디테일 조정 가능)
+    /// 타일에 이미 다른 선원이 있는지 검사
     /// </summary>
-    /// <param name="crew"></param>
-    /// <param name="destination"></param>
+    /// <param name="tile"></param>
     /// <returns></returns>
-    public IEnumerator MoveCrewMember(CrewMember crew, Vector3 destination)
+    private bool IsTileOccupiedByCrewGlobal(Vector2Int tile)
     {
-        Vector3 startPos = crew.transform.position;
-        float distance = Vector3.Distance(startPos, destination);
-        float moveDuration = distance / speed;  // 거리에 따른 이동 시간 계산
+        List<CrewBase> crewList = playerShip.GetSystem<CrewSystem>().GetCrews();
 
-        float t = 0f;
-        while (t < moveDuration)
+        foreach (CrewBase crewBase in crewList)
         {
-            t += Time.deltaTime;
-            float fraction = t / moveDuration;
-            crew.transform.position = Vector3.Lerp(startPos, destination, fraction);
-            yield return null;
+            CrewMember crewMember = crewBase as CrewMember;
+            if (crewMember == null)
+                continue;
+
+            if (crewMember.GetCurrentTile() == tile)
+                return true;
         }
-        crew.transform.position = destination;
-        CheckForCombat(crew);
+        return false;
     }
 
     /// <summary>
-    /// 일정 범위 내에 적이 있다면 전투 실행
+    /// 같은 방 내에 적이 있다면 공격 AI
     /// </summary>
     /// <param name="crew"></param>
     public void CheckForCombat(CrewMember crew)
     {
+        /*
         Collider[] colliders = Physics.OverlapSphere(crew.transform.position, attackRange);
         foreach (Collider col in colliders)
         {
@@ -385,6 +437,7 @@ public class RTSSelectionManager : MonoBehaviour
                 }
             }
         }
+        */
     }
 
     /// <summary>
@@ -403,6 +456,16 @@ public class RTSSelectionManager : MonoBehaviour
         {
             target.isAlive = false;
             Debug.Log($"{target.crewName}이(가) 사망하였습니다.");
+
+            // 타일 점유 해제 및 방 퇴장 처리
+            if (target.currentRoom != null)
+            {
+                Vector2Int currentTile = target.GetCurrentTile();
+                target.currentRoom.VacateTile(currentTile);
+                target.currentRoom.OnCrewExit(target);
+            }
+
+            // 선원 제거 (죽음)
             Destroy(target.gameObject);
         }
     }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +36,16 @@ public class CustomizeShipUIHandler : MonoBehaviour
     public TMP_Text feedbackText;
 
     /// <summary>
+    /// 현재 보유 재화량
+    /// </summary>
+    public TMP_Text currency;
+
+    /// <summary>
+    /// 기존 함선 가격
+    /// </summary>
+    public TMP_Text originShipCost;
+
+    /// <summary>
     /// 총 설계도 가격을 표시할 텍스트 UI.
     /// </summary>
     public TMP_Text totalCostText;
@@ -66,6 +77,13 @@ public class CustomizeShipUIHandler : MonoBehaviour
     private ValidationResult validationResult;
 
     /// <summary>
+    /// 설계도 함선 가격
+    /// </summary>
+    private int totalBPCost = 0;
+
+    public List<CrewMember> backupCrews = new List<CrewMember>();
+
+    /// <summary>
     /// 현재 설계도의 가격 지속 갱신
     /// 설계도로 함선 교체 가능 조건
     /// 1. (설계도 가격 - 기존 함선 가격) <= 보유 재화량
@@ -75,11 +93,13 @@ public class CustomizeShipUIHandler : MonoBehaviour
     {
         if (targetBlueprintShip != null && playerShip != null)
         {
-            int totalBPCost = targetBlueprintShip.totalBlueprintCost; // 설계도 가격
+            totalBPCost = targetBlueprintShip.GetTotalBPCost(); // 설계도 가격
             originalShipCost = playerShip.GetTotalShipValue(); // 사용중인 함선 가격
             int currentCurrency = (int)ResourceManager.Instance.GetResource(ResourceType.COMA); // 보유 재화량
 
-            totalCostText.text = $"Blueprint Cost: {totalBPCost}";
+            currency.text = $"Currency : {currentCurrency}";
+            totalCostText.text = $"Blueprint Cost : {totalBPCost}";
+            originShipCost.text = $"Origin Ship Cost : {originalShipCost}";
 
             // 1. 조건 : 자산
             bool hasEnoughMoney = totalBPCost - originalShipCost <= currentCurrency;
@@ -100,7 +120,11 @@ public class CustomizeShipUIHandler : MonoBehaviour
                 buildButton.interactable = false;
         }
 
-
+        // 설계도 작업 시 각 방 collider 임시 비활성화
+        if (customizeUI.activeInHierarchy)
+            SetPlayerShipCollidersActive(false);
+        else
+            SetPlayerShipCollidersActive(true);
     }
 
     /// <summary>
@@ -116,8 +140,11 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 설계도 방 호출, 배치
         GetSavedBPRooms();
 
-        // 카메라 세팅
-        CenterCamera();
+        // 카메라 - 설계도 함선 기준으로 세팅
+        CenterCameraToBP();
+
+        // 함선의 방 collider 비활성화 (RTS를 위한 collider와 겹침 방지)
+        SetPlayerShipCollidersActive(false);
     }
 
     /// <summary>
@@ -133,16 +160,19 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 설계도 설치한 방 데이터 모두 저장 후 제거
         SaveBPRoomsandDestroy();
 
-        // 카메라 기존 세팅으로 복구
-        ResetCameraPos();
+        // 카메라 - 기존 함선 기준으로 복구
+        ResetCameraToOriginShip();
+
+        // 함선 방 collider 활성화
+        SetPlayerShipCollidersActive(true);
     }
 
     /// <summary>
     /// 설계도 UI 호출 시 카메라 중앙값 보정
     /// </summary>
-    private void CenterCamera()
+    private void CenterCameraToBP()
     {
-        Vector3 startPos = gridPlacer.GetCameraStartPosition();
+        Vector3 startPos = gridPlacer.GetCameraStartPositionToBP();
         Camera.main.transform.position = new Vector3(startPos.x, startPos.y, Camera.main.transform.position.z);
 
         CameraZoomController cameraController = Camera.main.GetComponent<CameraZoomController>();
@@ -152,9 +182,10 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// <summary>
     /// 카메라 기본 세팅으로 복구
     /// </summary>
-    private void ResetCameraPos()
+    private void ResetCameraToOriginShip()
     {
-        Camera.main.transform.position = new Vector3(0, 0, Camera.main.transform.position.z);
+        Vector3 startPos = gridPlacer.GetCameraStartPositionToOriginShip();
+        Camera.main.transform.position = new Vector3(startPos.x, startPos.y, Camera.main.transform.position.z);
         Camera.main.orthographicSize = 5;
     }
 
@@ -180,6 +211,25 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 설치했던 모든 설계도 방 제거
         foreach (BlueprintRoom r in bpRooms)
             Destroy(r.gameObject);
+
+        targetBlueprintShip.ClearPlacedBPRooms();
+    }
+
+    /// <summary>
+    /// 함선의 모든 방에 대해 collider 활성화/비활성화
+    /// </summary>
+    /// <param name="active"></param>
+    private void SetPlayerShipCollidersActive(bool active)
+    {
+        if (playerShip == null)
+            return;
+
+        foreach (Room room in playerShip.GetAllRooms())
+        {
+            BoxCollider2D collider = room.GetComponent<BoxCollider2D>();
+            if (collider != null)
+                collider.enabled = active;
+        }
     }
 
     /// <summary>
@@ -192,7 +242,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 1. 기존 함선 가격 저장
         originalShipCost = playerShip.GetTotalShipValue();
 
-        // 2. 기존 함선 백업
+        // 2. 기존 선원, 함선 백업
+        backupCrews = playerShip.GetSystem<CrewSystem>().GetCrews().OfType<CrewMember>().ToList();
         playerShip.BackupCurrentShip();
 
         // 3. 설계도 -> 실제 함선 (bpRoom -> Room) 변환
@@ -222,15 +273,21 @@ public class CustomizeShipUIHandler : MonoBehaviour
             ResourceManager.Instance.ChangeResource(ResourceType.COMA, originalShipCost);
 
             // 설계도 함선 구매 (재화량 차감)
-            ResourceManager.Instance.ChangeResource(ResourceType.COMA, -targetBlueprintShip.totalBlueprintCost);
+            ResourceManager.Instance.ChangeResource(ResourceType.COMA, -targetBlueprintShip.GetTotalBPCost());
+
+            // RTS 이동을 위한 data 업데이트
+            RTSSelectionManager.Instance.RefreshMovementData();
+
+            // 1) 모든 방의 타일 - 선원 점유 상태 초기화
+            foreach (Room room in playerShip.GetAllRooms())
+                room.ClearCrewOccupancy();
+
+            // 2) 기존 선원 복구 및 랜덤 배치
+            playerShip.GetSystem<CrewSystem>().RestoreCrewAfterBuild(backupCrews);
         }
 
+        // 함선 스텟 다시 계산
         playerShip.RecalculateAllStats();
-
-        // backup data 삭제
-        // playerShip.backupRoomDatas.Clear();
-        // playerShip.backupRooms.Clear();
-
     }
 
     /// <summary>

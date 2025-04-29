@@ -17,9 +17,26 @@ public class BlueprintShip : MonoBehaviour
     public IReadOnlyList<BlueprintRoom> PlacedBlueprintRooms => placedBlueprintRooms;
 
     /// <summary>
-    /// 현재 설계도의 총 가격
+    /// 함선 설계도의 총 가격 반환
     /// </summary>
-    public int totalBlueprintCost => placedBlueprintRooms.Sum(r => r.bpRoomCost);
+    /// <returns></returns>
+    public int GetTotalBPCost()
+    {
+        int sum = 0;
+
+        foreach (BlueprintRoom bpRoom in placedBlueprintRooms)
+            sum += bpRoom.bpRoomCost;
+
+        return sum;
+    }
+
+    /// <summary>
+    /// 설계도에 배치된 방 리스트 초기화
+    /// </summary>
+    public void ClearPlacedBPRooms()
+    {
+        placedBlueprintRooms.Clear();
+    }
 
     /// <summary>
     /// 유저가 배치한 방들의 중심값 호출 (함선의 중심을 기준으로 유저에게 보이는 UI 설계)

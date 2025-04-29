@@ -86,17 +86,17 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// <summary>착용 중인 어시스턴트 장비 (스킬 보조).</summary>
     [CanBeNull] public EquipmentItem equippedAssistant;
 
-    /// <summary>착용 중인 어시스턴트 장비 (스킬 보조).</summary>
+    /// <summary>현재 위치한 방.</summary>
     [Header("Location")] public Room currentRoom;
 
     /// <summary>현재 좌표 (월드 또는 로컬 좌표계 기반).</summary>
     public Vector2 position;
 
-    /// <summary>현재 좌표 (월드 또는 로컬 좌표계 기반).</summary>
+    /// <summary>이동 예정 좌표 (월드 또는 로컬 좌표계 기반).</summary>
     public Vector2 targetPosition;
 
     /// <summary>이동 속도 (초당 거리).</summary>
-    public float moveSpeed = 2.0f;
+    public float moveSpeed = 3.0f;
 
     /// <summary>현재 체력.</summary>
     [Header("Status")] public float health;

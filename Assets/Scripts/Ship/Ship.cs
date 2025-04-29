@@ -16,7 +16,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
     /// </summary>
-    [SerializeField] private Vector2Int gridSize = new(40, 40);
+    [SerializeField] private Vector2Int gridSize = new(60, 60);
 
     /// <summary>
     /// 디버그용 스탯 및 상태 정보를 출력할지 여부입니다.
@@ -35,6 +35,9 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
     [SerializeField] private DoorData doorData;
 
+    /// <summary>
+    /// 함선의 모든 문에 대한 레벨 (전체 적용)
+    /// </summary>
     private int doorLevel;
 
     /// <summary>
@@ -527,7 +530,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     /// <typeparam name="T">요청할 시스템 타입.</typeparam>
     /// <returns>시스템 인스턴스. 없으면 null.</returns>
-    private T GetSystem<T>() where T : ShipSystem
+    public T GetSystem<T>() where T : ShipSystem
     {
         if (systems.TryGetValue(typeof(T), out ShipSystem system)) return system as T;
         return null;
@@ -1114,6 +1117,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             Mathf.FloorToInt(local.y / GridConstants.CELL_SIZE));
     }
 
+    /// <summary>
+    /// 그리드 좌표를 월드 좌표로 변환
+    /// </summary>
+    /// <param name="gridPos"></param>
+    /// <returns></returns>
     public Vector3 GridToWorldPosition(Vector2Int gridPos)
     {
         return Vector3.zero + new Vector3((gridPos.x + 0.5f) * GridConstants.CELL_SIZE,

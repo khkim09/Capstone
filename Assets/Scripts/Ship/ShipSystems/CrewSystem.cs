@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -123,5 +124,70 @@ public class CrewSystem : ShipSystem
                 crewsAtPosition.Add(crew);
 
         return crewsAtPosition;
+    }
+
+    /// <summary>
+    /// 새로운 함선의 랜덤한 방의 랜덤 타일에 선원 배치 (겹치지 않게 타일 점유 등록)
+    /// </summary>
+    public void RestoreCrewAfterBuild(List<CrewMember> backupCrews)
+    {
+        HashSet<Vector2Int> alreadyOccupiedTiles = new HashSet<Vector2Int>();
+
+        foreach (CrewMember crew in backupCrews)
+        {
+            Room assignRoom = FindRandomRoom();
+            if (assignRoom != null)
+            {
+                // 랜덤 배치 가능한 좌표 리스트
+                List<Vector2Int> candidates = assignRoom.GetRotatedCrewEntryGridPriority().Where
+                (
+                    t => !assignRoom.IsTileOccupiedByCrew(t) && !alreadyOccupiedTiles.Contains(t)
+                ).ToList();
+
+                // 모든 방이 다 찼으면 (그럴 일 없지만) 무시하고 랜덤 배치
+                if (candidates.Count == 0)
+                    candidates = assignRoom.GetRotatedCrewEntryGridPriority();
+
+                // 랜덤 배치 좌표
+                Vector2Int assignTile = candidates[Random.Range(0, candidates.Count)];
+                alreadyOccupiedTiles.Add(assignTile);
+
+                // z값 확인 필요 + 같은 타일 생성 안 되게 확인 필요
+                crew.transform.position = new Vector3(assignTile.x + 0.5f, assignTile.y + 0.5f, 0f);
+                crew.position = assignTile;
+                crew.currentRoom = assignRoom;
+                assignRoom.OccupyTile(assignTile);
+                assignRoom.OnCrewEnter(crew);
+
+                // 랜덤 방에 종속
+                crew.transform.SetParent(assignRoom.transform);
+
+                // crew GameObject 활성화 (오류 방지용)
+                crew.gameObject.SetActive(true);
+
+                // CrewMember 컴포넌트 활성화
+                CrewMember member = crew.GetComponent<CrewMember>();
+                if (member != null)
+                    member.enabled = true;
+
+                // box collider 2d 컴포넌트 활성화
+                BoxCollider2D col = crew.GetComponent<BoxCollider2D>();
+                if (col != null)
+                    col.enabled = true;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 함선 내 랜덤한 방 반환
+    /// </summary>
+    /// <returns></returns>
+    public Room FindRandomRoom()
+    {
+        List<Room> rooms = parentShip.GetAllRooms();
+        if (rooms == null || rooms.Count == 0)
+            return null;
+
+        return rooms[Random.Range(0, rooms.Count)];
     }
 }

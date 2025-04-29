@@ -100,62 +100,22 @@ public class ShipValidationHelper
         {
             // BFS 현재 방 dequeue
             Room current = queue.Dequeue();
-            Debug.LogWarning($"{i++} : {current} 방 진입 currentroompos : {current.position}");
+            Debug.Log($"{i++} : {current} 방 진입 currentroompos : {current.position}");
 
             // 현재 방의 문 방향 리스트 (회전각 반영)
             List<DoorPosition> doors = current.GetRoomData().GetDoorPositionsWithDirection(current.GetCurrentLevel(), current.position, current.currentRotation);
 
-            // 현재 방이 복도일 경우 : DFS 기반 네 방향 모두 검사
-            if (current.GetRoomType() == RoomType.Corridor)
-            {
-                foreach (DoorDirection direction in System.Enum.GetValues(typeof(DoorDirection)))
-                {
-                    // direction -> 회전각 적용한 direction으로 수정하는 함수 필요
-                    DoorDirection worldDoorDir = LocalDirToWorldDir(direction, current.currentRotation);
-
-                    Debug.LogError($"currentroompos : {current.position}, doordir : {worldDoorDir}");
-
-                    // 이미 해당 방향으로 탐색했는지 확인 (DFS)
-                    if (visitedCorridorDirections.Contains((current, worldDoorDir)))
-                        continue;
-
-                    visitedCorridorDirections.Add((current, worldDoorDir)); // l(v) = visited
-
-                    // 인접 타일 & 해당 타일 점유 방
-                    Vector2Int neighborTile = GetAdjacentTile(current.position, worldDoorDir);
-                    Room neighborRoom = rooms.FirstOrDefault(r => r.OccupiesTile(neighborTile));
-
-                    if (neighborRoom != null)
-                        Debug.LogWarning($"{neighborRoom}, pos: {neighborRoom.position}");
-
-                    if (neighborRoom == null)
-                    {
-                        Debug.LogError($"이웃 방 없음 : {neighborTile} 위치");
-                        continue;
-                    }
-
-                    // 새로운 탐색 시작점 enqueue (BFS)
-                    if (!visitedRooms.Contains(neighborRoom))
-                    {
-                        visitedRooms.Add(neighborRoom);
-                        queue.Enqueue(neighborRoom);
-                    }
-                }
-                // 복도는 항상 다른 방향도 있으므로 종료 안 하고 다음 반복으로 이동 (DFS)
-                continue;
-            }
-
-            // 현재 방의 모든 문에 대해 검사
+            // 현재 방의 모든 문에 대해 검사 (현재 방 : 복도 or 일반 방 무관)
             foreach (DoorPosition door in doors)
             {
-                Debug.LogError($"currentroompos : {current.position}, doorpos : {door.position}, doordir : {door.direction}");
+                Debug.Log($"currentroompos : {current.position}, doorpos : {door.position}, doordir : {door.direction}");
 
                 // 인접 타일, 인접 방 검색
                 Vector2Int neighborTile = GetAdjacentTile(door.position, door.direction);
                 Room neighborRoom = rooms.FirstOrDefault(r => r.OccupiesTile(neighborTile));
 
                 if (neighborRoom != null)
-                    Debug.LogWarning($"{neighborRoom}, pos: {neighborRoom.position}");
+                    Debug.Log($"{neighborRoom}, pos: {neighborRoom.position}");
 
                 // 이미 방문한 방 통과 (BFS)
                 if (neighborRoom == null || visitedRooms.Contains(neighborRoom))
@@ -173,7 +133,7 @@ public class ShipValidationHelper
                 List<DoorPosition> neighborDoors = neighborRoom.GetRoomData().GetDoorPositionsWithDirection(neighborRoom.GetCurrentLevel(), neighborRoom.position, neighborRoom.currentRotation);
                 DoorDirection opposite = GetOppositeDoorDirection(door.direction);
 
-                Debug.LogError($"dir : {door.direction}, 현재 문의 반대방향 (추구) : {opposite}");
+                Debug.Log($"dir : {door.direction}, 현재 문의 반대방향 (추구) : {opposite}");
 
                 bool isConnected = false;
 
@@ -184,7 +144,7 @@ public class ShipValidationHelper
                     // 월드 좌표로 변환한 반대편 방 문 방향 (현실)
                     DoorDirection nWorldDir = ndoor.direction;
 
-                    Debug.LogError($"반대편 방 문 방향 (현실) : {nWorldDir}");
+                    Debug.Log($"반대편 방 문 방향 (현실) : {nWorldDir}");
 
                     // 조건 1 : 인접한 위치
                     bool positionMatch = DoorPositionMatch(door.position, door.direction, ndoor.position, nWorldDir);
@@ -192,7 +152,7 @@ public class ShipValidationHelper
                     // 조건 2 : 문끼리 서로 마주봄
                     bool directionMatch = opposite == nWorldDir;
 
-                    Debug.LogWarning($"posMatch : {positionMatch}, dirMatch : {directionMatch}");
+                    Debug.Log($"posMatch : {positionMatch}, dirMatch : {directionMatch}");
 
                     // 조건 1 & 2 만족 : 연결 보장
                     if (positionMatch && directionMatch)
@@ -205,7 +165,7 @@ public class ShipValidationHelper
                 // 연결되어 있으니 이동
                 if (isConnected)
                 {
-                    Debug.LogWarning($"연결 O - 위치 : {neighborTile}, 문 방향 : {opposite}");
+                    Debug.Log($"연결 O - 위치 : {neighborTile}, 문 방향 : {opposite}");
                     visitedRooms.Add(neighborRoom);
                     queue.Enqueue(neighborRoom);
                 }
@@ -229,130 +189,43 @@ public class ShipValidationHelper
     }
 
     /// <summary>
-    /// 문 방향 월드 좌표계(유저가 보는 게임 뷰) 기준으로 변환
-    /// </summary>
-    /// <param name="localDir"></param>
-    /// <param name="rotation"></param>
-    /// <returns></returns>
-    private DoorDirection LocalDirToWorldDir(DoorDirection localDir, RotationConstants.Rotation rotation)
-    {
-        DoorDirection worldDir;
-        switch (rotation)
-        {
-            case RotationConstants.Rotation.Rotation0:
-                worldDir = localDir;
-                break;
-            case RotationConstants.Rotation.Rotation90:
-                if (localDir == DoorDirection.North)
-                    worldDir = DoorDirection.East;
-                else if (localDir == DoorDirection.East)
-                    worldDir = DoorDirection.South;
-                else if (localDir == DoorDirection.South)
-                    worldDir = DoorDirection.West;
-                else
-                    worldDir = DoorDirection.North;
-                break;
-            case RotationConstants.Rotation.Rotation180:
-                if (localDir == DoorDirection.North)
-                    worldDir = DoorDirection.South;
-                else if (localDir == DoorDirection.East)
-                    worldDir = DoorDirection.West;
-                else if (localDir == DoorDirection.South)
-                    worldDir = DoorDirection.North;
-                else
-                    worldDir = DoorDirection.East;
-                break;
-            case RotationConstants.Rotation.Rotation270:
-                if (localDir == DoorDirection.North)
-                    worldDir = DoorDirection.West;
-                else if (localDir == DoorDirection.East)
-                    worldDir = DoorDirection.North;
-                else if (localDir == DoorDirection.South)
-                    worldDir = DoorDirection.East;
-                else
-                    worldDir = DoorDirection.South;
-                break;
-            default:
-                worldDir = localDir;
-                break;
-        }
-        return worldDir;
-    }
-
-    /// <summary>
     /// 각 방의 문이 위치한 타일에 대해 문으로 이동 가능하도록 인접했는지 여부
     /// </summary>
-    /// <param name="currentPos">현재 방 위치</param>
-    /// <param name="currentDir">현재 방의 문 월드 좌표계 기준 방향</param>
-    /// <param name="neighborPos">이웃 방 위치</param>
-    /// <param name="neighborDir">이웃 방의 문 월드 좌표계 기준 방향</param>
+    /// <param name="doorPosA">현재 방 문 위치</param>
+    /// <param name="dirA">현재 방 문 방향</param>
+    /// <param name="doorPosB">반대 방 문 위치</param>
+    /// <param name="dirB">반대 방 문 방향</param>
     /// <returns></returns>
-    private bool DoorPositionMatch(Vector2Int currentDoorPos, DoorDirection currentDir, Vector2Int neighborDoorPos, DoorDirection neighborDir)
+    private bool DoorPositionMatch(Vector2Int doorPosA, DoorDirection dirA, Vector2Int doorPosB, DoorDirection dirB)
     {
         // 상호 인접 여부 검사
-        Vector2Int shouldBeCurrentTile, shouldBeNeighborTile;
+        Vector2Int expectedNeighborForA = doorPosA + GetDirectionOffset(dirA); // 이웃 타일 (A가 현재 타일)
+        Vector2Int expectedNeighborForB = doorPosB + GetDirectionOffset(dirB); // 현재 타일
 
-        switch (currentDir)
-        {
-            case DoorDirection.North:
-                shouldBeNeighborTile = currentDoorPos + Vector2Int.up;
-                break;
-            case DoorDirection.East:
-                shouldBeNeighborTile = currentDoorPos + Vector2Int.right;
-                break;
-            case DoorDirection.South:
-                shouldBeNeighborTile = currentDoorPos + Vector2Int.down;
-                break;
-            case DoorDirection.West:
-                shouldBeNeighborTile = currentDoorPos + Vector2Int.left;
-                break;
-            default:
-                shouldBeNeighborTile = currentDoorPos;
-                break;
-        }
+        Debug.Log($"반대 방 문 pos : {doorPosB}, 반대 방 문 검사 : {expectedNeighborForA}");
+        bool currentRoomCheck = doorPosB == expectedNeighborForA;
 
-        Debug.LogError($"반대 방 문 pos : {neighborDoorPos}, 반대 방 문 검사 : {shouldBeNeighborTile}");
-        bool currentRoomCheck = neighborDoorPos == shouldBeNeighborTile;
-
-        switch (neighborDir)
-        {
-            case DoorDirection.North:
-                shouldBeCurrentTile = neighborDoorPos + Vector2Int.up;
-                break;
-            case DoorDirection.East:
-                shouldBeCurrentTile = neighborDoorPos + Vector2Int.right;
-                break;
-            case DoorDirection.South:
-                shouldBeCurrentTile = neighborDoorPos + Vector2Int.down;
-                break;
-            case DoorDirection.West:
-                shouldBeCurrentTile = neighborDoorPos + Vector2Int.left;
-                break;
-            default:
-                shouldBeCurrentTile = neighborDoorPos;
-                break;
-        }
-
-        Debug.LogError($"현재 방 문 pos : {currentDoorPos}, 현재 방 문 검사 : {shouldBeCurrentTile}");
-        bool neighborRoomCheck = currentDoorPos == shouldBeCurrentTile;
+        Debug.Log($"현재 방 문 pos : {doorPosA}, 현재 방 문 검사 : {expectedNeighborForB}");
+        bool neighborRoomCheck = doorPosA == expectedNeighborForB;
 
         return currentRoomCheck && neighborRoomCheck;
     }
 
     /// <summary>
-    /// 디버깅 시각화 오브젝트 생성 (삭제할 예정)
+    /// 문 방향에 따른 그리드 타일 위치 offset 세팅
     /// </summary>
+    /// <param name="dir"></param>
     /// <returns></returns>
-    private ShipPathDebugVisualizer GetOrCreateVisualizer()
+    private Vector2Int GetDirectionOffset(DoorDirection dir)
     {
-        ShipPathDebugVisualizer existing = GameObject.FindFirstObjectByType<ShipPathDebugVisualizer>();
-        if (existing != null)
-            return existing;
-
-        GameObject go = new GameObject("ShipPathDebugVisualizer");
-        ShipPathDebugVisualizer visualizer = go.AddComponent<ShipPathDebugVisualizer>();
-        go.hideFlags = HideFlags.DontSave;
-        return visualizer;
+        return dir switch
+        {
+            DoorDirection.North => Vector2Int.up,
+            DoorDirection.East => Vector2Int.right,
+            DoorDirection.South => Vector2Int.down,
+            DoorDirection.West => Vector2Int.left,
+            _ => Vector2Int.zero
+        };
     }
 
     /// <summary>
@@ -388,6 +261,22 @@ public class ShipValidationHelper
             DoorDirection.West => DoorDirection.East,
             _ => dir
         };
+    }
+
+    /// <summary>
+    /// 디버깅 시각화 오브젝트 생성 (삭제할 예정)
+    /// </summary>
+    /// <returns></returns>
+    private static ShipPathDebugVisualizer GetOrCreateVisualizer()
+    {
+        ShipPathDebugVisualizer existing = GameObject.FindFirstObjectByType<ShipPathDebugVisualizer>();
+        if (existing != null)
+            return existing;
+
+        GameObject go = new GameObject("ShipPathDebugVisualizer");
+        ShipPathDebugVisualizer visualizer = go.AddComponent<ShipPathDebugVisualizer>();
+        go.hideFlags = HideFlags.DontSave;
+        return visualizer;
     }
 
     #endregion
