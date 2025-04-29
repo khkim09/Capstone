@@ -61,9 +61,8 @@ public class RandomQuest : ScriptableObject
     {
         public RewardType type;                           // 보상 종류
         public ResourceType resourceType;                 // Resource 타입일 때
-        public int amount;                                // 수량
         public string itemId;                             // Item 타입일 때
-        public int itemQuantity = 1;                      // 아이템 수량
+        public int amount;                                // 수량
     }
 
     /// <summary>

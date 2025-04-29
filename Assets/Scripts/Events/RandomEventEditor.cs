@@ -9,6 +9,7 @@ using UnityEngine;
 public class RandomEventEditor : Editor
 {
     private bool[] choiceFoldouts;
+    private SerializedProperty eventIdProp;
     private SerializedProperty choicesProp;
     private SerializedProperty eventDescriptionProp;
     private SerializedProperty eventImageProp;
@@ -17,6 +18,7 @@ public class RandomEventEditor : Editor
 
     private void OnEnable()
     {
+        eventIdProp = serializedObject.FindProperty("eventId");
         eventTitleProp = serializedObject.FindProperty("eventTitle");
         eventDescriptionProp = serializedObject.FindProperty("eventDescription");
         eventImageProp = serializedObject.FindProperty("eventImage");
@@ -41,6 +43,8 @@ public class RandomEventEditor : Editor
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
+
+        EditorGUILayout.PropertyField(eventIdProp, new GUIContent("이벤트 ID"));
 
         EditorGUILayout.PropertyField(eventTitleProp);
 

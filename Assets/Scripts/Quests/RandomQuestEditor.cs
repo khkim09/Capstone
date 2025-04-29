@@ -136,8 +136,25 @@ public class RandomQuestEditor : Editor
             {
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(rwProp.FindPropertyRelative("type"),   new GUIContent("보상 종류"));
+                // Resource 타입일 때만 자원 종류 드롭다운 노출
+                if (rwProp.FindPropertyRelative("type").enumValueIndex ==
+                    (int)RandomQuest.RewardType.Resource)
+                {
+                    EditorGUILayout.PropertyField(
+                        rwProp.FindPropertyRelative("resourceType"),
+                        new GUIContent("자원 종류")
+                    );
+                }
+                // Item 타입일 때만 아이템 ID / 수량 노출
+                else if (rwProp.FindPropertyRelative("type").enumValueIndex ==
+                         (int)RandomQuest.RewardType.Item)
+                {
+                    EditorGUILayout.PropertyField(
+                        rwProp.FindPropertyRelative("itemId"),
+                        new GUIContent("아이템 ID")
+                    );
+                }
                 EditorGUILayout.PropertyField(rwProp.FindPropertyRelative("amount"), new GUIContent("수량"));
-                // ResourceType, itemId, itemQuantity 등 추가 속성이 필요하면 여기에
                 EditorGUI.indentLevel--;
             }
         }
