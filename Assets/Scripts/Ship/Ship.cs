@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class Ship : MonoBehaviour, IWorldGridSwitcher
 {
-    [Header("Ship Info")] [SerializeField] public string shipName = "Milky";
+    [Header("Ship Info")][SerializeField] public string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -162,6 +162,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         room.gameObject.transform.position = worldPos + new Vector3(0, 0, 5f);
         room.gameObject.transform.rotation = Quaternion.Euler(0, 0, -(int)rotation * 90);
 
+        room.Initialize(level);
 
         // 룸 목록에 추가
         allRooms.Add(room);
@@ -186,8 +187,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         return true;
     }
 
-    public Room AddRoom(Room room, Vector2Int position = new(),
-        RotationConstants.Rotation rotation = RotationConstants.Rotation.Rotation0)
+    public Room AddRoom(Room room, Vector2Int position = new(), RotationConstants.Rotation rotation = RotationConstants.Rotation.Rotation0)
     {
         if (position != Vector2Int.zero)
             room.position = position;
@@ -201,7 +201,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         Vector2Int size = roomData.GetRoomDataByLevel(room.GetCurrentLevel()).size;
         Vector2Int rotatedSize = RoomRotationUtility.GetRotatedSize(size, rotation);
         // Vector2 offset = RoomRotationUtility.GetRotationOffset(rotatedSize, rotation);
-        Vector3 worldPos = GridToWorldPosition(position);
+        Vector3 worldPos = GridToWorldPosition(position) + new Vector3(0, 0, 5f);
 
         room.transform.SetParent(transform);
         room.gameObject.transform.position = worldPos;
@@ -318,11 +318,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
-        {
-            Vector2Int gridPos = room.position + new Vector2Int(x, y);
-            roomGrid.Remove(gridPos);
-        }
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = room.position + new Vector2Int(x, y);
+                roomGrid.Remove(gridPos);
+            }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -366,7 +366,10 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     public int GetTotalShipValue()
     {
         int total = 0;
-        foreach (Room room in allRooms) total += room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).cost;
+        foreach (Room room in allRooms)
+        {
+            total += room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).cost;
+        }
         return total;
     }
 
@@ -390,6 +393,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         backupRoomDatas.Clear();
 
         foreach (Room room in allRooms)
+        {
             backupRoomDatas.Add(new RoomBackupData
             {
                 roomData = room.GetRoomData(),
@@ -397,6 +401,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
                 position = room.position,
                 rotation = room.currentRotation
             });
+        }
     }
 
     /// <summary>
@@ -456,12 +461,12 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             return false;
 
         for (int x = 0; x < size.x; x++)
-        for (int y = 0; y < size.y; y++)
-        {
-            Vector2Int checkPos = pos + new Vector2Int(x, y);
-            if (roomGrid.ContainsKey(checkPos))
-                return false;
-        }
+            for (int y = 0; y < size.y; y++)
+            {
+                Vector2Int checkPos = pos + new Vector2Int(x, y);
+                if (roomGrid.ContainsKey(checkPos))
+                    return false;
+            }
 
         return true;
     }
@@ -1041,15 +1046,15 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
-            for (int y = -1; y <= 1; y++)
-            {
-                if (x == 0 && y == 0) continue;
+                for (int y = -1; y <= 1; y++)
+                {
+                    if (x == 0 && y == 0) continue;
 
-                Vector2Int checkPos = position + new Vector2Int(x, y);
+                    Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                // 해당 위치에 있는 선원들에게 데미지 적용
-                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
-            }
+                    // 해당 위치에 있는 선원들에게 데미지 적용
+                    ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
+                }
     }
 
     #endregion
