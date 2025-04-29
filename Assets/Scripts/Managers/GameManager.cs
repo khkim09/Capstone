@@ -283,6 +283,8 @@ public class GameManager : MonoBehaviour
 
         ShipSerialization.SaveShip(playerShip, Application.persistentDataPath + "/ship_data.es3");
         ShipSerialization.LoadShip(Application.persistentDataPath + "/ship_data.es3");
+        ShipSerialization.LoadShip(Application.persistentDataPath + "/ship_data.es3");
+
 
         // RoomSerialization.SaveAllRooms(GetAllRooms(), Application.persistentDataPath + "/room_data.es3");
         //
