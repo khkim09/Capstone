@@ -202,7 +202,7 @@ public class WeaponSystem : ShipSystem
     /// <returns>해당 탄두 타입을 사용하는 무기 목록</returns>
     public List<ShipWeapon> GetWeaponsByWarheadType(WarheadType warheadType)
     {
-        return weapons.FindAll(w => w.weaponData.warheadType == warheadType);
+        return weapons.FindAll(w => w.weaponData.warheadType.warheadType == warheadType);
     }
 
     public List<ShipWeapon> GetWeaponsByEffect(ShipWeaponEffectType effectType)

@@ -3,7 +3,7 @@
 /// <summary>
 /// 무기 효과 데이터 클래스
 /// </summary>
-[CreateAssetMenu(fileName = "New Weapon Effect", menuName = "Ship/Weapon Effect")]
+[CreateAssetMenu(fileName = "New Weapon Effect", menuName = "Ship/Weapon/Effect")]
 public class WeaponEffectData : ScriptableObject
 {
     /// <summary>
@@ -19,8 +19,7 @@ public class WeaponEffectData : ScriptableObject
     /// <summary>
     /// 효과 설명
     /// </summary>
-    [TextArea(2, 5)]
-    public string description;
+    [TextArea(2, 5)] public string description;
 
     /// <summary>
     /// 효과 유형

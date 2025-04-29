@@ -3,7 +3,7 @@
 /// <summary>
 /// 무기 타입 데이터 클래스
 /// </summary>
-[CreateAssetMenu(fileName = "New Weapon Type", menuName = "Ship/Weapon Type")]
+[CreateAssetMenu(fileName = "New Weapon Type", menuName = "Ship/Weapon/Type")]
 public class ShipWeaponTypeData : ScriptableObject
 {
     /// <summary>
