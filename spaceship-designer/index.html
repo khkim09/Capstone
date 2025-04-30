@@ -12,6 +12,78 @@
         /* 그리드 사이의 검은 줄 제거 */
         #shipGrid {
             background-color: transparent;
+            position: relative;
+        }
+        
+        /* 셀 스타일링 */
+        .cell {
+            position: relative;
+            border: 1px solid #374151;
+        }
+        
+        /* 문 스타일링 */
+        .door-h, .door-v {
+            position: absolute;
+            background-color: #f59e0b;
+            z-index: 10;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .door-h {
+            height: 4px;
+            width: 16px;
+            top: 100%;
+            left: calc(50% - 8px);
+            transform: translateY(-2px);
+        }
+        
+        .door-v {
+            width: 4px;
+            height: 16px;
+            left: 100%;
+            top: calc(50% - 8px);
+            transform: translateX(-2px);
+        }
+        
+        .door-h.active, .door-v.active {
+            background-color: #f59e0b;
+        }
+        
+        .door-h:not(.active), .door-v:not(.active) {
+            background-color: transparent;
+        }
+        
+        .door-h:hover, .door-v:hover {
+            background-color: #fbbf24;
+        }
+        
+        /* 문 힌트 영역 */
+        .door-hint-h, .door-hint-v {
+            position: absolute;
+            background-color: rgba(245, 158, 11, 0.1);
+            z-index: 5;
+            cursor: pointer;
+        }
+        
+        .door-hint-h {
+            height: 8px;
+            width: 100%;
+        }
+        
+        .door-hint-v {
+            width: 8px;
+            height: 100%;
+        }
+        
+        .door-hint-h:hover, .door-hint-v:hover {
+            background-color: rgba(245, 158, 11, 0.3);
+        }
+        
+        /* 커스텀 폰트 크기 (Tailwind에서 제공하지 않는 더 작은 크기) */
+        .text-xxs {
+            font-size: 0.65rem;
+            line-height: 0.9rem;
         }
     </style>
 </head>
@@ -89,6 +161,18 @@
                 <div id="facilityButtons" class="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
                     <!-- 시설 버튼들이 여기에 동적으로 추가됨 -->
                 </div>
+                
+                <div class="mt-4">
+                    <label class="flex items-center mr-4 mb-2">
+                        <input 
+                            type="checkbox" 
+                            id="doorMode"
+                            class="mr-2"
+                        />
+                        <span class="font-semibold">문 배치 모드</span>
+                    </label>
+                    <p class="text-sm text-gray-600">방 사이의 경계를 클릭하여 문을 배치하거나 제거합니다.</p>
+                </div>
             </div>
             
             <div class="overflow-auto">
@@ -158,15 +242,30 @@
         let gridWidth = 15;
         let gridHeight = 15;
 
-        // 기본 함선 레이아웃 생성
-        let shipLayout = Array(gridHeight).fill().map(() => Array(gridWidth).fill('EMPTY'));
+        // 기본 함선 레이아웃 생성 (시설 유형과 레벨 정보 포함)
+        let shipLayout = Array(gridHeight).fill().map(() => 
+            Array(gridWidth).fill().map(() => ({ type: 'EMPTY', level: 1 }))
+        );
+        
+        // 문 데이터 구조 초기화
+        // doors.h[y][x] = true는 (x,y)와 (x+1,y) 사이에 문이 있음을 의미
+        // doors.v[y][x] = true는 (x,y)와 (x,y+1) 사이에 문이 있음을 의미
+        let doors = {
+            h: Array(gridHeight).fill().map(() => Array(gridWidth-1).fill(false)),
+            v: Array(gridHeight-1).fill().map(() => Array(gridWidth).fill(false))
+        };
 
-        // 현재 선택된 시설
+        // 현재 선택된 시설과 레벨
         let selectedFacility = 'EMPTY';
+        let selectedLevel = 1;
+        
+        // 문 배치 모드 상태
+        let isDoorMode = false;
 
         // DOM 요소
         const shipNameInput = document.getElementById('shipName');
         const isPlayerCheckbox = document.getElementById('isPlayer');
+        const doorModeCheckbox = document.getElementById('doorMode');
         const exportBtn = document.getElementById('exportBtn');
         const importBtn = document.getElementById('importBtn');
         const resizeBtn = document.getElementById('resizeBtn');
@@ -185,31 +284,68 @@
         const centerX = Math.floor(gridWidth / 2);
         const centerY = Math.floor(gridHeight / 2);
         
-        // 기본 레이아웃 설정
-        shipLayout[centerY-1][centerX-1] = 'ENGINE';
-        shipLayout[centerY-1][centerX] = 'ENGINE';
-        shipLayout[centerY-2][centerX] = 'CONTROL';
-        shipLayout[centerY][centerX] = 'POWER';
-        shipLayout[centerY-1][centerX+1] = 'CORRIDOR';
-        shipLayout[centerY-1][centerX+2] = 'STORAGE';
-        shipLayout[centerY-2][centerX+2] = 'MEDICAL';
-        shipLayout[centerY][centerX+2] = 'OXYGEN';
-        shipLayout[centerY+1][centerX] = 'TARGETING';
-        shipLayout[centerY-3][centerX] = 'SHIELD';
-        shipLayout[centerY-1][centerX+3] = 'CREW';
-        shipLayout[centerY][centerX+1] = 'TELEPORT';
-        shipLayout[centerY-2][centerX+1] = 'AMMO';
+        // 기본 레이아웃 설정 (랜덤 레벨로 초기 설정)
+        shipLayout[centerY-1][centerX-1] = { type: 'ENGINE', level: 1 };
+        shipLayout[centerY-1][centerX] = { type: 'ENGINE', level: 2 };
+        shipLayout[centerY-2][centerX] = { type: 'CONTROL', level: 3 };
+        shipLayout[centerY][centerX] = { type: 'POWER', level: 2 };
+        shipLayout[centerY-1][centerX+1] = { type: 'CORRIDOR', level: 1 };
+        shipLayout[centerY-1][centerX+2] = { type: 'STORAGE', level: 1 };
+        shipLayout[centerY-2][centerX+2] = { type: 'MEDICAL', level: 2 };
+        shipLayout[centerY][centerX+2] = { type: 'OXYGEN', level: 3 };
+        shipLayout[centerY+1][centerX] = { type: 'TARGETING', level: 2 };
+        shipLayout[centerY-3][centerX] = { type: 'SHIELD', level: 3 };
+        shipLayout[centerY-1][centerX+3] = { type: 'CREW', level: 1 };
+        shipLayout[centerY][centerX+1] = { type: 'TELEPORT', level: 2 };
+        shipLayout[centerY-2][centerX+1] = { type: 'AMMO', level: 3 };
+        
+        // 기본 문 설정 (엔진실과 복도 사이)
+        doors.h[centerY-1][centerX] = true;
+        // 복도와 전력실 사이
+        doors.v[centerY-1][centerX+1] = true;
+        // 복도와 저장고 사이
+        doors.h[centerY-1][centerX+1] = true;
 
         // 시설 버튼 생성
         function createFacilityButtons() {
             facilityButtonsContainer.innerHTML = '';
             
+            // 레벨 선택 UI 추가
+            const levelContainer = document.createElement('div');
+            levelContainer.className = 'col-span-3 mb-2';
+            levelContainer.innerHTML = `
+                <div class="text-sm font-semibold mb-1">시설 레벨:</div>
+                <div class="flex space-x-2">
+                    <button id="level1Btn" class="px-3 py-1 rounded ${selectedLevel === 1 ? 'bg-blue-600 text-white' : 'bg-gray-200'}">Lv.1</button>
+                    <button id="level2Btn" class="px-3 py-1 rounded ${selectedLevel === 2 ? 'bg-blue-600 text-white' : 'bg-gray-200'}">Lv.2</button>
+                    <button id="level3Btn" class="px-3 py-1 rounded ${selectedLevel === 3 ? 'bg-blue-600 text-white' : 'bg-gray-200'}">Lv.3</button>
+                </div>
+            `;
+            facilityButtonsContainer.appendChild(levelContainer);
+            
+            // 레벨 버튼 이벤트 추가
+            document.getElementById('level1Btn').onclick = () => {
+                selectedLevel = 1;
+                createFacilityButtons();
+            };
+            document.getElementById('level2Btn').onclick = () => {
+                selectedLevel = 2;
+                createFacilityButtons();
+            };
+            document.getElementById('level3Btn').onclick = () => {
+                selectedLevel = 3;
+                createFacilityButtons();
+            };
+            
+            // 시설 버튼 생성
             Object.entries(facilityTypes).forEach(([key, facility]) => {
                 const button = document.createElement('button');
                 button.className = `p-2 rounded text-sm ${facility.color} ${key === selectedFacility ? 'ring-2 ring-blue-600' : ''}`;
                 button.textContent = facility.name;
                 button.onclick = () => {
                     selectedFacility = key;
+                    isDoorMode = false;
+                    doorModeCheckbox.checked = false;
                     createFacilityButtons(); // 버튼 UI 업데이트
                 };
                 
@@ -222,46 +358,147 @@
             shipGridContainer.innerHTML = '';
             shipGridContainer.style.gridTemplateColumns = `repeat(${gridWidth}, minmax(0, 1fr))`;
             
+            // 방(셀) 생성
             shipLayout.forEach((row, rowIndex) => {
                 row.forEach((cell, colIndex) => {
                     const tile = document.createElement('div');
-                    // 그리드 셀 크기를 약간 줄이고 간격 제거
-                    tile.className = `w-8 h-8 flex items-center justify-center ${facilityTypes[cell].color} border border-gray-700 cursor-pointer text-xs font-bold text-gray-800`;
-                    tile.textContent = facilityTypes[cell].shortName;
+                    const cellId = `cell-${rowIndex}-${colIndex}`;
+                    
+                    // 그리드 셀 스타일링
+                    tile.id = cellId;
+                    const cellType = cell.type;
+                    const cellLevel = cell.level;
+                    tile.className = `w-8 h-8 flex items-center justify-center ${facilityTypes[cellType].color} cell cursor-pointer text-xxs font-bold text-gray-800`;
+                    
+                    // 시설 이름과 레벨 표시 (EMPTY일 경우 레벨 표시 안함)
+                    if (cellType !== 'EMPTY') {
+                        tile.textContent = `${facilityTypes[cellType].shortName}${cellLevel}`;
+                    } else {
+                        tile.textContent = '';
+                    }
+                    
+                    tile.dataset.row = rowIndex;
+                    tile.dataset.col = colIndex;
+                    
+                    // 셀 클릭 이벤트 (문 모드가 아닐 때만 시설 배치)
                     tile.onclick = () => {
-                        shipLayout[rowIndex][colIndex] = selectedFacility;
-                        updateUI();
+                        if (!isDoorMode) {
+                            shipLayout[rowIndex][colIndex] = {
+                                type: selectedFacility,
+                                level: selectedLevel
+                            };
+                            updateUI();
+                        }
                     };
                     
                     shipGridContainer.appendChild(tile);
+                    
+                    // 수평 문 영역 생성 (오른쪽 셀과의 경계)
+                    if (colIndex < gridWidth - 1) {
+                        // 문 힌트 영역 (클릭 감지를 위한 더 넓은 영역)
+                        const hDoorHint = document.createElement('div');
+                        hDoorHint.className = 'door-hint-h';
+                        hDoorHint.style.top = 'calc(100% - 4px)';
+                        hDoorHint.style.left = '0';
+                        tile.appendChild(hDoorHint);
+                        
+                        // 실제 문 UI
+                        const hDoor = document.createElement('div');
+                        hDoor.className = `door-h ${doors.h[rowIndex][colIndex] ? 'active' : ''}`;
+                        hDoor.dataset.type = 'h';
+                        hDoor.dataset.row = rowIndex;
+                        hDoor.dataset.col = colIndex;
+                        tile.appendChild(hDoor);
+                        
+                        // 문 토글 이벤트
+                        hDoorHint.onclick = (e) => {
+                            if (isDoorMode) {
+                                e.stopPropagation();
+                                toggleDoor('h', rowIndex, colIndex);
+                            }
+                        };
+                    }
+                    
+                    // 수직 문 영역 생성 (아래 셀과의 경계)
+                    if (rowIndex < gridHeight - 1) {
+                        // 문 힌트 영역
+                        const vDoorHint = document.createElement('div');
+                        vDoorHint.className = 'door-hint-v';
+                        vDoorHint.style.left = 'calc(100% - 4px)';
+                        vDoorHint.style.top = '0';
+                        tile.appendChild(vDoorHint);
+                        
+                        // 실제 문 UI
+                        const vDoor = document.createElement('div');
+                        vDoor.className = `door-v ${doors.v[rowIndex][colIndex] ? 'active' : ''}`;
+                        vDoor.dataset.type = 'v';
+                        vDoor.dataset.row = rowIndex;
+                        vDoor.dataset.col = colIndex;
+                        tile.appendChild(vDoor);
+                        
+                        // 문 토글 이벤트
+                        vDoorHint.onclick = (e) => {
+                            if (isDoorMode) {
+                                e.stopPropagation();
+                                toggleDoor('v', rowIndex, colIndex);
+                            }
+                        };
+                    }
                 });
             });
+        }
+        
+        // 문 토글 함수
+        function toggleDoor(type, row, col) {
+            if (type === 'h') {
+                doors.h[row][col] = !doors.h[row][col];
+            } else if (type === 'v') {
+                doors.v[row][col] = !doors.v[row][col];
+            }
+            updateUI();
         }
 
         // 시설 통계 업데이트
         function updateFacilityStats() {
             facilityStatsContainer.innerHTML = '';
             
-            // 각 시설 유형 카운트
+            // 각 시설 유형 및 레벨별 카운트
             const facilityCounts = {};
             shipLayout.flat().forEach(cell => {
-                if (cell !== 'EMPTY') {
-                    facilityCounts[cell] = (facilityCounts[cell] || 0) + 1;
+                const type = cell.type;
+                const level = cell.level;
+                
+                if (type !== 'EMPTY') {
+                    const key = `${type}_${level}`;
+                    facilityCounts[key] = (facilityCounts[key] || 0) + 1;
                 }
             });
             
+            // 문 개수 카운트
+            const doorCount = doors.h.flat().filter(Boolean).length + doors.v.flat().filter(Boolean).length;
+            
             // 통계 UI 생성
             Object.entries(facilityCounts).forEach(([key, count]) => {
-                const facility = facilityTypes[key];
+                const [facilityType, level] = key.split('_');
+                const facility = facilityTypes[facilityType];
                 const statElement = document.createElement('div');
                 statElement.className = 'mr-2 mb-2 flex items-center';
                 statElement.innerHTML = `
                     <div class="w-4 h-4 ${facility.color} mr-1"></div>
-                    <span class="text-sm">${facility.name}: ${count}</span>
+                    <span class="text-sm">${facility.name} Lv.${level}: ${count}</span>
                 `;
                 
                 facilityStatsContainer.appendChild(statElement);
             });
+            
+            // 문 통계 추가
+            const doorStatElement = document.createElement('div');
+            doorStatElement.className = 'mr-2 mb-2 flex items-center';
+            doorStatElement.innerHTML = `
+                <div class="w-4 h-4 bg-amber-400 mr-1"></div>
+                <span class="text-sm">문: ${doorCount}</span>
+            `;
+            facilityStatsContainer.appendChild(doorStatElement);
         }
 
         // 함선 제목 업데이트
@@ -280,13 +517,20 @@
 
         // 데이터 내보내기 함수
         function exportShipData() {
-            // 시설 카운트
+            // 각 시설 유형 및 레벨별 카운트
             const facilityCounts = {};
             shipLayout.flat().forEach(cell => {
-                if (cell !== 'EMPTY') {
-                    facilityCounts[cell] = (facilityCounts[cell] || 0) + 1;
+                const type = cell.type;
+                const level = cell.level;
+                
+                if (type !== 'EMPTY') {
+                    const key = `${type}_${level}`;
+                    facilityCounts[key] = (facilityCounts[key] || 0) + 1;
                 }
             });
+            
+            // 문 개수 카운트
+            const doorCount = doors.h.flat().filter(Boolean).length + doors.v.flat().filter(Boolean).length;
             
             // 함선 데이터 생성
             const shipData = {
@@ -295,7 +539,9 @@
                 gridWidth: gridWidth,
                 gridHeight: gridHeight,
                 layout: shipLayout,
-                facilityCounts: facilityCounts
+                doors: doors,
+                facilityCounts: facilityCounts,
+                doorCount: doorCount
             };
             
             const dataStr = JSON.stringify(shipData, null, 2);
@@ -354,6 +600,17 @@
                 // 레이아웃 데이터 적용
                 shipLayout = importedData.layout;
                 
+                // 문 데이터 적용
+                if (importedData.doors) {
+                    doors = importedData.doors;
+                } else {
+                    // 문 데이터가 없는 경우 초기화
+                    doors = {
+                        h: Array(gridHeight).fill().map(() => Array(gridWidth-1).fill(false)),
+                        v: Array(gridHeight-1).fill().map(() => Array(gridWidth).fill(false))
+                    };
+                }
+                
                 // UI 업데이트
                 updateUI();
                 hideImportModal();
@@ -370,8 +627,8 @@
             const newWidth = parseInt(gridWidthInput.value);
             const newHeight = parseInt(gridHeightInput.value);
             
-            if (isNaN(newWidth) || isNaN(newHeight) || newWidth < 5 || newHeight < 5 || newWidth > 25 || newHeight > 25) {
-                alert("그리드 크기는 5에서 25 사이여야 합니다.");
+            if (isNaN(newWidth) || isNaN(newHeight) || newWidth < 5 || newHeight < 5 || newWidth > 60 || newHeight > 60) {
+                alert("그리드 크기는 5에서 60 사이여야 합니다.");
                 return;
             }
             
@@ -384,14 +641,37 @@
             
             for (let y = 0; y < copyHeight; y++) {
                 for (let x = 0; x < copyWidth; x++) {
-                    newLayout[y][x] = shipLayout[y][x];
+                    newLayout[y][x] = { 
+                        type: shipLayout[y][x].type, 
+                        level: shipLayout[y][x].level 
+                    };
                 }
             }
             
-            // 새 레이아웃 적용
+            // 새 문 데이터 생성
+            const newDoors = {
+                h: Array(newHeight).fill().map(() => Array(newWidth-1).fill(false)),
+                v: Array(newHeight-1).fill().map(() => Array(newWidth).fill(false))
+            };
+            
+            // 기존 문 데이터 복사
+            for (let y = 0; y < Math.min(doors.h.length, newHeight); y++) {
+                for (let x = 0; x < Math.min(doors.h[0].length, newWidth-1); x++) {
+                    newDoors.h[y][x] = doors.h[y][x];
+                }
+            }
+            
+            for (let y = 0; y < Math.min(doors.v.length, newHeight-1); y++) {
+                for (let x = 0; x < Math.min(doors.v[0].length, newWidth); x++) {
+                    newDoors.v[y][x] = doors.v[y][x];
+                }
+            }
+            
+            // 새 레이아웃과 문 데이터 적용
             gridWidth = newWidth;
             gridHeight = newHeight;
             shipLayout = newLayout;
+            doors = newDoors;
             
             // UI 업데이트
             updateUI();
@@ -400,6 +680,11 @@
         // 이벤트 리스너
         shipNameInput.addEventListener('input', updateShipTitle);
         isPlayerCheckbox.addEventListener('change', updateShipTitle);
+        doorModeCheckbox.addEventListener('change', () => {
+            isDoorMode = doorModeCheckbox.checked;
+            // 문 모드일 때 시각적 피드백
+            shipGridContainer.style.cursor = isDoorMode ? 'crosshair' : 'pointer';
+        });
         exportBtn.addEventListener('click', exportShipData);
         importBtn.addEventListener('click', showImportModal);
         cancelImportBtn.addEventListener('click', hideImportModal);

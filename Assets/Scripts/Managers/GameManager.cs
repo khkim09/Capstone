@@ -30,8 +30,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     /// <summary>
@@ -48,7 +47,6 @@ public class GameManager : MonoBehaviour
     /// 싱글턴 인스턴스입니다.
     /// </summary>
     public static GameManager Instance { get; private set; }
-
 
 
     // 테스트용 룸 프리팹
