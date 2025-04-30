@@ -121,12 +121,23 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
     /// <summary>스프라이트 렌더러.</summary>
     private SpriteRenderer spriteRenderer;
+    /// <summary>
+    /// animator
+    /// </summary>
+    public Animator animator;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = SortingOrderConstants.Character;
         spriteRenderer.sprite = Resources.Load<Sprite>($"Sprites/Crew/{race.ToString().ToLower()}");
+
+        if (animator == null)
+        {
+            animator = gameObject.AddComponent<Animator>();
+            animator.runtimeAnimatorController
+                = Resources.Load<RuntimeAnimatorController>($"Animation/{race.ToString()}/{race.ToString()}");
+        }
     }
 
     /// <summary>
@@ -149,6 +160,8 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         // 산소 농도 체크 - 체력 감소
         ApplyOxygenDamage();
+
+
     }
 
     /// <summary>
