@@ -1,21 +1,20 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Linq;
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 /// <summary>
-/// 함선 템플릿을 저장하는 기능을 제공하는 클래스.
-/// 현재 배치된 Blueprint Room을 유효성 검사 없이 템플릿으로 저장합니다.
+/// Ship 템플릿을 저장하고 관리하는 클래스.
+/// ShipSerialization 유틸리티를 활용하여 블루프린트를 Ship으로 변환 후 저장합니다.
 /// </summary>
 public class ShipTemplateSaver : MonoBehaviour
 {
     /// <summary>
     /// 탬플릿 이름을 입력받는 필드
     /// </summary>
-    [Header("UI")]
-    public TMP_InputField templateNameInput;
+    [Header("UI - 저장")] public TMP_InputField templateNameInput;
 
     /// <summary>
     /// 저장 결과 피드백을 표시할 텍스트
@@ -30,8 +29,12 @@ public class ShipTemplateSaver : MonoBehaviour
     /// <summary>
     /// 블루프린트 함선 참조
     /// </summary>
-    [Header("References")]
-    public BlueprintShip targetBlueprintShip;
+    [Header("Ship References")] public BlueprintShip targetBlueprintShip;
+
+    /// <summary>
+    /// 플레이어 함선 참조 (템플릿 로드 시 사용)
+    /// </summary>
+    public Ship playerShip;
 
     /// <summary>
     /// 그리드 플레이서 참조
@@ -39,55 +42,113 @@ public class ShipTemplateSaver : MonoBehaviour
     public GridPlacer gridPlacer;
 
     /// <summary>
-    /// 템플릿 저장 데이터 클래스
+    /// 템플릿 목록 패널
     /// </summary>
-    [Serializable]
-    public class ShipTemplateData
-    {
-        public string templateName;
-        public List<BlueprintRoomSaveData> rooms = new List<BlueprintRoomSaveData>();
-    }
+    [Header("UI - 목록")] public GameObject templateListPanel;
 
     /// <summary>
-    /// 컴포넌트 초기화
+    /// 템플릿 목록 콘텐츠 영역
+    /// </summary>
+    public Transform templateListContent;
+
+    /// <summary>
+    /// 템플릿 아이템 프리팹
+    /// </summary>
+    public GameObject templateItemPrefab;
+
+    /// <summary>
+    /// 목록 버튼
+    /// </summary>
+    public Button listButton;
+
+    /// <summary>
+    /// 닫기 버튼
+    /// </summary>
+    public Button closeListButton;
+
+    /// <summary>
+    /// 새로고침 버튼
+    /// </summary>
+    public Button refreshButton;
+
+    /// <summary>
+    /// 템플릿 저장 경로 (기본값)
+    /// </summary>
+    private readonly string templateSavePath = "ShipTemplates";
+
+    /// <summary>
+    /// 활성화된 템플릿 목록 아이템
+    /// </summary>
+    private List<GameObject> activeTemplateItems = new();
+
+    /// <summary>
+    /// 초기화
     /// </summary>
     private void Start()
     {
+        // 버튼 이벤트 연결
         if (saveButton != null)
             saveButton.onClick.AddListener(SaveShipTemplate);
 
-        // 초기 버튼 상태 설정
+        if (listButton != null)
+            listButton.onClick.AddListener(ShowTemplateList);
+
+        if (closeListButton != null)
+            closeListButton.onClick.AddListener(HideTemplateList);
+
+        if (refreshButton != null)
+            refreshButton.onClick.AddListener(RefreshTemplateList);
+
+        // 초기 상태 설정
         UpdateSaveButtonState();
 
-        // 입력 필드 변경 이벤트 리스너 추가
+        // 입력 필드 이벤트 연결
         if (templateNameInput != null)
             templateNameInput.onValueChanged.AddListener(OnTemplateNameChanged);
+
+        // 템플릿 목록 패널 초기 숨김
+        if (templateListPanel != null)
+            templateListPanel.SetActive(false);
+
+        // 템플릿 저장 디렉토리 확인 및 생성
+        EnsureTemplateSaveDirectory();
+
+        playerShip.Initialize();
     }
 
     /// <summary>
-    /// 템플릿 이름 변경 시 저장 버튼 상태 업데이트
+    /// 템플릿 저장 디렉토리 확인 및 생성
     /// </summary>
-    /// <param name="newText">새 템플릿 이름</param>
-    private void OnTemplateNameChanged(string newText)
+    private void EnsureTemplateSaveDirectory()
+    {
+        string directory = Path.Combine(Application.persistentDataPath, templateSavePath);
+        if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+    }
+
+    /// <summary>
+    /// 템플릿 이름 변경 이벤트
+    /// </summary>
+    private void OnTemplateNameChanged(string newName)
     {
         UpdateSaveButtonState();
     }
 
     /// <summary>
-    /// 저장 버튼 상태 업데이트 (템플릿 이름과 블루프린트 유무에 따라)
+    /// 저장 버튼 상태 업데이트
     /// </summary>
     private void UpdateSaveButtonState()
     {
         if (saveButton == null) return;
 
         bool hasValidName = !string.IsNullOrEmpty(templateNameInput?.text);
-        bool hasBlueprints = targetBlueprintShip != null && targetBlueprintShip.GetComponentsInChildren<BlueprintRoom>().Length > 0;
+        bool hasBlueprints = targetBlueprintShip != null &&
+                             targetBlueprintShip.GetComponentsInChildren<BlueprintRoom>().Length > 0;
 
         saveButton.interactable = hasValidName && hasBlueprints;
     }
 
     /// <summary>
-    /// Update 메서드에서 상태 체크
+    /// 업데이트 호출마다 상태 검사
     /// </summary>
     private void Update()
     {
@@ -95,14 +156,13 @@ public class ShipTemplateSaver : MonoBehaviour
     }
 
     /// <summary>
-    /// 현재 배치된 블루프린트 룸을 템플릿으로 저장
-    /// 유효성 검사 없이 Easy Save를 통해 저장합니다.
+    /// 함선 템플릿 저장
     /// </summary>
     public void SaveShipTemplate()
     {
         if (targetBlueprintShip == null)
         {
-            ShowFeedback("타겟 블루프린트 함선이 없습니다.");
+            ShowFeedback("블루프린트 함선이 없습니다.");
             return;
         }
 
@@ -120,133 +180,205 @@ public class ShipTemplateSaver : MonoBehaviour
             return;
         }
 
-        // 템플릿 데이터 생성
-        ShipTemplateData templateData = new ShipTemplateData
-        {
-            templateName = templateNameInput.text
-        };
-
-        // 블루프린트 방 데이터 저장
-        foreach (BlueprintRoom bpRoom in bpRooms)
-        {
-            BlueprintRoomSaveData roomData = new BlueprintRoomSaveData
-            {
-                bpRoomData = bpRoom.bpRoomData,
-                bpLevelIndex = bpRoom.bpLevelIndex,
-                bpPosition = bpRoom.bpPosition,
-                bpRotation = bpRoom.bpRotation
-            };
-
-            templateData.rooms.Add(roomData);
-        }
-
-        // Easy Save를 사용하여 템플릿 저장
         try
         {
-            string templateKey = "ShipTemplate_" + templateNameInput.text;
-            ES3.Save(templateKey, templateData);
-            ShowFeedback($"템플릿 '{templateNameInput.text}'이(가) 성공적으로 저장되었습니다.");
+            // Blueprint를 Ship으로 변환
+            playerShip.ReplaceShipFromBlueprint(targetBlueprintShip);
 
-            // 저장 성공 후 입력 필드 초기화 (선택 사항)
+            // ShipSerialization을 사용하여 저장
+            string templateFileName = GetTemplateFilePath(templateNameInput.text);
+            ShipSerialization.SaveShip(playerShip, templateFileName);
+
+            ShowFeedback($"템플릿 '{templateNameInput.text}'이(가) 저장되었습니다.");
             templateNameInput.text = "";
         }
         catch (Exception ex)
         {
-            ShowFeedback($"템플릿 저장 실패: {ex.Message}");
-            Debug.LogError($"Failed to save template: {ex}");
+            ShowFeedback($"저장 실패: {ex.Message}");
+            Debug.LogError($"템플릿 저장 실패: {ex}");
         }
     }
 
     /// <summary>
-    /// 저장한 템플릿 불러오기
+    /// 템플릿 파일 경로 생성
     /// </summary>
-    /// <param name="templateName">불러올 템플릿 이름</param>
-    public void LoadShipTemplate(string templateName)
+    /// <param name="templateName">템플릿 이름</param>
+    /// <returns>전체 파일 경로</returns>
+    private string GetTemplateFilePath(string templateName)
     {
-        string templateKey = "ShipTemplate_" + templateName;
+        return Path.Combine(Application.persistentDataPath, templateSavePath, $"template_{templateName}.es3");
+    }
 
-        if (ES3.KeyExists(templateKey))
+    /// <summary>
+    /// 템플릿 목록 표시
+    /// </summary>
+    public void ShowTemplateList()
+    {
+        if (templateListPanel != null)
         {
-            try
+            templateListPanel.SetActive(true);
+            RefreshTemplateList();
+        }
+    }
+
+    /// <summary>
+    /// 템플릿 목록 숨기기
+    /// </summary>
+    public void HideTemplateList()
+    {
+        if (templateListPanel != null) templateListPanel.SetActive(false);
+    }
+
+    /// <summary>
+    /// 템플릿 목록 새로고침
+    /// </summary>
+    public void RefreshTemplateList()
+    {
+        // 기존 목록 아이템 제거
+        ClearTemplateList();
+
+        try
+        {
+            // 템플릿 파일 목록 가져오기
+            string templateDir = Path.Combine(Application.persistentDataPath, templateSavePath);
+            if (!Directory.Exists(templateDir))
             {
-                // 기존 블루프린트 제거
-                if (targetBlueprintShip != null)
-                    targetBlueprintShip.ClearRooms();
+                ShowFeedback("템플릿 디렉토리가 없습니다.");
+                return;
+            }
 
-                if (gridPlacer != null)
-                    gridPlacer.occupiedGridTiles = new HashSet<Vector2Int>();
+            string[] templateFiles = Directory.GetFiles(templateDir, "template_*.es3");
 
-                // 템플릿 데이터 불러오기
-                ShipTemplateData templateData = ES3.Load<ShipTemplateData>(templateKey);
+            if (templateFiles.Length == 0)
+            {
+                ShowFeedback("저장된 템플릿이 없습니다.");
+                return;
+            }
 
-                // 블루프린트 방 배치
-                foreach (BlueprintRoomSaveData roomData in templateData.rooms)
+            // 템플릿 목록 생성
+            foreach (string templateFile in templateFiles)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(templateFile);
+                string templateName = fileName.Substring("template_".Length);
+
+                AddTemplateItem(templateName);
+            }
+
+            ShowFeedback($"{templateFiles.Length}개의 템플릿이 있습니다.");
+        }
+        catch (Exception ex)
+        {
+            ShowFeedback($"템플릿 목록 불러오기 실패: {ex.Message}");
+            Debug.LogError($"템플릿 목록 실패: {ex}");
+        }
+    }
+
+    /// <summary>
+    /// 기존 템플릿 목록 아이템 제거
+    /// </summary>
+    private void ClearTemplateList()
+    {
+        foreach (GameObject item in activeTemplateItems) Destroy(item);
+
+        activeTemplateItems.Clear();
+    }
+
+    /// <summary>
+    /// 템플릿 목록 아이템 추가
+    /// </summary>
+    /// <param name="templateName">템플릿 이름</param>
+    private void AddTemplateItem(string templateName)
+    {
+        if (templateItemPrefab != null && templateListContent != null)
+        {
+            GameObject item = Instantiate(templateItemPrefab, templateListContent);
+            activeTemplateItems.Add(item);
+
+            // 이름 설정
+            TMP_Text nameText = item.GetComponentInChildren<TMP_Text>();
+            if (nameText != null) nameText.text = templateName;
+
+            // 버튼 이벤트 설정
+            Button[] buttons = item.GetComponentsInChildren<Button>();
+            foreach (Button button in buttons)
+                if (button.name.Contains("Load") || button.name.Contains("로드"))
                 {
-                    gridPlacer.PlaceRoom(
-                        roomData.bpRoomData,
-                        roomData.bpLevelIndex,
-                        roomData.bpPosition,
-                        roomData.bpRotation
-                    );
+                    string name = templateName; // 클로저 문제 방지
+                    button.onClick.AddListener(() => LoadTemplate(name));
                 }
-
-                ShowFeedback($"템플릿 '{templateName}'을(를) 성공적으로 불러왔습니다.");
-            }
-            catch (Exception ex)
-            {
-                ShowFeedback($"템플릿 불러오기 실패: {ex.Message}");
-                Debug.LogError($"Failed to load template: {ex}");
-            }
-        }
-        else
-        {
-            ShowFeedback($"템플릿 '{templateName}'을(를) 찾을 수 없습니다.");
+                else if (button.name.Contains("Delete") || button.name.Contains("삭제"))
+                {
+                    string name = templateName; // 클로저 문제 방지
+                    button.onClick.AddListener(() => DeleteTemplate(name));
+                }
         }
     }
 
     /// <summary>
-    /// 저장된 모든 템플릿 이름 목록 가져오기
+    /// 템플릿 로드하여 함선에 적용
     /// </summary>
-    /// <returns>템플릿 이름 목록</returns>
-    public List<string> GetAllTemplateNames()
+    /// <param name="templateName">템플릿 이름</param>
+    public void LoadTemplate(string templateName)
     {
-        List<string> templateNames = new List<string>();
-
-        // 모든 키 가져오기
-        string[] allKeys = ES3.GetKeys();
-
-        // 템플릿 키 필터링
-        foreach (string key in allKeys)
+        if (playerShip == null)
         {
-            if (key.StartsWith("ShipTemplate_"))
-            {
-                string templateName = key.Substring("ShipTemplate_".Length);
-                templateNames.Add(templateName);
-            }
+            ShowFeedback("적용할 함선이 없습니다.");
+            return;
         }
 
-        return templateNames;
+        try
+        {
+            string templateFilePath = GetTemplateFilePath(templateName);
+
+            if (!File.Exists(templateFilePath))
+            {
+                ShowFeedback($"템플릿 '{templateName}'을(를) 찾을 수 없습니다.");
+                return;
+            }
+
+            // ShipSerialization을 사용하여 함선 복원
+            if (ShipSerialization.RestoreShip(templateFilePath, playerShip))
+            {
+                ShowFeedback($"템플릿 '{templateName}'이(가) 함선에 적용되었습니다.");
+                HideTemplateList(); // 적용 후 목록 닫기
+            }
+            else
+            {
+                ShowFeedback("템플릿 적용 실패");
+            }
+        }
+        catch (Exception ex)
+        {
+            ShowFeedback($"템플릿 적용 실패: {ex.Message}");
+            Debug.LogError($"템플릿 로드 실패: {ex}");
+        }
     }
 
     /// <summary>
-    /// 저장된 템플릿 삭제하기
+    /// 템플릿 삭제
     /// </summary>
     /// <param name="templateName">삭제할 템플릿 이름</param>
-    /// <returns>삭제 성공 여부</returns>
-    public bool DeleteTemplate(string templateName)
+    public void DeleteTemplate(string templateName)
     {
-        string templateKey = "ShipTemplate_" + templateName;
+        try
+        {
+            string templateFilePath = GetTemplateFilePath(templateName);
 
-        if (ES3.KeyExists(templateKey))
-        {
-            ES3.DeleteKey(templateKey);
-            ShowFeedback($"템플릿 '{templateName}'이(가) 삭제되었습니다.");
-            return true;
+            if (File.Exists(templateFilePath))
+            {
+                File.Delete(templateFilePath);
+                ShowFeedback($"템플릿 '{templateName}'이(가) 삭제되었습니다.");
+                RefreshTemplateList(); // 목록 갱신
+            }
+            else
+            {
+                ShowFeedback($"템플릿 '{templateName}'을(를) 찾을 수 없습니다.");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            ShowFeedback($"템플릿 '{templateName}'을(를) 찾을 수 없습니다.");
-            return false;
+            ShowFeedback($"템플릿 삭제 실패: {ex.Message}");
+            Debug.LogError($"템플릿 삭제 실패: {ex}");
         }
     }
 
@@ -260,7 +392,7 @@ public class ShipTemplateSaver : MonoBehaviour
         {
             feedbackText.text = message;
 
-            // 일정 시간 후 메시지 지우기 (선택 사항)
+            // 일정 시간 후 메시지 지우기
             CancelInvoke("ClearFeedback");
             Invoke("ClearFeedback", 3f);
         }
@@ -273,7 +405,6 @@ public class ShipTemplateSaver : MonoBehaviour
     /// </summary>
     private void ClearFeedback()
     {
-        if (feedbackText != null)
-            feedbackText.text = "";
+        if (feedbackText != null) feedbackText.text = "";
     }
 }
