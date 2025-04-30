@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 /// <summary>
@@ -229,15 +230,33 @@ public class GameManager : MonoBehaviour
 
     public void ForSerializeTest()
     {
-        Room room2 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Power, 3);
-        Room room3 = GameObjectFactory.Instance.RoomFactory.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Big);
+        Room room1 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Cockpit, 1);
+        Room room2 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Engine, 1);
+        Room room3 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Power, 1);
+        Room room4 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Teleporter, 1);
+        Room room5 = GameObjectFactory.Instance.RoomFactory.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Basic);
+        Room room6 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Corridor, 1);
+        Room room7 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Corridor, 1);
+        Room room8 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Corridor, 1);
 
-        Room room1 =
-            GameObjectFactory.Instance.RoomFactory.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+        playerShip.AddRoom(room1, new Vector2Int(30, 33), RotationConstants.Rotation.Rotation0);
+        playerShip.AddRoom(room2, new Vector2Int(26, 32), RotationConstants.Rotation.Rotation0);
+        playerShip.AddRoom(room3, new Vector2Int(28, 34), RotationConstants.Rotation.Rotation90);
+        playerShip.AddRoom(room4, new Vector2Int(31, 32), RotationConstants.Rotation.Rotation180);
+        playerShip.AddRoom(room5, new Vector2Int(29, 28), RotationConstants.Rotation.Rotation270);
+        playerShip.AddRoom(room6, new Vector2Int(28, 32), RotationConstants.Rotation.Rotation0);
+        playerShip.AddRoom(room7, new Vector2Int(29, 32), RotationConstants.Rotation.Rotation0);
+        playerShip.AddRoom(room8, new Vector2Int(30, 32), RotationConstants.Rotation.Rotation0);
 
-        playerShip.AddRoom(room2, new Vector2Int(0, 0), RotationConstants.Rotation.Rotation0);
-        playerShip.AddRoom(room3, new Vector2Int(4, 1), RotationConstants.Rotation.Rotation90);
-        playerShip.AddRoom(room1, new Vector2Int(-4, -1), RotationConstants.Rotation.Rotation0);
+        // Room room2 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Power, 3);
+        // Room room3 = GameObjectFactory.Instance.RoomFactory.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Big);
+
+        // Room room1 =
+        //     GameObjectFactory.Instance.RoomFactory.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+
+        // playerShip.AddRoom(room2, new Vector2Int(0, 0), RotationConstants.Rotation.Rotation0);
+        // playerShip.AddRoom(room3, new Vector2Int(4, 1), RotationConstants.Rotation.Rotation90);
+        // playerShip.AddRoom(room1, new Vector2Int(-4, -1), RotationConstants.Rotation.Rotation0);
 
         ShipWeapon newWeapon = playerShip.AddWeapon(0, new Vector2Int(3, -1), ShipWeaponAttachedDirection.North);
         ShipWeapon newWeapon2 = playerShip.AddWeapon(6, new Vector2Int(-2, -1), ShipWeaponAttachedDirection.East);
@@ -245,7 +264,7 @@ public class GameManager : MonoBehaviour
 
 
         CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
         CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
 
         if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);

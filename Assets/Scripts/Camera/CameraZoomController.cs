@@ -33,14 +33,25 @@ public class CameraZoomController : MonoBehaviour
     private Camera cam;
 
     /// <summary>
+    /// 그리드 타일 배치 작업을 위한 오브젝트
+    /// </summary>
+    public GridPlacer gridPlacer;
+
+    /// <summary>
     /// 가장 최신 줌 사이즈
     /// </summary>
     [HideInInspector] public float lastZoomSize = 5f;
 
+    /// <summary>
+    /// 함선 위치로 카메라 세팅, 줌 사이즈 = 5
+    /// </summary>
     private void Start()
     {
         cam = Camera.main;
-        Camera.main.transform.position = new Vector3(0, 0, Camera.main.transform.position.z);
+
+        Vector3 startPos = gridPlacer.GetCameraStartPositionToOriginShip();
+        Camera.main.transform.position = new Vector3(startPos.x, startPos.y, Camera.main.transform.position.z);
+        Camera.main.orthographicSize = 5;
     }
 
     /// <summary>

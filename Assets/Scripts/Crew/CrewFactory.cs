@@ -187,18 +187,18 @@ public class CrewFactory : MonoBehaviour
         {
             case CrewRace.Human:
                 BoxCollider2D humanCollider = crew.AddComponent<BoxCollider2D>();
-                humanCollider.offset = new Vector2(0.0278020874f, -0.0139010847f);
-                humanCollider.size = new Vector2(0.540258348f, 0.691506088f);
+                humanCollider.offset = new Vector2(0, 0);
+                humanCollider.size = new Vector2(0.8f, 0.8f);
                 break;
             case CrewRace.Amorphous:
-                CircleCollider2D amorphousCollider = crew.AddComponent<CircleCollider2D>();
-                amorphousCollider.offset = new Vector2(-0.0199999996f, -0.0250000004f);
-                amorphousCollider.radius = 0.3471974f;
+                BoxCollider2D amorphousCollider = crew.AddComponent<BoxCollider2D>();
+                amorphousCollider.offset = new Vector2(0, 0);
+                amorphousCollider.size = new Vector2(0.8f, 0.8f);
                 break;
             case CrewRace.MechanicTank:
                 BoxCollider2D mechanicTankCollider = crew.AddComponent<BoxCollider2D>();
-                mechanicTankCollider.offset = new Vector2(0, -0.198685423f);
-                mechanicTankCollider.size = new Vector2(1, 0.602629185f);
+                mechanicTankCollider.offset = new Vector2(0, 0);
+                mechanicTankCollider.size = new Vector2(1, 1);
                 break;
             case CrewRace.MechanicSup:
                 BoxCollider2D mechanicSupCollider = crew.AddComponent<BoxCollider2D>();
@@ -208,12 +208,12 @@ public class CrewFactory : MonoBehaviour
             case CrewRace.Beast:
                 BoxCollider2D beastCollider = crew.AddComponent<BoxCollider2D>();
                 beastCollider.offset = new Vector2(0, 0);
-                beastCollider.size = new Vector2(1, 1);
+                beastCollider.size = new Vector2(0.9f, 1);
                 break;
             case CrewRace.Insect:
                 BoxCollider2D insectCollider = crew.AddComponent<BoxCollider2D>();
-                insectCollider.offset = new Vector2(0.0749756098f, 0);
-                insectCollider.size = new Vector2(0.85004878f, 1);
+                insectCollider.offset = new Vector2(0, 0);
+                insectCollider.size = new Vector2(0.8f, 1);
                 break;
         }
     }

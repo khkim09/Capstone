@@ -265,11 +265,11 @@ public class RTSSelectionManager : MonoBehaviour
             Vector3 screenPos = Camera.main.WorldToScreenPoint(crew.transform.position);
             screenPos.y = Screen.height - screenPos.y;
 
-            // 클릭한 경우도 드래그 영역의 크기가 작으면 선택
+            // 선택
             if (selectionRect.Contains(screenPos, true))
             {
                 selectedCrew.Add(crew);
-                // 선택된 표시 (예: 색상 변경)
+                // 선택됨 표시 (예: 색상 변경)
                 crew.GetComponent<Renderer>().material.color = Color.green;
             }
             else
@@ -308,6 +308,9 @@ public class RTSSelectionManager : MonoBehaviour
             if (targetRoom == null)
                 return;
 
+            // 여기서 기존 점유 타일 해제 해버리셈
+
+
             Dictionary<CrewMember, List<Vector2Int>> crewPaths = new Dictionary<CrewMember, List<Vector2Int>>();
 
             // 1. 선택된 선원별로 이동 가능한 Entry 경로 계산
@@ -339,18 +342,18 @@ public class RTSSelectionManager : MonoBehaviour
                     // 이 방에서 현재 점유 중인 타일
                     Vector2Int currentTile = crew.GetCurrentTile();
 
-                    // 가장 높은 우선 순위의 비어 있는 타일 검색
+                    // 비어 있는 타일 중 가장 높은 우선 순위의 타일 검색
                     Vector2Int? highestPriorityEmptyTile = rotatedEntryTiles.Where
                     (
                         t => !targetRoom.IsTileOccupiedByCrew(t)
                     ).FirstOrDefault();
 
-                    // 가장 높은 우선순위 타일이 현재 타일이면 이동 안함
-                    if (highestPriorityEmptyTile.HasValue && highestPriorityEmptyTile.Value == currentTile)
-                        continue;
+                    // 현재 선원이 점유 중인 타일, 빈 타일의 방에서의 우선순위
+                    int currentIndex = rotatedEntryTiles.IndexOf(currentTile);
+                    int emptyIndex = highestPriorityEmptyTile.HasValue ? rotatedEntryTiles.IndexOf(highestPriorityEmptyTile.Value) : -1;
 
-                    // 만약 현재 타일이 entry list 안에 있고 앞쪽 타일이 비어있지 않으면 이동 안함
-                    if (!highestPriorityEmptyTile.HasValue)
+                    // 비어있는 가장 높은 우선순위 타일의 우선순위 > 점유 중인 타일 우선순위
+                    if (currentIndex != -1 && emptyIndex != -1 && currentIndex <= emptyIndex)
                         continue;
                 }
 
@@ -380,15 +383,15 @@ public class RTSSelectionManager : MonoBehaviour
 
                 if (finalPath != null)
                 {
+                    // 선원 예약 목적지 기록
+                    crew.reservedRoom = targetRoom;
+                    // crew.reservedTile = assignedTile.Value;
+
                     // 현재 이동 중인 상태에서 새로운 이동 명령 수신
                     if (crew.isMoving)
                         crew.CancelAndRedirect(finalPath);
                     else // 정지 상태에서 새로운 이동 명령 수신
                         crew.AssignPathAndMove(finalPath);
-
-                    // 선원 예약 목적지 기록
-                    crew.reservedRoom = targetRoom;
-                    crew.reservedTile = assignedTile.Value;
                 }
                 else
                     Debug.LogWarning($"선원 {crew.crewName}이(가) {assignedTile}로 가는 경로를 찾지 못했습니다.");

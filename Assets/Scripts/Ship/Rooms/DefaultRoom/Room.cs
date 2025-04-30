@@ -20,7 +20,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     protected int currentLevel;
 
     /// <summary>현재 체력.</summary>
-    [SerializeField] [HideInInspector] public float currentHitPoints;
+    [SerializeField][HideInInspector] public float currentHitPoints;
 
     /// <summary>방의 타입.</summary>
     public RoomType roomType;
@@ -38,7 +38,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [SerializeField] public RotationConstants.Rotation currentRotation;
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
-    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
+    [Header("방 효과")][SerializeField] protected ParticleSystem roomParticles;
 
     /// <summary>방 작동 시 사운드 효과.</summary>
     [SerializeField] protected AudioSource roomSound;
@@ -122,7 +122,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     }
 
     /// <summary>
-    /// 방의 우선순위 반환 (회전각 적용)
+    /// 방의 우선순위 타일에 따른 그리드에서의 위치 반환 (회전각 적용)
     /// </summary>
     /// <returns></returns>
     public List<Vector2Int> GetRotatedCrewEntryGridPriority()

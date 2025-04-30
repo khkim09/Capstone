@@ -187,39 +187,64 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         return true;
     }
 
+    /// <summary>
+    /// 룸 생성 및 그리드 배치
+    /// </summary>
+    /// <param name="room"></param>
+    /// <param name="position"></param>
+    /// <param name="rotation"></param>
+    /// <returns></returns>
     public Room AddRoom(Room room, Vector2Int position = new(), RotationConstants.Rotation rotation = RotationConstants.Rotation.Rotation0)
     {
-        if (position != Vector2Int.zero)
-            room.position = position;
-        else
-            position = room.position;
-
-        if (rotation == RotationConstants.Rotation.Rotation0)
-            rotation = room.currentRotation;
-
-        RoomData roomData = room.GetRoomData();
-        Vector2Int size = roomData.GetRoomDataByLevel(room.GetCurrentLevel()).size;
-        Vector2Int rotatedSize = RoomRotationUtility.GetRotatedSize(size, rotation);
-        // Vector2 offset = RoomRotationUtility.GetRotationOffset(rotatedSize, rotation);
-        Vector3 worldPos = GridToWorldPosition(position) + new Vector3(0, 0, 5f);
-
-        room.transform.SetParent(transform);
-        room.gameObject.transform.position = worldPos;
-        room.RotateRoom((int)rotation);
-
-        allRooms.Add(room);
-
+        // 룸 타입 확인
         RoomType roomType = room.GetRoomType();
 
+        // 각 방 부모로 playerShip 할당
+        room.transform.SetParent(transform);
+
+        // 방에 기존 세팅된 position이 있을 경우 (json으로 불러오는 방)
+        if (position != Vector2Int.zero)
+            room.position = position;
+        else // 새롭게 생성하는 방 : room.position을 0으로 세팅
+            position = room.position;
+
+        // 방의 회전 값 세팅
+        if (rotation == RotationConstants.Rotation.Rotation0)
+            rotation = room.currentRotation;
+        else
+            room.currentRotation = rotation;
+
+        // 필수 데이터 설정
+        RoomData roomData = room.GetRoomData();
+
+        // 룸 위치 설정
+        Vector2Int size = roomData.GetRoomDataByLevel(room.GetCurrentLevel()).size;
+        Vector2Int rotatedSize = RoomRotationUtility.GetRotatedSize(size, rotation);
+        Vector2 offset = RoomRotationUtility.GetRotationOffset(rotatedSize, rotation);
+        Vector3 worldPos = GridToWorldPosition(position) + (Vector3)offset;
+
+        // 실제 룸 배치 작업
+        room.gameObject.transform.position = worldPos + new Vector3(0, 0, 5f);
+        room.gameObject.transform.rotation = Quaternion.Euler(0, 0, -(int)rotation * 90);
+
+        // 룸 목록에 추가
+        allRooms.Add(room);
+
+        // 타입별 딕셔너리에 추가
         if (!roomsByType.ContainsKey(roomType))
             roomsByType[roomType] = new List<Room>();
         roomsByType[roomType].Add(room);
 
-        OnRoomChanged?.Invoke();
+        // 방 갱신 이벤트 발생 (일단 불필요)
+        // OnRoomChanged?.Invoke();
+
+        // 룸 상태 변경
         room.OnRoomStateChanged += OnRoomStateChanged;
 
-        AddRoomToGrid(room, room.GetSize());
+        // 그리드에 추가
+        AddRoomToGrid(room, size);
 
+        // 스탯 재계산
         RecalculateAllStats();
 
         return room;
@@ -333,7 +358,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
         // Remove from list
         allRooms.Remove(room);
-        OnRoomChanged?.Invoke(); // 방 갱신
+        // OnRoomChanged?.Invoke(); // 방 갱신 (일단 불필요)
 
         Destroy(room.gameObject);
 
