@@ -78,6 +78,8 @@ public class CrewFactory : MonoBehaviour
         // collider 초기화
         InitializeCrewCollider(crew);
 
+
+
         return crew;
     }
 
@@ -324,7 +326,6 @@ public class CrewFactory : MonoBehaviour
         // 이름 중복 방지를 위해 번호 추가
         return $"{baseName}-{nextCrewId++}";
     }
-
     /// <summary>
     /// 모든 이름 풀 초기화
     /// </summary>
