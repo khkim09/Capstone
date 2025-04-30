@@ -317,7 +317,16 @@ public class RTSSelectionManager : MonoBehaviour
             foreach (CrewMember crew in selectedCrew)
             {
                 Debug.LogWarning($"{crew} 감지 완료, 목적지 : {targetRoom} 경로 추적 시작");
-                List<Vector2Int> path = crewPathfinder.FindPathToRoom(crew, targetRoom);
+                List<Vector2Int> path;
+                if (crew.currentRoom == targetRoom)
+                {
+                    path=new List<Vector2Int>();
+                    path.Add(Vector2Int.zero);
+                }
+                else
+                {
+                    path = crewPathfinder.FindPathToRoom(crew, targetRoom);
+                }
                 if (path != null)
                     crewPaths[crew] = path;
             }
