@@ -35,7 +35,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     /// <summary>
     /// 현재 도안 설계 상태에서 점유된 타일들 (모든 BlueprintRoom 기준)
     /// </summary>
-    public HashSet<Vector2Int> occupiedGridTiles = new HashSet<Vector2Int>();
+    public HashSet<Vector2Int> occupiedGridTiles = new();
 
     [SerializeField] private Vector2Int gridSize = new(60, 60);
     [SerializeField] private Vector3 gridOrigin = Vector3.zero;
@@ -55,13 +55,13 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     public void GenerateTiles()
     {
         for (int x = 0; x < gridSize.x; x++)
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                Vector3 pos = GridToWorldPosition(new Vector2Int(x, y));
-                GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
-                tile.transform.localScale = Vector3.one * GridConstants.CELL_SIZE;
-                tile.transform.position += new Vector3(0, 0, 17);
-            }
+        for (int y = 0; y < gridSize.y; y++)
+        {
+            Vector3 pos = GridToWorldPosition(new Vector2Int(x, y));
+            GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
+            tile.transform.localScale = Vector3.one * GridConstants.CELL_SIZE;
+            tile.transform.position += new Vector3(0, 0, 17);
+        }
     }
 
     /// <summary>

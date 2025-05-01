@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.XR;
 
 /// <summary>
 /// 선원의 데이터를 확장하여 실제 게임 내 선원(Crew)의 기능을 담당하는 클래스입니다.
@@ -209,6 +210,16 @@ public class CrewMember : CrewBase
         }
     }
 
+    private void PlayAnimation(string trigger)
+    {
+        if (trigger.Equals("walk"))
+        {
+            animator.SetFloat("X", movementDirection.x);
+            animator.SetFloat("Y", movementDirection.y);
+        }
+        animator.SetBool(trigger,isMoving);
+    }
+
     /// <summary>
     /// 현재 방에서 선원이 점유 중인 타일의 우선순위 인덱스 반환
     /// </summary>
@@ -231,6 +242,7 @@ public class CrewMember : CrewBase
     {
         isMoving = true;
 
+
         foreach (Vector2Int tile in path)
         {
             currentTargetTile = tile;
@@ -238,7 +250,7 @@ public class CrewMember : CrewBase
 
             // 이동 중인 방향
             movementDirection = (targetWorldPos - transform.position).normalized;
-
+            PlayAnimation("walk");
             while (Vector3.Distance(transform.position, targetWorldPos) > 0.01f)
             {
                 float speedMultiplier = 1f;
@@ -265,6 +277,8 @@ public class CrewMember : CrewBase
         // 도착 후 방 갱신
         currentRoom = reservedRoom;
         reservedRoom = null;
+
+        PlayAnimation("walk");
 
         // 이동 완료한 위치에서 함내 전투 검사
         RTSSelectionManager.Instance.CheckForCombat(this);
