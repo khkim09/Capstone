@@ -99,12 +99,17 @@ public class RTSSelectionManager : MonoBehaviour
         Instance = this;
     }
 
+    //----------외곽선 효과-----------------
     public Material outlineMaterial;
     public Material defaultMaterial;
-
+    /// <summary>
+    /// crew의 스프라이트 렌더러에 onoff값에 따라 Material을 변경하며 외곽선 효과를 준다.
+    /// </summary>
+    /// <param name="crew"></param>
+    /// <param name="onoff"></param>
     private void SetOutline(CrewMember crew, bool onoff)
     {
-        crew.GetComponent<SpriteRenderer>().material = onoff ? new Material(outlineMaterial) : defaultMaterial;
+        crew.GetSpriteRenderer().material = onoff ? new Material(outlineMaterial) : defaultMaterial;
     }
 
     /// <summary>
