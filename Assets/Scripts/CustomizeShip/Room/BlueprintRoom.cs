@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// 설계도에 배치된 방 정보.
 /// </summary>
-public class BlueprintRoom : MonoBehaviour, IGridPlaceable
+public class BlueprintRoom : MonoBehaviour, IGridPlaceable, IBlueprintPlaceable
 {
     /// <summary>RoomData 참조</summary>
     public RoomData bpRoomData;
@@ -191,7 +191,7 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
                 originalPos = bpPosition;
                 originalRot = bpRotation;
 
-                gridPlacer.UnMarkRoomOccupied(this);
+                gridPlacer.UnMarkObjectOccupied(this);
                 mouseDownTarget = hit.collider.gameObject;
             }
             else
@@ -209,7 +209,7 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
             Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
             transform.position = gridPlacer.GridToWorldPosition(bpPosition) + (Vector3)offset;
 
-            bool canPlace = gridPlacer.CanPlaceRoom(bpRoomData, bpLevelIndex, bpPosition, bpRotation);
+            bool canPlace = gridPlacer.CanPlaceObject(this, bpPosition, bpRotation);
             sr.color = canPlace ? validColor : invalidColor;
         }
 
@@ -219,7 +219,7 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
             isDragging = false;
             Vector2Int newPos = gridPlacer.WorldToGridPosition(mouseWorldPos);
 
-            bool canPlace = gridPlacer.CanPlaceRoom(bpRoomData, bpLevelIndex, newPos, bpRotation);
+            bool canPlace = gridPlacer.CanPlaceObject(this, newPos, bpRotation);
             sr.color = Color.white;
 
             // 유효성 검사
@@ -235,23 +235,31 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
                 transform.rotation = Quaternion.Euler(0, 0, -(int)bpRotation * 90);
 
                 // 점유 타일 복구
-                gridPlacer.MarkRoomOccupied(this);
+                gridPlacer.MarkObjectOccupied(this);
                 mouseDownTarget = null;
             }
             else
             {
                 bpPosition = newPos;
-                occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(bpPosition, bpRoomSize, bpRotation);
-                gridPlacer.MarkRoomOccupied(this);
+                UpdateOccupiedTiles();
+                gridPlacer.MarkObjectOccupied(this);
             }
 
             transform.position += new Vector3(0, 0, 10f); // 뒤쪽으로 배치
 
             if (hit.collider != null && hit.collider.gameObject == mouseDownTarget)
-                RoomSelectionHandler.Instance.SelectRoom(this);
+                RoomSelectionHandler.Instance.SelectPlaceable(this);
 
             mouseDownTarget = null;
         }
+    }
+
+    /// <summary>
+    /// 점유 타일 목록 업데이트
+    /// </summary>
+    public void UpdateOccupiedTiles()
+    {
+        occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(bpPosition, bpRoomSize, bpRotation);
     }
 
     /// <summary>
@@ -271,7 +279,7 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
         bpRoomSize = levelData.size;
 
         bpRoomSize = RoomRotationUtility.GetRotatedSize(bpRoomSize, bpRotation);
-        occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(bpPosition, bpRoomSize, bpRotation);
+        UpdateOccupiedTiles();
 
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = levelData.roomSprite;
@@ -298,12 +306,21 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
     }
 
     /// <summary>
-    /// 오브젝트 회전
+    /// 오브젝트 회전 및 그리드 스냅 적용
     /// </summary>
     public void Rotate(RotationConstants.Rotation rotation)
     {
+        // 1) 회전 상태·크기 업데이트
         bpRotation = rotation;
         bpRoomSize = RoomRotationUtility.GetRotatedSize(levelData.size, bpRotation);
+
+        // 2) 오프셋 계산
+        Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
+
+        // 3) 그리드 위치 기반으로 월드 좌표 재설정
+        transform.position = gridPlacer.GridToWorldPosition(bpPosition) + (Vector3)offset;
+
+        // 4) 실제 회전 적용
         transform.rotation = Quaternion.Euler(0, 0, -(int)bpRotation * 90);
     }
 
@@ -329,6 +346,14 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
     public void SetGridPosition(Vector2Int position)
     {
         bpPosition = position;
+    }
+
+    /// <summary>
+    /// 점유 타일 목록 반환
+    /// </summary>
+    public List<Vector2Int> GetOccupiedTiles()
+    {
+        return occupiedTiles;
     }
 
     /// <summary>
@@ -358,81 +383,13 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
         gridPlacer = placer;
     }
 
-    /*
-        /// <summary>
-        /// 드래그 시작 - 기존 위치 저장, 드래그 전 선택된 방 해제, 점유 타일 삭제
-        /// </summary>
-        /// <param name="eventData"></param>
-        public void OnBeginDrag(PointerEventData eventData)
-        {
-            isDragging = true;
-
-            originalPos = bpPosition;
-            originalRot = bpRotation;
-
-            RoomSelectionHandler.Instance.Deselect(); // 드래그 전 선택 해제
-            gridPlacer.UnMarkRoomOccupied(this); // 점유 타일 없앰
-        }
-
-        /// <summary>
-        /// 드래그 중 - 배치 가능 영역 확인 후 색 변화
-        /// </summary>
-        /// <param name="eventData"></param>
-        public void OnDrag(PointerEventData eventData)
-        {
-            if (!isDragging)
-                return;
-
-            Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(eventData.position);
-            Vector2Int newGrid = gridPlacer.WorldToGridPosition(mouseWorld);
-
-            bpPosition = newGrid;
-            Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
-            transform.position = gridPlacer.GridToWorldPosition(bpPosition) + (Vector3)offset;
-
-            bool canPlace = gridPlacer.CanPlaceRoom(bpRoomData, bpLevelIndex, bpPosition, bpRotation);
-            sr.color = canPlace ? validColor : invalidColor;
-        }
-
-        /// <summary>
-        /// 드래그 종료 - 유효성 검사 후 배치 가능하면 배치, 배치 불가능하면 원위치
-        /// </summary>
-        /// <param name="eventData"></param>
-        public void OnEndDrag(PointerEventData eventData)
-        {
-            isDragging = false;
-
-            Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(eventData.position);
-            Vector2Int newPos = gridPlacer.WorldToGridPosition(mouseWorld);
-
-            bool canPlace = gridPlacer.CanPlaceRoom(bpRoomData, bpLevelIndex, newPos, bpRotation);
-
-            // 유효성 검사
-            if (!canPlace)
-            {
-                // 불가능 : 원위치
-                bpPosition = originalPos;
-                bpRotation = originalRot;
-                bpRoomSize = RoomRotationUtility.GetRotatedSize(levelData.size, bpRotation);
-
-                Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
-                transform.position = gridPlacer.GridToWorldPosition(originalPos) + (Vector3)offset;
-                transform.rotation = Quaternion.Euler(0, 0, -(int)bpRotation * 90);
-
-                // 점유 타일 복구
-                gridPlacer.MarkRoomOccupied(this);
-                mouseDownTarget = null;
-            }
-            else
-            {
-                bpPosition = newPos;
-                occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(bpPosition, bpRoomSize, bpRotation);
-                gridPlacer.MarkRoomOccupied(this);
-            }
-
-            sr.color = Color.white;
-        }
-    */
+    /// <summary>
+    /// 설치 비용 반환
+    /// </summary>
+    public int GetCost()
+    {
+        return bpRoomCost;
+    }
 
     /// <summary>
     /// 마우스가 selectionUI 위에 있는지 확인
@@ -441,16 +398,14 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
     /// <returns></returns>
     private bool IsPointerOverUIObject(GameObject rootUI)
     {
-        PointerEventData eventData = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
+        PointerEventData eventData = new(EventSystem.current) { position = Input.mousePosition };
 
-        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        List<RaycastResult> raycastResults = new();
         EventSystem.current.RaycastAll(eventData, raycastResults);
 
         foreach (RaycastResult result in raycastResults)
-        {
             if (result.gameObject != null && result.gameObject.transform.IsChildOf(rootUI.transform))
                 return true;
-        }
 
         return false;
     }

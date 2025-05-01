@@ -26,7 +26,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     [Header("Parent Object")] public GameObject gridTiles;
 
     /// <summary>
-    /// 설계도 -> 실제 함선으로 교체 (bpRoom -> room)
+    /// 설계도 -> 실제 함선으로 교체 (bpRoom -> room, bpWeapon -> weapon)
     /// </summary>
     public Button buildButton;
 
@@ -53,8 +53,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// <summary>
     /// 현재 커스터마이징 중인 플레이어 함선입니다.
     /// </summary>
-    [Header("Ship")]
-    public Ship playerShip;
+    [Header("Ship")] public Ship playerShip;
 
     /// <summary>
     /// 그리드 타일 배치 작업을 위한 오브젝트
@@ -81,7 +80,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// </summary>
     private int totalBPCost = 0;
 
-    public List<CrewMember> backupCrews = new List<CrewMember>();
+    public List<CrewMember> backupCrews = new();
 
     /// <summary>
     /// 현재 설계도의 가격 지속 갱신
@@ -130,40 +129,40 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// <summary>
     /// CustomizeShipUI 활성화 시 아래 작업 수행 :
     /// 그리드 생성 및 그리드 저장 오브젝트 활성화
-    /// 작업하던 설계도 방 호출, 배치
+    /// 작업하던 설계도 방/무기 호출, 배치
     /// 카메라 중앙값 세팅
     /// </summary>
     private void OnEnable()
     {
         gridTiles.SetActive(true);
 
-        // 설계도 방 호출, 배치
-        GetSavedBPRooms();
+        // 설계도 방/무기 호출, 배치
+        GetSavedBPObjects();
 
         // 카메라 - 설계도 함선 기준으로 세팅
         CenterCameraToBP();
 
-        // 함선의 방 collider 비활성화 (RTS를 위한 collider와 겹침 방지)
+        // 함선의 방/무기 collider 비활성화 (RTS를 위한 collider와 겹침 방지)
         SetPlayerShipCollidersActive(false);
     }
 
     /// <summary>
     /// CustomizeShipUI 비활성화 시 아래 작업 수행 :
     /// 그리드 저장 오브젝트 비활성화
-    /// 설계도 설치한 방 데이터 모두 저장 후 제거
+    /// 설계도 설치한 방/무기 데이터 모두 저장 후 제거
     /// </summary>
     private void OnDisable()
     {
         if (gridTiles.activeInHierarchy)
             gridTiles.SetActive(false);
 
-        // 설계도 설치한 방 데이터 모두 저장 후 제거
-        SaveBPRoomsandDestroy();
+        // 설계도 설치한 방/무기 데이터 모두 저장 후 제거
+        SaveBPObjectsAndDestroy();
 
         // 카메라 - 기존 함선 기준으로 복구
         ResetCameraToOriginShip();
 
-        // 함선 방 collider 활성화
+        // 함선 방/무기 collider 활성화
         SetPlayerShipCollidersActive(true);
     }
 
@@ -190,33 +189,50 @@ public class CustomizeShipUIHandler : MonoBehaviour
     }
 
     /// <summary>
-    /// 기존에 작업중이던 설계도의 모든 방 데이터 호출 및 배치
+    /// 기존에 작업중이던 설계도의 모든 방/무기 데이터 호출 및 배치
     /// </summary>
-    private void GetSavedBPRooms()
+    private void GetSavedBPObjects()
     {
-        List<BlueprintRoomSaveData> layout = BlueprintLayoutSaver.LoadLayout();
-
-        foreach (BlueprintRoomSaveData saved in layout)
+        // 방 데이터 로드 및 배치
+        List<BlueprintRoomSaveData> roomLayout = BlueprintLayoutSaver.LoadRoomLayout();
+        foreach (BlueprintRoomSaveData saved in roomLayout)
             gridPlacer.PlaceRoom(saved.bpRoomData, saved.bpLevelIndex, saved.bpPosition, saved.bpRotation);
+
+        // 무기 데이터 로드 및 배치
+        List<BlueprintWeaponSaveData> weaponLayout = BlueprintLayoutSaver.LoadWeaponLayout();
+        foreach (BlueprintWeaponSaveData saved in weaponLayout)
+        {
+            BlueprintWeapon weapon = gridPlacer.PlaceWeapon(saved.bpWeaponData, saved.bpPosition, saved.bpDirection);
+            if (weapon != null)
+                weapon.SetHullLevel(saved.hullLevel);
+        }
     }
 
     /// <summary>
-    /// 작업중이던 설계도 저장 및 방 제거
+    /// 작업중이던 설계도 저장 및 방/무기 제거
     /// </summary>
-    private void SaveBPRoomsandDestroy()
+    private void SaveBPObjectsAndDestroy()
     {
+        // 방 저장
         BlueprintRoom[] bpRooms = targetBlueprintShip.GetComponentsInChildren<BlueprintRoom>();
-        BlueprintLayoutSaver.SaveLayout(bpRooms);
+        BlueprintLayoutSaver.SaveRoomLayout(bpRooms);
 
-        // 설치했던 모든 설계도 방 제거
+        // 무기 저장
+        BlueprintWeapon[] bpWeapons = targetBlueprintShip.GetComponentsInChildren<BlueprintWeapon>();
+        BlueprintLayoutSaver.SaveWeaponLayout(bpWeapons);
+
+        // 설치했던 모든 설계도 오브젝트 제거
         foreach (BlueprintRoom r in bpRooms)
             Destroy(r.gameObject);
 
-        targetBlueprintShip.ClearPlacedBPRooms();
+        foreach (BlueprintWeapon w in bpWeapons)
+            Destroy(w.gameObject);
+
+        targetBlueprintShip.ClearPlacedBPObjects();
     }
 
     /// <summary>
-    /// 함선의 모든 방에 대해 collider 활성화/비활성화
+    /// 함선의 모든 방/무기에 대해 collider 활성화/비활성화
     /// </summary>
     /// <param name="active"></param>
     private void SetPlayerShipCollidersActive(bool active)
@@ -224,9 +240,18 @@ public class CustomizeShipUIHandler : MonoBehaviour
         if (playerShip == null)
             return;
 
+        // 방 collider 설정
         foreach (Room room in playerShip.GetAllRooms())
         {
             BoxCollider2D collider = room.GetComponent<BoxCollider2D>();
+            if (collider != null)
+                collider.enabled = active;
+        }
+
+        // 무기 collider 설정
+        foreach (ShipWeapon weapon in playerShip.GetAllWeapons())
+        {
+            BoxCollider2D collider = weapon.GetComponent<BoxCollider2D>();
             if (collider != null)
                 collider.enabled = active;
         }
@@ -235,7 +260,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// <summary>
     /// '함선 제작' 버튼 클릭 시 호출.
     /// 조건 만족 시 기존 함선을 설계도의 함선으로 교체합니다.
-    /// 이후 방, 문의 연결 유효성 검사 수행 후 만족 여부에 따라 실제 함선으로 교체, 다시 설계도로 복구를 수행
+    /// 이후 방/무기, 문의 연결 유효성 검사 수행 후 만족 여부에 따라 실제 함선으로 교체, 다시 설계도로 복구를 수행
     /// </summary>
     public void OnClickBuild()
     {
@@ -246,13 +271,12 @@ public class CustomizeShipUIHandler : MonoBehaviour
         backupCrews = playerShip.GetSystem<CrewSystem>().GetCrews().OfType<CrewMember>().ToList();
         playerShip.BackupCurrentShip();
 
-        // 3. 설계도 -> 실제 함선 (bpRoom -> Room) 변환
+        // 3. 설계도 -> 실제 함선 (bpRoom -> Room, bpWeapon -> Weapon) 변환
         playerShip.ReplaceShipFromBlueprint(targetBlueprintShip);
 
         // 4. 실제 Ship 상태 기준 유효성 검사 수행
         validationResult = new ShipValidationHelper().ValidateShipLayout(playerShip);
 
-        // feedbackText.text = $"{validationResult.Message}";
         // 5. 유효성 검사
         if (!validationResult.IsValid)
         {
