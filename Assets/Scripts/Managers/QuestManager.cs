@@ -9,50 +9,46 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     /// <summary>
-    /// 퀘스트 변경 관련 델리게이트입니다.
+    /// 퀘스트 변경 이벤트 핸들러
     /// </summary>
     public delegate void QuestChangedHandler(Quest quest);
 
     /// <summary>
-    /// 퀘스트 상태를 나타내는 열거형입니다.
+    /// 퀘스트의 상태를 나타냅니다.
     /// </summary>
     public enum QuestStatus
     {
+        /// <summary>퀘스트를 아직 시작하지 않음</summary>
         NotStarted,
+        /// <summary>퀘스트 진행 중</summary>
         Active,
+        /// <summary>퀘스트 완료</summary>
         Completed,
+        /// <summary>퀘스트 실패</summary>
         Failed
     }
 
     /// <summary>
-    /// 퀘스트 보상 타입을 정의하는 열거형입니다.
+    /// 보상 유형을 정의합니다.
     /// </summary>
     public enum RewardType
     {
+        /// <summary>자원 (예: COMA)</summary>
         Resource,
+        /// <summary>아이템 보상</summary>
         Item,
-        Crew,
-        ShipPart
+        /// <summary>크루 보상</summary>
+        Crew
     }
 
-    /// <summary>
-    /// 현재 진행 중인 퀘스트 리스트입니다.
-    /// </summary>
     [SerializeField] private List<Quest> activeQuests = new();
-
-    /// <summary>
-    /// 완료된 퀘스트 리스트입니다.
-    /// </summary>
     [SerializeField] private List<Quest> completedQuests = new();
 
     /// <summary>
-    /// 싱글턴 인스턴스입니다.
+    /// 퀘스트 매니저의 싱글톤 인스턴스
     /// </summary>
     public static QuestManager Instance { get; private set; }
 
-    /// <summary>
-    /// 인스턴스를 초기화하고 싱글턴을 설정합니다.
-    /// </summary>
     private void Awake()
     {
         if (Instance == null)
@@ -66,49 +62,41 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-
-    /// <summary>
-    /// 퀘스트 추가 시 호출되는 이벤트입니다.
-    /// </summary>
+    /// <summary>퀘스트가 새로 추가될 때 발생하는 이벤트</summary>
     public event QuestChangedHandler OnQuestAdded;
 
-    /// <summary>
-    /// 퀘스트 목표가 갱신될 때 호출되는 이벤트입니다.
-    /// </summary>
+    /// <summary>퀘스트가 갱신될 때 발생하는 이벤트</summary>
     public event QuestChangedHandler OnQuestUpdated;
 
-    /// <summary>
-    /// 퀘스트 완료 시 호출되는 이벤트입니다.
-    /// </summary>
+    /// <summary>퀘스트가 완료될 때 발생하는 이벤트</summary>
     public event QuestChangedHandler OnQuestCompleted;
 
     /// <summary>
-    /// 새로운 퀘스트를 추가하고 이벤트를 발생시킵니다.
+    /// 새로운 퀘스트를 추가합니다.
     /// </summary>
-    /// <param name="quest">추가할 퀘스트.</param>
+    /// <param name="quest">추가할 퀘스트</param>
     public void AddQuest(Quest quest)
     {
         activeQuests.Add(quest);
         OnQuestAdded?.Invoke(quest);
-
         Debug.Log($"New quest added: {quest.title}");
     }
 
     /// <summary>
-    /// 외부에서 퀘스트 완료 처리를 트리거할 때 사용됩니다.
+    /// 외부에서 퀘스트 완료 처리를 강제로 호출할 때 사용합니다.
     /// </summary>
-    /// <param name="quest">완료된 퀘스트.</param>
+    /// <param name="quest">완료된 퀘스트</param>
     public void TriggerQuestCompleted(Quest quest)
     {
         OnQuestCompleted?.Invoke(quest);
     }
 
     /// <summary>
-    /// 퀘스트의 특정 목표 진행도를 업데이트하고, 완료 여부를 검사합니다.
+    /// 특정 퀘스트 목표의 진행도를 갱신합니다.
     /// </summary>
-    /// <param name="questId">퀘스트 ID.</param>
-    /// <param name="objectiveIndex">목표 인덱스.</param>
-    /// <param name="amount">추가된 진행도.</param>
+    /// <param name="questId">퀘스트 ID</param>
+    /// <param name="objectiveIndex">목표 인덱스</param>
+    /// <param name="amount">추가할 수치</param>
     public void UpdateQuestObjective(string questId, int objectiveIndex, int amount)
     {
         Quest quest = activeQuests.Find(q => q.id == questId);
@@ -120,7 +108,6 @@ public class QuestManager : MonoBehaviour
 
             OnQuestUpdated?.Invoke(quest);
 
-            // 모든 목표가 완료되었는지 확인
             bool allCompleted = true;
             foreach (QuestObjective obj in quest.objectives)
                 if (!obj.isCompleted)
@@ -134,34 +121,22 @@ public class QuestManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 퀘스트를 완료 처리하고 보상을 지급합니다.
+    /// 퀘스트를 완료 처리합니다.
     /// </summary>
-    /// <param name="quest">완료된 퀘스트.</param>
+    /// <param name="quest">완료된 퀘스트</param>
     private void CompleteQuest(Quest quest)
     {
         quest.status = QuestStatus.Completed;
         activeQuests.Remove(quest);
         completedQuests.Add(quest);
 
-        // 보상 지급
         foreach (QuestReward reward in quest.rewards)
-            switch (reward.type)
+        {
+            if (reward.type == RewardType.Resource && reward.resourceType == ResourceType.COMA)
             {
-                case RewardType.Resource:
-                    ResourceManager.Instance.ChangeResource(reward.resourceType, reward.amount);
-                    break;
-
-                case RewardType.Item:
-                    break;
-
-                case RewardType.Crew:
-                    // 새 승무원 추가 로직
-                    break;
-
-                case RewardType.ShipPart:
-                    // 선박 부품 추가 로직
-                    break;
+                ResourceManager.Instance.ChangeResource(ResourceType.COMA, reward.amount);
             }
+        }
 
         OnQuestCompleted?.Invoke(quest);
         Debug.Log($"Quest completed: {quest.title}");
@@ -170,112 +145,60 @@ public class QuestManager : MonoBehaviour
     /// <summary>
     /// 현재 진행 중인 퀘스트 목록을 반환합니다.
     /// </summary>
-    public List<Quest> GetActiveQuests()
-    {
-        return activeQuests;
-    }
+    /// <returns>진행 중인 퀘스트 리스트</returns>
+    public List<Quest> GetActiveQuests() => activeQuests;
 
     /// <summary>
     /// 완료된 퀘스트 목록을 반환합니다.
     /// </summary>
-    public List<Quest> GetCompletedQuests()
-    {
-        return completedQuests;
-    }
-
+    /// <returns>완료된 퀘스트 리스트</returns>
+    public List<Quest> GetCompletedQuests() => completedQuests;
 
     /// <summary>
-    /// 개별 퀘스트의 정보입니다.
-    /// ID, 제목, 설명, 상태, 목표, 보상 정보를 포함합니다.
+    /// 퀘스트 정보 클래스
     /// </summary>
     [Serializable]
     public class Quest
     {
-        /// <summary>
-        /// 퀘스트 고유 ID입니다.
-        /// </summary>
         public string id;
-
-        /// <summary>
-        /// 퀘스트 제목입니다.
-        /// </summary>
         public string title;
-
-        /// <summary>
-        /// 퀘스트 설명입니다.
-        /// </summary>
         public string description;
-
-        /// <summary>
-        /// 퀘스트의 현재 상태입니다. (진행 중, 완료, 실패 등)
-        /// </summary>
         public QuestStatus status = QuestStatus.Active;
-
-        /// <summary>
-        /// 퀘스트의 목표 리스트입니다.
-        /// </summary>
         public List<QuestObjective> objectives = new();
-
-        /// <summary>
-        /// 퀘스트 완료 시 지급될 보상 리스트입니다.
-        /// </summary>
         public List<QuestReward> rewards = new();
     }
 
     /// <summary>
-    /// 퀘스트의 개별 목표입니다.
-    /// 현재 진행량, 필요량, 완료 여부를 포함합니다.
+    /// 퀘스트 목표 하나를 정의하는 클래스
     /// </summary>
     [Serializable]
     public class QuestObjective
     {
-        /// <summary>
-        /// 목표 설명입니다.
-        /// </summary>
+        /// <summary>목표 타입</summary>
+        public RandomQuest.QuestObjectiveType objectiveType;
+        /// <summary>설명 텍스트</summary>
         public string description;
-
-        /// <summary>
-        /// 현재까지 달성한 수치입니다.
-        /// </summary>
+        /// <summary>현재 달성 수치</summary>
         public int currentAmount;
-
-        /// <summary>
-        /// 목표 완료를 위한 필요 수치입니다.
-        /// </summary>
+        /// <summary>필요 달성 수치</summary>
         public int requiredAmount;
-
-        /// <summary>
-        /// 해당 목표가 완료되었는지 여부입니다.
-        /// </summary>
+        /// <summary>목표 도달 행성 ID (해당 시만)</summary>
+        public string destinationPlanetId;
+        /// <summary>달성 여부</summary>
         public bool isCompleted;
     }
 
     /// <summary>
-    /// 퀘스트 완료 시 지급되는 보상입니다.
-    /// 리소스, 아이템, 승무원, 선박 부품 등 다양하게 설정 가능합니다.
+    /// 퀘스트 보상을 정의하는 클래스
     /// </summary>
     [Serializable]
     public class QuestReward
     {
-        /// <summary>
-        /// 보상의 종류입니다. (자원, 아이템, 승무원, 부품 등)
-        /// </summary>
+        /// <summary>보상 타입</summary>
         public RewardType type;
-
-        /// <summary>
-        /// 자원 보상의 경우 적용될 자원 타입입니다.
-        /// (type이 Resource일 때만 유효)
-        /// </summary>
+        /// <summary>자원 보상일 경우 자원 타입</summary>
         public ResourceType resourceType;
-
-        /// <summary>
-        /// 자원 또는 기타 수치형 보상의 양입니다.
-        /// </summary>
+        /// <summary>보상 수치</summary>
         public int amount;
-
-        /// <summary>
-        /// 아이템 보상의 경우 해당 아이템의 ID입니다.
-        /// </summary>
-        public string itemId;
     }
 }

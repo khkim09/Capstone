@@ -1,151 +1,128 @@
-using System.Collections;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 퀘스트 UI를 관리하는 클래스입니다.
+/// 퀘스트 제안 및 완료 패널 표시, 수락/거절 처리 등을 담당합니다.
+/// </summary>
 public class QuestUIManager : MonoBehaviour
 {
-    [Header("제안 UI")]
-    [SerializeField] private GameObject offerPanel;
-    [SerializeField] private TextMeshProUGUI offerTitle;
-    [SerializeField] private TextMeshProUGUI offerDesc;
-    [SerializeField] private Button acceptBtn;
-    [SerializeField] private Button declineBtn;
+    /// <summary>퀘스트 제안 UI 패널</summary>
+    public GameObject offerPanel;
 
-    [Header("진행 UI")]
-    [SerializeField] private GameObject progressPanel;
-    [SerializeField] private Transform objectivesContainer;
-    [SerializeField] private GameObject objectivePrefab;
+    /// <summary>퀘스트 텍스트 (제목 + 설명)</summary>
+    public TextMeshProUGUI questText;
 
-    [Header("완료 UI")]
-    [SerializeField] private GameObject completePanel;
-    [SerializeField] private TextMeshProUGUI completeTitle;
-    [SerializeField] private TextMeshProUGUI completeRewards;
-    [SerializeField] private Button confirmBtn;
+    /// <summary>퀘스트 수락 버튼</summary>
+    public Button acceptBtn;
 
-    [Header("타이핑 효과 속도")]
-    [SerializeField] private float typingSpeed = 0.05f;
+    /// <summary>퀘스트 거절 버튼</summary>
+    public Button declineBtn;
 
+    /// <summary>퀘스트 완료 UI 패널</summary>
+    public GameObject completePanel;
+
+    /// <summary>퀘스트 완료 텍스트</summary>
+    public TextMeshProUGUI completeText;
+
+    /// <summary>퀘스트 완료 확인 버튼</summary>
+    public Button completeBtn;
+
+    /// <summary>현재 표시 중인 퀘스트 객체</summary>
     private RandomQuest currentQuest;
 
-    private void Awake()
+    /// <summary>
+    /// 버튼 클릭 이벤트를 등록합니다.
+    /// </summary>
+    private void Start()
     {
         acceptBtn.onClick.AddListener(OnAccept);
         declineBtn.onClick.AddListener(OnDecline);
-        confirmBtn.onClick.AddListener(() => completePanel.SetActive(false));
-
-        // Storage에서 어떤 아이템이 바뀌어도 진행 UI 갱신
-        if (Storage.Instance != null)
-        {
-            Storage.Instance.OnStorageChanged += _ =>
-            {
-                if (currentQuest != null)
-                    RefreshObjectives();
-            };
-        }
-    }
-
-    private void Start()
-    {
-        offerPanel.SetActive(false);
-        progressPanel.SetActive(false);
-        completePanel.SetActive(false);
+        completeBtn.onClick.AddListener(OnCompleteConfirmed);
     }
 
     /// <summary>
-    /// 퀘스트 제안창 띄우기
+    /// 퀘스트 제안 UI를 표시합니다.
     /// </summary>
-    public void ShowQuestOffer(RandomQuest rq)
+    /// <param name="quest">표시할 퀘스트</param>
+    public void ShowQuestOffer(RandomQuest quest)
     {
-        currentQuest = rq;
-        rq.status = RandomQuest.QuestStatus.NotStarted;
-
+        currentQuest = quest;
         offerPanel.SetActive(true);
-        progressPanel.SetActive(false);
-        completePanel.SetActive(false);
-
-        offerTitle.text = rq.title;
-        StartCoroutine(TypeText(offerDesc, rq.description));
+        questText.text = ""; // 초기화
+        StopAllCoroutines();
+        StartCoroutine(TypeText(quest.title + "\n\n" + quest.description));
     }
 
+    /// <summary>
+    /// 퀘스트 텍스트를 타이핑 효과로 출력하는 코루틴입니다.
+    /// </summary>
+    /// <param name="text">출력할 텍스트</param>
+    /// <returns>IEnumerator</returns>
+    private System.Collections.IEnumerator TypeText(string text)
+    {
+        questText.text = "";
+        foreach (char c in text)
+        {
+            questText.text += c;
+            yield return new WaitForSeconds(0.015f);
+        }
+    }
+
+    /// <summary>
+    /// 수락 버튼 클릭 시 호출됩니다.
+    /// 퀘스트를 수락하고 퀘스트 매니저에 등록합니다.
+    /// </summary>
     private void OnAccept()
     {
-        if (currentQuest == null) return;
-        currentQuest.Accept();
+        if (currentQuest != null)
+        {
+            currentQuest.Accept();
+            QuestManager.Instance.AddQuest(currentQuest.ToQuest());
+
+            QuestListUI questListUI = FindObjectOfType<QuestListUI>();
+            if (questListUI != null && questListUI.panel.activeSelf)
+            {
+                questListUI.Open();
+            }
+        }
+
         offerPanel.SetActive(false);
-
-        // QuestManager에 런타임 데이터 등록
-        QuestManager.Instance.AddQuest(currentQuest.ToQuest());
-
-        // 진행 UI 열기 및 초기 갱신
-        progressPanel.SetActive(true);
-        RefreshObjectives();
+        currentQuest = null;
     }
 
+    /// <summary>
+    /// 거절 버튼 클릭 시 호출됩니다.
+    /// 퀘스트를 거절하고 UI를 닫습니다.
+    /// </summary>
     private void OnDecline()
     {
-        if (currentQuest == null) return;
-        currentQuest.Decline();
+        if (currentQuest != null)
+        {
+            currentQuest.Decline();
+        }
+
         offerPanel.SetActive(false);
+        currentQuest = null;
     }
 
     /// <summary>
-    /// 목표 UI 갱신 및 완료 체크
+    /// 퀘스트 완료 UI를 표시합니다.
     /// </summary>
-    public void RefreshObjectives()
-    {
-        // 1) 각 목표의 targetId로 창고 수량 조회
-        foreach (var o in currentQuest.objectives)
-        {
-            int qty = Storage.Instance.GetItemQuantityById(o.targetId);
-            o.currentAmount = qty;
-            o.isCompleted   = (qty >= o.requiredAmount);
-        }
-
-        // 2) UI 목록 갱신
-        foreach (Transform t in objectivesContainer)
-            Destroy(t.gameObject);
-
-        foreach (var o in currentQuest.objectives)
-        {
-            var go  = Instantiate(objectivePrefab, objectivesContainer);
-            var txt = go.GetComponentInChildren<TextMeshProUGUI>();
-            txt.text = $"{o.description} ({o.currentAmount}/{o.requiredAmount})";
-            if (o.isCompleted)
-                txt.color = Color.green;
-        }
-
-        // 3) 자동 완료 체크
-        currentQuest.CheckCompletion();
-        if (currentQuest.status == RandomQuest.QuestStatus.Completed)
-            ShowCompletion();
-    }
-
-    /// <summary>
-    /// 완료 UI 표시 및 보상 텍스트
-    /// </summary>
-    private void ShowCompletion()
+    /// <param name="quest">완료된 퀘스트</param>
+    public void ShowCompletion(RandomQuest quest)
     {
         completePanel.SetActive(true);
-        completeTitle.text = $"퀘스트 완료: {currentQuest.title}";
-
-        string detail = "";
-        foreach (var r in currentQuest.rewards)
-            detail += $"{r.type}: {r.amount}\n";
-        completeRewards.text = detail;
-
-        // QuestManager에 완료 알림
-        QuestManager.Instance.TriggerQuestCompleted(currentQuest.ToQuest());
+        completeText.text = $"퀘스트 완료!\n보상: {quest.rewards[0].amount} COMA";
     }
 
-    private IEnumerator TypeText(TextMeshProUGUI comp, string msg)
+    /// <summary>
+    /// 퀘스트 완료 확인 버튼 클릭 시 호출됩니다.
+    /// 완료 UI를 닫습니다.
+    /// </summary>
+    private void OnCompleteConfirmed()
     {
-        comp.text = "";
-        foreach (var c in msg)
-        {
-            comp.text += c;
-            yield return new WaitForSeconds(typingSpeed);
-        }
+        completePanel.SetActive(false);
     }
 }
