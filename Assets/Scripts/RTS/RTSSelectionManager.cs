@@ -99,6 +99,14 @@ public class RTSSelectionManager : MonoBehaviour
         Instance = this;
     }
 
+    public Material outlineMaterial;
+    public Material defaultMaterial;
+
+    private void SetOutline(CrewMember crew, bool onoff)
+    {
+        crew.GetComponent<SpriteRenderer>().material = onoff ? new Material(outlineMaterial) : defaultMaterial;
+    }
+
     /// <summary>
     /// 게임 오브젝트 연결 (RTS 이동 검사를 위한 오브젝트)
     /// </summary>
@@ -107,6 +115,8 @@ public class RTSSelectionManager : MonoBehaviour
         yield return null; // 1 frame 대기
 
         RefreshMovementData();
+        outlineMaterial = Resources.Load<Material>("Material/UnitOutlineMaterial");
+        defaultMaterial= Resources.Load<Material>("Material/UnitDefaultMaterial");
     }
 
     /// <summary>
@@ -224,7 +234,7 @@ public class RTSSelectionManager : MonoBehaviour
         selectedCrew.Clear();
         CrewMember[] allCrew = GameObject.FindObjectsByType<CrewMember>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         foreach (CrewMember crew in allCrew)
-            crew.GetComponent<Renderer>().material.color = Color.white;
+            SetOutline(crew,false);
     }
 
     /// <summary>
@@ -243,7 +253,7 @@ public class RTSSelectionManager : MonoBehaviour
             if (crew != null)
             {
                 selectedCrew.Add(crew);
-                crew.GetComponent<Renderer>().material.color = Color.green;
+                SetOutline(crew,true);
             }
         }
     }
@@ -270,12 +280,12 @@ public class RTSSelectionManager : MonoBehaviour
             {
                 selectedCrew.Add(crew);
                 // 선택됨 표시 (예: 색상 변경)
-                crew.GetComponent<Renderer>().material.color = Color.green;
+                SetOutline(crew, true);
             }
             else
             {
                 // 선택되지 않은 경우 원래 색상으로
-                crew.GetComponent<Renderer>().material.color = Color.white;
+                SetOutline(crew, false);
             }
         }
     }
