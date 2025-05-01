@@ -42,51 +42,69 @@ public class RandomQuestSpawner : MonoBehaviour
     /// 퀘스트의 목표값들을 무작위로 설정하고 설명도 작성
     /// </summary>
     private void ConfigureQuest(RandomQuest quest)
+{
+    quest.rewards.Clear();
+
+    foreach (var objective in quest.objectives)
     {
-        foreach (var objective in quest.objectives)
+        switch (objective.objectiveType)
         {
-            switch (objective.objectiveType)
-            {
-                case RandomQuest.QuestObjectiveType.ItemTransport:
-                    var itemT = GetRandomItem();
-                    if (itemT != null)
-                    {
-                        objective.targetId = itemT.id.ToString();
-                        objective.requiredAmount = Random.Range(1, itemT.capacity + 1);
-                        objective.destinationPlanetId = GetRandomPlanetId();
-                        objective.description = $"'{itemT.itemName}' {objective.requiredAmount} transport to {objective.destinationPlanetId}.";
-                    }
-                    break;
-
-                case RandomQuest.QuestObjectiveType.ItemProcurement:
-                    var itemP = GetRandomItem();
-                    if (itemP != null)
-                    {
-                        objective.targetId = itemP.id.ToString();
-                        objective.requiredAmount = Random.Range(1, itemP.capacity + 1);
-                        objective.destinationPlanetId = "UNKNOWN"; // 또는 추후 acceptingPlanetId
-                        objective.description = $"Get '{itemP.itemName}' {objective.requiredAmount} and procurement to planet.";
-
-                    }
-                    break;
-
-                case RandomQuest.QuestObjectiveType.CrewTransport:
-                    objective.killCount = Random.Range(1, 5); // 1~4명
+            case RandomQuest.QuestObjectiveType.ItemTransport:
+                var itemT = GetRandomItem();
+                if (itemT != null)
+                {
+                    objective.targetId = itemT.id.ToString();
+                    objective.requiredAmount = Random.Range(1, itemT.capacity + 1);
                     objective.destinationPlanetId = GetRandomPlanetId();
-                    objective.description = $"Crew {objective.killCount} need to Transport to {objective.destinationPlanetId}.";
-                    break;
+                    objective.description = $"'{itemT.itemName}' {objective.requiredAmount} transport to {objective.destinationPlanetId}.";
 
-                case RandomQuest.QuestObjectiveType.PirateHunt:
-                    objective.killCount = Random.Range(5, 21); // 5~20명
-                    objective.description = $"Kill pirate {objective.killCount}.";
-                    break;
-            }
-        }
-        if (quest.objectives.Count > 0)
-        {
-            quest.description = quest.objectives[0].description;
+                    // 보상 계산
+                    float reward = itemT.costMax * 1.1f * objective.requiredAmount;
+                    quest.rewards.Add(new RandomQuest.QuestReward { amount = Mathf.RoundToInt(reward) });
+                }
+                break;
+
+            case RandomQuest.QuestObjectiveType.ItemProcurement:
+                var itemP = GetRandomItem();
+                if (itemP != null)
+                {
+                    objective.targetId = itemP.id.ToString();
+                    objective.requiredAmount = Random.Range(1, itemP.capacity + 1);
+                    objective.destinationPlanetId = "UNKNOWN"; // 추후 수락한 행성 연동
+                    objective.description = $"Get '{itemP.itemName}' {objective.requiredAmount} and procurement to planet.";
+
+                    // 보상 계산
+                    float reward = itemP.costBase * (1 + itemP.costChangerate) * 1.1f * objective.requiredAmount;
+                    quest.rewards.Add(new RandomQuest.QuestReward { amount = Mathf.RoundToInt(reward) });
+                }
+                break;
+
+            case RandomQuest.QuestObjectiveType.CrewTransport:
+                objective.killCount = Random.Range(1, 5);
+                objective.destinationPlanetId = GetRandomPlanetId();
+                objective.description = $"Crew {objective.killCount} need to Transport to {objective.destinationPlanetId}.";
+
+                // 보상 계산: 인당 300
+                int crewReward = objective.killCount * 300;
+                quest.rewards.Add(new RandomQuest.QuestReward { amount = crewReward });
+                break;
+
+            case RandomQuest.QuestObjectiveType.PirateHunt:
+                objective.killCount = Random.Range(5, 21);
+                objective.description = $"Kill pirate {objective.killCount}.";
+
+                // 보상 계산: 킬당 100
+                int pirateReward = objective.killCount * 100;
+                quest.rewards.Add(new RandomQuest.QuestReward { amount = pirateReward });
+                break;
         }
     }
+
+    if (quest.objectives.Count > 0)
+    {
+        quest.description = quest.objectives[0].description;
+    }
+}
 
     /// <summary>
     /// 아이템 데이터베이스에서 무작위 아이템 반환

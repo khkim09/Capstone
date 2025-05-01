@@ -117,6 +117,7 @@ public class QuestManager : MonoBehaviour
     [Serializable]
     public class QuestObjective
     {
+        public RandomQuest.QuestObjectiveType objectiveType;
         public string description;
         public int currentAmount;
         public int requiredAmount;

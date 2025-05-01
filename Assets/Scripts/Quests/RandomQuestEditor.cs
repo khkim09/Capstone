@@ -100,7 +100,7 @@ public class RandomQuestEditor : Editor
 
                     case RandomQuest.QuestObjectiveType.ItemProcurement:
                         EditorGUILayout.PropertyField(targetIdProp, new GUIContent("대상 아이템 ID"));
-                        EditorGUILayout.PropertyField(reqProp, new GUIContent("필요 수량")); // ❌ 목적 행성 없음
+                        EditorGUILayout.PropertyField(reqProp, new GUIContent("필요 수량")); // 목적 행성 없음
                         break;
 
                     case RandomQuest.QuestObjectiveType.CrewTransport:

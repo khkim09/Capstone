@@ -100,6 +100,7 @@ public class RandomQuest : ScriptableObject
 
             q.objectives.Add(new QuestManager.QuestObjective
             {
+                objectiveType = o.objectiveType,
                 description = o.description,
                 currentAmount = 0,
                 requiredAmount = required,
