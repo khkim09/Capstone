@@ -1,151 +1,77 @@
-using System.Collections;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class QuestUIManager : MonoBehaviour
 {
-    [Header("제안 UI")]
-    [SerializeField] private GameObject offerPanel;
-    [SerializeField] private TextMeshProUGUI offerTitle;
-    [SerializeField] private TextMeshProUGUI offerDesc;
-    [SerializeField] private Button acceptBtn;
-    [SerializeField] private Button declineBtn;
+    public GameObject offerPanel;
+    public TextMeshProUGUI questText;
+    public Button acceptBtn;
+    public Button declineBtn;
 
-    [Header("진행 UI")]
-    [SerializeField] private GameObject progressPanel;
-    [SerializeField] private Transform objectivesContainer;
-    [SerializeField] private GameObject objectivePrefab;
-
-    [Header("완료 UI")]
-    [SerializeField] private GameObject completePanel;
-    [SerializeField] private TextMeshProUGUI completeTitle;
-    [SerializeField] private TextMeshProUGUI completeRewards;
-    [SerializeField] private Button confirmBtn;
-
-    [Header("타이핑 효과 속도")]
-    [SerializeField] private float typingSpeed = 0.05f;
+    public GameObject completePanel;
+    public TextMeshProUGUI completeText;
+    public Button completeBtn;
 
     private RandomQuest currentQuest;
 
-    private void Awake()
+    private void Start()
     {
         acceptBtn.onClick.AddListener(OnAccept);
         declineBtn.onClick.AddListener(OnDecline);
-        confirmBtn.onClick.AddListener(() => completePanel.SetActive(false));
-
-        // Storage에서 어떤 아이템이 바뀌어도 진행 UI 갱신
-        if (Storage.Instance != null)
-        {
-            Storage.Instance.OnStorageChanged += _ =>
-            {
-                if (currentQuest != null)
-                    RefreshObjectives();
-            };
-        }
+        completeBtn.onClick.AddListener(OnCompleteConfirmed);
     }
 
-    private void Start()
+    public void ShowQuestOffer(RandomQuest quest)
     {
-        offerPanel.SetActive(false);
-        progressPanel.SetActive(false);
-        completePanel.SetActive(false);
-    }
-
-    /// <summary>
-    /// 퀘스트 제안창 띄우기
-    /// </summary>
-    public void ShowQuestOffer(RandomQuest rq)
-    {
-        currentQuest = rq;
-        rq.status = RandomQuest.QuestStatus.NotStarted;
-
+        currentQuest = quest;
         offerPanel.SetActive(true);
-        progressPanel.SetActive(false);
-        completePanel.SetActive(false);
+        questText.text = ""; // 초기화
+        StopAllCoroutines();
+        StartCoroutine(TypeText(quest.title + "\n\n" + quest.description));
+    }
 
-        offerTitle.text = rq.title;
-        StartCoroutine(TypeText(offerDesc, rq.description));
+    private System.Collections.IEnumerator TypeText(string text)
+    {
+        questText.text = "";
+        foreach (char c in text)
+        {
+            questText.text += c;
+            yield return new WaitForSeconds(0.015f);
+        }
     }
 
     private void OnAccept()
     {
-        if (currentQuest == null) return;
-        currentQuest.Accept();
+        if (currentQuest != null)
+        {
+            currentQuest.Accept();
+            QuestManager.Instance.AddQuest(currentQuest.ToQuest());
+        }
+
         offerPanel.SetActive(false);
-
-        // QuestManager에 런타임 데이터 등록
-        QuestManager.Instance.AddQuest(currentQuest.ToQuest());
-
-        // 진행 UI 열기 및 초기 갱신
-        progressPanel.SetActive(true);
-        RefreshObjectives();
+        currentQuest = null;
     }
 
     private void OnDecline()
     {
-        if (currentQuest == null) return;
-        currentQuest.Decline();
+        if (currentQuest != null)
+        {
+            currentQuest.Decline();
+        }
+
         offerPanel.SetActive(false);
+        currentQuest = null;
     }
 
-    /// <summary>
-    /// 목표 UI 갱신 및 완료 체크
-    /// </summary>
-    public void RefreshObjectives()
-    {
-        // 1) 각 목표의 targetId로 창고 수량 조회
-        foreach (var o in currentQuest.objectives)
-        {
-            int qty = Storage.Instance.GetItemQuantityById(o.targetId);
-            o.currentAmount = qty;
-            o.isCompleted   = (qty >= o.requiredAmount);
-        }
-
-        // 2) UI 목록 갱신
-        foreach (Transform t in objectivesContainer)
-            Destroy(t.gameObject);
-
-        foreach (var o in currentQuest.objectives)
-        {
-            var go  = Instantiate(objectivePrefab, objectivesContainer);
-            var txt = go.GetComponentInChildren<TextMeshProUGUI>();
-            txt.text = $"{o.description} ({o.currentAmount}/{o.requiredAmount})";
-            if (o.isCompleted)
-                txt.color = Color.green;
-        }
-
-        // 3) 자동 완료 체크
-        currentQuest.CheckCompletion();
-        if (currentQuest.status == RandomQuest.QuestStatus.Completed)
-            ShowCompletion();
-    }
-
-    /// <summary>
-    /// 완료 UI 표시 및 보상 텍스트
-    /// </summary>
-    private void ShowCompletion()
+    public void ShowCompletion(RandomQuest quest)
     {
         completePanel.SetActive(true);
-        completeTitle.text = $"퀘스트 완료: {currentQuest.title}";
-
-        string detail = "";
-        foreach (var r in currentQuest.rewards)
-            detail += $"{r.type}: {r.amount}\n";
-        completeRewards.text = detail;
-
-        // QuestManager에 완료 알림
-        QuestManager.Instance.TriggerQuestCompleted(currentQuest.ToQuest());
+        completeText.text = $"퀘스트 완료!\n보상: {quest.rewards[0].amount} COMA";
     }
 
-    private IEnumerator TypeText(TextMeshProUGUI comp, string msg)
+    private void OnCompleteConfirmed()
     {
-        comp.text = "";
-        foreach (var c in msg)
-        {
-            comp.text += c;
-            yield return new WaitForSeconds(typingSpeed);
-        }
+        completePanel.SetActive(false);
     }
 }
