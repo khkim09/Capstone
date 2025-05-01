@@ -250,7 +250,7 @@ public class GameManager : MonoBehaviour
         //
         // Room room1 =
         //     GameObjectFactory.Instance.RoomFactory.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
-
+        //
         // playerShip.AddRoom(room2, new Vector2Int(0, 0), RotationConstants.Rotation.Rotation0);
         // playerShip.AddRoom(room3, new Vector2Int(4, 1), RotationConstants.Rotation.Rotation90);
         // playerShip.AddRoom(room1, new Vector2Int(-4, -1), RotationConstants.Rotation.Rotation0);
@@ -282,6 +282,10 @@ public class GameManager : MonoBehaviour
         //ShipSerialization.LoadShip(Application.persistentDataPath + "/ship_data.es3");
         //ShipSerialization.LoadShip(Application.persistentDataPath + "/ship_data.es3");
         //
+
+        //ShipSerialization.SaveShip(playerShip, Application.persistentDataPath + "/ship_data_test.es3");
+        // ShipSerialization.LoadShip(Application.persistentDataPath + "/ship_data_test.es3");
+        // ShipSerialization.LoadShip(Application.persistentDataPath + "/ship_data_test.es3");
 
         // RoomSerialization.SaveAllRooms(GetAllRooms(), Application.persistentDataPath + "/room_data.es3");
         //

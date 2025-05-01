@@ -162,13 +162,13 @@ public class ShipTemplateSaver : MonoBehaviour
     {
         if (targetBlueprintShip == null)
         {
-            ShowFeedback("블루프린트 함선이 없습니다.");
+            ShowFeedback("There is no blueprint ship to save.");
             return;
         }
 
         if (string.IsNullOrEmpty(templateNameInput.text))
         {
-            ShowFeedback("템플릿 이름을 입력해주세요.");
+            ShowFeedback("Please enter a template name.");
             return;
         }
 
@@ -176,7 +176,7 @@ public class ShipTemplateSaver : MonoBehaviour
 
         if (bpRooms.Length == 0)
         {
-            ShowFeedback("저장할 블루프린트 방이 없습니다.");
+            ShowFeedback("There is no blueprint room in the blueprint ship.");
             return;
         }
 
@@ -189,12 +189,12 @@ public class ShipTemplateSaver : MonoBehaviour
             string templateFileName = GetTemplateFilePath(templateNameInput.text);
             ShipSerialization.SaveShip(playerShip, templateFileName);
 
-            ShowFeedback($"템플릿 '{templateNameInput.text}'이(가) 저장되었습니다.");
+            ShowFeedback($"Template '{templateNameInput.text}' is saved.");
             templateNameInput.text = "";
         }
         catch (Exception ex)
         {
-            ShowFeedback($"저장 실패: {ex.Message}");
+            ShowFeedback($"Save failed: {ex.Message}");
             Debug.LogError($"템플릿 저장 실패: {ex}");
         }
     }
