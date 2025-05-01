@@ -3,6 +3,13 @@ using UnityEngine;
 
 public static class AStar
 {
+    /// <summary>
+    /// 최단 경로 탐색
+    /// </summary>
+    /// <param name="start"></param>
+    /// <param name="goal"></param>
+    /// <param name="validator"></param>
+    /// <returns></returns>
     public static List<Vector2Int> FindPath(Vector2Int start, Vector2Int goal, CrewMovementValidator validator)
     {
         var openSet = new PriorityQueue<Vector2Int>();

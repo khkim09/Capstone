@@ -90,10 +90,10 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     [Header("Location")] public Room currentRoom;
 
     /// <summary>현재 좌표 (월드 또는 로컬 좌표계 기반).</summary>
-    public Vector2 position;
+    public Vector2Int position;
 
     /// <summary>이동 예정 좌표 (월드 또는 로컬 좌표계 기반).</summary>
-    public Vector2 targetPosition;
+    public Vector2Int targetPosition;
 
     /// <summary>이동 속도 (초당 거리).</summary>
     public float moveSpeed = 3.0f;
@@ -147,8 +147,8 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     private void Update()
     {
         // 이동 처리
-        if (isMoving)
-            UpdateMovement();
+        // if (isMoving)
+        //     UpdateMovement();
 
         // 스킬 증가 체크
         timeSinceLastSkillIncrease += Time.deltaTime;
@@ -164,13 +164,14 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
     }
 
+    /*
     /// <summary>
     /// 선원의 위치를 목표 좌표로 갱신하며, 도착 시 방 입장 처리를 합니다.
     /// </summary>
     private void UpdateMovement()
     {
         // 목표 위치로 이동
-        Vector2 direction = (targetPosition - position).normalized;
+        Vector2Int direction = (targetPosition - position).normalized;
         position += direction * moveSpeed * Time.deltaTime;
 
         // 도착 확인
@@ -184,6 +185,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
                 currentRoom.OnCrewEnter(this);
         }
     }
+    */
 
 
     /// <summary>
@@ -292,25 +294,6 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         // 스킬 향상
         skills[skill] = Mathf.Min(skills[skill] + amount, maxSkillValue);
-    }
-
-    /// <summary>
-    /// 선원을 지정된 방으로 이동시키며 이동 애니메이션을 시작합니다.
-    /// </summary>
-    /// <param name="targetRoom">목표 방.</param>
-    /// <param name="roomPosition">목표 위치 좌표.</param>
-    public void MoveToRoom(Room targetRoom, Vector2 roomPosition)
-    {
-        // 현재 방에서 나감
-        if (currentRoom != null)
-            currentRoom.OnCrewExit(this);
-
-        // 새 방으로 설정
-        currentRoom = targetRoom;
-
-        // 이동 시작
-        targetPosition = roomPosition;
-        isMoving = true;
     }
 
     // 전투 관련

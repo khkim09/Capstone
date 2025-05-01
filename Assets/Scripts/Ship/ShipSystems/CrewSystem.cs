@@ -3,6 +3,17 @@ using System.Linq;
 using UnityEngine;
 
 /// <summary>
+/// 백업할 선원 데이터 구조체
+/// </summary>
+[System.Serializable]
+public class BackupCrewData
+{
+    public CrewMember crew;
+    public Vector2Int position;
+    public Room currentRoom;
+}
+
+/// <summary>
 /// 함선의 크루(승무원) 관리 시스템.
 /// 크루의 추가, 제거 및 크루 수 관련 기능을 담당.
 /// </summary>
@@ -48,25 +59,64 @@ public class CrewSystem : ShipSystem
 
         parentShip.RecalculateAllStats();
 
-        if (newCrew.currentRoom == null)
+        // 1. 유효한 CrewMember인지 검사
+        CrewMember crew = newCrew as CrewMember;
+        if (crew == null)
         {
-            Room randomRoom = parentShip.GetRandomRoom();
-            randomRoom.OnCrewEnter(newCrew);
-
-            newCrew.transform.position = parentShip.GridToWorldPosition(randomRoom.position);
-            newCrew.transform.SetParent(randomRoom.transform);
-            newCrew.currentRoom = randomRoom;
-            newCrew.position = randomRoom.position;
-        }
-        else
-        {
-            newCrew.currentRoom.OnCrewEnter(newCrew);
-            newCrew.transform.position = parentShip.GridToWorldPosition(newCrew.currentRoom.position);
-            newCrew.transform.SetParent(newCrew.currentRoom.transform);
+            Debug.LogWarning("CrewSystem - AddCrew : CrewBase가 CrewMember가 아님");
+            return false;
         }
 
-        crews.Add(newCrew);
-        return true;
+        // 2. 배치 가능한 방 리스트 획득
+        List<Room> allRooms = parentShip.GetAllRooms();
+        List<Room> shuffled = allRooms.OrderBy(_ => Random.value).ToList();
+
+        // 3. 랜덤방 점유되지 않은 랜덤 타일에 선원 배치
+        foreach (Room room in shuffled)
+        {
+            List<Vector2Int> candidates = room.GetRotatedCrewEntryGridPriority().Where
+            (
+                t => !room.IsTileOccupiedByCrew(t) && !parentShip.IsCrewTileOccupied(room, t)
+            ).ToList();
+
+            if (candidates.Count == 0)
+                continue;
+
+            Vector2Int spawnTile = candidates[Random.Range(0, candidates.Count)];
+            crew.position = spawnTile;
+            crew.currentRoom = room;
+            crew.transform.position = parentShip.GridToWorldPosition(spawnTile);
+            crew.transform.SetParent(room.transform);
+
+            room.OccupyTile(spawnTile);
+            room.OnCrewEnter(crew);
+            parentShip.MarkCrewTileOccupied(room, spawnTile);
+
+            crews.Add(crew);
+            return true;
+        }
+
+        return false;
+
+        // if (newCrew.currentRoom == null)
+        // {
+        //     Room randomRoom = parentShip.GetRandomRoom();
+        //     randomRoom.OnCrewEnter(newCrew);
+
+        //     newCrew.transform.position = parentShip.GridToWorldPosition(randomRoom.position);
+        //     newCrew.transform.SetParent(randomRoom.transform);
+        //     newCrew.currentRoom = randomRoom;
+        //     newCrew.position = randomRoom.position;
+        // }
+        // else
+        // {
+        //     newCrew.currentRoom.OnCrewEnter(newCrew);
+        //     newCrew.transform.position = parentShip.GridToWorldPosition(newCrew.position);
+        //     newCrew.transform.SetParent(newCrew.currentRoom.transform);
+        // }
+
+        // crews.Add(newCrew);
+        // return true;
     }
 
     /// <summary>
@@ -87,6 +137,9 @@ public class CrewSystem : ShipSystem
         return true;
     }
 
+    /// <summary>
+    /// 소유하고 있는 모든 선원을 제거
+    /// </summary>
     public void RemoveAllCrews()
     {
         for (int i = crews.Count - 1; i >= 0; i--) RemoveCrew(crews[i]);
@@ -128,67 +181,104 @@ public class CrewSystem : ShipSystem
     }
 
     /// <summary>
-    /// 새로운 함선의 랜덤한 방의 랜덤 타일에 선원 배치 (겹치지 않게 타일 점유 등록)
+    /// 유효성 검사 실패 시, 기존 선원들을 백업된 위치 및 방으로 복구
     /// </summary>
-    public void RestoreCrewAfterBuild(List<CrewMember> backupCrews)
+    public void RevertOriginalCrews(List<BackupCrewData> backupDatas)
     {
-        HashSet<Vector2Int> alreadyOccupiedTiles = new HashSet<Vector2Int>();
-
-        foreach (CrewMember crew in backupCrews)
+        foreach (BackupCrewData data in backupDatas)
         {
-            Room assignRoom = FindRandomRoom();
-            if (assignRoom != null)
-            {
-                // 랜덤 배치 가능한 좌표 리스트
-                List<Vector2Int> candidates = assignRoom.GetRotatedCrewEntryGridPriority().Where
-                (
-                    t => !assignRoom.IsTileOccupiedByCrew(t) && !alreadyOccupiedTiles.Contains(t)
-                ).ToList();
+            CrewMember crew = data.crew;
+            Vector2Int pos = data.position;
+            Room room = data.currentRoom;
 
-                // 모든 방이 다 찼으면 (그럴 일 없지만) 무시하고 랜덤 배치
-                if (candidates.Count == 0)
-                    candidates = assignRoom.GetRotatedCrewEntryGridPriority();
+            CrewBase originCrew = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(crew.race, crew.crewName);
 
-                // 랜덤 배치 좌표
-                Vector2Int assignTile = candidates[Random.Range(0, candidates.Count)];
-                alreadyOccupiedTiles.Add(assignTile);
 
-                // z값 확인 필요 + 같은 타일 생성 안 되게 확인 필요
-                crew.transform.position = new Vector3(assignTile.x + 0.5f, assignTile.y + 0.5f, 0f);
-                crew.position = assignTile;
-                crew.currentRoom = assignRoom;
-                assignRoom.OccupyTile(assignTile);
-                assignRoom.OnCrewEnter(crew);
+            originCrew.position = pos;
+            originCrew.currentRoom = room;
+            originCrew.transform.position = parentShip.GridToWorldPosition(pos);
+            originCrew.transform.SetParent(room.transform);
 
-                // 랜덤 방에 종속
-                crew.transform.SetParent(assignRoom.transform);
+            room.OccupyTile(pos);
+            room.OnCrewEnter(originCrew);
+            parentShip.MarkCrewTileOccupied(room, pos);
 
-                // crew GameObject 활성화 (오류 방지용)
-                crew.gameObject.SetActive(true);
+            // 오브젝트 및 컴포넌트 활성화
+            originCrew.gameObject.SetActive(true);
+            originCrew.enabled = true;
+            BoxCollider2D col = originCrew.GetComponent<BoxCollider2D>();
+            if (col != null)
+                col.enabled = true;
 
-                // CrewMember 컴포넌트 활성화
-                CrewMember member = crew.GetComponent<CrewMember>();
-                if (member != null)
-                    member.enabled = true;
-
-                // box collider 2d 컴포넌트 활성화
-                BoxCollider2D col = crew.GetComponent<BoxCollider2D>();
-                if (col != null)
-                    col.enabled = true;
-            }
+            // 크루 리스트 중복 추가 방지
+            if (!GetCrews().Contains(originCrew))
+                GetCrews().Add(originCrew);
         }
     }
 
     /// <summary>
-    /// 함선 내 랜덤한 방 반환
+    /// 새로운 함선의 랜덤한 방의 랜덤 타일에 선원 배치 (겹치지 않게 타일 점유 등록)
     /// </summary>
-    /// <returns></returns>
-    public Room FindRandomRoom()
+    /// <param name="backupCrewDatas"></param>
+    public void RestoreCrewAfterBuild(List<BackupCrewData> backupCrewDatas)
     {
-        List<Room> rooms = parentShip.GetAllRooms();
-        if (rooms == null || rooms.Count == 0)
-            return null;
+        HashSet<Vector2Int> alreadyOccupiedTiles = new HashSet<Vector2Int>();
 
-        return rooms[Random.Range(0, rooms.Count)];
+        foreach (BackupCrewData data in backupCrewDatas)
+        {
+            CrewMember crew = data.crew;
+
+            List<Room> allRooms = parentShip.GetAllRooms();
+            List<Room> shuffled = allRooms.OrderBy(_ => Random.value).ToList();
+
+            bool assigned = false;
+
+            foreach (Room room in shuffled)
+            {
+                List<Vector2Int> candidates = room.GetRotatedCrewEntryGridPriority().Where
+                (
+                    t => !room.IsTileOccupiedByCrew(t)
+                    && !parentShip.IsCrewTileOccupied(room, t)
+                    && !alreadyOccupiedTiles.Contains(t)
+                ).ToList();
+
+                if (candidates.Count == 0)
+                    continue;
+
+                // 랜덤 타일 선택
+                Vector2Int spawnTile = candidates[Random.Range(0, candidates.Count)];
+                alreadyOccupiedTiles.Add(spawnTile);
+
+                // 위치 설정
+                crew.position = spawnTile;
+                crew.currentRoom = room;
+                crew.transform.position = parentShip.GridToWorldPosition(spawnTile);
+                crew.transform.SetParent(room.transform);
+
+                // 점유 등록
+                room.OccupyTile(spawnTile);
+                room.OnCrewEnter(crew);
+                parentShip.MarkCrewTileOccupied(room, spawnTile);
+
+                // 컴포넌트 활성화
+                crew.gameObject.SetActive(true);
+                crew.enabled = true;
+                BoxCollider2D col = crew.GetComponent<BoxCollider2D>();
+                if (col != null)
+                    col.enabled = true;
+
+                if (!GetCrews().Contains(crew))
+                    GetCrews().Add(crew);
+
+                assigned = true;
+                break;
+            }
+
+            // 만약 모든 방이 다 찼다면 로그 출력
+            if (!assigned)
+            {
+                Debug.LogError("모든 방이 다 차서 선원 겹쳐지게 배치됨.");
+            }
+        }
     }
 }

@@ -10,22 +10,15 @@ public class CrewPathfinder : MonoBehaviour
         movementValidator = validator;
     }
 
-    public List<Vector2Int> FindPathToRoom(CrewMember crew, Room targetRoom)
+    /// <summary>
+    /// 인자로 들어온 위치의 타일까지 최단 경로 검색
+    /// </summary>
+    /// <param name="crew"></param>
+    /// <param name="tile"></param>
+    /// <returns></returns>
+    public List<Vector2Int> FindPathToTile(CrewMember crew, Vector2Int tile)
     {
-        List<Vector2Int> bestPath = null;
-        int minCost = int.MaxValue;
-
-        foreach (Vector2Int entry in targetRoom.GetRotatedCrewEntryGridPriority())
-        {
-            Debug.LogError($"목적지 : {entry}");
-            var path = AStar.FindPath(crew.GetCurrentTile(), entry, movementValidator);
-            if (path != null && path.Count < minCost)
-            {
-                bestPath = path;
-                minCost = path.Count;
-            }
-        }
-
-        return bestPath;
+        Debug.LogError($"목적지 타일 : {crew.reservedTile}");
+        return AStar.FindPath(crew.GetCurrentTile(), tile, movementValidator);
     }
 }

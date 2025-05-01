@@ -67,7 +67,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>
     /// 선원이 점유하고 있는 tile
     /// </summary>
-    private HashSet<Vector2Int> occupiedCrewTiles = new HashSet<Vector2Int>();
+    public HashSet<Vector2Int> occupiedCrewTiles = new HashSet<Vector2Int>();
 
     /// <summary>
     /// 각 방에 collider 추가, isTrigger = true 설정을 통해 선원 충돌 방해 제거
@@ -603,7 +603,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     }
 
     /// <summary>
-    /// 실제로 점유하고 있는지 여부 반환
+    /// 인자 타일이 방의 일부인지 여부 반환
     /// </summary>
     /// <param name="tile"></param>
     /// <returns></returns>
