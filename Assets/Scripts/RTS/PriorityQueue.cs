@@ -1,5 +1,9 @@
 using System.Collections.Generic;
 
+/// <summary>
+/// 간단한 우선순위 큐 구현 (A*에서 사용)
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public class PriorityQueue<T>
 {
     private List<(T item, int priority)> elements = new();
