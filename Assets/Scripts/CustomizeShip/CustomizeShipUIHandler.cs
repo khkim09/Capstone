@@ -81,7 +81,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// </summary>
     private int totalBPCost = 0;
 
-    public List<CrewMember> backupCrews = new List<CrewMember>();
+    public List<BackupCrewData> backupCrewDatas = new List<BackupCrewData>();
 
     /// <summary>
     /// 현재 설계도의 가격 지속 갱신
@@ -233,6 +233,24 @@ public class CustomizeShipUIHandler : MonoBehaviour
     }
 
     /// <summary>
+    /// 선원 데이터 백업 작업
+    /// </summary>
+    private void BackUpCrewDatas()
+    {
+        backupCrewDatas.Clear();
+
+        foreach (CrewMember cm in playerShip.GetSystem<CrewSystem>().GetCrews())
+        {
+            backupCrewDatas.Add(new BackupCrewData
+            {
+                crew = cm,
+                position = cm.GetCurrentTile(),
+                currentRoom = cm.currentRoom
+            });
+        }
+    }
+
+    /// <summary>
     /// '함선 제작' 버튼 클릭 시 호출.
     /// 조건 만족 시 기존 함선을 설계도의 함선으로 교체합니다.
     /// 이후 방, 문의 연결 유효성 검사 수행 후 만족 여부에 따라 실제 함선으로 교체, 다시 설계도로 복구를 수행
@@ -243,7 +261,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
         originalShipCost = playerShip.GetTotalShipValue();
 
         // 2. 기존 선원, 함선 백업
-        backupCrews = playerShip.GetSystem<CrewSystem>().GetCrews().OfType<CrewMember>().ToList();
+        BackUpCrewDatas();
         playerShip.BackupCurrentShip();
 
         // 3. 설계도 -> 실제 함선 (bpRoom -> Room) 변환
@@ -257,10 +275,15 @@ public class CustomizeShipUIHandler : MonoBehaviour
         if (!validationResult.IsValid)
         {
             Debug.Log("유효 X");
-            // 실패 -> 기존 함선 복원
+
+            // 실패
+            feedbackText.text = $"X {validationResult.Message}";
+
+            // 기존 함선으로 복원
             playerShip.RevertToOriginalShip();
 
-            feedbackText.text = $"X {validationResult.Message}";
+            // 기존 선원 복원
+            playerShip.GetSystem<CrewSystem>().RevertOriginalCrews(backupCrewDatas);
         }
         else
         {
@@ -279,11 +302,15 @@ public class CustomizeShipUIHandler : MonoBehaviour
             RTSSelectionManager.Instance.RefreshMovementData();
 
             // 1) 모든 방의 타일 - 선원 점유 상태 초기화
+            Debug.LogError($"빌드 후 전체 방 수 : {playerShip.GetAllRooms().Count}");
             foreach (Room room in playerShip.GetAllRooms())
                 room.ClearCrewOccupancy();
 
-            // 2) 기존 선원 복구 및 랜덤 배치
-            playerShip.GetSystem<CrewSystem>().RestoreCrewAfterBuild(backupCrews);
+            // 2) 전역 타일 점유 상태 초기화 (ship 단위)
+            playerShip.ClearAllCrewTileOccupancy();
+
+            // 3) 기존 선원 복구 및 랜덤 배치
+            playerShip.GetSystem<CrewSystem>().RestoreCrewAfterBuild(backupCrewDatas);
         }
 
         // 함선 스텟 다시 계산

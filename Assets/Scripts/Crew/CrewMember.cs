@@ -12,7 +12,7 @@ using UnityEngine.XR;
 public class CrewMember : CrewBase
 {
     /// <summary>
-    /// 현재 목표 이동 타일
+    /// 현재 이동중인 타일
     /// </summary>
     private Vector2Int currentTargetTile;
 
@@ -30,14 +30,24 @@ public class CrewMember : CrewBase
     private Coroutine moveCoroutine;
 
     /// <summary>
-    /// 목적지 방
+    /// 최종 목적지 방
     /// </summary>
     public Room reservedRoom;
 
     /// <summary>
-    /// 목적지 타일
+    /// 예약했지만 취소한 목적지 방
+    /// </summary>
+    public Room oldReservedRoom;
+
+    /// <summary>
+    /// 새로운 최종 목적지 타일
     /// </summary>
     public Vector2Int reservedTile;
+
+    /// <summary>
+    /// 이동 중 새로운 이동 명령 내리기 전 예약했던 목적지 타일 (최종으로 예약했지만 취소한 목적지 타일)
+    /// </summary>
+    public Vector2Int oldReservedTile;
 
     /// <summary>
     /// Unity 생명주기 메서드.
@@ -118,28 +128,34 @@ public class CrewMember : CrewBase
             moveCoroutine = null;
         }
 
+        // 1. 현재 이동 중인 타일까지 도달 후 정지
         if (currentTargetTile != null)
         {
             Vector3 targetWorldPos = GridToWorldPosition(currentTargetTile);
 
             while (Vector3.Distance(transform.position, targetWorldPos) > 0.01f)
-                transform.position = Vector3.MoveTowards(transform.position, targetWorldPos, moveSpeed * Time.deltaTime);
+            {
+                float speedMultiplier = 1f;
+
+                // 현재 방 체크
+                Room room = RTSSelectionManager.Instance.playerShip.GetRoomAtPosition(GetCurrentTile());
+
+                // 복도는 이동 속도 30% 증가
+                if (room != null && room.GetRoomType() == RoomType.Corridor)
+                    speedMultiplier = 1.33f;
+
+                // MoveTowards() : 다른 선원과의 충돌 무시하고 통과
+                transform.position = Vector3.MoveTowards(transform.position, targetWorldPos, moveSpeed * speedMultiplier * Time.deltaTime);
+            }
 
             transform.position = targetWorldPos;
-            position = new Vector2(currentTargetTile.x, currentTargetTile.y);
-        }
-        else
-        {
-            // 비상 처리 : 현재 좌표 스냅
-            Vector2 snappedPos = new Vector2(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y));
-            transform.position = new Vector3(snappedPos.x, snappedPos.y, transform.position.z);
-            position = new Vector2(Mathf.RoundToInt(snappedPos.x), Mathf.RoundToInt(snappedPos.y));
+            position = new Vector2Int(currentTargetTile.x, currentTargetTile.y);
         }
 
-        // 1. 이동 중 새로운 이동 명령 수신에도 기존 점유 타일 해제
-        ExitCurrentTile();
+        // 2. 이전 목적지 타일 점유 해제
+        ExitReserveTile();
 
-        // 2. 새로운 목적지 예약 (점유)
+        // 3. 새로운 목적지 예약
         ReserveDestination();
 
         // 새로운 경로 이동
@@ -148,15 +164,33 @@ public class CrewMember : CrewBase
     }
 
     /// <summary>
-    /// 기존 점유 타일 해제, 방에서 나옴
+    /// 정지 상태에서 이동 명령 - 기존 점유 타일 해제, 방에서 나옴
     /// </summary>
     private void ExitCurrentTile()
     {
         if (currentRoom != null)
         {
+            Debug.LogError($"기존 위치하던 pos : {GetCurrentTile()}");
             Vector2Int currentTile = GetCurrentTile();
             currentRoom.VacateTile(currentTile);
             currentRoom.OnCrewExit(this);
+            RTSSelectionManager.Instance.playerShip.UnmarkCrewTile(currentRoom, currentTile);
+            transform.SetParent(null);
+        }
+    }
+
+    /// <summary>
+    /// 움직이던 도중 새로운 이동 명령 - 예약 목적지 타일 점유 해제, 방에서 나옴
+    /// </summary>
+    private void ExitReserveTile()
+    {
+        if (oldReservedRoom != null)
+        {
+            Debug.LogError($"최종 예약했지만 취소하는 타일 pos : {oldReservedTile}");
+            oldReservedRoom.VacateTile(oldReservedTile);
+            oldReservedRoom.OnCrewExit(this);
+            RTSSelectionManager.Instance.playerShip.UnmarkCrewTile(oldReservedRoom, oldReservedTile);
+            transform.SetParent(null);
         }
     }
 
@@ -167,17 +201,12 @@ public class CrewMember : CrewBase
     {
         if (reservedRoom != null)
         {
-            List<Vector2Int> candidates = reservedRoom.GetRotatedCrewEntryGridPriority().Where
-            (
-                t => !reservedRoom.IsTileOccupiedByCrew(t)
-            ).ToList();
-
-            if (candidates.Count > 0)
-            {
-                // 점유 되지 않은 타일 (candidates) 중 우선순위 가장 높은 타일 선택 (candidates[0])
-                reservedTile = candidates[0];
-                reservedRoom.OccupyTile(reservedTile);
-            }
+            Debug.LogError($"최종 예약된 타일 pos : {reservedTile}");
+            reservedRoom.OccupyTile(reservedTile);
+            reservedRoom.OnCrewEnter(this);
+            currentRoom = reservedRoom;
+            RTSSelectionManager.Instance.playerShip.MarkCrewTileOccupied(reservedRoom, reservedTile);
+            transform.SetParent(reservedRoom.transform);
         }
     }
 
@@ -189,6 +218,19 @@ public class CrewMember : CrewBase
             animator.SetFloat("Y", movementDirection.y);
         }
         animator.SetBool(trigger,isMoving);
+    }
+
+    /// <summary>
+    /// 현재 방에서 선원이 점유 중인 타일의 우선순위 인덱스 반환
+    /// </summary>
+    /// <returns></returns>
+    public int GetCurrentTilePriorityIndex()
+    {
+        if (currentRoom == null)
+            return -1;
+
+        List<Vector2Int> priorityList = currentRoom.GetRotatedCrewEntryGridPriority();
+        return priorityList.IndexOf(GetCurrentTile());
     }
 
     /// <summary>
@@ -216,9 +258,9 @@ public class CrewMember : CrewBase
                 // 현재 방 체크
                 Room room = RTSSelectionManager.Instance.playerShip.GetRoomAtPosition(GetCurrentTile());
 
-                // 복도는 이동 속도 10% 증가
+                // 복도는 이동 속도 30% 증가
                 if (room != null && room.GetRoomType() == RoomType.Corridor)
-                    speedMultiplier = 1.1f;
+                    speedMultiplier = 1.33f;
 
                 // MoveTowards() : 다른 선원과의 충돌 무시하고 통과
                 transform.position = Vector3.MoveTowards(transform.position, targetWorldPos, moveSpeed * speedMultiplier * Time.deltaTime);
@@ -227,7 +269,7 @@ public class CrewMember : CrewBase
 
             // 선원 위치 갱신
             transform.position = targetWorldPos;
-            position = new Vector2(tile.x, tile.y);
+            position = new Vector2Int(tile.x, tile.y);
         }
 
         isMoving = false;

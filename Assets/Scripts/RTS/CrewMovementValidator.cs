@@ -29,11 +29,10 @@ public class CrewMovementValidator : MonoBehaviour
     }
 
     /// <summary>
-    /// 타일이 이동 가능한가 (방/복도에 속하는가)
+    /// 타일이 이동 가능한 영역인가 (방/복도에 속하는가)
     /// </summary>
     public bool IsTileWalkable(Vector2Int tile)
     {
-        Debug.LogWarning($"{tile} istilewalkable : {walkableTiles.Contains(tile)}");
         return walkableTiles.Contains(tile);
     }
 
@@ -44,8 +43,6 @@ public class CrewMovementValidator : MonoBehaviour
     {
         Room roomA = GetRoomAtTile(from);
         Room roomB = GetRoomAtTile(to);
-
-        Debug.LogError($"{roomA} -> {roomB}");
 
         if (roomA == null || roomB == null)
             return false;

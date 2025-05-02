@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 랜덤 퀘스트를 생성하고 QuestManager에 등록하는 매니저
+/// 랜덤 퀘스트를 생성하고 QuestManager에 등록하는 클래스입니다.
 /// </summary>
 public class RandomQuestSpawner : MonoBehaviour
 {
@@ -19,7 +19,7 @@ public class RandomQuestSpawner : MonoBehaviour
     public List<string> planetIds = new List<string> { "SIS", "CCK", "ICM", "RCE", "KTL" };
 
     /// <summary>
-    /// 퀘스트를 무작위로 선택하고, 실행 시점에 목표 및 보상을 구성하여 등록하고 UI에 표시
+    /// 퀘스트를 무작위로 선택하고, 실행 시점에 목표 및 보상을 구성하여 UI에 표시합니다.
     /// </summary>
     public void SpawnRandomQuest()
     {
@@ -32,7 +32,7 @@ public class RandomQuestSpawner : MonoBehaviour
         RandomQuest selectedQuest = questTemplates[Random.Range(0, questTemplates.Count)];
         RandomQuest newQuest = Instantiate(selectedQuest);
         ConfigureQuest(newQuest);
-        
+
         QuestUIManager ui = FindObjectOfType<QuestUIManager>();
         if (ui != null)
         {
@@ -61,7 +61,6 @@ public class RandomQuestSpawner : MonoBehaviour
                         objective.destinationPlanetId = GetRandomPlanetId();
                         objective.description = $"'{itemT.itemName}' {objective.requiredAmount} transport to {objective.destinationPlanetId}.";
 
-                        // 보상 계산
                         float reward = itemT.costMax * 1.1f * objective.requiredAmount;
                         quest.rewards.Add(new RandomQuest.QuestReward { amount = Mathf.RoundToInt(reward) });
                     }
@@ -73,10 +72,9 @@ public class RandomQuestSpawner : MonoBehaviour
                     {
                         objective.targetId = itemP.id.ToString();
                         objective.requiredAmount = Random.Range(1, itemP.capacity + 1);
-                        objective.destinationPlanetId = "UNKNOWN"; // 수락한 행성으로 수정 예정
+                        objective.destinationPlanetId = "UNKNOWN";
                         objective.description = $"Get '{itemP.itemName}' {objective.requiredAmount} and procurement to planet.";
 
-                        // 보상 계산
                         float reward = itemP.costBase * (1 + itemP.costChangerate) * 1.1f * objective.requiredAmount;
                         quest.rewards.Add(new RandomQuest.QuestReward { amount = Mathf.RoundToInt(reward) });
                     }
@@ -87,7 +85,6 @@ public class RandomQuestSpawner : MonoBehaviour
                     objective.destinationPlanetId = GetRandomPlanetId();
                     objective.description = $"Crew {objective.killCount} need to Transport to {objective.destinationPlanetId}.";
 
-                    // 보상 계산
                     int crewReward = objective.killCount * 300;
                     quest.rewards.Add(new RandomQuest.QuestReward { amount = crewReward });
                     break;
@@ -96,16 +93,18 @@ public class RandomQuestSpawner : MonoBehaviour
                     objective.killCount = Random.Range(5, 21);
                     objective.description = $"Kill pirate {objective.killCount}.";
 
-                    // 보상 계산
                     int pirateReward = objective.killCount * 100;
                     quest.rewards.Add(new RandomQuest.QuestReward { amount = pirateReward });
                     break;
             }
         }
 
+        /// <summary>
+        /// 퀘스트의 대표 설명을 마지막 objective의 설명으로 설정합니다.
+        /// </summary>
         if (quest.objectives.Count > 0)
         {
-            quest.description = quest.objectives[0].description;
+            quest.description = quest.objectives[^1].description;
         }
     }
 
@@ -125,9 +124,9 @@ public class RandomQuestSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// planetIds 리스트 중에서 무작위 행성 ID를 반환합니다.
+    /// 행성 ID 목록 중 무작위 행성 ID를 반환합니다.
     /// </summary>
-    /// <returns>랜덤 행성 ID</returns>
+    /// <returns>무작위로 선택된 행성 ID 문자열</returns>
     private string GetRandomPlanetId()
     {
         if (planetIds == null || planetIds.Count == 0)

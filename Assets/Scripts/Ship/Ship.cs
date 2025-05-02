@@ -75,6 +75,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     public event Action OnRoomChanged;
 
     /// <summary>
+    /// 선원이 점유하는 타일 관리 (전역 변수)
+    /// </summary>
+    private Dictionary<Room, HashSet<Vector2Int>> crewOccupiedTiles = new Dictionary<Room, HashSet<Vector2Int>>();
+
+    /// <summary>
     /// 함선의 초기 상태를 설정합니다.
     /// 기본 스탯 설정 및 시스템 초기화를 수행합니다.
     /// </summary>
@@ -468,6 +473,68 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     }
 
     // ---------------- <기현> 여기까지 --------------------
+
+    #endregion
+
+    #region RTS 이동 위한 타일 관리
+
+    /// <summary>
+    /// 선원의 해당 타일 점유 등록 (우선순위 타일 채움)
+    /// </summary>
+    /// <param name="room"></param>
+    /// <param name="tile"></param>
+    public void MarkCrewTileOccupied(Room room, Vector2Int tile)
+    {
+        if (!crewOccupiedTiles.ContainsKey(room))
+            crewOccupiedTiles[room] = new HashSet<Vector2Int>();
+
+        crewOccupiedTiles[room].Add(tile);
+    }
+
+    /// <summary>
+    /// 선원의 해당 타일 점유 해제 (우선순위 타일 나옴)
+    /// </summary>
+    /// <param name="room"></param>
+    /// <param name="tile"></param>
+    public void UnmarkCrewTile(Room room, Vector2Int tile)
+    {
+        if (crewOccupiedTiles.ContainsKey(room))
+            crewOccupiedTiles[room].Remove(tile);
+    }
+
+    /// <summary>
+    /// 전체 방에 대한 선원의 점유 타일 목록에 해당 방, 타일이 있는가
+    /// </summary>
+    /// <param name="room"></param>
+    /// <param name="tile"></param>
+    /// <returns></returns>
+    public bool IsCrewTileOccupied(Room room, Vector2Int tile)
+    {
+        return crewOccupiedTiles.ContainsKey(room) && crewOccupiedTiles[room].Contains(tile);
+    }
+
+    /// <summary>
+    /// 전체 방에 대한 선원의 점유 타일 호출
+    /// </summary>
+    /// <param name="room"></param>
+    /// <returns></returns>
+    public HashSet<Vector2Int> GetCrewOccupiedTiles(Room room)
+    {
+        if (!crewOccupiedTiles.ContainsKey(room))
+            crewOccupiedTiles[room] = new HashSet<Vector2Int>();
+
+        return crewOccupiedTiles[room];
+    }
+
+    /// <summary>
+    /// 선원이 점유하는 타일 모두 해제
+    /// </summary>
+    public void ClearAllCrewTileOccupancy()
+    {
+        // 각 방의 점유 타일 HashSet 초기화
+        foreach (KeyValuePair<Room, HashSet<Vector2Int>> entry in crewOccupiedTiles)
+            entry.Value.Clear();
+    }
 
     #endregion
 
@@ -882,9 +949,17 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         return allRooms;
     }
 
+    /// <summary>
+    /// 랜덤한 방 반환
+    /// </summary>
+    /// <returns></returns>
     public Room GetRandomRoom()
     {
-        return allRooms[Random.Range(0, allRooms.Count)];
+        List<Room> rooms = GetAllRooms();
+        if (rooms == null || rooms.Count == 0)
+            return null;
+
+        return rooms[Random.Range(0, rooms.Count)];
     }
 
     #region 무기
