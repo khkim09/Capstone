@@ -503,6 +503,8 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             if (newWeapon != null) newWeapon.ApplyRotationSprite(GetOuterHullLevel());
         }
 
+        UpdateOuterHullVisuals();
+
         // 6. 스탯 및 시스템 재계산
         RecalculateAllStats();
     }

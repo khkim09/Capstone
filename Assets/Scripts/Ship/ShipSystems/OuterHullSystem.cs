@@ -88,7 +88,7 @@ public class OuterHullSystem : ShipSystem
 
     /// <summary>
     /// 외갑판의 시각적 표현을 업데이트합니다.
-    /// 방 주변에 외갑판을 생성하고 적절한 스프라이트를 적용합니다.
+    /// 방 주변에 외갑판을 생성하고, 필요한 위치에 내부 모서리 외갑판도 생성합니다.
     /// </summary>
     /// <param name="level">적용할 외갑판 레벨 (0-2)</param>
     public void UpdateVisuals(int level)
@@ -120,116 +120,348 @@ public class OuterHullSystem : ShipSystem
             foreach (Vector2Int tile in roomTiles) occupiedTiles.Add(tile);
         }
 
-        // 외갑판 생성 작업
-        HashSet<Vector2Int> hullTiles = new();
-        Dictionary<Vector2Int, OuterHullTileInfo> hullInfo = new();
+        // 외갑판 정보를 저장할 딕셔너리
+        // 각 타일 위치에 설치할 외갑판 정보를 저장
+        Dictionary<Vector2Int, List<HullPlacementInfo>> hullPlacements = new();
 
-        // 방향 벡터 (상, 우, 하, 좌)
-        Vector2Int[] directions = new Vector2Int[4]
+        // 방향 벡터 (상하좌우)
+        Vector2Int[] straightDirections = new Vector2Int[4]
         {
-            new(0, 1), // 상
-            new(1, 0), // 우
-            new(0, -1), // 하
-            new(-1, 0) // 좌
+            new(0, -1), // 하 (0)
+            new(-1, 0), // 좌 (1)
+            new(0, 1), // 상 (2)
+            new(1, 0) // 우 (3)
         };
 
-        // 1단계: 각 점유 타일의 인접한 빈 타일을 외갑판으로 지정
+        // 대각선 방향 벡터 (하좌, 상좌, 상우, 하우)
+        Vector2Int[] diagonalDirections = new Vector2Int[4]
+        {
+            new(-1, -1), // 하좌 (0)
+            new(-1, 1), // 상좌 (1)
+            new(1, 1), // 상우 (2)
+            new(1, -1) // 하우 (3)
+        };
+
+        // 1. 직선 방향 외갑판 처리
+        // 모든 방의 상하좌우 인접 타일 검사
         foreach (Vector2Int tile in occupiedTiles)
+            // 상하좌우 4방향 검사
             for (int i = 0; i < 4; i++)
             {
-                Vector2Int neighborTile = tile + directions[i];
+                Vector2Int neighborTile = tile + straightDirections[i];
 
-                // 이미 방이 있는 경우 스킵
+                // 그리드 범위 체크
+                if (IsOutOfBounds(neighborTile))
+                    continue;
+
+                // 방이 있는 타일은 건너뜀
                 if (occupiedTiles.Contains(neighborTile))
                     continue;
 
-                // 그리드 범위 체크
-                if (neighborTile.x < 0 || neighborTile.y < 0 ||
-                    neighborTile.x >= parentShip.GetGridSize().x ||
-                    neighborTile.y >= parentShip.GetGridSize().y)
+                // 타일 정보 초기화
+                if (!hullPlacements.ContainsKey(neighborTile))
+                    hullPlacements[neighborTile] = new List<HullPlacementInfo>();
+
+                // 직선 방향 외갑판 정보 생성
+                HullPlacementInfo straightInfo = new();
+                int oppositeDir = (i + 2) % 4; // 0->2(하->상), 1->3(좌->우), 2->0(상->하), 3->1(우->좌)
+                straightInfo.type = HullType.Straight;
+                straightInfo.directionIndex = oppositeDir;
+                straightInfo.useVariation = Random.Range(0, 100) < 30; // 30% 확률로 변형 사용
+
+                // 중복 검사 및 추가
+                AddPlacementIfNotDuplicate(hullPlacements[neighborTile], straightInfo);
+            }
+
+        // 2. 외부 모서리 외갑판 처리
+        foreach (Vector2Int tile in occupiedTiles)
+            // 대각선 4방향 검사 (하좌, 상좌, 상우, 하우)
+            for (int i = 0; i < 4; i++)
+            {
+                // 방 기준 대각선 위치의 타일
+                Vector2Int diagonalTile = tile + diagonalDirections[i];
+
+                // 범위를 벗어나거나 방이 있는 경우 건너뜀
+                if (IsOutOfBounds(diagonalTile) || occupiedTiles.Contains(diagonalTile))
                     continue;
 
-                // 외갑판 타일 추가
-                hullTiles.Add(neighborTile);
+                // 대각선 반대 방향 인덱스 계산 (0->2, 1->3, 2->0, 3->1)
+                int oppositeCornerIndex = (i + 2) % 4;
 
-                // 외갑판 방향 정보 저장 (인접한 방 위치 기반)
-                if (!hullInfo.ContainsKey(neighborTile)) hullInfo[neighborTile] = new OuterHullTileInfo();
+                // 대각선 위치에서 확인해야 할 두 방향 결정
+                // 예: 하좌(0) 대각선 위치면 우(3)와 상(2) 방향을 확인
+                //     상좌(1) 대각선 위치면 우(3)와 하(0) 방향을 확인
+                //     상우(2) 대각선 위치면 좌(1)와 하(0) 방향을 확인
+                //     하우(3) 대각선 위치면 좌(1)와 상(2) 방향을 확인
+                int dirToCheck1 = -1;
+                int dirToCheck2 = -1;
 
-                // 방향 플래그 설정 (반대 방향)
-                int oppositeDir = (i + 2) % 4; // 0 -> 2, 1 -> 3, 2 -> 0, 3 -> 1
-                hullInfo[neighborTile].directionFlags |= 1 << oppositeDir;
-            }
-
-        // 2단계: 각 외갑판 타일에 적절한 스프라이트 할당
-        foreach (Vector2Int hullTile in hullTiles)
-        {
-            OuterHullTileInfo info = hullInfo[hullTile];
-            int dirFlags = info.directionFlags;
-
-            // 방향 플래그에 따라 스프라이트 인덱스 결정
-            int spriteIndex = 0;
-
-            // 모서리 체크 (두 방향으로 방에 인접한 경우)
-            if (BitCount(dirFlags) == 2)
-            {
-                // 모서리 인덱스 결정 (상우:4, 하우:5, 하좌:6, 상좌:7)
-                if ((dirFlags & 0b0101) == 0b0101) spriteIndex = 4; // 상우
-                else if ((dirFlags & 0b0110) == 0b0110) spriteIndex = 5; // 하우
-                else if ((dirFlags & 0b1010) == 0b1010) spriteIndex = 6; // 하좌
-                else if ((dirFlags & 0b1001) == 0b1001) spriteIndex = 7; // 상좌
-            }
-            else
-            {
-                // 단일 방향 (상:0, 우:1, 하:2, 좌:3)
-                for (int i = 0; i < 4; i++)
-                    if ((dirFlags & (1 << i)) != 0)
-                    {
-                        spriteIndex = i;
+                switch (i)
+                {
+                    case 0: // 하좌 대각선이면 우(3)와 상(2) 확인
+                        dirToCheck1 = 3;
+                        dirToCheck2 = 2;
                         break;
-                    }
+                    case 1: // 상좌 대각선이면 우(3)와 하(0) 확인
+                        dirToCheck1 = 3;
+                        dirToCheck2 = 0;
+                        break;
+                    case 2: // 상우 대각선이면 좌(1)와 하(0) 확인
+                        dirToCheck1 = 1;
+                        dirToCheck2 = 0;
+                        break;
+                    case 3: // 하우 대각선이면 좌(1)와 상(2) 확인
+                        dirToCheck1 = 1;
+                        dirToCheck2 = 2;
+                        break;
+                }
+
+                // 해당 방향의 타일 확인
+                Vector2Int checkTile1 = diagonalTile + straightDirections[dirToCheck1];
+                Vector2Int checkTile2 = diagonalTile + straightDirections[dirToCheck2];
+
+                // 두 방향 모두 방이 없는 경우에만 외부 모서리 설치
+                bool canPlaceOuterCorner =
+                    !IsOutOfBounds(checkTile1) && !occupiedTiles.Contains(checkTile1) &&
+                    !IsOutOfBounds(checkTile2) && !occupiedTiles.Contains(checkTile2);
+
+                if (canPlaceOuterCorner)
+                {
+                    // 타일 정보 초기화
+                    if (!hullPlacements.ContainsKey(diagonalTile))
+                        hullPlacements[diagonalTile] = new List<HullPlacementInfo>();
+
+                    // 외부 모서리 정보 생성 - 위치는 방의 반대쪽 모서리 방향 (예: 좌하단에 방이 있으면 우상단 모서리)
+                    HullPlacementInfo outerCornerInfo = new();
+                    outerCornerInfo.type = HullType.OuterCorner;
+                    outerCornerInfo.directionIndex = oppositeCornerIndex;
+
+                    AddPlacementIfNotDuplicate(hullPlacements[diagonalTile], outerCornerInfo);
+                }
             }
 
-            // 외갑판 게임 오브젝트 생성
-            CreateOuterHull(hullTile, spriteIndex, level, outerHullData, outerHullPrefab);
-        }
+        // 3. 내부 모서리 외갑판 처리
+        foreach (Vector2Int tile in occupiedTiles)
+            // 방 기준 상하좌우 4방향 순회
+            for (int i = 0; i < 4; i++)
+            {
+                // 방 기준 인접한 타일
+                Vector2Int adjacentTile = tile + straightDirections[i];
 
-        Debug.Log($"Created {hullTiles.Count} outer hull tiles at level {level + 1}");
-    }
+                // 범위를 벗어나거나 방이 있는 경우 건너뜀
+                if (IsOutOfBounds(adjacentTile) || occupiedTiles.Contains(adjacentTile))
+                    continue;
 
-    /// <summary>
-    /// 비트 카운트 계산 (방향 플래그 카운팅용)
-    /// </summary>
-    private int BitCount(int n)
-    {
-        int count = 0;
-        while (n > 0)
+                // adjacentTile 기준으로 확인해야 할 두 방향
+                int[] checkDirs = new int[2];
+
+                switch (i)
+                {
+                    case 0: // 하단 방향을 순회했다면 (방은 상단에 있음)
+                        // 좌측과 우측 확인
+                        checkDirs[0] = 1; // 좌
+                        checkDirs[1] = 3; // 우
+                        break;
+                    case 1: // 좌측 방향을 순회했다면 (방은 우측에 있음)
+                        // 상단과 하단 확인
+                        checkDirs[0] = 0; // 하
+                        checkDirs[1] = 2; // 상
+                        break;
+                    case 2: // 상단 방향을 순회했다면 (방은 하단에 있음)
+                        // 좌측과 우측 확인
+                        checkDirs[0] = 1; // 좌
+                        checkDirs[1] = 3; // 우
+                        break;
+                    case 3: // 우측 방향을 순회했다면 (방은 좌측에 있음)
+                        // 상단과 하단 확인
+                        checkDirs[0] = 0; // 하
+                        checkDirs[1] = 2; // 상
+                        break;
+                }
+
+                // 두 방향에 대해 처리
+                for (int j = 0; j < 2; j++)
+                {
+                    int checkDir = checkDirs[j];
+
+                    // adjacentTile 기준으로 해당 방향의 타일
+                    Vector2Int checkTile = adjacentTile + straightDirections[checkDir];
+
+                    // 범위를 벗어나거나 방이 없는 경우 건너뜀
+                    if (IsOutOfBounds(checkTile) || !occupiedTiles.Contains(checkTile))
+                        continue;
+
+                    int innerCornerDir = -1;
+
+                    // 내부 모서리 방향 결정
+                    if (i == 0) // 하단 방향을 순회한 경우 (방은 상단에 있음)
+                    {
+                        if (checkDir == 1) // 좌측 확인 - 좌상단 내부 모서리
+                            innerCornerDir = 1; // 상좌
+                        else if (checkDir == 3) // 우측 확인 - 우상단 내부 모서리
+                            innerCornerDir = 2; // 상우
+                    }
+                    else if (i == 1) // 좌측 방향을 순회한 경우 (방은 우측에 있음)
+                    {
+                        if (checkDir == 0) // 하단 확인 - 우하단 내부 모서리
+                            innerCornerDir = 3; // 하우
+                        else if (checkDir == 2) // 상단 확인 - 우상단 내부 모서리
+                            innerCornerDir = 2; // 상우
+                    }
+                    else if (i == 2) // 상단 방향을 순회한 경우 (방은 하단에 있음)
+                    {
+                        if (checkDir == 1) // 좌측 확인 - 좌하단 내부 모서리
+                            innerCornerDir = 0; // 하좌
+                        else if (checkDir == 3) // 우측 확인 - 우하단 내부 모서리
+                            innerCornerDir = 3; // 하우
+                    }
+                    else if (i == 3) // 우측 방향을 순회한 경우 (방은 좌측에 있음)
+                    {
+                        if (checkDir == 0) // 하단 확인 - 좌하단 내부 모서리
+                            innerCornerDir = 0; // 하좌
+                        else if (checkDir == 2) // 상단 확인 - 좌상단 내부 모서리
+                            innerCornerDir = 1; // 상좌
+                    }
+
+                    // 타일 정보 초기화
+                    if (!hullPlacements.ContainsKey(adjacentTile))
+                        hullPlacements[adjacentTile] = new List<HullPlacementInfo>();
+
+                    // 내부 모서리 정보 생성
+                    HullPlacementInfo innerCornerInfo = new();
+                    innerCornerInfo.type = HullType.InnerCorner;
+                    innerCornerInfo.directionIndex = innerCornerDir;
+
+                    AddPlacementIfNotDuplicate(hullPlacements[adjacentTile], innerCornerInfo);
+                }
+            }
+
+        // 3. 모든 외갑판 생성
+        foreach (KeyValuePair<Vector2Int, List<HullPlacementInfo>> kvp in hullPlacements)
         {
-            count += n & 1;
-            n >>= 1;
+            Vector2Int hullPosition = kvp.Key;
+            List<HullPlacementInfo> placements = kvp.Value;
+
+            // 각 타일별 배치 정보에 따라 외갑판 생성
+            foreach (HullPlacementInfo placementInfo in placements)
+            {
+                int spriteIndex = CalculateSpriteIndex(placementInfo);
+                CreateOuterHull(hullPosition, spriteIndex, level, outerHullData, outerHullPrefab, placementInfo.type);
+            }
         }
 
-        return count;
+        Debug.Log($"Created {currentOuterHulls.Count} outer hull tiles at level {level + 1}");
     }
 
     /// <summary>
-    /// 외갑판 타일 정보 클래스
+    /// 내부 모서리 타일 추가
     /// </summary>
-    private class OuterHullTileInfo
+    private void AddInnerCorner(List<HullPlacementInfo> placements, int directionIndex)
     {
-        // 방향 플래그 (비트마스크: 0001=상, 0010=우, 0100=하, 1000=좌)
-        public int directionFlags = 0;
+        HullPlacementInfo innerCornerInfo = new();
+        innerCornerInfo.type = HullType.InnerCorner;
+        innerCornerInfo.directionIndex = directionIndex;
+        AddPlacementIfNotDuplicate(placements, innerCornerInfo);
+    }
+
+    /// <summary>
+    /// 외부 모서리 타일 추가
+    /// </summary>
+    private void AddOuterCorner(List<HullPlacementInfo> placements, int directionIndex)
+    {
+        HullPlacementInfo outerCornerInfo = new();
+        outerCornerInfo.type = HullType.OuterCorner;
+        outerCornerInfo.directionIndex = directionIndex;
+        AddPlacementIfNotDuplicate(placements, outerCornerInfo);
+    }
+
+    /// <summary>
+    /// 그리드 범위를 벗어났는지 확인
+    /// </summary>
+    private bool IsOutOfBounds(Vector2Int pos)
+    {
+        return pos.x < 0 || pos.y < 0 ||
+               pos.x >= parentShip.GetGridSize().x ||
+               pos.y >= parentShip.GetGridSize().y;
+    }
+
+    /// <summary>
+    /// 중복 검사 후 배치 정보 추가
+    /// </summary>
+    private void AddPlacementIfNotDuplicate(List<HullPlacementInfo> placements, HullPlacementInfo newInfo)
+    {
+        // 동일한 유형과 방향의 외갑판이 이미 있는지 확인
+        foreach (HullPlacementInfo existing in placements)
+            if (existing.type == newInfo.type && existing.directionIndex == newInfo.directionIndex)
+                return; // 중복이면 추가하지 않음
+
+        // 중복이 아니면 추가
+        placements.Add(newInfo);
+    }
+
+    /// <summary>
+    /// 외갑판 배치 정보에 따른 스프라이트 인덱스 계산
+    /// </summary>
+    private int CalculateSpriteIndex(HullPlacementInfo info)
+    {
+        switch (info.type)
+        {
+            case HullType.Straight:
+                // 기본(0-3) 또는 변형(4-7)
+                return info.directionIndex + (info.useVariation ? 4 : 0);
+
+            case HullType.OuterCorner:
+                // 외부 모서리: 8-11
+                return info.directionIndex + 8;
+
+            case HullType.InnerCorner:
+                // 내부 모서리: 12-15
+                return info.directionIndex + 12;
+
+            default:
+                return 0;
+        }
+    }
+
+    /// <summary>
+    /// 외갑판 유형
+    /// </summary>
+    private enum HullType
+    {
+        Straight, // 상하좌우 직선
+        OuterCorner, // 외부 모서리
+        InnerCorner // 내부 모서리
+    }
+
+    /// <summary>
+    /// 외갑판 배치 정보
+    /// </summary>
+    private class HullPlacementInfo
+    {
+        // 외갑판 유형
+        public HullType type = HullType.Straight;
+
+        // 방향 인덱스
+        // Straight: 0=하, 1=좌, 2=상, 3=우
+        // OuterCorner/InnerCorner: 0=하좌, 1=상좌, 2=상우, 3=하우
+        public int directionIndex = 0;
+
+        // 변형 사용 여부 (직선 방향에만 적용)
+        public bool useVariation = false;
     }
 
     /// <summary>
     /// 지정된 위치에 외갑판을 생성합니다.
     /// </summary>
     /// <param name="hullPosition">외갑판 위치</param>
-    /// <param name="spriteIndex">스프라이트 인덱스</param>
+    /// <param name="spriteIndex">스프라이트 인덱스
+    /// (0-3: 하좌상우 기본, 4-7: 하좌상우 변형, 8-11: 외부 모서리, 12-15: 내부 모서리)</param>
     /// <param name="level">외갑판 레벨 (0-2)</param>
     /// <param name="hullData">외갑판 데이터</param>
     /// <param name="hullPrefab">외갑판 프리팹</param>
+    /// <param name="hullType">외갑판 유형</param>
     private void CreateOuterHull(Vector2Int hullPosition, int spriteIndex, int level, OuterHullData hullData,
-        GameObject hullPrefab)
+        GameObject hullPrefab, HullType hullType)
     {
         if (hullPrefab == null)
         {
@@ -242,10 +474,34 @@ public class OuterHullSystem : ShipSystem
 
         // 위치 설정 (그리드 -> 월드 좌표 변환)
         Vector3 worldPos = parentShip.GridToWorldPosition(hullPosition);
-        hullObj.transform.position = worldPos + new Vector3(0, 0, 15f); // 약간 뒤에 배치
+
+        // Z 위치 조정 (유형에 따라 레이어링)
+        float zOffset = 15f; // 직선 방향은 가장 뒤에
+
+        switch (hullType)
+        {
+            case HullType.InnerCorner:
+                // 내부 모서리는 맨 앞에 배치
+                zOffset = 14f;
+                break;
+
+            case HullType.OuterCorner:
+                // 외부 모서리는 중간에 배치
+                zOffset = 14.5f;
+                break;
+        }
+
+        hullObj.transform.position = worldPos + new Vector3(0, 0, zOffset);
 
         // 레벨에 맞는 스프라이트 가져오기
         Sprite sprite = hullData.GetSpecificHullSprite(level, spriteIndex);
+
+        if (sprite == null)
+        {
+            Debug.LogWarning($"외갑판 스프라이트가 없습니다: 레벨 {level}, 인덱스 {spriteIndex}");
+            GameObject.Destroy(hullObj);
+            return;
+        }
 
         // OuterHull 컴포넌트 설정
         OuterHull outerHull = hullObj.GetComponent<OuterHull>();
@@ -256,6 +512,24 @@ public class OuterHullSystem : ShipSystem
 
         // 외갑판 초기화
         outerHull.Initialize(hullPosition, level, spriteIndex, sprite, parentShip);
+
+        // 디버그 로그
+        string typeStr = hullType.ToString();
+        string dirStr = "";
+
+        if (hullType == HullType.Straight)
+        {
+            string[] dirs = { "하", "좌", "상", "우" };
+            dirStr = dirs[spriteIndex % 4];
+            if (spriteIndex >= 4) dirStr += "(변형)";
+        }
+        else
+        {
+            string[] corners = { "하좌", "상좌", "상우", "하우" };
+            dirStr = corners[spriteIndex % 4];
+        }
+
+        Debug.Log($"외갑판 생성: 위치 {hullPosition}, 유형 {typeStr}, 방향 {dirStr}, 스프라이트 {spriteIndex}");
 
         // 생성된 외갑판 저장
         currentOuterHulls.Add(outerHull);
