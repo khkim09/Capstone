@@ -401,6 +401,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
         targetBlueprintShip.AddPlaceable(bpRoom);
     }
 
+
     /// <summary>
     /// 실제 무기를 해당 위치에 배치함
     /// </summary>
@@ -422,10 +423,15 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
         bpWeapon.SetGridPlacer(this);
         bpWeapon.Initialize(data, position, direction);
 
+        // 설계도 함선의 외갑판 레벨 적용 (함선에 추가하기 전)
+        int currentHullLevel = targetBlueprintShip.GetHullLevel();
+        bpWeapon.SetHullLevel(currentHullLevel);
+
         bpWeapon.SetBlueprint(targetBlueprintShip);
 
         MarkObjectOccupied(bpWeapon);
 
+        // 함선에 무기 추가 (BlueprintShip.AddPlaceable 메서드에서 다시 한번 외갑판 레벨 적용)
         targetBlueprintShip.AddPlaceable(bpWeapon);
 
         return bpWeapon;

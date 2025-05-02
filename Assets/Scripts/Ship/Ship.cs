@@ -40,6 +40,9 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     private int doorLevel;
 
+    [Header("외갑판 설정")] [SerializeField] private OuterHullData outerHullData;
+    [SerializeField] private GameObject outerHullPrefab;
+
     /// <summary>
     /// 룸 타입별로 분류된 룸 리스트 딕셔너리.
     /// 예: LifeSupport, Engine, Cockpit 등.
@@ -77,7 +80,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <summary>
     /// 선원이 점유하는 타일 관리 (전역 변수)
     /// </summary>
-    private Dictionary<Room, HashSet<Vector2Int>> crewOccupiedTiles = new Dictionary<Room, HashSet<Vector2Int>>();
+    private Dictionary<Room, HashSet<Vector2Int>> crewOccupiedTiles = new();
 
     /// <summary>
     /// 함선의 초기 상태를 설정합니다.
@@ -461,7 +464,8 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         foreach (Room room in allRooms)
             Destroy(room.gameObject);
         allRooms.Clear();
-        // (roomGrid나 roomsByType도 필요하다면 함께 초기화해 주세요) :contentReference[oaicite:0]{index=0}&#8203;:contentReference[oaicite:1]{index=1}
+        roomGrid.Clear(); // 그리드 정보도 초기화
+        roomsByType.Clear(); // 타입별 룸 목록도 초기화
 
         // 2. 기존 무기 삭제
         //    먼저 현재 함선에 있는 모든 무기를 안전하게 리스트로 복사한 뒤 제거
@@ -469,7 +473,13 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         foreach (ShipWeapon weapon in existingWeapons)
             RemoveWeapon(weapon);
 
-        // 3. 설계도 → 함선: 방 배치
+        // 3. 외갑판 레벨 - 설계도 함선의 외갑판 레벨을 실제 함선에 적용
+        //    (무기마다 적용하지 않고 함선 전체에 한 번만 적용)
+        int blueprintHullLevel = bpShip.GetHullLevel();
+        Debug.Log($"Converting blueprint to ship with hull level: {blueprintHullLevel}");
+        SetOuterHullLevel(blueprintHullLevel);
+
+        // 4. 설계도 → 함선: 방 배치
         foreach (BlueprintRoom bpRoom in bpShip.GetComponentsInChildren<BlueprintRoom>())
             AddRoom(
                 bpRoom.bpLevelIndex,
@@ -478,20 +488,23 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
                 bpRoom.bpRotation
             );
 
-        // 4. 설계도 → 함선: 무기 배치
+        // 5. 설계도 → 함선: 무기 배치
         foreach (BlueprintWeapon bpWeapon in bpShip.GetComponentsInChildren<BlueprintWeapon>())
         {
             // ShipWeaponData에서 ID를 꺼내 실제 무기를 생성
-            // (ShipWeaponData에 weaponId 프로퍼티가 있다고 가정)
             ShipWeapon newWeapon = AddWeapon(
                 bpWeapon.bpWeaponData.id,
                 bpWeapon.bpPosition,
                 bpWeapon.bpAttachedDirection
             );
 
-            // 외갑판 레벨(hullLevel)도 복원
-            SetOuterHullLevel(bpWeapon.GetHullLevel());
+            // 함선의 외갑판 레벨에 맞게 스프라이트 적용
+            // 이미 SetOuterHullLevel이 적용되었으므로 현재 함선의 외갑판 레벨 사용
+            if (newWeapon != null) newWeapon.ApplyRotationSprite(GetOuterHullLevel());
         }
+
+        // 6. 스탯 및 시스템 재계산
+        RecalculateAllStats();
     }
 
 
@@ -1277,14 +1290,53 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
     #region 외갑판
 
+    /// <summary>
+    /// 외갑판 데이터를 반환합니다.
+    /// </summary>
+    /// <returns>외갑판 데이터</returns>
+    public OuterHullData GetOuterHullData()
+    {
+        return outerHullData;
+    }
+
+    /// <summary>
+    /// 외갑판 프리팹을 반환합니다.
+    /// </summary>
+    /// <returns>외갑판 프리팹</returns>
+    public GameObject GetOuterHullPrefab()
+    {
+        return outerHullPrefab;
+    }
+
+    /// <summary>
+    /// 현재 함선의 외갑판 레벨을 반환합니다.
+    /// </summary>
+    /// <returns>현재 외갑판 레벨 (0-2)</returns>
     public int GetOuterHullLevel()
     {
         return GetSystem<OuterHullSystem>().GetOuterHullLevel();
     }
 
+    /// <summary>
+    /// 함선의 외갑판 레벨을 설정합니다.
+    /// </summary>
+    /// <param name="level">설정할 외갑판 레벨 (0-2)</param>
     public void SetOuterHullLevel(int level)
     {
         GetSystem<OuterHullSystem>().SetOuterHullLevel(level);
+    }
+
+    /// <summary>
+    /// 외갑판 시각 효과를 업데이트합니다.
+    /// </summary>
+    public void UpdateOuterHullVisuals()
+    {
+        OuterHullSystem outerHullSystem = GetSystem<OuterHullSystem>();
+        if (outerHullSystem != null)
+        {
+            int currentLevel = outerHullSystem.GetOuterHullLevel();
+            outerHullSystem.UpdateVisuals(currentLevel);
+        }
     }
 
     #endregion

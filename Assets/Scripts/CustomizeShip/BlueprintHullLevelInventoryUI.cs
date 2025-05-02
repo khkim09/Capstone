@@ -8,6 +8,8 @@ using System.Collections.Generic;
 /// </summary>
 public class BlueprintHullLevelInventoryUI : MonoBehaviour
 {
+    [Header("Blueprint Ship Reference")] public BlueprintShip blueprintShip;
+
     [Header("드래그 핸들러")] public BlueprintWeaponDragHandler weaponDragHandler;
 
     [Header("UI 참조")] public Transform contentRoot; // 버튼을 담을 공간 (예: Horizontal Layout Group)
@@ -23,6 +25,8 @@ public class BlueprintHullLevelInventoryUI : MonoBehaviour
 
     private void Start()
     {
+        if (blueprintShip == null) Debug.LogError("Blueprint Ship reference is missing!");
+
         SetHullLevel(0); // 기본 선택 레벨 0
     }
 
@@ -62,12 +66,17 @@ public class BlueprintHullLevelInventoryUI : MonoBehaviour
     {
         currentLevel = level;
 
-        Debug.Log("SetHullLevel: " + level);
+        Debug.Log($"Setting hull level to: {level}");
 
-        if (weaponDragHandler != null)
-            weaponDragHandler.currentHullLevel = level;
+        // 설계도 함선에 레벨 적용 (이 함수가 모든 무기에 레벨을 적용함)
+        if (blueprintShip != null) blueprintShip.SetHullLevel(level);
 
-        for (int i = 0; i < levelButtons.Count; i++) UpdateButtonVisuals(levelButtons[i], i == level);
+        // 드래그 핸들러에도 현재 레벨 설정 (신규 무기 배치시 사용)
+        if (weaponDragHandler != null) weaponDragHandler.currentHullLevel = level;
+
+        // 버튼 시각 효과 업데이트
+        for (int i = 0; i < levelButtons.Count; i++)
+            UpdateButtonVisuals(levelButtons[i], i == level);
     }
 
     /// <summary>

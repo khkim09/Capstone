@@ -73,6 +73,12 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     private GameObject mouseDownTarget;
 
     /// <summary>
+    /// 함선 외갑판 레벨 (0: 레벨 1, 1: 레벨 2, 2: 레벨 3)
+    /// 이 변수는 단지 캐싱 용도로만 사용됨. 실제 레벨은 blueprintShip.GetHullLevel()에서 가져와야 함
+    /// </summary>
+    [SerializeField] private int hullLevel = 0;
+
+    /// <summary>
     /// collider size 맞춤
     /// </summary>
     private void Start()
@@ -84,10 +90,17 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         float height = sprite.rect.height / sprite.pixelsPerUnit;
 
         GetComponent<BoxCollider2D>().size = new Vector2(width, height);
+
+        // 시작 시 함선의 외갑판 레벨로 업데이트
+        if (blueprintShip != null)
+        {
+            hullLevel = blueprintShip.GetHullLevel();
+            ApplyAttachedDirectionSprite();
+        }
     }
 
     /// <summary>
-    /// 무기 배치와 관련된 모든 작업을 매 프레임 검사
+    /// 무기 배치와 관련된 모든 작업을 매 프레임 검사f
     /// </summary>
     private void Update()
     {
@@ -296,6 +309,13 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     public void SetBlueprint(BlueprintShip bpShip)
     {
         blueprintShip = bpShip;
+
+        // 함선이 할당되면 함선의 현재 외갑판 레벨로 업데이트
+        if (blueprintShip != null)
+        {
+            hullLevel = blueprintShip.GetHullLevel();
+            ApplyAttachedDirectionSprite();
+        }
     }
 
     /// <summary>
@@ -367,13 +387,16 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
                 break;
         }
 
+        // 함선에서 외갑판 레벨 가져오기 (캐싱된 값이 아닌 실제 함선의 값 사용)
+        int currentHullLevel = blueprintShip != null ? blueprintShip.GetHullLevel() : hullLevel;
+
         // 외갑판 레벨과 방향에 맞는 스프라이트 적용
         try
         {
             if (bpWeaponData.blueprintSprites != null &&
-                bpWeaponData.blueprintSprites[hullLevel, directionIndex] != null)
+                bpWeaponData.blueprintSprites[currentHullLevel, directionIndex] != null)
             {
-                sr.sprite = bpWeaponData.blueprintSprites[hullLevel, directionIndex];
+                sr.sprite = bpWeaponData.blueprintSprites[currentHullLevel, directionIndex];
                 return;
             }
         }
@@ -386,13 +409,9 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         if (bpWeaponData.weaponIcon != null) sr.sprite = bpWeaponData.weaponIcon;
     }
 
-    /// <summary>
-    /// 함선 외갑판 레벨 (0: 레벨 1, 1: 레벨 2, 2: 레벨 3)
-    /// </summary>
-    [SerializeField] private int hullLevel = 0;
 
     /// <summary>
-    /// 함선 외갑판 레벨 설정
+    /// 함선 외갑판 레벨 설정 (내부적으로만 캐싱)
     /// </summary>
     /// <param name="level">외갑판 레벨 (0-2)</param>
     public void SetHullLevel(int level)
@@ -406,10 +425,12 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
 
     /// <summary>
     /// 함선 외갑판 레벨 가져오기
+    /// 실제로는 blueprintShip.GetHullLevel()을 우선적으로 사용해야 하며,
+    /// 이 메서드는 blueprintShip이 null일 때의 레벨 값만 반환함
     /// </summary>
     /// <returns>외갑판 레벨 (0-2)</returns>
     public int GetHullLevel()
     {
-        return hullLevel;
+        return blueprintShip != null ? blueprintShip.GetHullLevel() : hullLevel;
     }
 }

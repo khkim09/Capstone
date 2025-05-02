@@ -8,6 +8,7 @@ public class BlueprintWeaponDragHandler : MonoBehaviour
 {
     [Header("References")] public GameObject previewPrefab;
     public GridPlacer gridPlacer;
+    public BlueprintShip blueprintShip;
 
     [Header("Preview sprite color")] public Color validColor = new(0, 1, 0, 0.5f);
     public Color invalidColor = new(1, 0, 0, 0.5f);
@@ -18,7 +19,16 @@ public class BlueprintWeaponDragHandler : MonoBehaviour
     private ShipWeaponData draggingWeaponData;
     private ShipWeaponAttachedDirection draggingDirection;
 
-    public int currentHullLevel = 0;
+    // currentHullLevel은 유지하되, blueprintShip에서 값을 가져오도록 수정
+    public int currentHullLevel
+    {
+        get => blueprintShip != null ? blueprintShip.GetHullLevel() : 0;
+        set
+        {
+            // 여기서는 실제로 blueprintShip의 값을 설정
+            if (blueprintShip != null) blueprintShip.SetHullLevel(value);
+        }
+    }
 
     private bool isDragging = false;
     private Vector2Int weaponSize = new(2, 1); // 무기 크기 고정
@@ -43,13 +53,15 @@ public class BlueprintWeaponDragHandler : MonoBehaviour
         draggingDirection = ShipWeaponAttachedDirection.North; // 기본 방향
         isDragging = true;
 
+        int hullLevel = blueprintShip != null ? blueprintShip.GetHullLevel() : currentHullLevel;
+
         previewGO = Instantiate(previewPrefab);
         previewRenderer = previewGO.GetComponent<SpriteRenderer>();
 
         try
         {
-            if (data.blueprintSprites != null && data.blueprintSprites[currentHullLevel, 0] != null)
-                previewRenderer.sprite = data.blueprintSprites[currentHullLevel, 0];
+            if (data.blueprintSprites != null && data.blueprintSprites[hullLevel, 0] != null)
+                previewRenderer.sprite = data.blueprintSprites[hullLevel, 0];
             else if (data.weaponIcon != null)
                 previewRenderer.sprite = data.weaponIcon; // 아이콘으로 대체
         }
@@ -96,7 +108,6 @@ public class BlueprintWeaponDragHandler : MonoBehaviour
 
         Vector3 basePos = gridPlacer.GridToWorldPosition(gridPos) + (Vector3)offset;
 
-
         // 무기는 회전이 없으므로 단순히 위치만 업데이트
         previewGO.transform.position = basePos;
 
@@ -125,12 +136,14 @@ public class BlueprintWeaponDragHandler : MonoBehaviour
                     break;
             }
 
+            int hullLevel = blueprintShip != null ? blueprintShip.GetHullLevel() : currentHullLevel;
+
             // 방향에 맞는 스프라이트로 변경 (외갑판 레벨 고려)
             try
             {
                 if (draggingWeaponData.blueprintSprites != null &&
-                    draggingWeaponData.blueprintSprites[currentHullLevel, directionIndex] != null)
-                    previewRenderer.sprite = draggingWeaponData.blueprintSprites[currentHullLevel, directionIndex];
+                    draggingWeaponData.blueprintSprites[hullLevel, directionIndex] != null)
+                    previewRenderer.sprite = draggingWeaponData.blueprintSprites[hullLevel, directionIndex];
             }
             catch (System.Exception ex)
             {

@@ -11,13 +11,11 @@ public class ShipTemplateLoader : MonoBehaviour
         //enemyShip.Initialize();
         //ShipSerialization.LoadShip("ship_data.es3");
         // ShipSerialization.LoadShip("template_pirate24.es3");
-
+        //LoadShipFromResources("ShipTemplates/template_nonoss");
         //ShipSerialization.LoadShip("ShipTemplates/template_aa11.es3");
         //ShipSerialization.LoadShip("ShipTemplates/template_aa11.es3");
-
-        //LoadShipFromResources("ShipTemplates/template_aa11");
-
         //LoadShipFromResources("ShipTemplates/template_shiptest");
+        LoadShipFromResources("ShipTemplates/template_help");
         //ShipSerialization.LoadShip("ship_data.es3");
         //ShipSerialization.LoadShip("ship_data.es3");
     }

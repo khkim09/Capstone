@@ -47,7 +47,7 @@ public class WeaponSystem : ShipSystem
         weapons.Add(weapon);
 
         weapon.transform.position = ShipGridHelper.GetRoomWorldPosition(gridPosition, weapon.gridSize);
-
+        weapon.ApplyRotationSprite(parentShip.GetOuterHullLevel());
         return weapon;
     }
 
@@ -57,6 +57,8 @@ public class WeaponSystem : ShipSystem
 
 
         weapon.transform.SetParent(parentShip.transform);
+        weapon.ApplyRotationSprite(parentShip.GetOuterHullLevel());
+
         weapon.transform.position = ShipGridHelper.GetRoomWorldPosition(weapon.GetGridPosition(), weapon.gridSize);
         weapons.Add(weapon);
 

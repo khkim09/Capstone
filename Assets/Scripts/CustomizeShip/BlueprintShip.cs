@@ -10,6 +10,11 @@ public class BlueprintShip : MonoBehaviour
     [SerializeField] private Vector2Int gridSize = new(60, 60);
     [SerializeField] private List<IBlueprintPlaceable> placedBlueprintObjects = new();
 
+    /// <summary>
+    /// 함선 외갑판 레벨 (0: 레벨 1, 1: 레벨 2, 2: 레벨 3) - 함선 전체에 적용되는 하나의 값
+    /// </summary>
+    [SerializeField] private int currentHullLevel = 0;
+
     // 이전 코드와의 호환성을 위한 프로퍼티
     private List<BlueprintRoom> PlacedBlueprintRooms =>
         placedBlueprintObjects.OfType<BlueprintRoom>().ToList();
@@ -56,6 +61,32 @@ public class BlueprintShip : MonoBehaviour
     }
 
     /// <summary>
+    /// 현재 함선의 외갑판 레벨 설정 - 모든 무기에 적용
+    /// </summary>
+    /// <param name="level">설정할 외갑판 레벨 (0-2)</param>
+    public void SetHullLevel(int level)
+    {
+        if (level >= 0 && level < 3)
+        {
+            currentHullLevel = level;
+
+            // 모든 무기에 일괄 적용
+            foreach (BlueprintWeapon weapon in PlacedBlueprintWeapons) weapon.SetHullLevel(level);
+
+            Debug.Log($"Ship hull level set to {level + 1}");
+        }
+    }
+
+    /// <summary>
+    /// 현재 함선의 외갑판 레벨 반환
+    /// </summary>
+    /// <returns>현재 외갑판 레벨 (0-2)</returns>
+    public int GetHullLevel()
+    {
+        return currentHullLevel;
+    }
+
+    /// <summary>
     /// 유저가 배치한 모든 오브젝트의 중심값 호출 (함선의 중심을 기준으로 유저에게 보이는 UI 설계)
     /// </summary>
     public Vector2Int CenterPosition
@@ -99,6 +130,9 @@ public class BlueprintShip : MonoBehaviour
     public void AddPlaceable(IBlueprintPlaceable placeable)
     {
         placedBlueprintObjects.Add(placeable);
+
+        // 무기인 경우 현재 함선의 외갑판 레벨 적용
+        if (placeable is BlueprintWeapon weapon) weapon.SetHullLevel(currentHullLevel);
     }
 
     /// <summary>
