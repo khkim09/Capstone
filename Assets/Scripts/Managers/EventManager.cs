@@ -157,7 +157,6 @@ public class EventManager : MonoBehaviour
             foreach (ResourceEffect effect in outcome.resourceEffects)
                 ResourceManager.Instance.ChangeResource(effect.resourceType, effect.amount);
 
-
             // 특수 효과 처리
             ProcessSpecialEffect(outcome);
         }
