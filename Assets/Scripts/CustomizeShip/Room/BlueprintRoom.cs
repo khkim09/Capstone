@@ -104,14 +104,19 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable, IBlueprintPlaceable
         RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
 
         // 회전
-        if (Input.GetMouseButtonDown(1))
+        if (isDragging && Input.GetMouseButtonDown(1))
         {
-            // 드래그 중이면 회전 방어 조건
-            if (BlueprintRoomDragHandler.IsRoomBeingDragged)
-                return;
+            // 드래그 중에는 회전 가능
+            bpRotation = (RotationConstants.Rotation)(((int)bpRotation + 1) % 4);
+            bpRoomSize = RoomRotationUtility.GetRotatedSize(levelData.size, bpRotation);
 
-            if (hit.collider != null && hit.collider.gameObject == gameObject)
-                Rotate((RotationConstants.Rotation)(((int)bpRotation + 1) % 4));
+            Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
+            transform.position = gridPlacer.GridToWorldPosition(bpPosition) + (Vector3)offset;
+            transform.rotation = Quaternion.Euler(0, 0, -(int)bpRotation * 90);
+
+            // 배치 가능 검사
+            bool canPlace = gridPlacer.CanPlaceRoom(bpRoomData, bpLevelIndex, bpPosition, bpRotation);
+            sr.color = canPlace ? validColor : invalidColor;
         }
 
         /* 기존 방 삭제 ui 충돌 방지용
@@ -310,19 +315,11 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable, IBlueprintPlaceable
     /// </summary>
     public void Rotate(RotationConstants.Rotation rotation)
     {
-        // 1) 회전 상태·크기 업데이트
         bpRotation = rotation;
         bpRoomSize = RoomRotationUtility.GetRotatedSize(levelData.size, bpRotation);
-
-        // 2) 오프셋 계산
-        Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
-
-        // 3) 그리드 위치 기반으로 월드 좌표 재설정
-        transform.position = gridPlacer.GridToWorldPosition(bpPosition) + (Vector3)offset;
-
-        // 4) 실제 회전 적용
         transform.rotation = Quaternion.Euler(0, 0, -(int)bpRotation * 90);
     }
+
 
     /// <summary>
     /// 현재 회전 상태 반환
