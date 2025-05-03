@@ -80,7 +80,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// </summary>
     private int totalBPCost = 0;
 
-    public List<BackupCrewData> backupCrewDatas = new List<BackupCrewData>();
+    public List<BackupCrewData> backupCrewDatas = new();
 
     /// <summary>
     /// 현재 설계도의 가격 지속 갱신
@@ -164,6 +164,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
         // 함선 방/무기 collider 활성화
         SetPlayerShipCollidersActive(true);
+
+        playerShip.UpdateOuterHullVisuals();
     }
 
     /// <summary>
@@ -264,15 +266,11 @@ public class CustomizeShipUIHandler : MonoBehaviour
     {
         backupCrewDatas.Clear();
 
-        foreach (CrewMember cm in playerShip.GetSystem<CrewSystem>().GetCrews())
-        {
+        foreach (CrewMember cm in playerShip.CrewSystem.GetCrews())
             backupCrewDatas.Add(new BackupCrewData
             {
-                crew = cm,
-                position = cm.GetCurrentTile(),
-                currentRoom = cm.currentRoom
+                crew = cm, position = cm.GetCurrentTile(), currentRoom = cm.currentRoom
             });
-        }
     }
 
     /// <summary>
@@ -308,7 +306,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
             playerShip.RevertToOriginalShip();
 
             // 기존 선원 복원
-            playerShip.GetSystem<CrewSystem>().RevertOriginalCrews(backupCrewDatas);
+            playerShip.CrewSystem.RevertOriginalCrews(backupCrewDatas);
         }
         else
         {
@@ -335,7 +333,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
             playerShip.ClearAllCrewTileOccupancy();
 
             // 3) 기존 선원 복구 및 랜덤 배치
-            playerShip.GetSystem<CrewSystem>().RestoreCrewAfterBuild(backupCrewDatas);
+            playerShip.CrewSystem.RestoreCrewAfterBuild(backupCrewDatas);
         }
 
         // 함선 스텟 다시 계산

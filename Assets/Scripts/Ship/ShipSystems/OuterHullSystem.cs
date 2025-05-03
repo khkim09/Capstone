@@ -25,9 +25,6 @@ public class OuterHullSystem : ShipSystem
     public override void Initialize(Ship ship)
     {
         base.Initialize(ship);
-
-        // 시스템 초기화시 외갑판 레벨 설정 (기본값 0)
-        currentOuterHullLevel = 0;
     }
 
     /// <summary>

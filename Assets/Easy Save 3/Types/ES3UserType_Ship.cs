@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("shipName", "gridSize", "allRooms", "doorData", "doorLevel", "systems", "backupRoomDatas")]
+	[ES3PropertiesAttribute("shipName", "gridSize", "allRooms", "doorData", "doorLevel", "outerHullData", "outerHullPrefab", "systems", "backupRoomDatas")]
 	public class ES3UserType_Ship : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -21,6 +21,8 @@ namespace ES3Types
 			writer.WriteProperty("allRooms", instance.allRooms, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<Room>)));
 			writer.WritePrivateFieldByRef("doorData", instance);
 			writer.WritePrivateField("doorLevel", instance);
+			writer.WritePropertyByRef("outerHullData", instance.outerHullData);
+			writer.WritePropertyByRef("outerHullPrefab", instance.outerHullPrefab);
 			writer.WritePrivateField("systems", instance);
 			writer.WriteProperty("backupRoomDatas", instance.backupRoomDatas, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<RoomBackupData>)));
 		}
@@ -48,6 +50,12 @@ namespace ES3Types
 					case "doorLevel":
 					instance = (Ship)reader.SetPrivateField("doorLevel", reader.Read<System.Int32>(), instance);
 					break;
+					case "outerHullData":
+						instance.outerHullData = reader.Read<OuterHullData>();
+						break;
+					case "outerHullPrefab":
+						instance.outerHullPrefab = reader.Read<UnityEngine.GameObject>(ES3Type_GameObject.Instance);
+						break;
 					case "systems":
 					instance = (Ship)reader.SetPrivateField("systems", reader.Read<System.Collections.Generic.Dictionary<System.Type, ShipSystem>>(), instance);
 					break;

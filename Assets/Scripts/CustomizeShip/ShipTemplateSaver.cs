@@ -185,6 +185,8 @@ public class ShipTemplateSaver : MonoBehaviour
             // Blueprint를 Ship으로 변환
             playerShip.ReplaceShipFromBlueprint(targetBlueprintShip);
 
+            playerShip.UpdateOuterHullVisuals();
+
             // ShipSerialization을 사용하여 저장
             string templateFileName = GetTemplateFilePath(templateNameInput.text);
             ShipSerialization.SaveShip(playerShip, templateFileName);

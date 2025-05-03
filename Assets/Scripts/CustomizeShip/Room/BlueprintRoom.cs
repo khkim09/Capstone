@@ -455,7 +455,7 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
 
     public int GetCost()
     {
-        throw new System.NotImplementedException();
+        return bpRoomCost;
     }
 
     public List<Vector2Int> GetOccupiedTiles()

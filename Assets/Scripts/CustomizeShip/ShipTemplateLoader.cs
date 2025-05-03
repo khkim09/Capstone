@@ -9,6 +9,7 @@ public class ShipTemplateLoader : MonoBehaviour
     private void Start()
     {
         //enemyShip.Initialize();
+        //LoadShipFromResources("ShipTemplates/template_ggqe");
     }
 
     /// <summary>

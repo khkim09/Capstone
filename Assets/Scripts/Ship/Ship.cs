@@ -40,8 +40,8 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     private int doorLevel;
 
-    [Header("외갑판 설정")] [SerializeField] private OuterHullData outerHullData;
-    [SerializeField] private GameObject outerHullPrefab;
+    [Header("외갑판 설정")] [SerializeField] public OuterHullData outerHullData;
+    [SerializeField] public GameObject outerHullPrefab;
 
     /// <summary>
     /// 룸 타입별로 분류된 룸 리스트 딕셔너리.
@@ -66,6 +66,34 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// 타입을 키로 하여 각 ShipSystem 서브클래스를 관리합니다.
     /// </summary>
     private Dictionary<Type, ShipSystem> systems = new();
+
+    private OuterHullSystem outerHullSystem;
+    private WeaponSystem weaponSystem;
+    private OxygenSystem oxygenSystem;
+    private CrewSystem crewSystem;
+    private HitPointSystem hitpointSystem;
+    private MoraleSystem moraleSystem;
+    private PowerSystem powerSystem;
+    private StorageSystem storageSystem;
+    private ShieldSystem shieldSystem;
+
+    public OuterHullSystem OuterHullSystem => outerHullSystem;
+
+    public WeaponSystem WeaponSystem => weaponSystem;
+
+    public OxygenSystem OxygenSystem => oxygenSystem;
+
+    public CrewSystem CrewSystem => crewSystem;
+
+    public HitPointSystem HitpointSystem => hitpointSystem;
+
+    public MoraleSystem MoraleSystem => moraleSystem;
+
+    public PowerSystem PowerSystem => powerSystem;
+
+    public StorageSystem StorageSystem => storageSystem;
+
+    public ShieldSystem ShieldSystem => shieldSystem;
 
     public GameObject weaponPrefab;
 
@@ -103,6 +131,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         InitializeBaseStats();
 
         InitializeSystems();
+        UpdateOuterHullVisuals();
 
         RecalculateAllStats();
 
@@ -503,8 +532,6 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             if (newWeapon != null) newWeapon.ApplyRotationSprite(GetOuterHullLevel());
         }
 
-        UpdateOuterHullVisuals();
-
         // 6. 스탯 및 시스템 재계산
         RecalculateAllStats();
     }
@@ -637,38 +664,25 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     private void InitializeSystems()
     {
         // TODO : 방 시스템 만들 때마다 여기에 등록
-        RegisterSystem(new ShieldSystem());
-        RegisterSystem(new WeaponSystem());
-        RegisterSystem(new OuterHullSystem());
-        RegisterSystem(new HitPointSystem());
-        RegisterSystem(new CrewSystem());
-        RegisterSystem(new MoraleSystem());
-        RegisterSystem(new StorageSystem());
-    }
+        shieldSystem = new ShieldSystem();
+        weaponSystem = new WeaponSystem();
+        outerHullSystem = new OuterHullSystem();
+        crewSystem = new CrewSystem();
+        moraleSystem = new MoraleSystem();
+        storageSystem = new StorageSystem();
+        hitpointSystem = new HitPointSystem();
+        oxygenSystem = new OxygenSystem();
+        powerSystem = new PowerSystem();
 
-    /// <summary>
-    /// ShipSystem을 등록하고 초기화합니다.
-    /// 내부 시스템 딕셔너리에 타입 기반으로 저장됩니다.
-    /// </summary>
-    /// <typeparam name="T">등록할 시스템 타입.</typeparam>
-    /// <param name="system">시스템 인스턴스.</param>
-    /// <returns>등록된 시스템 객체.</returns>
-    private T RegisterSystem<T>(T system) where T : ShipSystem
-    {
-        system.Initialize(this);
-        systems[typeof(T)] = system;
-        return system;
-    }
-
-    /// <summary>
-    /// 등록된 ShipSystem 중 지정된 타입의 시스템을 반환합니다.
-    /// </summary>
-    /// <typeparam name="T">요청할 시스템 타입.</typeparam>
-    /// <returns>시스템 인스턴스. 없으면 null.</returns>
-    public T GetSystem<T>() where T : ShipSystem
-    {
-        if (systems.TryGetValue(typeof(T), out ShipSystem system)) return system as T;
-        return null;
+        shieldSystem.Initialize(this);
+        weaponSystem.Initialize(this);
+        outerHullSystem.Initialize(this);
+        crewSystem.Initialize(this);
+        moraleSystem.Initialize(this);
+        storageSystem.Initialize(this);
+        hitpointSystem.Initialize(this);
+        oxygenSystem.Initialize(this);
+        powerSystem.Initialize(this);
     }
 
     #endregion
@@ -713,7 +727,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         // 디버깅용 기여도 초기화
         roomContributions.Clear();
 
-        MoraleManager.Instance.SetAllCrewMorale(GetSystem<MoraleSystem>().CalculateGlobalMorale());
+        MoraleManager.Instance.SetAllCrewMorale(MoraleSystem.CalculateGlobalMorale());
 
         // 각 방의 기여도 추가
         foreach (Room room in allRooms)
@@ -740,7 +754,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         }
 
         // TODO: 방을 제외한 ShipStatContributions 반영해야함 (ex : 외갑판, 선원)
-        List<CrewBase> crews = GetSystem<CrewSystem>().GetCrews();
+        List<CrewBase> crews = CrewSystem.GetCrews();
 
         foreach (CrewBase crew in crews)
         {
@@ -935,7 +949,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     public int GetCrewCount()
     {
-        return GetSystem<CrewSystem>().GetCrewCount();
+        return CrewSystem.GetCrewCount();
     }
 
     /// <summary>
@@ -952,7 +966,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <returns>CrewBase 객체들의 리스트.</returns>
     public List<CrewBase> GetAllCrew()
     {
-        return GetSystem<CrewSystem>().GetCrews();
+        return CrewSystem.GetCrews();
     }
 
 
@@ -963,17 +977,17 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <returns>승무원이 성공적으로 추가되었으면 True, 그렇지 않으면 False를 반환합니다.</returns>
     public bool AddCrew(CrewBase newCrew)
     {
-        return GetSystem<CrewSystem>().AddCrew(newCrew);
+        return CrewSystem.AddCrew(newCrew);
     }
 
     public void RemoveCrew(CrewBase crew)
     {
-        GetSystem<CrewSystem>().RemoveCrew(crew);
+        CrewSystem.RemoveCrew(crew);
     }
 
     public void RemoveAllCrews()
     {
-        GetSystem<CrewSystem>().RemoveAllCrews();
+        CrewSystem.RemoveAllCrews();
     }
 
     #endregion
@@ -1007,7 +1021,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     public List<ShipWeapon> GetAllWeapons()
     {
-        return GetSystem<WeaponSystem>().GetWeapons();
+        return WeaponSystem.GetWeapons();
     }
 
     /// <summary>
@@ -1017,33 +1031,33 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <returns>무기 특유 효과를 고려한 수정된 피해 값.</returns>
     public float GetActualDamage(float damage)
     {
-        return GetSystem<WeaponSystem>().GetActualDamage(damage);
+        return WeaponSystem.GetActualDamage(damage);
     }
 
     public int GetWeaponCount()
     {
-        return GetSystem<WeaponSystem>().GetWeaponCount();
+        return WeaponSystem.GetWeaponCount();
     }
 
     public void RemoveWeapon(int index)
     {
-        GetSystem<WeaponSystem>().RemoveWeapon(index);
+        WeaponSystem.RemoveWeapon(index);
     }
 
     public void RemoveWeapon(ShipWeapon shipWeapon)
     {
-        GetSystem<WeaponSystem>().RemoveWeapon(shipWeapon);
+        WeaponSystem.RemoveWeapon(shipWeapon);
     }
 
     public ShipWeapon AddWeapon(int weaponId, Vector2Int gridPosition,
         ShipWeaponAttachedDirection attachDirection = ShipWeaponAttachedDirection.East)
     {
-        return GetSystem<WeaponSystem>().AddWeapon(weaponId, gridPosition, attachDirection);
+        return WeaponSystem.AddWeapon(weaponId, gridPosition, attachDirection);
     }
 
     public ShipWeapon AddWeapon(ShipWeapon shipWeapon)
     {
-        return GetSystem<WeaponSystem>().AddWeapon(shipWeapon);
+        return WeaponSystem.AddWeapon(shipWeapon);
     }
 
     #endregion
@@ -1056,7 +1070,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <returns>현재 남아 있는 함선의 체력 값.</returns>
     public float GetCurrentHitPoints()
     {
-        return GetSystem<HitPointSystem>().GetHitPoint();
+        return HitpointSystem.GetHitPoint();
     }
 
     #endregion
@@ -1102,9 +1116,9 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <param name="hitPosition">피격된 좌표.</param>
     public void TakeAttack(float damage, ShipWeaponType shipWeaponType, Vector2Int hitPosition)
     {
-        ShieldSystem shieldSystem = GetSystem<ShieldSystem>();
+        ShieldSystem shieldSystem = ShieldSystem;
         if (shieldSystem.IsShieldActive()) damage = shieldSystem.TakeDamage(damage, shipWeaponType);
-        OuterHullSystem hullSystem = GetSystem<OuterHullSystem>();
+        OuterHullSystem hullSystem = OuterHullSystem;
         float finalDamage = hullSystem.ReduceDamage(damage);
 
         if (finalDamage > 0)
@@ -1139,7 +1153,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <param name="damage">적용할 피해량.</param>
     public void TakeDamage(float damage)
     {
-        HitPointSystem hitPointSystem = GetSystem<HitPointSystem>();
+        HitPointSystem hitPointSystem = HitpointSystem;
         hitPointSystem.ChangeHitPoint(-damage);
 
         if (hitPointSystem.GetHitPoint() <= 0f) OnShipDestroyed();
@@ -1164,7 +1178,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <param name="damage">적용할 원 피해량.</param>
     private void ApplyDamageToCrewsAtPosition(Vector2Int position, float damage)
     {
-        List<CrewBase> crewsAtPosition = GetSystem<CrewSystem>().GetCrewsAtPosition(position);
+        List<CrewBase> crewsAtPosition = CrewSystem.GetCrewsAtPosition(position);
         foreach (CrewBase crew in crewsAtPosition) crew.TakeDamage(damage);
     }
 
@@ -1205,7 +1219,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <returns>현재 산소량.</returns>
     public float GetOxygenRate()
     {
-        return GetSystem<OxygenSystem>().GetOxygenRate();
+        return OxygenSystem.GetOxygenRate();
     }
 
     /// <summary>
@@ -1214,7 +1228,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <returns>현재 산소 레벨.</returns>
     public OxygenLevel GetOxygenLevel()
     {
-        return GetSystem<OxygenSystem>().GetOxygenLevel();
+        return OxygenSystem.GetOxygenLevel();
     }
 
     #endregion
@@ -1280,12 +1294,12 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
     public List<TradingItem> GetAllItems()
     {
-        return GetSystem<StorageSystem>().GetAllItems();
+        return StorageSystem.GetAllItems();
     }
 
     public void RemoveAllItems()
     {
-        GetSystem<StorageSystem>().RemoveAllItems();
+        StorageSystem.RemoveAllItems();
     }
 
     #endregion
@@ -1316,7 +1330,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <returns>현재 외갑판 레벨 (0-2)</returns>
     public int GetOuterHullLevel()
     {
-        return GetSystem<OuterHullSystem>().GetOuterHullLevel();
+        return OuterHullSystem.GetOuterHullLevel();
     }
 
     /// <summary>
@@ -1325,7 +1339,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <param name="level">설정할 외갑판 레벨 (0-2)</param>
     public void SetOuterHullLevel(int level)
     {
-        GetSystem<OuterHullSystem>().SetOuterHullLevel(level);
+        OuterHullSystem.SetOuterHullLevel(level);
     }
 
     /// <summary>
@@ -1333,11 +1347,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     public void UpdateOuterHullVisuals()
     {
-        OuterHullSystem outerHullSystem = GetSystem<OuterHullSystem>();
-        if (outerHullSystem != null)
+        OuterHullSystem outerSystem = OuterHullSystem;
+        if (outerSystem != null)
         {
-            int currentLevel = outerHullSystem.GetOuterHullLevel();
-            outerHullSystem.UpdateVisuals(currentLevel);
+            int currentLevel = outerSystem.GetOuterHullLevel();
+            outerSystem.UpdateVisuals(currentLevel);
         }
     }
 
