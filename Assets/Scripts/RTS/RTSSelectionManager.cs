@@ -483,35 +483,22 @@ public class RTSSelectionManager : MonoBehaviour
             }
         }
         */
-    }
-
-    /// <summary>
-    /// 전투 메서드: 1 hit 당 피해량 계산 후 체력 차감, 체력이 0 이하이면 죽음 처리
-    /// </summary>
-    /// <param name="attacker"></param>
-    /// <param name="target"></param>
-    public void Attack(CrewMember attacker, CrewMember target)
-    {
-        // 피해량 계산식: (공격 주체 기본 공격 + 장비 공격력(tmp)) * (1 - (상대 방어력 / 100))
-        float damage = (attacker.attack + tmpEquipmentAttack) * (1 - target.defense / 100f);
-        target.health -= damage;
-        Debug.Log($"{attacker.crewName}이(가) {target.crewName}에게 {damage}의 피해를 입혔습니다.");
-
-        if (target.health <= 0)
+        //temp enemy check
+        //TODO: 이동하는거 만들어줘
+        List<CrewMember> enemyInRoom = new List<CrewMember>();
+        foreach (CrewBase someone in crew.currentRoom.GetCrewInRoom())
         {
-            target.isAlive = false;
-            Debug.Log($"{target.crewName}이(가) 사망하였습니다.");
-
-            // 타일 점유 해제 및 방 퇴장 처리
-            if (target.currentRoom != null)
+            if (someone is CrewMember cmInRoom && cmInRoom.isPlayerControlled != crew.isPlayerControlled)
             {
-                Vector2Int currentTile = target.GetCurrentTile();
-                target.currentRoom.VacateTile(currentTile);
-                target.currentRoom.OnCrewExit(target);
+                enemyInRoom.Add(cmInRoom);
             }
+        }
 
-            // 선원 제거 (죽음)
-            Destroy(target.gameObject);
+        if (enemyInRoom.Count > 0)
+        {
+            crew.combatTarget = enemyInRoom[0];
+            if(crew.comBatCoroutine==null)
+                crew.comBatCoroutine = StartCoroutine(crew.CombatRoutine());
         }
     }
 }

@@ -614,4 +614,12 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         isMoving = other.isMoving;
         currentShip = other.currentShip;
     }
+    /// <summary>
+    /// 현재 위치 반환 (가장 가까운 타일)
+    /// </summary>
+    /// <returns></returns>
+    public Vector2Int GetCurrentTile()
+    {
+        return new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y));
+    }
 }

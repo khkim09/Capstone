@@ -47,7 +47,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     public event Action<Room> OnRoomStateChanged;
 
     /// <summary>현재 방에 존재하는 선원 목록.</summary>
-    protected List<CrewBase> crewInRoom = new();
+    public List<CrewBase> crewInRoom = new();
 
     /// <summary>방이 활성화되어 있는지 여부.</summary>
     protected bool isActive = true;
