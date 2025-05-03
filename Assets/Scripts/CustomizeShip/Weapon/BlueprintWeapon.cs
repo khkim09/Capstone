@@ -108,7 +108,7 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
 
         // 회전 (무기는 부착 방향만 변경)
-        if (Input.GetMouseButtonDown(1))
+        if (isDragging && Input.GetMouseButtonDown(1))
         {
             // 드래그 중이면 회전 방어 조건
             if (BlueprintDragManager.Instance.IsDragging)
@@ -175,7 +175,9 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
                 bpPosition = originalPos;
                 bpAttachedDirection = originalDirection;
 
-                transform.position = gridPlacer.GridToWorldPosition(originalPos);
+                Vector2Int size = new(2, 1);
+                Vector2 offset = RoomRotationUtility.GetRotationOffset(size, RotationConstants.Rotation.Rotation0);
+                transform.position = gridPlacer.GridToWorldPosition(originalPos) + (Vector3)offset;
                 ApplyAttachedDirectionSprite();
 
                 // 점유 타일 복구
