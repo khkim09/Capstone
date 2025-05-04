@@ -226,7 +226,7 @@ public class CrewMember : CrewBase
     /// 이동 animation
     /// </summary>
     /// <param name="trigger"></param>
-    private void PlayAnimation(string trigger, bool onoff)
+    private void PlayAnimation(string trigger, bool onoff=true)
     {
         if (trigger.Equals("walk"))
         {
@@ -240,7 +240,6 @@ public class CrewMember : CrewBase
             animator.SetFloat("Y", -1);
             animator.SetTrigger("attack");
         }
-
     }
 
     /// <summary>
@@ -326,5 +325,50 @@ public class CrewMember : CrewBase
     {
         return Vector3.zero + new Vector3((gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
             (gridPos.y + 0.5f) * GridConstants.CELL_SIZE, 0f);
+    }
+
+    public IEnumerator CombatRoutine()
+    {
+        inCombat = true;
+        if (!combatTarget.inCombat)
+        {
+            combatTarget.combatTarget = this;
+            combatTarget.comBatCoroutine = StartCoroutine(combatTarget.CombatRoutine());
+        }
+        PlayAnimation("attack",inCombat);
+        Attack(this,this.combatTarget);
+        yield return new WaitForSeconds(attackDelay);
+        PlayAnimation("attack");
+        //대상 사망 체크 및 inCombat 수정
+    }
+
+    /// <summary>
+    /// 전투 메서드: 1 hit 당 피해량 계산 후 체력 차감, 체력이 0 이하이면 죽음 처리
+    /// </summary>
+    /// <param name="attacker"></param>
+    /// <param name="target"></param>
+    public void Attack(CrewMember attacker, CrewMember target)
+    {
+        // 피해량 계산식: (공격 주체 기본 공격 + 장비 공격력(tmp)) * (1 - (상대 방어력 / 100))
+        float damage = (attacker.attack + attacker.equippedWeapon.eqAttackBonus) * (1 - target.defense / 100f);
+        target.health -= damage;
+        Debug.Log($"{attacker.crewName}이(가) {target.crewName}에게 {damage}의 피해를 입혔습니다.");
+
+        if (target.health <= 0)
+        {
+            target.isAlive = false;
+            Debug.Log($"{target.crewName}이(가) 사망하였습니다.");
+
+            // 타일 점유 해제 및 방 퇴장 처리
+            if (target.currentRoom != null)
+            {
+                Vector2Int currentTile = target.GetCurrentTile();
+                target.currentRoom.VacateTile(currentTile);
+                target.currentRoom.OnCrewExit(target);
+            }
+
+            // 선원 제거 (죽음)
+            Destroy(target.gameObject);
+        }
     }
 }
