@@ -23,15 +23,15 @@ public class ShipValidationHelper
         if (rooms == null || rooms.Count == 0)
             return new ValidationResult(ShipValidationError.NoRoom, "shipvalidation.error.noroom");
 
-        // // 필수 방 배치 확인 (조종실, 엔진실, 전력실, 텔레포트실, 생활 시설)
-        // ValidationResult requiredRoomsCheck = CheckRequiredRooms(rooms);
-        // if (!requiredRoomsCheck.IsValid)
-        //     return requiredRoomsCheck;
-        //
-        // // 모든 방의 연결성 확인 (선원이 모든 방을 순회하고 원위치로 복귀할 수 있는가)
-        // ValidationResult pathConnectivity = CheckAllRoomsPathConnectedByDoors(rooms, ship.GetGridSize());
-        // if (!pathConnectivity.IsValid)
-        //     return pathConnectivity;
+        // 필수 방 배치 확인 (조종실, 엔진실, 전력실, 텔레포트실, 생활 시설)
+        ValidationResult requiredRoomsCheck = CheckRequiredRooms(rooms);
+        if (!requiredRoomsCheck.IsValid)
+            return requiredRoomsCheck;
+
+        // 모든 방의 연결성 확인 (선원이 모든 방을 순회하고 원위치로 복귀할 수 있는가)
+        ValidationResult pathConnectivity = CheckAllRoomsPathConnectedByDoors(rooms, ship.GetGridSize());
+        if (!pathConnectivity.IsValid)
+            return pathConnectivity;
 
         // 무기와 방의 연결성 검사
         ValidationResult weaponConnectivityCheck = CheckWeaponConnectivity(ship);
@@ -118,12 +118,8 @@ public class ShipValidationHelper
             Vector2Int roomPos = room.position;
 
             // 방 크기에 따라 점유하는 모든 타일 추가
-            for (int x = 0; x < roomSize.x; x++)
-            for (int y = 0; y < roomSize.y; y++)
-            {
-                Vector2Int tile = roomPos + new Vector2Int(x, y);
+            foreach (Vector2Int tile in room.GetOccupiedTiles())
                 roomTiles.Add(tile);
-            }
         }
 
         // 각 무기에 대해 검사
@@ -382,12 +378,8 @@ public class ShipValidationHelper
             Vector2Int roomPos = room.position;
 
             // 방 크기에 따라 점유하는 모든 타일 추가
-            for (int x = 0; x < roomSize.x; x++)
-            for (int y = 0; y < roomSize.y; y++)
-            {
-                Vector2Int tile = roomPos + new Vector2Int(x, y);
+            foreach (Vector2Int tile in room.GetOccupiedTiles())
                 roomTiles.Add(tile);
-            }
         }
 
         // 방문한 무기를 추적하는 집합

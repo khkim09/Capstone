@@ -33,6 +33,11 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     public Vector2Int bpWeaponSize = new(2, 1);
 
     /// <summary>
+    /// 회전각 고정 (0)
+    /// </summary>
+    public RotationConstants.Rotation bpRotation = RotationConstants.Rotation.Rotation0;
+
+    /// <summary>
     /// 실제 점유 타일
     /// </summary>
     public List<Vector2Int> occupiedTiles = new();
@@ -155,7 +160,8 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
             Vector2 offset = RoomRotationUtility.GetRotationOffset(size, RotationConstants.Rotation.Rotation0);
             transform.position = gridPlacer.GridToWorldPosition(bpPosition) + (Vector3)offset;
 
-            bool canPlace = gridPlacer.CanPlaceObject(this, bpPosition, null);
+            // bool canPlace = gridPlacer.CanPlaceObject(this, bpPosition, null);
+            bool canPlace = gridPlacer.CanPlaceWeapon(bpWeaponData, bpPosition, bpAttachedDirection);
             sr.color = canPlace ? validColor : invalidColor;
         }
 
@@ -165,7 +171,8 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
             isDragging = false;
             Vector2Int newPos = gridPlacer.WorldToGridPosition(mouseWorldPos);
 
-            bool canPlace = gridPlacer.CanPlaceObject(this, newPos, null);
+            // bool canPlace = gridPlacer.CanPlaceObject(this, newPos, null);
+            bool canPlace = gridPlacer.CanPlaceWeapon(bpWeaponData, bpPosition, bpAttachedDirection);
             sr.color = Color.white;
 
             // 유효성 검사
@@ -229,10 +236,7 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     /// </summary>
     public void UpdateOccupiedTiles()
     {
-        occupiedTiles.Clear();
-
-        occupiedTiles.Add(bpPosition);
-        occupiedTiles.Add(new Vector2Int(bpPosition.x + 1, bpPosition.y));
+        occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(bpPosition, bpWeaponSize, bpRotation);
     }
 
     /// <summary>
@@ -246,8 +250,9 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         bpPosition = pos;
         bpAttachedDirection = direction;
         bpWeaponCost = data.cost;
+        bpWeaponSize = new Vector2Int(2, 1);
 
-        UpdateOccupiedTiles();
+        occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(bpPosition, bpWeaponSize, bpRotation);
 
         sr = GetComponent<SpriteRenderer>();
 

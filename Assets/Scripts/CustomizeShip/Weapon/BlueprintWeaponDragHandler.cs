@@ -53,6 +53,8 @@ public class BlueprintWeaponDragHandler : MonoBehaviour
         draggingDirection = ShipWeaponAttachedDirection.North; // 기본 방향
         isDragging = true;
 
+        weaponSize = new Vector2Int(2, 1);
+
         int hullLevel = blueprintShip != null ? blueprintShip.GetHullLevel() : currentHullLevel;
 
         previewGO = Instantiate(previewPrefab);
@@ -102,14 +104,13 @@ public class BlueprintWeaponDragHandler : MonoBehaviour
 
         Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2Int gridPos = gridPlacer.WorldToGridPosition(mouseWorld);
-        Vector2Int size =
-            RoomRotationUtility.GetRotatedSize(new Vector2Int(2, 1), RotationConstants.Rotation.Rotation0);
+        Vector3 basePos = gridPlacer.GridToWorldPosition(gridPos);
+
+        Vector2Int size = new Vector2Int(2, 1);
         Vector2 offset = RoomRotationUtility.GetRotationOffset(size, RotationConstants.Rotation.Rotation0);
 
-        Vector3 basePos = gridPlacer.GridToWorldPosition(gridPos) + (Vector3)offset;
-
         // 무기는 회전이 없으므로 단순히 위치만 업데이트
-        previewGO.transform.position = basePos;
+        previewGO.transform.position = basePos + (Vector3)offset;
 
         // 설치 가능 여부 시각화
         bool canPlace = gridPlacer.CanPlaceWeapon(draggingWeaponData, gridPos, draggingDirection);

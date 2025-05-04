@@ -60,13 +60,13 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     public void GenerateTiles()
     {
         for (int x = 0; x < gridSize.x; x++)
-        for (int y = 0; y < gridSize.y; y++)
-        {
-            Vector3 pos = GridToWorldPosition(new Vector2Int(x, y));
-            GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
-            tile.transform.localScale = Vector3.one * GridConstants.CELL_SIZE;
-            tile.transform.position += new Vector3(0, 0, 17);
-        }
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                Vector3 pos = GridToWorldPosition(new Vector2Int(x, y));
+                GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
+                tile.transform.localScale = Vector3.one * GridConstants.CELL_SIZE;
+                tile.transform.position += new Vector3(0, 0, 17);
+            }
     }
 
     /// <summary>
@@ -359,11 +359,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     public bool CanPlaceWeapon(ShipWeaponData data, Vector2Int position, ShipWeaponAttachedDirection direction)
     {
-        List<Vector2Int> tilesToOccupy = new();
-
-        tilesToOccupy.Add(position);
-        tilesToOccupy.Add(new Vector2Int(position.x + 1, position.y));
-
+        List<Vector2Int> tilesToOccupy = RoomRotationUtility.GetOccupiedGridPositions(position, new Vector2Int(2, 1), RotationConstants.Rotation.Rotation0);
 
         // 그리드 범위 벗어나는지 체크
         foreach (Vector2Int tile in tilesToOccupy)
@@ -411,8 +407,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
         if (data == null)
             return null;
 
-        Vector2Int size =
-            RoomRotationUtility.GetRotatedSize(new Vector2Int(2, 1), RotationConstants.Rotation.Rotation0);
+        Vector2Int size = new Vector2Int(2, 1);
         Vector2 offset = RoomRotationUtility.GetRotationOffset(size, RotationConstants.Rotation.Rotation0);
         Vector3 worldPos = GridToWorldPosition(position) + (Vector3)offset;
 
@@ -426,7 +421,6 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
         // 설계도 함선의 외갑판 레벨 적용 (함선에 추가하기 전)
         int currentHullLevel = targetBlueprintShip.GetHullLevel();
         bpWeapon.SetHullLevel(currentHullLevel);
-
         bpWeapon.SetBlueprint(targetBlueprintShip);
 
         MarkObjectOccupied(bpWeapon);
