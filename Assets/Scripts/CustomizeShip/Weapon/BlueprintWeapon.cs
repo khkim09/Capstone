@@ -194,7 +194,7 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
             else
             {
                 bpPosition = newPos;
-                UpdateOccupiedTiles();
+                occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(bpPosition, bpWeaponSize, bpRotation);
                 gridPlacer.MarkObjectOccupied(this);
             }
 
