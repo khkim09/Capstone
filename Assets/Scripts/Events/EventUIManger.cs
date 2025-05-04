@@ -116,7 +116,8 @@ public class EventUIManager : MonoBehaviour
 
     private void OnContinueButtonClicked()
     {
-        eventPanel.SetActive(false);
+        outcomePanel.SetActive(false);
+        EventManager.Instance.EndEvent();  // 이벤트 종료 처리
 
         // 게임 상태 업데이트
         GameManager.Instance.OnEventCompleted();

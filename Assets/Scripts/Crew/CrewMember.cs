@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.XR;
 
 /// <summary>
 /// 선원의 데이터를 확장하여 실제 게임 내 선원(Crew)의 기능을 담당하는 클래스입니다.
@@ -11,11 +9,6 @@ using UnityEngine.XR;
 [Serializable]
 public class CrewMember : CrewBase
 {
-    /// <summary>
-    /// 현재 이동중인 타일
-    /// </summary>
-    private Vector2Int currentTargetTile;
-
     /// <summary>
     /// 현재 이동 방향 (normalized)
     /// </summary>
@@ -48,6 +41,11 @@ public class CrewMember : CrewBase
     /// 이동 중 새로운 이동 명령 내리기 전 예약했던 목적지 타일 (최종으로 예약했지만 취소한 목적지 타일)
     /// </summary>
     public Vector2Int oldReservedTile;
+
+    /// <summary>
+    /// 이동 전 위치했던 타일
+    /// </summary>
+    public Vector2Int originPosTile;
 
     /// <summary>
     /// Unity 생명주기 메서드.
@@ -116,8 +114,7 @@ public class CrewMember : CrewBase
     }
 
     /// <summary>
-    /// 이동 중 새로운 이동 명령 수신 시
-    /// 이동 방향으로 가장 가까운 타일까지 이동 후 경로 재탐색
+    /// 이동 중 새로운 이동 명령 수신 시 이전 목적지 타일 점유 해제
     /// </summary>
     /// <param name="newPath"></param>
     public void CancelAndRedirect(List<Vector2Int> newPath)
@@ -126,30 +123,6 @@ public class CrewMember : CrewBase
         {
             StopCoroutine(moveCoroutine);
             moveCoroutine = null;
-        }
-
-        // 1. 현재 이동 중인 타일까지 도달 후 정지
-        if (currentTargetTile != null)
-        {
-            Vector3 targetWorldPos = GridToWorldPosition(currentTargetTile);
-
-            while (Vector3.Distance(transform.position, targetWorldPos) > 0.01f)
-            {
-                float speedMultiplier = 1f;
-
-                // 현재 방 체크
-                Room room = RTSSelectionManager.Instance.playerShip.GetRoomAtPosition(GetCurrentTile());
-
-                // 복도는 이동 속도 30% 증가
-                if (room != null && room.GetRoomType() == RoomType.Corridor)
-                    speedMultiplier = 1.33f;
-
-                // MoveTowards() : 다른 선원과의 충돌 무시하고 통과
-                transform.position = Vector3.MoveTowards(transform.position, targetWorldPos, moveSpeed * speedMultiplier * Time.deltaTime);
-            }
-
-            transform.position = targetWorldPos;
-            position = new Vector2Int(currentTargetTile.x, currentTargetTile.y);
         }
 
         // 2. 이전 목적지 타일 점유 해제
@@ -210,6 +183,10 @@ public class CrewMember : CrewBase
         }
     }
 
+    /// <summary>
+    /// 이동 animation
+    /// </summary>
+    /// <param name="trigger"></param>
     private void PlayAnimation(string trigger)
     {
         if (trigger.Equals("walk"))
@@ -217,7 +194,7 @@ public class CrewMember : CrewBase
             animator.SetFloat("X", movementDirection.x);
             animator.SetFloat("Y", movementDirection.y);
         }
-        animator.SetBool(trigger,isMoving);
+        animator.SetBool(trigger, isMoving);
     }
 
     /// <summary>
@@ -242,10 +219,8 @@ public class CrewMember : CrewBase
     {
         isMoving = true;
 
-
         foreach (Vector2Int tile in path)
         {
-            currentTargetTile = tile;
             Vector3 targetWorldPos = GridToWorldPosition(tile);
 
             // 이동 중인 방향
@@ -281,7 +256,7 @@ public class CrewMember : CrewBase
         PlayAnimation("walk");
 
         // 이동 완료한 위치에서 함내 전투 검사
-        RTSSelectionManager.Instance.CheckForCombat(this);
+        // RTSSelectionManager.Instance.CheckForCombat(this);
     }
 
     // <summary>
