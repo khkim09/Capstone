@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 /// <summary>
 /// 선원의 데이터를 확장하여 실제 게임 내 선원(Crew)의 기능을 담당하는 클래스입니다.
@@ -13,9 +16,7 @@ using UnityEngine.XR;
 [Serializable]
 public class CrewMember : CrewBase
 {
-    public CrewMember combatTarget{set;get;}
-    public bool inCombat = false;
-    private float attackDelay = 0.5f;
+
     /// <summary>
     /// 현재 이동중인 타일
     /// </summary>
@@ -222,25 +223,7 @@ public class CrewMember : CrewBase
         }
     }
 
-    /// <summary>
-    /// 이동 animation
-    /// </summary>
-    /// <param name="trigger"></param>
-    private void PlayAnimation(string trigger, bool onoff=true)
-    {
-        if (trigger.Equals("walk"))
-        {
-            animator.SetFloat("X", movementDirection.x);
-            animator.SetFloat("Y", movementDirection.y);
-            animator.SetBool(trigger, onoff);
-        }
-        else if (trigger.Equals("attack"))
-        {
-            animator.SetFloat("X",0);
-            animator.SetFloat("Y", -1);
-            animator.SetTrigger("attack");
-        }
-    }
+
 
     /// <summary>
     /// 현재 방에서 선원이 점유 중인 타일의 우선순위 인덱스 반환
@@ -296,14 +279,13 @@ public class CrewMember : CrewBase
 
         isMoving = false;
 
+        PlayAnimation("walk",isMoving);
+
         // 도착 후 방 갱신
         currentRoom = reservedRoom;
         reservedRoom = null;
 
-        PlayAnimation("walk",isMoving);
-
-        // 이동 완료한 위치에서 함내 전투 검사
-        // RTSSelectionManager.Instance.CheckForCombat(this);
+        RTSSelectionManager.Instance.MoveForCombat(this,currentRoom.occupiedCrewTiles);
     }
 
     // <summary>
@@ -327,19 +309,65 @@ public class CrewMember : CrewBase
             (gridPos.y + 0.5f) * GridConstants.CELL_SIZE, 0f);
     }
 
+
+    //----------애니메이션------------
+    /// <summary>
+    /// animation 실행
+    /// </summary>
+    /// <param name="trigger"></param>
+    private void PlayAnimation(string trigger, bool onoff=true)
+    {
+        if (trigger.Equals("walk"))
+        {
+            animator.SetFloat("X", movementDirection.x);
+            animator.SetFloat("Y", movementDirection.y);
+            animator.SetBool(trigger, onoff);
+        }
+        else if (trigger.Equals("attack"))
+        {
+            animator.SetFloat("X",0);
+            animator.SetFloat("Y", -1);
+            animator.SetTrigger("attack");
+        }
+    }
+
+    //----------전투---------
+
+    public CrewMember combatTarget { set; get; }
+    public bool inCombat = false;
+    private float attackDelay = 1f;
+
+    //쟤네가 나 때려
+    public List<CrewMember> bullier;
+
     public IEnumerator CombatRoutine()
     {
+        //때릴 사람이 없어
+        if (combatTarget == null)
+            yield break;
+
+        comBatCoroutine = null;
         inCombat = true;
+
+        //이미 누군가랑 싸우고 있어
         if (!combatTarget.inCombat)
         {
             combatTarget.combatTarget = this;
             combatTarget.comBatCoroutine = StartCoroutine(combatTarget.CombatRoutine());
         }
-        PlayAnimation("attack",inCombat);
-        Attack(this,this.combatTarget);
-        yield return new WaitForSeconds(attackDelay);
+
+
         PlayAnimation("attack");
-        //대상 사망 체크 및 inCombat 수정
+        //실제로 데미지가 들어가는 부분
+        yield return new WaitForSeconds(attackDelay);
+        Attack(this,combatTarget);
+        yield return new WaitForSeconds(attackDelay);
+
+        //이래도 살아있어? 한대 더 맞자
+        if (combatTarget.isAlive)
+        {
+            comBatCoroutine = StartCoroutine(CombatRoutine());
+        }
     }
 
     /// <summary>
@@ -347,10 +375,21 @@ public class CrewMember : CrewBase
     /// </summary>
     /// <param name="attacker"></param>
     /// <param name="target"></param>
+    /// <returns>
+    ///공격한 상대가 살아있는지 여부를 반환한다.<br/>
+    /// True: 아직 살아있음 / False: 죽었음
+    /// </returns>
     public void Attack(CrewMember attacker, CrewMember target)
     {
+        if (target == null)
+        {
+            //목표를 포착했...는 중이다
+            inCombat = false;
+            RTSSelectionManager.Instance.MoveForCombat(this,this.reservedRoom.occupiedCrewTiles);
+            return;
+        }
         // 피해량 계산식: (공격 주체 기본 공격 + 장비 공격력(tmp)) * (1 - (상대 방어력 / 100))
-        float damage = (attacker.attack + attacker.equippedWeapon.eqAttackBonus) * (1 - target.defense / 100f);
+        float damage = 1; //(attacker.attack + attacker.equippedWeapon.eqAttackBonus) * (1 - target.defense / 100f);
         target.health -= damage;
         Debug.Log($"{attacker.crewName}이(가) {target.crewName}에게 {damage}의 피해를 입혔습니다.");
 
@@ -368,7 +407,30 @@ public class CrewMember : CrewBase
             }
 
             // 선원 제거 (죽음)
-            Destroy(target.gameObject);
+            // 사망신고하는데 이것저것 내야할 서류가 많아요
+            target.isAlive = false;
+            //Destroy(target.gameObject);
         }
     }
+
+    /// <summary>
+    /// 사망 시, 자신을 combatTarget으로 지정한 선원들에게서 자신을 할당해제시키고 다른 목표를 탐색하도록한다.
+    /// 또한 애니메이션 재생을 마친 후에 Destroy
+    /// TODO: 아직 미완성이야
+    ///
+    /// </summary>
+    public void Die()
+    {
+        if (bullier != null)
+        {
+            foreach (CrewMember hittingMan in bullier)
+            {
+                hittingMan.inCombat = false;
+                StopCoroutine(hittingMan.comBatCoroutine);
+                hittingMan.comBatCoroutine = null;
+            }
+        }
+        PlayAnimation("die");
+    }
+
 }

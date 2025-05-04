@@ -454,6 +454,15 @@ public class RTSSelectionManager : MonoBehaviour
             reservedTiles.Add(tile);
             unassignedCrew.Remove(bestCrew);
 
+            // 7. 전투 중이었다면 런
+            if (bestCrew.inCombat)
+            {
+                bestCrew.inCombat = false;
+                StopCoroutine(bestCrew.comBatCoroutine);
+                bestCrew.comBatCoroutine = null;
+                //TODO:자신이 공격대상에서 벗어나도록 하고 싸우던 상대가 다른 상대를 탐색해야됨
+            }
+
             // 6. 이동 처리
             if (bestCrew.isMoving)
                 bestCrew.CancelAndRedirect(bestPath);
@@ -466,6 +475,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// 같은 방 내에 적이 있다면 공격 AI
     /// </summary>
     /// <param name="readyCombatCrew"></param>
+    /// TODO: 이동 중인 선원은 공격탐색 대상에서 제외시켜야함
     public void MoveForCombat(CrewMember readyCombatCrew, HashSet<Vector2Int> reservedTiles)
     {
         Debug.LogError("전투 이동 검사 시작");
@@ -502,7 +512,7 @@ public class RTSSelectionManager : MonoBehaviour
         Debug.LogWarning($"가장 가까운 적 위치 : {enemyTile}");
 
         // 3. 가장 가까운 적군 주변 4방향 이웃 타일 순회
-        Vector2Int[] directions = new Vector2Int[]
+        List<Vector2Int> directions = new List<Vector2Int>
         {
             Vector2Int.up,
             Vector2Int.right,
@@ -510,6 +520,10 @@ public class RTSSelectionManager : MonoBehaviour
             Vector2Int.left
         };
 
+        //공격이 가능한 타일 후보
+        List<Vector2Int> neighborDirCandi = new List<Vector2Int>();
+
+        //4방향에서 후보에 등록할 방향을 찾는다.
         foreach (Vector2Int dir in directions)
         {
             Vector2Int neighborTile = enemyTile + dir;
@@ -517,16 +531,42 @@ public class RTSSelectionManager : MonoBehaviour
 
             // 방 내부의 타일인지 검사
             if (!movementValidator.IsTileWalkable(neighborTile))
+            {
                 continue;
+            }
 
             // 이웃 타일이 같은 방이 아님
             if (!readyCombatCrew.currentRoom.OccupiesTile(neighborTile))
+            {
                 continue;
-
+            }
+            //만약 이미 같은 방안에서 인접한 타일에 적과 함께 있다면 전투 돌입
+            if (readyCombatCrew.GetCurrentTile() == neighborTile)
+            {
+                Debug.Log("전투 개시");
+                readyCombatCrew.combatTarget = closestEnemy;
+                readyCombatCrew.comBatCoroutine = StartCoroutine(readyCombatCrew.CombatRoutine());
+                return;
+            }
             // 이웃 타일이 이미 점유 당한 타일 (해당 위치로 이동 불가) && 타일 예약한게 본인이 아니라면
             if (readyCombatCrew.currentRoom.IsTileOccupiedByCrew(neighborTile) && readyCombatCrew.reservedTile != neighborTile)
+            {
                 continue;
+            }
+            neighborDirCandi.Add(neighborTile);
+        }
 
+        //후보가 없으면 히히 못가
+        if (neighborDirCandi.Count == 0)
+        {
+            Debug.LogError($"{readyCombatCrew.race}가 {closestEnemy.race}에 접근할 수 있는 빈 타일 없음");
+            return;
+        }
+
+        //TODO: 후보 타일 중에서 현재 위치와 가장 가까운 타일로 확정시켜야됨
+
+        foreach (Vector2Int neighborTile in directions)
+        {
             // 4. 이동 처리를 위한 필드값 세팅
             readyCombatCrew.oldReservedRoom = readyCombatCrew.reservedRoom;
             readyCombatCrew.oldReservedTile = readyCombatCrew.reservedTile;
@@ -541,53 +581,8 @@ public class RTSSelectionManager : MonoBehaviour
             List<Vector2Int> pathToNeighbor = crewPathfinder.FindPathToTile(readyCombatCrew, neighborTile);
             if (pathToNeighbor != null && pathToNeighbor.Count > 0)
                 readyCombatCrew.CancelAndRedirect(pathToNeighbor);
-
-            Debug.Log("전투 개시");
-
-            // 7. 전투 구현
-            // Attack() 같은 거
+            //뒤는 코루틴에게 맡기라구!
             return;
-        }
-        Debug.LogError($"{readyCombatCrew.race}가 {closestEnemy.race}에 접근할 수 있는 빈 타일 없음");
-    }
-
-    /// <summary>
-    /// 같은 방 내에 적이 있다면 공격 AI
-    /// </summary>
-    /// <param name="crew"></param>
-    public void CheckForCombat(CrewMember crew)
-    {
-        /*
-        Collider[] colliders = Physics.OverlapSphere(crew.transform.position, attackRange);
-        foreach (Collider col in colliders)
-        {
-            CrewMember targetCrew = col.GetComponent<CrewMember>();
-            if (targetCrew != null && targetCrew != crew)
-            {
-                // 간단히 종족이 다르면 적으로 간주 (추후 팀 개념 등으로 확장 가능)
-                if (crew.race != targetCrew.race)
-                {
-                    Attack(crew, targetCrew);
-                }
-            }
-        }
-        */
-        //temp enemy check
-        //TODO: 이동하는거 만들어줘
-        List<CrewMember> enemyInRoom = new List<CrewMember>();
-        foreach (CrewBase someone in crew.currentRoom.GetCrewInRoom())
-        {
-            if (someone is CrewMember cmInRoom && cmInRoom.isPlayerControlled != crew.isPlayerControlled)
-            {
-                enemyInRoom.Add(cmInRoom);
-            }
-        }
-
-        if (enemyInRoom.Count > 0)
-        {
-            crew.combatTarget = enemyInRoom[0];
-            if(crew.comBatCoroutine==null)
-                crew.comBatCoroutine = StartCoroutine(crew.CombatRoutine());
         }
     }
 }
