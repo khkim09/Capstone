@@ -171,6 +171,8 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
             isDragging = false;
             Vector2Int newPos = gridPlacer.WorldToGridPosition(mouseWorldPos);
 
+            UpdateOccupiedTiles();
+
             // bool canPlace = gridPlacer.CanPlaceObject(this, newPos, null);
             bool canPlace = gridPlacer.CanPlaceWeapon(bpWeaponData, bpPosition, bpAttachedDirection);
             sr.color = Color.white;
@@ -181,6 +183,8 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
                 // 불가능 : 원위치
                 bpPosition = originalPos;
                 bpAttachedDirection = originalDirection;
+
+                UpdateOccupiedTiles();
 
                 Vector2Int size = new(2, 1);
                 Vector2 offset = RoomRotationUtility.GetRotationOffset(size, RotationConstants.Rotation.Rotation0);

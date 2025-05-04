@@ -219,6 +219,8 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
             isDragging = false;
             Vector2Int newPos = gridPlacer.WorldToGridPosition(mouseWorldPos);
 
+            UpdateOccupiedTiles();
+
             bool canPlace = gridPlacer.CanPlaceRoom(bpRoomData, bpLevelIndex, newPos, bpRotation);
             sr.color = Color.white;
 
@@ -229,6 +231,8 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
                 bpPosition = originalPos;
                 bpRotation = originalRot;
                 bpRoomSize = RoomRotationUtility.GetRotatedSize(levelData.size, bpRotation);
+
+                UpdateOccupiedTiles();
 
                 Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
                 transform.position = gridPlacer.GridToWorldPosition(originalPos) + (Vector3)offset;
