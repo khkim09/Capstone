@@ -317,7 +317,7 @@ public class RTSSelectionManager : MonoBehaviour
         if (targetRoom == null)
             return;
 
-        List<CrewBase> allCrew = playerShip.GetSystem<CrewSystem>().GetCrews();
+        List<CrewBase> allCrew = playerShip.CrewSystem.GetCrews();
 
         // 목적지 방의 우선순위 높은 순 타일 위치 리스트
         List<Vector2Int> entryTiles = targetRoom.GetRotatedCrewEntryGridPriority();
@@ -491,7 +491,7 @@ public class RTSSelectionManager : MonoBehaviour
     {
         Debug.LogError("전투 이동 검사 시작");
         // 1. 도착한 방에서 적군 탐색
-        List<CrewMember> enemiesInRoom = playerShip.GetSystem<CrewSystem>().GetCrews().OfType<CrewMember>().Where
+        List<CrewMember> enemiesInRoom = playerShip.CrewSystem.GetCrews().OfType<CrewMember>().Where
         (
             // 선원이 생존해 있고, 위치한 방이 현재 RTS 이동으로 도착한 선원과 같은 방이며, 적군일 때
             c => c.isAlive && c.currentRoom == readyCombatCrew.currentRoom && !c.isPlayerControlled

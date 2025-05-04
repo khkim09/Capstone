@@ -228,7 +228,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// </summary>
     private void GetSavedBPRooms()
     {
-        List<BlueprintRoomSaveData> layout = BlueprintLayoutSaver.LoadLayout();
+        List<BlueprintRoomSaveData> layout = BlueprintLayoutSaver.LoadRoomLayout();
 
         foreach (BlueprintRoomSaveData saved in layout)
             gridPlacer.PlaceRoom(saved.bpRoomData, saved.bpLevelIndex, saved.bpPosition, saved.bpRotation);
@@ -240,13 +240,13 @@ public class CustomizeShipUIHandler : MonoBehaviour
     private void SaveBPRoomsandDestroy()
     {
         BlueprintRoom[] bpRooms = targetBlueprintShip.GetComponentsInChildren<BlueprintRoom>();
-        BlueprintLayoutSaver.SaveLayout(bpRooms);
+        BlueprintLayoutSaver.SaveRoomLayout(bpRooms);
 
         // 설치했던 모든 설계도 방 제거
         foreach (BlueprintRoom r in bpRooms)
             Destroy(r.gameObject);
 
-        targetBlueprintShip.ClearPlacedBPRooms();
+        targetBlueprintShip.ClearRooms();
     }
 
     /// <summary>
@@ -273,7 +273,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     {
         backupCrewDatas.Clear();
 
-        foreach (CrewMember cm in playerShip.GetSystem<CrewSystem>().GetCrews())
+        foreach (CrewMember cm in playerShip.CrewSystem.GetCrews())
         {
             backupCrewDatas.Add(new BackupCrewData
             {
@@ -317,7 +317,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
             playerShip.RevertToOriginalShip();
 
             // 기존 선원 복원
-            playerShip.GetSystem<CrewSystem>().RevertOriginalCrews(backupCrewDatas);
+            playerShip.CrewSystem.RevertOriginalCrews(backupCrewDatas);
         }
         else
         {
@@ -344,7 +344,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
             playerShip.ClearAllCrewTileOccupancy();
 
             // 3) 기존 선원 복구 및 랜덤 배치
-            playerShip.GetSystem<CrewSystem>().RestoreCrewAfterBuild(backupCrewDatas);
+            playerShip.CrewSystem.RestoreCrewAfterBuild(backupCrewDatas);
         }
 
         // 함선 스텟 다시 계산
