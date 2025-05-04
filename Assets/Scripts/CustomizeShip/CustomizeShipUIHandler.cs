@@ -143,6 +143,9 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 카메라 - 설계도 함선 기준으로 세팅
         CenterCameraToBP();
 
+        // 선원 임시 비활성화
+        DisableCrews();
+
         // 함선의 방 collider 비활성화 (RTS를 위한 collider와 겹침 방지)
         SetPlayerShipCollidersActive(false);
     }
@@ -163,8 +166,39 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 카메라 - 기존 함선 기준으로 복구
         ResetCameraToOriginShip();
 
+        // 선원 활성화
+        EnableCrews();
+
         // 함선 방 collider 활성화
         SetPlayerShipCollidersActive(true);
+    }
+
+    /// <summary>
+    /// 커스터마이징 UI 진입 시 선원 임시 비활성화
+    /// </summary>
+    private void DisableCrews()
+    {
+        List<CrewBase> crews = playerShip.GetAllCrew();
+
+        foreach (CrewBase crew in crews)
+        {
+            if (crew is CrewMember crewMember)
+                crewMember.gameObject.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// 커스터마이징 UI 탈출 시 선원 재활성화
+    /// </summary>
+    private void EnableCrews()
+    {
+        List<CrewBase> crews = playerShip.GetAllCrew();
+
+        foreach (CrewBase crew in crews)
+        {
+            if (crew is CrewMember crewMember)
+                crewMember.gameObject.SetActive(true);
+        }
     }
 
     /// <summary>
