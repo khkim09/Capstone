@@ -86,7 +86,7 @@ public class BlueprintRoomDragHandler : MonoBehaviour
         previewRenderer.color = canPlace ? validColor : invalidColor;
 
         // 회전
-        if (Input.GetMouseButtonDown(1))
+        if (isDragging && Input.GetMouseButtonDown(1))
             draggingRotation = (RotationConstants.Rotation)(((int)draggingRotation + 1) % 4);
 
         // 설치

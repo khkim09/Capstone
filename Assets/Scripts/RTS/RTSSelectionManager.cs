@@ -465,6 +465,95 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 같은 방 내에 적이 있다면 공격 AI
     /// </summary>
+    /// <param name="readyCombatCrew"></param>
+    public void MoveForCombat(CrewMember readyCombatCrew, HashSet<Vector2Int> reservedTiles)
+    {
+        Debug.LogError("전투 이동 검사 시작");
+        // 1. 도착한 방에서 적군 탐색
+        List<CrewMember> enemiesInRoom = playerShip.GetSystem<CrewSystem>().GetCrews().OfType<CrewMember>().Where
+        (
+            // 선원이 생존해 있고, 위치한 방이 현재 RTS 이동으로 도착한 선원과 같은 방이며, 적군일 때
+            c => c.isAlive && c.currentRoom == readyCombatCrew.currentRoom && !c.isPlayerControlled
+        ).ToList();
+
+        if (enemiesInRoom.Count == 0)
+            return;
+
+        // 2. 현재 도착 위치(RTS 이동 결과)에서 가장 가까운 적 찾기 (A*)
+        CrewMember closestEnemy = null;
+        int shortestPathLength = int.MaxValue;
+        List<Vector2Int> bestPathToEnemy = null;
+
+        foreach (CrewMember enemy in enemiesInRoom)
+        {
+            List<Vector2Int> path = crewPathfinder.FindPathToTile(readyCombatCrew, enemy.GetCurrentTile());
+            if (path != null && path.Count < shortestPathLength)
+            {
+                shortestPathLength = path.Count;
+                closestEnemy = enemy;
+                bestPathToEnemy = path;
+            }
+        }
+
+        if (closestEnemy == null)
+            return;
+
+        Vector2Int enemyTile = closestEnemy.GetCurrentTile();
+        Debug.LogWarning($"가장 가까운 적 위치 : {enemyTile}");
+
+        // 3. 가장 가까운 적군 주변 4방향 이웃 타일 순회
+        Vector2Int[] directions = new Vector2Int[]
+        {
+            Vector2Int.up,
+            Vector2Int.right,
+            Vector2Int.down,
+            Vector2Int.left
+        };
+
+        foreach (Vector2Int dir in directions)
+        {
+            Vector2Int neighborTile = enemyTile + dir;
+            Debug.LogWarning($"이웃 타일 검사 : {neighborTile}");
+
+            // 방 내부의 타일인지 검사
+            if (!movementValidator.IsTileWalkable(neighborTile))
+                continue;
+
+            // 이웃 타일이 같은 방이 아님
+            if (!readyCombatCrew.currentRoom.OccupiesTile(neighborTile))
+                continue;
+
+            // 이웃 타일이 이미 점유 당한 타일 (해당 위치로 이동 불가) && 타일 예약한게 본인이 아니라면
+            if (readyCombatCrew.currentRoom.IsTileOccupiedByCrew(neighborTile) && readyCombatCrew.reservedTile != neighborTile)
+                continue;
+
+            // 4. 이동 처리를 위한 필드값 세팅
+            readyCombatCrew.oldReservedRoom = readyCombatCrew.reservedRoom;
+            readyCombatCrew.oldReservedTile = readyCombatCrew.reservedTile;
+            readyCombatCrew.reservedRoom = readyCombatCrew.currentRoom;
+            readyCombatCrew.reservedTile = neighborTile;
+
+            // 5. reservedTiles 갱신
+            reservedTiles.Remove(readyCombatCrew.oldReservedTile);
+            reservedTiles.Add(neighborTile);
+
+            // 6. 실제 이동 처리
+            List<Vector2Int> pathToNeighbor = crewPathfinder.FindPathToTile(readyCombatCrew, neighborTile);
+            if (pathToNeighbor != null && pathToNeighbor.Count > 0)
+                readyCombatCrew.CancelAndRedirect(pathToNeighbor);
+
+            Debug.Log("전투 개시");
+
+            // 7. 전투 구현
+            // Attack() 같은 거
+            return;
+        }
+        Debug.LogError($"{readyCombatCrew.race}가 {closestEnemy.race}에 접근할 수 있는 빈 타일 없음");
+    }
+
+    /// <summary>
+    /// 같은 방 내에 적이 있다면 공격 AI
+    /// </summary>
     /// <param name="crew"></param>
     public void CheckForCombat(CrewMember crew)
     {
