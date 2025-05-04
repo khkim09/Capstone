@@ -18,7 +18,7 @@ public class CrewPathfinder : MonoBehaviour
     /// <returns></returns>
     public List<Vector2Int> FindPathToTile(CrewMember crew, Vector2Int tile)
     {
-        Debug.LogError($"목적지 타일 : {crew.reservedTile}");
+        Debug.LogWarning($"목적지 타일 : {tile}");
         return AStar.FindPath(crew.GetCurrentTile(), tile, movementValidator);
     }
 }
