@@ -313,7 +313,7 @@ public enum GameState
     /// <summary>게임이 실제로 진행 중인 상태입니다.</summary>
     Gameplay,
 
-    /// <summary>워프(연도 진행) 중 상태입니다.</summary>=
+    /// <summary>워프(연도 진행) 중 상태입니다.</summary>
     Warp,
 
     /// <summary>이벤트 처리 중 상태입니다.</summary>

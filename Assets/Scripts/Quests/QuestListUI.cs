@@ -20,6 +20,18 @@ public class QuestListUI : MonoBehaviour
     private List<GameObject> spawnedSlots = new();
 
     /// <summary>
+    /// 시작할 때 실행되는 함수입니다.
+    /// 처음에는 패널을 꺼둡니다.
+    /// </summary>
+    private void Start()
+    {
+        panel.SetActive(false);  // 처음에 꺼두기
+
+        /// <summary>퀘스트 완료 시 자동으로 리스트를 새로고침합니다.</summary>
+        QuestManager.Instance.OnQuestCompleted += OnQuestCompleted;
+    }
+
+    /// <summary>
     /// 퀘스트 목록 창을 열고 목록을 표시합니다.
     /// 이미 생성된 슬롯은 제거하고, 현재 수락된 퀘스트들을 표시합니다.
     /// </summary>
@@ -49,7 +61,6 @@ public class QuestListUI : MonoBehaviour
 
             spawnedSlots.Add(slot);
         }
-
     }
 
     /// <summary>
@@ -83,5 +94,16 @@ public class QuestListUI : MonoBehaviour
             Destroy(slot);
         }
         spawnedSlots.Clear();
+    }
+
+    /// <summary>
+    /// 퀘스트 완료 시 호출되어 리스트를 자동 갱신합니다.
+    /// </summary>
+    private void OnQuestCompleted(QuestManager.Quest quest)
+    {
+        if (panel.activeSelf)
+        {
+            Open(); // 다시 그려주기
+        }
     }
 }

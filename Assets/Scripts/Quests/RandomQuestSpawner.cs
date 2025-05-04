@@ -75,7 +75,7 @@ public class RandomQuestSpawner : MonoBehaviour
                         objective.destinationPlanetId = "UNKNOWN";
                         objective.description = $"Get '{itemP.itemName}' {objective.requiredAmount} and procurement to planet.";
 
-                        float reward = itemP.costBase * (1 + itemP.costChangerate) * 1.1f * objective.requiredAmount;
+                        float reward =  itemP.costMax  * 1.1f * objective.requiredAmount;
                         quest.rewards.Add(new RandomQuest.QuestReward { amount = Mathf.RoundToInt(reward) });
                     }
                     break;

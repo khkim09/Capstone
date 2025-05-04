@@ -37,6 +37,8 @@ public class EventManager : MonoBehaviour
     /// </summary>
     public static EventManager Instance { get; private set; }
 
+    private bool isEventRunning = false;
+
     /// <summary>
     /// 인스턴스를 초기화합니다. 중복 객체는 제거됩니다.
     /// </summary>
@@ -125,6 +127,13 @@ public class EventManager : MonoBehaviour
     /// <param name="randomEvent">발생시킬 이벤트.</param>
     public void TriggerEvent(RandomEvent randomEvent)
     {
+        if (isEventRunning)
+        {
+            Debug.Log("이벤트 중복 실행 방지됨");
+            return;
+        }
+
+        isEventRunning = true;
         currentEvent = randomEvent;
 
         // 게임 상태 변경
@@ -170,5 +179,14 @@ public class EventManager : MonoBehaviour
     {
         ISpecialEffectHandler handler = effectHandlerFactory.GetHandler(outcome.specialEffectType);
         handler?.HandleEffect(outcome);
+    }
+
+    /// <summary>
+    /// 이벤트 실행을 종료합니다.
+    /// </summary>
+    public void EndEvent()
+    {
+        isEventRunning = false;
+        GameManager.Instance.OnEventCompleted();
     }
 }
