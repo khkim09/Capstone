@@ -50,7 +50,7 @@ public class QuestUIManager : MonoBehaviour
     {
         currentQuest = quest;
         offerPanel.SetActive(true);
-        questText.text = ""; // 초기화
+        questText.text = "";
         StopAllCoroutines();
         StartCoroutine(TypeText(quest.title + "\n\n" + quest.description));
     }
@@ -73,6 +73,7 @@ public class QuestUIManager : MonoBehaviour
     /// <summary>
     /// 수락 버튼 클릭 시 호출됩니다.
     /// 퀘스트를 수락하고 퀘스트 매니저에 등록합니다.
+    /// 퀘스트 리스트 UI가 열려 있는 경우, 갱신합니다.
     /// </summary>
     private void OnAccept()
     {
@@ -82,8 +83,11 @@ public class QuestUIManager : MonoBehaviour
             QuestManager.Instance.AddQuest(currentQuest.ToQuest());
 
             QuestListUI questListUI = FindObjectOfType<QuestListUI>();
-            if (questListUI != null && questListUI.panel.activeSelf)
+            if (questListUI != null)
             {
+                if (!questListUI.panel.activeSelf)
+                    questListUI.panel.SetActive(true);
+
                 questListUI.Open();
             }
         }
