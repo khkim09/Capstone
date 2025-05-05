@@ -468,4 +468,15 @@ public class CrewMember : CrewBase
         yield return new WaitForSeconds(2f);
         Destroy(this.gameObject);
     }
+
+    public void LookAtMe()
+    {
+        foreach (CrewMember other in currentRoom.GetCrewInRoom())
+        {
+            if (other.inCombat == false && other.isMoving == false)
+            {
+                RTSSelectionManager.Instance.MoveForCombat(other, other.currentRoom.occupiedCrewTiles);
+            }
+        }
+    }
 }
