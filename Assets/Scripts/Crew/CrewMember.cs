@@ -294,6 +294,7 @@ public class CrewMember : CrewBase
         reservedRoom = null;
 
         RTSSelectionManager.Instance.MoveForCombat(this,currentRoom.occupiedCrewTiles);
+        LookAtMe();
     }
 
     // <summary>
@@ -467,5 +468,16 @@ public class CrewMember : CrewBase
         PlayAnimation("die");
         yield return new WaitForSeconds(2f);
         Destroy(this.gameObject);
+    }
+
+    public void LookAtMe()
+    {
+        foreach (CrewMember other in currentRoom.GetCrewInRoom())
+        {
+            if (other.inCombat == false && other.isMoving == false)
+            {
+                RTSSelectionManager.Instance.MoveForCombat(other, other.currentRoom.occupiedCrewTiles);
+            }
+        }
     }
 }
