@@ -224,7 +224,6 @@ public class CrewMember : CrewBase
     }
 
 
-
     /// <summary>
     /// 현재 방에서 선원이 점유 중인 타일의 우선순위 인덱스 반환
     /// </summary>
@@ -468,16 +467,5 @@ public class CrewMember : CrewBase
         PlayAnimation("die");
         yield return new WaitForSeconds(2f);
         Destroy(this.gameObject);
-    }
-
-    public void LookAtMe()
-    {
-        foreach (CrewMember other in currentRoom.GetCrewInRoom())
-        {
-            if (other.inCombat == false && other.isMoving == false)
-            {
-                RTSSelectionManager.Instance.MoveForCombat(other, other.currentRoom.occupiedCrewTiles);
-            }
-        }
     }
 }
