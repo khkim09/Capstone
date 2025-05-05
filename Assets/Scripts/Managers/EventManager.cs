@@ -40,6 +40,13 @@ public class EventManager : MonoBehaviour
     private bool isEventRunning = false;
 
     /// <summary>
+    /// 프로퍼티를 추가해, 왜부에서 이벤트 목록을 받아옵니다.
+    /// </summary>
+    public IReadOnlyList<RandomEvent> TimeEvents => timeEvents;
+    public IReadOnlyList<RandomEvent> LocationEvents => locationEvents;
+    public IReadOnlyList<RandomEvent> AllEvents => allEvents;
+
+    /// <summary>
     /// 인스턴스를 초기화합니다. 중복 객체는 제거됩니다.
     /// </summary>
     private void Awake()

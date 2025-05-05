@@ -47,6 +47,7 @@ public class EventUIManager : MonoBehaviour
         // 이벤트 패널 초기화
         eventPanel.SetActive(true);
         outcomePanel.SetActive(false);
+        choicesPanel.SetActive(true);
 
         // 이벤트 정보 설정
         eventTitleText.text = randomEvent.eventTitle;
@@ -90,6 +91,9 @@ public class EventUIManager : MonoBehaviour
     {
         // 선택지 버튼 비활성화
         foreach (Transform child in choicesPanel.transform) child.GetComponent<Button>().interactable = false;
+
+        // 이벤트 패널 숨김
+        eventPanel.SetActive(false);
 
         // 선택 처리
         EventManager.Instance.ProcessChoice(currentEvent, choiceIndex);
