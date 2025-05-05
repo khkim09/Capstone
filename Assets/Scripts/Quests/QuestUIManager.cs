@@ -37,6 +37,8 @@ public class QuestUIManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        offerPanel.SetActive(false);
+        completePanel.SetActive(false);
         acceptBtn.onClick.AddListener(OnAccept);
         declineBtn.onClick.AddListener(OnDecline);
         completeBtn.onClick.AddListener(OnCompleteConfirmed);
@@ -115,11 +117,12 @@ public class QuestUIManager : MonoBehaviour
     /// 퀘스트 완료 UI를 표시합니다.
     /// </summary>
     /// <param name="quest">완료된 퀘스트</param>
-    public void ShowCompletion(RandomQuest quest)
+    public void ShowCompletion(QuestManager.Quest quest)
     {
         completePanel.SetActive(true);
-        completeText.text = $"퀘스트 완료!\n보상: {quest.rewards[0].amount} COMA";
+        completeText.text = $"Quest Completed!!\nReward: {quest.rewards[0].amount} COMA";
     }
+
 
     /// <summary>
     /// 퀘스트 완료 확인 버튼 클릭 시 호출됩니다.
