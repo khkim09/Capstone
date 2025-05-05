@@ -521,7 +521,7 @@ public class RTSSelectionManager : MonoBehaviour
         };
 
         //공격이 가능한 타일 후보
-        List<Vector2Int> neighborDirCandi = new List<Vector2Int>();
+        List<Vector2Int> neighborTileCandi = new List<Vector2Int>();
 
         //4방향에서 후보에 등록할 방향을 찾는다.
         foreach (Vector2Int dir in directions)
@@ -553,36 +553,41 @@ public class RTSSelectionManager : MonoBehaviour
             {
                 continue;
             }
-            neighborDirCandi.Add(neighborTile);
+            neighborTileCandi.Add(neighborTile);
         }
 
         //후보가 없으면 히히 못가
-        if (neighborDirCandi.Count == 0)
+        if (neighborTileCandi.Count == 0)
         {
             Debug.LogError($"{readyCombatCrew.race}가 {closestEnemy.race}에 접근할 수 있는 빈 타일 없음");
             return;
         }
 
-        //TODO: 후보 타일 중에서 현재 위치와 가장 가까운 타일로 확정시켜야됨
-
-        foreach (Vector2Int neighborTile in directions)
+        //후보 타일 중에서 현재 위치와 가장 가까운 타일로 확정시켜야됨
+        Vector2Int letsgo = Vector2Int.zero;
+        foreach (Vector2Int candi in neighborTileCandi)
         {
-            // 4. 이동 처리를 위한 필드값 세팅
-            readyCombatCrew.oldReservedRoom = readyCombatCrew.reservedRoom;
-            readyCombatCrew.oldReservedTile = readyCombatCrew.reservedTile;
-            readyCombatCrew.reservedRoom = readyCombatCrew.currentRoom;
-            readyCombatCrew.reservedTile = neighborTile;
-
-            // 5. reservedTiles 갱신
-            reservedTiles.Remove(readyCombatCrew.oldReservedTile);
-            reservedTiles.Add(neighborTile);
-
-            // 6. 실제 이동 처리
-            List<Vector2Int> pathToNeighbor = crewPathfinder.FindPathToTile(readyCombatCrew, neighborTile);
-            if (pathToNeighbor != null && pathToNeighbor.Count > 0)
-                readyCombatCrew.CancelAndRedirect(pathToNeighbor);
-            //뒤는 코루틴에게 맡기라구!
-            return;
+            List<Vector2Int> path = crewPathfinder.FindPathToTile(readyCombatCrew, candi);
+            if (path != null && path.Count < shortestPathLength)
+            {
+                letsgo = candi;
+                break;
+            }
         }
+        readyCombatCrew.oldReservedRoom = readyCombatCrew.reservedRoom;
+        readyCombatCrew.oldReservedTile = readyCombatCrew.reservedTile;
+        readyCombatCrew.reservedRoom = readyCombatCrew.currentRoom;
+        readyCombatCrew.reservedTile = letsgo;
+
+        // 5. reservedTiles 갱신
+        reservedTiles.Remove(readyCombatCrew.oldReservedTile);
+        reservedTiles.Add(letsgo);
+
+        // 6. 실제 이동 처리
+        List<Vector2Int> pathToNeighbor = crewPathfinder.FindPathToTile(readyCombatCrew, letsgo);
+        if (pathToNeighbor != null && pathToNeighbor.Count > 0)
+            readyCombatCrew.CancelAndRedirect(pathToNeighbor);
+        //뒤는 코루틴에게 맡기라구!
+
     }
 }
