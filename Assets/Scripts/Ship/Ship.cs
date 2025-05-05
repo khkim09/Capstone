@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class Ship : MonoBehaviour, IWorldGridSwitcher
 {
-    [Header("Ship Info")][SerializeField] public string shipName = "Milky";
+    [Header("Ship Info")] [SerializeField] public string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -40,7 +40,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     private int doorLevel;
 
-    [Header("외갑판 설정")][SerializeField] public OuterHullData outerHullData;
+    [Header("외갑판 설정")] [SerializeField] public OuterHullData outerHullData;
     [SerializeField] public GameObject outerHullPrefab;
 
     /// <summary>
@@ -123,7 +123,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     private void Start()
     {
-        Initialize();
+        // NOTE: 여기서 Initialize 호출 금지. 로드된 함선의 이중 초기화 때문에 그렇다. 초기화가 필요하면 필요한 곳에서 .Initialize 호출할 것
     }
 
     public void Initialize()
@@ -131,8 +131,6 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         InitializeBaseStats();
 
         InitializeSystems();
-        UpdateOuterHullVisuals();
-
         RecalculateAllStats();
 
         doorLevel = 1;
@@ -145,8 +143,15 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     private void Update()
     {
-        // 모든 시스템 업데이트
-        foreach (ShipSystem system in systems.Values) system.Update(Time.deltaTime);
+        if (OuterHullSystem != null) OuterHullSystem.Update(Time.deltaTime);
+        if (WeaponSystem != null) WeaponSystem.Update(Time.deltaTime);
+        if (OxygenSystem != null) OxygenSystem.Update(Time.deltaTime);
+        if (CrewSystem != null) CrewSystem.Update(Time.deltaTime);
+        if (HitpointSystem != null) HitpointSystem.Update(Time.deltaTime);
+        if (MoraleSystem != null) MoraleSystem.Update(Time.deltaTime);
+        if (PowerSystem != null) PowerSystem.Update(Time.deltaTime);
+        if (StorageSystem != null) StorageSystem.Update(Time.deltaTime);
+        if (ShieldSystem != null) ShieldSystem.Update(Time.deltaTime);
     }
 
     /// <summary>
@@ -382,11 +387,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-            for (int y = 0; y < room.GetSize().y; y++)
-            {
-                Vector2Int gridPos = room.position + new Vector2Int(x, y);
-                roomGrid.Remove(gridPos);
-            }
+        for (int y = 0; y < room.GetSize().y; y++)
+        {
+            Vector2Int gridPos = room.position + new Vector2Int(x, y);
+            roomGrid.Remove(gridPos);
+        }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -615,12 +620,12 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             return false;
 
         for (int x = 0; x < size.x; x++)
-            for (int y = 0; y < size.y; y++)
-            {
-                Vector2Int checkPos = pos + new Vector2Int(x, y);
-                if (roomGrid.ContainsKey(checkPos))
-                    return false;
-            }
+        for (int y = 0; y < size.y; y++)
+        {
+            Vector2Int checkPos = pos + new Vector2Int(x, y);
+            if (roomGrid.ContainsKey(checkPos))
+                return false;
+        }
 
         return true;
     }
@@ -1195,15 +1200,15 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
-                for (int y = -1; y <= 1; y++)
-                {
-                    if (x == 0 && y == 0) continue;
+            for (int y = -1; y <= 1; y++)
+            {
+                if (x == 0 && y == 0) continue;
 
-                    Vector2Int checkPos = position + new Vector2Int(x, y);
+                Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                    // 해당 위치에 있는 선원들에게 데미지 적용
-                    ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
-                }
+                // 해당 위치에 있는 선원들에게 데미지 적용
+                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
+            }
     }
 
     #endregion
@@ -1350,6 +1355,33 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             int currentLevel = outerSystem.GetOuterHullLevel();
             outerSystem.UpdateVisuals(currentLevel);
         }
+    }
+
+    /// <summary>
+    /// 기존 외갑판 객체들을 모두 제거합니다.
+    /// </summary>
+    public void ClearExistingHulls()
+    {
+        OuterHullSystem.ClearExistingHulls();
+    }
+
+    #endregion
+
+    #region Move
+
+    public void MoveTo(Vector2Int gridPosition)
+    {
+        Vector2Int shipPos = new(int.MaxValue, int.MaxValue);
+        foreach (Room room in allRooms)
+        foreach (Vector2Int tile in room.GetOccupiedTiles())
+        {
+            shipPos.x = Mathf.Min(shipPos.x, tile.x);
+            shipPos.y = Mathf.Min(shipPos.y, tile.y);
+        }
+
+        Vector2 offset =
+            ShipGridHelper.GetShipRotationOffset(this, RotationConstants.Rotation.Rotation0);
+        transform.position = ShipGridHelper.GridToWorldPosition(gridPosition) + (Vector3)offset;
     }
 
     #endregion

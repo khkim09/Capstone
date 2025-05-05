@@ -126,6 +126,9 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         // 드래그 시작 (좌클릭)
         if (!isDragging && Input.GetMouseButtonDown(0))
         {
+            if (IsPointerOverBlockingUI())
+                return;
+
             if (EventSystem.current.IsPointerOverGameObject())
                 if (IsPointerOverUIObject(RoomSelectionHandler.Instance.selectionUI))
                     return;
@@ -210,6 +213,31 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
             mouseDownTarget = null;
         }
     }
+
+    /// <summary>
+    /// 특정 UI 요소들 위에 마우스가 있는지 확인
+    /// 특히 인벤토리 UI와 같은 방해가 되는 UI만 체크
+    /// </summary>
+    private bool IsPointerOverBlockingUI()
+    {
+        PointerEventData eventData = new(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> results = new();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        foreach (RaycastResult result in results)
+            // 인벤토리 UI 확인 - 태그나 이름으로 식별
+            // 아래 조건은 프로젝트의 실제 이름이나 태그에 맞게 수정하세요
+            if (
+                result.gameObject.name.Contains("Scroll View") || result.gameObject.name.Contains("Essential") ||
+                result.gameObject.name.Contains("Auxiliary") || result.gameObject.name.Contains("Living") ||
+                result.gameObject.name.Contains("Storage") || result.gameObject.name.Contains("Etc") ||
+                result.gameObject.name.Contains("Weapon") || result.gameObject.name.Contains("Hull"))
+                return true;
+
+        return false;
+    }
+
 
     /// <summary>
     /// 무기 부착 방향 회전

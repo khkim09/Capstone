@@ -535,7 +535,7 @@ public class OuterHullSystem : ShipSystem
     /// <summary>
     /// 기존 외갑판 객체들을 모두 제거합니다.
     /// </summary>
-    private void ClearExistingHulls()
+    public void ClearExistingHulls()
     {
         foreach (OuterHull hull in currentOuterHulls)
             if (hull != null)

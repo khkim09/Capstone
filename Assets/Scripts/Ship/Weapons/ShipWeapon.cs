@@ -57,12 +57,12 @@ public class ShipWeapon : MonoBehaviour
     private void Awake()
     {
         // SpriteRenderer 컴포넌트 가져오기
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sortingOrder = SortingOrderConstants.Weapon;
     }
 
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sortingOrder = SortingOrderConstants.Weapon;
     }
 
     /// <summary>

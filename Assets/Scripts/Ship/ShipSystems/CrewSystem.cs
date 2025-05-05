@@ -54,8 +54,9 @@ public class CrewSystem : ShipSystem
     public bool AddCrew(CrewBase newCrew)
     {
         // TODO : 조건 검사를 밖에서 해서 capacity 부족하다는 걸 전달해야됨
-        if (crews.Count >= GetShipStat(ShipStat.CrewCapacity))
-            return false;
+        if (newCrew.isPlayerControlled)
+            if (crews.Count >= GetShipStat(ShipStat.CrewCapacity))
+                return false;
 
         parentShip.RecalculateAllStats();
 
@@ -87,6 +88,7 @@ public class CrewSystem : ShipSystem
             crew.currentRoom = room;
             crew.transform.position = parentShip.GridToWorldPosition(spawnTile);
             crew.transform.SetParent(room.transform);
+
 
             room.OccupyTile(spawnTile);
             room.OnCrewEnter(crew);
@@ -188,10 +190,10 @@ public class CrewSystem : ShipSystem
         foreach (BackupCrewData data in backupDatas)
         {
             CrewMember crew = data.crew;
+            CrewBase originCrew = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(crew.race, crew.crewName);
+
             Vector2Int pos = data.position;
             Room room = data.currentRoom;
-
-            CrewBase originCrew = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(crew.race, crew.crewName);
 
 
             originCrew.position = pos;
@@ -222,7 +224,7 @@ public class CrewSystem : ShipSystem
     /// <param name="backupCrewDatas"></param>
     public void RestoreCrewAfterBuild(List<BackupCrewData> backupCrewDatas)
     {
-        HashSet<Vector2Int> alreadyOccupiedTiles = new HashSet<Vector2Int>();
+        HashSet<Vector2Int> alreadyOccupiedTiles = new();
 
         foreach (BackupCrewData data in backupCrewDatas)
         {
@@ -238,8 +240,8 @@ public class CrewSystem : ShipSystem
                 List<Vector2Int> candidates = room.GetRotatedCrewEntryGridPriority().Where
                 (
                     t => !room.IsTileOccupiedByCrew(t)
-                    && !parentShip.IsCrewTileOccupied(room, t)
-                    && !alreadyOccupiedTiles.Contains(t)
+                         && !parentShip.IsCrewTileOccupied(room, t)
+                         && !alreadyOccupiedTiles.Contains(t)
                 ).ToList();
 
                 if (candidates.Count == 0)
@@ -275,10 +277,7 @@ public class CrewSystem : ShipSystem
             }
 
             // 만약 모든 방이 다 찼다면 로그 출력
-            if (!assigned)
-            {
-                Debug.LogError("모든 방이 다 차서 선원 겹쳐지게 배치됨.");
-            }
+            if (!assigned) Debug.LogError("모든 방이 다 차서 선원 겹쳐지게 배치됨.");
         }
     }
 }

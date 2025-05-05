@@ -10,6 +10,10 @@ public class ShipTemplateLoader : MonoBehaviour
     {
         //enemyShip.Initialize();
         //LoadShipFromResources("ShipTemplates/template_ggqe");
+        //LoadShipFromResources("ShipTemplates/template_pirate_level1");
+        //LoadShipFromResources("ShipTemplates/template_ggqe");
+        // GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("ggqe", new Vector2Int(10, 10));
+        //GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("pirate_level1", new Vector2Int(-30, -30));
     }
 
     /// <summary>

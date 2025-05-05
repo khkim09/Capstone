@@ -9,12 +9,14 @@ public class GameObjectFactory : MonoBehaviour
     [SerializeField] private GameObject shipWeaponFactoryPrefab;
     [SerializeField] private GameObject roomFactory;
     [SerializeField] private GameObject shipFactory;
+    [SerializeField] private GameObject enemyShipFactory;
 
     public CrewFactory CrewFactory { get; private set; }
     public ItemFactory ItemFactory { get; private set; }
     public ShipWeaponFactory ShipWeaponFactory { get; private set; }
     public RoomFactory RoomFactory { get; private set; }
     public ShipFactory ShipFactory { get; private set; }
+    public EnemyShipFactory EnemyShipFactory { get; private set; }
 
     private void Awake()
     {
@@ -47,6 +49,9 @@ public class GameObjectFactory : MonoBehaviour
 
         GameObject shipFactoryObj = Instantiate(shipFactory, transform);
         ShipFactory = shipFactoryObj.GetComponent<ShipFactory>();
+
+        GameObject enemyShipFactoryObj = Instantiate(enemyShipFactory, transform);
+        EnemyShipFactory = enemyShipFactoryObj.GetComponent<EnemyShipFactory>();
     }
 
     #region Crew
@@ -125,4 +130,9 @@ public class GameObjectFactory : MonoBehaviour
     }
 
     #endregion
+
+    public Ship CreateEnemyShipInstance(string shipName)
+    {
+        return EnemyShipFactory.SpawnPirateShip(shipName);
+    }
 }

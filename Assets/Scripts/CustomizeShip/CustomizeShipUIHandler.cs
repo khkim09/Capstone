@@ -53,8 +53,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// <summary>
     /// 현재 커스터마이징 중인 플레이어 함선입니다.
     /// </summary>
-    [Header("Ship")]
-    public Ship playerShip;
+    [Header("Ship")] public Ship playerShip;
 
     /// <summary>
     /// 그리드 타일 배치 작업을 위한 오브젝트
@@ -81,7 +80,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// </summary>
     private int totalBPCost = 0;
 
-    public List<BackupCrewData> backupCrewDatas = new List<BackupCrewData>();
+    public List<BackupCrewData> backupCrewDatas = new();
 
     /// <summary>
     /// 현재 설계도의 가격 지속 갱신
@@ -146,6 +145,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 선원 임시 비활성화
         DisableCrews();
 
+        playerShip.ClearExistingHulls();
+
         // 함선의 방 collider 비활성화 (RTS를 위한 collider와 겹침 방지)
         SetPlayerShipCollidersActive(false);
     }
@@ -171,6 +172,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
         // 함선 방 collider 활성화
         SetPlayerShipCollidersActive(true);
+
+        playerShip.UpdateOuterHullVisuals();
     }
 
     /// <summary>
@@ -181,10 +184,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
         List<CrewBase> crews = playerShip.GetAllCrew();
 
         foreach (CrewBase crew in crews)
-        {
             if (crew is CrewMember crewMember)
                 crewMember.gameObject.SetActive(false);
-        }
     }
 
     /// <summary>
@@ -195,10 +196,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
         List<CrewBase> crews = playerShip.GetAllCrew();
 
         foreach (CrewBase crew in crews)
-        {
             if (crew is CrewMember crewMember)
                 crewMember.gameObject.SetActive(true);
-        }
     }
 
     /// <summary>
@@ -274,14 +273,10 @@ public class CustomizeShipUIHandler : MonoBehaviour
         backupCrewDatas.Clear();
 
         foreach (CrewMember cm in playerShip.CrewSystem.GetCrews())
-        {
             backupCrewDatas.Add(new BackupCrewData
             {
-                crew = cm,
-                position = cm.GetCurrentTile(),
-                currentRoom = cm.currentRoom
+                crew = cm, position = cm.GetCurrentTile(), currentRoom = cm.currentRoom
             });
-        }
     }
 
     /// <summary>
@@ -297,7 +292,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 2. 기존 선원, 함선 백업
         BackUpCrewDatas();
         playerShip.BackupCurrentShip();
-
+        playerShip.Initialize();
         // 3. 설계도 -> 실제 함선 (bpRoom -> Room) 변환
         playerShip.ReplaceShipFromBlueprint(targetBlueprintShip);
 
