@@ -467,7 +467,6 @@ public class RTSSelectionManager : MonoBehaviour
     /// 같은 방 내에 적이 있다면 공격 AI
     /// </summary>
     /// <param name="readyCombatCrew"></param>
-    /// TODO: 이동 중인 선원은 공격탐색 대상에서 제외시켜야함
     public void MoveForCombat(CrewMember readyCombatCrew, HashSet<Vector2Int> reservedTiles)
     {
         Debug.LogError("전투 이동 검사 시작");

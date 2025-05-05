@@ -333,9 +333,13 @@ public class CrewMember : CrewBase
         }
         else if (trigger.Equals("attack"))
         {
-            animator.SetFloat("X",0);
-            animator.SetFloat("Y", -1);
+            animator.SetFloat("X",movementDirection.x);
+            animator.SetFloat("Y", movementDirection.y);
             animator.SetTrigger("attack");
+        }
+        else if (trigger.Equals("die"))
+        {
+            animator.SetTrigger("die");
         }
     }
 
@@ -344,13 +348,13 @@ public class CrewMember : CrewBase
     public CrewMember combatTarget { set; get; }
     public bool inCombat = false;
     private float attackDelay = 1f;
-
+    public Coroutine DieCoroutine=null;
 
 
     public IEnumerator CombatRoutine()
     {
         //때릴 사람이 없어
-        if (combatTarget == null)
+        if (combatTarget == null || !combatTarget.isAlive)
         {
             inCombat = false;
             comBatCoroutine = null;
@@ -367,7 +371,7 @@ public class CrewMember : CrewBase
             combatTarget.comBatCoroutine = StartCoroutine(combatTarget.CombatRoutine());
         }
 
-
+        movementDirection = combatTarget.GetCurrentTile() - GetCurrentTile();
         PlayAnimation("attack");
         //실제로 데미지가 들어가는 부분
         yield return new WaitForSeconds(attackDelay);
@@ -419,8 +423,7 @@ public class CrewMember : CrewBase
 
             // 선원 제거 (죽음)
             // 사망신고하는데 이것저것 내야할 서류가 많아요
-            target.isAlive = false;
-            //Destroy(target.gameObject);
+            target.Die();
         }
     }
 
@@ -433,8 +436,13 @@ public class CrewMember : CrewBase
     public void Die()
     {
         isAlive = false;
+        isMoving = false;
+        inCombat = false;
         DontTouchMe();
-        PlayAnimation("die");
+        if (DieCoroutine == null)
+        {
+            DieCoroutine = StartCoroutine(ImDying());
+        }
     }
 
     public void DontTouchMe()
@@ -452,5 +460,12 @@ public class CrewMember : CrewBase
                 RTSSelectionManager.Instance.MoveForCombat(hittingMan, hittingMan.currentRoom.occupiedCrewTiles);
             }
         }
+    }
+
+    public IEnumerator ImDying()
+    {
+        PlayAnimation("die");
+        yield return new WaitForSeconds(2f);
+        Destroy(this.gameObject);
     }
 }
