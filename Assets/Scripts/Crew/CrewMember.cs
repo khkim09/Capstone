@@ -256,7 +256,7 @@ public class CrewMember : CrewBase
         PlayAnimation("walk");
 
         // 이동 완료한 위치에서 함내 전투 검사
-        // RTSSelectionManager.Instance.CheckForCombat(this);
+        // oninvoke()로 해결
     }
 
     // <summary>
