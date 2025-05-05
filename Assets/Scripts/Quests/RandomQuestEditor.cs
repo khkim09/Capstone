@@ -96,6 +96,7 @@ public class RandomQuestEditor : Editor
             var descOProp = objProp.FindPropertyRelative("description");
             var reqProp = objProp.FindPropertyRelative("requiredAmount");
             var killCountProp = objProp.FindPropertyRelative("killCount");
+            var questCrewNumProp = objProp.FindPropertyRelative("questCrewNum");
 
             EditorGUILayout.BeginHorizontal();
             objectiveFoldouts[i] = EditorGUILayout.Foldout(objectiveFoldouts[i], $"목표 {i + 1}: {descOProp.stringValue}");
@@ -132,7 +133,7 @@ public class RandomQuestEditor : Editor
                         break;
 
                     case RandomQuest.QuestObjectiveType.CrewTransport:
-                        EditorGUILayout.PropertyField(killCountProp, new GUIContent("임시 선원 수"));
+                        EditorGUILayout.PropertyField(questCrewNumProp, new GUIContent("임시 선원 수"));
                         EditorGUILayout.PropertyField(destinationPlanetIdProp, new GUIContent("목표 행성 ID"));
                         break;
                 }
