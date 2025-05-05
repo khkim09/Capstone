@@ -248,6 +248,14 @@ public class CrewMember : CrewBase
         isMoving = true;
 
 
+        if (inCombat)
+        {
+            inCombat = false;
+            StopCoroutine(comBatCoroutine);
+            comBatCoroutine = null;
+            DontTouchMe();
+        }
+
         foreach (Vector2Int tile in path)
         {
             currentTargetTile = tile;
@@ -337,17 +345,20 @@ public class CrewMember : CrewBase
     public bool inCombat = false;
     private float attackDelay = 1f;
 
-    //쟤네가 나 때려
-    public List<CrewMember> bullier;
+
 
     public IEnumerator CombatRoutine()
     {
         //때릴 사람이 없어
         if (combatTarget == null)
+        {
+            inCombat = false;
+            comBatCoroutine = null;
             yield break;
+        }
 
-        comBatCoroutine = null;
         inCombat = true;
+        combatTarget.bullier.Add(this);
 
         //이미 누군가랑 싸우고 있어
         if (!combatTarget.inCombat)
@@ -421,16 +432,25 @@ public class CrewMember : CrewBase
     /// </summary>
     public void Die()
     {
-        if (bullier != null)
+        isAlive = false;
+        DontTouchMe();
+        PlayAnimation("die");
+    }
+
+    public void DontTouchMe()
+    {
+        if(bullier != null)
         {
             foreach (CrewMember hittingMan in bullier)
             {
                 hittingMan.inCombat = false;
+                hittingMan.combatTarget = null;
                 StopCoroutine(hittingMan.comBatCoroutine);
                 hittingMan.comBatCoroutine = null;
+                hittingMan.bullier.Remove(this);
+
+                RTSSelectionManager.Instance.MoveForCombat(hittingMan, hittingMan.currentRoom.occupiedCrewTiles);
             }
         }
-        PlayAnimation("die");
     }
-
 }

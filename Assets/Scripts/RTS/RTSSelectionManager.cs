@@ -454,14 +454,6 @@ public class RTSSelectionManager : MonoBehaviour
             reservedTiles.Add(tile);
             unassignedCrew.Remove(bestCrew);
 
-            // 7. 전투 중이었다면 런
-            if (bestCrew.inCombat)
-            {
-                bestCrew.inCombat = false;
-                StopCoroutine(bestCrew.comBatCoroutine);
-                bestCrew.comBatCoroutine = null;
-                //TODO:자신이 공격대상에서 벗어나도록 하고 싸우던 상대가 다른 상대를 탐색해야됨
-            }
 
             // 6. 이동 처리
             if (bestCrew.isMoving)
@@ -496,6 +488,7 @@ public class RTSSelectionManager : MonoBehaviour
 
         foreach (CrewMember enemy in enemiesInRoom)
         {
+            if (!enemy.isAlive || enemy.isMoving) continue;
             List<Vector2Int> path = crewPathfinder.FindPathToTile(readyCombatCrew, enemy.GetCurrentTile());
             if (path != null && path.Count < shortestPathLength)
             {

@@ -126,6 +126,9 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// </summary>
     public Animator animator;
 
+    //쟤네가 나 때려
+    public HashSet<CrewMember> bullier;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -138,6 +141,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
             animator.runtimeAnimatorController
                 = Resources.Load<RuntimeAnimatorController>($"Animation/{race.ToString()}/{race.ToString()}");
         }
+        bullier = new HashSet<CrewMember>();
     }
 
     /// <summary>
