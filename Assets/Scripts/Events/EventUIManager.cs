@@ -44,9 +44,20 @@ public class EventUIManager : MonoBehaviour
     {
         currentEvent = randomEvent;
 
+        // 이전 타이핑 코루틴 강제 종료
+        StopAllCoroutines();
+
+        // UI초기화
+        eventTitleText.text = "";
+        eventDescriptionText.text = "";
+        outcomeText.text = "";
+
+        foreach (Transform child in choicesPanel.transform)
+            Destroy(child.gameObject); // 선택지 클리어
+
         // 이벤트 패널 초기화
-        eventPanel.SetActive(true);
         outcomePanel.SetActive(false);
+        eventPanel.SetActive(true);
         choicesPanel.SetActive(true);
 
         // 이벤트 정보 설정
