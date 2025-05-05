@@ -48,7 +48,8 @@ public class CrewUIHandler : MonoBehaviour
     /// <summary>
     /// 선원 이름 입력 필드입니다.
     /// </summary>
-    [Header("Input Fields")] [SerializeField]
+    [Header("Input Fields")]
+    [SerializeField]
     private TMP_InputField nameInputField;
 
     /// <summary>
@@ -106,12 +107,6 @@ public class CrewUIHandler : MonoBehaviour
     /// 선원 이름
     /// </summary>
     private string inputName;
-
-    /// <summary>
-    /// 종족별 prefab
-    /// </summary>
-    [Header("Crew Prefabs")] [SerializeField]
-    private GameObject[] crewPrefabs;
 
     /// <summary>
     /// UI 화면 이동 이력을 저장하는 스택 구조입니다.

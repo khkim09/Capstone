@@ -137,6 +137,11 @@ public class QuestManager : MonoBehaviour
                 ResourceManager.Instance.ChangeResource(ResourceType.COMA, reward.amount);
             }
         }
+        QuestUIManager ui = FindObjectOfType<QuestUIManager>();
+        if (ui != null)
+        {
+            ui.ShowCompletion(quest); // ScriptableObject가 아니라 Quest 인스턴스 넘김
+        }
 
         OnQuestCompleted?.Invoke(quest);
         Debug.Log($"Quest completed: {quest.title}");
