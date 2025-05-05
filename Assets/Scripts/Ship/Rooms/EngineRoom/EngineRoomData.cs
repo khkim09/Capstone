@@ -113,7 +113,7 @@ public class EngineRoomData : RoomData<EngineRoomData.EngineRoomLevel>
                 damageHitPointRate = RoomDamageRates.Create(180f, 60f),
                 possibleDoorPositions = new List<DoorPosition>()
                 {
-                    new(new Vector2Int(0, 0), DoorDirection.South)
+                    new(new Vector2Int(1, 0), DoorDirection.South)
                 },
                 crewEntryGridPriority = new List<Vector2Int>()
                 {

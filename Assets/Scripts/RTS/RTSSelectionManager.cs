@@ -239,7 +239,9 @@ public class RTSSelectionManager : MonoBehaviour
         if (hit.collider != null)
         {
             CrewMember crew = hit.collider.GetComponent<CrewMember>();
-            if (crew != null)
+
+            // 아군만 선택 가능
+            if (crew != null && crew.isPlayerControlled)
             {
                 selectedCrew.Add(crew);
                 SetOutline(crew,true);
@@ -264,8 +266,8 @@ public class RTSSelectionManager : MonoBehaviour
             Vector3 screenPos = Camera.main.WorldToScreenPoint(crew.transform.position);
             screenPos.y = Screen.height - screenPos.y;
 
-            // 선택
-            if (selectionRect.Contains(screenPos, true))
+            // 아군만 선택 가능
+            if (selectionRect.Contains(screenPos, true) && crew.isPlayerControlled)
             {
                 selectedCrew.Add(crew);
                 // 선택됨 표시 (예: 색상 변경)
@@ -276,6 +278,12 @@ public class RTSSelectionManager : MonoBehaviour
                 // 선택되지 않은 경우 원래 색상으로
                 SetOutline(crew, false);
             }
+        }
+
+        // 선택된 선원들에 대해 기존 위치 저장
+        foreach (CrewMember crew in selectedCrew)
+        {
+            crew.originPosTile = crew.GetCurrentTile();
         }
     }
 
@@ -314,15 +322,25 @@ public class RTSSelectionManager : MonoBehaviour
         List<Vector2Int> entryTiles = targetRoom.GetRotatedCrewEntryGridPriority();
 
         // 1. 이동 명령 전, 목적지 방에 이미 위치한 선원들의 점유 타일 기록
-        HashSet<Vector2Int> reservedTiles = targetRoom.occupiedCrewTiles;
+        HashSet<Vector2Int> reservedTiles = new HashSet<Vector2Int>(targetRoom.occupiedCrewTiles);
         foreach (Vector2Int t in reservedTiles)
             Debug.LogError($"목적지 방 {targetRoom} 원래 점유된 타일 위치 : {t}");
 
+        // 1-1. 이동 명령으로 점유 예약됐지만 아직 실 점유하기 전은 제외
         foreach (CrewBase crewBase in allCrew)
         {
-            if (crewBase is CrewMember cm && cm.currentRoom == targetRoom)
-                reservedTiles.Add(cm.GetCurrentTile());
+            if (crewBase is CrewMember cm)
+            {
+                // 선원이 이동 중이면서 예약 타일만 존재하고 아직 타일 점유하지 않은 경우 제외
+                bool isCurrentlyReserved = selectedCrew.Contains(cm) && cm.reservedRoom == targetRoom && cm.GetCurrentTile() != cm.reservedTile;
+
+                if (isCurrentlyReserved)
+                    reservedTiles.Remove(cm.reservedTile);
+            }
         }
+
+        foreach (Vector2Int t in reservedTiles)
+            Debug.LogWarning($"이동 직전 검사 : {targetRoom} 선원 점유 위치 : {t}");
 
         // 2. 아직 배정 안 된 선원 리스트 (선택된 모든 선원 중 아직 이동 안 한 선원)
         List<CrewMember> unassignedCrew = new(selectedCrew);
@@ -334,11 +352,11 @@ public class RTSSelectionManager : MonoBehaviour
             Vector2Int? targetTile = entryTiles.FirstOrDefault(t => !reservedTiles.Contains(t));
             if (targetTile == null)
             {
-                Debug.LogWarning("모든 타일이 점유되어 있습니다.");
+                Debug.LogError("모든 타일이 점유되어 있습니다.");
                 break;
             }
 
-            Debug.LogError($"targettile : {targetTile}");
+            Debug.LogWarning($"targettile : {targetTile}");
 
             // 3-2. 이동 명령에 필요한 필드값 초기화
             Vector2Int tile = targetTile.Value;
@@ -363,13 +381,7 @@ public class RTSSelectionManager : MonoBehaviour
                         continue;
                 }
 
-                // 이동 중 새로운 이동 입력 대비, 취소된 예약 방, 타일 기록
-                crew.oldReservedRoom = crew.reservedRoom;
-                crew.oldReservedTile = crew.reservedTile;
-
-                // 새로운 목적지 타일 설정
-                crew.reservedRoom = targetRoom;
-                crew.reservedTile = tile;
+                // 각 선원 별 최단 경로 탐색
                 List<Vector2Int> path = crewPathfinder.FindPathToTile(crew, tile);
 
                 // case 1) 최단 거리 동일 && (일부는 목적지 방 == 현재 방, 나머지는 목적지 방 != 현재 방)
@@ -445,15 +457,19 @@ public class RTSSelectionManager : MonoBehaviour
             }
 
             // 4. 이동 명령에 필요한 필드 값 세팅
-            // bestCrew.reservedRoom = targetRoom;
-            // bestCrew.reservedTile = tile;
+            // 이동 중 새로운 이동 입력 대비, 취소된 예약 방, 타일 기록
+            bestCrew.oldReservedRoom = bestCrew.reservedRoom;
+            bestCrew.oldReservedTile = bestCrew.reservedTile;
+
+            // 새로운 목적지 타일 설정
+            bestCrew.reservedRoom = targetRoom;
+            bestCrew.reservedTile = tile;
 
             // 5. (목적지 방 == 현재 방)인 선원이 차지하고 있던 타일 리스트 갱신
-            Debug.LogError($"기존 점유 타일 : {bestCrew.GetCurrentTile()}");
-            reservedTiles.Remove(bestCrew.GetCurrentTile());
+            Debug.LogWarning($"{bestCrew.race} 기존 점유 타일 : {bestCrew.originPosTile}");
+            reservedTiles.Remove(bestCrew.originPosTile);
             reservedTiles.Add(tile);
             unassignedCrew.Remove(bestCrew);
-
 
             // 6. 이동 처리
             if (bestCrew.isMoving)
