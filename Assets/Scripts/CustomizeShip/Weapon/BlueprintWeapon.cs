@@ -214,10 +214,6 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         }
     }
 
-    /// <summary>
-    /// 특정 UI 요소들 위에 마우스가 있는지 확인
-    /// 특히 인벤토리 UI와 같은 방해가 되는 UI만 체크
-    /// </summary>
     private bool IsPointerOverBlockingUI()
     {
         PointerEventData eventData = new(EventSystem.current);
@@ -226,8 +222,6 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         EventSystem.current.RaycastAll(eventData, results);
 
         foreach (RaycastResult result in results)
-            // 인벤토리 UI 확인 - 태그나 이름으로 식별
-            // 아래 조건은 프로젝트의 실제 이름이나 태그에 맞게 수정하세요
             if (
                 result.gameObject.name.Contains("Scroll View") || result.gameObject.name.Contains("Essential") ||
                 result.gameObject.name.Contains("Auxiliary") || result.gameObject.name.Contains("Living") ||
@@ -405,7 +399,7 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     /// <summary>
     /// 현재 부착 방향과 외갑판 레벨에 맞는 스프라이트 적용
     /// </summary>
-    private void ApplyAttachedDirectionSprite()
+    public void ApplyAttachedDirectionSprite()
     {
         if (sr == null)
             sr = GetComponent<SpriteRenderer>();

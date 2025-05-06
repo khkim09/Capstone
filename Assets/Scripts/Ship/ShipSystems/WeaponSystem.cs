@@ -46,7 +46,8 @@ public class WeaponSystem : ShipSystem
         weapon.transform.SetParent(parentShip.transform);
         weapons.Add(weapon);
 
-        weapon.transform.position = ShipGridHelper.GetRoomWorldPosition(gridPosition, weapon.gridSize) + new Vector3(0, 0, 5f);
+        weapon.transform.position =
+            ShipGridHelper.GetRoomWorldPosition(gridPosition, weapon.gridSize) + new Vector3(0, 0, 5f);
         weapon.ApplyRotationSprite(parentShip.GetOuterHullLevel());
         return weapon;
     }
@@ -59,7 +60,8 @@ public class WeaponSystem : ShipSystem
         weapon.transform.SetParent(parentShip.transform);
         weapon.ApplyRotationSprite(parentShip.GetOuterHullLevel());
 
-        weapon.transform.position = ShipGridHelper.GetRoomWorldPosition(weapon.GetGridPosition(), weapon.gridSize) + new Vector3(0, 0, 5f);
+        weapon.transform.position = ShipGridHelper.GetRoomWorldPosition(weapon.GetGridPosition(), weapon.gridSize) +
+                                    new Vector3(0, 0, 5f);
         weapons.Add(weapon);
 
         return weapon;
@@ -134,12 +136,17 @@ public class WeaponSystem : ShipSystem
             weapons.RemoveAt(index);
 
             // 게임 오브젝트 제거
-            if (weapon != null) Object.Destroy(weapon.gameObject);
+            if (weapon != null) Object.DestroyImmediate(weapon.gameObject);
 
             return true;
         }
 
         return false;
+    }
+
+    public void RemoveAllWeapons()
+    {
+        for (int i = weapons.Count - 1; i >= 0; i--) RemoveWeapon(i);
     }
 
     /// <summary>
