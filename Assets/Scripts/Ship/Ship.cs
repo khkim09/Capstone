@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class Ship : MonoBehaviour, IWorldGridSwitcher
 {
-    [Header("Ship Info")] [SerializeField] public string shipName = "Milky";
+    [Header("Ship Info")][SerializeField] public string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -33,6 +33,15 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     public List<Room> allRooms = new();
 
+    /// <summary>전체 함선 무기 리스트</summary>
+    public List<ShipWeapon> allWeapons = new();
+
+    /// <summary>전체 아군 선원 리스트</summary>
+    public List<CrewMember> allCrews = new();
+
+    /// <summary>내 배의 전체 적군 선원 리스트</summary>
+    public List<CrewMember> allEnemies = new();
+
     [SerializeField] private DoorData doorData;
 
     /// <summary>
@@ -40,7 +49,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     private int doorLevel;
 
-    [Header("외갑판 설정")] [SerializeField] public OuterHullData outerHullData;
+    [Header("외갑판 설정")][SerializeField] public OuterHullData outerHullData;
     [SerializeField] public GameObject outerHullPrefab;
 
     /// <summary>
@@ -387,11 +396,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
-        {
-            Vector2Int gridPos = room.position + new Vector2Int(x, y);
-            roomGrid.Remove(gridPos);
-        }
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = room.position + new Vector2Int(x, y);
+                roomGrid.Remove(gridPos);
+            }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -473,7 +482,9 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         foreach (ShipWeapon wp in GetAllWeapons())
             backupWeapons.Add(new WeaponBackupData()
             {
-                weaponData = wp.weaponData, position = wp.GetGridPosition(), direction = wp.GetAttachedDirection()
+                weaponData = wp.weaponData,
+                position = wp.GetGridPosition(),
+                direction = wp.GetAttachedDirection()
             });
     }
 
@@ -482,15 +493,19 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     public void RevertToOriginalShip()
     {
-        // 설계도 함선 제거
+        // 설계도 방 제거
         foreach (Room room in allRooms)
             if (room != null)
                 Destroy(room.gameObject);
 
         allRooms.Clear();
 
-        WeaponSystem.RemoveAllWeapons();
+        // 설계도 무기 제거
+        foreach (ShipWeapon weapon in allWeapons)
+            if (weapon != null)
+                Destroy(weapon.gameObject);
 
+        allWeapons.Clear();
 
         // 기존 함선으로 복구
         foreach (RoomBackupData backupData in backupRoomDatas)
@@ -518,7 +533,9 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
         // 2. 기존 무기 삭제
         //    먼저 현재 함선에 있는 모든 무기를 안전하게 리스트로 복사한 뒤 제거
-        WeaponSystem.RemoveAllWeapons();
+        foreach (ShipWeapon weapon in allWeapons)
+            Destroy(weapon.gameObject);
+        allWeapons.Clear();
 
         // 3. 외갑판 레벨 - 설계도 함선의 외갑판 레벨을 실제 함선에 적용
         //    (무기마다 적용하지 않고 함선 전체에 한 번만 적용)
@@ -633,12 +650,12 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             return false;
 
         for (int x = 0; x < size.x; x++)
-        for (int y = 0; y < size.y; y++)
-        {
-            Vector2Int checkPos = pos + new Vector2Int(x, y);
-            if (roomGrid.ContainsKey(checkPos))
-                return false;
-        }
+            for (int y = 0; y < size.y; y++)
+            {
+                Vector2Int checkPos = pos + new Vector2Int(x, y);
+                if (roomGrid.ContainsKey(checkPos))
+                    return false;
+            }
 
         return true;
     }
@@ -1036,7 +1053,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     public List<ShipWeapon> GetAllWeapons()
     {
-        return WeaponSystem.GetWeapons();
+        return allWeapons;
     }
 
     /// <summary>
@@ -1052,11 +1069,6 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     public int GetWeaponCount()
     {
         return WeaponSystem.GetWeaponCount();
-    }
-
-    public void RemoveWeapon(int index)
-    {
-        WeaponSystem.RemoveWeapon(index);
     }
 
     public void RemoveWeapon(ShipWeapon shipWeapon)
@@ -1213,15 +1225,15 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
-            for (int y = -1; y <= 1; y++)
-            {
-                if (x == 0 && y == 0) continue;
+                for (int y = -1; y <= 1; y++)
+                {
+                    if (x == 0 && y == 0) continue;
 
-                Vector2Int checkPos = position + new Vector2Int(x, y);
+                    Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                // 해당 위치에 있는 선원들에게 데미지 적용
-                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
-            }
+                    // 해당 위치에 있는 선원들에게 데미지 적용
+                    ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
+                }
     }
 
     #endregion
@@ -1386,11 +1398,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     {
         Vector2Int shipPos = new(int.MaxValue, int.MaxValue);
         foreach (Room room in allRooms)
-        foreach (Vector2Int tile in room.GetOccupiedTiles())
-        {
-            shipPos.x = Mathf.Min(shipPos.x, tile.x);
-            shipPos.y = Mathf.Min(shipPos.y, tile.y);
-        }
+            foreach (Vector2Int tile in room.GetOccupiedTiles())
+            {
+                shipPos.x = Mathf.Min(shipPos.x, tile.x);
+                shipPos.y = Mathf.Min(shipPos.y, tile.y);
+            }
 
         Vector2 offset =
             ShipGridHelper.GetShipRotationOffset(this, RotationConstants.Rotation.Rotation0);

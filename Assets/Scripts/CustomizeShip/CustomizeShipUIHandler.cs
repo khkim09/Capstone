@@ -315,7 +315,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 2. 기존 선원, 함선 백업
         BackUpCrewDatas();
         playerShip.BackupCurrentShip();
-        playerShip.Initialize();
+
         // 3. 설계도 -> 실제 함선 (bpRoom -> Room) 변환
         playerShip.ReplaceShipFromBlueprint(targetBlueprintShip);
 
@@ -326,7 +326,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 5. 유효성 검사
         if (!validationResult.IsValid)
         {
-            Debug.Log("유효 X");
+            Debug.LogError("유효 X");
 
             // 실패
             feedbackText.text = $"X {validationResult.Message}";
@@ -339,7 +339,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
         }
         else
         {
-            Debug.Log("유효 O");
+            Debug.LogError("유효 O");
 
             // 성공 -> 함선 교체
             feedbackText.text = $"O Ship updated successfully\n{validationResult.Message}!";
@@ -366,6 +366,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
         }
 
         // 함선 스텟 다시 계산
+        // playerShip.Initialize();
         playerShip.RecalculateAllStats();
     }
 
