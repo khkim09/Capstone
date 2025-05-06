@@ -57,9 +57,11 @@ public class RandomQuest : ScriptableObject
 
             switch (o.objectiveType)
             {
-                case QuestObjectiveType.CrewTransport:
                 case QuestObjectiveType.PirateHunt:
                     required = o.killCount;
+                    break;
+                case QuestObjectiveType.CrewTransport:
+                    required = o.questCrewNum;
                     break;
 
                 case QuestObjectiveType.ItemTransport:
@@ -116,6 +118,9 @@ public class RandomQuest : ScriptableObject
 
         /// <summary>필요 처치 수 (해적, 선원)</summary>
         public int killCount;
+
+        /// <summary>퀘스트 필요 선원 수</summary>
+        public int questCrewNum;
 
         /// <summary>목표 행성 ID</summary>
         public string destinationPlanetId;

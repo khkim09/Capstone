@@ -478,7 +478,7 @@ public class RTSSelectionManager : MonoBehaviour
             else
                 bestCrew.AssignPathAndMove(bestPath);
 
-            // 7. 함내 전투 실행 여부 체크 (자동 AI)
+            // 7. 함내 전투 실행 여부 체크 (자동 AI) - oninvoke로 받아와서 무빙 끝났으면 moveforcombat() 호출
             MoveForCombat(bestCrew, reservedTiles);
         }
     }
@@ -490,6 +490,7 @@ public class RTSSelectionManager : MonoBehaviour
     public void MoveForCombat(CrewMember readyCombatCrew, HashSet<Vector2Int> reservedTiles)
     {
         Debug.LogError("전투 이동 검사 시작");
+
         // 1. 도착한 방에서 적군 탐색
         List<CrewMember> enemiesInRoom = playerShip.CrewSystem.GetCrews().OfType<CrewMember>().Where
         (
@@ -566,7 +567,8 @@ public class RTSSelectionManager : MonoBehaviour
             Debug.Log("전투 개시");
 
             // 7. 전투 구현
-            // Attack() 같은 거
+            // readyCombatCrew.Attack(closestEnemy); 같이 넘겨서 죽을때까지 전투 구현
+            // but, 싸우는 도중 RTS 이동 명령 시 이동 해야됨.
             return;
         }
         Debug.LogError($"{readyCombatCrew.race}가 {closestEnemy.race}에 접근할 수 있는 빈 타일 없음");

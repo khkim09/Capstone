@@ -120,7 +120,7 @@ public class QuestUIManager : MonoBehaviour
     public void ShowCompletion(QuestManager.Quest quest)
     {
         completePanel.SetActive(true);
-        completeText.text = $"Quest Completed!!\nReward: {quest.rewards[0].amount} COMA";
+        completeText.text = $"퀘스트를 완료하였습니다!\n보상: {quest.rewards[0].amount} COMA";
     }
 
 
