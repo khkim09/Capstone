@@ -428,6 +428,8 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     public List<RoomBackupData> backupRoomDatas = new();
 
+    public List<WeaponBackupData> backupWeapons = new();
+
     /// <summary>
     /// 현재 함선에 포함된 모든 방의 가격 합을 반환
     /// </summary>
@@ -457,6 +459,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     public void BackupCurrentShip()
     {
         backupRoomDatas.Clear();
+        backupWeapons.Clear();
 
         foreach (Room room in allRooms)
             backupRoomDatas.Add(new RoomBackupData
@@ -465,6 +468,12 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
                 level = room.GetCurrentLevel(),
                 position = room.position,
                 rotation = room.currentRotation
+            });
+
+        foreach (ShipWeapon wp in GetAllWeapons())
+            backupWeapons.Add(new WeaponBackupData()
+            {
+                weaponData = wp.weaponData, position = wp.GetGridPosition(), direction = wp.GetAttachedDirection()
             });
     }
 
@@ -480,12 +489,18 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
         allRooms.Clear();
 
+        WeaponSystem.RemoveAllWeapons();
+
+
         // 기존 함선으로 복구
         foreach (RoomBackupData backupData in backupRoomDatas)
         {
             AddRoom(backupData.level, backupData.roomData, backupData.position, backupData.rotation);
             Room placed = GetRoomAtPosition(backupData.position);
         }
+
+        foreach (WeaponBackupData backupData in backupWeapons)
+            AddWeapon(backupData.weaponData.id, backupData.position, backupData.direction);
     }
 
     /// <summary>
@@ -503,9 +518,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
         // 2. 기존 무기 삭제
         //    먼저 현재 함선에 있는 모든 무기를 안전하게 리스트로 복사한 뒤 제거
-        List<ShipWeapon> existingWeapons = new(GetAllWeapons());
-        foreach (ShipWeapon weapon in existingWeapons)
-            RemoveWeapon(weapon);
+        WeaponSystem.RemoveAllWeapons();
 
         // 3. 외갑판 레벨 - 설계도 함선의 외갑판 레벨을 실제 함선에 적용
         //    (무기마다 적용하지 않고 함선 전체에 한 번만 적용)

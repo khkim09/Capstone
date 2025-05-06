@@ -139,6 +139,9 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 설계도 방 호출, 배치
         GetSavedBPRooms();
 
+        GetSavedWeaponRooms();
+
+
         // 카메라 - 설계도 함선 기준으로 세팅
         CenterCameraToBP();
 
@@ -235,6 +238,17 @@ public class CustomizeShipUIHandler : MonoBehaviour
             gridPlacer.PlaceRoom(saved.bpRoomData, saved.bpLevelIndex, saved.bpPosition, saved.bpRotation);
     }
 
+    private void GetSavedWeaponRooms()
+    {
+        List<BlueprintWeaponSaveData> layout = BlueprintLayoutSaver.LoadWeaponLayout();
+
+        foreach (BlueprintWeaponSaveData saved in layout)
+        {
+            BlueprintWeapon bw = gridPlacer.PlaceWeapon(saved.bpWeaponData, saved.bpPosition, saved.bpDirection);
+            bw.ApplyAttachedDirectionSprite();
+        }
+    }
+
     /// <summary>
     /// 작업중이던 설계도 저장 및 방 제거
     /// </summary>
@@ -243,9 +257,14 @@ public class CustomizeShipUIHandler : MonoBehaviour
         BlueprintRoom[] bpRooms = targetBlueprintShip.GetComponentsInChildren<BlueprintRoom>();
         BlueprintLayoutSaver.SaveRoomLayout(bpRooms);
 
+        BlueprintWeapon[] bpWeapons = targetBlueprintShip.GetComponentsInChildren<BlueprintWeapon>();
+        BlueprintLayoutSaver.SaveWeaponLayout(bpWeapons);
+
         // 설치했던 모든 설계도 방 제거
         foreach (BlueprintRoom r in bpRooms)
             Destroy(r.gameObject);
+
+        foreach (BlueprintWeapon w in bpWeapons) Destroy(w.gameObject);
 
         targetBlueprintShip.ClearRooms();
     }

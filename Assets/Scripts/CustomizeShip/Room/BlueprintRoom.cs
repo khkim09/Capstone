@@ -275,8 +275,6 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
         EventSystem.current.RaycastAll(eventData, results);
 
         foreach (RaycastResult result in results)
-            // 인벤토리 UI 확인 - 태그나 이름으로 식별
-            // 아래 조건은 프로젝트의 실제 이름이나 태그에 맞게 수정하세요
             if (
                 result.gameObject.name.Contains("Scroll View") || result.gameObject.name.Contains("Essential") ||
                 result.gameObject.name.Contains("Auxiliary") || result.gameObject.name.Contains("Living") ||
