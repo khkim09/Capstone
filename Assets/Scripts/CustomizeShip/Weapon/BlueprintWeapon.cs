@@ -30,7 +30,7 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     public int bpWeaponCost;
 
     /// <summary>무기 크기 (고정: 2x1)</summary>
-    public Vector2Int bpWeaponSize = new(2, 1);
+    public Vector2Int bpWeaponSize = new Vector2Int(2, 1);
 
     /// <summary>
     /// 회전각 고정 (0)
@@ -84,7 +84,7 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     [SerializeField] private int hullLevel = 0;
 
     /// <summary>
-    /// collider size 맞춤
+    /// collider size 맞춤, 외갑판 레벨로 무기 디자인 업데이트
     /// </summary>
     private void Start()
     {
@@ -105,7 +105,7 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     }
 
     /// <summary>
-    /// 무기 배치와 관련된 모든 작업을 매 프레임 검사f
+    /// 무기 배치와 관련된 모든 작업을 매 프레임 검사
     /// </summary>
     private void Update()
     {
@@ -116,7 +116,7 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         if (isDragging && Input.GetMouseButtonDown(1))
         {
             // 드래그 중이면 회전 방어 조건
-            if (BlueprintDragManager.Instance.IsDragging)
+            if (BlueprintWeaponDragHandler.IsWeaponBeingDragged)
                 return;
 
             if (hit.collider != null && hit.collider.gameObject == gameObject)
@@ -176,7 +176,6 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
 
             UpdateOccupiedTiles();
 
-            // bool canPlace = gridPlacer.CanPlaceObject(this, newPos, null);
             bool canPlace = gridPlacer.CanPlaceWeapon(bpWeaponData, bpPosition, bpAttachedDirection);
             sr.color = Color.white;
 
@@ -186,11 +185,11 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
                 // 불가능 : 원위치
                 bpPosition = originalPos;
                 bpAttachedDirection = originalDirection;
+                bpWeaponSize = new Vector2Int(2, 1);
 
                 UpdateOccupiedTiles();
 
-                Vector2Int size = new(2, 1);
-                Vector2 offset = RoomRotationUtility.GetRotationOffset(size, RotationConstants.Rotation.Rotation0);
+                Vector2 offset = RoomRotationUtility.GetRotationOffset(bpWeaponSize, RotationConstants.Rotation.Rotation0);
                 transform.position = gridPlacer.GridToWorldPosition(originalPos) + (Vector3)offset;
                 ApplyAttachedDirectionSprite();
 
@@ -238,39 +237,6 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         return false;
     }
 
-
-    /// <summary>
-    /// 무기 부착 방향 회전
-    /// </summary>
-    public void RotateAttachedDirection()
-    {
-        // 현재 attachedDirection 값을 기반으로 다음 상태로 전환
-        switch (bpAttachedDirection)
-        {
-            case ShipWeaponAttachedDirection.East:
-                bpAttachedDirection = ShipWeaponAttachedDirection.South;
-                break;
-            case ShipWeaponAttachedDirection.South:
-                bpAttachedDirection = ShipWeaponAttachedDirection.North;
-                break;
-            case ShipWeaponAttachedDirection.North:
-                bpAttachedDirection = ShipWeaponAttachedDirection.East;
-                break;
-        }
-
-        // 변경된 attachedDirection에 따른 스프라이트 적용
-        ApplyAttachedDirectionSprite();
-        UpdateOccupiedTiles();
-    }
-
-    /// <summary>
-    /// 점유 타일 목록 업데이트
-    /// </summary>
-    public void UpdateOccupiedTiles()
-    {
-        occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(bpPosition, bpWeaponSize, bpRotation);
-    }
-
     /// <summary>
     /// 설치 시 초기화
     /// </summary>
@@ -310,6 +276,29 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     }
 
     /// <summary>
+    /// 무기 부착 방향 회전
+    /// </summary>
+    public void RotateAttachedDirection()
+    {
+        // 현재 attachedDirection 값을 기반으로 다음 상태로 전환
+        switch (bpAttachedDirection)
+        {
+            case ShipWeaponAttachedDirection.East:
+                bpAttachedDirection = ShipWeaponAttachedDirection.South;
+                break;
+            case ShipWeaponAttachedDirection.South:
+                bpAttachedDirection = ShipWeaponAttachedDirection.North;
+                break;
+            case ShipWeaponAttachedDirection.North:
+                bpAttachedDirection = ShipWeaponAttachedDirection.East;
+                break;
+        }
+
+        // 변경된 attachedDirection에 따른 스프라이트 적용
+        ApplyAttachedDirectionSprite();
+    }
+
+    /// <summary>
     /// 현재 회전 상태 반환
     /// </summary>
     public object GetRotation()
@@ -331,14 +320,6 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     public void SetGridPosition(Vector2Int position)
     {
         bpPosition = position;
-    }
-
-    /// <summary>
-    /// 점유 타일 목록 반환
-    /// </summary>
-    public List<Vector2Int> GetOccupiedTiles()
-    {
-        return occupiedTiles;
     }
 
     /// <summary>
@@ -373,14 +354,6 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     public void SetGridPlacer(GridPlacer placer)
     {
         gridPlacer = placer;
-    }
-
-    /// <summary>
-    /// 설치 비용 반환
-    /// </summary>
-    public int GetCost()
-    {
-        return bpWeaponCost;
     }
 
     /// <summary>
@@ -448,6 +421,13 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         if (bpWeaponData.weaponIcon != null) sr.sprite = bpWeaponData.weaponIcon;
     }
 
+    /// <summary>
+    /// 설치 비용 반환
+    /// </summary>
+    public int GetCost()
+    {
+        return bpWeaponCost;
+    }
 
     /// <summary>
     /// 함선 외갑판 레벨 설정 (내부적으로만 캐싱)
@@ -471,5 +451,21 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     public int GetHullLevel()
     {
         return blueprintShip != null ? blueprintShip.GetHullLevel() : hullLevel;
+    }
+
+    /// <summary>
+    /// 점유 타일 목록 반환
+    /// </summary>
+    public List<Vector2Int> GetOccupiedTiles()
+    {
+        return occupiedTiles;
+    }
+
+    /// <summary>
+    /// 점유 타일 목록 업데이트
+    /// </summary>
+    public void UpdateOccupiedTiles()
+    {
+        occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(bpPosition, bpWeaponSize, bpRotation);
     }
 }

@@ -145,6 +145,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 선원 임시 비활성화
         DisableCrews();
 
+        // 외갑판 임시 비활성화
         playerShip.ClearExistingHulls();
 
         // 함선의 방 collider 비활성화 (RTS를 위한 collider와 겹침 방지)
@@ -170,10 +171,11 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 선원 활성화
         EnableCrews();
 
+        // 외갑판 활성화
+        playerShip.UpdateOuterHullVisuals();
+
         // 함선 방 collider 활성화
         SetPlayerShipCollidersActive(true);
-
-        playerShip.UpdateOuterHullVisuals();
     }
 
     /// <summary>
@@ -275,7 +277,9 @@ public class CustomizeShipUIHandler : MonoBehaviour
         foreach (CrewMember cm in playerShip.CrewSystem.GetCrews())
             backupCrewDatas.Add(new BackupCrewData
             {
-                crew = cm, position = cm.GetCurrentTile(), currentRoom = cm.currentRoom
+                crew = cm,
+                position = cm.GetCurrentTile(),
+                currentRoom = cm.currentRoom
             });
     }
 
