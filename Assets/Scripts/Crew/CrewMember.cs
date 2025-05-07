@@ -55,8 +55,6 @@ public class CrewMember : CrewBase
     /// </summary>
     public Vector2Int oldReservedTile;
 
-    public Coroutine comBatCoroutine;
-
     /// <summary>
     /// 이동 전 위치했던 타일
     /// </summary>
@@ -223,7 +221,6 @@ public class CrewMember : CrewBase
         }
     }
 
-
     /// <summary>
     /// 현재 방에서 선원이 점유 중인 타일의 우선순위 인덱스 반환
     /// </summary>
@@ -246,7 +243,7 @@ public class CrewMember : CrewBase
     {
         isMoving = true;
 
-
+        //이동 전에 전투 중이었다면 전투를 중단하고 자신을 공격하던 적 선원들이 다른 적을 탐색하도록 명령
         if (inCombat)
         {
             inCombat = false;
@@ -292,8 +289,11 @@ public class CrewMember : CrewBase
         currentRoom = reservedRoom;
         reservedRoom = null;
 
+        //도착 후 적 탐색 및 전투(이동+공격) 돌입
         RTSSelectionManager.Instance.MoveForCombat(this,currentRoom.occupiedCrewTiles);
+        //도착 후 2명 이상의 적이 있다면 표적이 된 상대를 제외한 다른 적들도 자신을 공격하도록 어그로를 끈다
         LookAtMe();
+        //적이 없다면 Idle 상태를 거쳐 수리로 연결된다.
         BackToThePeace();
     }
 
@@ -317,7 +317,6 @@ public class CrewMember : CrewBase
         return Vector3.zero + new Vector3((gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
             (gridPos.y + 0.5f) * GridConstants.CELL_SIZE, 0f);
     }
-
 
     //----------애니메이션------------
     /// <summary>
@@ -346,6 +345,10 @@ public class CrewMember : CrewBase
         }
     }
 
+    /// <summary>
+    /// 애니메이션 방향 설정
+    /// </summary>
+    /// <param name="direction"></param>
     private void SetAnimationDirection(Vector2 direction)
     {
         animator.SetFloat("X",direction.x);
@@ -353,10 +356,17 @@ public class CrewMember : CrewBase
     }
 
     //----------전투---------
-
+/// <summary>전투 대상</summary>
     public CrewMember combatTarget { set; get; }
+/// <summary>
+/// 전투 상태 여부
+/// </summary>
     public bool inCombat = false;
+/// <summary>
+/// 애니메이션 발동 타이밍과 실제 데미지 적용 사이의 딜레이
+/// </summary>
     private float attackDelay = 1f;
+    public Coroutine comBatCoroutine=null;
     public Coroutine DieCoroutine=null;
 
 

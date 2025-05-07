@@ -135,12 +135,14 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         spriteRenderer.sortingOrder = SortingOrderConstants.Character;
         spriteRenderer.sprite = Resources.Load<Sprite>($"Sprites/Crew/{race.ToString().ToLower()}");
 
+        //종족별 애니메이터 연결
         if (animator == null)
         {
             animator = gameObject.AddComponent<Animator>();
             animator.runtimeAnimatorController
                 = Resources.Load<RuntimeAnimatorController>($"Animation/{race.ToString()}/{race.ToString()}");
         }
+        //전투에 참가 중인 적
         bullier = new HashSet<CrewMember>();
     }
 
@@ -164,8 +166,6 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         // 산소 농도 체크 - 체력 감소
         ApplyOxygenDamage();
-
-
     }
 
     /*
