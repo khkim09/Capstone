@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("weaponData", "firePoint", "gridPosition", "gridSize", "attachedDirection", "hits", "totalDamageDealt", "isEnabled")]
+	[ES3PropertiesAttribute("weaponData", "firePoint", "gridPosition", "gridSize", "attachedDirection", "spriteRenderer", "hits", "totalDamageDealt", "isEnabled")]
 	public class ES3UserType_ShipWeapon : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -21,6 +21,7 @@ namespace ES3Types
 			writer.WritePrivateField("gridPosition", instance);
 			writer.WriteProperty("gridSize", instance.gridSize, ES3Type_Vector2Int.Instance);
 			writer.WritePrivateField("attachedDirection", instance);
+			writer.WritePrivateFieldByRef("spriteRenderer", instance);
 			writer.WritePrivateField("hits", instance);
 			writer.WritePrivateField("totalDamageDealt", instance);
 			writer.WritePrivateField("isEnabled", instance);
@@ -48,6 +49,9 @@ namespace ES3Types
 						break;
 					case "attachedDirection":
 					instance = (ShipWeapon)reader.SetPrivateField("attachedDirection", reader.Read<ShipWeaponAttachedDirection>(), instance);
+					break;
+					case "spriteRenderer":
+					instance = (ShipWeapon)reader.SetPrivateField("spriteRenderer", reader.Read<UnityEngine.SpriteRenderer>(), instance);
 					break;
 					case "hits":
 					instance = (ShipWeapon)reader.SetPrivateField("hits", reader.Read<System.Int32>(), instance);

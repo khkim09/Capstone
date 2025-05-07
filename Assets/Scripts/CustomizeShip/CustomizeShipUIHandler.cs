@@ -144,11 +144,18 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 설계도 방 호출, 배치
         GetSavedBPRooms();
 
+        // 설계도 함선 무기 호출, 배치
+        GetSavedWeaponRooms();
+
+
         // 카메라 - 설계도 함선 기준으로 세팅
         CenterCameraToBP();
 
         // 선원 임시 비활성화
         DisableCrews();
+
+        // 외갑판 임시 비활성화
+        playerShip.ClearExistingHulls();
 
         // 함선의 방 collider 비활성화 (RTS를 위한 collider와 겹침 방지)
         SetPlayerShipCollidersActive(false);
@@ -172,6 +179,9 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
         // 선원 활성화
         EnableCrews();
+
+        // 외갑판 활성화
+        playerShip.UpdateOuterHullVisuals();
 
         // 함선 방 collider 활성화
         SetPlayerShipCollidersActive(true);
@@ -232,10 +242,24 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// </summary>
     private void GetSavedBPRooms()
     {
-        List<BlueprintRoomSaveData> layout = BlueprintLayoutSaver.LoadLayout();
+        List<BlueprintRoomSaveData> layout = BlueprintLayoutSaver.LoadRoomLayout();
 
         foreach (BlueprintRoomSaveData saved in layout)
             gridPlacer.PlaceRoom(saved.bpRoomData, saved.bpLevelIndex, saved.bpPosition, saved.bpRotation);
+    }
+
+    /// <summary>
+    /// 기존에 작업 중이던 설계도의 모든 함선 무기 데이터 호출 및 배치
+    /// </summary>
+    private void GetSavedWeaponRooms()
+    {
+        List<BlueprintWeaponSaveData> layout = BlueprintLayoutSaver.LoadWeaponLayout();
+
+        foreach (BlueprintWeaponSaveData saved in layout)
+        {
+            BlueprintWeapon bw = gridPlacer.PlaceWeapon(saved.bpWeaponData, saved.bpPosition, saved.bpDirection);
+            bw.ApplyAttachedDirectionSprite();
+        }
     }
 
     /// <summary>
@@ -244,13 +268,18 @@ public class CustomizeShipUIHandler : MonoBehaviour
     private void SaveBPRoomsandDestroy()
     {
         BlueprintRoom[] bpRooms = targetBlueprintShip.GetComponentsInChildren<BlueprintRoom>();
-        BlueprintLayoutSaver.SaveLayout(bpRooms);
+        BlueprintLayoutSaver.SaveRoomLayout(bpRooms);
+
+        BlueprintWeapon[] bpWeapons = targetBlueprintShip.GetComponentsInChildren<BlueprintWeapon>();
+        BlueprintLayoutSaver.SaveWeaponLayout(bpWeapons);
 
         // 설치했던 모든 설계도 방 제거
         foreach (BlueprintRoom r in bpRooms)
             Destroy(r.gameObject);
 
-        targetBlueprintShip.ClearPlacedBPRooms();
+        foreach (BlueprintWeapon w in bpWeapons) Destroy(w.gameObject);
+
+        targetBlueprintShip.ClearRooms();
     }
 
     /// <summary>
@@ -294,7 +323,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 5. 유효성 검사
         if (!validationResult.IsValid)
         {
-            Debug.Log("유효 X");
+            Debug.LogError("유효 X");
 
             // 실패
             feedbackText.text = $"X {validationResult.Message}";
@@ -303,11 +332,11 @@ public class CustomizeShipUIHandler : MonoBehaviour
             playerShip.RevertToOriginalShip();
 
             // 기존 선원 복원
-            playerShip.GetSystem<CrewSystem>().RevertOriginalCrews(playerShip.backupCrewDatas);
+            playerShip.CrewSystem.RevertOriginalCrews(playerShip.backupCrewDatas);
         }
         else
         {
-            Debug.Log("유효 O");
+            Debug.LogError("유효 O");
 
             // 성공 -> 함선 교체
             feedbackText.text = $"O Ship updated successfully\n{validationResult.Message}!";
@@ -330,10 +359,11 @@ public class CustomizeShipUIHandler : MonoBehaviour
             playerShip.ClearAllCrewTileOccupancy();
 
             // 3) 기존 선원 복구 및 랜덤 배치
-            playerShip.GetSystem<CrewSystem>().RestoreCrewAfterBuild(playerShip.backupCrewDatas);
+            playerShip.CrewSystem.RestoreCrewAfterBuild(playerShip.backupCrewDatas);
         }
 
         // 함선 스텟 다시 계산
+        // playerShip.Initialize();
         playerShip.RecalculateAllStats();
     }
 

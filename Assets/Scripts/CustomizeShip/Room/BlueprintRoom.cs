@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// 설계도에 배치된 방 정보.
 /// </summary>
-public class BlueprintRoom : MonoBehaviour, IGridPlaceable
+public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
 {
     /// <summary>RoomData 참조</summary>
     public RoomData bpRoomData;
@@ -104,7 +104,7 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
         RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
 
         // 회전
-        if (Input.GetMouseButtonDown(1))
+        if (isDragging && Input.GetMouseButtonDown(1))
         {
             // 드래그 중이면 회전 방어 조건
             if (BlueprintRoomDragHandler.IsRoomBeingDragged)
@@ -114,69 +114,13 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
                 Rotate((RotationConstants.Rotation)(((int)bpRotation + 1) % 4));
         }
 
-        /* 기존 방 삭제 ui 충돌 방지용
-        if (!isDragging)
-        {
-            // 방 삭제 여부 질문 - 마우스 클릭 다운
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (EventSystem.current.IsPointerOverGameObject())
-                    if (IsPointerOverUIObject(RoomSelectionHandler.Instance.selectionUI))
-                        return;
-
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-
-                if (hit.collider != null && hit.collider.gameObject == gameObject)
-                    mouseDownTarget = hit.collider.gameObject;
-                else
-                {
-                    mouseDownTarget = null;
-                    RoomSelectionHandler.Instance.Deselect();
-                }
-            }
-
-            // 마우스 업
-            if (Input.GetMouseButtonUp(0))
-            {
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-
-                if (hit.collider != null && hit.collider.gameObject == mouseDownTarget)
-                    RoomSelectionHandler.Instance.SelectRoom(this);
-
-                mouseDownTarget = null;
-            }
-        }
-
-        if (isDragging && Input.GetMouseButtonDown(1))
-        {
-            // 1. 현재 마우스 위치 기준 그리드 좌표 계산
-            Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2Int hoveredTile = gridPlacer.WorldToGridPosition(mouseWorldPos);
-
-            // 2. 회전 적용
-            bpRotation = (RotationConstants.Rotation)(((int)bpRotation + 1) % 4);
-            bpRoomSize = RoomRotationUtility.GetRotatedSize(levelData.size, bpRotation);
-
-            // 3. 기준 위치 업데이트
-            bpPosition = hoveredTile;
-
-            // 4. 오프셋 보정 후 위치 적용
-            Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
-
-            transform.position = gridPlacer.GridToWorldPosition(bpPosition) + (Vector3)offset;
-            transform.rotation = Quaternion.Euler(0, 0, -(int)bpRotation * 90);
-
-            // 배치 가능 검사
-            bool canPlace = gridPlacer.CanPlaceRoom(bpRoomData, bpLevelIndex, bpPosition, bpRotation);
-            sr.color = canPlace ? validColor : invalidColor;
-        }
-        */
-
         // 드래그 시작 (좌클릭)
         if (!isDragging && Input.GetMouseButtonDown(0))
         {
+            // UI 위에 마우스가 있는지 확인하는 개선된 방법
+            if (IsPointerOverBlockingUI())
+                return;
+
             if (EventSystem.current.IsPointerOverGameObject())
                 if (IsPointerOverUIObject(RoomSelectionHandler.Instance.selectionUI))
                     return;
@@ -191,7 +135,7 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
                 originalPos = bpPosition;
                 originalRot = bpRotation;
 
-                gridPlacer.UnMarkRoomOccupied(this);
+                gridPlacer.UnMarkObjectOccupied(this);
                 mouseDownTarget = hit.collider.gameObject;
             }
             else
@@ -219,6 +163,8 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
             isDragging = false;
             Vector2Int newPos = gridPlacer.WorldToGridPosition(mouseWorldPos);
 
+            UpdateOccupiedTiles();
+
             bool canPlace = gridPlacer.CanPlaceRoom(bpRoomData, bpLevelIndex, newPos, bpRotation);
             sr.color = Color.white;
 
@@ -230,19 +176,21 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
                 bpRotation = originalRot;
                 bpRoomSize = RoomRotationUtility.GetRotatedSize(levelData.size, bpRotation);
 
+                UpdateOccupiedTiles();
+
                 Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
                 transform.position = gridPlacer.GridToWorldPosition(originalPos) + (Vector3)offset;
                 transform.rotation = Quaternion.Euler(0, 0, -(int)bpRotation * 90);
 
                 // 점유 타일 복구
-                gridPlacer.MarkRoomOccupied(this);
+                gridPlacer.MarkObjectOccupied(this);
                 mouseDownTarget = null;
             }
             else
             {
                 bpPosition = newPos;
                 occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(bpPosition, bpRoomSize, bpRotation);
-                gridPlacer.MarkRoomOccupied(this);
+                gridPlacer.MarkObjectOccupied(this);
             }
 
             transform.position += new Vector3(0, 0, 10f); // 뒤쪽으로 배치
@@ -252,6 +200,29 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
 
             mouseDownTarget = null;
         }
+    }
+
+
+    /// <summary>
+    /// 특정 UI 요소들 위에 마우스가 있는지 확인
+    /// 특히 인벤토리 UI와 같은 방해가 되는 UI만 체크
+    /// </summary>
+    private bool IsPointerOverBlockingUI()
+    {
+        PointerEventData eventData = new(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> results = new();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        foreach (RaycastResult result in results)
+            if (
+                result.gameObject.name.Contains("Scroll View") || result.gameObject.name.Contains("Essential") ||
+                result.gameObject.name.Contains("Auxiliary") || result.gameObject.name.Contains("Living") ||
+                result.gameObject.name.Contains("Storage") || result.gameObject.name.Contains("Etc") ||
+                result.gameObject.name.Contains("Weapon") || result.gameObject.name.Contains("Hull"))
+                return true;
+
+        return false;
     }
 
     /// <summary>
@@ -358,82 +329,6 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
         gridPlacer = placer;
     }
 
-    /*
-        /// <summary>
-        /// 드래그 시작 - 기존 위치 저장, 드래그 전 선택된 방 해제, 점유 타일 삭제
-        /// </summary>
-        /// <param name="eventData"></param>
-        public void OnBeginDrag(PointerEventData eventData)
-        {
-            isDragging = true;
-
-            originalPos = bpPosition;
-            originalRot = bpRotation;
-
-            RoomSelectionHandler.Instance.Deselect(); // 드래그 전 선택 해제
-            gridPlacer.UnMarkRoomOccupied(this); // 점유 타일 없앰
-        }
-
-        /// <summary>
-        /// 드래그 중 - 배치 가능 영역 확인 후 색 변화
-        /// </summary>
-        /// <param name="eventData"></param>
-        public void OnDrag(PointerEventData eventData)
-        {
-            if (!isDragging)
-                return;
-
-            Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(eventData.position);
-            Vector2Int newGrid = gridPlacer.WorldToGridPosition(mouseWorld);
-
-            bpPosition = newGrid;
-            Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
-            transform.position = gridPlacer.GridToWorldPosition(bpPosition) + (Vector3)offset;
-
-            bool canPlace = gridPlacer.CanPlaceRoom(bpRoomData, bpLevelIndex, bpPosition, bpRotation);
-            sr.color = canPlace ? validColor : invalidColor;
-        }
-
-        /// <summary>
-        /// 드래그 종료 - 유효성 검사 후 배치 가능하면 배치, 배치 불가능하면 원위치
-        /// </summary>
-        /// <param name="eventData"></param>
-        public void OnEndDrag(PointerEventData eventData)
-        {
-            isDragging = false;
-
-            Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(eventData.position);
-            Vector2Int newPos = gridPlacer.WorldToGridPosition(mouseWorld);
-
-            bool canPlace = gridPlacer.CanPlaceRoom(bpRoomData, bpLevelIndex, newPos, bpRotation);
-
-            // 유효성 검사
-            if (!canPlace)
-            {
-                // 불가능 : 원위치
-                bpPosition = originalPos;
-                bpRotation = originalRot;
-                bpRoomSize = RoomRotationUtility.GetRotatedSize(levelData.size, bpRotation);
-
-                Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
-                transform.position = gridPlacer.GridToWorldPosition(originalPos) + (Vector3)offset;
-                transform.rotation = Quaternion.Euler(0, 0, -(int)bpRotation * 90);
-
-                // 점유 타일 복구
-                gridPlacer.MarkRoomOccupied(this);
-                mouseDownTarget = null;
-            }
-            else
-            {
-                bpPosition = newPos;
-                occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(bpPosition, bpRoomSize, bpRotation);
-                gridPlacer.MarkRoomOccupied(this);
-            }
-
-            sr.color = Color.white;
-        }
-    */
-
     /// <summary>
     /// 마우스가 selectionUI 위에 있는지 확인
     /// </summary>
@@ -441,17 +336,37 @@ public class BlueprintRoom : MonoBehaviour, IGridPlaceable
     /// <returns></returns>
     private bool IsPointerOverUIObject(GameObject rootUI)
     {
-        PointerEventData eventData = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
+        PointerEventData eventData = new(EventSystem.current) { position = Input.mousePosition };
 
-        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        List<RaycastResult> raycastResults = new();
         EventSystem.current.RaycastAll(eventData, raycastResults);
 
         foreach (RaycastResult result in raycastResults)
-        {
             if (result.gameObject != null && result.gameObject.transform.IsChildOf(rootUI.transform))
                 return true;
-        }
 
         return false;
+    }
+
+    public int GetCost()
+    {
+        return bpRoomCost;
+    }
+
+    /// <summary>
+    /// Blueprint Room이 점유하고 있는 타일 반환
+    /// </summary>
+    /// <returns></returns>
+    public List<Vector2Int> GetOccupiedTiles()
+    {
+        return occupiedTiles;
+    }
+
+    /// <summary>
+    /// BPRoom의 점유 타일 업데이트
+    /// </summary>
+    public void UpdateOccupiedTiles()
+    {
+        occupiedTiles = RoomRotationUtility.GetOccupiedGridPositions(bpPosition, bpRoomSize, bpRotation);
     }
 }

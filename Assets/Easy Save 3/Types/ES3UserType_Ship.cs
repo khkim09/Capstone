@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("shipName", "gridSize", "allRooms", "doorData", "doorLevel", "systems", "backupRoomDatas")]
+	[ES3PropertiesAttribute("shipName", "gridSize", "allRooms", "doorData", "doorLevel", "outerHullData", "outerHullPrefab", "systems", "outerHullSystem", "weaponSystem", "oxygenSystem", "crewSystem", "hitpointSystem", "moraleSystem", "powerSystem", "storageSystem", "shieldSystem", "backupRoomDatas")]
 	public class ES3UserType_Ship : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -21,7 +21,18 @@ namespace ES3Types
 			writer.WriteProperty("allRooms", instance.allRooms, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<Room>)));
 			writer.WritePrivateFieldByRef("doorData", instance);
 			writer.WritePrivateField("doorLevel", instance);
+			writer.WritePropertyByRef("outerHullData", instance.outerHullData);
+			writer.WritePropertyByRef("outerHullPrefab", instance.outerHullPrefab);
 			writer.WritePrivateField("systems", instance);
+			writer.WritePrivateField("outerHullSystem", instance);
+			writer.WritePrivateField("weaponSystem", instance);
+			writer.WritePrivateField("oxygenSystem", instance);
+			writer.WritePrivateField("crewSystem", instance);
+			writer.WritePrivateField("hitpointSystem", instance);
+			writer.WritePrivateField("moraleSystem", instance);
+			writer.WritePrivateField("powerSystem", instance);
+			writer.WritePrivateField("storageSystem", instance);
+			writer.WritePrivateField("shieldSystem", instance);
 			writer.WriteProperty("backupRoomDatas", instance.backupRoomDatas, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<RoomBackupData>)));
 		}
 
@@ -48,8 +59,41 @@ namespace ES3Types
 					case "doorLevel":
 					instance = (Ship)reader.SetPrivateField("doorLevel", reader.Read<System.Int32>(), instance);
 					break;
+					case "outerHullData":
+						instance.outerHullData = reader.Read<OuterHullData>();
+						break;
+					case "outerHullPrefab":
+						instance.outerHullPrefab = reader.Read<UnityEngine.GameObject>(ES3Type_GameObject.Instance);
+						break;
 					case "systems":
 					instance = (Ship)reader.SetPrivateField("systems", reader.Read<System.Collections.Generic.Dictionary<System.Type, ShipSystem>>(), instance);
+					break;
+					case "outerHullSystem":
+					instance = (Ship)reader.SetPrivateField("outerHullSystem", reader.Read<OuterHullSystem>(), instance);
+					break;
+					case "weaponSystem":
+					instance = (Ship)reader.SetPrivateField("weaponSystem", reader.Read<WeaponSystem>(), instance);
+					break;
+					case "oxygenSystem":
+					instance = (Ship)reader.SetPrivateField("oxygenSystem", reader.Read<OxygenSystem>(), instance);
+					break;
+					case "crewSystem":
+					instance = (Ship)reader.SetPrivateField("crewSystem", reader.Read<CrewSystem>(), instance);
+					break;
+					case "hitpointSystem":
+					instance = (Ship)reader.SetPrivateField("hitpointSystem", reader.Read<HitPointSystem>(), instance);
+					break;
+					case "moraleSystem":
+					instance = (Ship)reader.SetPrivateField("moraleSystem", reader.Read<MoraleSystem>(), instance);
+					break;
+					case "powerSystem":
+					instance = (Ship)reader.SetPrivateField("powerSystem", reader.Read<PowerSystem>(), instance);
+					break;
+					case "storageSystem":
+					instance = (Ship)reader.SetPrivateField("storageSystem", reader.Read<StorageSystem>(), instance);
+					break;
+					case "shieldSystem":
+					instance = (Ship)reader.SetPrivateField("shieldSystem", reader.Read<ShieldSystem>(), instance);
 					break;
 					case "backupRoomDatas":
 						instance.backupRoomDatas = reader.Read<System.Collections.Generic.List<RoomBackupData>>();

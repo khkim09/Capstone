@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
-
 
 /// <summary>
 /// 외갑판의 업그레이드 정보를 담는 ScriptableObject.
-/// 레벨별 이름, 비용, 피해 감소 수치 등을 포함합니다.
+/// 레벨별 이름, 비용, 피해 감소 수치, 스프라이트 등을 포함합니다.
 /// </summary>
 [CreateAssetMenu(fileName = "OuterHullData", menuName = "OuterHullData/OuterHull Data")]
 public class OuterHullData : ScriptableObject
@@ -15,6 +12,7 @@ public class OuterHullData : ScriptableObject
     /// <summary>
     /// 외갑판의 개별 레벨 정보를 담는 클래스.
     /// </summary>
+    [Serializable]
     public class OuterHullLevel
     {
         /// <summary>
@@ -41,7 +39,16 @@ public class OuterHullData : ScriptableObject
     /// <summary>
     /// 외갑판의 모든 레벨 데이터를 저장하는 리스트입니다.
     /// </summary>
-    protected List<OuterHullLevel> OuterHullLevels = new();
+    [SerializeField] protected List<OuterHullLevel> OuterHullLevels = new();
+
+    [Header("레벨 1 외갑판 스프라이트")] [Tooltip("방향 인덱스: 0-3(하좌상우), 4-7(하좌상우 변형), 8-11(하좌/상좌/상우/하우 모서리), 12-15(내부 모서리)")]
+    public Sprite[] level1Sprites = new Sprite[16]; // 하좌상우, 하좌상우 변형, 외부 모서리 4개, 내부 모서리 4개
+
+    [Header("레벨 2 외갑판 스프라이트")] [Tooltip("방향 인덱스: 0-3(하좌상우), 4-7(하좌상우 변형), 8-11(하좌/상좌/상우/하우 모서리), 12-15(내부 모서리)")]
+    public Sprite[] level2Sprites = new Sprite[16];
+
+    [Header("레벨 3 외갑판 스프라이트")] [Tooltip("방향 인덱스: 0-3(하좌상우), 4-7(하좌상우 변형), 8-11(하좌/상좌/상우/하우 모서리), 12-15(내부 모서리)")]
+    public Sprite[] level3Sprites = new Sprite[16];
 
     /// <summary>
     /// 지정한 레벨에 해당하는 외갑판 데이터를 반환합니다.
@@ -50,7 +57,52 @@ public class OuterHullData : ScriptableObject
     /// <returns>해당 레벨의 외갑판 데이터.</returns>
     public OuterHullLevel GetOuterHullData(int level)
     {
-        return OuterHullLevels[level];
+        if (level >= 0 && level < OuterHullLevels.Count) return OuterHullLevels[level];
+
+        Debug.LogWarning($"외갑판 레벨 {level}에 대한 데이터가 없습니다.");
+        return null;
+    }
+
+    /// <summary>
+    /// 지정한 레벨의 방향별 스프라이트 배열을 반환합니다.
+    /// </summary>
+    /// <param name="level">외갑판 레벨 (0-2)</param>
+    /// <returns>해당 레벨의 스프라이트 배열</returns>
+    public Sprite[] GetHullSprites(int level)
+    {
+        switch (level)
+        {
+            case 0:
+                return level1Sprites;
+            case 1:
+                return level2Sprites;
+            case 2:
+                return level3Sprites;
+            default:
+                Debug.LogWarning($"유효하지 않은 외갑판 레벨: {level}");
+                return level1Sprites; // 기본값
+        }
+    }
+
+    /// <summary>
+    /// 특정 레벨과 방향에 해당하는 외갑판 스프라이트를 반환합니다.
+    /// </summary>
+    /// <param name="level">외갑판 레벨 (0-2)</param>
+    /// <param name="directionIndex">방향 인덱스:
+    /// 0-3: 하, 좌, 상, 우 (기본)
+    /// 4-7: 하, 좌, 상, 우 (변형)
+    /// 8-11: 하좌, 상좌, 상우, 하우 모서리
+    /// 12-15: 내부 모서리 하좌, 내부 모서리 상좌, 내부 모서리 상우, 내부 모서리 하우
+    /// </param>
+    /// <returns>해당 스프라이트</returns>
+    public Sprite GetSpecificHullSprite(int level, int directionIndex)
+    {
+        Sprite[] sprites = GetHullSprites(level);
+
+        if (sprites != null && directionIndex >= 0 && directionIndex < sprites.Length) return sprites[directionIndex];
+
+        Debug.LogWarning($"외갑판 스프라이트를 찾을 수 없습니다: 레벨 {level}, 방향 {directionIndex}");
+        return null;
     }
 
     /// <summary>
@@ -62,8 +114,8 @@ public class OuterHullData : ScriptableObject
         OuterHullLevels = new List<OuterHullLevel>
         {
             new() { outerHullName = "outerhull.level1", level = 1, costPerSurface = 5, damageReduction = 0 },
-            new() { outerHullName = "outerhull.level2", level = 1, costPerSurface = 10, damageReduction = 5 },
-            new() { outerHullName = "outerhull.level3", level = 1, costPerSurface = 20, damageReduction = 10 }
+            new() { outerHullName = "outerhull.level2", level = 2, costPerSurface = 10, damageReduction = 5 },
+            new() { outerHullName = "outerhull.level3", level = 3, costPerSurface = 20, damageReduction = 10 }
         };
     }
 
@@ -73,6 +125,7 @@ public class OuterHullData : ScriptableObject
     /// </summary>
     protected virtual void OnEnable()
     {
-        InitializeDefaultLevels();
+        if (OuterHullLevels == null || OuterHullLevels.Count == 0)
+            InitializeDefaultLevels();
     }
 }

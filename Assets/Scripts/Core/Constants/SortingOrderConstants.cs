@@ -2,6 +2,7 @@
 {
     public const int Room = -10;
     public const int Door = 10;
+    public const int Weapon = -10;
     public const int TradingItemBox = 100;
     public const int TradingItemFrame = 110;
     public const int TradingItemIcon = 120;

@@ -9,17 +9,11 @@ public class ShipTemplateLoader : MonoBehaviour
     private void Start()
     {
         //enemyShip.Initialize();
-        //ShipSerialization.LoadShip("ship_data.es3");
-        // ShipSerialization.LoadShip("template_pirate24.es3");
-
-        //ShipSerialization.LoadShip("ShipTemplates/template_aa11.es3");
-        //ShipSerialization.LoadShip("ShipTemplates/template_aa11.es3");
-
-        //LoadShipFromResources("ShipTemplates/template_aa11");
-
-        //LoadShipFromResources("ShipTemplates/template_shiptest");
-        //ShipSerialization.LoadShip("ship_data.es3");
-        //ShipSerialization.LoadShip("ship_data.es3");
+        //LoadShipFromResources("ShipTemplates/template_ggqe");
+        //LoadShipFromResources("ShipTemplates/template_pirate_level1");
+        //LoadShipFromResources("ShipTemplates/template_ggqe");
+        // GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("ggqe", new Vector2Int(10, 10));
+        //GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("pirate_level1", new Vector2Int(-30, -30));
     }
 
     /// <summary>

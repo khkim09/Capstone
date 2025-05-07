@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class BlueprintRoomDragHandler : MonoBehaviour
 {
-    [Header("Referecnes")] public GameObject previewPrefab;
+    [Header("References")] public GameObject previewPrefab;
     public GridPlacer gridPlacer;
 
     [Header("preview sprite color")] public Color validColor = new(0, 1, 0, 0.5f);
@@ -22,13 +22,19 @@ public class BlueprintRoomDragHandler : MonoBehaviour
     private bool isDragging = false;
     private Vector2Int roomSize;
 
-    public static bool IsRoomBeingDragged { get; private set; }
+    // 이전 정적 변수 대신 BlueprintDragManager 참조를 통해 드래그 상태 확인
+    public static bool IsRoomBeingDragged =>
+        BlueprintDragManager.Instance != null && BlueprintDragManager.Instance.IsRoomBeingDragged;
 
     /// <summary>
     /// 드래그 시작 시 호출됨.
     /// </summary>
     public void StartDragging(RoomData data, int level)
     {
+        // 이미 다른 드래그가 진행 중이면 무시
+        if (!BlueprintDragManager.Instance.StartRoomDrag())
+            return;
+
         if (previewGO != null)
             Destroy(previewGO);
 
@@ -47,8 +53,6 @@ public class BlueprintRoomDragHandler : MonoBehaviour
 
         previewGO.transform.localScale = Vector3.one;
         previewGO.transform.rotation = Quaternion.identity;
-
-        IsRoomBeingDragged = true;
     }
 
     /// <summary>
@@ -62,7 +66,9 @@ public class BlueprintRoomDragHandler : MonoBehaviour
         previewGO = null;
         draggingRoomData = null;
         isDragging = false;
-        IsRoomBeingDragged = false;
+
+        // 드래그 상태 해제
+        BlueprintDragManager.Instance.StopDrag();
     }
 
     private void Update()
