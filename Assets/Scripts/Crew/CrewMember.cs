@@ -491,7 +491,13 @@ public class CrewMember : CrewBase
     {
         PlayAnimation("die");
         yield return new WaitForSeconds(2f);
+
+        if (currentRoom != null)
+            currentRoom.OnCrewExit(this);
+        if (currentShip.GetAllCrew().Contains(this)) currentShip.GetAllCrew().Remove(this);
+
         Destroy(this.gameObject);
+        Debug.Log($"{crewName} 사망 처리 완료");
     }
 
     public void LookAtMe()
@@ -536,16 +542,17 @@ public class CrewMember : CrewBase
 
     public void TryRepair()
     {
-        if (repairCoroutine == null)
-        {
+        //TODO:선원이 위치한 함선이 적 함선인지 아군 함선인지 검사해야돼
+            if (repairCoroutine == null)
+            {
+                repairCoroutine = StartCoroutine(RepairRoutine());
+            }
+            else
+            {
+                StopCoroutine(repairCoroutine);
+                repairCoroutine = null;
+            }
 
-            repairCoroutine = StartCoroutine(RepairRoutine());
-        }
-        else
-        {
-            StopCoroutine(repairCoroutine);
-            repairCoroutine = null;
-        }
     }
     public IEnumerator RepairRoutine()
     {
