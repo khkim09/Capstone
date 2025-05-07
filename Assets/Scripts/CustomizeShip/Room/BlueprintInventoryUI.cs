@@ -10,8 +10,7 @@ public class BlueprintInventoryUI : MonoBehaviour
     /// <summary>
     /// 모든 방 종류
     /// </summary>
-    [Header("RoomData 직접 등록")]
-    public List<RoomData> allRooms;
+    [Header("RoomData 직접 등록")] public List<RoomData> allRooms;
 
     [Header("UI Reference")]
     /// <summary>
@@ -41,6 +40,8 @@ public class BlueprintInventoryUI : MonoBehaviour
     {
         FilterByCategory(RoomCategory.Essential);
         categoryButtonHandler.SetButtonState(RoomCategory.Essential);
+        gameObject.AddComponent<SpriteRenderer>();
+        //GetComponent<SpriteRenderer>().sortingOrder = SortingOrderConstants.UI;
     }
 
     /// <summary>
@@ -60,7 +61,7 @@ public class BlueprintInventoryUI : MonoBehaviour
 
             for (int i = 0; i < levels.Count; i++)
             {
-                var levelData = levels[i];
+                RoomData.RoomLevel levelData = levels[i];
                 if (levelData.category != category)
                     continue;
 

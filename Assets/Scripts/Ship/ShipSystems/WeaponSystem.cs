@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -8,17 +9,12 @@ using UnityEngine;
 public class WeaponSystem : ShipSystem
 {
     /// <summary>
-    /// 현재 장착된 무기들의 리스트입니다.
-    /// </summary>
-    private List<ShipWeapon> weapons = new();
-
-    /// <summary>
     /// 매 프레임마다 호출되어 각 무기의 쿨다운 상태를 업데이트합니다.
     /// </summary>
     /// <param name="deltaTime">경과 시간 (초).</param>
     public override void Update(float deltaTime)
     {
-        foreach (ShipWeapon weapon in weapons)
+        foreach (ShipWeapon weapon in parentShip.allWeapons)
             // 일반 쿨다운 업데이트
             weapon.UpdateCooldown(deltaTime);
 
@@ -44,9 +40,14 @@ public class WeaponSystem : ShipSystem
         weapon.SetAttachedDirection(direction);
 
         weapon.transform.SetParent(parentShip.transform);
-        weapons.Add(weapon);
+        // parentShip.allWeapons.Add(weapon);
 
-        weapon.transform.position = ShipGridHelper.GetRoomWorldPosition(gridPosition, weapon.gridSize);
+        weapon.transform.position =
+            ShipGridHelper.GetRoomWorldPosition(gridPosition, weapon.gridSize) + new Vector3(0, 0, 5f);
+        weapon.ApplyRotationSprite(parentShip.GetOuterHullLevel());
+
+        // 임시
+        parentShip.allWeapons.Add(weapon);
 
         return weapon;
     }
@@ -57,8 +58,11 @@ public class WeaponSystem : ShipSystem
 
 
         weapon.transform.SetParent(parentShip.transform);
-        weapon.transform.position = ShipGridHelper.GetRoomWorldPosition(weapon.GetGridPosition(), weapon.gridSize);
-        weapons.Add(weapon);
+        weapon.ApplyRotationSprite(parentShip.GetOuterHullLevel());
+
+        weapon.transform.position = ShipGridHelper.GetRoomWorldPosition(weapon.GetGridPosition(), weapon.gridSize) +
+                                    new Vector3(0, 0, 5f);
+        parentShip.allWeapons.Add(weapon);
 
         return weapon;
     }
@@ -66,9 +70,9 @@ public class WeaponSystem : ShipSystem
 
     public bool RemoveWeapon(ShipWeapon weapon)
     {
-        if (weapons.Contains(weapon))
+        if (parentShip.allWeapons.Contains(weapon))
         {
-            weapons.Remove(weapon);
+            parentShip.allWeapons.Remove(weapon);
             if (weapon != null) Object.Destroy(weapon.gameObject);
             return true;
         }
@@ -107,7 +111,7 @@ public class WeaponSystem : ShipSystem
     /// <returns>무기 리스트.</returns>
     public List<ShipWeapon> GetWeapons()
     {
-        return weapons;
+        return parentShip.allWeapons;
     }
 
     /// <summary>
@@ -116,28 +120,18 @@ public class WeaponSystem : ShipSystem
     /// <returns>무기 개수.</returns>
     public int GetWeaponCount()
     {
-        return weapons.Count;
+        return parentShip.allWeapons.Count;
     }
 
     /// <summary>
-    /// 인덱스로 무기를 제거합니다.
+    /// 모든 무기 삭제
     /// </summary>
-    /// <param name="index">제거할 무기의 인덱스</param>
-    /// <returns>제거 성공 여부</returns>
-    public bool RemoveWeapon(int index)
+    public void RemoveAllWeapons()
     {
-        if (index >= 0 && index < weapons.Count)
-        {
-            ShipWeapon weapon = weapons[index];
-            weapons.RemoveAt(index);
+        foreach (ShipWeapon weapon in parentShip.allWeapons)
+            Object.Destroy(weapon);
 
-            // 게임 오브젝트 제거
-            if (weapon != null) Object.Destroy(weapon.gameObject);
-
-            return true;
-        }
-
-        return false;
+        parentShip.allWeapons.Clear();
     }
 
     /// <summary>
@@ -147,8 +141,8 @@ public class WeaponSystem : ShipSystem
     /// <returns>해당 인덱스의 무기 또는 null</returns>
     public ShipWeapon GetWeaponByIndex(int index)
     {
-        if (index >= 0 && index < weapons.Count)
-            return weapons[index];
+        if (index >= 0 && index < parentShip.allWeapons.Count)
+            return parentShip.allWeapons[index];
         return null;
     }
 
@@ -158,7 +152,7 @@ public class WeaponSystem : ShipSystem
     /// <returns>발사 가능한 무기가 있으면 true</returns>
     public bool IsEveryWeaponReady()
     {
-        foreach (ShipWeapon weapon in weapons)
+        foreach (ShipWeapon weapon in parentShip.allWeapons)
             if (weapon.IsReady() && weapon.IsEnabled())
                 return true;
         return false;
@@ -170,7 +164,7 @@ public class WeaponSystem : ShipSystem
     /// <param name="deltaTime">경과 시간</param>
     public void UpdateWeaponCooldowns(float deltaTime)
     {
-        foreach (ShipWeapon weapon in weapons) weapon.UpdateCooldown(deltaTime);
+        foreach (ShipWeapon weapon in parentShip.allWeapons) weapon.UpdateCooldown(deltaTime);
     }
 
     /// <summary>
@@ -180,7 +174,7 @@ public class WeaponSystem : ShipSystem
     /// <returns>해당 타입의 무기 목록</returns>
     public List<ShipWeapon> GetWeaponsByType(ShipWeaponType type)
     {
-        return weapons.FindAll(w => w.GetWeaponType() == type);
+        return parentShip.allWeapons.FindAll(w => w.GetWeaponType() == type);
     }
 
     /// <summary>
@@ -188,7 +182,7 @@ public class WeaponSystem : ShipSystem
     /// </summary>
     public void ResetAllWeaponStats()
     {
-        foreach (ShipWeapon weapon in weapons)
+        foreach (ShipWeapon weapon in parentShip.allWeapons)
         {
             weapon.SetHits(0);
             weapon.SetTotalDamageDealt(0f);
@@ -202,11 +196,11 @@ public class WeaponSystem : ShipSystem
     /// <returns>해당 탄두 타입을 사용하는 무기 목록</returns>
     public List<ShipWeapon> GetWeaponsByWarheadType(WarheadType warheadType)
     {
-        return weapons.FindAll(w => w.weaponData.warheadType.warheadType == warheadType);
+        return parentShip.allWeapons.FindAll(w => w.weaponData.warheadType.warheadType == warheadType);
     }
 
     public List<ShipWeapon> GetWeaponsByEffect(ShipWeaponEffectType effectType)
     {
-        return weapons.FindAll(w => w.weaponData.effectData.effectType == effectType);
+        return parentShip.allWeapons.FindAll(w => w.weaponData.effectData.effectType == effectType);
     }
 }

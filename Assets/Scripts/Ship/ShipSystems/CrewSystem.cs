@@ -43,8 +43,9 @@ public class CrewSystem : ShipSystem
     public bool AddCrew(CrewBase newCrew)
     {
         // TODO : 조건 검사를 밖에서 해서 capacity 부족하다는 걸 전달해야됨
-        if (parentShip.allCrews.Count >= GetShipStat(ShipStat.CrewCapacity))
-            return false;
+        if (newCrew.isPlayerControlled)
+            if (parentShip.allCrews.Count >= GetShipStat(ShipStat.CrewCapacity))
+                return false;
 
         parentShip.RecalculateAllStats();
 
@@ -214,8 +215,8 @@ public class CrewSystem : ShipSystem
                 List<Vector2Int> candidates = room.GetRotatedCrewEntryGridPriority().Where
                 (
                     t => !room.IsTileOccupiedByCrew(t)
-                    && !parentShip.IsCrewTileOccupied(room, t)
-                    && !alreadyOccupiedTiles.Contains(t)
+                         && !parentShip.IsCrewTileOccupied(room, t)
+                         && !alreadyOccupiedTiles.Contains(t)
                 ).ToList();
 
                 if (candidates.Count == 0)

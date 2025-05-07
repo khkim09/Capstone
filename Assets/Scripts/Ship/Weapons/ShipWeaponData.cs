@@ -21,7 +21,7 @@ public class ShipWeaponData : ScriptableObject
     /// <summary>
     /// 무기 설명(툴팁 등에 사용)
     /// </summary>
-    [SerializeField] [TextArea(3, 5)] public string description;
+    [SerializeField][TextArea(3, 5)] public string description;
 
     /// <summary>
     /// 무기의 기본 데미지 값입니다.
@@ -32,6 +32,27 @@ public class ShipWeaponData : ScriptableObject
     /// 무기의 초당 쿨타임 증가량입니다.
     /// </summary>
     public float cooldownPerSecond;
+
+    /// <summary>
+    /// 무기 인벤토리 아이콘
+    /// </summary>
+    [SerializeField] public Sprite weaponIcon;
+
+    /// <summary>
+    /// 무기 설계도 스프라이트 (외갑판 레벨[0-2], 방향[North, East, South])
+    /// [0,0] = 외갑판 레벨 1, North 방향
+    /// [0,1] = 외갑판 레벨 1, East 방향
+    /// [0,2] = 외갑판 레벨 1, South 방향
+    /// [1,0] = 외갑판 레벨 2, North 방향
+    /// ...
+    /// [2,2] = 외갑판 레벨 3, South 방향
+    /// </summary>
+    [SerializeField] public Sprite[,] blueprintSprites = new Sprite[3, 3];
+
+    /// <summary>
+    /// Inspector에서 표시할 1차원 스프라이트 배열 (외갑판 레벨 1 North, East, South, 레벨 2 North, East, South, ...)
+    /// </summary>
+    [SerializeField] public Sprite[] flattenedSprites = new Sprite[9];
 
     /// <summary>
     /// 무기의 타입입니다.
@@ -94,5 +115,24 @@ public class ShipWeaponData : ScriptableObject
     public ShipWeaponType GetWeaponType()
     {
         return weaponType.weaponType;
+    }
+
+    /// <summary>
+    /// 1차원 배열에서 2차원 배열로 변환 (Inspector에서 사용)
+    /// </summary>
+    public void OnValidate()
+    {
+        if (flattenedSprites.Length != 9)
+            Array.Resize(ref flattenedSprites, 9);
+
+        // 1차원 배열을 2차원 배열로 변환
+        blueprintSprites = new Sprite[3, 3];
+        for (int hull = 0; hull < 3; hull++)
+            for (int dir = 0; dir < 3; dir++)
+            {
+                int index = hull * 3 + dir;
+                if (index < flattenedSprites.Length)
+                    blueprintSprites[hull, dir] = flattenedSprites[index];
+            }
     }
 }
