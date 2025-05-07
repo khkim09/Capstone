@@ -317,7 +317,7 @@ public class RTSSelectionManager : MonoBehaviour
         if (targetRoom == null)
             return;
 
-        List<CrewBase> allCrew = playerShip.GetSystem<CrewSystem>().GetCrews();
+        List<CrewMember> allCrew = playerShip.GetSystem<CrewSystem>().GetCrews();
 
         // 목적지 방의 우선순위 높은 순 타일 위치 리스트
         List<Vector2Int> entryTiles = targetRoom.GetRotatedCrewEntryGridPriority();
@@ -328,16 +328,13 @@ public class RTSSelectionManager : MonoBehaviour
             Debug.LogWarning($"누구도 이동하기 전 {targetRoom}에 선원 배치된 위치 : {t}");
 
         // 1-1. 이동 명령으로 점유 예약됐지만 아직 실 점유하기 전은 제외
-        foreach (CrewBase crewBase in allCrew)
+        foreach (CrewMember cm in allCrew)
         {
-            if (crewBase is CrewMember cm)
-            {
-                // 선원이 이동 중이면서 예약 타일만 존재하고 아직 타일 점유하지 않은 경우 제외
-                bool isCurrentlyReserved = selectedCrew.Contains(cm) && cm.reservedRoom == targetRoom && cm.GetCurrentTile() != cm.reservedTile;
+            // 선원이 이동 중이면서 예약 타일만 존재하고 아직 타일 점유하지 않은 경우 제외
+            bool isCurrentlyReserved = selectedCrew.Contains(cm) && cm.reservedRoom == targetRoom && cm.GetCurrentTile() != cm.reservedTile;
 
-                if (isCurrentlyReserved)
-                    reservedTiles.Remove(cm.reservedTile);
-            }
+            if (isCurrentlyReserved)
+                reservedTiles.Remove(cm.reservedTile);
         }
 
         foreach (Vector2Int t in reservedTiles)

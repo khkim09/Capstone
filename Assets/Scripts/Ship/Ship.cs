@@ -33,6 +33,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     public List<Room> allRooms = new();
 
+    /// <summary>
+    /// 유저 함선에 있는 유저 선원 리스트
+    /// </summary>
+    public List<CrewMember> allCrews = new();
+
     [SerializeField] private DoorData doorData;
 
     /// <summary>
@@ -390,6 +395,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     public List<RoomBackupData> backupRoomDatas = new();
 
     /// <summary>
+    /// 백업해 둘 선원 정보들
+    /// </summary>
+    public List<BackupCrewData> backupCrewDatas = new List<BackupCrewData>();
+
+    /// <summary>
     /// 현재 함선에 포함된 모든 방의 가격 합을 반환
     /// </summary>
     /// <returns>모든 방 가격의 합</returns>
@@ -413,6 +423,25 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             if (room.currentHitPoints != room.GetMaxHitPoints())
                 return false;
         return true;
+    }
+
+    /// <summary>
+    /// 설계도 작업 전, 기존 선원 백업
+    /// </summary>
+    public void BackupAllCrews()
+    {
+        backupCrewDatas.Clear();
+
+        foreach (CrewMember crew in allCrews)
+        {
+            backupCrewDatas.Add(new BackupCrewData
+            {
+                race = crew.race,
+                crewName = crew.crewName,
+                position = crew.position,
+                roomPos = crew.currentRoom.position
+            });
+        }
     }
 
     /// <summary>
@@ -461,13 +490,19 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <param name="bpShip">설계도 함선</param>
     public void ReplaceShipFromBlueprint(BlueprintShip bpShip)
     {
-        // 1. 기존 함선 삭제
+        // 1. 기존 선원 모두 삭제
+        foreach (CrewMember crew in allCrews)
+            Destroy(crew.gameObject);
+
+        allCrews.Clear();
+
+        // 2. 기존 함선 삭제
         foreach (Room room in allRooms)
             Destroy(room.gameObject);
 
         allRooms.Clear();
 
-        // 2. 설계도 -> 함선으로 적용
+        // 3. 설계도 -> 함선으로 적용
         foreach (BlueprintRoom bpRoom in bpShip.GetComponentsInChildren<BlueprintRoom>())
             AddRoom(bpRoom.bpLevelIndex, bpRoom.bpRoomData, bpRoom.bpPosition, bpRoom.bpRotation);
     }
@@ -702,9 +737,9 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         }
 
         // TODO: 방을 제외한 ShipStatContributions 반영해야함 (ex : 외갑판, 선원)
-        List<CrewBase> crews = GetSystem<CrewSystem>().GetCrews();
+        List<CrewMember> crews = GetSystem<CrewSystem>().GetCrews();
 
-        foreach (CrewBase crew in crews)
+        foreach (CrewMember crew in crews)
         {
             Dictionary<ShipStat, float> crewContributions = crew.GetStatContributions();
 
@@ -890,7 +925,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         return fuelCost;
     }
 
-    #region 승무원
+    #region 선원
 
     /// <summary>
     /// 현재 탑승 중인 크루 수를 반환합니다.
@@ -911,12 +946,23 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <summary>
     /// 현재 함선에 탑승 중인 모든 크루를 반환합니다.
     /// </summary>
-    /// <returns>CrewBase 객체들의 리스트.</returns>
-    public List<CrewBase> GetAllCrew()
+    /// <returns>CrewMember 객체들의 리스트.</returns>
+    public List<CrewMember> GetAllCrew()
     {
         return GetSystem<CrewSystem>().GetCrews();
     }
 
+    /// <summary>
+    /// 유저의 선원 리스트 업데이트
+    /// </summary>
+    public void UpdateCrewList()
+    {
+        allCrews.Clear();
+
+        foreach (CrewBase cb in GetAllCrew())
+            if (cb is CrewMember crewMember)
+                allCrews.Add(crewMember);
+    }
 
     /// <summary>
     /// 새로운 승무원을 함선에 추가합니다.
@@ -928,14 +974,28 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         return GetSystem<CrewSystem>().AddCrew(newCrew);
     }
 
-    public void RemoveCrew(CrewBase crew)
+    /// <summary>
+    /// 선원 제거
+    /// </summary>
+    /// <param name="crew"></param>
+    public void RemoveCrew(CrewMember crew)
     {
         GetSystem<CrewSystem>().RemoveCrew(crew);
     }
 
+    /// <summary>
+    /// 모든 선원 제거
+    /// </summary>
     public void RemoveAllCrews()
     {
-        GetSystem<CrewSystem>().RemoveAllCrews();
+        foreach (CrewMember crew in allCrews)
+            Destroy(crew.gameObject);
+
+        allCrews.Clear();
+        // GetSystem<CrewSystem>().crews.Clear();
+
+        UpdateCrewList();
+        // GetSystem<CrewSystem>().RemoveAllCrews();
     }
 
     #endregion

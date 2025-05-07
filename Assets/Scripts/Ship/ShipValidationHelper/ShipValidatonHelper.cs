@@ -275,7 +275,7 @@ public class ShipValidationHelper
 
         GameObject go = new GameObject("ShipPathDebugVisualizer");
         ShipPathDebugVisualizer visualizer = go.AddComponent<ShipPathDebugVisualizer>();
-        go.hideFlags = HideFlags.DontSave;
+        go.hideFlags = HideFlags.None;
         return visualizer;
     }
 
