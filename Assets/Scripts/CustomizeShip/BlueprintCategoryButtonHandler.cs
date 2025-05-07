@@ -82,7 +82,7 @@ public class BlueprintCategoryButtonHandler : MonoBehaviour
             Image img = btn.GetComponent<Image>();
 
             // 버튼 이름으로 카테고리 매칭
-            if (btn.name == "Weapon")
+            if (btn.name == "Weapon" || btn.name == "Hull")
             {
                 // 무기 버튼은 방 카테고리가 선택되었을 때 항상 비선택 상태
                 img.color = defaultBG;
