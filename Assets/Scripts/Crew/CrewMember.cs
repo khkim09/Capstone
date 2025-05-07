@@ -294,6 +294,7 @@ public class CrewMember : CrewBase
 
         RTSSelectionManager.Instance.MoveForCombat(this,currentRoom.occupiedCrewTiles);
         LookAtMe();
+        BackToThePeace();
     }
 
     // <summary>
@@ -325,22 +326,30 @@ public class CrewMember : CrewBase
     /// <param name="trigger"></param>
     private void PlayAnimation(string trigger, bool onoff=true)
     {
+        SetAnimationDirection(movementDirection);
         if (trigger.Equals("walk"))
         {
-            animator.SetFloat("X", movementDirection.x);
-            animator.SetFloat("Y", movementDirection.y);
             animator.SetBool(trigger, onoff);
         }
         else if (trigger.Equals("attack"))
         {
-            animator.SetFloat("X",movementDirection.x);
-            animator.SetFloat("Y", movementDirection.y);
             animator.SetTrigger("attack");
         }
         else if (trigger.Equals("die"))
         {
             animator.SetTrigger("die");
         }
+        else if (trigger.Equals("repair"))
+        {
+            SetAnimationDirection(Vector2.down);
+            animator.SetTrigger("repair");
+        }
+    }
+
+    private void SetAnimationDirection(Vector2 direction)
+    {
+        animator.SetFloat("X",direction.x);
+        animator.SetFloat("Y",direction.y);
     }
 
     //----------전투---------
@@ -456,8 +465,14 @@ public class CrewMember : CrewBase
                 StopCoroutine(hittingMan.comBatCoroutine);
                 hittingMan.comBatCoroutine = null;
                 hittingMan.bullier.Remove(this);
-
-                RTSSelectionManager.Instance.MoveForCombat(hittingMan, hittingMan.currentRoom.occupiedCrewTiles);
+                if(hittingMan.isWithEnemy())
+                {
+                    RTSSelectionManager.Instance.MoveForCombat(hittingMan, hittingMan.currentRoom.occupiedCrewTiles);
+                }
+                else
+                {
+                    hittingMan.BackToThePeace();
+                }
             }
         }
     }
@@ -479,4 +494,87 @@ public class CrewMember : CrewBase
             }
         }
     }
+
+    public void BackToThePeace()
+    {
+        if (isAlive && !inCombat)
+        {
+            StopAllCoroutines();
+
+            PlayAnimation("idle");
+            TryRepair();
+        }
+    }
+
+    //---------적 탐지----------
+    public bool isWithEnemy()
+    {
+        foreach (CrewBase crew in currentRoom.GetCrewInRoom())
+        {
+            if (crew.isPlayerControlled != isPlayerControlled && crew.isAlive)
+                return true;
+        }
+
+        return false;
+    }
+
+
+    //--------------수리------------
+    public Coroutine repairCoroutine;
+    public float repairCoefficient = 10;
+    public float repairDelay = 0.5f;
+
+    public void TryRepair()
+    {
+        if (repairCoroutine == null)
+        {
+
+            repairCoroutine = StartCoroutine(RepairRoutine());
+        }
+        else
+        {
+            StopCoroutine(repairCoroutine);
+            repairCoroutine = null;
+        }
+    }
+    public IEnumerator RepairRoutine()
+    {
+        if (isWithEnemy() || !currentRoom.NeedsRepair())
+        {
+            repairCoroutine = null;
+            yield break;
+        }
+
+        PlayAnimation("repair");
+        yield return new WaitForSeconds(repairDelay);
+        RepairFacility(currentRoom);
+        yield return new WaitForSeconds(repairDelay);
+
+        if (currentRoom.NeedsRepair())
+        {
+            repairCoroutine = StartCoroutine(RepairRoutine());
+        }
+    }
+
+    /// <summary>
+    /// 특정 방을 수리하며 수리 스킬을 향상시킵니다.
+    /// </summary>
+    /// <param name="room">수리 대상 방.</param>
+    /// <param name="amount">수리량.</param>
+    public void RepairFacility(Room room)
+    {
+        // 수리 스킬에 따른 수리량 계산
+        // float repairSkillBonus = skills.ContainsKey(SkillType.RepairSkill) ? skills[SkillType.RepairSkill] / 100f : 0f;
+
+        //TODO:장비 완성되면 장비와 사기, 숙련도에 대한 보너스 추가 필요
+        float repairAmount = repairCoefficient;
+
+        // 수리 실행
+        room.Repair(repairAmount);
+
+        // 수리 스킬 향상
+        ImproveSkill(SkillType.RepairSkill, 0.5f);
+    }
+
+
 }

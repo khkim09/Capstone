@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Collections.LowLevel.Unsafe;
+using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
 using Random = UnityEngine.Random;
+
 
 /// <summary>
 /// 함선 내의 모든 방의 기본 클래스.
@@ -10,7 +13,8 @@ using Random = UnityEngine.Random;
 /// </summary>
 public abstract class Room : MonoBehaviour, IShipStatContributor
 {
-    /// <summary>방의 데이터 ScriptableObject 참조.</summary>
+
+/// <summary>방의 데이터 ScriptableObject 참조.</summary>
     [SerializeField] protected RoomData roomData;
 
     /// <summary>격자상의 방 위치 (좌측 상단 기준).</summary>
@@ -20,13 +24,14 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     protected int currentLevel;
 
     /// <summary>현재 체력.</summary>
-    [SerializeField][HideInInspector] public float currentHitPoints;
+    [SerializeField] public float currentHitPoints;
 
     /// <summary>방의 타입.</summary>
     public RoomType roomType;
 
     /// <summary>이 방이 데미지를 받을 수 있는지 여부.</summary>
     private bool isDamageable;
+
 
     /// <summary>인접한 방 리스트.</summary>
     [HideInInspector] protected List<Room> adjacentRooms = new();
@@ -373,43 +378,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         // return isActive && isPowered && HasEnoughCrew();
     }
 
-    /// <summary>수리가 필요한 상태인지 확인합니다.</summary>
-    public bool NeedsRepair()
-    {
-        return currentHitPoints < roomData.GetRoomDataByLevel(currentLevel).hitPoint;
-    }
 
-    /// <summary>지정된 피해만큼 체력을 감소시킵니다.</summary>
-    public virtual void TakeDamage(float damage)
-    {
-        currentHitPoints = Mathf.Max(0, currentHitPoints - damage);
-        if (currentHitPoints <= 0) OnDisabled();
-
-        // 스탯 기여도 변화 알림
-        NotifyStateChanged();
-    }
-
-    /// <summary>지정된 양만큼 체력을 회복시킵니다.</summary>
-    public virtual void Repair(float amount)
-    {
-        currentHitPoints = Mathf.Min(roomData.GetRoomDataByLevel(currentLevel).hitPoint, currentHitPoints + amount);
-
-        // 스탯 기여도 변화 알림
-        NotifyStateChanged();
-    }
-
-    /// <summary>방이 작동 불능 상태가 되었을 때 호출됩니다.</summary>
-    protected virtual void OnDisabled()
-    {
-        isActive = false;
-        // 방별 비활성화 처리
-
-        // TODO: MoraleManager 에서 사기 계산하게 해야됨.
-
-
-        // 스탯 기여도 변화 알림
-        NotifyStateChanged();
-    }
 
     // 전력 관련
 
@@ -748,6 +717,67 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     {
         return crewInRoom;
     }
+
+    //------------수리 관련----------
+    public DamageLevel damageCondition = DamageLevel.good;
+    /// <summary>수리가 필요한 상태인지 확인합니다.</summary>
+    public bool NeedsRepair()
+    {
+        if (damageCondition == DamageLevel.breakdown)
+        {
+            return currentHitPoints<roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo];
+        }
+        else
+        {
+            return currentHitPoints < roomData.GetRoomDataByLevel(currentLevel).hitPoint;
+        }
+    }
+
+    /// <summary>지정된 피해만큼 체력을 감소시킵니다.</summary>
+    public virtual void TakeDamage(float damage)
+    {
+        currentHitPoints = Mathf.Max(0, currentHitPoints - damage);
+        if (currentHitPoints <= 0) OnDisabled();
+        //피해발생 이후에 현재 체력에 따라 시설의 피해 단계를 변화시킨다.
+        if (currentHitPoints <= roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
+            damageCondition = DamageLevel.breakdown;
+        else if(currentHitPoints<=roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+            damageCondition = DamageLevel.scratch;
+
+        // 스탯 기여도 변화 알림
+        NotifyStateChanged();
+    }
+
+    /// <summary>지정된 양만큼 체력을 회복시킵니다.</summary>
+    public void Repair(float amount)
+    {
+        if (damageCondition == DamageLevel.breakdown)
+        {
+            currentHitPoints = Mathf.Min(roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo], currentHitPoints + amount);
+        }
+        else
+        {
+            currentHitPoints = Mathf.Min(roomData.GetRoomDataByLevel(currentLevel).hitPoint, currentHitPoints + amount);
+            if(currentHitPoints>roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+                damageCondition=DamageLevel.good;
+        }
+
+        // 스탯 기여도 변화 알림
+        NotifyStateChanged();
+    }
+
+    /// <summary>방이 작동 불능 상태가 되었을 때 호출됩니다.</summary>
+    protected virtual void OnDisabled()
+    {
+        isActive = false;
+        // 방별 비활성화 처리
+
+        // TODO: MoraleManager 에서 사기 계산하게 해야됨.
+
+
+        // 스탯 기여도 변화 알림
+        NotifyStateChanged();
+    }
 }
 
 /// <summary>
@@ -886,4 +916,14 @@ public abstract class Room<TData, TLevel> : Room
                     $"Failed to add door at position {doorPos.position} with direction {doorPos.direction} for room {name}");
         */
     }
+
+
+
+}
+
+public enum DamageLevel
+{
+    good,
+    scratch,
+    breakdown
 }

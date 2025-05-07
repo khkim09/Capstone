@@ -377,23 +377,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         Debug.Log($"{crewName} 사망 처리 완료");
     }
 
-    /// <summary>
-    /// 특정 방을 수리하며 수리 스킬을 향상시킵니다.
-    /// </summary>
-    /// <param name="room">수리 대상 방.</param>
-    /// <param name="amount">수리량.</param>
-    public void RepairFacility(Room room, float amount)
-    {
-        // 수리 스킬에 따른 수리량 계산
-        // float repairSkillBonus = skills.ContainsKey(SkillType.RepairSkill) ? skills[SkillType.RepairSkill] / 100f : 0f;
-        float repairAmount = amount;
 
-        // 수리 실행
-        room.Repair(repairAmount);
-
-        // 수리 스킬 향상
-        ImproveSkill(SkillType.RepairSkill, 0.5f);
-    }
 
     /// <summary>
     /// 선원의 체력을 회복합니다. 최대 체력을 초과하지 않습니다.
