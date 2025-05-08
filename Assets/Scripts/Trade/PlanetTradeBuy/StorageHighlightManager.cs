@@ -13,7 +13,7 @@ public class StorageHighlightManager : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        allHighlighters = FindObjectsOfType<TradingItemHighlighter>();
+        allHighlighters = Object.FindObjectsByType<TradingItemHighlighter>(FindObjectsSortMode.None);
     }
 
     /// <summary>

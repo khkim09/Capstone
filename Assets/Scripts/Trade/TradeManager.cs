@@ -57,7 +57,7 @@ public class TradeManager : MonoBehaviour
     /// <returns>구매 성공 여부</returns>
     public bool BuyItem(TradingItemData itemData, int quantity)
     {
-        Storage storage = FindObjectOfType<Storage>();
+        Storage storage =  Object.FindFirstObjectByType<Storage>();
         if (storage == null)
         {
             Debug.LogError("TradeManager: Storage 컴포넌트를 찾을 수 없습니다.");
@@ -101,7 +101,7 @@ public class TradeManager : MonoBehaviour
     /// <returns>판매 성공 여부</returns>
     public bool SellItem(TradingItemData itemData, int quantity)
     {
-        Storage storage = FindObjectOfType<Storage>();
+        Storage storage =  Object.FindFirstObjectByType<Storage>();
         if (storage == null)
         {
             Debug.LogError("TradeManager: Storage 컴포넌트를 찾을 수 없습니다.");

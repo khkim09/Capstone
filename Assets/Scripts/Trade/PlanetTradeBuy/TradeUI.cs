@@ -45,7 +45,7 @@ public class TradeUI : MonoBehaviour
     private void Start()
     {
         if (tradeManager == null)
-            tradeManager = FindObjectOfType<TradeManager>();
+            tradeManager = Object.FindFirstObjectByType<TradeManager>();
 
         PopulateTradeItemList();
     }
