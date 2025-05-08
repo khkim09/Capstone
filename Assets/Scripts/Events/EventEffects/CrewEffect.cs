@@ -26,11 +26,13 @@ public class CrewEffect
 
     /// <summary>
     /// 숙련도 종류를 의미합니다.
-    /// None을 누르면 모둔 스킬(구현 예정)을 의미합니다.
     /// </summary>
     public SkillType skill;
 
-    // TODO : 상태이상 종류를 의미합니다.
+    /// <summary>
+    /// 상태이상 종류를 의미합니다.
+    /// </summary>
+    public CrewStatus status;
 
     /// <summary>
     /// 이벤트 지속 조건. 탈출 조건.
@@ -92,7 +94,7 @@ public enum PersistenceCondition
     /// <summary>
     /// 선원이 공격할 때까지 지속됩니다.
     /// </summary>
-    UntilAttack,
+    UntilTakeAttack,
 
     /// <summary>
     /// 선원이 치료실에서 회복할 때까지 지속됩니다.

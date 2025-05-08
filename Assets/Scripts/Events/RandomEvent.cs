@@ -33,7 +33,25 @@ public class RandomEvent : ScriptableObject
     public Sprite eventImage;
     public EventType eventType;
     public EventOutcomeType outcomeType;
-    public int minimumYear;
+
+    #region 퀘스트 출현 조건
+
+    /// <summary>
+    /// 퀘스트가 출현하는 최소 년도
+    /// </summary>
+    public int minimumYear = 0;
+
+    /// <summary>
+    /// 퀘스트가 출현하는 데 필요한 종족 종류
+    /// </summary>
+    public List<CrewRace> requiredCrewRace = new();
+
+    /// <summary>
+    /// 퀘스트가 출현하는 데 필요한 최소 COMA
+    /// </summary>
+    public int minimumCOMA = 0;
+
+    #endregion
 
     public List<EventChoice> choices = new();
 }
