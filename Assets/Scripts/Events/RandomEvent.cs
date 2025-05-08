@@ -23,7 +23,7 @@ public enum EventOutcomeType
     Negative
 }
 
-[CreateAssetMenu(fileName = "New Event", menuName = "Game/Random Event")]
+[CreateAssetMenu(fileName = "New Event", menuName = "Event/Random Event")]
 public class RandomEvent : ScriptableObject
 {
     public int eventId;

@@ -53,8 +53,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// <summary>
     /// 현재 커스터마이징 중인 플레이어 함선입니다.
     /// </summary>
-    [Header("Ship")]
-    public Ship playerShip;
+    [Header("Ship")] public Ship playerShip;
 
     /// <summary>
     /// 그리드 타일 배치 작업을 위한 오브젝트
@@ -93,7 +92,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
         {
             totalBPCost = targetBlueprintShip.GetTotalBPCost(); // 설계도 가격
             originalShipCost = playerShip.GetTotalShipValue(); // 사용중인 함선 가격
-            int currentCurrency = (int)ResourceManager.Instance.GetResource(ResourceType.COMA); // 보유 재화량
+            int currentCurrency = ResourceManager.Instance.COMA; // 보유 재화량
 
             currency.text = $"Currency : {currentCurrency}";
             totalCostText.text = $"Blueprint Cost : {totalBPCost}";
@@ -195,10 +194,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
         List<CrewMember> crews = playerShip.allCrews;
 
         foreach (CrewMember crew in crews)
-        {
             if (crew != null)
                 crew.gameObject.SetActive(false);
-        }
     }
 
     /// <summary>
@@ -209,10 +206,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
         List<CrewMember> crews = playerShip.allCrews;
 
         foreach (CrewMember crew in crews)
-        {
             if (crew != null)
                 crew.gameObject.SetActive(true);
-        }
     }
 
     /// <summary>
