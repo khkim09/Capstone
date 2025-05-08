@@ -5,13 +5,10 @@ using UnityEngine;
 /// <summary>
 /// 함선의 방 배치와 무기 배치가 유효한지 검증하는 클래스입니다.
 /// 모든 방이 서로 연결되어 있고, 문이 적절히 배치되어 있는지 확인하며,
-/// 무기의 발사 경로를 검증합니다. (무기 검사 구현 필요 - 필요 시 이전 버전 끌어와서 써야될 듯)
+/// 무기의 발사 경로를 검증합니다.
 /// </summary>
 public class ShipValidationHelper
 {
-    #region validation ㄹㅇ 찐찐막 울트라 최종 버전
-
-
     /// <summary>
     /// 함선 배치의 유효성 검사
     /// </summary>
@@ -32,9 +29,24 @@ public class ShipValidationHelper
             return requiredRoomsCheck;
 
         // 모든 방의 연결성 확인 (선원이 모든 방을 순회하고 원위치로 복귀할 수 있는가)
-        ValidationResult pathConnectivity = CheckAllRoomsPathConnectedByDoors(rooms);
+        ValidationResult pathConnectivity = CheckAllRoomsPathConnectedByDoors(rooms, ship.GetGridSize());
         if (!pathConnectivity.IsValid)
             return pathConnectivity;
+
+        // 무기와 방의 연결성 검사
+        ValidationResult weaponConnectivityCheck = CheckWeaponConnectivity(ship);
+        if (!weaponConnectivityCheck.IsValid)
+            return weaponConnectivityCheck;
+
+        // 무기 방향과 방 연결 검사
+        ValidationResult weaponAttachmentCheck = ValidateWeaponAttachmentDirection(ship);
+        if (!weaponAttachmentCheck.IsValid)
+            return weaponAttachmentCheck;
+
+        // 무기의 오른쪽 방향 검사
+        ValidationResult weaponCheck = ValidateWeaponPlacement(ship);
+        if (!weaponCheck.IsValid)
+            return weaponCheck;
 
         // 정상 연결
         return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
@@ -68,25 +80,109 @@ public class ShipValidationHelper
         // 생활 시설 여부
         bool hasCrewQuartersBP = rooms.Any(r => r.roomType == RoomType.CrewQuarters);
         if (!hasCrewQuartersBP)
-            return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.nocrewquartersroom");
+            return new ValidationResult(ShipValidationError.MissingRequiredRoom,
+                "shipvalidation.error.nocrewquartersroom");
 
         // 모두 정상
         return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
     }
 
     /// <summary>
+    /// 무기의 방향과 방 연결 상태를 검사합니다.
+    /// 각 무기의 AttachedDirection에 따라 적절한 위치에 방이 있어야 합니다.
+    /// </summary>
+    /// <param name="ship">검사할 함선</param>
+    /// <returns>검증 결과</returns>
+    public ValidationResult ValidateWeaponAttachmentDirection(Ship ship)
+    {
+        // 함선의 모든 무기 가져오기
+        List<ShipWeapon> weapons = ship.GetAllWeapons();
+
+        // 무기가 없으면 유효함
+        if (weapons == null || weapons.Count == 0)
+            return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+
+        // 모든 방 가져오기
+        List<Room> rooms = ship.GetAllRooms();
+
+        // 그리드 크기 가져오기
+        Vector2Int gridSize = ship.GetGridSize();
+
+        // 방이 점유하는 모든 타일 위치를 저장하는 집합
+        HashSet<Vector2Int> roomTiles = new();
+
+        // 모든 방이 점유하는 타일 수집
+        foreach (Room room in rooms)
+        {
+            Vector2Int roomSize = room.GetSize();
+            Vector2Int roomPos = room.position;
+
+            // 방 크기에 따라 점유하는 모든 타일 추가
+            foreach (Vector2Int tile in room.GetOccupiedTiles())
+                roomTiles.Add(tile);
+        }
+
+        // 각 무기에 대해 검사
+        foreach (ShipWeapon weapon in weapons)
+        {
+            // 무기 위치와 방향
+            Vector2Int weaponPos = weapon.GetGridPosition();
+            ShipWeaponAttachedDirection direction = weapon.GetAttachedDirection();
+
+            // 확인할 타일 (방이 있어야 하는 위치)
+            Vector2Int checkTile;
+
+            switch (direction)
+            {
+                case ShipWeaponAttachedDirection.North:
+                    // 기준점 아래에 방이 있어야 함
+                    checkTile = new Vector2Int(weaponPos.x, weaponPos.y - 1);
+                    break;
+
+                case ShipWeaponAttachedDirection.East:
+                    // 기준점 왼쪽에 방이 있어야 함
+                    checkTile = new Vector2Int(weaponPos.x - 1, weaponPos.y);
+                    break;
+
+                case ShipWeaponAttachedDirection.South:
+                    // 기준점 위에 방이 있어야 함
+                    checkTile = new Vector2Int(weaponPos.x, weaponPos.y + 1);
+                    break;
+
+                default:
+                    // 알 수 없는 방향 - 유효하지 않음
+                    return new ValidationResult(
+                        ShipValidationError.WeaponPlacementError,
+                        "shipvalidation.error.invalidweaponattachment"
+                    );
+            }
+
+            // 해당 위치에 방이 있는지 확인
+            if (!roomTiles.Contains(checkTile))
+                return new ValidationResult(
+                    ShipValidationError.DisconnectedWeapons,
+                    "shipvalidation.error.weaponnotattachedtoroom"
+                );
+        }
+
+        // 모든 무기 방향 및 연결 검사 통과
+        return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+    }
+
+    /// <summary>
     /// BFS + DFS 이용하여 방과 방의 연결성 및 이동 가능성 확인
     /// </summary>
-    /// <param name="rooms"></param>
-    /// <returns></returns>
-    private ValidationResult CheckAllRoomsPathConnectedByDoors(List<Room> rooms)
+    /// <param name="rooms">검사할 방 목록</param>
+    /// <param name="gridSize">그리드 크기</param>
+    /// <returns>검증 결과</returns>
+    private ValidationResult CheckAllRoomsPathConnectedByDoors(List<Room> rooms, Vector2Int gridSize)
     {
         // BFS 방문 추적용
-        HashSet<Room> visitedRooms = new HashSet<Room>();
+        HashSet<Room> visitedRooms = new();
         // BFS Queue
-        Queue<Room> queue = new Queue<Room>();
+        Queue<Room> queue = new();
         // DFS 기반 복도 방향별 방문 추적
-        HashSet<(Room, DoorDirection)> visitedCorridorDirections = new HashSet<(Room, DoorDirection)>();
+        HashSet<(Room, DoorDirection)> visitedCorridorDirections = new();
 
         // 첫 시작 방 지정 (BFS)
         Room startRoom = rooms[0];
@@ -103,15 +199,24 @@ public class ShipValidationHelper
             Debug.Log($"{i++} : {current} 방 진입 currentroompos : {current.position}");
 
             // 현재 방의 문 방향 리스트 (회전각 반영)
-            List<DoorPosition> doors = current.GetRoomData().GetDoorPositionsWithDirection(current.GetCurrentLevel(), current.position, current.currentRotation);
+            List<DoorPosition> doors = current.GetRoomData()
+                .GetDoorPositionsWithDirection(current.GetCurrentLevel(), current.position, current.currentRotation);
 
             // 현재 방의 모든 문에 대해 검사 (현재 방 : 복도 or 일반 방 무관)
             foreach (DoorPosition door in doors)
             {
-                Debug.Log($"currentroompos : {current.position}, doorpos : {door.position}, doordir : {door.direction}");
+                Debug.Log(
+                    $"currentroompos : {current.position}, doorpos : {door.position}, doordir : {door.direction}");
 
                 // 인접 타일, 인접 방 검색
                 Vector2Int neighborTile = GetAdjacentTile(door.position, door.direction);
+
+                // 그리드 범위 검사 추가
+                if (neighborTile.x < 0 || neighborTile.y < 0 ||
+                    neighborTile.x >= gridSize.x || neighborTile.y >= gridSize.y)
+                    // 그리드 범위를 벗어난 경우 건너뜀
+                    continue;
+
                 Room neighborRoom = rooms.FirstOrDefault(r => r.OccupiesTile(neighborTile));
 
                 if (neighborRoom != null)
@@ -130,7 +235,9 @@ public class ShipValidationHelper
                 }
 
                 // 상황 2 : (반대편 방 == 일반 방) 문 위치 일치, 방향 서로 반대 시 연결
-                List<DoorPosition> neighborDoors = neighborRoom.GetRoomData().GetDoorPositionsWithDirection(neighborRoom.GetCurrentLevel(), neighborRoom.position, neighborRoom.currentRotation);
+                List<DoorPosition> neighborDoors = neighborRoom.GetRoomData()
+                    .GetDoorPositionsWithDirection(neighborRoom.GetCurrentLevel(), neighborRoom.position,
+                        neighborRoom.currentRotation);
                 DoorDirection opposite = GetOppositeDoorDirection(door.direction);
 
                 Debug.Log($"dir : {door.direction}, 현재 문의 반대방향 (추구) : {opposite}");
@@ -147,7 +254,8 @@ public class ShipValidationHelper
                     Debug.Log($"반대편 방 문 방향 (현실) : {nWorldDir}");
 
                     // 조건 1 : 인접한 위치
-                    bool positionMatch = DoorPositionMatch(door.position, door.direction, ndoor.position, nWorldDir);
+                    bool positionMatch = DoorPositionMatch(door.position, door.direction, ndoor.position, nWorldDir,
+                        gridSize);
 
                     // 조건 2 : 문끼리 서로 마주봄
                     bool directionMatch = opposite == nWorldDir;
@@ -189,18 +297,225 @@ public class ShipValidationHelper
     }
 
     /// <summary>
+    /// 무기 설치 위치 유효성 검사
+    /// 무기 우측(x 증가 방향)에 그리드 끝까지 방이나 다른 무기가 있는지 확인
+    /// </summary>
+    /// <param name="ship">검사할 함선</param>
+    /// <returns>검증 결과</returns>
+    public ValidationResult ValidateWeaponPlacement(Ship ship)
+    {
+        // 함선의 모든 무기 가져오기
+        List<ShipWeapon> weapons = ship.GetAllWeapons();
+
+        // 무기가 없으면 유효함
+        if (weapons == null || weapons.Count == 0)
+            return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+
+        // 모든 방 가져오기
+        List<Room> rooms = ship.GetAllRooms();
+
+        // 그리드 크기 가져오기
+        Vector2Int gridSize = ship.GetGridSize();
+
+        // 각 무기에 대해 검사
+        foreach (ShipWeapon weapon in weapons)
+        {
+            // 무기 위치
+            Vector2Int weaponPosition = weapon.GetGridPosition();
+
+            // 무기 오른쪽(x 증가) 방향의 모든 타일 검사
+            for (int x = weaponPosition.x + 1; x < gridSize.x; x++)
+            {
+                Vector2Int checkPosition = new(x, weaponPosition.y);
+
+                // 해당 위치에 방이 있는지 확인
+                bool roomExists = rooms.Any(room => room.OccupiesTile(checkPosition));
+
+                // 해당 위치에 다른 무기가 있는지 확인
+                bool weaponExists = weapons.Any(w => w.GetGridPosition() == checkPosition);
+
+                // 무기 오른쪽에 방이나 무기가 있으면 유효하지 않음
+                if (roomExists || weaponExists)
+                    return new ValidationResult(
+                        ShipValidationError.WeaponFrontObject,
+                        "shipvalidation.error.weaponfrontobject"
+                    );
+            }
+        }
+
+        // 모든 무기 배치가 유효함
+        return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+    }
+
+    /// <summary>
+    /// 모든 무기가 방과 직접 또는 간접적으로 연결되어 있는지 확인합니다.
+    /// BFS를 사용하여 무기와 방의 연결성을 검사합니다.
+    /// </summary>
+    /// <param name="ship">검사할 함선</param>
+    /// <returns>검증 결과</returns>
+    public ValidationResult CheckWeaponConnectivity(Ship ship)
+    {
+        // 함선의 모든 무기 가져오기
+        List<ShipWeapon> weapons = ship.GetAllWeapons();
+
+        // 무기가 없으면 유효함
+        if (weapons == null || weapons.Count == 0)
+            return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+
+        // 모든 방 가져오기
+        List<Room> rooms = ship.GetAllRooms();
+
+        // 그리드 크기 가져오기
+        Vector2Int gridSize = ship.GetGridSize();
+
+        // 방이 점유하는 모든 타일 위치를 저장하는 집합
+        HashSet<Vector2Int> roomTiles = new();
+
+        // 모든 방이 점유하는 타일 수집
+        foreach (Room room in rooms)
+        {
+            Vector2Int roomSize = room.GetSize();
+            Vector2Int roomPos = room.position;
+
+            // 방 크기에 따라 점유하는 모든 타일 추가
+            foreach (Vector2Int tile in room.GetOccupiedTiles())
+                roomTiles.Add(tile);
+        }
+
+        // 방문한 무기를 추적하는 집합
+        HashSet<ShipWeapon> visitedWeapons = new();
+
+        // BFS를 위한 큐
+        Queue<ShipWeapon> queue = new();
+
+        // 방에 직접 인접한 무기를 시작점으로 큐에 추가
+        foreach (ShipWeapon weapon in weapons)
+        {
+            Vector2Int weaponPos = weapon.GetGridPosition();
+
+            // 무기가 방에 인접한지 확인
+            bool isAdjacentToRoom = IsAdjacentToRoomTiles(weaponPos, roomTiles, gridSize);
+
+            if (isAdjacentToRoom)
+            {
+                queue.Enqueue(weapon);
+                visitedWeapons.Add(weapon);
+            }
+        }
+
+        // BFS로 연결된 모든 무기 탐색
+        while (queue.Count > 0)
+        {
+            ShipWeapon currentWeapon = queue.Dequeue();
+            Vector2Int currentPos = currentWeapon.GetGridPosition();
+
+            // 현재 무기에 인접한 다른 무기 탐색
+            foreach (ShipWeapon otherWeapon in weapons)
+            {
+                if (visitedWeapons.Contains(otherWeapon)) continue;
+
+                Vector2Int otherPos = otherWeapon.GetGridPosition();
+
+                // 인접 여부 확인
+                if (AreAdjacent(currentPos, otherPos, gridSize))
+                {
+                    queue.Enqueue(otherWeapon);
+                    visitedWeapons.Add(otherWeapon);
+                }
+            }
+        }
+
+        // 모든 무기가 방문되었는지 확인
+        if (visitedWeapons.Count != weapons.Count)
+            // 연결되지 않은 무기가 존재
+            return new ValidationResult(
+                ShipValidationError.DisconnectedWeapons,
+                "shipvalidation.error.disconnectedweapons"
+            );
+
+        // 모든 무기가 연결됨
+        return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+    }
+
+    /// <summary>
+    /// 두 위치가 서로 인접해 있는지 확인합니다.
+    /// </summary>
+    /// <param name="pos1">첫 번째 위치</param>
+    /// <param name="pos2">두 번째 위치</param>
+    /// <param name="gridSize">그리드 크기</param>
+    /// <returns>인접 여부</returns>
+    private bool AreAdjacent(Vector2Int pos1, Vector2Int pos2, Vector2Int gridSize)
+    {
+        // 그리드 범위 확인
+        if (pos1.x < 0 || pos1.y < 0 || pos1.x >= gridSize.x || pos1.y >= gridSize.y ||
+            pos2.x < 0 || pos2.y < 0 || pos2.x >= gridSize.x || pos2.y >= gridSize.y)
+            return false;
+
+        // 인접 여부 확인 (상하좌우)
+        int dx = Mathf.Abs(pos1.x - pos2.x);
+        int dy = Mathf.Abs(pos1.y - pos2.y);
+
+        return (dx == 1 && dy == 0) || (dx == 0 && dy == 1);
+    }
+
+    /// <summary>
+    /// 위치가 방 타일에 인접해 있는지 확인합니다.
+    /// </summary>
+    /// <param name="pos">확인할 위치</param>
+    /// <param name="roomTiles">방이 점유하는 타일 집합</param>
+    /// <param name="gridSize">그리드 크기</param>
+    /// <returns>인접 여부</returns>
+    private bool IsAdjacentToRoomTiles(Vector2Int pos, HashSet<Vector2Int> roomTiles, Vector2Int gridSize)
+    {
+        // 상하좌우 인접 타일 확인
+        Vector2Int[] adjacentDirections =
+        {
+            new(0, 1), // 상
+            new(0, -1), // 하
+            new(-1, 0), // 좌
+            new(1, 0) // 우
+        };
+
+        foreach (Vector2Int dir in adjacentDirections)
+        {
+            Vector2Int adjacentPos = pos + dir;
+
+            // 그리드 범위 확인
+            if (adjacentPos.x < 0 || adjacentPos.y < 0 ||
+                adjacentPos.x >= gridSize.x || adjacentPos.y >= gridSize.y)
+                continue;
+
+            // 인접 타일이 방에 속하는지 확인
+            if (roomTiles.Contains(adjacentPos))
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
     /// 각 방의 문이 위치한 타일에 대해 문으로 이동 가능하도록 인접했는지 여부
     /// </summary>
     /// <param name="doorPosA">현재 방 문 위치</param>
     /// <param name="dirA">현재 방 문 방향</param>
     /// <param name="doorPosB">반대 방 문 위치</param>
     /// <param name="dirB">반대 방 문 방향</param>
+    /// <param name="gridSize">그리드 크기</param>
     /// <returns></returns>
-    private bool DoorPositionMatch(Vector2Int doorPosA, DoorDirection dirA, Vector2Int doorPosB, DoorDirection dirB)
+    private bool DoorPositionMatch(Vector2Int doorPosA, DoorDirection dirA, Vector2Int doorPosB, DoorDirection dirB,
+        Vector2Int gridSize)
     {
         // 상호 인접 여부 검사
         Vector2Int expectedNeighborForA = doorPosA + GetDirectionOffset(dirA); // 이웃 타일 (A가 현재 타일)
         Vector2Int expectedNeighborForB = doorPosB + GetDirectionOffset(dirB); // 현재 타일
+
+        // 그리드 범위 검사 추가
+        if (expectedNeighborForA.x < 0 || expectedNeighborForA.y < 0 ||
+            expectedNeighborForA.x >= gridSize.x || expectedNeighborForA.y >= gridSize.y ||
+            expectedNeighborForB.x < 0 || expectedNeighborForB.y < 0 ||
+            expectedNeighborForB.x >= gridSize.x || expectedNeighborForB.y >= gridSize.y)
+            // 범위를 벗어난 경우
+            return false;
 
         Debug.Log($"반대 방 문 pos : {doorPosB}, 반대 방 문 검사 : {expectedNeighborForA}");
         bool currentRoomCheck = doorPosB == expectedNeighborForA;
@@ -273,11 +588,9 @@ public class ShipValidationHelper
         if (existing != null)
             return existing;
 
-        GameObject go = new GameObject("ShipPathDebugVisualizer");
+        GameObject go = new("ShipPathDebugVisualizer");
         ShipPathDebugVisualizer visualizer = go.AddComponent<ShipPathDebugVisualizer>();
-        go.hideFlags = HideFlags.DontSave;
+        go.hideFlags = HideFlags.None;
         return visualizer;
     }
-
-    #endregion
 }

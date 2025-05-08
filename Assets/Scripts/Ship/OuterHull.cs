@@ -15,7 +15,7 @@ public class OuterHull : MonoBehaviour, IShipStatContributor
     /// <summary>
     /// 현재 외갑판의 레벨입니다.
     /// </summary>
-    [SerializeField] private int currentLevel = 1;
+    [SerializeField] private int currentLevel = 0;
 
     /// <summary>
     /// 현재 레벨에 해당하는 외갑판 상세 데이터입니다.
@@ -23,10 +23,33 @@ public class OuterHull : MonoBehaviour, IShipStatContributor
     private OuterHullData.OuterHullLevel currentLevelData;
 
     /// <summary>
+    /// 외갑판의 그리드 위치
+    /// </summary>
+    public Vector2Int gridPosition;
+
+    /// <summary>
+    /// 외갑판 타일의 방향 (0-3: 하좌상우, 4-7: 하좌/상좌/상우/하우 모서리, 8-11: 내부 모서리)
+    /// </summary>
+    public int direction = 0;
+
+    /// <summary>
+    /// 스프라이트 렌더러 컴포넌트
+    /// </summary>
+    private SpriteRenderer spriteRenderer;
+
+    /// <summary>
+    /// a소속된 함선 참조
+    /// </summary>
+    private Ship parentShip;
+
+    /// <summary>
     /// 컴포넌트가 활성화될 때 외갑판을 초기화합니다.
     /// </summary>
     private void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null) spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+
         Initialize();
     }
 
@@ -35,7 +58,6 @@ public class OuterHull : MonoBehaviour, IShipStatContributor
     /// </summary>
     public void Initialize()
     {
-        currentLevel = 1;
         if (outerHullData == null)
         {
             Debug.LogError("OuterHullData is not assigned.");
@@ -45,6 +67,72 @@ public class OuterHull : MonoBehaviour, IShipStatContributor
         currentLevelData = outerHullData.GetOuterHullData(currentLevel);
         if (currentLevelData == null)
             Debug.LogWarning($"No outer hull data found for level {currentLevel}");
+    }
+
+    /// <summary>
+    /// 외갑판 타일 초기화
+    /// </summary>
+    /// <param name="position">그리드 위치</param>
+    /// <param name="level">외갑판 레벨</param>
+    /// <param name="dir">방향 (0-3: 하좌상우, 4-7: 모서리, 8-11: 내부 모서리)</param>
+    /// <param name="sprite">사용할 스프라이트</param>
+    /// <param name="ship">소속 함선</param>
+    public void Initialize(Vector2Int position, int level, int dir, Sprite sprite, Ship ship)
+    {
+        gridPosition = position;
+        currentLevel = level;
+        direction = dir;
+        parentShip = ship;
+
+        // 현재 레벨에 맞는 데이터 설정
+        if (outerHullData != null) currentLevelData = outerHullData.GetOuterHullData(currentLevel);
+
+        // 스프라이트 설정
+        UpdateSprite(sprite);
+    }
+
+    /// <summary>
+    /// 외갑판 데이터를 설정합니다.
+    /// </summary>
+    /// <param name="data">외갑판 데이터</param>
+    public void SetOuterHullData(OuterHullData data)
+    {
+        outerHullData = data;
+
+        // 현재 레벨에 맞는 데이터 업데이트
+        if (outerHullData != null) currentLevelData = outerHullData.GetOuterHullData(currentLevel);
+    }
+
+    /// <summary>
+    /// 외갑판 스프라이트 업데이트
+    /// </summary>
+    /// <param name="sprite">새 스프라이트</param>
+    public void UpdateSprite(Sprite sprite)
+    {
+        if (spriteRenderer == null)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            if (spriteRenderer == null) spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+        }
+
+        if (sprite != null) spriteRenderer.sprite = sprite;
+    }
+
+    /// <summary>
+    /// 외갑판 레벨과 방향에 따른 스프라이트 업데이트
+    /// </summary>
+    /// <param name="level">레벨 (0-2)</param>
+    /// <param name="directionIndex">방향 인덱스 (0-3: 하좌상우, 4-7: 모서리, 8-11: 내부 모서리)</param>
+    public void UpdateSpriteByLevelAndDirection(int level, int directionIndex)
+    {
+        if (outerHullData == null)
+        {
+            Debug.LogWarning("OuterHullData가 설정되지 않았습니다.");
+            return;
+        }
+
+        Sprite newSprite = outerHullData.GetSpecificHullSprite(level, directionIndex);
+        UpdateSprite(newSprite);
     }
 
     /// <summary>
@@ -84,6 +172,13 @@ public class OuterHull : MonoBehaviour, IShipStatContributor
         currentLevel = nextLevel;
         currentLevelData = nextData;
 
+        // 스프라이트 업데이트
+        if (outerHullData != null)
+        {
+            Sprite newSprite = outerHullData.GetSpecificHullSprite(currentLevel, direction);
+            UpdateSprite(newSprite);
+        }
+
         return true;
     }
 
@@ -94,5 +189,27 @@ public class OuterHull : MonoBehaviour, IShipStatContributor
     public int GetCurrentLevel()
     {
         return currentLevel;
+    }
+
+    /// <summary>
+    /// 외갑판 레벨 설정
+    /// </summary>
+    /// <param name="level">새 레벨</param>
+    public void SetLevel(int level)
+    {
+        if (level >= 0 && level < 3)
+        {
+            currentLevel = level;
+
+            // 현재 레벨에 맞는 데이터 업데이트
+            if (outerHullData != null)
+            {
+                currentLevelData = outerHullData.GetOuterHullData(currentLevel);
+
+                // 스프라이트 업데이트
+                Sprite newSprite = outerHullData.GetSpecificHullSprite(currentLevel, direction);
+                UpdateSprite(newSprite);
+            }
+        }
     }
 }

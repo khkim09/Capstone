@@ -32,4 +32,6 @@ public class EventOutcome
     /// 만약 특수 효과 타입이 NextEvent 일 경우
     /// </summary>
     public RandomEvent nextEvent;
+
+    public RandomQuest questToAdd; // 연계 퀘스트가 있을 경우
 }

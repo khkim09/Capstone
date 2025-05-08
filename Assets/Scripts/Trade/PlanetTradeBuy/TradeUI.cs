@@ -36,11 +36,6 @@ public class TradeUI : MonoBehaviour
     [Header("System References")]
     [SerializeField] private TradeManager tradeManager;
 
-    /// <summary>
-    /// 거래 가능한 아이템 데이터를 로드하는 TradeDataLoader의 참조입니다.
-    /// </summary>
-    [SerializeField] private TradeDataLoader tradeDataLoader;
-
     #endregion
 
     /// <summary>
@@ -51,8 +46,6 @@ public class TradeUI : MonoBehaviour
     {
         if (tradeManager == null)
             tradeManager = FindObjectOfType<TradeManager>();
-        if (tradeDataLoader == null)
-            tradeDataLoader = FindObjectOfType<TradeDataLoader>();
 
         PopulateTradeItemList();
     }

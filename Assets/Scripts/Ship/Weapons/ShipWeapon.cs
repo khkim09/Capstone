@@ -30,10 +30,9 @@ public class ShipWeapon : MonoBehaviour
 
     /// <summary>
     /// 무기가 시설과 연결되어있는 방향(회전 상태)입니다.
-    /// 무기는 항상 오른쪽으로 발사되어야 하므로 기본값은 East이며,
     /// 회전 상태는 East → South → North → East 순으로 순환합니다.
     /// </summary>
-    private ShipWeaponAttachedDirection attachedDirection = ShipWeaponAttachedDirection.East;
+    private ShipWeaponAttachedDirection attachedDirection = ShipWeaponAttachedDirection.North;
 
     /// <summary>
     /// SpriteRenderer 컴포넌트 참조 (회전 시 스프라이트 갱신용)
@@ -58,10 +57,12 @@ public class ShipWeapon : MonoBehaviour
     private void Awake()
     {
         // SpriteRenderer 컴포넌트 가져오기
-        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
-        // 초기 스프라이트 적용
-        ApplyRotationSprite();
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sortingOrder = SortingOrderConstants.Weapon;
     }
 
     /// <summary>
@@ -271,6 +272,8 @@ public class ShipWeapon : MonoBehaviour
     /// </summary>
     public void RotateWeapon()
     {
+        // 사용하지 말것!!!! 방향은 인 게임 중에 바뀔 일이 없고, 배를 만들 때만 바뀜
+
         // 현재 attachedDirection 값을 기반으로 다음 상태로 전환
         switch (attachedDirection)
         {
@@ -293,10 +296,31 @@ public class ShipWeapon : MonoBehaviour
     /// 현재 attachedDirection에 맞는 스프라이트를 SpriteRenderer에 적용합니다.
     /// 인덱스 매핑: 0 - Up (North), 1 - Right (East), 2 - Down (South)
     /// </summary>
-    private void ApplyRotationSprite()
+    /// <param name="hullLevel">함선의 외갑판 레벨 (0: 레벨 1, 1: 레벨 2, 2: 레벨 3)</param>
+    public void ApplyRotationSprite(int hullLevel = 0)
     {
-        // TODO: 회전 상태와 외갑판에 따른 스프라이트 설정 필요
-        //       그건 무기가 아니라 배에서 해야할 듯. 배가 외갑판 정보를 가지고 있으니
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (spriteRenderer == null || weaponData == null || weaponData.flattenedSprites == null)
+            return;
+
+        // 유효한 인덱스 범위 확인
+        int dirIndex = GetDirectionIndex();
+        int totalIndex = hullLevel * 3 + dirIndex;
+
+        // 배열 범위 체크
+        if (totalIndex >= 0 && totalIndex < weaponData.flattenedSprites.Length)
+        {
+            spriteRenderer.sprite = weaponData.flattenedSprites[totalIndex];
+        }
+        else if (weaponData.weaponIcon != null)
+        {
+            // 인덱스가 범위를 벗어나면 기본 아이콘 사용
+            spriteRenderer.sprite = weaponData.weaponIcon;
+            Debug.LogWarning(
+                $"Invalid sprite index {totalIndex} for weapon {weaponData.GetWeaponName()}, using default icon");
+        }
     }
 
     public void CopyFrom(ShipWeapon other)
@@ -313,8 +337,5 @@ public class ShipWeapon : MonoBehaviour
         hits = other.hits;
         totalDamageDealt = other.totalDamageDealt;
         isEnabled = other.isEnabled;
-
-        // 스프라이트 렌더러는 직접 복사할 수 없지만 회전 상태에 맞는 스프라이트를 갱신할 수 있음
-        ApplyRotationSprite();
     }
 }

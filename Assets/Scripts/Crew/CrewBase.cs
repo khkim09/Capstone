@@ -347,7 +347,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         // TODO : 임시로 작동되게 해놓음.
 
-        if (currentShip.GetAllCrew().Contains(this)) currentShip.GetAllCrew().Remove(this);
+        if (currentShip.GetAllCrew().Contains(this as CrewMember)) currentShip.GetAllCrew().Remove(this as CrewMember);
 
         // 아래는 원래 코드
         /*

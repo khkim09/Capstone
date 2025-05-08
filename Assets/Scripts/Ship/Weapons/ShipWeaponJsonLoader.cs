@@ -15,13 +15,17 @@ public class ShipWeaponJsonLoader : EditorWindow
     private string effectsFolder = "Assets/ScriptableObject/ShipWeapon/Effects";
     private string typesFolder = "Assets/ScriptableObject/ShipWeapon/Types";
     private string warheadFloder = "Assets/ScriptableObject/ShipWeapon/Warheads";
+    private string spriteFolderPath = "Sprites/ShipWeapon"; // Path in Resources folder
     private ShipWeaponDatabase databaseAsset;
     private bool overwriteExisting = true;
+    private bool loadSprites = true; // Option to load sprites
 
     private int updatedWeapons;
     private int newWeapons;
     private int updatedEffects;
     private int newEffects;
+    private int loadedSprites;
+    private int missingSprites;
 
     [MenuItem("Game/JSON to Weapon Converter")]
     public static void ShowWindow()
@@ -46,8 +50,10 @@ public class ShipWeaponJsonLoader : EditorWindow
         outputFolder = EditorGUILayout.TextField("Output Folder:", outputFolder);
         effectsFolder = EditorGUILayout.TextField("Effects Folder:", effectsFolder);
         typesFolder = EditorGUILayout.TextField("Types Folder:", typesFolder);
+        spriteFolderPath = EditorGUILayout.TextField("Sprite Path (Resources):", spriteFolderPath);
 
         overwriteExisting = EditorGUILayout.Toggle("Overwrite Existing Assets", overwriteExisting);
+        loadSprites = EditorGUILayout.Toggle("Load Weapon Sprites", loadSprites);
 
         if (overwriteExisting)
             EditorGUILayout.HelpBox("Warning: Existing assets will be overwritten.", MessageType.Warning);
@@ -73,6 +79,12 @@ public class ShipWeaponJsonLoader : EditorWindow
             EditorGUILayout.LabelField("Updated Effects:", updatedEffects.ToString());
             EditorGUILayout.LabelField("New Effects:", newEffects.ToString());
             EditorGUILayout.LabelField("Total Weapons:", databaseAsset.allWeapons.Count.ToString());
+
+            if (loadSprites)
+            {
+                EditorGUILayout.LabelField("Loaded Sprites:", loadedSprites.ToString());
+                EditorGUILayout.LabelField("Missing Sprites:", missingSprites.ToString());
+            }
         }
     }
 
@@ -88,35 +100,6 @@ public class ShipWeaponJsonLoader : EditorWindow
         databaseAsset = newDatabase;
         EditorUtility.FocusProjectWindow();
         Selection.activeObject = newDatabase;
-    }
-
-    private class EffectInfo
-    {
-        public int id;
-        public string type;
-        public string name;
-        public string description;
-    }
-
-    private Dictionary<int, EffectInfo> LoadEffectMap(string path)
-    {
-        Dictionary<int, EffectInfo> map = new();
-        string json = File.ReadAllText(path);
-        // top-level이 object 형태일 때
-        JObject obj = JObject.Parse(json);
-        foreach (JProperty prop in obj.Properties())
-            // 키가 "0", "1", ... 으로 되어 있다면
-            if (int.TryParse(prop.Name, out int id))
-            {
-                JToken item = prop.Value;
-                string type = (string)item["type"];
-                string desc = (string)item["description"];
-                string name = (string)item["name"] ?? $"Effect {id}";
-
-                map[id] = new EffectInfo { id = id, type = type, name = name, description = desc };
-            }
-
-        return map;
     }
 
     // 기존 무기 타입 데이터를 ID로 찾아서 딕셔너리로 반환
@@ -174,7 +157,6 @@ public class ShipWeaponJsonLoader : EditorWindow
         }
 
         string jsonText = File.ReadAllText(jsonFilePath);
-        Dictionary<int, EffectInfo> effectMap = LoadEffectMap(effectJsonPath);
         Dictionary<int, WeaponEffectData> effectAssets = LoadExistingEffectAssets();
         Dictionary<int, ShipWeaponTypeData> typeAssets = LoadExistingTypeAssets();
         Dictionary<int, WarheadTypeData> warheadAssets = LoadExistingWarheadAssets();
@@ -198,6 +180,8 @@ public class ShipWeaponJsonLoader : EditorWindow
 
             updatedWeapons = 0;
             newWeapons = 0;
+            loadedSprites = 0;
+            missingSprites = 0;
 
             foreach (KeyValuePair<string, JToken> pair in jsonObj)
             {
@@ -286,22 +270,88 @@ public class ShipWeaponJsonLoader : EditorWindow
                 if (weaponToken["effect_power"] != null)
                     weaponSO.effectPower = (float)(double)weaponToken["effect_power"];
 
-                // TODO : 무기 스프라이트는 배의 외갑판 레벨이 정해지고 나서 외갑판의 스프라이트와 함께 결정한다.
+                // Load weapon icon
+                if (loadSprites)
+                {
+                    // Load weapon icon
+                    Sprite weaponIcon = Resources.Load<Sprite>($"{spriteFolderPath}/weapon_{weaponId}");
+                    if (weaponIcon != null)
+                    {
+                        weaponSO.weaponIcon = weaponIcon;
+                        loadedSprites++;
+                    }
+                    else
+                    {
+                        missingSprites++;
+                        Debug.LogWarning(
+                            $"Could not find weapon icon for ID {weaponId} at path Resources/{spriteFolderPath}/weapon_{weaponId}");
+                    }
 
-                // Sprite sprite = Resources.Load<Sprite>($"{spriteFolderPath}/weapon_{weaponId}");
-                // if (sprite != null)
-                //     weaponSO.weaponSprite = sprite;
-                //
-                // for (int direction = 0; direction < 3; direction++)
-                // {
-                //
-                //
-                //     Sprite dirSprite = Resources.Load<Sprite>($"{spriteFolderPath}/weapon_{weaponId}_{direction}");
-                //     if (dirSprite != null)
-                //         weaponSO.rotationSprites[direction] = dirSprite;
-                //     else if (direction == 1 && weaponSO.weaponSprite != null)
-                //         weaponSO.rotationSprites[direction] = weaponSO.weaponSprite;
-                // }
+                    // Try to load all sprites that match the weapon ID pattern
+                    Sprite[] allSprites = Resources.LoadAll<Sprite>(spriteFolderPath);
+
+                    // Filter sprites that belong to this weapon
+                    string spriteBaseName = $"weapon_{weaponId}";
+                    List<Sprite> weaponSprites = new();
+
+                    foreach (Sprite sprite in allSprites)
+                        if (sprite.name.StartsWith(spriteBaseName))
+                            weaponSprites.Add(sprite);
+
+                    Debug.Log($"Found {weaponSprites.Count} sprites for weapon ID {weaponId}");
+
+                    // If we have exactly 9 sprites, assume they are in the correct order
+                    if (weaponSprites.Count == 9)
+                    {
+                        for (int i = 0; i < 9; i++) weaponSO.flattenedSprites[i] = weaponSprites[i];
+                        loadedSprites += 9;
+                        missingSprites = 0; // Reset missing count if we found all sprites
+                    }
+                    // If we have only one sprite, it might be the complete sprite sheet, not sliced
+                    else if (weaponSprites.Count == 1)
+                    {
+                        // Use the same sprite for all slots as a fallback
+                        for (int i = 0; i < 9; i++) weaponSO.flattenedSprites[i] = weaponSprites[0];
+                        loadedSprites += 1;
+                        missingSprites = 0; // Consider it as complete (just not sliced)
+                        Debug.Log($"Found single sprite for weapon ID {weaponId}. Using it for all 9 positions.");
+                    }
+                    else if (weaponSprites.Count > 0 && weaponSprites.Count < 9)
+                    {
+                        Debug.Log(
+                            $"Found {weaponSprites.Count} sprites for weapon ID {weaponId}, expected 9. Using what's available.");
+
+                        // Use what we have
+                        for (int i = 0; i < weaponSprites.Count; i++) weaponSO.flattenedSprites[i] = weaponSprites[i];
+
+                        // For remaining slots, use the first sprite as fallback
+                        for (int i = weaponSprites.Count; i < 9; i++) weaponSO.flattenedSprites[i] = weaponSprites[0];
+
+                        loadedSprites += weaponSprites.Count;
+                        missingSprites = 0; // We're handling the missing ones with fallbacks
+                    }
+                    else if (weaponSprites.Count > 9)
+                    {
+                        Debug.Log(
+                            $"Found {weaponSprites.Count} sprites for weapon ID {weaponId}, which is more than expected (9). Using the first 9.");
+
+                        // Use only the first 9 sprites
+                        for (int i = 0; i < 9; i++) weaponSO.flattenedSprites[i] = weaponSprites[i];
+
+                        loadedSprites += 9;
+                        missingSprites = 0;
+                    }
+                    else
+                    {
+                        // No sprites found for this weapon ID
+                        Debug.LogWarning(
+                            $"Could not find any sprites for weapon ID {weaponId} in Resources/{spriteFolderPath}");
+                        missingSprites += 1; // Count the weapon as a single missing entity
+                    }
+
+                    // Force OnValidate to update the 2D array
+                    weaponSO.OnValidate();
+                }
 
                 if (isNew)
                 {
@@ -319,9 +369,13 @@ public class ShipWeaponJsonLoader : EditorWindow
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 
-            EditorUtility.DisplayDialog("Success",
+            string message =
                 $"변환 완료!\n업데이트: {updatedWeapons}, 새 무기: {newWeapons}, 총: {databaseAsset.allWeapons.Count}\n" +
-                $"업데이트 효과: {updatedEffects}, 새 효과: {newEffects}", "OK");
+                $"업데이트 효과: {updatedEffects}, 새 효과: {newEffects}";
+
+            if (loadSprites) message += $"\n로드된 스프라이트: {loadedSprites}, 누락된 스프라이트: {missingSprites}";
+
+            EditorUtility.DisplayDialog("Success", message, "OK");
         }
         catch (Exception e)
         {

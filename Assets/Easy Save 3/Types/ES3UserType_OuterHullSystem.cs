@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("parentShip")]
+	[ES3PropertiesAttribute("currentOuterHulls", "currentOuterHullLevel")]
 	public class ES3UserType_OuterHullSystem : ES3ObjectType
 	{
 		public static ES3Type Instance = null;
@@ -16,7 +16,8 @@ namespace ES3Types
 		{
 			var instance = (OuterHullSystem)obj;
 			
-			writer.WritePrivateFieldByRef("parentShip", instance);
+			writer.WritePrivateField("currentOuterHulls", instance);
+			writer.WritePrivateField("currentOuterHullLevel", instance);
 		}
 
 		protected override void ReadObject<T>(ES3Reader reader, object obj)
@@ -27,8 +28,11 @@ namespace ES3Types
 				switch(propertyName)
 				{
 					
-					case "parentShip":
-					instance = (OuterHullSystem)reader.SetPrivateField("parentShip", reader.Read<Ship>(), instance);
+					case "currentOuterHulls":
+					instance = (OuterHullSystem)reader.SetPrivateField("currentOuterHulls", reader.Read<System.Collections.Generic.List<OuterHull>>(), instance);
+					break;
+					case "currentOuterHullLevel":
+					instance = (OuterHullSystem)reader.SetPrivateField("currentOuterHullLevel", reader.Read<System.Int32>(), instance);
 					break;
 					default:
 						reader.Skip();

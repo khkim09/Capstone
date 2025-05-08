@@ -81,8 +81,6 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// </summary>
     private int totalBPCost = 0;
 
-    public List<BackupCrewData> backupCrewDatas = new List<BackupCrewData>();
-
     /// <summary>
     /// 현재 설계도의 가격 지속 갱신
     /// 설계도로 함선 교체 가능 조건
@@ -120,11 +118,17 @@ public class CustomizeShipUIHandler : MonoBehaviour
                 buildButton.interactable = false;
         }
 
-        // 설계도 작업 시 각 방 collider 임시 비활성화
+        // 설계도 작업 시 각 방 collider, 선원 임시 비활성화
         if (customizeUI.activeInHierarchy)
+        {
             SetPlayerShipCollidersActive(false);
+            DisableCrews();
+        }
         else
+        {
             SetPlayerShipCollidersActive(true);
+            EnableCrews();
+        }
     }
 
     /// <summary>
@@ -140,11 +144,18 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 설계도 방 호출, 배치
         GetSavedBPRooms();
 
+        // 설계도 함선 무기 호출, 배치
+        GetSavedWeaponRooms();
+
+
         // 카메라 - 설계도 함선 기준으로 세팅
         CenterCameraToBP();
 
         // 선원 임시 비활성화
         DisableCrews();
+
+        // 외갑판 임시 비활성화
+        playerShip.ClearExistingHulls();
 
         // 함선의 방 collider 비활성화 (RTS를 위한 collider와 겹침 방지)
         SetPlayerShipCollidersActive(false);
@@ -169,6 +180,9 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 선원 활성화
         EnableCrews();
 
+        // 외갑판 활성화
+        playerShip.UpdateOuterHullVisuals();
+
         // 함선 방 collider 활성화
         SetPlayerShipCollidersActive(true);
     }
@@ -178,12 +192,12 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// </summary>
     private void DisableCrews()
     {
-        List<CrewBase> crews = playerShip.GetAllCrew();
+        List<CrewMember> crews = playerShip.allCrews;
 
-        foreach (CrewBase crew in crews)
+        foreach (CrewMember crew in crews)
         {
-            if (crew is CrewMember crewMember)
-                crewMember.gameObject.SetActive(false);
+            if (crew != null)
+                crew.gameObject.SetActive(false);
         }
     }
 
@@ -192,12 +206,12 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// </summary>
     private void EnableCrews()
     {
-        List<CrewBase> crews = playerShip.GetAllCrew();
+        List<CrewMember> crews = playerShip.allCrews;
 
-        foreach (CrewBase crew in crews)
+        foreach (CrewMember crew in crews)
         {
-            if (crew is CrewMember crewMember)
-                crewMember.gameObject.SetActive(true);
+            if (crew != null)
+                crew.gameObject.SetActive(true);
         }
     }
 
@@ -228,10 +242,24 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// </summary>
     private void GetSavedBPRooms()
     {
-        List<BlueprintRoomSaveData> layout = BlueprintLayoutSaver.LoadLayout();
+        List<BlueprintRoomSaveData> layout = BlueprintLayoutSaver.LoadRoomLayout();
 
         foreach (BlueprintRoomSaveData saved in layout)
             gridPlacer.PlaceRoom(saved.bpRoomData, saved.bpLevelIndex, saved.bpPosition, saved.bpRotation);
+    }
+
+    /// <summary>
+    /// 기존에 작업 중이던 설계도의 모든 함선 무기 데이터 호출 및 배치
+    /// </summary>
+    private void GetSavedWeaponRooms()
+    {
+        List<BlueprintWeaponSaveData> layout = BlueprintLayoutSaver.LoadWeaponLayout();
+
+        foreach (BlueprintWeaponSaveData saved in layout)
+        {
+            BlueprintWeapon bw = gridPlacer.PlaceWeapon(saved.bpWeaponData, saved.bpPosition, saved.bpDirection);
+            bw.ApplyAttachedDirectionSprite();
+        }
     }
 
     /// <summary>
@@ -240,13 +268,18 @@ public class CustomizeShipUIHandler : MonoBehaviour
     private void SaveBPRoomsandDestroy()
     {
         BlueprintRoom[] bpRooms = targetBlueprintShip.GetComponentsInChildren<BlueprintRoom>();
-        BlueprintLayoutSaver.SaveLayout(bpRooms);
+        BlueprintLayoutSaver.SaveRoomLayout(bpRooms);
+
+        BlueprintWeapon[] bpWeapons = targetBlueprintShip.GetComponentsInChildren<BlueprintWeapon>();
+        BlueprintLayoutSaver.SaveWeaponLayout(bpWeapons);
 
         // 설치했던 모든 설계도 방 제거
         foreach (BlueprintRoom r in bpRooms)
             Destroy(r.gameObject);
 
-        targetBlueprintShip.ClearPlacedBPRooms();
+        foreach (BlueprintWeapon w in bpWeapons) Destroy(w.gameObject);
+
+        targetBlueprintShip.ClearRooms();
     }
 
     /// <summary>
@@ -267,24 +300,6 @@ public class CustomizeShipUIHandler : MonoBehaviour
     }
 
     /// <summary>
-    /// 선원 데이터 백업 작업
-    /// </summary>
-    private void BackUpCrewDatas()
-    {
-        backupCrewDatas.Clear();
-
-        foreach (CrewMember cm in playerShip.GetSystem<CrewSystem>().GetCrews())
-        {
-            backupCrewDatas.Add(new BackupCrewData
-            {
-                crew = cm,
-                position = cm.GetCurrentTile(),
-                currentRoom = cm.currentRoom
-            });
-        }
-    }
-
-    /// <summary>
     /// '함선 제작' 버튼 클릭 시 호출.
     /// 조건 만족 시 기존 함선을 설계도의 함선으로 교체합니다.
     /// 이후 방, 문의 연결 유효성 검사 수행 후 만족 여부에 따라 실제 함선으로 교체, 다시 설계도로 복구를 수행
@@ -295,7 +310,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
         originalShipCost = playerShip.GetTotalShipValue();
 
         // 2. 기존 선원, 함선 백업
-        BackUpCrewDatas();
+        playerShip.BackupAllCrews();
         playerShip.BackupCurrentShip();
 
         // 3. 설계도 -> 실제 함선 (bpRoom -> Room) 변환
@@ -308,7 +323,7 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 5. 유효성 검사
         if (!validationResult.IsValid)
         {
-            Debug.Log("유효 X");
+            Debug.LogError("유효 X");
 
             // 실패
             feedbackText.text = $"X {validationResult.Message}";
@@ -317,11 +332,11 @@ public class CustomizeShipUIHandler : MonoBehaviour
             playerShip.RevertToOriginalShip();
 
             // 기존 선원 복원
-            playerShip.GetSystem<CrewSystem>().RevertOriginalCrews(backupCrewDatas);
+            playerShip.CrewSystem.RevertOriginalCrews(playerShip.backupCrewDatas);
         }
         else
         {
-            Debug.Log("유효 O");
+            Debug.LogError("유효 O");
 
             // 성공 -> 함선 교체
             feedbackText.text = $"O Ship updated successfully\n{validationResult.Message}!";
@@ -344,10 +359,11 @@ public class CustomizeShipUIHandler : MonoBehaviour
             playerShip.ClearAllCrewTileOccupancy();
 
             // 3) 기존 선원 복구 및 랜덤 배치
-            playerShip.GetSystem<CrewSystem>().RestoreCrewAfterBuild(backupCrewDatas);
+            playerShip.CrewSystem.RestoreCrewAfterBuild(playerShip.backupCrewDatas);
         }
 
         // 함선 스텟 다시 계산
+        // playerShip.Initialize();
         playerShip.RecalculateAllStats();
     }
 

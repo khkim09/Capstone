@@ -3,9 +3,9 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 /// <summary>
-/// PlanetItemUI는 행성 상점(왼쪽 패널)에서 판매되는 각 아이템 슬롯을 관리하는 컴포넌트입니다.
-/// 이 스크립트는 TradingItemData 데이터를 받아 해당 아이템의 이름과 가격을 UI에 표시하고,
-/// 슬롯이 클릭되면 MiddlePanelUI로 해당 아이템의 상세 정보를 전달하며, 마우스 오버 시 텍스트 색상이 강조됩니다.
+/// PlanetItemUI는 행성 상점(왼쪽 패널)에서 판매되는 각 아이템 슬롯을 관리합니다.
+/// TradingItemData 데이터를 받아 이름, 가격을 UI에 표시하고, 클릭 시 MiddlePanelUI로 상세 정보를 전달합니다.
+/// 선택/비선택 상태에 따라 색상을 동적으로 변경합니다.
 /// </summary>
 public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -28,12 +28,12 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
     #endregion
 
-    #region Data
+    #region Data & State
 
-    /// <summary>
-    /// 이 슬롯에 할당된 TradingItemData 데이터입니다.
-    /// </summary>
     private TradingItemData itemData;
+    private static PlanetItemUI currentSelectedItem = null;
+    private static string currentlySelectedItemName = "";
+    private bool isSelected = false;
 
     #endregion
 
@@ -57,10 +57,8 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     #endregion
 
     /// <summary>
-    /// PlanetItemUI를 초기화하고, 아이템 이름과 가격을 UI에 표시합니다.
-    /// 또한, 텍스트 컴포넌트의 원래 색상을 저장합니다.
+    /// PlanetItemUI를 초기화하고 텍스트 표시와 색상 초기 상태를 저장합니다.
     /// </summary>
-    /// <param name="data">표시할 TradingItemData 데이터</param>
     public void Setup(TradingItemData data)
     {
         itemData = data;
@@ -74,7 +72,16 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
             priceText.text = itemData.costBase.ToString("F2");
             priceOriginalColor = priceText.color;
         }
+
+        isSelected = false;
+
+        if (currentlySelectedItemName == data.itemName)
+        {
+            SetSelected(true);
+            currentSelectedItem = this;
+        }
     }
+
 
     /// <summary>
     /// 사용자가 이 슬롯을 클릭했을 때 호출됩니다.
@@ -82,6 +89,11 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     /// </summary>
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (TradeUIManager.Instance != null)
+        {
+            TradeUIManager.Instance.OnBuyItemSelected();
+        }
+
         if (middlePanel == null)
         {
             middlePanel = FindObjectOfType<MiddlePanelUI>();
@@ -89,13 +101,18 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
         if (middlePanel != null && itemData != null)
         {
+            middlePanel.UpdatePlayerComa();
             middlePanel.SetSelectedItem(itemData);
         }
 
-        if (TradeUIManager.Instance != null)
+        if (currentSelectedItem != null && currentSelectedItem != this)
         {
-            TradeUIManager.Instance.OnBuyItemSelected();
+            currentSelectedItem.SetSelected(false);
         }
+
+        SetSelected(true);
+        currentlySelectedItemName = itemData.itemName;
+        currentSelectedItem = this;
     }
 
     /// <summary>
@@ -104,14 +121,8 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     /// <param name="eventData">포인터 이벤트 데이터</param>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (itemNameText != null)
-        {
-            itemNameText.color = highlightColor;
-        }
-        if (priceText != null)
-        {
-            priceText.color = highlightColor;
-        }
+        if (!isSelected)
+            ApplyColor(highlightColor);
     }
 
     /// <summary>
@@ -120,13 +131,44 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     /// <param name="eventData">포인터 이벤트 데이터</param>
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!isSelected)
+            ApplyOriginalColor();
+    }
+
+    /// <summary>
+    /// 선택된 물품의 색상을 변경하는 함수입니다.
+    /// </summary>
+    /// <param name="selected"></param>
+    private void SetSelected(bool selected)
+    {
+        isSelected = selected;
+
+        if (selected)
+            ApplyColor(highlightColor);
+        else
+            ApplyOriginalColor();
+    }
+
+    /// <summary>
+    /// 색상 변경을 적용하는 함수입니다.
+    /// </summary>
+    /// <param name="color"></param>
+    private void ApplyColor(Color color)
+    {
         if (itemNameText != null)
-        {
-            itemNameText.color = itemNameOriginalColor;
-        }
+            itemNameText.color = color;
         if (priceText != null)
-        {
+            priceText.color = color;
+    }
+
+    /// <summary>
+    /// 원래의 텍스트 색상으로 되돌리는 함수입니다.
+    /// </summary>
+    private void ApplyOriginalColor()
+    {
+        if (itemNameText != null)
+            itemNameText.color = itemNameOriginalColor;
+        if (priceText != null)
             priceText.color = priceOriginalColor;
-        }
     }
 }

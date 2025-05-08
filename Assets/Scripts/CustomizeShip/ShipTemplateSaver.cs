@@ -113,7 +113,7 @@ public class ShipTemplateSaver : MonoBehaviour
         // 템플릿 저장 디렉토리 확인 및 생성
         EnsureTemplateSaveDirectory();
 
-        playerShip.Initialize();
+        //playerShip.Initialize();
     }
 
     /// <summary>
@@ -182,8 +182,12 @@ public class ShipTemplateSaver : MonoBehaviour
 
         try
         {
+            playerShip.Initialize();
+
             // Blueprint를 Ship으로 변환
             playerShip.ReplaceShipFromBlueprint(targetBlueprintShip);
+
+            playerShip.UpdateOuterHullVisuals();
 
             // ShipSerialization을 사용하여 저장
             string templateFileName = GetTemplateFilePath(templateNameInput.text);

@@ -7,11 +7,6 @@ using UnityEngine;
 public class TradeManager : MonoBehaviour
 {
     /// <summary>
-    /// TradeDataLoader를 통해 로드된 데이터의 참조입니다.
-    /// </summary>
-    [SerializeField] private TradeDataLoader tradeDataLoader;
-
-    /// <summary>
     /// 현재 행성의 판매 데이터를 저장하는 변수입니다.
     /// 이 변수는 플레이어가 도착한 행성의 PlanetTradeData 에셋을 참조합니다.
     /// </summary>
@@ -28,15 +23,6 @@ public class TradeManager : MonoBehaviour
     public PlanetTradeData CurrentPlanetTradeData
     {
         get { return currentPlanetTradeData; }
-    }
-
-    /// <summary>
-    /// Start 시 TradeDataLoader가 연결되지 않았다면 자동으로 찾습니다.
-    /// </summary>
-    private void Start()
-    {
-        if (tradeDataLoader == null)
-            tradeDataLoader = FindObjectOfType<TradeDataLoader>();
     }
 
     /// <summary>
@@ -71,14 +57,14 @@ public class TradeManager : MonoBehaviour
     /// <returns>구매 성공 여부</returns>
     public bool BuyItem(TradingItemData itemData, int quantity)
     {
-        Storage warehouse = FindObjectOfType<Storage>();
-        if (warehouse == null)
+        Storage storage = FindObjectOfType<Storage>();
+        if (storage == null)
         {
             Debug.LogError("TradeManager: Storage 컴포넌트를 찾을 수 없습니다.");
             return false;
         }
 
-        if (!warehouse.CanAddItem(itemData, quantity))
+        if (!storage.CanAddItem(itemData, quantity))
         {
             Debug.Log("TradeManager: 적재 한도를 초과하여 구매 불가.");
             return false;
@@ -88,7 +74,7 @@ public class TradeManager : MonoBehaviour
         if (playerCOMA >= totalCost)
         {
             playerCOMA -= Mathf.RoundToInt(totalCost);
-            bool added = warehouse.AddItem(itemData, quantity);
+            bool added = storage.AddItem(itemData, quantity);
             if (!added)
             {
                 playerCOMA += Mathf.RoundToInt(totalCost); // 환불
@@ -115,23 +101,23 @@ public class TradeManager : MonoBehaviour
     /// <returns>판매 성공 여부</returns>
     public bool SellItem(TradingItemData itemData, int quantity)
     {
-        Storage warehouse = FindObjectOfType<Storage>();
-        if (warehouse == null)
+        Storage storage = FindObjectOfType<Storage>();
+        if (storage == null)
         {
             Debug.LogError("TradeManager: Storage 컴포넌트를 찾을 수 없습니다.");
             return false;
         }
 
-        if (!warehouse.HasItem(itemData, quantity))
+        if (!storage.HasItem(itemData, quantity))
         {
             Debug.Log("TradeManager: 보유 수량 부족으로 판매 실패.");
             return false;
         }
 
-        float unitPrice = CalculatePrice(itemData) * 0.9f; // 판매 시 단가는 90%
+        float unitPrice = CalculatePrice(itemData);
         float totalRevenue = unitPrice * quantity;
 
-        bool removed = warehouse.RemoveItem(itemData, quantity);
+        bool removed = storage.RemoveItem(itemData, quantity);
         if (!removed)
         {
             Debug.LogWarning("TradeManager: 아이템 제거 실패.");

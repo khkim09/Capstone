@@ -12,7 +12,7 @@ public static class CrewSerialization
     /// </summary>
     /// <param name="crews">저장할 선원 목록</param>
     /// <param name="filename">저장 파일명</param>
-    public static void SaveAllCrews(List<CrewBase> crews, string filename)
+    public static void SaveAllCrews(List<CrewMember> crews, string filename)
     {
         // 파일이 이미 존재한다면 해당 파일 삭제 (덮어쓰기)
         if (ES3.FileExists(filename))
