@@ -14,4 +14,5 @@ public class EventOutcome
     // 특수 효과 (예: 다른 이벤트 트리거, 퀘스트 추가 등)
     public SpecialEffectType specialEffectType = SpecialEffectType.None;
     public RandomEvent nextEvent; // 연계 이벤트가 있을 경우
+    public RandomQuest questToAdd; // 연계 퀘스트가 있을 경우
 }

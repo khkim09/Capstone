@@ -4,6 +4,5 @@
     TriggerNextEvent,
     Battle,
     RoomDamage,
-    AddQuest,
-    UnlockItem
+    AddQuest
 }

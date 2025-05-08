@@ -10,13 +10,6 @@ using System.Collections;
 public class TradeUIManager : MonoBehaviour
 {
     /// <summary>
-    /// TradeBuyPanel 안의 StoragePanel Content Transform입니다.
-    /// 해당 Content 하위에 있는 모든 InventoryItemUI의 상호작용을 Buy 시에 비활성화합니다.
-    /// </summary>
-    [Header("Buy 모드 전용")]
-    [SerializeField] private Transform storagePanelContent;
-
-    /// <summary>
     /// TradeSellPanel 안의 InventoryPanel Content Transform입니다.
     /// Sell 시에만 상호작용을 허용합니다.
     /// </summary>
@@ -28,7 +21,6 @@ public class TradeUIManager : MonoBehaviour
     /// 인벤토리 슬롯을 동적으로 생성/갱신해 주는 스크립트 참조입니다.
     /// Inspector에서 InventoryUI 컴포넌트를 드래그&드롭하세요.
     /// </summary>
-    [SerializeField] private InventoryUI buyInventoryUI;
     [SerializeField] private InventoryUI sellInventoryUI;
 
     /// <summary>
@@ -227,11 +219,6 @@ public class TradeUIManager : MonoBehaviour
             buySlideCoroutine = null;
         }
 
-        if (buyInventoryUI != null)
-        {
-            buyInventoryUI.PopulateInventory(false);  // 클릭 안 되게
-        }
-
         if (sellSlideCoroutine != null) StopCoroutine(sellSlideCoroutine);
 
         sellSlideCoroutine = StartCoroutine(
@@ -249,21 +236,25 @@ public class TradeUIManager : MonoBehaviour
                     break;
                 }
             }
-            // contentPanel 은 buyInventoryUI 에서 SerializeField 로 드래그한 Transform
-            foreach (var slotUI in buyInventoryUI.GetComponentsInChildren<InventoryItemUI>())
-            {
-                if (slotUI.GetStoredItemName() == previously)
-                {
-                    slotUI.SetSelected(true);
-                    break;
-                }
-            }
         }
         tradeBuyPanel.gameObject.SetActive(false);
         tradeSellPanel.gameObject.SetActive(true);
 
         // 클릭 가능한 상태로 인벤토리 다시 채움
         sellInventoryUI.PopulateInventory(true);
+
+        // MiddlePanel UI 갱신
+        MiddlePanelUI middlePanel = FindObjectOfType<MiddlePanelUI>();
+        InventoryItemUI selected = InventoryItemUI.GetCurrentSelectedItem();
+        if (middlePanel != null && selected != null && selected.GetStoredItem() != null)
+        {
+            middlePanel.gameObject.SetActive(true);
+            middlePanel.UpdatePlayerComa();
+
+            if (selected != null && selected.GetStoredItem() != null)
+                middlePanel.SetSelectedItem(selected.GetStoredItem().itemData);
+        }
+
     }
 
     /// <summary>
@@ -291,21 +282,11 @@ public class TradeUIManager : MonoBehaviour
         tradeBuyPanel.gameObject.SetActive(true);
         tradeSellPanel.gameObject.SetActive(false);
 
-        // (이미 있던) BuyInventoryUI 갱신 — 클릭 불가 모드
-        buyInventoryUI.PopulateInventory(false);
-
-        // 4. StoragePanel 전체 비활성화 & 강조 해제
-        var storageGroup = storagePanelContent.GetComponent<CanvasGroup>();
-        if (storageGroup == null)
-            storageGroup = storagePanelContent.gameObject.AddComponent<CanvasGroup>();
-        storageGroup.interactable    = false;  // UI 요소 비인터랙티브
-        storageGroup.blocksRaycasts  = false;  // 클릭 이벤트 차단
-
-        // 기존에 강조된 슬롯이 남아 있다면 모두 해제
-        foreach (var itemUI in storagePanelContent
-                     .GetComponentsInChildren<InventoryItemUI>())
+        // 4. MiddlePanel이 있다면 COMA도 갱신
+        MiddlePanelUI middlePanel = FindObjectOfType<MiddlePanelUI>();
+        if (middlePanel != null)
         {
-            itemUI.SetSelected(false);
+            middlePanel.UpdatePlayerComa();
         }
     }
 

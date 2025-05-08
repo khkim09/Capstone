@@ -166,17 +166,27 @@ public class EventManager : MonoBehaviour
 
         if (outcome != null)
         {
-            // 결과 텍스트 표시
+            // 결과 텍스트 출력
             EventUIManager.Instance.ShowOutcome(outcome.outcomeText);
 
-            // 자원 효과 적용
-            foreach (ResourceEffect effect in outcome.resourceEffects)
-                ResourceManager.Instance.ChangeResource(effect.resourceType, effect.amount);
+            // 승무원 효과
+            foreach (var effect in outcome.crewEffects)
+                new EventCrewEffectHandler().Handle(effect);
 
-            // 특수 효과 처리
-            ProcessSpecialEffect(outcome);
+            // 자원 효과
+            foreach (var effect in outcome.resourceEffects)
+                new EventResourceEffectHandler().Handle(effect);
+
+            // 행성 효과
+            foreach (var effect in outcome.planetEffects)
+                new EventPlanetEffectHandler().Handle(effect);
+
+            // 특수 효과
+            ISpecialEffectHandler handler = effectHandlerFactory.GetHandler(outcome.specialEffectType);
+            handler?.HandleEffect(outcome);
         }
     }
+
 
     /// <summary>
     /// 선택지 결과에 포함된 특수 효과를 처리합니다.
