@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: War Outbreak
   m_EditorClassIdentifier: 
-  eventId: event.planet.19
-  eventTitle: "\uC804\uC7C1 \uBC1C\uBC1C"
+  eventId: 24
+  debugName: War Outbreak
+  eventTitle: event.name.24
   eventDescription: "\uAC19\uC740 \uC885\uC871\uB07C\uB9AC \uAC15\uD55C \uC801\uC758\uB97C
     \uB4DC\uB7EC\uB0C5\uB2C8\uB2E4."
   eventImage: {fileID: 0}
+  eventType: 1
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
@@ -26,12 +30,14 @@ MonoBehaviour:
       probability: 100
       planetEffects:
       - categoryType: 2
-        fluctuation: 10
+        changeAmount: 10
       - categoryType: 6
-        fluctuation: 10
+        changeAmount: 10
       - categoryType: 4
-        fluctuation: -10
+        changeAmount: -10
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

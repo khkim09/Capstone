@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Industrial Revolution
   m_EditorClassIdentifier: 
-  eventId: event.planet.07
-  eventTitle: "\uC0B0\uC5C5 \uD601\uBA85"
+  eventId: 12
+  debugName: Industrial Revolution
+  eventTitle: event.name.12
   eventDescription: "\uACF5\uC5C5\uD654\uB97C \uD1B5\uD55C \uC0DD\uC0B0\uC131 \uD5A5\uC0C1\uC73C\uB85C
     \uB300\uB7C9\uC0DD\uC0B0\uC774 \uAC00\uB2A5\uD574\uC9D0\uC5D0 \uB530\uB77C \uAC00\uACA9\uBCC0\uB3D9\uC774
     \uB9E4\uC6B0 \uB2E4\uC591\uD558\uAC8C \uC77C\uC5B4\uB0A9\uB2C8\uB2E4."
   eventImage: {fileID: 0}
+  eventType: 1
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
@@ -28,22 +32,24 @@ MonoBehaviour:
       probability: 100
       planetEffects:
       - categoryType: 0
-        fluctuation: 10
+        changeAmount: 10
       - categoryType: 4
-        fluctuation: 10
+        changeAmount: 10
       - categoryType: 3
-        fluctuation: 10
+        changeAmount: 10
       - categoryType: 7
-        fluctuation: 10
+        changeAmount: 10
       - categoryType: 5
-        fluctuation: -10
+        changeAmount: -10
       - categoryType: 6
-        fluctuation: -10
+        changeAmount: -10
       - categoryType: 1
-        fluctuation: -10
+        changeAmount: -10
       - categoryType: 8
-        fluctuation: -10
+        changeAmount: -10
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

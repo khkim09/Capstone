@@ -79,7 +79,6 @@ public class CrewFactory : MonoBehaviour
         InitializeCrewCollider(crew);
 
 
-
         return crew;
     }
 
@@ -117,7 +116,6 @@ public class CrewFactory : MonoBehaviour
             crew.needsOxygen = raceStat.needsOxygen;
 
             crew.health = crew.maxHealth;
-            crew.status = CrewStatus.Normal;
             crew.isAlive = true;
             crew.isMoving = false;
 
@@ -168,7 +166,6 @@ public class CrewFactory : MonoBehaviour
             // 기본값 설정
             crew.maxHealth = 100f;
             crew.health = crew.maxHealth;
-            crew.status = CrewStatus.Normal;
             crew.isAlive = true;
             crew.isMoving = false;
         }
@@ -326,6 +323,7 @@ public class CrewFactory : MonoBehaviour
         // 이름 중복 방지를 위해 번호 추가
         return $"{baseName}-{nextCrewId++}";
     }
+
     /// <summary>
     /// 모든 이름 풀 초기화
     /// </summary>

@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Med-bot Discovery
   m_EditorClassIdentifier: 
-  eventId: event.ship.17
-  eventTitle: "\uC758\uB8CC \uBD07 \uBC1C\uACAC"
+  eventId: 0
+  debugName: Med-bot Discovery
+  eventTitle: event.name.48
   eventDescription: "\uB5A0\uB2E4\uB2C8\uB294 \uC758\uB8CC\uBD07\uC744 \uBC1C\uACAC\uD558\uC600\uC2B5\uB2C8\uB2E4.\n\uBA40\uCA61\uD55C\uAC83\uCC98\uB7FC
     \uBCF4\uC774\uB294\uB370, \uAC00\uB3D9\uD560\uAE4C\uC694?"
   eventImage: {fileID: 0}
+  eventType: 0
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uC758\uB8CC\uBD07\uC744 \uAC00\uB3D9\uD55C\uB2E4"
     possibleOutcomes:
@@ -26,17 +30,17 @@ MonoBehaviour:
       planetEffects: []
       resourceEffects: []
       crewEffects:
-      - effectType: 2
+      - effectType: 0
         raceType: 0
-        healthChange: 5
+        changeAmount: 50
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 0
-          raceTarget: 0
-          value: 0
-        statusEffect: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 0
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
     - outcomeText: "\uBA40\uCA61\uD574 \uBCF4\uC600\uC9C0\uB9CC, \uB0B4\uBD80\uAC00
         \uB9DD\uAC00\uC84C\uB098 \uBD05\uB2C8\uB2E4.\n\uC544\uBB34\uC77C\uB3C4 \uC77C\uC5B4\uB098\uC9C0
@@ -46,6 +50,8 @@ MonoBehaviour:
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
     - outcomeText: "\uC774\uB7F0! \uC758\uB8CC\uBD07\uC774 \uD130\uC838\uBC84\uB838\uC2B5\uB2C8\uB2E4.\n\uC120\uC6D0\uB4E4\uC774
         \uD30C\uD3B8\uC5D0 \uD53C\uD574\uB97C \uC785\uC5C8\uC2B5\uB2C8\uB2E4.."
@@ -53,17 +59,17 @@ MonoBehaviour:
       planetEffects: []
       resourceEffects: []
       crewEffects:
-      - effectType: 1
+      - effectType: 0
         raceType: 0
-        healthChange: -5
+        changeAmount: 30
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 0
-          raceTarget: 0
-          value: -1
-        statusEffect: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 0
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
   - choiceText: "\uC758\uB8CC\uBD07\uC744 \uAC00\uB3D9\uD558\uC9C0 \uC54A\uB294\uB2E4."
     possibleOutcomes:
@@ -75,4 +81,6 @@ MonoBehaviour:
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

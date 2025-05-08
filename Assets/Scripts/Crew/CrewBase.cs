@@ -101,9 +101,6 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// <summary>현재 체력.</summary>
     [Header("Status")] public float health;
 
-    /// <summary>현재 선원의 상태 (예: 정상, 부상 등).</summary>
-    public CrewStatus status;
-
     /// <summary>생존 여부 (false = 사망).</summary>
     public bool isAlive;
 
@@ -121,6 +118,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
     /// <summary>스프라이트 렌더러.</summary>
     private SpriteRenderer spriteRenderer;
+
     /// <summary>
     /// animator
     /// </summary>
@@ -160,8 +158,6 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         // 산소 농도 체크 - 체력 감소
         ApplyOxygenDamage();
-
-
     }
 
     /*
@@ -609,7 +605,6 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         targetPosition = other.targetPosition;
         moveSpeed = other.moveSpeed;
         health = other.health;
-        status = other.status;
         isAlive = other.isAlive;
         isMoving = other.isMoving;
         currentShip = other.currentShip;

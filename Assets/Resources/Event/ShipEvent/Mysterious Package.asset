@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Mysterious Package
   m_EditorClassIdentifier: 
-  eventId: event.ship.11
-  eventTitle: "\uC758\uBB38\uC758 \uD0DD\uBC30"
+  eventId: 42
+  debugName: Mysterious Package
+  eventTitle: event.name.42
   eventDescription: "\uC758\uBB38\uC758 \uD0DD\uBC30 \uC0C1\uC790\uB97C \uBC1C\uACAC\uD588\uC2B5\uB2C8\uB2E4.\n\uC5F4\uC5B4\uBCFC\uAE4C\uC694?"
   eventImage: {fileID: 0}
   eventType: 0
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uC5F4\uC5B4\uBCF8\uB2E4"
     possibleOutcomes:
@@ -28,15 +31,15 @@ MonoBehaviour:
       crewEffects:
       - effectType: 2
         raceType: 1
-        healthChange: 0
+        changeAmount: 3
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 0
-          raceTarget: 1
-          value: 5
-        statusEffect: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 10
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
     - outcomeText: "\uC0C1\uC790\uC5D0\uB294 \uADF8\uC800 \uBD80\uC2A4\uB7EC\uAE30\uB9CC
         \uC788\uC5C8\uC2B5\uB2C8\uB2E4.\n\uC120\uC6D0\uB4E4\uC774 \uC2E4\uB9DD\uD558\uB294\uAD70\uC694."
@@ -45,6 +48,8 @@ MonoBehaviour:
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
     - outcomeText: "\uC73C\uC545! \uC0C1\uC790\uAC00 \uD3ED\uBC1C\uD558\uC600\uC2B5\uB2C8\uB2E4.\n\uC120\uC6D0\uB4E4\uC758
         \uCCB4\uB825\uC774 \uAC10\uC18C\uD569\uB2C8\uB2E4."
@@ -52,15 +57,27 @@ MonoBehaviour:
       planetEffects: []
       resourceEffects: []
       crewEffects:
-      - effectType: 1
+      - effectType: 0
         raceType: 0
-        healthChange: -5
+        changeAmount: 30
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 0
-          raceTarget: 0
-          value: 0
-        statusEffect: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 0
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
+      nextEvent: {fileID: 0}
+  - choiceText: "\uBC84\uB824\uBC84\uB9B0\uB2E4"
+    possibleOutcomes:
+    - outcomeText: "\uC758\uC2EC\uC2A4\uB7EC\uC6B4 \uC0C1\uC790\uB97C \uC5F4 \uC774\uC720\uB294
+        \uC804\uD600 \uC5C6\uC2B5\uB2C8\uB2E4."
+      probability: 100
+      planetEffects: []
+      resourceEffects: []
+      crewEffects: []
+      specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

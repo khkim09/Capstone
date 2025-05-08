@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Blackhole!
   m_EditorClassIdentifier: 
-  eventId: 'event.mystery.00 '
-  eventTitle: "\uBE14\uB799\uD640!"
-  eventDescription: "\uC608\uCE21\uD558\uC9C0 \uBABB\uD55C \uBE14\uB799\uD640\uC774
-    \uD568\uC120\uC744 \uBE68\uC544\uB4E4\uC785\uB2C8\uB2E4."
+  eventId: 0
+  debugName: Blackhole!
+  eventTitle: event.name.0
+  eventDescription: event.description.0
   eventImage: {fileID: 0}
+  eventType: 2
+  outcomeType: 2
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
@@ -29,13 +32,13 @@ MonoBehaviour:
       crewEffects:
       - effectType: 1
         raceType: 0
-        healthChange: 0
+        changeAmount: -3
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 1
-          raceTarget: 0
-          value: -5
-        statusEffect: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 10
+        effectIcon: {fileID: 0}
       specialEffectType: 3
+      specialEffectValue: Engine
+      specialEffectAmount: 2
       nextEvent: {fileID: 0}

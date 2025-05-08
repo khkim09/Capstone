@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Derelict Scrap Vessel
   m_EditorClassIdentifier: 
-  eventId: event.ship.23
-  eventTitle: "\uBC84\uB824\uC9C4 \uACE0\uCCA0\uC120"
+  eventId: 54
+  debugName: Derelict Scrap Vessel
+  eventTitle: event.name.54
   eventDescription: "\uD56D\uD574\uB3C4\uC911 \uBC84\uB824\uC9C4 \uACE0\uCCA0\uC120\uC744
     \uBC1C\uACAC\uD558\uC600\uC2B5\uB2C8\uB2E4.\n\uC120\uC6D0\uB4E4\uC744 \uBCF4\uB0B4
     \uB0B4\uBD80\uB97C \uD655\uC778\uD574\uBCFC\uAE4C\uC694?"
   eventImage: {fileID: 0}
+  eventType: 0
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uC120\uC6D0\uB4E4\uC744 \uBCF4\uB0B8\uB2E4"
     possibleOutcomes:
@@ -33,15 +37,15 @@ MonoBehaviour:
       crewEffects:
       - effectType: 1
         raceType: 0
-        healthChange: -1
+        changeAmount: 3
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 0
-          raceTarget: 0
-          value: 2
-        statusEffect: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 10
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
     - outcomeText: "\uC5F4\uC2EC\uD788 \uC218\uC0C9\uD558\uC600\uC73C\uB098, \uC544\uBB34\uAC83\uB3C4
         \uBC1C\uACAC\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.\n\uC120\uC6D0\uB4E4\uC774
@@ -52,15 +56,15 @@ MonoBehaviour:
       crewEffects:
       - effectType: 1
         raceType: 0
-        healthChange: -1
+        changeAmount: -3
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 0
-          raceTarget: 0
-          value: -1
-        statusEffect: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 10
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
   - choiceText: "\uADF8\uB0E5 \uC9C0\uB098\uAC04\uB2E4."
     possibleOutcomes:
@@ -73,4 +77,6 @@ MonoBehaviour:
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Bald...
   m_EditorClassIdentifier: 
-  eventId: event.ship.01
-  eventTitle: "\uD0C8..\uBAA8..?"
+  eventId: 32
+  debugName: Bald...
+  eventTitle: event.name.32
   eventDescription: "\uD568\uC120 \uB0B4\uC5D0 \uD138\uC774 \uD769\uB0A0\uB9BD\uB2C8\uB2E4."
   eventImage: {fileID: 0}
+  eventType: 0
+  outcomeType: 2
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
@@ -25,15 +29,15 @@ MonoBehaviour:
       planetEffects: []
       resourceEffects: []
       crewEffects:
-      - effectType: 3
+      - effectType: 1
         raceType: 5
-        healthChange: 0
+        changeAmount: -3
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 0
-          raceTarget: 5
-          value: -5
-        statusEffect: 2
+        persistenceCondition: 4
+        conditionData: Beast
+        conditionAmount: 0
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

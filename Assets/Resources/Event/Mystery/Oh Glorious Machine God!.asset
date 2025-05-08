@@ -12,42 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Oh Glorious Machine God!
   m_EditorClassIdentifier: 
-  eventId: 'event.mystery.03 '
-  eventTitle: "\uCC2C\uB780\uD55C \uAE30\uACC4\uC2E0\uC774\uC2DC\uC5B4!"
-  eventDescription: "\uD568\uC120 \uB0B4\uC758 \uAE30\uACC4 \uC7A5\uCE58\uB4E4\uC774
-    \uC624\uC791\uB3D9\uC744 \uC77C\uC73C\uD0B5\uB2C8\uB2E4."
+  eventId: 3
+  debugName: Oh Glorious Machine God
+  eventTitle: event.name.3
+  eventDescription: event.description.3
   eventImage: {fileID: 0}
+  eventType: 0
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
     - outcomeText: "\uD568\uC120 \uB0B4 \uAE30\uACC4\uD615 \uC120\uC6D0\uB4E4\uC758
-        \uC219\uB828\uB3C4\uAC00 15\uB144\uAC04 \uC99D\uAC00\uD569\uB2C8\uB2E4.\n\uD568\uC120\uB0B4
+        \uC0AC\uAE30\uAC00 15\uB144\uAC04 \uC99D\uAC00\uD569\uB2C8\uB2E4.\n\uD568\uC120\uB0B4
         \uC77C\uBD80 \uC2DC\uC124\uC774 \uC624\uC791\uB3D9\uD558\uC5EC \uD30C\uAD34\uB418\uC5C8\uC2B5\uB2C8\uB2E4."
       probability: 30
       planetEffects: []
       resourceEffects: []
       crewEffects:
-      - effectType: 2
+      - effectType: 1
         raceType: 3
-        healthChange: 0
+        changeAmount: 3
         skill: 0
-        skillChange: 20
-        moralChange:
-          isGlobal: 0
-          raceTarget: 0
-          value: 0
-        statusEffect: 0
-      - effectType: 2
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 15
+        effectIcon: {fileID: 0}
+      - effectType: 1
         raceType: 4
-        healthChange: 0
+        changeAmount: 3
         skill: 0
-        skillChange: 20
-        moralChange:
-          isGlobal: 0
-          raceTarget: 3
-          value: 0
-        statusEffect: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 15
+        effectIcon: {fileID: 0}
       specialEffectType: 3
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
     - outcomeText: "\uD568\uC120 \uB0B4 \uAE30\uACC4\uD615 \uC120\uC6D0\uB4E4\uC758
         \uC219\uB828\uB3C4\uAC00 15\uB144\uAC04 \uC99D\uAC00\uD569\uB2C8\uB2E4.\n\uD568\uC120\uB0B4
@@ -57,25 +58,23 @@ MonoBehaviour:
       planetEffects: []
       resourceEffects: []
       crewEffects:
-      - effectType: 2
+      - effectType: 1
         raceType: 3
-        healthChange: 0
+        changeAmount: 3
         skill: 0
-        skillChange: 20
-        moralChange:
-          isGlobal: 1
-          raceTarget: 0
-          value: 5
-        statusEffect: 0
-      - effectType: 2
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 15
+        effectIcon: {fileID: 0}
+      - effectType: 1
         raceType: 4
-        healthChange: 0
+        changeAmount: 3
         skill: 0
-        skillChange: 20
-        moralChange:
-          isGlobal: 1
-          raceTarget: 0
-          value: 5
-        statusEffect: 0
-      specialEffectType: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 15
+        effectIcon: {fileID: 0}
+      specialEffectType: 3
+      specialEffectValue: None
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

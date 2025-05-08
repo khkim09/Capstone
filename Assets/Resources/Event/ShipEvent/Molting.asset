@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Molting
   m_EditorClassIdentifier: 
-  eventId: event.ship.10
-  eventTitle: "\uD0C8\uD53C"
+  eventId: 41
+  debugName: Molting
+  eventTitle: event.name.41
   eventDescription: "\uACE4\uCDA9\uD615 \uC120\uC6D0\uB4E4\uC774 \uB0A1\uC740 \uC678\uD53C\uB97C
     \uBC97\uC2B5\uB2C8\uB2E4."
   eventImage: {fileID: 0}
+  eventType: 0
+  outcomeType: 2
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
@@ -29,13 +33,13 @@ MonoBehaviour:
       crewEffects:
       - effectType: 3
         raceType: 6
-        healthChange: 0
+        changeAmount: 0
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 0
-          raceTarget: 0
-          value: 0
-        statusEffect: 3
+        persistenceCondition: 1
+        conditionData: 
+        conditionAmount: 0
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

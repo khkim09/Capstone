@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Power Outage
   m_EditorClassIdentifier: 
-  eventId: event.ship.19
-  eventTitle: "\uC815\uC804"
+  eventId: 50
+  debugName: Power Outage
+  eventTitle: event.name.50
   eventDescription: "\uD568\uB0B4\uC5D0 \uC815\uC804\uC774 \uBC1C\uC0DD\uD558\uC600\uC2B5\uB2C8\uB2E4.\n\uB2F9\uC2E0\uC740
     \uC2E0\uC18D\uD788 \uC804\uC6D0\uC744 \uBCF5\uAD6C\uD558\uB824 \uB178\uB825\uD569\uB2C8\uB2E4."
   eventImage: {fileID: 0}
+  eventType: 0
+  outcomeType: 2
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
@@ -30,6 +34,8 @@ MonoBehaviour:
         resourceType: 0
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
     - outcomeText: "\uC815\uC804\uC744 \uD574\uACB0\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.\n\uB2F9\uBD84\uAC04
         \uAE30\uACC4\uD615 \uC120\uC6D0\uB4E4\uC774 \uC6C0\uC9C1\uC774\uC9C0 \uBABB\uD560\uAC70\uAC19\uB124\uC694."
@@ -39,25 +45,23 @@ MonoBehaviour:
       - amount: -10
         resourceType: 0
       crewEffects:
-      - effectType: 1
+      - effectType: 3
         raceType: 3
-        healthChange: -2
+        changeAmount: 0
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 0
-          raceTarget: 3
-          value: -3
-        statusEffect: 3
-      - effectType: 1
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 5
+        effectIcon: {fileID: 0}
+      - effectType: 3
         raceType: 4
-        healthChange: -2
+        changeAmount: 0
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 0
-          raceTarget: 4
-          value: -3
-        statusEffect: 3
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 5
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

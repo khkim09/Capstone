@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Excessive excavation of artifacts
   m_EditorClassIdentifier: 
-  eventId: event.planet.04
-  eventTitle: "\uACFC\uB3C4\uD55C \uC720\uBB3C \uBC1C\uAD74"
+  eventId: 9
+  debugName: Excessive excavation of artifacts
+  eventTitle: event.name.9
   eventDescription: "\uD589\uC131\uC5D0 \uC720\uBB3C \uBC1C\uAD74 \uC0B0\uC5C5\uC774
     \uD65C\uBC1C\uD558\uAC8C \uBC1C\uB2EC\uD558\uC5EC \uB9E4\uC6B0 \uB9CE\uC740 \uC720\uBB3C\uC774
     \uBC1C\uAD74\uB429\uB2C8\uB2E4."
   eventImage: {fileID: 0}
+  eventType: 1
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
@@ -25,10 +29,12 @@ MonoBehaviour:
       probability: 100
       planetEffects:
       - categoryType: 7
-        fluctuation: -20
+        changeAmount: -20
       resourceEffects:
       - amount: 0
         resourceType: 0
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

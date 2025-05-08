@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Sharpening
   m_EditorClassIdentifier: 
-  eventId: 'event.ship.32 '
-  eventTitle: "\uC5F0\uB9C8"
+  eventId: 63
+  debugName: Sharpening
+  eventTitle: evne.tname.63
   eventDescription: "\uD568\uC120 \uB0B4 \uC5F0\uB9C8\uC7AC\uB97C \uC774\uC6A9\uD558\uC5EC
     \uBB34\uB518\uAC78 \uB0A0\uCE74\uB86D\uAC8C \uD560 \uC218 \uC788\uC744\uB4EF
     \uD569\uB2C8\uB2E4.\n\uC5F0\uB9C8\uB97C \uC2DC\uC791\uD560\uAE4C\uC694?"
   eventImage: {fileID: 0}
+  eventType: 0
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uC5F0\uB9C8 \uC2DC\uC791"
     possibleOutcomes:
@@ -28,30 +32,28 @@ MonoBehaviour:
       planetEffects: []
       resourceEffects: []
       crewEffects:
-      - effectType: 2
+      - effectType: 1
         raceType: 5
-        healthChange: 0
-        skill: 5
-        skillChange: 10
-        moralChange:
-          isGlobal: 0
-          raceTarget: 5
-          value: 2
-        statusEffect: 0
-      - effectType: 2
+        changeAmount: 2
+        skill: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 10
+        effectIcon: {fileID: 0}
+      - effectType: 1
         raceType: 3
-        healthChange: 0
-        skill: 5
-        skillChange: 10
-        moralChange:
-          isGlobal: 0
-          raceTarget: 3
-          value: 2
-        statusEffect: 0
+        changeAmount: 2
+        skill: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 10
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
     - outcomeText: "\uC774\uB7F0! \uC5F0\uB9C8\uB97C \uC2E4\uD328\uD558\uC600\uC2B5\uB2C8\uB2E4.\n\uB3D9\uBB3C\uD615
-        \uC120\uC6D0\uACFC \uAE30\uACC4\uD615 \uC120\uC6D0\uC758 \uACF5\uACA9\uB825\uC774
+        \uC120\uC6D0\uACFC \uAE30\uACC4\uD615 \uC120\uC6D0\uC758 \uBB34\uAE30\uAC00
         \uBB34\uB38C\uC84C\uB124\uC694.."
       probability: 50
       planetEffects: []
@@ -59,25 +61,23 @@ MonoBehaviour:
       crewEffects:
       - effectType: 1
         raceType: 5
-        healthChange: 0
-        skill: 5
-        skillChange: -5
-        moralChange:
-          isGlobal: 0
-          raceTarget: 5
-          value: -2
-        statusEffect: 0
+        changeAmount: -2
+        skill: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 10
+        effectIcon: {fileID: 0}
       - effectType: 1
         raceType: 3
-        healthChange: 0
-        skill: 5
-        skillChange: -5
-        moralChange:
-          isGlobal: 0
-          raceTarget: 3
-          value: -2
-        statusEffect: 0
+        changeAmount: -2
+        skill: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 10
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
   - choiceText: "\uD558\uC9C0 \uC54A\uB294\uB2E4."
     possibleOutcomes:
@@ -89,4 +89,6 @@ MonoBehaviour:
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

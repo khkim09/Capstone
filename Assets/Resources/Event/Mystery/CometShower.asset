@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: CometShower
   m_EditorClassIdentifier: 
-  eventId: 'event.mystery.01 '
-  eventTitle: "\uD61C\uC131\uBE44\uAC00 \uB0B4\uB824\uC640"
-  eventDescription: "\uAE34 \uAF2C\uB9AC\uB97C \uD769\uB0A0\uB9AC\uBA70 \uBB34\uC218\uD788
-    \uB9CE\uC740 \uD61C\uC131\uC774 \uD568\uC120 \uADFC\uCC98\uB97C \uC9C0\uB098\uAC11\uB2C8\uB2E4."
+  eventId: 1
+  debugName: CometShower
+  eventTitle: event.name.1
+  eventDescription: event.description.1
   eventImage: {fileID: 0}
+  eventType: 2
+  outcomeType: 0
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
@@ -26,15 +29,15 @@ MonoBehaviour:
       planetEffects: []
       resourceEffects: []
       crewEffects:
-      - effectType: 2
+      - effectType: 1
         raceType: 0
-        healthChange: 0
+        changeAmount: 3
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 1
-          raceTarget: 0
-          value: 5
-        statusEffect: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 10
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

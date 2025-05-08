@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Economic Boom
   m_EditorClassIdentifier: 
-  eventId: event.planet.02
-  eventTitle: "\uACBD\uC81C \uD638\uD669"
+  eventId: 7
+  debugName: Economic Boom
+  eventTitle: event.name.7
   eventDescription: "\uACBD\uC81C \uD638\uD669\uC73C\uB85C \uC778\uD574 \uD589\uC131\uBBFC\uB4E4\uC758
     \uC18C\uBE44\uAC00 \uB298\uAC8C\uB429\uB2C8\uB2E4."
   eventImage: {fileID: 0}
+  eventType: 1
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
@@ -25,14 +29,16 @@ MonoBehaviour:
       probability: 100
       planetEffects:
       - categoryType: 4
-        fluctuation: 10
+        changeAmount: 10
       - categoryType: 7
-        fluctuation: 10
+        changeAmount: 10
       - categoryType: 3
-        fluctuation: 10
+        changeAmount: 10
       - categoryType: 6
-        fluctuation: 10
+        changeAmount: 10
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

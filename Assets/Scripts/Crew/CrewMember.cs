@@ -47,6 +47,8 @@ public class CrewMember : CrewBase
     /// </summary>
     public Vector2Int originPosTile;
 
+    public List<CrewEffect> effectfs;
+
     /// <summary>
     /// Unity 생명주기 메서드.
     /// 매 프레임마다 선원 상태를 갱신합니다. (현재는 구현 미완료)
@@ -194,6 +196,7 @@ public class CrewMember : CrewBase
             animator.SetFloat("X", movementDirection.x);
             animator.SetFloat("Y", movementDirection.y);
         }
+
         animator.SetBool(trigger, isMoving);
     }
 
@@ -238,7 +241,8 @@ public class CrewMember : CrewBase
                     speedMultiplier = 1.33f;
 
                 // MoveTowards() : 다른 선원과의 충돌 무시하고 통과
-                transform.position = Vector3.MoveTowards(transform.position, targetWorldPos, moveSpeed * speedMultiplier * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetWorldPos,
+                    moveSpeed * speedMultiplier * Time.deltaTime);
                 yield return null;
             }
 

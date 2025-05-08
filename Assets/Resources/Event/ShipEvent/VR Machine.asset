@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: VR Machine
   m_EditorClassIdentifier: 
-  eventId: 'event.ship.41 '
-  eventTitle: "VR\uAE30\uACC4 \uC0AC\uC6A9"
+  eventId: 72
+  debugName: VR Machine
+  eventTitle: event.name.72
   eventDescription: "\uB2F9\uC2E0\uC740 VR\uAE30\uAC8C\uB97C \uAD6C\uC785\uD574 \uD568\uB0B4\uC5D0
     \uB3C4\uC785\uD558\uC600\uC2B5\uB2C8\uB2E4.\n\uC120\uC6D0\uB4E4\uC5D0\uAC70 VR\uAE30\uACC4
     \uC0AC\uC6A9\uC2DC\uAC04\uC744 \uAC00\uC9C0\uAC8C \uD560\uAE4C\uC694?"
   eventImage: {fileID: 0}
+  eventType: 0
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uC0AC\uC6A9\uD558\uAC8C \uD55C\uB2E4"
     possibleOutcomes:
@@ -28,17 +32,17 @@ MonoBehaviour:
       planetEffects: []
       resourceEffects: []
       crewEffects:
-      - effectType: 2
+      - effectType: 1
         raceType: 0
-        healthChange: 0
-        skill: 5
-        skillChange: 10
-        moralChange:
-          isGlobal: 0
-          raceTarget: 0
-          value: 0
-        statusEffect: 0
+        changeAmount: 3
+        skill: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 12
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
     - outcomeText: "\uC120\uC6D0\uB4E4\uC774 VR\uAE30\uACC4\uC5D0 \uD479 \uBE60\uC9C4
         \uB098\uBA38\uC9C0 \uD56D\uD574\uD558\uB294 \uAC83\uB3C4 \uC78A\uC5B4\uBC84\uB838\uC2B5\uB2C8\uB2E4.\n\uC5F0\uB8CC
@@ -50,6 +54,8 @@ MonoBehaviour:
         resourceType: 0
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
   - choiceText: "\uC0AC\uC6A9\uD558\uAC8C \uD558\uC9C0 \uC54A\uB294\uB2E4."
     possibleOutcomes:
@@ -60,4 +66,6 @@ MonoBehaviour:
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

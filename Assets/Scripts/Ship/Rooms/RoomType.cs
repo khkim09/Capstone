@@ -4,6 +4,8 @@
 /// </summary>
 public enum RoomType
 {
+    None,
+
     /// <summary>엔진실 – 회피율, 연료 효율 등과 관련됨.</summary>
     Engine,
 

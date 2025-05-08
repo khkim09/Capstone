@@ -12,15 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Call of the Alien God
   m_EditorClassIdentifier: 
-  eventId: event.ship.02
-  eventTitle: "\uC678\uC2E0\uC758 \uBD80\uB984"
+  eventId: 33
+  debugName: Call of the Alien God
+  eventTitle: event.name.33
   eventDescription: "\uD568\uC120 \uB0B4\uC5D0 \uC678\uC2E0\uC758 \uBAA9\uC18C\uB9AC\uAC00
     \uC6B8\uB824\uD37C\uC9D1\uB2C8\uB2E4."
   eventImage: {fileID: 0}
+  eventType: 0
+  outcomeType: 2
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
-    - outcomeText: "\uBD80\uC815\uD615 \uC120\uC6D0\uB4E4\uC758 \uBAA8\uB4E0 \uC219\uB828\uB3C4\uAC00
+    - outcomeText: "\uBD80\uC815\uD615 \uC120\uC6D0\uB4E4\uC758 \uC0AC\uAE30\uAC00
         \uAC10\uC18C\uD569\uB2C8\uB2E4.\n\uC758\uBB34\uC2E4\uC5D0\uC11C \uCE58\uB8CC\uD560
         \uC218 \uC788\uC2B5\uB2C8\uB2E4."
       probability: 100
@@ -29,13 +33,13 @@ MonoBehaviour:
       crewEffects:
       - effectType: 1
         raceType: 2
-        healthChange: 0
+        changeAmount: -3
         skill: 0
-        skillChange: -10
-        moralChange:
-          isGlobal: 0
-          raceTarget: 0
-          value: 0
-        statusEffect: 0
+        persistenceCondition: 2
+        conditionData: 
+        conditionAmount: 0
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

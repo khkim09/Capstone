@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Breeding development
   m_EditorClassIdentifier: 
-  eventId: event.planet.00
-  eventTitle: "\uBC88\uC2DD \uAE30\uC220 \uBC1C\uB2EC"
+  eventId: 5
+  debugName: Breeding development
+  eventTitle: event.name.5
   eventDescription: "\uC0C8\uB85C\uC6B4 \uBC88\uC2DD \uAE30\uC220\uC774 \uBC1C\uB2EC\uD558\uC5EC
     \uB3D9\uBB3C \uBC88\uC2DD\uB960\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   eventImage: {fileID: 0}
+  eventType: 1
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
@@ -24,8 +28,10 @@ MonoBehaviour:
       probability: 100
       planetEffects:
       - categoryType: 1
-        fluctuation: -20
+        changeAmount: -20
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

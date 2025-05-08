@@ -9,13 +9,13 @@ public class SpecialEffectHandlerFactory
     {
         handlers[SpecialEffectType.None] = null;
         handlers[SpecialEffectType.TriggerNextEvent] = new NextEventEffectHandler();
-        handlers[SpecialEffectType.AddQuest] = new AddQuestEffectHandler();
-        handlers[SpecialEffectType.UnlockItem] = new UnlockItemEffectHandler();
+        handlers[SpecialEffectType.RoomDamage] = new RoomDamageEffectHandler();
+        handlers[SpecialEffectType.Battle] = new BattleEffectHandler();
     }
 
     public ISpecialEffectHandler GetHandler(SpecialEffectType effectType)
     {
-        if (handlers.TryGetValue(effectType, out var handler)) return handler;
+        if (handlers.TryGetValue(effectType, out ISpecialEffectHandler handler)) return handler;
 
         Debug.LogWarning($"처리기가 등록되지 않은 효과 유형: {effectType}");
         return null;

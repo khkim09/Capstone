@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Mineral Depletion
   m_EditorClassIdentifier: 
-  eventId: event.planet.09
-  eventTitle: "\uAD11\uBB3C \uACE0\uAC08"
+  eventId: 14
+  debugName: Mineral Depletion
+  eventTitle: event.name.14
   eventDescription: "\uD589\uC131\uC5D0\uC11C\uC758 \uACFC\uB2E4\uD55C \uCC44\uAD74\uB85C
     \uC778\uD574 \uAD11\uC11D\uC774 \uACE0\uAC08\uB418\uC5C8\uC2B5\uB2C8\uB2E4."
   eventImage: {fileID: 0}
+  eventType: 1
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
@@ -25,10 +29,12 @@ MonoBehaviour:
       probability: 100
       planetEffects:
       - categoryType: 0
-        fluctuation: 20
+        changeAmount: 20
       - categoryType: 3
-        fluctuation: 20
+        changeAmount: 20
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

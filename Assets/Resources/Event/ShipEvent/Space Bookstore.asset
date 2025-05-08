@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Space Bookstore
   m_EditorClassIdentifier: 
-  eventId: 'event.ship.34 '
-  eventTitle: "\uC6B0\uC8FC \uC11C\uC810"
+  eventId: 65
+  debugName: Space Bookstore
+  eventTitle: event.name.
   eventDescription: "\uD56D\uD574\uC911 \uC774\uB3D9\uD615 \uC6B0\uC8FC \uC11C\uC810\uC744
     \uBC1C\uACAC\uD558\uC600\uC2B5\uB2C8\uB2E4.\n\uCC45 \uBA87\uAD8C\uC744 \uAD6C\uB9E4\uD560\uAE4C\uC694?"
   eventImage: {fileID: 0}
+  eventType: 0
+  outcomeType: 0
+  minimumYear: 0
   choices:
   - choiceText: "\uAD6C\uB9E4\uD55C\uB2E4(500COMA)"
     possibleOutcomes:
@@ -28,17 +32,17 @@ MonoBehaviour:
       - amount: -500
         resourceType: 1
       crewEffects:
-      - effectType: 2
+      - effectType: 1
         raceType: 0
-        healthChange: 0
+        changeAmount: 3
         skill: 0
-        skillChange: 10
-        moralChange:
-          isGlobal: 0
-          raceTarget: 0
-          value: 0
-        statusEffect: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 15
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
     - outcomeText: "\uB2F9\uC2E0\uC740 \uCC45\uC744 \uAD6C\uB9E4\uD558\uC600\uC2B5\uB2C8\uB2E4.\n\uC120\uC6D0\uB4E4\uC740
         \uCC45\uC5D0 \uC801\uB2F9\uD55C \uD765\uBBF8\uB97C \uBCF4\uC600\uC2B5\uB2C8\uB2E4."
@@ -48,17 +52,17 @@ MonoBehaviour:
       - amount: -500
         resourceType: 1
       crewEffects:
-      - effectType: 2
+      - effectType: 1
         raceType: 0
-        healthChange: 0
+        changeAmount: 1
         skill: 0
-        skillChange: 5
-        moralChange:
-          isGlobal: 0
-          raceTarget: 0
-          value: 0
-        statusEffect: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 15
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
   - choiceText: "\uAD6C\uB9E4\uD558\uC9C0 \uC54A\uB294\uB2E4."
     possibleOutcomes:
@@ -69,4 +73,6 @@ MonoBehaviour:
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

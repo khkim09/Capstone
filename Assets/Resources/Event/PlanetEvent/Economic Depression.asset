@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Economic Depression
   m_EditorClassIdentifier: 
-  eventId: event.planet.03
-  eventTitle: "\uACBD\uC81C \uACF5\uD669"
+  eventId: 8
+  debugName: Economic Depression
+  eventTitle: event.name.8
   eventDescription: "\uACBD\uC81C \uBD88\uC548 \uC815\uC138\uAC00 \uD655\uC0B0\uB428\uC5D0
     \uB530\uB77C \uC0DD\uD544\uD488 \uC218\uC694\uAC00 \uB298\uACE0 \uC0AC\uCE58\uD488
     \uC218\uC694\uAC00 \uC904\uAC8C\uB429\uB2C8\uB2E4."
   eventImage: {fileID: 0}
+  eventType: 1
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
@@ -27,18 +31,20 @@ MonoBehaviour:
       probability: 100
       planetEffects:
       - categoryType: 6
-        fluctuation: 20
+        changeAmount: 20
       - categoryType: 9
-        fluctuation: 20
+        changeAmount: 20
       - categoryType: 4
-        fluctuation: -10
+        changeAmount: 20
       - categoryType: 7
-        fluctuation: -10
+        changeAmount: -10
       - categoryType: 3
-        fluctuation: -10
+        changeAmount: -10
       - categoryType: 8
-        fluctuation: -10
+        changeAmount: -10
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

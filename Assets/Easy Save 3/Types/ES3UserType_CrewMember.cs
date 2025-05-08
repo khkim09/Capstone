@@ -4,17 +4,26 @@ using UnityEngine;
 namespace ES3Types
 {
     [UnityEngine.Scripting.Preserve]
-    [ES3PropertiesAttribute("crewName", "isPlayerControlled", "race", "maxHealth", "attack", "defense", "learningSpeed", "needsOxygen", "maxSkillValueArray", "maxPilotSkillValue", "maxEngineSkillValue", "maxPowerSkillValue", "maxShieldSkillValue", "maxWeaponSkillValue", "maxAmmunitionSkillValue", "maxMedBaySkillValue", "maxRepairSkillValue", "skills", "equipAdditionalSkills", "equippedWeapon", "equippedShield", "equippedAssistant", "currentRoom", "position", "targetPosition", "moveSpeed", "health", "status", "isAlive", "isMoving", "currentShip")]
+    [ES3PropertiesAttribute("crewName", "isPlayerControlled", "race", "maxHealth", "attack", "defense", "learningSpeed",
+        "needsOxygen", "maxSkillValueArray", "maxPilotSkillValue", "maxEngineSkillValue", "maxPowerSkillValue",
+        "maxShieldSkillValue", "maxWeaponSkillValue", "maxAmmunitionSkillValue", "maxMedBaySkillValue",
+        "maxRepairSkillValue", "skills", "equipAdditionalSkills", "equippedWeapon", "equippedShield",
+        "equippedAssistant", "currentRoom", "position", "targetPosition", "moveSpeed", "health", "status", "isAlive",
+        "isMoving", "currentShip")]
     public class ES3UserType_CrewMember : ES3ComponentType
     {
         public static ES3Type Instance = null;
 
-        public ES3UserType_CrewMember() : base(typeof(CrewMember)) { Instance = this; priority = 1; }
+        public ES3UserType_CrewMember() : base(typeof(CrewMember))
+        {
+            Instance = this;
+            priority = 1;
+        }
 
 
         protected override void WriteComponent(object obj, ES3Writer writer)
         {
-            var instance = (CrewMember)obj;
+            CrewMember instance = (CrewMember)obj;
 
             writer.WriteProperty("crewName", instance.crewName, ES3Type_string.Instance);
             writer.WriteProperty("isPlayerControlled", instance.isPlayerControlled, ES3Type_bool.Instance);
@@ -24,7 +33,9 @@ namespace ES3Types
             writer.WriteProperty("defense", instance.defense, ES3Type_float.Instance);
             writer.WriteProperty("learningSpeed", instance.learningSpeed, ES3Type_float.Instance);
             writer.WriteProperty("needsOxygen", instance.needsOxygen, ES3Type_bool.Instance);
-            writer.WriteProperty("maxSkillValueArray", instance.maxSkillValueArray, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.Dictionary<SkillType, System.Single>)));
+            writer.WriteProperty("maxSkillValueArray", instance.maxSkillValueArray,
+                ES3Internal.ES3TypeMgr.GetOrCreateES3Type(
+                    typeof(System.Collections.Generic.Dictionary<SkillType, float>)));
             writer.WriteProperty("maxPilotSkillValue", instance.maxPilotSkillValue, ES3Type_float.Instance);
             writer.WriteProperty("maxEngineSkillValue", instance.maxEngineSkillValue, ES3Type_float.Instance);
             writer.WriteProperty("maxPowerSkillValue", instance.maxPowerSkillValue, ES3Type_float.Instance);
@@ -33,8 +44,12 @@ namespace ES3Types
             writer.WriteProperty("maxAmmunitionSkillValue", instance.maxAmmunitionSkillValue, ES3Type_float.Instance);
             writer.WriteProperty("maxMedBaySkillValue", instance.maxMedBaySkillValue, ES3Type_float.Instance);
             writer.WriteProperty("maxRepairSkillValue", instance.maxRepairSkillValue, ES3Type_float.Instance);
-            writer.WriteProperty("skills", instance.skills, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.Dictionary<SkillType, System.Single>)));
-            writer.WriteProperty("equipAdditionalSkills", instance.equipAdditionalSkills, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.Dictionary<SkillType, System.Single>)));
+            writer.WriteProperty("skills", instance.skills,
+                ES3Internal.ES3TypeMgr.GetOrCreateES3Type(
+                    typeof(System.Collections.Generic.Dictionary<SkillType, float>)));
+            writer.WriteProperty("equipAdditionalSkills", instance.equipAdditionalSkills,
+                ES3Internal.ES3TypeMgr.GetOrCreateES3Type(
+                    typeof(System.Collections.Generic.Dictionary<SkillType, float>)));
             writer.WritePropertyByRef("equippedWeapon", instance.equippedWeapon);
             writer.WritePropertyByRef("equippedShield", instance.equippedShield);
             writer.WritePropertyByRef("equippedAssistant", instance.equippedAssistant);
@@ -43,7 +58,6 @@ namespace ES3Types
             writer.WriteProperty("targetPosition", instance.targetPosition, ES3Type_Vector2.Instance);
             writer.WriteProperty("moveSpeed", instance.moveSpeed, ES3Type_float.Instance);
             writer.WriteProperty("health", instance.health, ES3Type_float.Instance);
-            writer.WriteProperty("status", instance.status, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(CrewStatus)));
             writer.WriteProperty("isAlive", instance.isAlive, ES3Type_bool.Instance);
             writer.WriteProperty("isMoving", instance.isMoving, ES3Type_bool.Instance);
             writer.WritePropertyByRef("currentShip", instance.currentShip);
@@ -51,68 +65,68 @@ namespace ES3Types
 
         protected override void ReadComponent<T>(ES3Reader reader, object obj)
         {
-            var instance = (CrewMember)obj;
+            CrewMember instance = (CrewMember)obj;
             foreach (string propertyName in reader.Properties)
-            {
                 switch (propertyName)
                 {
-
                     case "crewName":
-                        instance.crewName = reader.Read<System.String>(ES3Type_string.Instance);
+                        instance.crewName = reader.Read<string>(ES3Type_string.Instance);
                         break;
                     case "isPlayerControlled":
-                        instance.isPlayerControlled = reader.Read<System.Boolean>(ES3Type_bool.Instance);
+                        instance.isPlayerControlled = reader.Read<bool>(ES3Type_bool.Instance);
                         break;
                     case "race":
                         instance.race = reader.Read<CrewRace>();
                         break;
                     case "maxHealth":
-                        instance.maxHealth = reader.Read<System.Single>(ES3Type_float.Instance);
+                        instance.maxHealth = reader.Read<float>(ES3Type_float.Instance);
                         break;
                     case "attack":
-                        instance.attack = reader.Read<System.Single>(ES3Type_float.Instance);
+                        instance.attack = reader.Read<float>(ES3Type_float.Instance);
                         break;
                     case "defense":
-                        instance.defense = reader.Read<System.Single>(ES3Type_float.Instance);
+                        instance.defense = reader.Read<float>(ES3Type_float.Instance);
                         break;
                     case "learningSpeed":
-                        instance.learningSpeed = reader.Read<System.Single>(ES3Type_float.Instance);
+                        instance.learningSpeed = reader.Read<float>(ES3Type_float.Instance);
                         break;
                     case "needsOxygen":
-                        instance.needsOxygen = reader.Read<System.Boolean>(ES3Type_bool.Instance);
+                        instance.needsOxygen = reader.Read<bool>(ES3Type_bool.Instance);
                         break;
                     case "maxSkillValueArray":
-                        instance.maxSkillValueArray = reader.Read<System.Collections.Generic.Dictionary<SkillType, System.Single>>();
+                        instance.maxSkillValueArray =
+                            reader.Read<System.Collections.Generic.Dictionary<SkillType, float>>();
                         break;
                     case "maxPilotSkillValue":
-                        instance.maxPilotSkillValue = reader.Read<System.Single>(ES3Type_float.Instance);
+                        instance.maxPilotSkillValue = reader.Read<float>(ES3Type_float.Instance);
                         break;
                     case "maxEngineSkillValue":
-                        instance.maxEngineSkillValue = reader.Read<System.Single>(ES3Type_float.Instance);
+                        instance.maxEngineSkillValue = reader.Read<float>(ES3Type_float.Instance);
                         break;
                     case "maxPowerSkillValue":
-                        instance.maxPowerSkillValue = reader.Read<System.Single>(ES3Type_float.Instance);
+                        instance.maxPowerSkillValue = reader.Read<float>(ES3Type_float.Instance);
                         break;
                     case "maxShieldSkillValue":
-                        instance.maxShieldSkillValue = reader.Read<System.Single>(ES3Type_float.Instance);
+                        instance.maxShieldSkillValue = reader.Read<float>(ES3Type_float.Instance);
                         break;
                     case "maxWeaponSkillValue":
-                        instance.maxWeaponSkillValue = reader.Read<System.Single>(ES3Type_float.Instance);
+                        instance.maxWeaponSkillValue = reader.Read<float>(ES3Type_float.Instance);
                         break;
                     case "maxAmmunitionSkillValue":
-                        instance.maxAmmunitionSkillValue = reader.Read<System.Single>(ES3Type_float.Instance);
+                        instance.maxAmmunitionSkillValue = reader.Read<float>(ES3Type_float.Instance);
                         break;
                     case "maxMedBaySkillValue":
-                        instance.maxMedBaySkillValue = reader.Read<System.Single>(ES3Type_float.Instance);
+                        instance.maxMedBaySkillValue = reader.Read<float>(ES3Type_float.Instance);
                         break;
                     case "maxRepairSkillValue":
-                        instance.maxRepairSkillValue = reader.Read<System.Single>(ES3Type_float.Instance);
+                        instance.maxRepairSkillValue = reader.Read<float>(ES3Type_float.Instance);
                         break;
                     case "skills":
-                        instance.skills = reader.Read<System.Collections.Generic.Dictionary<SkillType, System.Single>>();
+                        instance.skills = reader.Read<System.Collections.Generic.Dictionary<SkillType, float>>();
                         break;
                     case "equipAdditionalSkills":
-                        instance.equipAdditionalSkills = reader.Read<System.Collections.Generic.Dictionary<SkillType, System.Single>>();
+                        instance.equipAdditionalSkills =
+                            reader.Read<System.Collections.Generic.Dictionary<SkillType, float>>();
                         break;
                     case "equippedWeapon":
                         instance.equippedWeapon = reader.Read<EquipmentItem>();
@@ -127,25 +141,22 @@ namespace ES3Types
                         instance.currentRoom = reader.Read<Room>();
                         break;
                     case "position":
-                        instance.position = reader.Read<UnityEngine.Vector2Int>(ES3Type_Vector2.Instance);
+                        instance.position = reader.Read<Vector2Int>(ES3Type_Vector2.Instance);
                         break;
                     case "targetPosition":
-                        instance.targetPosition = reader.Read<UnityEngine.Vector2Int>(ES3Type_Vector2.Instance);
+                        instance.targetPosition = reader.Read<Vector2Int>(ES3Type_Vector2.Instance);
                         break;
                     case "moveSpeed":
-                        instance.moveSpeed = reader.Read<System.Single>(ES3Type_float.Instance);
+                        instance.moveSpeed = reader.Read<float>(ES3Type_float.Instance);
                         break;
                     case "health":
-                        instance.health = reader.Read<System.Single>(ES3Type_float.Instance);
-                        break;
-                    case "status":
-                        instance.status = reader.Read<CrewStatus>();
+                        instance.health = reader.Read<float>(ES3Type_float.Instance);
                         break;
                     case "isAlive":
-                        instance.isAlive = reader.Read<System.Boolean>(ES3Type_bool.Instance);
+                        instance.isAlive = reader.Read<bool>(ES3Type_bool.Instance);
                         break;
                     case "isMoving":
-                        instance.isMoving = reader.Read<System.Boolean>(ES3Type_bool.Instance);
+                        instance.isMoving = reader.Read<bool>(ES3Type_bool.Instance);
                         break;
                     case "currentShip":
                         instance.currentShip = reader.Read<Ship>(ES3UserType_Ship.Instance);
@@ -154,7 +165,6 @@ namespace ES3Types
                         reader.Skip();
                         break;
                 }
-            }
         }
     }
 

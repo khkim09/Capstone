@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Floriculture
   m_EditorClassIdentifier: 
-  eventId: event.ship.04
-  eventTitle: "\uAF43 \uC7AC\uBC30"
+  eventId: 35
+  debugName: Floriculture
+  eventTitle: event.name.35
   eventDescription: "\uAF43 \uC528\uC557\uC744 \uC5BB\uC5B4\uC11C \uD568\uC120 \uB0B4\uC5D0\uC11C
     \uC7AC\uBC30\uD558\uAE30\uB85C \uD588\uC2B5\uB2C8\uB2E4.\n\uC798 \uC790\uB784\uC9C0
     \uAD81\uAE08\uD558\uB124\uC694."
   eventImage: {fileID: 0}
+  eventType: 0
+  outcomeType: 0
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
@@ -30,25 +34,23 @@ MonoBehaviour:
       crewEffects:
       - effectType: 2
         raceType: 6
-        healthChange: 0
+        changeAmount: 2
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 0
-          raceTarget: 0
-          value: 4
-        statusEffect: 0
-      - effectType: 2
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 15
+        effectIcon: {fileID: 0}
+      - effectType: 1
         raceType: 0
-        healthChange: 0
+        changeAmount: 2
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 1
-          raceTarget: 0
-          value: 1
-        statusEffect: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 15
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
     - outcomeText: "\uAF43\uC774 \uC798 \uC790\uB77C\uC9C0 \uBABB\uD558\uACE0 \uC8FD\uC5B4\uBC84\uB838\uC2B5\uB2C8\uB2E4."
       probability: 40
@@ -56,4 +58,6 @@ MonoBehaviour:
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

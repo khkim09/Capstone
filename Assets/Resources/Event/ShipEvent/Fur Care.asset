@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Fur Care
   m_EditorClassIdentifier: 
-  eventId: event.ship.06
-  eventTitle: "\uD138 \uAD00\uB9AC"
+  eventId: 37
+  debugName: Fur Care
+  eventTitle: event.name.37
   eventDescription: "\uB3D9\uBB3C\uD615 \uC120\uC6D0\uB4E4\uC758 \uD138\uC744 \uAD00\uB9AC\uD574\uC8FC\uAE30\uB85C
     \uD588\uC2B5\uB2C8\uB2E4.\n\uC798 \uAD00\uB9AC\uD560\uC218 \uC788\uC744\uC9C0
     \uBAA8\uB974\uACA0\uC2B5\uB2C8\uB2E4."
   eventImage: {fileID: 0}
+  eventType: 0
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uD138\uC744 \uBE57\uB294\uB2E4"
     possibleOutcomes:
@@ -27,17 +31,17 @@ MonoBehaviour:
       planetEffects: []
       resourceEffects: []
       crewEffects:
-      - effectType: 2
+      - effectType: 1
         raceType: 5
-        healthChange: 0
+        changeAmount: 2
         skill: 0
-        skillChange: 10
-        moralChange:
-          isGlobal: 0
-          raceTarget: 5
-          value: 1
-        statusEffect: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 8
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
     - outcomeText: "\uD138\uC774 \uAF2C\uC5EC\uC11C \uAD00\uB9AC\uC5D0 \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4.\n\uB3D9\uBB3C\uD615
         \uC120\uC6D0\uB4E4\uC774 \uC2E4\uB9DD\uD55C \uAC83 \uAC19\uB124\uC694."
@@ -47,13 +51,13 @@ MonoBehaviour:
       crewEffects:
       - effectType: 1
         raceType: 5
-        healthChange: 0
+        changeAmount: -2
         skill: 0
-        skillChange: 0
-        moralChange:
-          isGlobal: 0
-          raceTarget: 5
-          value: -1
-        statusEffect: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 8
+        effectIcon: {fileID: 0}
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}

@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: Strengthening National Defense
   m_EditorClassIdentifier: 
-  eventId: event.planet.17
-  eventTitle: "\uAD6D\uBC29 \uAC15\uD654"
+  eventId: 22
+  debugName: Strengthening National Defense
+  eventTitle: event.name.22
   eventDescription: "\uC815\uBD80\uC5D0\uC11C \uAD6D\uBC29\uB825 \uAC15\uD654\uB97C
     \uACF5\uC2DD\uC801\uC73C\uB85C \uC120\uD3EC\uD558\uC600\uC2B5\uB2C8\uB2E4."
   eventImage: {fileID: 0}
+  eventType: 1
+  outcomeType: 1
+  minimumYear: 0
   choices:
   - choiceText: "\uACB0\uACFC \uBCF4\uAE30"
     possibleOutcomes:
@@ -25,8 +29,10 @@ MonoBehaviour:
       probability: 100
       planetEffects:
       - categoryType: 2
-        fluctuation: 20
+        changeAmount: 20
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
