@@ -34,18 +34,18 @@ public class RandomPlanetArrival : MonoBehaviour
     {
         // SIS 에셋을 직접 로드합니다.
         // 나중에 도착한 행성과 연동하여 로드할 행성 데이터를 결정합니다.
-        PlanetTradeData PlanetItemData = Resources.Load<PlanetTradeData>("ScriptableObject/Trade/PlanetInfo/SIS");
-        if (PlanetItemData != null)
+        PlanetTradeData planetItemData = Resources.Load<PlanetTradeData>("ScriptableObject/Trade/PlanetInfo/SIS");
+        if (planetItemData != null)
         {
-            Debug.Log("SIS 행성 데이터가 성공적으로 로드되었습니다: " + PlanetItemData.planetCode);
+            Debug.Log("SIS 행성 데이터가 성공적으로 로드되었습니다: " + planetItemData.planetCode);
             // TradeManager나 TradeUI에 SIS 데이터를 설정하는 로직 추가
             if (tradeManager != null)
             {
-                tradeManager.SetCurrentPlanetTradeData(PlanetItemData);
+                tradeManager.SetCurrentPlanetTradeData(planetItemData);
             }
             if (tradeUI != null)
             {
-                tradeUI.PopulateStore(PlanetItemData);
+                tradeUI.PopulateStore(planetItemData);
             }
         }
         else
@@ -53,5 +53,4 @@ public class RandomPlanetArrival : MonoBehaviour
             Debug.LogError("행성 데이터를 로드하지 못했습니다.");
         }
     }
-
 }

@@ -31,8 +31,8 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     #region Data & State
 
     private TradingItemData itemData;
-    private static PlanetItemUI currentSelectedItem = null;
-    private static string currentlySelectedItemName = "";
+    private static PlanetItemUI _currentSelectedItem = null;
+    private static string _currentlySelectedItemName = "";
     private bool isSelected = false;
 
     #endregion
@@ -75,10 +75,10 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
         isSelected = false;
 
-        if (currentlySelectedItemName == data.itemName)
+        if (_currentlySelectedItemName == data.itemName)
         {
             SetSelected(true);
-            currentSelectedItem = this;
+            _currentSelectedItem = this;
         }
     }
 
@@ -96,7 +96,7 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
         if (middlePanel == null)
         {
-            middlePanel = FindObjectOfType<MiddlePanelUI>();
+            middlePanel = Object.FindFirstObjectByType<MiddlePanelUI>();
         }
 
         if (middlePanel != null && itemData != null)
@@ -105,14 +105,14 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
             middlePanel.SetSelectedItem(itemData);
         }
 
-        if (currentSelectedItem != null && currentSelectedItem != this)
+        if (_currentSelectedItem != null && _currentSelectedItem != this)
         {
-            currentSelectedItem.SetSelected(false);
+            _currentSelectedItem.SetSelected(false);
         }
 
         SetSelected(true);
-        currentlySelectedItemName = itemData.itemName;
-        currentSelectedItem = this;
+        _currentlySelectedItemName = itemData.itemName;
+        _currentSelectedItem = this;
     }
 
     /// <summary>

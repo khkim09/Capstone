@@ -240,11 +240,15 @@ public class TradeUIManager : MonoBehaviour
         tradeBuyPanel.gameObject.SetActive(false);
         tradeSellPanel.gameObject.SetActive(true);
 
+        // 버튼 상태 갱신
+        buyButton.gameObject.SetActive(true);
+        sellButton.gameObject.SetActive(false);
+
         // 클릭 가능한 상태로 인벤토리 다시 채움
         sellInventoryUI.PopulateInventory(true);
 
         // MiddlePanel UI 갱신
-        MiddlePanelUI middlePanel = FindObjectOfType<MiddlePanelUI>();
+        MiddlePanelUI middlePanel =  Object.FindFirstObjectByType<MiddlePanelUI>();
         InventoryItemUI selected = InventoryItemUI.GetCurrentSelectedItem();
         if (middlePanel != null && selected != null && selected.GetStoredItem() != null)
         {
@@ -282,8 +286,12 @@ public class TradeUIManager : MonoBehaviour
         tradeBuyPanel.gameObject.SetActive(true);
         tradeSellPanel.gameObject.SetActive(false);
 
+        // 버튼 상태 갱신
+        buyButton.gameObject.SetActive(false);
+        sellButton.gameObject.SetActive(true);
+
         // 4. MiddlePanel이 있다면 COMA도 갱신
-        MiddlePanelUI middlePanel = FindObjectOfType<MiddlePanelUI>();
+        MiddlePanelUI middlePanel =  Object.FindFirstObjectByType<MiddlePanelUI>();
         if (middlePanel != null)
         {
             middlePanel.UpdatePlayerComa();
@@ -312,7 +320,10 @@ public class TradeUIManager : MonoBehaviour
         }
         StartCoroutine(ReenableMainPanelAfterClosing());
         tradeBuyPanel.gameObject.SetActive(false);
-        tradeSellPanel.gameObject.SetActive(true);
+        tradeSellPanel.gameObject.SetActive(false);
+
+        buyButton.gameObject.SetActive(true);
+        sellButton.gameObject.SetActive(true);
 
         // InventoryPanel의 모든 InventoryItemUI 활성화
         foreach (var itemUI in inventoryPanelContent.GetComponentsInChildren<InventoryItemUI>())

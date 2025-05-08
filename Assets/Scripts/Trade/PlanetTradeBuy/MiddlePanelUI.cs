@@ -66,7 +66,7 @@ public class MiddlePanelUI : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        tradeManager = FindObjectOfType<TradeManager>();
+        tradeManager = Object.FindFirstObjectByType<TradeManager>();
         if (buyButton != null)
             buyButton.onClick.AddListener(OnBuyClicked);
         if (sellButton != null)
@@ -122,7 +122,7 @@ public class MiddlePanelUI : MonoBehaviour
             Debug.Log($"구매 성공: {selectedItemData.itemName} x {quantity}");
             UpdatePlayerComa();
 
-            InventoryUI invUI = FindObjectOfType<InventoryUI>();
+            InventoryUI invUI = Object.FindFirstObjectByType<InventoryUI>();
             if (invUI != null)
                 invUI.PopulateInventory();
         }
@@ -144,7 +144,7 @@ public class MiddlePanelUI : MonoBehaviour
             Debug.Log($"판매 성공: {selectedItemData.itemName} x {quantity}");
             UpdatePlayerComa();
 
-            InventoryUI invUI = FindObjectOfType<InventoryUI>();
+            InventoryUI invUI = Object.FindFirstObjectByType<InventoryUI>();
             if (invUI != null)
                 invUI.PopulateInventory();
         }

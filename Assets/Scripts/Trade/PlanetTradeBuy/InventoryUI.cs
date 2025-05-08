@@ -27,7 +27,7 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         if (storage == null)
-            storage = FindObjectOfType<Storage>();
+            Object.FindFirstObjectByType<Storage>();
 
         PopulateInventory();
     }
@@ -57,7 +57,7 @@ public class InventoryUI : MonoBehaviour
             {
                 itemUI.Setup(storedItem);
             }
-            /// 슬롯이 클릭 가능할지 여부를 외부에서 결정할 수 있도록 처리
+            // 슬롯이 클릭 가능할지 여부를 외부에서 결정할 수 있도록 처리
             itemUI.isInteractable = makeInteractable;
         }
     }
