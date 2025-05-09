@@ -41,6 +41,12 @@ public class EventCrewEffectHandler
         {
             CrewRace targetRace = crewEffect.raceType;
 
+            if (crewEffect.effectType == CrewEffectType.ChangeMorale)
+            {
+                MoraleManager.Instance.RegisterMoraleEffect(crewEffect);
+                continue;
+            }
+
             foreach (CrewMember crewMember in crewList)
             {
                 if (targetRace != CrewRace.None)
@@ -54,9 +60,6 @@ public class EventCrewEffectHandler
                             crewMember.Heal(crewEffect.changeAmount);
                         else
                             crewMember.TakeDamage(crewEffect.changeAmount);
-                        break;
-                    case CrewEffectType.ChangeMorale:
-                        MoraleManager.Instance.RegisterMoraleEffect(crewEffect);
                         break;
                     case CrewEffectType.ApplyStatusEffect:
                         // TODO : 상태 이상 적용하게 만들기
