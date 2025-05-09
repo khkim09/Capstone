@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 /// <summary>
 /// 이벤트 결과로 승무원 효과를 적용하는 유틸성 클래스입니다.
@@ -35,56 +36,36 @@ public class EventCrewEffectHandler
         }
 
         List<CrewMember> crewList = GameManager.Instance.GetPlayerShip().GetAllCrew();
-        foreach (CrewMember crew in crewList)
-        {
-            CrewBase baseCrew = crew; // 필요 시 형변환
-        }
 
-        foreach (CrewBase baseCrew in crewList)
+        foreach (CrewEffect crewEffect in crewEffects)
         {
-            if (baseCrew is not CrewMember crew)
-                continue;
+            CrewRace targetRace = crewEffect.raceType;
 
-            foreach (CrewEffect effect in crewEffects)
+            foreach (CrewMember crewMember in crewList)
             {
-                // 해당 종족만 적용
-                if (effect.raceType != CrewRace.None && crew.race != effect.raceType)
-                    continue;
+                if (targetRace != CrewRace.None)
+                    if (targetRace != crewMember.race)
+                        continue;
 
-                // 체력 변화
-                if (effect.changeAmount != 0)
-                    crew.health += effect.changeAmount;
-
-                // 스킬 변화
-                if (effect.skill != SkillType.None && effect.changeAmount != 0)
+                switch (crewEffect.effectType)
                 {
-                    if (crew.skills.ContainsKey(effect.skill))
-                        crew.skills[effect.skill] += effect.changeAmount;
-                    else
-                        crew.skills[effect.skill] = effect.changeAmount;
+                    case CrewEffectType.ChangeHealth:
+                        if (crewEffect.changeAmount >= 0)
+                            crewMember.Heal(crewEffect.changeAmount);
+                        else
+                            crewMember.TakeDamage(crewEffect.changeAmount);
+                        break;
+                    case CrewEffectType.ChangeMorale:
+                        MoraleManager.Instance.RegisterMoraleEffect(crewEffect);
+                        break;
+                    case CrewEffectType.ApplyStatusEffect:
+                        // TODO : 상태 이상 적용하게 만들기
+                        break;
+                    case CrewEffectType.ChangeSkill:
+                        // TODO : 숙련도 변화하는 이벤드도 구현
+                        break;
                 }
             }
         }
-
-        // // 사기 효과는 시스템 전체에 등록
-        // foreach (CrewEffect effect in crewEffects)
-        // {
-        //     MoraleEffect morale = effect.moralChange;
-        //
-        //     if (morale.value == 0)
-        //         continue;
-        //
-        //     MoraleEffectEvent moraleEvent = new MoraleEffectEvent
-        //     {
-        //         isGlobal = morale.isGlobal,
-        //         raceTarget = morale.raceTarget,
-        //         value = morale.value,
-        //         durationYears = 0, // 즉시 적용
-        //         startYear = GameManager.Instance.CurrentYear,
-        //         sourceEventName = "EventCrewEffectHandler"
-        //     };
-        //
-        //     EventMoraleEffectManager.Instance.RegisterMoraleEffect(moraleEvent);
-        // }
     }
 }

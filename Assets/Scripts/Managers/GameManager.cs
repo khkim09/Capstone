@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -18,20 +19,16 @@ public class GameManager : MonoBehaviour
     private Ship currentEnemyShip;
 
     /// <summary>
-    /// 날짜 변경 이벤트 델리게이트입니다.
-    /// </summary>
-    public delegate void DayChangedHandler(int newDay);
-
-    /// <summary>
     /// 게임 상태 변경 이벤트 델리게이트입니다.
     /// </summary>
     public delegate void GameStateChangedHandler(GameState newState);
 
+    public event Action<int> OnYearChanged;
+
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     /// <summary>
@@ -92,11 +89,6 @@ public class GameManager : MonoBehaviour
     /// 게임 상태 변경 시 호출되는 이벤트입니다.
     /// </summary>
     public event GameStateChangedHandler OnGameStateChanged;
-
-    /// <summary>
-    /// 날짜 변경 시 호출되는 이벤트입니다.
-    /// </summary>
-    public event DayChangedHandler OnDayChanged;
 
     private void OnLanguageChanged(SystemLanguage newLanguage)
     {
@@ -212,17 +204,11 @@ public class GameManager : MonoBehaviour
 
     /// <summary>
     /// 워프 실행 시 1년을 경과시키고, 관련 효과나 이벤트를 처리합니다.
-    /// 불가사의 지속 효과 갱신을 포함합니다.
     /// </summary>
-    public void AddYearByWarp()
+    public void AddYear()
     {
         currentYear++;
-
-        // 워프로 인한 이벤트 처리
-        // EventManager.Instance.TriggerYearlyWarpEvent();
-
-        EventMoraleEffectManager.Instance.CheckEventExpirations(currentYear); // 불가사의 지속 기간 체크
-
+        OnYearChanged?.Invoke(currentYear);
         Debug.Log($"[워프 완료] 현재 연도 : {currentYear}");
     }
 

@@ -51,6 +51,11 @@ public class RandomEvent : ScriptableObject
     /// </summary>
     public int minimumCOMA = 0;
 
+    /// <summary>
+    /// 퀘스트가 출현하는 데 필요한 최소 연료
+    /// </summary>
+    public float minimumFuel = 0;
+
     #endregion
 
     public List<EventChoice> choices = new();
