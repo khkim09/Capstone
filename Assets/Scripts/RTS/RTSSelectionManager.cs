@@ -494,7 +494,9 @@ public class RTSSelectionManager : MonoBehaviour
         ).ToList();
 
         if (enemiesInRoom.Count == 0)
+        {
             return;
+        }
 
         // 2. 현재 도착 위치(RTS 이동 결과)에서 가장 가까운 적 찾기 (A*)
         CrewMember closestEnemy = null;

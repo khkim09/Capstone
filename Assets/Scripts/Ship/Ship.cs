@@ -11,6 +11,7 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class Ship : MonoBehaviour, IWorldGridSwitcher
 {
+    public bool isPlayerShip = true;
     [Header("Ship Info")][SerializeField] public string shipName = "Milky";
 
     /// <summary>

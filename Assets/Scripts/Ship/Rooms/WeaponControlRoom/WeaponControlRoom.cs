@@ -17,6 +17,7 @@ public class WeaponControlRoom : Room<WeaponControlRoomData, WeaponControlRoomDa
 
         // 방 타입 설정
         roomType = RoomType.WeaponControl;
+        workDirection=Vector2Int.left;
     }
 
     /// <summary>
@@ -32,33 +33,42 @@ public class WeaponControlRoom : Room<WeaponControlRoomData, WeaponControlRoomDa
         if (!IsOperational() || currentRoomLevelData == null)
             return contributions;
 
-        if (currentLevel == 1)
+        if (isActive)
         {
             // 조준석 레벨 데이터에서 기여도
             contributions[ShipStat.Accuracy] = currentRoomLevelData.accuracy;
             contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
         }
-        else
-        {
-            if (currentHitPoints < GetMaxHitPoints())
-            {
-                float healthRate = GetHealthPercentage();
 
-                if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
-                {
-                    WeaponControlRoomData.WeaponControlRoomLevel weakedRoomLevelData =
-                        roomData.GetTypedRoomData(currentLevel - 1);
-                    contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
-                    contributions[ShipStat.Accuracy] = currentRoomLevelData.accuracy;
-                }
-                else if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
-                {
-                    isActive = false;
-                }
-            }
+        if (currentLevel > 1 && damageCondition == DamageLevel.scratch)
+        {
+            WeaponControlRoomData.WeaponControlRoomLevel weakedRoomLevelData =
+                roomData.GetTypedRoomData(currentLevel - 1);
+            contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
+            contributions[ShipStat.Accuracy] = currentRoomLevelData.accuracy;
         }
 
+        if (workingCrew != null)
+        {
+            float crewBonus = workingCrew.GetCrewSkillValue()[SkillType.WeaponSkill];
+            contributions[ShipStat.Accuracy] *= crewBonus;
+        }
         return contributions;
+    }
+
+    /// <summary>
+    /// 선원이 작업을 해도 되냐고 물어보고 되면 workingCrew로 할당해주고 아님 말고
+    /// </summary>
+    /// <param name="crew"></param>
+    /// <returns></returns>
+    public override bool CanITouch(CrewMember crew)
+    {
+        if (crew.GetCrewSkillValue().ContainsKey(SkillType.WeaponSkill) && workingCrew ==null)
+        {
+            workingCrew = crew;
+            return true;
+        }
+        return false;
     }
 
     /// <summary>

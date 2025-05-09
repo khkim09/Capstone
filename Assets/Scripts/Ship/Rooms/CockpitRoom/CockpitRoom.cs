@@ -16,6 +16,7 @@ public class CockpitRoom : Room<CockpitRoomData, CockpitRoomData.CockpitRoomLeve
 
         // 방 타입 설정
         roomType = RoomType.Cockpit;
+        workDirection = Vector2Int.up;
     }
 
     /// <summary>
@@ -32,17 +33,14 @@ public class CockpitRoom : Room<CockpitRoomData, CockpitRoomData.CockpitRoomLeve
         if (!IsOperational() || currentRoomLevelData == null)
             return contributions;
 
-        // 현재 체력 비율에 따른 기여도 계산
-        float healthRate = GetHealthPercentage();
-
-        if (currentLevel == 1 || healthRate > currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+        if(isActive)
         {
-            // 정상 상태일 때 기여도
             contributions[ShipStat.DodgeChance] = currentRoomLevelData.avoidEfficiency;
             contributions[ShipStat.FuelEfficiency] = currentRoomLevelData.fuelEfficiency;
             contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
         }
-        else if (healthRate > currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
+
+        if (currentLevel > 1 && damageCondition == DamageLevel.scratch)
         {
             // 중간 데미지 상태일 때 기여도 감소
             CockpitRoomData.CockpitRoomLevel weakedRoomLevelData = roomData.GetTypedRoomData(currentLevel - 1);
@@ -50,13 +48,30 @@ public class CockpitRoom : Room<CockpitRoomData, CockpitRoomData.CockpitRoomLeve
             contributions[ShipStat.FuelEfficiency] = weakedRoomLevelData.fuelEfficiency;
             contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
         }
-        else
+
+        if (workingCrew != null)
         {
-            // 심각한 데미지 상태일 때 비활성화
-            isActive = false;
+            float crewBonus = workingCrew.GetCrewSkillValue()[SkillType.PilotSkill];
+            contributions[ShipStat.DodgeChance] *= crewBonus;
+            contributions[ShipStat.FuelEfficiency] *= crewBonus;
         }
 
         return contributions;
+    }
+
+    /// <summary>
+    /// 선원이 작업을 해도 되냐고 물어보고 되면 workingCrew로 할당해주고 아님 말고
+    /// </summary>
+    /// <param name="crew"></param>
+    /// <returns></returns>
+    public override bool CanITouch(CrewMember crew)
+    {
+        if (crew.GetCrewSkillValue().ContainsKey(SkillType.PilotSkill) && workingCrew ==null)
+        {
+            workingCrew = crew;
+            return true;
+        }
+        return false;
     }
 
     /// <summary>

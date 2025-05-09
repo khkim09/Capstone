@@ -16,6 +16,7 @@ public class AmmunitionRoom : Room<AmmunitionRoomData, AmmunitionRoomData.Ammuni
 
         // 방 타입 설정
         roomType = RoomType.Ammunition;
+        workDirection=Vector2Int.up;
     }
 
     /// <summary>
@@ -41,29 +42,45 @@ public class AmmunitionRoom : Room<AmmunitionRoomData, AmmunitionRoomData.Ammuni
         }
         else
         {
-            if (currentHitPoints < GetMaxHitPoints())
+            if (damageCondition == DamageLevel.good)
             {
-                float healthRate = GetHealthPercentage();
-
-
-                if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
-                {
-                    AmmunitionRoomData.AmmunitionRoomLevel weakedRoomLevelData =
-                        roomData.GetTypedRoomData(currentLevel - 1);
-                    contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
-                    contributions[ShipStat.ReloadTimeBonus] = weakedRoomLevelData.reloadTimeBonus;
-                    contributions[ShipStat.DamageBonus] = weakedRoomLevelData.damageBonus;
-                }
-                else if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
-                {
-                    isActive = false;
-                }
+                contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
+                contributions[ShipStat.ReloadTimeBonus] = currentRoomLevelData.reloadTimeBonus;
+                contributions[ShipStat.DamageBonus] = currentRoomLevelData.damageBonus;
+            }
+            else if (damageCondition == DamageLevel.scratch)
+            {
+                AmmunitionRoomData.AmmunitionRoomLevel weakedRoomLevelData =
+                    roomData.GetTypedRoomData(currentLevel - 1);
+                contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
+                contributions[ShipStat.ReloadTimeBonus] = weakedRoomLevelData.reloadTimeBonus;
+                contributions[ShipStat.DamageBonus] = weakedRoomLevelData.damageBonus;
             }
         }
 
+        if(workingCrew!=null)
+        {
+            float crewBonus = workingCrew.GetCrewSkillValue()[SkillType.AmmunitionSkill];
+            contributions[ShipStat.ReloadTimeBonus] *= crewBonus;
+            contributions[ShipStat.DamageBonus] *= crewBonus;
+        }
         return contributions;
     }
 
+    /// <summary>
+    /// 선원이 작업을 해도 되냐고 물어보고 되면 workingCrew로 할당해주고 아님 말고
+    /// </summary>
+    /// <param name="crew"></param>
+    /// <returns></returns>
+    public override bool CanITouch(CrewMember crew)
+    {
+        if (crew.GetCrewSkillValue().ContainsKey(SkillType.AmmunitionSkill) && workingCrew ==null)
+        {
+            workingCrew = crew;
+            return true;
+        }
+        return false;
+    }
 
     /// <summary>
     /// 탄약고가 데미지를 받을 때 호출됩니다.

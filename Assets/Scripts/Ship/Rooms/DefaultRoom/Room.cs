@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
@@ -13,7 +14,6 @@ using Random = UnityEngine.Random;
 /// </summary>
 public abstract class Room : MonoBehaviour, IShipStatContributor
 {
-
 /// <summary>방의 데이터 ScriptableObject 참조.</summary>
     [SerializeField] protected RoomData roomData;
 
@@ -55,7 +55,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     public List<CrewBase> crewInRoom = new();
 
     /// <summary>방이 활성화되어 있는지 여부.</summary>
-    protected bool isActive = true;
+    public bool isActive = true;
 
     /// <summary>전력이 공급되고 있는지 여부.</summary>
     protected bool isPowered;
@@ -67,7 +67,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     protected SpriteRenderer roomRenderer; // 방 렌더러
 
     /// <summary>소속된 Ship 참조.</summary>
-    protected Ship parentShip;
+    public Ship parentShip;
 
     /// <summary>
     /// 선원이 점유하고 있는 tile
@@ -737,15 +737,31 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     public virtual void TakeDamage(float damage)
     {
         currentHitPoints = Mathf.Max(0, currentHitPoints - damage);
-        if (currentHitPoints <= 0) OnDisabled();
         //피해발생 이후에 현재 체력에 따라 시설의 피해 단계를 변화시킨다.
         if (currentHitPoints <= roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
+        {
             damageCondition = DamageLevel.breakdown;
+            OnDisabled();
+        }
         else if(currentHitPoints<=roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
             damageCondition = DamageLevel.scratch;
 
         // 스탯 기여도 변화 알림
         NotifyStateChanged();
+    }
+
+    public virtual void DownDamageContidion()
+    {
+        float damage = 0;
+        if (damageCondition == DamageLevel.good)
+        {
+            damage=currentHitPoints-roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne];
+        }
+        else if (damageCondition == DamageLevel.scratch)
+        {
+            damage=currentHitPoints-roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo];
+        }
+        TakeDamage(damage);
     }
 
     /// <summary>지정된 양만큼 체력을 회복시킵니다.</summary>
@@ -778,6 +794,32 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         // 스탯 기여도 변화 알림
         NotifyStateChanged();
     }
+
+    #region work
+    public Vector2Int workDirection;
+
+    [SerializeField] private CrewMember _workingCrew;
+
+    public CrewMember workingCrew
+    {
+        get { return _workingCrew; }
+        set
+        {
+            _workingCrew = value;
+            if (parentShip != null)
+            {
+                parentShip.RecalculateAllStats();
+            }
+        }
+    }
+
+    public virtual bool CanITouch(CrewMember crew)
+    {
+        return false;
+    }
+
+    #endregion
+
 }
 
 /// <summary>
@@ -916,9 +958,6 @@ public abstract class Room<TData, TLevel> : Room
                     $"Failed to add door at position {doorPos.position} with direction {doorPos.direction} for room {name}");
         */
     }
-
-
-
 }
 
 public enum DamageLevel
