@@ -11,8 +11,7 @@ public class EquipmentUIHandler : MonoBehaviour
     /// <summary>
     /// 장비 구매 팝업 패널입니다.
     /// </summary>
-    [Header("Tip Panel References")]
-    public GameObject itemBuyPanel;
+    [Header("Tip Panel References")] public GameObject itemBuyPanel;
 
     /// <summary>
     /// 보유 중인 전체 선원 나타내는 패널
@@ -98,7 +97,7 @@ public class EquipmentUIHandler : MonoBehaviour
     /// <summary>
     /// 아직 선원에게 적용시키지 않은 장비 목록
     /// </summary>
-    public HashSet<EquipmentItem> unUsedItems = new HashSet<EquipmentItem>();
+    public HashSet<EquipmentItem> unUsedItems = new();
 
     /// <summary>
     /// 장비 착용할 선택된 선원
@@ -175,7 +174,7 @@ public class EquipmentUIHandler : MonoBehaviour
     /// <summary>
     /// 생성된 장비 적용 태그 추적 리스트
     /// </summary>
-    private List<GameObject> activeAppliedTags = new List<GameObject>();
+    private List<GameObject> activeAppliedTags = new();
 
     [Header("Stat Comparison")]
     /// <summary>
@@ -217,7 +216,7 @@ public class EquipmentUIHandler : MonoBehaviour
     private void OnEnable()
     {
         // 보유 재화량 업데이트
-        currentCurrency = (int)ResourceManager.Instance.GetResource(ResourceType.COMA);
+        currentCurrency = (int)ResourceManager.Instance.COMA;
     }
 
     /// <summary>
@@ -355,6 +354,7 @@ public class EquipmentUIHandler : MonoBehaviour
                 activeAppliedTags.Add(tag);
             }
         }
+
         crewDetailPanel.SetActive(false);
     }
 
@@ -480,7 +480,7 @@ public class EquipmentUIHandler : MonoBehaviour
     /// <returns></returns>
     private string FormatDiff(float diff)
     {
-        return (int)diff == 0 ? "±0" : (diff > 0 ? $"+{diff}" : diff.ToString());
+        return (int)diff == 0 ? "±0" : diff > 0 ? $"+{diff}" : diff.ToString();
     }
 
     /// <summary>
@@ -503,9 +503,20 @@ public class EquipmentUIHandler : MonoBehaviour
         isPendingRemoval = true;
     }
 
-    public void OnClickUnEquipWeaponSlot() => OnClickPendingUnEquip(EquipmentType.WeaponEquipment);
-    public void OnClickUnEquipShieldSlot() => OnClickPendingUnEquip(EquipmentType.ShieldEquipment);
-    public void OnClickUnEquipAssistantSlot() => OnClickPendingUnEquip(EquipmentType.AssistantEquipment);
+    public void OnClickUnEquipWeaponSlot()
+    {
+        OnClickPendingUnEquip(EquipmentType.WeaponEquipment);
+    }
+
+    public void OnClickUnEquipShieldSlot()
+    {
+        OnClickPendingUnEquip(EquipmentType.ShieldEquipment);
+    }
+
+    public void OnClickUnEquipAssistantSlot()
+    {
+        OnClickPendingUnEquip(EquipmentType.AssistantEquipment);
+    }
 
     /// <summary>
     /// ok 버튼 눌러 장비를 선원에게 직접 적용 / 해제
@@ -567,7 +578,8 @@ public class EquipmentUIHandler : MonoBehaviour
     {
         detailWeaponImage.sprite = selectedCrew.equippedWeapon != null ? selectedCrew.equippedWeapon.eqIcon : noneIcon;
         detailShieldImage.sprite = selectedCrew.equippedShield != null ? selectedCrew.equippedShield.eqIcon : noneIcon;
-        detailAssistantImage.sprite = selectedCrew.equippedAssistant != null ? selectedCrew.equippedAssistant.eqIcon : noneIcon;
+        detailAssistantImage.sprite =
+            selectedCrew.equippedAssistant != null ? selectedCrew.equippedAssistant.eqIcon : noneIcon;
 
         EquipmentStats currentStats = selectedCrew.GetCombinedStats();
         baseStatsText.text = currentStats.ToString();
@@ -582,10 +594,8 @@ public class EquipmentUIHandler : MonoBehaviour
     {
         // 모든 선원 apply tag 삭제
         foreach (GameObject tag in activeAppliedTags)
-        {
             if (tag != null)
                 Destroy(tag);
-        }
 
         activeAppliedTags.Clear();
         allCrewPanel.SetActive(false);
