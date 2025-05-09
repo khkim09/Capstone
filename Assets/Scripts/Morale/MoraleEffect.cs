@@ -42,5 +42,41 @@ public class MoraleEffect : MonoBehaviour
 
     public void Initialize()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        string spritePath = "Sprites/UI/";
+        string change = "";
+
+        if (value >= 0)
+            change = "up";
+        else
+            change = "down";
+
+        switch (targetRace)
+        {
+            case CrewRace.None:
+                break;
+            case CrewRace.Human:
+                spritePath += "human_";
+                break;
+            case CrewRace.Amorphous:
+                spritePath += "amorphous_";
+                break;
+            case CrewRace.Beast:
+                spritePath += "beast_";
+                break;
+            case CrewRace.Insect:
+                spritePath += "insect_";
+                break;
+            case CrewRace.MechanicTank:
+            case CrewRace.MechanicSup:
+                spritePath += "mechanic_";
+                break;
+        }
+
+        spritePath += change;
+
+
+        spriteRenderer.sprite = Resources.Load<Sprite>(spritePath);
     }
 }

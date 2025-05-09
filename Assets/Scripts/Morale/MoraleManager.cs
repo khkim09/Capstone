@@ -40,6 +40,11 @@ public class MoraleManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+
+    private void Start()
+    {
+    }
+
     private void OnEnable()
     {
         if (GameManager.Instance != null)
@@ -149,12 +154,12 @@ public class MoraleManager : MonoBehaviour
     {
         if (effect.targetRace == CrewRace.None)
         {
-            float newMorale = Instance.globalMorale + effect.value;
+            float newMorale = globalMorale + effect.value;
             SetAllCrewMorale(newMorale);
         }
         else
         {
-            float current = Instance.GetRaceMorale(effect.targetRace);
+            float current = GetRaceMorale(effect.targetRace);
             SetRaceMorale(effect.targetRace, current + effect.value);
         }
     }
@@ -203,7 +208,7 @@ public class MoraleManager : MonoBehaviour
         }
         else
         {
-            float current = Instance.GetRaceMorale(effect.targetRace);
+            float current =GetRaceMorale(effect.targetRace);
             SetRaceMorale(effect.targetRace, current - effect.value);
         }
     }
