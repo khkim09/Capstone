@@ -14,6 +14,20 @@ public class EquipmentManager : MonoBehaviour
 
     public EquipmentDatabase equipmentDatabase;
 
+    /// <summary>
+    /// 기본 장착 무기 장비
+    /// </summary>
+    public EquipmentItem defaultWeapon;
+
+    /// <summary>
+    /// 기본 장착 방어구 장비
+    /// </summary>
+    public EquipmentItem defaultShield;
+
+    /// <summary>
+    /// 기본 장착 보조 장비
+    /// </summary>
+    public EquipmentItem defaultAssistant;
 
     /// <summary>
     /// UI에서 선택 가능한 전역 장비 목록입니다. (무기, 방어구 등)
@@ -57,19 +71,24 @@ public class EquipmentManager : MonoBehaviour
     /// <param name="eqItem">구매한 장비 아이템.</param>
     public void PurchaseAndEquipPersonal(CrewBase crew, EquipmentItem eqItem)
     {
-        if (eqItem.isGlobalEquip)
-            return;
-
         crew.ApplyPersonalEquipment(eqItem);
     }
 
-    // 장비 타입별로 필터링하는 유틸리티 메소드
+    /// <summary>
+    /// 장비 타입별로 필터링하는 유틸리티 메소드
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
     public List<EquipmentItem> GetEquipmentsByType(EquipmentType type)
     {
         return equipmentDatabase.GetEquipmentsByType(type);
     }
 
-    // 이름으로 장비 찾기
+    /// <summary>
+    /// 이름으로 장비 찾기
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
     public EquipmentItem GetEquipmentByName(string name)
     {
         return equipmentDatabase.GetEquipmentByName(name);
@@ -78,5 +97,21 @@ public class EquipmentManager : MonoBehaviour
     public EquipmentItem GetEquipmentByTypeAndId(EquipmentType type, int id)
     {
         return equipmentDatabase.GetEquipmentByTypeAndId(type, id);
+    }
+
+    /// <summary>
+    /// 기본 장비 반환
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public EquipmentItem GetDefaultEquipment(EquipmentType type)
+    {
+        return type switch
+        {
+            EquipmentType.WeaponEquipment => defaultWeapon,
+            EquipmentType.ShieldEquipment => defaultShield,
+            EquipmentType.AssistantEquipment => defaultAssistant,
+            _ => null
+        };
     }
 }

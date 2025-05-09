@@ -119,6 +119,11 @@ public class CrewFactory : MonoBehaviour
             crew.isAlive = true;
             crew.isMoving = false;
 
+            // 기본 장비 착용
+            crew.equippedWeapon = EquipmentManager.Instance.defaultWeapon;
+            crew.equippedShield = EquipmentManager.Instance.defaultShield;
+            crew.equippedAssistant = EquipmentManager.Instance.defaultAssistant;
+
             // 스킬 딕셔너리 초기화
             if (crew.skills == null)
                 crew.skills = new Dictionary<SkillType, float>();

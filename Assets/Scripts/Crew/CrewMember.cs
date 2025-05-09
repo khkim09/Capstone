@@ -283,4 +283,91 @@ public class CrewMember : CrewBase
         return Vector3.zero + new Vector3((gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
             (gridPos.y + 0.5f) * GridConstants.CELL_SIZE, 0f);
     }
+
+    /// <summary>
+    /// 현재 선원의 스텟 반환
+    /// </summary>
+    /// <returns></returns>
+    public EquipmentStats GetCombinedStats()
+    {
+        EquipmentStats total = new EquipmentStats();
+
+        total.health = health;
+        total.attack = attack;
+        total.defense = defense;
+        total.pilotSkill = skills[SkillType.PilotSkill];
+        total.engineSkill = skills[SkillType.EngineSkill];
+        total.powerSkill = skills[SkillType.PowerSkill];
+        total.shieldSkill = skills[SkillType.ShieldSkill];
+        total.weaponSkill = skills[SkillType.WeaponSkill];
+        total.ammunitionSkill = skills[SkillType.AmmunitionSkill];
+        total.medbaySkill = skills[SkillType.MedBaySkill];
+        total.repairSkill = skills[SkillType.RepairSkill];
+
+        return total;
+    }
+
+    /// <summary>
+    /// 새로운 장비 착용 시뮬레이션
+    /// </summary>
+    /// <param name="newItem"></param>
+    /// <returns></returns>
+    public EquipmentStats GetStatsIfEquipped(EquipmentItem newItem)
+    {
+        // 현재 스텟 복사
+        EquipmentStats result = GetCombinedStats();
+
+        // 새 장비 타입에 따라 기존 장비 효과 제거 후 새 장비 효과 적용 시뮬레이션
+        if (newItem.eqType == EquipmentType.WeaponEquipment)
+        {
+            if (equippedWeapon != null)
+            {
+                result.health -= equippedWeapon.eqHealthBonus;
+                result.attack -= equippedWeapon.eqAttackBonus;
+                result.defense -= equippedWeapon.eqDefenseBonus;
+            }
+
+            result.health += newItem.eqHealthBonus;
+            result.attack += newItem.eqAttackBonus;
+            result.defense += newItem.eqDefenseBonus;
+        }
+        else if (newItem.eqType == EquipmentType.ShieldEquipment)
+        {
+            if (equippedShield != null)
+            {
+                result.health -= equippedShield.eqHealthBonus;
+                result.attack -= equippedShield.eqAttackBonus;
+                result.defense -= equippedShield.eqDefenseBonus;
+            }
+
+            result.health += newItem.eqHealthBonus;
+            result.attack += newItem.eqAttackBonus;
+            result.defense += newItem.eqDefenseBonus;
+        }
+        else if (newItem.eqType == EquipmentType.AssistantEquipment)
+        {
+            if (equippedAssistant != null)
+            {
+                result.pilotSkill -= equippedAssistant.eqAdditionalPilotSkill;
+                result.engineSkill -= equippedAssistant.eqAdditionalEngineSkill;
+                result.powerSkill -= equippedAssistant.eqAdditionalPowerSkill;
+                result.shieldSkill -= equippedAssistant.eqAdditionalShieldSkill;
+                result.weaponSkill -= equippedAssistant.eqAdditionalWeaponSkill;
+                result.ammunitionSkill -= equippedAssistant.eqAdditionalAmmunitionSkill;
+                result.medbaySkill -= equippedAssistant.eqAdditionalMedBaySkill;
+                result.repairSkill -= equippedAssistant.eqAdditionalRepairSkill;
+            }
+
+            result.pilotSkill += newItem.eqAdditionalPilotSkill;
+            result.engineSkill += newItem.eqAdditionalEngineSkill;
+            result.powerSkill += newItem.eqAdditionalPowerSkill;
+            result.shieldSkill += newItem.eqAdditionalShieldSkill;
+            result.weaponSkill += newItem.eqAdditionalWeaponSkill;
+            result.ammunitionSkill += newItem.eqAdditionalAmmunitionSkill;
+            result.medbaySkill += newItem.eqAdditionalMedBaySkill;
+            result.repairSkill += newItem.eqAdditionalRepairSkill;
+        }
+
+        return result;
+    }
 }
