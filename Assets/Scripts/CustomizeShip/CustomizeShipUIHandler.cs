@@ -1,5 +1,5 @@
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -81,6 +81,16 @@ public class CustomizeShipUIHandler : MonoBehaviour
     private int totalBPCost = 0;
 
     /// <summary>
+    /// build 빨간색 처리 코루틴
+    /// </summary>
+    private Coroutine flashCoroutine;
+
+    /// <summary>
+    /// 버튼 기본 색상 저장
+    /// </summary>
+    private Color? originButtonColor = null;
+
+    /// <summary>
     /// 현재 설계도의 가격 지속 갱신
     /// 설계도로 함선 교체 가능 조건
     /// 1. (설계도 가격 - 기존 함선 가격) <= 보유 재화량
@@ -146,12 +156,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 설계도 함선 무기 호출, 배치
         GetSavedWeaponRooms();
 
-
         // 카메라 - 설계도 함선 기준으로 세팅
         CenterCameraToBP();
-
-        // 선원 임시 비활성화
-        DisableCrews();
 
         // 외갑판 임시 비활성화
         playerShip.ClearExistingHulls();
@@ -175,9 +181,6 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
         // 카메라 - 기존 함선 기준으로 복구
         ResetCameraToOriginShip();
-
-        // 선원 활성화
-        EnableCrews();
 
         // 외갑판 활성화
         playerShip.UpdateOuterHullVisuals();
@@ -328,6 +331,12 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
             // 기존 선원 복원
             playerShip.CrewSystem.RevertOriginalCrews(playerShip.backupCrewDatas);
+
+            // build 버튼 색상 일시적 빨간색
+            if (flashCoroutine != null)
+                StopCoroutine(flashCoroutine);
+
+            flashCoroutine = StartCoroutine(FlashBuildButtonColor(new Color(1, 0, 0, 0.5f), 2f));
         }
         else
         {
@@ -369,5 +378,30 @@ public class CustomizeShipUIHandler : MonoBehaviour
     {
         targetBlueprintShip.ClearRooms();
         gridPlacer.occupiedGridTiles = new HashSet<Vector2Int>();
+    }
+
+    /// <summary>
+    /// 유효성 검사 실패 시 build button 일시적 빨간색
+    /// </summary>
+    /// <param name="flashColor"></param>
+    /// <param name="duration"></param>
+    /// <returns></returns>
+    private IEnumerator FlashBuildButtonColor(Color flashColor, float duration)
+    {
+        Image buttonImage = buildButton.GetComponent<Image>();
+        if (buttonImage == null)
+            yield break;
+
+        if (originButtonColor == null)
+            originButtonColor = buttonImage.color;
+
+        buttonImage.color = flashColor;
+
+        yield return new WaitForSeconds(duration);
+
+        if (originButtonColor.HasValue)
+            buttonImage.color = originButtonColor.Value;
+
+        flashCoroutine = null;
     }
 }

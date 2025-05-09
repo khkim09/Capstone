@@ -268,11 +268,25 @@ public class EventManager : MonoBehaviour
         // 현재 게임 상태 정보 가져오기
         int currentYear = GameManager.Instance.CurrentYear;
         int currentCOMA = ResourceManager.Instance.COMA;
+        float currentFuel = ResourceManager.Instance.Fuel;
         List<CrewRace> availableRaces = GetAvailableCrewRaces();
+
+        // 기계형 선원 처리 - 한 종류만 있어도 두 종류 모두 있는 것으로 취급
+        bool hasMechanicType = availableRaces.Contains(CrewRace.MechanicTank) ||
+                               availableRaces.Contains(CrewRace.MechanicSup);
+        if (hasMechanicType)
+        {
+            // 둘 다 없는 경우에만 추가
+            if (!availableRaces.Contains(CrewRace.MechanicTank))
+                availableRaces.Add(CrewRace.MechanicTank);
+
+            if (!availableRaces.Contains(CrewRace.MechanicSup))
+                availableRaces.Add(CrewRace.MechanicSup);
+        }
 
         // 조건에 맞는 이벤트 필터링
         List<RandomEvent> filteredEvents =
-            eventDatabase.GetFilteredEvents(type, currentYear, currentCOMA, availableRaces);
+            eventDatabase.GetFilteredEvents(type, currentYear, currentCOMA, currentFuel, availableRaces);
 
         // 최근에 발생한 이벤트 제외
         filteredEvents = filteredEvents.Where(evt => !recentEventIds.Contains(evt.eventId)).ToList();
@@ -298,7 +312,10 @@ public class EventManager : MonoBehaviour
 
         // 중복 제거한 종족 목록
         HashSet<CrewRace> races = new();
-        foreach (CrewMember member in crew) races.Add(member.race);
+        foreach (CrewMember member in crew)
+            // None은 제외
+            if (member.race != CrewRace.None)
+                races.Add(member.race);
 
         return races.ToList();
     }

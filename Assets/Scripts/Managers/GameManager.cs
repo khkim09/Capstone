@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -18,20 +19,16 @@ public class GameManager : MonoBehaviour
     private Ship currentEnemyShip;
 
     /// <summary>
-    /// 날짜 변경 이벤트 델리게이트입니다.
-    /// </summary>
-    public delegate void DayChangedHandler(int newDay);
-
-    /// <summary>
     /// 게임 상태 변경 이벤트 델리게이트입니다.
     /// </summary>
     public delegate void GameStateChangedHandler(GameState newState);
 
+    public event Action<int> OnYearChanged;
+
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     /// <summary>
@@ -92,11 +89,6 @@ public class GameManager : MonoBehaviour
     /// 게임 상태 변경 시 호출되는 이벤트입니다.
     /// </summary>
     public event GameStateChangedHandler OnGameStateChanged;
-
-    /// <summary>
-    /// 날짜 변경 시 호출되는 이벤트입니다.
-    /// </summary>
-    public event DayChangedHandler OnDayChanged;
 
     private void OnLanguageChanged(SystemLanguage newLanguage)
     {
@@ -212,62 +204,46 @@ public class GameManager : MonoBehaviour
 
     /// <summary>
     /// 워프 실행 시 1년을 경과시키고, 관련 효과나 이벤트를 처리합니다.
-    /// 불가사의 지속 효과 갱신을 포함합니다.
     /// </summary>
-    public void AddYearByWarp()
+    public void AddYear()
     {
         currentYear++;
-
-        // 워프로 인한 이벤트 처리
-        // EventManager.Instance.TriggerYearlyWarpEvent();
-
-        EventMoraleEffectManager.Instance.CheckEventExpirations(currentYear); // 불가사의 지속 기간 체크
-
+        OnYearChanged?.Invoke(currentYear);
         Debug.Log($"[워프 완료] 현재 연도 : {currentYear}");
     }
 
     public void ForSerializeTest()
     {
-        // Room room1 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Cockpit, 1);
-        // Room room2 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Engine, 1);
-        // Room room3 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Power, 1);
-        // Room room4 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Teleporter, 1);
-        // Room room5 = GameObjectFactory.Instance.RoomFactory.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Basic);
-        // Room room6 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Corridor, 1);
-        // Room room7 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Corridor, 1);
-        // Room room8 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Corridor, 1);
-        //
-        // playerShip.AddRoom(room1, new Vector2Int(30, 33), RotationConstants.Rotation.Rotation0);
-        // playerShip.AddRoom(room2, new Vector2Int(26, 32), RotationConstants.Rotation.Rotation0);
-        // playerShip.AddRoom(room3, new Vector2Int(28, 34), RotationConstants.Rotation.Rotation90);
-        // playerShip.AddRoom(room4, new Vector2Int(31, 32), RotationConstants.Rotation.Rotation180);
-        // playerShip.AddRoom(room5, new Vector2Int(29, 28), RotationConstants.Rotation.Rotation270);
-        // playerShip.AddRoom(room6, new Vector2Int(28, 32), RotationConstants.Rotation.Rotation0);
-        // playerShip.AddRoom(room7, new Vector2Int(29, 32), RotationConstants.Rotation.Rotation0);
-        // playerShip.AddRoom(room8, new Vector2Int(30, 32), RotationConstants.Rotation.Rotation0);
+        Room room1 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Cockpit, 1);
+        Room room2 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Engine, 1);
+        Room room3 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Power, 1);
+        Room room4 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Teleporter, 1);
+        Room room5 = GameObjectFactory.Instance.RoomFactory.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Basic);
+        Room room6 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Corridor, 1);
+        Room room7 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Corridor, 1);
+        Room room8 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Corridor, 1);
 
-        // Room room2 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Power, 3);
-        // Room room3 = GameObjectFactory.Instance.RoomFactory.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Big);
-        //
-        // Room room1 =
-        //     GameObjectFactory.Instance.RoomFactory.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
-        //
-        // playerShip.AddRoom(room2, new Vector2Int(0, 0), RotationConstants.Rotation.Rotation0);
-        // playerShip.AddRoom(room3, new Vector2Int(4, 1), RotationConstants.Rotation.Rotation90);
-        // playerShip.AddRoom(room1, new Vector2Int(-4, -1), RotationConstants.Rotation.Rotation0);
-        //
+        playerShip.AddRoom(room1, new Vector2Int(30, 33), RotationConstants.Rotation.Rotation0);
+        playerShip.AddRoom(room2, new Vector2Int(26, 32), RotationConstants.Rotation.Rotation0);
+        playerShip.AddRoom(room3, new Vector2Int(28, 34), RotationConstants.Rotation.Rotation90);
+        playerShip.AddRoom(room4, new Vector2Int(31, 32), RotationConstants.Rotation.Rotation180);
+        playerShip.AddRoom(room5, new Vector2Int(29, 28), RotationConstants.Rotation.Rotation270);
+        playerShip.AddRoom(room6, new Vector2Int(28, 32), RotationConstants.Rotation.Rotation0);
+        playerShip.AddRoom(room7, new Vector2Int(29, 32), RotationConstants.Rotation.Rotation0);
+        playerShip.AddRoom(room8, new Vector2Int(30, 32), RotationConstants.Rotation.Rotation0);
+
         // ShipWeapon newWeapon = playerShip.AddWeapon(0, new Vector2Int(3, -1), ShipWeaponAttachedDirection.North);
         // ShipWeapon newWeapon2 = playerShip.AddWeapon(6, new Vector2Int(-2, -1), ShipWeaponAttachedDirection.East);
         // ShipWeapon newWeapon3 = playerShip.AddWeapon(10, new Vector2Int(6, 2), ShipWeaponAttachedDirection.North);
         //
         //
-        // CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        // CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
-        // CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
-        //
-        // if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
-        // if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
-        // if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
+        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
+        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
+
+        if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
+        if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
+        if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
         //
         //
         // TradingItem tradingItem = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(2, 1);

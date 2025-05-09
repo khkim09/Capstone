@@ -85,20 +85,6 @@ public class EquipmentButton : MonoBehaviour
     }
 
     /// <summary>
-    /// 구매 후 구매를 했음을 알 수 있도록 표시
-    /// </summary>
-    /// <param name="purchasedColor"></param>
-    public void MarkAsPurchased(Color purchasedColor)
-    {
-        ColorBlock cb = myButton.colors;
-        cb.normalColor = purchasedColor;
-        cb.highlightedColor = purchasedColor;
-        cb.pressedColor = purchasedColor * 0.9f;
-        cb.selectedColor = purchasedColor;
-        myButton.colors = cb;
-    }
-
-    /// <summary>
     /// 다시 처음과 같은 상태로 되돌림림
     /// </summary>
     /// <param name="defaultColor"></param>

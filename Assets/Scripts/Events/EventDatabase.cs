@@ -207,7 +207,8 @@ public class EventDatabase : ScriptableObject
     /// <param name="coma">현재 COMA</param>
     /// <param name="availableRaces">보유 중인 선원 종족 목록</param>
     /// <returns>조건에 맞는 이벤트 목록</returns>
-    public List<RandomEvent> GetFilteredEvents(EventType type, int year, int coma, List<CrewRace> availableRaces)
+    public List<RandomEvent> GetFilteredEvents(EventType type, int year, int coma, float fuel,
+        List<CrewRace> availableRaces)
     {
         // 기본 필터: 타입 + 년도 + COMA
         List<RandomEvent> filteredEvents = allEvents.Where(evt =>
@@ -237,9 +238,9 @@ public class EventDatabase : ScriptableObject
     /// <param name="coma">현재 COMA</param>
     /// <param name="availableRaces">보유 중인 선원 종족 목록</param>
     /// <returns>선택된 랜덤 이벤트 또는 null</returns>
-    public RandomEvent GetRandomEvent(EventType type, int year, int coma, List<CrewRace> availableRaces)
+    public RandomEvent GetRandomEvent(EventType type, int year, int coma, float fuel, List<CrewRace> availableRaces)
     {
-        List<RandomEvent> filteredEvents = GetFilteredEvents(type, year, coma, availableRaces);
+        List<RandomEvent> filteredEvents = GetFilteredEvents(type, year, coma, fuel, availableRaces);
 
         if (filteredEvents.Count == 0)
             return null;

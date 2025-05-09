@@ -19,6 +19,7 @@ public class RandomEventEditor : Editor
     private SerializedProperty debugNameProp;
     private SerializedProperty minimumYearProp;
     private SerializedProperty minimumCOMAProp;
+    private SerializedProperty minimumFuelProp;
     private SerializedProperty requiredCrewRaceProp;
     private bool[] outcomeFoldouts;
     private CrewRace[] allCrewRace;
@@ -39,6 +40,7 @@ public class RandomEventEditor : Editor
         outcomeTypeProp = serializedObject.FindProperty("outcomeType");
         minimumYearProp = serializedObject.FindProperty("minimumYear");
         minimumCOMAProp = serializedObject.FindProperty("minimumCOMA");
+        minimumFuelProp = serializedObject.FindProperty("minimumFuel");
         choicesProp = serializedObject.FindProperty("choices");
         requiredCrewRaceProp = serializedObject.FindProperty("requiredCrewRace");
 
@@ -134,6 +136,8 @@ public class RandomEventEditor : Editor
         EditorGUILayout.PropertyField(minimumYearProp, new GUIContent("최소 발생 년도"));
 
         EditorGUILayout.PropertyField(minimumCOMAProp, new GUIContent("최소 필요 COMA"));
+
+        EditorGUILayout.PropertyField(minimumFuelProp, new GUIContent("최소 필요 연료"));
 
         EditorGUILayout.Space(10);
         showRequiredCrewFoldout = EditorGUILayout.Foldout(showRequiredCrewFoldout, "필요한 선원 종족", true);
