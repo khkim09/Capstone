@@ -157,12 +157,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
         // 설계도 함선 무기 호출, 배치
         GetSavedWeaponRooms();
 
-
         // 카메라 - 설계도 함선 기준으로 세팅
         CenterCameraToBP();
-
-        // 선원 임시 비활성화
-        DisableCrews();
 
         // 외갑판 임시 비활성화
         playerShip.ClearExistingHulls();
@@ -186,9 +182,6 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
         // 카메라 - 기존 함선 기준으로 복구
         ResetCameraToOriginShip();
-
-        // 선원 활성화
-        EnableCrews();
 
         // 외갑판 활성화
         playerShip.UpdateOuterHullVisuals();

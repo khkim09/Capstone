@@ -7,7 +7,8 @@ public enum EquipmentType
 {
     WeaponEquipment, // 무기 - 모든 선원 적용
     ShieldEquipment, // 방어구 - 모든 선원 적용
-    AssistantEquipment // 보조 장치 - 개별 선원 적용
+    AssistantEquipment, // 보조 장치 - 개별 선원 적용
+    None
 }
 
 /// <summary>

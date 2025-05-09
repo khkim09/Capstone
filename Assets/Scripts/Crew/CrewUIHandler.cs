@@ -42,8 +42,8 @@ public class CrewUIHandler : MonoBehaviour
     /// <summary>
     /// 장비 UI 핸들러 참조입니다.
     /// </summary>
-    [Header("Equipment UI Handler")] public EquipmentUIHandler equipmentUIHandler;
-
+    [Header("Equipment UI Handler")]
+    public EquipmentUIHandler equipmentUIHandler;
 
     /// <summary>
     /// 선원 이름 입력 필드입니다.
@@ -113,6 +113,11 @@ public class CrewUIHandler : MonoBehaviour
     /// 뒤로 가기 기능에 사용됩니다.
     /// </summary>
     private Stack<GameObject> uiHistory = new(); // stack 구조
+
+    /// <summary>
+    /// 유저 함선
+    /// </summary>
+    public Ship playerShip;
 
     /// <summary>
     /// 싱글턴 인스턴스를 초기화합니다.
@@ -191,7 +196,7 @@ public class CrewUIHandler : MonoBehaviour
         if (uiHistory.Count > 0)
         {
             GameObject currentUI = GetCurrentActiveUI();
-            if (currentUI)
+            if (currentUI != null)
             {
                 if (currentUI == addEquipmentUIScreen)
                     ResetEquipmentUI();
@@ -200,6 +205,8 @@ public class CrewUIHandler : MonoBehaviour
 
             GameObject previousUI = uiHistory.Pop();
             previousUI.SetActive(true);
+            if (previousUI == mainUIScreen)
+                EnableCrews();
         }
     }
 
@@ -223,16 +230,9 @@ public class CrewUIHandler : MonoBehaviour
     /// </summary>
     public void OnCustomizeButtonClicked()
     {
-        ShowUI(customizeShipUIScreen);
-    }
+        DisableCrews();
 
-    /// <summary>
-    /// 함선 커스터마이즈 취소 버튼 클릭 시 호출
-    /// </summary>
-    public void OnCancelButtonClicked()
-    {
-        customizeShipUIScreen.SetActive(false);
-        mainUIScreen.SetActive(true);
+        ShowUI(customizeShipUIScreen);
     }
 
     /// <summary>
@@ -251,6 +251,8 @@ public class CrewUIHandler : MonoBehaviour
     /// </summary>
     private void ActiveFullCrewUI()
     {
+        DisableCrews();
+
         fullCrewUIScreen.SetActive(true);
     }
 
@@ -260,6 +262,36 @@ public class CrewUIHandler : MonoBehaviour
     private void InActiveFullCrewUI()
     {
         fullCrewUIScreen.SetActive(false);
+
+        EnableCrews();
+    }
+
+    /// <summary>
+    /// UI 진입 시 선원 임시 비활성화
+    /// </summary>
+    private void DisableCrews()
+    {
+        List<CrewMember> crews = playerShip.allCrews;
+
+        foreach (CrewMember crew in crews)
+        {
+            if (crew != null)
+                crew.gameObject.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// UI 탈출 시 선원 재활성화
+    /// </summary>
+    private void EnableCrews()
+    {
+        List<CrewMember> crews = playerShip.allCrews;
+
+        foreach (CrewMember crew in crews)
+        {
+            if (crew != null)
+                crew.gameObject.SetActive(true);
+        }
     }
 
     /// <summary>
@@ -278,6 +310,9 @@ public class CrewUIHandler : MonoBehaviour
             Invoke("InActiveFullCrewUI", 2f);
             return;
         }
+
+        // 선원 임시 비활성화
+        DisableCrews();
 
         ShowUI(createUIScreen);
     }
@@ -301,10 +336,12 @@ public class CrewUIHandler : MonoBehaviour
 
         createUIScreen.SetActive(false);
         mainUIScreen.SetActive(true);
+
+        EnableCrews();
     }
 
     /// <summary>
-    /// 장비 구매를 물어보는 UI 해제
+    /// 장비 구매 물어보는 UI 해제
     /// </summary>
     private void ResetEquipmentUI()
     {
@@ -317,6 +354,8 @@ public class CrewUIHandler : MonoBehaviour
     /// </summary>
     public void OnAddEquipmentButtonClicked()
     {
+        DisableCrews();
+
         ShowUI(addEquipmentUIScreen);
     }
 }

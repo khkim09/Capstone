@@ -120,9 +120,10 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     public Ship currentShip;
 
     /// <summary>스프라이트 렌더러.</summary>
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
+
     /// <summary>
-    /// animator
+    /// 애니메이션 작동 Animator
     /// </summary>
     public Animator animator;
 
@@ -163,30 +164,6 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
 
     }
-
-    /*
-    /// <summary>
-    /// 선원의 위치를 목표 좌표로 갱신하며, 도착 시 방 입장 처리를 합니다.
-    /// </summary>
-    private void UpdateMovement()
-    {
-        // 목표 위치로 이동
-        Vector2Int direction = (targetPosition - position).normalized;
-        position += direction * moveSpeed * Time.deltaTime;
-
-        // 도착 확인
-        if (Vector2.Distance(position, targetPosition) < 0.1f)
-        {
-            position = targetPosition;
-            isMoving = false;
-
-            // 새 방에 도착한 경우 처리
-            if (currentRoom != null)
-                currentRoom.OnCrewEnter(this);
-        }
-    }
-    */
-
 
     /// <summary>
     /// 선원이 현재 위치한 방에 따라 관련 스킬을 자동 향상시킵니다.
@@ -409,7 +386,6 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         return health < maxHealth;
     }
 
-
     /// <summary>
     /// 선원의 숙련도를 반환합니다. 추후 사기 수치 등도 반영 예정입니다.
     /// </summary>
@@ -421,6 +397,8 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         return totalSkills;
     }
+
+    #region 장비
 
     /// <summary>
     /// 장비 효과를 스탯에 반영하거나 제거합니다.
@@ -523,6 +501,8 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         Debug.Log($"{crewName}에 개인 장비 {eqItem.eqName} 적용 완료.");
     }
+
+    #endregion
 
     /// <summary>
     /// 특정 스킬의 현재 레벨을 반환합니다.
