@@ -26,12 +26,12 @@ public class InventoryUI : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        // Storage 컴포넌트를 씬에서 찾거나 직접 할당
-        storage = FindObjectOfType<Storage>();
+        if (storage == null)
+            Object.FindFirstObjectByType<Storage>();
 
-        // 인벤토리 UI 초기화
         PopulateInventory();
     }
+
 
     /// <summary>
     /// Storage에 저장된 모든 아이템을 기반으로 UI를 동적으로 생성합니다.
@@ -57,7 +57,7 @@ public class InventoryUI : MonoBehaviour
             {
                 itemUI.Setup(storedItem);
             }
-            /// 슬롯이 클릭 가능할지 여부를 외부에서 결정할 수 있도록 처리
+            // 슬롯이 클릭 가능할지 여부를 외부에서 결정할 수 있도록 처리
             itemUI.isInteractable = makeInteractable;
         }
     }

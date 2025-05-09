@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// CrewEffect 클래스는 선원(Crew)에게 적용되는 효과를 나타냅니다.
@@ -12,34 +13,46 @@ public class CrewEffect
     /// 효과의 유형을 나타냅니다.
     /// </summary>
     public CrewEffectType effectType;
+
     /// <summary>
-    /// 효과가 적용될 선원의 종족을 나타냅니다.
+    /// 효과가 적용될 선원의 종족을 나타냅니다. None 은 All
     /// </summary>
     public CrewRace raceType;
+
     /// <summary>
-    /// 이 효과로 인해 선원의 건강에 가해지는 변화 값입니다.
-    /// 양수이면 치유 효과, 음수이면 피해 효과를 의미할 수 있습니다.
+    /// 체력, 숙련도, 사기가 변하는 량
     /// </summary>
-    public float healthChange;
+    public float changeAmount;
+
     /// <summary>
     /// 숙련도 종류를 의미합니다.
-    /// None을 누르면 모둔 스킬(구현 예정)을 의미합니다.
     /// </summary>
     public SkillType skill;
+
     /// <summary>
-    /// 이 효과로 인해 선원의 숙련도에 가해지는 변화 값입니다.
-    /// 양수이면 숙련도 증가, 음수이면 숙련도 감소를 의미할 수 있습니다..
+    /// 상태이상 종류를 의미합니다.
     /// </summary>
-    public float skillChange;
+    public CrewStatus status;
+
     /// <summary>
-    /// 이 효과로 인해 선원의 사기에 가해지는 변화 값입니다.
-    /// 양수이면 사기 증가, 음수이면 사기 감소를 의미할 수 있습니다.
+    /// 이벤트 지속 조건. 탈출 조건.
     /// </summary>
-    public MoraleEffect moralChange;
+    public PersistenceCondition persistenceCondition;
+
     /// <summary>
-    /// 효과 적용 후 선원의 상태를 나타냅니다.
+    /// 이벤트 조건 관련 데이터. 특정 행성 돌입이면 행성 타입. 특정 재화를 모아야되면 재화타입 등등
     /// </summary>
-    public CrewStatus statusEffect;
+    public string conditionData;
+
+    /// <summary>
+    /// 이벤트 조건 관련 양 데이터. 특정 시간이 지나야되는 이벤트면 지속 년도, 특정 재화를 모아야되면 재화의 양 등등
+    /// </summary>
+    public float conditionAmount;
+
+    /// <summary>
+    /// 선원에게 적용될 파티클. 여기서 할당하는 게 아니라, Amount 가 양수면 긍정 파티클, Amount 가 음수면 부정 파티클로 하는 것도 좋아보임.
+    /// </summary>
+    public Sprite effectIcon;
 }
 
 /// <summary>
@@ -48,55 +61,63 @@ public class CrewEffect
 public enum CrewEffectType
 {
     /// <summary>
-    /// 공격을 가하는 효과입니다.
+    /// 체력을 변화시키는 효과입니다.
     /// </summary>
-    Hit,
+    ChangeHealth,
+
     /// <summary>
-    /// 피해를 입는 효과입니다.
+    /// 사기를 변화시키는 효과입니다.
     /// </summary>
-    Damage,
+    ChangeMorale,
+
     /// <summary>
-    /// 선원을 치유하는 효과입니다.
+    /// 숙련도를 변화시키는 효과입니다.
     /// </summary>
-    Heal,
+    ChangeSkill,
+
     /// <summary>
-    /// 선원의 상태를 변화시키는 효과입니다.
+    /// 선원에게 상태이상을 부여하는 효과입니다.
     /// </summary>
-    StatusChange,
-    /// <summary>
-    /// 선원을 제거(살해)하는 효과입니다.
-    /// </summary>
-    Kill,
-    /// <summary>
-    /// 새로운 선원을 추가하는 효과입니다.
-    /// </summary>
-    AddCrew,
-    /// <summary>
-    /// 선원을 제거하는 효과입니다.
-    /// </summary>
-    RemoveCrew
+    ApplyStatusEffect
 }
 
 /// <summary>
-/// CrewStatus 열거형은 선원의 현재 상태를 정의합니다.
-/// 선원의 상태는 전투 능력이나 기타 게임 내 효과에 영향을 줄 수 있습니다.
+/// 효과의 지속 조건을 정의합니다. 효과가 언제까지 지속될지 결정합니다.
 /// </summary>
-public enum CrewStatus
+public enum PersistenceCondition
 {
     /// <summary>
-    /// 선원이 정상 상태임을 나타냅니다.
+    /// 기간 기반 - duration 필드에 지정된 기간 동안 지속됩니다.
     /// </summary>
-    Normal,
+    Duration,
+
     /// <summary>
-    /// 선원이 부상당한 상태임을 나타냅니다.
+    /// 선원이 공격할 때까지 지속됩니다.
     /// </summary>
-    Injured,
+    UntilTakeAttack,
+
     /// <summary>
-    /// 선원이 병에 걸린 상태임을 나타냅니다.
+    /// 선원이 치료실에서 회복할 때까지 지속됩니다.
     /// </summary>
-    Sick,
+    UntilHealed,
+
     /// <summary>
-    /// 선원이 미친 상태임을 나타냅니다.
+    /// 기계형 한정 수리될 때까지 지속됩니다.
     /// </summary>
-    Insane
+    UntilRepaired,
+
+    /// <summary>
+    /// 특정 행성에 도착할 때까지 지속됩니다.
+    /// </summary>
+    UntilPlanetReached,
+
+    /// <summary>
+    /// 영구적으로 지속됩니다.
+    /// </summary>
+    Permanent,
+
+    /// <summary>
+    /// 즉시 단발성으로 발동합니다.
+    /// </summary>
+    Instant
 }

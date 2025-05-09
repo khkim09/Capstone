@@ -4,6 +4,6 @@
     TriggerNextEvent,
     Battle,
     RoomDamage,
-    AddQuest,
-    UnlockItem
+    TeleportToRandomPlanet,
+    AddQuest
 }

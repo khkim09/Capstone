@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
@@ -42,7 +41,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private StoredItem currentStoredItem;
 
     // static 변수로 현재 선택된 슬롯을 전역 관리합니다.
-    private static InventoryItemUI currentSelectedItem = null;
+    private static InventoryItemUI _currentSelectedItem = null;
     public static string currentlySelectedItemName = "";
 
     // 이 슬롯의 선택 상태
@@ -59,6 +58,21 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private Color categoryOriginalColor;
 
     #endregion
+
+    /// <summary>
+    /// 4개 텍스트 색상을 모두 지정된 색으로 설정합니다.
+    /// </summary>
+    private void ApplyColor(Color targetColor)
+    {
+        if (itemNameText != null)
+            itemNameText.color = targetColor;
+        if (priceText != null)
+            priceText.color = targetColor;
+        if (quantityText != null)
+            quantityText.color = targetColor;
+        if (categoryText != null)
+            categoryText.color = targetColor;
+    }
 
     /// <summary>
     /// StoredItem 데이터를 받아 UI를 초기화합니다.
@@ -102,7 +116,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (currentlySelectedItemName == storedItem.itemData.itemName && storedItem.quantity > 0)
         {
             SetSelected(true);
-            currentSelectedItem = this;
+            _currentSelectedItem = this;
         }
     }
 
@@ -123,18 +137,8 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// </summary>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!isInteractable) return;
-        if (!isSelected)
-        {
-            if (itemNameText != null)
-                itemNameText.color = highlightColor;
-            if (priceText != null)
-                priceText.color = highlightColor;
-            if (quantityText != null)
-                quantityText.color = highlightColor;
-            if (categoryText != null)
-                categoryText.color = highlightColor;
-        }
+        if (!isInteractable || isSelected) return;
+        ApplyColor(highlightColor);
     }
 
     /// <summary>
@@ -142,18 +146,8 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// </summary>
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!isInteractable) return;
-        if (!isSelected)
-        {
-            if (itemNameText != null)
-                itemNameText.color = itemNameOriginalColor;
-            if (priceText != null)
-                priceText.color = priceOriginalColor;
-            if (quantityText != null)
-                quantityText.color = quantityOriginalColor;
-            if (categoryText != null)
-                categoryText.color = categoryOriginalColor;
-        }
+        if (!isInteractable || isSelected) return;
+        ApplyColor(itemNameOriginalColor);
     }
 
     /// <summary>
@@ -164,6 +158,13 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!isInteractable) return;
+
+        // TradeUIManager에 판매 상세 패널 열라고 알림
+        if (TradeUIManager.Instance != null)
+        {
+            TradeUIManager.Instance.OnSellItemSelected();
+        }
+
         // 이미 선택되어 있고, 수량이 남아 있다면 아무런 처리를 하지 않고 선택 상태 유지
         if (isSelected)
         {
@@ -177,38 +178,34 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 // 수량이 0이면 선택 해제
                 SetSelected(false);
                 currentlySelectedItemName = "";
-                currentSelectedItem = null;
-                FindObjectOfType<StorageHighlightManager>()?.ClearHighlights();
+                _currentSelectedItem = null;
+                Object.FindFirstObjectByType<StorageHighlightManager>()?.ClearHighlights();
             }
         }
         else
         {
             // 다른 슬롯이 선택되어 있다면 해제
-            if (currentSelectedItem != null && currentSelectedItem != this)
+            if (_currentSelectedItem != null && _currentSelectedItem != this)
             {
-                currentSelectedItem.SetSelected(false);
-                FindObjectOfType<StorageHighlightManager>()?.ClearHighlights();
+                _currentSelectedItem.SetSelected(false);
+                Object.FindFirstObjectByType<StorageHighlightManager>()?.ClearHighlights();
             }
 
             SetSelected(true);
             currentlySelectedItemName = currentStoredItem.itemData.itemName;
-            currentSelectedItem = this;
+            _currentSelectedItem = this;
 
             // 선택된 경우 MiddlePanelUI에 상세 정보 전달
-            MiddlePanelUI middlePanel = FindObjectOfType<MiddlePanelUI>();
+            MiddlePanelUI middlePanel = Object.FindFirstObjectByType<MiddlePanelUI>();
             if (middlePanel != null && currentStoredItem != null)
             {
+                middlePanel.UpdatePlayerComa();
                 middlePanel.SetSelectedItem(currentStoredItem.itemData);
             }
         }
-        // (추가) TradeUIManager에 판매 상세 패널 열라고 알림
-        if (TradeUIManager.Instance != null)
-        {
-            TradeUIManager.Instance.OnSellItemSelected();
-        }
         // 선택된 아이템 이름을 StorageHighlightManager에 전달해서
         // 창고 그리드 상의 TradingItem들을 강조(on) 합니다.
-        var highlighter = FindObjectOfType<StorageHighlightManager>();
+        var highlighter = Object.FindFirstObjectByType<StorageHighlightManager>();
         if (highlighter != null && currentStoredItem != null)
         {
             highlighter.HighlightItem(currentStoredItem.itemData.itemName);
@@ -222,28 +219,23 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void SetSelected(bool selected)
     {
         isSelected = selected;
-
-        if (selected)
-        {
-            if (itemNameText != null)
-                itemNameText.color = highlightColor;
-            if (priceText != null)
-                priceText.color = highlightColor;
-            if (quantityText != null)
-                quantityText.color = highlightColor;
-            if (categoryText != null)
-                categoryText.color = highlightColor;
-        }
-        else
-        {
-            if (itemNameText != null)
-                itemNameText.color = itemNameOriginalColor;
-            if (priceText != null)
-                priceText.color = priceOriginalColor;
-            if (quantityText != null)
-                quantityText.color = quantityOriginalColor;
-            if (categoryText != null)
-                categoryText.color = categoryOriginalColor;
-        }
+        ApplyColor(selected ? highlightColor : itemNameOriginalColor);
     }
+
+    /// <summary>
+    /// 현재 선택된 아이템을 반환하는 함수입니다.
+    /// </summary>
+    /// <returns>현재 선택된 아이템을 반환합니다.</returns>
+    public static InventoryItemUI GetCurrentSelectedItem()
+    {
+        return _currentSelectedItem;
+    }
+    /// <summary>
+    /// 현재 슬롯에 연결된 StoredItem을 반환합니다.
+    /// </summary>
+    public StoredItem GetStoredItem()
+    {
+        return currentStoredItem;
+    }
+
 }

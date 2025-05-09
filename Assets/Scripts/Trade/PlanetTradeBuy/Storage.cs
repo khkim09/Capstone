@@ -49,7 +49,7 @@ public class Storage : MonoBehaviour
     public bool CanAddItem(TradingItemData itemData, int quantity)
     {
         var stored = storedItems.Find(x => x.itemData.id == itemData.id);
-        int current = stored != null ? stored.quantity : 0;
+        int current = stored?.quantity ?? 0;
         return (current + quantity) <= itemData.capacity;
     }
 
@@ -107,7 +107,7 @@ public class Storage : MonoBehaviour
     public int GetItemQuantity(TradingItemData itemData)
     {
         var stored = storedItems.Find(x => x.itemData.id == itemData.id);
-        return stored != null ? stored.quantity : 0;
+        return stored?.quantity ?? 0;
     }
 
     // ─── 추가 부분 시작 ───

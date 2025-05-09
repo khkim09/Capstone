@@ -15,6 +15,7 @@ public class MedBayRoom : Room<MedBayRoomData, MedBayRoomData.MedBayRoomLevel>
     {
         base.Start();
 
+
         // 방 타입 설정
         roomType = RoomType.MedBay;
     }
