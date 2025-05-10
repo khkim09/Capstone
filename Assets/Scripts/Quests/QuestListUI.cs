@@ -45,6 +45,7 @@ public class QuestListUI : MonoBehaviour
         foreach (var quest in quests)
         {
             GameObject slot = Instantiate(questSlotPrefab, contentParent);
+            slot.SetActive(true);
 
             TextMeshProUGUI titleText = slot.transform.Find("QuestTitle")?.GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI descText = slot.transform.Find("QuestDescription")?.GetComponent<TextMeshProUGUI>();

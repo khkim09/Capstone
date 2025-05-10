@@ -10,31 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
-  m_Name: famine
+  m_Name: Hacking
   m_EditorClassIdentifier: 
-  eventId: 10
-  debugName: Famine
-  eventTitle: event.name.10
-  eventDescription: event.description.10
+  eventId: 36
+  debugName: Hacking
+  eventTitle: event.name.36
+  eventDescription: event.description.36
   eventImage: {fileID: 0}
-  eventType: 1
+  eventType: 0
   outcomeType: 1
   minimumYear: 0
   requiredCrewRace: 
   minimumCOMA: 0
   minimumFuel: 0
   choices:
-  - choiceText: event.choice.10.1
+  - choiceText: event.choice.36.1
     possibleOutcomes:
-    - outcomeText: event.result.10.1.1
-      probability: 100
-      planetEffects:
-      - categoryType: 6
-        changeAmount: 20
-      resourceEffects: []
+    - outcomeText: event.result.36.1.1
+      probability: 50
+      planetEffects: []
+      resourceEffects:
+      - amount: 1000
+        resourceType: 1
       crewEffects: []
       specialEffectType: 0
       specialEffectValue: 
+      specialEffectAmount: 0
+      nextEvent: {fileID: 0}
+      questToAdd: {fileID: 0}
+    - outcomeText: event.result.36.1.2
+      probability: 50
+      planetEffects: []
+      resourceEffects:
+      - amount: -1000
+        resourceType: 1
+      crewEffects: []
+      specialEffectType: 0
+      specialEffectValue: None
       specialEffectAmount: 0
       nextEvent: {fileID: 0}
       questToAdd: {fileID: 0}

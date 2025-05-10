@@ -180,6 +180,7 @@ public class RandomEventEditor : Editor
         {
             choicesProp.arraySize++;
             InitializeFoldouts();
+            UpdateAllTextsBasedOnEventId(eventIdProp.intValue);
         }
 
         EditorGUILayout.EndHorizontal();
@@ -202,6 +203,7 @@ public class RandomEventEditor : Editor
             {
                 choicesProp.DeleteArrayElementAtIndex(i);
                 InitializeFoldouts();
+                UpdateAllTextsBasedOnEventId(eventIdProp.intValue);
                 serializedObject.ApplyModifiedProperties();
                 return;
             }
@@ -243,6 +245,7 @@ public class RandomEventEditor : Editor
                     if (GUILayout.Button("삭제", GUILayout.Width(60)))
                     {
                         outcomesProp.DeleteArrayElementAtIndex(j);
+                        UpdateAllTextsBasedOnEventId(eventIdProp.intValue);
                         serializedObject.ApplyModifiedProperties();
                         return;
                     }
