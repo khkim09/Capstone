@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Easy Save 3를 사용하여 선원(CrewBase) 객체의 직렬화 및 역직렬화를 담당하는 유틸리티 클래스
+/// Easy Save 3를 사용하여 선원(CrewMember) 객체의 직렬화 및 역직렬화를 담당하는 유틸리티 클래스
 /// </summary>
 public static class CrewSerialization
 {
@@ -12,7 +12,7 @@ public static class CrewSerialization
     /// </summary>
     /// <param name="crews">저장할 선원 목록</param>
     /// <param name="filename">저장 파일명</param>
-    public static void SaveAllCrews(List<CrewBase> crews, string filename)
+    public static void SaveAllCrews(List<CrewMember> crews, string filename)
     {
         // 파일이 이미 존재한다면 해당 파일 삭제 (덮어쓰기)
         if (ES3.FileExists(filename))

@@ -1,12 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using Unity.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.XR;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -16,12 +11,6 @@ using Vector3 = UnityEngine.Vector3;
 [Serializable]
 public class CrewMember : CrewBase
 {
-
-    /// <summary>
-    /// 현재 이동중인 타일
-    /// </summary>
-    private Vector2Int currentTargetTile;
-
     /// <summary>
     /// 현재 이동 방향 (normalized)
     /// </summary>
@@ -87,7 +76,7 @@ public class CrewMember : CrewBase
             float moraleBonus = MoraleManager.Instance.GetTotalMoraleBonus(this); // 향후 보완 예정 -> morale manager 생성
 
             float total = baseSkill + equipmentBonus + moraleBonus;
-            totalSkills[skill] = total/100;
+            totalSkills[skill] = total / 100;
         }
 
         return totalSkills;
@@ -137,30 +126,6 @@ public class CrewMember : CrewBase
         {
             StopCoroutine(moveCoroutine);
             moveCoroutine = null;
-        }
-
-        // 1. 현재 이동 중인 타일까지 도달 후 정지
-        if (currentTargetTile != null)
-        {
-            Vector3 targetWorldPos = GridToWorldPosition(currentTargetTile);
-
-            while (Vector3.Distance(transform.position, targetWorldPos) > 0.01f)
-            {
-                float speedMultiplier = 1f;
-
-                // 현재 방 체크
-                Room room = RTSSelectionManager.Instance.playerShip.GetRoomAtPosition(GetCurrentTile());
-
-                // 복도는 이동 속도 30% 증가
-                if (room != null && room.GetRoomType() == RoomType.Corridor)
-                    speedMultiplier = 1.33f;
-
-                // MoveTowards() : 다른 선원과의 충돌 무시하고 통과
-                transform.position = Vector3.MoveTowards(transform.position, targetWorldPos, moveSpeed * speedMultiplier * Time.deltaTime);
-            }
-
-            transform.position = targetWorldPos;
-            position = new Vector2Int(currentTargetTile.x, currentTargetTile.y);
         }
 
         // 2. 이전 목적지 타일 점유 해제
@@ -247,7 +212,6 @@ public class CrewMember : CrewBase
 
         foreach (Vector2Int tile in path)
         {
-            currentTargetTile = tile;
             Vector3 targetWorldPos = GridToWorldPosition(tile);
 
             // 이동 중인 방향
@@ -281,29 +245,26 @@ public class CrewMember : CrewBase
         // 도착 후 방 갱신
         currentRoom = reservedRoom;
         reservedRoom = null;
-        RenewCurrentShip();
 
-        if(isWithEnemy())
+        // 도착한 방에서 적군 탐지
+        if (isWithEnemy())
         {
-            //도착 후 적 탐색 및 전투(이동+공격) 돌입
+            // 이동 중이던 선원이 우선적으로 마저 이동 (적군을 찾아감)
             RTSSelectionManager.Instance.MoveForCombat(this, currentRoom.occupiedCrewTiles);
-        }
-        else
-        {
-            if (!IsMyShip())
-            {
-                comBatCoroutine = StartCoroutine(CombatRoutine());
-            }
-            //도착 후 2명 이상의 적이 있다면 표적이 된 상대를 제외한 다른 적들도 자신을 공격하도록 어그로를 끈다
+
+            // 적군 찾아가는 동작 완료 후
+            // 전투 중이지 않거나 이동 중이지 않은 적들에 대해 본인 공격하도록 어그로
             LookAtMe();
-            //적이 없다면 Idle 상태를 거쳐 수리로 연결된다.
+        }
+        else // 도착한 방에 적군이 없음
+        {
+            // 내 배가 아닐 경우 부수는 행동 개시
+            if (!IsMyShip())
+                combatCoroutine = StartCoroutine(CombatRoutine());
+
+            // 적이 없고 유저 함선이라 부술 방도 없을 경우, Idle 상태를 거쳐 수리로 연결
             BackToThePeace();
         }
-    }
-
-    public void RenewCurrentShip()
-    {
-        currentShip = currentRoom.parentShip;
     }
 
     // <summary>
@@ -332,7 +293,7 @@ public class CrewMember : CrewBase
     /// animation 실행
     /// </summary>
     /// <param name="trigger"></param>
-    private void PlayAnimation(string trigger)
+    public void PlayAnimation(string trigger)
     {
         SetAnimationDirection(movementDirection);
         if (trigger.Equals("walk"))
@@ -354,7 +315,7 @@ public class CrewMember : CrewBase
         }
         else if (trigger.Equals("work"))
         {
-            animator.SetBool("work",isWorking);
+            animator.SetBool("work", isWorking);
         }
         else if (trigger.Equals("idle"))
         {
@@ -368,72 +329,104 @@ public class CrewMember : CrewBase
     /// <param name="direction"></param>
     private void SetAnimationDirection(Vector2 direction)
     {
-        animator.SetFloat("X",direction.x);
-        animator.SetFloat("Y",direction.y);
+        animator.SetFloat("X", direction.x);
+        animator.SetFloat("Y", direction.y);
     }
 
     //----------전투---------
-/// <summary>전투 대상</summary>
+
+    /// <summary>
+    /// 전투 대상
+    /// </summary>
     public CrewMember combatTarget { set; get; }
-/// <summary>
-/// 전투 상태 여부
-/// </summary>
+
+    /// <summary>
+    /// 전투 상태 여부
+    /// </summary>
     public bool inCombat = false;
-/// <summary>
-/// 애니메이션 발동 타이밍과 실제 데미지 적용 사이의 딜레이
-/// </summary>
+
+    /// <summary>
+    /// 애니메이션 발동 타이밍과 실제 데미지 적용 사이의 딜레이
+    /// </summary>
     private float attackDelay = 1f;
-    public Coroutine comBatCoroutine=null;
-    public Coroutine DieCoroutine=null;
+
+    /// <summary>
+    /// 전투 코루틴
+    /// </summary>
+    public Coroutine combatCoroutine = null;
+
+    /// <summary>
+    /// 사망 코루틴
+    /// </summary>
+    public Coroutine DieCoroutine = null;
+
+    /// <summary>
+    /// 파괴할 방
+    /// </summary>
     public Room madRoom;
 
+    /// <summary>
+    /// 전투 진입 코루틴 (타겟 설정 후 전투 시작, 타겟이 없고 적 함선일 경우 방 부수기 돌입)
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator CombatRoutine()
     {
-        //때릴 사람이 없어
+        // 때릴 적군 없음 -> 정지 (유저 함선) or 방 부수기 (적 함선)
         if (combatTarget == null || !combatTarget.isAlive)
         {
+            // 유저 함선이면 break (그 자리에서 정지)
             if (IsMyShip())
             {
                 inCombat = false;
-                comBatCoroutine = null;
+                combatCoroutine = null;
                 yield break;
             }
+
+            // 일단 부수기 방 설정 = 현재 방
             madRoom = currentRoom;
-            if (madRoom == null || !madRoom.GetIsDamageable())
+            if (madRoom == null || !madRoom.GetIsDamageable()) // 부술 수 없는 방
             {
                 yield break;
             }
+
+            // 방 부수기 진입 시 true
             inCombat = true;
         }
-        else
+        else // 때릴 적군 찾음
         {
             inCombat = true;
-            combatTarget.bullier.Add(this);
+            combatTarget.bullier.Add(this); // 적군을 때리는 선원 리스트에 이 선원 추가
 
-            //이미 누군가랑 싸우고 있어
+            // 때릴 적군이 전투 중이 아닌 상태 - 나랑 전투하도록
             if (!combatTarget.inCombat)
             {
                 combatTarget.Freeze();
                 combatTarget.combatTarget = this;
-                combatTarget.comBatCoroutine = StartCoroutine(combatTarget.CombatRoutine());
+                combatTarget.combatCoroutine = StartCoroutine(combatTarget.CombatRoutine());
             }
 
+            // 때릴 방향
             movementDirection = combatTarget.GetCurrentTile() - GetCurrentTile();
         }
 
         PlayAnimation("attack");
-        //실제로 데미지가 들어가는 부분
+
+        // 실제로 데미지가 들어가는 부분
         yield return new WaitForSeconds(attackDelay);
         Debug.LogError("공격 딜레이 종료");
+
+        // 실제 데미지 적용
         Attack(this, combatTarget);
         yield return new WaitForSeconds(attackDelay);
 
+        // 부술 방도 없고 적군도 죽은 상태
         if (madRoom == null && !combatTarget.isAlive)
         {
             yield break;
         }
 
-        comBatCoroutine = StartCoroutine(CombatRoutine());
+        // 부술 방이 있거나 적군이 있다면 계속 전투 루틴 실행
+        combatCoroutine = StartCoroutine(CombatRoutine());
     }
 
     private float GetEquipmentAttack()
@@ -451,7 +444,7 @@ public class CrewMember : CrewBase
         float total = 0;
         if (equippedShield != null)
             total += equippedShield.eqDefenseBonus;
-        if(equippedWeapon!=null)
+        if (equippedWeapon != null)
             total += equippedWeapon.eqDefenseBonus;
         return total;
     }
@@ -471,18 +464,18 @@ public class CrewMember : CrewBase
         float damage = attack + GetEquipmentAttack(); //(attacker.attack + attacker.equippedWeapon.eqAttackBonus) * (1 - target.defense / 100f);
         if (target == null)
         {
-            if(madRoom ==null)
+            if (madRoom == null)
             {
                 //목표를 포착했...는 중이다
                 inCombat = false;
-                if(isWithEnemy())
+                if (isWithEnemy())
                 {
                     RTSSelectionManager.Instance.MoveForCombat(this, this.reservedRoom.occupiedCrewTiles);
                 }
                 return;
             }
             madRoom.TakeDamage(damage);
-            if (madRoom.currentHitPoints<=0)
+            if (madRoom.currentHitPoints <= 0)
             {
                 madRoom = null;
             }
@@ -495,7 +488,7 @@ public class CrewMember : CrewBase
 
     public void TakeDamage(float damage)
     {
-        float realDamage = damage * (1 - (defense+GetEquipmentDefense()) / 100f);
+        float realDamage = damage * (1 - (defense + GetEquipmentDefense()) / 100f);
         health -= realDamage;
         if (health <= 0)
         {
@@ -532,8 +525,8 @@ public class CrewMember : CrewBase
         if (inCombat)
         {
             inCombat = false;
-            StopCoroutine(comBatCoroutine);
-            comBatCoroutine = null;
+            StopCoroutine(combatCoroutine);
+            combatCoroutine = null;
             madRoom = null;
         }
         if (isWorking)
@@ -545,16 +538,16 @@ public class CrewMember : CrewBase
             Debug.LogError("작업 선원 할당 해제");
         }
 
-        if(bullier.Count>0)
+        if (bullier.Count > 0)
         {
             foreach (CrewMember hittingMan in bullier)
             {
                 hittingMan.inCombat = false;
                 hittingMan.combatTarget = null;
-                StopCoroutine(hittingMan.comBatCoroutine);
-                hittingMan.comBatCoroutine = null;
+                StopCoroutine(hittingMan.combatCoroutine);
+                hittingMan.combatCoroutine = null;
                 hittingMan.bullier.Remove(this);
-                if(hittingMan.isWithEnemy())
+                if (hittingMan.isWithEnemy())
                 {
                     RTSSelectionManager.Instance.MoveForCombat(hittingMan, hittingMan.currentRoom.occupiedCrewTiles);
                 }
@@ -584,17 +577,25 @@ public class CrewMember : CrewBase
         Debug.Log($"{crewName} 사망 처리 완료");
     }
 
+    /// <summary>
+    /// 선원이 진입한 방의 적이 멈춰 있고 전투 중이 아니라면, 모두 본인을 공격하도록 설정 (어그로)
+    /// </summary>
     public void LookAtMe()
     {
         foreach (CrewMember other in currentRoom.GetCrewInRoom())
         {
             if (other.inCombat == false && other.isMoving == false)
             {
+                // 방에 있는 상대를 나에게 이동
+                Debug.LogError($"{other.race} {other.inCombat}, {other.isMoving}");
                 RTSSelectionManager.Instance.MoveForCombat(other, other.currentRoom.occupiedCrewTiles);
             }
         }
     }
 
+    /// <summary>
+    /// Idle 상태 이후
+    /// </summary>
     public void BackToThePeace()
     {
         if (isAlive && !inCombat)
@@ -602,7 +603,9 @@ public class CrewMember : CrewBase
             StopAllCoroutines();
 
             PlayAnimation("idle");
-            if(IsMyShip())
+
+            // 유저 함선일 경우 수리, 작업 시도 및 진입
+            if (IsMyShip())
             {
                 TryRepair();
                 TryWork();
@@ -612,12 +615,15 @@ public class CrewMember : CrewBase
 
 
 
-    //---------적 탐지----------
+    /// <summary>
+    /// 방 안의 적군 탐지
+    /// </summary>
+    /// <returns></returns>
     public bool isWithEnemy()
     {
-        foreach (CrewBase crew in currentRoom.GetCrewInRoom())
+        foreach (CrewBase someone in currentRoom.GetCrewInRoom())
         {
-            if (crew.isPlayerControlled != isPlayerControlled && crew.isAlive)
+            if (someone.isPlayerControlled != isPlayerControlled && someone.isAlive)
                 return true;
         }
         return false;
@@ -625,25 +631,48 @@ public class CrewMember : CrewBase
 
 
     //--------------수리------------
+
+    /// <summary>
+    /// 수리 코루틴
+    /// </summary>
     public Coroutine repairCoroutine;
+
+    /// <summary>
+    /// 수리 효율
+    /// </summary>
     public float repairCoefficient = 10;
+
+    /// <summary>
+    /// 수리 간 딜레이
+    /// </summary>
     public float repairDelay = 0.5f;
 
+    /// <summary>
+    /// 유저 함선에서 수리 시도
+    /// </summary>
     public void TryRepair()
     {
-        //TODO:선원이 위치한 함선이 적 함선인지 아군 함선인지 검사해야돼
-            if (repairCoroutine == null)
-            {
-                repairCoroutine = StartCoroutine(RepairRoutine());
-            }
-            else
-            {
-                StopCoroutine(repairCoroutine);
-                repairCoroutine = null;
-            }
+        if (!IsMyShip())
+            return;
+
+        if (repairCoroutine == null)
+        {
+            repairCoroutine = StartCoroutine(RepairRoutine());
+        }
+        else // 수리 중인 코루틴이 있는데 왜 할당 해제함?
+        {
+            StopCoroutine(repairCoroutine);
+            repairCoroutine = null;
+        }
     }
+
+    /// <summary>
+    /// 수리 루틴
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator RepairRoutine()
     {
+        // 전투 개시 or 수리 필요 없는 상황
         if (isWithEnemy() || !currentRoom.NeedsRepair())
         {
             repairCoroutine = null;
@@ -652,14 +681,14 @@ public class CrewMember : CrewBase
 
         PlayAnimation("repair");
         yield return new WaitForSeconds(repairDelay);
+
+        // 실제 수리 실행
         RepairFacility(currentRoom);
         //todo: 수리 숙련도 적용시켜야됨
         yield return new WaitForSeconds(repairDelay);
 
         if (currentRoom.NeedsRepair())
-        {
             repairCoroutine = StartCoroutine(RepairRoutine());
-        }
     }
 
     /// <summary>
@@ -673,7 +702,7 @@ public class CrewMember : CrewBase
         // float repairSkillBonus = skills.ContainsKey(SkillType.RepairSkill) ? skills[SkillType.RepairSkill] / 100f : 0f;
 
         //TODO:장비 완성되면 장비와 사기, 숙련도에 대한 보너스 추가 필요
-        float repairAmount = repairCoefficient*GetCrewSkillValue()[SkillType.RepairSkill];
+        float repairAmount = repairCoefficient * GetCrewSkillValue()[SkillType.RepairSkill];
 
         // 수리 실행
         room.Repair(repairAmount);
@@ -683,13 +712,13 @@ public class CrewMember : CrewBase
     }
 
     //---------시설 작업------------
-    #region Work
+    #region 작업
 
     public bool isWorking = false;
 
     public void TryWork()
     {
-        if(currentRoom.isActive && currentRoom.workDirection!=Vector2Int.zero)
+        if (currentRoom.isActive && currentRoom.workDirection != Vector2Int.zero)
         {
             if (!isWithEnemy())
             {
@@ -699,15 +728,16 @@ public class CrewMember : CrewBase
                     {
                         isWorking = true;
                         PlayAnimation("work");
+
+                        // 작업 애니메이션 방향 (방 회전 방향 적용)
                         List<Vector2Int> directions = new List<Vector2Int>()
                         {
-                            Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left
+                            Vector2Int.up,
+                            Vector2Int.right,
+                            Vector2Int.down,
+                            Vector2Int.left
                         };
-                        Vector2Int workDir =
-                            directions[
-                                (directions.IndexOf(currentRoom.workDirection) +
-                                 Convert.ToInt32(currentRoom.currentRotation)) %
-                                4];
+                        Vector2Int workDir = directions[(directions.IndexOf(currentRoom.workDirection) + Convert.ToInt32(currentRoom.currentRotation)) % 4];
                         SetAnimationDirection(workDir);
                     }
                 }
@@ -727,14 +757,14 @@ public class CrewMember : CrewBase
         //전투 중단
         inCombat = false;
         PlayAnimation("attack");
-        comBatCoroutine = null;
+        combatCoroutine = null;
         combatTarget = null;
         madRoom = null;
 
         //작업 중단
         isWorking = false;
         PlayAnimation("work");
-        if(currentRoom.workingCrew==this)
+        if (currentRoom.workingCrew == this)
         {
             currentRoom.workingCrew = null;
             currentShip.RecalculateAllStats();
@@ -762,6 +792,10 @@ public class CrewMember : CrewBase
         }
     }
 
+    /// <summary>
+    /// 현재 선원이 탑승해 있는 함선이 유저의 함선 (true)인지 적 함선 (false)인지 여부 반환
+    /// </summary>
+    /// <returns></returns>
     public bool IsMyShip()
     {
         if (currentShip.isPlayerShip == isPlayerControlled)
@@ -774,6 +808,6 @@ public class CrewMember : CrewBase
         if (madRoom == null)
             return;
         inCombat = true;
-        comBatCoroutine = StartCoroutine(CombatRoutine());
+        combatCoroutine = StartCoroutine(CombatRoutine());
     }
 }

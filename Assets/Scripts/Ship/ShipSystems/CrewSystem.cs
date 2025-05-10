@@ -3,17 +3,6 @@ using System.Linq;
 using UnityEngine;
 
 /// <summary>
-/// 백업할 선원 데이터 구조체
-/// </summary>
-[System.Serializable]
-public class BackupCrewData
-{
-    public CrewMember crew;
-    public Vector2Int position;
-    public Room currentRoom;
-}
-
-/// <summary>
 /// 함선의 크루(승무원) 관리 시스템.
 /// 크루의 추가, 제거 및 크루 수 관련 기능을 담당.
 /// </summary>
@@ -22,7 +11,7 @@ public class CrewSystem : ShipSystem
     /// <summary>
     /// 현재 배치된 크루들의 목록입니다.
     /// </summary>
-    private List<CrewBase> crews = new();
+    // public List<CrewMember> crews = new();
 
     /// <summary>
     /// 시스템을 초기화합니다. 크루가 없는 경우 경고를 표시할 수 있습니다.
@@ -54,8 +43,9 @@ public class CrewSystem : ShipSystem
     public bool AddCrew(CrewBase newCrew)
     {
         // TODO : 조건 검사를 밖에서 해서 capacity 부족하다는 걸 전달해야됨
-        if (crews.Count >= GetShipStat(ShipStat.CrewCapacity))
-            return false;
+        if (newCrew.isPlayerControlled)
+            if (parentShip.allCrews.Count >= GetShipStat(ShipStat.CrewCapacity))
+                return false;
 
         parentShip.RecalculateAllStats();
 
@@ -92,31 +82,11 @@ public class CrewSystem : ShipSystem
             room.OnCrewEnter(crew);
             parentShip.MarkCrewTileOccupied(room, spawnTile);
 
-            crews.Add(crew);
+            parentShip.allCrews.Add(crew);
             return true;
         }
 
         return false;
-
-        // if (newCrew.currentRoom == null)
-        // {
-        //     Room randomRoom = parentShip.GetRandomRoom();
-        //     randomRoom.OnCrewEnter(newCrew);
-
-        //     newCrew.transform.position = parentShip.GridToWorldPosition(randomRoom.position);
-        //     newCrew.transform.SetParent(randomRoom.transform);
-        //     newCrew.currentRoom = randomRoom;
-        //     newCrew.position = randomRoom.position;
-        // }
-        // else
-        // {
-        //     newCrew.currentRoom.OnCrewEnter(newCrew);
-        //     newCrew.transform.position = parentShip.GridToWorldPosition(newCrew.position);
-        //     newCrew.transform.SetParent(newCrew.currentRoom.transform);
-        // }
-
-        // crews.Add(newCrew);
-        // return true;
     }
 
     /// <summary>
@@ -124,12 +94,12 @@ public class CrewSystem : ShipSystem
     /// </summary>
     /// <param name="crewToRemove">제거할 크루 멤버.</param>
     /// <returns>제거에 성공하면 true, 해당 크루가 존재하지 않으면 false.</returns>
-    public bool RemoveCrew(CrewBase crewToRemove)
+    public bool RemoveCrew(CrewMember crewToRemove)
     {
-        if (!crews.Contains(crewToRemove))
+        if (!parentShip.allCrews.Contains(crewToRemove))
             return false;
 
-        crews.Remove(crewToRemove);
+        parentShip.allCrews.Remove(crewToRemove);
         Object.Destroy(crewToRemove.gameObject);
 
         // TODO: 방에서 나가는 처리도 해야할 수도 있다. 추후 구현 필요하면 구현할 것
@@ -142,7 +112,7 @@ public class CrewSystem : ShipSystem
     /// </summary>
     public void RemoveAllCrews()
     {
-        for (int i = crews.Count - 1; i >= 0; i--) RemoveCrew(crews[i]);
+        for (int i = parentShip.allCrews.Count - 1; i >= 0; i--) RemoveCrew(parentShip.allCrews[i]);
     }
 
     /// <summary>
@@ -151,16 +121,16 @@ public class CrewSystem : ShipSystem
     /// <returns>현재 크루 수.</returns>
     public int GetCrewCount()
     {
-        return crews.Count;
+        return parentShip.allCrews.Count;
     }
 
     /// <summary>
     /// 현재 탑승 중인 모든 크루 객체의 목록을 반환합니다.
     /// </summary>
     /// <returns>크루 객체 리스트.</returns>
-    public List<CrewBase> GetCrews()
+    public List<CrewMember> GetCrews()
     {
-        return crews;
+        return parentShip.allCrews;
     }
 
     /// <summary>
@@ -171,6 +141,7 @@ public class CrewSystem : ShipSystem
     public List<CrewBase> GetCrewsAtPosition(Vector2Int position)
     {
         List<CrewBase> crewsAtPosition = new();
+        List<CrewMember> crews = parentShip.allCrews;
 
         foreach (CrewBase crew in crews)
             // crew.position이 선원의 현재 위치를 가지고 있다고 가정
@@ -185,23 +156,29 @@ public class CrewSystem : ShipSystem
     /// </summary>
     public void RevertOriginalCrews(List<BackupCrewData> backupDatas)
     {
+        // ReplaceShipFromBlueprint()에서 Room을 날렸기 때문에 함선 복구 후 매핑 작업 필요 (currentRoom == null)
+        Dictionary<Vector2Int, Room> roomMap = parentShip.GetAllRooms().ToDictionary(r => r.position, r => r);
+
+        // 선원 원위치
         foreach (BackupCrewData data in backupDatas)
         {
-            CrewMember crew = data.crew;
-            Vector2Int pos = data.position;
-            Room room = data.currentRoom;
+            if (!roomMap.TryGetValue(data.roomPos, out Room room))
+            {
+                Debug.LogError($"{data.roomPos}를 찾지 못해서 {data.crewName} 설치 불가");
+                continue;
+            }
 
-            CrewBase originCrew = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(crew.race, crew.crewName);
+            // 선원 Destroy() -> 새로 생성 필요
+            CrewMember originCrew = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(data.race, data.crewName) as CrewMember;
 
-
-            originCrew.position = pos;
+            originCrew.position = data.position;
             originCrew.currentRoom = room;
-            originCrew.transform.position = parentShip.GridToWorldPosition(pos);
+            originCrew.transform.position = parentShip.GridToWorldPosition(data.position);
             originCrew.transform.SetParent(room.transform);
 
-            room.OccupyTile(pos);
+            room.OccupyTile(data.position);
             room.OnCrewEnter(originCrew);
-            parentShip.MarkCrewTileOccupied(room, pos);
+            parentShip.MarkCrewTileOccupied(room, data.position);
 
             // 오브젝트 및 컴포넌트 활성화
             originCrew.gameObject.SetActive(true);
@@ -210,9 +187,7 @@ public class CrewSystem : ShipSystem
             if (col != null)
                 col.enabled = true;
 
-            // 크루 리스트 중복 추가 방지
-            if (!GetCrews().Contains(originCrew))
-                GetCrews().Add(originCrew);
+            parentShip.allCrews.Add(originCrew);
         }
     }
 
@@ -226,7 +201,9 @@ public class CrewSystem : ShipSystem
 
         foreach (BackupCrewData data in backupCrewDatas)
         {
-            CrewMember crew = data.crew;
+            CrewMember crew = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(data.race, data.crewName) as CrewMember;
+            if (crew == null)
+                continue;
 
             List<Room> allRooms = parentShip.GetAllRooms();
             List<Room> shuffled = allRooms.OrderBy(_ => Random.value).ToList();
@@ -238,8 +215,8 @@ public class CrewSystem : ShipSystem
                 List<Vector2Int> candidates = room.GetRotatedCrewEntryGridPriority().Where
                 (
                     t => !room.IsTileOccupiedByCrew(t)
-                    && !parentShip.IsCrewTileOccupied(room, t)
-                    && !alreadyOccupiedTiles.Contains(t)
+                         && !parentShip.IsCrewTileOccupied(room, t)
+                         && !alreadyOccupiedTiles.Contains(t)
                 ).ToList();
 
                 if (candidates.Count == 0)
@@ -267,8 +244,8 @@ public class CrewSystem : ShipSystem
                 if (col != null)
                     col.enabled = true;
 
-                if (!GetCrews().Contains(crew))
-                    GetCrews().Add(crew);
+                // crewList에 추가
+                parentShip.allCrews.Add(crew);
 
                 assigned = true;
                 break;

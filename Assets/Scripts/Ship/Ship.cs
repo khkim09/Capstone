@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using System.IO;
 using Random = UnityEngine.Random;
 
 /// <summary>
@@ -11,7 +9,11 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class Ship : MonoBehaviour, IWorldGridSwitcher
 {
+    /// <summary>
+    /// 유저의 함선인지 여부 (적 함선은 false 세팅 필요)
+    /// </summary>
     public bool isPlayerShip = true;
+
     [Header("Ship Info")][SerializeField] public string shipName = "Milky";
 
     /// <summary>
@@ -33,6 +35,12 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// 함선을 이루고 있는 이미 배치된 모든 룸 객체 리스트.
     /// </summary>
     public List<Room> allRooms = new();
+
+    /// <summary>전체 아군 선원 리스트</summary>
+    public List<CrewMember> allCrews = new();
+
+    /// <summary>내 배의 전체 적군 선원 리스트</summary>
+    public List<CrewMember> allEnemies = new();
 
     [SerializeField] private DoorData doorData;
 
@@ -390,6 +398,8 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     public List<RoomBackupData> backupRoomDatas = new();
 
+    public List<BackupCrewData> backupCrewDatas = new();
+
     /// <summary>
     /// 현재 함선에 포함된 모든 방의 가격 합을 반환
     /// </summary>
@@ -414,6 +424,23 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             if (room.currentHitPoints != room.GetMaxHitPoints())
                 return false;
         return true;
+    }
+
+    /// <summary>
+    /// 설계도 작업 전, 기존 선원 백업
+    /// </summary>
+    public void BackupAllCrews()
+    {
+        backupCrewDatas.Clear();
+
+        foreach (CrewMember crew in allCrews)
+            backupCrewDatas.Add(new BackupCrewData
+            {
+                race = crew.race,
+                crewName = crew.crewName,
+                position = crew.position,
+                roomPos = crew.currentRoom.position
+            });
     }
 
     /// <summary>
@@ -462,7 +489,13 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <param name="bpShip">설계도 함선</param>
     public void ReplaceShipFromBlueprint(BlueprintShip bpShip)
     {
-        // 1. 기존 함선 삭제
+        // 1. 기존 선원 모두 삭제
+        foreach (CrewMember crew in allCrews)
+            Destroy(crew.gameObject);
+
+        allCrews.Clear();
+
+        // 2. 기존 방 삭제
         foreach (Room room in allRooms)
             Destroy(room.gameObject);
 
@@ -703,7 +736,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         }
 
         // TODO: 방을 제외한 ShipStatContributions 반영해야함 (ex : 외갑판, 선원)
-        List<CrewBase> crews = GetSystem<CrewSystem>().GetCrews();
+        List<CrewMember> crews = GetSystem<CrewSystem>().GetCrews();
 
         foreach (CrewBase crew in crews)
         {
@@ -913,7 +946,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// 현재 함선에 탑승 중인 모든 크루를 반환합니다.
     /// </summary>
     /// <returns>CrewBase 객체들의 리스트.</returns>
-    public List<CrewBase> GetAllCrew()
+    public List<CrewMember> GetAllCrew()
     {
         return GetSystem<CrewSystem>().GetCrews();
     }
@@ -929,7 +962,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         return GetSystem<CrewSystem>().AddCrew(newCrew);
     }
 
-    public void RemoveCrew(CrewBase crew)
+    public void RemoveCrew(CrewMember crew)
     {
         GetSystem<CrewSystem>().RemoveCrew(crew);
     }

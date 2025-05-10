@@ -316,7 +316,7 @@ public class RTSSelectionManager : MonoBehaviour
         if (targetRoom == null)
             return;
 
-        List<CrewBase> allCrew = playerShip.GetSystem<CrewSystem>().GetCrews();
+        List<CrewMember> allCrew = playerShip.GetSystem<CrewSystem>().GetCrews();
 
         // 목적지 방의 우선순위 높은 순 타일 위치 리스트
         List<Vector2Int> entryTiles = targetRoom.GetRotatedCrewEntryGridPriority();
@@ -324,19 +324,16 @@ public class RTSSelectionManager : MonoBehaviour
         // 1. 이동 명령 전, 목적지 방에 이미 위치한 선원들의 점유 타일 기록
         HashSet<Vector2Int> reservedTiles = new HashSet<Vector2Int>(targetRoom.occupiedCrewTiles);
         foreach (Vector2Int t in reservedTiles)
-            Debug.LogError($"목적지 방 {targetRoom} 원래 점유된 타일 위치 : {t}");
+            Debug.LogWarning($"누구도 이동하기 전 {targetRoom}에 선원 배치된 위치 : {t}");
 
         // 1-1. 이동 명령으로 점유 예약됐지만 아직 실 점유하기 전은 제외
-        foreach (CrewBase crewBase in allCrew)
+        foreach (CrewMember cm in allCrew)
         {
-            if (crewBase is CrewMember cm)
-            {
-                // 선원이 이동 중이면서 예약 타일만 존재하고 아직 타일 점유하지 않은 경우 제외
-                bool isCurrentlyReserved = selectedCrew.Contains(cm) && cm.reservedRoom == targetRoom && cm.GetCurrentTile() != cm.reservedTile;
+            // 선원이 이동 중이면서 예약 타일만 존재하고 아직 타일 점유하지 않은 경우 제외
+            bool isCurrentlyReserved = selectedCrew.Contains(cm) && cm.reservedRoom == targetRoom && cm.GetCurrentTile() != cm.reservedTile;
 
-                if (isCurrentlyReserved)
-                    reservedTiles.Remove(cm.reservedTile);
-            }
+            if (isCurrentlyReserved)
+                reservedTiles.Remove(cm.reservedTile);
         }
 
         foreach (Vector2Int t in reservedTiles)
@@ -476,6 +473,9 @@ public class RTSSelectionManager : MonoBehaviour
                 bestCrew.CancelAndRedirect(bestPath);
             else
                 bestCrew.AssignPathAndMove(bestPath);
+
+            // 7. 함내 전투 실행 여부 체크 (자동 AI)
+            // MoveForCombat(bestCrew, reservedTiles);
         }
     }
 
@@ -489,7 +489,7 @@ public class RTSSelectionManager : MonoBehaviour
 
         // 1. 도착한 방에서 적군 탐색
         List<CrewMember> enemiesInRoom = new List<CrewMember>();
-        List<CrewBase> allCrew = playerShip.GetSystem<CrewSystem>().GetCrews();
+        List<CrewMember> allCrew = playerShip.GetSystem<CrewSystem>().GetCrews();
 
         // 선원이 생존해 있고, 위치한 방이 현재 RTS 이동으로 도착한 선원과 같은 방이며, 상대편
         foreach (CrewMember crew in allCrew)
@@ -506,17 +506,17 @@ public class RTSSelectionManager : MonoBehaviour
         // 2. 현재 도착 위치(RTS 이동 결과)에서 가장 가까운 적 찾기 (A*)
         CrewMember closestEnemy = null;
         int shortestPathLength = int.MaxValue;
-        List<Vector2Int> bestPathToEnemy = null;
 
         foreach (CrewMember enemy in enemiesInRoom)
         {
-            if (!enemy.isAlive || enemy.isMoving) continue;
+            if (!enemy.isAlive || enemy.isMoving)
+                continue;
+
             List<Vector2Int> path = crewPathfinder.FindPathToTile(readyCombatCrew, enemy.GetCurrentTile());
             if (path != null && path.Count < shortestPathLength)
             {
                 shortestPathLength = path.Count;
                 closestEnemy = enemy;
-                bestPathToEnemy = path;
             }
         }
 
@@ -535,14 +535,23 @@ public class RTSSelectionManager : MonoBehaviour
             Vector2Int.left
         };
 
-        //공격이 가능한 타일 후보
+        // 공격이 가능한 타일 후보
         List<Vector2Int> neighborTileCandi = new List<Vector2Int>();
 
-        //4방향에서 후보에 등록할 방향을 찾는다.
+        // 4방향에서 후보에 등록할 방향을 찾는다.
         foreach (Vector2Int dir in directions)
         {
             Vector2Int neighborTile = enemyTile + dir;
             Debug.LogWarning($"이웃 타일 검사 : {neighborTile}");
+
+            // 만약 방에 도착한 위치가 적과 인접한 타일로 전투 가능 위치인 경우 즉시 전투 실행
+            if (readyCombatCrew.GetCurrentTile() == neighborTile)
+            {
+                Debug.Log("전투 개시");
+                readyCombatCrew.combatTarget = closestEnemy;
+                readyCombatCrew.combatCoroutine = StartCoroutine(readyCombatCrew.CombatRoutine());
+                return;
+            }
 
             // 방 내부의 타일인지 검사
             if (!movementValidator.IsTileWalkable(neighborTile))
@@ -555,54 +564,55 @@ public class RTSSelectionManager : MonoBehaviour
             {
                 continue;
             }
-            //만약 이미 같은 방안에서 인접한 타일에 적과 함께 있다면 전투 돌입
-            if (readyCombatCrew.GetCurrentTile() == neighborTile)
-            {
-                Debug.Log("전투 개시");
-                readyCombatCrew.combatTarget = closestEnemy;
-                readyCombatCrew.comBatCoroutine = StartCoroutine(readyCombatCrew.CombatRoutine());
-                return;
-            }
+
             // 이웃 타일이 이미 점유 당한 타일 (해당 위치로 이동 불가) && 타일 예약한게 본인이 아니라면
             if (readyCombatCrew.currentRoom.IsTileOccupiedByCrew(neighborTile) && readyCombatCrew.reservedTile != neighborTile)
             {
                 continue;
             }
+
             neighborTileCandi.Add(neighborTile);
         }
 
-        //후보가 없으면 히히 못가
+        // 전투 참여 불가
         if (neighborTileCandi.Count == 0)
         {
-            Debug.LogError($"{readyCombatCrew.race}가 {closestEnemy.race}에 접근할 수 있는 빈 타일 없음");
+            Debug.LogError($"{readyCombatCrew.race} : {closestEnemy.race} 주변 빈 타일 없어 전투 참여 불가");
             return;
         }
 
-        //후보 타일 중에서 현재 위치와 가장 가까운 타일로 확정시켜야됨
-        Vector2Int letsgo = Vector2Int.zero;
-        foreach (Vector2Int candi in neighborTileCandi)
+        // 전투 가능 타일 중 가장 가까운 곳으로 이동
+        int shortestPathLengthToNeighbor = int.MaxValue;
+        Vector2Int bestNeighborTile = neighborTileCandi[0];
+        List<Vector2Int> bestPathToNeighborTile = null;
+
+        foreach (Vector2Int combatTile in neighborTileCandi)
         {
-            List<Vector2Int> path = crewPathfinder.FindPathToTile(readyCombatCrew, candi);
-            if (path != null && path.Count < shortestPathLength)
+            List<Vector2Int> path = crewPathfinder.FindPathToTile(readyCombatCrew, combatTile);
+            if (path != null && path.Count < shortestPathLengthToNeighbor)
             {
-                letsgo = candi;
-                break;
+                shortestPathLengthToNeighbor = path.Count;
+                bestNeighborTile = combatTile;
+                bestPathToNeighborTile = path;
             }
         }
+
+        // 4. 이동 처리를 위한 필드값 세팅
         readyCombatCrew.oldReservedRoom = readyCombatCrew.reservedRoom;
         readyCombatCrew.oldReservedTile = readyCombatCrew.reservedTile;
         readyCombatCrew.reservedRoom = readyCombatCrew.currentRoom;
-        readyCombatCrew.reservedTile = letsgo;
+        readyCombatCrew.reservedTile = bestNeighborTile;
 
         // 5. reservedTiles 갱신
         reservedTiles.Remove(readyCombatCrew.oldReservedTile);
-        reservedTiles.Add(letsgo);
+        reservedTiles.Add(bestNeighborTile);
 
         // 6. 실제 이동 처리
-        List<Vector2Int> pathToNeighbor = crewPathfinder.FindPathToTile(readyCombatCrew, letsgo);
-        if (pathToNeighbor != null && pathToNeighbor.Count > 0)
-            readyCombatCrew.CancelAndRedirect(pathToNeighbor);
-        //뒤는 코루틴에게 맡기라구!
+        if (readyCombatCrew.isMoving)
+            readyCombatCrew.CancelAndRedirect(bestPathToNeighborTile);
+        else
+            readyCombatCrew.AssignPathAndMove(bestPathToNeighborTile);
 
+        return;
     }
 }

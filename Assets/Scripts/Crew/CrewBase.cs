@@ -126,7 +126,9 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// </summary>
     public Animator animator;
 
-    //쟤네가 나 때려
+    /// <summary>
+    /// 해당 선원을 때리고 있는 선원 리스트
+    /// </summary>
     public HashSet<CrewMember> bullier;
 
     private void Start()
@@ -355,7 +357,8 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         // TODO : 임시로 작동되게 해놓음.
 
-        if (currentShip.GetAllCrew().Contains(this)) currentShip.GetAllCrew().Remove(this);
+        if (currentShip.GetAllCrew().Contains(this as CrewMember))
+            currentShip.GetAllCrew().Remove(this as CrewMember);
 
         // 아래는 원래 코드
         /*

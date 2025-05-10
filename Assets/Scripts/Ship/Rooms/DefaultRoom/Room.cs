@@ -14,7 +14,7 @@ using Random = UnityEngine.Random;
 /// </summary>
 public abstract class Room : MonoBehaviour, IShipStatContributor
 {
-/// <summary>방의 데이터 ScriptableObject 참조.</summary>
+    /// <summary>방의 데이터 ScriptableObject 참조.</summary>
     [SerializeField] protected RoomData roomData;
 
     /// <summary>격자상의 방 위치 (좌측 상단 기준).</summary>
@@ -718,20 +718,29 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         return crewInRoom;
     }
 
-    //------------수리 관련----------
+    #region 수리
+
+    /// <summary>
+    /// 데미지 입은 정도
+    /// </summary>
     public DamageLevel damageCondition = DamageLevel.good;
-    /// <summary>수리가 필요한 상태인지 확인합니다.</summary>
+
+    ///<summary>
+    /// 수리가 필요한 상태인지 확인합니다.
+    /// </summary>
     public bool NeedsRepair()
     {
         if (damageCondition == DamageLevel.breakdown)
         {
-            return currentHitPoints<roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo];
+            return currentHitPoints < roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo];
         }
         else
         {
             return currentHitPoints < roomData.GetRoomDataByLevel(currentLevel).hitPoint;
         }
     }
+
+    #endregion
 
     /// <summary>지정된 피해만큼 체력을 감소시킵니다.</summary>
     public virtual void TakeDamage(float damage)
@@ -743,23 +752,23 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             damageCondition = DamageLevel.breakdown;
             OnDisabled();
         }
-        else if(currentHitPoints<=roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+        else if (currentHitPoints <= roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
             damageCondition = DamageLevel.scratch;
 
         // 스탯 기여도 변화 알림
         NotifyStateChanged();
     }
 
-    public virtual void DownDamageContidion()
+    public virtual void DownDamageCondition()
     {
         float damage = 0;
         if (damageCondition == DamageLevel.good)
         {
-            damage=currentHitPoints-roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne];
+            damage = currentHitPoints - roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne];
         }
         else if (damageCondition == DamageLevel.scratch)
         {
-            damage=currentHitPoints-roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo];
+            damage = currentHitPoints - roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo];
         }
         TakeDamage(damage);
     }
@@ -774,8 +783,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         else
         {
             currentHitPoints = Mathf.Min(roomData.GetRoomDataByLevel(currentLevel).hitPoint, currentHitPoints + amount);
-            if(currentHitPoints>roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
-                damageCondition=DamageLevel.good;
+            if (currentHitPoints > roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+                damageCondition = DamageLevel.good;
         }
 
         // 스탯 기여도 변화 알림
@@ -795,7 +804,11 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         NotifyStateChanged();
     }
 
-    #region work
+    #region 작업
+
+    /// <summary>
+    /// 작업 방향
+    /// </summary>
     public Vector2Int workDirection;
 
     [SerializeField] private CrewMember _workingCrew;
