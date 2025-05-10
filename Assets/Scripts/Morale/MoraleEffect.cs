@@ -222,7 +222,7 @@ public class MoraleEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             out Vector2 localPoint);
 
         // 툴팁 위치 설정 (마우스 커서 오른쪽 위에 표시)
-        tooltipRectTransform.localPosition = localPoint + new Vector2(340f, -140f);
+        tooltipRectTransform.localPosition = localPoint + new Vector2(300f, -140f);
 
         // 화면 밖으로 나가지 않도록 조정
         Vector2 canvasSize = parentCanvas.GetComponent<RectTransform>().rect.size;

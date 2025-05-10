@@ -14,7 +14,7 @@ public class MoraleManager : MonoBehaviour
     [SerializeField] private RectTransform moraleStatusPanel;
 
     // 종족별 아이콘 참조 (None은 전체 선원용)
-    private Dictionary<CrewRace, MoraleIconUI> raceIcons = new();
+    private Dictionary<CrewRace, MoraleIcon> raceIcons = new();
 
     /// <summary>
     /// 현재 적용 중인 사기 효과 데이터
@@ -119,9 +119,9 @@ public class MoraleManager : MonoBehaviour
             layoutElement.preferredWidth = 40f;
             layoutElement.preferredHeight = 40f;
 
-            // MoraleIconUI 초기화
-            MoraleIconUI icon = iconObj.GetComponent<MoraleIconUI>();
-            if (icon == null) icon = iconObj.AddComponent<MoraleIconUI>();
+            // MoraleIcon 초기화
+            MoraleIcon icon = iconObj.GetComponent<MoraleIcon>();
+            if (icon == null) icon = iconObj.AddComponent<MoraleIcon>();
             icon.Initialize(race);
 
             // 딕셔너리에 저장
@@ -199,7 +199,7 @@ public class MoraleManager : MonoBehaviour
         activeEffects.Clear();
 
         // 모든 아이콘 비활성화
-        foreach (MoraleIconUI icon in raceIcons.Values)
+        foreach (MoraleIcon icon in raceIcons.Values)
         {
             icon.ClearEffectData();
             icon.gameObject.SetActive(false);
@@ -292,7 +292,7 @@ public class MoraleManager : MonoBehaviour
     /// </summary>
     private void UpdateRaceIcon(CrewRace race)
     {
-        if (!raceIcons.TryGetValue(race, out MoraleIconUI icon))
+        if (!raceIcons.TryGetValue(race, out MoraleIcon icon))
         {
             Debug.LogError($"아이콘을 찾을 수 없습니다: {race}");
             return;

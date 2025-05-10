@@ -43,7 +43,7 @@ public class ProjectileManager : MonoBehaviour
         GameObject projectile = Instantiate(projectilePrefab, startPosition, Quaternion.identity);
 
         // 투사체 이동 및 충돌 처리 컴포넌트 설정
-        Projectile projectileComponent = projectile.GetComponent<Projectile>();
+        MyProjectile projectileComponent = projectile.GetComponent<MyProjectile>();
         if (projectileComponent != null)
             projectileComponent.Initialize(targetPosition, onHit);
         else

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class MoraleIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class MoraleIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     /// <summary>
     /// 종족 유형
@@ -207,14 +207,15 @@ public class MoraleIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         // 세부 효과 목록 추가
         if (effectDataList.Count > 0)
         {
-            baseText += "ui.morale.tooltip.2";
+            baseText += "ui.morale.tooltip.2".Localize();
+
             foreach (MoraleEffectData data in effectDataList)
             {
                 string effectValue = data.value >= 0 ? $"+{data.value}" : data.value.ToString();
                 string source = !string.IsNullOrEmpty(data.source) ? $" ({data.source})" : "";
                 int yearsLeft = data.EndYear - GameManager.Instance.CurrentYear;
 
-                baseText += "ui.morale.tooltip.3".Localize(effectValue, yearsLeft, source);
+                baseText += "ui.morale.tooltip.3".Localize(effectValue, yearsLeft);
             }
         }
 
@@ -296,7 +297,7 @@ public class MoraleIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             out Vector2 localPoint);
 
         // 툴팁 위치 설정 (마우스 커서 오른쪽 위에 표시)
-        tooltipRectTransform.localPosition = localPoint + new Vector2(30f, 15f);
+        tooltipRectTransform.localPosition = localPoint + new Vector2(290f, -140f);
 
         // 화면 밖으로 나가지 않도록 조정
         Vector2 canvasSize = parentCanvas.GetComponent<RectTransform>().rect.size;
