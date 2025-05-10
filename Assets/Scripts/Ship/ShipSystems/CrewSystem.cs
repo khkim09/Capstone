@@ -268,6 +268,9 @@ public class CrewSystem : ShipSystem
                 if (col != null)
                     col.enabled = true;
 
+                crew.Freeze();
+                crew.BackToThePeace();
+
                 if (!GetCrews().Contains(crew))
                     GetCrews().Add(crew);
 

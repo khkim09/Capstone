@@ -351,6 +351,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
             // 3) 기존 선원 복구 및 랜덤 배치
             playerShip.GetSystem<CrewSystem>().RestoreCrewAfterBuild(backupCrewDatas);
+
+            playerShip.AllFreeze();
         }
 
         // 함선 스텟 다시 계산

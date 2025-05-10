@@ -963,6 +963,18 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         return rooms[Random.Range(0, rooms.Count)];
     }
 
+    public void AllFreeze()
+    {
+        foreach (CrewBase crew in GetAllCrew())
+        {
+            if (crew is CrewMember cm)
+            {
+                cm.Freeze();
+                cm.BackToThePeace();
+            }
+        }
+    }
+
     #region 무기
 
     /// <summary>
