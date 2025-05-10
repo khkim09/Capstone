@@ -176,6 +176,7 @@ public class CrewSystem : ShipSystem
             originCrew.currentRoom = room;
             originCrew.transform.position = parentShip.GridToWorldPosition(data.position);
             originCrew.transform.SetParent(room.transform);
+            originCrew.currentShip = parentShip;
 
             room.OccupyTile(data.position);
             room.OnCrewEnter(originCrew);
@@ -232,6 +233,7 @@ public class CrewSystem : ShipSystem
                 crew.currentRoom = room;
                 crew.transform.position = parentShip.GridToWorldPosition(spawnTile);
                 crew.transform.SetParent(room.transform);
+                crew.currentShip = parentShip;
 
                 // 점유 등록
                 room.OccupyTile(spawnTile);
