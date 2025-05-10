@@ -7,6 +7,7 @@ using System.Linq;
 using Newtonsoft.Json;
 
 // 게임 매니저와 통합할 수 있는 정적 클래스 버전의 LocalizationManager
+[DefaultExecutionOrder(-100)]
 public static class LocalizationManager
 {
     // 현재 선택된 언어
@@ -29,12 +30,16 @@ public static class LocalizationManager
     public delegate void LanguageChangedHandler(SystemLanguage newLanguage);
 
     public static event LanguageChangedHandler OnLanguageChanged;
+    public static event Action OnInitialized;
+
 
     // 로컬라이제이션 데이터
     private static Dictionary<string, Dictionary<string, string>> localizedTexts = new();
 
     // 초기화 완료 여부
     private static bool isInitialized = false;
+
+    public static bool IsInitialized => isInitialized;
 
     // 지원하는 언어 목록
     public static List<SystemLanguage> SupportedLanguages { get; } = new()
@@ -60,6 +65,9 @@ public static class LocalizationManager
             LoadLocalizedText(filePath);
 
         isInitialized = true;
+
+        // 초기화 완료 이벤트 발생
+        OnInitialized?.Invoke();
     }
 
     // 시스템 언어 감지 또는 설정 불러오기
@@ -259,5 +267,11 @@ public static class LocalizationExtensions
     public static string Localize(this string key, params object[] args)
     {
         return LocalizationManager.GetLocalizedText(key, args);
+    }
+
+    public static string Localize(this CrewRace race)
+    {
+        string key = $"crew.race.{race}";
+        return LocalizationManager.GetLocalizedText(key);
     }
 }
