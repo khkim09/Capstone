@@ -105,7 +105,7 @@ public class RTSSelectionManager : MonoBehaviour
 
         RefreshMovementData();
         outlineMaterial = Resources.Load<Material>("Material/UnitOutlineMaterial");
-        defaultMaterial= Resources.Load<Material>("Material/UnitDefaultMaterial");
+        defaultMaterial = Resources.Load<Material>("Material/UnitDefaultMaterial");
     }
 
     /// <summary>
@@ -223,7 +223,7 @@ public class RTSSelectionManager : MonoBehaviour
         selectedCrew.Clear();
         CrewMember[] allCrew = GameObject.FindObjectsByType<CrewMember>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         foreach (CrewMember crew in allCrew)
-            SetOutline(crew,false);
+            SetOutline(crew, false);
     }
 
     /// <summary>
@@ -241,10 +241,10 @@ public class RTSSelectionManager : MonoBehaviour
             CrewMember crew = hit.collider.GetComponent<CrewMember>();
 
             // 아군만 선택 가능
-            if (crew != null && crew.isPlayerControlled)
+            if (crew != null/* && crew.isPlayerControlled*/)
             {
                 selectedCrew.Add(crew);
-                SetOutline(crew,true);
+                SetOutline(crew, true);
             }
         }
     }
@@ -267,7 +267,7 @@ public class RTSSelectionManager : MonoBehaviour
             screenPos.y = Screen.height - screenPos.y;
 
             // 아군만 선택 가능
-            if (selectionRect.Contains(screenPos, true) && crew.isPlayerControlled)
+            if (selectionRect.Contains(screenPos, true)/* && crew.isPlayerControlled*/)
             {
                 selectedCrew.Add(crew);
                 // 선택됨 표시 (예: 색상 변경)
@@ -486,12 +486,17 @@ public class RTSSelectionManager : MonoBehaviour
     public void MoveForCombat(CrewMember readyCombatCrew, HashSet<Vector2Int> reservedTiles)
     {
         Debug.LogError("전투 이동 검사 시작");
+
         // 1. 도착한 방에서 적군 탐색
-        List<CrewMember> enemiesInRoom = playerShip.GetSystem<CrewSystem>().GetCrews().OfType<CrewMember>().Where
-        (
-            // 선원이 생존해 있고, 위치한 방이 현재 RTS 이동으로 도착한 선원과 같은 방이며, 적군일 때
-            c => c.isAlive && c.currentRoom == readyCombatCrew.currentRoom && !c.isPlayerControlled
-        ).ToList();
+        List<CrewMember> enemiesInRoom = new List<CrewMember>();
+        List<CrewBase> allCrew = playerShip.GetSystem<CrewSystem>().GetCrews();
+
+        // 선원이 생존해 있고, 위치한 방이 현재 RTS 이동으로 도착한 선원과 같은 방이며, 상대편
+        foreach (CrewMember crew in allCrew)
+        {
+            if (crew.isAlive && crew.currentRoom == readyCombatCrew.currentRoom && crew.isPlayerControlled != readyCombatCrew.isPlayerControlled)
+                enemiesInRoom.Add(crew);
+        }
 
         if (enemiesInRoom.Count == 0)
         {
