@@ -81,6 +81,7 @@ public class CrewSystem : ShipSystem
             room.OccupyTile(spawnTile);
             room.OnCrewEnter(crew);
             parentShip.MarkCrewTileOccupied(room, spawnTile);
+            crew.currentShip = parentShip;
 
             parentShip.allCrews.Add(crew);
             return true;
@@ -215,8 +216,8 @@ public class CrewSystem : ShipSystem
                 List<Vector2Int> candidates = room.GetRotatedCrewEntryGridPriority().Where
                 (
                     t => !room.IsTileOccupiedByCrew(t)
-                         && !parentShip.IsCrewTileOccupied(room, t)
-                         && !alreadyOccupiedTiles.Contains(t)
+                        && !parentShip.IsCrewTileOccupied(room, t)
+                        && !alreadyOccupiedTiles.Contains(t)
                 ).ToList();
 
                 if (candidates.Count == 0)
@@ -243,6 +244,9 @@ public class CrewSystem : ShipSystem
                 BoxCollider2D col = crew.GetComponent<BoxCollider2D>();
                 if (col != null)
                     col.enabled = true;
+
+                crew.Freeze();
+                crew.BackToThePeace();
 
                 // crewList에 추가
                 parentShip.allCrews.Add(crew);

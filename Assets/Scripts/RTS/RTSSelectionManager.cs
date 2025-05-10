@@ -244,7 +244,8 @@ public class RTSSelectionManager : MonoBehaviour
             if (crew != null/* && crew.isPlayerControlled*/)
             {
                 selectedCrew.Add(crew);
-                SetOutline(crew, true);
+                SetOutline(crew,true);
+                crew.originPosTile = crew.GetCurrentTile();
             }
         }
     }

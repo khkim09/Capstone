@@ -185,8 +185,13 @@ public class CustomizeShipUIHandler : MonoBehaviour
         List<CrewMember> crews = playerShip.allCrews;
 
         foreach (CrewMember crew in crews)
+        {
             if (crew != null)
+            {
+                crew.Freeze();
                 crew.gameObject.SetActive(false);
+            }
+        }
     }
 
     /// <summary>
@@ -197,8 +202,13 @@ public class CustomizeShipUIHandler : MonoBehaviour
         List<CrewMember> crews = playerShip.allCrews;
 
         foreach (CrewMember crew in crews)
+        {
             if (crew != null)
+            {
                 crew.gameObject.SetActive(true);
+                crew.BackToThePeace();
+            }
+        }
     }
 
     /// <summary>
@@ -327,6 +337,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
             // 3) 기존 선원 복구 및 랜덤 배치
             playerShip.GetSystem<CrewSystem>().RestoreCrewAfterBuild(playerShip.backupCrewDatas);
+
+            playerShip.AllFreeze();
         }
 
         // 함선 스텟 다시 계산
