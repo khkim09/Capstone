@@ -94,6 +94,18 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    private float GetMaxAmount(ResourceType type)
+    {
+        switch (type)
+        {
+            case ResourceType.COMA:
+                return int.MaxValue;
+            case ResourceType.Fuel:
+            default:
+                return float.MaxValue;
+        }
+    }
+
     private ResourceValueType GetValueType(ResourceType type)
     {
         switch (type)
