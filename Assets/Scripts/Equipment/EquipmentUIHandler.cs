@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.Analytics;
+using Unity.VisualScripting;
 
 /// <summary>
 /// 장비 관련 UI 담당 Handler
@@ -197,9 +199,32 @@ public class EquipmentUIHandler : MonoBehaviour
     /// </summary>
     public TextMeshProUGUI statDiffText;
 
+    /// <summary>
+    /// 해제하는 장비
+    /// </summary>
     private EquipmentItem pendingEquipItem = null;
+
+    /// <summary>
+    /// 해제하는 장비 타입
+    /// </summary>
     private EquipmentType pendingEquipType = EquipmentType.None;
+
+    /// <summary>
+    /// 장비 해제 완료 여부
+    /// </summary>
     private bool isPendingRemoval = false;
+
+    [Header("Stat Comparison Rows")]
+    /// <summary>
+    /// 변화 표시 오브젝트 (우측 화살표)
+    /// </summary>
+    public GameObject midArrows;
+    [SerializeField] private Image[] changeArrows;
+    [SerializeField] private Image beforeEquipImage;
+    [SerializeField] private Image afterEquipImage;
+    [SerializeField] private Sprite increaseSprite;
+    [SerializeField] private Sprite decreaseSprite;
+    [SerializeField] private Sprite noChangeSprite;
 
     /// <summary>
     /// 시작 시 장비 팝업을 비활성화합니다.
@@ -216,7 +241,7 @@ public class EquipmentUIHandler : MonoBehaviour
     private void OnEnable()
     {
         // 보유 재화량 업데이트
-        currentCurrency = (int)ResourceManager.Instance.COMA;
+        currentCurrency = ResourceManager.Instance.COMA;
     }
 
     /// <summary>
@@ -285,19 +310,6 @@ public class EquipmentUIHandler : MonoBehaviour
 
         // 보유 장비 전체 리스트 띄우기
         PopulateEquipmentIcons();
-
-        // 개인 장비 갱신
-        if (!eq.isGlobalEquip)
-        {
-            if (selectedCrew == null)
-            {
-                // 장비 착용할 선원 경고 UI 필요
-                Debug.LogWarning("장비 착용 실패, 선택된 선원 X");
-                return;
-            }
-
-            EquipmentManager.Instance.PurchaseAndEquipPersonal(selectedCrew, eq);
-        }
     }
 
     /// <summary>
@@ -382,20 +394,29 @@ public class EquipmentUIHandler : MonoBehaviour
     {
         selectedCrew = crew;
 
-        // 상세 정보 패널 표시
-        crewDetailPanel.SetActive(true);
-
         // 전체 선원 패널 비활성화
         allCrewPanel.SetActive(false);
 
+        // 상세 정보 패널 표시
+        crewDetailPanel.SetActive(true);
+        // statComparePanel.SetActive(true);
 
         detailCrewImage.sprite = crew.spriteRenderer.sprite;
         detailWeaponImage.sprite = crew.equippedWeapon.eqIcon != null ? crew.equippedWeapon.eqIcon : noneIcon;
         detailShieldImage.sprite = crew.equippedShield.eqIcon != null ? crew.equippedShield.eqIcon : noneIcon;
         detailAssistantImage.sprite = crew.equippedAssistant.eqIcon != null ? crew.equippedAssistant.eqIcon : noneIcon;
 
-        // 장비 적용
-        EquipmentManager.Instance.PurchaseAndEquipPersonal(crew, currentSelectedItem);
+        // 스텟 초기화
+        baseStatsText.text = "";
+        newStatsText.text = "";
+        statDiffText.text = "";
+
+        // detail panel 활성화 시 기본 이미지 비활성화
+        beforeEquipImage.enabled = false;
+        afterEquipImage.enabled = false;
+
+        foreach (Image arrow in changeArrows)
+            arrow.enabled = false;
     }
 
     /// <summary>
@@ -413,7 +434,16 @@ public class EquipmentUIHandler : MonoBehaviour
         EquipmentStats after = selectedCrew.GetStatsIfEquipped(item);
 
         ShowStatComparison(before, after);
-        statComparePanel.SetActive(true);
+        // statComparePanel.SetActive(true);
+
+        if (item.eqType == EquipmentType.WeaponEquipment)
+            beforeEquipImage.sprite = selectedCrew.equippedWeapon.eqIcon;
+        else if (item.eqType == EquipmentType.ShieldEquipment)
+            beforeEquipImage.sprite = selectedCrew.equippedShield.eqIcon;
+        else if (item.eqType == EquipmentType.AssistantEquipment)
+            beforeEquipImage.sprite = selectedCrew.equippedAssistant.eqIcon;
+
+        afterEquipImage.sprite = item.eqIcon;
 
         pendingEquipItem = item;
         pendingEquipType = item.eqType;
@@ -427,60 +457,85 @@ public class EquipmentUIHandler : MonoBehaviour
     /// <param name="after"></param>
     private void ShowStatComparison(EquipmentStats before, EquipmentStats after)
     {
-        baseStatsText.text = $@"
-        {before.health}\n
-        {before.attack}\n
-        {before.defense}\n
-        \n
-        {before.pilotSkill}\n
-        {before.engineSkill}\n
-        {before.powerSkill}\n
-        {before.shieldSkill}\n
-        {before.weaponSkill}\n
-        {before.ammunitionSkill}\n
-        {before.medbaySkill}\n
-        {before.repairSkill}
-        ";
+        float[] beforeVals = {
+            before.health,
+            before.attack,
+            before.defense,
+            before.pilotSkill,
+            before.engineSkill,
+            before.powerSkill,
+            before.shieldSkill,
+            before.weaponSkill,
+            before.ammunitionSkill,
+            before.medbaySkill,
+            before.repairSkill
+        };
 
-        newStatsText.text = $@"
-        {after.health}\n
-        {after.attack}\n
-        {after.defense}\n
-        \n
-        {after.pilotSkill}\n
-        {after.engineSkill}\n
-        {after.powerSkill}\n
-        {after.shieldSkill}\n
-        {after.weaponSkill}\n
-        {after.ammunitionSkill}\n
-        {after.medbaySkill}\n
-        {after.repairSkill}
-        ";
+        float[] afterVals = {
+            after.health,
+            after.attack,
+            after.defense,
+            after.pilotSkill,
+            after.engineSkill,
+            after.powerSkill,
+            after.shieldSkill,
+            after.weaponSkill,
+            after.ammunitionSkill,
+            after.medbaySkill,
+            after.repairSkill
+        };
 
-        statDiffText.text = $@"
-        {FormatDiff(after.health - before.health)}\n
-        {FormatDiff(after.attack - before.attack)}\n
-        {FormatDiff(after.defense - before.defense)}\n
-        \n
-        {FormatDiff(after.pilotSkill - before.pilotSkill)}\n
-        {FormatDiff(after.engineSkill - before.engineSkill)}\n
-        {FormatDiff(after.powerSkill - before.powerSkill)}\n
-        {FormatDiff(after.shieldSkill - before.shieldSkill)}\n
-        {FormatDiff(after.weaponSkill - before.weaponSkill)}\n
-        {FormatDiff(after.ammunitionSkill - before.ammunitionSkill)}\n
-        {FormatDiff(after.medbaySkill - before.medbaySkill)}\n
-        {FormatDiff(after.repairSkill - before.repairSkill)}
-        ";
-    }
+        string baseStr = "";
+        string newStr = "";
+        string diffStr = "";
 
-    /// <summary>
-    /// 차이를 string으로 반환
-    /// </summary>
-    /// <param name="diff"></param>
-    /// <returns></returns>
-    private string FormatDiff(float diff)
-    {
-        return (int)diff == 0 ? "±0" : diff > 0 ? $"+{diff}" : diff.ToString();
+        beforeEquipImage.enabled = true;
+        afterEquipImage.enabled = true;
+        midArrows.SetActive(true);
+
+        for (int i = 0; i < beforeVals.Length; i++)
+        {
+            if (i == 3)
+            {
+                baseStr += "\n";
+                newStr += "\n";
+                diffStr += "\n";
+            }
+
+            int diff = (int)(afterVals[i] - beforeVals[i]);
+            baseStr += $"{beforeVals[i]}\n";
+            newStr += $"{afterVals[i]}\n";
+
+            if (diff == 0)
+            {
+                changeArrows[i].sprite = noChangeSprite;
+                diffStr += "\n";
+            }
+            else if (diff > 0)
+            {
+                changeArrows[i].sprite = increaseSprite;
+                diffStr += $"{diff}\n";
+            }
+            else
+            {
+                changeArrows[i].sprite = decreaseSprite;
+                diffStr += $"{Mathf.Abs(diff)}\n";
+            }
+            changeArrows[i].enabled = true;
+        }
+
+        baseStatsText.text = baseStr;
+        newStatsText.text = newStr;
+        statDiffText.text = diffStr;
+
+        /*
+        // 좌우 장비 이미지 표시
+        EquipmentItem beforeItem = GetCurrentEquippedByType(pendingEquipType);
+        EquipmentItem afterItem = pendingEquipItem;
+
+        beforeEquipImage.sprite = beforeItem != null ? beforeItem.eqIcon : noneIcon;
+        afterEquipImage.sprite = afterItem != null ? afterItem.eqIcon : noneIcon;
+        */
     }
 
     /// <summary>
@@ -496,7 +551,23 @@ public class EquipmentUIHandler : MonoBehaviour
         EquipmentStats after = selectedCrew.GetStatsIfEquipped(EquipmentManager.Instance.GetDefaultEquipment(type));
 
         ShowStatComparison(before, after);
-        statComparePanel.SetActive(true);
+        // statComparePanel.SetActive(true);
+
+        if (type == EquipmentType.WeaponEquipment)
+        {
+            beforeEquipImage.sprite = selectedCrew.equippedWeapon.eqIcon;
+            afterEquipImage.sprite = EquipmentManager.Instance.defaultWeapon.eqIcon;
+        }
+        else if (type == EquipmentType.ShieldEquipment)
+        {
+            beforeEquipImage.sprite = selectedCrew.equippedShield.eqIcon;
+            afterEquipImage.sprite = EquipmentManager.Instance.defaultShield.eqIcon;
+        }
+        else if (type == EquipmentType.AssistantEquipment)
+        {
+            beforeEquipImage.sprite = selectedCrew.equippedAssistant.eqIcon;
+            afterEquipImage.sprite = EquipmentManager.Instance.defaultAssistant.eqIcon;
+        }
 
         pendingEquipItem = EquipmentManager.Instance.GetDefaultEquipment(type);
         pendingEquipType = type;
@@ -521,7 +592,7 @@ public class EquipmentUIHandler : MonoBehaviour
     /// <summary>
     /// ok 버튼 눌러 장비를 선원에게 직접 적용 / 해제
     /// </summary>
-    public void OnClickStatApplyOK()
+    public void OnClickStatApplyButton()
     {
         if (selectedCrew == null || pendingEquipItem == null)
             return;
@@ -530,12 +601,13 @@ public class EquipmentUIHandler : MonoBehaviour
         if (isPendingRemoval)
         {
             EquipmentItem removed = GetCurrentEquippedByType(pendingEquipType);
-            if (removed != null && !removed.isGlobalEquip)
+
+            if (removed != null && !removed.isGlobalEquip && removed != EquipmentManager.Instance.defaultAssistant)
                 unUsedItems.Add(removed);
         }
         else
         {
-            if (!pendingEquipItem.isGlobalEquip)
+            if (pendingEquipItem != EquipmentManager.Instance.defaultAssistant && !pendingEquipItem.isGlobalEquip)
                 unUsedItems.Remove(pendingEquipItem);
         }
 
@@ -552,7 +624,9 @@ public class EquipmentUIHandler : MonoBehaviour
         pendingEquipType = EquipmentType.None;
         isPendingRemoval = false;
 
-        statComparePanel.SetActive(false);
+        midArrows.SetActive(false);
+        crewDetailPanel.SetActive(false);
+        allCrewPanel.SetActive(true);
     }
 
     /// <summary>
@@ -578,11 +652,9 @@ public class EquipmentUIHandler : MonoBehaviour
     {
         detailWeaponImage.sprite = selectedCrew.equippedWeapon != null ? selectedCrew.equippedWeapon.eqIcon : noneIcon;
         detailShieldImage.sprite = selectedCrew.equippedShield != null ? selectedCrew.equippedShield.eqIcon : noneIcon;
-        detailAssistantImage.sprite =
-            selectedCrew.equippedAssistant != null ? selectedCrew.equippedAssistant.eqIcon : noneIcon;
+        detailAssistantImage.sprite = selectedCrew.equippedAssistant != null ? selectedCrew.equippedAssistant.eqIcon : noneIcon;
 
-        EquipmentStats currentStats = selectedCrew.GetCombinedStats();
-        baseStatsText.text = currentStats.ToString();
+        baseStatsText.text = selectedCrew.GetCombinedStats().ToString();
         newStatsText.text = "";
         statDiffText.text = "";
     }
@@ -602,7 +674,7 @@ public class EquipmentUIHandler : MonoBehaviour
         allEquipmentPanel.SetActive(false);
 
         // 스텟 비교 창 초기화
-        baseStatsText.text = selectedCrew.GetCombinedStats().ToString();
+        baseStatsText.text = "";
         newStatsText.text = "";
         statDiffText.text = "";
     }
@@ -612,12 +684,13 @@ public class EquipmentUIHandler : MonoBehaviour
     /// </summary>
     public void OnClickBackPersonal()
     {
+
         crewDetailPanel.SetActive(false);
 
         allCrewPanel.SetActive(true);
 
         // 스텟 비교 창 초기화
-        baseStatsText.text = selectedCrew.GetCombinedStats().ToString();
+        baseStatsText.text = "";
         newStatsText.text = "";
         statDiffText.text = "";
     }
