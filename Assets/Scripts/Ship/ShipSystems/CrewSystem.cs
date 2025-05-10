@@ -91,6 +91,7 @@ public class CrewSystem : ShipSystem
             room.OccupyTile(spawnTile);
             room.OnCrewEnter(crew);
             parentShip.MarkCrewTileOccupied(room, spawnTile);
+            crew.currentShip=parentShip;
 
             crews.Add(crew);
             return true;

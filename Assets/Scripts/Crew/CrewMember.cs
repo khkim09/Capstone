@@ -287,6 +287,8 @@ public class CrewMember : CrewBase
         {
             //도착 후 적 탐색 및 전투(이동+공격) 돌입
             RTSSelectionManager.Instance.MoveForCombat(this, currentRoom.occupiedCrewTiles);
+            //도착 후 2명 이상의 적이 있다면 표적이 된 상대를 제외한 다른 적들도 자신을 공격하도록 어그로를 끈다
+            LookAtMe();
         }
         else
         {
@@ -294,8 +296,6 @@ public class CrewMember : CrewBase
             {
                 comBatCoroutine = StartCoroutine(CombatRoutine());
             }
-            //도착 후 2명 이상의 적이 있다면 표적이 된 상대를 제외한 다른 적들도 자신을 공격하도록 어그로를 끈다
-            LookAtMe();
             //적이 없다면 Idle 상태를 거쳐 수리로 연결된다.
             BackToThePeace();
         }
@@ -535,6 +535,7 @@ public class CrewMember : CrewBase
             StopCoroutine(comBatCoroutine);
             comBatCoroutine = null;
             madRoom = null;
+            combatTarget = null;
         }
         if (isWorking)
         {
@@ -588,8 +589,10 @@ public class CrewMember : CrewBase
     {
         foreach (CrewMember other in currentRoom.GetCrewInRoom())
         {
+            if (other == this) continue;
             if (other.inCombat == false && other.isMoving == false)
             {
+                other.WalkOut();
                 RTSSelectionManager.Instance.MoveForCombat(other, other.currentRoom.occupiedCrewTiles);
             }
         }
@@ -719,7 +722,7 @@ public class CrewMember : CrewBase
 
     #endregion
 
-    private void Freeze()
+    public void Freeze()
     {
         //일단 모든 코루틴을 멈추고
         StopAllCoroutines();
@@ -732,13 +735,7 @@ public class CrewMember : CrewBase
         madRoom = null;
 
         //작업 중단
-        isWorking = false;
-        PlayAnimation("work");
-        if(currentRoom.workingCrew==this)
-        {
-            currentRoom.workingCrew = null;
-            currentShip.RecalculateAllStats();
-        }
+        WalkOut();
 
         //이동 중단
         isMoving = false;
@@ -753,12 +750,18 @@ public class CrewMember : CrewBase
 
     private void WalkOut()
     {
-        foreach (Room room in currentShip.GetAllRooms())
+        if(isWorking)
         {
-            if (room.workingCrew == this)
+            isWorking = false;
+            PlayAnimation("work");
+            foreach (Room room in currentShip.GetAllRooms())
             {
-                room.workingCrew = null;
+                if (room.workingCrew == this)
+                {
+                    room.workingCrew = null;
+                }
             }
+            currentShip.RecalculateAllStats();
         }
     }
 

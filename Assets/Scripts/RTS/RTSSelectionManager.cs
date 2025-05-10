@@ -245,6 +245,7 @@ public class RTSSelectionManager : MonoBehaviour
             {
                 selectedCrew.Add(crew);
                 SetOutline(crew,true);
+                crew.originPosTile = crew.GetCurrentTile();
             }
         }
     }
@@ -490,7 +491,7 @@ public class RTSSelectionManager : MonoBehaviour
         List<CrewMember> enemiesInRoom = playerShip.GetSystem<CrewSystem>().GetCrews().OfType<CrewMember>().Where
         (
             // 선원이 생존해 있고, 위치한 방이 현재 RTS 이동으로 도착한 선원과 같은 방이며, 적군일 때
-            c => c.isAlive && c.currentRoom == readyCombatCrew.currentRoom && !c.isPlayerControlled
+            c => c.isAlive && c.currentRoom == readyCombatCrew.currentRoom && c.isPlayerControlled!=readyCombatCrew.isPlayerControlled
         ).ToList();
 
         if (enemiesInRoom.Count == 0)

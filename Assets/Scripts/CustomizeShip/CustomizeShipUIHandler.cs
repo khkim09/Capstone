@@ -183,7 +183,10 @@ public class CustomizeShipUIHandler : MonoBehaviour
         foreach (CrewBase crew in crews)
         {
             if (crew is CrewMember crewMember)
+            {
+                crewMember.Freeze();
                 crewMember.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -197,7 +200,10 @@ public class CustomizeShipUIHandler : MonoBehaviour
         foreach (CrewBase crew in crews)
         {
             if (crew is CrewMember crewMember)
+            {
                 crewMember.gameObject.SetActive(true);
+                crewMember.BackToThePeace();
+            }
         }
     }
 
