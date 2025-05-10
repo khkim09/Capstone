@@ -197,7 +197,7 @@ public class EventManager : MonoBehaviour
             return;
 
         // 결과 텍스트 표시
-        EventUIManager.Instance.ShowOutcome(outcome.outcomeText);
+        EventUIManager.Instance.ShowOutcome(outcome.outcomeText.Localize());
 
         // 각종 효과 적용
         ApplyOutcomeEffects(outcome);

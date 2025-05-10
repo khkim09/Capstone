@@ -61,8 +61,8 @@ public class EventUIManager : MonoBehaviour
         choicesPanel.SetActive(true);
 
         // 이벤트 정보 설정
-        eventTitleText.text = randomEvent.eventTitle;
-        StartCoroutine(TypeText(eventDescriptionText, randomEvent.eventDescription));
+        eventTitleText.text = randomEvent.eventTitle.Localize();
+        StartCoroutine(TypeText(eventDescriptionText, randomEvent.eventDescription.Localize()));
 
         if (randomEvent.eventImage != null)
         {
@@ -91,7 +91,7 @@ public class EventUIManager : MonoBehaviour
             var button = buttonObj.GetComponent<Button>();
             var buttonText = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
 
-            buttonText.text = choice.choiceText;
+            buttonText.text = choice.choiceText.Localize();
 
             var choiceIndex = i; // 인덱스를 클로저 내에서 사용하기 위해 복사
             button.onClick.AddListener(() => OnChoiceSelected(choiceIndex));
@@ -125,6 +125,7 @@ public class EventUIManager : MonoBehaviour
         foreach (var c in text)
         {
             textComponent.text += c;
+
             yield return new WaitForSeconds(textTypingSpeed);
         }
     }
