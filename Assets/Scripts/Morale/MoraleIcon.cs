@@ -198,11 +198,17 @@ public class MoraleIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         if (tooltipTextComponent == null) return;
 
-        string raceStr = race.ToString();
+        string raceStr = race.Localize();
         string changeAmount = totalValue >= 0 ? $"+{totalValue}" : totalValue.ToString();
 
-        // 기본 툴팁 텍스트 설정
-        string baseText = "ui.morale.tooltip.1".Localize(raceStr, changeAmount);
+        string baseText = "";
+
+
+        if (race == CrewRace.None)
+            baseText = "ui.morale.tooltip.4".Localize(changeAmount);
+        else
+            baseText = "ui.morale.tooltip.1".Localize(raceStr, changeAmount);
+
 
         // 세부 효과 목록 추가
         if (effectDataList.Count > 0)

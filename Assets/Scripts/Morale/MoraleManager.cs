@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -47,45 +48,54 @@ public class MoraleManager : MonoBehaviour
 
     private void Start()
     {
-        if (moraleStatusPanel == null)
-        {
-            GameObject panelObj = GameObject.Find("Morale Status Layout");
-            if (panelObj != null)
-            {
-                moraleStatusPanel = panelObj.GetComponent<RectTransform>();
-            }
-            else
-            {
-                Debug.LogError("Morale Status Layout을 찾을 수 없습니다!");
-                return;
-            }
-        }
-
-        // Horizontal Layout Group 확인 및 추가
-        HorizontalLayoutGroup layoutGroup = moraleStatusPanel.GetComponent<HorizontalLayoutGroup>();
-        if (layoutGroup == null)
-        {
-            layoutGroup = moraleStatusPanel.gameObject.AddComponent<HorizontalLayoutGroup>();
-            layoutGroup.spacing = 10f;
-            layoutGroup.childAlignment = TextAnchor.MiddleCenter;
-            layoutGroup.childForceExpandWidth = false;
-            layoutGroup.childForceExpandHeight = false;
-        }
-
-        // 종족별 아이콘 미리 생성
-        CreateRaceIcons();
     }
 
     private void OnEnable()
     {
         if (GameManager.Instance != null)
             GameManager.Instance.OnYearChanged += CheckEventExpirations;
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
         if (GameManager.Instance != null)
             GameManager.Instance.OnYearChanged -= CheckEventExpirations;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != "MainMenu")
+        {
+            if (moraleStatusPanel == null)
+            {
+                GameObject panelObj = GameObject.Find("Morale Status Layout");
+                if (panelObj != null)
+                {
+                    moraleStatusPanel = panelObj.GetComponent<RectTransform>();
+                }
+                else
+                {
+                    Debug.LogError("Morale Status Layout을 찾을 수 없습니다!");
+                    return;
+                }
+            }
+
+            // Horizontal Layout Group 확인 및 추가
+            HorizontalLayoutGroup layoutGroup = moraleStatusPanel.GetComponent<HorizontalLayoutGroup>();
+            if (layoutGroup == null)
+            {
+                layoutGroup = moraleStatusPanel.gameObject.AddComponent<HorizontalLayoutGroup>();
+                layoutGroup.spacing = 10f;
+                layoutGroup.childAlignment = TextAnchor.MiddleCenter;
+                layoutGroup.childForceExpandWidth = false;
+                layoutGroup.childForceExpandHeight = false;
+            }
+
+            // 종족별 아이콘 미리 생성
+            CreateRaceIcons();
+        }
     }
 
     /// <summary>

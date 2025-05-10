@@ -13,13 +13,7 @@ public class SpecialEffectHandlerFactory
     /// </summary>
     public SpecialEffectHandlerFactory()
     {
-        handlers[SpecialEffectType.None] = null;
-        handlers[SpecialEffectType.TriggerNextEvent] = new EventNextEventEffectHandler();
-        handlers[SpecialEffectType.RoomDamage] = new RoomDamageEffectHandler();
-        handlers[SpecialEffectType.Battle] = new BattleEffectHandler();
-
         RegisterAllDefaultHandlers();
-
     }
 
     /// <summary>
@@ -27,11 +21,11 @@ public class SpecialEffectHandlerFactory
     /// </summary>
     private void RegisterAllDefaultHandlers()
     {
-
         RegisterHandler(SpecialEffectType.None, null);
         RegisterHandler(SpecialEffectType.TriggerNextEvent, new EventNextEventEffectHandler());
         RegisterHandler(SpecialEffectType.AddQuest, new AddQuestEffectHandler());
-
+        handlers[SpecialEffectType.RoomDamage] = new RoomDamageEffectHandler();
+        handlers[SpecialEffectType.Battle] = new BattleEffectHandler();
     }
 
     /// <summary>

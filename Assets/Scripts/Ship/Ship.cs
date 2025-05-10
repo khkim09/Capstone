@@ -104,13 +104,6 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
     public ShieldSystem ShieldSystem => shieldSystem;
 
-    public GameObject weaponPrefab;
-
-    // 테스트용 룸 프리팹
-    public GameObject testRoomPrefab1;
-    public GameObject testRoomPrefab2;
-    public GameObject testRoomPrefab3;
-
     public event Action OnStatsChanged;
     public event Action OnRoomChanged;
 
