@@ -57,12 +57,12 @@ public class ResourceManager : MonoBehaviour
                 if (valueType == ResourceValueType.Float)
                 {
                     data.floatAmount = GetDefaultAmount(type);
-                    data.maxFloatAmount = GetMaxAmount(type);
+                    data.maxFloatAmount = float.MaxValue;
                 }
                 else
                 {
                     data.intAmount = (int)GetDefaultAmount(type);
-                    data.maxIntAmount = (int)GetMaxAmount(type);
+                    data.maxIntAmount = int.MaxValue;
                 }
 
                 resources.Add(data);
@@ -94,18 +94,6 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    private float GetMaxAmount(ResourceType type)
-    {
-        switch (type)
-        {
-            case ResourceType.Fuel:
-            case ResourceType.COMA:
-                return float.MaxValue;
-            default:
-                return float.MaxValue;
-        }
-    }
-
     private ResourceValueType GetValueType(ResourceType type)
     {
         switch (type)
@@ -122,6 +110,7 @@ public class ResourceManager : MonoBehaviour
     public void ChangeResource(ResourceType type, float amount)
     {
         ResourceData data = resources.Find(r => r.type == type);
+
         if (data != null)
         {
             float currentAmount = data.GetAmount();

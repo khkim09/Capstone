@@ -107,6 +107,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     public event Action OnStatsChanged;
     public event Action OnRoomChanged;
 
+
     /// <summary>
     /// 선원이 점유하는 타일 관리 (전역 변수)
     /// </summary>

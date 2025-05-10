@@ -526,7 +526,7 @@ public class OuterHullSystem : ShipSystem
             dirStr = corners[spriteIndex % 4];
         }
 
-        Debug.Log($"외갑판 생성: 위치 {hullPosition}, 유형 {typeStr}, 방향 {dirStr}, 스프라이트 {spriteIndex}");
+        // Debug.Log($"외갑판 생성: 위치 {hullPosition}, 유형 {typeStr}, 방향 {dirStr}, 스프라이트 {spriteIndex}");
 
         // 생성된 외갑판 저장
         currentOuterHulls.Add(outerHull);

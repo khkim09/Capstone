@@ -60,13 +60,13 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     public void GenerateTiles()
     {
         for (int x = 0; x < gridSize.x; x++)
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                Vector3 pos = GridToWorldPosition(new Vector2Int(x, y));
-                GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
-                tile.transform.localScale = Vector3.one * GridConstants.CELL_SIZE;
-                tile.transform.position += new Vector3(0, 0, 17);
-            }
+        for (int y = 0; y < gridSize.y; y++)
+        {
+            Vector3 pos = GridToWorldPosition(new Vector2Int(x, y));
+            GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
+            tile.transform.localScale = Vector3.one * GridConstants.CELL_SIZE;
+            tile.transform.position += new Vector3(0, 0, 17);
+        }
     }
 
     /// <summary>
@@ -155,20 +155,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
             // 무기가 점유하는 타일 추가 (구현 필요)
             Vector2Int pos = weapon.GetGridPosition();
             allTiles.Add(pos);
-
-            // 무기 방향에 따라 추가 타일 추가
-            switch (weapon.GetAttachedDirection())
-            {
-                case ShipWeaponAttachedDirection.East:
-                    allTiles.Add(new Vector2Int(pos.x + 1, pos.y));
-                    break;
-                case ShipWeaponAttachedDirection.South:
-                    allTiles.Add(new Vector2Int(pos.x, pos.y - 1));
-                    break;
-                case ShipWeaponAttachedDirection.North:
-                    allTiles.Add(new Vector2Int(pos.x, pos.y + 1));
-                    break;
-            }
+            allTiles.Add(new Vector2Int(pos.x + 1, pos.y));
         }
 
         Vector2 average = Vector2.zero;
@@ -359,7 +346,8 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     public bool CanPlaceWeapon(ShipWeaponData data, Vector2Int position, ShipWeaponAttachedDirection direction)
     {
-        List<Vector2Int> tilesToOccupy = RoomRotationUtility.GetOccupiedGridPositions(position, new Vector2Int(2, 1), RotationConstants.Rotation.Rotation0);
+        List<Vector2Int> tilesToOccupy = RoomRotationUtility.GetOccupiedGridPositions(position, new Vector2Int(2, 1),
+            RotationConstants.Rotation.Rotation0);
 
         // 그리드 범위 벗어나는지 체크
         foreach (Vector2Int tile in tilesToOccupy)
@@ -407,7 +395,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
         if (data == null)
             return null;
 
-        Vector2Int size = new Vector2Int(2, 1);
+        Vector2Int size = new(2, 1);
         Vector2 offset = RoomRotationUtility.GetRotationOffset(size, RotationConstants.Rotation.Rotation0);
         Vector3 worldPos = GridToWorldPosition(position) + (Vector3)offset;
 

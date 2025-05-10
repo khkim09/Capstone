@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
     public GameObject testRoomPrefab2;
     public GameObject testRoomPrefab3;
 
+    public event Action OnShipInitialized;
+
 
     /// <summary>
     /// 게임 상태 변경 이벤트 델리게이트입니다.
@@ -75,13 +77,21 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        playerShip = FindAnyObjectByType<Ship>();
-
         // LocalizationManager 초기화
         LocalizationManager.Initialize(this);
         LocalizationManager.OnLanguageChanged += OnLanguageChanged;
 
+
+        if (playerShip == null)
+        {
+        }
+
+        playerShip = FindAnyObjectByType<Ship>();
+
+
         playerShip.Initialize();
+        CreateDefaultPlayerShip();
+        OnShipInitialized?.Invoke();
         ForSerializeTest();
     }
 
@@ -118,6 +128,50 @@ public class GameManager : MonoBehaviour
             EventManager.Instance != null &&
             CrewManager.Instance != null
         );
+    }
+
+    public Ship CreateDefaultPlayerShip()
+    {
+        Room cockpit = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Cockpit);
+        Room engine = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
+        Room power = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Power);
+        Room crewQuarters = GameObjectFactory.Instance.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Basic);
+        Room teleporter = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Teleporter);
+        Room[] corridors = new Room[15];
+
+        for (int index = 0; index < corridors.Length; index++)
+            corridors[index] = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
+
+        playerShip.AddRoom(cockpit, new Vector2Int(35, 31), RotationConstants.Rotation.Rotation90);
+        playerShip.AddRoom(engine, new Vector2Int(34, 28), RotationConstants.Rotation.Rotation270);
+        playerShip.AddRoom(power, new Vector2Int(33, 33), RotationConstants.Rotation.Rotation90);
+        playerShip.AddRoom(crewQuarters, new Vector2Int(32, 26), RotationConstants.Rotation.Rotation270);
+        playerShip.AddRoom(teleporter, new Vector2Int(32, 32), RotationConstants.Rotation.Rotation90);
+
+        playerShip.AddRoom(corridors[0], new Vector2Int(31, 32));
+        playerShip.AddRoom(corridors[1], new Vector2Int(31, 31));
+        playerShip.AddRoom(corridors[2], new Vector2Int(31, 30));
+        playerShip.AddRoom(corridors[3], new Vector2Int(32, 31));
+        playerShip.AddRoom(corridors[4], new Vector2Int(32, 30));
+        playerShip.AddRoom(corridors[5], new Vector2Int(33, 30));
+        playerShip.AddRoom(corridors[6], new Vector2Int(34, 31));
+        playerShip.AddRoom(corridors[7], new Vector2Int(34, 30));
+        playerShip.AddRoom(corridors[8], new Vector2Int(33, 31));
+        playerShip.AddRoom(corridors[9], new Vector2Int(31, 33));
+        playerShip.AddRoom(corridors[10], new Vector2Int(32, 33));
+        playerShip.AddRoom(corridors[11], new Vector2Int(31, 34));
+        playerShip.AddRoom(corridors[12], new Vector2Int(32, 34));
+        playerShip.AddRoom(corridors[13], new Vector2Int(31, 35));
+        playerShip.AddRoom(corridors[14], new Vector2Int(32, 35));
+
+        // Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
+        // playerShip.AddRoom(temp, new Vector2Int(50, 31), RotationConstants.Rotation.Rotation90);
+
+        playerShip.AddWeapon(1, new Vector2Int(35, 33), ShipWeaponAttachedDirection.East);
+
+        playerShip.UpdateOuterHullVisuals();
+
+        return null;
     }
 
     /// <summary>
