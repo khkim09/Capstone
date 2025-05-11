@@ -32,7 +32,7 @@ public class ShipWeapon : MonoBehaviour
     /// 무기가 시설과 연결되어있는 방향(회전 상태)입니다.
     /// 회전 상태는 East → South → North → East 순으로 순환합니다.
     /// </summary>
-    private ShipWeaponAttachedDirection attachedDirection = ShipWeaponAttachedDirection.North;
+    [SerializeField] private ShipWeaponAttachedDirection attachedDirection = ShipWeaponAttachedDirection.North;
 
     /// <summary>
     /// SpriteRenderer 컴포넌트 참조 (회전 시 스프라이트 갱신용)

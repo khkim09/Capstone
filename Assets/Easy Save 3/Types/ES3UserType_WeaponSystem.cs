@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("weapons", "parentShip")]
+	[ES3PropertiesAttribute("parentShip")]
 	public class ES3UserType_WeaponSystem : ES3ObjectType
 	{
 		public static ES3Type Instance = null;
@@ -16,7 +16,6 @@ namespace ES3Types
 		{
 			var instance = (WeaponSystem)obj;
 			
-			writer.WritePrivateField("weapons", instance);
 			writer.WritePrivateFieldByRef("parentShip", instance);
 		}
 
@@ -28,9 +27,6 @@ namespace ES3Types
 				switch(propertyName)
 				{
 					
-					case "weapons":
-					instance = (WeaponSystem)reader.SetPrivateField("weapons", reader.Read<System.Collections.Generic.List<ShipWeapon>>(), instance);
-					break;
 					case "parentShip":
 					instance = (WeaponSystem)reader.SetPrivateField("parentShip", reader.Read<Ship>(), instance);
 					break;

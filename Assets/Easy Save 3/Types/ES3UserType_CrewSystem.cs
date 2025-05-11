@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("crews", "parentShip")]
+	[ES3PropertiesAttribute("parentShip")]
 	public class ES3UserType_CrewSystem : ES3ObjectType
 	{
 		public static ES3Type Instance = null;
@@ -16,7 +16,6 @@ namespace ES3Types
 		{
 			var instance = (CrewSystem)obj;
 			
-			writer.WritePrivateField("crews", instance);
 			writer.WritePrivateFieldByRef("parentShip", instance);
 		}
 
@@ -28,9 +27,6 @@ namespace ES3Types
 				switch(propertyName)
 				{
 					
-					case "crews":
-					instance = (CrewSystem)reader.SetPrivateField("crews", reader.Read<System.Collections.Generic.List<CrewBase>>(), instance);
-					break;
 					case "parentShip":
 					instance = (CrewSystem)reader.SetPrivateField("parentShip", reader.Read<Ship>(), instance);
 					break;

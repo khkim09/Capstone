@@ -11,4 +11,5 @@
     public const int TradingItemIconDragging = 150;
     public const int Character = 500;
     public const int UI = 1000;
+    public const int SettingUI = 1500;
 }
