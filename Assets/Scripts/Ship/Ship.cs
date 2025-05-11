@@ -1297,4 +1297,13 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     }
 
     #endregion
+
+    # region 함선 이동
+
+    public void MoveShipTo(Vector2Int newStartPos)
+    {
+
+    }
+
+    #endregion
 }
