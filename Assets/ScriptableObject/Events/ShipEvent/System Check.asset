@@ -12,66 +12,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
   m_Name: System Check
   m_EditorClassIdentifier: 
-  eventId: 46
-  debugName: Decoding Ancient Documents
-  eventTitle: event.name.46
-  eventDescription: event.description.46
+  eventId: 50
+  debugName: System Check
+  eventTitle: event.name.50
+  eventDescription: event.description.50
   eventImage: {fileID: 0}
   eventType: 0
-  outcomeType: 1
+  outcomeType: 2
   minimumYear: 0
   requiredCrewRace: 
   minimumCOMA: 0
   minimumFuel: 0
   choices:
-  - choiceText: event.choice.46.1
+  - choiceText: event.choice.50.1
     possibleOutcomes:
-    - outcomeText: event.result.46.1.1
-      probability: 50
-      planetEffects: []
-      resourceEffects: []
-      crewEffects:
-      - effectType: 2
-        raceType: 0
-        changeAmount: 0
-        skill: 0
-        status: 0
-        persistenceCondition: 0
-        conditionData: 
-        conditionAmount: 10
-        effectIcon: {fileID: 0}
-      specialEffectType: 0
-      specialEffectValue: 
-      specialEffectAmount: 0
-      nextEvent: {fileID: 0}
-      questToAdd: {fileID: 0}
-    - outcomeText: event.result.46.1.2
-      probability: 50
-      planetEffects: []
-      resourceEffects: []
-      crewEffects:
-      - effectType: 1
-        raceType: 0
-        changeAmount: -3
-        skill: 0
-        status: 0
-        persistenceCondition: 0
-        conditionData: 
-        conditionAmount: 0
-        effectIcon: {fileID: 0}
-      specialEffectType: 0
-      specialEffectValue: 
-      specialEffectAmount: 0
-      nextEvent: {fileID: 0}
-      questToAdd: {fileID: 0}
-  - choiceText: event.choice.46.2
-    possibleOutcomes:
-    - outcomeText: event.result.46.2.1
+    - outcomeText: event.result.50.1.1
       probability: 100
+      planetEffects: []
+      resourceEffects:
+      - amount: -500
+        resourceType: 1
+      crewEffects: []
+      specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
+      nextEvent: {fileID: 0}
+      questToAdd: {fileID: 0}
+  - choiceText: event.choice.50.2
+    possibleOutcomes:
+    - outcomeText: event.result.50.2.1
+      probability: 50
       planetEffects: []
       resourceEffects: []
       crewEffects: []
       specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
+      nextEvent: {fileID: 0}
+      questToAdd: {fileID: 0}
+    - outcomeText: event.result.50.2.2
+      probability: 50
+      planetEffects: []
+      resourceEffects: []
+      crewEffects: []
+      specialEffectType: 3
       specialEffectValue: 
       specialEffectAmount: 0
       nextEvent: {fileID: 0}
