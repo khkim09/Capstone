@@ -121,6 +121,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
     /// <summary>스프라이트 렌더러.</summary>
     private SpriteRenderer spriteRenderer;
+
     /// <summary>
     /// animator
     /// </summary>
@@ -129,7 +130,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// <summary>
     /// 해당 선원을 때리고 있는 선원 리스트
     /// </summary>
-    public HashSet<CrewMember> bullier;
+    public HashSet<CrewMember> bullier = new();
 
     private void Start()
     {
@@ -137,15 +138,13 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         spriteRenderer.sortingOrder = SortingOrderConstants.Character;
         spriteRenderer.sprite = Resources.Load<Sprite>($"Sprites/Crew/{race.ToString().ToLower()}");
 
-        //종족별 애니메이터 연결
+        // 종족별 애니메이터 연결
         if (animator == null)
         {
             animator = gameObject.AddComponent<Animator>();
             animator.runtimeAnimatorController
                 = Resources.Load<RuntimeAnimatorController>($"Animation/{race.ToString()}/{race.ToString()}");
         }
-        //전투에 참가 중인 적
-        bullier = new HashSet<CrewMember>();
     }
 
     /// <summary>

@@ -189,6 +189,10 @@ public class CrewSystem : ShipSystem
             if (col != null)
                 col.enabled = true;
 
+            Animator anim = originCrew.GetComponent<Animator>();
+            if (anim != null)
+                anim.enabled = true;
+
             parentShip.allCrews.Add(originCrew);
         }
     }
@@ -246,6 +250,10 @@ public class CrewSystem : ShipSystem
                 BoxCollider2D col = crew.GetComponent<BoxCollider2D>();
                 if (col != null)
                     col.enabled = true;
+
+                Animator anim = crew.GetComponent<Animator>();
+                if (anim != null)
+                    anim.enabled = true;
 
                 crew.Freeze();
                 crew.BackToThePeace();

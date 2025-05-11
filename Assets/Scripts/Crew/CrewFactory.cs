@@ -78,7 +78,8 @@ public class CrewFactory : MonoBehaviour
         // collider 초기화
         InitializeCrewCollider(crew);
 
-
+        // animator 초기화
+        InitializeCrewAnimator(crew);
 
         return crew;
     }
@@ -218,6 +219,27 @@ public class CrewFactory : MonoBehaviour
                 insectCollider.size = new Vector2(0.8f, 1);
                 break;
         }
+    }
+
+    private void InitializeCrewAnimator(CrewBase crew)
+    {
+        // animator 연결
+        Animator animator = crew.GetComponent<Animator>();
+        if (animator == null)
+            animator = crew.gameObject.AddComponent<Animator>();
+
+        // 종족에 맞는 animator controller 로드
+        RuntimeAnimatorController controller = Resources.Load<RuntimeAnimatorController>($"Animation/{crew.race}/{crew.race}");
+
+        if (controller == null)
+        {
+            Debug.LogError($"Animator Controller를 찾을 수 없습니다: Animation/{crew.race}/{crew.race}");
+            return;
+        }
+        animator.runtimeAnimatorController = controller;
+
+        // CrewBase에 animator 연결
+        crew.animator = animator;
     }
 
     /// <summary>
