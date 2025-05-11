@@ -271,7 +271,7 @@ public static class LocalizationExtensions
 
     public static string Localize(this CrewRace race)
     {
-        string key = $"crew.race.{race}";
+        string key = $"crew.race.{race}".ToLower();
         return LocalizationManager.GetLocalizedText(key);
     }
 }
