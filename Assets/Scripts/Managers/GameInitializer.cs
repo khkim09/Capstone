@@ -28,6 +28,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private GameObject moraleMangerPrefab;
 
     [SerializeField] private GameObject gameObjectFactoryPrefab;
+    [SerializeField] private GameObject audioManagerPrefab;
 
     /// <summary>
     /// 게임 시작 시 필요한 매니저들을 생성합니다.
@@ -43,6 +44,7 @@ public class GameInitializer : MonoBehaviour
         InstantiateIfNotExists<GameStateManager>(gameStateManagerPrefab);
         InstantiateIfNotExists<MoraleManager>(moraleMangerPrefab);
         InstantiateIfNotExists<GameObjectFactory>(gameObjectFactoryPrefab);
+        InstantiateIfNotExists<AudioManager>(audioManagerPrefab);
     }
 
     /// <summary>
