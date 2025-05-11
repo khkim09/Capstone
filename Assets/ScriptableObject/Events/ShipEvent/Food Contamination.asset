@@ -10,57 +10,75 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
-  m_Name: Excessive Humidity Surge
+  m_Name: Food Contamination
   m_EditorClassIdentifier: 
-  eventId: 55
-  debugName: Excessive Humidity Surge
-  eventTitle: event.name.55
-  eventDescription: event.description.55
+  eventId: 68
+  debugName: Food Contamination
+  eventTitle: event.name.68
+  eventDescription: event.description.68
   eventImage: {fileID: 0}
   eventType: 0
-  outcomeType: 1
+  outcomeType: 2
   minimumYear: 0
-  requiredCrewRace: 0600000002000000
+  requiredCrewRace: 
   minimumCOMA: 0
   minimumFuel: 0
   choices:
-  - choiceText: event.choice.55.1
+  - choiceText: event.choice.68.1
     possibleOutcomes:
-    - outcomeText: event.result.55.1.1
-      probability: 50
+    - outcomeText: event.result.68.1.1
+      probability: 70
       planetEffects: []
       resourceEffects: []
-      crewEffects: []
+      crewEffects:
+      - effectType: 0
+        raceType: 0
+        changeAmount: -5
+        skill: 0
+        status: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 0
+        effectIcon: {fileID: 0}
+      - effectType: 1
+        raceType: 0
+        changeAmount: -1
+        skill: 0
+        status: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 0
+        effectIcon: {fileID: 0}
       specialEffectType: 0
       specialEffectValue: 
       specialEffectAmount: 0
       nextEvent: {fileID: 0}
       questToAdd: {fileID: 0}
-    - outcomeText: event.result.55.1.2
-      probability: 50
+    - outcomeText: event.result.68.1.2
+      probability: 30
       planetEffects: []
       resourceEffects: []
       crewEffects:
-      - effectType: 1
-        raceType: 6
-        changeAmount: -3
+      - effectType: 0
+        raceType: 0
+        changeAmount: -10
         skill: 0
         status: 0
         persistenceCondition: 0
         conditionData: 
-        conditionAmount: 8
+        conditionAmount: 0
         effectIcon: {fileID: 0}
       - effectType: 1
-        raceType: 2
-        changeAmount: 3
+        raceType: 0
+        changeAmount: -5
         skill: 0
         status: 0
         persistenceCondition: 0
         conditionData: 
-        conditionAmount: 8
+        conditionAmount: 0
         effectIcon: {fileID: 0}
-      specialEffectType: 3
-      specialEffectValue: None
-      specialEffectAmount: 1
+      specialEffectType: 0
+      specialEffectValue: 
+      specialEffectAmount: 0
       nextEvent: {fileID: 0}
       questToAdd: {fileID: 0}
