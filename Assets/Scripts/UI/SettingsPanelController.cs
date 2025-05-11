@@ -16,6 +16,8 @@ public class SettingsPanelController : MonoBehaviour
     [Header("Language Controls")] [SerializeField]
     private TMP_Dropdown languageDropdown;
 
+    [SerializeField] private GameObject[] languageSettingElements; // 메인 메뉴에서만 표시할 언어 설정 UI 요소들
+
     [Header("Buttons")] [SerializeField] private Button confirmButton;
     [SerializeField] private Button cancelButton;
 
@@ -29,6 +31,12 @@ public class SettingsPanelController : MonoBehaviour
     private float originalSfxVolume;
     private SystemLanguage originalLanguage;
 
+    private void Awake()
+    {
+        // UIManager 이벤트 구독
+        if (UIManager.Instance != null) UIManager.Instance.OnMainMenuStateChanged += OnMainMenuStateChanged;
+    }
+
     private void Start()
     {
         // 버튼 이벤트 설정
@@ -41,12 +49,51 @@ public class SettingsPanelController : MonoBehaviour
         // 언어 드롭다운 초기화
         if (languageDropdown != null)
             InitializeLanguageDropdown();
+
+        // 초기 언어 설정 UI 가시성 설정
+        UpdateLanguageElementsVisibility();
     }
 
     private void OnEnable()
     {
         // 설정창이 활성화될 때마다 초기화
         InitializeSettings();
+    }
+
+    private void OnDestroy()
+    {
+        // 이벤트 구독 해제
+        if (UIManager.Instance != null) UIManager.Instance.OnMainMenuStateChanged -= OnMainMenuStateChanged;
+    }
+
+    // 메인 메뉴 상태 변경 시 호출되는 이벤트 핸들러
+    private void OnMainMenuStateChanged(bool isInMainMenu)
+    {
+        // 언어 설정 UI 요소 표시/숨김 업데이트
+        UpdateLanguageElementsVisibility();
+    }
+
+    // 언어 설정 UI 요소들의 가시성 업데이트
+    private void UpdateLanguageElementsVisibility()
+    {
+        bool isInMainMenu = false;
+
+        // UIManager가 있으면 거기서 상태 가져오기
+        if (UIManager.Instance != null)
+        {
+            isInMainMenu = UIManager.Instance.IsInMainMenu();
+        }
+        else
+        {
+            // 없으면 현재 씬 이름으로 확인
+            string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            isInMainMenu = currentSceneName == "MainMenu";
+        }
+
+        // 언어 설정 요소 가시성 설정
+        foreach (GameObject element in languageSettingElements)
+            if (element != null)
+                element.SetActive(isInMainMenu);
     }
 
     // 설정창 초기화
@@ -339,12 +386,8 @@ public class SettingsPanelController : MonoBehaviour
     // 설정창 닫기
     private void CloseSettingsPanel()
     {
-        // UI Manager를 통해 설정창 닫기
-        if (UIManager.Instance != null)
-            UIManager.Instance.SetSettingsPanelActive(false);
-        else
-            // UI Manager가 없으면 직접 비활성화
-            gameObject.SetActive(false);
+        // 직접 비활성화
+        gameObject.SetActive(false);
     }
 
     #endregion

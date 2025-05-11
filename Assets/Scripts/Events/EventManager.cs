@@ -20,6 +20,8 @@ public class EventManager : MonoBehaviour
     public float ShipEventChance => 1f - mysteryEventChance;
     public float MysteryEventChance => mysteryEventChance;
 
+    public EventPanelController EventPanelController { get; set; }
+
 
     // 현재 진행 중인 이벤트
     private RandomEvent currentEvent;
@@ -159,9 +161,8 @@ public class EventManager : MonoBehaviour
 
         // 최근 이벤트 목록에 추가
         AddToRecentEvents(randomEvent.eventId);
+        EventPanelController.ShowEvent(randomEvent);
 
-        // UI를 통해 이벤트 표시
-        EventUIManager.Instance.ShowEvent(randomEvent);
 
         Debug.Log($"이벤트 실행: {randomEvent.debugName} (ID: {randomEvent.eventId})");
     }
@@ -195,9 +196,8 @@ public class EventManager : MonoBehaviour
 
         if (outcome == null)
             return;
-
-        // 결과 텍스트 표시
-        EventUIManager.Instance.ShowOutcome(outcome.outcomeText.Localize());
+        EventPanelController
+            .ShowOutcome(outcome.outcomeText.Localize());
 
         // 각종 효과 적용
         ApplyOutcomeEffects(outcome);

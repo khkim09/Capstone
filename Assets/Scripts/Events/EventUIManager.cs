@@ -42,6 +42,9 @@ public class EventUIManager : MonoBehaviour
 
     public void ShowEvent(RandomEvent randomEvent)
     {
+        EventManager.Instance.EventPanelController.ShowEvent(randomEvent);
+        // UIManager.Instance.ShowEvent(randomEvent);
+        return;
         currentEvent = randomEvent;
 
         // 이전 타이핑 코루틴 강제 종료
@@ -84,16 +87,16 @@ public class EventUIManager : MonoBehaviour
         foreach (Transform child in choicesPanel.transform) Destroy(child.gameObject);
 
         // 새 선택지 버튼 생성
-        for (var i = 0; i < randomEvent.choices.Count; i++)
+        for (int i = 0; i < randomEvent.choices.Count; i++)
         {
-            var choice = randomEvent.choices[i];
-            var buttonObj = Instantiate(choiceButtonPrefab, choicesPanel.transform);
-            var button = buttonObj.GetComponent<Button>();
-            var buttonText = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
+            EventChoice choice = randomEvent.choices[i];
+            GameObject buttonObj = Instantiate(choiceButtonPrefab, choicesPanel.transform);
+            Button button = buttonObj.GetComponent<Button>();
+            TextMeshProUGUI buttonText = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
 
             buttonText.text = choice.choiceText.Localize();
 
-            var choiceIndex = i; // 인덱스를 클로저 내에서 사용하기 위해 복사
+            int choiceIndex = i; // 인덱스를 클로저 내에서 사용하기 위해 복사
             button.onClick.AddListener(() => OnChoiceSelected(choiceIndex));
         }
     }
@@ -122,7 +125,7 @@ public class EventUIManager : MonoBehaviour
     {
         textComponent.text = "";
 
-        foreach (var c in text)
+        foreach (char c in text)
         {
             textComponent.text += c;
 
@@ -133,7 +136,7 @@ public class EventUIManager : MonoBehaviour
     private void OnContinueButtonClicked()
     {
         outcomePanel.SetActive(false);
-        EventManager.Instance.EndEvent();  // 이벤트 종료 처리
+        EventManager.Instance.EndEvent(); // 이벤트 종료 처리
 
         // 게임 상태 업데이트
         GameManager.Instance.OnEventCompleted();

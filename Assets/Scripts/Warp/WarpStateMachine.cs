@@ -83,7 +83,7 @@ public class WarpStateMachine : IGameStateMachine
         // UI 컨트롤러 참조 얻기
         if (UIManager.Instance != null)
         {
-            uiController = UIManager.Instance.GetOrCreateWarpUIController();
+            // uiController = UIManager.Instance.GetOrCreateWarpUIController();
 
             // 맵 컴포넌트 참조 얻기
             nodePlacementMap = uiController.transform.GetComponentInChildren<NodePlacementMap>(true);
