@@ -17,11 +17,11 @@ public class AddQuestEffectHandler : ISpecialEffectHandler
             return;
         }
 
-        var newQuest = outcome.questToAdd.ToQuest();
+        RandomQuest newQuest = outcome.questToAdd;
 
         // 중복 등록 방지
         bool alreadyExists = QuestManager.Instance.GetActiveQuests()
-            .Exists(q => q.id == newQuest.id);
+            .Exists(q => q.questId == newQuest.questId);
 
         if (alreadyExists)
         {

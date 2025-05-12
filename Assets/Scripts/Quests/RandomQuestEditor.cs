@@ -10,28 +10,28 @@ using UnityEngine;
 public class RandomQuestEditor : Editor
 {
     /// <summary>퀘스트 ID 속성</summary>
-    SerializedProperty questIdProp;
+    private SerializedProperty questIdProp;
 
     /// <summary>퀘스트 상태 속성</summary>
-    SerializedProperty statusProp;
+    private SerializedProperty statusProp;
 
     /// <summary>퀘스트 제목 속성</summary>
-    SerializedProperty titleProp;
+    private SerializedProperty titleProp;
 
     /// <summary>퀘스트 설명 속성</summary>
-    SerializedProperty descProp;
+    private SerializedProperty descProp;
 
     /// <summary>퀘스트 목표 리스트 속성</summary>
-    SerializedProperty objectivesProp;
+    private SerializedProperty objectivesProp;
 
     /// <summary>퀘스트 보상 리스트 속성</summary>
-    SerializedProperty rewardsProp;
+    private SerializedProperty rewardsProp;
 
     /// <summary>목표 Foldout UI 상태 배열</summary>
-    bool[] objectiveFoldouts;
+    private bool[] objectiveFoldouts;
 
     /// <summary>보상 Foldout UI 상태 배열</summary>
-    bool[] rewardFoldouts;
+    private bool[] rewardFoldouts;
 
     /// <summary>
     /// 인스펙터가 활성화될 때 호출되어 SerializedProperty를 초기화합니다.
@@ -85,21 +85,23 @@ public class RandomQuestEditor : Editor
             objectivesProp.arraySize++;
             InitializeFoldouts();
         }
+
         EditorGUILayout.EndHorizontal();
 
         for (int i = 0; i < objectivesProp.arraySize; i++)
         {
-            var objProp = objectivesProp.GetArrayElementAtIndex(i);
-            var typeProp = objProp.FindPropertyRelative("objectiveType");
-            var targetIdProp = objProp.FindPropertyRelative("targetId");
-            var destinationPlanetIdProp = objProp.FindPropertyRelative("destinationPlanetId");
-            var descOProp = objProp.FindPropertyRelative("description");
-            var reqProp = objProp.FindPropertyRelative("requiredAmount");
-            var killCountProp = objProp.FindPropertyRelative("killCount");
-            var questCrewNumProp = objProp.FindPropertyRelative("questCrewNum");
+            SerializedProperty objProp = objectivesProp.GetArrayElementAtIndex(i);
+            SerializedProperty typeProp = objProp.FindPropertyRelative("objectiveType");
+            SerializedProperty targetIdProp = objProp.FindPropertyRelative("targetId");
+            SerializedProperty destinationPlanetIdProp = objProp.FindPropertyRelative("destinationPlanetId");
+            SerializedProperty descOProp = objProp.FindPropertyRelative("description");
+            SerializedProperty reqProp = objProp.FindPropertyRelative("requiredAmount");
+            SerializedProperty killCountProp = objProp.FindPropertyRelative("killCount");
+            SerializedProperty questCrewNumProp = objProp.FindPropertyRelative("questCrewNum");
 
             EditorGUILayout.BeginHorizontal();
-            objectiveFoldouts[i] = EditorGUILayout.Foldout(objectiveFoldouts[i], $"목표 {i + 1}: {descOProp.stringValue}");
+            objectiveFoldouts[i] =
+                EditorGUILayout.Foldout(objectiveFoldouts[i], $"목표 {i + 1}: {descOProp.stringValue}");
             if (GUILayout.Button("삭제", GUILayout.Width(60)))
             {
                 objectivesProp.DeleteArrayElementAtIndex(i);
@@ -107,6 +109,7 @@ public class RandomQuestEditor : Editor
                 serializedObject.ApplyModifiedProperties();
                 return;
             }
+
             EditorGUILayout.EndHorizontal();
 
             if (objectiveFoldouts[i])
@@ -115,24 +118,24 @@ public class RandomQuestEditor : Editor
                 EditorGUILayout.PropertyField(typeProp, new GUIContent("목표 타입"));
                 EditorGUILayout.PropertyField(descOProp, new GUIContent("목표 설명"));
 
-                switch ((RandomQuest.QuestObjectiveType)typeProp.enumValueIndex)
+                switch ((QuestObjectiveType)typeProp.enumValueIndex)
                 {
-                    case RandomQuest.QuestObjectiveType.PirateHunt:
+                    case QuestObjectiveType.PirateHunt:
                         EditorGUILayout.PropertyField(killCountProp, new GUIContent("필요 처치 수"));
                         break;
 
-                    case RandomQuest.QuestObjectiveType.ItemTransport:
+                    case QuestObjectiveType.ItemTransport:
                         EditorGUILayout.PropertyField(targetIdProp, new GUIContent("대상 아이템 ID"));
                         EditorGUILayout.PropertyField(destinationPlanetIdProp, new GUIContent("목표 행성 ID"));
                         EditorGUILayout.PropertyField(reqProp, new GUIContent("필요 수량"));
                         break;
 
-                    case RandomQuest.QuestObjectiveType.ItemProcurement:
+                    case QuestObjectiveType.ItemProcurement:
                         EditorGUILayout.PropertyField(targetIdProp, new GUIContent("대상 아이템 ID"));
                         EditorGUILayout.PropertyField(reqProp, new GUIContent("필요 수량"));
                         break;
 
-                    case RandomQuest.QuestObjectiveType.CrewTransport:
+                    case QuestObjectiveType.CrewTransport:
                         EditorGUILayout.PropertyField(questCrewNumProp, new GUIContent("임시 선원 수"));
                         EditorGUILayout.PropertyField(destinationPlanetIdProp, new GUIContent("목표 행성 ID"));
                         break;
@@ -152,11 +155,12 @@ public class RandomQuestEditor : Editor
             rewardsProp.arraySize++;
             InitializeFoldouts();
         }
+
         EditorGUILayout.EndHorizontal();
 
         for (int i = 0; i < rewardsProp.arraySize; i++)
         {
-            var rwProp = rewardsProp.GetArrayElementAtIndex(i);
+            SerializedProperty rwProp = rewardsProp.GetArrayElementAtIndex(i);
 
             EditorGUILayout.BeginHorizontal();
             rewardFoldouts[i] = EditorGUILayout.Foldout(rewardFoldouts[i], $"보상 {i + 1}");
@@ -167,6 +171,7 @@ public class RandomQuestEditor : Editor
                 serializedObject.ApplyModifiedProperties();
                 return;
             }
+
             EditorGUILayout.EndHorizontal();
 
             if (rewardFoldouts[i])

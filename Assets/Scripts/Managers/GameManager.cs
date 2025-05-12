@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 게임의 전체 상태와 흐름을 관리하는 매니저.
@@ -19,6 +20,11 @@ public class GameManager : MonoBehaviour
     public Ship currentEnemyShip;
 
     /// <summary>
+    /// 엔딩 조건과 관련된 플레이어 데이터
+    /// </summary>
+    public PlayerData playerData;
+
+    /// <summary>
     /// 게임 상태 변경 이벤트 델리게이트입니다.
     /// </summary>
     public delegate void GameStateChangedHandler(GameState newState);
@@ -31,6 +37,8 @@ public class GameManager : MonoBehaviour
     [Header("Game State")]
     [SerializeField]
     private GameState currentState = GameState.MainMenu;
+
+    public GameState CurrentState => currentState;
 
     /// <summary>
     /// 현재 게임 연도입니다.
@@ -47,11 +55,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static GameManager Instance { get; private set; }
 
-
-    // 테스트용 룸 프리팹
-    public GameObject testRoomPrefab1;
-    public GameObject testRoomPrefab2;
-    public GameObject testRoomPrefab3;
 
     public event Action OnShipInitialized;
 
@@ -241,7 +244,7 @@ public class GameManager : MonoBehaviour
             switch (newState)
             {
                 case GameState.MainMenu:
-                    Time.timeScale = 0f;
+                    Time.timeScale = 1f;
                     break;
                 case GameState.Gameplay:
                     Time.timeScale = 1f;
@@ -286,68 +289,14 @@ public class GameManager : MonoBehaviour
         Debug.Log($"[워프 완료] 현재 연도 : {currentYear}");
     }
 
-    public void ForSerializeTest()
+    public void StartGame()
     {
-        // Room room1 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Cockpit, 1);
-        // Room room2 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Engine, 1);
-        // Room room3 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Power, 1);
-        // Room room4 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Teleporter, 1);
-        // Room room5 = GameObjectFactory.Instance.RoomFactory.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Basic);
-        // Room room6 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Corridor, 1);
-        // Room room7 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Corridor, 1);
-        // Room room8 = GameObjectFactory.Instance.RoomFactory.CreateRoomInstance(RoomType.Corridor, 1);
-        //
-        // playerShip.AddRoom(room1, new Vector2Int(30, 33), RotationConstants.Rotation.Rotation0);
-        // playerShip.AddRoom(room2, new Vector2Int(26, 32), RotationConstants.Rotation.Rotation0);
-        // playerShip.AddRoom(room3, new Vector2Int(28, 34), RotationConstants.Rotation.Rotation90);
-        // playerShip.AddRoom(room4, new Vector2Int(31, 32), RotationConstants.Rotation.Rotation180);
-        // playerShip.AddRoom(room5, new Vector2Int(29, 28), RotationConstants.Rotation.Rotation270);
-        // playerShip.AddRoom(room6, new Vector2Int(28, 32), RotationConstants.Rotation.Rotation0);
-        // playerShip.AddRoom(room7, new Vector2Int(29, 32), RotationConstants.Rotation.Rotation0);
-        // playerShip.AddRoom(room8, new Vector2Int(30, 32), RotationConstants.Rotation.Rotation0);
-        //
-        // // ShipWeapon newWeapon = playerShip.AddWeapon(0, new Vector2Int(3, -1), ShipWeaponAttachedDirection.North);
-        // // ShipWeapon newWeapon2 = playerShip.AddWeapon(6, new Vector2Int(-2, -1), ShipWeaponAttachedDirection.East);
-        // // ShipWeapon newWeapon3 = playerShip.AddWeapon(10, new Vector2Int(6, 2), ShipWeaponAttachedDirection.North);
-        // //
-        // //
-        // CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        // CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
-        // CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
-        //
-        // if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
-        // if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
-        // if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
-        //
-        //
-        // TradingItem tradingItem = GameObjectFactory.Instance.ItemFactory.CreateItemInstance(2, 1);
-        //
-        // foreach (Room room in playerShip.allRooms)
-        //     if (room is StorageRoomBase)
-        //     {
-        //         StorageRoomBase storageRoom = room as StorageRoomBase;
-        //         storageRoom.AddItem(tradingItem, new Vector2Int(1, 1), 0);
-        //     }
-        //
-        //ShipSerialization.SaveShip(playerShip, Application.persistentDataPath + "/ship_data.es3");
-        //ShipSerialization.LoadShip(Application.persistentDataPath + "/ship_data.es3");
-        //ShipSerialization.LoadShip(Application.persistentDataPath + "/ship_data.es3");
-        //
+        if (currentState != GameState.MainMenu) return;
 
-        //ShipSerialization.SaveShip(playerShip, Application.persistentDataPath + "/ship_data_test.es3");
-        // ShipSerialization.LoadShip(Application.persistentDataPath + "/ship_data_test.es3");
-        // ShipSerialization.LoadShip(Application.persistentDataPath + "/ship_data_test.es3");
+        // TODO: 게임 데이터 초기화 로직 및 진짜 새로운 게임 시작할 건지 물어야함.
 
-        // RoomSerialization.SaveAllRooms(GetAllRooms(), Application.persistentDataPath + "/room_data.es3");
-        //
-        // TradingItemSerialization.SaveShipItems(this, Application.persistentDataPath + "/item_data.es3");
-        // ShipWeaponSerialization.SaveAllWeapons(GetAllWeapons(), Application.persistentDataPath + "/weapon_data.es3");
-        // CrewSerialization.SaveAllCrews(GetAllCrew(), Application.persistentDataPath + "/crew_data.es3");
-        //
-        // RoomSerialization.RestoreAllRoomsToShip(Application.persistentDataPath + "/room_data.es3", this);
-        // CrewSerialization.RestoreAllCrewsToShip(Application.persistentDataPath + "/crew_data.es3", this);
-        // ShipWeaponSerialization.RestoreAllWeaponsToShip(Application.persistentDataPath + "/weapon_data.es3", this);
-        // TradingItemSerialization.RestoreAllItemsToShip(this, Application.persistentDataPath + "/item_data.es3");
+        currentState = GameState.Gameplay;
+        SceneChanger.Instance.LoadScene("Idle");
     }
 }
 

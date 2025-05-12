@@ -80,28 +80,14 @@ public class AudioManager : MonoBehaviour
     // 현재 BGM 볼륨 가져오기
     public float GetBGMVolume()
     {
-        if (audioMixer != null && audioMixer.GetFloat(bgmVolumeParameter, out float dB))
-        {
-            // dB를 0-1 범위로 변환
-            if (dB <= -80f) return 0f;
-            return Mathf.Pow(10f, dB / 20f);
-        }
-
-        // 실패 시 저장된 값 또는 기본값 반환
+        // PlayerPrefs에서 저장된 값 반환
         return PlayerPrefs.GetFloat("BGMVolume", 0.8f);
     }
 
-    // 현재 SFX 볼륨 가져오기
+    // 현재 SFX 볼륨 가져오기 (PlayerPrefs에서 직접 가져오기)
     public float GetSFXVolume()
     {
-        if (audioMixer != null && audioMixer.GetFloat(sfxVolumeParameter, out float dB))
-        {
-            // dB를 0-1 범위로 변환
-            if (dB <= -80f) return 0f;
-            return Mathf.Pow(10f, dB / 20f);
-        }
-
-        // 실패 시 저장된 값 또는 기본값 반환
+        // PlayerPrefs에서 저장된 값 반환
         return PlayerPrefs.GetFloat("SFXVolume", 0.8f);
     }
 }

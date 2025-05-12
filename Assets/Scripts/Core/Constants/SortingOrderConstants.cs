@@ -12,4 +12,9 @@
     public const int Character = 500;
     public const int UI = 1000;
     public const int SettingUI = 1500;
+
+    /// <summary>
+    /// Scene 전환 시 트래지션에 사용되는 페이드 효과. 이것보다 높은 Sorting Order는 존재하면 안됨
+    /// </summary>
+    public const int SceneFade = 2000;
 }

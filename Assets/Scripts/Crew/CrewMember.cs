@@ -116,9 +116,8 @@ public class CrewMember : CrewBase
     }
 
     /// <summary>
-    /// 이동 중 새로운 이동 명령 수신 시 이전 목적지 타일 점유 해제
+    /// 이동 도중 새로운 목적지로 변경할 때 체력바도 함께 따라가도록
     /// </summary>
-    /// <param name="newPath"></param>
     public void CancelAndRedirect(List<Vector2Int> newPath)
     {
         if (moveCoroutine != null)
@@ -127,15 +126,49 @@ public class CrewMember : CrewBase
             moveCoroutine = null;
         }
 
-        // 2. 이전 목적지 타일 점유 해제
+        // 이전 목적지 타일 점유 해제
         ExitReserveTile();
 
-        // 3. 새로운 목적지 예약
+        // 새로운 목적지 예약
         ReserveDestination();
+
+        // 체력바가 부모를 따라 이동하도록 보장
+        EnsureHealthBarFollows();
 
         // 새로운 경로 이동
         path = newPath;
         moveCoroutine = StartCoroutine(FollowPathCoroutine());
+    }
+
+    /// <summary>
+    /// 체력바가 선원을 제대로 따라가도록 확인
+    /// </summary>
+    private void EnsureHealthBarFollows()
+    {
+        HealthBar healthBar = GetComponentInChildren<HealthBar>();
+        if (healthBar != null)
+            // 체력바의 부모가 다른 방으로 설정된 경우 선원 오브젝트의 자식으로 다시 설정
+            if (healthBar.transform.parent.parent != transform)
+                healthBar.transform.parent.SetParent(transform);
+    }
+
+    /// <summary>
+    /// 선원이 방을 바꿀 때 체력바가 함께 이동하도록
+    /// </summary>
+    private void ReserveDestination()
+    {
+        if (reservedRoom != null)
+        {
+            Debug.LogError($"최종 예약된 타일 pos : {reservedTile}");
+            reservedRoom.OccupyTile(reservedTile);
+            reservedRoom.OnCrewEnter(this);
+            currentRoom = reservedRoom;
+            RTSSelectionManager.Instance.playerShip.MarkCrewTileOccupied(reservedRoom, reservedTile);
+
+            // 선원 자체의 부모는 방으로 설정하지만, 체력바는 선원의 자식으로 유지
+            transform.SetParent(reservedRoom.transform);
+            EnsureHealthBarFollows();
+        }
     }
 
     /// <summary>
@@ -169,21 +202,6 @@ public class CrewMember : CrewBase
         }
     }
 
-    /// <summary>
-    /// 새로운 목적지 예약, 점유 타일 등록
-    /// </summary>
-    private void ReserveDestination()
-    {
-        if (reservedRoom != null)
-        {
-            Debug.LogError($"최종 예약된 타일 pos : {reservedTile}");
-            reservedRoom.OccupyTile(reservedTile);
-            reservedRoom.OnCrewEnter(this);
-            currentRoom = reservedRoom;
-            RTSSelectionManager.Instance.playerShip.MarkCrewTileOccupied(reservedRoom, reservedTile);
-            transform.SetParent(reservedRoom.transform);
-        }
-    }
 
     /// <summary>
     /// 이동 animation
@@ -292,7 +310,7 @@ public class CrewMember : CrewBase
     /// <returns></returns>
     public EquipmentStats GetCombinedStats()
     {
-        EquipmentStats total = new EquipmentStats();
+        EquipmentStats total = new();
 
         total.health = health;
         total.attack = attack;
