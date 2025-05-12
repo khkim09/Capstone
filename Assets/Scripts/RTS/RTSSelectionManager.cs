@@ -305,15 +305,18 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 선택된 선원들을 목적지 방의 우선순위 타일로 최단 경로 기반 배정 후 이동시킵니다.
     /// </summary>
-    public void IssueMoveCommand()
+    public void IssueMoveCommand(Room targetRoom = null)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+        if(targetRoom==null)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
 
-        if (hit.collider == null)
-            return;
+            if (hit.collider == null)
+                return;
 
-        Room targetRoom = hit.collider.GetComponent<Room>();
+            targetRoom = hit.collider.GetComponent<Room>();
+        }
         if (targetRoom == null)
             return;
 
@@ -488,6 +491,7 @@ public class RTSSelectionManager : MonoBehaviour
     {
         Debug.LogError("전투 이동 검사 시작");
 
+
         // 1. 도착한 방에서 적군 탐색
         List<CrewMember> enemiesInRoom = new List<CrewMember>();
         List<CrewMember> allCrew = playerShip.GetSystem<CrewSystem>().GetCrews();
@@ -551,6 +555,11 @@ public class RTSSelectionManager : MonoBehaviour
             {
                 Debug.Log("전투 개시");
                 readyCombatCrew.combatTarget = closestEnemy;
+                if (readyCombatCrew.isPlayerControlled)
+                {
+                    EnemyController ec = readyCombatCrew.gameObject.GetComponent<EnemyController>();
+                    ec.isIdle = false;
+                }
                 readyCombatCrew.combatCoroutine = StartCoroutine(readyCombatCrew.CombatRoutine());
                 return;
             }
@@ -610,6 +619,11 @@ public class RTSSelectionManager : MonoBehaviour
         reservedTiles.Add(bestNeighborTile);
 
         // 6. 실제 이동 처리
+        if (readyCombatCrew.isPlayerControlled)
+        {
+            EnemyController ec = readyCombatCrew.gameObject.GetComponent<EnemyController>();
+            ec.isIdle = false;
+        }
         if (readyCombatCrew.isMoving)
             readyCombatCrew.CancelAndRedirect(bestPathToNeighborTile);
         else
