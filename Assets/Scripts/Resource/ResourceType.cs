@@ -7,5 +7,9 @@ public enum ResourceType
     Fuel,
 
     /// <summary>COMA - 게임의 기초 재화입니다.</summary>
-    COMA
+    COMA,
+
+    Missile,
+
+    Hypersonic
 }

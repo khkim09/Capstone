@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class CrewHealthBar : MonoBehaviour
 {
     [Header("Health Bar Components")] [SerializeField]
     private Image healthBarFill;

@@ -145,7 +145,7 @@ public class CrewMember : CrewBase
     /// </summary>
     private void EnsureHealthBarFollows()
     {
-        HealthBar healthBar = GetComponentInChildren<HealthBar>();
+        CrewHealthBar healthBar = GetComponentInChildren<CrewHealthBar>();
         if (healthBar != null)
             // 체력바의 부모가 다른 방으로 설정된 경우 선원 오브젝트의 자식으로 다시 설정
             if (healthBar.transform.parent.parent != transform)
