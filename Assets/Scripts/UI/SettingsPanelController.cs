@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class SettingsPanelController : MonoBehaviour
 {
@@ -31,14 +32,19 @@ public class SettingsPanelController : MonoBehaviour
     private float originalSfxVolume;
     private SystemLanguage originalLanguage;
 
+    // 게임 상태 복원을 위한 변수
+    private GameState previousGameState;
+    private bool isGameStateSaved = false;
+
+
     private void Awake()
     {
-        // UIManager 이벤트 구독
-        if (UIManager.Instance != null) UIManager.Instance.OnMainMenuStateChanged += OnMainMenuStateChanged;
     }
 
     private void Start()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
         // 버튼 이벤트 설정
         if (confirmButton != null)
             confirmButton.onClick.AddListener(ConfirmSettings);
@@ -56,21 +62,34 @@ public class SettingsPanelController : MonoBehaviour
 
     private void OnEnable()
     {
+        // 설정창이 활성화될 때 현재 게임 상태 저장
+        SaveCurrentGameState();
+
+        GameManager.Instance.ChangeGameState(GameState.Paused);
+
         // 설정창이 활성화될 때마다 초기화
         InitializeSettings();
     }
 
-    private void OnDestroy()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 이벤트 구독 해제
-        if (UIManager.Instance != null) UIManager.Instance.OnMainMenuStateChanged -= OnMainMenuStateChanged;
+        Debug.Log($"씬 로드 완료됨: {scene.name}, 모드: {mode}");
+
+        UpdateLanguageElementsVisibility();
     }
 
-    // 메인 메뉴 상태 변경 시 호출되는 이벤트 핸들러
-    private void OnMainMenuStateChanged(bool isInMainMenu)
+    // 현재 게임 상태 저장
+    private void SaveCurrentGameState()
     {
-        // 언어 설정 UI 요소 표시/숨김 업데이트
-        UpdateLanguageElementsVisibility();
+        if (GameManager.Instance != null)
+        {
+            previousGameState = GameManager.Instance.CurrentState;
+            isGameStateSaved = true;
+        }
+        else
+        {
+            isGameStateSaved = false;
+        }
     }
 
     // 언어 설정 UI 요소들의 가시성 업데이트
@@ -79,16 +98,7 @@ public class SettingsPanelController : MonoBehaviour
         bool isInMainMenu = false;
 
         // UIManager가 있으면 거기서 상태 가져오기
-        if (UIManager.Instance != null)
-        {
-            isInMainMenu = UIManager.Instance.IsInMainMenu();
-        }
-        else
-        {
-            // 없으면 현재 씬 이름으로 확인
-            string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-            isInMainMenu = currentSceneName == "MainMenu";
-        }
+        if (UIManager.Instance != null) isInMainMenu = UIManager.Instance.IsInMainMenu();
 
         // 언어 설정 요소 가시성 설정
         foreach (GameObject element in languageSettingElements)
@@ -104,6 +114,8 @@ public class SettingsPanelController : MonoBehaviour
 
         // 언어 설정 초기화
         InitializeLanguageSettings();
+
+        UpdateLanguageElementsVisibility();
     }
 
     #region Volume Settings
@@ -234,11 +246,14 @@ public class SettingsPanelController : MonoBehaviour
 
     #region Language Settings
 
-    // 언어 드롭다운 초기화
+// 언어 드롭다운 초기화
     private void InitializeLanguageDropdown()
     {
         if (languageDropdown == null || !LocalizationManager.IsInitialized)
             return;
+
+        // 이벤트 리스너 제거 (옵션 변경 시 중복 호출 방지)
+        languageDropdown.onValueChanged.RemoveAllListeners();
 
         // 드롭다운 옵션 초기화
         languageDropdown.ClearOptions();
@@ -255,7 +270,17 @@ public class SettingsPanelController : MonoBehaviour
 
         languageDropdown.AddOptions(options);
 
-        // 값 변경 이벤트는 InitializeLanguageSettings에서 설정
+        // 드롭다운 옵션 추가 후 현재 언어에 맞게 설정
+        if (LocalizationManager.IsInitialized)
+        {
+            int currentIndex = LocalizationManager.SupportedLanguages.IndexOf(LocalizationManager.CurrentLanguage);
+            if (currentIndex >= 0)
+            {
+                languageDropdown.value = currentIndex;
+                // SetValueWithoutNotify를 사용하면 이벤트를 호출하지 않고 값만 설정
+                languageDropdown.SetValueWithoutNotify(currentIndex);
+            }
+        }
     }
 
     // 언어 설정 초기화
@@ -274,7 +299,7 @@ public class SettingsPanelController : MonoBehaviour
         // 드롭다운 값 설정
         int index = LocalizationManager.SupportedLanguages.IndexOf(currentLanguage);
         if (index >= 0)
-            languageDropdown.value = index;
+            languageDropdown.SetValueWithoutNotify(index);
 
         // 이벤트 리스너 추가
         languageDropdown.onValueChanged.AddListener(OnLanguageSelected);
@@ -386,6 +411,17 @@ public class SettingsPanelController : MonoBehaviour
     // 설정창 닫기
     private void CloseSettingsPanel()
     {
+        // 저장된 이전 상태로 복원
+        if (isGameStateSaved && GameManager.Instance != null)
+        {
+            GameManager.Instance.ChangeGameState(previousGameState);
+        }
+        else
+        {
+            if (GameManager.Instance != null)
+                GameManager.Instance.ChangeGameState(GameState.Gameplay);
+        }
+
         // 직접 비활성화
         gameObject.SetActive(false);
     }
