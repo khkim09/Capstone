@@ -19,12 +19,22 @@ public class QuestListUI : MonoBehaviour
     /// <summary>현재 표시 중인 퀘스트 슬롯 목록</summary>
     private List<GameObject> spawnedSlots = new();
 
+    /// <summary>패널 원래 위치 저장 여부</summary>
+    private bool isOriginalPositionSaved = false;
+
+    /// <summary>패널 원래 위치 저장용</summary>
+    private Vector2 originalPosition;
+
     /// <summary>
     /// 시작할 때 실행되는 함수입니다.
     /// 처음에는 패널을 꺼둡니다.
     /// </summary>
     private void Start()
     {
+        RectTransform rectTransform = panel.GetComponent<RectTransform>();
+        if (rectTransform != null)
+            originalPosition = rectTransform.anchoredPosition;
+
         panel.SetActive(false); // 처음에 꺼두기
 
         /// <summary>퀘스트 완료 시 자동으로 리스트를 새로고침합니다.</summary>
@@ -65,12 +75,37 @@ public class QuestListUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 외부 버튼에서 호출될 때 사용되는 열기 함수입니다.
-    /// 이미 열려 있으면 아무 동작도 하지 않습니다.
+    /// 외부 버튼에서 호출될 때 사용되는 열기/닫기 + 위치 이동 함수입니다.
     /// </summary>
-    public void OpenFromButton()
+    public void ToggleFromButton()
     {
-        if (!panel.activeSelf) Open();
+        RectTransform rectTransform = panel.GetComponent<RectTransform>();
+
+        // 최초 한 번만 원래 위치 저장
+        if (!isOriginalPositionSaved && rectTransform != null)
+        {
+            originalPosition = rectTransform.anchoredPosition;
+            isOriginalPositionSaved = true;
+        }
+
+        if (!panel.activeSelf)
+        {
+            Open();
+            if (rectTransform != null)
+            {
+                Vector2 pos = rectTransform.anchoredPosition;
+                rectTransform.anchoredPosition = new Vector2(pos.x - 480f, pos.y);
+            }
+        }
+        else
+        {
+            panel.SetActive(false);
+            Clear();
+            if (rectTransform != null)
+            {
+                rectTransform.anchoredPosition = originalPosition;
+            }
+        }
     }
 
     /// <summary>
@@ -80,6 +115,10 @@ public class QuestListUI : MonoBehaviour
     {
         panel.SetActive(false);
         Clear();
+
+        RectTransform rectTransform = panel.GetComponent<RectTransform>();
+        if (rectTransform != null)
+            rectTransform.anchoredPosition = originalPosition;
     }
 
     /// <summary>
