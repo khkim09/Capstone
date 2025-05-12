@@ -249,6 +249,7 @@ public class CrewMember : CrewBase
         // 도착한 방에서 적군 탐지
         if (isWithEnemy())
         {
+            Debug.LogError("적 있음");
             // 이동 중이던 선원이 우선적으로 마저 이동 (적군을 찾아감)
             RTSSelectionManager.Instance.MoveForCombat(this, currentRoom.occupiedCrewTiles);
 
@@ -258,6 +259,7 @@ public class CrewMember : CrewBase
         }
         else // 도착한 방에 적군이 없음
         {
+            Debug.LogError("적없음");
             // 내 배가 아닐 경우 부수는 행동 개시
             if (!IsMyShip())
                 combatCoroutine = StartCoroutine(CombatRoutine());
@@ -289,6 +291,7 @@ public class CrewMember : CrewBase
     }
 
     //----------애니메이션------------
+
     /// <summary>
     /// animation 실행
     /// </summary>
@@ -398,7 +401,7 @@ public class CrewMember : CrewBase
             combatTarget.bullier.Add(this); // 적군을 때리는 선원 리스트에 이 선원 추가
 
             // 때릴 적군이 전투 중이 아닌 상태 - 나랑 전투하도록
-            if (!combatTarget.inCombat && currentRoom==combatTarget.currentRoom)
+            if (!combatTarget.inCombat && currentRoom == combatTarget.currentRoom)
             {
                 combatTarget.Freeze();
                 combatTarget.combatTarget = this;
@@ -497,7 +500,7 @@ public class CrewMember : CrewBase
     }
 
     /// <summary>
-    /// 사망 시, 자신을 combatTarget으로 지정한 선원들에게서 자신을 할당해제시키고 다른 목표를 탐색하도록한다.
+    /// 사망 시, 자신을 combatTarget으로 지정한 선원들에게서 자신을 할당 해제시키고 다른 목표를 탐색하도록한다.
     /// 또한 애니메이션 재생을 마친 후에 Destroy
     ///
     /// </summary>
@@ -559,6 +562,10 @@ public class CrewMember : CrewBase
         }
     }
 
+    /// <summary>
+    /// 죽음 처리
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator ImDying()
     {
         PlayAnimation("die");
@@ -581,17 +588,27 @@ public class CrewMember : CrewBase
     /// </summary>
     public void LookAtMe()
     {
-        foreach (CrewMember other in currentRoom.GetCrewInRoom())
+        Debug.LogError("나를 바라봐");
+        foreach (CrewMember opposite in currentRoom.GetTotalCrewsInRoom())
         {
-            if (other == this || other.isPlayerControlled==isPlayerControlled)
+            Debug.LogError($"검색 선원 : {opposite.race}");
+            if (opposite == this)
+            {
+                Debug.LogError($"{opposite.race} 나야");
                 continue;
+            }
+            if (opposite.isPlayerControlled == isPlayerControlled)
+            {
+                Debug.LogError($"{opposite.race} 아군이야");
+                continue;
+            }
 
-            if (other.inCombat == false && other.isMoving == false)
+            if (opposite.inCombat == false && opposite.isMoving == false)
             {
                 // 방에 있는 상대를 나에게 이동
-                Debug.LogError($"{other.race} {other.inCombat}, {other.isMoving}");
-                other.WalkOut();
-                RTSSelectionManager.Instance.MoveForCombat(other, other.currentRoom.occupiedCrewTiles);
+                Debug.LogError($"{opposite.race}야, {race}한테 와");
+                opposite.WalkOut();
+                RTSSelectionManager.Instance.MoveForCombat(opposite, opposite.currentRoom.occupiedCrewTiles);
             }
         }
     }
@@ -616,19 +633,21 @@ public class CrewMember : CrewBase
         }
     }
 
-
-
     /// <summary>
     /// 방 안의 적군 탐지
     /// </summary>
     /// <returns></returns>
     public bool isWithEnemy()
     {
-        foreach (CrewBase someone in currentRoom.GetCrewInRoom())
+        foreach (CrewMember someone in currentRoom.GetTotalCrewsInRoom())
         {
             if (someone.isPlayerControlled != isPlayerControlled && someone.isAlive)
+            {
+                Debug.LogError($"방안 적 찾음 {someone.race}");
                 return true;
+            }
         }
+        Debug.LogError("방안에 적 못 찾음");
         return false;
     }
 
@@ -767,7 +786,7 @@ public class CrewMember : CrewBase
         // 작업 중단
         WalkOut();
 
-        //이동 중단
+        // 이동 중단
         isMoving = false;
         moveCoroutine = null;
 
@@ -778,9 +797,12 @@ public class CrewMember : CrewBase
         PlayAnimation("idle");
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     private void WalkOut()
     {
-        if(isWorking)
+        if (isWorking)
         {
             isWorking = false;
             PlayAnimation("work");

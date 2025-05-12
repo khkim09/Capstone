@@ -244,7 +244,7 @@ public class RTSSelectionManager : MonoBehaviour
             if (crew != null/* && crew.isPlayerControlled*/)
             {
                 selectedCrew.Add(crew);
-                SetOutline(crew,true);
+                SetOutline(crew, true);
                 crew.originPosTile = crew.GetCurrentTile();
             }
         }
@@ -501,6 +501,7 @@ public class RTSSelectionManager : MonoBehaviour
 
         if (enemiesInRoom.Count == 0)
         {
+            Debug.LogError("적군 없음");
             return;
         }
 
