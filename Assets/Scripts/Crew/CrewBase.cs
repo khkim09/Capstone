@@ -124,6 +124,9 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// </summary>
     public Animator animator;
 
+    [Header("Health Bar")] [SerializeField]
+    private HealthBar healthBarController;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -136,6 +139,8 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
             animator.runtimeAnimatorController
                 = Resources.Load<RuntimeAnimatorController>($"Animation/{race.ToString()}/{race.ToString()}");
         }
+
+        SetupHealthBar();
     }
 
     /// <summary>
@@ -303,6 +308,8 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     {
         health -= damage;
 
+        if (healthBarController != null) healthBarController.UpdateHealth(health);
+
         if (health <= 0)
         {
             health = 0;
@@ -370,6 +377,9 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     public void Heal(float amount)
     {
         health = Mathf.Min(health + amount, maxHealth);
+
+        // 체력바 업데이트
+        if (healthBarController != null) healthBarController.UpdateHealth(health);
     }
 
     /// <summary>
@@ -406,8 +416,16 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         attack += sign * item.eqAttackBonus;
         defense += sign * item.eqDefenseBonus;
+        float oldMaxHealth = maxHealth;
+
         maxHealth += sign * item.eqHealthBonus;
         health += sign * item.eqHealthBonus;
+
+        if (healthBarController != null && oldMaxHealth != maxHealth)
+        {
+            healthBarController.UpdateMaxHealth(maxHealth);
+            healthBarController.UpdateHealth(health);
+        }
 
         // Assistant일 경우 숙련도 보너스
         if (item.eqType == EquipmentType.AssistantEquipment)
@@ -587,5 +605,18 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         isAlive = other.isAlive;
         isMoving = other.isMoving;
         currentShip = other.currentShip;
+    }
+
+    // 체력바 설정 메서드 (새로 추가)
+    private void SetupHealthBar()
+    {
+        // 자식 오브젝트에서 HealthBarController 찾기
+        healthBarController = GetComponentInChildren<HealthBar>();
+
+        if (healthBarController != null)
+            // 초기 체력바 설정
+            healthBarController.UpdateHealth(health);
+        else
+            Debug.LogWarning($"{crewName}: HealthBarController를 찾을 수 없습니다. 체력바를 설정하세요.");
     }
 }
