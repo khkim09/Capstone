@@ -28,7 +28,8 @@ public class ShipTemplateLoader : MonoBehaviour
             // Resources 폴더에서 파일 로드
             TextAsset shipData = Resources.Load<TextAsset>(resourcePath);
 
-            if (shipData == null) Debug.LogWarning($"Ship template not found in Resources: {resourcePath}");
+            if (shipData == null)
+                Debug.LogWarning($"Ship template not found in Resources: {resourcePath}");
 
             // 임시 파일로 저장
             string tempPath = Path.Combine(Application.temporaryCachePath,
@@ -38,6 +39,7 @@ public class ShipTemplateLoader : MonoBehaviour
             // 함선 로드
             ShipSerialization.LoadShip(tempPath);
             ShipSerialization.LoadShip(tempPath);
+
             // 임시 파일 삭제
             File.Delete(tempPath);
 

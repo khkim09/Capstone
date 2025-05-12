@@ -50,7 +50,7 @@ public class ShipFollowCamera : MonoBehaviour
         // 방이나 무기가 없으면 기본 그리드 중앙으로
         if ((allRooms == null || allRooms.Count == 0) && (allWeapons == null || allWeapons.Count == 0))
         {
-            Vector3 gridCenter = ShipGridHelper.GridToWorldPosition(targetShip.GetGridSize() / 2);
+            Vector3 gridCenter = targetShip.GetWorldPositionFromGrid(targetShip.GetGridSize() / 2);
             PositionCamera(gridCenter, camera.orthographicSize);
             return;
         }
@@ -95,9 +95,9 @@ public class ShipFollowCamera : MonoBehaviour
         }
 
         // 함선 중심점 계산 - 경계의 중점
-        // (GridToWorldPosition이 좌측 하단 좌표를 반환하므로 정확히 계산)
-        Vector3 minWorldPos = ShipGridHelper.GridToWorldPosition(minTile);
-        Vector3 maxWorldPos = ShipGridHelper.GridToWorldPosition(maxTile + Vector2Int.one); // 우측 상단 경계
+        // (GetWorldPositionFromGrid 좌측 하단 좌표를 반환하므로 정확히 계산)
+        Vector3 minWorldPos = targetShip.GetWorldPositionFromGrid(minTile);
+        Vector3 maxWorldPos = targetShip.GetWorldPositionFromGrid(maxTile + Vector2Int.one); // 우측 상단 경계
 
         shipCenter = new Vector3(
             (minWorldPos.x + maxWorldPos.x) * 0.5f,

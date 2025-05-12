@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 전투 중인 적 함선입니다.
     /// </summary>
-    private Ship currentEnemyShip;
+    public Ship currentEnemyShip;
 
     /// <summary>
     /// 게임 상태 변경 이벤트 델리게이트입니다.
@@ -28,7 +28,8 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")] [SerializeField]
+    [Header("Game State")]
+    [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     /// <summary>
@@ -86,13 +87,32 @@ public class GameManager : MonoBehaviour
         {
         }
 
-        playerShip = FindAnyObjectByType<Ship>();
+        playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
+        currentEnemyShip = GameObject.Find("EnemyShip")?.GetComponent<Ship>();
 
 
         playerShip.Initialize();
+
         CreateDefaultPlayerShip();
         OnShipInitialized?.Invoke();
-        ForSerializeTest();
+        // ForSerializeTest();
+
+        // 적 함선 움직임 테스트 위한 코드
+        // ShipTemplateLoader.LoadShipFromResources("ShipTemplates/template_esfwaw");
+        // currentEnemyShip.MoveShipToFacingTargetShip(playerShip);
+
+        // currentEnemyShip.Initialize();
+
+        // CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        // CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
+        // CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
+
+        // if (crewBase1 is CrewMember crewMember) currentEnemyShip.AddCrew(crewMember);
+        // if (crewBase2 is CrewMember crewMember2) currentEnemyShip.AddCrew(crewMember2);
+        // if (crewBase3 is CrewMember crewMember3) currentEnemyShip.AddCrew(crewMember3);
+
+        currentEnemyShip.Initialize();
+        GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("pirate_level2");
     }
 
     /// <summary>

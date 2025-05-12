@@ -151,7 +151,7 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
             bpPosition = newPos;
 
             Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
-            transform.position = gridPlacer.GridToWorldPosition(bpPosition) + (Vector3)offset;
+            transform.position = gridPlacer.GetWorldPositionFromGrid(bpPosition) + (Vector3)offset;
 
             bool canPlace = gridPlacer.CanPlaceRoom(bpRoomData, bpLevelIndex, bpPosition, bpRotation);
             sr.color = canPlace ? validColor : invalidColor;
@@ -179,7 +179,7 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
                 UpdateOccupiedTiles();
 
                 Vector2 offset = RoomRotationUtility.GetRotationOffset(bpRoomSize, bpRotation);
-                transform.position = gridPlacer.GridToWorldPosition(originalPos) + (Vector3)offset;
+                transform.position = gridPlacer.GetWorldPositionFromGrid(originalPos) + (Vector3)offset;
                 transform.rotation = Quaternion.Euler(0, 0, -(int)bpRotation * 90);
 
                 // 점유 타일 복구

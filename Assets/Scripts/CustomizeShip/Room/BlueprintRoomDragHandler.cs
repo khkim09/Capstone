@@ -78,7 +78,7 @@ public class BlueprintRoomDragHandler : MonoBehaviour
 
         Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2Int gridPos = gridPlacer.WorldToGridPosition(mouseWorld);
-        Vector3 basePos = gridPlacer.GridToWorldPosition(gridPos);
+        Vector3 basePos = gridPlacer.GetWorldPositionFromGrid(gridPos);
 
         Vector2Int rotatedSize = RoomRotationUtility.GetRotatedSize(roomSize, draggingRotation);
         Vector2 offset = RoomRotationUtility.GetRotationOffset(rotatedSize, draggingRotation);
