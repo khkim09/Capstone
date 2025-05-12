@@ -533,8 +533,6 @@ public class CrewMember : CrewBase
         if (isWorking)
         {
             Debug.LogError("작업 중이었던");
-            isWorking = false;
-            PlayAnimation("work");
             WalkOut();
             Debug.LogError("작업 선원 할당 해제");
         }
@@ -585,7 +583,7 @@ public class CrewMember : CrewBase
     {
         foreach (CrewMember other in currentRoom.GetCrewInRoom())
         {
-            if (other == this)
+            if (other == this || other.isPlayerControlled==isPlayerControlled)
                 continue;
 
             if (other.inCombat == false && other.isMoving == false)
@@ -806,13 +804,5 @@ public class CrewMember : CrewBase
         if (currentShip.isPlayerShip == isPlayerControlled)
             return true;
         return false;
-    }
-
-    public void DestoryRoom()
-    {
-        if (madRoom == null)
-            return;
-        inCombat = true;
-        combatCoroutine = StartCoroutine(CombatRoutine());
     }
 }
