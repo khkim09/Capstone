@@ -398,7 +398,7 @@ public class CrewMember : CrewBase
             combatTarget.bullier.Add(this); // 적군을 때리는 선원 리스트에 이 선원 추가
 
             // 때릴 적군이 전투 중이 아닌 상태 - 나랑 전투하도록
-            if (!combatTarget.inCombat)
+            if (!combatTarget.inCombat && currentRoom==combatTarget.currentRoom)
             {
                 combatTarget.Freeze();
                 combatTarget.combatTarget = this;
