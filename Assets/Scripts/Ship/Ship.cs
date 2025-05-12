@@ -4,14 +4,16 @@ using System.Linq;
 using UnityEngine;
 using System.IO;
 using Random = UnityEngine.Random;
+using UnityEngine.Video;
+using UnityEditor.U2D.Aseprite;
 
 /// <summary>
 /// 함선의 전체 기능과 상태를 관리하는 클래스.
 /// 방 배치, 시스템 초기화, 전투 처리, 자원 계산, 스탯 갱신 등의 기능을 포함합니다. 수정 확인
 /// </summary>
-public class Ship : MonoBehaviour, IWorldGridSwitcher
+public class Ship : MonoBehaviour
 {
-    [Header("Ship Info")] [SerializeField] public string shipName = "Milky";
+    [Header("Ship Info")][SerializeField] public string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -49,7 +51,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// </summary>
     private int doorLevel;
 
-    [Header("외갑판 설정")] [SerializeField] public OuterHullData outerHullData;
+    [Header("외갑판 설정")][SerializeField] public OuterHullData outerHullData;
     [SerializeField] public GameObject outerHullPrefab;
 
     /// <summary>
@@ -138,7 +140,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         RecalculateAllStats();
 
         doorLevel = 1;
-        GameManager.Instance.SetPlayerShip(this);
+        // GameManager.Instance.SetPlayerShip(this);
     }
 
 
@@ -204,7 +206,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         Vector2Int size = roomData.GetRoomDataByLevel(level).size;
         Vector2Int rotatedSize = RoomRotationUtility.GetRotatedSize(size, rotation);
         Vector2 offset = RoomRotationUtility.GetRotationOffset(rotatedSize, rotation);
-        Vector3 worldPos = GridToWorldPosition(position) + (Vector3)offset;
+        Vector3 worldPos = GetWorldPositionFromGrid(position) + (Vector3)offset;
 
         room.gameObject.transform.position = worldPos + new Vector3(0, 0, 5f);
         room.gameObject.transform.rotation = Quaternion.Euler(0, 0, -(int)rotation * 90);
@@ -269,7 +271,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         Vector2Int size = roomData.GetRoomDataByLevel(room.GetCurrentLevel()).size;
         Vector2Int rotatedSize = RoomRotationUtility.GetRotatedSize(size, rotation);
         Vector2 offset = RoomRotationUtility.GetRotationOffset(rotatedSize, rotation);
-        Vector3 worldPos = GridToWorldPosition(position) + (Vector3)offset;
+        Vector3 worldPos = GetWorldPositionFromGrid(position) + (Vector3)offset;
 
         // 실제 룸 배치 작업
         room.gameObject.transform.position = worldPos + new Vector3(0, 0, 5f);
@@ -391,11 +393,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
-        {
-            Vector2Int gridPos = room.position + new Vector2Int(x, y);
-            roomGrid.Remove(gridPos);
-        }
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = room.position + new Vector2Int(x, y);
+                roomGrid.Remove(gridPos);
+            }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -499,7 +501,9 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         foreach (ShipWeapon wp in GetAllWeapons())
             backupWeapons.Add(new WeaponBackupData()
             {
-                weaponData = wp.weaponData, position = wp.GetGridPosition(), direction = wp.GetAttachedDirection()
+                weaponData = wp.weaponData,
+                position = wp.GetGridPosition(),
+                direction = wp.GetAttachedDirection()
             });
     }
 
@@ -672,12 +676,12 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             return false;
 
         for (int x = 0; x < size.x; x++)
-        for (int y = 0; y < size.y; y++)
-        {
-            Vector2Int checkPos = pos + new Vector2Int(x, y);
-            if (roomGrid.ContainsKey(checkPos))
-                return false;
-        }
+            for (int y = 0; y < size.y; y++)
+            {
+                Vector2Int checkPos = pos + new Vector2Int(x, y);
+                if (roomGrid.ContainsKey(checkPos))
+                    return false;
+            }
 
         return true;
     }
@@ -1271,15 +1275,15 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
-            for (int y = -1; y <= 1; y++)
-            {
-                if (x == 0 && y == 0) continue;
+                for (int y = -1; y <= 1; y++)
+                {
+                    if (x == 0 && y == 0) continue;
 
-                Vector2Int checkPos = position + new Vector2Int(x, y);
+                    Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                // 해당 위치에 있는 선원들에게 데미지 적용
-                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
-            }
+                    // 해당 위치에 있는 선원들에게 데미지 적용
+                    ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
+                }
     }
 
     #endregion
@@ -1346,7 +1350,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     }
 
     /// <summary>
-    /// 그리드 좌표를 월드 좌표로 변환
+    /// 그리드 좌표를 월드 좌표로 변환 ((0, 0) ~ (60, 60) 그리드 내 좌표라 local relative 좌표임)
     /// </summary>
     /// <param name="gridPos"></param>
     /// <returns></returns>
@@ -1354,6 +1358,16 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     {
         return Vector3.zero + new Vector3((gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
             (gridPos.y + 0.5f) * GridConstants.CELL_SIZE, 0f);
+    }
+
+    /// <summary>
+    /// 실제 월드 위치 반환
+    /// </summary>
+    /// <param name="gridPos"></param>
+    /// <returns></returns>
+    public Vector3 GetWorldPositionFromGrid(Vector2Int gridPos)
+    {
+        return transform.TransformPoint(GridToWorldPosition(gridPos));
     }
 
     public Vector2Int GetGridSize()
@@ -1438,22 +1452,69 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
 
     #endregion
 
-    #region Move
+    #region 함선 이동 (적 함선)
 
-    public void MoveTo(Vector2Int gridPosition)
+    /// <summary>
+    /// 이 함선을 targetShip과 마주보도록 설정하면서 x축으로 offset만큼 띄운 위치로 이동시킴.
+    /// 회전은 180도, y 중심 정렬 유지.
+    /// </summary>
+    /// <param name="targetShip">대상 유저 함선</param>
+    /// <param name="xOffset">x축 거리 (보통 80)</param>
+    public void MoveShipToFacingTargetShip(Ship targetShip)
     {
-        Vector2Int shipPos = new(int.MaxValue, int.MaxValue);
-        foreach (Room room in allRooms)
-        foreach (Vector2Int tile in room.GetOccupiedTiles())
+        float xOffset = 80f;
+        if (targetShip == null || targetShip.allRooms.Count == 0 || allRooms.Count == 0)
         {
-            shipPos.x = Mathf.Min(shipPos.x, tile.x);
-            shipPos.y = Mathf.Min(shipPos.y, tile.y);
+            Debug.LogError("MoveShipToFacingTargetShip 실패: 유효하지 않은 ship 구성");
+            return;
         }
 
-        Vector2 offset =
-            ShipGridHelper.GetShipRotationOffset(this, RotationConstants.Rotation.Rotation0);
-        transform.position = ShipGridHelper.GridToWorldPosition(gridPosition) + (Vector3)offset;
+        // 1. 유저 함선의 중심 월드 좌표 계산
+        Vector3 userSum = Vector3.zero;
+        foreach (Room room in targetShip.allRooms)
+            userSum += room.transform.position;
+        Vector2 userCenter = userSum / targetShip.allRooms.Count;
+
+        // 2. 이(적군) 함선의 중심 월드 좌표 계산
+        Vector3 enemySum = Vector3.zero;
+        foreach (Room room in this.allRooms)
+            enemySum += room.transform.position;
+        Vector2 enemyCenter = enemySum / this.allRooms.Count;
+
+        // 3. 회전 (정면 반대로)
+        this.transform.rotation = Quaternion.Euler(0, 0, 180f);
+
+        // 4. 적 함선과 유저 함선의 월드 좌표 위치 차이 계산
+        float diffX = userCenter.x + enemyCenter.x + xOffset;
+        float diffY = userCenter.y + enemyCenter.y;
+
+        this.transform.position = new Vector3(diffX, diffY, 10f);
+
+        // 5. 소속 적군도 옮기기
+        foreach (CrewMember crew in allCrews)
+        {
+            if (crew == null || crew.currentRoom == null)
+                continue;
+
+            Room room = crew.currentRoom;
+            List<Vector2Int> entryTiles = room.GetRotatedCrewEntryGridPriority();
+
+            foreach (Vector2Int tile in entryTiles)
+            {
+                // 점유되지 않은 타일에 배치
+                if (!IsCrewTileOccupied(room, tile))
+                {
+                    crew.transform.position = GetWorldPositionFromGrid(room.position + tile);
+                    crew.transform.rotation = Quaternion.identity;
+                    crew.position = tile;
+
+                    MarkCrewTileOccupied(room, tile);
+                    break;
+                }
+            }
+        }
     }
+
 
     #endregion
 }

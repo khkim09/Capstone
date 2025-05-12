@@ -6,8 +6,7 @@ using UnityEngine.UIElements;
 /// 모든 창고 타입의 기본 클래스.
 /// 저장 가능한 아이템의 타입, 보관/제거/저하 로직 등을 공통으로 정의합니다.
 /// </summary>
-public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel>,
-    IWorldGridSwitcher
+public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel>
 {
     /// <summary>저장된 아이템 목록.</summary>
     public List<TradingItem> storedItems = new();
@@ -269,12 +268,12 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
             int removedCells = 0;
 
             for (int y = 0; y < size.y; y++)
-            for (int x = 0; x < size.x; x++)
-                if (itemGrid[y, x] == item)
-                {
-                    itemGrid[y, x] = null;
-                    removedCells++;
-                }
+                for (int x = 0; x < size.x; x++)
+                    if (itemGrid[y, x] == item)
+                    {
+                        itemGrid[y, x] = null;
+                        removedCells++;
+                    }
 
             // 저장된 아이템 목록에서도 제거
             storedItems.Remove(item);
@@ -396,15 +395,15 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
 
         // 각 점유된 블록에 대해 창고 좌표 계산
         for (int y = 0; y < 5; y++)
-        for (int x = 0; x < 5; x++)
-            if (blockShape[y][x])
-            {
-                // 아이템 블록 좌표를 창고 좌표로 변환 (중심점 2,2 기준)
-                int storageX = position.x + (x - 2);
-                int storageY = position.y + (2 - y);
+            for (int x = 0; x < 5; x++)
+                if (blockShape[y][x])
+                {
+                    // 아이템 블록 좌표를 창고 좌표로 변환 (중심점 2,2 기준)
+                    int storageX = position.x + (x - 2);
+                    int storageY = position.y + (2 - y);
 
-                occupiedTiles.Add(new Vector2Int(storageX, storageY));
-            }
+                    occupiedTiles.Add(new Vector2Int(storageX, storageY));
+                }
 
         return occupiedTiles;
     }

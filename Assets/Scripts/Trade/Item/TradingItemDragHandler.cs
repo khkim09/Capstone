@@ -13,7 +13,8 @@ public class TradingItemDragHandler : MonoBehaviour
     // 싱글톤 패턴으로 구현
     public static TradingItemDragHandler Instance { get; private set; }
 
-    [Header("Preview Colors")] [SerializeField]
+    [Header("Preview Colors")]
+    [SerializeField]
     private Color validPlacementColor = new(0, 1, 0, 0.5f);
 
     [SerializeField] private Color invalidPlacementColor = new(1, 0, 0, 0.5f);
@@ -451,14 +452,14 @@ public class TradingItemDragHandler : MonoBehaviour
 
             // 모든 아이템의 상태 확인
             foreach (StorageRoomBase storage in FindObjectsOfType<StorageRoomBase>())
-            foreach (TradingItem item in storage.storedItems)
-                if (item != null)
-                {
-                    // 콜라이더 상태도 함께 확인
-                    BoxCollider2D collider = item.GetComponent<BoxCollider2D>();
-                    if (collider == null)
-                        Debug.LogWarning($"[TradingItemDragHandler] 아이템 {item.GetInstanceID()} 콜라이더 없음!");
-                }
+                foreach (TradingItem item in storage.storedItems)
+                    if (item != null)
+                    {
+                        // 콜라이더 상태도 함께 확인
+                        BoxCollider2D collider = item.GetComponent<BoxCollider2D>();
+                        if (collider == null)
+                            Debug.LogWarning($"[TradingItemDragHandler] 아이템 {item.GetInstanceID()} 콜라이더 없음!");
+                    }
         }
 
         // 드래그 종료 후 아이템 상호작용 활성화를 위한 짧은 지연
@@ -552,17 +553,17 @@ public class TradingItemDragHandler : MonoBehaviour
 
         int resetCount = 0;
         foreach (StorageRoomBase storage in allStorages)
-        foreach (TradingItem item in storage.storedItems)
-            if (item != null)
-            {
-                // 강제로 드래그 모드 해제 및 콜라이더 활성화
-                item.SetDragMode(false);
+            foreach (TradingItem item in storage.storedItems)
+                if (item != null)
+                {
+                    // 강제로 드래그 모드 해제 및 콜라이더 활성화
+                    item.SetDragMode(false);
 
-                BoxCollider2D collider = item.GetComponent<BoxCollider2D>();
-                if (collider != null) collider.enabled = true;
+                    BoxCollider2D collider = item.GetComponent<BoxCollider2D>();
+                    if (collider != null) collider.enabled = true;
 
-                resetCount++;
-            }
+                    resetCount++;
+                }
 
         resetCoroutine = null;
     }

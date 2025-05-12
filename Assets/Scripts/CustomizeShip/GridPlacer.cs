@@ -5,7 +5,7 @@ using UnityEngine;
 /// 함선 커스터마이징을 위한 그리드 시스템을 생성하고 방/무기 배치를 관리하는 클래스.
 /// 타일 생성, 배치 가능 여부 판단, 실제 설치 등을 처리합니다.
 /// </summary>
-public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
+public class GridPlacer : MonoBehaviour
 {
     /// <summary>
     /// 생성할 타일의 프리팹입니다.
@@ -60,12 +60,14 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     public void GenerateTiles()
     {
         for (int x = 0; x < gridSize.x; x++)
-        for (int y = 0; y < gridSize.y; y++)
         {
-            Vector3 pos = GridToWorldPosition(new Vector2Int(x, y));
-            GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
-            tile.transform.localScale = Vector3.one * GridConstants.CELL_SIZE;
-            tile.transform.position += new Vector3(0, 0, 17);
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                Vector3 pos = GetWorldPositionFromGrid(new Vector2Int(x, y));
+                GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
+                tile.transform.localScale = Vector3.one * GridConstants.CELL_SIZE;
+                tile.transform.position += new Vector3(0, 0, 17);
+            }
         }
     }
 
@@ -78,6 +80,16 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     {
         return gridOrigin + new Vector3((gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
             (gridPos.y + 0.5f) * GridConstants.CELL_SIZE, 0f);
+    }
+
+    /// <summary>
+    /// 실제 월드 위치 반환
+    /// </summary>
+    /// <param name="gridPos"></param>
+    /// <returns></returns>
+    public Vector3 GetWorldPositionFromGrid(Vector2Int gridPos)
+    {
+        return transform.TransformPoint(GridToWorldPosition(gridPos));
     }
 
     /// <summary>
@@ -115,7 +127,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
 
         // 배치된 오브젝트 없으면 그리드 중앙
         if (allPlaceables.Count == 0)
-            return GridToWorldPosition(gridSize / 2);
+            return GetWorldPositionFromGrid(gridSize / 2);
 
         // 전체 타일 평균 위치 계산
         List<Vector2Int> allTiles = new();
@@ -128,7 +140,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
 
         average /= allTiles.Count;
 
-        return GridToWorldPosition(Vector2Int.RoundToInt(average));
+        return GetWorldPositionFromGrid(Vector2Int.RoundToInt(average));
     }
 
     /// <summary>
@@ -142,7 +154,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
 
         // 배치된 방 없으면 그리드 중앙
         if (allRooms.Count == 0 && allWeapons.Count == 0)
-            return GridToWorldPosition(gridSize / 2);
+            return GetWorldPositionFromGrid(gridSize / 2);
 
         // 전체 타일 평균 위치 계산
         List<Vector2Int> allTiles = new();
@@ -164,7 +176,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
 
         average /= allTiles.Count;
 
-        return GridToWorldPosition(Vector2Int.RoundToInt(average));
+        return GetWorldPositionFromGrid(Vector2Int.RoundToInt(average));
     }
 
     /// <summary>
@@ -369,7 +381,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
     {
         Vector2Int size = RoomRotationUtility.GetRotatedSize(data.GetRoomDataByLevel(level).size, rotation);
         Vector2 offset = RoomRotationUtility.GetRotationOffset(size, rotation);
-        Vector3 worldPos = GridToWorldPosition(position) + (Vector3)offset;
+        Vector3 worldPos = GetWorldPositionFromGrid(position) + (Vector3)offset;
 
         GameObject bpRoomGO = Instantiate(roomPrefab, targetBlueprintShip.transform);
         bpRoomGO.transform.position = worldPos + new Vector3(0, 0, 10f);
@@ -397,7 +409,7 @@ public class GridPlacer : MonoBehaviour, IWorldGridSwitcher
 
         Vector2Int size = new(2, 1);
         Vector2 offset = RoomRotationUtility.GetRotationOffset(size, RotationConstants.Rotation.Rotation0);
-        Vector3 worldPos = GridToWorldPosition(position) + (Vector3)offset;
+        Vector3 worldPos = GetWorldPositionFromGrid(position) + (Vector3)offset;
 
         GameObject bpWeaponGO = Instantiate(weaponPrefab, targetBlueprintShip.transform);
         bpWeaponGO.transform.position = worldPos + new Vector3(0, 0, 10f);

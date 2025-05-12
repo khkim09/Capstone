@@ -161,7 +161,7 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
             // 동일한 오프셋 적용
             Vector2Int size = new(2, 1);
             Vector2 offset = RoomRotationUtility.GetRotationOffset(size, RotationConstants.Rotation.Rotation0);
-            transform.position = gridPlacer.GridToWorldPosition(bpPosition) + (Vector3)offset;
+            transform.position = gridPlacer.GetWorldPositionFromGrid(bpPosition) + (Vector3)offset;
 
             // bool canPlace = gridPlacer.CanPlaceObject(this, bpPosition, null);
             bool canPlace = gridPlacer.CanPlaceWeapon(bpWeaponData, bpPosition, bpAttachedDirection);
@@ -190,7 +190,7 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
                 UpdateOccupiedTiles();
 
                 Vector2 offset = RoomRotationUtility.GetRotationOffset(bpWeaponSize, RotationConstants.Rotation.Rotation0);
-                transform.position = gridPlacer.GridToWorldPosition(originalPos) + (Vector3)offset;
+                transform.position = gridPlacer.GetWorldPositionFromGrid(originalPos) + (Vector3)offset;
                 ApplyAttachedDirectionSprite();
 
                 // 점유 타일 복구

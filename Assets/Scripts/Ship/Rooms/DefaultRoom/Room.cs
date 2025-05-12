@@ -578,19 +578,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     // TODO : 나중엔 이런 월드 좌표가 아니라, 싱글턴 그리드 좌표에 맞는 월드 좌표로 변환하는 함수가 필요하다.
 
     /// <summary>
-    /// 그리드 위치를 월드 위치로 변환
-    /// </summary>
-    private Vector2 GridToWorldPosition(Vector2Int gridPos)
-    {
-        // 그리드 크기와 오프셋에 따라 계산
-        float cellSize = 1.0f; // 그리드 셀 크기
-        return transform.position + new Vector3(
-            gridPos.x * cellSize + cellSize / 2,
-            gridPos.y * cellSize + cellSize / 2
-        );
-    }
-
-    /// <summary>
     /// 회전각을 고려하여 방의 점유 타일 반환
     /// </summary>
     /// <returns></returns>

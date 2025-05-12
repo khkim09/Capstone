@@ -34,7 +34,7 @@ public class EnemyShipFactory : MonoBehaviour
         }
 
         // 템플릿 로드 시 생성될 배의 예상 이름
-        string expectedShipName = "EnemyShip"; // ES3가 생성하는 이름 규칙에 맞게 조정 필요
+        string expectedShipName = "PlayerShip"; // ES3가 생성하는 이름 규칙에 맞게 조정 필요
 
         try
         {
@@ -47,8 +47,10 @@ public class EnemyShipFactory : MonoBehaviour
 
             if (loadedShip != null)
             {
+                Ship playerShip = GameManager.Instance.GetPlayerShip();
+
                 // TODO: MoveTo 함수 완성하기
-                loadedShip.MoveTo(position);
+                loadedShip.MoveShipToFacingTargetShip(playerShip);
 
                 GeneratePirateCrew(loadedShip, template);
 
@@ -117,12 +119,13 @@ public class EnemyShipFactory : MonoBehaviour
     /// </summary>
     private Ship CreateDefaultShip(EnemyShipTemplate template, Vector2Int position)
     {
-        // 새 게임오브젝트 생성
+        // 새 게임 오브젝트 생성
         GameObject shipObject = new($"Pirate_{template.templateName}_Manual");
-        shipObject.transform.position = ShipGridHelper.GridToWorldPosition(position);
 
         // Ship 컴포넌트 추가
         Ship ship = shipObject.AddComponent<Ship>();
+
+        shipObject.transform.position = ship.GetWorldPositionFromGrid(position);
 
         // 배 초기화
         ship.Initialize();

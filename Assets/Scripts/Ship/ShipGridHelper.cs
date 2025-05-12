@@ -58,8 +58,8 @@ public class ShipGridHelper
         // 배가 차지하는 모든 그리드 위치 수집
         List<Vector2Int> occupiedPositions = new();
         foreach (Room room in ship.GetAllRooms())
-        foreach (Vector2Int pos in room.GetOccupiedTiles())
-            occupiedPositions.Add(pos);
+            foreach (Vector2Int pos in room.GetOccupiedTiles())
+                occupiedPositions.Add(pos);
 
         if (occupiedPositions.Count == 0)
         {

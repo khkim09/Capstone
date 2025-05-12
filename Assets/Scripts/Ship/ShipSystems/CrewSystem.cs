@@ -75,8 +75,11 @@ public class CrewSystem : ShipSystem
             Vector2Int spawnTile = candidates[Random.Range(0, candidates.Count)];
             crew.position = spawnTile;
             crew.currentRoom = room;
-            crew.transform.position = parentShip.GridToWorldPosition(spawnTile);
+            crew.transform.position = parentShip.GetWorldPositionFromGrid(spawnTile);
             crew.transform.SetParent(room.transform);
+            crew.currentShip = parentShip;
+
+            Debug.LogError($"선원 랜덤 스폰 위치 : {spawnTile}");
 
             room.OccupyTile(spawnTile);
             room.OnCrewEnter(crew);
@@ -173,8 +176,9 @@ public class CrewSystem : ShipSystem
 
             originCrew.position = data.position;
             originCrew.currentRoom = room;
-            originCrew.transform.position = parentShip.GridToWorldPosition(data.position);
+            originCrew.transform.position = parentShip.GetWorldPositionFromGrid(data.position);
             originCrew.transform.SetParent(room.transform);
+            originCrew.currentShip = parentShip;
 
             room.OccupyTile(data.position);
             room.OnCrewEnter(originCrew);
@@ -215,8 +219,8 @@ public class CrewSystem : ShipSystem
                 List<Vector2Int> candidates = room.GetRotatedCrewEntryGridPriority().Where
                 (
                     t => !room.IsTileOccupiedByCrew(t)
-                         && !parentShip.IsCrewTileOccupied(room, t)
-                         && !alreadyOccupiedTiles.Contains(t)
+                        && !parentShip.IsCrewTileOccupied(room, t)
+                        && !alreadyOccupiedTiles.Contains(t)
                 ).ToList();
 
                 if (candidates.Count == 0)
@@ -229,8 +233,9 @@ public class CrewSystem : ShipSystem
                 // 위치 설정
                 crew.position = spawnTile;
                 crew.currentRoom = room;
-                crew.transform.position = parentShip.GridToWorldPosition(spawnTile);
+                crew.transform.position = parentShip.GetWorldPositionFromGrid(spawnTile);
                 crew.transform.SetParent(room.transform);
+                crew.currentShip = parentShip;
 
                 // 점유 등록
                 room.OccupyTile(spawnTile);
