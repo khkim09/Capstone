@@ -281,29 +281,6 @@ public class CrewMember : CrewBase
         // oninvoke()로 해결
     }
 
-    /*
-        // <summary>
-        /// 월드 좌표를 그리드 좌표로 변환합니다.
-        /// </summary>
-        public Vector2Int WorldToGridPosition(Vector2 worldPos)
-        {
-            Vector3 local = new Vector3(worldPos.x, worldPos.y, 0) - Vector3.zero;
-            return new Vector2Int(Mathf.FloorToInt(local.x / GridConstants.CELL_SIZE),
-                Mathf.FloorToInt(local.y / GridConstants.CELL_SIZE));
-        }
-
-        /// <summary>
-        /// 그리드 좌표를 월드 좌표로 변환
-        /// </summary>
-        /// <param name="gridPos"></param>
-        /// <returns></returns>
-        public Vector3 GridToWorldPosition(Vector2Int gridPos)
-        {
-            return Vector3.zero + new Vector3((gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
-                (gridPos.y + 0.5f) * GridConstants.CELL_SIZE, 0f);
-        }
-    */
-
     /// <summary>
     /// 현재 선원의 스텟 반환
     /// </summary>
