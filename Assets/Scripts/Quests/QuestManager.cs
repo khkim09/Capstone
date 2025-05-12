@@ -95,10 +95,19 @@ public class QuestManager : MonoBehaviour
 
     /// <summary>
     /// 퀘스트를 완료 처리합니다.
+    /// 완료 시 UI 패널 상태를 기억하고 완료 후 원래대로 복구합니다.
     /// </summary>
     /// <param name="quest">완료된 퀘스트</param>
     private void CompleteQuest(RandomQuest quest)
     {
+        // 현재 UI 상태 저장
+        QuestListUI questListUI = FindObjectOfType<QuestListUI>();
+        QuestUIManager questUIManager = FindObjectOfType<QuestUIManager>();
+
+        bool wasQuestListOpen = questListUI != null && questListUI.IsOpen();
+        bool wasQuestOfferOpen = questUIManager != null && questUIManager.IsOfferPanelOpen();
+
+        // 원래 Complete 처리
         quest.status = QuestStatus.Completed;
         activeQuests.Remove(quest);
         completedQuests.Add(quest);
@@ -107,12 +116,19 @@ public class QuestManager : MonoBehaviour
             if (reward.questRewardType == QuestRewardType.COMA)
                 ResourceManager.Instance.ChangeResource(ResourceType.COMA, reward.amount);
 
-        QuestUIManager ui = FindObjectOfType<QuestUIManager>();
-        if (ui != null) ui.ShowCompletion(quest);
+        if (questUIManager != null)
+            questUIManager.ShowCompletion(quest);
 
         OnQuestCompleted?.Invoke(quest);
         Debug.Log($"Quest completed: {quest.title}");
+
+        // 완료 후 패널 원복
+        if (wasQuestListOpen && questListUI != null)
+            questListUI.Open();
+        if (wasQuestOfferOpen && questUIManager != null)
+            questUIManager.ShowQuestOffer(quest);
     }
+
 
     /// <summary>
     /// 현재 진행 중인 퀘스트 목록을 반환합니다.

@@ -87,8 +87,8 @@ public class QuestUIManager : MonoBehaviour
             QuestListUI questListUI = FindObjectOfType<QuestListUI>();
             if (questListUI != null)
             {
-                if (!questListUI.panel.activeSelf)
-                    questListUI.panel.SetActive(true);
+                //if (!questListUI.panel.activeSelf)
+                    //questListUI.panel.SetActive(true);
 
                 questListUI.Open();
             }
@@ -117,9 +117,10 @@ public class QuestUIManager : MonoBehaviour
     public void ShowCompletion(RandomQuest quest)
     {
         completePanel.SetActive(true);
-        completeText.text = $"퀘스트를 완료하였습니다!\n보상: {quest.rewards[0].amount} COMA";
+        completeText.text =
+            "ui.quest.complete.text".Localize(quest.rewards[0].amount);
+        //$"퀘스트를 완료하였습니다!\n보상: {quest.rewards[0].amount} COMA";
     }
-
 
     /// <summary>
     /// 퀘스트 완료 확인 버튼 클릭 시 호출됩니다.
@@ -128,5 +129,13 @@ public class QuestUIManager : MonoBehaviour
     private void OnCompleteConfirmed()
     {
         completePanel.SetActive(false);
+    }
+
+    /// <summary>
+    /// 퀘스트 제안 패널이 열려있는지 여부를 반환합니다.
+    /// </summary>
+    public bool IsOfferPanelOpen()
+    {
+        return offerPanel.activeSelf;
     }
 }

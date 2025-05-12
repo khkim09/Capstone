@@ -22,7 +22,7 @@ public class QuestListUI : MonoBehaviour
     /// <summary>패널 원래 위치 저장 여부</summary>
     private bool isOriginalPositionSaved = false;
 
-    /// <summary>패널 원래 위치 저장용</summary>
+    /// <summary>패널 원래 위치</summary>
     private Vector2 originalPosition;
 
     /// <summary>
@@ -31,13 +31,7 @@ public class QuestListUI : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        RectTransform rectTransform = panel.GetComponent<RectTransform>();
-        if (rectTransform != null)
-            originalPosition = rectTransform.anchoredPosition;
-
-        panel.SetActive(false); // 처음에 꺼두기
-
-        /// <summary>퀘스트 완료 시 자동으로 리스트를 새로고침합니다.</summary>
+        panel.SetActive(false);
         QuestManager.Instance.OnQuestCompleted += OnQuestCompleted;
     }
 
@@ -76,6 +70,7 @@ public class QuestListUI : MonoBehaviour
 
     /// <summary>
     /// 외부 버튼에서 호출될 때 사용되는 열기/닫기 + 위치 이동 함수입니다.
+    /// 꺼져 있으면 열고 왼쪽으로 이동, 켜져 있으면 닫고 원래 위치로 복구합니다.
     /// </summary>
     public void ToggleFromButton()
     {
@@ -109,7 +104,8 @@ public class QuestListUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 창을 닫고 기존 슬롯들을 제거합니다.
+    /// 퀘스트 목록 창을 닫고 기존 슬롯들을 제거합니다.
+    /// 위치도 원래대로 복구합니다.
     /// </summary>
     public void Close()
     {
@@ -117,7 +113,7 @@ public class QuestListUI : MonoBehaviour
         Clear();
 
         RectTransform rectTransform = panel.GetComponent<RectTransform>();
-        if (rectTransform != null)
+        if (rectTransform != null && isOriginalPositionSaved)
             rectTransform.anchoredPosition = originalPosition;
     }
 
@@ -126,7 +122,8 @@ public class QuestListUI : MonoBehaviour
     /// </summary>
     private void Clear()
     {
-        foreach (GameObject slot in spawnedSlots) Destroy(slot);
+        foreach (GameObject slot in spawnedSlots)
+            Destroy(slot);
         spawnedSlots.Clear();
     }
 
@@ -135,6 +132,15 @@ public class QuestListUI : MonoBehaviour
     /// </summary>
     private void OnQuestCompleted(RandomQuest quest)
     {
-        if (panel.activeSelf) Open(); // 다시 그려주기
+        if (IsOpen())
+            Open();
+    }
+
+    /// <summary>
+    /// 현재 패널이 열려 있는지 여부를 반환합니다.
+    /// </summary>
+    public bool IsOpen()
+    {
+        return panel.activeSelf;
     }
 }
