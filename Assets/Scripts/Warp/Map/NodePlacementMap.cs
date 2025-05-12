@@ -239,9 +239,7 @@ public class NodePlacementMap : MonoBehaviour
             planetComponent.dominantSpecies =
                 (SpeciesType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(SpeciesType)).Length);
 
-            planetComponent.fuelPrice = UnityEngine.Random.Range(25f, 75f);
-            planetComponent.hasEvent = UnityEngine.Random.value > 0.7f; // 30% chance to have an event
-            planetComponent.hasQuest = UnityEngine.Random.value > 0.8f; // 20% chance to have a quest
+            planetComponent.planetData.currentFuelPrice = UnityEngine.Random.Range(25f, 75f);
 
             // Assign tooltip prefab if not already set
             if (tooltipPrefab != null && planetComponent.tooltipPrefab == null)

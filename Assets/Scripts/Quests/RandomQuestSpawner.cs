@@ -49,55 +49,55 @@ public class RandomQuestSpawner : MonoBehaviour
     {
         quest.rewards.Clear();
 
-        foreach (RandomQuest.QuestObjective objective in quest.objectives)
+        foreach (QuestObjective objective in quest.objectives)
             switch (objective.objectiveType)
             {
-                case RandomQuest.QuestObjectiveType.ItemTransport:
+                case QuestObjectiveType.ItemTransport:
                     TradingItemData itemT = GetRandomItem();
                     if (itemT != null)
                     {
                         objective.targetId = itemT.id.ToString();
-                        objective.requiredAmount = Random.Range(1, itemT.capacity + 1);
+                        objective.amount = Random.Range(1, itemT.capacity + 1);
                         objective.destinationPlanetId = GetRandomPlanetId();
                         objective.description =
-                            $"'{itemT.itemName}'을/를 {objective.requiredAmount}개 확보하여 {objective.destinationPlanetId}로 수송하세요.";
+                            $"'{itemT.itemName}'을/를 {objective.amount}개 확보하여 {objective.destinationPlanetId}로 수송하세요.";
 
-                        float reward = itemT.costMax * 1.1f * objective.requiredAmount;
-                        quest.rewards.Add(new RandomQuest.QuestReward { amount = Mathf.RoundToInt(reward) });
+                        float reward = itemT.costMax * 1.1f * objective.amount;
+                        quest.rewards.Add(new QuestReward { amount = Mathf.RoundToInt(reward) });
                     }
 
                     break;
 
-                case RandomQuest.QuestObjectiveType.ItemProcurement:
+                case QuestObjectiveType.ItemProcurement:
                     TradingItemData itemP = GetRandomItem();
                     if (itemP != null)
                     {
                         objective.targetId = itemP.id.ToString();
-                        objective.requiredAmount = Random.Range(1, itemP.capacity + 1);
+                        objective.amount = Random.Range(1, itemP.capacity + 1);
                         objective.destinationPlanetId = "UNKNOWN";
-                        objective.description = $"'{itemP.itemName}'을/를 {objective.requiredAmount}개 확보하여 행성으로 조달하세요.";
+                        objective.description = $"'{itemP.itemName}'을/를 {objective.amount}개 확보하여 행성으로 조달하세요.";
 
-                        float reward = itemP.costMax * 1.1f * objective.requiredAmount;
-                        quest.rewards.Add(new RandomQuest.QuestReward { amount = Mathf.RoundToInt(reward) });
+                        float reward = itemP.costMax * 1.1f * objective.amount;
+                        quest.rewards.Add(new QuestReward { amount = Mathf.RoundToInt(reward) });
                     }
 
                     break;
 
-                case RandomQuest.QuestObjectiveType.CrewTransport:
-                    objective.questCrewNum = Random.Range(1, 5);
+                case QuestObjectiveType.CrewTransport:
+                    objective.amount = Random.Range(1, 5);
                     objective.destinationPlanetId = GetRandomPlanetId();
-                    objective.description = $"선원 {objective.questCrewNum}명을 {objective.destinationPlanetId}로 수송하세요.";
+                    objective.description = $"선원 {objective.amount}명을 {objective.destinationPlanetId}로 수송하세요.";
 
-                    int crewReward = objective.questCrewNum * 300;
-                    quest.rewards.Add(new RandomQuest.QuestReward { amount = crewReward });
+                    int crewReward = objective.amount * 300;
+                    quest.rewards.Add(new QuestReward { amount = crewReward });
                     break;
 
-                case RandomQuest.QuestObjectiveType.PirateHunt:
-                    objective.killCount = Random.Range(5, 21);
-                    objective.description = $"해적 {objective.killCount}명을 죽이세요.";
+                case QuestObjectiveType.PirateHunt:
+                    objective.amount = Random.Range(5, 21);
+                    objective.description = $"해적 {objective.amount}명을 죽이세요.";
 
-                    int pirateReward = objective.killCount * 100;
-                    quest.rewards.Add(new RandomQuest.QuestReward { amount = pirateReward });
+                    int pirateReward = objective.amount * 100;
+                    quest.rewards.Add(new QuestReward { amount = pirateReward });
                     break;
             }
 

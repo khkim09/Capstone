@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
     private Ship currentEnemyShip;
 
     /// <summary>
+    /// 엔딩 조건과 관련된 플레이어 데이터
+    /// </summary>
+    public PlayerData playerData;
+
+    /// <summary>
     /// 게임 상태 변경 이벤트 델리게이트입니다.
     /// </summary>
     public delegate void GameStateChangedHandler(GameState newState);
@@ -46,11 +51,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static GameManager Instance { get; private set; }
 
-
-    // 테스트용 룸 프리팹
-    public GameObject testRoomPrefab1;
-    public GameObject testRoomPrefab2;
-    public GameObject testRoomPrefab3;
 
     public event Action OnShipInitialized;
 

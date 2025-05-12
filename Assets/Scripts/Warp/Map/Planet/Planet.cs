@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// 행성의 주요 종족 타입
@@ -12,18 +13,22 @@ public enum SpeciesType
     /// 어인
     /// </summary>
     Aquatic,
+
     /// <summary>
     /// 조류
     /// </summary>
     Avian,
+
     /// <summary>
     /// 선인
     /// </summary>
     Ancient,
+
     /// <summary>
     /// 인간형
     /// </summary>
-    Humanoid,
+    Human,
+
     /// <summary>
     /// 부정형
     /// </summary>
@@ -32,11 +37,7 @@ public enum SpeciesType
 
 public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [Header("Planet Info")] public string planetName;
-    public float distanceInLightYears;
-    public bool hasEvent;
-    public bool hasQuest;
-    public float fuelPrice;
+    [Header("PlanetData")] public PlanetData planetData;
 
     [Header("Species Info")] public SpeciesType dominantSpecies;
 
@@ -51,6 +52,9 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     // 노드 배치 함수 참조 델리게이트
     public System.Action<GameObject> OnPlanetClickedCallback;
+
+    public bool HasEvent => planetData.currentEvent != null;
+    public bool HasQuest => planetData.currentQuest != null;
 
     /// <summary>
     /// 매 프레임마다 툴팁이 활성화되어 있다면 위치를 주기적으로 업데이트합니다.
@@ -123,7 +127,7 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     private void Start()
     {
         // If name is not set yet, generate a random name
-        if (string.IsNullOrEmpty(planetName))
+        if (string.IsNullOrEmpty(planetData.planetName))
         {
             // Randomly assign a species type if not set
             if (!System.Enum.IsDefined(typeof(SpeciesType), dominantSpecies))
@@ -133,7 +137,7 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         }
 
         // Initialize random fuel price
-        fuelPrice = Random.Range(25f, 75f);
+        planetData.currentFuelPrice = Random.Range(25f, 75f);
 
         // EventTrigger 컴포넌트 추가 (없는 경우)
         EventTrigger eventTrigger = GetComponent<EventTrigger>();
@@ -156,7 +160,7 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         clickEntry.eventID = EventTriggerType.PointerClick;
         clickEntry.callback.AddListener((data) =>
         {
-            Debug.Log("Planet clicked via EventTrigger: " + planetName);
+            Debug.Log("Planet clicked via EventTrigger: " + planetData.planetName);
             OnPlanetClickedCallback?.Invoke(gameObject);
         });
         eventTrigger.triggers.Add(clickEntry);
@@ -177,7 +181,7 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         char randomLetter = (char)Random.Range('A', 'Z' + 1);
 
         // Combine to form planet name: PREFIX-NUMBER+LETTER
-        planetName = $"{prefix}-{randomNumber}{randomLetter}";
+        planetData.planetName = $"{prefix}-{randomNumber}{randomLetter}";
     }
 
     /// <summary>
@@ -195,7 +199,7 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
                 return "CCK";
             case SpeciesType.Ancient: // 선인
                 return "ICM";
-            case SpeciesType.Humanoid: // 인간형
+            case SpeciesType.Human: // 인간형
                 return "RCE";
             case SpeciesType.Amorphous: // 부정형
                 return "KTL";
@@ -213,8 +217,7 @@ public class Planet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         RectTransform rectTransform = GetComponent<RectTransform>();
         float unityDistance = Vector2.Distance(rectTransform.anchoredPosition, referencePosition);
 
-        // Convert Unity distance to light years (1 Unity unit = 1 light year in this example)
-        distanceInLightYears = unityDistance;
+        planetData.distance = unityDistance;
     }
 
     /// <summary>

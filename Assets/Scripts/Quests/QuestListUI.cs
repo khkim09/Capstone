@@ -25,7 +25,7 @@ public class QuestListUI : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        panel.SetActive(false);  // 처음에 꺼두기
+        panel.SetActive(false); // 처음에 꺼두기
 
         /// <summary>퀘스트 완료 시 자동으로 리스트를 새로고침합니다.</summary>
         QuestManager.Instance.OnQuestCompleted += OnQuestCompleted;
@@ -40,9 +40,9 @@ public class QuestListUI : MonoBehaviour
         Clear();
         panel.SetActive(true);
 
-        List<QuestManager.Quest> quests = QuestManager.Instance.GetActiveQuests();
+        List<RandomQuest> quests = QuestManager.Instance.GetActiveQuests();
 
-        foreach (var quest in quests)
+        foreach (RandomQuest quest in quests)
         {
             GameObject slot = Instantiate(questSlotPrefab, contentParent);
             slot.SetActive(true);
@@ -70,10 +70,7 @@ public class QuestListUI : MonoBehaviour
     /// </summary>
     public void OpenFromButton()
     {
-        if (!panel.activeSelf)
-        {
-            Open();
-        }
+        if (!panel.activeSelf) Open();
     }
 
     /// <summary>
@@ -90,21 +87,15 @@ public class QuestListUI : MonoBehaviour
     /// </summary>
     private void Clear()
     {
-        foreach (var slot in spawnedSlots)
-        {
-            Destroy(slot);
-        }
+        foreach (GameObject slot in spawnedSlots) Destroy(slot);
         spawnedSlots.Clear();
     }
 
     /// <summary>
     /// 퀘스트 완료 시 호출되어 리스트를 자동 갱신합니다.
     /// </summary>
-    private void OnQuestCompleted(QuestManager.Quest quest)
+    private void OnQuestCompleted(RandomQuest quest)
     {
-        if (panel.activeSelf)
-        {
-            Open(); // 다시 그려주기
-        }
+        if (panel.activeSelf) Open(); // 다시 그려주기
     }
 }

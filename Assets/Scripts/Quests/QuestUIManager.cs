@@ -82,7 +82,7 @@ public class QuestUIManager : MonoBehaviour
         if (currentQuest != null)
         {
             currentQuest.Accept();
-            QuestManager.Instance.AddQuest(currentQuest.ToQuest());
+            QuestManager.Instance.AddQuest(currentQuest);
 
             QuestListUI questListUI = FindObjectOfType<QuestListUI>();
             if (questListUI != null)
@@ -104,10 +104,7 @@ public class QuestUIManager : MonoBehaviour
     /// </summary>
     private void OnDecline()
     {
-        if (currentQuest != null)
-        {
-            currentQuest.Decline();
-        }
+        if (currentQuest != null) currentQuest.Decline();
 
         offerPanel.SetActive(false);
         currentQuest = null;
@@ -117,7 +114,7 @@ public class QuestUIManager : MonoBehaviour
     /// 퀘스트 완료 UI를 표시합니다.
     /// </summary>
     /// <param name="quest">완료된 퀘스트</param>
-    public void ShowCompletion(QuestManager.Quest quest)
+    public void ShowCompletion(RandomQuest quest)
     {
         completePanel.SetActive(true);
         completeText.text = $"퀘스트를 완료하였습니다!\n보상: {quest.rewards[0].amount} COMA";

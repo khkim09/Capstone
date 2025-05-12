@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,32 +16,25 @@ public class ForceQuestCompleteTester : MonoBehaviour
     /// </summary>
     private void ForceCompleteQuest()
     {
-        var quests = QuestManager.Instance.GetActiveQuests();
+        List<RandomQuest> quests = QuestManager.Instance.GetActiveQuests();
         if (quests.Count == 0)
         {
             Debug.LogWarning("완료시킬 퀘스트가 없습니다.");
             return;
         }
 
-        var quest = quests[0];
+        RandomQuest quest = quests[0];
 
         for (int i = 0; i < quest.objectives.Count; i++)
         {
-            int needed = quest.objectives[i].requiredAmount - quest.objectives[i].currentAmount;
-            if (needed > 0)
-            {
-                QuestManager.Instance.UpdateQuestObjective(quest.id, i, needed);
-            }
+            int needed = quest.objectives[i].amount - quest.objectives[i].currentAmount;
+            if (needed > 0) QuestManager.Instance.UpdateQuestObjective(quest.questId, i, needed);
         }
 
         // 여기서 완료 UI 강제 호출
         QuestUIManager ui = FindObjectOfType<QuestUIManager>();
-        if (ui != null)
-        {
-            ui.ShowCompletion(quest); // ✅ 여기서 quest는 QuestManager.Quest 타입
-        }
+        if (ui != null) ui.ShowCompletion(quest); // ✅ 여기서 quest는 QuestManager.Quest 타입
 
         Debug.Log($"퀘스트 강제 완료 시도됨: {quest.title}");
     }
-
 }
