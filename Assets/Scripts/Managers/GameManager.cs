@@ -86,6 +86,17 @@ public class GameManager : MonoBehaviour
 
         playerShip.Initialize();
         ForSerializeTest();
+
+        // 미사일 피격 테스트
+        StartCoroutine(DelayedMissileTest());
+    }
+
+    private IEnumerator DelayedMissileTest()
+    {
+        yield return new WaitForSeconds(5f);
+
+        Debug.LogError("(26, 33) 미사일 피격!!");
+        playerShip.TakeAttack(50f, ShipWeaponType.Missile, new Vector2Int(26, 33));
     }
 
     /// <summary>

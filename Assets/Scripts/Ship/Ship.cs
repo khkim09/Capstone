@@ -1115,6 +1115,8 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
         OuterHullSystem hullSystem = GetSystem<OuterHullSystem>();
         float finalDamage = hullSystem.ReduceDamage(damage);
 
+        Debug.LogError($"쉴드로 감소된 최종 데미지 : {finalDamage}");
+
         if (finalDamage > 0)
         {
             // 함선 전체에 데미지 적용
@@ -1123,7 +1125,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             if (shipWeaponType == ShipWeaponType.Missile)
             {
                 // 미사일이 직접 떨어진 위치의 방에만 데미지 적용
-                if (roomGrid.TryGetValue(hitPosition, out Room hitRoom)) hitRoom.TakeDamage(finalDamage);
+                if (roomGrid.TryGetValue(hitPosition, out Room hitRoom))
+                {
+                    Debug.LogError($"피격 방 : {hitRoom}, 피격 지점 : {hitPosition}");
+                    hitRoom.TakeDamage(finalDamage);
+                }
 
                 // 직접 타격 지점과 주변 8칸에 있는 선원들에게 데미지 적용
                 ApplyDamageToCrewsInArea(hitPosition, finalDamage, true); // true = 3x3 영역 스플래시
@@ -1176,7 +1182,10 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     {
         List<CrewMember> crewsAtPosition = GetSystem<CrewSystem>().GetCrewsAtPosition(position);
         foreach (CrewMember crew in crewsAtPosition)
+        {
+            Debug.LogError($"피격 지점 : {position}, {damage} 데미지 선원 : {crew}");
             crew.TakeDamage(damage);
+        }
     }
 
     /// <summary>
