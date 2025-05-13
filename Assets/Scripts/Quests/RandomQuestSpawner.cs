@@ -38,7 +38,8 @@ public class RandomQuestSpawner : MonoBehaviour
         ConfigureQuest(newQuest);
 
         QuestUIManager ui = FindObjectOfType<QuestUIManager>();
-        if (ui != null) ui.ShowQuestOffer(newQuest);
+        if (ui != null && !ui.IsOfferPanelOpen())
+            ui.ShowQuestOffer(newQuest);
     }
 
     /// <summary>
@@ -107,10 +108,6 @@ public class RandomQuestSpawner : MonoBehaviour
                     quest.rewards.Add(new QuestReward { amount = pirateReward });
                     break;
             }
-
-        /// <summary>
-        /// 퀘스트의 대표 설명을 마지막 objective의 설명으로 설정합니다.
-        /// </summary>
         if (quest.objectives.Count > 0) quest.description = quest.objectives[^1].description;
     }
 
