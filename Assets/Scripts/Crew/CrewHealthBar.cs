@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class CrewHealthBar : MonoBehaviour
 {
     [Header("Health Bar Components")] [SerializeField]
     private Image healthBarFill;
@@ -17,7 +17,7 @@ public class HealthBar : MonoBehaviour
 
     // 따라다닐 타겟 (선원)
     private Transform target;
-    private Camera mainCamera;
+    private Camera targetCamera;
 
     // 선원 참조
     private CrewBase crewBase;
@@ -41,9 +41,13 @@ public class HealthBar : MonoBehaviour
             InitializeHealthFromCrew();
         }
 
-        // 메인 카메라 찾기
-        mainCamera = Camera.main;
-        if (mainCamera == null) mainCamera = FindObjectOfType<Camera>();
+        if (crewBase.currentShip == GameManager.Instance.playerShip)
+            targetCamera = Camera.main;
+        else
+            foreach (Camera camera in Camera.allCameras)
+                if (camera.name == "Enemy Camera")
+                    targetCamera = camera;
+
 
         // Canvas 설정
         SetupCanvas();
@@ -51,6 +55,7 @@ public class HealthBar : MonoBehaviour
         // 초기 체력바 업데이트
         UpdateHealthBarFromCrew();
     }
+
 
     private void InitializeHealthFromCrew()
     {
@@ -71,9 +76,9 @@ public class HealthBar : MonoBehaviour
             healthBarCanvas.transform.position = worldPosition;
 
             // 카메라가 있다면 카메라를 바라보도록 회전
-            if (mainCamera != null)
+            if (targetCamera != null)
             {
-                Vector3 lookDirection = mainCamera.transform.position - healthBarCanvas.transform.position;
+                Vector3 lookDirection = targetCamera.transform.position - healthBarCanvas.transform.position;
                 healthBarCanvas.transform.rotation = Quaternion.LookRotation(lookDirection);
             }
         }
@@ -113,7 +118,7 @@ public class HealthBar : MonoBehaviour
         }
 
         // Sorting Order 설정
-        healthBarCanvas.sortingOrder = 200;
+        healthBarCanvas.sortingOrder = SortingOrderConstants.CharacterHealthBar;
 
         // CanvasScaler 제거 또는 비활성화 (World Space에서는 필요 없음)
         CanvasScaler scaler = GetComponent<CanvasScaler>();

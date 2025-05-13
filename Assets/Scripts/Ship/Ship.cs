@@ -1490,26 +1490,6 @@ public class Ship : MonoBehaviour
 
         this.transform.position = new Vector3(diffX, diffY, 10f);
 
-        // 방이 점유하고 있는 위치도 검사해야 될 듯 (여전히 그리드의 포지션일 수 있음)
-        // 왜냐면 선원을 배치시켰더니 그리드의 위치로 됐거든
-
-        foreach (Room room1 in allRooms)
-        {
-            RoomData rd = room1.GetRoomData();
-            Vector2Int size = rd.GetRoomDataByLevel(room1.GetCurrentLevel()).size;
-            Vector2Int rotatedsize = RoomRotationUtility.GetRotatedSize(size, room1.currentRotation);
-
-            List<Vector2Int> occupiedtiles = RoomRotationUtility.GetOccupiedGridPositions(room1.position, rotatedsize, room1.currentRotation);
-
-            Debug.LogError($"Room : {room1.name}");
-
-            foreach (Vector2Int tile in occupiedtiles)
-            {
-                Vector3 worldPos = GetWorldPositionFromGrid(tile);
-                Debug.LogError($"적함선 tile {tile} : worldpos {worldPos}");
-            }
-        }
-
         // 5. 소속 적군도 옮기기
         foreach (CrewMember crew in allCrews)
         {

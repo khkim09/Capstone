@@ -104,7 +104,7 @@ public class BlueprintWeaponDragHandler : MonoBehaviour
 
         Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2Int gridPos = gridPlacer.WorldToGridPosition(mouseWorld);
-        Vector3 basePos = gridPlacer.GridToWorldPosition(gridPos);
+        Vector3 basePos = gridPlacer.GetWorldPositionFromGrid(gridPos);
 
         Vector2Int size = new Vector2Int(2, 1);
         Vector2 offset = RoomRotationUtility.GetRotationOffset(size, RotationConstants.Rotation.Rotation0);

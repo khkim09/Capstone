@@ -29,6 +29,12 @@ public class ResourceManager : MonoBehaviour
     public int COMA => GetCOMA();
     public float Fuel => GetFuel();
 
+    public int Missile => GetMissle();
+
+    public int Hypersonic => GetHypersonic();
+
+    public int Missle => GetMissle();
+
     private void Awake()
     {
         if (Instance == null)
@@ -81,6 +87,18 @@ public class ResourceManager : MonoBehaviour
         return data?.floatAmount ?? 0;
     }
 
+    private int GetMissle()
+    {
+        ResourceData data = resources.Find(r => r.type == ResourceType.Missile);
+        return data?.intAmount ?? 0;
+    }
+
+    private int GetHypersonic()
+    {
+        ResourceData data = resources.Find(r => r.type == ResourceType.Hypersonic);
+        return data?.intAmount ?? 0;
+    }
+
     private float GetDefaultAmount(ResourceType type)
     {
         switch (type)
@@ -89,6 +107,10 @@ public class ResourceManager : MonoBehaviour
                 return 100;
             case ResourceType.COMA:
                 return 100000;
+            case ResourceType.Hypersonic:
+                return 0;
+            case ResourceType.Missile:
+                return 0;
             default:
                 return 0;
         }
@@ -99,6 +121,8 @@ public class ResourceManager : MonoBehaviour
         switch (type)
         {
             case ResourceType.COMA:
+            case ResourceType.Missile:
+            case ResourceType.Hypersonic:
                 return int.MaxValue;
             case ResourceType.Fuel:
             default:
@@ -113,6 +137,8 @@ public class ResourceManager : MonoBehaviour
             case ResourceType.Fuel:
                 return ResourceValueType.Float;
             case ResourceType.COMA:
+            case ResourceType.Hypersonic:
+            case ResourceType.Missile:
                 return ResourceValueType.Int;
             default:
                 return ResourceValueType.Float;

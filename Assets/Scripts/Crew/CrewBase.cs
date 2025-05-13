@@ -125,7 +125,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     public Animator animator;
 
     [Header("Health Bar")] [SerializeField]
-    private HealthBar healthBarController;
+    private CrewHealthBar healthBarController;
 
     private void Start()
     {
@@ -611,7 +611,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     private void SetupHealthBar()
     {
         // 자식 오브젝트에서 HealthBarController 찾기
-        healthBarController = GetComponentInChildren<HealthBar>();
+        healthBarController = GetComponentInChildren<CrewHealthBar>();
 
         if (healthBarController != null)
             // 초기 체력바 설정

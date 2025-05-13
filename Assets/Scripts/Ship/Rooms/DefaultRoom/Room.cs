@@ -20,7 +20,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     protected int currentLevel;
 
     /// <summary>현재 체력.</summary>
-    [SerializeField][HideInInspector] public float currentHitPoints;
+    [SerializeField] [HideInInspector] public float currentHitPoints;
 
     /// <summary>방의 타입.</summary>
     public RoomType roomType;
@@ -38,7 +38,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [SerializeField] public RotationConstants.Rotation currentRotation;
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
-    [Header("방 효과")][SerializeField] protected ParticleSystem roomParticles;
+    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
 
     /// <summary>방 작동 시 사운드 효과.</summary>
     [SerializeField] protected AudioSource roomSound;
@@ -61,13 +61,16 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>방의 시각적 렌더러.</summary>
     protected SpriteRenderer roomRenderer; // 방 렌더러
 
+    protected SpriteRenderer iconRenderer;
+
+
     /// <summary>소속된 Ship 참조.</summary>
     protected Ship parentShip;
 
     /// <summary>
     /// 선원이 점유하고 있는 tile
     /// </summary>
-    public HashSet<Vector2Int> occupiedCrewTiles = new HashSet<Vector2Int>();
+    public HashSet<Vector2Int> occupiedCrewTiles = new();
 
     /// <summary>
     /// 각 방에 collider 추가, isTrigger = true 설정을 통해 선원 충돌 방해 제거
@@ -82,6 +85,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             collider.size = new Vector2(levelData.size.x, levelData.size.y);
             collider.isTrigger = true;
         }
+
+        iconRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     /// <summary>
@@ -130,7 +135,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         RoomData.RoomLevel levelData = roomData.GetRoomDataByLevel(currentLevel);
 
         // 실제 방의 우선순위 순 타일 위치
-        List<Vector2Int> result = new List<Vector2Int>();
+        List<Vector2Int> result = new();
 
         // 회전각 별 타일 우선순위 적용
         switch (currentRotation)
@@ -831,7 +836,6 @@ public abstract class Room<TData, TLevel> : Room
         InitializeIsDamageable();
         InitializeDoor();
 
-
         UpdateRoomLevelData();
     }
 
@@ -842,6 +846,8 @@ public abstract class Room<TData, TLevel> : Room
     {
         TLevel levelData = GetCurrentLevelData();
         if (roomRenderer != null && levelData?.roomSprite != null) roomRenderer.sprite = levelData.roomSprite;
+
+        //iconRenderer.sprite = Resources.Load("Sprites/UI/Room Icons/")
     }
 
     private void InitializeDoor()

@@ -347,7 +347,7 @@ public class OuterHullSystem : ShipSystem
             }
         }
 
-        Debug.Log($"Created {currentOuterHulls.Count} outer hull tiles at level {level + 1}");
+//        Debug.Log($"Created {currentOuterHulls.Count} outer hull tiles at level {level + 1}");
     }
 
     /// <summary>
@@ -470,7 +470,7 @@ public class OuterHullSystem : ShipSystem
         GameObject hullObj = GameObject.Instantiate(hullPrefab, parentShip.transform);
 
         // 위치 설정 (그리드 -> 월드 좌표 변환)
-        Vector3 worldPos = parentShip.GridToWorldPosition(hullPosition);
+        Vector3 worldPos = parentShip.GetWorldPositionFromGrid(hullPosition);
 
         // Z 위치 조정 (유형에 따라 레이어링)
         float zOffset = 15f; // 직선 방향은 가장 뒤에

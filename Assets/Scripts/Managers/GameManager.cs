@@ -34,8 +34,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -114,8 +113,11 @@ public class GameManager : MonoBehaviour
         // if (crewBase2 is CrewMember crewMember2) currentEnemyShip.AddCrew(crewMember2);
         // if (crewBase3 is CrewMember crewMember3) currentEnemyShip.AddCrew(crewMember3);
 
-        currentEnemyShip.Initialize();
-        GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("pirate_level2");
+        if (currentEnemyShip != null)
+        {
+            currentEnemyShip.Initialize();
+            GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("test_ship");
+        }
     }
 
     /// <summary>
