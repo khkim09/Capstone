@@ -434,6 +434,10 @@ public class CrewMember : CrewBase
         combatCoroutine = StartCoroutine(CombatRoutine());
     }
 
+    /// <summary>
+    /// 현재 착용 중인 장비들의 공격력 수치 합계
+    /// </summary>
+    /// <returns></returns>
     private float GetEquipmentAttack()
     {
         float total = 0;
@@ -444,6 +448,10 @@ public class CrewMember : CrewBase
         return total;
     }
 
+    /// <summary>
+    /// 현재 착용 중인 장비들의 방어력 수치 합계
+    /// </summary>
+    /// <returns></returns>
     private float GetEquipmentDefense()
     {
         float total = 0;
@@ -469,6 +477,7 @@ public class CrewMember : CrewBase
         float damage = attack + GetEquipmentAttack(); //(attacker.attack + attacker.equippedWeapon.eqAttackBonus) * (1 - target.defense / 100f);
         if (target == null)
         {
+            //인자로 받는 target이 combatRoutine에서 현재 적군을 찾을 수 없는 경우에는 null로 전달되기 때문에 하위 분기에서 시설 파괴로 진행
             if (madRoom == null)
             {
                 //목표를 포착했...는 중이다
@@ -491,6 +500,10 @@ public class CrewMember : CrewBase
         target.TakeDamage(damage);
     }
 
+    /// <summary>
+    /// 현재 선원의 방어력을 고려한 피해 발생
+    /// </summary>
+    /// <param name="damage"></param>
     public void TakeDamage(float damage)
     {
         float realDamage = damage * (1 - (defense + GetEquipmentDefense()) / 100f);
@@ -504,7 +517,6 @@ public class CrewMember : CrewBase
     /// <summary>
     /// 사망 시, 자신을 combatTarget으로 지정한 선원들에게서 자신을 할당 해제시키고 다른 목표를 탐색하도록한다.
     /// 또한 애니메이션 재생을 마친 후에 Destroy
-    ///
     /// </summary>
     public void Die()
     {
@@ -525,6 +537,9 @@ public class CrewMember : CrewBase
         }
     }
 
+    /// <summary>
+    /// 전투 상황에서 자신이 이동했을 때, 자신을 공격하던 다른 선원들에게 자신을 공격하는 행위 이외의 다른 행동을 하도록 명령
+    /// </summary>
     public void DontTouchMe()
     {
         if (inCombat)
@@ -756,9 +771,15 @@ public class CrewMember : CrewBase
 
     //---------시설 작업------------
     #region 작업
-
+    /// <summary>
+    /// 현재 작업 중인지 여부
+    /// </summary>
     public bool isWorking = false;
 
+    /// <summary>
+    /// 주변 적들의 유무와 현재 자신의 위치한 타일, 작업 가능한 방인지 여부에 따라 작업 행동을 시도한다.
+    /// 선원의 작업 숙련도 유무와 숙련도 적용은 Room.CanITouch에서 작동된다.
+    /// </summary>
     public void TryWork()
     {
         if (currentRoom.isActive && currentRoom.workDirection != Vector2Int.zero)
@@ -792,6 +813,9 @@ public class CrewMember : CrewBase
 
     #endregion
 
+    /// <summary>
+    /// 현재 하던 행동을 모두 멈추고 애니메이션을 대기 상태로 전환시킨다.
+    /// </summary>
     public void Freeze()
     {
         // 일단 모든 코루틴을 멈추고
@@ -819,7 +843,7 @@ public class CrewMember : CrewBase
     }
 
     /// <summary>
-    ///
+    /// 현재 하던 작업 행동을 멈추고 자신을 Room.workingCrew로 할당한 Room을 찾아 할당 해제시키고 함선 능력치를 재계산한다.
     /// </summary>
     private void WalkOut()
     {
