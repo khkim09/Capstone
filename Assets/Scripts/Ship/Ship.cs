@@ -1160,8 +1160,10 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <param name="damage">적용할 피해량.</param>
     private void ApplyDamageToCrewsInRoom(Room room, float damage)
     {
-        List<CrewBase> crewsInRoom = room.GetCrewInRoom();
-        foreach (CrewBase crew in crewsInRoom) crew.TakeDamage(damage);
+        List<CrewMember> totalCrews = room.GetTotalCrewsInRoom();
+
+        foreach (CrewMember eachCrew in totalCrews)
+            eachCrew.TakeDamage(damage);
     }
 
 
@@ -1172,8 +1174,9 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <param name="damage">적용할 원 피해량.</param>
     private void ApplyDamageToCrewsAtPosition(Vector2Int position, float damage)
     {
-        List<CrewBase> crewsAtPosition = GetSystem<CrewSystem>().GetCrewsAtPosition(position);
-        foreach (CrewBase crew in crewsAtPosition) crew.TakeDamage(damage);
+        List<CrewMember> crewsAtPosition = GetSystem<CrewSystem>().GetCrewsAtPosition(position);
+        foreach (CrewMember crew in crewsAtPosition)
+            crew.TakeDamage(damage);
     }
 
     /// <summary>
@@ -1185,7 +1188,7 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     /// <param name="isSplash">스플래쉬 데미지 여부.</param>
     private void ApplyDamageToCrewsInArea(Vector2Int position, float damage, bool isSplash)
     {
-        // 단일 지점에 있는 선원들에게 데미지 적용
+        // 단일 지점에 있는 선원에게 데미지 적용
         ApplyDamageToCrewsAtPosition(position, damage);
 
 
@@ -1294,6 +1297,15 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
     public void RemoveAllItems()
     {
         GetSystem<StorageSystem>().RemoveAllItems();
+    }
+
+    #endregion
+
+    # region 함선 이동
+
+    public void MoveShipTo(Vector2Int newStartPos)
+    {
+
     }
 
     #endregion

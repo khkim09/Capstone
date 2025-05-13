@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Unity.Collections.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -52,7 +53,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     public event Action<Room> OnRoomStateChanged;
 
     /// <summary>현재 방에 존재하는 선원 목록.</summary>
-    public List<CrewBase> crewInRoom = new();
+    public List<CrewMember> crewInRoom = new();
 
     /// <summary>방이 활성화되어 있는지 여부.</summary>
     public bool isActive = true;
@@ -111,7 +112,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>
     /// 선원이 방에 진입할 때 호출됩니다.
     /// </summary>
-    public virtual void OnCrewEnter(CrewBase crew)
+    public virtual void OnCrewEnter(CrewMember crew)
     {
         if (!crewInRoom.Contains(crew))
             crewInRoom.Add(crew);
@@ -120,7 +121,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>
     /// 선원이 방에서 나갈 때 호출됩니다.
     /// </summary>
-    public virtual void OnCrewExit(CrewBase crew)
+    public virtual void OnCrewExit(CrewMember crew)
     {
         if (crewInRoom.Contains(crew))
             crewInRoom.Remove(crew);
@@ -340,7 +341,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     {
         currentHitPoints = roomData.GetRoomDataByLevel(level).hitPoint;
         InitializeIsDamageable();
-        crewInRoom = new List<CrewBase>();
+        crewInRoom = new List<CrewMember>();
         currentLevel = level;
         roomRenderer = gameObject.AddComponent<SpriteRenderer>();
         gridSize = roomData.GetRoomDataByLevel(level).size;
@@ -713,9 +714,23 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         return connectedDoors;
     }
 
-    public List<CrewBase> GetCrewInRoom()
+    public List<CrewMember> GetTotalCrewsInRoom()
     {
-        return crewInRoom;
+        List<CrewMember> total = new List<CrewMember>();
+
+        foreach (CrewMember crew in parentShip.allCrews)
+        {
+            if (crew.currentRoom == this)
+                total.Add(crew);
+        }
+
+        foreach (CrewMember enemy in parentShip.allEnemies)
+        {
+            if (enemy.currentRoom == this)
+                total.Add(enemy);
+        }
+
+        return total;
     }
 
     #region 수리
@@ -921,7 +936,7 @@ public abstract class Room<TData, TLevel> : Room
         if (roomData == null)
         {
             Debug.LogError($"roomData is null in {GetType().Name}.Initialize()");
-            crewInRoom = new List<CrewBase>();
+            crewInRoom = new List<CrewMember>();
             return;
         }
 

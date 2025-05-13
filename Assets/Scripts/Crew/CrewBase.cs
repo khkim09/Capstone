@@ -255,7 +255,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         if (currentShip != null)
             if (currentShip.GetOxygenLevel() == OxygenLevel.None)
-                TakeDamage(maxHealth * 0.01f); // 최대 체력의 1%만큼 데미지
+                this.gameObject.GetComponent<CrewMember>().TakeDamage(maxHealth * 0.01f); // 최대 체력의 1%만큼 데미지
     }
 
     /// <summary>
@@ -303,6 +303,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
     // 전투 관련
 
+    /*
     /// <summary>
     /// 지정된 적 선원을 공격합니다. 공격력은 반올림 처리됩니다.
     /// </summary>
@@ -360,17 +361,17 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
             currentShip.GetAllCrew().Remove(this as CrewMember);
 
         // 아래는 원래 코드
-        /*
-         *  // 사망 이벤트 발생 등 추가 처리
-        if (CrewManager.Instance.crewList.Contains(this))
-        {
-            CrewManager.Instance.crewList.Remove(this); // 해당 선원 찾아 제외
-            CrewManager.Instance.RefreshCrewList(CrewManager.Instance.crewList.Count,
-                CrewManager.Instance.maxCrewCount); // 총 선원 수 갱신
-        }
+        // /*
+        //  *  // 사망 이벤트 발생 등 추가 처리
+        // if (CrewManager.Instance.crewList.Contains(this))
+        // {
+        //     CrewManager.Instance.crewList.Remove(this); // 해당 선원 찾아 제외
+        //     CrewManager.Instance.RefreshCrewList(CrewManager.Instance.crewList.Count,
+        //         CrewManager.Instance.maxCrewCount); // 총 선원 수 갱신
+        // }
 
-         *
-         */
+        //  *
+        //
 
 
         // 사망 처리 - 0.5초 후 사라짐
@@ -378,6 +379,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         Debug.Log($"{crewName} 사망 처리 완료");
     }
+    */
 
 
 
