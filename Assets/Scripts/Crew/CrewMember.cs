@@ -607,7 +607,7 @@ public class CrewMember : CrewBase
                 continue;
             }
 
-            if (other.inCombat == false && other.isMoving == false)
+            if ((other.combatTarget==null || other.madRoom==null) && other.isMoving == false)
             {
                 // 방에 있는 상대를 나에게 이동
                 Debug.LogError($"{other.race}야, {race}한테 와");
