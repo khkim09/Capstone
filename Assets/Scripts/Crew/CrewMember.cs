@@ -247,7 +247,7 @@ public class CrewMember : CrewBase
         reservedRoom = null;
 
         // 도착한 방에서 적군 탐지
-        if (isWithEnemy())
+        if (isWithEnemy() && inCombat==false)
         {
             Debug.LogError("적 있음");
             // 이동 중이던 선원이 우선적으로 마저 이동 (적군을 찾아감)
@@ -589,26 +589,28 @@ public class CrewMember : CrewBase
     public void LookAtMe()
     {
         Debug.LogError("나를 바라봐");
-        foreach (CrewMember opposite in currentRoom.GetTotalCrewsInRoom())
+        List<CrewBase> others = new List<CrewBase>(currentRoom.GetTotalCrewsInRoom());
+        foreach (CrewBase other in others)
         {
-            Debug.LogError($"검색 선원 : {opposite.race}");
-            if (opposite == this)
+            Debug.LogError($"검색 선원 : {other.race}");
+            if (other == this)
             {
-                Debug.LogError($"{opposite.race} 나야");
+                Debug.LogError($"{other.race} 나야");
                 continue;
             }
-            if (opposite.isPlayerControlled == isPlayerControlled)
+            if (other.isPlayerControlled == isPlayerControlled)
             {
-                Debug.LogError($"{opposite.race} 아군이야");
+                Debug.LogError($"{other.race} 아군이야");
                 continue;
             }
 
-            if (opposite.inCombat == false && opposite.isMoving == false)
+            CrewMember cm = other.gameObject.GetComponent<CrewMember>();
+            if (cm.inCombat == false && cm.isMoving == false)
             {
                 // 방에 있는 상대를 나에게 이동
-                Debug.LogError($"{opposite.race}야, {race}한테 와");
-                opposite.WalkOut();
-                RTSSelectionManager.Instance.MoveForCombat(opposite, opposite.currentRoom.occupiedCrewTiles);
+                Debug.LogError($"{other.race}야, {race}한테 와");
+                cm.WalkOut();
+                RTSSelectionManager.Instance.MoveForCombat(cm, cm.currentRoom.occupiedCrewTiles);
             }
         }
     }
