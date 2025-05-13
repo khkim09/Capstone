@@ -589,7 +589,7 @@ public class CrewMember : CrewBase
     public void LookAtMe()
     {
         Debug.LogError("나를 바라봐");
-        List<CrewBase> others = new List<CrewBase>(currentRoom.GetCrewInRoom());
+        List<CrewBase> others = new List<CrewBase>(currentRoom.GetTotalCrewsInRoom());
         foreach (CrewBase other in others)
         {
             Debug.LogError($"검색 선원 : {other.race}");
