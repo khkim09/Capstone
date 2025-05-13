@@ -347,7 +347,7 @@ public class OuterHullSystem : ShipSystem
             }
         }
 
-        Debug.Log($"Created {currentOuterHulls.Count} outer hull tiles at level {level + 1}");
+//        Debug.Log($"Created {currentOuterHulls.Count} outer hull tiles at level {level + 1}");
     }
 
     /// <summary>
