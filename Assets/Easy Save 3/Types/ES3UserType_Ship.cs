@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("shipName", "gridSize", "allRooms", "doorData", "doorLevel", "outerHullData", "outerHullPrefab", "systems", "outerHullSystem", "weaponSystem", "oxygenSystem", "crewSystem", "hitpointSystem", "moraleSystem", "powerSystem", "storageSystem", "shieldSystem", "backupRoomDatas")]
+	[ES3PropertiesAttribute("shipName", "gridSize", "allRooms", "allWeapons", "allCrews", "doorData", "doorLevel", "outerHullData", "outerHullPrefab", "systems", "outerHullSystem", "weaponSystem", "oxygenSystem", "crewSystem", "hitpointSystem", "moraleSystem", "powerSystem", "storageSystem", "shieldSystem", "backupRoomDatas")]
 	public class ES3UserType_Ship : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -19,6 +19,8 @@ namespace ES3Types
 			writer.WriteProperty("shipName", instance.shipName, ES3Type_string.Instance);
 			writer.WritePrivateField("gridSize", instance);
 			writer.WriteProperty("allRooms", instance.allRooms, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<Room>)));
+			writer.WriteProperty("allWeapons", instance.allWeapons, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<ShipWeapon>)));
+			writer.WriteProperty("allCrews", instance.allCrews, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<CrewMember>)));
 			writer.WritePrivateFieldByRef("doorData", instance);
 			writer.WritePrivateField("doorLevel", instance);
 			writer.WritePropertyByRef("outerHullData", instance.outerHullData);
@@ -52,6 +54,12 @@ namespace ES3Types
 					break;
 					case "allRooms":
 						instance.allRooms = reader.Read<System.Collections.Generic.List<Room>>();
+						break;
+					case "allWeapons":
+						instance.allWeapons = reader.Read<System.Collections.Generic.List<ShipWeapon>>();
+						break;
+					case "allCrews":
+						instance.allCrews = reader.Read<System.Collections.Generic.List<CrewMember>>();
 						break;
 					case "doorData":
 					instance = (Ship)reader.SetPrivateField("doorData", reader.Read<DoorData>(), instance);

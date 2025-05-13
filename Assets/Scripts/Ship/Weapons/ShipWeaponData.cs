@@ -21,7 +21,7 @@ public class ShipWeaponData : ScriptableObject
     /// <summary>
     /// 무기 설명(툴팁 등에 사용)
     /// </summary>
-    [SerializeField][TextArea(3, 5)] public string description;
+    [SerializeField] [TextArea(3, 5)] public string description;
 
     /// <summary>
     /// 무기의 기본 데미지 값입니다.
@@ -80,6 +80,9 @@ public class ShipWeaponData : ScriptableObject
     /// </summary>
     public WarheadTypeData warheadType;
 
+    [Header("투사체 설정")] [Tooltip("이 무기가 사용할 투사체 ID")]
+    public int projectileId;
+
     /// <summary>
     /// 무기 이름을 반환합니다.
     /// </summary>
@@ -128,11 +131,11 @@ public class ShipWeaponData : ScriptableObject
         // 1차원 배열을 2차원 배열로 변환
         blueprintSprites = new Sprite[3, 3];
         for (int hull = 0; hull < 3; hull++)
-            for (int dir = 0; dir < 3; dir++)
-            {
-                int index = hull * 3 + dir;
-                if (index < flattenedSprites.Length)
-                    blueprintSprites[hull, dir] = flattenedSprites[index];
-            }
+        for (int dir = 0; dir < 3; dir++)
+        {
+            int index = hull * 3 + dir;
+            if (index < flattenedSprites.Length)
+                blueprintSprites[hull, dir] = flattenedSprites[index];
+        }
     }
 }

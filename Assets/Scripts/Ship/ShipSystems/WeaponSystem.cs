@@ -9,19 +9,114 @@ using UnityEngine;
 public class WeaponSystem : ShipSystem
 {
     /// <summary>
+    /// 자동 발사 활성화 여부
+    /// </summary>
+    [SerializeField] private bool autoFireEnabled = true;
+
+    /// <summary>
     /// 매 프레임마다 호출되어 각 무기의 쿨다운 상태를 업데이트합니다.
     /// </summary>
     /// <param name="deltaTime">경과 시간 (초).</param>
     public override void Update(float deltaTime)
     {
-        foreach (ShipWeapon weapon in parentShip.allWeapons)
-            // 일반 쿨다운 업데이트
-            weapon.UpdateCooldown(deltaTime);
+        // 재장전 보너스를 한 번 계산해서 모든 무기에 적용
+        float reloadBonus = GetShipStat(ShipStat.ReloadTimeBonus);
+        reloadBonus = (reloadBonus + 100) / 100;
 
-        // if (weapon.IsReady() && autoFireEnabled)
-        // {
-        //     weapon.Fire();
-        // }
+        // 임시 코드
+        reloadBonus += 50;
+
+        foreach (ShipWeapon weapon in parentShip.allWeapons)
+            // 재장전 보너스를 적용한 쿨다운 업데이트
+            // 여기서 무기가 준비되면 자동으로 발사됨
+            UpdateWeaponCooldownWithBonus(weapon, deltaTime, reloadBonus);
+    }
+
+    /// <summary>
+    /// 재장전 보너스를 적용하여 무기의 쿨다운을 업데이트합니다.
+    /// </summary>
+    /// <param name="weapon">업데이트할 무기</param>
+    /// <param name="deltaTime">경과 시간</param>
+    /// <param name="reloadBonus">재장전 보너스 (예: 1.2 = 20% 빠름)</param>
+    private void UpdateWeaponCooldownWithBonus(ShipWeapon weapon, float deltaTime, float reloadBonus)
+    {
+        // ShipWeapon의 새로운 메서드를 호출하여 재장전 보너스 적용
+        // 여기서 쿨다운이 완료되면 자동으로 발사됨
+        weapon.UpdateCooldownWithBonus(deltaTime, reloadBonus);
+    }
+
+    /// <summary>
+    /// 자동 발사 활성화/비활성화
+    /// </summary>
+    /// <param name="enabled">자동 발사 여부</param>
+    public void SetAutoFireEnabled(bool enabled)
+    {
+        autoFireEnabled = enabled;
+    }
+
+    /// <summary>
+    /// 자동 발사 상태 반환
+    /// </summary>
+    /// <returns>자동 발사 활성화 여부</returns>
+    public bool IsAutoFireEnabled()
+    {
+        return autoFireEnabled;
+    }
+
+    /// <summary>
+    /// 준비된 무기가 있는지 확인하고 발사를 시도합니다.
+    /// </summary>
+    /// <param name="weaponIndex">발사할 무기의 인덱스. -1이면 준비된 첫 번째 무기를 발사</param>
+    /// <returns>발사된 무기 수</returns>
+    public int FireWeapon(int weaponIndex = -1)
+    {
+        if (weaponIndex == -1)
+        {
+            // 준비된 모든 무기 발사
+            return FireAllReadyWeapons();
+        }
+        else
+        {
+            // 특정 무기 발사
+            if (weaponIndex >= 0 && weaponIndex < parentShip.allWeapons.Count)
+            {
+                ShipWeapon weapon = parentShip.allWeapons[weaponIndex];
+                return weapon.TryFire() ? 1 : 0;
+            }
+        }
+
+        return 0;
+    }
+
+    /// <summary>
+    /// 준비된 모든 무기를 발사합니다.
+    /// </summary>
+    /// <returns>발사된 무기 수</returns>
+    public int FireAllReadyWeapons()
+    {
+        int firedCount = 0;
+
+        foreach (ShipWeapon weapon in parentShip.allWeapons)
+            if (weapon.TryFire())
+                firedCount++;
+
+        return firedCount;
+    }
+
+    /// <summary>
+    /// 특정 타입의 무기만 발사합니다.
+    /// </summary>
+    /// <param name="weaponType">발사할 무기 타입</param>
+    /// <returns>발사된 무기 수</returns>
+    public int FireWeaponsByType(ShipWeaponType weaponType)
+    {
+        int firedCount = 0;
+
+        foreach (ShipWeapon weapon in parentShip.allWeapons)
+            if (weapon.GetWeaponType() == weaponType && weapon.TryFire())
+                firedCount++;
+
+        return firedCount;
     }
 
     /// <summary>
@@ -101,7 +196,7 @@ public class WeaponSystem : ShipSystem
     /// <returns>보정된 데미지 값.</returns>
     public float GetActualDamage(float damage)
     {
-        return damage * GetShipStat(ShipStat.DamageBonus);
+        return damage * (100 + GetShipStat(ShipStat.DamageBonus)) / 100;
     }
 
 
@@ -164,7 +259,9 @@ public class WeaponSystem : ShipSystem
     /// <param name="deltaTime">경과 시간</param>
     public void UpdateWeaponCooldowns(float deltaTime)
     {
-        foreach (ShipWeapon weapon in parentShip.allWeapons) weapon.UpdateCooldown(deltaTime);
+        float reloadBonus = GetShipStat(ShipStat.ReloadTimeBonus);
+        foreach (ShipWeapon weapon in parentShip.allWeapons)
+            UpdateWeaponCooldownWithBonus(weapon, deltaTime, reloadBonus);
     }
 
     /// <summary>
