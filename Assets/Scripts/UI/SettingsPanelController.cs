@@ -19,6 +19,9 @@ public class SettingsPanelController : MonoBehaviour
 
     [SerializeField] private GameObject[] languageSettingElements; // 메인 메뉴에서만 표시할 언어 설정 UI 요소들
 
+    [Header("Credit Controls")] [SerializeField]
+    private GameObject creditsPanel;
+
     [Header("Buttons")] [SerializeField] private Button confirmButton;
     [SerializeField] private Button cancelButton;
     [SerializeField] private Button creditsButton;
@@ -56,6 +59,9 @@ public class SettingsPanelController : MonoBehaviour
 
         if (mainMenuButton != null)
             mainMenuButton.onClick.AddListener(GoToMainMenu);
+
+        if (creditsButton != null)
+            creditsButton.onClick.AddListener(ShowCredits);
 
         // 언어 드롭다운 초기화
         if (languageDropdown != null)
@@ -275,7 +281,32 @@ public class SettingsPanelController : MonoBehaviour
         Debug.Log("메인 메뉴로 이동 중...");
 
         // MainMenu 씬으로 이동
-        SceneChanger.Instance.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    #endregion
+
+    #region Credits
+
+    // 크레딧 보기
+    public void ShowCredits()
+    {
+        if (creditsPanel != null)
+        {
+            Debug.Log("크레딧 패널 활성화");
+            creditsPanel.SetActive(true);
+        }
+    }
+
+    // 스페이스바 입력 확인 및 크레딧 패널 닫기
+    private void Update()
+    {
+        // 크레딧 패널이 활성화된 상태에서 스페이스바를 누르면 닫기
+        if (creditsPanel != null && creditsPanel.activeInHierarchy && Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("스페이스바로 크레딧 패널 닫기");
+            creditsPanel.SetActive(false);
+        }
     }
 
     #endregion
