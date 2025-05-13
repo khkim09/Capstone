@@ -554,10 +554,10 @@ public class RTSSelectionManager : MonoBehaviour
             {
                 Debug.Log("전투 개시");
                 readyCombatCrew.combatTarget = closestEnemy;
-                if (readyCombatCrew.isPlayerControlled)
+                if (!readyCombatCrew.isPlayerControlled)
                 {
                     EnemyController ec = readyCombatCrew.gameObject.GetComponent<EnemyController>();
-                    ec.isIdle = false;
+                    //ec.isIdle = false;
                 }
                 readyCombatCrew.combatCoroutine = StartCoroutine(readyCombatCrew.CombatRoutine());
                 return;
@@ -618,10 +618,10 @@ public class RTSSelectionManager : MonoBehaviour
         reservedTiles.Add(bestNeighborTile);
 
         // 6. 실제 이동 처리
-        if (readyCombatCrew.isPlayerControlled)
+        if (!readyCombatCrew.isPlayerControlled)
         {
             EnemyController ec = readyCombatCrew.gameObject.GetComponent<EnemyController>();
-            ec.isIdle = false;
+            //ec.isIdle = false;
         }
         if (readyCombatCrew.isMoving)
             readyCombatCrew.CancelAndRedirect(bestPathToNeighborTile);
