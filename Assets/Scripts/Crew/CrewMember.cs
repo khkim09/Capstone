@@ -298,17 +298,19 @@ public class CrewMember : CrewBase
     /// <param name="trigger"></param>
     public void PlayAnimation(string trigger)
     {
-        SetAnimationDirection(movementDirection);
         if (trigger.Equals("walk"))
         {
+            SetAnimationDirection(movementDirection);
             animator.SetBool(trigger, isMoving);
         }
         else if (trigger.Equals("attack"))
         {
+            SetAnimationDirection(movementDirection);
             animator.SetTrigger("attack");
         }
         else if (trigger.Equals("die"))
         {
+            SetAnimationDirection(movementDirection);
             animator.SetTrigger("die");
         }
         else if (trigger.Equals("repair"))
@@ -542,7 +544,8 @@ public class CrewMember : CrewBase
 
         if (bullier.Count > 0)
         {
-            foreach (CrewMember hittingMan in bullier)
+            List<CrewMember> bulling = new List<CrewMember>(bullier);
+            foreach (CrewMember hittingMan in bulling)
             {
                 hittingMan.inCombat = false;
                 hittingMan.combatTarget = null;
@@ -629,8 +632,14 @@ public class CrewMember : CrewBase
             // 유저 함선일 경우 수리, 작업 시도 및 진입
             if (IsMyShip())
             {
-                TryRepair();
-                TryWork();
+                if(currentRoom.NeedsRepair())
+                {
+                    TryRepair();
+                }
+                else
+                {
+                    TryWork();
+                }
             }
         }
     }
@@ -678,6 +687,12 @@ public class CrewMember : CrewBase
     {
         if (!IsMyShip())
             return;
+        Dictionary<SkillType,float> crewSkill=GetCrewSkillValue();
+        if (!crewSkill.ContainsKey(SkillType.RepairSkill))
+        {
+            TryWork();
+            return;
+        }
 
         if (repairCoroutine == null)
         {
@@ -713,6 +728,11 @@ public class CrewMember : CrewBase
 
         if (currentRoom.NeedsRepair())
             repairCoroutine = StartCoroutine(RepairRoutine());
+        else
+        {
+            repairCoroutine = null;
+            TryWork();
+        }
     }
 
     /// <summary>
