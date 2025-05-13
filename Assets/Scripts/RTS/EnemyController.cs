@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
     {
         if (cm == null)
         {
-            cm=this.gameObject.GetComponent<CrewMember>();
+            cm = this.gameObject.GetComponent<CrewMember>();
         }
         if (isIdle)
         {
@@ -28,16 +28,16 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                RTSSelectionManager.Instance.MoveForCombat(cm,cm.currentRoom.occupiedCrewTiles);
+                RTSSelectionManager.Instance.MoveForCombat(cm, cm.currentRoom.occupiedCrewTiles);
                 return;
             }
-            int which = Random.Range(0,2);
+            int which = Random.Range(0, 2);
             switch (which)
             {
-                case 0://무작위 방으로 이동
+                case 0: // 무작위 방으로 이동
                     RTSSelectionManager.Instance.IssueMoveCommand(WhereToGo());
                     break;
-                case 1://무작위 조종실로 이동
+                case 1: // 무작위 조종실로 이동
                     RTSSelectionManager.Instance.IssueMoveCommand(WhereToGo(RoomType.Cockpit));
                     break;
             }
@@ -72,7 +72,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        return canGo[Random.Range(0,canGo.Count)];
+        return canGo[Random.Range(0, canGo.Count)];
     }
 
     Room WhereToGo(RoomType type)
@@ -86,7 +86,7 @@ public class EnemyController : MonoBehaviour
                 canGo.Add(room);
             }
         }
-        return canGo[Random.Range(0,canGo.Count)];
+        return canGo[Random.Range(0, canGo.Count)];
     }
 
     public bool IsDoingSomething()

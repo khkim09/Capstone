@@ -161,9 +161,11 @@ public class CrewSystem : ShipSystem
         List<CrewMember> crews = GetCrews();
 
         foreach (CrewMember crew in crews)
+        {
             // crew.position이 선원의 현재 위치를 가지고 있다고 가정
             if (crew.position == position)
                 crewsAtPosition.Add(crew);
+        }
 
         return crewsAtPosition;
     }

@@ -307,7 +307,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// </summary>
     public void IssueMoveCommand(Room targetRoom = null)
     {
-        if(targetRoom==null)
+        if (targetRoom == null)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
@@ -317,6 +317,7 @@ public class RTSSelectionManager : MonoBehaviour
 
             targetRoom = hit.collider.GetComponent<Room>();
         }
+
         if (targetRoom == null)
             return;
 
@@ -624,6 +625,7 @@ public class RTSSelectionManager : MonoBehaviour
             EnemyController ec = readyCombatCrew.gameObject.GetComponent<EnemyController>();
             //ec.isIdle = false;
         }
+
         if (readyCombatCrew.isMoving)
             readyCombatCrew.CancelAndRedirect(bestPathToNeighborTile);
         else
