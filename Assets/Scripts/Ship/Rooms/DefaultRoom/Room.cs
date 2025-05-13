@@ -179,6 +179,20 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     }
 
     /// <summary>
+    /// 방 안에 빈 타일이 있는지 검사
+    /// </summary>
+    /// <returns></returns>
+    public bool IsThereEmptyTile()
+    {
+        List<Vector2Int> occupiedTiles = GetOccupiedTiles();
+        List<Vector2Int> unoccupied = occupiedTiles.Where(t => !occupiedCrewTiles.Contains(t)).ToList();
+
+        if (unoccupied.Count == 0)
+            return false;
+        return true;
+    }
+
+    /// <summary>
     /// 방 내 선원의 점유 타일 모두 초기화
     /// </summary>
     public void ClearCrewOccupancy()

@@ -305,7 +305,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 선택된 선원들을 목적지 방의 우선순위 타일로 최단 경로 기반 배정 후 이동시킵니다.
     /// </summary>
-    public void IssueMoveCommand(Room targetRoom = null)
+    public void IssueMoveCommand(Room targetRoom = null, CrewMember crewByEnemyController = null)
     {
         if (targetRoom == null)
         {
@@ -345,7 +345,16 @@ public class RTSSelectionManager : MonoBehaviour
             Debug.LogWarning($"이동 직전 검사 : {targetRoom} 선원 점유 위치 : {t}");
 
         // 2. 아직 배정 안 된 선원 리스트 (선택된 모든 선원 중 아직 이동 안 한 선원)
-        List<CrewMember> unassignedCrew = new(selectedCrew);
+        List<CrewMember> unassignedCrew;
+        if(crewByEnemyController==null)
+        {
+            unassignedCrew = new(selectedCrew);
+        }
+        else
+        {
+            unassignedCrew = new List<CrewMember>();
+            unassignedCrew.Add(crewByEnemyController);
+        }
 
         // 3. 이동 안 한 선원이 없을 때 까지 루프 검사
         while (entryTiles.Count > 0 && unassignedCrew.Count > 0)
@@ -556,11 +565,6 @@ public class RTSSelectionManager : MonoBehaviour
             {
                 Debug.Log("전투 개시");
                 readyCombatCrew.combatTarget = closestEnemy;
-                if (!readyCombatCrew.isPlayerControlled)
-                {
-                    EnemyController ec = readyCombatCrew.gameObject.GetComponent<EnemyController>();
-                    //ec.isIdle = false;
-                }
                 readyCombatCrew.combatCoroutine = StartCoroutine(readyCombatCrew.CombatRoutine());
                 return;
             }
@@ -620,12 +624,6 @@ public class RTSSelectionManager : MonoBehaviour
         reservedTiles.Add(bestNeighborTile);
 
         // 6. 실제 이동 처리
-        if (!readyCombatCrew.isPlayerControlled)
-        {
-            EnemyController ec = readyCombatCrew.gameObject.GetComponent<EnemyController>();
-            //ec.isIdle = false;
-        }
-
         if (readyCombatCrew.isMoving)
             readyCombatCrew.CancelAndRedirect(bestPathToNeighborTile);
         else

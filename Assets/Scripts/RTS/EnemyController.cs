@@ -9,44 +9,62 @@ public class EnemyController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        cm = this.GetComponent<CrewMember>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (cm == null)
+        //함내에 피해 발생으로 작업을 중단하고 수리를 먼저 할 필요가 있을 경우
+        if (cm.IsMyShip() && cm.currentRoom.NeedsRepair())
         {
-            cm = this.gameObject.GetComponent<CrewMember>();
+            isIdle = true;
         }
         if (isIdle)
         {
-            isIdle = false;
             if (cm.IsMyShip())
             {
+                isIdle = false;
                 cm.BackToThePeace();
             }
             else
             {
-                RTSSelectionManager.Instance.MoveForCombat(cm, cm.currentRoom.occupiedCrewTiles);
-                return;
+                //자신이 위치한 방 탐색
+                if(cm.isWithEnemy())
+                {
+                    isIdle = false;
+                    RTSSelectionManager.Instance.MoveForCombat(cm, cm.currentRoom.occupiedCrewTiles);
+                }
+                else
+                {
+                    if (cm.currentRoom.GetIsDamageable() && cm.currentRoom.currentHitPoints>0)
+                    {
+                        isIdle = false;
+                        cm.combatCoroutine = StartCoroutine(cm.CombatRoutine());
+                    }
+                }
             }
-            int which = Random.Range(0, 2);
-            switch (which)
+            if(isIdle)
             {
-                case 0: // 무작위 방으로 이동
-                    RTSSelectionManager.Instance.IssueMoveCommand(WhereToGo());
-                    break;
-                case 1: // 무작위 조종실로 이동
-                    RTSSelectionManager.Instance.IssueMoveCommand(WhereToGo(RoomType.Cockpit));
-                    break;
+                isIdle = false;
+                int which = Random.Range(0, 2);
+                switch (which)
+                {
+                    case 0: // 무작위 방으로 이동
+                        RTSSelectionManager.Instance.IssueMoveCommand(WhereToGo(),cm);
+                        break;
+                    case 1: // 무작위 조종실로 이동
+                        RTSSelectionManager.Instance.IssueMoveCommand(WhereToGo(RoomType.Cockpit),cm);
+                        break;
+                }
             }
         }
         else
         {
-            if (!IsDoingSomething())
+            if (!cm.IsMyShip())
             {
-                isIdle = true;
+                if(!IsDoingSomething())
+                    isIdle = true;
             }
         }
     }
@@ -68,7 +86,8 @@ public class EnemyController : MonoBehaviour
         {
             if (him.isPlayerControlled != cm.isPlayerControlled)
             {
-                canGo.Add(him.currentRoom);
+                if(him.currentRoom.GetRoomType()!=RoomType.Corridor)
+                    canGo.Add(him.currentRoom);
             }
         }
 

@@ -263,9 +263,11 @@ public class CrewMember : CrewBase
             // 내 배가 아닐 경우 부수는 행동 개시
             if (!IsMyShip())
                 combatCoroutine = StartCoroutine(CombatRoutine());
-
-            // 적이 없고 유저 함선이라 부술 방도 없을 경우, Idle 상태를 거쳐 수리로 연결
-            BackToThePeace();
+            else
+            {
+                // 적이 없고 유저 함선이라 부술 방도 없을 경우, Idle 상태를 거쳐 수리로 연결
+                BackToThePeace();
+            }
         }
     }
 
@@ -389,10 +391,11 @@ public class CrewMember : CrewBase
 
             // 일단 부수기 방 설정 = 현재 방
             madRoom = currentRoom;
-            if (madRoom == null || !madRoom.GetIsDamageable()) // 부술 수 없는 방
+            if (madRoom == null || !madRoom.GetIsDamageable() || madRoom.currentHitPoints<=0) // 부술 수 없는 방
             {
                 yield break;
             }
+
 
             // 방 부수기 진입 시 true
             inCombat = true;
@@ -425,9 +428,9 @@ public class CrewMember : CrewBase
         yield return new WaitForSeconds(attackDelay);
 
         // 부술 방도 없고 적군도 죽은 상태
-        if (madRoom == null && !combatTarget.isAlive)
+        if (madRoom == null && combatTarget ==null)
         {
-            yield break;
+                yield break;
         }
 
         // 부술 방이 있거나 적군이 있다면 계속 전투 루틴 실행
@@ -492,6 +495,7 @@ public class CrewMember : CrewBase
             if (madRoom.currentHitPoints <= 0)
             {
                 madRoom = null;
+                inCombat = false;
             }
             return;
         }
