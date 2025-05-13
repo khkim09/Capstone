@@ -19,12 +19,6 @@ public class QuestListUI : MonoBehaviour
     /// <summary>현재 표시 중인 퀘스트 슬롯 목록</summary>
     private List<GameObject> spawnedSlots = new();
 
-    /// <summary>패널 원래 위치 저장 여부</summary>
-    private bool isOriginalPositionSaved = false;
-
-    /// <summary>패널 원래 위치</summary>
-    private Vector2 originalPosition;
-
     /// <summary>
     /// 시작할 때 실행되는 함수입니다.
     /// 처음에는 패널을 꺼둡니다.
@@ -69,52 +63,24 @@ public class QuestListUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 외부 버튼에서 호출될 때 사용되는 열기/닫기 + 위치 이동 함수입니다.
-    /// 꺼져 있으면 열고 왼쪽으로 이동, 켜져 있으면 닫고 원래 위치로 복구합니다.
+    /// 외부 버튼에서 호출될 때 사용되는 열기/닫기 함수입니다.
+    /// 단순히 SetActive만 제어합니다.
     /// </summary>
     public void ToggleFromButton()
     {
-        RectTransform rectTransform = panel.GetComponent<RectTransform>();
-
-        // 최초 한 번만 원래 위치 저장
-        if (!isOriginalPositionSaved && rectTransform != null)
-        {
-            originalPosition = rectTransform.anchoredPosition;
-            isOriginalPositionSaved = true;
-        }
-
-        if (!panel.activeSelf)
-        {
-            Open();
-            if (rectTransform != null)
-            {
-                Vector2 pos = rectTransform.anchoredPosition;
-                rectTransform.anchoredPosition = new Vector2(pos.x - 480f, pos.y);
-            }
-        }
+        if (panel.activeSelf)
+            Close();
         else
-        {
-            panel.SetActive(false);
-            Clear();
-            if (rectTransform != null)
-            {
-                rectTransform.anchoredPosition = originalPosition;
-            }
-        }
+            Open();
     }
 
     /// <summary>
     /// 퀘스트 목록 창을 닫고 기존 슬롯들을 제거합니다.
-    /// 위치도 원래대로 복구합니다.
     /// </summary>
     public void Close()
     {
         panel.SetActive(false);
         Clear();
-
-        RectTransform rectTransform = panel.GetComponent<RectTransform>();
-        if (rectTransform != null && isOriginalPositionSaved)
-            rectTransform.anchoredPosition = originalPosition;
     }
 
     /// <summary>

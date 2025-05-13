@@ -104,9 +104,6 @@ public class QuestManager : MonoBehaviour
         QuestListUI questListUI = FindObjectOfType<QuestListUI>();
         QuestUIManager questUIManager = FindObjectOfType<QuestUIManager>();
 
-        bool wasQuestListOpen = questListUI != null && questListUI.IsOpen();
-        bool wasQuestOfferOpen = questUIManager != null && questUIManager.IsOfferPanelOpen();
-
         // 원래 Complete 처리
         quest.status = QuestStatus.Completed;
         activeQuests.Remove(quest);
@@ -121,12 +118,6 @@ public class QuestManager : MonoBehaviour
 
         OnQuestCompleted?.Invoke(quest);
         Debug.Log($"Quest completed: {quest.title}");
-
-        // 완료 후 패널 원복
-        if (wasQuestListOpen && questListUI != null)
-            questListUI.Open();
-        if (wasQuestOfferOpen && questUIManager != null)
-            questUIManager.ShowQuestOffer(quest);
     }
 
 

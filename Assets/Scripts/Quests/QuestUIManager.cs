@@ -32,6 +32,15 @@ public class QuestUIManager : MonoBehaviour
     /// <summary>현재 표시 중인 퀘스트 객체</summary>
     private RandomQuest currentQuest;
 
+    /// <summary>완료 중 여부를 나타내는 플래그</summary>
+    private bool isCompletingQuest = false;
+
+    /// <summary>완료 전 QuestList 패널 상태 저장용</summary>
+    private bool wasQuestListOpen = false;
+
+    /// <summary>완료 전 QuestOffer 패널 상태 저장용</summary>
+    private bool wasQuestOfferOpen = false;
+
     /// <summary>
     /// 버튼 클릭 이벤트를 등록합니다.
     /// </summary>
@@ -50,6 +59,10 @@ public class QuestUIManager : MonoBehaviour
     /// <param name="quest">표시할 퀘스트</param>
     public void ShowQuestOffer(RandomQuest quest)
     {
+        // Complete 중이면 ShowQuestOffer 방지
+        if (isCompletingQuest)
+            return;
+
         currentQuest = quest;
         offerPanel.SetActive(true);
         questText.text = "";
@@ -82,14 +95,18 @@ public class QuestUIManager : MonoBehaviour
         if (currentQuest != null)
         {
             currentQuest.Accept();
-            QuestManager.Instance.AddQuest(currentQuest);
+            if (QuestManager.Instance != null)
+            {
+                QuestManager.Instance.AddQuest(currentQuest);
+            }
+            else
+            {
+                Debug.LogWarning("QuestManager.Instance가 존재하지 않습니다.");
+            }
 
             QuestListUI questListUI = FindObjectOfType<QuestListUI>();
             if (questListUI != null)
             {
-                //if (!questListUI.panel.activeSelf)
-                    //questListUI.panel.SetActive(true);
-
                 questListUI.Open();
             }
         }
@@ -112,23 +129,47 @@ public class QuestUIManager : MonoBehaviour
 
     /// <summary>
     /// 퀘스트 완료 UI를 표시합니다.
+    /// 완료 전에 QuestList, QuestOffer 패널 상태를 저장하고 닫습니다.
     /// </summary>
     /// <param name="quest">완료된 퀘스트</param>
     public void ShowCompletion(RandomQuest quest)
     {
+        isCompletingQuest = true;
+
+        QuestListUI questListUI = FindObjectOfType<QuestListUI>();
+        if (questListUI != null)
+        {
+            wasQuestListOpen = questListUI.IsOpen();
+            if (wasQuestListOpen)
+                questListUI.Close();
+        }
+
+        wasQuestOfferOpen = IsOfferPanelOpen();
+        if (wasQuestOfferOpen)
+            offerPanel.SetActive(false);
+
         completePanel.SetActive(true);
-        completeText.text =
-            "ui.quest.complete.text".Localize(quest.rewards[0].amount);
-        //$"퀘스트를 완료하였습니다!\n보상: {quest.rewards[0].amount} COMA";
+        completeText.text = "ui.quest.complete.text".Localize(quest.rewards[0].amount);
     }
 
     /// <summary>
     /// 퀘스트 완료 확인 버튼 클릭 시 호출됩니다.
-    /// 완료 UI를 닫습니다.
+    /// 완료 후 원래 QuestList, QuestOffer 패널을 복원합니다.
     /// </summary>
     private void OnCompleteConfirmed()
     {
         completePanel.SetActive(false);
+
+        QuestListUI questListUI = FindObjectOfType<QuestListUI>();
+        if (wasQuestListOpen && questListUI != null)
+            questListUI.Open();
+
+        if (wasQuestOfferOpen && !offerPanel.activeSelf)
+            offerPanel.SetActive(true);
+
+        wasQuestListOpen = false;
+        wasQuestOfferOpen = false;
+        isCompletingQuest = false;
     }
 
     /// <summary>
@@ -137,5 +178,13 @@ public class QuestUIManager : MonoBehaviour
     public bool IsOfferPanelOpen()
     {
         return offerPanel.activeSelf;
+    }
+
+    /// <summary>
+    /// 현재 퀘스트 완료 중인지 여부를 반환합니다.
+    /// </summary>
+    public bool IsCompletingQuest()
+    {
+        return isCompletingQuest;
     }
 }
