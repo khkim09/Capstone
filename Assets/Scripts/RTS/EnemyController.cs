@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour
         List<Room> canGo = new List<Room>();
         foreach (Room room in rooms)
         {
-            if (!room.GetIsDamageable())
+            if (room.GetIsDamageable())
             {
                 canGo.Add(room);
             }
@@ -81,7 +81,7 @@ public class EnemyController : MonoBehaviour
         List<Room> canGo = new List<Room>();
         foreach (Room room in rooms)
         {
-            if (!room.GetIsDamageable() && room.roomType == type)
+            if (room.GetIsDamageable() && room.roomType == type)
             {
                 canGo.Add(room);
             }

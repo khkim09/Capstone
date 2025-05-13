@@ -1137,7 +1137,11 @@ public class Ship : MonoBehaviour, IWorldGridSwitcher
             else
             {
                 // 단일 지점 데미지 - 방에 데미지 적용
-                if (roomGrid.TryGetValue(hitPosition, out Room hitRoom)) hitRoom.TakeDamage(finalDamage);
+                if (roomGrid.TryGetValue(hitPosition, out Room hitRoom))
+                {
+                    Debug.LogError($"피격 방 : {hitRoom}, 피격 지점 : {hitPosition}");
+                    hitRoom.TakeDamage(finalDamage);
+                }
 
                 // 그 위치에 있는 선원들에게 데미지 적용
                 ApplyDamageToCrewsInArea(hitPosition, finalDamage, false); // false = 단일 지점

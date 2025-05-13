@@ -247,7 +247,7 @@ public class CrewMember : CrewBase
         reservedRoom = null;
 
         // 도착한 방에서 적군 탐지
-        if (isWithEnemy() && inCombat==false)
+        if (isWithEnemy() && inCombat == false)
         {
             Debug.LogError("적 있음");
             // 이동 중이던 선원이 우선적으로 마저 이동 (적군을 찾아감)
@@ -589,8 +589,8 @@ public class CrewMember : CrewBase
     public void LookAtMe()
     {
         Debug.LogError("나를 바라봐");
-        List<CrewBase> others = new List<CrewBase>(currentRoom.GetTotalCrewsInRoom());
-        foreach (CrewBase other in others)
+        List<CrewMember> others = new List<CrewMember>(currentRoom.GetTotalCrewsInRoom());
+        foreach (CrewMember other in others)
         {
             Debug.LogError($"검색 선원 : {other.race}");
             if (other == this)
@@ -604,13 +604,12 @@ public class CrewMember : CrewBase
                 continue;
             }
 
-            CrewMember cm = other.gameObject.GetComponent<CrewMember>();
-            if (cm.inCombat == false && cm.isMoving == false)
+            if (other.inCombat == false && other.isMoving == false)
             {
                 // 방에 있는 상대를 나에게 이동
                 Debug.LogError($"{other.race}야, {race}한테 와");
-                cm.WalkOut();
-                RTSSelectionManager.Instance.MoveForCombat(cm, cm.currentRoom.occupiedCrewTiles);
+                other.WalkOut();
+                RTSSelectionManager.Instance.MoveForCombat(other, other.currentRoom.occupiedCrewTiles);
             }
         }
     }
