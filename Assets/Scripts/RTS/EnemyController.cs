@@ -15,13 +15,13 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         // 함내에 피해 발생으로 작업을 중단하고 수리를 먼저 할 필요가 있을 경우
-        if (cm.IsMyShip() && cm.currentRoom.NeedsRepair())
+        if (cm.IsOwnShip() && cm.currentRoom.NeedsRepair())
         {
             isIdle = true;
         }
         if (isIdle)
         {
-            if (cm.IsMyShip())
+            if (cm.IsOwnShip())
             {
                 isIdle = false;
                 cm.BackToThePeace();
@@ -43,6 +43,7 @@ public class EnemyController : MonoBehaviour
                     }
                 }
             }
+
             if (isIdle)
             {
                 isIdle = false;
@@ -60,7 +61,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            if (!cm.IsMyShip())
+            if (!cm.IsOwnShip())
             {
                 if (!IsDoingSomething())
                     isIdle = true;

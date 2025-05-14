@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
 
 
         playerShip.Initialize();
+        playerShip.isPlayerShip = true; // 유저 함선
 
         CreateDefaultPlayerShip();
         OnShipInitialized?.Invoke();
@@ -117,6 +118,7 @@ public class GameManager : MonoBehaviour
         if (currentEnemyShip != null)
         {
             currentEnemyShip.Initialize();
+            currentEnemyShip.isPlayerShip = false; // 적 함선
             GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("test_ship");
         }
 

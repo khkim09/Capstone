@@ -62,13 +62,11 @@ public class CrewReservationManager : MonoBehaviour
             tileOccupancy[ship].Remove(tile);
         else
         {
-            Debug.LogError($"[Exittile] {crew.race}가 해당 위치에 없는데 점유 해제 시도");
+            Debug.LogError($"[ExitTile] {crew.race}가 해당 위치에 없는데 점유 해제 시도");
         }
 
-        room.VacateTile(tile);
+        // 선원 나감 처리, 오브젝트 종속 해제
         room.OnCrewExit(crew);
-        ship.UnmarkCrewTile(room, tile);
-
         crew.transform.SetParent(null);
     }
 
@@ -85,11 +83,8 @@ public class CrewReservationManager : MonoBehaviour
 
         tileOccupancy[ship][tile] = crew;
 
-        // Room, Ship 에도 동기화
-        room.OccupyTile(tile);
+        // 선원 입장 처리, 오브젝트를 방으로 종속
         room.OnCrewEnter(crew);
-        ship.MarkCrewTileOccupied(room, tile);
-
         crew.transform.SetParent(room.transform);
     }
 

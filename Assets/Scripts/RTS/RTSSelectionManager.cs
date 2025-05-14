@@ -146,6 +146,7 @@ public class RTSSelectionManager : MonoBehaviour
         // 오른쪽 마우스 버튼 클릭: 이동 명령 발동
         if (isMainUI && Input.GetMouseButtonDown(1))
         {
+            CleanUpSelectedCrew();
             IssueMoveCommand();
         }
     }
@@ -294,6 +295,14 @@ public class RTSSelectionManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 죽은 선원을 선택된 선원 리스트에서 제거 (갱신)
+    /// </summary>
+    private void CleanUpSelectedCrew()
+    {
+        selectedCrew.RemoveAll(cm => cm == null || !cm.isAlive);
+    }
+
+    /// <summary>
     /// RTS 이동을 위한 기여 오브젝트 초기화
     /// </summary>
     public void RefreshMovementData()
@@ -310,6 +319,8 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 선택된 선원들을 목적지 방의 우선순위 타일로 최단 경로 기반 배정 후 이동시킵니다.
     /// </summary>
+    /// <param name="targetRoom">목적지 방</param>
+    /// <param name="crewByEnemyController">적 선원이 호출한 이동 명령일 경우 true</param>
     public void IssueMoveCommand(Room targetRoom = null, CrewMember crewByEnemyController = null)
     {
         if (targetRoom == null)
@@ -335,6 +346,15 @@ public class RTSSelectionManager : MonoBehaviour
 
         // 1. 이동 명령 수신 받은 선원에 대해 최단 경로 검색 후 이동 시키는 반복문 실행
         List<CrewMember> unassignedCrew;
+
+        selectedCrew = selectedCrew.Where(cm => cm != null && cm.isAlive).ToList();
+
+        if (selectedCrew == null)
+        {
+            Debug.LogError("이동 선택 선원 다 죽음");
+            return;
+        }
+
         if (crewByEnemyController == null)
         {
             unassignedCrew = new(selectedCrew);
