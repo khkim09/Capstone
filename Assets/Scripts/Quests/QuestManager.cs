@@ -16,6 +16,7 @@ public class QuestManager : MonoBehaviour
 
     [SerializeField] private List<RandomQuest> activeQuests = new();
     [SerializeField] private List<RandomQuest> completedQuests = new();
+    [SerializeField] private List<RandomQuest> failedQuests = new List<RandomQuest>();
 
     /// <summary>
     /// 퀘스트 매니저의 싱글톤 인스턴스
@@ -35,6 +36,18 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (GameManager.Instance != null)
+            GameManager.Instance.OnYearChanged += CheckQuestExpiration;
+    }
+
+    private void OnDisable()
+    {
+        if (GameManager.Instance != null)
+            GameManager.Instance.OnYearChanged -= CheckQuestExpiration;
+    }
+
     /// <summary>퀘스트가 새로 추가될 때 발생하는 이벤트</summary>
     public event QuestChangedHandler OnQuestAdded;
 
@@ -44,12 +57,17 @@ public class QuestManager : MonoBehaviour
     /// <summary>퀘스트가 완료될 때 발생하는 이벤트</summary>
     public event QuestChangedHandler OnQuestCompleted;
 
+    /// <summary>퀘스트가 실패할 때 발생하는 이벤트</summary>
+    public event QuestChangedHandler OnQuestFailed;
+
     /// <summary>
     /// 새로운 퀘스트를 추가합니다.
     /// </summary>
     /// <param name="quest">추가할 퀘스트</param>
     public void AddQuest(RandomQuest quest)
     {
+        quest.status = QuestStatus.Active;
+        quest.questAcceptedYear = GameManager.Instance.CurrentYear;
         activeQuests.Add(quest);
         OnQuestAdded?.Invoke(quest);
         Debug.Log($"New quest added: {quest.title}");
@@ -109,10 +127,6 @@ public class QuestManager : MonoBehaviour
         activeQuests.Remove(quest);
         completedQuests.Add(quest);
 
-        foreach (QuestReward reward in quest.rewards)
-            if (reward.questRewardType == QuestRewardType.COMA)
-                ResourceManager.Instance.ChangeResource(ResourceType.COMA, reward.amount);
-
         if (questUIManager != null)
             questUIManager.ShowCompletion(quest);
 
@@ -120,6 +134,53 @@ public class QuestManager : MonoBehaviour
         Debug.Log($"Quest completed: {quest.title}");
     }
 
+    /// <summary>
+    /// 퀘스트 보상을 지급하는 함수입니다.
+    /// </summary>
+    /// <param name="quest"></param>
+    public void GrantRewardForQuest(RandomQuest quest)
+    {
+        if (quest.status == QuestStatus.Completed)
+        {
+            foreach (QuestReward reward in quest.rewards)
+                if (reward.questRewardType == QuestRewardType.COMA)
+                    ResourceManager.Instance.ChangeResource(ResourceType.COMA, reward.amount);
+
+            Debug.Log($"Quest reward granted for: {quest.title}");
+        }
+    }
+
+    /// <summary>
+    /// 매년 호출되어 20년 이상 지난 퀘스트를 자동 실패 처리합니다.
+    /// </summary>
+    /// <param name="currentYear">현재 연도</param>
+    private void CheckQuestExpiration(int currentYear)
+    {
+        List<RandomQuest> expiredQuests = new();
+        foreach (RandomQuest quest in activeQuests)
+        {
+            if (quest.questAcceptedYear >= 0 &&
+                currentYear - quest.questAcceptedYear >= 20)
+                expiredQuests.Add(quest);
+        }
+
+        foreach (RandomQuest quest in expiredQuests)
+            FailQuest(quest);
+    }
+
+    /// <summary>
+    /// 퀘스트를 실패 처리합니다.
+    /// </summary>
+    /// <param name="quest">실패할 퀘스트</param>
+    private void FailQuest(RandomQuest quest)
+    {
+        quest.status = QuestStatus.Failed;
+        activeQuests.Remove(quest);
+        failedQuests.Add(quest);
+
+        OnQuestFailed?.Invoke(quest);
+        Debug.Log($"Quest failed due to expiration: {quest.title}");
+    }
 
     /// <summary>
     /// 현재 진행 중인 퀘스트 목록을 반환합니다.
@@ -137,5 +198,14 @@ public class QuestManager : MonoBehaviour
     public List<RandomQuest> GetCompletedQuests()
     {
         return completedQuests;
+    }
+
+    /// <summary>
+    /// 실패한 퀘스트 목록을 반환합니다.
+    /// </summary>
+    /// <returns>실패한 퀘스트 리스트</returns>
+    public List<RandomQuest> GetFailedQuests()
+    {
+        return failedQuests;
     }
 }
