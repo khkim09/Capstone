@@ -9,9 +9,7 @@ public class YearDisplayUI : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            // 최초 표시
             UpdateYear(GameManager.Instance.CurrentYear);
-            // 이벤트 등록
             GameManager.Instance.OnYearChanged += UpdateYear;
         }
     }
