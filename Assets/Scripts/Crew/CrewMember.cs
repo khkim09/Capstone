@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 /// <summary>
 /// 선원의 데이터를 확장하여 실제 게임 내 선원(Crew)의 기능을 담당하는 클래스입니다.
@@ -28,7 +30,7 @@ public class CrewMember : CrewBase
     public Room reservedRoom;
 
     /// <summary>
-    /// 예약했지만 취소한 목적지 방
+    /// 새로운 이동 명령 전 기존 목적지 방
     /// </summary>
     public Room oldReservedRoom;
 
@@ -38,7 +40,7 @@ public class CrewMember : CrewBase
     public Vector2Int reservedTile;
 
     /// <summary>
-    /// 이동 중 새로운 이동 명령 내리기 전 예약했던 목적지 타일 (최종으로 예약했지만 취소한 목적지 타일)
+    /// 새로운 이동 명령 전 기존 목적지 타일 (예약 됐다 취소된..)
     /// </summary>
     public Vector2Int oldReservedTile;
 
@@ -46,8 +48,6 @@ public class CrewMember : CrewBase
     /// 이동 전 위치했던 타일
     /// </summary>
     public Vector2Int originPosTile;
-
-    public List<CrewEffect> effectfs;
 
     /// <summary>
     /// Unity 생명주기 메서드.
@@ -76,7 +76,7 @@ public class CrewMember : CrewBase
             float moraleBonus = MoraleManager.Instance.GetTotalMoraleBonus(this); // 향후 보완 예정 -> morale manager 생성
 
             float total = baseSkill + equipmentBonus + moraleBonus;
-            totalSkills[skill] = total;
+            totalSkills[skill] = total / 100;
         }
 
         return totalSkills;
@@ -104,20 +104,32 @@ public class CrewMember : CrewBase
             moveCoroutine = null;
         }
 
-        // 점유 타일 해제
-        ExitCurrentTile();
+        // 1. 점유 타일 해제
+        // ExitCurrentTile();
+        if (currentRoom != null)
+            CrewReservationManager.Instance.ExitTile(currentShip, currentRoom, GetCurrentTile(), this);
+        // CrewReservationManager.Instance.ExitTile(currentShip, oldReservedRoom, oldReservedTile, this);
 
-        // 목적지 예약
-        ReserveDestination();
+        // 2. 목적지 예약
+        // ReserveDestination();
+        if (reservedRoom != null)
+        {
+            CrewReservationManager.Instance.ReserveTile(currentShip, reservedRoom, reservedTile, this);
+            currentRoom = reservedRoom;
+        }
 
-        // 3. 경로 설정 후 이동 시작
+        // 3. 체력바
+        EnsureHealthBarFollows();
+
+        // 4. 경로 설정 후 이동 시작
         path = newPath;
         moveCoroutine = StartCoroutine(FollowPathCoroutine());
     }
 
     /// <summary>
-    /// 이동 도중 새로운 목적지로 변경할 때 체력바도 함께 따라가도록
+    /// 이동 중 새로운 이동 명령 수신 시 이전 목적지 타일 점유 해제 (체력바 follow)
     /// </summary>
+    /// <param name="newPath"></param>
     public void CancelAndRedirect(List<Vector2Int> newPath)
     {
         if (moveCoroutine != null)
@@ -126,16 +138,22 @@ public class CrewMember : CrewBase
             moveCoroutine = null;
         }
 
-        // 이전 목적지 타일 점유 해제
-        ExitReserveTile();
+        // 1. 이전 목적지 타일 점유 해제
+        // ExitReserveTile();
+        if (oldReservedRoom != null)
+            CrewReservationManager.Instance.ExitTile(currentShip, oldReservedRoom, oldReservedTile, this);
 
-        // 새로운 목적지 예약
-        ReserveDestination();
+        // 2. 새로운 목적지 예약
+        if (reservedRoom != null)
+        {
+            CrewReservationManager.Instance.ReserveTile(currentShip, reservedRoom, reservedTile, this);
+            currentRoom = reservedRoom;
+        }
 
-        // 체력바가 부모를 따라 이동하도록 보장
+        // 3. 체력바가 부모를 따라 이동하도록 보장
         EnsureHealthBarFollows();
 
-        // 새로운 경로 이동
+        // 4. 새로운 경로 이동
         path = newPath;
         moveCoroutine = StartCoroutine(FollowPathCoroutine());
     }
@@ -152,71 +170,62 @@ public class CrewMember : CrewBase
                 healthBar.transform.parent.SetParent(transform);
     }
 
-    /// <summary>
-    /// 선원이 방을 바꿀 때 체력바가 함께 이동하도록
-    /// </summary>
-    private void ReserveDestination()
-    {
-        if (reservedRoom != null)
+    /*
+        /// <summary>
+        /// 선원이 방을 바꿀 때 체력바가 함께 이동하도록
+        /// </summary>
+        private void ReserveDestination()
         {
-            Debug.LogError($"최종 예약된 타일 pos : {reservedTile}");
-            reservedRoom.OccupyTile(reservedTile);
-            reservedRoom.OnCrewEnter(this);
-            currentRoom = reservedRoom;
-            RTSSelectionManager.Instance.playerShip.MarkCrewTileOccupied(reservedRoom, reservedTile);
+            if (reservedRoom != null)
+            {
+                Debug.LogError($"최종 예약된 타일 pos : {reservedTile}");
+                reservedRoom.OccupyTile(reservedTile);
+                reservedRoom.OnCrewEnter(this);
+                currentRoom = reservedRoom;
 
-            // 선원 자체의 부모는 방으로 설정하지만, 체력바는 선원의 자식으로 유지
-            transform.SetParent(reservedRoom.transform);
-            EnsureHealthBarFollows();
-        }
-    }
+                CrewReservationManager.Instance.ReserveTile(currentShip, reservedTile, this);
 
-    /// <summary>
-    /// 정지 상태에서 이동 명령 - 기존 점유 타일 해제, 방에서 나옴
-    /// </summary>
-    private void ExitCurrentTile()
-    {
-        if (currentRoom != null)
-        {
-            Debug.LogError($"기존 위치하던 pos : {GetCurrentTile()}");
-            Vector2Int currentTile = GetCurrentTile();
-            currentRoom.VacateTile(currentTile);
-            currentRoom.OnCrewExit(this);
-            RTSSelectionManager.Instance.playerShip.UnmarkCrewTile(currentRoom, currentTile);
-            transform.SetParent(null);
-        }
-    }
+                // currentShip.MarkCrewTileOccupied(reservedRoom, reservedTile);
 
-    /// <summary>
-    /// 움직이던 도중 새로운 이동 명령 - 예약 목적지 타일 점유 해제, 방에서 나옴
-    /// </summary>
-    private void ExitReserveTile()
-    {
-        if (oldReservedRoom != null)
-        {
-            Debug.LogError($"최종 예약했지만 취소하는 타일 pos : {oldReservedTile}");
-            oldReservedRoom.VacateTile(oldReservedTile);
-            oldReservedRoom.OnCrewExit(this);
-            RTSSelectionManager.Instance.playerShip.UnmarkCrewTile(oldReservedRoom, oldReservedTile);
-            transform.SetParent(null);
-        }
-    }
-
-
-    /// <summary>
-    /// 이동 animation
-    /// </summary>
-    /// <param name="trigger"></param>
-    private void PlayAnimation(string trigger)
-    {
-        if (trigger.Equals("walk"))
-        {
-            animator.SetFloat("X", movementDirection.x);
-            animator.SetFloat("Y", movementDirection.y);
+                // 선원 자체의 부모는 방으로 설정하지만, 체력바는 선원의 자식으로 유지
+                transform.SetParent(reservedRoom.transform);
+                EnsureHealthBarFollows();
+            }
         }
 
-        animator.SetBool(trigger, isMoving);
-    }
+        /// <summary>
+        /// 정지 상태에서 이동 명령 - 기존 점유 타일 해제, 방에서 나옴
+        /// </summary>
+        private void ExitCurrentTile()
+        {
+            if (currentRoom != null)
+            {
+                Debug.LogError($"기존 위치하던 pos : {GetCurrentTile()}");
+                Vector2Int currentTile = GetCurrentTile();
+                currentRoom.VacateTile(currentTile);
+                currentRoom.OnCrewExit(this);
+
+                CrewReservationManager.Instance.ExitCurrentTile(currentShip, currentTile);
+                // currentShip.UnmarkCrewTile(currentRoom, currentTile);
+                transform.SetParent(null);
+            }
+        }
+
+        /// <summary>
+        /// 움직이던 도중 새로운 이동 명령 - 예약 목적지 타일 점유 해제, 방에서 나옴
+        /// </summary>
+        private void ExitReserveTile()
+        {
+            if (oldReservedRoom != null)
+            {
+                Debug.LogError($"최종 예약했지만 취소하는 타일 pos : {oldReservedTile}");
+                oldReservedRoom.VacateTile(oldReservedTile);
+                oldReservedRoom.OnCrewExit(this);
+                currentShip.UnmarkCrewTile(oldReservedRoom, oldReservedTile);
+                transform.SetParent(null);
+            }
+        }
+    */
 
     /// <summary>
     /// 현재 방에서 선원이 점유 중인 타일의 우선순위 인덱스 반환
@@ -240,6 +249,8 @@ public class CrewMember : CrewBase
     {
         isMoving = true;
 
+        DontTouchMe();
+
         foreach (Vector2Int tile in path)
         {
             Vector3 targetWorldPos = currentShip.GetWorldPositionFromGrid(tile);
@@ -247,20 +258,20 @@ public class CrewMember : CrewBase
             // 이동 중인 방향
             movementDirection = (targetWorldPos - transform.position).normalized;
             PlayAnimation("walk");
+
             while (Vector3.Distance(transform.position, targetWorldPos) > 0.01f)
             {
                 float speedMultiplier = 1f;
 
                 // 현재 방 체크
-                Room room = RTSSelectionManager.Instance.playerShip.GetRoomAtPosition(GetCurrentTile());
+                Room room = currentShip.GetRoomAtPosition(GetCurrentTile());
 
                 // 복도는 이동 속도 30% 증가
                 if (room != null && room.GetRoomType() == RoomType.Corridor)
                     speedMultiplier = 1.33f;
 
                 // MoveTowards() : 다른 선원과의 충돌 무시하고 통과
-                transform.position = Vector3.MoveTowards(transform.position, targetWorldPos,
-                    moveSpeed * speedMultiplier * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetWorldPos, moveSpeed * speedMultiplier * Time.deltaTime);
                 yield return null;
             }
 
@@ -271,14 +282,35 @@ public class CrewMember : CrewBase
 
         isMoving = false;
 
+        PlayAnimation("walk");
+
         // 도착 후 방 갱신
         currentRoom = reservedRoom;
         reservedRoom = null;
 
-        PlayAnimation("walk");
+        // 도착한 방에서 적군 탐지
+        if (isWithEnemy() && inCombat == false)
+        {
+            Debug.LogError("적 있음");
+            // 이동 중이던 선원이 우선적으로 마저 이동 (적군을 찾아감)
+            RTSSelectionManager.Instance.MoveForCombat(this, currentRoom.occupiedCrewTiles);
 
-        // 이동 완료한 위치에서 함내 전투 검사
-        // oninvoke()로 해결
+            // 적군 찾아가는 동작 완료 후
+            // 전투 중이지 않거나 이동 중이지 않은 적들에 대해 본인 공격하도록 어그로
+            LookAtMe();
+        }
+        else // 도착한 방에 적군이 없음
+        {
+            Debug.LogError("적없음");
+            // 내 배가 아닐 경우 부수는 행동 개시
+            if (!IsMyShip())
+                combatCoroutine = StartCoroutine(CombatRoutine());
+            else
+            {
+                // 적이 없고 유저 함선이라 부술 방도 없을 경우, Idle 상태를 거쳐 수리로 연결
+                BackToThePeace();
+            }
+        }
     }
 
     /// <summary>
@@ -367,4 +399,595 @@ public class CrewMember : CrewBase
 
         return result;
     }
+
+    //----------애니메이션------------
+
+    /// <summary>
+    /// animation 실행
+    /// </summary>
+    /// <param name="trigger"></param>
+    public void PlayAnimation(string trigger)
+    {
+        if (trigger.Equals("walk"))
+        {
+            SetAnimationDirection(movementDirection);
+            animator.SetBool(trigger, isMoving);
+        }
+        else if (trigger.Equals("attack"))
+        {
+            SetAnimationDirection(movementDirection);
+            animator.SetTrigger("attack");
+        }
+        else if (trigger.Equals("die"))
+        {
+            SetAnimationDirection(movementDirection);
+            animator.SetTrigger("die");
+        }
+        else if (trigger.Equals("repair"))
+        {
+            SetAnimationDirection(Vector2.down);
+            animator.SetTrigger("repair");
+        }
+        else if (trigger.Equals("work"))
+        {
+            animator.SetBool(trigger, isWorking);
+        }
+        else if (trigger.Equals("idle"))
+        {
+            animator.SetTrigger("idle");
+        }
+    }
+
+    /// <summary>
+    /// 애니메이션 방향 설정
+    /// </summary>
+    /// <param name="direction"></param>
+    private void SetAnimationDirection(Vector2 direction)
+    {
+        animator.SetFloat("X", direction.x);
+        animator.SetFloat("Y", direction.y);
+    }
+
+    //----------전투---------
+
+    /// <summary>
+    /// 전투 대상
+    /// </summary>
+    public CrewMember combatTarget { set; get; }
+
+    /// <summary>
+    /// 전투 상태 여부
+    /// </summary>
+    public bool inCombat = false;
+
+    /// <summary>
+    /// 애니메이션 발동 타이밍과 실제 데미지 적용 사이의 딜레이
+    /// </summary>
+    private float attackDelay = 1f;
+
+    /// <summary>
+    /// 전투 코루틴
+    /// </summary>
+    public Coroutine combatCoroutine = null;
+
+    /// <summary>
+    /// 사망 코루틴
+    /// </summary>
+    public Coroutine DieCoroutine = null;
+
+    /// <summary>
+    /// 파괴할 방
+    /// </summary>
+    public Room madRoom;
+
+    /// <summary>
+    /// 전투 진입 코루틴 (타겟 설정 후 전투 시작, 타겟이 없고 적 함선일 경우 방 부수기 돌입)
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator CombatRoutine()
+    {
+        // 때릴 적군 없음 -> 정지 (유저 함선) or 방 부수기 (적 함선)
+        if (combatTarget == null || !combatTarget.isAlive)
+        {
+            // 유저 함선이면 break (그 자리에서 정지)
+            if (IsMyShip())
+            {
+                inCombat = false;
+                combatCoroutine = null;
+                yield break;
+            }
+
+            // 일단 부수기 방 설정 = 현재 방
+            madRoom = currentRoom;
+            if (madRoom == null || !madRoom.GetIsDamageable() || madRoom.currentHitPoints<=0) // 부술 수 없는 방
+            {
+                yield break;
+            }
+
+
+            // 방 부수기 진입 시 true
+            inCombat = true;
+        }
+        else // 때릴 적군 찾음
+        {
+            inCombat = true;
+            combatTarget.bullier.Add(this); // 적군을 때리는 선원 리스트에 이 선원 추가
+
+            // 때릴 적군이 전투 중이 아닌 상태 - 나랑 전투하도록
+            if (!combatTarget.inCombat && currentRoom == combatTarget.currentRoom)
+            {
+                combatTarget.Freeze();
+                combatTarget.combatTarget = this;
+                combatTarget.combatCoroutine = StartCoroutine(combatTarget.CombatRoutine());
+            }
+
+            // 때릴 방향
+            movementDirection = combatTarget.GetCurrentTile() - GetCurrentTile();
+        }
+
+        PlayAnimation("attack");
+
+        // 실제로 데미지가 들어가는 부분
+        yield return new WaitForSeconds(attackDelay);
+        Debug.LogError("공격 딜레이 종료");
+
+        // 실제 데미지 적용
+        Attack(this, combatTarget);
+        yield return new WaitForSeconds(attackDelay);
+
+        // 부술 방도 없고 적군도 죽은 상태
+        if (madRoom == null && combatTarget ==null)
+        {
+                yield break;
+        }
+
+        // 부술 방이 있거나 적군이 있다면 계속 전투 루틴 실행
+        combatCoroutine = StartCoroutine(CombatRoutine());
+    }
+
+    /// <summary>
+    /// 현재 착용 중인 장비들의 공격력 수치 합계
+    /// </summary>
+    /// <returns></returns>
+    private float GetEquipmentAttack()
+    {
+        float total = 0;
+        if (equippedShield != null)
+            total += equippedShield.eqAttackBonus;
+        if (equippedWeapon != null)
+            total += equippedWeapon.eqAttackBonus;
+        return total;
+    }
+
+    /// <summary>
+    /// 현재 착용 중인 장비들의 방어력 수치 합계
+    /// </summary>
+    /// <returns></returns>
+    private float GetEquipmentDefense()
+    {
+        float total = 0;
+        if (equippedShield != null)
+            total += equippedShield.eqDefenseBonus;
+        if (equippedWeapon != null)
+            total += equippedWeapon.eqDefenseBonus;
+        return total;
+    }
+
+    /// <summary>
+    /// 전투 메서드: 1 hit 당 피해량 계산 후 체력 차감, 체력이 0 이하이면 죽음 처리
+    /// </summary>
+    /// <param name="attacker"></param>
+    /// <param name="target"></param>
+    /// <returns>
+    ///공격한 상대가 살아있는지 여부를 반환한다.<br/>
+    /// True: 아직 살아있음 / False: 죽었음
+    /// </returns>
+    public void Attack(CrewMember attacker, CrewMember target)
+    {
+        // 피해량 계산식: (공격 주체 기본 공격 + 장비 공격력(tmp)) * (1 - (상대 방어력 / 100))
+        float damage = attack + GetEquipmentAttack(); //(attacker.attack + attacker.equippedWeapon.eqAttackBonus) * (1 - target.defense / 100f);
+        if (target == null)
+        {
+            //인자로 받는 target이 combatRoutine에서 현재 적군을 찾을 수 없는 경우에는 null로 전달되기 때문에 하위 분기에서 시설 파괴로 진행
+            if (madRoom == null)
+            {
+                //목표를 포착했...는 중이다
+                inCombat = false;
+                if (isWithEnemy())
+                {
+                    RTSSelectionManager.Instance.MoveForCombat(this, this.reservedRoom.occupiedCrewTiles);
+                }
+                return;
+            }
+            madRoom.TakeDamage(damage);
+            if (madRoom.currentHitPoints <= 0)
+            {
+                madRoom = null;
+                inCombat = false;
+            }
+            return;
+        }
+
+        Debug.Log($"{attacker.crewName}이(가) {target.crewName}에게 {damage}의 피해를 입혔습니다.");
+        target.TakeDamage(damage);
+    }
+
+    /// <summary>
+    /// 현재 선원의 방어력을 고려한 피해 발생
+    /// </summary>
+    /// <param name="damage"></param>
+    public void TakeDamage(float damage)
+    {
+        float realDamage = damage * (1 - (defense + GetEquipmentDefense()) / 100f);
+        health -= realDamage;
+
+        // if (healthBarController != null)
+        //     healthBarController.UpdateHealth(health);
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    /// <summary>
+    /// 사망 시, 자신을 combatTarget으로 지정한 선원들에게서 자신을 할당 해제시키고 다른 목표를 탐색하도록한다.
+    /// 또한 애니메이션 재생을 마친 후에 Destroy
+    /// </summary>
+    public void Die()
+    {
+        isMoving = false;
+        inCombat = false;
+        isAlive = false;
+        isWorking = false;
+
+        StopAllCoroutines();
+        DontTouchMe();
+        if (currentRoom.workingCrew == this)
+        {
+            WalkOut();
+        }
+        if (DieCoroutine == null)
+        {
+            DieCoroutine = StartCoroutine(ImDying());
+        }
+    }
+
+    /// <summary>
+    /// 전투 상황에서 자신이 이동했을 때, 자신을 공격하던 다른 선원들에게 자신을 공격하는 행위 이외의 다른 행동을 하도록 명령
+    /// </summary>
+    public void DontTouchMe()
+    {
+        if (inCombat)
+        {
+            inCombat = false;
+            StopCoroutine(combatCoroutine);
+            combatCoroutine = null;
+            madRoom = null;
+            combatTarget = null;
+        }
+        if (isWorking)
+        {
+            Debug.LogError("작업 중이었던");
+            WalkOut();
+            Debug.LogError("작업 선원 할당 해제");
+        }
+
+        if (bullier.Count > 0)
+        {
+            List<CrewMember> bulling = new List<CrewMember>(bullier);
+            foreach (CrewMember hittingMan in bulling)
+            {
+                hittingMan.inCombat = false;
+                hittingMan.combatTarget = null;
+                StopCoroutine(hittingMan.combatCoroutine);
+                hittingMan.combatCoroutine = null;
+                hittingMan.bullier.Remove(this);
+                if (hittingMan.isWithEnemy())
+                {
+                    RTSSelectionManager.Instance.MoveForCombat(hittingMan, hittingMan.currentRoom.occupiedCrewTiles);
+                }
+                else
+                {
+                    hittingMan.BackToThePeace();
+                }
+            }
+            bullier.Clear();
+        }
+    }
+
+    /// <summary>
+    /// 죽음 처리
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator ImDying()
+    {
+        PlayAnimation("die");
+        yield return new WaitForSeconds(2f);
+
+        if (currentRoom != null)
+        {
+            Vector2Int currentTile = GetCurrentTile();
+            currentRoom.VacateTile(currentTile);
+            currentRoom.OnCrewExit(this);
+        }
+        if (currentShip.GetAllCrew().Contains(this)) currentShip.GetAllCrew().Remove(this);
+
+        Destroy(this.gameObject);
+        Debug.Log($"{crewName} 사망 처리 완료");
+    }
+
+    /// <summary>
+    /// 선원이 진입한 방의 적이 멈춰 있고 전투 중이 아니라면, 모두 본인을 공격하도록 설정 (어그로)
+    /// </summary>
+    public void LookAtMe()
+    {
+        Debug.LogError("나를 바라봐");
+        List<CrewMember> others = new List<CrewMember>(currentRoom.GetTotalCrewsInRoom());
+        foreach (CrewMember other in others)
+        {
+            Debug.LogError($"검색 선원 : {other.race}");
+            if (other == this)
+            {
+                Debug.LogError($"{other.race} 나야");
+                continue;
+            }
+            if (other.isPlayerControlled == isPlayerControlled)
+            {
+                Debug.LogError($"{other.race} 아군이야");
+                continue;
+            }
+
+            if ((other.combatTarget==null || other.madRoom==null) && other.isMoving == false)
+            {
+                // 방에 있는 상대를 나에게 이동
+                Debug.LogError($"{other.race}야, {race}한테 와");
+                other.WalkOut();
+                RTSSelectionManager.Instance.MoveForCombat(other, other.currentRoom.occupiedCrewTiles);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Idle 상태 이후
+    /// </summary>
+    public void BackToThePeace()
+    {
+        if (isAlive && !inCombat)
+        {
+            StopAllCoroutines();
+
+            PlayAnimation("idle");
+
+            // 유저 함선일 경우 수리, 작업 시도 및 진입
+            if (IsMyShip())
+            {
+                if(currentRoom.NeedsRepair())
+                {
+                    TryRepair();
+                }
+                else
+                {
+                    TryWork();
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// 방 안의 적군 탐지
+    /// </summary>
+    /// <returns></returns>
+    public bool isWithEnemy()
+    {
+        foreach (CrewMember someone in currentRoom.GetTotalCrewsInRoom())
+        {
+            if (someone.isPlayerControlled != isPlayerControlled && someone.isAlive)
+            {
+                Debug.LogError($"방안 적 찾음 {someone.race}");
+                return true;
+            }
+        }
+        Debug.LogError("방안에 적 못 찾음");
+        return false;
+    }
+
+
+    //--------------수리------------
+
+    /// <summary>
+    /// 수리 코루틴
+    /// </summary>
+    public Coroutine repairCoroutine;
+
+    /// <summary>
+    /// 수리 효율
+    /// </summary>
+    public float repairCoefficient = 10;
+
+    /// <summary>
+    /// 수리 간 딜레이
+    /// </summary>
+    public float repairDelay = 0.5f;
+
+    /// <summary>
+    /// 유저 함선에서 수리 시도
+    /// </summary>
+    public void TryRepair()
+    {
+        if (!IsMyShip())
+            return;
+        Dictionary<SkillType,float> crewSkill=GetCrewSkillValue();
+        if (!crewSkill.ContainsKey(SkillType.RepairSkill))
+        {
+            TryWork();
+            return;
+        }
+
+        if (repairCoroutine == null)
+        {
+            repairCoroutine = StartCoroutine(RepairRoutine());
+        }
+        else // 수리 중인 코루틴이 있는데 왜 할당 해제함?
+        {
+            StopCoroutine(repairCoroutine);
+            repairCoroutine = null;
+        }
+    }
+
+    /// <summary>
+    /// 수리 루틴
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator RepairRoutine()
+    {
+        // 전투 개시 or 수리 필요 없는 상황
+        if (isWithEnemy() || !currentRoom.NeedsRepair())
+        {
+            repairCoroutine = null;
+            yield break;
+        }
+
+        PlayAnimation("repair");
+        yield return new WaitForSeconds(repairDelay);
+
+        // 실제 수리 실행
+        RepairFacility(currentRoom);
+        //todo: 수리 숙련도 적용시켜야됨
+        yield return new WaitForSeconds(repairDelay);
+
+        if (currentRoom.NeedsRepair())
+            repairCoroutine = StartCoroutine(RepairRoutine());
+        else
+        {
+            repairCoroutine = null;
+            TryWork();
+        }
+    }
+
+    /// <summary>
+    /// 특정 방을 수리하며 수리 스킬을 향상시킵니다.
+    /// </summary>
+    /// <param name="room">수리 대상 방.</param>
+    /// <param name="amount">수리량.</param>
+    public void RepairFacility(Room room)
+    {
+        // 수리 스킬에 따른 수리량 계산
+        // float repairSkillBonus = skills.ContainsKey(SkillType.RepairSkill) ? skills[SkillType.RepairSkill] / 100f : 0f;
+
+        //TODO:장비 완성되면 장비와 사기, 숙련도에 대한 보너스 추가 필요
+        float repairAmount = repairCoefficient * GetCrewSkillValue()[SkillType.RepairSkill];
+
+        // 수리 실행
+        room.Repair(repairAmount);
+
+        // 수리 스킬 향상
+        ImproveSkill(SkillType.RepairSkill, 0.5f);
+    }
+
+    //---------시설 작업------------
+    #region 작업
+    /// <summary>
+    /// 현재 작업 중인지 여부
+    /// </summary>
+    public bool isWorking = false;
+
+    /// <summary>
+    /// 주변 적들의 유무와 현재 자신의 위치한 타일, 작업 가능한 방인지 여부에 따라 작업 행동을 시도한다.
+    /// 선원의 작업 숙련도 유무와 숙련도 적용은 Room.CanITouch에서 작동된다.
+    /// </summary>
+    public void TryWork()
+    {
+        if (currentRoom.isActive && currentRoom.workDirection != Vector2Int.zero)
+        {
+            if (!isWithEnemy())
+            {
+                if (GetCurrentTilePriorityIndex() == 0)
+                {
+                    if (currentRoom.CanITouch(this))
+                    {
+                        isWorking = true;
+                        PlayAnimation("work");
+
+                        // 작업 애니메이션 방향 (방 회전 방향 적용)
+                        List<Vector2Int> directions = new List<Vector2Int>()
+                        {
+                            Vector2Int.up,
+                            Vector2Int.right,
+                            Vector2Int.down,
+                            Vector2Int.left
+                        };
+                        Vector2Int workDir = directions[(directions.IndexOf(currentRoom.workDirection) + Convert.ToInt32(currentRoom.currentRotation)) % 4];
+                        SetAnimationDirection(workDir);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    #endregion
+
+    /// <summary>
+    /// 현재 하던 행동을 모두 멈추고 애니메이션을 대기 상태로 전환시킨다.
+    /// </summary>
+    public void Freeze()
+    {
+        // 일단 모든 코루틴을 멈추고
+        StopAllCoroutines();
+
+        // 전투 중단
+        inCombat = false;
+        PlayAnimation("attack");
+        combatCoroutine = null;
+        combatTarget = null;
+        madRoom = null;
+
+        // 작업 중단
+        WalkOut();
+
+        // 이동 중단
+        isMoving = false;
+        moveCoroutine = null;
+
+        //수리 중단
+        repairCoroutine = null;
+
+        //애니메이션 대기상태로 전환
+        PlayAnimation("idle");
+    }
+
+    /// <summary>
+    /// 현재 하던 작업 행동을 멈추고 자신을 Room.workingCrew로 할당한 Room을 찾아 할당 해제시키고 함선 능력치를 재계산한다.
+    /// </summary>
+    private void WalkOut()
+    {
+        if (isWorking)
+        {
+            isWorking = false;
+            PlayAnimation("work");
+            foreach (Room room in currentShip.GetAllRooms())
+            {
+                if (room.workingCrew == this)
+                {
+                    room.workingCrew = null;
+                }
+            }
+            currentShip.RecalculateAllStats();
+        }
+    }
+
+    /// <summary>
+    /// 현재 선원이 탑승해 있는 함선이 유저의 함선 (true)인지 적 함선 (false)인지 여부 반환
+    /// </summary>
+    /// <returns></returns>
+    public bool IsMyShip()
+    {
+        if (currentShip.isPlayerShip == isPlayerControlled)
+            return true;
+        return false;
+    }
+
+
 }

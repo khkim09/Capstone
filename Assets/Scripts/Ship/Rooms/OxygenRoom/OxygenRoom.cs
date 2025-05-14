@@ -16,6 +16,7 @@ public class OxygenRoom : Room<OxygenRoomData, OxygenRoomData.OxygenLevel>
 
         // 방 타입 설정
         roomType = RoomType.Oxygen;
+        workDirection = Vector2Int.zero;
     }
 
     /// <summary>
@@ -32,32 +33,19 @@ public class OxygenRoom : Room<OxygenRoomData, OxygenRoomData.OxygenLevel>
         if (!IsOperational() || currentRoomLevelData == null)
             return contributions;
 
-        if (currentLevel == 1)
+        if (isActive)
         {
             // 산소실 레벨 데이터에서 기여도
             contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
             contributions[ShipStat.OxygenGeneratePerSecond] = currentRoomLevelData.oxygenSupplyPerSecond;
         }
-        else
+
+        if (currentLevel > 1 && damageCondition == DamageLevel.scratch)
         {
-            if (currentHitPoints < GetMaxHitPoints())
-            {
-                float healthRate = GetHealthPercentage();
-
-                if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
-                {
-                    OxygenRoomData.OxygenLevel weakedRoomLevelData = roomData.GetTypedRoomData(currentLevel - 1);
-                    contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
-                    contributions[ShipStat.OxygenGeneratePerSecond] = weakedRoomLevelData.oxygenSupplyPerSecond;
-                }
-                else if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
-                {
-                    isActive = false;
-                }
-            }
+            OxygenRoomData.OxygenLevel weakedRoomLevelData = roomData.GetTypedRoomData(currentLevel - 1);
+            contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
+            contributions[ShipStat.OxygenGeneratePerSecond] = weakedRoomLevelData.oxygenSupplyPerSecond;
         }
-
-
         return contributions;
     }
 

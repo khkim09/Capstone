@@ -1,7 +1,9 @@
-﻿using System;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Scripting.APIUpdating;
 
 /// <summary>
 /// 게임의 전체 상태와 흐름을 관리하는 매니저.
@@ -34,7 +36,8 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")] [SerializeField]
+    [Header("Game State")]
+    [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -118,6 +121,64 @@ public class GameManager : MonoBehaviour
             currentEnemyShip.Initialize();
             GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("test_ship");
         }
+
+        // 기존으로 돌릴라면 아래 3개 주석 처리
+
+
+        // // 이동 명령
+        // StartCoroutine(MoveTest());
+
+        // // 선행 피격 테스트 - 이거 되면 사고임
+        // StartCoroutine(PreviousMissileTest());
+
+        // // 미사일 피격 테스트
+        // StartCoroutine(DelayedMissileTest());
+    }
+
+    // 피격 테스트
+    private Room WhereToGo(RoomType type)
+    {
+        List<Room> rooms = playerShip.GetAllRooms();
+        List<Room> canGo = new List<Room>();
+        foreach (Room room in rooms)
+        {
+            if (room.GetIsDamageable() && room.roomType == type)
+            {
+                canGo.Add(room);
+            }
+        }
+        return canGo[Random.Range(0, canGo.Count)];
+    }
+
+    // 피격 테스트
+    private IEnumerator MoveTest()
+    {
+        yield return new WaitForSeconds(7f);
+
+        foreach (CrewMember crew in playerShip.allCrews)
+        {
+            RTSSelectionManager.Instance.IssueMoveCommand(WhereToGo(RoomType.Engine));
+        }
+    }
+
+    // 선 피격 테스트
+    private IEnumerator PreviousMissileTest()
+    {
+        yield return new WaitForSeconds(7.1f);
+
+        Debug.LogError("엔진룸 (26, 33) 미사일 피격!!");
+        playerShip.TakeAttack(30f, ShipWeaponType.Missile, new Vector2Int(26, 33));
+    }
+
+    // 피격 테스트
+    private IEnumerator DelayedMissileTest()
+    {
+        yield return new WaitForSeconds(8f);
+
+        Debug.LogError("복도 3개 (28~30, 32) 미사일 피격!!");
+        playerShip.TakeAttack(110f, ShipWeaponType.Laser, new Vector2Int(28, 32));
+        playerShip.TakeAttack(110f, ShipWeaponType.Laser, new Vector2Int(29, 32));
+        playerShip.TakeAttack(110f, ShipWeaponType.Laser, new Vector2Int(30, 32));
     }
 
     /// <summary>

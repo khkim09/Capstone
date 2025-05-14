@@ -16,6 +16,7 @@ public class TeleportRoom : Room<TeleportRoomData, TeleportRoomData.TeleportRoom
 
         // 방 타입 설정
         roomType = RoomType.Teleporter;
+        workDirection = Vector2Int.zero;
     }
 
     /// <summary>
@@ -32,28 +33,16 @@ public class TeleportRoom : Room<TeleportRoomData, TeleportRoomData.TeleportRoom
         if (!IsOperational() || currentRoomLevelData == null)
             return contributions;
 
-        if (currentLevel == 1)
+        if (isActive)
         {
-            // 텔레포트실 레벨 데이터에서 기여도
             contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
         }
-        else
-        {
-            if (currentHitPoints < GetMaxHitPoints())
-            {
-                float healthRate = GetHealthPercentage();
 
-                if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
-                {
-                    TeleportRoomData.TeleportRoomLevel
-                        weakedRoomLevelData = roomData.GetTypedRoomData(currentLevel - 1);
-                    contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
-                }
-                else if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
-                {
-                    isActive = false;
-                }
-            }
+        if (currentLevel > 1 && damageCondition == DamageLevel.scratch)
+        {
+            TeleportRoomData.TeleportRoomLevel
+                weakedRoomLevelData = roomData.GetTypedRoomData(currentLevel - 1);
+            contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
         }
 
         return contributions;

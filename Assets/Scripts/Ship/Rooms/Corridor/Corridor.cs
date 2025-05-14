@@ -13,6 +13,7 @@ public class CorridorRoom : Room<CorridorRoomData, CorridorRoomData.CorridorRoom
     {
         base.Start();
         roomType = RoomType.Corridor;
+        workDirection=Vector2Int.zero;
     }
 
     /// <summary>

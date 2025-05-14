@@ -22,6 +22,7 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "CrewQuartersRoomData", menuName = "RoomData/CrewQuartersRoom Data")]
 public class CrewQuartersRoomData : RoomData<CrewQuartersRoomData.CrewQuartersRoomLevel>
 {
+
     /// <summary>
     /// 선실의 종류별 데이터를 정의하는 클래스.
     /// 수용 인원과 선원 사기 보너스를 포함합니다.
