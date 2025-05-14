@@ -643,10 +643,12 @@ public class CrewMember : CrewBase
 
         StopAllCoroutines();
         DontTouchMe();
+
         if (currentRoom.workingCrew == this)
         {
             WalkOut();
         }
+
         if (DieCoroutine == null)
         {
             DieCoroutine = StartCoroutine(ImDying());
@@ -711,9 +713,11 @@ public class CrewMember : CrewBase
             currentRoom.VacateTile(currentTile);
             currentRoom.OnCrewExit(this);
         }
-        if (currentShip.GetAllCrew().Contains(this)) currentShip.GetAllCrew().Remove(this);
+        if (currentShip.GetAllCrew().Contains(this))
+            currentShip.GetAllCrew().Remove(this);
 
         Destroy(this.gameObject);
+
         Debug.Log($"{crewName} 사망 처리 완료");
     }
 

@@ -371,6 +371,13 @@ public class RTSSelectionManager : MonoBehaviour
             // 3-2. 아직 이동하지 않은 선원들 중 목적지 타일까지 최단 거리 선원 탐색
             foreach (CrewMember crew in unassignedCrew)
             {
+                // 죽은 선원은 이동 불가
+                if (!crew.isAlive)
+                {
+                    unassignedCrew.Remove(crew);
+                    continue;
+                }
+
                 // 사전 검사로 불필요한 A* 호출 방지
                 if (!movementValidator.IsTileWalkable(tile))
                     continue;

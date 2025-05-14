@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Scripting.APIUpdating;
 
 /// <summary>
 /// 게임의 전체 상태와 흐름을 관리하는 매니저.
