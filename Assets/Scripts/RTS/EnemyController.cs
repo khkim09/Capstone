@@ -6,16 +6,15 @@ public class EnemyController : MonoBehaviour
     private CrewMember cm;
 
     public bool isIdle = true;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         cm = this.GetComponent<CrewMember>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //함내에 피해 발생으로 작업을 중단하고 수리를 먼저 할 필요가 있을 경우
+        // 함내에 피해 발생으로 작업을 중단하고 수리를 먼저 할 필요가 있을 경우
         if (cm.IsMyShip() && cm.currentRoom.NeedsRepair())
         {
             isIdle = true;
@@ -29,32 +28,32 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                //자신이 위치한 방 탐색
-                if(cm.isWithEnemy())
+                // 자신이 위치한 방 탐색
+                if (cm.isWithEnemy())
                 {
                     isIdle = false;
-                    RTSSelectionManager.Instance.MoveForCombat(cm, cm.currentRoom.occupiedCrewTiles);
+                    RTSSelectionManager.Instance.MoveForCombat(cm);
                 }
                 else
                 {
-                    if (cm.currentRoom.GetIsDamageable() && cm.currentRoom.currentHitPoints>0)
+                    if (cm.currentRoom.GetIsDamageable() && cm.currentRoom.currentHitPoints > 0)
                     {
                         isIdle = false;
                         cm.combatCoroutine = StartCoroutine(cm.CombatRoutine());
                     }
                 }
             }
-            if(isIdle)
+            if (isIdle)
             {
                 isIdle = false;
                 int which = Random.Range(0, 2);
                 switch (which)
                 {
                     case 0: // 무작위 방으로 이동
-                        RTSSelectionManager.Instance.IssueMoveCommand(WhereToGo(),cm);
+                        RTSSelectionManager.Instance.IssueMoveCommand(WhereToGo(), cm);
                         break;
                     case 1: // 무작위 조종실로 이동
-                        RTSSelectionManager.Instance.IssueMoveCommand(WhereToGo(RoomType.Cockpit),cm);
+                        RTSSelectionManager.Instance.IssueMoveCommand(WhereToGo(RoomType.Cockpit), cm);
                         break;
                 }
             }
@@ -63,7 +62,7 @@ public class EnemyController : MonoBehaviour
         {
             if (!cm.IsMyShip())
             {
-                if(!IsDoingSomething())
+                if (!IsDoingSomething())
                     isIdle = true;
             }
         }
@@ -86,7 +85,7 @@ public class EnemyController : MonoBehaviour
         {
             if (him.isPlayerControlled != cm.isPlayerControlled)
             {
-                if(him.currentRoom.GetRoomType()!=RoomType.Corridor)
+                if (him.currentRoom.GetRoomType() != RoomType.Corridor)
                     canGo.Add(him.currentRoom);
             }
         }

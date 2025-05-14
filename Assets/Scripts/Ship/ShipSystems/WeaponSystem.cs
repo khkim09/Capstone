@@ -25,6 +25,7 @@ public class WeaponSystem : ShipSystem
 
         // 임시 코드
         reloadBonus += 50;
+        // reloadBonus = -1000;
 
         foreach (ShipWeapon weapon in parentShip.allWeapons)
             // 재장전 보너스를 적용한 쿨다운 업데이트

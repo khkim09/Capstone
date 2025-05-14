@@ -293,7 +293,7 @@ public class CrewMember : CrewBase
         {
             Debug.LogError("적 있음");
             // 이동 중이던 선원이 우선적으로 마저 이동 (적군을 찾아감)
-            RTSSelectionManager.Instance.MoveForCombat(this, currentRoom.occupiedCrewTiles);
+            RTSSelectionManager.Instance.MoveForCombat(this);
 
             // 적군 찾아가는 동작 완료 후
             // 전투 중이지 않거나 이동 중이지 않은 적들에 대해 본인 공격하도록 어그로
@@ -499,7 +499,7 @@ public class CrewMember : CrewBase
 
             // 일단 부수기 방 설정 = 현재 방
             madRoom = currentRoom;
-            if (madRoom == null || !madRoom.GetIsDamageable() || madRoom.currentHitPoints<=0) // 부술 수 없는 방
+            if (madRoom == null || !madRoom.GetIsDamageable() || madRoom.currentHitPoints <= 0) // 부술 수 없는 방
             {
                 yield break;
             }
@@ -536,9 +536,9 @@ public class CrewMember : CrewBase
         yield return new WaitForSeconds(attackDelay);
 
         // 부술 방도 없고 적군도 죽은 상태
-        if (madRoom == null && combatTarget ==null)
+        if (madRoom == null && combatTarget == null)
         {
-                yield break;
+            yield break;
         }
 
         // 부술 방이 있거나 적군이 있다면 계속 전투 루틴 실행
@@ -595,7 +595,7 @@ public class CrewMember : CrewBase
                 inCombat = false;
                 if (isWithEnemy())
                 {
-                    RTSSelectionManager.Instance.MoveForCombat(this, this.reservedRoom.occupiedCrewTiles);
+                    RTSSelectionManager.Instance.MoveForCombat(this);
                 }
                 return;
             }
@@ -685,7 +685,7 @@ public class CrewMember : CrewBase
                 hittingMan.bullier.Remove(this);
                 if (hittingMan.isWithEnemy())
                 {
-                    RTSSelectionManager.Instance.MoveForCombat(hittingMan, hittingMan.currentRoom.occupiedCrewTiles);
+                    RTSSelectionManager.Instance.MoveForCombat(hittingMan);
                 }
                 else
                 {
@@ -738,12 +738,12 @@ public class CrewMember : CrewBase
                 continue;
             }
 
-            if ((other.combatTarget==null || other.madRoom==null) && other.isMoving == false)
+            if ((other.combatTarget == null || other.madRoom == null) && other.isMoving == false)
             {
                 // 방에 있는 상대를 나에게 이동
                 Debug.LogError($"{other.race}야, {race}한테 와");
                 other.WalkOut();
-                RTSSelectionManager.Instance.MoveForCombat(other, other.currentRoom.occupiedCrewTiles);
+                RTSSelectionManager.Instance.MoveForCombat(other);
             }
         }
     }
@@ -762,7 +762,7 @@ public class CrewMember : CrewBase
             // 유저 함선일 경우 수리, 작업 시도 및 진입
             if (IsMyShip())
             {
-                if(currentRoom.NeedsRepair())
+                if (currentRoom.NeedsRepair())
                 {
                     TryRepair();
                 }
@@ -817,7 +817,7 @@ public class CrewMember : CrewBase
     {
         if (!IsMyShip())
             return;
-        Dictionary<SkillType,float> crewSkill=GetCrewSkillValue();
+        Dictionary<SkillType, float> crewSkill = GetCrewSkillValue();
         if (!crewSkill.ContainsKey(SkillType.RepairSkill))
         {
             TryWork();

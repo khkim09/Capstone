@@ -734,7 +734,6 @@ public class RTSSelectionManager : MonoBehaviour
             // 이웃 타일이 이미 점유 당한 타일 (해당 위치로 이동 불가) && 타일 예약한게 본인이 아니라면
             if (CrewReservationManager.Instance.IsTileOccupied(readyCombatCrew.currentShip, neighborTile))
                 continue;
-            }
 
             neighborTileCandi.Add(neighborTile);
         }
@@ -762,17 +761,17 @@ public class RTSSelectionManager : MonoBehaviour
             }
         }
 
-            // 5. 이동 처리를 위한 필드값 세팅
+        // 5. 이동 처리를 위한 필드값 세팅
         readyCombatCrew.oldReservedRoom = readyCombatCrew.reservedRoom;
         readyCombatCrew.oldReservedTile = readyCombatCrew.reservedTile;
         readyCombatCrew.reservedRoom = readyCombatCrew.currentRoom;
         readyCombatCrew.reservedTile = bestNeighborTile;
 
-            // 6. reservedTiles 갱신
-            // reservedTiles.Remove(readyCombatCrew.oldReservedTile);
-            // reservedTiles.Add(neighborTile);
-            CrewReservationManager.Instance.ExitTile(readyCombatCrew.currentShip, readyCombatCrew.oldReservedRoom, readyCombatCrew.oldReservedTile, readyCombatCrew);
-            CrewReservationManager.Instance.ReserveTile(readyCombatCrew.currentShip, readyCombatCrew.reservedRoom, readyCombatCrew.reservedTile, readyCombatCrew);
+        // 6. reservedTiles 갱신
+        // reservedTiles.Remove(readyCombatCrew.oldReservedTile);
+        // reservedTiles.Add(neighborTile);
+        CrewReservationManager.Instance.ExitTile(readyCombatCrew.currentShip, readyCombatCrew.oldReservedRoom, readyCombatCrew.oldReservedTile, readyCombatCrew);
+        CrewReservationManager.Instance.ReserveTile(readyCombatCrew.currentShip, readyCombatCrew.reservedRoom, readyCombatCrew.reservedTile, readyCombatCrew);
 
         // 7. 실제 이동 처리
         if (readyCombatCrew.isMoving)
@@ -780,12 +779,9 @@ public class RTSSelectionManager : MonoBehaviour
         else
             readyCombatCrew.AssignPathAndMove(bestPathToNeighborTile);
 
-            Debug.LogError($"{readyCombatCrew.race}가 {closestEnemy.race} 이웃 타일로 이동");
-            Debug.Log("전투 개시");
+        Debug.LogError($"{readyCombatCrew.race}가 {closestEnemy.race} 이웃 타일로 이동");
+        Debug.Log("전투 개시");
 
-            return;
-        }
-
-        Debug.LogError($"{readyCombatCrew.race}가 {closestEnemy.race}에 접근할 수 있는 빈 타일 없음");
+        return;
     }
 }

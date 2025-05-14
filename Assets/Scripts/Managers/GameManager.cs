@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
                 canGo.Add(room);
             }
         }
-        return canGo[Random.Range(0, canGo.Count)];
+        return canGo[UnityEngine.Random.Range(0, canGo.Count)];
     }
 
     // 피격 테스트
