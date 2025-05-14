@@ -16,6 +16,7 @@ public class EngineRoom : Room<EngineRoomData, EngineRoomData.EngineRoomLevel>
 
         // 방 타입 설정
         roomType = RoomType.Engine;
+        workDirection=Vector2Int.up;
     }
 
 
@@ -33,37 +34,47 @@ public class EngineRoom : Room<EngineRoomData, EngineRoomData.EngineRoomLevel>
         if (!IsOperational() || currentRoomLevelData == null)
             return contributions;
 
-
-        if (currentLevel == 1)
+        if (isActive)
         {
-            // 엔진실 레벨 데이터에서 기여도 추가
             contributions[ShipStat.DodgeChance] = currentRoomLevelData.avoidEfficiency;
             contributions[ShipStat.FuelEfficiency] = currentRoomLevelData.fuelEfficiency;
             contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
             contributions[ShipStat.FuelConsumption] = currentRoomLevelData.fuelConsumption;
         }
-        else
-        {
-            if (currentHitPoints < GetMaxHitPoints())
-            {
-                float healthRate = GetHealthPercentage();
 
-                if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
-                {
-                    EngineRoomData.EngineRoomLevel weakedRoomLevelData = roomData.GetTypedRoomData(currentLevel - 1);
-                    contributions[ShipStat.DodgeChance] = weakedRoomLevelData.avoidEfficiency;
-                    contributions[ShipStat.FuelEfficiency] = weakedRoomLevelData.fuelEfficiency;
-                    contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
-                    contributions[ShipStat.FuelConsumption] = weakedRoomLevelData.fuelConsumption;
-                }
-                else if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
-                {
-                    isActive = false;
-                }
-            }
+        if (currentLevel > 1 && damageCondition == DamageLevel.scratch)
+        {
+            EngineRoomData.EngineRoomLevel weakedRoomLevelData = roomData.GetTypedRoomData(currentLevel - 1);
+            contributions[ShipStat.DodgeChance] = weakedRoomLevelData.avoidEfficiency;
+            contributions[ShipStat.FuelEfficiency] = weakedRoomLevelData.fuelEfficiency;
+            contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
+            contributions[ShipStat.FuelConsumption] = weakedRoomLevelData.fuelConsumption;
+        }
+
+        if (workingCrew != null)
+        {
+            float crewBonus = workingCrew.GetCrewSkillValue()[SkillType.EngineSkill];
+            contributions[ShipStat.DodgeChance] *= crewBonus;
+            contributions[ShipStat.FuelEfficiency] *= crewBonus;
+            contributions[ShipStat.FuelConsumption] *= crewBonus;
         }
 
         return contributions;
+    }
+
+    /// <summary>
+    /// 선원이 작업을 해도 되냐고 물어보고 되면 workingCrew로 할당해주고 아님 말고
+    /// </summary>
+    /// <param name="crew"></param>
+    /// <returns></returns>
+    public override bool CanITouch(CrewMember crew)
+    {
+        if (crew.GetCrewSkillValue().ContainsKey(SkillType.EngineSkill) && workingCrew ==null)
+        {
+            workingCrew = crew;
+            return true;
+        }
+        return false;
     }
 
     /// <summary>

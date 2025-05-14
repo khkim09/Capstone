@@ -21,6 +21,7 @@ public class CrewQuartersRoom : Room<CrewQuartersRoomData, CrewQuartersRoomData.
 
         // 방 타입 설정
         roomType = RoomType.CrewQuarters;
+        workDirection=Vector2Int.zero;
     }
 
     /// <summary>

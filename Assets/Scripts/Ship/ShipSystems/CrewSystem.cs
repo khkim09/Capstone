@@ -79,7 +79,7 @@ public class CrewSystem : ShipSystem
             crew.transform.SetParent(room.transform);
             crew.currentShip = parentShip;
 
-            Debug.LogError($"선원 랜덤 스폰 위치 : {spawnTile}");
+            Debug.Log($"선원 랜덤 스폰 위치 : {spawnTile}");
 
             room.OccupyTile(spawnTile);
             room.OnCrewEnter(crew);
@@ -93,16 +93,20 @@ public class CrewSystem : ShipSystem
     }
 
     /// <summary>
-    /// 기존의 크루 멤버를 제거합니다.
+    /// 기존의 크루 멤버를 제거합니다. (아군, 적군 모두 제거)
     /// </summary>
     /// <param name="crewToRemove">제거할 크루 멤버.</param>
     /// <returns>제거에 성공하면 true, 해당 크루가 존재하지 않으면 false.</returns>
     public bool RemoveCrew(CrewMember crewToRemove)
     {
-        if (!parentShip.allCrews.Contains(crewToRemove))
+        if (!parentShip.allCrews.Contains(crewToRemove) || !parentShip.allEnemies.Contains(crewToRemove))
             return false;
 
-        parentShip.allCrews.Remove(crewToRemove);
+        if (parentShip.allCrews.Contains(crewToRemove))
+            parentShip.allCrews.Remove(crewToRemove);
+        else if (parentShip.allEnemies.Contains(crewToRemove))
+            parentShip.allEnemies.Remove(crewToRemove);
+
         Object.Destroy(crewToRemove.gameObject);
 
         // TODO: 방에서 나가는 처리도 해야할 수도 있다. 추후 구현 필요하면 구현할 것
@@ -111,11 +115,15 @@ public class CrewSystem : ShipSystem
     }
 
     /// <summary>
-    /// 소유하고 있는 모든 선원을 제거
+    /// 소유하고 있는 모든 선원을 제거 (아군, 적군)
     /// </summary>
     public void RemoveAllCrews()
     {
-        for (int i = parentShip.allCrews.Count - 1; i >= 0; i--) RemoveCrew(parentShip.allCrews[i]);
+        for (int i = parentShip.allCrews.Count - 1; i >= 0; i--)
+            RemoveCrew(parentShip.allCrews[i]);
+
+        for (int i = parentShip.allEnemies.Count - 1; i >= 0; i--)
+            RemoveCrew(parentShip.allEnemies[i]);
     }
 
     /// <summary>
@@ -128,28 +136,38 @@ public class CrewSystem : ShipSystem
     }
 
     /// <summary>
-    /// 현재 탑승 중인 모든 크루 객체의 목록을 반환합니다.
+    /// 현재 탑승 중인 아군, 적군 포함 모든 크루 객체의 목록을 반환합니다.
     /// </summary>
     /// <returns>크루 객체 리스트.</returns>
     public List<CrewMember> GetCrews()
     {
-        return parentShip.allCrews;
+        List<CrewMember> total = new List<CrewMember>();
+
+        foreach (CrewMember crew in parentShip.allCrews)
+            total.Add(crew);
+
+        foreach (CrewMember crew in parentShip.allEnemies)
+            total.Add(crew);
+
+        return total;
     }
 
     /// <summary>
-    /// 특정 위치에 있는 모든 선원들을 반환합니다.
+    /// 특정 위치에 있는 모든 선원들을 반환합니다. (아군, 적군 모두)
     /// </summary>
     /// <param name="position">확인할 격자 위치</param>
     /// <returns>해당 위치에 있는 선원들의 리스트</returns>
-    public List<CrewBase> GetCrewsAtPosition(Vector2Int position)
+    public List<CrewMember> GetCrewsAtPosition(Vector2Int position)
     {
-        List<CrewBase> crewsAtPosition = new();
-        List<CrewMember> crews = parentShip.allCrews;
+        List<CrewMember> crewsAtPosition = new();
+        List<CrewMember> crews = GetCrews();
 
-        foreach (CrewBase crew in crews)
+        foreach (CrewMember crew in crews)
+        {
             // crew.position이 선원의 현재 위치를 가지고 있다고 가정
             if (crew.position == position)
                 crewsAtPosition.Add(crew);
+        }
 
         return crewsAtPosition;
     }
@@ -190,6 +208,10 @@ public class CrewSystem : ShipSystem
             BoxCollider2D col = originCrew.GetComponent<BoxCollider2D>();
             if (col != null)
                 col.enabled = true;
+
+            Animator anim = originCrew.GetComponent<Animator>();
+            if (anim != null)
+                anim.enabled = true;
 
             parentShip.allCrews.Add(originCrew);
         }
@@ -248,6 +270,13 @@ public class CrewSystem : ShipSystem
                 BoxCollider2D col = crew.GetComponent<BoxCollider2D>();
                 if (col != null)
                     col.enabled = true;
+
+                Animator anim = crew.GetComponent<Animator>();
+                if (anim != null)
+                    anim.enabled = true;
+
+                crew.Freeze();
+                crew.BackToThePeace();
 
                 // crewList에 추가
                 parentShip.allCrews.Add(crew);

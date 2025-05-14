@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using System.IO;
 using Random = UnityEngine.Random;
 using UnityEngine.Video;
 using UnityEditor.U2D.Aseprite;
@@ -13,7 +11,13 @@ using UnityEditor.U2D.Aseprite;
 /// </summary>
 public class Ship : MonoBehaviour
 {
-    [Header("Ship Info")] [SerializeField] public string shipName = "Milky";
+    /// <summary>
+    /// 유저의 함선인지 여부 (적 함선은 false 세팅 필요)
+    /// </summary>
+    public bool isPlayerShip = true;
+
+    [Header("Ship Info")]
+    [SerializeField] public string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -51,7 +55,15 @@ public class Ship : MonoBehaviour
     /// </summary>
     private int doorLevel;
 
-    [Header("외갑판 설정")] [SerializeField] public OuterHullData outerHullData;
+    /// <summary>
+    /// 외갑판 데이터
+    /// </summary>
+    [Header("외갑판 설정")]
+    [SerializeField] public OuterHullData outerHullData;
+
+    /// <summary>
+    /// 외갑판 prefab
+    /// </summary>
     [SerializeField] public GameObject outerHullPrefab;
 
     /// <summary>
@@ -108,7 +120,6 @@ public class Ship : MonoBehaviour
 
     public event Action OnStatsChanged;
     public event Action OnRoomChanged;
-
 
     /// <summary>
     /// 선원이 점유하는 타일 관리 (전역 변수)
@@ -247,8 +258,7 @@ public class Ship : MonoBehaviour
     /// <param name="position"></param>
     /// <param name="rotation"></param>
     /// <returns></returns>
-    public Room AddRoom(Room room, Vector2Int position = new(),
-        RotationConstants.Rotation rotation = RotationConstants.Rotation.Rotation0)
+    public Room AddRoom(Room room, Vector2Int position = new(), RotationConstants.Rotation rotation = RotationConstants.Rotation.Rotation0)
     {
         // 룸 타입 확인
         RoomType roomType = room.GetRoomType();
@@ -397,10 +407,12 @@ public class Ship : MonoBehaviour
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
         {
-            Vector2Int gridPos = room.position + new Vector2Int(x, y);
-            roomGrid.Remove(gridPos);
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = room.position + new Vector2Int(x, y);
+                roomGrid.Remove(gridPos);
+            }
         }
 
         // Remove from room type dictionary
@@ -438,6 +450,9 @@ public class Ship : MonoBehaviour
     /// </summary>
     public List<RoomBackupData> backupRoomDatas = new();
 
+    /// <summary>
+    /// 백업해 둘 함선 무기 정보들
+    /// </summary>
     public List<WeaponBackupData> backupWeapons = new();
 
     /// <summary>
@@ -452,7 +467,10 @@ public class Ship : MonoBehaviour
     public int GetTotalShipValue()
     {
         int total = 0;
-        foreach (Room room in allRooms) total += room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).cost;
+        foreach (Room room in allRooms)
+        {
+            total += room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).cost;
+        }
         return total;
     }
 
@@ -494,6 +512,7 @@ public class Ship : MonoBehaviour
         backupWeapons.Clear();
 
         foreach (Room room in allRooms)
+        {
             backupRoomDatas.Add(new RoomBackupData
             {
                 roomData = room.GetRoomData(),
@@ -501,12 +520,18 @@ public class Ship : MonoBehaviour
                 position = room.position,
                 rotation = room.currentRotation
             });
+        }
 
         foreach (ShipWeapon wp in GetAllWeapons())
+        {
             backupWeapons.Add(new WeaponBackupData()
             {
-                weaponData = wp.weaponData, position = wp.GetGridPosition(), direction = wp.GetAttachedDirection()
+                weaponData = wp.weaponData,
+                position = wp.GetGridPosition(),
+                direction = wp.GetAttachedDirection()
             });
+
+        }
     }
 
     /// <summary>
@@ -543,6 +568,7 @@ public class Ship : MonoBehaviour
     /// 현재 설계도 함선을 실제 함선 구조로 반영
     /// (방뿐 아니라 무기도 함께 적용)
     /// </summary>
+    /// <param name="bpShip">설계도 함선</param>
     public void ReplaceShipFromBlueprint(BlueprintShip bpShip)
     {
         // 1. 기존 선원 모두 삭제
@@ -551,7 +577,7 @@ public class Ship : MonoBehaviour
 
         allCrews.Clear();
 
-        // 2. 기존 함선 삭제
+        // 2. 기존 방 삭제
         foreach (Room room in allRooms)
             Destroy(room.gameObject);
 
@@ -595,7 +621,6 @@ public class Ship : MonoBehaviour
             if (newWeapon != null) newWeapon.ApplyRotationSprite(GetOuterHullLevel());
         }
     }
-
 
     // ---------------- <기현> 여기까지 --------------------
 
@@ -678,12 +703,12 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-        for (int y = 0; y < size.y; y++)
-        {
-            Vector2Int checkPos = pos + new Vector2Int(x, y);
-            if (roomGrid.ContainsKey(checkPos))
-                return false;
-        }
+            for (int y = 0; y < size.y; y++)
+            {
+                Vector2Int checkPos = pos + new Vector2Int(x, y);
+                if (roomGrid.ContainsKey(checkPos))
+                    return false;
+            }
 
         return true;
     }
@@ -1098,6 +1123,18 @@ public class Ship : MonoBehaviour
         return rooms[Random.Range(0, rooms.Count)];
     }
 
+    public void AllFreeze()
+    {
+        foreach (CrewMember crew in GetAllCrew())
+        {
+            if (crew != null)
+            {
+                crew.Freeze();
+                crew.BackToThePeace();
+            }
+        }
+    }
+
     #region 무기
 
     /// <summary>
@@ -1169,6 +1206,7 @@ public class Ship : MonoBehaviour
             targetPositions.Add(tile);
 
         Vector2Int randomPosition = targetPositions[Random.Range(0, targetPositions.Count)];
+
         return randomPosition;
     }
 
@@ -1200,6 +1238,8 @@ public class Ship : MonoBehaviour
         OuterHullSystem hullSystem = OuterHullSystem;
         float finalDamage = hullSystem.ReduceDamage(damage);
 
+        Debug.Log($"쉴드로 감소된 최종 데미지 : {finalDamage}");
+
         if (finalDamage > 0)
         {
             // 함선 전체에 데미지 적용
@@ -1208,7 +1248,11 @@ public class Ship : MonoBehaviour
             if (shipWeaponType == ShipWeaponType.Missile)
             {
                 // 미사일이 직접 떨어진 위치의 방에만 데미지 적용
-                if (roomGrid.TryGetValue(hitPosition, out Room hitRoom)) hitRoom.TakeDamage(finalDamage);
+                if (roomGrid.TryGetValue(hitPosition, out Room hitRoom))
+                {
+                    Debug.Log($"피격 방 : {hitRoom}, 피격 지점 : {hitPosition}");
+                    hitRoom.TakeDamage(finalDamage);
+                }
 
                 // 직접 타격 지점과 주변 8칸에 있는 선원들에게 데미지 적용
                 ApplyDamageToCrewsInArea(hitPosition, finalDamage, true); // true = 3x3 영역 스플래시
@@ -1216,7 +1260,11 @@ public class Ship : MonoBehaviour
             else
             {
                 // 단일 지점 데미지 - 방에 데미지 적용
-                if (roomGrid.TryGetValue(hitPosition, out Room hitRoom)) hitRoom.TakeDamage(finalDamage);
+                if (roomGrid.TryGetValue(hitPosition, out Room hitRoom))
+                {
+                    Debug.Log($"피격 방 : {hitRoom}, 피격 지점 : {hitPosition}");
+                    hitRoom.TakeDamage(finalDamage);
+                }
 
                 // 그 위치에 있는 선원들에게 데미지 적용
                 ApplyDamageToCrewsInArea(hitPosition, finalDamage, false); // false = 단일 지점
@@ -1245,8 +1293,10 @@ public class Ship : MonoBehaviour
     /// <param name="damage">적용할 피해량.</param>
     private void ApplyDamageToCrewsInRoom(Room room, float damage)
     {
-        List<CrewBase> crewsInRoom = room.GetCrewInRoom();
-        foreach (CrewBase crew in crewsInRoom) crew.TakeDamage(damage);
+        List<CrewMember> totalCrews = room.GetTotalCrewsInRoom();
+
+        foreach (CrewMember eachCrew in totalCrews)
+            eachCrew.TakeDamage(damage);
     }
 
 
@@ -1257,8 +1307,12 @@ public class Ship : MonoBehaviour
     /// <param name="damage">적용할 원 피해량.</param>
     private void ApplyDamageToCrewsAtPosition(Vector2Int position, float damage)
     {
-        List<CrewBase> crewsAtPosition = CrewSystem.GetCrewsAtPosition(position);
-        foreach (CrewBase crew in crewsAtPosition) crew.TakeDamage(damage);
+        List<CrewMember> crewsAtPosition = CrewSystem.GetCrewsAtPosition(position);
+        foreach (CrewMember crew in crewsAtPosition)
+        {
+            Debug.LogError($"피격 지점 : {position}, {damage} 데미지 선원 : {crew}");
+            crew.TakeDamage(damage);
+        }
     }
 
     /// <summary>
@@ -1270,22 +1324,22 @@ public class Ship : MonoBehaviour
     /// <param name="isSplash">스플래쉬 데미지 여부.</param>
     private void ApplyDamageToCrewsInArea(Vector2Int position, float damage, bool isSplash)
     {
-        // 단일 지점에 있는 선원들에게 데미지 적용
+        // 단일 지점에 있는 선원에게 데미지 적용
         ApplyDamageToCrewsAtPosition(position, damage);
 
 
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
-            for (int y = -1; y <= 1; y++)
-            {
-                if (x == 0 && y == 0) continue;
+                for (int y = -1; y <= 1; y++)
+                {
+                    if (x == 0 && y == 0) continue;
 
-                Vector2Int checkPos = position + new Vector2Int(x, y);
+                    Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                // 해당 위치에 있는 선원들에게 데미지 적용
-                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
-            }
+                    // 해당 위치에 있는 선원들에게 데미지 적용
+                    ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
+                }
     }
 
     #endregion

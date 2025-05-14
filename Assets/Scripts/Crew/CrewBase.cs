@@ -124,8 +124,16 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// </summary>
     public Animator animator;
 
+    /// <summary>
+    /// 선원 체력 바
+    /// </summary>
     [Header("Health Bar")] [SerializeField]
     private CrewHealthBar healthBarController;
+
+    /// <summary>
+    /// 해당 선원을 때리고 있는 선원 리스트
+    /// </summary>
+    public HashSet<CrewMember> bullier = new();
 
     private void Start()
     {
@@ -133,6 +141,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         spriteRenderer.sortingOrder = SortingOrderConstants.Character;
         spriteRenderer.sprite = Resources.Load<Sprite>($"Sprites/Crew/{race.ToString().ToLower()}");
 
+        // 종족별 애니메이터 연결
         if (animator == null)
         {
             animator = gameObject.AddComponent<Animator>();
@@ -227,7 +236,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         if (currentShip != null)
             if (currentShip.GetOxygenLevel() == OxygenLevel.None)
-                TakeDamage(maxHealth * 0.01f); // 최대 체력의 1%만큼 데미지
+                this.gameObject.GetComponent<CrewMember>().TakeDamage(maxHealth * 0.01f); // 최대 체력의 1%만큼 데미지
     }
 
     /// <summary>
@@ -275,6 +284,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
     // 전투 관련
 
+    /*
     /// <summary>
     /// 지정된 적 선원을 공격합니다. 공격력은 반올림 처리됩니다.
     /// </summary>
@@ -330,20 +340,21 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         // TODO : 임시로 작동되게 해놓음.
 
-        if (currentShip.GetAllCrew().Contains(this as CrewMember)) currentShip.GetAllCrew().Remove(this as CrewMember);
+        if (currentShip.GetAllCrew().Contains(this as CrewMember))
+            currentShip.GetAllCrew().Remove(this as CrewMember);
 
         // 아래는 원래 코드
-        /*
-         *  // 사망 이벤트 발생 등 추가 처리
-        if (CrewManager.Instance.crewList.Contains(this))
-        {
-            CrewManager.Instance.crewList.Remove(this); // 해당 선원 찾아 제외
-            CrewManager.Instance.RefreshCrewList(CrewManager.Instance.crewList.Count,
-                CrewManager.Instance.maxCrewCount); // 총 선원 수 갱신
-        }
+        // /*
+        //  *  // 사망 이벤트 발생 등 추가 처리
+        // if (CrewManager.Instance.crewList.Contains(this))
+        // {
+        //     CrewManager.Instance.crewList.Remove(this); // 해당 선원 찾아 제외
+        //     CrewManager.Instance.RefreshCrewList(CrewManager.Instance.crewList.Count,
+        //         CrewManager.Instance.maxCrewCount); // 총 선원 수 갱신
+        // }
 
-         *
-         */
+        //  *
+        //
 
 
         // 사망 처리 - 0.5초 후 사라짐
@@ -351,24 +362,9 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         Debug.Log($"{crewName} 사망 처리 완료");
     }
+    */
 
-    /// <summary>
-    /// 특정 방을 수리하며 수리 스킬을 향상시킵니다.
-    /// </summary>
-    /// <param name="room">수리 대상 방.</param>
-    /// <param name="amount">수리량.</param>
-    public void RepairFacility(Room room, float amount)
-    {
-        // 수리 스킬에 따른 수리량 계산
-        // float repairSkillBonus = skills.ContainsKey(SkillType.RepairSkill) ? skills[SkillType.RepairSkill] / 100f : 0f;
-        float repairAmount = amount;
 
-        // 수리 실행
-        room.Repair(repairAmount);
-
-        // 수리 스킬 향상
-        ImproveSkill(SkillType.RepairSkill, 0.5f);
-    }
 
     /// <summary>
     /// 선원의 체력을 회복합니다. 최대 체력을 초과하지 않습니다.

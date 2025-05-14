@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Easy Save 3를 사용하여 선원(CrewBase) 객체의 직렬화 및 역직렬화를 담당하는 유틸리티 클래스
+/// Easy Save 3를 사용하여 선원(CrewMember) 객체의 직렬화 및 역직렬화를 담당하는 유틸리티 클래스
 /// </summary>
 public static class CrewSerialization
 {

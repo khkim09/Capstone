@@ -53,7 +53,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
     /// <summary>
     /// 현재 커스터마이징 중인 플레이어 함선입니다.
     /// </summary>
-    [Header("Ship")] public Ship playerShip;
+    [Header("Ship")]
+    public Ship playerShip;
 
     /// <summary>
     /// 그리드 타일 배치 작업을 위한 오브젝트
@@ -197,8 +198,13 @@ public class CustomizeShipUIHandler : MonoBehaviour
         List<CrewMember> crews = playerShip.allCrews;
 
         foreach (CrewMember crew in crews)
+        {
             if (crew != null)
+            {
+                crew.Freeze();
                 crew.gameObject.SetActive(false);
+            }
+        }
     }
 
     /// <summary>
@@ -209,8 +215,13 @@ public class CustomizeShipUIHandler : MonoBehaviour
         List<CrewMember> crews = playerShip.allCrews;
 
         foreach (CrewMember crew in crews)
+        {
             if (crew != null)
+            {
                 crew.gameObject.SetActive(true);
+                crew.BackToThePeace();
+            }
+        }
     }
 
     /// <summary>
@@ -364,6 +375,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
 
             // 3) 기존 선원 복구 및 랜덤 배치
             playerShip.CrewSystem.RestoreCrewAfterBuild(playerShip.backupCrewDatas);
+
+            playerShip.AllFreeze();
         }
 
         // 함선 스텟 다시 계산

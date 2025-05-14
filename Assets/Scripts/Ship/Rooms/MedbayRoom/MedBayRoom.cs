@@ -18,6 +18,7 @@ public class MedBayRoom : Room<MedBayRoomData, MedBayRoomData.MedBayRoomLevel>
 
         // 방 타입 설정
         roomType = RoomType.MedBay;
+        workDirection=Vector2Int.up;
     }
 
     /// <summary>
@@ -34,32 +35,42 @@ public class MedBayRoom : Room<MedBayRoomData, MedBayRoomData.MedBayRoomLevel>
         if (!IsOperational() || currentRoomLevelData == null)
             return contributions;
 
-        if (currentLevel == 1)
+        if (isActive)
         {
             // 배리어실 레벨 데이터에서 기여도
             contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
             contributions[ShipStat.HealPerSecond] = currentRoomLevelData.healPerSecond;
         }
-        else
-        {
-            if (currentHitPoints < GetMaxHitPoints())
-            {
-                float healthRate = GetHealthPercentage();
 
-                if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelOne])
-                {
-                    MedBayRoomData.MedBayRoomLevel weakedRoomLevelData = roomData.GetTypedRoomData(currentLevel - 1);
-                    contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
-                    contributions[ShipStat.HealPerSecond] = weakedRoomLevelData.healPerSecond;
-                }
-                else if (healthRate <= currentRoomLevelData.damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
-                {
-                    isActive = false;
-                }
-            }
+        if (currentLevel > 1 && damageCondition == DamageLevel.scratch)
+        {
+            MedBayRoomData.MedBayRoomLevel weakedRoomLevelData = roomData.GetTypedRoomData(currentLevel - 1);
+            contributions[ShipStat.PowerUsing] = weakedRoomLevelData.powerRequirement;
+            contributions[ShipStat.HealPerSecond] = weakedRoomLevelData.healPerSecond;
+        }
+
+        if (workingCrew != null)
+        {
+            float crewBonus = workingCrew.GetCrewSkillValue()[SkillType.MedBaySkill];
+            contributions[ShipStat.HealPerSecond] *= crewBonus;
         }
 
         return contributions;
+    }
+
+    /// <summary>
+    /// 선원이 작업을 해도 되냐고 물어보고 되면 workingCrew로 할당해주고 아님 말고
+    /// </summary>
+    /// <param name="crew"></param>
+    /// <returns></returns>
+    public override bool CanITouch(CrewMember crew)
+    {
+        if (crew.GetCrewSkillValue().ContainsKey(SkillType.MedBaySkill) && workingCrew ==null)
+        {
+            workingCrew = crew;
+            return true;
+        }
+        return false;
     }
 
     /// <summary>

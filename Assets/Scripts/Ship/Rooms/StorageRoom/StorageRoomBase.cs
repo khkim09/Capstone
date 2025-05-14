@@ -26,6 +26,7 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
     protected override void Start()
     {
         base.Start();
+        workDirection=Vector2Int.zero;
     }
 
     public override void Initialize(int level)

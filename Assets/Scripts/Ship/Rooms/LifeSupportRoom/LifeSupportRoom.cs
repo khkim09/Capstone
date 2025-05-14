@@ -16,6 +16,7 @@ public class LifeSupportRoom : Room<LifeSupportRoomData, LifeSupportRoomData.Lif
 
         // 방 타입 설정
         roomType = RoomType.LifeSupport;
+        workDirection = Vector2Int.zero;
     }
 
     /// <summary>
