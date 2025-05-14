@@ -167,6 +167,7 @@ public class GameManager : MonoBehaviour
         for (int index = 0; index < corridors.Length; index++)
             corridors[index] = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
 
+
         playerShip.AddRoom(cockpit, new Vector2Int(35, 31), RotationConstants.Rotation.Rotation90);
         playerShip.AddRoom(engine, new Vector2Int(34, 28), RotationConstants.Rotation.Rotation270);
         playerShip.AddRoom(power, new Vector2Int(33, 33), RotationConstants.Rotation.Rotation90);
@@ -193,6 +194,7 @@ public class GameManager : MonoBehaviour
         // playerShip.AddRoom(temp, new Vector2Int(50, 31), RotationConstants.Rotation.Rotation90);
 
         playerShip.AddWeapon(1, new Vector2Int(35, 33), ShipWeaponAttachedDirection.East);
+        // playerShip.AddWeapon(8, new Vector)
 
         playerShip.UpdateOuterHullVisuals();
 

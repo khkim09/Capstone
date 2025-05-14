@@ -25,18 +25,7 @@ public class OuterShipCombatController
         float attackDamage = attacker.GetActualDamage(weapon.GetDamage());
 
         Vector2Int targetPosition = targetShip.GetRandomTargetPosition();
-
-
-        ProjectileManager.Instance.FireProjectile(
-            weapon.GetFirePosition().position, // 발사 위치
-            targetPosition, // 목표 위치
-            weapon.GetWeaponType(), // 무기 타입
-            () =>
-            {
-                // 투사체 도착 시 콜백 (실제 데미지 적용)
-                targetShip.TakeAttack(attackDamage, weapon.GetWeaponType(), targetPosition);
-            }
-        );
+        Vector3 targetWorldPosition = targetShip.GetWorldPositionFromGrid(targetPosition);
 
         return true;
     }

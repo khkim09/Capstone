@@ -63,7 +63,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>방의 시각적 렌더러.</summary>
     protected SpriteRenderer roomRenderer; // 방 렌더러
 
-    protected SpriteRenderer iconRenderer;
+    public SpriteRenderer iconRenderer;
 
 
     /// <summary>소속된 Ship 참조.</summary>
@@ -742,6 +742,17 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     {
         return crewInRoom;
     }
+
+    /// <summary>
+    /// 현재 레벨의 시각적 요소 (스프라이트 등)를 갱신합니다.
+    /// </summary>
+    public void UpdateRoomVisual()
+    {
+        // TODO : 아이콘 체력상황, 타입에 맞게 업데이트
+        // if(damageLevel ==
+
+//        iconRenderer.sprite = Resources.Load<Sprite>("Sprites/UI/Room Icons/");
+    }
 }
 
 /// <summary>
@@ -844,12 +855,12 @@ public abstract class Room<TData, TLevel> : Room
     /// <summary>
     /// 현재 레벨의 시각적 요소 (스프라이트 등)를 갱신합니다.
     /// </summary>
-    private void UpdateRoomVisual()
+    public void UpdateRoomVisual()
     {
+        base.UpdateRoomVisual();
+
         TLevel levelData = GetCurrentLevelData();
         if (roomRenderer != null && levelData?.roomSprite != null) roomRenderer.sprite = levelData.roomSprite;
-
-        //iconRenderer.sprite = Resources.Load("Sprites/UI/Room Icons/")
     }
 
     private void InitializeDoor()
