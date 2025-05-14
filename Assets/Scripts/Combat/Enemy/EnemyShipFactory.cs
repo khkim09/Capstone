@@ -34,7 +34,7 @@ public class EnemyShipFactory : MonoBehaviour
         }
 
         // 템플릿 로드 시 생성될 배의 예상 이름
-        string expectedShipName = "PlayerShip"; // ES3가 생성하는 이름 규칙에 맞게 조정 필요
+        string expectedShipName = "EnemyShip"; // ES3가 생성하는 이름 규칙에 맞게 조정 필요
 
         try
         {

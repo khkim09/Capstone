@@ -42,7 +42,8 @@ public class OuterHullSystem : ShipSystem
     /// <returns>피해 감소가 적용된 최종 피해량.</returns>
     public float ReduceDamage(float damage)
     {
-        float damageAfterHull = damage * (100 - GetShipStat(ShipStat.DamageReduction)) / 100;
+        // float damageAfterHull = damage * (100 - parentShip.outerHullData.GetOuterHullData(currentOuterHullLevel).damageReduction) / 100;
+        float damageAfterHull = damage; // TODO : 임시로 처리. 해적선 저장할 때 outerhullsystem 이 null 이라 그럼
         return damageAfterHull;
     }
 
@@ -347,7 +348,7 @@ public class OuterHullSystem : ShipSystem
             }
         }
 
-        Debug.Log($"Created {currentOuterHulls.Count} outer hull tiles at level {level + 1}");
+//        Debug.Log($"Created {currentOuterHulls.Count} outer hull tiles at level {level + 1}");
     }
 
     /// <summary>

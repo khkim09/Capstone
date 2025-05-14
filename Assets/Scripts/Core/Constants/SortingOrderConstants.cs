@@ -1,5 +1,6 @@
 ﻿public static class SortingOrderConstants
 {
+    public const int Background = -15;
     public const int Room = -10;
     public const int Door = 10;
     public const int Weapon = -10;
@@ -10,6 +11,7 @@
     public const int TradingItemFrameDragging = 140;
     public const int TradingItemIconDragging = 150;
     public const int Character = 500;
+    public const int CharacterHealthBar = 510;
     public const int UI = 1000;
     public const int SettingUI = 1500;
 

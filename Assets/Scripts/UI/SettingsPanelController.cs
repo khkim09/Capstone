@@ -19,8 +19,13 @@ public class SettingsPanelController : MonoBehaviour
 
     [SerializeField] private GameObject[] languageSettingElements; // 메인 메뉴에서만 표시할 언어 설정 UI 요소들
 
+    [Header("Credit Controls")] [SerializeField]
+    private GameObject creditsPanel;
+
     [Header("Buttons")] [SerializeField] private Button confirmButton;
     [SerializeField] private Button cancelButton;
+    [SerializeField] private Button creditsButton;
+    [SerializeField] private Button mainMenuButton;
 
     // 현재 설정값 (임시 저장)
     private float currentBgmVolume;
@@ -52,12 +57,21 @@ public class SettingsPanelController : MonoBehaviour
         if (cancelButton != null)
             cancelButton.onClick.AddListener(CancelSettings);
 
+        if (mainMenuButton != null)
+            mainMenuButton.onClick.AddListener(GoToMainMenu);
+
+        if (creditsButton != null)
+            creditsButton.onClick.AddListener(ShowCredits);
+
         // 언어 드롭다운 초기화
         if (languageDropdown != null)
             InitializeLanguageDropdown();
 
         // 초기 언어 설정 UI 가시성 설정
         UpdateLanguageElementsVisibility();
+
+        // 초기 메인 메뉴 버튼 가시성 설정
+        UpdateMainMenuButtonVisibility();
     }
 
     private void OnEnable()
@@ -76,6 +90,7 @@ public class SettingsPanelController : MonoBehaviour
         Debug.Log($"씬 로드 완료됨: {scene.name}, 모드: {mode}");
 
         UpdateLanguageElementsVisibility();
+        UpdateMainMenuButtonVisibility();
     }
 
     // 현재 게임 상태 저장
@@ -106,6 +121,19 @@ public class SettingsPanelController : MonoBehaviour
                 element.SetActive(isInMainMenu);
     }
 
+    // 메인 메뉴 버튼의 가시성 업데이트
+    private void UpdateMainMenuButtonVisibility()
+    {
+        bool isInMainMenu = false;
+
+        // UIManager가 있으면 거기서 상태 가져오기
+        if (UIManager.Instance != null) isInMainMenu = UIManager.Instance.IsInMainMenu();
+
+        // 메인 메뉴가 아닐 때만 메인 메뉴 버튼 활성화
+        if (mainMenuButton != null)
+            mainMenuButton.gameObject.SetActive(!isInMainMenu);
+    }
+
     // 설정창 초기화
     private void InitializeSettings()
     {
@@ -116,6 +144,7 @@ public class SettingsPanelController : MonoBehaviour
         InitializeLanguageSettings();
 
         UpdateLanguageElementsVisibility();
+        UpdateMainMenuButtonVisibility();
     }
 
     #region Volume Settings
@@ -239,6 +268,44 @@ public class SettingsPanelController : MonoBehaviour
             // 0-10 단계로 표시
             int volumeLevel = Mathf.RoundToInt(value * volumeSteps);
             sfxValueText.text = volumeLevel.ToString();
+        }
+    }
+
+    // 메인 메뉴로 이동
+    public void GoToMainMenu()
+    {
+        // 게임 상태를 메인 메뉴로 변경
+        if (GameManager.Instance != null)
+            GameManager.Instance.ChangeGameState(GameState.MainMenu);
+
+        Debug.Log("메인 메뉴로 이동 중...");
+
+        // MainMenu 씬으로 이동
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    #endregion
+
+    #region Credits
+
+    // 크레딧 보기
+    public void ShowCredits()
+    {
+        if (creditsPanel != null)
+        {
+            Debug.Log("크레딧 패널 활성화");
+            creditsPanel.SetActive(true);
+        }
+    }
+
+    // 스페이스바 입력 확인 및 크레딧 패널 닫기
+    private void Update()
+    {
+        // 크레딧 패널이 활성화된 상태에서 스페이스바를 누르면 닫기
+        if (creditsPanel != null && creditsPanel.activeInHierarchy && Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("스페이스바로 크레딧 패널 닫기");
+            creditsPanel.SetActive(false);
         }
     }
 

@@ -216,6 +216,19 @@ public class ShipWeaponJsonLoader : EditorWindow
                 weaponSO.cooldownPerSecond = (float)(double)weaponToken["cooldown_per_second"];
                 weaponSO.cost = (int)weaponToken["cost"];
 
+                // 투사체 ID 추가
+                if (weaponToken["projectile_id"] != null)
+                {
+                    weaponSO.projectileId = (int)weaponToken["projectile_id"];
+                    Debug.Log($"무기 {weaponId}의 투사체 ID: {weaponSO.projectileId}");
+                }
+                else
+                {
+                    Debug.LogWarning($"무기 {weaponId}에 투사체 ID가 없습니다.");
+                    // 기본값 설정 (필요에 따라)
+                    weaponSO.projectileId = 0;
+                }
+
                 // type_id로 무기 타입 설정
                 if (weaponToken["type_id"] != null)
                 {
