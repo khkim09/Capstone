@@ -13,7 +13,7 @@ using UnityEditor.U2D.Aseprite;
 /// </summary>
 public class Ship : MonoBehaviour
 {
-    [Header("Ship Info")][SerializeField] public string shipName = "Milky";
+    [Header("Ship Info")] [SerializeField] public string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -51,7 +51,7 @@ public class Ship : MonoBehaviour
     /// </summary>
     private int doorLevel;
 
-    [Header("외갑판 설정")][SerializeField] public OuterHullData outerHullData;
+    [Header("외갑판 설정")] [SerializeField] public OuterHullData outerHullData;
     [SerializeField] public GameObject outerHullPrefab;
 
     /// <summary>
@@ -201,6 +201,10 @@ public class Ship : MonoBehaviour
         room.roomType = roomType;
         room.position = position;
         room.currentRotation = rotation;
+
+        // 체력 검사 색깔 판정
+        // 타입 검사 종류 판점
+        room.UpdateRoomVisual();
 
         // 룸 위치 설정
         Vector2Int size = roomData.GetRoomDataByLevel(level).size;
@@ -393,11 +397,11 @@ public class Ship : MonoBehaviour
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-            for (int y = 0; y < room.GetSize().y; y++)
-            {
-                Vector2Int gridPos = room.position + new Vector2Int(x, y);
-                roomGrid.Remove(gridPos);
-            }
+        for (int y = 0; y < room.GetSize().y; y++)
+        {
+            Vector2Int gridPos = room.position + new Vector2Int(x, y);
+            roomGrid.Remove(gridPos);
+        }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -501,9 +505,7 @@ public class Ship : MonoBehaviour
         foreach (ShipWeapon wp in GetAllWeapons())
             backupWeapons.Add(new WeaponBackupData()
             {
-                weaponData = wp.weaponData,
-                position = wp.GetGridPosition(),
-                direction = wp.GetAttachedDirection()
+                weaponData = wp.weaponData, position = wp.GetGridPosition(), direction = wp.GetAttachedDirection()
             });
     }
 
@@ -676,12 +678,12 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-            for (int y = 0; y < size.y; y++)
-            {
-                Vector2Int checkPos = pos + new Vector2Int(x, y);
-                if (roomGrid.ContainsKey(checkPos))
-                    return false;
-            }
+        for (int y = 0; y < size.y; y++)
+        {
+            Vector2Int checkPos = pos + new Vector2Int(x, y);
+            if (roomGrid.ContainsKey(checkPos))
+                return false;
+        }
 
         return true;
     }
@@ -1161,13 +1163,13 @@ public class Ship : MonoBehaviour
     /// <returns>타겟팅 가능한 방의 격자 좌표.</returns>
     public Vector2Int GetRandomTargetPosition()
     {
-        // 실제 구현에서는 함선의 경계 내에서 랜덤 위치 반환
-        // 또는 실제 방의 위치 반환
-        Room randomRoom = GetRandomTargettableRoom();
+        List<Vector2Int> targetPositions = new();
+        foreach (Room r in allRooms)
+        foreach (Vector2Int tile in r.GetOccupiedTiles())
+            targetPositions.Add(tile);
 
-        if (randomRoom == null) return Vector2Int.zero;
-
-        return randomRoom.position;
+        Vector2Int randomPosition = targetPositions[Random.Range(0, targetPositions.Count)];
+        return randomPosition;
     }
 
     /// <summary>
@@ -1275,15 +1277,15 @@ public class Ship : MonoBehaviour
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
-                for (int y = -1; y <= 1; y++)
-                {
-                    if (x == 0 && y == 0) continue;
+            for (int y = -1; y <= 1; y++)
+            {
+                if (x == 0 && y == 0) continue;
 
-                    Vector2Int checkPos = position + new Vector2Int(x, y);
+                Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                    // 해당 위치에 있는 선원들에게 데미지 적용
-                    ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
-                }
+                // 해당 위치에 있는 선원들에게 데미지 적용
+                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
+            }
     }
 
     #endregion
@@ -1477,18 +1479,18 @@ public class Ship : MonoBehaviour
 
         // 2. 이(적군) 함선의 중심 월드 좌표 계산
         Vector3 enemySum = Vector3.zero;
-        foreach (Room room in this.allRooms)
+        foreach (Room room in allRooms)
             enemySum += room.transform.position;
-        Vector2 enemyCenter = enemySum / this.allRooms.Count;
+        Vector2 enemyCenter = enemySum / allRooms.Count;
 
         // 3. 회전 (정면 반대로)
-        this.transform.rotation = Quaternion.Euler(0, 0, 180f);
+        transform.rotation = Quaternion.Euler(0, 0, 180f);
 
         // 4. 적 함선과 유저 함선의 월드 좌표 위치 차이 계산
         float diffX = userCenter.x + enemyCenter.x + xOffset;
         float diffY = userCenter.y + enemyCenter.y;
 
-        this.transform.position = new Vector3(diffX, diffY, 10f);
+        transform.position = new Vector3(diffX, diffY, 10f);
 
         // 5. 소속 적군도 옮기기
         foreach (CrewMember crew in allCrews)
@@ -1500,7 +1502,6 @@ public class Ship : MonoBehaviour
             List<Vector2Int> entryTiles = room.GetRotatedCrewEntryGridPriority();
 
             foreach (Vector2Int tile in entryTiles)
-            {
                 // 점유되지 않은 타일에 배치
                 if (!IsCrewTileOccupied(room, tile))
                 {
@@ -1511,10 +1512,19 @@ public class Ship : MonoBehaviour
                     MarkCrewTileOccupied(room, tile);
                     break;
                 }
+        }
+
+        // 모든 방의 점유 타일 검사
+        foreach (Room r in allRooms)
+        {
+            foreach (Vector2Int tile in r.GetOccupiedTiles())
+            {
+                Debug.LogError($"{r} : {tile} 점유");
+                // if (crewOccupiedTiles[r].Contains(tile))
+                //     Debug.LogError($"{tile}은 {CrewSystem.GetCrewsAtPosition(tile)}선원이 점유중");
             }
         }
     }
-
 
     #endregion
 }

@@ -54,6 +54,11 @@ public class ShipWeapon : MonoBehaviour
     /// </summary>
     private bool isEnabled = true;
 
+    /// <summary>
+    /// 이 무기를 소유한 함선
+    /// </summary>
+    private Ship ownerShip;
+
     private void Awake()
     {
         // SpriteRenderer 컴포넌트 가져오기
@@ -63,6 +68,9 @@ public class ShipWeapon : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = SortingOrderConstants.Weapon;
+
+        // 소유 함선 찾기
+        ownerShip = GetComponentInParent<Ship>();
     }
 
     /// <summary>
@@ -171,6 +179,17 @@ public class ShipWeapon : MonoBehaviour
         if (currentCooldown < 100) currentCooldown += deltaTime * GetCooldownPerSecond();
     }
 
+    public void UpdateCooldownWithBonus(float deltaTime, float reloadBonus)
+    {
+        if (currentCooldown < 100)
+        {
+            currentCooldown += deltaTime * GetCooldownPerSecond() * reloadBonus;
+
+            // 쿨다운이 완료되면 자동 발사 시도
+            if (IsReady()) TryAutoFire();
+        }
+    }
+
     /// <summary>
     /// 무기가 발사 가능한 상태인지 확인합니다.
     /// </summary>
@@ -265,6 +284,112 @@ public class ShipWeapon : MonoBehaviour
         return attachedDirection;
     }
 
+    /// <summary>
+    /// 쿨다운 완료 시 자동 발사 시도
+    /// </summary>
+    private void TryAutoFire()
+    {
+        // 활성화 조건 체크 (나중에 추가될 부분)
+        if (!isEnabled || ownerShip == null)
+            return;
+
+        // 타겟 존재 확인
+        Ship targetShip = GetTargetShip();
+        if (targetShip == null)
+            return;
+
+        // 발사 시도
+        TryFire();
+    }
+
+    /// <summary>
+    /// 무기 발사 시도
+    /// </summary>
+    /// <returns>발사 성공 여부</returns>
+    public bool TryFire()
+    {
+        // if (!IsReady() || !isEnabled || ownerShip == null)
+        //     return false;
+        // 임시로 무조건 통과
+
+        // 타겟 결정
+        Ship targetShip = GetTargetShip();
+        if (targetShip == null)
+            return false;
+
+        return Fire(targetShip);
+    }
+
+
+    /// <summary>
+    /// 무기 발사 실행
+    /// </summary>
+    /// <param name="targetShip">목표 함선</param>
+    /// <returns>발사 성공 여부</returns>
+    private bool Fire(Ship targetShip)
+    {
+        // 데미지 계산 (함선의 무기 보너스 적용)
+        float finalDamage = ownerShip.GetActualDamage(GetDamage());
+
+        // 목표 위치 결정
+        Vector2Int targetPosition = targetShip.GetRandomTargetPosition();
+
+        // 발사 위치
+        Vector3 firePosition = GetFirePosition().position;
+        Vector3 targetWorldPosition = targetShip.GetWorldPositionFromGrid(targetPosition);
+
+        // 모든 무기 타입에 동일한 처리
+        if (ProjectileManager.Instance != null)
+        {
+            int projectileId = weaponData.projectileId;
+
+            ProjectileManager.Instance.FireProjectile(
+                firePosition,
+                targetWorldPosition,
+                projectileId,
+                () =>
+                {
+                    // 투사체 도착 시 콜백
+                    OnProjectileHit(targetShip, targetPosition, finalDamage);
+                }
+            );
+
+            ResetCooldown();
+            return true;
+        }
+
+        return false;
+    }
+
+
+    /// <summary>
+    /// 투사체가 목표에 도달했을 때 호출
+    /// </summary>
+    private void OnProjectileHit(Ship target, Vector2Int hitPosition, float damage)
+    {
+        if (target != null)
+        {
+            // 타격 처리
+            target.TakeAttack(damage, GetWeaponType(), hitPosition);
+
+            // 통계 업데이트
+            AddHit();
+            AddDamageDealt(damage);
+        }
+    }
+
+    /// <summary>
+    /// 타겟 함선 결정
+    /// </summary>
+    private Ship GetTargetShip()
+    {
+        if (ownerShip == GameManager.Instance.GetPlayerShip())
+            // 플레이어 함선이면 적 함선을 타겟으로
+            return GameManager.Instance.GetCurrentEnemyShip();
+        else
+            // 적 함선이면 플레이어 함선을 타겟으로
+            return GameManager.Instance.GetPlayerShip();
+    }
 
     /// <summary>
     /// 우클릭 시 호출되어 무기의 회전(힌지 회전) 상태를 변경합니다.
