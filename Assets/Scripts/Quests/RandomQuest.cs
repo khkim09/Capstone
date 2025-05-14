@@ -16,6 +16,9 @@ public class RandomQuest : ScriptableObject
     /// <summary>퀘스트 설명</summary>
     public string description;
 
+    /// <summary>퀘스트 수락 연도</summary>
+    public int questAcceptedYear = -1;
+
     /// <summary>퀘스트 상태</summary>
     public QuestStatus status;
 

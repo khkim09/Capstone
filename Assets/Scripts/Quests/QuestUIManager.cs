@@ -160,6 +160,9 @@ public class QuestUIManager : MonoBehaviour
     {
         completePanel.SetActive(false);
 
+        if (currentQuest != null && QuestManager.Instance != null)
+            QuestManager.Instance.GrantRewardForQuest(currentQuest);
+
         QuestListUI questListUI = FindObjectOfType<QuestListUI>();
         if (wasQuestListOpen && questListUI != null)
             questListUI.Open();
