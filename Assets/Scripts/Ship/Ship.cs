@@ -1513,6 +1513,17 @@ public class Ship : MonoBehaviour
                 }
             }
         }
+
+        // 모든 방의 점유 타일 검사
+        foreach (Room r in allRooms)
+        {
+            foreach (Vector2Int tile in r.GetOccupiedTiles())
+            {
+                Debug.LogError($"{r} : {tile} 점유");
+                // if (crewOccupiedTiles[r].Contains(tile))
+                //     Debug.LogError($"{tile}은 {CrewSystem.GetCrewsAtPosition(tile)}선원이 점유중");
+            }
+        }
     }
 
 

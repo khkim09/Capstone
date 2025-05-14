@@ -28,7 +28,7 @@ public class CrewMember : CrewBase
     public Room reservedRoom;
 
     /// <summary>
-    /// 예약했지만 취소한 목적지 방
+    /// 새로운 이동 명령 전 기존 목적지 방
     /// </summary>
     public Room oldReservedRoom;
 
@@ -38,7 +38,7 @@ public class CrewMember : CrewBase
     public Vector2Int reservedTile;
 
     /// <summary>
-    /// 이동 중 새로운 이동 명령 내리기 전 예약했던 목적지 타일 (최종으로 예약했지만 취소한 목적지 타일)
+    /// 새로운 이동 명령 전 기존 목적지 타일 (예약 됐다 취소된..)
     /// </summary>
     public Vector2Int oldReservedTile;
 
@@ -104,13 +104,24 @@ public class CrewMember : CrewBase
             moveCoroutine = null;
         }
 
-        // 점유 타일 해제
-        ExitCurrentTile();
+        // 1. 점유 타일 해제
+        // ExitCurrentTile();
+        if (currentRoom != null)
+            CrewReservationManager.Instance.ExitTile(currentShip, currentRoom, GetCurrentTile(), this);
+        // CrewReservationManager.Instance.ExitTile(currentShip, oldReservedRoom, oldReservedTile, this);
 
-        // 목적지 예약
-        ReserveDestination();
+        // 2. 목적지 예약
+        // ReserveDestination();
+        if (reservedRoom != null)
+        {
+            CrewReservationManager.Instance.ReserveTile(currentShip, reservedRoom, reservedTile, this);
+            currentRoom = reservedRoom;
+        }
 
-        // 3. 경로 설정 후 이동 시작
+        // 3. 체력바
+        EnsureHealthBarFollows();
+
+        // 4. 경로 설정 후 이동 시작
         path = newPath;
         moveCoroutine = StartCoroutine(FollowPathCoroutine());
     }
@@ -126,16 +137,22 @@ public class CrewMember : CrewBase
             moveCoroutine = null;
         }
 
-        // 이전 목적지 타일 점유 해제
-        ExitReserveTile();
+        // 1. 이전 목적지 타일 점유 해제
+        // ExitReserveTile();
+        if (oldReservedRoom != null)
+            CrewReservationManager.Instance.ExitTile(currentShip, oldReservedRoom, oldReservedTile, this);
 
-        // 새로운 목적지 예약
-        ReserveDestination();
+        // 2. 새로운 목적지 예약
+        if (reservedRoom != null)
+        {
+            CrewReservationManager.Instance.ReserveTile(currentShip, reservedRoom, reservedTile, this);
+            currentRoom = reservedRoom;
+        }
 
-        // 체력바가 부모를 따라 이동하도록 보장
+        // 3. 체력바가 부모를 따라 이동하도록 보장
         EnsureHealthBarFollows();
 
-        // 새로운 경로 이동
+        // 4. 새로운 경로 이동
         path = newPath;
         moveCoroutine = StartCoroutine(FollowPathCoroutine());
     }
@@ -152,56 +169,62 @@ public class CrewMember : CrewBase
                 healthBar.transform.parent.SetParent(transform);
     }
 
-    /// <summary>
-    /// 선원이 방을 바꿀 때 체력바가 함께 이동하도록
-    /// </summary>
-    private void ReserveDestination()
-    {
-        if (reservedRoom != null)
+    /*
+        /// <summary>
+        /// 선원이 방을 바꿀 때 체력바가 함께 이동하도록
+        /// </summary>
+        private void ReserveDestination()
         {
-            Debug.LogError($"최종 예약된 타일 pos : {reservedTile}");
-            reservedRoom.OccupyTile(reservedTile);
-            reservedRoom.OnCrewEnter(this);
-            currentRoom = reservedRoom;
-            RTSSelectionManager.Instance.playerShip.MarkCrewTileOccupied(reservedRoom, reservedTile);
+            if (reservedRoom != null)
+            {
+                Debug.LogError($"최종 예약된 타일 pos : {reservedTile}");
+                reservedRoom.OccupyTile(reservedTile);
+                reservedRoom.OnCrewEnter(this);
+                currentRoom = reservedRoom;
 
-            // 선원 자체의 부모는 방으로 설정하지만, 체력바는 선원의 자식으로 유지
-            transform.SetParent(reservedRoom.transform);
-            EnsureHealthBarFollows();
+                CrewReservationManager.Instance.ReserveTile(currentShip, reservedTile, this);
+
+                // currentShip.MarkCrewTileOccupied(reservedRoom, reservedTile);
+
+                // 선원 자체의 부모는 방으로 설정하지만, 체력바는 선원의 자식으로 유지
+                transform.SetParent(reservedRoom.transform);
+                EnsureHealthBarFollows();
+            }
         }
-    }
 
-    /// <summary>
-    /// 정지 상태에서 이동 명령 - 기존 점유 타일 해제, 방에서 나옴
-    /// </summary>
-    private void ExitCurrentTile()
-    {
-        if (currentRoom != null)
+        /// <summary>
+        /// 정지 상태에서 이동 명령 - 기존 점유 타일 해제, 방에서 나옴
+        /// </summary>
+        private void ExitCurrentTile()
         {
-            Debug.LogError($"기존 위치하던 pos : {GetCurrentTile()}");
-            Vector2Int currentTile = GetCurrentTile();
-            currentRoom.VacateTile(currentTile);
-            currentRoom.OnCrewExit(this);
-            RTSSelectionManager.Instance.playerShip.UnmarkCrewTile(currentRoom, currentTile);
-            transform.SetParent(null);
-        }
-    }
+            if (currentRoom != null)
+            {
+                Debug.LogError($"기존 위치하던 pos : {GetCurrentTile()}");
+                Vector2Int currentTile = GetCurrentTile();
+                currentRoom.VacateTile(currentTile);
+                currentRoom.OnCrewExit(this);
 
-    /// <summary>
-    /// 움직이던 도중 새로운 이동 명령 - 예약 목적지 타일 점유 해제, 방에서 나옴
-    /// </summary>
-    private void ExitReserveTile()
-    {
-        if (oldReservedRoom != null)
+                CrewReservationManager.Instance.ExitCurrentTile(currentShip, currentTile);
+                // currentShip.UnmarkCrewTile(currentRoom, currentTile);
+                transform.SetParent(null);
+            }
+        }
+
+        /// <summary>
+        /// 움직이던 도중 새로운 이동 명령 - 예약 목적지 타일 점유 해제, 방에서 나옴
+        /// </summary>
+        private void ExitReserveTile()
         {
-            Debug.LogError($"최종 예약했지만 취소하는 타일 pos : {oldReservedTile}");
-            oldReservedRoom.VacateTile(oldReservedTile);
-            oldReservedRoom.OnCrewExit(this);
-            RTSSelectionManager.Instance.playerShip.UnmarkCrewTile(oldReservedRoom, oldReservedTile);
-            transform.SetParent(null);
+            if (oldReservedRoom != null)
+            {
+                Debug.LogError($"최종 예약했지만 취소하는 타일 pos : {oldReservedTile}");
+                oldReservedRoom.VacateTile(oldReservedTile);
+                oldReservedRoom.OnCrewExit(this);
+                currentShip.UnmarkCrewTile(oldReservedRoom, oldReservedTile);
+                transform.SetParent(null);
+            }
         }
-    }
-
+    */
 
     /// <summary>
     /// 이동 animation
@@ -247,20 +270,20 @@ public class CrewMember : CrewBase
             // 이동 중인 방향
             movementDirection = (targetWorldPos - transform.position).normalized;
             PlayAnimation("walk");
+
             while (Vector3.Distance(transform.position, targetWorldPos) > 0.01f)
             {
                 float speedMultiplier = 1f;
 
                 // 현재 방 체크
-                Room room = RTSSelectionManager.Instance.playerShip.GetRoomAtPosition(GetCurrentTile());
+                Room room = currentShip.GetRoomAtPosition(GetCurrentTile());
 
                 // 복도는 이동 속도 30% 증가
                 if (room != null && room.GetRoomType() == RoomType.Corridor)
                     speedMultiplier = 1.33f;
 
                 // MoveTowards() : 다른 선원과의 충돌 무시하고 통과
-                transform.position = Vector3.MoveTowards(transform.position, targetWorldPos,
-                    moveSpeed * speedMultiplier * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetWorldPos, moveSpeed * speedMultiplier * Time.deltaTime);
                 yield return null;
             }
 
