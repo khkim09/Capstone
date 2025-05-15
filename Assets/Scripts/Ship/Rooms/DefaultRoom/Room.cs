@@ -207,10 +207,10 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             case RoomType.Oxygen:
             case RoomType.Power:
             case RoomType.Shield:
-            case RoomType.Teleporter:
             case RoomType.WeaponControl:
                 isDamageable = true;
                 break;
+            case RoomType.Teleporter:
             case RoomType.Corridor:
             case RoomType.LifeSupport:
             case RoomType.Storage:

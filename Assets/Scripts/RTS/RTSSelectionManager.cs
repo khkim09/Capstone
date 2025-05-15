@@ -52,6 +52,11 @@ public class RTSSelectionManager : MonoBehaviour
     public GridPlacer gridPlacer;
 
     /// <summary>
+    /// 유저 함선
+    /// </summary>
+    public Ship playerShip;
+
+    /// <summary>
     /// 선원 경로 계산기
     /// </summary>
     public CrewPathfinder crewPathfinder;
@@ -62,9 +67,19 @@ public class RTSSelectionManager : MonoBehaviour
     public CrewMovementValidator movementValidator;
 
     /// <summary>
-    /// 유저 함선
+    /// 적 함선
     /// </summary>
-    public Ship playerShip;
+    public Ship enemyShip;
+
+    /// <summary>
+    /// 적 선원 경로 계산기
+    /// </summary>
+    public CrewPathfinder enemyPathFinder;
+
+    /// <summary>
+    /// 적 선원 이동 가능 검사기
+    /// </summary>
+    public CrewMovementValidator enemyMovementValidator;
 
 
     /// <summary>
@@ -91,7 +106,8 @@ public class RTSSelectionManager : MonoBehaviour
         Instance = this;
     }
 
-    //----------외곽선 효과-----------------
+    #region 외곽 효과
+
     public Material outlineMaterial;
     public Material defaultMaterial;
 
@@ -104,6 +120,8 @@ public class RTSSelectionManager : MonoBehaviour
     {
         crew.GetSpriteRenderer().material = onoff ? new Material(outlineMaterial) : defaultMaterial;
     }
+
+    #endregion
 
     /// <summary>
     /// 게임 오브젝트 연결 (RTS 이동 검사를 위한 오브젝트)
@@ -270,10 +288,6 @@ public class RTSSelectionManager : MonoBehaviour
                 crew.originPosTile = crew.GetCurrentTile();
             }
         }
-        else
-        {
-            DeselectAll();
-        }
     }
 
     /// <summary>
@@ -308,7 +322,10 @@ public class RTSSelectionManager : MonoBehaviour
         }
 
         // 선택된 선원들에 대해 기존 위치 저장
-        foreach (CrewMember crew in selectedCrew) crew.originPosTile = crew.GetCurrentTile();
+        foreach (CrewMember crew in selectedCrew)
+        {
+            crew.originPosTile = crew.GetCurrentTile();
+        }
     }
 
     /// <summary>
@@ -324,15 +341,38 @@ public class RTSSelectionManager : MonoBehaviour
     /// </summary>
     public void RefreshMovementData()
     {
-        if (crewPathfinder != null && movementValidator != null && playerShip != null)
+        if (playerShip != null)
         {
             movementValidator.Initialize(playerShip.GetAllRooms());
             crewPathfinder.Initialize(movementValidator);
         }
-        else
+
+        if (enemyShip != null)
         {
-            Debug.LogError("CrewPathFinder or MovementValidator가 세팅되지 않음");
+            Debug.LogError($"적 함선 찾음 : {enemyShip}");
+            enemyMovementValidator.Initialize(enemyShip.GetAllRooms());
+            enemyPathFinder.Initialize(enemyMovementValidator);
         }
+    }
+
+    /// <summary>
+    /// 이동 경로 탐색기 설정
+    /// </summary>
+    /// <param name="crew"></param>
+    /// <returns></returns>
+    private CrewPathfinder GetPathfinderForCrew(CrewMember crew)
+    {
+        return (crew.currentShip == playerShip) ? crewPathfinder : (crew.currentShip == enemyShip) ? enemyPathFinder : null;
+    }
+
+    /// <summary>
+    /// 이동 가능 검사기 설정
+    /// </summary>
+    /// <param name="crew"></param>
+    /// <returns></returns>
+    private CrewMovementValidator GetMovementValidatorForCrew(CrewMember crew)
+    {
+        return (crew.currentShip == playerShip) ? movementValidator : (crew.currentShip == enemyShip) ? enemyMovementValidator : null;
     }
 
     /// <summary>
@@ -410,6 +450,10 @@ public class RTSSelectionManager : MonoBehaviour
             // 3-2. 아직 이동하지 않은 선원들 중 목적지 타일까지 최단 거리 선원 탐색
             foreach (CrewMember crew in unassignedCrew)
             {
+                // 다른 배에서 이동 명령 실수로 찍음
+                if (crew.currentShip != targetShip)
+                    continue;
+
                 // 죽은 선원은 이동 불가
                 if (!crew.isAlive)
                 {
@@ -418,7 +462,8 @@ public class RTSSelectionManager : MonoBehaviour
                 }
 
                 // 사전 검사로 불필요한 A* 호출 방지
-                if (!movementValidator.IsTileWalkable(tile))
+                CrewMovementValidator validator = GetMovementValidatorForCrew(crew);
+                if (validator == null || !validator.IsTileWalkable(tile))
                     continue;
 
                 // (목적지 방 == 현재 방) 빈 타일의 우선순위 < 현재 타일의 우선순위 : 이동 X
@@ -432,7 +477,11 @@ public class RTSSelectionManager : MonoBehaviour
                 }
 
                 // 각 선원 별 목적지 타일까지 경로 탐색
-                List<Vector2Int> path = crewPathfinder.FindPathToTile(crew, tile);
+                CrewPathfinder pathfinder = GetPathfinderForCrew(crew);
+                if (pathfinder == null)
+                    continue;
+
+                List<Vector2Int> path = pathfinder.FindPathToTile(crew, tile);
                 if (path == null)
                     continue;
 
@@ -524,174 +573,6 @@ public class RTSSelectionManager : MonoBehaviour
             // 6. 해당 선원 이동했음으로 기록
             unassignedCrew.Remove(bestCrew);
         }
-
-        /*
-                // 1. 이동 명령 전, 목적지 방에 이미 위치한 선원들의 점유 타일 기록
-                HashSet<Vector2Int> reservedTiles = new HashSet<Vector2Int>(targetRoom.occupiedCrewTiles);
-                foreach (Vector2Int t in reservedTiles)
-                    Debug.LogWarning($"누구도 이동하기 전 {targetRoom}에 선원 배치된 위치 : {t}");
-
-                // 1-1. 이동 명령으로 점유 예약됐지만 아직 실 점유하기 전은 제외
-                foreach (CrewMember cm in allCrew)
-                {
-                    // 선원이 이동 중이면서 예약 타일만 존재하고 아직 타일 점유하지 않은 경우 제외
-                    bool isCurrentlyReserved = selectedCrew.Contains(cm) && cm.reservedRoom == targetRoom && cm.GetCurrentTile() != cm.reservedTile;
-
-                    if (isCurrentlyReserved)
-                        reservedTiles.Remove(cm.reservedTile);
-                }
-
-                foreach (Vector2Int t in reservedTiles)
-                    Debug.LogWarning($"이동 직전 검사 : {targetRoom} 선원 점유 위치 : {t}");
-
-                // 2. 아직 배정 안 된 선원 리스트 (선택된 모든 선원 중 아직 이동 안 한 선원)
-                List<CrewMember> unassignedCrew;
-                if(crewByEnemyController==null)
-                {
-                    unassignedCrew = new(selectedCrew);
-                }
-                else
-                {
-                    unassignedCrew = new List<CrewMember>();
-                    unassignedCrew.Add(crewByEnemyController);
-                }
-
-                // 3. 이동 안 한 선원이 없을 때 까지 루프 검사
-                while (entryTiles.Count > 0 && unassignedCrew.Count > 0)
-                {
-                    // 3-1. 가장 높은 우선순위의 비어있는 타일 선택
-                    Vector2Int? targetTile = entryTiles.FirstOrDefault(t => !reservedTiles.Contains(t));
-                    if (targetTile == null)
-                    {
-                        Debug.LogError("모든 타일이 점유되어 있습니다.");
-                        break;
-                    }
-
-                    Debug.LogWarning($"targettile : {targetTile}");
-
-                    // 3-2. 이동 명령에 필요한 필드값 초기화
-                    Vector2Int tile = targetTile.Value;
-                    CrewMember bestCrew = null;
-                    int bestCost = int.MaxValue;
-                    List<Vector2Int> bestPath = null;
-
-                    // 3-3. 아직 배정되지 않은 선원들 중 이 타일까지 최단거리 선원 탐색
-                    foreach (CrewMember crew in unassignedCrew)
-                    {
-                        // 사전 검사로 불필요한 A* 호출 방지
-                        if (!movementValidator.IsTileWalkable(tile))
-                            continue;
-
-                        // (목적지 방 == 현재 방) 빈 타일의 우선순위 < 현재 타일의 우선순위 : 이동 X
-                        if (crew.currentRoom == targetRoom)
-                        {
-                            int currentIndex = targetRoom.GetRotatedCrewEntryGridPriority().IndexOf(crew.GetCurrentTile());
-                            int targetIndex = targetRoom.GetRotatedCrewEntryGridPriority().IndexOf(tile);
-
-                            if (currentIndex != -1 && targetIndex != -1 && currentIndex < targetIndex)
-                                continue;
-                        }
-
-                        // 각 선원 별 최단 경로 탐색
-                        List<Vector2Int> path = crewPathfinder.FindPathToTile(crew, tile);
-
-                        // case 1) 최단 거리 동일 && (일부는 목적지 방 == 현재 방, 나머지는 목적지 방 != 현재 방)
-                        // 목적지 방 == 현재 방인 선원들 모두 이동 후 목적지 방 != 현재방인 선원들이 이동하도록
-
-                        // case 2) 최단 거리 동일 && (선택된 선원 모두 목적지 방 == 현재 방)
-                        // 우선순위 더 높은 선원이 이동
-
-                        // case 3) 최단 거리 동일 && 선택된 선원 모두 각자 방 -> 동일한 목적지로 이동 시
-                        // 기존 각자 방에서 우선순위 더 낮은 타일의 선원이 이동
-
-                        // case 3-1) 위 상황에서 각자의 방에서 우선순위 호출했더니 동일한 경우
-                        // 먼저 검사한애가 이동하도록 (조건문에서 등호 제외하면 될듯)
-                        if (path != null)
-                        {
-                            // 최단 경로
-                            if (path.Count < bestCost)
-                            {
-                                bestCost = path.Count;
-                                bestCrew = crew;
-                                bestPath = path;
-                            }
-                            else if (path.Count == bestCost) // 최단 거리 동일
-                            {
-                                bool crewInTargetRoom = crew.currentRoom == targetRoom;
-                                bool bestInTargetRoom = bestCrew.currentRoom == targetRoom;
-
-                                // case 1) 선택된 선원 중 일부 (목적지 방 == 현재 방), 나머지 (목적지 방 != 현재 방) : (목적지 방 == 현재 방) 선원들이 이동
-                                if (crewInTargetRoom && !bestInTargetRoom)
-                                {
-                                    bestCrew = crew;
-                                    bestPath = path;
-                                }
-                                else if (crewInTargetRoom == bestInTargetRoom)
-                                {
-                                    if (crewInTargetRoom)
-                                    {
-                                        // case 2) 선택된 선원 모두 (목적지 방 == 현재 방), 우선순위 더 높은 선원 이동
-                                        int crewIndex = crew.GetCurrentTilePriorityIndex();
-                                        int bestIndex = bestCrew.GetCurrentTilePriorityIndex();
-
-                                        if (crewIndex >= 0 && bestIndex >= 0 && crewIndex < bestIndex)
-                                        {
-                                            bestCrew = crew;
-                                            bestPath = path;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        // case 3) 선원 모두 다른 방에서 동일 목적지 방으로 이동 : 더 낮은 우선순위 타일 이동
-                                        int crewIndex = crew.GetCurrentTilePriorityIndex();
-                                        int bestIndex = bestCrew.GetCurrentTilePriorityIndex();
-
-                                        if (crewIndex > bestIndex)
-                                        {
-                                            bestCrew = crew;
-                                            bestPath = path;
-                                        }
-                                        else if (crewIndex == bestIndex) // case 3-1) 우선순위 동일 경우 : 기존 bestCrew 유지
-                                        {
-                                            continue;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (bestCrew == null)
-                    {
-                        Debug.LogError("해당 타일까지 갈 수 있는 선원이 없음.");
-                        break;
-                    }
-
-                    // 4. 이동 명령에 필요한 필드 값 세팅
-                    // 이동 중 새로운 이동 입력 대비, 취소된 예약 방, 타일 기록
-                    bestCrew.oldReservedRoom = bestCrew.reservedRoom;
-                    bestCrew.oldReservedTile = bestCrew.reservedTile;
-
-                    // 새로운 목적지 타일 설정
-                    bestCrew.reservedRoom = targetRoom;
-                    bestCrew.reservedTile = tile;
-
-                    // 5. (목적지 방 == 현재 방)인 선원이 차지하고 있던 타일 리스트 갱신
-                    Debug.LogWarning($"{bestCrew.race} 기존 점유 타일 : {bestCrew.originPosTile}");
-                    reservedTiles.Remove(bestCrew.originPosTile);
-                    reservedTiles.Add(tile);
-                    unassignedCrew.Remove(bestCrew);
-
-                    // 6. 이동 처리
-                    if (bestCrew.isMoving)
-                        bestCrew.CancelAndRedirect(bestPath);
-                    else
-                        bestCrew.AssignPathAndMove(bestPath);
-
-                    // 7. 함내 전투 실행 여부 체크 (자동 AI) - oninvoke로 받아와서 무빙 끝났으면 moveforcombat() 호출
-                    // MoveForCombat(bestCrew, reservedTiles);
-                }
-            */
     }
 
     /// <summary>
@@ -708,9 +589,10 @@ public class RTSSelectionManager : MonoBehaviour
 
         // 선원이 생존해 있고, 위치한 방이 현재 RTS 이동으로 도착한 선원과 같은 방이며, 상대편
         foreach (CrewMember crew in totalCrew)
-            if (crew.isAlive && crew.currentRoom == readyCombatCrew.currentRoom &&
-                crew.isPlayerControlled != readyCombatCrew.isPlayerControlled)
+        {
+            if (crew.isAlive && crew.currentRoom == readyCombatCrew.currentRoom && crew.isPlayerControlled != readyCombatCrew.isPlayerControlled)
                 enemiesInRoom.Add(crew);
+        }
 
         if (enemiesInRoom.Count == 0)
         {
@@ -727,7 +609,11 @@ public class RTSSelectionManager : MonoBehaviour
             if (!enemy.isAlive || enemy.isMoving)
                 continue;
 
-            List<Vector2Int> path = crewPathfinder.FindPathToTile(readyCombatCrew, enemy.GetCurrentTile());
+            CrewPathfinder pathfinder = GetPathfinderForCrew(readyCombatCrew);
+            if (pathfinder == null)
+                continue;
+
+            List<Vector2Int> path = pathfinder.FindPathToTile(readyCombatCrew, enemy.GetCurrentTile());
             if (path != null && path.Count < shortestPathLength)
             {
                 shortestPathLength = path.Count;
@@ -763,7 +649,8 @@ public class RTSSelectionManager : MonoBehaviour
             }
 
             // 방 내부의 타일인지 검사
-            if (!movementValidator.IsTileWalkable(neighborTile))
+            CrewMovementValidator validator = GetMovementValidatorForCrew(readyCombatCrew);
+            if (validator == null || !validator.IsTileWalkable(neighborTile))
                 continue;
 
             // 이웃 타일이 같은 방이 아님
@@ -791,7 +678,11 @@ public class RTSSelectionManager : MonoBehaviour
 
         foreach (Vector2Int combatTile in neighborTileCandi)
         {
-            List<Vector2Int> path = crewPathfinder.FindPathToTile(readyCombatCrew, combatTile);
+            CrewPathfinder pathfinder = GetPathfinderForCrew(readyCombatCrew);
+            if (pathfinder == null)
+                continue;
+
+            List<Vector2Int> path = pathfinder.FindPathToTile(readyCombatCrew, combatTile);
             if (path != null && path.Count < shortestPathLengthToNeighbor)
             {
                 shortestPathLengthToNeighbor = path.Count;
@@ -809,10 +700,10 @@ public class RTSSelectionManager : MonoBehaviour
         // 6. reservedTiles 갱신
         // reservedTiles.Remove(readyCombatCrew.oldReservedTile);
         // reservedTiles.Add(neighborTile);
-        CrewReservationManager.ExitTile(readyCombatCrew.currentShip, readyCombatCrew.oldReservedRoom,
-            readyCombatCrew.oldReservedTile, readyCombatCrew);
-        CrewReservationManager.ReserveTile(readyCombatCrew.currentShip, readyCombatCrew.reservedRoom,
-            readyCombatCrew.reservedTile, readyCombatCrew);
+        // CrewReservationManager.ExitTile(readyCombatCrew.currentShip, readyCombatCrew.oldReservedRoom,
+        //     readyCombatCrew.oldReservedTile, readyCombatCrew);
+        // CrewReservationManager.ReserveTile(readyCombatCrew.currentShip, readyCombatCrew.reservedRoom,
+        //     readyCombatCrew.reservedTile, readyCombatCrew);
 
         // 7. 실제 이동 처리
         if (readyCombatCrew.isMoving)

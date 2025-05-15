@@ -183,6 +183,14 @@ public class QuestManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 외부에서 호출할 수 있는 퀘스트 실패 처리 함수입니다.
+    /// </summary>
+    public void RequestFailQuest(RandomQuest quest)
+    {
+        FailQuest(quest);
+    }
+
+    /// <summary>
     /// 현재 진행 중인 퀘스트 목록을 반환합니다.
     /// </summary>
     /// <returns>진행 중인 퀘스트 리스트</returns>

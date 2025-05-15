@@ -82,7 +82,7 @@ public static class CrewReservationManager
         tileOccupancy[ship][tile] = crew;
 
         // 선원 입장 처리, 오브젝트를 방으로 종속
-        room.OnCrewEnter(crew);
+        // room.OnCrewEnter(crew);
         crew.transform.SetParent(room.transform);
     }
 
