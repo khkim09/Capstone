@@ -365,15 +365,11 @@ public class CustomizeShipUIHandler : MonoBehaviour
             // RTS 이동을 위한 data 업데이트
             RTSSelectionManager.Instance.RefreshMovementData();
 
-            // 1) 모든 방의 타일 - 선원 점유 상태 초기화
+            // 1) 함선 내 모든 방의 타일 - 선원 점유 상태 초기화
             Debug.LogError($"빌드 후 전체 방 수 : {playerShip.GetAllRooms().Count}");
-            foreach (Room room in playerShip.GetAllRooms())
-                room.ClearCrewOccupancy();
+            CrewReservationManager.Instance.ClearAllReservations(playerShip);
 
-            // 2) 전역 타일 점유 상태 초기화 (ship 단위)
-            playerShip.ClearAllCrewTileOccupancy();
-
-            // 3) 기존 선원 복구 및 랜덤 배치
+            // 2) 기존 선원 복구 및 랜덤 배치
             playerShip.CrewSystem.RestoreCrewAfterBuild(playerShip.backupCrewDatas);
 
             playerShip.AllFreeze();

@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class SettingsPanelController : MonoBehaviour
 {
-    [Header("Volume Controls")] [SerializeField]
+    [Header("Volume Controls")]
+    [SerializeField]
     private Slider bgmSlider;
 
     [SerializeField] private Slider sfxSlider;
@@ -14,15 +15,17 @@ public class SettingsPanelController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI sfxValueText;
     [SerializeField] private int volumeSteps = 10; // 10단계로 설정
 
-    [Header("Language Controls")] [SerializeField]
+    [Header("Language Controls")]
+    [SerializeField]
     private TMP_Dropdown languageDropdown;
 
     [SerializeField] private GameObject[] languageSettingElements; // 메인 메뉴에서만 표시할 언어 설정 UI 요소들
 
-    [Header("Credit Controls")] [SerializeField]
+    [Header("Credit Controls")]
+    [SerializeField]
     private GameObject creditsPanel;
 
-    [Header("Buttons")] [SerializeField] private Button confirmButton;
+    [Header("Buttons")][SerializeField] private Button confirmButton;
     [SerializeField] private Button cancelButton;
     [SerializeField] private Button creditsButton;
     [SerializeField] private Button mainMenuButton;
@@ -281,7 +284,7 @@ public class SettingsPanelController : MonoBehaviour
         Debug.Log("메인 메뉴로 이동 중...");
 
         // MainMenu 씬으로 이동
-        SceneManager.LoadScene("MainMenu");
+        SceneChanger.Instance.LoadScene("MainMenu");
     }
 
     #endregion
@@ -313,7 +316,7 @@ public class SettingsPanelController : MonoBehaviour
 
     #region Language Settings
 
-// 언어 드롭다운 초기화
+    // 언어 드롭다운 초기화
     private void InitializeLanguageDropdown()
     {
         if (languageDropdown == null || !LocalizationManager.IsInitialized)

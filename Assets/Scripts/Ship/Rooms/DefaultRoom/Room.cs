@@ -42,7 +42,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [SerializeField] public RotationConstants.Rotation currentRotation;
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
-    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
+    [Header("방 효과")]
+    [SerializeField] protected ParticleSystem roomParticles;
 
     /// <summary>방 작동 시 사운드 효과.</summary>
     [SerializeField] protected AudioSource roomSound;
@@ -162,71 +163,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         }
 
         return result;
-    }
-
-    /// <summary>
-    /// 방 내 비어있는 랜덤 타일 반환
-    /// </summary>
-    public Vector2Int GetRandomOccupiedTile()
-    {
-        List<Vector2Int> occupiedTiles = GetOccupiedTiles();
-        List<Vector2Int> unoccupied = occupiedTiles.Where(t => !occupiedCrewTiles.Contains(t)).ToList();
-
-        if (unoccupied.Count == 0)
-            return occupiedTiles[Random.Range(0, occupiedTiles.Count)];
-
-        return unoccupied[Random.Range(0, unoccupied.Count)];
-    }
-
-    /// <summary>
-    /// 방 안에 빈 타일이 있는지 검사
-    /// </summary>
-    /// <returns></returns>
-    public bool IsThereEmptyTile()
-    {
-        List<Vector2Int> occupiedTiles = GetOccupiedTiles();
-        List<Vector2Int> unoccupied = occupiedTiles.Where(t => !occupiedCrewTiles.Contains(t)).ToList();
-
-        if (unoccupied.Count == 0)
-            return false;
-        return true;
-    }
-
-    /// <summary>
-    /// 방 내 선원의 점유 타일 모두 초기화
-    /// </summary>
-    public void ClearCrewOccupancy()
-    {
-        occupiedCrewTiles.Clear();
-    }
-
-    /// <summary>
-    /// 해당 타일이 선원에 의해 점유되고 있는지 여부
-    /// </summary>
-    /// <param name="tile"></param>
-    /// <returns></returns>
-    public bool IsTileOccupiedByCrew(Vector2Int tile)
-    {
-        return occupiedCrewTiles.Contains(tile);
-    }
-
-    /// <summary>
-    /// 해당 타일 선원이 점유 (해당 타일에 선원 정지)
-    /// </summary>
-    /// <param name="tile"></param>
-    public void OccupyTile(Vector2Int tile)
-    {
-        if (!occupiedCrewTiles.Contains(tile))
-            occupiedCrewTiles.Add(tile);
-    }
-
-    /// <summary>
-    /// 해당 타일 선원이 점유 해제 (해당 타일에서 선원 나옴)
-    /// </summary>
-    /// <param name="tile"></param>
-    public void VacateTile(Vector2Int tile)
-    {
-        occupiedCrewTiles.Remove(tile);
     }
 
     /// <summary>
@@ -716,15 +652,19 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     public List<CrewMember> GetTotalCrewsInRoom()
     {
-        List<CrewMember> total = new();
+        List<CrewMember> total = new List<CrewMember>();
 
         foreach (CrewMember crew in parentShip.allCrews)
+        {
             if (crew.currentRoom == this)
                 total.Add(crew);
+        }
 
         foreach (CrewMember enemy in parentShip.allEnemies)
+        {
             if (enemy.currentRoom == this)
                 total.Add(enemy);
+        }
 
         return total;
     }
@@ -789,10 +729,13 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     public bool NeedsRepair()
     {
         if (damageCondition == DamageLevel.breakdown)
-            return currentHitPoints < roomData.GetRoomDataByLevel(currentLevel)
-                .damageHitPointRate[RoomDamageLevel.DamageLevelTwo];
+        {
+            return currentHitPoints < roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo];
+        }
         else
+        {
             return currentHitPoints < roomData.GetRoomDataByLevel(currentLevel).hitPoint;
+        }
     }
 
     #endregion
@@ -822,11 +765,13 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     {
         float damage = 0;
         if (damageCondition == DamageLevel.good)
-            damage = currentHitPoints - roomData.GetRoomDataByLevel(currentLevel)
-                .damageHitPointRate[RoomDamageLevel.DamageLevelOne];
+        {
+            damage = currentHitPoints - roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne];
+        }
         else if (damageCondition == DamageLevel.scratch)
-            damage = currentHitPoints - roomData.GetRoomDataByLevel(currentLevel)
-                .damageHitPointRate[RoomDamageLevel.DamageLevelTwo];
+        {
+            damage = currentHitPoints - roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo];
+        }
         TakeDamage(damage);
     }
 

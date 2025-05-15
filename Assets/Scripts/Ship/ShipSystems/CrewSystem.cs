@@ -61,12 +61,15 @@ public class CrewSystem : ShipSystem
         List<Room> allRooms = parentShip.GetAllRooms();
         List<Room> shuffled = allRooms.OrderBy(_ => Random.value).ToList();
 
-        // 3. 랜덤방 점유되지 않은 랜덤 타일에 선원 배치
+        // 3. 랜덤방 점유되지 않은 랜덤 타일에 선원 배치 (단, 텔포 방은 제외)
         foreach (Room room in shuffled)
         {
+            if (room.roomType == RoomType.Teleporter)
+                continue;
+
             List<Vector2Int> candidates = room.GetRotatedCrewEntryGridPriority().Where
             (
-                t => !room.IsTileOccupiedByCrew(t) && !parentShip.IsCrewTileOccupied(room, t)
+                t => !CrewReservationManager.Instance.IsTileOccupied(parentShip, t)
             ).ToList();
 
             if (candidates.Count == 0)
@@ -81,9 +84,7 @@ public class CrewSystem : ShipSystem
 
             Debug.Log($"선원 랜덤 스폰 위치 : {spawnTile}");
 
-            room.OccupyTile(spawnTile);
-            room.OnCrewEnter(crew);
-            parentShip.MarkCrewTileOccupied(room, spawnTile);
+            CrewReservationManager.Instance.ReserveTile(parentShip, room, spawnTile, crew);
 
             parentShip.allCrews.Add(crew);
             return true;
@@ -198,13 +199,12 @@ public class CrewSystem : ShipSystem
             originCrew.transform.SetParent(room.transform);
             originCrew.currentShip = parentShip;
 
-            room.OccupyTile(data.position);
-            room.OnCrewEnter(originCrew);
-            parentShip.MarkCrewTileOccupied(room, data.position);
+            CrewReservationManager.Instance.ReserveTile(parentShip, room, data.position, originCrew);
 
             // 오브젝트 및 컴포넌트 활성화
             originCrew.gameObject.SetActive(true);
             originCrew.enabled = true;
+
             BoxCollider2D col = originCrew.GetComponent<BoxCollider2D>();
             if (col != null)
                 col.enabled = true;
@@ -223,8 +223,6 @@ public class CrewSystem : ShipSystem
     /// <param name="backupCrewDatas"></param>
     public void RestoreCrewAfterBuild(List<BackupCrewData> backupCrewDatas)
     {
-        HashSet<Vector2Int> alreadyOccupiedTiles = new HashSet<Vector2Int>();
-
         foreach (BackupCrewData data in backupCrewDatas)
         {
             CrewMember crew = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(data.race, data.crewName) as CrewMember;
@@ -236,13 +234,15 @@ public class CrewSystem : ShipSystem
 
             bool assigned = false;
 
+            // 텔포 방 제외 랜덤 방 랜덤 타일 선원 배치
             foreach (Room room in shuffled)
             {
+                if (room.roomType == RoomType.Teleporter)
+                    continue;
+
                 List<Vector2Int> candidates = room.GetRotatedCrewEntryGridPriority().Where
                 (
-                    t => !room.IsTileOccupiedByCrew(t)
-                        && !parentShip.IsCrewTileOccupied(room, t)
-                        && !alreadyOccupiedTiles.Contains(t)
+                    t => !CrewReservationManager.Instance.IsTileOccupied(parentShip, t)
                 ).ToList();
 
                 if (candidates.Count == 0)
@@ -250,7 +250,6 @@ public class CrewSystem : ShipSystem
 
                 // 랜덤 타일 선택
                 Vector2Int spawnTile = candidates[Random.Range(0, candidates.Count)];
-                alreadyOccupiedTiles.Add(spawnTile);
 
                 // 위치 설정
                 crew.position = spawnTile;
@@ -260,13 +259,12 @@ public class CrewSystem : ShipSystem
                 crew.currentShip = parentShip;
 
                 // 점유 등록
-                room.OccupyTile(spawnTile);
-                room.OnCrewEnter(crew);
-                parentShip.MarkCrewTileOccupied(room, spawnTile);
+                CrewReservationManager.Instance.ReserveTile(parentShip, room, spawnTile, crew);
 
                 // 컴포넌트 활성화
                 crew.gameObject.SetActive(true);
                 crew.enabled = true;
+
                 BoxCollider2D col = crew.GetComponent<BoxCollider2D>();
                 if (col != null)
                     col.enabled = true;

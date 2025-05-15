@@ -15,16 +15,30 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         // 함내에 피해 발생으로 작업을 중단하고 수리를 먼저 할 필요가 있을 경우
-        if (cm.IsMyShip() && cm.currentRoom.NeedsRepair())
+        if (cm.IsOwnShip() && cm.currentRoom.NeedsRepair())
         {
             isIdle = true;
         }
         if (isIdle)
         {
-            if (cm.IsMyShip())
+            if (cm.IsOwnShip())
             {
                 isIdle = false;
                 cm.BackToThePeace();
+
+
+                ///처음에 작업 진행할 해적 빼고 나머지는 다 텔포로 아군 함선으로 넘어올거라서
+                /// 애초에 작업을 하는 애들은 작업 타일 위에 있어서 BackToThePeace()에서 작업상태로 전환될거야
+                /// 그렇지 않으면 텔포방으로 이동하도록 찍으면 돼
+                if (!IsDoingSomething())
+                {
+                    RTSSelectionManager.Instance.IssueMoveCommand();
+                    /// 보니까 텔포방에 들어가면 바로 이동 시작하게 해놨더라고
+                    /// IssueMoveCommand에서 텔포방으로 이동하도록 좌표찍어서 인자 넣어주면 될거야
+                    /// EnemyController는 update에서 계속 도는 애라 어태치 하는 순간 바로 작동될거야
+                    /// 아, isPlayerControlled는 끄고 어태치 해야 제대로 작동돼
+                }
+
             }
             else
             {
@@ -43,6 +57,7 @@ public class EnemyController : MonoBehaviour
                     }
                 }
             }
+
             if (isIdle)
             {
                 isIdle = false;
@@ -60,7 +75,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            if (!cm.IsMyShip())
+            if (!cm.IsOwnShip())
             {
                 if (!IsDoingSomething())
                     isIdle = true;
@@ -112,6 +127,8 @@ public class EnemyController : MonoBehaviour
         if (cm.isMoving)
             return true;
         if (cm.inCombat)
+            return true;
+        if (cm.isWorking)
             return true;
         return false;
     }

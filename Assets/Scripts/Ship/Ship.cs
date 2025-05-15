@@ -16,7 +16,8 @@ public class Ship : MonoBehaviour
     /// </summary>
     public bool isPlayerShip = true;
 
-    [Header("Ship Info")] [SerializeField] public string shipName = "Milky";
+    [Header("Ship Info")]
+    [SerializeField] public string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -57,7 +58,8 @@ public class Ship : MonoBehaviour
     /// <summary>
     /// 외갑판 데이터
     /// </summary>
-    [Header("외갑판 설정")] [SerializeField] public OuterHullData outerHullData;
+    [Header("외갑판 설정")]
+    [SerializeField] public OuterHullData outerHullData;
 
     /// <summary>
     /// 외갑판 prefab
@@ -213,7 +215,7 @@ public class Ship : MonoBehaviour
 
         // 체력 검사 색깔 판정
         // 타입 검사 종류 판점
-
+        room.UpdateRoomVisual();
 
         // 룸 위치 설정
         Vector2Int size = roomData.GetRoomDataByLevel(level).size;
@@ -258,8 +260,7 @@ public class Ship : MonoBehaviour
     /// <param name="position"></param>
     /// <param name="rotation"></param>
     /// <returns></returns>
-    public Room AddRoom(Room room, Vector2Int position = new(),
-        RotationConstants.Rotation rotation = RotationConstants.Rotation.Rotation0)
+    public Room AddRoom(Room room, Vector2Int position = new(), RotationConstants.Rotation rotation = RotationConstants.Rotation.Rotation0)
     {
         // 룸 타입 확인
         RoomType roomType = room.GetRoomType();
@@ -410,10 +411,12 @@ public class Ship : MonoBehaviour
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
         {
-            Vector2Int gridPos = room.position + new Vector2Int(x, y);
-            roomGrid.Remove(gridPos);
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = room.position + new Vector2Int(x, y);
+                roomGrid.Remove(gridPos);
+            }
         }
 
         // Remove from room type dictionary
@@ -468,7 +471,10 @@ public class Ship : MonoBehaviour
     public int GetTotalShipValue()
     {
         int total = 0;
-        foreach (Room room in allRooms) total += room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).cost;
+        foreach (Room room in allRooms)
+        {
+            total += room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).cost;
+        }
         return total;
     }
 
@@ -510,6 +516,7 @@ public class Ship : MonoBehaviour
         backupWeapons.Clear();
 
         foreach (Room room in allRooms)
+        {
             backupRoomDatas.Add(new RoomBackupData
             {
                 roomData = room.GetRoomData(),
@@ -517,12 +524,18 @@ public class Ship : MonoBehaviour
                 position = room.position,
                 rotation = room.currentRotation
             });
+        }
 
         foreach (ShipWeapon wp in GetAllWeapons())
+        {
             backupWeapons.Add(new WeaponBackupData()
             {
-                weaponData = wp.weaponData, position = wp.GetGridPosition(), direction = wp.GetAttachedDirection()
+                weaponData = wp.weaponData,
+                position = wp.GetGridPosition(),
+                direction = wp.GetAttachedDirection()
             });
+
+        }
     }
 
     /// <summary>
@@ -619,63 +632,7 @@ public class Ship : MonoBehaviour
 
     #region RTS 이동 위한 타일 관리
 
-    /// <summary>
-    /// 선원의 해당 타일 점유 등록 (우선순위 타일 채움)
-    /// </summary>
-    /// <param name="room"></param>
-    /// <param name="tile"></param>
-    public void MarkCrewTileOccupied(Room room, Vector2Int tile)
-    {
-        if (!crewOccupiedTiles.ContainsKey(room))
-            crewOccupiedTiles[room] = new HashSet<Vector2Int>();
 
-        crewOccupiedTiles[room].Add(tile);
-    }
-
-    /// <summary>
-    /// 선원의 해당 타일 점유 해제 (우선순위 타일 나옴)
-    /// </summary>
-    /// <param name="room"></param>
-    /// <param name="tile"></param>
-    public void UnmarkCrewTile(Room room, Vector2Int tile)
-    {
-        if (crewOccupiedTiles.ContainsKey(room))
-            crewOccupiedTiles[room].Remove(tile);
-    }
-
-    /// <summary>
-    /// 전체 방에 대한 선원의 점유 타일 목록에 해당 방, 타일이 있는가
-    /// </summary>
-    /// <param name="room"></param>
-    /// <param name="tile"></param>
-    /// <returns></returns>
-    public bool IsCrewTileOccupied(Room room, Vector2Int tile)
-    {
-        return crewOccupiedTiles.ContainsKey(room) && crewOccupiedTiles[room].Contains(tile);
-    }
-
-    /// <summary>
-    /// 전체 방에 대한 선원의 점유 타일 호출
-    /// </summary>
-    /// <param name="room"></param>
-    /// <returns></returns>
-    public HashSet<Vector2Int> GetCrewOccupiedTiles(Room room)
-    {
-        if (!crewOccupiedTiles.ContainsKey(room))
-            crewOccupiedTiles[room] = new HashSet<Vector2Int>();
-
-        return crewOccupiedTiles[room];
-    }
-
-    /// <summary>
-    /// 선원이 점유하는 타일 모두 해제
-    /// </summary>
-    public void ClearAllCrewTileOccupancy()
-    {
-        // 각 방의 점유 타일 HashSet 초기화
-        foreach (KeyValuePair<Room, HashSet<Vector2Int>> entry in crewOccupiedTiles)
-            entry.Value.Clear();
-    }
 
     #endregion
 
@@ -694,12 +651,12 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-        for (int y = 0; y < size.y; y++)
-        {
-            Vector2Int checkPos = pos + new Vector2Int(x, y);
-            if (roomGrid.ContainsKey(checkPos))
-                return false;
-        }
+            for (int y = 0; y < size.y; y++)
+            {
+                Vector2Int checkPos = pos + new Vector2Int(x, y);
+                if (roomGrid.ContainsKey(checkPos))
+                    return false;
+            }
 
         return true;
     }
@@ -1117,11 +1074,13 @@ public class Ship : MonoBehaviour
     public void AllFreeze()
     {
         foreach (CrewMember crew in GetAllCrew())
+        {
             if (crew != null)
             {
                 crew.Freeze();
                 crew.BackToThePeace();
             }
+        }
     }
 
     #region 무기
@@ -1320,15 +1279,15 @@ public class Ship : MonoBehaviour
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
-            for (int y = -1; y <= 1; y++)
-            {
-                if (x == 0 && y == 0) continue;
+                for (int y = -1; y <= 1; y++)
+                {
+                    if (x == 0 && y == 0) continue;
 
-                Vector2Int checkPos = position + new Vector2Int(x, y);
+                    Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                // 해당 위치에 있는 선원들에게 데미지 적용
-                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
-            }
+                    // 해당 위치에 있는 선원들에게 데미지 적용
+                    ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
+                }
     }
 
     #endregion
@@ -1556,24 +1515,33 @@ public class Ship : MonoBehaviour
 
         transform.position = new Vector3(diffX, diffY, 10f);
 
-        // 5. 소속 적군도 옮기기
+        /* // 추후 필요 시 다시 생성할 소속 적군 옮기는 함수
+        // 5. 소속 적군도 옮기기 (수정 필요함 - crewsystem.cs의 restorcrewafterbuild() 참고)
         foreach (CrewMember crew in allCrews)
         {
             if (crew == null || crew.currentRoom == null)
                 continue;
 
             Room room = crew.currentRoom;
-            List<Vector2Int> entryTiles = room.GetRotatedCrewEntryGridPriority();
+            List<Vector2Int> candidates = room.GetRotatedCrewEntryGridPriority().Where
+            (
+                t => !CrewReservationManager.Instance.IsTileOccupied(this, t)
+            ).ToList();
 
-            foreach (Vector2Int tile in entryTiles)
+            if (candidates.Count == 0)
+                continue;
+
+            foreach (Vector2Int tile in candidates)
+            {
                 // 점유되지 않은 타일에 배치
-                if (!IsCrewTileOccupied(room, tile))
+                if (!CrewReservationManager.Instance.IsTileOccupied(this, tile))
                 {
                     crew.transform.position = GetWorldPositionFromGrid(room.position + tile);
                     crew.transform.rotation = Quaternion.identity;
                     crew.position = tile;
 
                     MarkCrewTileOccupied(room, tile);
+                    CrewReservationManager.Instance.ReserveTile(crew.currentShip, )
                     break;
                 }
         }
@@ -1584,6 +1552,9 @@ public class Ship : MonoBehaviour
             Debug.LogError($"{r} : {tile} 점유");
         // if (crewOccupiedTiles[r].Contains(tile))
         //     Debug.LogError($"{tile}은 {CrewSystem.GetCrewsAtPosition(tile)}선원이 점유중");
+            }
+        }
+        */
     }
 
     #endregion

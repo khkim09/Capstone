@@ -50,6 +50,11 @@ public class CrewMember : CrewBase
     public Vector2Int originPosTile;
 
     /// <summary>
+    /// 움직이는 중이었다.
+    /// </summary>
+    private bool wasMoving = false;
+
+    /// <summary>
     /// Unity 생명주기 메서드.
     /// 매 프레임마다 선원 상태를 갱신합니다. (현재는 구현 미완료)
     /// </summary>
@@ -105,13 +110,10 @@ public class CrewMember : CrewBase
         }
 
         // 1. 점유 타일 해제
-        // ExitCurrentTile();
         if (currentRoom != null)
             CrewReservationManager.Instance.ExitTile(currentShip, currentRoom, GetCurrentTile(), this);
-        // CrewReservationManager.Instance.ExitTile(currentShip, oldReservedRoom, oldReservedTile, this);
 
         // 2. 목적지 예약
-        // ReserveDestination();
         if (reservedRoom != null)
         {
             CrewReservationManager.Instance.ReserveTile(currentShip, reservedRoom, reservedTile, this);
@@ -139,7 +141,6 @@ public class CrewMember : CrewBase
         }
 
         // 1. 이전 목적지 타일 점유 해제
-        // ExitReserveTile();
         if (oldReservedRoom != null)
             CrewReservationManager.Instance.ExitTile(currentShip, oldReservedRoom, oldReservedTile, this);
 
@@ -303,7 +304,7 @@ public class CrewMember : CrewBase
         {
             Debug.LogError("적없음");
             // 내 배가 아닐 경우 부수는 행동 개시
-            if (!IsMyShip())
+            if (!IsOwnShip())
                 combatCoroutine = StartCoroutine(CombatRoutine());
             else
             {
@@ -463,7 +464,9 @@ public class CrewMember : CrewBase
     /// <summary>
     /// 애니메이션 발동 타이밍과 실제 데미지 적용 사이의 딜레이
     /// </summary>
-    private float attackDelay = 1f;
+    private float attackBeforeDelay = 1f;
+
+    private float attackAfterDelay = 1f;
 
     /// <summary>
     /// 전투 코루틴
@@ -486,11 +489,11 @@ public class CrewMember : CrewBase
     /// <returns></returns>
     public IEnumerator CombatRoutine()
     {
-        // 때릴 적군 없음 -> 정지 (유저 함선) or 방 부수기 (적 함선)
+        // 때릴 적군 없음 -> 정지 (본인 함선) or 방 부수기 (적 함선)
         if (combatTarget == null || !combatTarget.isAlive)
         {
-            // 유저 함선이면 break (그 자리에서 정지)
-            if (IsMyShip())
+            // 본인 함선이면 break (그 자리에서 정지)
+            if (IsOwnShip())
             {
                 inCombat = false;
                 combatCoroutine = null;
@@ -528,12 +531,12 @@ public class CrewMember : CrewBase
         PlayAnimation("attack");
 
         // 실제로 데미지가 들어가는 부분
-        yield return new WaitForSeconds(attackDelay);
+        yield return new WaitForSeconds(attackBeforeDelay);
         Debug.LogError("공격 딜레이 종료");
 
         // 실제 데미지 적용
         Attack(this, combatTarget);
-        yield return new WaitForSeconds(attackDelay);
+        yield return new WaitForSeconds(attackAfterDelay);
 
         // 부술 방도 없고 적군도 죽은 상태
         if (madRoom == null && combatTarget == null)
@@ -636,6 +639,7 @@ public class CrewMember : CrewBase
     /// </summary>
     public void Die()
     {
+        wasMoving = isMoving;
         isMoving = false;
         inCombat = false;
         isAlive = false;
@@ -643,12 +647,23 @@ public class CrewMember : CrewBase
 
         StopAllCoroutines();
         DontTouchMe();
+
         if (currentRoom.workingCrew == this)
         {
             WalkOut();
         }
+
         if (DieCoroutine == null)
         {
+            // 이거 해결해야 될 듯
+            if (RTSSelectionManager.Instance.selectedCrew.Contains(this))
+                RTSSelectionManager.Instance.selectedCrew.RemoveAll(cm => cm == null || cm == this);
+
+            if (currentShip.allCrews.Contains(this))
+                currentShip.allCrews.Remove(this);
+            if (currentShip.allEnemies.Contains(this))
+                currentShip.allEnemies.Remove(this);
+
             DieCoroutine = StartCoroutine(ImDying());
         }
     }
@@ -703,17 +718,18 @@ public class CrewMember : CrewBase
     public IEnumerator ImDying()
     {
         PlayAnimation("die");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         if (currentRoom != null)
         {
-            Vector2Int currentTile = GetCurrentTile();
-            currentRoom.VacateTile(currentTile);
-            currentRoom.OnCrewExit(this);
+            if (!wasMoving)
+                CrewReservationManager.Instance.ExitTile(currentShip, currentRoom, GetCurrentTile(), this);
+            else
+                CrewReservationManager.Instance.ExitTile(currentShip, reservedRoom, reservedTile, this);
         }
-        if (currentShip.GetAllCrew().Contains(this)) currentShip.GetAllCrew().Remove(this);
 
         Destroy(this.gameObject);
+
         Debug.Log($"{crewName} 사망 처리 완료");
     }
 
@@ -759,8 +775,8 @@ public class CrewMember : CrewBase
 
             PlayAnimation("idle");
 
-            // 유저 함선일 경우 수리, 작업 시도 및 진입
-            if (IsMyShip())
+            // 본인 함선일 경우 수리, 작업 시도 및 진입
+            if (IsOwnShip())
             {
                 if (currentRoom.NeedsRepair())
                 {
@@ -808,14 +824,15 @@ public class CrewMember : CrewBase
     /// <summary>
     /// 수리 간 딜레이
     /// </summary>
-    public float repairDelay = 0.5f;
+    public float repairBeforeDelay = 0.5f;
+    public float repairAfterDelay = 0.5f;
 
     /// <summary>
-    /// 유저 함선에서 수리 시도
+    /// 본인 함선에서 수리 시도
     /// </summary>
     public void TryRepair()
     {
-        if (!IsMyShip())
+        if (!IsOwnShip())
             return;
         Dictionary<SkillType, float> crewSkill = GetCrewSkillValue();
         if (!crewSkill.ContainsKey(SkillType.RepairSkill))
@@ -849,12 +866,12 @@ public class CrewMember : CrewBase
         }
 
         PlayAnimation("repair");
-        yield return new WaitForSeconds(repairDelay);
+        yield return new WaitForSeconds(repairBeforeDelay);
 
         // 실제 수리 실행
         RepairFacility(currentRoom);
         //todo: 수리 숙련도 적용시켜야됨
-        yield return new WaitForSeconds(repairDelay);
+        yield return new WaitForSeconds(repairAfterDelay);
 
         if (currentRoom.NeedsRepair())
             repairCoroutine = StartCoroutine(RepairRoutine());
@@ -925,8 +942,6 @@ public class CrewMember : CrewBase
         }
     }
 
-
-
     #endregion
 
     /// <summary>
@@ -951,10 +966,10 @@ public class CrewMember : CrewBase
         isMoving = false;
         moveCoroutine = null;
 
-        //수리 중단
+        // 수리 중단
         repairCoroutine = null;
 
-        //애니메이션 대기상태로 전환
+        // 애니메이션 대기상태로 전환
         PlayAnimation("idle");
     }
 
@@ -979,15 +994,53 @@ public class CrewMember : CrewBase
     }
 
     /// <summary>
-    /// 현재 선원이 탑승해 있는 함선이 유저의 함선 (true)인지 적 함선 (false)인지 여부 반환
+    /// 현재 선원이 탑승해 있는 함선이 선원의 모선인지 확인 (상대 배에 타있으면 false)
     /// </summary>
     /// <returns></returns>
-    public bool IsMyShip()
+    public bool IsOwnShip()
     {
-        if (currentShip.isPlayerShip == isPlayerControlled)
-            return true;
-        return false;
+        // 유저 함선에 텔포한 적일 경우 : isPlayerControlled = false, currentShip.isPlayerShip = true
+        return isPlayerControlled == currentShip.isPlayerShip ? true : false;
     }
 
+    public void Start()
+    {
+        base.Start();
 
+        switch (race)
+        {
+            case CrewRace.Amorphous:
+                attackBeforeDelay = 0.7f;
+                attackBeforeDelay = 0.4f;
+                repairBeforeDelay = 0.572f;
+                repairAfterDelay = 0.428f;
+                break;
+            case CrewRace.Beast:
+                attackBeforeDelay = 0.4f;
+                attackAfterDelay = 0.3f;
+                repairBeforeDelay = 0.5f;
+                repairAfterDelay = 0.5f;
+                break;
+            case CrewRace.Human:
+                attackBeforeDelay = 0.7f;
+                attackAfterDelay = 0.4f;
+                repairBeforeDelay = 0.375f;
+                repairAfterDelay = 0.625f;
+                break;
+            case CrewRace.Insect:
+                attackBeforeDelay = 0.6f;
+                attackAfterDelay = 0.4f;
+                repairBeforeDelay = 0.6f;
+                repairAfterDelay = 0.4f;
+                break;
+            case CrewRace.MechanicSup:
+                repairBeforeDelay = 0.4f;
+                repairAfterDelay = 0.6f;
+                break;
+            case CrewRace.MechanicTank:
+                attackBeforeDelay = 0.4f;
+                attackAfterDelay = 0.2f;
+                break;
+        }
+    }
 }
