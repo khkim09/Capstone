@@ -4,7 +4,6 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.Video;
 using UnityEditor.U2D.Aseprite;
-using System.Linq;
 
 /// <summary>
 /// 함선의 전체 기능과 상태를 관리하는 클래스.
@@ -13,9 +12,9 @@ using System.Linq;
 public class Ship : MonoBehaviour
 {
     /// <summary>
-    /// 유저의 함선인지 여부 (true : 유저 함선, false : enemyShip)
+    /// 유저의 함선인지 여부 (적 함선은 false 세팅 필요)
     /// </summary>
-    public bool isPlayerShip;
+    public bool isPlayerShip = true;
 
     [Header("Ship Info")]
     [SerializeField] public string shipName = "Milky";
@@ -123,6 +122,11 @@ public class Ship : MonoBehaviour
     public event Action OnRoomChanged;
 
     /// <summary>
+    /// 선원이 점유하는 타일 관리 (전역 변수)
+    /// </summary>
+    private Dictionary<Room, HashSet<Vector2Int>> crewOccupiedTiles = new();
+
+    /// <summary>
     /// 함선의 초기 상태를 설정합니다.
     /// 기본 스탯 설정 및 시스템 초기화를 수행합니다.
     /// </summary>
@@ -224,6 +228,8 @@ public class Ship : MonoBehaviour
 
         room.Initialize(level);
 
+        room.UpdateRoomVisual();
+
         // 룸 목록에 추가
         allRooms.Add(room);
 
@@ -286,6 +292,8 @@ public class Ship : MonoBehaviour
         // 실제 룸 배치 작업
         room.gameObject.transform.position = worldPos + new Vector3(0, 0, 5f);
         room.gameObject.transform.rotation = Quaternion.Euler(0, 0, -(int)rotation * 90);
+
+        room.UpdateRoomVisual();
 
         // 룸 목록에 추가
         allRooms.Add(room);
@@ -1142,8 +1150,8 @@ public class Ship : MonoBehaviour
     {
         List<Vector2Int> targetPositions = new();
         foreach (Room r in allRooms)
-            foreach (Vector2Int tile in r.GetOccupiedTiles())
-                targetPositions.Add(tile);
+        foreach (Vector2Int tile in r.GetOccupiedTiles())
+            targetPositions.Add(tile);
 
         Vector2Int randomPosition = targetPositions[Random.Range(0, targetPositions.Count)];
 
@@ -1357,11 +1365,32 @@ public class Ship : MonoBehaviour
     }
 
     /// <summary>
+    /// 그리드 좌표를 월드 좌표로 변환 ((0, 0) ~ (60, 60) 그리드 내 좌표라 local relative 좌표임)
+    /// </summary>
+    /// <param name="gridPos"></param>
+    /// <returns></returns>
+    public Vector3 GridToWorldPosition(Vector2 gridPos)
+    {
+        return Vector3.zero + new Vector3((gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
+            (gridPos.y + 0.5f) * GridConstants.CELL_SIZE, 0f);
+    }
+
+    /// <summary>
     /// 실제 월드 위치 반환
     /// </summary>
     /// <param name="gridPos"></param>
     /// <returns></returns>
     public Vector3 GetWorldPositionFromGrid(Vector2Int gridPos)
+    {
+        return transform.TransformPoint(GridToWorldPosition(gridPos));
+    }
+
+    /// <summary>
+    /// 실제 월드 위치 반환
+    /// </summary>
+    /// <param name="gridPos"></param>
+    /// <returns></returns>
+    public Vector3 GetWorldPositionFromGrid(Vector2 gridPos)
     {
         return transform.TransformPoint(GridToWorldPosition(gridPos));
     }
@@ -1515,6 +1544,14 @@ public class Ship : MonoBehaviour
                     CrewReservationManager.Instance.ReserveTile(crew.currentShip, )
                     break;
                 }
+        }
+
+        // 모든 방의 점유 타일 검사
+        foreach (Room r in allRooms)
+        foreach (Vector2Int tile in r.GetOccupiedTiles())
+            Debug.LogError($"{r} : {tile} 점유");
+        // if (crewOccupiedTiles[r].Contains(tile))
+        //     Debug.LogError($"{tile}은 {CrewSystem.GetCrewsAtPosition(tile)}선원이 점유중");
             }
         }
         */

@@ -135,7 +135,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// </summary>
     public HashSet<CrewMember> bullier = new();
 
-    private void Start()
+    public void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = SortingOrderConstants.Character;

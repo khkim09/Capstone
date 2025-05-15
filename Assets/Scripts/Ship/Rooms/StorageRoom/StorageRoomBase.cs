@@ -26,7 +26,7 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
     protected override void Start()
     {
         base.Start();
-        workDirection=Vector2Int.zero;
+        workDirection = Vector2Int.zero;
     }
 
     public override void Initialize(int level)
@@ -160,6 +160,9 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
             if (!removed) return false;
         }
 
+        // 아이템에 부모 창고 설정
+        item.parentStorage = this;
+
         item.Rotate(rotation);
 
         // 아이템을 방의 자식으로 설정
@@ -168,8 +171,6 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
         // 그리드 위치 저장
         item.gridPosition = position;
 
-        // 아이템에 부모 창고 설정
-        item.SetParentStorage(this);
 
         // 방 크기
         Vector2Int storageSize = GetSize();
@@ -233,6 +234,7 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
         // 드래그 모드 해제 (아이템이 보이도록)
         item.SetDragMode(false);
 
+        item.PositionFrameAtGridCenter();
 
         return true;
     }
@@ -269,12 +271,12 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
             int removedCells = 0;
 
             for (int y = 0; y < size.y; y++)
-                for (int x = 0; x < size.x; x++)
-                    if (itemGrid[y, x] == item)
-                    {
-                        itemGrid[y, x] = null;
-                        removedCells++;
-                    }
+            for (int x = 0; x < size.x; x++)
+                if (itemGrid[y, x] == item)
+                {
+                    itemGrid[y, x] = null;
+                    removedCells++;
+                }
 
             // 저장된 아이템 목록에서도 제거
             storedItems.Remove(item);
@@ -396,15 +398,15 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
 
         // 각 점유된 블록에 대해 창고 좌표 계산
         for (int y = 0; y < 5; y++)
-            for (int x = 0; x < 5; x++)
-                if (blockShape[y][x])
-                {
-                    // 아이템 블록 좌표를 창고 좌표로 변환 (중심점 2,2 기준)
-                    int storageX = position.x + (x - 2);
-                    int storageY = position.y + (2 - y);
+        for (int x = 0; x < 5; x++)
+            if (blockShape[y][x])
+            {
+                // 아이템 블록 좌표를 창고 좌표로 변환 (중심점 2,2 기준)
+                int storageX = position.x + (x - 2);
+                int storageY = position.y + (2 - y);
 
-                    occupiedTiles.Add(new Vector2Int(storageX, storageY));
-                }
+                occupiedTiles.Add(new Vector2Int(storageX, storageY));
+            }
 
         return occupiedTiles;
     }
