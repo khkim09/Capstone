@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileData:
-  - weaponType: 0
+  - projectileId: 0
+    projectileName: 
     projectilePrefab: {fileID: 1201430023094604553, guid: fb7c3a6b585afac47b27aa2efcf09083, type: 3}
     speed: 10
     maxLifetime: 10
@@ -55,7 +56,9 @@ MonoBehaviour:
     movementType: 1
     parabolicAngle: 20.8
     allowDownwardParabola: 1
-  - weaponType: 1
+    compatibleWeaponTypes: 
+  - projectileId: 1
+    projectileName: 
     projectilePrefab: {fileID: 2243882328021703596, guid: 56fcadd2e32c67440ac9ff286e4594be, type: 3}
     speed: 20
     maxLifetime: 15
@@ -65,5 +68,7 @@ MonoBehaviour:
     movementType: 1
     parabolicAngle: 19.1
     allowDownwardParabola: 1
+    compatibleWeaponTypes: 
   poolSize: 100
+  organizeIntoFolders: 1
   effectsParent: {fileID: 0}

@@ -36,8 +36,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -95,7 +94,6 @@ public class GameManager : MonoBehaviour
         playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
         currentEnemyShip = GameObject.Find("EnemyShip")?.GetComponent<Ship>();
 
-
         playerShip.Initialize();
 
         CreateDefaultPlayerShip();
@@ -119,7 +117,7 @@ public class GameManager : MonoBehaviour
         if (currentEnemyShip != null)
         {
             currentEnemyShip.Initialize();
-            GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("test_ship");
+            GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("combat_test");
         }
 
         // 기존으로 돌릴라면 아래 3개 주석 처리
@@ -139,14 +137,11 @@ public class GameManager : MonoBehaviour
     private Room WhereToGo(RoomType type)
     {
         List<Room> rooms = playerShip.GetAllRooms();
-        List<Room> canGo = new List<Room>();
+        List<Room> canGo = new();
         foreach (Room room in rooms)
-        {
             if (room.GetIsDamageable() && room.roomType == type)
-            {
                 canGo.Add(room);
-            }
-        }
+
         return canGo[UnityEngine.Random.Range(0, canGo.Count)];
     }
 
@@ -156,9 +151,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(7f);
 
         foreach (CrewMember crew in playerShip.allCrews)
-        {
             RTSSelectionManager.Instance.IssueMoveCommand(WhereToGo(RoomType.Engine));
-        }
     }
 
     // 선 피격 테스트
@@ -251,10 +244,24 @@ public class GameManager : MonoBehaviour
         playerShip.AddRoom(corridors[13], new Vector2Int(31, 35));
         playerShip.AddRoom(corridors[14], new Vector2Int(32, 35));
 
+        Room storageRoom = GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+        Room storageRoom2 =
+            GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+
+        playerShip.AddRoom(storageRoom, new Vector2Int(27, 26), RotationConstants.Rotation.Rotation270);
+        playerShip.AddRoom(storageRoom2, new Vector2Int(38, 24), RotationConstants.Rotation.Rotation90);
+        StorageRoomBase storage = (StorageRoomBase)storageRoom;
+        TradingItem item = GameObjectFactory.Instance.CreateItemInstance(0, 20);
+        TradingItem item2 = GameObjectFactory.Instance.CreateItemInstance(2, 10);
+        TradingItem item3 = GameObjectFactory.Instance.CreateItemInstance(21, 1);
+        storage.AddItem(item, new Vector2Int(0, 0), RotationConstants.Rotation.Rotation0);
+        storage.AddItem(item2, new Vector2Int(2, 2), RotationConstants.Rotation.Rotation0);
+        StorageRoomBase storage2 = (StorageRoomBase)storageRoom2;
+        storage2.AddItem(item3, new Vector2Int(1, 1), RotationConstants.Rotation.Rotation0);
         // Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
         // playerShip.AddRoom(temp, new Vector2Int(50, 31), RotationConstants.Rotation.Rotation90);
-
         playerShip.AddWeapon(1, new Vector2Int(35, 33), ShipWeaponAttachedDirection.East);
+
         // playerShip.AddWeapon(8, new Vector)
 
         playerShip.UpdateOuterHullVisuals();

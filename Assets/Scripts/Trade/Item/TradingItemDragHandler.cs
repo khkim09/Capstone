@@ -13,8 +13,7 @@ public class TradingItemDragHandler : MonoBehaviour
     // 싱글톤 패턴으로 구현
     public static TradingItemDragHandler Instance { get; private set; }
 
-    [Header("Preview Colors")]
-    [SerializeField]
+    [Header("Preview Colors")] [SerializeField]
     private Color validPlacementColor = new(0, 1, 0, 0.5f);
 
     [SerializeField] private Color invalidPlacementColor = new(1, 0, 0, 0.5f);
@@ -31,6 +30,8 @@ public class TradingItemDragHandler : MonoBehaviour
     private RotationConstants.Rotation originalRotation;
     private RotationConstants.Rotation currentRotation;
 
+    private bool lastLoggedDraggingState = false;
+
     // 드래그 상태
     private bool isDragging = false;
     private Vector2 dragOffset;
@@ -38,6 +39,8 @@ public class TradingItemDragHandler : MonoBehaviour
     // 그리드 좌표 캐싱
     private Vector2Int currentGridPosition;
     private StorageRoomBase currentTargetStorage;
+    private StorageRoomBase previousTargetStorage; // 이전 프레임의 타겟 창고
+
 
     // 코루틴 참조를 저장할 변수
     private Coroutine flashCoroutine = null;
@@ -87,22 +90,22 @@ public class TradingItemDragHandler : MonoBehaviour
         currentRotation = originalRotation; // 현재 회전 상태 초기화
         isDragging = true;
 
-
         // 원본 아이템을 임시로 비활성화
         item.SetDragMode(true);
 
         // 프리뷰 생성
         CreatePreview(item);
 
-        // 현재 회전 상태에 맞는 박스 스프라이트로 업데이트
-        UpdatePreviewBoxSprite();
-
         // 드래그 오프셋을 0으로 설정하여 마우스가 항상 아이템 중심에 위치하도록 함
         dragOffset = Vector2.zero;
 
         // 현재 그리드 위치 초기화
         currentGridPosition = originalPosition;
-        currentTargetStorage = sourceStorage;
+        currentTargetStorage = sourceStorage; // 시작할 때는 원래 창고
+        previousTargetStorage = sourceStorage; // 이전 타겟도 원래 창고로 초기화
+
+        // 현재 회전 상태에 맞는 박스 스프라이트로 업데이트
+        UpdatePreviewBoxSprite();
 
         // 프리뷰 위치 초기화
         UpdatePreviewPosition(mousePosition);
@@ -112,6 +115,7 @@ public class TradingItemDragHandler : MonoBehaviour
         // if (cameraController != null)
         //     cameraController.DisablePanning();
     }
+
 
     /// <summary>
     /// 프리뷰 오브젝트 생성 - 프리팹 사용 없이 직접 생성
@@ -142,7 +146,6 @@ public class TradingItemDragHandler : MonoBehaviour
         itemIconObject.transform.SetParent(previewObject.transform, false);
     }
 
-    private bool lastLoggedDraggingState = false;
 
     /// <summary>
     /// 매 프레임 마우스 위치에 따라 프리뷰 업데이트
@@ -161,37 +164,28 @@ public class TradingItemDragHandler : MonoBehaviour
             lastLoggedDraggingState = isDragging;
         }
 
+        // 이전 타겟 창고 저장 (프리뷰 위치 업데이트 전에)
+        previousTargetStorage = currentTargetStorage;
+
         // 마우스 위치 가져오기
         Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // 프리뷰 위치 업데이트
+        // 프리뷰 위치 업데이트 (이 안에서 currentTargetStorage가 업데이트됨)
         UpdatePreviewPosition(mouseWorldPos);
+
+        // 타겟 창고가 바뀌었는지 확인
+        bool targetStorageChanged = previousTargetStorage != currentTargetStorage;
+
+        // 타겟 창고가 바뀌었다면 프리뷰 스프라이트 업데이트
+        if (targetStorageChanged) UpdatePreviewBoxSprite();
 
         // 현재 위치에 배치 가능한지 검사
         bool canPlace = false;
-        StorageRoomBase targetStorage = GetStorageUnderMouse();
 
-        if (targetStorage != null)
+        if (currentTargetStorage != null)
         {
-            // 그리드 위치 계산 - 마우스 위치를 그대로 사용
-            Vector2Int gridPos = targetStorage.WorldToGridPosition(mouseWorldPos);
-
-            // 이전과 동일한 위치면 다시 계산하지 않음
-            if (targetStorage != currentTargetStorage || gridPos != currentGridPosition)
-            {
-                currentGridPosition = gridPos;
-                currentTargetStorage = targetStorage;
-
-                // 미리 배치 가능 여부 확인
-                canPlace = targetStorage.CanPlaceItem(originalItem, gridPos, currentRotation);
-
-                // 그리드에 스냅된 정확한 위치 계산
-                UpdatePreviewToGridPosition(targetStorage, gridPos);
-            }
-            else
-            {
-                canPlace = targetStorage.CanPlaceItem(originalItem, currentGridPosition, currentRotation);
-            }
+            // 미리 배치 가능 여부 확인
+            canPlace = currentTargetStorage.CanPlaceItem(originalItem, currentGridPosition, currentRotation);
 
             // 배치 가능 여부에 따라 프리뷰 색상 변경
             Color targetColor = canPlace ? validPlacementColor : invalidPlacementColor;
@@ -201,7 +195,6 @@ public class TradingItemDragHandler : MonoBehaviour
         {
             // 창고 위에 없을 때는 일반 프리뷰 색상 사용
             previewBoxRenderer.color = normalPreviewColor;
-            currentTargetStorage = null;
         }
 
         // 회전 처리 (좌클릭 드래그 상태에서 우클릭)
@@ -301,8 +294,12 @@ public class TradingItemDragHandler : MonoBehaviour
 
         if (boxSprites != null && boxSprites.Length > 0)
         {
+            // 현재 타겟 창고의 회전값 가져오기 (null 체크 추가)
+            int targetStorageRotation = 0;
+            if (currentTargetStorage != null) targetStorageRotation = (int)currentTargetStorage.currentRotation;
+
             // 현재 회전 상태에 맞는 스프라이트 선택
-            int spriteIndex = (int)currentRotation % boxSprites.Length;
+            int spriteIndex = ((int)currentRotation + targetStorageRotation) % boxSprites.Length;
             previewBoxRenderer.sprite = boxSprites[spriteIndex];
         }
     }
@@ -320,7 +317,7 @@ public class TradingItemDragHandler : MonoBehaviour
             // 마우스 위치를 그대로 사용하여 그리드 위치 계산 (드래그 오프셋 없음)
             Vector2Int gridPos = targetStorage.WorldToGridPosition(mouseWorldPos);
             currentGridPosition = gridPos;
-            currentTargetStorage = targetStorage;
+            currentTargetStorage = targetStorage; // 여기서 currentTargetStorage 업데이트
 
             // 그리드 위치에 맞게 업데이트
             UpdatePreviewToGridPosition(targetStorage, gridPos);
@@ -329,7 +326,7 @@ public class TradingItemDragHandler : MonoBehaviour
         {
             // 창고 위가 아닌 경우, 마우스 위치에 직접 배치
             previewObject.transform.position = new Vector3(mouseWorldPos.x, mouseWorldPos.y, 0);
-            currentTargetStorage = null;
+            currentTargetStorage = null; // 여기서 currentTargetStorage를 null로 설정
         }
     }
 
@@ -452,14 +449,14 @@ public class TradingItemDragHandler : MonoBehaviour
 
             // 모든 아이템의 상태 확인
             foreach (StorageRoomBase storage in FindObjectsOfType<StorageRoomBase>())
-                foreach (TradingItem item in storage.storedItems)
-                    if (item != null)
-                    {
-                        // 콜라이더 상태도 함께 확인
-                        BoxCollider2D collider = item.GetComponent<BoxCollider2D>();
-                        if (collider == null)
-                            Debug.LogWarning($"[TradingItemDragHandler] 아이템 {item.GetInstanceID()} 콜라이더 없음!");
-                    }
+            foreach (TradingItem item in storage.storedItems)
+                if (item != null)
+                {
+                    // 콜라이더 상태도 함께 확인
+                    BoxCollider2D collider = item.GetComponent<BoxCollider2D>();
+                    if (collider == null)
+                        Debug.LogWarning($"[TradingItemDragHandler] 아이템 {item.GetInstanceID()} 콜라이더 없음!");
+                }
         }
 
         // 드래그 종료 후 아이템 상호작용 활성화를 위한 짧은 지연
@@ -553,17 +550,17 @@ public class TradingItemDragHandler : MonoBehaviour
 
         int resetCount = 0;
         foreach (StorageRoomBase storage in allStorages)
-            foreach (TradingItem item in storage.storedItems)
-                if (item != null)
-                {
-                    // 강제로 드래그 모드 해제 및 콜라이더 활성화
-                    item.SetDragMode(false);
+        foreach (TradingItem item in storage.storedItems)
+            if (item != null)
+            {
+                // 강제로 드래그 모드 해제 및 콜라이더 활성화
+                item.SetDragMode(false);
 
-                    BoxCollider2D collider = item.GetComponent<BoxCollider2D>();
-                    if (collider != null) collider.enabled = true;
+                BoxCollider2D collider = item.GetComponent<BoxCollider2D>();
+                if (collider != null) collider.enabled = true;
 
-                    resetCount++;
-                }
+                resetCount++;
+            }
 
         resetCoroutine = null;
     }

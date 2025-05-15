@@ -83,6 +83,10 @@ public abstract class RoomData : ScriptableObject
         public Sprite roomSprite;
         // TODO: 스프라이트 완성되면 각 Scriptable Object 에 스프라이트 추가할 것, roomPrefab(실제 배치될 방 prefab), previewPrefab(roomPrefab에서 alpha값만 0.5)
 
+        public GameObject roomIconPrefab;
+
+        public GameObject toolTipPrefab;
+
         /// <summary>이 방에 가능한 모든 문의 위치와 방향 목록</summary>
         public List<DoorPosition> possibleDoorPositions = new();
 

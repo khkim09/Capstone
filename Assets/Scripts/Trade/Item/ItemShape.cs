@@ -361,7 +361,7 @@ public class ItemShape
         SetItemShape(10, 0,
             new bool[][]
             {
-                new[] { false, false, false, false, false }, new[] { false, false, false, false, false },
+                new[] { false, false, false, false, false }, new[] { false, false, true, false, false },
                 new[] { false, true, true, false, false }, new[] { false, true, true, false, false },
                 new[] { false, false, false, false, false }
             });
