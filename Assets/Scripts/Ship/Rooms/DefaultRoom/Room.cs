@@ -72,11 +72,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     private SpriteRenderer icon;
 
     /// <summary>
-    /// 선원이 점유하고 있는 tile
-    /// </summary>
-    public HashSet<Vector2Int> occupiedCrewTiles = new();
-
-    /// <summary>
     /// 각 방에 collider 추가, isTrigger = true 설정을 통해 선원 충돌 방해 제거
     /// </summary>
     protected virtual void Start()
@@ -518,133 +513,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         return GetOccupiedTiles().Contains(tile);
     }
 
-    /*
-    /// <summary>
-    /// 문 추가
-    /// </summary>
-    public bool AddDoor(DoorPosition doorPos, DoorData doorData, int doorLevel = 1)
-    {
-        // 유효한 문 위치인지 확인
-        if (!IsValidDoorPosition(doorPos.position, doorPos.direction))
-            return false;
-
-        // 이미 해당 위치에 문이 있는지 확인
-        if (GetDoorAtPosition(doorPos.position, doorPos.direction) != null)
-            return false;
-
-        // 문 생성 및 설정
-        GameObject doorObject = new("Door");
-        Door door = doorObject.AddComponent<Door>();
-        door.Initialize(doorData, doorLevel, doorPos.direction);
-
-        // 원래 그리드 위치와 방향 저장 (회전 기준점)
-        door.OriginalGridPosition = doorPos.position;
-        door.OriginalDirection = doorPos.direction;
-
-        // 중요: 문을 방의 자식으로 설정
-        doorObject.transform.SetParent(transform, false);
-
-        // 방 좌표계에서의 문 위치 설정 (로컬 좌표 사용)
-        Vector2 localDoorPosition = GetLocalDoorPosition(doorPos);
-        doorObject.transform.localPosition = new Vector3(localDoorPosition.x, localDoorPosition.y, 0);
-
-        // 방 좌표계에서의 문 회전 설정 (로컬 회전 사용)
-        door.SetDirection(doorPos.direction);
-
-        // 문 목록에 추가
-        connectedDoors.Add(door);
-
-        return true;
-    }
-    */
-
-    /// <summary>
-    /// 방 좌표계에서의 문 위치를 계산합니다.
-    /// </summary>
-    private Vector2 GetLocalDoorPosition(DoorPosition doorPos)
-    {
-        // 방 크기 정보 가져오기
-        Vector2Int roomSize = roomData.GetRoomDataByLevel(currentLevel).size;
-
-        // 방의 절반 크기 (피벗이 중앙에 있다고 가정)
-        float halfWidth = roomSize.x * 0.5f;
-        float halfHeight = roomSize.y * 0.5f;
-
-        float doorThickness = GridConstants.CELL_SIZE * 0.0f;
-
-        // 정확한 테두리 위치 계산
-        Vector2 localPos = Vector2.zero;
-
-        switch (doorPos.direction)
-        {
-            case DoorDirection.North: // 위쪽 테두리
-                // x 위치: doorPos.position.x의 상대적 위치 계산
-                // doorPos.position.x - 방의 좌측 시작점(왼쪽 테두리부터의 거리)
-                localPos.x = doorPos.position.x - halfWidth + 0.5f;
-                // y 위치: 위쪽 테두리 정확히
-                localPos.y = halfHeight + 0.5f - doorThickness;
-                break;
-
-            case DoorDirection.East: // 오른쪽 테두리
-                // x 위치: 오른쪽 테두리 정확히
-                localPos.x = halfWidth - 0.5f + doorThickness;
-                // y 위치: doorPos.position.y의 상대적 위치 계산
-                localPos.y = doorPos.position.y - halfHeight + 0.5f;
-                break;
-
-            case DoorDirection.South: // 아래쪽 테두리
-                // x 위치: 북쪽과 동일한 계산
-                localPos.x = doorPos.position.x - halfWidth / 2.0f + 0.5f;
-                // y 위치: 아래쪽 테두리 정확히
-                localPos.y = -halfHeight - 0.5f + doorThickness;
-                break;
-
-            case DoorDirection.West: // 왼쪽 테두리
-                // x 위치: 왼쪽 테두리 정확히
-                localPos.x = -halfWidth + 0.5f - doorThickness;
-                // y 위치: 동쪽과 동일한 계산
-                localPos.y = doorPos.position.y - halfHeight + 0.5f;
-                break;
-        }
-
-        // 문 자체의 크기가 있다면 그에 맞게 미세 조정할 수 있음
-        // 예: Door 컴포넌트에서 문의 크기를 가져와 방 테두리에 정확히 걸쳐지도록 조정
-
-        return localPos;
-    }
-
-
-    /// <summary>
-    /// 방향에 맞는 문 찾기
-    /// </summary>
-    public Door GetDoorInDirection(DoorDirection direction)
-    {
-        return connectedDoors.Find(door => door.Direction == direction);
-    }
-
-    /// <summary>
-    /// 해당 위치와 방향의 문 가져오기
-    /// </summary>
-    public Door GetDoorAtPosition(Vector2Int gridPosition, DoorDirection direction)
-    {
-        // 구현...
-        return null;
-    }
-
-    /// <summary>
-    /// 유효한 문 위치인지 확인
-    /// </summary>
-    public bool IsValidDoorPosition(Vector2Int gridPosition, DoorDirection direction)
-    {
-        // 방의 데이터와 레벨 확인
-        RoomData.RoomLevel roomLevel = roomData.GetRoomDataByLevel(currentLevel);
-        if (roomLevel == null) return false;
-
-        // 가능한 문 위치 목록에서 해당 위치/방향 확인
-        return roomLevel.possibleDoorPositions.Any(
-            doorPos => doorPos.position == gridPosition && doorPos.direction == direction);
-    }
-
     public List<Door> GetConnectedDoors()
     {
         return connectedDoors;
@@ -751,8 +619,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             damageCondition = DamageLevel.breakdown;
             OnDisabled();
         }
-        else if (currentHitPoints <=
-                 roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+        else if (currentHitPoints <= roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
         {
             damageCondition = DamageLevel.scratch;
         }
@@ -824,7 +691,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         set
         {
             _workingCrew = value;
-            if (parentShip != null) parentShip.RecalculateAllStats();
+            if (parentShip != null)
+                parentShip.RecalculateAllStats();
         }
     }
 
@@ -963,15 +831,6 @@ public abstract class Room<TData, TLevel> : Room
             Debug.LogError("Ship door data not found. Make sure it's assigned in Ship component.");
             return;
         }
-
-        /*
-        // 가능한 각 문 위치에 문 설치
-        foreach (DoorPosition doorPos in roomLevel.possibleDoorPositions)
-            // 문 생성 및 설치
-            if (!AddDoor(doorPos, shipDoorData, doorLevel))
-                Debug.LogWarning(
-                    $"Failed to add door at position {doorPos.position} with direction {doorPos.direction} for room {name}");
-        */
     }
 }
 
