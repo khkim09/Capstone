@@ -34,10 +34,7 @@ public class TeleportRoom : Room<TeleportRoomData, TeleportRoomData.TeleportRoom
         if (!IsOperational() || currentRoomLevelData == null)
             return contributions;
 
-        if (isActive)
-        {
-            contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
-        }
+        if (isActive) contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
 
         if (currentLevel > 1 && damageCondition == DamageLevel.scratch)
         {
@@ -106,7 +103,7 @@ public class TeleportRoom : Room<TeleportRoomData, TeleportRoomData.TeleportRoom
 
             List<Vector2Int> candidates = targetRoom.GetRotatedCrewEntryGridPriority().Where
             (
-                t => !CrewReservationManager.Instance.IsTileOccupied(targetShip, t)
+                t => !CrewReservationManager.IsTileOccupied(targetShip, t)
             ).ToList();
 
             if (candidates.Count == 0)
@@ -123,10 +120,10 @@ public class TeleportRoom : Room<TeleportRoomData, TeleportRoomData.TeleportRoom
             crew.currentShip = targetShip;
 
             // 기존 함선 텔포 방 점유 해제
-            CrewReservationManager.Instance.ExitTile(crew.currentShip, crew.reservedRoom, crew.reservedTile, crew);
+            CrewReservationManager.ExitTile(crew.currentShip, crew.reservedRoom, crew.reservedTile, crew);
 
             // 타겟 함선 랜덤 위치 점유 등록
-            CrewReservationManager.Instance.ReserveTile(targetShip, targetRoom, oppositeSpawnTile, crew);
+            CrewReservationManager.ReserveTile(targetShip, targetRoom, oppositeSpawnTile, crew);
 
             // 컴포넌트 활성화
             crew.gameObject.SetActive(true);

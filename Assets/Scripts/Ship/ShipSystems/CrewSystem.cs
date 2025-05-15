@@ -69,7 +69,7 @@ public class CrewSystem : ShipSystem
 
             List<Vector2Int> candidates = room.GetRotatedCrewEntryGridPriority().Where
             (
-                t => !CrewReservationManager.Instance.IsTileOccupied(parentShip, t)
+                t => !CrewReservationManager.IsTileOccupied(parentShip, t)
             ).ToList();
 
             if (candidates.Count == 0)
@@ -84,7 +84,7 @@ public class CrewSystem : ShipSystem
 
             Debug.Log($"선원 랜덤 스폰 위치 : {spawnTile}");
 
-            CrewReservationManager.Instance.ReserveTile(parentShip, room, spawnTile, crew);
+            CrewReservationManager.ReserveTile(parentShip, room, spawnTile, crew);
 
             parentShip.allCrews.Add(crew);
             return true;
@@ -142,7 +142,7 @@ public class CrewSystem : ShipSystem
     /// <returns>크루 객체 리스트.</returns>
     public List<CrewMember> GetCrews()
     {
-        List<CrewMember> total = new List<CrewMember>();
+        List<CrewMember> total = new();
 
         foreach (CrewMember crew in parentShip.allCrews)
             total.Add(crew);
@@ -164,11 +164,9 @@ public class CrewSystem : ShipSystem
         List<CrewMember> crews = GetCrews();
 
         foreach (CrewMember crew in crews)
-        {
             // crew.position이 선원의 현재 위치를 가지고 있다고 가정
             if (crew.position == position)
                 crewsAtPosition.Add(crew);
-        }
 
         return crewsAtPosition;
     }
@@ -191,7 +189,8 @@ public class CrewSystem : ShipSystem
             }
 
             // 선원 Destroy() -> 새로 생성 필요
-            CrewMember originCrew = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(data.race, data.crewName) as CrewMember;
+            CrewMember originCrew =
+                GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(data.race, data.crewName) as CrewMember;
 
             originCrew.position = data.position;
             originCrew.currentRoom = room;
@@ -199,7 +198,7 @@ public class CrewSystem : ShipSystem
             originCrew.transform.SetParent(room.transform);
             originCrew.currentShip = parentShip;
 
-            CrewReservationManager.Instance.ReserveTile(parentShip, room, data.position, originCrew);
+            CrewReservationManager.ReserveTile(parentShip, room, data.position, originCrew);
 
             // 오브젝트 및 컴포넌트 활성화
             originCrew.gameObject.SetActive(true);
@@ -225,7 +224,8 @@ public class CrewSystem : ShipSystem
     {
         foreach (BackupCrewData data in backupCrewDatas)
         {
-            CrewMember crew = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(data.race, data.crewName) as CrewMember;
+            CrewMember crew =
+                GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(data.race, data.crewName) as CrewMember;
             if (crew == null)
                 continue;
 
@@ -242,7 +242,7 @@ public class CrewSystem : ShipSystem
 
                 List<Vector2Int> candidates = room.GetRotatedCrewEntryGridPriority().Where
                 (
-                    t => !CrewReservationManager.Instance.IsTileOccupied(parentShip, t)
+                    t => !CrewReservationManager.IsTileOccupied(parentShip, t)
                 ).ToList();
 
                 if (candidates.Count == 0)
@@ -259,7 +259,7 @@ public class CrewSystem : ShipSystem
                 crew.currentShip = parentShip;
 
                 // 점유 등록
-                CrewReservationManager.Instance.ReserveTile(parentShip, room, spawnTile, crew);
+                CrewReservationManager.ReserveTile(parentShip, room, spawnTile, crew);
 
                 // 컴포넌트 활성화
                 crew.gameObject.SetActive(true);
@@ -284,10 +284,7 @@ public class CrewSystem : ShipSystem
             }
 
             // 만약 모든 방이 다 찼다면 로그 출력
-            if (!assigned)
-            {
-                Debug.LogError("모든 방이 다 차서 선원 겹쳐지게 배치됨.");
-            }
+            if (!assigned) Debug.LogError("모든 방이 다 차서 선원 겹쳐지게 배치됨.");
         }
     }
 }

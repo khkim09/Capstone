@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// 선원 RTS 선택 및 이동 명령 관리 (단일, 다중 선택)
@@ -36,7 +37,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 선택된 선원 리스트
     /// </summary>
-    public List<CrewMember> selectedCrew = new List<CrewMember>();
+    public List<CrewMember> selectedCrew = new();
 
     /// <summary>
     /// 임시 장비 공격력 변수
@@ -65,6 +66,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// </summary>
     public Ship playerShip;
 
+
     /// <summary>
     /// 적 함선
     /// </summary>
@@ -82,15 +84,17 @@ public class RTSSelectionManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
+
         Instance = this;
     }
 
     //----------외곽선 효과-----------------
     public Material outlineMaterial;
     public Material defaultMaterial;
+
     /// <summary>
     /// crew의 스프라이트 렌더러에 onoff값에 따라 Material을 변경하며 외곽선 효과를 준다.
     /// </summary>
@@ -121,6 +125,7 @@ public class RTSSelectionManager : MonoBehaviour
     {
         bool isMainUI = IsMainUIActive();
 
+
         // 왼쪽 마우스 버튼 눌림: 선택 시작
         if (isMainUI && Input.GetMouseButtonDown(0))
         {
@@ -131,17 +136,26 @@ public class RTSSelectionManager : MonoBehaviour
         // 왼쪽 마우스 버튼 뗌: 선택 완료
         if (Input.GetMouseButtonUp(0))
         {
+            GameObject checkPanel = GameObject.FindWithTag("SlidePanel");
+            if (checkPanel != null && checkPanel.activeInHierarchy)
+            {
+                isDragging = false;
+                return;
+            }
+
             if (isDragging)
             {
                 isDragging = false;
 
                 float distance = Vector2.Distance(dragStartPos, Input.mousePosition);
+
                 if (distance < clickThreshold)
                     SelectSingleCrew();
                 else
                     SelectMultipleCrew();
             }
         }
+
 
         // 오른쪽 마우스 버튼 클릭: 이동 명령 발동
         if (isMainUI && Input.GetMouseButtonDown(1))
@@ -157,7 +171,8 @@ public class RTSSelectionManager : MonoBehaviour
     /// <returns></returns>
     private bool IsMainUIActive()
     {
-        return CrewUIHandler.Instance != null && CrewUIHandler.Instance.mainUIScreen != null && CrewUIHandler.Instance.mainUIScreen.activeSelf;
+        return CrewUIHandler.Instance != null && CrewUIHandler.Instance.mainUIScreen != null &&
+               CrewUIHandler.Instance.mainUIScreen.activeSelf;
     }
 
 
@@ -227,7 +242,7 @@ public class RTSSelectionManager : MonoBehaviour
     private void DeselectAll()
     {
         selectedCrew.Clear();
-        CrewMember[] allCrew = GameObject.FindObjectsByType<CrewMember>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        CrewMember[] allCrew = FindObjectsByType<CrewMember>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         foreach (CrewMember crew in allCrew)
             SetOutline(crew, false);
     }
@@ -246,13 +261,18 @@ public class RTSSelectionManager : MonoBehaviour
         {
             CrewMember crew = hit.collider.GetComponent<CrewMember>();
 
+
             // 아군만 선택 가능
-            if (crew != null/* && crew.isPlayerControlled*/)
+            if (crew != null /* && crew.isPlayerControlled*/)
             {
                 selectedCrew.Add(crew);
                 SetOutline(crew, true);
                 crew.originPosTile = crew.GetCurrentTile();
             }
+        }
+        else
+        {
+            DeselectAll();
         }
     }
 
@@ -266,7 +286,7 @@ public class RTSSelectionManager : MonoBehaviour
         Rect selectionRect = GetScreenRect(dragStartPos, Input.mousePosition);
 
         // 모든 CrewMember를 찾아서 선택 영역 안에 있는지 확인
-        CrewMember[] allCrew = GameObject.FindObjectsByType<CrewMember>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        CrewMember[] allCrew = FindObjectsByType<CrewMember>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         foreach (CrewMember crew in allCrew)
         {
             // 월드 좌표를 스크린 좌표로 변환 (y좌표 보정)
@@ -274,7 +294,7 @@ public class RTSSelectionManager : MonoBehaviour
             screenPos.y = Screen.height - screenPos.y;
 
             // 아군만 선택 가능
-            if (selectionRect.Contains(screenPos, true)/* && crew.isPlayerControlled*/)
+            if (selectionRect.Contains(screenPos, true) /* && crew.isPlayerControlled*/)
             {
                 selectedCrew.Add(crew);
                 // 선택됨 표시 (예: 색상 변경)
@@ -288,10 +308,7 @@ public class RTSSelectionManager : MonoBehaviour
         }
 
         // 선택된 선원들에 대해 기존 위치 저장
-        foreach (CrewMember crew in selectedCrew)
-        {
-            crew.originPosTile = crew.GetCurrentTile();
-        }
+        foreach (CrewMember crew in selectedCrew) crew.originPosTile = crew.GetCurrentTile();
     }
 
     /// <summary>
@@ -313,7 +330,9 @@ public class RTSSelectionManager : MonoBehaviour
             crewPathfinder.Initialize(movementValidator);
         }
         else
+        {
             Debug.LogError("CrewPathFinder or MovementValidator가 세팅되지 않음");
+        }
     }
 
     /// <summary>
@@ -357,7 +376,7 @@ public class RTSSelectionManager : MonoBehaviour
 
         if (crewByEnemyController == null)
         {
-            unassignedCrew = new(selectedCrew);
+            unassignedCrew = new List<CrewMember>(selectedCrew);
         }
         else
         {
@@ -370,7 +389,7 @@ public class RTSSelectionManager : MonoBehaviour
         {
             // 3. 목적지 방에서 이동 가능 타일만 필터링
             List<Vector2Int> availableTiles = entryTiles.Where(
-                tile => !CrewReservationManager.Instance.IsTileOccupied(targetShip, tile)
+                tile => !CrewReservationManager.IsTileOccupied(targetShip, tile)
             ).ToList();
 
             if (availableTiles.Count <= 0)
@@ -684,15 +703,14 @@ public class RTSSelectionManager : MonoBehaviour
         Debug.LogError("전투 이동 검사 시작");
 
         // 1. 도착한 방에서 적군 탐색
-        List<CrewMember> enemiesInRoom = new List<CrewMember>();
+        List<CrewMember> enemiesInRoom = new();
         List<CrewMember> totalCrew = playerShip.CrewSystem.GetCrews();
 
         // 선원이 생존해 있고, 위치한 방이 현재 RTS 이동으로 도착한 선원과 같은 방이며, 상대편
         foreach (CrewMember crew in totalCrew)
-        {
-            if (crew.isAlive && crew.currentRoom == readyCombatCrew.currentRoom && crew.isPlayerControlled != readyCombatCrew.isPlayerControlled)
+            if (crew.isAlive && crew.currentRoom == readyCombatCrew.currentRoom &&
+                crew.isPlayerControlled != readyCombatCrew.isPlayerControlled)
                 enemiesInRoom.Add(crew);
-        }
 
         if (enemiesInRoom.Count == 0)
         {
@@ -724,16 +742,10 @@ public class RTSSelectionManager : MonoBehaviour
         Debug.LogWarning($"가장 가까운 적 위치 : {enemyTile}");
 
         // 3. 가장 가까운 적군 주변 4방향 이웃 타일 순회
-        List<Vector2Int> directions = new List<Vector2Int>
-        {
-            Vector2Int.up,
-            Vector2Int.right,
-            Vector2Int.down,
-            Vector2Int.left
-        };
+        List<Vector2Int> directions = new() { Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left };
 
         // 4. 공격이 가능한 타일 후보 등록
-        List<Vector2Int> neighborTileCandi = new List<Vector2Int>();
+        List<Vector2Int> neighborTileCandi = new();
 
         // 4방향에서 후보에 등록할 방향을 찾기
         foreach (Vector2Int dir in directions)
@@ -759,7 +771,7 @@ public class RTSSelectionManager : MonoBehaviour
                 continue;
 
             // 이웃 타일이 이미 점유 당한 타일 (해당 위치로 이동 불가) && 타일 예약한게 본인이 아니라면
-            if (CrewReservationManager.Instance.IsTileOccupied(readyCombatCrew.currentShip, neighborTile))
+            if (CrewReservationManager.IsTileOccupied(readyCombatCrew.currentShip, neighborTile))
                 continue;
 
             neighborTileCandi.Add(neighborTile);
@@ -797,8 +809,10 @@ public class RTSSelectionManager : MonoBehaviour
         // 6. reservedTiles 갱신
         // reservedTiles.Remove(readyCombatCrew.oldReservedTile);
         // reservedTiles.Add(neighborTile);
-        CrewReservationManager.Instance.ExitTile(readyCombatCrew.currentShip, readyCombatCrew.oldReservedRoom, readyCombatCrew.oldReservedTile, readyCombatCrew);
-        CrewReservationManager.Instance.ReserveTile(readyCombatCrew.currentShip, readyCombatCrew.reservedRoom, readyCombatCrew.reservedTile, readyCombatCrew);
+        CrewReservationManager.ExitTile(readyCombatCrew.currentShip, readyCombatCrew.oldReservedRoom,
+            readyCombatCrew.oldReservedTile, readyCombatCrew);
+        CrewReservationManager.ReserveTile(readyCombatCrew.currentShip, readyCombatCrew.reservedRoom,
+            readyCombatCrew.reservedTile, readyCombatCrew);
 
         // 7. 실제 이동 처리
         if (readyCombatCrew.isMoving)
@@ -810,5 +824,14 @@ public class RTSSelectionManager : MonoBehaviour
         Debug.Log("전투 개시");
 
         return;
+    }
+
+    public void Select(CrewMember crew)
+    {
+        DeselectAll();
+        selectedCrew.Add(crew);
+        SetOutline(crew, true);
+        crew.originPosTile = crew.GetCurrentTile();
+        Debug.LogError("눌름!");
     }
 }

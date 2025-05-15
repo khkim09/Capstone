@@ -111,12 +111,12 @@ public class CrewMember : CrewBase
 
         // 1. 점유 타일 해제
         if (currentRoom != null)
-            CrewReservationManager.Instance.ExitTile(currentShip, currentRoom, GetCurrentTile(), this);
+            CrewReservationManager.ExitTile(currentShip, currentRoom, GetCurrentTile(), this);
 
         // 2. 목적지 예약
         if (reservedRoom != null)
         {
-            CrewReservationManager.Instance.ReserveTile(currentShip, reservedRoom, reservedTile, this);
+            CrewReservationManager.ReserveTile(currentShip, reservedRoom, reservedTile, this);
             currentRoom = reservedRoom;
         }
 
@@ -142,12 +142,12 @@ public class CrewMember : CrewBase
 
         // 1. 이전 목적지 타일 점유 해제
         if (oldReservedRoom != null)
-            CrewReservationManager.Instance.ExitTile(currentShip, oldReservedRoom, oldReservedTile, this);
+            CrewReservationManager.ExitTile(currentShip, oldReservedRoom, oldReservedTile, this);
 
         // 2. 새로운 목적지 예약
         if (reservedRoom != null)
         {
-            CrewReservationManager.Instance.ReserveTile(currentShip, reservedRoom, reservedTile, this);
+            CrewReservationManager.ReserveTile(currentShip, reservedRoom, reservedTile, this);
             currentRoom = reservedRoom;
         }
 
@@ -272,7 +272,8 @@ public class CrewMember : CrewBase
                     speedMultiplier = 1.33f;
 
                 // MoveTowards() : 다른 선원과의 충돌 무시하고 통과
-                transform.position = Vector3.MoveTowards(transform.position, targetWorldPos, moveSpeed * speedMultiplier * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetWorldPos,
+                    moveSpeed * speedMultiplier * Time.deltaTime);
                 yield return null;
             }
 
@@ -307,10 +308,8 @@ public class CrewMember : CrewBase
             if (!IsOwnShip())
                 combatCoroutine = StartCoroutine(CombatRoutine());
             else
-            {
                 // 적이 없고 유저 함선이라 부술 방도 없을 경우, Idle 상태를 거쳐 수리로 연결
                 BackToThePeace();
-            }
         }
     }
 
@@ -503,9 +502,7 @@ public class CrewMember : CrewBase
             // 일단 부수기 방 설정 = 현재 방
             madRoom = currentRoom;
             if (madRoom == null || !madRoom.GetIsDamageable() || madRoom.currentHitPoints <= 0) // 부술 수 없는 방
-            {
                 yield break;
-            }
 
 
             // 방 부수기 진입 시 true
@@ -539,10 +536,7 @@ public class CrewMember : CrewBase
         yield return new WaitForSeconds(attackAfterDelay);
 
         // 부술 방도 없고 적군도 죽은 상태
-        if (madRoom == null && combatTarget == null)
-        {
-            yield break;
-        }
+        if (madRoom == null && combatTarget == null) yield break;
 
         // 부술 방이 있거나 적군이 있다면 계속 전투 루틴 실행
         combatCoroutine = StartCoroutine(CombatRoutine());
@@ -588,7 +582,9 @@ public class CrewMember : CrewBase
     public void Attack(CrewMember attacker, CrewMember target)
     {
         // 피해량 계산식: (공격 주체 기본 공격 + 장비 공격력(tmp)) * (1 - (상대 방어력 / 100))
-        float damage = attack + GetEquipmentAttack(); //(attacker.attack + attacker.equippedWeapon.eqAttackBonus) * (1 - target.defense / 100f);
+        float
+            damage = attack +
+                     GetEquipmentAttack(); //(attacker.attack + attacker.equippedWeapon.eqAttackBonus) * (1 - target.defense / 100f);
         if (target == null)
         {
             //인자로 받는 target이 combatRoutine에서 현재 적군을 찾을 수 없는 경우에는 null로 전달되기 때문에 하위 분기에서 시설 파괴로 진행
@@ -596,18 +592,17 @@ public class CrewMember : CrewBase
             {
                 //목표를 포착했...는 중이다
                 inCombat = false;
-                if (isWithEnemy())
-                {
-                    RTSSelectionManager.Instance.MoveForCombat(this);
-                }
+                if (isWithEnemy()) RTSSelectionManager.Instance.MoveForCombat(this);
                 return;
             }
+
             madRoom.TakeDamage(damage);
             if (madRoom.currentHitPoints <= 0)
             {
                 madRoom = null;
                 inCombat = false;
             }
+
             return;
         }
 
@@ -627,10 +622,7 @@ public class CrewMember : CrewBase
         // if (healthBarController != null)
         //     healthBarController.UpdateHealth(health);
 
-        if (health <= 0)
-        {
-            Die();
-        }
+        if (health <= 0) Die();
     }
 
     /// <summary>
@@ -648,10 +640,7 @@ public class CrewMember : CrewBase
         StopAllCoroutines();
         DontTouchMe();
 
-        if (currentRoom.workingCrew == this)
-        {
-            WalkOut();
-        }
+        if (currentRoom.workingCrew == this) WalkOut();
 
         if (DieCoroutine == null)
         {
@@ -681,6 +670,7 @@ public class CrewMember : CrewBase
             madRoom = null;
             combatTarget = null;
         }
+
         if (isWorking)
         {
             Debug.LogError("작업 중이었던");
@@ -690,7 +680,7 @@ public class CrewMember : CrewBase
 
         if (bullier.Count > 0)
         {
-            List<CrewMember> bulling = new List<CrewMember>(bullier);
+            List<CrewMember> bulling = new(bullier);
             foreach (CrewMember hittingMan in bulling)
             {
                 hittingMan.inCombat = false;
@@ -699,14 +689,11 @@ public class CrewMember : CrewBase
                 hittingMan.combatCoroutine = null;
                 hittingMan.bullier.Remove(this);
                 if (hittingMan.isWithEnemy())
-                {
                     RTSSelectionManager.Instance.MoveForCombat(hittingMan);
-                }
                 else
-                {
                     hittingMan.BackToThePeace();
-                }
             }
+
             bullier.Clear();
         }
     }
@@ -723,12 +710,12 @@ public class CrewMember : CrewBase
         if (currentRoom != null)
         {
             if (!wasMoving)
-                CrewReservationManager.Instance.ExitTile(currentShip, currentRoom, GetCurrentTile(), this);
+                CrewReservationManager.ExitTile(currentShip, currentRoom, GetCurrentTile(), this);
             else
-                CrewReservationManager.Instance.ExitTile(currentShip, reservedRoom, reservedTile, this);
+                CrewReservationManager.ExitTile(currentShip, reservedRoom, reservedTile, this);
         }
 
-        Destroy(this.gameObject);
+        Destroy(gameObject);
 
         Debug.Log($"{crewName} 사망 처리 완료");
     }
@@ -739,7 +726,7 @@ public class CrewMember : CrewBase
     public void LookAtMe()
     {
         Debug.LogError("나를 바라봐");
-        List<CrewMember> others = new List<CrewMember>(currentRoom.GetTotalCrewsInRoom());
+        List<CrewMember> others = new(currentRoom.GetTotalCrewsInRoom());
         foreach (CrewMember other in others)
         {
             Debug.LogError($"검색 선원 : {other.race}");
@@ -748,6 +735,7 @@ public class CrewMember : CrewBase
                 Debug.LogError($"{other.race} 나야");
                 continue;
             }
+
             if (other.isPlayerControlled == isPlayerControlled)
             {
                 Debug.LogError($"{other.race} 아군이야");
@@ -779,13 +767,9 @@ public class CrewMember : CrewBase
             if (IsOwnShip())
             {
                 if (currentRoom.NeedsRepair())
-                {
                     TryRepair();
-                }
                 else
-                {
                     TryWork();
-                }
             }
         }
     }
@@ -797,13 +781,12 @@ public class CrewMember : CrewBase
     public bool isWithEnemy()
     {
         foreach (CrewMember someone in currentRoom.GetTotalCrewsInRoom())
-        {
             if (someone.isPlayerControlled != isPlayerControlled && someone.isAlive)
             {
                 Debug.LogError($"방안 적 찾음 {someone.race}");
                 return true;
             }
-        }
+
         Debug.LogError("방안에 적 못 찾음");
         return false;
     }
@@ -825,6 +808,7 @@ public class CrewMember : CrewBase
     /// 수리 간 딜레이
     /// </summary>
     public float repairBeforeDelay = 0.5f;
+
     public float repairAfterDelay = 0.5f;
 
     /// <summary>
@@ -874,7 +858,9 @@ public class CrewMember : CrewBase
         yield return new WaitForSeconds(repairAfterDelay);
 
         if (currentRoom.NeedsRepair())
+        {
             repairCoroutine = StartCoroutine(RepairRoutine());
+        }
         else
         {
             repairCoroutine = null;
@@ -903,7 +889,9 @@ public class CrewMember : CrewBase
     }
 
     //---------시설 작업------------
+
     #region 작업
+
     /// <summary>
     /// 현재 작업 중인지 여부
     /// </summary>
@@ -916,30 +904,24 @@ public class CrewMember : CrewBase
     public void TryWork()
     {
         if (currentRoom.isActive && currentRoom.workDirection != Vector2Int.zero)
-        {
             if (!isWithEnemy())
-            {
                 if (GetCurrentTilePriorityIndex() == 0)
-                {
                     if (currentRoom.CanITouch(this))
                     {
                         isWorking = true;
                         PlayAnimation("work");
 
                         // 작업 애니메이션 방향 (방 회전 방향 적용)
-                        List<Vector2Int> directions = new List<Vector2Int>()
+                        List<Vector2Int> directions = new()
                         {
-                            Vector2Int.up,
-                            Vector2Int.right,
-                            Vector2Int.down,
-                            Vector2Int.left
+                            Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left
                         };
-                        Vector2Int workDir = directions[(directions.IndexOf(currentRoom.workDirection) + Convert.ToInt32(currentRoom.currentRotation)) % 4];
+                        Vector2Int workDir =
+                            directions[
+                                (directions.IndexOf(currentRoom.workDirection) +
+                                 Convert.ToInt32(currentRoom.currentRotation)) % 4];
                         SetAnimationDirection(workDir);
                     }
-                }
-            }
-        }
     }
 
     #endregion
@@ -983,12 +965,9 @@ public class CrewMember : CrewBase
             isWorking = false;
             PlayAnimation("work");
             foreach (Room room in currentShip.GetAllRooms())
-            {
                 if (room.workingCrew == this)
-                {
                     room.workingCrew = null;
-                }
-            }
+
             currentShip.RecalculateAllStats();
         }
     }
