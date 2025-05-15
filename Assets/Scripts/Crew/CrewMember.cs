@@ -433,7 +433,9 @@ public class CrewMember : CrewBase
     /// <summary>
     /// 애니메이션 발동 타이밍과 실제 데미지 적용 사이의 딜레이
     /// </summary>
-    private float attackDelay = 1f;
+    private float attackBeforeDelay = 1f;
+
+    private float attackAfterDelay = 1f;
 
     /// <summary>
     /// 전투 코루틴
@@ -498,12 +500,12 @@ public class CrewMember : CrewBase
         PlayAnimation("attack");
 
         // 실제로 데미지가 들어가는 부분
-        yield return new WaitForSeconds(attackDelay);
+        yield return new WaitForSeconds(attackBeforeDelay);
         Debug.LogError("공격 딜레이 종료");
 
         // 실제 데미지 적용
         Attack(this, combatTarget);
-        yield return new WaitForSeconds(attackDelay);
+        yield return new WaitForSeconds(attackAfterDelay);
 
         // 부술 방도 없고 적군도 죽은 상태
         if (madRoom == null && combatTarget == null)
@@ -685,7 +687,7 @@ public class CrewMember : CrewBase
     public IEnumerator ImDying()
     {
         PlayAnimation("die");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         if (currentRoom != null)
         {
@@ -791,7 +793,8 @@ public class CrewMember : CrewBase
     /// <summary>
     /// 수리 간 딜레이
     /// </summary>
-    public float repairDelay = 0.5f;
+    public float repairBeforeDelay = 0.5f;
+    public float repairAfterDelay = 0.5f;
 
     /// <summary>
     /// 본인 함선에서 수리 시도
@@ -832,12 +835,12 @@ public class CrewMember : CrewBase
         }
 
         PlayAnimation("repair");
-        yield return new WaitForSeconds(repairDelay);
+        yield return new WaitForSeconds(repairBeforeDelay);
 
         // 실제 수리 실행
         RepairFacility(currentRoom);
         //todo: 수리 숙련도 적용시켜야됨
-        yield return new WaitForSeconds(repairDelay);
+        yield return new WaitForSeconds(repairAfterDelay);
 
         if (currentRoom.NeedsRepair())
             repairCoroutine = StartCoroutine(RepairRoutine());
@@ -978,6 +981,50 @@ public class CrewMember : CrewBase
     {
         // 유저 함선에 텔포한 적일 경우 : isPlayerControlled = false, currentShip.isPlayerShip = true
         return isPlayerControlled == currentShip.isPlayerShip ? true : false;
+    }
+
+    /// <summary>
+    /// Scriptable Object로 수정 필요!!
+    /// </summary>
+    public void Start()
+    {
+        base.Start();
+
+        switch (race)
+        {
+            case CrewRace.Amorphous:
+                attackBeforeDelay = 0.7f;
+                attackBeforeDelay = 0.4f;
+                repairBeforeDelay = 0.572f;
+                repairAfterDelay = 0.428f;
+                break;
+            case CrewRace.Beast:
+                attackBeforeDelay = 0.4f;
+                attackAfterDelay = 0.3f;
+                repairBeforeDelay = 0.5f;
+                repairAfterDelay = 0.5f;
+                break;
+            case CrewRace.Human:
+                attackBeforeDelay = 0.7f;
+                attackAfterDelay = 0.4f;
+                repairBeforeDelay = 0.375f;
+                repairAfterDelay = 0.625f;
+                break;
+            case CrewRace.Insect:
+                attackBeforeDelay = 0.6f;
+                attackAfterDelay = 0.4f;
+                repairBeforeDelay = 0.6f;
+                repairAfterDelay = 0.4f;
+                break;
+            case CrewRace.MechanicSup:
+                repairBeforeDelay = 0.4f;
+                repairAfterDelay = 0.6f;
+                break;
+            case CrewRace.MechanicTank:
+                attackBeforeDelay = 0.4f;
+                attackAfterDelay = 0.2f;
+                break;
+        }
     }
 
     #region 텔레포트

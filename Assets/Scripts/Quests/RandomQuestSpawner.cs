@@ -61,7 +61,7 @@ public class RandomQuestSpawner : MonoBehaviour
                         objective.amount = Random.Range(1, itemT.capacity + 1);
                         objective.destinationPlanetId = GetRandomPlanetId();
                         objective.description =
-                            "ui.quest.objective.itemtransport".Localize(itemT.itemName, objective.amount, objective.destinationPlanetId);
+                            "ui.quest.objective.itemtransport".Localize(itemT.itemName.Localize(), objective.amount, objective.destinationPlanetId);
                             //$"'{itemT.itemName}'을/를 {objective.amount}개 확보하여 {objective.destinationPlanetId}로 수송하세요.";
 
                         float reward = itemT.costMax * 1.1f * objective.amount;
@@ -76,9 +76,9 @@ public class RandomQuestSpawner : MonoBehaviour
                     {
                         objective.targetId = itemP.id.ToString();
                         objective.amount = Random.Range(1, itemP.capacity + 1);
-                        objective.destinationPlanetId = "UNKNOWN";
+                        objective.destinationPlanetId = "UNKNOWN"; // 추후 수락한 행성 넣을 예정
                         objective.description =
-                            "ui.quest.objective.itemprocurement".Localize(itemP.itemName, objective.amount);
+                            "ui.quest.objective.itemprocurement".Localize(itemP.itemName.Localize(), objective.amount);
                             //$"'{itemP.itemName}'을/를 {objective.amount}개 확보하여 행성으로 조달하세요.";
 
                         float reward = itemP.costMax * 1.1f * objective.amount;
@@ -100,6 +100,7 @@ public class RandomQuestSpawner : MonoBehaviour
 
                 case QuestObjectiveType.PirateHunt:
                     objective.amount = Random.Range(5, 21);
+                    objective.destinationPlanetId = "UNKNOWN"; // 추후 수락한 행성 넣을 예정
                     objective.description =
                         "ui.quest.objective.piratehunt".Localize(objective.amount);
                         //$"해적 {objective.amount}명을 죽이세요.";

@@ -66,13 +66,15 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>방의 시각적 렌더러.</summary>
     protected SpriteRenderer roomRenderer; // 방 렌더러
 
-    /// <summary>
-    /// 방 역할 표시용 아이콘 renderer
-    /// </summary>
-    public SpriteRenderer iconRenderer;
-
     /// <summary>소속된 Ship 참조.</summary>
     public Ship parentShip;
+
+    private SpriteRenderer icon;
+
+    /// <summary>
+    /// 선원이 점유하고 있는 tile
+    /// </summary>
+    public HashSet<Vector2Int> occupiedCrewTiles = new();
 
     /// <summary>
     /// 각 방에 collider 추가, isTrigger = true 설정을 통해 선원 충돌 방해 제거
@@ -87,8 +89,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             collider.size = new Vector2(levelData.size.x, levelData.size.y);
             collider.isTrigger = true;
         }
-
-        iconRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     /// <summary>
@@ -137,7 +137,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         RoomData.RoomLevel levelData = roomData.GetRoomDataByLevel(currentLevel);
 
         // 실제 방의 우선순위 순 타일 위치
-        List<Vector2Int> result = new List<Vector2Int>();
+        List<Vector2Int> result = new();
 
         // 회전각 별 타일 우선순위 적용
         switch (currentRotation)
@@ -328,7 +328,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         return true;
         // return isActive && isPowered && HasEnoughCrew();
     }
-
 
 
     // 전력 관련
@@ -676,9 +675,45 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     public void UpdateRoomVisual()
     {
         // TODO : 아이콘 체력상황, 타입에 맞게 업데이트
-        // if(damageLevel ==
 
-        //        iconRenderer.sprite = Resources.Load<Sprite>("Sprites/UI/Room Icons/");
+        string color = "";
+
+        if (!isActive)
+            color = "gray";
+        else
+            switch (damageCondition)
+            {
+                case DamageLevel.good:
+                    color = "green";
+                    break;
+                case DamageLevel.scratch:
+                    color = "yellow";
+                    break;
+                case DamageLevel.breakdown:
+                    color = "red";
+                    break;
+            }
+
+        if (icon == null)
+            icon = Instantiate(roomData.GetRoomDataByLevel(currentLevel).roomIconPrefab, transform)
+                .GetComponent<SpriteRenderer>();
+
+        if (position == new Vector2Int(0, 0)) return;
+
+        List<Vector2Int> tiles = GetOccupiedTiles();
+
+        Vector2 sum = Vector2.zero;
+
+        foreach (Vector2Int tile in tiles) sum += (Vector2)tile; // Vector2Int → Vector2 변환
+
+        Vector2 center = sum / tiles.Count;
+
+        icon.transform.position = parentShip.GetWorldPositionFromGrid(center);
+        icon.transform.rotation = Quaternion.identity;
+
+        icon.GetComponent<SpriteRenderer>().sprite =
+            Resources.Load<Sprite>($"Sprites/UI/Room Icons/{color}/{roomType.ToString().ToLower()}_{color}");
+        icon.GetComponent<SpriteRenderer>().sortingOrder = SortingOrderConstants.RoomIcon;
     }
 
     #region 수리
@@ -710,13 +745,17 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     {
         currentHitPoints = Mathf.Max(0, currentHitPoints - damage);
         //피해발생 이후에 현재 체력에 따라 시설의 피해 단계를 변화시킨다.
-        if (currentHitPoints <= roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
+        if (currentHitPoints <=
+            roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
         {
             damageCondition = DamageLevel.breakdown;
             OnDisabled();
         }
-        else if (currentHitPoints <= roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+        else if (currentHitPoints <=
+                 roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+        {
             damageCondition = DamageLevel.scratch;
+        }
 
         // 스탯 기여도 변화 알림
         NotifyStateChanged();
@@ -741,12 +780,15 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     {
         if (damageCondition == DamageLevel.breakdown)
         {
-            currentHitPoints = Mathf.Min(roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo], currentHitPoints + amount);
+            currentHitPoints =
+                Mathf.Min(roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo],
+                    currentHitPoints + amount);
         }
         else
         {
             currentHitPoints = Mathf.Min(roomData.GetRoomDataByLevel(currentLevel).hitPoint, currentHitPoints + amount);
-            if (currentHitPoints > roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+            if (currentHitPoints > roomData.GetRoomDataByLevel(currentLevel)
+                    .damageHitPointRate[RoomDamageLevel.DamageLevelOne])
                 damageCondition = DamageLevel.good;
         }
 
@@ -778,14 +820,11 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     public CrewMember workingCrew
     {
-        get { return _workingCrew; }
+        get => _workingCrew;
         set
         {
             _workingCrew = value;
-            if (parentShip != null)
-            {
-                parentShip.RecalculateAllStats();
-            }
+            if (parentShip != null) parentShip.RecalculateAllStats();
         }
     }
 
@@ -795,7 +834,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     }
 
     #endregion
-
 }
 
 /// <summary>

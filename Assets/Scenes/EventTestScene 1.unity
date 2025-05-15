@@ -886,11 +886,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerShip: {fileID: 0}
+  currentEnemyShip: {fileID: 0}
+  playerData:
+    questCleared: 0
+    mysteryFound: 0
+    pirateDefeated: 0
   currentState: 0
   currentYear: 0
-  testRoomPrefab1: {fileID: 0}
-  testRoomPrefab2: {fileID: 0}
-  testRoomPrefab3: {fileID: 0}
 --- !u!1 &713976656
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,7 +2000,7 @@ GameObject:
   - component: {fileID: 1278289786}
   - component: {fileID: 1278289785}
   m_Layer: 0
-  m_Name: ship
+  m_Name: PlayerShip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2016,6 +2018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a89c58ba5c4d5b8a0644fb9af8742d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerShip: 1
   shipName: Milky
   gridSize: {x: 60, y: 60}
   showDebugInfo: 0
