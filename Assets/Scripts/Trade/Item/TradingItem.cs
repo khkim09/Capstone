@@ -33,7 +33,7 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
     public bool[][] boxGrid;
 
-    private StorageRoomBase parentStorage;
+    public StorageRoomBase parentStorage;
 
     public Vector2Int gridPosition;
 
@@ -65,7 +65,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         boxRenderer.sortingOrder = SortingOrderConstants.TradingItemBox;
 
         frameRenderer.sortingOrder = SortingOrderConstants.TradingItemFrame;
-        PositionFrameAtGridCenter();
 
         // 아이템 이미지 설정 (예: 아이템별 개별 스프라이트)
         itemRenderer.sprite = itemData.itemSprite;
@@ -78,7 +77,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         amount = 1; // 테스트용 하나
         // TODO: 만약 최대치보다 많으면 생성을 못하게 하거나, 두 개 생성해서 나눠야함
 
-        UpdateColliderSize();
 
         if (transform.parent != null) parentStorage = transform.parent.GetComponent<StorageRoomBase>();
     }
@@ -197,18 +195,39 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             parentPosition.y + GridConstants.CELL_SIZE * 2);
     }
 
-    // IDraggableItem 인터페이스 구현
+    // TradingItem.cs의 Rotate 메서드 수정
     public void Rotate(RotationConstants.Rotation newRotation)
     {
         rotation = (RotationConstants.Rotation)newRotation;
-        int spriteIndex = (int)rotation % boxSprites.Length;
+
+        // 부모 방의 회전 값 가져오기
+        int roomRotation = 0;
+        if (parentStorage != null)
+            // Room 클래스에서 회전 값을 가져오는 메서드가 필요
+            // 예를 들어 parentStorage.GetRoomRotation() 같은 메서드
+            roomRotation = (int)parentStorage.currentRotation;
+
+        // 스프라이트 인덱스 계산: (물건 회전 + 방 회전) % 스프라이트 개수
+        int spriteIndex = ((int)rotation + roomRotation) % boxSprites.Length;
         boxRenderer.sprite = boxSprites[spriteIndex];
+
+        // 점유 타일은 물건의 논리적 회전만 사용
         boxGrid = ItemShape.Instance.itemShapes[itemData.shape][(int)rotation];
 
+
+        // 물건 오브젝트 자체를 방 회전의 반대 방향으로 회전
+        // 방이 시계 반대 방향으로 90도씩 회전하므로 (z축 -90도)
+        // 물건은 시계 방향으로 회전 (z축 +90도)
+        float objectRotationZ = roomRotation * 90f;
+        transform.localEulerAngles = new Vector3(0, 0, objectRotationZ);
+
+        // 프레임 위치 재설정
         PositionFrameAtGridCenter();
+
         // 콜라이더 크기 업데이트
         UpdateColliderSize();
     }
+
 
     public object GetRotation()
     {
@@ -225,10 +244,15 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         gridPosition = position;
     }
 
-    // 부모 스토리지 설정
+    /// <summary>
+    /// 부모 창고 설정 시 회전도 함께 적용
+    /// </summary>
     public void SetParentStorage(StorageRoomBase storage)
     {
         parentStorage = storage;
+
+        // 부모 창고가 설정되면 즉시 회전 적용
+        if (parentStorage != null) Rotate(rotation);
     }
 
     // 클릭 이벤트 처리
@@ -339,6 +363,7 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
     /// <summary>
     /// boxGrid 정보를 기반으로 아이템 모양에 맞게 BoxCollider2D를 생성합니다.
+    /// 창고의 회전도 고려하여 실제 표시되는 모양에 맞게 콜라이더를 생성합니다.
     /// </summary>
     private void UpdateColliderSize()
     {
@@ -359,13 +384,21 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             return;
         }
 
-        // 아이템의 점유 영역 찾기
+        // 아이템의 실제 회전 상태 계산 (창고 회전 포함)
+        // localEulerAngles.z를 0, 1, 2, 3으로 매핑 (90도마다)
+        int visualRotation = Mathf.RoundToInt(transform.localEulerAngles.z / 90f) % 4;
+
+        // 논리적 회전 + 시각적 회전으로 실제 boxGrid 결정
+        int actualRotation = ((int)rotation + visualRotation) % 4;
+        bool[][] actualBoxGrid = ItemShape.Instance.itemShapes[itemData.shape][actualRotation];
+
+        // 실제 표시되는 모양에서 아이템의 점유 영역 찾기
         int minX = 4, maxX = 0, minY = 4, maxY = 0;
         bool foundValidCell = false;
 
         for (int y = 0; y < 5; y++)
         for (int x = 0; x < 5; x++)
-            if (boxGrid[y][x])
+            if (actualBoxGrid[y][x])
             {
                 minX = Mathf.Min(minX, x);
                 maxX = Mathf.Max(maxX, x);
@@ -387,7 +420,7 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         // 각 타일별로 콜라이더 생성
         for (int y = minY; y <= maxY; y++)
         for (int x = minX; x <= maxX; x++)
-            if (boxGrid[y][x])
+            if (actualBoxGrid[y][x])
             {
                 // 새 콜라이더 추가
                 BoxCollider2D newCollider = gameObject.AddComponent<BoxCollider2D>();
@@ -424,7 +457,7 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         return boxRenderer;
     }
 
-    private void PositionFrameAtGridCenter()
+    public void PositionFrameAtGridCenter()
     {
         if (frameRenderer != null)
         {
@@ -434,13 +467,21 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
                 return;
             }
 
-            // boxGrid에서 실제 아이템이 차지하는 영역 계산
+            // 아이템의 실제 회전 상태 계산 (창고 회전 포함)
+            // localEulerAngles.z를 0, 1, 2, 3으로 매핑 (90도마다)
+            int visualRotation = Mathf.RoundToInt(transform.localEulerAngles.z / 90f) % 4;
+
+            // 논리적 회전 + 시각적 회전으로 실제 boxGrid 결정
+            int actualRotation = ((int)rotation + visualRotation) % 4;
+            bool[][] actualBoxGrid = ItemShape.Instance.itemShapes[itemData.shape][actualRotation];
+
+            // 실제 표시되는 모양에서 아이템이 차지하는 영역 계산
             int minX = 4, maxX = 0, minY = 4, maxY = 0;
             bool foundValidCell = false;
 
             for (int y = 0; y < 5; y++)
             for (int x = 0; x < 5; x++)
-                if (boxGrid[y][x])
+                if (actualBoxGrid[y][x])
                 {
                     minX = Mathf.Min(minX, x);
                     maxX = Mathf.Max(maxX, x);
@@ -451,7 +492,7 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
             if (!foundValidCell)
             {
-                Debug.LogWarning("No valid cells found in boxGrid");
+                Debug.LogWarning("No valid cells found in actualBoxGrid");
                 return;
             }
 
