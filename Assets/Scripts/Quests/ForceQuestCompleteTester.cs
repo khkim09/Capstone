@@ -36,20 +36,25 @@ public class ForceQuestCompleteTester : MonoBehaviour
         List<RandomQuest> quests = QuestManager.Instance.GetActiveQuests();
         if (quests.Count == 0)
         {
-            Debug.LogWarning("완료시킬 퀘스트가 없습니다.");
+            Debug.LogWarning("완료 가능한 상태로 만들 퀘스트가 없습니다.");
             return;
         }
 
-        RandomQuest quest = quests[0];
+        // 랜덤으로 하나 선택
+        RandomQuest quest = quests[Random.Range(0, quests.Count)];
 
-        // 모든 목표를 강제로 완료 처리
+        // 모든 목표의 currentAmount를 amount로 맞춰서 "완료 가능" 상태로 만듬
         for (int i = 0; i < quest.objectives.Count; i++)
         {
-            int needed = quest.objectives[i].amount - quest.objectives[i].currentAmount;
-            if (needed > 0)
-                QuestManager.Instance.UpdateQuestObjective(quest.questId, i, needed);
+            quest.objectives[i].currentAmount = quest.objectives[i].amount;
+            quest.objectives[i].isCompleted = true;
         }
 
-        Debug.Log($"퀘스트 강제 완료 시도됨: {quest.title}");
+        Debug.Log($"랜덤 퀘스트를 완료 가능 상태로 변경함: {quest.title}");
+
+        // 리스트 갱신
+        if (questListUI != null)
+            questListUI.Open();
     }
+
 }
