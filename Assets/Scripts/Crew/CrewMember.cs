@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -53,6 +54,11 @@ public class CrewMember : CrewBase
     /// 움직이는 중이었다.
     /// </summary>
     private bool wasMoving = false;
+
+    /// <summary>
+    /// 텔레포트 방에 입장 여부 (텔포 준비 완료 여부)
+    /// </summary>
+    public bool hasEnteredTPRoom = false;
 
     /// <summary>
     /// Unity 생명주기 메서드.
@@ -171,63 +177,6 @@ public class CrewMember : CrewBase
                 healthBar.transform.parent.SetParent(transform);
     }
 
-    /*
-        /// <summary>
-        /// 선원이 방을 바꿀 때 체력바가 함께 이동하도록
-        /// </summary>
-        private void ReserveDestination()
-        {
-            if (reservedRoom != null)
-            {
-                Debug.LogError($"최종 예약된 타일 pos : {reservedTile}");
-                reservedRoom.OccupyTile(reservedTile);
-                reservedRoom.OnCrewEnter(this);
-                currentRoom = reservedRoom;
-
-                CrewReservationManager.Instance.ReserveTile(currentShip, reservedTile, this);
-
-                // currentShip.MarkCrewTileOccupied(reservedRoom, reservedTile);
-
-                // 선원 자체의 부모는 방으로 설정하지만, 체력바는 선원의 자식으로 유지
-                transform.SetParent(reservedRoom.transform);
-                EnsureHealthBarFollows();
-            }
-        }
-
-        /// <summary>
-        /// 정지 상태에서 이동 명령 - 기존 점유 타일 해제, 방에서 나옴
-        /// </summary>
-        private void ExitCurrentTile()
-        {
-            if (currentRoom != null)
-            {
-                Debug.LogError($"기존 위치하던 pos : {GetCurrentTile()}");
-                Vector2Int currentTile = GetCurrentTile();
-                currentRoom.VacateTile(currentTile);
-                currentRoom.OnCrewExit(this);
-
-                CrewReservationManager.Instance.ExitCurrentTile(currentShip, currentTile);
-                // currentShip.UnmarkCrewTile(currentRoom, currentTile);
-                transform.SetParent(null);
-            }
-        }
-
-        /// <summary>
-        /// 움직이던 도중 새로운 이동 명령 - 예약 목적지 타일 점유 해제, 방에서 나옴
-        /// </summary>
-        private void ExitReserveTile()
-        {
-            if (oldReservedRoom != null)
-            {
-                Debug.LogError($"최종 예약했지만 취소하는 타일 pos : {oldReservedTile}");
-                oldReservedRoom.VacateTile(oldReservedTile);
-                oldReservedRoom.OnCrewExit(this);
-                currentShip.UnmarkCrewTile(oldReservedRoom, oldReservedTile);
-                transform.SetParent(null);
-            }
-        }
-    */
-
     /// <summary>
     /// 현재 방에서 선원이 점유 중인 타일의 우선순위 인덱스 반환
     /// </summary>
@@ -287,7 +236,27 @@ public class CrewMember : CrewBase
 
         // 도착 후 방 갱신
         currentRoom = reservedRoom;
+
+        // 도착 후 방 진입 표시
+        if (currentRoom != null)
+            currentRoom.OnCrewEnter(this);
+
+        Debug.LogError($"현재 방: {currentRoom}");
         reservedRoom = null;
+
+        // 본인 함선의 텔포 방일 경우, 즉시 텔포 수행
+        if (hasEnteredTPRoom && currentRoom.roomType == RoomType.Teleporter)
+        {
+            hasEnteredTPRoom = false;
+
+            // 텔포 준비
+            Freeze();
+
+            StartCoroutine(TeleportAfterDelay(this, 0.5f));
+
+            yield break;
+        }
+
 
         // 도착한 방에서 적군 탐지
         if (isWithEnemy() && inCombat == false)
@@ -807,7 +776,7 @@ public class CrewMember : CrewBase
     }
 
 
-    //--------------수리------------
+    #region 수리
 
     /// <summary>
     /// 수리 코루틴
@@ -899,8 +868,11 @@ public class CrewMember : CrewBase
         ImproveSkill(SkillType.RepairSkill, 0.5f);
     }
 
-    //---------시설 작업------------
-    #region 작업
+    #endregion
+
+
+    #region 시설 작업
+
     /// <summary>
     /// 현재 작업 중인지 여부
     /// </summary>
@@ -932,6 +904,10 @@ public class CrewMember : CrewBase
                             Vector2Int.left
                         };
                         Vector2Int workDir = directions[(directions.IndexOf(currentRoom.workDirection) + Convert.ToInt32(currentRoom.currentRotation)) % 4];
+
+                        if (!isPlayerControlled)
+                            workDir = directions[(directions.IndexOf(currentRoom.workDirection) + (int)currentRoom.currentRotation + 2) % 4];
+
                         SetAnimationDirection(workDir);
                     }
                 }
@@ -940,6 +916,8 @@ public class CrewMember : CrewBase
     }
 
     #endregion
+
+    #region 코루틴 초기화
 
     /// <summary>
     /// 현재 하던 행동을 모두 멈추고 애니메이션을 대기 상태로 전환시킨다.
@@ -990,6 +968,8 @@ public class CrewMember : CrewBase
         }
     }
 
+    #endregion
+
     /// <summary>
     /// 현재 선원이 탑승해 있는 함선이 선원의 모선인지 확인 (상대 배에 타있으면 false)
     /// </summary>
@@ -999,4 +979,111 @@ public class CrewMember : CrewBase
         // 유저 함선에 텔포한 적일 경우 : isPlayerControlled = false, currentShip.isPlayerShip = true
         return isPlayerControlled == currentShip.isPlayerShip ? true : false;
     }
+
+    #region 텔레포트
+
+    /// <summary>
+    /// 딜레이 후 텔레포트 진행
+    /// </summary>
+    /// <param name="crew"></param>
+    /// <param name="delay"></param>
+    /// <returns></returns>
+    public IEnumerator TeleportAfterDelay(CrewMember crew, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // 1. 현재 선원의 모선을 확인 후 상대 함선 추적
+        Ship targetShip = null;
+
+        // 일단 본인 함선이야
+        if (crew.IsOwnShip())
+        {
+            // 유저 함선 && 유저 선원
+            if (crew.isPlayerControlled)
+                targetShip = GameManager.Instance.currentEnemyShip;
+            else // 적 함선 && 적 선원
+                targetShip = GameManager.Instance.playerShip;
+        }
+        else
+        {
+            Debug.LogError("본인 함선 아님");
+        }
+
+        // 2. 상대 함선의 랜덤 위치에 선원 생성
+        List<Room> oppositeAllRooms = targetShip.GetAllRooms();
+        List<Room> oppositeShuffled = oppositeAllRooms.OrderBy(_ => UnityEngine.Random.value).ToList();
+
+        bool assigned = false;
+
+        // 기존 함선 텔포 방 점유 해제
+        Ship exitShip = crew.isPlayerControlled ? GameManager.Instance.playerShip : GameManager.Instance.currentEnemyShip;
+        CrewReservationManager.Instance.ExitTile(exitShip, crew.currentRoom, crew.reservedTile, crew);
+
+        // 텔포 방은 피해서 스폰
+        foreach (Room targetRoom in oppositeShuffled)
+        {
+            if (targetRoom.roomType == RoomType.Teleporter)
+                continue;
+
+            List<Vector2Int> candidates = targetRoom.GetRotatedCrewEntryGridPriority().Where
+            (
+                t => !CrewReservationManager.Instance.IsTileOccupied(targetShip, t)
+            ).ToList();
+
+            if (candidates.Count == 0)
+                continue;
+
+            // 랜덤 타일 선택
+            Vector2Int oppositeSpawnTile = candidates[UnityEngine.Random.Range(0, candidates.Count)];
+
+            // 위치 설정
+            crew.position = oppositeSpawnTile;
+            crew.currentRoom = targetRoom;
+            crew.transform.position = targetShip.GetWorldPositionFromGrid(oppositeSpawnTile);
+            crew.transform.SetParent(targetRoom.transform);
+            crew.currentShip = targetShip;
+
+            // 타겟 함선 랜덤 위치 점유 등록
+            CrewReservationManager.Instance.ReserveTile(targetShip, targetRoom, oppositeSpawnTile, crew);
+
+            // 컴포넌트 활성화
+            crew.gameObject.SetActive(true);
+            crew.enabled = true;
+
+            BoxCollider2D col = crew.GetComponent<BoxCollider2D>();
+            if (col != null)
+                col.enabled = true;
+
+            Animator anim = crew.GetComponent<Animator>();
+            if (anim != null)
+                anim.enabled = true;
+
+            crew.Freeze();
+
+            // 적 함선으로 텔레포트 했으므로 enemy 리스트에 추가
+            targetShip.allEnemies.Add(crew);
+
+            assigned = true;
+            break;
+        }
+
+        // 상대 함선 모든 타일이 꽉 차서 텔포 불가
+        if (!assigned)
+        {
+            Debug.LogError("상대 함선의 모든 타일이 차있어 텔포 불가");
+            yield return null;
+        }
+
+        // 3. 텔포 후 도착한 방에 적 있을 경우 : 자동 전투, lookatme()로 광역 어그로
+        if (crew.isWithEnemy() && crew.inCombat == false)
+        {
+            Debug.LogError("텔포 후 스폰된 방에서 적 찾음");
+
+            RTSSelectionManager.Instance.MoveForCombat(crew);
+
+            crew.LookAtMe();
+        }
+    }
+
+    #endregion
 }

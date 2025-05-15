@@ -99,21 +99,6 @@ public class GameManager : MonoBehaviour
 
         CreateDefaultPlayerShip();
         OnShipInitialized?.Invoke();
-        // ForSerializeTest();
-
-        // 적 함선 움직임 테스트 위한 코드
-        // ShipTemplateLoader.LoadShipFromResources("ShipTemplates/template_esfwaw");
-        // currentEnemyShip.MoveShipToFacingTargetShip(playerShip);
-
-        // currentEnemyShip.Initialize();
-
-        // CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        // CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
-        // CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
-
-        // if (crewBase1 is CrewMember crewMember) currentEnemyShip.AddCrew(crewMember);
-        // if (crewBase2 is CrewMember crewMember2) currentEnemyShip.AddCrew(crewMember2);
-        // if (crewBase3 is CrewMember crewMember3) currentEnemyShip.AddCrew(crewMember3);
 
         if (currentEnemyShip != null)
         {
@@ -382,6 +367,11 @@ public enum GameState
 
     /// <summary>이벤트 처리 중 상태입니다.</summary>
     Event,
+
+    /// <summary>
+    /// 적 함선 만난 상태
+    /// </summary>
+    Combat,
 
     /// <summary>게임이 일시정지된 상태입니다.</summary>
     Paused,
