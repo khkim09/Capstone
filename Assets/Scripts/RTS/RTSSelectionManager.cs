@@ -460,6 +460,9 @@ public class RTSSelectionManager : MonoBehaviour
                     continue;
                 }
 
+                if (crew.isTPing)
+                    continue;
+
                 // 사전 검사로 불필요한 A* 호출 방지
                 CrewMovementValidator validator = GetMovementValidatorForCrew(crew);
                 if (validator == null || !validator.IsTileWalkable(tile))
