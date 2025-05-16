@@ -204,6 +204,12 @@ public class GameManager : MonoBehaviour
         Room teleporter = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Teleporter);
         Room[] corridors = new Room[15];
 
+        Room engine2 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
+        Room engine3 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
+        playerShip.AddRoom(engine2, new Vector2Int(40, 40), RotationConstants.Rotation.Rotation0);
+        playerShip.AddRoom(engine3, new Vector2Int(43, 43), RotationConstants.Rotation.Rotation0);
+
+
         for (int index = 0; index < corridors.Length; index++)
             corridors[index] = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
 
