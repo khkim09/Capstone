@@ -407,6 +407,10 @@ public class CrewMember : CrewBase
         {
             animator.SetTrigger("idle");
         }
+        else if(trigger.Equals("tp_out"))
+            animator.SetTrigger("tp_out");
+        else if(trigger.Equals("tp_in"))
+            animator.SetTrigger("tp_in");
     }
 
     /// <summary>
@@ -922,7 +926,7 @@ public class CrewMember : CrewBase
 
         // 전투 중단
         inCombat = false;
-        PlayAnimation("attack");
+        //PlayAnimation("attack");
         combatCoroutine = null;
         combatTarget = null;
         madRoom = null;
@@ -1019,6 +1023,8 @@ public class CrewMember : CrewBase
 
     #region 텔레포트
 
+    public bool isTPing = false;
+
     /// <summary>
     /// 딜레이 후 텔레포트 진행
     /// </summary>
@@ -1027,6 +1033,8 @@ public class CrewMember : CrewBase
     /// <returns></returns>
     public IEnumerator TeleportAfterDelay(CrewMember crew, float delay)
     {
+        isTPing = true;
+        PlayAnimation("tp_out");
         yield return new WaitForSeconds(delay);
 
         // 1. 현재 선원의 모선을 확인 후 상대 함선 추적
@@ -1095,7 +1103,7 @@ public class CrewMember : CrewBase
             if (anim != null)
                 anim.enabled = true;
 
-            crew.Freeze();
+            //crew.Freeze();
 
             // 적 함선으로 텔레포트 했으므로 enemy 리스트에 추가
             exitShip.allCrews.Remove(crew);
@@ -1111,6 +1119,10 @@ public class CrewMember : CrewBase
             Debug.LogError("상대 함선의 모든 타일이 차있어 텔포 불가");
             yield return null;
         }
+
+        PlayAnimation("tp_in");
+        yield return new WaitForSeconds(delay);
+        isTPing = false;
 
         // 3. 텔포 후 도착한 방에 적 있을 경우 : 자동 전투, lookatme()로 광역 어그로
         if (crew.isWithEnemy() && crew.inCombat == false)

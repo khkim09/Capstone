@@ -44,7 +44,27 @@ public class EnemyController : MonoBehaviour
                 /// 그렇지 않으면 텔포방으로 이동하도록 찍으면 돼
                 if (!IsDoingSomething())
                 {
-                    RTSSelectionManager.Instance.IssueMoveCommand();
+                    Room teleportRoom = null;
+                    foreach (Room room in cm.currentShip.GetAllRooms())
+                    {
+                        if (room.roomType == RoomType.Teleporter)
+                        {
+                            teleportRoom = room;
+                            break;
+                        }
+                    }
+
+                    if (teleportRoom == null)
+                    {
+                        Debug.LogError("enemyship에 텔포 방 없음");
+                        cm.BackToThePeace();
+                    }
+                    else
+                    {
+                        Debug.LogError($"{teleportRoom.position}");
+                    }
+
+                    RTSSelectionManager.Instance.IssueMoveCommand(teleportRoom,cm);
                     /// 보니까 텔포방에 들어가면 바로 이동 시작하게 해놨더라고
                     /// IssueMoveCommand에서 텔포방으로 이동하도록 좌표찍어서 인자 넣어주면 될거야
                     /// EnemyController는 update에서 계속 도는 애라 어태치 하는 순간 바로 작동될거야
@@ -67,6 +87,11 @@ public class EnemyController : MonoBehaviour
                         isIdle = false;
                         cm.combatCoroutine = StartCoroutine(cm.CombatRoutine());
                     }
+
+                    //idle이 여전히 true인 경우
+                    //텔포로 도착한 방이 복도같은 부술 수도 없고 싸울 적도 없는 방인 경우
+
+                    //lifeSupport
                 }
             }
 
@@ -95,11 +120,8 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            if (!cm.IsOwnShip())
-            {
-                if (!IsDoingSomething())
-                    isIdle = true;
-            }
+            if (!IsDoingSomething())
+                isIdle = true;
         }
     }
 
@@ -175,6 +197,8 @@ public class EnemyController : MonoBehaviour
         if (cm.inCombat)
             return true;
         if (cm.isWorking)
+            return true;
+        if (cm.isTPing)
             return true;
         return false;
     }

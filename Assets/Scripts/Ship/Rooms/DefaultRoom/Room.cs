@@ -42,8 +42,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [SerializeField] public RotationConstants.Rotation currentRotation;
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
-    [Header("방 효과")]
-    [SerializeField] protected ParticleSystem roomParticles;
+    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
 
     /// <summary>방 작동 시 사운드 효과.</summary>
     [SerializeField] protected AudioSource roomSound;
@@ -520,19 +519,15 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     public List<CrewMember> GetTotalCrewsInRoom()
     {
-        List<CrewMember> total = new List<CrewMember>();
+        List<CrewMember> total = new();
 
         foreach (CrewMember crew in parentShip.allCrews)
-        {
             if (crew.currentRoom == this)
                 total.Add(crew);
-        }
 
         foreach (CrewMember enemy in parentShip.allEnemies)
-        {
             if (enemy.currentRoom == this)
                 total.Add(enemy);
-        }
 
         return total;
     }
@@ -597,13 +592,10 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     public bool NeedsRepair()
     {
         if (damageCondition == DamageLevel.breakdown)
-        {
-            return currentHitPoints < roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo];
-        }
+            return currentHitPoints < roomData.GetRoomDataByLevel(currentLevel)
+                .damageHitPointRate[RoomDamageLevel.DamageLevelTwo];
         else
-        {
             return currentHitPoints < roomData.GetRoomDataByLevel(currentLevel).hitPoint;
-        }
     }
 
     #endregion
@@ -632,13 +624,11 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     {
         float damage = 0;
         if (damageCondition == DamageLevel.good)
-        {
-            damage = currentHitPoints - roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne];
-        }
+            damage = currentHitPoints - roomData.GetRoomDataByLevel(currentLevel)
+                .damageHitPointRate[RoomDamageLevel.DamageLevelOne];
         else if (damageCondition == DamageLevel.scratch)
-        {
-            damage = currentHitPoints - roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo];
-        }
+            damage = currentHitPoints - roomData.GetRoomDataByLevel(currentLevel)
+                .damageHitPointRate[RoomDamageLevel.DamageLevelTwo];
         TakeDamage(damage);
     }
 
@@ -662,6 +652,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         // 스탯 기여도 변화 알림
         NotifyStateChanged();
     }
+
 
     /// <summary>방이 작동 불능 상태가 되었을 때 호출됩니다.</summary>
     protected virtual void OnDisabled()
@@ -836,7 +827,7 @@ public abstract class Room<TData, TLevel> : Room
 
 public enum DamageLevel
 {
-    good,
-    scratch,
-    breakdown
+    good = 0,
+    scratch = 1,
+    breakdown = 2
 }

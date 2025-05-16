@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 
 /// <summary>
@@ -13,24 +14,29 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public bool isInteractable = true;
 
     /// <summary>
+    /// 아이템 이미지를 보여주는 UI 요소입니다.
+    /// </summary>
+    [SerializeField] private UnityEngine.UI.Image itemImage;
+
+    /// <summary>
     /// 아이템 이름을 표시하는 텍스트 UI 요소입니다.
     /// </summary>
-    [SerializeField] private TMP_Text itemNameText;
+    [SerializeField] private TextMeshProUGUI itemNameText;
 
     /// <summary>
     /// 아이템 종류를 표시하는 택스트 UI 요소입니다.
     /// </summary>
-    [SerializeField] private TMP_Text categoryText;
+    [SerializeField] private TextMeshProUGUI categoryText;
 
     /// <summary>
     /// 아이템 가격을 표시하는 텍스트 UI 요소입니다.
     /// </summary>
-    [SerializeField] private TMP_Text priceText;
+    [SerializeField] private TextMeshProUGUI priceText;
 
     /// <summary>
     /// 아이템 수량을 표시하는 텍스트 UI 요소입니다.
     /// </summary>
-    [SerializeField] private TMP_Text quantityText;
+    [SerializeField] private TextMeshProUGUI quantityText;
     // (아이콘이 있다면) [SerializeField] private Image itemIcon;
 
     /// <summary>
@@ -84,11 +90,31 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         Debug.Log($"[InventoryItemUI] Setup called for {storedItem.itemData.itemName}");
         currentStoredItem = storedItem;
 
+        if (itemImage != null)
+        {
+            if (storedItem.itemData.itemSprite != null)
+            {
+                itemImage.sprite = storedItem.itemData.itemSprite;
+                itemImage.enabled = true;
+            }
+            else
+            {
+                itemImage.enabled = false;
+            }
+        }
+
         if (itemNameText != null)
         {
-            itemNameText.text = storedItem.itemData.itemName;
+            itemNameText.text = storedItem.itemData.itemName.Localize();
             itemNameOriginalColor = itemNameText.color;
         }
+
+        if (categoryText != null)
+        {
+            categoryText.text = storedItem.itemData.type.ToString();
+            categoryOriginalColor = categoryText.color;
+        }
+
 
         if (priceText != null)
         {
@@ -103,13 +129,6 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
             quantityText.text = storedItem.quantity.ToString();
             quantityOriginalColor = quantityText.color;
         }
-
-        if (categoryText != null)
-        {
-            categoryText.text = storedItem.itemData.type.ToString();
-            categoryOriginalColor = categoryText.color;
-        }
-
         isSelected = false;
 
         // 만약 이 아이템이 이전에 선택된 것과 동일하고, 수량이 남아 있다면 선택 상태 복원
