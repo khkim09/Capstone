@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 
 /// <summary>
 /// 템플릿을 기반으로 해적선을 생성하는 유틸리티 클래스
@@ -194,6 +195,9 @@ public class EnemyShipFactory : MonoBehaviour
 
             // 배에 추가
             ship.AddCrew(newCrew);
+
+            // enemyController (적 AI) 컴포넌트 부착
+            newCrew.AddComponent<EnemyController>();
         }
     }
 

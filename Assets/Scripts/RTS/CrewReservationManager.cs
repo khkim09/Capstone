@@ -4,30 +4,30 @@ using UnityEngine;
 /// <summary>
 /// 모든 선원의 타일 점유를 전역에서 통합 관리하는 매니저 - 싱글톤
 /// </summary>
-public class CrewReservationManager : MonoBehaviour
+public static class CrewReservationManager
 {
     /// <summary>
     /// 타일 예약제를 위한 매니저 - 싱글톤
     /// </summary>
-    public static CrewReservationManager Instance { get; private set; }
+    //public static CrewReservationManager Instance { get; private set; }
 
     /// <summary>
     /// 함선별 타일 예약 정보 관리용 딕셔너리
     /// </summary>
-    private Dictionary<Ship, Dictionary<Vector2Int, CrewMember>> tileOccupancy = new();
+    private static Dictionary<Ship, Dictionary<Vector2Int, CrewMember>> tileOccupancy = new();
 
-    /// <summary>
-    /// 싱글톤 연결
-    /// </summary>
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-    }
+    // /// <summary>
+    // /// 싱글톤 연결
+    // /// </summary>
+    // private void Awake()
+    // {
+    //     if (Instance != null && Instance != this)
+    //     {
+    //         Destroy(gameObject);
+    //         return;
+    //     }
+    //     Instance = this;
+    // }
 
     /// <summary>
     /// 함선의 검사 타일이 선원에 의한 점유 여부 반환
@@ -35,7 +35,7 @@ public class CrewReservationManager : MonoBehaviour
     /// <param name="ship"></param>
     /// <param name="tile"></param>
     /// <returns></returns>
-    public bool IsTileOccupied(Ship ship, Vector2Int tile)
+    public static bool IsTileOccupied(Ship ship, Vector2Int tile)
     {
         return tileOccupancy.ContainsKey(ship) && tileOccupancy[ship].ContainsKey(tile);
     }
@@ -46,7 +46,7 @@ public class CrewReservationManager : MonoBehaviour
     /// <param name="ship"></param>
     /// <param name="tile"></param>
     /// <returns></returns>
-    public CrewMember GetOccupyingCrew(Ship ship, Vector2Int tile)
+    public static CrewMember GetOccupyingCrew(Ship ship, Vector2Int tile)
     {
         return IsTileOccupied(ship, tile) ? tileOccupancy[ship][tile] : null;
     }
@@ -56,14 +56,12 @@ public class CrewReservationManager : MonoBehaviour
     /// </summary>
     /// <param name="ship"></param>
     /// <param name="tile"></param>
-    public void ExitTile(Ship ship, Room room, Vector2Int tile, CrewMember crew)
+    public static void ExitTile(Ship ship, Room room, Vector2Int tile, CrewMember crew)
     {
         if (tileOccupancy.ContainsKey(ship))
             tileOccupancy[ship].Remove(tile);
         else
-        {
             Debug.LogError($"[ExitTile] {crew.race}가 해당 위치에 없는데 점유 해제 시도");
-        }
 
         // 선원 나감 처리, 오브젝트 종속 해제
         room.OnCrewExit(crew);
@@ -76,7 +74,7 @@ public class CrewReservationManager : MonoBehaviour
     /// <param name="ship"></param>
     /// <param name="tile"></param>
     /// <param name="crew"></param>
-    public void ReserveTile(Ship ship, Room room, Vector2Int tile, CrewMember crew)
+    public static void ReserveTile(Ship ship, Room room, Vector2Int tile, CrewMember crew)
     {
         if (!tileOccupancy.ContainsKey(ship))
             tileOccupancy[ship] = new Dictionary<Vector2Int, CrewMember>();
@@ -84,7 +82,7 @@ public class CrewReservationManager : MonoBehaviour
         tileOccupancy[ship][tile] = crew;
 
         // 선원 입장 처리, 오브젝트를 방으로 종속
-        room.OnCrewEnter(crew);
+        // room.OnCrewEnter(crew);
         crew.transform.SetParent(room.transform);
     }
 
@@ -92,7 +90,7 @@ public class CrewReservationManager : MonoBehaviour
     /// 특정 함선 전체 타일 점유 정보 초기화
     /// </summary>
     /// <param name="ship"></param>
-    public void ClearAllReservations(Ship ship)
+    public static void ClearAllReservations(Ship ship)
     {
         if (tileOccupancy.ContainsKey(ship))
             tileOccupancy[ship].Clear();

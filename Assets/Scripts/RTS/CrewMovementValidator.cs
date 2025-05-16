@@ -21,8 +21,8 @@ public class CrewMovementValidator : MonoBehaviour
         walkableTiles = new HashSet<Vector2Int>();
         rooms = allRooms;
 
-        foreach (var room in allRooms)
-            foreach (var tile in room.GetOccupiedTiles())
+        foreach (Room room in allRooms)
+            foreach (Vector2Int tile in room.GetOccupiedTiles())
                 walkableTiles.Add(tile);
 
         inspectorWalkable = new List<Vector2Int>(walkableTiles);

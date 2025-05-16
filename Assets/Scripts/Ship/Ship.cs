@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using UnityEngine.Video;
-using UnityEditor.U2D.Aseprite;
 
 /// <summary>
 /// 함선의 전체 기능과 상태를 관리하는 클래스.
@@ -12,9 +10,9 @@ using UnityEditor.U2D.Aseprite;
 public class Ship : MonoBehaviour
 {
     /// <summary>
-    /// 유저의 함선인지 여부 (적 함선은 false 세팅 필요)
+    /// 유저의 함선인지 여부 (true : 유저 함선, false : 적 함선)
     /// </summary>
-    public bool isPlayerShip = true;
+    public bool isPlayerShip;
 
     [Header("Ship Info")]
     [SerializeField] public string shipName = "Milky";
@@ -120,11 +118,6 @@ public class Ship : MonoBehaviour
 
     public event Action OnStatsChanged;
     public event Action OnRoomChanged;
-
-    /// <summary>
-    /// 선원이 점유하는 타일 관리 (전역 변수)
-    /// </summary>
-    private Dictionary<Room, HashSet<Vector2Int>> crewOccupiedTiles = new();
 
     /// <summary>
     /// 함선의 초기 상태를 설정합니다.
@@ -1150,8 +1143,8 @@ public class Ship : MonoBehaviour
     {
         List<Vector2Int> targetPositions = new();
         foreach (Room r in allRooms)
-        foreach (Vector2Int tile in r.GetOccupiedTiles())
-            targetPositions.Add(tile);
+            foreach (Vector2Int tile in r.GetOccupiedTiles())
+                targetPositions.Add(tile);
 
         Vector2Int randomPosition = targetPositions[Random.Range(0, targetPositions.Count)];
 
@@ -1514,47 +1507,6 @@ public class Ship : MonoBehaviour
         float diffY = userCenter.y + enemyCenter.y;
 
         transform.position = new Vector3(diffX, diffY, 10f);
-
-        /* // 추후 필요 시 다시 생성할 소속 적군 옮기는 함수
-        // 5. 소속 적군도 옮기기 (수정 필요함 - crewsystem.cs의 restorcrewafterbuild() 참고)
-        foreach (CrewMember crew in allCrews)
-        {
-            if (crew == null || crew.currentRoom == null)
-                continue;
-
-            Room room = crew.currentRoom;
-            List<Vector2Int> candidates = room.GetRotatedCrewEntryGridPriority().Where
-            (
-                t => !CrewReservationManager.Instance.IsTileOccupied(this, t)
-            ).ToList();
-
-            if (candidates.Count == 0)
-                continue;
-
-            foreach (Vector2Int tile in candidates)
-            {
-                // 점유되지 않은 타일에 배치
-                if (!CrewReservationManager.Instance.IsTileOccupied(this, tile))
-                {
-                    crew.transform.position = GetWorldPositionFromGrid(room.position + tile);
-                    crew.transform.rotation = Quaternion.identity;
-                    crew.position = tile;
-
-                    MarkCrewTileOccupied(room, tile);
-                    CrewReservationManager.Instance.ReserveTile(crew.currentShip, )
-                    break;
-                }
-        }
-
-        // 모든 방의 점유 타일 검사
-        foreach (Room r in allRooms)
-        foreach (Vector2Int tile in r.GetOccupiedTiles())
-            Debug.LogError($"{r} : {tile} 점유");
-        // if (crewOccupiedTiles[r].Contains(tile))
-        //     Debug.LogError($"{tile}은 {CrewSystem.GetCrewsAtPosition(tile)}선원이 점유중");
-            }
-        }
-        */
     }
 
     #endregion

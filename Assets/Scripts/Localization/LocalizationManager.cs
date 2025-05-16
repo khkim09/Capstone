@@ -274,4 +274,10 @@ public static class LocalizationExtensions
         string key = $"crew.race.{race}".ToLower();
         return LocalizationManager.GetLocalizedText(key);
     }
+
+    public static string Localize(this RoomType roomType)
+    {
+        string key = $"room.roomtype.{roomType}".ToLower();
+        return LocalizationManager.GetLocalizedText(key);
+    }
 }
