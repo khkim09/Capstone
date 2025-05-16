@@ -189,8 +189,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <returns></returns>
     private bool IsMainUIActive()
     {
-        return CrewUIHandler.Instance != null && CrewUIHandler.Instance.mainUIScreen != null &&
-               CrewUIHandler.Instance.mainUIScreen.activeSelf;
+        return CrewUIHandler.Instance != null && CrewUIHandler.Instance.mainUIScreen != null && CrewUIHandler.Instance.mainUIScreen.activeSelf;
     }
 
 
@@ -717,12 +716,16 @@ public class RTSSelectionManager : MonoBehaviour
         return;
     }
 
+    /// <summary>
+    /// 선원 리스트 UI에서 선원 선택
+    /// </summary>
+    /// <param name="crew"></param>
     public void Select(CrewMember crew)
     {
         DeselectAll();
         selectedCrew.Add(crew);
         SetOutline(crew, true);
         crew.originPosTile = crew.GetCurrentTile();
-        Debug.LogError("눌름!");
+        Debug.LogError("누름!");
     }
 }

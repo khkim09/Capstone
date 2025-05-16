@@ -900,7 +900,7 @@ public class CrewMember : CrewBase
                         {
                             Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left
                         };
-                        Vector2Int workDir = directions[(directions.IndexOf(currentRoom.workDirection) + Convert.ToInt32(currentRoom.currentRotation)) % 4];
+                        Vector2Int workDir = directions[(directions.IndexOf(currentRoom.workDirection) + (int)currentRoom.currentRotation) % 4];
 
                         if (!isPlayerControlled)
                             workDir = directions[(directions.IndexOf(currentRoom.workDirection) + (int)currentRoom.currentRotation + 2) % 4];
