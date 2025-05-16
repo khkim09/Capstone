@@ -45,6 +45,11 @@ public class Ship : MonoBehaviour
     /// <summary>내 배의 전체 적군 선원 리스트</summary>
     public List<CrewMember> allEnemies = new();
 
+    /// <summary>
+    /// 아직 선원에게 적용시키지 않은 장비 목록
+    /// </summary>
+    public HashSet<EquipmentItem> unUsedItems = new();
+
     [SerializeField] private DoorData doorData;
 
     /// <summary>

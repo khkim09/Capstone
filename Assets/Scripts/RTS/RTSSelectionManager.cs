@@ -142,12 +142,18 @@ public class RTSSelectionManager : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        bool isMainUI = IsMainUIActive();
+        // bool isMainUI = IsMainUIActive();
 
 
         // 왼쪽 마우스 버튼 눌림: 선택 시작
-        if (isMainUI && Input.GetMouseButtonDown(0))
+        if (/*isMainUI && */Input.GetMouseButtonDown(0))
         {
+            if (BlockRTSSelection())
+            {
+                isDragging = false;
+                return;
+            }
+
             dragStartPos = Input.mousePosition;
             isDragging = true;
         }
@@ -155,8 +161,7 @@ public class RTSSelectionManager : MonoBehaviour
         // 왼쪽 마우스 버튼 뗌: 선택 완료
         if (Input.GetMouseButtonUp(0))
         {
-            GameObject checkPanel = GameObject.FindWithTag("SlidePanel");
-            if (checkPanel != null && checkPanel.activeInHierarchy)
+            if (BlockRTSSelection())
             {
                 isDragging = false;
                 return;
@@ -177,7 +182,7 @@ public class RTSSelectionManager : MonoBehaviour
 
 
         // 오른쪽 마우스 버튼 클릭: 이동 명령 발동
-        if (isMainUI && Input.GetMouseButtonDown(1))
+        if (/*isMainUI && */Input.GetMouseButtonDown(1))
         {
             CleanUpSelectedCrew();
             IssueMoveCommand();
@@ -193,6 +198,17 @@ public class RTSSelectionManager : MonoBehaviour
         return CrewUIHandler.Instance != null && CrewUIHandler.Instance.mainUIScreen != null && CrewUIHandler.Instance.mainUIScreen.activeSelf;
     }
 
+    /// <summary>
+    /// RTS 선원 선택 방지 코드
+    /// </summary>
+    /// <returns></returns>
+    private bool BlockRTSSelection()
+    {
+        GameObject blockPanel = GameObject.FindWithTag("BlockRTSSelect");
+        if (blockPanel != null && blockPanel.activeInHierarchy)
+            return true;
+        return false;
+    }
 
     /// <summary>
     /// OnGUI를 이용하여 드래그 영역의 사각형 표시

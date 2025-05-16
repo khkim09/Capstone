@@ -5,31 +5,33 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.EventSystems;
+using UnityEngine.Analytics;
 
 public class SlidePanelController : MonoBehaviour
 {
-    [Header("탭 버튼")] [SerializeField] private Button buttonShip;
+    [Header("탭 버튼")][SerializeField] private Button buttonShip;
     [SerializeField] private Button buttonCrew;
     [SerializeField] private Button buttonQuest;
     [SerializeField] private Button buttonStorage;
 
-    [Header("전체 탭")] [SerializeField] private GameObject Tabs;
+    [Header("전체 탭")][SerializeField] private GameObject Tabs;
 
-    [Header("패널 목록")] [SerializeField] private GameObject panelShip;
+    [Header("패널 목록")][SerializeField] private GameObject panelShip;
     [SerializeField] private GameObject panelCrew;
     [SerializeField] private GameObject panelQuest;
     [SerializeField] private GameObject panelStorage;
     [SerializeField] private GameObject panelUnselected;
 
-    [Header("함선 패널 설정")] [SerializeField] private GameObject shipPanelContent;
+    [Header("함선 패널 설정")][SerializeField] private GameObject shipPanelContent;
     [SerializeField] private GameObject roomInfoPanelPrefab;
 
-    [Header("승무원 패널 설정")] [SerializeField] private GameObject crewPanelContent;
+    [Header("승무원 패널 설정")][SerializeField] private GameObject crewPanelContent;
     [SerializeField] private GameObject crewInfoPanelPrefab;
+    [SerializeField] private GameObject equipmentDetailPanel;
 
 
-    [Header("열려야 되는 위치")] [SerializeField] private Transform openedPosition;
-    [Header("열리는 속도")] [SerializeField] private float slideSpeed = 0.1f;
+    [Header("열려야 되는 위치")][SerializeField] private Transform openedPosition;
+    [Header("열리는 속도")][SerializeField] private float slideSpeed = 0.1f;
 
     private Vector3 closedPosition;
     private Coroutine slideCoroutine;
@@ -48,9 +50,14 @@ public class SlidePanelController : MonoBehaviour
     private void Update()
     {
         if (isOpen && Input.GetMouseButtonDown(0))
+        {
+            if (equipmentDetailPanel.activeInHierarchy)
+                return;
+
             // 클릭된 UI 요소가 현재 패널이 아닌지 체크
             if (!IsClickingOnSelf())
                 SlideClose();
+        }
     }
 
     private void OnEnable()
@@ -59,13 +66,13 @@ public class SlidePanelController : MonoBehaviour
 
     private void AddButtonListeners()
     {
-        buttonCrew.onClick.AddListener(() => OnPanelButtonClicked(panelCrew));
         buttonShip.onClick.AddListener(() => OnPanelButtonClicked(panelShip));
+        buttonCrew.onClick.AddListener(() => OnPanelButtonClicked(panelCrew));
         buttonQuest.onClick.AddListener(() => OnPanelButtonClicked(panelQuest));
         buttonStorage.onClick.AddListener(() => OnPanelButtonClicked(panelStorage));
     }
 
-    private void OnPanelButtonClicked(GameObject targetPanel)
+    public void OnPanelButtonClicked(GameObject targetPanel)
     {
         if (currentPanel == targetPanel && isOpen)
         {
@@ -73,8 +80,8 @@ public class SlidePanelController : MonoBehaviour
             return;
         }
 
-        if (targetPanel == panelCrew) InitializeCrewPanel();
         if (targetPanel == panelShip) InitializeShipPanel();
+        if (targetPanel == panelCrew) InitializeCrewPanel();
 
 
         ShowOnly(targetPanel);
@@ -187,23 +194,36 @@ public class SlidePanelController : MonoBehaviour
 
     #region 승무원 패널 설정
 
-    private void InitializeCrewPanel()
+    public void InitializeCrewPanel()
     {
+        /*
         for (int index = crewInfoPanelList.Count - 1; index >= 0; index--)
         {
             CrewInfoPanel infoPanel = crewInfoPanelList[index];
             crewInfoPanelList.Remove(infoPanel);
             Destroy(infoPanel.gameObject);
         }
+        */
+        foreach (CrewInfoPanel cip in crewInfoPanelList)
+            Destroy(cip.gameObject);
+        crewInfoPanelList.Clear();
 
         foreach (CrewMember crew in GameManager.Instance.playerShip.allCrews)
         {
-            CrewInfoPanel crewInfoPanel = Instantiate(crewInfoPanelPrefab, crewPanelContent.transform)
-                .GetComponent<CrewInfoPanel>();
+            CrewInfoPanel crewInfoPanel = Instantiate(crewInfoPanelPrefab, crewPanelContent.transform).GetComponent<CrewInfoPanel>();
             crewInfoPanel.Initialize(crew);
             crewInfoPanelList.Add(crewInfoPanel);
         }
     }
 
     #endregion
+
+    public void OnCrewPanelEquipmentButtonClicked(CrewMember selectedCrew)
+    {
+        EquipmentApplyHandler handler = equipmentDetailPanel.GetComponent<EquipmentApplyHandler>();
+        handler.Initialize();
+        handler.OnCrewIconSelected(selectedCrew);
+
+        equipmentDetailPanel.SetActive(true);
+    }
 }

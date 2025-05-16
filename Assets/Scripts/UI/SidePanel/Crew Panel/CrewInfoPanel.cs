@@ -13,12 +13,15 @@ public class CrewInfoPanel : TooltipPanelBase
     [SerializeField] private Image crewIcon;
 
     [SerializeField] private Button rtsButton;
+    private SlidePanelController slidePanelController;
 
     private CrewMember currentCrew;
 
     protected override void Start()
     {
         base.Start();
+
+        slidePanelController = GameObject.FindWithTag("SlidePanel").GetComponent<SlidePanelController>();
     }
 
     public void Initialize(CrewMember crew)
@@ -26,8 +29,7 @@ public class CrewInfoPanel : TooltipPanelBase
         currentCrew = crew;
         crewName.text = crew.crewName;
         currentHealth.text = $"{crew.health}/{crew.maxHealth}";
-        // TODO : 선원 스프라이트를 스크립터블에 넣어야될 듯. 이건 선원 자체 렌더러에서 보여지게 할 때도 마찬가지
-        crewIcon.sprite = Resources.Load<Sprite>($"Sprites/Crew/{crew.race.ToString().ToLower()}");
+        crewIcon.sprite = crew.spriteRenderer.sprite;
 
         Image atkImage = atkButton.GetComponent<Image>();
         Image defImage = defButton.GetComponent<Image>();
@@ -41,9 +43,9 @@ public class CrewInfoPanel : TooltipPanelBase
             assistImage.sprite = crew.equippedAssistant.eqIcon;
 
         // TODO : 장비 UI SetActive(true)
-        atkButton.onClick.AddListener(() => { });
-        defButton.onClick.AddListener(() => { });
-        assistButton.onClick.AddListener(() => { });
+        atkButton.onClick.AddListener(() => { slidePanelController.OnCrewPanelEquipmentButtonClicked(crew); });
+        defButton.onClick.AddListener(() => { slidePanelController.OnCrewPanelEquipmentButtonClicked(crew); });
+        assistButton.onClick.AddListener(() => { slidePanelController.OnCrewPanelEquipmentButtonClicked(crew); });
 
         rtsButton.onClick.AddListener(() => { OnRTSButtonClicked(); });
     }
@@ -71,5 +73,25 @@ public class CrewInfoPanel : TooltipPanelBase
                 + $"{"room.roomtype.ammunition".Localize()} {currentCrew.skills[SkillType.AmmunitionSkill]}/{currentCrew.maxAmmunitionSkillValue}\n"
                 + $"{"room.roomtype.medbay".Localize()} {currentCrew.skills[SkillType.MedBaySkill]}/{currentCrew.maxMedBaySkillValue}\n"
                 + $"{"crew.skilltype.repairshort".Localize()} {currentCrew.skills[SkillType.RepairSkill]}/{currentCrew.maxRepairSkillValue}";
+    }
+
+    public void RefreshCrewEquipments(CrewMember crew)
+    {
+        Debug.LogError("갱신");
+        Image atkImage = atkButton.GetComponent<Image>();
+        Image defImage = defButton.GetComponent<Image>();
+        Image assistImage = assistButton.GetComponent<Image>();
+
+        if (crew.equippedWeapon != null)
+        {
+            Debug.LogError($"weapon : {crew.equippedWeapon}");
+            atkImage.sprite = crew.equippedWeapon.eqIcon;
+        }
+        else
+            Debug.LogError("장착무기 null");
+        if (crew.equippedShield != null)
+            defImage.sprite = crew.equippedShield.eqIcon;
+        if (crew.equippedAssistant != null)
+            assistImage.sprite = crew.equippedAssistant.eqIcon;
     }
 }
