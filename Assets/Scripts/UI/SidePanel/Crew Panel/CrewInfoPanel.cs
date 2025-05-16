@@ -69,6 +69,6 @@ public class CrewInfoPanel : TooltipPanelBase
                 + $"{"room.roomtype.weaponcontrol".Localize()} {currentCrew.skills[SkillType.WeaponSkill]}/{currentCrew.maxWeaponSkillValue}\n"
                 + $"{"room.roomtype.ammunition".Localize()} {currentCrew.skills[SkillType.AmmunitionSkill]}/{currentCrew.maxAmmunitionSkillValue}\n"
                 + $"{"room.roomtype.medbay".Localize()} {currentCrew.skills[SkillType.MedBaySkill]}/{currentCrew.maxMedBaySkillValue}\n"
-                + $"{"room.skilltype.repairshort".Localize()} {currentCrew.skills[SkillType.RepairSkill]}/{currentCrew.maxRepairSkillValue}";
+                + $"{"crew.skilltype.repairshort".Localize()} {currentCrew.skills[SkillType.RepairSkill]}/{currentCrew.maxRepairSkillValue}";
     }
 }

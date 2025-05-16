@@ -97,7 +97,7 @@ public class ShipInfoPanel : TooltipPanelBase
 
                     if (value == 0) continue;
 
-                    string roomContribution = $"- {"ship.shipstat.{shipStat}".Localize()} : {value}\n";
+                    string roomContribution = $"- {shipStat.Localize()} : {value}\n";
                     toolTipText.text += roomContribution;
                 }
 
