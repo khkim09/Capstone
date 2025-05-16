@@ -135,7 +135,7 @@ public class MoraleEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             // 스프라이트 크기에 맞게 콜라이더 크기 설정
             boxCollider.size = spriteRenderer.sprite.bounds.size;
-            spriteRenderer.sortingOrder = SortingOrderConstants.UI;
+            spriteRenderer.sortingOrder = Constants.SortingOrders.UI;
         }
 
         SetTooltipText("ui.morale.tooltip".Localize(targetRace.ToString(), changeAmount));

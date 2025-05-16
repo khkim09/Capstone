@@ -102,8 +102,6 @@ public class CrewDatabase : ScriptableObject
     {
         raceStatsByType = new Dictionary<CrewRace, RaceStat>();
         foreach (RaceStat stat in raceStats) raceStatsByType[stat.race] = stat;
-
-        Debug.Log($"CrewDatabase 초기화 완료: {raceStatsByType.Count}개 종족 정보 로드");
     }
 
     /// <summary>

@@ -26,5 +26,5 @@ public class PlanetEffect
     /// 상수값을 사용하지만 만약 이벤트 별로 다르게 설정하고 싶으면
     /// NonSerialized 필드를 제거하고 각 ScriptableObject에서 설정할 것
     /// </summary>
-    [NonSerialized] public int duration = EventConstants.EVENT_DURATION;
+    [NonSerialized] public int duration = Constants.Events.EventDuration;
 }

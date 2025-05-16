@@ -37,7 +37,7 @@ public struct RoomBackupData
     public RoomData roomData;
     public int level;
     public Vector2Int position;
-    public RotationConstants.Rotation rotation;
+    public Constants.Rotations.Rotation rotation;
 }
 
 /// <summary>
@@ -151,7 +151,7 @@ public abstract class RoomData : ScriptableObject
     /// <param name="rot"></param>
     /// <returns></returns>
     public List<DoorPosition> GetDoorPositionsWithDirection(int levelIndex, Vector2Int originalPos,
-        RotationConstants.Rotation rotation)
+        Constants.Rotations.Rotation rotation)
     {
         List<DoorPosition> worldDoorPositions = new();
 
@@ -176,15 +176,15 @@ public abstract class RoomData : ScriptableObject
         return worldDoorPositions;
     }
 
-    private DoorDirection LocalDirToWorldDir(DoorDirection localDir, RotationConstants.Rotation rotation)
+    private DoorDirection LocalDirToWorldDir(DoorDirection localDir, Constants.Rotations.Rotation rotation)
     {
         DoorDirection worldDir;
         switch (rotation)
         {
-            case RotationConstants.Rotation.Rotation0:
+            case Constants.Rotations.Rotation.Rotation0:
                 worldDir = localDir;
                 break;
-            case RotationConstants.Rotation.Rotation90:
+            case Constants.Rotations.Rotation.Rotation90:
                 if (localDir == DoorDirection.North)
                     worldDir = DoorDirection.East;
                 else if (localDir == DoorDirection.East)
@@ -194,7 +194,7 @@ public abstract class RoomData : ScriptableObject
                 else
                     worldDir = DoorDirection.North;
                 break;
-            case RotationConstants.Rotation.Rotation180:
+            case Constants.Rotations.Rotation.Rotation180:
                 if (localDir == DoorDirection.North)
                     worldDir = DoorDirection.South;
                 else if (localDir == DoorDirection.East)
@@ -204,7 +204,7 @@ public abstract class RoomData : ScriptableObject
                 else
                     worldDir = DoorDirection.East;
                 break;
-            case RotationConstants.Rotation.Rotation270:
+            case Constants.Rotations.Rotation.Rotation270:
                 if (localDir == DoorDirection.North)
                     worldDir = DoorDirection.West;
                 else if (localDir == DoorDirection.East)

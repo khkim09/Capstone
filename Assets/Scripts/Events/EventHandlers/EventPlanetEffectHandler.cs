@@ -21,6 +21,7 @@ public class EventPlanetEffectHandler
 
         ApplyEffects(new List<PlanetEffect> { effect });
     }
+
     /// <summary>
     /// PlanetEffect 리스트를 받아 로그 출력 및 향후 가격 변동 처리용으로 보존합니다.
     /// </summary>
@@ -33,12 +34,7 @@ public class EventPlanetEffectHandler
             return;
         }
 
-        foreach (var effect in planetEffects)
-        {
+        foreach (PlanetEffect effect in planetEffects)
             Debug.Log($"[PlanetEffect] 카테고리: {effect.categoryType}, 변동률: {effect.changeAmount}%");
-
-            // 향후 구현 예정 예시:
-            // GameManager.Instance.GetCurrentPlanet().ApplyPriceModifier(effect.categoryType, effect.fluctuation);
-        }
     }
 }

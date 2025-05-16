@@ -179,7 +179,7 @@ public class CrewFactory : MonoBehaviour
 
         // 스프라이트 렌더러 설정
         SpriteRenderer spriteRenderer = crew.GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null) spriteRenderer.sortingOrder = SortingOrderConstants.Character;
+        if (spriteRenderer != null) spriteRenderer.sortingOrder = Constants.SortingOrders.Character;
     }
 
     /// <summary>
@@ -236,13 +236,15 @@ public class CrewFactory : MonoBehaviour
             animator = crew.gameObject.AddComponent<Animator>();
 
         // 종족에 맞는 animator controller 로드
-        RuntimeAnimatorController controller = Resources.Load<RuntimeAnimatorController>($"Animation/{crew.race}/{crew.race}");
+        RuntimeAnimatorController controller =
+            Resources.Load<RuntimeAnimatorController>($"Animation/{crew.race}/{crew.race}");
 
         if (controller == null)
         {
             Debug.LogError($"Animator Controller를 찾을 수 없습니다: Animation/{crew.race}/{crew.race}");
             return;
         }
+
         animator.runtimeAnimatorController = controller;
 
         // CrewBase에 animator 연결
@@ -298,7 +300,7 @@ public class CrewFactory : MonoBehaviour
             if (spriteRenderer != null && spriteRenderer.sprite == null)
             {
                 spriteRenderer.sprite = Resources.Load<Sprite>($"Sprites/Crew/{crew.race.ToString().ToLower()}");
-                spriteRenderer.sortingOrder = SortingOrderConstants.Character;
+                spriteRenderer.sortingOrder = Constants.SortingOrders.Character;
             }
 
             return crew;

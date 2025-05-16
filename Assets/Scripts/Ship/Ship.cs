@@ -14,8 +14,7 @@ public class Ship : MonoBehaviour
     /// </summary>
     public bool isPlayerShip;
 
-    [Header("Ship Info")]
-    [SerializeField] public string shipName = "Milky";
+    [Header("Ship Info")] [SerializeField] public string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -56,8 +55,7 @@ public class Ship : MonoBehaviour
     /// <summary>
     /// 외갑판 데이터
     /// </summary>
-    [Header("외갑판 설정")]
-    [SerializeField] public OuterHullData outerHullData;
+    [Header("외갑판 설정")] [SerializeField] public OuterHullData outerHullData;
 
     /// <summary>
     /// 외갑판 prefab
@@ -181,7 +179,7 @@ public class Ship : MonoBehaviour
     /// <summary>
     /// 룸을 생성하고 배치하며, 초기화는 Room의 Initialize 메서드를 사용합니다.
     /// </summary>
-    public bool AddRoom(int level, RoomData roomData, Vector2Int position, RotationConstants.Rotation rotation)
+    public bool AddRoom(int level, RoomData roomData, Vector2Int position, Constants.Rotations.Rotation rotation)
     {
         // 룸 타입 확인
         RoomType roomType = roomData.GetRoomType();
@@ -253,7 +251,8 @@ public class Ship : MonoBehaviour
     /// <param name="position"></param>
     /// <param name="rotation"></param>
     /// <returns></returns>
-    public Room AddRoom(Room room, Vector2Int position = new(), RotationConstants.Rotation rotation = RotationConstants.Rotation.Rotation0)
+    public Room AddRoom(Room room, Vector2Int position = new(),
+        Constants.Rotations.Rotation rotation = Constants.Rotations.Rotation.Rotation0)
     {
         // 룸 타입 확인
         RoomType roomType = room.GetRoomType();
@@ -268,7 +267,7 @@ public class Ship : MonoBehaviour
             position = room.position;
 
         // 방의 회전 값 세팅
-        if (rotation == RotationConstants.Rotation.Rotation0)
+        if (rotation == Constants.Rotations.Rotation.Rotation0)
             rotation = room.currentRotation;
         else
             room.currentRotation = rotation;
@@ -404,12 +403,10 @@ public class Ship : MonoBehaviour
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
+        for (int y = 0; y < room.GetSize().y; y++)
         {
-            for (int y = 0; y < room.GetSize().y; y++)
-            {
-                Vector2Int gridPos = room.position + new Vector2Int(x, y);
-                roomGrid.Remove(gridPos);
-            }
+            Vector2Int gridPos = room.position + new Vector2Int(x, y);
+            roomGrid.Remove(gridPos);
         }
 
         // Remove from room type dictionary
@@ -464,10 +461,7 @@ public class Ship : MonoBehaviour
     public int GetTotalShipValue()
     {
         int total = 0;
-        foreach (Room room in allRooms)
-        {
-            total += room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).cost;
-        }
+        foreach (Room room in allRooms) total += room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).cost;
         return total;
     }
 
@@ -509,7 +503,6 @@ public class Ship : MonoBehaviour
         backupWeapons.Clear();
 
         foreach (Room room in allRooms)
-        {
             backupRoomDatas.Add(new RoomBackupData
             {
                 roomData = room.GetRoomData(),
@@ -517,18 +510,12 @@ public class Ship : MonoBehaviour
                 position = room.position,
                 rotation = room.currentRotation
             });
-        }
 
         foreach (ShipWeapon wp in GetAllWeapons())
-        {
             backupWeapons.Add(new WeaponBackupData()
             {
-                weaponData = wp.weaponData,
-                position = wp.GetGridPosition(),
-                direction = wp.GetAttachedDirection()
+                weaponData = wp.weaponData, position = wp.GetGridPosition(), direction = wp.GetAttachedDirection()
             });
-
-        }
     }
 
     /// <summary>
@@ -625,8 +612,6 @@ public class Ship : MonoBehaviour
 
     #region RTS 이동 위한 타일 관리
 
-
-
     #endregion
 
     /// <summary>
@@ -644,12 +629,12 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-            for (int y = 0; y < size.y; y++)
-            {
-                Vector2Int checkPos = pos + new Vector2Int(x, y);
-                if (roomGrid.ContainsKey(checkPos))
-                    return false;
-            }
+        for (int y = 0; y < size.y; y++)
+        {
+            Vector2Int checkPos = pos + new Vector2Int(x, y);
+            if (roomGrid.ContainsKey(checkPos))
+                return false;
+        }
 
         return true;
     }
@@ -1067,13 +1052,11 @@ public class Ship : MonoBehaviour
     public void AllFreeze()
     {
         foreach (CrewMember crew in GetAllCrew())
-        {
             if (crew != null)
             {
                 crew.Freeze();
                 crew.BackToThePeace();
             }
-        }
     }
 
     #region 무기
@@ -1143,8 +1126,8 @@ public class Ship : MonoBehaviour
     {
         List<Vector2Int> targetPositions = new();
         foreach (Room r in allRooms)
-            foreach (Vector2Int tile in r.GetOccupiedTiles())
-                targetPositions.Add(tile);
+        foreach (Vector2Int tile in r.GetOccupiedTiles())
+            targetPositions.Add(tile);
 
         Vector2Int randomPosition = targetPositions[Random.Range(0, targetPositions.Count)];
 
@@ -1272,15 +1255,15 @@ public class Ship : MonoBehaviour
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
-                for (int y = -1; y <= 1; y++)
-                {
-                    if (x == 0 && y == 0) continue;
+            for (int y = -1; y <= 1; y++)
+            {
+                if (x == 0 && y == 0) continue;
 
-                    Vector2Int checkPos = position + new Vector2Int(x, y);
+                Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                    // 해당 위치에 있는 선원들에게 데미지 적용
-                    ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
-                }
+                // 해당 위치에 있는 선원들에게 데미지 적용
+                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
+            }
     }
 
     #endregion
@@ -1342,8 +1325,8 @@ public class Ship : MonoBehaviour
     public Vector2Int WorldToGridPosition(Vector2 worldPos)
     {
         Vector3 local = new Vector3(worldPos.x, worldPos.y, 0) - Vector3.zero;
-        return new Vector2Int(Mathf.FloorToInt(local.x / GridConstants.CELL_SIZE),
-            Mathf.FloorToInt(local.y / GridConstants.CELL_SIZE));
+        return new Vector2Int(Mathf.FloorToInt(local.x / Constants.Grids.CellSize),
+            Mathf.FloorToInt(local.y / Constants.Grids.CellSize));
     }
 
     /// <summary>
@@ -1353,8 +1336,8 @@ public class Ship : MonoBehaviour
     /// <returns></returns>
     public Vector3 GridToWorldPosition(Vector2Int gridPos)
     {
-        return Vector3.zero + new Vector3((gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
-            (gridPos.y + 0.5f) * GridConstants.CELL_SIZE, 0f);
+        return Vector3.zero + new Vector3((gridPos.x + 0.5f) * Constants.Grids.CellSize,
+            (gridPos.y + 0.5f) * Constants.Grids.CellSize, 0f);
     }
 
     /// <summary>
@@ -1364,8 +1347,8 @@ public class Ship : MonoBehaviour
     /// <returns></returns>
     public Vector3 GridToWorldPosition(Vector2 gridPos)
     {
-        return Vector3.zero + new Vector3((gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
-            (gridPos.y + 0.5f) * GridConstants.CELL_SIZE, 0f);
+        return Vector3.zero + new Vector3((gridPos.x + 0.5f) * Constants.Grids.CellSize,
+            (gridPos.y + 0.5f) * Constants.Grids.CellSize, 0f);
     }
 
     /// <summary>

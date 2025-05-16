@@ -30,12 +30,12 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     public int bpWeaponCost;
 
     /// <summary>무기 크기 (고정: 2x1)</summary>
-    public Vector2Int bpWeaponSize = new Vector2Int(2, 1);
+    public Vector2Int bpWeaponSize = new(2, 1);
 
     /// <summary>
     /// 회전각 고정 (0)
     /// </summary>
-    public RotationConstants.Rotation bpRotation = RotationConstants.Rotation.Rotation0;
+    public Constants.Rotations.Rotation bpRotation = Constants.Rotations.Rotation.Rotation0;
 
     /// <summary>
     /// 실제 점유 타일
@@ -160,7 +160,7 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
 
             // 동일한 오프셋 적용
             Vector2Int size = new(2, 1);
-            Vector2 offset = RoomRotationUtility.GetRotationOffset(size, RotationConstants.Rotation.Rotation0);
+            Vector2 offset = RoomRotationUtility.GetRotationOffset(size, Constants.Rotations.Rotation.Rotation0);
             transform.position = gridPlacer.GetWorldPositionFromGrid(bpPosition) + (Vector3)offset;
 
             // bool canPlace = gridPlacer.CanPlaceObject(this, bpPosition, null);
@@ -189,7 +189,8 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
 
                 UpdateOccupiedTiles();
 
-                Vector2 offset = RoomRotationUtility.GetRotationOffset(bpWeaponSize, RotationConstants.Rotation.Rotation0);
+                Vector2 offset =
+                    RoomRotationUtility.GetRotationOffset(bpWeaponSize, Constants.Rotations.Rotation.Rotation0);
                 transform.position = gridPlacer.GetWorldPositionFromGrid(originalPos) + (Vector3)offset;
                 ApplyAttachedDirectionSprite();
 

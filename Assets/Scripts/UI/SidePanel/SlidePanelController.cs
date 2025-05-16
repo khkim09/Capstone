@@ -145,8 +145,6 @@ public class SlidePanelController : MonoBehaviour
 
     #region 함선 패널 설정
 
-    #endregion
-
     private void InitializeShipPanel()
     {
         foreach (ShipInfoPanel panel in shipInfoPanelDictionary.Values) Destroy(panel.gameObject);
@@ -183,6 +181,9 @@ public class SlidePanelController : MonoBehaviour
 
         for (int i = 0; i < shipPanelTransforms.Count; i++) shipPanelTransforms[i].SetSiblingIndex(i);
     }
+
+    #endregion
+
 
     #region 승무원 패널 설정
 

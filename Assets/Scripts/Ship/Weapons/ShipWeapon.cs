@@ -67,7 +67,7 @@ public class ShipWeapon : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sortingOrder = SortingOrderConstants.Weapon;
+        spriteRenderer.sortingOrder = Constants.SortingOrders.Weapon;
 
         // 소유 함선 찾기
         ownerShip = GetComponentInParent<Ship>();
@@ -310,7 +310,7 @@ public class ShipWeapon : MonoBehaviour
     {
         // if (!IsReady() || !isEnabled || ownerShip == null)
         //     return false;
-        // 임시로 무조건 통과
+        // TODO : 임시로 무조건 통과. 나중에 없애야함.
 
         // 타겟 결정
         Ship targetShip = GetTargetShip();

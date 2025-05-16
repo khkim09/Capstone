@@ -27,8 +27,8 @@ public class TradingItemDragHandler : MonoBehaviour
     private TradingItem originalItem;
     private StorageRoomBase sourceStorage;
     private Vector2Int originalPosition;
-    private RotationConstants.Rotation originalRotation;
-    private RotationConstants.Rotation currentRotation;
+    private Constants.Rotations.Rotation originalRotation;
+    private Constants.Rotations.Rotation currentRotation;
 
     private bool lastLoggedDraggingState = false;
 
@@ -138,7 +138,7 @@ public class TradingItemDragHandler : MonoBehaviour
         {
             previewBoxRenderer.sprite = originalBoxRenderer.sprite;
             previewBoxRenderer.color = normalPreviewColor;
-            previewBoxRenderer.sortingOrder = SortingOrderConstants.TradingItemBoxDragging;
+            previewBoxRenderer.sortingOrder = Constants.SortingOrders.TradingItemBoxDragging;
         }
 
         // 아이템 스프라이트 렌더러를 위한 자식 오브젝트 생성
@@ -237,14 +237,14 @@ public class TradingItemDragHandler : MonoBehaviour
         // 방의 로컬 좌표계에서 그리드 원점
         Vector2Int storageSize = storage.GetSize();
         Vector2 gridOrigin = new(
-            -storageSize.x * GridConstants.CELL_SIZE / 2.0f,
-            -storageSize.y * GridConstants.CELL_SIZE / 2.0f
+            -storageSize.x * Constants.Grids.CellSize / 2.0f,
+            -storageSize.y * Constants.Grids.CellSize / 2.0f
         );
 
         // 아이템 중앙의 월드 위치 계산
         Vector2 itemCenterWorldPos = new(
-            gridOrigin.x + (itemCenter.x + 0.5f) * GridConstants.CELL_SIZE,
-            gridOrigin.y + (itemCenter.y + 0.5f) * GridConstants.CELL_SIZE
+            gridOrigin.x + (itemCenter.x + 0.5f) * Constants.Grids.CellSize,
+            gridOrigin.y + (itemCenter.y + 0.5f) * Constants.Grids.CellSize
         );
 
         // 정확한 위치를 위해 반올림
@@ -267,7 +267,7 @@ public class TradingItemDragHandler : MonoBehaviour
     private void RotatePreview()
     {
         // 다음 회전 상태 계산
-        currentRotation = (RotationConstants.Rotation)(((int)currentRotation + 1) % 4);
+        currentRotation = (Constants.Rotations.Rotation)(((int)currentRotation + 1) % 4);
 
         // 회전에 맞는 박스 스프라이트 가져오기
         UpdatePreviewBoxSprite();

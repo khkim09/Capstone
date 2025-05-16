@@ -27,7 +27,7 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
     private float frameOffsetY = 0.11f;
 
-    public RotationConstants.Rotation rotation;
+    public Constants.Rotations.Rotation rotation;
 
     private Sprite[] boxSprites;
 
@@ -58,19 +58,19 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         string boxName = $"lot{itemData.shape}";
         boxSprites = Resources.LoadAll<Sprite>($"Sprites/Item/{boxName}");
 
-        rotation = RotationConstants.Rotation.Rotation0;
+        rotation = Constants.Rotations.Rotation.Rotation0;
 
         boxRenderer.sprite = boxSprites[(int)rotation];
         boxGrid = ItemShape.Instance.itemShapes[itemData.shape][(int)rotation];
-        boxRenderer.sortingOrder = SortingOrderConstants.TradingItemBox;
+        boxRenderer.sortingOrder = Constants.SortingOrders.TradingItemBox;
 
-        frameRenderer.sortingOrder = SortingOrderConstants.TradingItemFrame;
+        frameRenderer.sortingOrder = Constants.SortingOrders.TradingItemFrame;
 
         // 아이템 이미지 설정 (예: 아이템별 개별 스프라이트)
         itemRenderer.sprite = itemData.itemSprite;
         itemState = state;
 
-        itemRenderer.sortingOrder = SortingOrderConstants.TradingItemIcon;
+        itemRenderer.sortingOrder = Constants.SortingOrders.TradingItemIcon;
 
         amount = quantity;
         Math.Clamp(amount, 0, data.capacity);
@@ -106,9 +106,9 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         boxRenderer.sprite = boxSprites[(int)rotation];
 
         // 정렬 순서 맞추기
-        boxRenderer.sortingOrder = SortingOrderConstants.TradingItemBox;
-        itemRenderer.sortingOrder = SortingOrderConstants.TradingItemIcon;
-        frameRenderer.sortingOrder = SortingOrderConstants.TradingItemFrame;
+        boxRenderer.sortingOrder = Constants.SortingOrders.TradingItemBox;
+        itemRenderer.sortingOrder = Constants.SortingOrders.TradingItemIcon;
+        frameRenderer.sortingOrder = Constants.SortingOrders.TradingItemFrame;
 
         // 프레임 위치 재설정
         PositionFrameAtGridCenter();
@@ -191,14 +191,14 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     public Vector2 GetWorldPosition()
     {
         Vector2 parentPosition = parentStorage.transform.position;
-        return new Vector2(parentPosition.x + GridConstants.CELL_SIZE * 2,
-            parentPosition.y + GridConstants.CELL_SIZE * 2);
+        return new Vector2(parentPosition.x + Constants.Grids.CellSize * 2,
+            parentPosition.y + Constants.Grids.CellSize * 2);
     }
 
     // TradingItem.cs의 Rotate 메서드 수정
-    public void Rotate(RotationConstants.Rotation newRotation)
+    public void Rotate(Constants.Rotations.Rotation newRotation)
     {
-        rotation = (RotationConstants.Rotation)newRotation;
+        rotation = (Constants.Rotations.Rotation)newRotation;
 
         // 부모 방의 회전 값 가져오기
         int roomRotation = 0;
@@ -338,7 +338,7 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             boxRenderer.enabled = !isDragging;
             // 소팅 오더 유지
             if (!isDragging)
-                boxRenderer.sortingOrder = SortingOrderConstants.TradingItemBox;
+                boxRenderer.sortingOrder = Constants.SortingOrders.TradingItemBox;
         }
 
         if (itemRenderer != null)
@@ -346,7 +346,7 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             itemRenderer.enabled = !isDragging;
             // 소팅 오더 유지
             if (!isDragging)
-                itemRenderer.sortingOrder = SortingOrderConstants.TradingItemIcon;
+                itemRenderer.sortingOrder = Constants.SortingOrders.TradingItemIcon;
         }
 
         if (frameRenderer != null)
@@ -354,7 +354,7 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             frameRenderer.enabled = !isDragging;
             // 소팅 오더 유지
             if (!isDragging)
-                frameRenderer.sortingOrder = SortingOrderConstants.TradingItemFrame;
+                frameRenderer.sortingOrder = Constants.SortingOrders.TradingItemFrame;
         }
 
         // 드래그 모드가 끝나면 콜라이더 크기 갱신
@@ -530,7 +530,7 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             }
 
             // 스프라이트가 입체인 점을 고려하여 살짝 아래로 배치
-            frameY -= GridConstants.CELL_SIZE * frameOffsetY;
+            frameY -= Constants.Grids.CellSize * frameOffsetY;
             // 프레임 위치 설정
             frameRenderer.transform.localPosition = new Vector3(frameX, frameY, 0);
 

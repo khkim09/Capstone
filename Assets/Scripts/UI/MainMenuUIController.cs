@@ -4,7 +4,7 @@ public class MainMenuUIController : MonoBehaviour
 {
     public void OnStartButtonClicked()
     {
-        GameManager.Instance.StartGame();
+        GameManager.Instance.StartNewGame();
     }
 
     public void OnSettingsButtonClicked()

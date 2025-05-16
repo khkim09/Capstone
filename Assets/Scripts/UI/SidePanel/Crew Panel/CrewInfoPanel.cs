@@ -26,6 +26,7 @@ public class CrewInfoPanel : TooltipPanelBase
         currentCrew = crew;
         crewName.text = crew.crewName;
         currentHealth.text = $"{crew.health}/{crew.maxHealth}";
+        // TODO : 선원 스프라이트를 스크립터블에 넣어야될 듯. 이건 선원 자체 렌더러에서 보여지게 할 때도 마찬가지
         crewIcon.sprite = Resources.Load<Sprite>($"Sprites/Crew/{crew.race.ToString().ToLower()}");
 
         Image atkImage = atkButton.GetComponent<Image>();
