@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("currentRoomLevelData", "position", "currentLevel", "currentHitPoints", "roomType", "isDamageable", "connectedDoors", "currentRotation", "isActive", "isPowered", "isPowerRequested", "parentShip", "gridSize", "roomData")]
+	[ES3PropertiesAttribute("currentRoomLevelData", "position", "currentLevel", "currentHitPoints", "roomType", "isDamageable", "connectedDoors", "currentRotation", "crewInRoom", "isActive", "isPowered", "isPowerRequested", "parentShip", "gridSize", "damageCondition", "roomData")]
 	public class ES3UserType_TeleportRoom : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -24,11 +24,13 @@ namespace ES3Types
 			writer.WritePrivateField("isDamageable", instance);
 			writer.WritePrivateField("connectedDoors", instance);
 			writer.WriteProperty("currentRotation", instance.currentRotation, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(RotationConstants.Rotation)));
-			writer.WritePrivateField("isActive", instance);
+			writer.WriteProperty("crewInRoom", instance.crewInRoom, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<CrewMember>)));
+			writer.WriteProperty("isActive", instance.isActive, ES3Type_bool.Instance);
 			writer.WritePrivateField("isPowered", instance);
 			writer.WritePrivateField("isPowerRequested", instance);
-			writer.WritePrivateFieldByRef("parentShip", instance);
+			writer.WritePropertyByRef("parentShip", instance.parentShip);
 			writer.WritePrivateField("gridSize", instance);
+			writer.WriteProperty("damageCondition", instance.damageCondition, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(DamageLevel)));
 			writer.WritePropertyByRef("roomData", instance.roomData);
 		}
 
@@ -64,9 +66,12 @@ namespace ES3Types
 					case "currentRotation":
 						instance.currentRotation = reader.Read<RotationConstants.Rotation>();
 						break;
+					case "crewInRoom":
+						instance.crewInRoom = reader.Read<System.Collections.Generic.List<CrewMember>>();
+						break;
 					case "isActive":
-					instance = (TeleportRoom)reader.SetPrivateField("isActive", reader.Read<System.Boolean>(), instance);
-					break;
+						instance.isActive = reader.Read<System.Boolean>(ES3Type_bool.Instance);
+						break;
 					case "isPowered":
 					instance = (TeleportRoom)reader.SetPrivateField("isPowered", reader.Read<System.Boolean>(), instance);
 					break;
@@ -74,11 +79,14 @@ namespace ES3Types
 					instance = (TeleportRoom)reader.SetPrivateField("isPowerRequested", reader.Read<System.Boolean>(), instance);
 					break;
 					case "parentShip":
-					instance = (TeleportRoom)reader.SetPrivateField("parentShip", reader.Read<Ship>(), instance);
-					break;
+						instance.parentShip = reader.Read<Ship>(ES3UserType_Ship.Instance);
+						break;
 					case "gridSize":
 					instance = (TeleportRoom)reader.SetPrivateField("gridSize", reader.Read<UnityEngine.Vector2Int>(), instance);
 					break;
+					case "damageCondition":
+						instance.damageCondition = reader.Read<DamageLevel>();
+						break;
 					case "roomData":
 						instance.roomData = reader.Read<TeleportRoomData>();
 						break;
