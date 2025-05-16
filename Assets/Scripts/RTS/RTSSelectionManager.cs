@@ -104,6 +104,7 @@ public class RTSSelectionManager : MonoBehaviour
         }
 
         Instance = this;
+
     }
 
     #region 외곽 효과
@@ -128,9 +129,9 @@ public class RTSSelectionManager : MonoBehaviour
     /// </summary>
     private IEnumerator Start()
     {
+        RefreshMovementData();
         yield return null; // 1 frame 대기
 
-        RefreshMovementData();
         outlineMaterial = Resources.Load<Material>("Material/UnitOutlineMaterial");
         defaultMaterial = Resources.Load<Material>("Material/UnitDefaultMaterial");
     }
