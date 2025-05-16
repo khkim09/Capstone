@@ -280,4 +280,22 @@ public static class LocalizationExtensions
         string key = $"room.roomtype.{roomType}".ToLower();
         return LocalizationManager.GetLocalizedText(key);
     }
+
+    public static string Localize(this ShipStat shipStat)
+    {
+        string key = $"ship.shipstat.{shipStat}".ToLower();
+        return LocalizationManager.GetLocalizedText(key);
+    }
+
+    public static string Localize(this ItemCategory category)
+    {
+        string key = $"item.category.{category}".ToLower();
+        return LocalizationManager.GetLocalizedText(key);
+    }
+
+    public static string Localize(this DamageLevel damageLevel)
+    {
+        string key = $"room.damagelevel.{damageLevel}".ToLower();
+        return LocalizationManager.GetLocalizedText(key);
+    }
 }

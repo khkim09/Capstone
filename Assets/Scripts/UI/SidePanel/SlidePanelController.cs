@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.EventSystems;
 
 public class SlidePanelController : MonoBehaviour
@@ -20,7 +21,7 @@ public class SlidePanelController : MonoBehaviour
     [SerializeField] private GameObject panelStorage;
     [SerializeField] private GameObject panelUnselected;
 
-    [Header("함선 패널 설정")] private GameObject shipPanelContent;
+    [Header("함선 패널 설정")] [SerializeField] private GameObject shipPanelContent;
     [SerializeField] private GameObject roomInfoPanelPrefab;
 
     [Header("승무원 패널 설정")] [SerializeField] private GameObject crewPanelContent;
@@ -35,7 +36,8 @@ public class SlidePanelController : MonoBehaviour
     private bool isOpen = false;
     private GameObject currentPanel = null;
 
-    public List<CrewInfoPanel> crewInfoPanelList = new();
+    private List<CrewInfoPanel> crewInfoPanelList = new();
+    private Dictionary<RoomType, ShipInfoPanel> shipInfoPanelDictionary = new();
 
     private void Start()
     {
@@ -72,6 +74,7 @@ public class SlidePanelController : MonoBehaviour
         }
 
         if (targetPanel == panelCrew) InitializeCrewPanel();
+        if (targetPanel == panelShip) InitializeShipPanel();
 
 
         ShowOnly(targetPanel);
@@ -146,6 +149,39 @@ public class SlidePanelController : MonoBehaviour
 
     private void InitializeShipPanel()
     {
+        foreach (ShipInfoPanel panel in shipInfoPanelDictionary.Values) Destroy(panel.gameObject);
+
+        shipInfoPanelDictionary.Clear();
+
+
+        foreach (Room room in GameManager.Instance.playerShip.allRooms)
+        {
+            if (room.roomType == RoomType.Corridor || room.roomType == RoomType.Storage)
+                continue;
+
+            if (!shipInfoPanelDictionary.ContainsKey(room.roomType))
+            {
+                ShipInfoPanel shipInfoPanel = Instantiate(roomInfoPanelPrefab, shipPanelContent.transform)
+                    .GetComponent<ShipInfoPanel>();
+                shipInfoPanel.Initialize(room);
+                shipInfoPanelDictionary.Add(room.roomType, shipInfoPanel);
+                Debug.Log(room.roomType + "더함!");
+            }
+            else
+            {
+                shipInfoPanelDictionary[room.roomType].AddInfo(room);
+            }
+        }
+
+        List<Transform> shipPanelTransforms = new();
+
+        foreach (Transform child in shipPanelContent.transform)
+            shipPanelTransforms.Add(child);
+
+        shipPanelTransforms = shipPanelTransforms
+            .OrderByDescending(d => d.GetComponent<ShipInfoPanel>().currentDamageLevel).ToList();
+
+        for (int i = 0; i < shipPanelTransforms.Count; i++) shipPanelTransforms[i].SetSiblingIndex(i);
     }
 
     #region 승무원 패널 설정
