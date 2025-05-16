@@ -744,13 +744,9 @@ public class CrewMember : CrewBase
             if (IsOwnShip())
             {
                 if (currentRoom.NeedsRepair())
-                {
                     TryRepair();
-                }
                 else
-                {
                     TryWork();
-                }
             }
         }
     }
@@ -1102,6 +1098,7 @@ public class CrewMember : CrewBase
             crew.Freeze();
 
             // 적 함선으로 텔레포트 했으므로 enemy 리스트에 추가
+            exitShip.allCrews.Remove(crew);
             targetShip.allEnemies.Add(crew);
 
             assigned = true;
