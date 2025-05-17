@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -43,7 +44,12 @@ public class MiddlePanelUI : MonoBehaviour
     /// <summary>
     /// 아이템 형태를 보여줄 UI Image입니다.
     /// </summary>
-    [SerializeField] private Image itemPreviewImage;
+    [SerializeField] private Image itemShapeImage;
+
+    /// <summary>
+    /// 아이템 모양에 해당하는 스프라이트 리스트입니다. itemShape enum 순서에 맞춰 등록해야 합니다.
+    /// </summary>
+    [SerializeField] private List<Sprite> itemShapeSprites;
 
     /// <summary>
     /// 임시 테스트용 코마 관리 텍스트입니다. TODO
@@ -99,10 +105,10 @@ public class MiddlePanelUI : MonoBehaviour
         selectedItemData = itemData;
 
         if (selectedItemNameText != null)
-            selectedItemNameText.text = itemData.itemName;
+            selectedItemNameText.text = itemData.itemName.Localize();
 
         if (selectedItemDescriptionText != null)
-            selectedItemDescriptionText.text = itemData.description;
+            selectedItemDescriptionText.text = itemData.description.Localize();
 
 
         if (priceText != null)
@@ -111,16 +117,19 @@ public class MiddlePanelUI : MonoBehaviour
         if (tradeNumInputField != null)
             tradeNumInputField.text = "1";
 
-        if (itemPreviewImage != null)
+        if (itemShapeImage != null && itemShapeSprites != null && itemShapeSprites.Count > 0)
         {
-            if (itemData.itemSprite != null)
+            int shapeIndex = (int)itemData.shape;
+
+            if (shapeIndex >= 0 && shapeIndex < itemShapeSprites.Count)
             {
-                itemPreviewImage.sprite = itemData.itemSprite;
-                itemPreviewImage.enabled = true;
+                itemShapeImage.sprite = itemShapeSprites[shapeIndex];
+                itemShapeImage.enabled = true;
             }
             else
             {
-                itemPreviewImage.enabled = false;
+                Debug.LogWarning($"[MiddlePanelUI] itemShape index {shapeIndex} out of range for {itemData.itemName}");
+                itemShapeImage.enabled = false;
             }
         }
     }

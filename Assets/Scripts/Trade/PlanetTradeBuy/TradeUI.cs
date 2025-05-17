@@ -91,5 +91,11 @@ public class TradeUI : MonoBehaviour
         Debug.Log("TradeUI: 상점 UI가 갱신되었습니다. 행성: " + data.planetCode);
     }
 
-
+    /// <summary>
+    /// 패널을 닫는 함수입니다.
+    /// </summary>
+    public void CloseSelfPanel()
+    {
+        transform.parent.gameObject.SetActive(false);
+    }
 }

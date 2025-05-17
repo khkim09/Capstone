@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 
 /// <summary>
@@ -14,9 +15,19 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public bool isInteractable = true;
 
     /// <summary>
+    /// 아이템 모양을 표시할 Image 컴포넌트입니다.
+    /// </summary>
+    [SerializeField] private Image itemShapeImage;
+
+    /// <summary>
+    /// 아이템 모양별로 사용할 스프라이트 리스트입니다. shape enum 순서에 맞춰야 합니다.
+    /// </summary>
+    [SerializeField] private List<Sprite> itemShapeSprites;
+
+    /// <summary>
     /// 아이템 이미지를 보여주는 UI 요소입니다.
     /// </summary>
-    [SerializeField] private UnityEngine.UI.Image itemImage;
+    [SerializeField] private Image itemImage;
 
     /// <summary>
     /// 아이템 이름을 표시하는 텍스트 UI 요소입니다.
@@ -29,15 +40,19 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] private TextMeshProUGUI categoryText;
 
     /// <summary>
+    /// 아이템 수량을 표시하는 텍스트 UI 요소입니다.
+    /// </summary>
+    [SerializeField] private TextMeshProUGUI quantityText;
+
+    /// <summary>
     /// 아이템 가격을 표시하는 텍스트 UI 요소입니다.
     /// </summary>
     [SerializeField] private TextMeshProUGUI priceText;
 
     /// <summary>
-    /// 아이템 수량을 표시하는 텍스트 UI 요소입니다.
+    /// 아이템 선택시 열리는 Panel 요소입니다.
     /// </summary>
-    [SerializeField] private TextMeshProUGUI quantityText;
-    // (아이콘이 있다면) [SerializeField] private Image itemIcon;
+    [SerializeField] private MiddlePanelUI middlePanel;
 
     /// <summary>
     /// 현재 이 슬롯에 연결된 StoredItem 정보를 저장합니다.
@@ -90,6 +105,22 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         Debug.Log($"[InventoryItemUI] Setup called for {storedItem.itemData.itemName}");
         currentStoredItem = storedItem;
 
+        if (itemShapeImage != null && itemShapeSprites != null && itemShapeSprites.Count > 0)
+        {
+            int shapeIndex = (int)storedItem.itemData.shape;
+
+            if (shapeIndex >= 0 && shapeIndex < itemShapeSprites.Count)
+            {
+                itemShapeImage.sprite = itemShapeSprites[shapeIndex];
+                itemShapeImage.enabled = true;
+            }
+            else
+            {
+                Debug.LogWarning($"InventoryItemUI: shape index {shapeIndex} is out of range for {storedItem.itemData.itemName}");
+                itemShapeImage.enabled = false;
+            }
+        }
+
         if (itemImage != null)
         {
             if (storedItem.itemData.itemSprite != null)
@@ -105,7 +136,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         if (itemNameText != null)
         {
-            itemNameText.text = storedItem.itemData.itemName;
+            itemNameText.text = storedItem.itemData.itemName.Localize();
             itemNameOriginalColor = itemNameText.color;
         }
 
@@ -215,9 +246,9 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
             _currentSelectedItem = this;
 
             // 선택된 경우 MiddlePanelUI에 상세 정보 전달
-            MiddlePanelUI middlePanel = Object.FindFirstObjectByType<MiddlePanelUI>();
             if (middlePanel != null && currentStoredItem != null)
             {
+                middlePanel.gameObject.SetActive(true);
                 middlePanel.UpdatePlayerComa();
                 middlePanel.SetSelectedItem(currentStoredItem.itemData);
             }

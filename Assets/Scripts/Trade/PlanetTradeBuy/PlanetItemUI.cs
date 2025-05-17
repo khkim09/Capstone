@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
@@ -18,9 +19,14 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     [SerializeField] private Image iconImage;
 
     /// <summary>
-    /// 아이템 모양 코드를 표시하는 TextMeshProUGUI 컴포넌트입니다.
+    /// 아이템 모양을 시각적으로 표시할 Image 컴포넌트입니다.
     /// </summary>
-    [SerializeField] private TextMeshProUGUI shapeText;
+    [SerializeField] private Image itemShapeImage;
+
+    /// <summary>
+    /// 아이템 모양 관련 List 컴포넌트입니다.
+    /// </summary>
+    [SerializeField] private List<Sprite> itemShapeSprites;
 
     /// <summary>
     /// 아이템 이름을 표시하는 TextMeshProUGUI 컴포넌트입니다.
@@ -87,12 +93,25 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         if (iconImage != null)
             iconImage.sprite = itemData.itemSprite;
 
-        if (iconImage != null)
-            iconImage.sprite = itemData.itemSprite;
+        if (itemShapeImage != null && itemData != null)
+        {
+            int shapeIndex = (int)itemData.shape;
+
+            if (shapeIndex >= 0 && shapeIndex < itemShapeSprites.Count)
+            {
+                itemShapeImage.sprite = itemShapeSprites[shapeIndex];
+                itemShapeImage.enabled = true;
+            }
+            else
+            {
+                Debug.LogWarning($"PlanetItemUI: itemShape index {shapeIndex} is out of range for {itemData.itemName}");
+                itemShapeImage.enabled = false;
+            }
+        }
 
         if (itemNameText != null)
         {
-            itemNameText.text = itemData.itemName;
+            itemNameText.text = itemData.itemName.Localize();
             itemNameOriginalColor = itemNameText.color;
         }
 
@@ -140,7 +159,7 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         }
 
         SetSelected(true);
-        _currentlySelectedItemName = itemData.itemName;
+        _currentlySelectedItemName = itemData.itemName.Localize();
         _currentSelectedItem = this;
 
         if (middlePanel != null)
@@ -190,8 +209,6 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     /// <param name="color"></param>
     private void ApplyColor(Color color)
     {
-        if (shapeText != null)
-            shapeText.color = color;
         if (itemNameText != null)
             itemNameText.color = color;
         if (categoryText != null)
@@ -207,8 +224,6 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     /// </summary>
     private void ApplyOriginalColor()
     {
-        if (shapeText != null)
-            shapeText.color = itemNameOriginalColor;
         if (itemNameText != null)
             itemNameText.color = itemNameOriginalColor;
         if (categoryText != null)
