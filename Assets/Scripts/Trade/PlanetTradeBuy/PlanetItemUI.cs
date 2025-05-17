@@ -119,7 +119,7 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
             categoryText.text = itemData.type.ToString();
 
         if (capacityText != null)
-            capacityText.text = $"최대적재량 {itemData.capacity}";
+            capacityText.text = $"{itemData.capacity}";
 
         if (priceText != null)
         {
