@@ -107,7 +107,10 @@ public class GameManager : MonoBehaviour
         playerShip.Initialize();
         DontDestroyOnLoad(playerShip);
 
+        //함선 생성용
         //DeleteGameData();
+
+
         LoadGameData();
 
         if (playerShip == null)
