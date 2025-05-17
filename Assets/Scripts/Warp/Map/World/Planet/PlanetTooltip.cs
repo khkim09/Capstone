@@ -10,11 +10,15 @@ public class PlanetTooltip : MonoBehaviour
     [Header("UI References")] [SerializeField]
     public TextMeshProUGUI planetNameText;
 
+    public Image planetTradeTierIcon;
+
     public Image planetIcon;
     public TextMeshProUGUI planetDescriptionText;
 
+    public TextMeshProUGUI planetEventTitleText;
     public TextMeshProUGUI planetEventUpText;
     public TextMeshProUGUI planetEventDownText;
 
+    public TextMeshProUGUI planetQuestTitleText;
     public TextMeshProUGUI planetCurrentQuestText;
 }

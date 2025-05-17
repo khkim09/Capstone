@@ -60,14 +60,19 @@ public class PlanetData
     [Range(25, 75)] public int currentFuelPrice = 50;
 
     /// <summary>
-    /// 현재 행성 퀘스트
+    /// 현재 행성 퀘스트 리스트
     /// </summary>
-    public RandomQuest currentQuest;
+    public List<RandomQuest> questsList = new();
 
     /// <summary>
-    /// 현재 행성 이벤트
+    /// 현재 적용 중인 행성 효과 데이터
     /// </summary>
-    public RandomEvent currentEvent;
+    public List<PlanetEffect> activeEffects = new();
+
+    /// <summary>
+    /// 카테고리별 현재 가격 변동율 (%)
+    /// </summary>
+    private Dictionary<ItemCategory, float> categoryPriceModifiers = new();
 
     public PlanetRace PlanetRace => planetRace;
 
@@ -101,10 +106,22 @@ public class PlanetData
         currentRevenue = 0;
 
         currentTier = ItemTierLevel.T1;
-
-        currentQuest = null;
-        currentEvent = null;
         currentFuelPrice = Random.Range(25, 75);
+
+        // 효과 관련 데이터 초기화
+        activeEffects.Clear();
+        InitializeCategoryModifiers();
+    }
+
+    /// <summary>
+    /// 카테고리별 가격 변동율 초기화
+    /// </summary>
+    private void InitializeCategoryModifiers()
+    {
+        categoryPriceModifiers.Clear();
+
+        // 모든 아이템 카테고리에 대해 초기값 0%로 설정
+        foreach (ItemCategory category in Enum.GetValues(typeof(ItemCategory))) categoryPriceModifiers[category] = 0f;
     }
 
     #region 이름
@@ -236,6 +253,154 @@ public class PlanetData
             .GetItemsByPlanet(itemPlanet)
             .Where(item => item.tier == ItemTierLevel.T3)
             .ToList();
+    }
+
+    #endregion
+
+    #region 행성 이벤트 효과
+
+    /// <summary>
+    /// 새로운 행성 효과 등록
+    /// </summary>
+    /// <param name="effectData">등록할 효과 데이터</param>
+    public void RegisterPlanetEffect(PlanetEffect effectData)
+    {
+        // 기존에 같은 카테고리에 대한 효과가 있는지 확인
+        PlanetEffect existingEffect = activeEffects.Find(e => e.categoryType == effectData.categoryType);
+
+        if (existingEffect != null)
+        {
+            // 기존 효과 제거
+            RemovePlanetEffectValue(existingEffect);
+            activeEffects.Remove(existingEffect);
+
+            Debug.Log($"[PlanetEffect] 행성 {planetName}의 기존 {existingEffect.categoryType} 효과를 새 효과로 대체합니다.");
+        }
+
+        // 효과 리스트에 추가
+        activeEffects.Add(effectData);
+
+        // 효과 값 적용
+        ApplyPlanetEffectValue(effectData);
+
+        Debug.Log(
+            $"[PlanetEffect] 행성 {planetName}에 {effectData.categoryType} 효과가 적용되었습니다. 변동률: {effectData.changeAmount}%, 종료 년도: {effectData.EndYear}");
+    }
+
+    /// <summary>
+    /// 행성 효과 값 적용
+    /// </summary>
+    /// <param name="effect">적용할 효과</param>
+    private void ApplyPlanetEffectValue(PlanetEffect effect)
+    {
+        // 현재 카테고리의 가격 변동율 업데이트
+        categoryPriceModifiers[effect.categoryType] += effect.changeAmount;
+
+        Debug.Log(
+            $"[PlanetEffect] {planetName} 행성의 {effect.categoryType} 가격 변동률: {categoryPriceModifiers[effect.categoryType]}%");
+    }
+
+    /// <summary>
+    /// 행성 효과 값 제거
+    /// </summary>
+    /// <param name="effect">제거할 효과</param>
+    private void RemovePlanetEffectValue(PlanetEffect effect)
+    {
+        // 현재 카테고리의 가격 변동율 업데이트
+        categoryPriceModifiers[effect.categoryType] -= effect.changeAmount;
+
+        Debug.Log(
+            $"[PlanetEffect] {planetName} 행성의 {effect.categoryType} 가격 변동률 효과 제거: 현재 {categoryPriceModifiers[effect.categoryType]}%");
+    }
+
+    /// <summary>
+    /// 현재 이벤트 상태를 확인하고 만료된 효과를 제거합니다
+    /// </summary>
+    /// <param name="currentYear">현재 게임 년도</param>
+    public void CheckEventExpirations(int currentYear)
+    {
+        if (activeEffects.Count == 0) return;
+
+        // 만료된 효과 찾기
+        List<ItemCategory> categoriesToUpdate = new();
+
+        for (int i = activeEffects.Count - 1; i >= 0; i--)
+        {
+            PlanetEffect effect = activeEffects[i];
+
+            if (currentYear >= effect.EndYear)
+            {
+                // 만료된 효과의 카테고리 기록
+                if (!categoriesToUpdate.Contains(effect.categoryType))
+                    categoriesToUpdate.Add(effect.categoryType);
+
+                // 효과 값 제거
+                RemovePlanetEffectValue(effect);
+
+                // 효과 목록에서 제거
+                activeEffects.RemoveAt(i);
+
+                Debug.Log($"[PlanetEffect] 행성 {planetName}의 {effect.categoryType} 효과가 만료되었습니다.");
+            }
+        }
+
+        // 변경된 카테고리별로 가격 업데이트 필요
+        foreach (ItemCategory category in categoriesToUpdate)
+        {
+            // 여기서 실제 가격에 변동률을 적용하는 로직 추가 (필요시)
+            // UpdateCategoryPrices(category);
+        }
+    }
+
+    /// <summary>
+    /// 특정 카테고리의 현재 가격 변동률 반환
+    /// </summary>
+    /// <param name="category">확인할 아이템 카테고리</param>
+    /// <returns>현재 가격 변동률 (%)</returns>
+    public float GetCategoryPriceModifier(ItemCategory category)
+    {
+        if (categoryPriceModifiers.TryGetValue(category, out float modifier)) return modifier;
+        return 0f;
+    }
+
+    /// <summary>
+    /// 모든 행성 효과 초기화
+    /// </summary>
+    public void ResetAllEffects()
+    {
+        activeEffects.Clear();
+        InitializeCategoryModifiers();
+        Debug.Log($"[PlanetEffect] 행성 {planetName}의 모든 효과가 초기화되었습니다.");
+    }
+
+    /// <summary>
+    /// 현재 가격 변동률을 고려하여 아이템 가격 계산
+    /// </summary>
+    /// <param name="basePrice">기본 가격</param>
+    /// <param name="category">아이템 카테고리</param>
+    /// <returns>조정된 가격</returns>
+    public int CalculateAdjustedPrice(int basePrice, ItemCategory category)
+    {
+        float modifier = GetCategoryPriceModifier(category);
+        float multiplier = 1f + modifier / 100f; // 퍼센트를 곱셈 계수로 변환
+
+        int adjustedPrice = Mathf.RoundToInt(basePrice * multiplier);
+        return Mathf.Max(1, adjustedPrice); // 최소 가격 1 보장
+    }
+
+    /// <summary>
+    /// 현재 행성 효과 상태 출력 (디버깅용)
+    /// </summary>
+    public void PrintAllEffects()
+    {
+        Debug.Log($"=== 행성 {planetName} 효과 상태 ===");
+
+        Debug.Log("=== 카테고리별 가격 변동률 ===");
+        foreach (KeyValuePair<ItemCategory, float> kvp in categoryPriceModifiers) Debug.Log($"{kvp.Key}: {kvp.Value}%");
+
+        Debug.Log("=== 적용 중인 효과 ===");
+        foreach (PlanetEffect effect in activeEffects)
+            Debug.Log($"카테고리: {effect.categoryType}, 변동률: {effect.changeAmount}%, 종료 년도: {effect.EndYear}");
     }
 
     #endregion

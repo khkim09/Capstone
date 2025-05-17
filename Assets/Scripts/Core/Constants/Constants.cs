@@ -53,6 +53,16 @@ public static class Constants
         public const float PlanetSpacingEdge = PlanetSize * 1.5f;
 
         /// <summary>
+        /// 현재 위치 표시기가 맵에 그려지는 상대적인 크기
+        /// </summary>
+        public const float PlanetCurrentPositionIndicatorSize = PlanetSize * 2f;
+
+        /// <summary>
+        /// 유저가 찍는 노드가 맵에 그려지는 상대적인 크기
+        /// </summary>
+        public const float PlanetNodeSize = PlanetSize * 0.5f;
+
+        /// <summary>
         /// 2 티어 아이템 해금을 위해 필요한 거래 총액
         /// </summary>
         public const int Tier2RevenueRequirement = 5000;

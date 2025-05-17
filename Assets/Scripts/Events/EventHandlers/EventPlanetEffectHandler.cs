@@ -23,7 +23,7 @@ public class EventPlanetEffectHandler
     }
 
     /// <summary>
-    /// PlanetEffect 리스트를 받아 로그 출력 및 향후 가격 변동 처리용으로 보존합니다.
+    /// PlanetEffect 리스트를 받아 로그 출력 및 현재 행성에 적용합니다.
     /// </summary>
     /// <param name="planetEffects">적용할 행성 효과 리스트</param>
     public void ApplyEffects(List<PlanetEffect> planetEffects)
@@ -34,7 +34,14 @@ public class EventPlanetEffectHandler
             return;
         }
 
+        // 각 효과를 현재 행성에 등록
         foreach (PlanetEffect effect in planetEffects)
+        {
             Debug.Log($"[PlanetEffect] 카테고리: {effect.categoryType}, 변동률: {effect.changeAmount}%");
+
+            // 행성에 효과 등록
+            GameManager.Instance.PlanetDataList[Random.Range(0, GameManager.Instance.PlanetDataList.Count)]
+                .RegisterPlanetEffect(effect);
+        }
     }
 }

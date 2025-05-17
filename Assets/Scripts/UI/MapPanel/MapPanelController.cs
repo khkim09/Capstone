@@ -21,11 +21,8 @@ public class MapPanelController : MonoBehaviour
 
     [Header("월드 패널 설정")] [SerializeField] private GameObject worldPanelContent;
     [SerializeField] private GameObject planetPrefab;
-
-    /// <summary>
-    /// 월드 맵이 초기화 되었는지 여부
-    /// </summary>
-    private bool isMapInitialized = false;
+    [SerializeField] private GameObject currentPlayerIndicatorPrefab;
+    [SerializeField] private GameObject validRangeIndicatorPrefab;
 
 
     [Header("열려야 되는 위치")] [SerializeField] private Transform openedPosition;
@@ -35,6 +32,16 @@ public class MapPanelController : MonoBehaviour
     private Coroutine slideCoroutine;
     private bool isOpen = false;
     private GameObject currentPanel = null;
+
+    /// <summary>
+    /// 월드 맵이 초기화 되었는지 여부
+    /// </summary>
+    private bool isMapInitialized = false;
+
+    private Vector2 playerPositionBefore = new();
+
+    private bool IsPlayerMoved => GameManager.Instance.normalizedPlayerPosition != playerPositionBefore;
+
 
     private void Start()
     {
@@ -154,7 +161,7 @@ public class MapPanelController : MonoBehaviour
     private void DrawWorldMap()
     {
         // 이미 초기화되었다면 건너뛰기
-        if (isMapInitialized)
+        if (isMapInitialized && !IsPlayerMoved)
             return;
 
         // TODO : 테스트용 키 삭제코드.
@@ -193,6 +200,29 @@ public class MapPanelController : MonoBehaviour
             planetRect.sizeDelta = new Vector2(planetSize, planetSize);
         }
 
+        GameObject currentPositionIndicator = Instantiate(currentPlayerIndicatorPrefab, worldPanelContent.transform);
+        RectTransform positionIndicatorRect = currentPositionIndicator.GetComponent<RectTransform>();
+        Vector2 playerPosition = GameManager.Instance.normalizedPlayerPosition;
+
+        // 정규화된 좌표(0~1)를 실제 UI 좌표로 변환
+        Vector2 playerMapPosition = new(
+            playerPosition.x * contentRect.rect.width,
+            playerPosition.y * contentRect.rect.height
+        );
+
+        // 앵커를 좌하단(0,0)으로 설정하여 좌표 계산을 단순화
+        positionIndicatorRect.anchorMin = Vector2.zero;
+        positionIndicatorRect.anchorMax = Vector2.zero;
+        positionIndicatorRect.pivot = new Vector2(0.5f, 0.5f); // 중앙 기준으로 배치
+
+        // 위치 설정
+        positionIndicatorRect.anchoredPosition = playerMapPosition;
+
+        // 크기 설정 (정규화된 크기를 실제 크기로 변환)
+        float indicatorSize = Constants.Planets.PlanetCurrentPositionIndicatorSize *
+                              Mathf.Min(contentRect.rect.width, contentRect.rect.height);
+
+        positionIndicatorRect.sizeDelta = new Vector2(indicatorSize, indicatorSize);
         isMapInitialized = true;
     }
 

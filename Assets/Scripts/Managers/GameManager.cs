@@ -29,6 +29,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private List<PlanetData> planetDataList = new();
 
+    private List<WorldNodeData> worldNodeDataList = new();
+
+    /// <summary>
+    /// 현재 행성맵에서의 유저의 위치
+    /// </summary>
+    public Vector2 normalizedPlayerPosition = Vector2.zero;
+
     /// <summary>
     /// 게임 상태 변경 이벤트 델리게이트입니다.
     /// </summary>
@@ -470,6 +477,8 @@ public class GameManager : MonoBehaviour
             newData.CreateRandomData();
             planetDataList.Add(newData);
         }
+
+        normalizedPlayerPosition = planetDataList[UnityEngine.Random.Range(0, planetDataList.Count)].normalizedPosition;
     }
 
     #endregion

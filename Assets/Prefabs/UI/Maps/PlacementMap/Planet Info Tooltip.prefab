@@ -30,6 +30,7 @@ RectTransform:
   m_Children:
   - {fileID: 5657098656550555151}
   - {fileID: 6821738833884396609}
+  - {fileID: 4391642761883672460}
   - {fileID: 2399630272819366883}
   m_Father: {fileID: 4120082825126154627}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,12 +130,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetNameText: {fileID: 2254620683984893576}
+  planetTradeTierIcon: {fileID: 9111495018843974028}
   planetIcon: {fileID: 4441287006512215105}
   planetDescriptionText: {fileID: 5338764234499247056}
-  planetEventText: {fileID: 7564468967956040886}
+  planetEventTitleText: {fileID: 7564468967956040886}
   planetEventUpText: {fileID: 8267333513661525549}
   planetEventDownText: {fileID: 1042692541946703881}
-  planetQuestText: {fileID: 119866720539767013}
+  planetQuestTitleText: {fileID: 119866720539767013}
   planetCurrentQuestText: {fileID: 3078157127597034826}
 --- !u!1 &2790849990034817047
 GameObject:
@@ -267,7 +269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5317536442650156470
 RectTransform:
   m_ObjectHideFlags: 0
@@ -412,7 +414,6 @@ GameObject:
   - component: {fileID: 8423340648651319676}
   - component: {fileID: 2441535746426322599}
   - component: {fileID: 119866720539767013}
-  - component: {fileID: 244340039295982261}
   m_Layer: 5
   m_Name: Quest Title
   m_TagString: Untagged
@@ -538,19 +539,81 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &244340039295982261
+--- !u!1 &7274574768915145435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4391642761883672460}
+  - component: {fileID: 3825595840166310246}
+  - component: {fileID: 9111495018843974028}
+  m_Layer: 0
+  m_Name: Trade Tier
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4391642761883672460
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7274574768915145435}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4950278057984106162}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.04, y: 0.13}
+  m_AnchorMax: {x: 0.09, y: 0.2109016}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3825595840166310246
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7274574768915145435}
+  m_CullTransparentMesh: 1
+--- !u!114 &9111495018843974028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5436784967799638610}
+  m_GameObject: {fileID: 7274574768915145435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e500432539e340fea796ad3b21bfccb4, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localizationKey: <ui.planetinfo.title>
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7782261809820665362
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,7 +700,6 @@ GameObject:
   - component: {fileID: 6259129119221816887}
   - component: {fileID: 701337743547126440}
   - component: {fileID: 1042692541946703881}
-  - component: {fileID: 8680195135188047048}
   m_Layer: 5
   m_Name: Current Event Down
   m_TagString: Untagged
@@ -764,19 +826,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8680195135188047048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7988748045982878514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e500432539e340fea796ad3b21bfccb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  localizationKey: <ui.planetinfo.title>
 --- !u!1 &8198242205460188550
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,7 +837,6 @@ GameObject:
   - component: {fileID: 9208191208926103093}
   - component: {fileID: 5648436252372356975}
   - component: {fileID: 7564468967956040886}
-  - component: {fileID: 7024921932221402800}
   m_Layer: 5
   m_Name: Event Title
   m_TagString: Untagged
@@ -914,19 +962,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7024921932221402800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8198242205460188550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e500432539e340fea796ad3b21bfccb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  localizationKey: <ui.planetinfo.title>
 --- !u!1 &8296540976381168474
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +973,6 @@ GameObject:
   - component: {fileID: 5249237850174282463}
   - component: {fileID: 3712609527606213952}
   - component: {fileID: 8267333513661525549}
-  - component: {fileID: 6077407505244939994}
   - component: {fileID: 1781415201588610508}
   m_Layer: 5
   m_Name: Current Event Up
@@ -1065,19 +1099,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6077407505244939994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8296540976381168474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e500432539e340fea796ad3b21bfccb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  localizationKey: <ui.planetinfo.title>
 --- !u!114 &1781415201588610508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1259,7 +1280,6 @@ GameObject:
   - component: {fileID: 8485604721143112004}
   - component: {fileID: 6954143863425717434}
   - component: {fileID: 3078157127597034826}
-  - component: {fileID: 4113982671713409261}
   m_Layer: 5
   m_Name: Current Quest
   m_TagString: Untagged
@@ -1385,19 +1405,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4113982671713409261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8738029149231748544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e500432539e340fea796ad3b21bfccb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  localizationKey: <ui.planetinfo.title>
 --- !u!1 &9094725266622144593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,14 +1432,14 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9094725266622144593}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.85121185}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4950278057984106162}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.05, y: 0.03}
-  m_AnchorMax: {x: 0.45, y: 0.28}
+  m_AnchorMin: {x: 0.1, y: 0.06}
+  m_AnchorMax: {x: 0.4, y: 0.28}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1491,7 +1498,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 44.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
