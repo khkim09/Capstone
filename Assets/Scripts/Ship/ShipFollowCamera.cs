@@ -6,7 +6,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ShipFollowCamera : MonoBehaviour
 {
-    [SerializeField] private Ship targetShip;
+    [SerializeField] public Ship targetShip;
     [SerializeField] private Camera camera;
     [SerializeField] private float targetShipPositionX = 0.3f; // 함선 중심이 위치할 화면 X 좌표 (0.3 = 30%)
     [SerializeField] private float targetShipPositionY = 0.5f; // 함선 중심이 위치할 화면 Y 좌표 (0.5 = 50%)
