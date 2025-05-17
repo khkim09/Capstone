@@ -147,7 +147,6 @@ public class Ship : MonoBehaviour
         RecalculateAllStats();
 
         doorLevel = 1;
-        // GameManager.Instance.SetPlayerShip(this);
     }
 
 
@@ -1072,6 +1071,14 @@ public class Ship : MonoBehaviour
     public List<ShipWeapon> GetAllWeapons()
     {
         return allWeapons;
+    }
+
+    public void RemoveAllWeapons()
+    {
+        foreach (ShipWeapon weapon in allWeapons)
+            Destroy(weapon.gameObject);
+
+        allWeapons.Clear();
     }
 
     /// <summary>

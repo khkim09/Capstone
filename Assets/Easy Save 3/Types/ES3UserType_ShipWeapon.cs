@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("weaponData", "firePoint", "gridPosition", "gridSize", "attachedDirection", "spriteRenderer", "hits", "totalDamageDealt", "isEnabled")]
+	[ES3PropertiesAttribute("weaponData", "firePoint", "gridPosition", "gridSize", "attachedDirection", "spriteRenderer", "hits", "totalDamageDealt", "isEnabled", "ownerShip")]
 	public class ES3UserType_ShipWeapon : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -25,6 +25,7 @@ namespace ES3Types
 			writer.WritePrivateField("hits", instance);
 			writer.WritePrivateField("totalDamageDealt", instance);
 			writer.WritePrivateField("isEnabled", instance);
+			writer.WritePrivateFieldByRef("ownerShip", instance);
 		}
 
 		protected override void ReadComponent<T>(ES3Reader reader, object obj)
@@ -61,6 +62,9 @@ namespace ES3Types
 					break;
 					case "isEnabled":
 					instance = (ShipWeapon)reader.SetPrivateField("isEnabled", reader.Read<System.Boolean>(), instance);
+					break;
+					case "ownerShip":
+					instance = (ShipWeapon)reader.SetPrivateField("ownerShip", reader.Read<Ship>(), instance);
 					break;
 					default:
 						reader.Skip();

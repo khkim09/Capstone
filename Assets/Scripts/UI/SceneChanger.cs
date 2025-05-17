@@ -36,6 +36,8 @@ public class SceneChanger : MonoBehaviour
         // 이미 전환 중이라면 무시
         if (IsTransitioning) return;
 
+        GameManager.Instance.SaveGameData();
+
         StartCoroutine(FadeAndSwitchScene(sceneName));
     }
 
@@ -44,6 +46,7 @@ public class SceneChanger : MonoBehaviour
         // 씬 전환 시작 - 입력 차단
         IsTransitioning = true;
         SetInputBlocking(true);
+
 
         yield return StartCoroutine(Fade(1)); // 페이드 아웃
         yield return SceneManager.LoadSceneAsync(sceneName);

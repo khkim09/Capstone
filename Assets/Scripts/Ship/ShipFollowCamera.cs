@@ -19,6 +19,11 @@ public class ShipFollowCamera : MonoBehaviour
     [SerializeField] private bool debugMode = false; // 디버그 모드 활성화
     [SerializeField] private bool updateEveryFrame = false; // 매 프레임마다 업데이트 (디버깅용)
 
+    /// <summary>
+    /// 런타임에서 Follow Ship 을 정하기 위한 boolean
+    /// </summary>
+    [SerializeField] private bool isFollowPlayerShip = false;
+
     private Vector3 shipCenter; // 함선 중심 위치
     private float shipWidth, shipHeight; // 함선 크기
     private bool isWidthConstraining; // 가로가 제한 요소인지 여부
@@ -27,6 +32,8 @@ public class ShipFollowCamera : MonoBehaviour
     {
         if (!Application.isPlaying) return;
         GameManager.Instance.OnShipInitialized += GetCameraStartPositionToOriginShip;
+
+        if (isFollowPlayerShip) targetShip = GameManager.Instance.playerShip;
     }
 
     private void Update()

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3662716390607211700}
   - component: {fileID: 3213559324619124755}
-  - component: {fileID: -1153250673041680110}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -45,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a89c58ba5c4d5b8a0644fb9af8742d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerShip: 0
   shipName: Milky
   gridSize: {x: 40, y: 40}
   showDebugInfo: 1
@@ -52,36 +52,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  allWeapons: []
+  allCrews: []
+  allEnemies: []
   doorData: {fileID: 11400000, guid: 4ae33c1f9e1a7c04889fd64d32868f52, type: 2}
-  weaponPrefab: {fileID: 0}
-  testRoomPrefab1: {fileID: 0}
-  testRoomPrefab2: {fileID: 0}
-  testRoomPrefab3: {fileID: 0}
+  outerHullData: {fileID: 0}
+  outerHullPrefab: {fileID: 0}
   backupRoomDatas: []
---- !u!114 &-1153250673041680110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4527735362969256862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baff8732cd3074ef88b34f9cc487846d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabId: 8631104648738811890
-  localRefs:
-    _Keys:
-    - {fileID: 11500000, guid: 9c317951fa844abf855d98c678fc8444, type: 3}
-    - {fileID: 11500000, guid: baff8732cd3074ef88b34f9cc487846d, type: 3}
-    - {fileID: 11500000, guid: f0a89c58ba5c4d5b8a0644fb9af8742d, type: 3}
-    - {fileID: 3662716390607211700}
-    - {fileID: 3213559324619124755}
-    - {fileID: 4527735362969256862}
-    - {fileID: -1153250673041680110}
-    - {fileID: 2800000, guid: f166ab3eae3227e4ba61dce7088962c6, type: 3}
-    - {fileID: 11400000, guid: 4ae33c1f9e1a7c04889fd64d32868f52, type: 2}
-    - {fileID: 1289884550, guid: f166ab3eae3227e4ba61dce7088962c6, type: 3}
-    - {fileID: -1162283255, guid: f166ab3eae3227e4ba61dce7088962c6, type: 3}
-    _Values: cf8f894bb5ac742fe11e772b01485535db64c2fd5b0a476b269a4653a0da333be4393fbea6210d57d08c972680f17c3e31c0e6f0e16c020bb44c602a068fef0a69a4ceead80f5614c680fe8743fd547a26239d3710ffd311
+  backupWeapons: []
+  backupCrewDatas: []

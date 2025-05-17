@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("shipName", "gridSize", "allRooms", "allWeapons", "allCrews", "doorData", "doorLevel", "outerHullData", "outerHullPrefab", "systems", "outerHullSystem", "weaponSystem", "oxygenSystem", "crewSystem", "hitpointSystem", "moraleSystem", "powerSystem", "storageSystem", "shieldSystem", "backupRoomDatas")]
+	[ES3PropertiesAttribute("isPlayerShip", "shipName", "gridSize", "allRooms", "allWeapons", "allCrews", "doorData", "doorLevel", "outerHullData", "outerHullPrefab", "systems", "outerHullSystem", "weaponSystem", "oxygenSystem", "crewSystem", "hitpointSystem", "moraleSystem", "powerSystem", "storageSystem", "shieldSystem", "backupRoomDatas")]
 	public class ES3UserType_Ship : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -16,6 +16,7 @@ namespace ES3Types
 		{
 			var instance = (Ship)obj;
 			
+			writer.WriteProperty("isPlayerShip", instance.isPlayerShip, ES3Type_bool.Instance);
 			writer.WriteProperty("shipName", instance.shipName, ES3Type_string.Instance);
 			writer.WritePrivateField("gridSize", instance);
 			writer.WriteProperty("allRooms", instance.allRooms, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<Room>)));
@@ -46,6 +47,9 @@ namespace ES3Types
 				switch(propertyName)
 				{
 					
+					case "isPlayerShip":
+						instance.isPlayerShip = reader.Read<System.Boolean>(ES3Type_bool.Instance);
+						break;
 					case "shipName":
 						instance.shipName = reader.Read<System.String>(ES3Type_string.Instance);
 						break;

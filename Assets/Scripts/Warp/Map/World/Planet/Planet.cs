@@ -21,6 +21,8 @@ public class Planet : TooltipPanelBase
     private List<Sprite> tradeTierSprites;
 
     [Header("행성 버튼")] [SerializeField] private Button planetButton;
+    public System.Action<Planet> onClicked; // 외부에서 콜백 등록할 수 있게
+
 
     public PlanetData PlanetData => planetData;
 
@@ -45,6 +47,14 @@ public class Planet : TooltipPanelBase
     {
         // 게임 매니저에서 연도 변경 이벤트 해제
         if (GameManager.Instance != null) GameManager.Instance.OnYearChanged -= OnYearChanged;
+    }
+
+    private void OnClicked()
+    {
+        Debug.Log($"Planet clicked: {planetData.planetName}");
+
+        // 외부에서 할당된 콜백 호출 (예: MapPanelController)
+        onClicked?.Invoke(this);
     }
 
     /// <summary>
@@ -79,7 +89,7 @@ public class Planet : TooltipPanelBase
                 planetTooltip.planetQuestTitleText.text = "";
                 planetTooltip.planetCurrentQuestText.text = "";
                 planetTooltip.planetDescriptionText.text =
-                    $"{"ui.planet." + planetData.itemPlanet.ToString().ToLower() + ".description"}".Localize();
+                    $"{"ui.planetinfo." + planetData.itemPlanet.ToString().ToLower() + ".description"}".Localize();
 
                 return;
             }
@@ -128,5 +138,11 @@ public class Planet : TooltipPanelBase
         this.planetData = planetData;
         currentSprite = planetSprites[(int)planetData.itemPlanet];
         GetComponentInChildren<Image>().sprite = currentSprite;
+
+        if (planetButton != null)
+        {
+            planetButton.onClick.RemoveAllListeners(); // 중복 방지
+            planetButton.onClick.AddListener(OnClicked);
+        }
     }
 }
