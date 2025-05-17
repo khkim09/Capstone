@@ -105,16 +105,9 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         if (itemNameText != null)
         {
-            itemNameText.text = storedItem.itemData.itemName.Localize();
+            itemNameText.text = storedItem.itemData.itemName;
             itemNameOriginalColor = itemNameText.color;
         }
-
-        if (categoryText != null)
-        {
-            categoryText.text = storedItem.itemData.type.ToString();
-            categoryOriginalColor = categoryText.color;
-        }
-
 
         if (priceText != null)
         {
@@ -129,6 +122,13 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
             quantityText.text = storedItem.quantity.ToString();
             quantityOriginalColor = quantityText.color;
         }
+
+        if (categoryText != null)
+        {
+            categoryText.text = storedItem.itemData.type.ToString();
+            categoryOriginalColor = categoryText.color;
+        }
+
         isSelected = false;
 
         // 만약 이 아이템이 이전에 선택된 것과 동일하고, 수량이 남아 있다면 선택 상태 복원
