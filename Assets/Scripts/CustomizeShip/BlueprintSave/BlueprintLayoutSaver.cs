@@ -11,7 +11,7 @@ public class BlueprintRoomSaveData
     public RoomData bpRoomData;
     public int bpLevelIndex;
     public Vector2Int bpPosition;
-    public RotationConstants.Rotation bpRotation;
+    public Constants.Rotations.Rotation bpRotation;
 }
 
 /// <summary>

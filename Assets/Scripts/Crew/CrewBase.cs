@@ -138,7 +138,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     public void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sortingOrder = SortingOrderConstants.Character;
+        spriteRenderer.sortingOrder = Constants.SortingOrders.Character;
         spriteRenderer.sprite = Resources.Load<Sprite>($"Sprites/Crew/{race.ToString().ToLower()}");
 
         // 종족별 애니메이터 연결
@@ -236,7 +236,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         if (currentShip != null)
             if (currentShip.GetOxygenLevel() == OxygenLevel.None)
-                this.gameObject.GetComponent<CrewMember>().TakeDamage(maxHealth * 0.01f); // 최대 체력의 1%만큼 데미지
+                gameObject.GetComponent<CrewMember>().TakeDamage(maxHealth * 0.01f); // 최대 체력의 1%만큼 데미지
     }
 
     /// <summary>
@@ -363,7 +363,6 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         Debug.Log($"{crewName} 사망 처리 완료");
     }
     */
-
 
 
     /// <summary>

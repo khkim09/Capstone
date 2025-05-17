@@ -30,7 +30,6 @@ public class EventDatabase : ScriptableObject
         InitializeEventDictionary();
         InitializeEventsByType();
         InitializeEventsByOutcomeType();
-        Debug.Log($"EventDatabase 초기화 완료: {allEvents.Count}개 이벤트 로드");
     }
 
     /// <summary>

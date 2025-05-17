@@ -6,19 +6,19 @@
 public enum ItemPlanet
 {
     /// <summary>SIS 행성</summary>
-    SIS,
+    SIS = 0,
 
     /// <summary>CCK 행성</summary>
-    CCK,
+    CCK = 1,
 
     /// <summary>ICM 행성</summary>
-    ICM,
+    ICM = 2,
 
     /// <summary>RCE 행성</summary>
-    RCE,
+    RCE = 3,
 
     /// <summary>KTL 행성</summary>
-    KTL,
+    KTL = 4,
 
     /// <summary>기본</summary>
     Default

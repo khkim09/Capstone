@@ -161,7 +161,7 @@ public class ShipTemplate
         public RoomType roomType;
         public int level = 1;
         public Vector2Int position;
-        public RotationConstants.Rotation rotation;
+        public Constants.Rotations.Rotation rotation;
     }
 
     [System.Serializable]

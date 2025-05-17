@@ -17,7 +17,7 @@ public class BlueprintRoomDragHandler : MonoBehaviour
 
     private RoomData draggingRoomData;
     private int draggingLevel;
-    private RotationConstants.Rotation draggingRotation;
+    private Constants.Rotations.Rotation draggingRotation;
 
     private bool isDragging = false;
     private Vector2Int roomSize;
@@ -40,7 +40,7 @@ public class BlueprintRoomDragHandler : MonoBehaviour
 
         draggingRoomData = data;
         draggingLevel = level;
-        draggingRotation = RotationConstants.Rotation.Rotation0;
+        draggingRotation = Constants.Rotations.Rotation.Rotation0;
         isDragging = true;
 
         RoomData.RoomLevel levelData = data.GetRoomDataByLevel(level);
@@ -93,7 +93,7 @@ public class BlueprintRoomDragHandler : MonoBehaviour
 
         // 회전
         if (isDragging && Input.GetMouseButtonDown(1))
-            draggingRotation = (RotationConstants.Rotation)(((int)draggingRotation + 1) % 4);
+            draggingRotation = (Constants.Rotations.Rotation)(((int)draggingRotation + 1) % 4);
 
         // 설치
         if (Input.GetMouseButtonUp(0))

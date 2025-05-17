@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 public static class LocalizationManager
 {
     // 현재 선택된 언어
-    private static SystemLanguage _currentLanguage = SystemLanguage.English;
+    private static SystemLanguage _currentLanguage = SystemLanguage.Korean;
 
     public static SystemLanguage CurrentLanguage
     {
@@ -143,8 +143,6 @@ public static class LocalizationManager
 
                     localizedTexts[entry.Value.key] = translations;
                 }
-
-            Debug.Log($"Loaded {localizedTexts.Count} localized texts");
         }
         catch (Exception e)
         {

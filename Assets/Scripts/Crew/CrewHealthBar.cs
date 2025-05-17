@@ -118,7 +118,7 @@ public class CrewHealthBar : MonoBehaviour
         }
 
         // Sorting Order 설정
-        healthBarCanvas.sortingOrder = SortingOrderConstants.CharacterHealthBar;
+        healthBarCanvas.sortingOrder = Constants.SortingOrders.CharacterHealthBar;
 
         // CanvasScaler 제거 또는 비활성화 (World Space에서는 필요 없음)
         CanvasScaler scaler = GetComponent<CanvasScaler>();

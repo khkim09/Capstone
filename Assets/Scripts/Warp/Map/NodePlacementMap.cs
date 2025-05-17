@@ -211,66 +211,8 @@ public class NodePlacementMap : MonoBehaviour
     /// <param name="count">배치할 행성 수</param>
     public void GenerateRandomPlanets(int count)
     {
-        ClearPlanets();
-        ClearNodes();
-
-        RectTransform rectTransform = mapContainer;
-        float width = rectTransform.rect.width;
-        float height = rectTransform.rect.height;
-
-        for (int i = 0; i < count; i++)
-        {
-            GameObject planet = Instantiate(planetPrefab, mapContainer);
-            planet.name = $"Planet_{i}";
-
-            // 적절한 위치 찾기 (다른 행성과 충분히 떨어진 위치)
-            Vector2 newPosition = FindValidPlanetPosition(width, height);
-
-            RectTransform planetRect = planet.GetComponent<RectTransform>();
-            planetRect.anchoredPosition = newPosition;
-            planetRect.SetAsLastSibling();
-
-            // Add Planet component to the GameObject if not already present
-            Planet planetComponent = planet.GetComponent<Planet>();
-            if (planetComponent == null)
-                planetComponent = planet.AddComponent<Planet>();
-
-            // 행성 종족 타입 랜덤 지정
-            planetComponent.dominantSpecies =
-                (SpeciesType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(SpeciesType)).Length);
-
-            planetComponent.planetData.currentFuelPrice = UnityEngine.Random.Range(25f, 75f);
-
-            // Assign tooltip prefab if not already set
-            if (tooltipPrefab != null && planetComponent.tooltipPrefab == null)
-                planetComponent.tooltipPrefab = tooltipPrefab;
-
-            // 행성 클릭 이벤트 설정
-            planetComponent.OnPlanetClickedCallback = OnPlanetClicked;
-
-            planets.Add(planet);
-        }
-
-        // 시작 행성과 도착 행성 설정
-        startPlanet = FindLeftmostPlanet();
-        endPlanet = FindRightmostPlanet();
-
-        // Calculate distances for all planets from the start planet
-        if (startPlanet != null)
-        {
-            Vector2 startPosition = startPlanet.GetComponent<RectTransform>().anchoredPosition;
-            foreach (GameObject planet in planets)
-            {
-                Planet planetComponent = planet.GetComponent<Planet>();
-                if (planetComponent != null)
-                    planetComponent.SetLightYearsFromUnityDistance(startPosition);
-            }
-        }
-
-        // 초기 노드 배치 상태 재설정
-        nodePlacementCompleted = false;
-        pathDangerInfo.Clear();
     }
+
 
     /// <summary>
     /// 위험지역을 생성합니다.
@@ -344,7 +286,8 @@ public class NodePlacementMap : MonoBehaviour
             }
             else
             {
-                Debug.LogError("The instantiated ValidRangeIndicatorPrefab does not have a RectTransform component!");
+                Debug.LogError(
+                    "The instantiated ValidRangeIndicatorPrefab does not have a RectTransform component!");
             }
 
             validRangeIndicatorInstance.SetActive(true); // 활성화
