@@ -61,6 +61,12 @@ public class MapPanelController : MonoBehaviour
 
     private void OnEnable()
     {
+        if (GameManager.Instance == null)
+        {
+            Debug.Log("게임 매니저가 NULL");
+            return;
+        }
+
         currentWorldNodePosition = GameManager.Instance.normalizedPlayerPosition;
         DrawWorldMap();
     }

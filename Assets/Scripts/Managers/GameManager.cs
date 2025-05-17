@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 /// 게임의 전체 상태와 흐름을 관리하는 매니저.
 /// 게임 상태 전환, 날짜 및 연도 진행, 플레이어/적 함선 정보 등을 통합적으로 제어합니다.
 /// </summary>
+[DefaultExecutionOrder(-10)]
 public class GameManager : MonoBehaviour
 {
     /// <summary>
@@ -105,12 +106,11 @@ public class GameManager : MonoBehaviour
 
         playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
         playerShip.Initialize();
-        DontDestroyOnLoad(playerShip);
 
         //DeleteGameData();
         LoadGameData();
 
-        if (playerShip == null)
+        if (playerShip != null)
         {
             playerShip.isPlayerShip = true; // 유저 함선
             OnShipInitialized?.Invoke();
@@ -276,13 +276,13 @@ public class GameManager : MonoBehaviour
 
         // playerShip.AddWeapon(8, new Vector)
 
-        // CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        // CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
-        // CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
-        //
-        // if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
-        // if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
-        // if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
+        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
+        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
+
+        if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
+        if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
+        if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
 
         playerShip.UpdateOuterHullVisuals();
 

@@ -31,9 +31,12 @@ public class ShipFollowCamera : MonoBehaviour
     private void Awake()
     {
         if (!Application.isPlaying) return;
-        GameManager.Instance.OnShipInitialized += GetCameraStartPositionToOriginShip;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnShipInitialized += GetCameraStartPositionToOriginShip;
 
-        if (isFollowPlayerShip) targetShip = GameManager.Instance.playerShip;
+            if (isFollowPlayerShip) targetShip = GameManager.Instance.playerShip;
+        }
     }
 
     private void Update()
