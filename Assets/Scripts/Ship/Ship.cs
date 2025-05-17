@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 /// <summary>
@@ -1199,6 +1200,7 @@ public class Ship : MonoBehaviour
                 ApplyDamageToCrewsInArea(hitPosition, finalDamage, false); // false = 단일 지점
             }
         }
+        InfoPanelChanged?.Invoke();
     }
 
 
@@ -1498,4 +1500,14 @@ public class Ship : MonoBehaviour
     }
 
     #endregion
+
+    #region EnemyInfoPanel
+
+    /// <summary>
+    /// EnemyInfoPanel 갱신을 위한 이벤트
+    /// </summary>
+    public event Action InfoPanelChanged;
+
+    #endregion
+
 }
