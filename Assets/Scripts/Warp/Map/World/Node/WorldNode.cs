@@ -7,7 +7,5 @@ public class WorldNode : MonoBehaviour
 {
     [SerializeField] private Image worldNodeImage;
 
-    public WorldNodeData WorldNodeData;
-
-    public bool isVisited = false;
+    public WorldNodeData worldNodeData;
 }

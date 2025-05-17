@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// 게임의 전체 상태와 흐름을 관리하는 매니저.
@@ -68,6 +70,8 @@ public class GameManager : MonoBehaviour
 
     public List<PlanetData> PlanetDataList => planetDataList;
 
+    public List<WorldNodeData> WorldNodeDataList => worldNodeDataList;
+
     public event Action OnShipInitialized;
 
 
@@ -99,18 +103,21 @@ public class GameManager : MonoBehaviour
         LocalizationManager.Initialize(this);
         LocalizationManager.OnLanguageChanged += OnLanguageChanged;
 
+        playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
+        playerShip.Initialize();
+        DontDestroyOnLoad(playerShip);
+
+        //DeleteGameData();
+        LoadGameData();
+
         if (playerShip == null)
         {
+            playerShip.isPlayerShip = true; // 유저 함선
+            OnShipInitialized?.Invoke();
         }
 
-        playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
         currentEnemyShip = GameObject.Find("EnemyShip")?.GetComponent<Ship>();
 
-        playerShip.Initialize();
-        playerShip.isPlayerShip = true; // 유저 함선
-
-        CreateDefaultPlayerShip();
-        OnShipInitialized?.Invoke();
 
         if (currentEnemyShip != null)
         {
@@ -141,7 +148,7 @@ public class GameManager : MonoBehaviour
             if (room.GetIsDamageable() && room.roomType == type)
                 canGo.Add(room);
 
-        return canGo[UnityEngine.Random.Range(0, canGo.Count)];
+        return canGo[Random.Range(0, canGo.Count)];
     }
 
     // 피격 테스트
@@ -385,10 +392,14 @@ public class GameManager : MonoBehaviour
     {
         if (currentState != GameState.MainMenu) return;
 
-        ES3.DeleteKey("planetList"); // 기존 데이터 삭제
-        GeneratePlanetsData(); // 새 데이터 생성
-        SavePlanets(); // 새로 생성한 걸 저장
+        DeleteGameData();
+        CreateDefaultPlayerShip();
+        playerShip.isPlayerShip = true;
+        OnShipInitialized?.Invoke();
 
+        GeneratePlanetsData(); // 새 데이터 생성
+
+        SaveGameData();
 
         currentState = GameState.Gameplay;
         SceneChanger.Instance.LoadScene("Idle");
@@ -412,7 +423,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SaveGameData()
     {
-        SavePlanets();
+        Debug.Log("저장 시작");
+        SaveWorldMap();
         SavePlayerData();
         // TODO : 현재 배, 재화, 플레이어 데이터 등 게임 플레이에 관련된 모든 것을 저장하는 함수.
     }
@@ -422,9 +434,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void LoadGameData()
     {
-        LoadPlanets();
+        LoadWorldMap();
         LoadPlayerData();
         // TODO : 현재 배, 재화, 플레이어 데이터 등 게임 플레이에 관련된 모든 것을 저장하는 함수.
+    }
+
+    public void DeleteGameData()
+    {
+        DeleteWorldMap();
+        DeletePlayerData();
     }
 
     /// <summary>
@@ -433,6 +451,7 @@ public class GameManager : MonoBehaviour
     public void SavePlayerData()
     {
         ES3.Save("playerData", playerData);
+        ES3.Save("playerShip", playerShip);
     }
 
     /// <summary>
@@ -440,36 +459,76 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void LoadPlayerData()
     {
-        if (ES3.KeyExists("planetList")) ES3.Load<PlayerData>("playerData", playerData);
+        if (ES3.KeyExists("playerData")) ES3.Load<PlayerData>("playerData", playerData);
+        if (ES3.KeyExists("playerShip"))
+        {
+            Debug.Log("소환시도");
+            ES3.Load<Ship>("playerShip", playerShip);
+            ES3.Load<Ship>("playerShip", playerShip);
+            OnShipInitialized?.Invoke();
+        }
+        else
+        {
+            Debug.Log("없어서 기본함선 만듦");
+            CreateDefaultPlayerShip();
+            OnShipInitialized?.Invoke();
+        }
+    }
+
+    public void DeletePlayerData()
+    {
+        ES3.DeleteKey("playerShip");
+        // playerShip.RemoveAllRooms();
+        // playerShip.RemoveAllCrews();
+        // playerShip.RemoveAllWeapons();
+        // playerShip.RemoveAllItems();
+
+        ES3.DeleteKey("playerData");
     }
 
     #endregion
 
 
-    #region 행성
+    #region 행성 맵
 
-    public void SavePlanets()
+    public void SaveWorldMap()
     {
         ES3.Save("planetList", planetDataList);
+        ES3.Save("worldNodeList", worldNodeDataList);
+        ES3.Save("currentPosition", normalizedPlayerPosition);
     }
 
-    public void LoadPlanets()
+    public void LoadWorldMap()
     {
         if (ES3.KeyExists("planetList"))
         {
             planetDataList = ES3.Load<List<PlanetData>>("planetList");
+
+            if (ES3.KeyExists("worldNodeList"))
+                worldNodeDataList = ES3.Load<List<WorldNodeData>>("worldNodeList");
+
+            if (ES3.KeyExists("currentPosition"))
+                normalizedPlayerPosition = ES3.Load<Vector2>("currentPosition");
         }
         else
         {
             // 데이터가 없으면 새로 생성 후 저장
             GeneratePlanetsData();
-            SavePlanets();
+            SaveWorldMap();
         }
+    }
+
+    public void DeleteWorldMap()
+    {
+        ES3.DeleteKey("planetList");
+        ES3.DeleteKey("worldNodeList");
+        ES3.DeleteKey("currentPosition");
     }
 
     private void GeneratePlanetsData()
     {
         planetDataList.Clear();
+        worldNodeDataList.Clear();
 
         for (int index = 0; index < Constants.Planets.PlanetTotalCount; index++)
         {
@@ -478,7 +537,12 @@ public class GameManager : MonoBehaviour
             planetDataList.Add(newData);
         }
 
-        normalizedPlayerPosition = planetDataList[UnityEngine.Random.Range(0, planetDataList.Count)].normalizedPosition;
+        normalizedPlayerPosition =
+            new Vector2(
+                Random.Range(Constants.Planets.PlanetCurrentPositionIndicatorSize * 2,
+                    1 - Constants.Planets.PlanetCurrentPositionIndicatorSize * 2),
+                Random.Range(Constants.Planets.PlanetCurrentPositionIndicatorSize * 2,
+                    1 - Constants.Planets.PlanetCurrentPositionIndicatorSize * 2));
     }
 
     #endregion

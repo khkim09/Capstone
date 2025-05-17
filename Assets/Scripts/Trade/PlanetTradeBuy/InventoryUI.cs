@@ -61,4 +61,12 @@ public class InventoryUI : MonoBehaviour
             itemUI.isInteractable = makeInteractable;
         }
     }
+
+    /// <summary>
+    /// 패널을 닫는 함수입니다.
+    /// </summary>
+    public void CloseSelfPanel()
+    {
+        transform.parent.gameObject.SetActive(false);
+    }
 }
