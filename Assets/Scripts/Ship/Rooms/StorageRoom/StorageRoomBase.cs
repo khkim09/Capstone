@@ -51,8 +51,8 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
         // 방 크기에 맞게 콜라이더 설정
         Vector2Int size = GetSize();
         storageCollider.size = new Vector2(
-            size.x * GridConstants.CELL_SIZE,
-            size.y * GridConstants.CELL_SIZE
+            size.x * Constants.Grids.CellSize,
+            size.y * Constants.Grids.CellSize
         );
 
         // 콜라이더가 트리거로 작동하도록 설정
@@ -108,7 +108,7 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
     /// <summary>
     /// 아이템을 지정된 위치에 배치할 수 있는지 확인합니다.
     /// </summary>
-    public bool CanPlaceItem(TradingItem item, Vector2Int position, RotationConstants.Rotation rotation)
+    public bool CanPlaceItem(TradingItem item, Vector2Int position, Constants.Rotations.Rotation rotation)
     {
         // 아이템이 점유할 타일 계산
         List<Vector2Int> occupiedTiles = GetOccupiedTiles(item, position, rotation);
@@ -141,7 +141,7 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
     /// <summary>
     /// 아이템을 창고에 추가합니다.
     /// </summary>
-    public virtual bool AddItem(TradingItem item, Vector2Int position, RotationConstants.Rotation rotation)
+    public virtual bool AddItem(TradingItem item, Vector2Int position, Constants.Rotations.Rotation rotation)
     {
         if (!CanPlaceItem(item, position, rotation)) return false;
 
@@ -208,14 +208,14 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
 
         // 방의 로컬 좌표계에서 그리드 원점
         Vector2 gridOrigin = new(
-            -storageSize.x * GridConstants.CELL_SIZE / 2.0f,
-            -storageSize.y * GridConstants.CELL_SIZE / 2.0f
+            -storageSize.x * Constants.Grids.CellSize / 2.0f,
+            -storageSize.y * Constants.Grids.CellSize / 2.0f
         );
 
         // 아이템 중앙의 월드 위치 계산
         Vector2 itemCenterWorldPos = new(
-            gridOrigin.x + (itemCenter.x + 0.5f) * GridConstants.CELL_SIZE,
-            gridOrigin.y + (itemCenter.y + 0.5f) * GridConstants.CELL_SIZE
+            gridOrigin.x + (itemCenter.x + 0.5f) * Constants.Grids.CellSize,
+            gridOrigin.y + (itemCenter.y + 0.5f) * Constants.Grids.CellSize
         );
 
         // 정확한 위치를 위해 반올림
@@ -387,7 +387,8 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
     /// <summary>
     /// 아이템이 점유하는 모든 타일의 좌표를 반환합니다.
     /// </summary>
-    public List<Vector2Int> GetOccupiedTiles(TradingItem item, Vector2Int position, RotationConstants.Rotation rotation)
+    public List<Vector2Int> GetOccupiedTiles(TradingItem item, Vector2Int position,
+        Constants.Rotations.Rotation rotation)
     {
         List<Vector2Int> occupiedTiles = new();
 
@@ -424,16 +425,16 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
 
         // 그리드 원점 (좌하단)
         Vector2 gridOrigin = new(
-            -storageSize.x * GridConstants.CELL_SIZE / 2.0f,
-            -storageSize.y * GridConstants.CELL_SIZE / 2.0f
+            -storageSize.x * Constants.Grids.CellSize / 2.0f,
+            -storageSize.y * Constants.Grids.CellSize / 2.0f
         );
 
         // 그리드 좌표 계산
         float relX = localPos.x - gridOrigin.x;
         float relY = localPos.y - gridOrigin.y;
 
-        int gridX = Mathf.FloorToInt(relX / GridConstants.CELL_SIZE);
-        int gridY = Mathf.FloorToInt(relY / GridConstants.CELL_SIZE);
+        int gridX = Mathf.FloorToInt(relX / Constants.Grids.CellSize);
+        int gridY = Mathf.FloorToInt(relY / Constants.Grids.CellSize);
 
         Vector2Int result = new(gridX, gridY);
 
@@ -450,14 +451,14 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
 
         // 그리드 원점 (좌하단)
         Vector2 gridOrigin = new(
-            -storageSize.x * GridConstants.CELL_SIZE / 2.0f,
-            -storageSize.y * GridConstants.CELL_SIZE / 2.0f
+            -storageSize.x * Constants.Grids.CellSize / 2.0f,
+            -storageSize.y * Constants.Grids.CellSize / 2.0f
         );
 
         // 로컬 좌표 계산 (셀 중앙으로)
         Vector3 localPos = new(
-            gridOrigin.x + (gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
-            gridOrigin.y + (gridPos.y + 0.5f) * GridConstants.CELL_SIZE,
+            gridOrigin.x + (gridPos.x + 0.5f) * Constants.Grids.CellSize,
+            gridOrigin.y + (gridPos.y + 0.5f) * Constants.Grids.CellSize,
             0
         );
 
@@ -494,10 +495,10 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
         }
 
         // 현재 회전 상태
-        RotationConstants.Rotation currentRotation = item.rotation;
+        Constants.Rotations.Rotation currentRotation = item.rotation;
 
         // 다음 회전 상태
-        RotationConstants.Rotation nextRotation = (RotationConstants.Rotation)(((int)currentRotation + 1) % 4);
+        Constants.Rotations.Rotation nextRotation = (Constants.Rotations.Rotation)(((int)currentRotation + 1) % 4);
         Debug.Log($"[StorageRoomBase] {GetInstanceID()} 회전 시도: {currentRotation} -> {nextRotation}");
 
         // 현재 위치에서 회전 가능한지 확인

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -13,12 +14,17 @@ public class MiddlePanelUI : MonoBehaviour
     /// 선택된 아이템 이름을 표시하는 텍스트 UI 요소입니다.
     /// </summary>
     [Header("UI References")]
-    [SerializeField] private TMP_Text selectedItemNameText;
+    [SerializeField] private TextMeshProUGUI selectedItemNameText;
 
     /// <summary>
     /// 선택된 아이템 설명을 표시하는 텍스트 UI 요소입니다.
     /// </summary>
-    [SerializeField] private TMP_Text selectedItemDescriptionText;
+    [SerializeField] private TextMeshProUGUI selectedItemDescriptionText;
+
+    /// <summary>
+    /// 선택된 아이템 가격을 표시하는 텍스트 UI 요소입니다.
+    /// </summary>
+    [SerializeField] private TextMeshProUGUI priceText;
 
     /// <summary>
     /// 거래 수량을 입력받는 텍스트 입력 필드입니다.
@@ -36,14 +42,19 @@ public class MiddlePanelUI : MonoBehaviour
     [SerializeField] private Button sellButton;
 
     /// <summary>
-    /// 플레이어의 재화(Coma)를 표시하는 텍스트 UI 요소입니다.
-    /// </summary>
-    [SerializeField] private TMP_Text playerComaText;
-
-    /// <summary>
     /// 아이템 형태를 보여줄 UI Image입니다.
     /// </summary>
-    [SerializeField] private Image itemPreviewImage;
+    [SerializeField] private Image itemShapeImage;
+
+    /// <summary>
+    /// 아이템 모양에 해당하는 스프라이트 리스트입니다. itemShape enum 순서에 맞춰 등록해야 합니다.
+    /// </summary>
+    [SerializeField] private List<Sprite> itemShapeSprites;
+
+    /// <summary>
+    /// 임시 테스트용 코마 관리 텍스트입니다. TODO
+    /// </summary>
+    [SerializeField] private TextMeshProUGUI playerCOMAText;
 
     #endregion
 
@@ -62,6 +73,14 @@ public class MiddlePanelUI : MonoBehaviour
     #endregion
 
     /// <summary>
+    /// 시작시 비활성화 상태로 두는 코드입니다.
+    /// </summary>
+    private void Awake()
+    {
+        gameObject.SetActive(false); // 시작 시 자기 자신 비활성화
+    }
+
+    /// <summary>
     /// 초기화 작업을 수행하고 버튼 이벤트를 등록하는 메서드입니다.
     /// </summary>
     private void Start()
@@ -75,6 +94,8 @@ public class MiddlePanelUI : MonoBehaviour
         UpdatePlayerComa();
     }
 
+
+
     /// <summary>
     /// 선택된 아이템의 상세 정보를 UI에 표시하는 메서드입니다.
     /// </summary>
@@ -84,24 +105,31 @@ public class MiddlePanelUI : MonoBehaviour
         selectedItemData = itemData;
 
         if (selectedItemNameText != null)
-            selectedItemNameText.text = itemData.itemName;
+            selectedItemNameText.text = itemData.itemName.Localize();
 
         if (selectedItemDescriptionText != null)
-            selectedItemDescriptionText.text = itemData.description;
+            selectedItemDescriptionText.text = itemData.description.Localize();
+
+
+        if (priceText != null)
+            priceText.text = itemData.costBase.ToString("F2") + " COMA";
 
         if (tradeNumInputField != null)
             tradeNumInputField.text = "1";
 
-        if (itemPreviewImage != null)
+        if (itemShapeImage != null && itemShapeSprites != null && itemShapeSprites.Count > 0)
         {
-            if (itemData.itemSprite != null)
+            int shapeIndex = (int)itemData.shape;
+
+            if (shapeIndex >= 0 && shapeIndex < itemShapeSprites.Count)
             {
-                itemPreviewImage.sprite = itemData.itemSprite;
-                itemPreviewImage.enabled = true;
+                itemShapeImage.sprite = itemShapeSprites[shapeIndex];
+                itemShapeImage.enabled = true;
             }
             else
             {
-                itemPreviewImage.enabled = false;
+                Debug.LogWarning($"[MiddlePanelUI] itemShape index {shapeIndex} out of range for {itemData.itemName}");
+                itemShapeImage.enabled = false;
             }
         }
     }
@@ -155,9 +183,10 @@ public class MiddlePanelUI : MonoBehaviour
     /// </summary>
     public void UpdatePlayerComa()
     {
-        if (playerComaText != null && tradeManager != null)
+        if (playerCOMAText != null)
         {
-            playerComaText.text = "COMA: " + tradeManager.GetPlayerCOMA();
+            playerCOMAText.text = "COMA: " + ResourceManager.Instance.COMA;
         }
     }
+
 }

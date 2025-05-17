@@ -32,8 +32,8 @@ public class ShipGridHelper
     public static Vector2Int WorldToGridPosition(Vector2 worldPos)
     {
         Vector3 local = new(worldPos.x, worldPos.y, 0);
-        return new Vector2Int(Mathf.FloorToInt(local.x / GridConstants.CELL_SIZE),
-            Mathf.FloorToInt(local.y / GridConstants.CELL_SIZE));
+        return new Vector2Int(Mathf.FloorToInt(local.x / Constants.Grids.CellSize),
+            Mathf.FloorToInt(local.y / Constants.Grids.CellSize));
     }
 
     /// <summary>
@@ -43,8 +43,8 @@ public class ShipGridHelper
     /// <returns>해당 위치의 월드 좌표.</returns>
     public static Vector3 GridToWorldPosition(Vector2Int gridPos)
     {
-        return new Vector3((gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
-            (gridPos.y + 0.5f) * GridConstants.CELL_SIZE, 0f);
+        return new Vector3((gridPos.x + 0.5f) * Constants.Grids.CellSize,
+            (gridPos.y + 0.5f) * Constants.Grids.CellSize, 0f);
     }
 
     /// <summary>
@@ -53,13 +53,13 @@ public class ShipGridHelper
     /// <param name="ship">오프셋을 계산할 배</param>
     /// <param name="rotation">회전 상태</param>
     /// <returns>회전에 따른 오프셋 값</returns>
-    public static Vector2 GetShipRotationOffset(Ship ship, RotationConstants.Rotation rotation)
+    public static Vector2 GetShipRotationOffset(Ship ship, Constants.Rotations.Rotation rotation)
     {
         // 배가 차지하는 모든 그리드 위치 수집
         List<Vector2Int> occupiedPositions = new();
         foreach (Room room in ship.GetAllRooms())
-            foreach (Vector2Int pos in room.GetOccupiedTiles())
-                occupiedPositions.Add(pos);
+        foreach (Vector2Int pos in room.GetOccupiedTiles())
+            occupiedPositions.Add(pos);
 
         if (occupiedPositions.Count == 0)
         {

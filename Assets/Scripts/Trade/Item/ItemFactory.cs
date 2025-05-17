@@ -2,7 +2,7 @@
 
 public class ItemFactory : MonoBehaviour
 {
-    [SerializeField] private TradingItemDataBase itemDataBase;
+    [SerializeField] public TradingItemDataBase itemDataBase;
 
     public GameObject ItemPrefabShape;
 

@@ -130,15 +130,6 @@ public class TradeManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 현재 플레이어의 COMA 잔액을 반환합니다.
-    /// </summary>
-    /// <returns>플레이어 보유 COMA</returns>
-    public float GetPlayerCOMA()
-    {
-        return playerCOMA;
-    }
-
-    /// <summary>
     /// 현재 행성의 무역 데이터를 설정합니다.
     /// </summary>
     /// <param name="data">행성별 무역 데이터</param>

@@ -25,6 +25,18 @@ public class GameManager : MonoBehaviour
     public PlayerData playerData;
 
     /// <summary>
+    /// 현재 게임의 행성들
+    /// </summary>
+    private List<PlanetData> planetDataList = new();
+
+    private List<WorldNodeData> worldNodeDataList = new();
+
+    /// <summary>
+    /// 현재 행성맵에서의 유저의 위치
+    /// </summary>
+    public Vector2 normalizedPlayerPosition = Vector2.zero;
+
+    /// <summary>
     /// 게임 상태 변경 이벤트 델리게이트입니다.
     /// </summary>
     public delegate void GameStateChangedHandler(GameState newState);
@@ -34,8 +46,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -55,6 +66,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static GameManager Instance { get; private set; }
 
+    public List<PlanetData> PlanetDataList => planetDataList;
 
     public event Action OnShipInitialized;
 
@@ -70,6 +82,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
+            Debug.Assert(Constants.Planets.PlanetTotalCount >= 5, "행성 개수는 반드시 5개 이상이어야 합니다.");
+
             // 필요한 초기화
             InitializeGame();
         }
@@ -84,7 +98,6 @@ public class GameManager : MonoBehaviour
         // LocalizationManager 초기화
         LocalizationManager.Initialize(this);
         LocalizationManager.OnLanguageChanged += OnLanguageChanged;
-
 
         if (playerShip == null)
         {
@@ -206,19 +219,19 @@ public class GameManager : MonoBehaviour
 
         Room engine2 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
         Room engine3 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
-        playerShip.AddRoom(engine2, new Vector2Int(40, 40), RotationConstants.Rotation.Rotation0);
-        playerShip.AddRoom(engine3, new Vector2Int(43, 43), RotationConstants.Rotation.Rotation0);
+        playerShip.AddRoom(engine2, new Vector2Int(40, 40), Constants.Rotations.Rotation.Rotation0);
+        playerShip.AddRoom(engine3, new Vector2Int(43, 43), Constants.Rotations.Rotation.Rotation0);
 
 
         for (int index = 0; index < corridors.Length; index++)
             corridors[index] = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
 
 
-        playerShip.AddRoom(cockpit, new Vector2Int(35, 31), RotationConstants.Rotation.Rotation90);
-        playerShip.AddRoom(engine, new Vector2Int(34, 28), RotationConstants.Rotation.Rotation270);
-        playerShip.AddRoom(power, new Vector2Int(33, 33), RotationConstants.Rotation.Rotation90);
-        playerShip.AddRoom(crewQuarters, new Vector2Int(32, 26), RotationConstants.Rotation.Rotation270);
-        playerShip.AddRoom(teleporter, new Vector2Int(32, 32), RotationConstants.Rotation.Rotation90);
+        playerShip.AddRoom(cockpit, new Vector2Int(35, 31), Constants.Rotations.Rotation.Rotation90);
+        playerShip.AddRoom(engine, new Vector2Int(34, 28), Constants.Rotations.Rotation.Rotation270);
+        playerShip.AddRoom(power, new Vector2Int(33, 33), Constants.Rotations.Rotation.Rotation90);
+        playerShip.AddRoom(crewQuarters, new Vector2Int(32, 26), Constants.Rotations.Rotation.Rotation270);
+        playerShip.AddRoom(teleporter, new Vector2Int(32, 32), Constants.Rotations.Rotation.Rotation90);
 
         playerShip.AddRoom(corridors[0], new Vector2Int(31, 32));
         playerShip.AddRoom(corridors[1], new Vector2Int(31, 31));
@@ -240,29 +253,29 @@ public class GameManager : MonoBehaviour
         Room storageRoom2 =
             GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
 
-        playerShip.AddRoom(storageRoom, new Vector2Int(27, 26), RotationConstants.Rotation.Rotation270);
-        playerShip.AddRoom(storageRoom2, new Vector2Int(38, 24), RotationConstants.Rotation.Rotation90);
+        playerShip.AddRoom(storageRoom, new Vector2Int(27, 26), Constants.Rotations.Rotation.Rotation270);
+        playerShip.AddRoom(storageRoom2, new Vector2Int(38, 24), Constants.Rotations.Rotation.Rotation90);
         StorageRoomBase storage = (StorageRoomBase)storageRoom;
         TradingItem item = GameObjectFactory.Instance.CreateItemInstance(0, 20);
         TradingItem item2 = GameObjectFactory.Instance.CreateItemInstance(2, 10);
         TradingItem item3 = GameObjectFactory.Instance.CreateItemInstance(21, 1);
-        storage.AddItem(item, new Vector2Int(0, 0), RotationConstants.Rotation.Rotation0);
-        storage.AddItem(item2, new Vector2Int(2, 2), RotationConstants.Rotation.Rotation0);
+        storage.AddItem(item, new Vector2Int(0, 0), Constants.Rotations.Rotation.Rotation0);
+        storage.AddItem(item2, new Vector2Int(2, 2), Constants.Rotations.Rotation.Rotation0);
         StorageRoomBase storage2 = (StorageRoomBase)storageRoom2;
-        storage2.AddItem(item3, new Vector2Int(1, 1), RotationConstants.Rotation.Rotation0);
+        storage2.AddItem(item3, new Vector2Int(1, 1), Constants.Rotations.Rotation.Rotation0);
         // Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
-        // playerShip.AddRoom(temp, new Vector2Int(50, 31), RotationConstants.Rotation.Rotation90);
+        // playerShip.AddRoom(temp, new Vector2Int(50, 31),  Constants.Rotations.Rotation.Rotation90);
         playerShip.AddWeapon(1, new Vector2Int(35, 33), ShipWeaponAttachedDirection.East);
 
         // playerShip.AddWeapon(8, new Vector)
 
-        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
-        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
-
-        if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
-        if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
-        if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
+        // CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        // CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
+        // CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
+        //
+        // if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
+        // if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
+        // if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
 
         playerShip.UpdateOuterHullVisuals();
 
@@ -361,15 +374,114 @@ public class GameManager : MonoBehaviour
         Debug.Log($"[워프 완료] 현재 연도 : {currentYear}");
     }
 
-    public void StartGame()
+    #region 게임 데이터 관련
+
+    // TODO: 게임 데이터 초기화 로직 및 진짜 새로운 게임 시작할 건지 물어야함.
+
+    /// <summary>
+    /// 메인 화면에서 새로운 시작을 누르면 호출되는 함수. 행성 데이터를 삭제 후 게임 시작
+    /// </summary>
+    public void StartNewGame()
     {
         if (currentState != GameState.MainMenu) return;
 
-        // TODO: 게임 데이터 초기화 로직 및 진짜 새로운 게임 시작할 건지 물어야함.
+        ES3.DeleteKey("planetList"); // 기존 데이터 삭제
+        GeneratePlanetsData(); // 새 데이터 생성
+        SavePlanets(); // 새로 생성한 걸 저장
+
 
         currentState = GameState.Gameplay;
         SceneChanger.Instance.LoadScene("Idle");
     }
+
+    /// <summary>
+    /// 메인 화면에서 이어하기를 누르면 호출되는 함수. 행성 데이터를 로드 후 게임 시작
+    /// </summary>
+    public void ContinueGame()
+    {
+        if (currentState != GameState.MainMenu) return;
+
+        LoadGameData();
+
+        currentState = GameState.Gameplay;
+        SceneChanger.Instance.LoadScene("Idle");
+    }
+
+    /// <summary>
+    /// 게임 전체를 저장하는 함수. 워프를 할 때마다 떠야할 것이다.
+    /// </summary>
+    public void SaveGameData()
+    {
+        SavePlanets();
+        SavePlayerData();
+        // TODO : 현재 배, 재화, 플레이어 데이터 등 게임 플레이에 관련된 모든 것을 저장하는 함수.
+    }
+
+    /// <summary>
+    /// 게임 전체를 불러오는 함수.
+    /// </summary>
+    public void LoadGameData()
+    {
+        LoadPlanets();
+        LoadPlayerData();
+        // TODO : 현재 배, 재화, 플레이어 데이터 등 게임 플레이에 관련된 모든 것을 저장하는 함수.
+    }
+
+    /// <summary>
+    /// 엔딩과 관련된 플레이어 데이터를 저장하는 함수.
+    /// </summary>
+    public void SavePlayerData()
+    {
+        ES3.Save("playerData", playerData);
+    }
+
+    /// <summary>
+    /// 엔딩과 관련된 플레이어 데이터를 불러오는 함수.
+    /// </summary>
+    public void LoadPlayerData()
+    {
+        if (ES3.KeyExists("planetList")) ES3.Load<PlayerData>("playerData", playerData);
+    }
+
+    #endregion
+
+
+    #region 행성
+
+    public void SavePlanets()
+    {
+        ES3.Save("planetList", planetDataList);
+    }
+
+    public void LoadPlanets()
+    {
+        if (ES3.KeyExists("planetList"))
+        {
+            planetDataList = ES3.Load<List<PlanetData>>("planetList");
+        }
+        else
+        {
+            // 데이터가 없으면 새로 생성 후 저장
+            GeneratePlanetsData();
+            SavePlanets();
+        }
+    }
+
+    private void GeneratePlanetsData()
+    {
+        planetDataList.Clear();
+
+        for (int index = 0; index < Constants.Planets.PlanetTotalCount; index++)
+        {
+            PlanetData newData = new();
+            newData.CreateRandomData();
+            planetDataList.Add(newData);
+        }
+
+        normalizedPlayerPosition = planetDataList[UnityEngine.Random.Range(0, planetDataList.Count)].normalizedPosition;
+    }
+
+    #endregion
 }
 
 /// <summary>

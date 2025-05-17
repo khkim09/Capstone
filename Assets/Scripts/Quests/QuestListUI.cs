@@ -22,23 +22,10 @@ public class QuestListUI : MonoBehaviour
     private List<GameObject> spawnedSlots = new();
 
     /// <summary>실버 패널 Sprite (기본)</summary>
-    private static Sprite silverPanelSprite;
+    [SerializeField] private Sprite silverPanelSprite;
 
     /// <summary>골드 패널 Sprite (완료 가능 시)</summary>
-    private static Sprite goldPanelSprite;
-
-    /// <summary>
-    /// 시작할 때 실행되는 함수입니다.
-    /// 처음에는 패널을 꺼두고, Sprite를 캐싱합니다.
-    /// </summary>
-    private void Awake()
-    {
-        if (silverPanelSprite == null)
-            silverPanelSprite = Resources.Load<Sprite>("Sprites/Pixel Art Sci-Fi UI/Sprites/UI_Silver/Panels/Title C");
-
-        if (goldPanelSprite == null)
-            goldPanelSprite = Resources.Load<Sprite>("Sprites/Pixel Art Sci-Fi UI/Sprites/UI_Gold/Panels/Title C");
-    }
+    [SerializeField] private Sprite goldPanelSprite;
 
     /// <summary>
     /// 시작 시 QuestCompleted 이벤트를 연결하고 패널을 꺼둡니다.

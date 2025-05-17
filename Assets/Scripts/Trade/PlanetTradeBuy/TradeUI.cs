@@ -26,6 +26,11 @@ public class TradeUI : MonoBehaviour
 
     [SerializeField] private TradingItemDataBase itemDatabase;
 
+    /// <summary>
+    /// 플레이어의 재화(Coma)를 표시하는 텍스트 UI 요소입니다.
+    /// </summary>
+    [SerializeField] private TMP_Text playerComaText;
+
     #endregion
 
     #region System References
@@ -85,4 +90,6 @@ public class TradeUI : MonoBehaviour
     {
         Debug.Log("TradeUI: 상점 UI가 갱신되었습니다. 행성: " + data.planetCode);
     }
+
+
 }

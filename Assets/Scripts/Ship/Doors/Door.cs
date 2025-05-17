@@ -97,7 +97,7 @@ public class Door : MonoBehaviour
 
         if (level == null) return;
         spriteRenderer.sprite = level.doorSprite;
-        spriteRenderer.sortingOrder = SortingOrderConstants.Door;
+        spriteRenderer.sortingOrder = Constants.SortingOrders.Door;
 
         // 방향에 따른 회전 설정
         SetDoorRotation();

@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.UI;
 
 /// <summary>
 /// PlanetItemUI는 행성 상점(왼쪽 패널)에서 판매되는 각 아이템 슬롯을 관리합니다.
@@ -12,17 +14,42 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     #region UI References
 
     /// <summary>
+    /// 아이템 아이콘을 표시하는 Image 컴포넌트입니다.
+    /// </summary>
+    [SerializeField] private Image iconImage;
+
+    /// <summary>
+    /// 아이템 모양을 시각적으로 표시할 Image 컴포넌트입니다.
+    /// </summary>
+    [SerializeField] private Image itemShapeImage;
+
+    /// <summary>
+    /// 아이템 모양 관련 List 컴포넌트입니다.
+    /// </summary>
+    [SerializeField] private List<Sprite> itemShapeSprites;
+
+    /// <summary>
     /// 아이템 이름을 표시하는 TextMeshProUGUI 컴포넌트입니다.
     /// </summary>
-    [SerializeField] private TMP_Text itemNameText;
+    [SerializeField] private TextMeshProUGUI itemNameText;
+
+    /// <summary>
+    /// 아이템 종류를 표시하는 TextMeshProUGUI 컴포넌트입니다.
+    /// </summary>
+    [SerializeField] private TextMeshProUGUI categoryText;
+
+    /// <summary>
+    /// 아이템 최대 적재량을 표시하는 TextMeshProUGUI 컴포넌트입니다.
+    /// </summary>
+    [SerializeField] private TextMeshProUGUI capacityText;
 
     /// <summary>
     /// 아이템 가격을 표시하는 TextMeshProUGUI 컴포넌트입니다.
     /// </summary>
-    [SerializeField] private TMP_Text priceText;
+    [SerializeField] private TextMeshProUGUI priceText;
 
     /// <summary>
-    /// MiddlePanelUI를 Inspector에서 할당받습니다.
+    /// 행성 물품과 연동된 Panel 컴포넌트 입니다.
     /// </summary>
     [SerializeField] private MiddlePanelUI middlePanel;
 
@@ -62,11 +89,38 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     public void Setup(TradingItemData data)
     {
         itemData = data;
+
+        if (iconImage != null)
+            iconImage.sprite = itemData.itemSprite;
+
+        if (itemShapeImage != null && itemData != null)
+        {
+            int shapeIndex = (int)itemData.shape;
+
+            if (shapeIndex >= 0 && shapeIndex < itemShapeSprites.Count)
+            {
+                itemShapeImage.sprite = itemShapeSprites[shapeIndex];
+                itemShapeImage.enabled = true;
+            }
+            else
+            {
+                Debug.LogWarning($"PlanetItemUI: itemShape index {shapeIndex} is out of range for {itemData.itemName}");
+                itemShapeImage.enabled = false;
+            }
+        }
+
         if (itemNameText != null)
         {
-            itemNameText.text = itemData.itemName;
+            itemNameText.text = itemData.itemName.Localize();
             itemNameOriginalColor = itemNameText.color;
         }
+
+        if (categoryText != null)
+            categoryText.text = itemData.type.ToString();
+
+        if (capacityText != null)
+            capacityText.text = $"최대적재량 {itemData.capacity}";
+
         if (priceText != null)
         {
             priceText.text = itemData.costBase.ToString("F2");
@@ -93,26 +147,26 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         {
             TradeUIManager.Instance.OnBuyItemSelected();
         }
-
-        if (middlePanel == null)
+        if (_currentSelectedItem != null && _currentSelectedItem != this)
         {
-            middlePanel = Object.FindFirstObjectByType<MiddlePanelUI>();
+            _currentSelectedItem.SetSelected(false);
         }
 
-        if (middlePanel != null && itemData != null)
-        {
-            middlePanel.UpdatePlayerComa();
-            middlePanel.SetSelectedItem(itemData);
-        }
-
+        // 중복 선택 방지 처리
         if (_currentSelectedItem != null && _currentSelectedItem != this)
         {
             _currentSelectedItem.SetSelected(false);
         }
 
         SetSelected(true);
-        _currentlySelectedItemName = itemData.itemName;
+        _currentlySelectedItemName = itemData.itemName.Localize();
         _currentSelectedItem = this;
+
+        if (middlePanel != null)
+        {
+            middlePanel.gameObject.SetActive(true);
+            middlePanel.SetSelectedItem(itemData);
+        }
     }
 
     /// <summary>
@@ -157,6 +211,10 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     {
         if (itemNameText != null)
             itemNameText.color = color;
+        if (categoryText != null)
+            categoryText.color = color;
+        if (capacityText != null)
+            capacityText.color = color;
         if (priceText != null)
             priceText.color = color;
     }
@@ -168,6 +226,10 @@ public class PlanetItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     {
         if (itemNameText != null)
             itemNameText.color = itemNameOriginalColor;
+        if (categoryText != null)
+            categoryText.color = itemNameOriginalColor;
+        if (capacityText != null)
+            capacityText.color = itemNameOriginalColor;
         if (priceText != null)
             priceText.color = priceOriginalColor;
     }

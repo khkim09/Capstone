@@ -60,14 +60,12 @@ public class GridPlacer : MonoBehaviour
     public void GenerateTiles()
     {
         for (int x = 0; x < gridSize.x; x++)
+        for (int y = 0; y < gridSize.y; y++)
         {
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                Vector3 pos = GetWorldPositionFromGrid(new Vector2Int(x, y));
-                GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
-                tile.transform.localScale = Vector3.one * GridConstants.CELL_SIZE;
-                tile.transform.position += new Vector3(0, 0, 17);
-            }
+            Vector3 pos = GetWorldPositionFromGrid(new Vector2Int(x, y));
+            GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
+            tile.transform.localScale = Vector3.one * Constants.Grids.CellSize;
+            tile.transform.position += new Vector3(0, 0, 17);
         }
     }
 
@@ -78,8 +76,8 @@ public class GridPlacer : MonoBehaviour
     /// <returns>해당 위치의 월드 좌표.</returns>
     public Vector3 GridToWorldPosition(Vector2Int gridPos)
     {
-        return gridOrigin + new Vector3((gridPos.x + 0.5f) * GridConstants.CELL_SIZE,
-            (gridPos.y + 0.5f) * GridConstants.CELL_SIZE, 0f);
+        return gridOrigin + new Vector3((gridPos.x + 0.5f) * Constants.Grids.CellSize,
+            (gridPos.y + 0.5f) * Constants.Grids.CellSize, 0f);
     }
 
     /// <summary>
@@ -100,8 +98,8 @@ public class GridPlacer : MonoBehaviour
     public Vector2Int WorldToGridPosition(Vector2 worldPos)
     {
         Vector3 local = new Vector3(worldPos.x, worldPos.y, 0) - gridOrigin;
-        return new Vector2Int(Mathf.FloorToInt(local.x / GridConstants.CELL_SIZE),
-            Mathf.FloorToInt(local.y / GridConstants.CELL_SIZE));
+        return new Vector2Int(Mathf.FloorToInt(local.x / Constants.Grids.CellSize),
+            Mathf.FloorToInt(local.y / Constants.Grids.CellSize));
     }
 
     /// <summary>
@@ -243,7 +241,7 @@ public class GridPlacer : MonoBehaviour
         placeable.SetGridPosition(position);
         if (rotation != null && placeable is BlueprintRoom room)
         {
-            room.bpRotation = (RotationConstants.Rotation)rotation;
+            room.bpRotation = (Constants.Rotations.Rotation)rotation;
             room.bpRoomSize = RoomRotationUtility.GetRotatedSize(
                 room.bpRoomData.GetRoomDataByLevel(room.bpLevelIndex).size,
                 room.bpRotation
@@ -270,7 +268,7 @@ public class GridPlacer : MonoBehaviour
                 placeable.SetGridPosition(originalPos);
                 if (placeable is BlueprintRoom room3)
                 {
-                    room3.bpRotation = (RotationConstants.Rotation)originalRot;
+                    room3.bpRotation = (Constants.Rotations.Rotation)originalRot;
                     room3.bpRoomSize = RoomRotationUtility.GetRotatedSize(
                         room3.bpRoomData.GetRoomDataByLevel(room3.bpLevelIndex).size,
                         room3.bpRotation
@@ -294,7 +292,7 @@ public class GridPlacer : MonoBehaviour
                 placeable.SetGridPosition(originalPos);
                 if (placeable is BlueprintRoom room4)
                 {
-                    room4.bpRotation = (RotationConstants.Rotation)originalRot;
+                    room4.bpRotation = (Constants.Rotations.Rotation)originalRot;
                     room4.bpRoomSize = RoomRotationUtility.GetRotatedSize(
                         room4.bpRoomData.GetRoomDataByLevel(room4.bpLevelIndex).size,
                         room4.bpRotation
@@ -314,7 +312,7 @@ public class GridPlacer : MonoBehaviour
         placeable.SetGridPosition(originalPos);
         if (placeable is BlueprintRoom room5)
         {
-            room5.bpRotation = (RotationConstants.Rotation)originalRot;
+            room5.bpRotation = (Constants.Rotations.Rotation)originalRot;
             room5.bpRoomSize = RoomRotationUtility.GetRotatedSize(
                 room5.bpRoomData.GetRoomDataByLevel(room5.bpLevelIndex).size,
                 room5.bpRotation
@@ -333,7 +331,7 @@ public class GridPlacer : MonoBehaviour
     /// <summary>
     /// 해당 방을 현재 위치와 회전 상태로 배치 가능한지 검사 (이전 버전과의 호환성 유지)
     /// </summary>
-    public bool CanPlaceRoom(RoomData data, int level, Vector2Int position, RotationConstants.Rotation rotation)
+    public bool CanPlaceRoom(RoomData data, int level, Vector2Int position, Constants.Rotations.Rotation rotation)
     {
         RoomData.RoomLevel levelData = data.GetRoomDataByLevel(level);
         Vector2Int size = RoomRotationUtility.GetRotatedSize(levelData.size, rotation);
@@ -359,7 +357,7 @@ public class GridPlacer : MonoBehaviour
     public bool CanPlaceWeapon(ShipWeaponData data, Vector2Int position, ShipWeaponAttachedDirection direction)
     {
         List<Vector2Int> tilesToOccupy = RoomRotationUtility.GetOccupiedGridPositions(position, new Vector2Int(2, 1),
-            RotationConstants.Rotation.Rotation0);
+            Constants.Rotations.Rotation.Rotation0);
 
         // 그리드 범위 벗어나는지 체크
         foreach (Vector2Int tile in tilesToOccupy)
@@ -377,7 +375,7 @@ public class GridPlacer : MonoBehaviour
     /// <summary>
     /// 실제 방을 해당 위치에 배치함
     /// </summary>
-    public void PlaceRoom(RoomData data, int level, Vector2Int position, RotationConstants.Rotation rotation)
+    public void PlaceRoom(RoomData data, int level, Vector2Int position, Constants.Rotations.Rotation rotation)
     {
         Vector2Int size = RoomRotationUtility.GetRotatedSize(data.GetRoomDataByLevel(level).size, rotation);
         Vector2 offset = RoomRotationUtility.GetRotationOffset(size, rotation);
@@ -408,7 +406,7 @@ public class GridPlacer : MonoBehaviour
             return null;
 
         Vector2Int size = new(2, 1);
-        Vector2 offset = RoomRotationUtility.GetRotationOffset(size, RotationConstants.Rotation.Rotation0);
+        Vector2 offset = RoomRotationUtility.GetRotationOffset(size, Constants.Rotations.Rotation.Rotation0);
         Vector3 worldPos = GetWorldPositionFromGrid(position) + (Vector3)offset;
 
         GameObject bpWeaponGO = Instantiate(weaponPrefab, targetBlueprintShip.transform);

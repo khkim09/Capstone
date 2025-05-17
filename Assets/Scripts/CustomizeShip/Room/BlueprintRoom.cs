@@ -15,7 +15,7 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
     public int bpLevelIndex;
 
     /// <summary>회전 각</summary>
-    public RotationConstants.Rotation bpRotation;
+    public Constants.Rotations.Rotation bpRotation;
 
     /// <summary>배치 위치</summary>
     public Vector2Int bpPosition;
@@ -64,7 +64,7 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
     /// <summary>
     /// 이동 전 방 회전각
     /// </summary>
-    private RotationConstants.Rotation originalRot;
+    private Constants.Rotations.Rotation originalRot;
 
     /// <summary>
     /// 그리드 타일 배치 작업을 위한 오브젝트
@@ -111,7 +111,7 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
                 return;
 
             if (hit.collider != null && hit.collider.gameObject == gameObject)
-                Rotate((RotationConstants.Rotation)(((int)bpRotation + 1) % 4));
+                Rotate((Constants.Rotations.Rotation)(((int)bpRotation + 1) % 4));
         }
 
         // 드래그 시작 (좌클릭)
@@ -228,7 +228,7 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
     /// <summary>
     /// 설치 시 초기화
     /// </summary>
-    public void Initialize(RoomData data, int level, Vector2Int pos, RotationConstants.Rotation rot)
+    public void Initialize(RoomData data, int level, Vector2Int pos, Constants.Rotations.Rotation rot)
     {
         occupiedTiles.Clear();
 
@@ -271,7 +271,7 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
     /// <summary>
     /// 오브젝트 회전
     /// </summary>
-    public void Rotate(RotationConstants.Rotation rotation)
+    public void Rotate(Constants.Rotations.Rotation rotation)
     {
         bpRotation = rotation;
         bpRoomSize = RoomRotationUtility.GetRotatedSize(levelData.size, bpRotation);

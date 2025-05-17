@@ -106,8 +106,8 @@ public class BlueprintWeaponDragHandler : MonoBehaviour
         Vector2Int gridPos = gridPlacer.WorldToGridPosition(mouseWorld);
         Vector3 basePos = gridPlacer.GetWorldPositionFromGrid(gridPos);
 
-        Vector2Int size = new Vector2Int(2, 1);
-        Vector2 offset = RoomRotationUtility.GetRotationOffset(size, RotationConstants.Rotation.Rotation0);
+        Vector2Int size = new(2, 1);
+        Vector2 offset = RoomRotationUtility.GetRotationOffset(size, Constants.Rotations.Rotation.Rotation0);
 
         // 무기는 회전이 없으므로 단순히 위치만 업데이트
         previewGO.transform.position = basePos + (Vector3)offset;

@@ -39,8 +39,6 @@ public class AudioManager : MonoBehaviour
         // AudioMixer에 적용
         SetBGMVolume(bgmVolume);
         SetSFXVolume(sfxVolume);
-
-        Debug.Log($"Audio Manager: 볼륨 설정 로드 - BGM: {bgmVolume}, SFX: {sfxVolume}");
     }
 
     // BGM 볼륨 설정 (AudioMixer에만 적용)

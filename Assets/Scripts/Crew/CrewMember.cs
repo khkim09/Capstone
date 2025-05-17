@@ -69,6 +69,50 @@ public class CrewMember : CrewBase
     }
 
     /// <summary>
+    /// Scriptable Object로 수정 필요!!
+    /// </summary>
+    public void Start()
+    {
+        base.Start();
+
+        switch (race)
+        {
+            case CrewRace.Amorphous:
+                attackBeforeDelay = 0.7f;
+                attackBeforeDelay = 0.4f;
+                repairBeforeDelay = 0.572f;
+                repairAfterDelay = 0.428f;
+                break;
+            case CrewRace.Beast:
+                attackBeforeDelay = 0.4f;
+                attackAfterDelay = 0.3f;
+                repairBeforeDelay = 0.5f;
+                repairAfterDelay = 0.5f;
+                break;
+            case CrewRace.Human:
+                attackBeforeDelay = 0.7f;
+                attackAfterDelay = 0.4f;
+                repairBeforeDelay = 0.375f;
+                repairAfterDelay = 0.625f;
+                break;
+            case CrewRace.Insect:
+                attackBeforeDelay = 0.6f;
+                attackAfterDelay = 0.4f;
+                repairBeforeDelay = 0.6f;
+                repairAfterDelay = 0.4f;
+                break;
+            case CrewRace.MechanicSup:
+                repairBeforeDelay = 0.4f;
+                repairAfterDelay = 0.6f;
+                break;
+            case CrewRace.MechanicTank:
+                attackBeforeDelay = 0.4f;
+                attackAfterDelay = 0.2f;
+                break;
+        }
+    }
+
+    /// <summary>
     /// 현재 선원의 모든 스킬 값을 계산하여 반환합니다.
     /// 기본 숙련도, 장비 보너스, 사기 보너스를 포함합니다.
     /// </summary>
@@ -407,9 +451,9 @@ public class CrewMember : CrewBase
         {
             animator.SetTrigger("idle");
         }
-        else if(trigger.Equals("tp_out"))
+        else if (trigger.Equals("tp_out"))
             animator.SetTrigger("tp_out");
-        else if(trigger.Equals("tp_in"))
+        else if (trigger.Equals("tp_in"))
             animator.SetTrigger("tp_in");
     }
 
@@ -975,50 +1019,6 @@ public class CrewMember : CrewBase
     {
         // 유저 함선에 텔포한 적일 경우 : isPlayerControlled = false, currentShip.isPlayerShip = true
         return isPlayerControlled == currentShip.isPlayerShip ? true : false;
-    }
-
-    /// <summary>
-    /// Scriptable Object로 수정 필요!!
-    /// </summary>
-    public void Start()
-    {
-        base.Start();
-
-        switch (race)
-        {
-            case CrewRace.Amorphous:
-                attackBeforeDelay = 0.7f;
-                attackBeforeDelay = 0.4f;
-                repairBeforeDelay = 0.572f;
-                repairAfterDelay = 0.428f;
-                break;
-            case CrewRace.Beast:
-                attackBeforeDelay = 0.4f;
-                attackAfterDelay = 0.3f;
-                repairBeforeDelay = 0.5f;
-                repairAfterDelay = 0.5f;
-                break;
-            case CrewRace.Human:
-                attackBeforeDelay = 0.7f;
-                attackAfterDelay = 0.4f;
-                repairBeforeDelay = 0.375f;
-                repairAfterDelay = 0.625f;
-                break;
-            case CrewRace.Insect:
-                attackBeforeDelay = 0.6f;
-                attackAfterDelay = 0.4f;
-                repairBeforeDelay = 0.6f;
-                repairAfterDelay = 0.4f;
-                break;
-            case CrewRace.MechanicSup:
-                repairBeforeDelay = 0.4f;
-                repairAfterDelay = 0.6f;
-                break;
-            case CrewRace.MechanicTank:
-                attackBeforeDelay = 0.4f;
-                attackAfterDelay = 0.2f;
-                break;
-        }
     }
 
     #region 텔레포트

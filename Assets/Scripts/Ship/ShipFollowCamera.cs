@@ -106,8 +106,8 @@ public class ShipFollowCamera : MonoBehaviour
         );
 
         // 함선 크기 계산 (최대 타일 - 최소 타일 + 1 타일) * 타일 크기
-        shipWidth = (maxTile.x - minTile.x + 1) * GridConstants.CELL_SIZE;
-        shipHeight = (maxTile.y - minTile.y + 1) * GridConstants.CELL_SIZE;
+        shipWidth = (maxTile.x - minTile.x + 1) * Constants.Grids.CellSize;
+        shipHeight = (maxTile.y - minTile.y + 1) * Constants.Grids.CellSize;
 
         DebugLog($"타일 범위 - X: {minTile.x}~{maxTile.x}, Y: {minTile.y}~{maxTile.y}");
         DebugLog($"월드 좌표 - 최소: {minWorldPos}, 최대: {maxWorldPos}");

@@ -97,11 +97,6 @@ public class EquipmentUIHandler : MonoBehaviour
     public HashSet<EquipmentItem> purchasedItems = new();
 
     /// <summary>
-    /// 아직 선원에게 적용시키지 않은 장비 목록
-    /// </summary>
-    public HashSet<EquipmentItem> unUsedItems = new();
-
-    /// <summary>
     /// 장비 착용할 선택된 선원
     /// </summary>
     public CrewMember selectedCrew = null;
@@ -287,7 +282,7 @@ public class EquipmentUIHandler : MonoBehaviour
 
         // 구매 처리
         currentCurrency -= currentSelectedItem.eqPrice;
-        unUsedItems.Add(currentSelectedItem);
+        playerShip.unUsedItems.Add(currentSelectedItem);
 
         // 보유 전체 아이템 리스트 삭제 예정
         purchasedItems.Add(currentSelectedItem);
@@ -378,7 +373,7 @@ public class EquipmentUIHandler : MonoBehaviour
         foreach (Transform child in equipmentContent)
             Destroy(child.gameObject);
 
-        foreach (EquipmentItem eqItem in unUsedItems)
+        foreach (EquipmentItem eqItem in playerShip.unUsedItems)
         {
             GameObject eqObj = Instantiate(equipmentIconPrefab, equipmentContent);
             EquipmentIconButton icon = eqObj.GetComponent<EquipmentIconButton>();
@@ -603,12 +598,12 @@ public class EquipmentUIHandler : MonoBehaviour
             EquipmentItem removed = GetCurrentEquippedByType(pendingEquipType);
 
             if (removed != null && !removed.isGlobalEquip && removed != EquipmentManager.Instance.defaultAssistant)
-                unUsedItems.Add(removed);
+                playerShip.unUsedItems.Add(removed);
         }
         else
         {
             if (pendingEquipItem != EquipmentManager.Instance.defaultAssistant && !pendingEquipItem.isGlobalEquip)
-                unUsedItems.Remove(pendingEquipItem);
+                playerShip.unUsedItems.Remove(pendingEquipItem);
         }
 
         // 실제 적용

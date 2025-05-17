@@ -39,7 +39,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [HideInInspector] protected List<Door> connectedDoors = new();
 
     /// <summary>방의 현재 회전 값</summary>
-    [SerializeField] public RotationConstants.Rotation currentRotation;
+    [SerializeField] public Constants.Rotations.Rotation currentRotation;
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
     [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
@@ -136,19 +136,19 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         // 회전각 별 타일 우선순위 적용
         switch (currentRotation)
         {
-            case RotationConstants.Rotation.Rotation0:
+            case Constants.Rotations.Rotation.Rotation0:
                 foreach (Vector2Int tile in levelData.crewEntryGridPriority)
                     result.Add(position + tile);
                 break;
-            case RotationConstants.Rotation.Rotation90:
+            case Constants.Rotations.Rotation.Rotation90:
                 foreach (Vector2Int tile in levelData.crewEntryGridPriority)
                     result.Add(position + new Vector2Int(tile.y, -tile.x));
                 break;
-            case RotationConstants.Rotation.Rotation180:
+            case Constants.Rotations.Rotation.Rotation180:
                 foreach (Vector2Int tile in levelData.crewEntryGridPriority)
                     result.Add(position + new Vector2Int(-tile.x, -tile.y));
                 break;
-            case RotationConstants.Rotation.Rotation270:
+            case Constants.Rotations.Rotation.Rotation270:
                 foreach (Vector2Int tile in levelData.crewEntryGridPriority)
                     result.Add(position + new Vector2Int(-tile.y, tile.x));
                 break;
@@ -290,7 +290,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         roomRenderer = gameObject.AddComponent<SpriteRenderer>();
         gridSize = roomData.GetRoomDataByLevel(level).size;
         roomType = GetRoomData().GetRoomType();
-        roomRenderer.sortingOrder = SortingOrderConstants.Room;
+        roomRenderer.sortingOrder = Constants.SortingOrders.Room;
 
         // 부모 Ship 컴포넌트 찾기
         parentShip = GetComponentInParent<Ship>();
@@ -455,7 +455,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         Vector2Int originalSize = GetSize();
 
         // 회전 상태 업데이트
-        currentRotation = (RotationConstants.Rotation)(((int)currentRotation + rotationSteps) % 4);
+        currentRotation = (Constants.Rotations.Rotation)(((int)currentRotation + rotationSteps) % 4);
 
         // 방 오브젝트 회전
         transform.rotation = Quaternion.Euler(0, 0, -(int)currentRotation * 90f);
@@ -576,7 +576,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
         icon.GetComponent<SpriteRenderer>().sprite =
             Resources.Load<Sprite>($"Sprites/UI/Room Icons/{color}/{roomType.ToString().ToLower()}_{color}");
-        icon.GetComponent<SpriteRenderer>().sortingOrder = SortingOrderConstants.RoomIcon;
+        icon.GetComponent<SpriteRenderer>().sortingOrder = Constants.SortingOrders.RoomIcon;
     }
 
     #region 수리
@@ -611,7 +611,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             damageCondition = DamageLevel.breakdown;
             OnDisabled();
         }
-        else if (currentHitPoints <= roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+        else if (currentHitPoints <=
+                 roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
         {
             damageCondition = DamageLevel.scratch;
         }

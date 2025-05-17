@@ -15,7 +15,7 @@ public interface IGridPlaceable
     /// 오브젝트 회전
     /// </summary>
     /// <param name="rotation">새 회전 상태</param>
-    void Rotate(RotationConstants.Rotation rotation);
+    void Rotate(Constants.Rotations.Rotation rotation);
 
     /// <summary>
     /// 현재 회전 상태

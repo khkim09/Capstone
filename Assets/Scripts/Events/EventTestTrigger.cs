@@ -8,22 +8,22 @@ using System.IO;
 /// </summary>
 public class EventTestTrigger : MonoBehaviour
 {
-    [Header("이벤트 매니저 참조")]
-    [SerializeField] private EventManager eventManager;
+    [Header("이벤트 매니저 참조")] [SerializeField]
+    private EventManager eventManager;
 
-    [Header("게임 상태 변수 (테스트용)")]
-    [SerializeField] private int testYear = 2150;
+    [Header("게임 상태 변수 (테스트용)")] [SerializeField]
+    private int testYear = 2150;
+
     [SerializeField] private int testCOMA = 50;
     [SerializeField] private float testFuel = 100f;
     [SerializeField] private bool useRealGameState = true;
 
-    [Header("테스트 옵션")]
-    [SerializeField] private bool logEventDetails = true;
-    [Tooltip("특정 ID 이벤트만 테스트하려면 값 입력 (0 = 랜덤)")]
-    [SerializeField] private int specificEventId = 0;
+    [Header("테스트 옵션")] [SerializeField] private bool logEventDetails = true;
 
-    [Header("텍스트 검사 설정")]
-    [SerializeField] private string exportFilePath = "EventTexts";
+    [Tooltip("특정 ID 이벤트만 테스트하려면 값 입력 (0 = 랜덤)")] [SerializeField]
+    private int specificEventId = 0;
+
+    [Header("텍스트 검사 설정")] [SerializeField] private string exportFilePath = "EventTexts";
     [SerializeField] private bool appendDateToFileName = true;
     [SerializeField] private bool exportAsCSV = true;
 
@@ -160,6 +160,7 @@ public class EventTestTrigger : MonoBehaviour
             {
                 Debug.LogWarning($"ID {specificEventId}의 이벤트를 찾을 수 없습니다.");
             }
+
             return;
         }
 
@@ -191,35 +192,26 @@ public class EventTestTrigger : MonoBehaviour
         float fuel = useRealGameState ? ResourceManager.Instance.Fuel : testFuel;
 
         // 사용 가능한 크루 종족 가져오기
-        System.Collections.Generic.List<CrewRace> availableRaces;
+        List<CrewRace> availableRaces;
 
         if (useRealGameState)
         {
-            availableRaces = new System.Collections.Generic.List<CrewRace>();
-            var allCrew = GameManager.Instance.GetPlayerShip().GetAllCrew();
+            availableRaces = new List<CrewRace>();
+            List<CrewMember> allCrew = GameManager.Instance.GetPlayerShip().GetAllCrew();
 
-            foreach (var crewMember in allCrew)
-            {
+            foreach (CrewMember crewMember in allCrew)
                 if (crewMember.race != CrewRace.None && !availableRaces.Contains(crewMember.race))
-                {
                     availableRaces.Add(crewMember.race);
-                }
-            }
         }
         else
         {
             // 테스트용 기본 종족 설정
-            availableRaces = new System.Collections.Generic.List<CrewRace>
-            {
-                CrewRace.Human,
-                CrewRace.Amorphous,
-                CrewRace.MechanicSup
-            };
+            availableRaces = new List<CrewRace> { CrewRace.Human, CrewRace.Amorphous, CrewRace.MechanicSup };
         }
 
 
-            // EventDatabase를 통해 조건에 맞는 이벤트 찾기
-            System.Collections.Generic.List<RandomEvent> filteredEvents = EventManager.Instance.ShipEvents;
+        // EventDatabase를 통해 조건에 맞는 이벤트 찾기
+        List<RandomEvent> filteredEvents = EventManager.Instance.PlanetEvents;
 
         if (filteredEvents.Count == 0)
             return null;
@@ -260,10 +252,8 @@ public class EventTestTrigger : MonoBehaviour
     {
         Debug.Log($"===== 모든 이벤트 목록 ({eventManager.AllEvents.Count}개) =====");
 
-        foreach (var evt in eventManager.AllEvents)
-        {
+        foreach (RandomEvent evt in eventManager.AllEvents)
             Debug.Log($"ID: {evt.eventId}, 이름: {evt.debugName}, 타입: {evt.eventType}");
-        }
     }
 
     /// <summary>
@@ -279,19 +269,17 @@ public class EventTestTrigger : MonoBehaviour
         Debug.Log($"기준: 년도 {year}, COMA {coma}, 연료 {fuel}");
 
         int count = 0;
-        foreach (var evt in eventManager.AllEvents)
-        {
+        foreach (RandomEvent evt in eventManager.AllEvents)
             if (evt.minimumYear <= year && evt.minimumCOMA <= coma && evt.minimumFuel <= fuel)
             {
                 Debug.Log($"ID: {evt.eventId}, 이름: {evt.debugName}, 타입: {evt.eventType}");
                 count++;
             }
-        }
 
         Debug.Log($"총 {count}개 이벤트 발생 가능");
     }
 
-     /// <summary>
+    /// <summary>
     /// 모든 이벤트의 텍스트를 검사하고 파일로 내보냅니다.
     /// </summary>
     public void ExportAllEventTexts()
@@ -302,7 +290,7 @@ public class EventTestTrigger : MonoBehaviour
             return;
         }
 
-        var allEvents = eventManager.AllEvents;
+        List<RandomEvent> allEvents = eventManager.AllEvents;
         if (allEvents == null || allEvents.Count == 0)
         {
             Debug.LogWarning("이벤트가 없거나 로드되지 않았습니다!");
@@ -310,10 +298,7 @@ public class EventTestTrigger : MonoBehaviour
         }
 
         string filePath = exportFilePath;
-        if (appendDateToFileName)
-        {
-            filePath += "_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss");
-        }
+        if (appendDateToFileName) filePath += "_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss");
 
         filePath = Path.Combine(Application.persistentDataPath, filePath);
 
@@ -331,15 +316,15 @@ public class EventTestTrigger : MonoBehaviour
         Debug.Log($"이벤트 텍스트 내보내기 완료: {filePath}");
 
         // 파일 경로를 클립보드에 복사 (선택 사항)
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorGUIUtility.systemCopyBuffer = filePath;
         Debug.Log("파일 경로가 클립보드에 복사되었습니다.");
-        #endif
+#endif
 
         // 파일 탐색기로 열기 (Windows만 해당)
-        #if UNITY_EDITOR && UNITY_STANDALONE_WIN
+#if UNITY_EDITOR && UNITY_STANDALONE_WIN
         System.Diagnostics.Process.Start("explorer.exe", "/select," + filePath.Replace('/', '\\'));
-        #endif
+#endif
     }
 
     /// <summary>
@@ -347,12 +332,13 @@ public class EventTestTrigger : MonoBehaviour
     /// </summary>
     private void ExportEventTextsAsCSV(List<RandomEvent> events, string filePath)
     {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new();
 
         // CSV 헤더
-        sb.AppendLine("EventID,EventType,DebugName,EventTitle,EventDescription,ChoiceIndex,ChoiceText,OutcomeIndex,OutcomeText,Probability");
+        sb.AppendLine(
+            "EventID,EventType,DebugName,EventTitle,EventDescription,ChoiceIndex,ChoiceText,OutcomeIndex,OutcomeText,Probability");
 
-        foreach (var evt in events)
+        foreach (RandomEvent evt in events)
         {
             if (evt == null) continue;
 
@@ -361,20 +347,21 @@ public class EventTestTrigger : MonoBehaviour
 
             for (int choiceIndex = 0; choiceIndex < evt.choices.Count; choiceIndex++)
             {
-                var choice = evt.choices[choiceIndex];
+                EventChoice choice = evt.choices[choiceIndex];
                 if (choice == null) continue;
 
                 string escapedChoiceText = EscapeCSVField(choice.choiceText.Localize());
 
                 for (int outcomeIndex = 0; outcomeIndex < choice.possibleOutcomes.Count; outcomeIndex++)
                 {
-                    var outcome = choice.possibleOutcomes[outcomeIndex];
+                    EventOutcome outcome = choice.possibleOutcomes[outcomeIndex];
                     if (outcome == null) continue;
 
                     string escapedOutcomeText = EscapeCSVField(outcome.outcomeText.Localize());
 
                     // 한 행 추가
-                    sb.AppendLine($"{evt.eventId},{evt.eventType},{evt.debugName},{escapedTitle},{escapedDesc},{choiceIndex+1},{escapedChoiceText},{outcomeIndex+1},{escapedOutcomeText},{outcome.probability}");
+                    sb.AppendLine(
+                        $"{evt.eventId},{evt.eventType},{evt.debugName},{escapedTitle},{escapedDesc},{choiceIndex + 1},{escapedChoiceText},{outcomeIndex + 1},{escapedOutcomeText},{outcome.probability}");
                 }
             }
         }
@@ -394,9 +381,7 @@ public class EventTestTrigger : MonoBehaviour
 
         // 쉼표, 줄바꿈 또는 따옴표가 포함된 경우 전체를 따옴표로 묶음
         if (field.Contains(",") || field.Contains("\n") || field.Contains("\"") || field.Contains("\r"))
-        {
             field = $"\"{field}\"";
-        }
 
         return field;
     }
@@ -406,14 +391,14 @@ public class EventTestTrigger : MonoBehaviour
     /// </summary>
     private void ExportEventTextsAsTXT(List<RandomEvent> events, string filePath)
     {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new();
 
         sb.AppendLine("===== 이벤트 텍스트 내보내기 =====");
         sb.AppendLine($"전체 이벤트 수: {events.Count}");
         sb.AppendLine($"내보내기 날짜: {System.DateTime.Now:yyyy-MM-dd HH:mm:ss}");
         sb.AppendLine("================================\n");
 
-        foreach (var evt in events)
+        foreach (RandomEvent evt in events)
         {
             if (evt == null) continue;
 
@@ -423,17 +408,17 @@ public class EventTestTrigger : MonoBehaviour
 
             for (int choiceIndex = 0; choiceIndex < evt.choices.Count; choiceIndex++)
             {
-                var choice = evt.choices[choiceIndex];
+                EventChoice choice = evt.choices[choiceIndex];
                 if (choice == null) continue;
 
-                sb.AppendLine($"  선택지 {choiceIndex+1}: {choice.choiceText}");
+                sb.AppendLine($"  선택지 {choiceIndex + 1}: {choice.choiceText}");
 
                 for (int outcomeIndex = 0; outcomeIndex < choice.possibleOutcomes.Count; outcomeIndex++)
                 {
-                    var outcome = choice.possibleOutcomes[outcomeIndex];
+                    EventOutcome outcome = choice.possibleOutcomes[outcomeIndex];
                     if (outcome == null) continue;
 
-                    sb.AppendLine($"    결과 {outcomeIndex+1} (확률: {outcome.probability}%): {outcome.outcomeText}");
+                    sb.AppendLine($"    결과 {outcomeIndex + 1} (확률: {outcome.probability}%): {outcome.outcomeText}");
                 }
             }
 
@@ -453,7 +438,7 @@ public class EventTestTrigger : MonoBehaviour
         Debug.Log($"'{prefix}'로 시작하는 텍스트 키를 가진 이벤트 검색 중...");
 
         int count = 0;
-        foreach (var evt in eventManager.AllEvents)
+        foreach (RandomEvent evt in eventManager.AllEvents)
         {
             if (evt == null) continue;
 
@@ -474,7 +459,7 @@ public class EventTestTrigger : MonoBehaviour
             }
 
             // 선택지와 결과 확인
-            foreach (var choice in evt.choices)
+            foreach (EventChoice choice in evt.choices)
             {
                 if (choice == null) continue;
 
@@ -484,7 +469,7 @@ public class EventTestTrigger : MonoBehaviour
                     matched = true;
                 }
 
-                foreach (var outcome in choice.possibleOutcomes)
+                foreach (EventOutcome outcome in choice.possibleOutcomes)
                 {
                     if (outcome == null) continue;
 
@@ -512,7 +497,7 @@ public class EventTestTrigger : MonoBehaviour
         Debug.Log("모든 이벤트 텍스트 키 유효성 검사 중...");
 
         int errorCount = 0;
-        foreach (var evt in eventManager.AllEvents)
+        foreach (RandomEvent evt in eventManager.AllEvents)
         {
             if (evt == null) continue;
 
@@ -522,7 +507,8 @@ public class EventTestTrigger : MonoBehaviour
             string expectedTitleKey = $"event.name.{eventId}";
             if (evt.eventTitle != expectedTitleKey)
             {
-                Debug.LogError($"이벤트 ID {eventId} ({evt.debugName}) 제목 키 오류: 예상 '{expectedTitleKey}', 실제 '{evt.eventTitle}'");
+                Debug.LogError(
+                    $"이벤트 ID {eventId} ({evt.debugName}) 제목 키 오류: 예상 '{expectedTitleKey}', 실제 '{evt.eventTitle}'");
                 errorCount++;
             }
 
@@ -530,32 +516,35 @@ public class EventTestTrigger : MonoBehaviour
             string expectedDescKey = $"event.description.{eventId}";
             if (evt.eventDescription != expectedDescKey)
             {
-                Debug.LogError($"이벤트 ID {eventId} ({evt.debugName}) 설명 키 오류: 예상 '{expectedDescKey}', 실제 '{evt.eventDescription}'");
+                Debug.LogError(
+                    $"이벤트 ID {eventId} ({evt.debugName}) 설명 키 오류: 예상 '{expectedDescKey}', 실제 '{evt.eventDescription}'");
                 errorCount++;
             }
 
             // 선택지와 결과 검사
             for (int choiceIndex = 0; choiceIndex < evt.choices.Count; choiceIndex++)
             {
-                var choice = evt.choices[choiceIndex];
+                EventChoice choice = evt.choices[choiceIndex];
                 if (choice == null) continue;
 
                 string expectedChoiceKey = $"event.choice.{eventId}.{choiceIndex + 1}";
                 if (choice.choiceText != expectedChoiceKey)
                 {
-                    Debug.LogError($"이벤트 ID {eventId} ({evt.debugName}) 선택지 {choiceIndex + 1} 키 오류: 예상 '{expectedChoiceKey}', 실제 '{choice.choiceText}'");
+                    Debug.LogError(
+                        $"이벤트 ID {eventId} ({evt.debugName}) 선택지 {choiceIndex + 1} 키 오류: 예상 '{expectedChoiceKey}', 실제 '{choice.choiceText}'");
                     errorCount++;
                 }
 
                 for (int outcomeIndex = 0; outcomeIndex < choice.possibleOutcomes.Count; outcomeIndex++)
                 {
-                    var outcome = choice.possibleOutcomes[outcomeIndex];
+                    EventOutcome outcome = choice.possibleOutcomes[outcomeIndex];
                     if (outcome == null) continue;
 
                     string expectedOutcomeKey = $"event.result.{eventId}.{choiceIndex + 1}.{outcomeIndex + 1}";
                     if (outcome.outcomeText != expectedOutcomeKey)
                     {
-                        Debug.LogError($"이벤트 ID {eventId} ({evt.debugName}) 선택지 {choiceIndex + 1} 결과 {outcomeIndex + 1} 키 오류: 예상 '{expectedOutcomeKey}', 실제 '{outcome.outcomeText}'");
+                        Debug.LogError(
+                            $"이벤트 ID {eventId} ({evt.debugName}) 선택지 {choiceIndex + 1} 결과 {outcomeIndex + 1} 키 오류: 예상 '{expectedOutcomeKey}', 실제 '{outcome.outcomeText}'");
                         errorCount++;
                     }
                 }
@@ -563,12 +552,8 @@ public class EventTestTrigger : MonoBehaviour
         }
 
         if (errorCount == 0)
-        {
             Debug.Log("모든 이벤트 텍스트 키가 유효합니다!");
-        }
         else
-        {
             Debug.LogWarning($"총 {errorCount}개의 텍스트 키 오류가 발견되었습니다.");
-        }
     }
 }

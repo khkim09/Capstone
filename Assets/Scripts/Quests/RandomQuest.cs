@@ -39,4 +39,20 @@ public class RandomQuest : ScriptableObject
     {
         status = QuestStatus.NotStarted;
     }
+
+    /// <summary>
+    /// 완료 준비 상태인지 판별합니다.
+    /// 모든 목표가 완료된 활성 퀘스트만 true를 반환합니다.
+    /// </summary>
+    public bool IsQuestCompleteReady()
+    {
+        if (status != QuestStatus.Active)
+            return false;
+
+        foreach (QuestObjective obj in objectives)
+            if (!obj.isCompleted)
+                return false;
+
+        return true;
+    }
 }
