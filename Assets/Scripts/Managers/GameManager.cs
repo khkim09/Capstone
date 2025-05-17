@@ -107,7 +107,10 @@ public class GameManager : MonoBehaviour
         playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
         playerShip.Initialize();
 
+        //함선 생성용
         //DeleteGameData();
+
+
         LoadGameData();
 
         if (playerShip != null)

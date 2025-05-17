@@ -250,13 +250,11 @@ public class TradeUIManager : MonoBehaviour
         // MiddlePanel UI 갱신
         MiddlePanelUI middlePanel =  Object.FindFirstObjectByType<MiddlePanelUI>();
         InventoryItemUI selected = InventoryItemUI.GetCurrentSelectedItem();
-        if (middlePanel != null && selected != null && selected.GetStoredItem() != null)
+        if (middlePanel != null && selected != null && selected.GetItemData() != null)
         {
             middlePanel.gameObject.SetActive(true);
             middlePanel.UpdatePlayerComa();
-
-            if (selected != null && selected.GetStoredItem() != null)
-                middlePanel.SetSelectedItem(selected.GetStoredItem().itemData);
+            middlePanel.SetSelectedItem(selected.GetItemData());
         }
 
     }
