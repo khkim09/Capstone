@@ -10,6 +10,11 @@ using Random = UnityEngine.Random;
 public class PlanetData
 {
     /// <summary>
+    /// 행성 고유 ID
+    /// </summary>
+    public int planetId;
+
+    /// <summary>
     /// 행성 이름
     /// </summary>
     public string planetName;
@@ -89,12 +94,14 @@ public class PlanetData
             int index = GameManager.Instance.PlanetDataList.Count;
             planetRace = allRaces[index];
             itemPlanet = (ItemPlanet)index;
+            planetId = index;
         }
         else
         {
             int index = Random.Range(0, allRaces.Length);
             planetRace = allRaces[index];
             itemPlanet = (ItemPlanet)index;
+            planetId = GameManager.Instance.PlanetDataList.Count;
         }
 
         SetRandomName();

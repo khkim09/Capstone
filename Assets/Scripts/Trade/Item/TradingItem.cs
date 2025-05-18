@@ -47,8 +47,8 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     private bool priceInitialized = false;
 
     // 드래그 관련 변수
-    private bool isDragging = false;
-    private bool isDragMode = false; // 드래그 모드 여부 (프리뷰 사용 중일 때)
+    public bool isDragging = false;
+    public bool isDragMode = false; // 드래그 모드 여부 (프리뷰 사용 중일 때)
 
     private void Start()
     {
@@ -61,10 +61,10 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         string boxName = $"lot{itemData.shape}";
         boxSprites = Resources.LoadAll<Sprite>($"Sprites/Item/{boxName}");
 
-        rotation = Constants.Rotations.Rotation.Rotation0;
+        // rotation = Constants.Rotations.Rotation.Rotation0;
 
-        boxRenderer.sprite = boxSprites[(int)rotation];
-        boxGrid = ItemShape.Instance.itemShapes[itemData.shape][(int)rotation];
+        Rotate(rotation);
+
         boxRenderer.sortingOrder = Constants.SortingOrders.TradingItemBox;
 
         frameRenderer.sortingOrder = Constants.SortingOrders.TradingItemFrame;
@@ -78,7 +78,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         amount = quantity;
         Math.Clamp(amount, 0, data.capacity);
         amount = 1; // 테스트용 하나
-        // TODO: 만약 최대치보다 많으면 생성을 못하게 하거나, 두 개 생성해서 나눠야함
 
 
         if (transform.parent != null) parentStorage = transform.parent.GetComponent<StorageRoomBase>();

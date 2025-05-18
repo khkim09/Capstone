@@ -47,6 +47,7 @@ public class SceneChanger : MonoBehaviour
         IsTransitioning = true;
         SetInputBlocking(true);
 
+        DontDestroyOnLoad(GameManager.Instance.playerShip);
 
         yield return StartCoroutine(Fade(1)); // 페이드 아웃
         yield return SceneManager.LoadSceneAsync(sceneName);
@@ -54,7 +55,8 @@ public class SceneChanger : MonoBehaviour
         // 씬 로드 후 fadeImage가 확실히 검은색(알파 1)로 설정되어 있는지 확인
         fadeImage.color = new Color(0, 0, 0, 1);
 
-        SceneManager.MoveGameObjectToScene(GameManager.Instance.playerShip.gameObject, SceneManager.GetSceneByName("Idle"));
+        SceneManager.MoveGameObjectToScene(GameManager.Instance.playerShip.gameObject,
+            SceneManager.GetActiveScene());
         GameObject.Find("Main Camera").GetComponent<ShipFollowCamera>().targetShip =
             GameManager.Instance.playerShip;
 

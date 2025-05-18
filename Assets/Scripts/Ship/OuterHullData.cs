@@ -7,6 +7,7 @@ using UnityEngine;
 /// 레벨별 이름, 비용, 피해 감소 수치, 스프라이트 등을 포함합니다.
 /// </summary>
 [CreateAssetMenu(fileName = "OuterHullData", menuName = "OuterHullData/OuterHull Data")]
+[Serializable]
 public class OuterHullData : ScriptableObject
 {
     /// <summary>
