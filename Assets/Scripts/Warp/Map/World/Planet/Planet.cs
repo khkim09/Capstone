@@ -80,6 +80,7 @@ public class Planet : TooltipPanelBase
             planetTooltip.planetNameText.text = planetData.planetName;
             planetTooltip.planetTradeTierIcon.sprite = tradeTierSprites[(int)planetData.currentTier];
 
+
             if (!HasQuest && !HasEvent)
             {
                 planetTooltip.planetEventTitleText.text = "";
