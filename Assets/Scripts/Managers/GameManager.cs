@@ -111,9 +111,9 @@ public class GameManager : MonoBehaviour
         //DeleteGameData();
 
 
+        LoadGameData();
 
-
-        DontDestroyOnLoad(playerShip);
+        //DontDestroyOnLoad(playerShip);
 
         if (playerShip != null)
         {
