@@ -125,7 +125,8 @@ public class GameManager : MonoBehaviour
         playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
         playerShip.Initialize();
 
-        CreateDefaultPlayerShip();
+        LoadGameData();
+
         if (playerShip != null)
         {
             playerShip.isPlayerShip = true; // 유저 함선
@@ -406,17 +407,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void StartNewGame()
     {
-        // if (currentState != GameState.MainMenu) return;
-
-        //DeleteGameData();
-        //CreateDefaultPlayerShip();
+        DeleteGameData();
+        CreateDefaultPlayerShip();
         playerShip.isPlayerShip = true;
         OnShipInitialized?.Invoke();
 
-        //GeneratePlanetsData(); // 새 데이터 생성
+        GeneratePlanetsData(); // 새 데이터 생성
         SaveGameData();
 
-        //currentState = GameState.Gameplay;
+        currentState = GameState.Gameplay;
         SceneChanger.Instance.LoadScene("Idle");
     }
 
@@ -425,10 +424,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ContinueGame()
     {
-        if (currentState != GameState.MainMenu) return;
-
-        LoadGameData();
-
         // 저장된 상태에 따라 적절한 씬으로 이동
         switch (currentState)
         {

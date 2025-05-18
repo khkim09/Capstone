@@ -9,12 +9,11 @@ public class MainMenuUIController : MonoBehaviour
 
     public void OnSettingsButtonClicked()
     {
-        GameManager.Instance.SaveGameData();
     }
 
     public void OnContinueButtonClicked()
     {
-        GameManager.Instance.LoadGameData();
+        GameManager.Instance.ContinueGame();
     }
 
     public void OnExitButtonClicked()
