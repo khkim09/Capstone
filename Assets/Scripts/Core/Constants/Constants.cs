@@ -27,6 +27,21 @@ public static class Constants
         public const float CellSize = 1.0f;
     }
 
+    public static class WarpNodes
+    {
+        public const float NodeSize = 0.05f;
+
+        public const float EdgeMarginHorizontal = 0.1f;
+        public const float EdgeMarginVertical = 0.2f;
+
+
+        public const int LayerNodeCountMin = 2;
+
+        public const int LayerNodeCountMax = 5;
+
+        public const float ConnectionLineThickness = 0.05f;
+    }
+
     /// <summary>
     /// 행성 관련 상수
     /// </summary>

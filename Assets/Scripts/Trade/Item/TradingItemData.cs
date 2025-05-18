@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "New Trading Item Data", menuName = "Item/ItemData")]
+[Serializable]
 public class TradingItemData : ScriptableObject
 {
     public int id;

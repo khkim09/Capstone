@@ -32,7 +32,20 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private List<PlanetData> planetDataList = new();
 
+    /// <summary>
+    /// 월드맵의 노드 데이터
+    /// </summary>
     private List<WorldNodeData> worldNodeDataList = new();
+
+    /// <summary>
+    /// 워프맵의 노드 데이터
+    /// </summary>
+    private List<WarpNodeData> warpNodeDataList = new();
+
+    /// <summary>
+    /// 현재 워프 목표 행성 ID
+    /// </summary>
+    private int currentWarpTargetPlanetId = -1;
 
     /// <summary>
     /// 현재 행성맵에서의 유저의 위치
@@ -73,6 +86,11 @@ public class GameManager : MonoBehaviour
 
     public List<WorldNodeData> WorldNodeDataList => worldNodeDataList;
 
+    public List<WarpNodeData> WarpNodeDataList => warpNodeDataList;
+
+    public int CurrentWarpTargetPlanetId => currentWarpTargetPlanetId;
+
+
     public event Action OnShipInitialized;
 
 
@@ -107,14 +125,7 @@ public class GameManager : MonoBehaviour
         playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
         playerShip.Initialize();
 
-        //함선 생성용
-        //DeleteGameData();
-
-
-        LoadGameData();
-
-        //DontDestroyOnLoad(playerShip);
-
+        CreateDefaultPlayerShip();
         if (playerShip != null)
         {
             playerShip.isPlayerShip = true; // 유저 함선
@@ -261,33 +272,33 @@ public class GameManager : MonoBehaviour
         playerShip.AddRoom(corridors[13], new Vector2Int(31, 35));
         playerShip.AddRoom(corridors[14], new Vector2Int(32, 35));
 
-        // Room storageRoom = GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
-        // Room storageRoom2 =
-        //     GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
-        //
-        // playerShip.AddRoom(storageRoom, new Vector2Int(27, 26), Constants.Rotations.Rotation.Rotation270);
-        // playerShip.AddRoom(storageRoom2, new Vector2Int(38, 24), Constants.Rotations.Rotation.Rotation90);
-        // StorageRoomBase storage = (StorageRoomBase)storageRoom;
-        // TradingItem item = GameObjectFactory.Instance.CreateItemInstance(0, 20);
-        // TradingItem item2 = GameObjectFactory.Instance.CreateItemInstance(2, 10);
-        // TradingItem item3 = GameObjectFactory.Instance.CreateItemInstance(21, 1);
-        // storage.AddItem(item, new Vector2Int(0, 0), Constants.Rotations.Rotation.Rotation0);
-        // storage.AddItem(item2, new Vector2Int(2, 2), Constants.Rotations.Rotation.Rotation0);
-        // StorageRoomBase storage2 = (StorageRoomBase)storageRoom2;
-        // storage2.AddItem(item3, new Vector2Int(1, 1), Constants.Rotations.Rotation.Rotation0);
-        // Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
-        // playerShip.AddRoom(temp, new Vector2Int(50, 31),  Constants.Rotations.Rotation.Rotation90);
-        // playerShip.AddWeapon(1, new Vector2Int(35, 33), ShipWeaponAttachedDirection.East);
-        //
-        // // playerShip.AddWeapon(8, new Vector)
-        //
-        // CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        // CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
-        // CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
-        //
-        // if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
-        // if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
-        // if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
+        Room storageRoom = GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+        Room storageRoom2 =
+            GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+
+        playerShip.AddRoom(storageRoom, new Vector2Int(27, 26), Constants.Rotations.Rotation.Rotation270);
+        playerShip.AddRoom(storageRoom2, new Vector2Int(38, 24), Constants.Rotations.Rotation.Rotation90);
+        StorageRoomBase storage = (StorageRoomBase)storageRoom;
+        TradingItem item = GameObjectFactory.Instance.CreateItemInstance(0, 20);
+        TradingItem item2 = GameObjectFactory.Instance.CreateItemInstance(2, 10);
+        TradingItem item3 = GameObjectFactory.Instance.CreateItemInstance(21, 1);
+        storage.AddItem(item, new Vector2Int(0, 0), Constants.Rotations.Rotation.Rotation0);
+        storage.AddItem(item2, new Vector2Int(2, 2), Constants.Rotations.Rotation.Rotation0);
+        StorageRoomBase storage2 = (StorageRoomBase)storageRoom2;
+        storage2.AddItem(item3, new Vector2Int(1, 1), Constants.Rotations.Rotation.Rotation0);
+        Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
+        playerShip.AddRoom(temp, new Vector2Int(50, 31), Constants.Rotations.Rotation.Rotation90);
+        playerShip.AddWeapon(1, new Vector2Int(35, 33), ShipWeaponAttachedDirection.East);
+
+        // playerShip.AddWeapon(8, new Vector)
+
+        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
+        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
+
+        if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
+        if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
+        if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
         //
         playerShip.UpdateOuterHullVisuals();
 
@@ -395,7 +406,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void StartNewGame()
     {
-        if (currentState != GameState.MainMenu) return;
+        // if (currentState != GameState.MainMenu) return;
 
         //DeleteGameData();
         //CreateDefaultPlayerShip();
@@ -403,10 +414,9 @@ public class GameManager : MonoBehaviour
         OnShipInitialized?.Invoke();
 
         //GeneratePlanetsData(); // 새 데이터 생성
-
         SaveGameData();
 
-        currentState = GameState.Gameplay;
+        //currentState = GameState.Gameplay;
         SceneChanger.Instance.LoadScene("Idle");
     }
 
@@ -419,7 +429,31 @@ public class GameManager : MonoBehaviour
 
         LoadGameData();
 
-        currentState = GameState.Gameplay;
+        // 저장된 상태에 따라 적절한 씬으로 이동
+        switch (currentState)
+        {
+            case GameState.Gameplay:
+                SceneChanger.Instance.LoadScene("Idle");
+                break;
+
+            case GameState.Warp:
+                SceneChanger.Instance.LoadScene("Idle"); // 워프 UI는 Idle 씬에서 표시
+                break;
+
+            case GameState.Combat:
+                SceneChanger.Instance.LoadScene("Combat");
+                break;
+
+            case GameState.Event:
+                SceneChanger.Instance.LoadScene("Idle");
+                break;
+
+            default:
+                // 기본적으로 Idle 씬으로 이동
+                SceneChanger.Instance.LoadScene("Idle");
+                break;
+        }
+
         SceneChanger.Instance.LoadScene("Idle");
     }
 
@@ -430,6 +464,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("저장 시작");
         SaveWorldMap();
+        SaveWarpMap();
         SavePlayerData();
         // TODO : 현재 배, 재화, 플레이어 데이터 등 게임 플레이에 관련된 모든 것을 저장하는 함수.
     }
@@ -441,6 +476,7 @@ public class GameManager : MonoBehaviour
     {
         LoadWorldMap();
         LoadPlayerData();
+        LoadWarpMap();
         // TODO : 현재 배, 재화, 플레이어 데이터 등 게임 플레이에 관련된 모든 것을 저장하는 함수.
     }
 
@@ -448,6 +484,7 @@ public class GameManager : MonoBehaviour
     {
         DeleteWorldMap();
         DeletePlayerData();
+        DeleteWarpMap();
     }
 
     /// <summary>
@@ -455,7 +492,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SavePlayerData()
     {
-        ShipSerialization.SaveShip(playerShip,"playerShip");
+        ES3.Save<PlayerData>("playerData", playerData);
+        ES3.Save<GameState>("gameState", currentState);
+        ShipSerialization.SaveShip(playerShip, "playerShip");
     }
 
     /// <summary>
@@ -463,8 +502,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void LoadPlayerData()
     {
-        if (ES3.KeyExists("playerData")) ES3.Load<PlayerData>("playerData", playerData);
-        if (ES3.KeyExists("playerShip"))
+        if (ES3.KeyExists("playerData")) playerData = ES3.Load<PlayerData>("playerData");
+        if (ES3.KeyExists("gameState")) currentState = ES3.Load<GameState>("gameState");
+        if (ES3.KeyExists("playerShip", "playerShip"))
         {
             Debug.Log("소환시도");
 
@@ -488,6 +528,7 @@ public class GameManager : MonoBehaviour
         // playerShip.RemoveAllItems();
 
         ES3.DeleteKey("playerData");
+        ES3.DeleteKey("gameState");
     }
 
     #endregion
@@ -547,6 +588,64 @@ public class GameManager : MonoBehaviour
                     1 - Constants.Planets.PlanetCurrentPositionIndicatorSize * 2),
                 Random.Range(Constants.Planets.PlanetCurrentPositionIndicatorSize * 2,
                     1 - Constants.Planets.PlanetCurrentPositionIndicatorSize * 2));
+    }
+
+    #endregion
+
+    #region 워프 맵
+
+    // 워프맵 저장
+    public void SaveWarpMap()
+    {
+        if (warpNodeDataList.Count > 0)
+        {
+            ES3.Save("currentWarpNodes", warpNodeDataList);
+            ES3.Save("currentWarpTargetPlanetId", currentWarpTargetPlanetId);
+            Debug.Log($"워프맵 저장: {warpNodeDataList.Count}개 노드");
+        }
+    }
+
+    // 워프맵 로드
+    public void LoadWarpMap()
+    {
+        if (ES3.KeyExists("currentWarpNodes"))
+        {
+            warpNodeDataList = ES3.Load<List<WarpNodeData>>("currentWarpNodes");
+
+            if (ES3.KeyExists("currentWarpTargetPlanetId"))
+                currentWarpTargetPlanetId = ES3.Load<int>("currentWarpTargetPlanetId");
+
+            Debug.Log($"워프맵 로드: {warpNodeDataList.Count}개 노드");
+            Debug.Log($"타겟 행성 ID : {currentWarpTargetPlanetId}");
+        }
+        else
+        {
+            warpNodeDataList.Clear();
+            currentWarpTargetPlanetId = -1;
+        }
+    }
+
+    // 워프맵 삭제
+    public void DeleteWarpMap()
+    {
+        ES3.DeleteKey("currentWarpNodes");
+        ES3.DeleteKey("currentWarpTargetPlanetId");
+        warpNodeDataList.Clear();
+        currentWarpTargetPlanetId = -1;
+        Debug.Log("워프맵 데이터 삭제");
+    }
+
+    public void SetCurrentWarpMap(List<WarpNodeData> nodes, int targetPlanetId)
+    {
+        warpNodeDataList = new List<WarpNodeData>(nodes);
+        currentWarpTargetPlanetId = targetPlanetId;
+    }
+
+// 워프맵 클리어
+    public void ClearCurrentWarpMap()
+    {
+        warpNodeDataList.Clear();
+        currentWarpTargetPlanetId = -1;
     }
 
     #endregion
