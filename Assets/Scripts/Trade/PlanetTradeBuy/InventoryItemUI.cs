@@ -13,44 +13,28 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// <summary>이 슬롯이 클릭 및 하이라이트 가능한지 여부입니다.</summary>
     public bool isInteractable = true;
 
-    /// <summary>
-    /// 아이템 모양을 표시할 Image 컴포넌트입니다.
-    /// </summary>
+    /// <summary>아이템 모양을 표시할 Image 컴포넌트입니다.</summary>
     [SerializeField] private Image itemShapeImage;
 
-    /// <summary>
-    /// 아이템 모양별로 사용할 스프라이트 리스트입니다. shape enum 순서에 맞춰야 합니다.
-    /// </summary>
+    /// <summary>아이템 모양별로 사용할 스프라이트 리스트입니다. shape enum 순서에 맞춰야 합니다.</summary>
     [SerializeField] private List<Sprite> itemShapeSprites;
 
-    /// <summary>
-    /// 아이템 이미지를 보여주는 UI 요소입니다.
-    /// </summary>
+    /// <summary>아이템 이미지를 보여주는 UI 요소입니다.</summary>
     [SerializeField] private Image itemImage;
 
-    /// <summary>
-    /// 아이템 이름을 표시하는 텍스트 UI 요소입니다.
-    /// </summary>
+    /// <summary>아이템 이름을 표시하는 텍스트 UI 요소입니다.</summary>
     [SerializeField] private TextMeshProUGUI itemNameText;
 
-    /// <summary>
-    /// 아이템 종류를 표시하는 텍스트 UI 요소입니다.
-    /// </summary>
+    /// <summary>아이템 종류를 표시하는 텍스트 UI 요소입니다.</summary>
     [SerializeField] private TextMeshProUGUI categoryText;
 
-    /// <summary>
-    /// 아이템 수량을 표시하는 텍스트 UI 요소입니다.
-    /// </summary>
+    /// <summary>아이템 수량을 표시하는 텍스트 UI 요소입니다.</summary>
     [SerializeField] private TextMeshProUGUI quantityText;
 
-    /// <summary>
-    /// 아이템 가격을 표시하는 텍스트 UI 요소입니다.
-    /// </summary>
+    /// <summary>아이템 가격을 표시하는 텍스트 UI 요소입니다.</summary>
     [SerializeField] private TextMeshProUGUI priceText;
 
-    /// <summary>
-    /// 아이템 선택 시 열리는 MiddlePanel UI입니다.
-    /// </summary>
+    /// <summary>아이템 선택 시 열리는 MiddlePanel UI입니다.</summary>
     [SerializeField] private MiddlePanelUI middlePanel;
 
     #region Data
@@ -60,6 +44,9 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     /// <summary>현재 슬롯의 수량입니다.</summary>
     private int currentQuantity;
+
+    /// <summary>현재 슬롯의 구매 당시 가격입니다.</summary>
+    private float currentPurchasePrice;
 
     /// <summary>현재 선택된 슬롯 인스턴스입니다.</summary>
     private static InventoryItemUI _currentSelectedItem = null;
@@ -96,16 +83,18 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
 
     /// <summary>
-    /// 아이템 데이터와 수량을 받아 UI를 초기화합니다.
+    /// 아이템 데이터와 수량, 구매 당시 가격을 받아 UI를 초기화합니다.
     /// </summary>
     /// <param name="itemData">아이템 데이터</param>
     /// <param name="quantity">아이템 수량</param>
-    public void Setup(TradingItemData itemData, int quantity)
+    /// <param name="purchasePrice">구매 당시 가격 (kg당)</param>
+    public void Setup(TradingItemData itemData, int quantity, float purchasePrice)
     {
         Debug.Log($"[InventoryItemUI] Setup called for {itemData.itemName}");
 
         currentItemData = itemData;
         currentQuantity = quantity;
+        currentPurchasePrice = purchasePrice;
 
         if (itemShapeImage != null && itemShapeSprites != null && itemShapeSprites.Count > 0)
         {
@@ -136,9 +125,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         if (priceText != null)
         {
-            //TODO 구매당시가격->현재 가격으로 바꾸는 작업 필요
-            float basePrice = itemData.costBase;
-            priceText.text = $"{basePrice:F2} → {basePrice:F2}";
+            priceText.text = $"{purchasePrice:F2} → {itemData.costBase:F2}";
             priceOriginalColor = priceText.color;
         }
 
@@ -163,35 +150,27 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
-    /// <summary>
-    /// 이 슬롯에 연결된 아이템 이름을 반환합니다.
-    /// </summary>
+    /// <summary>이 슬롯에 연결된 아이템 이름을 반환합니다.</summary>
     public string GetStoredItemName()
     {
         return currentItemData?.itemName ?? string.Empty;
     }
 
-    /// <summary>
-    /// 마우스 오버 시 강조 색상 적용
-    /// </summary>
+    /// <summary>마우스 오버 시 강조 색상 적용</summary>
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!isInteractable || isSelected) return;
         ApplyColor(highlightColor);
     }
 
-    /// <summary>
-    /// 마우스 벗어날 때 원래 색상 복구
-    /// </summary>
+    /// <summary>마우스 벗어날 때 원래 색상 복구</summary>
     public void OnPointerExit(PointerEventData eventData)
     {
         if (!isInteractable || isSelected) return;
         ApplyColor(itemNameOriginalColor);
     }
 
-    /// <summary>
-    /// 슬롯 클릭 시 선택 토글 및 MiddlePanel/하이라이터 갱신
-    /// </summary>
+    /// <summary>슬롯 클릭 시 선택 토글 및 MiddlePanel/하이라이터 갱신</summary>
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!isInteractable) return;
@@ -231,35 +210,26 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         highlighter?.HighlightItem(currentItemData.itemName);
     }
 
-    /// <summary>
-    /// 현재 슬롯의 선택 상태를 설정합니다.
-    /// </summary>
-    /// <param name="selected">선택 여부</param>
+    /// <summary>현재 슬롯의 선택 상태를 설정합니다.</summary>
     public void SetSelected(bool selected)
     {
         isSelected = selected;
         ApplyColor(selected ? highlightColor : itemNameOriginalColor);
     }
 
-    /// <summary>
-    /// 현재 선택된 InventoryItemUI 슬롯을 반환합니다.
-    /// </summary>
+    /// <summary>현재 선택된 InventoryItemUI 슬롯을 반환합니다.</summary>
     public static InventoryItemUI GetCurrentSelectedItem()
     {
         return _currentSelectedItem;
     }
 
-    /// <summary>
-    /// 현재 슬롯의 아이템 데이터를 반환합니다.
-    /// </summary>
+    /// <summary>현재 슬롯의 아이템 데이터를 반환합니다.</summary>
     public TradingItemData GetItemData()
     {
         return currentItemData;
     }
 
-    /// <summary>
-    /// 현재 슬롯의 수량을 반환합니다.
-    /// </summary>
+    /// <summary>현재 슬롯의 수량을 반환합니다.</summary>
     public int GetQuantity()
     {
         return currentQuantity;
