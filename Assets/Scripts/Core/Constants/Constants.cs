@@ -39,7 +39,11 @@ public static class Constants
 
         public const int LayerNodeCountMax = 5;
 
-        public const float ConnectionLineThickness = 0.05f;
+        public const float ConnectionLineThickness = 0.1f;
+
+        public const float EventNodeRate = 0.6f;
+
+        public const float CombatNodeRate = 1 - EventNodeRate;
     }
 
     /// <summary>

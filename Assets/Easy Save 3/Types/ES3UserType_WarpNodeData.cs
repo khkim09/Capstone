@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("normalizedPosition", "isStartNode", "isEndNode", "layer", "indexInLayer", "connectionIds", "nodeId")]
+	[ES3PropertiesAttribute("normalizedPosition", "isStartNode", "isEndNode", "layer", "indexInLayer", "connectionIds", "nodeId", "nodeType")]
 	public class ES3UserType_WarpNodeData : ES3ObjectType
 	{
 		public static ES3Type Instance = null;
@@ -23,6 +23,7 @@ namespace ES3Types
 			writer.WriteProperty("indexInLayer", instance.indexInLayer, ES3Type_int.Instance);
 			writer.WriteProperty("connectionIds", instance.connectionIds, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<System.Int32>)));
 			writer.WriteProperty("nodeId", instance.nodeId, ES3Type_int.Instance);
+			writer.WriteProperty("nodeType", instance.nodeType, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(WarpNodeType)));
 		}
 
 		protected override void ReadObject<T>(ES3Reader reader, object obj)
@@ -53,6 +54,9 @@ namespace ES3Types
 						break;
 					case "nodeId":
 						instance.nodeId = reader.Read<System.Int32>(ES3Type_int.Instance);
+						break;
+					case "nodeType":
+						instance.nodeType = reader.Read<WarpNodeType>();
 						break;
 					default:
 						reader.Skip();

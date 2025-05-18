@@ -43,6 +43,11 @@ public class GameManager : MonoBehaviour
     private List<WarpNodeData> warpNodeDataList = new();
 
     /// <summary>
+    /// 현재 워프 노드의 ID
+    /// </summary>
+    private int currentWarpNodeId = -1;
+
+    /// <summary>
     /// 현재 워프 목표 행성 ID
     /// </summary>
     private int currentWarpTargetPlanetId = -1;
@@ -89,6 +94,8 @@ public class GameManager : MonoBehaviour
     public List<WarpNodeData> WarpNodeDataList => warpNodeDataList;
 
     public int CurrentWarpTargetPlanetId => currentWarpTargetPlanetId;
+
+    public int CurrentWarpNodeId => currentWarpNodeId;
 
 
     public event Action OnShipInitialized;
@@ -517,10 +524,10 @@ public class GameManager : MonoBehaviour
     public void DeletePlayerData()
     {
         ES3.DeleteKey("playerShip");
-        // playerShip.RemoveAllRooms();
-        // playerShip.RemoveAllCrews();
-        // playerShip.RemoveAllWeapons();
-        // playerShip.RemoveAllItems();
+        playerShip.RemoveAllRooms();
+        playerShip.RemoveAllCrews();
+        playerShip.RemoveAllWeapons();
+        playerShip.RemoveAllItems();
 
         ES3.DeleteKey("playerData");
         ES3.DeleteKey("gameState");
@@ -596,6 +603,7 @@ public class GameManager : MonoBehaviour
         {
             ES3.Save("currentWarpNodes", warpNodeDataList);
             ES3.Save("currentWarpTargetPlanetId", currentWarpTargetPlanetId);
+            ES3.Save("currentWarpNodeId", currentWarpNodeId);
             Debug.Log($"워프맵 저장: {warpNodeDataList.Count}개 노드");
         }
     }
@@ -609,6 +617,9 @@ public class GameManager : MonoBehaviour
 
             if (ES3.KeyExists("currentWarpTargetPlanetId"))
                 currentWarpTargetPlanetId = ES3.Load<int>("currentWarpTargetPlanetId");
+
+            if (ES3.KeyExists("currentWarpNodeId"))
+                currentWarpNodeId = ES3.Load<int>("currentWarpNodeId");
 
             Debug.Log($"워프맵 로드: {warpNodeDataList.Count}개 노드");
             Debug.Log($"타겟 행성 ID : {currentWarpTargetPlanetId}");
@@ -636,7 +647,12 @@ public class GameManager : MonoBehaviour
         currentWarpTargetPlanetId = targetPlanetId;
     }
 
-// 워프맵 클리어
+    public void SetCurrentWarpNodeId(int nodeId)
+    {
+        currentWarpNodeId = nodeId;
+    }
+
+    // 워프맵 클리어
     public void ClearCurrentWarpMap()
     {
         warpNodeDataList.Clear();

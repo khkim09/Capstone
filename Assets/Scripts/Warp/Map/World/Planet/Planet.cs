@@ -68,6 +68,11 @@ public class Planet : TooltipPanelBase
             planetData.CheckEventExpirations(currentYear);
     }
 
+    public void HideTooltip()
+    {
+        currentToolTip.SetActive(false);
+    }
+
     protected override void SetToolTipText()
     {
         if (planetData == null || currentToolTip == null) return;
@@ -145,5 +150,10 @@ public class Planet : TooltipPanelBase
             planetButton.onClick.RemoveAllListeners(); // 중복 방지
             planetButton.onClick.AddListener(OnClicked);
         }
+    }
+
+    public Sprite GetCurrentSprite()
+    {
+        return currentSprite;
     }
 }
