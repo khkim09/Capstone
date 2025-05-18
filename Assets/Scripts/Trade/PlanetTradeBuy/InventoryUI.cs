@@ -48,18 +48,18 @@ public class InventoryUI : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        // Storage에서 모든 아이템 가져오기
-        List<(TradingItemData itemData, int quantity)> itemList = storage.GetAllItems();
+        // Storage에서 모든 아이템 가져오기 (구매가 포함)
+        List<(TradingItemData itemData, int quantity, float purchasePrice)> itemList = storage.GetAllItems();
 
         // 각 아이템에 대해 UI 슬롯 생성
-        foreach (var (itemData, quantity) in itemList)
+        foreach (var (itemData, quantity, purchasePrice) in itemList)
         {
             GameObject newItemUI = Instantiate(inventoryItemPrefab, contentPanel);
             InventoryItemUI itemUI = newItemUI.GetComponent<InventoryItemUI>();
 
             if (itemUI != null)
             {
-                itemUI.Setup(itemData, quantity);
+                itemUI.Setup(itemData, quantity, purchasePrice);
                 itemUI.isInteractable = makeInteractable;
             }
         }
