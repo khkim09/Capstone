@@ -284,11 +284,15 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 단일 선원 선택
     /// </summary>
-    public void SelectSingleCrew()
+    public void SelectSingleCrew(Vector2? position = null)
     {
         DeselectAll();
 
         Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (position != null)
+        {
+            mouseWorldPos=new Vector2(position.Value.x, position.Value.y);
+        }
         RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
 
         if (hit.collider != null)
@@ -309,11 +313,23 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 영역 내 선원 다중 선택
     /// </summary>
-    public void SelectMultipleCrew()
+    public void SelectMultipleCrew(Vector2? dragStart=null, Vector2? curPos=null)
     {
+        Vector2 mousePos;
+        if (curPos.HasValue)
+            mousePos = curPos.Value;
+        else
+            mousePos = Input.mousePosition;
         // 선택 리스트 초기화
         selectedCrew.Clear();
-        Rect selectionRect = GetScreenRect(dragStartPos, Input.mousePosition);
+
+        Rect selectionRect;
+        if (dragStart.HasValue)
+        {
+            selectionRect = GetScreenRect(dragStart.Value, curPos.Value);
+        }
+        else
+            selectionRect = GetScreenRect(dragStartPos, Input.mousePosition);
 
         // 모든 CrewMember를 찾아서 선택 영역 안에 있는지 확인
         CrewMember[] allCrew = FindObjectsByType<CrewMember>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
@@ -347,7 +363,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 죽은 선원을 선택된 선원 리스트에서 제거 (갱신)
     /// </summary>
-    private void CleanUpSelectedCrew()
+    public void CleanUpSelectedCrew()
     {
         selectedCrew.RemoveAll(cm => cm == null || !cm.isAlive);
     }

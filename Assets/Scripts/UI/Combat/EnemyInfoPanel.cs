@@ -27,6 +27,8 @@ public class EnemyInfoPanel : MonoBehaviour
     /// 표시된 쉴드량 바
     /// </summary>
     private Image shield;
+
+    private GameObject display;
     void Start()
     {
         //적 함선과 아군 함선 연결 후 초기화
@@ -46,6 +48,7 @@ public class EnemyInfoPanel : MonoBehaviour
         }
         if(playerShip==null)
             Debug.LogError("EnemyInfoPanel에서 아군 함선을 찾지 못했습니다.");
+        display=transform.parent.Find("CCTV").gameObject;
     }
 
     /// <summary>
@@ -56,4 +59,6 @@ public class EnemyInfoPanel : MonoBehaviour
         hp.fillAmount = 1-enemyShip.GetCurrentHitPoints()/maxHealth;
         shield.fillAmount=1-enemyShip.ShieldSystem.GetCurrentShield()/maxShield;
     }
+
+
 }

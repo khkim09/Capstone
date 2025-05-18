@@ -23,6 +23,10 @@ public class ShipFollowCamera : MonoBehaviour
     /// 런타임에서 Follow Ship 을 정하기 위한 boolean
     /// </summary>
     [SerializeField] private bool isFollowPlayerShip = false;
+    /// <summary>
+    /// 런타임에서 Follow Ship 을 정하기 위한 boolean
+    /// </summary>
+    [SerializeField] private bool isFollowEnemyShip = false;
 
     private Vector3 shipCenter; // 함선 중심 위치
     private float shipWidth, shipHeight; // 함선 크기
@@ -36,6 +40,14 @@ public class ShipFollowCamera : MonoBehaviour
             GameManager.Instance.OnShipInitialized += GetCameraStartPositionToOriginShip;
 
             if (isFollowPlayerShip) targetShip = GameManager.Instance.playerShip;
+        }
+    }
+
+    private void Start()
+    {
+        if (isFollowEnemyShip)
+        {
+            targetShip = GameObject.Find("EnemyShip").GetComponent<Ship>();
         }
     }
 
