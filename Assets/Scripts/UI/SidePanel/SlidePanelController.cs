@@ -6,32 +6,40 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.EventSystems;
 using UnityEngine.Analytics;
+using UnityEngine.Serialization;
 
 public class SlidePanelController : MonoBehaviour
 {
-    [Header("탭 버튼")][SerializeField] private Button buttonShip;
+    [Header("탭 버튼")] [SerializeField] private Button buttonShip;
     [SerializeField] private Button buttonCrew;
     [SerializeField] private Button buttonQuest;
     [SerializeField] private Button buttonStorage;
 
-    [Header("전체 탭")][SerializeField] private GameObject Tabs;
+    [Header("전체 탭")] [SerializeField] private GameObject Tabs;
 
-    [Header("패널 목록")][SerializeField] private GameObject panelShip;
+    [Header("패널 목록")] [SerializeField] private GameObject panelShip;
     [SerializeField] private GameObject panelCrew;
     [SerializeField] private GameObject panelQuest;
     [SerializeField] private GameObject panelStorage;
     [SerializeField] private GameObject panelUnselected;
 
-    [Header("함선 패널 설정")][SerializeField] private GameObject shipPanelContent;
+    [Header("함선 패널 설정")] [SerializeField] private GameObject shipPanelContent;
     [SerializeField] private GameObject roomInfoPanelPrefab;
 
-    [Header("승무원 패널 설정")][SerializeField] private GameObject crewPanelContent;
+    [Header("승무원 패널 설정")] [SerializeField] private GameObject crewPanelContent;
     [SerializeField] private GameObject crewInfoPanelPrefab;
     [SerializeField] private GameObject equipmentDetailPanel;
 
+    [FormerlySerializedAs("qeustPanelContent")] [Header("퀘스트 패널 설정")] [SerializeField]
+    private GameObject questPanelContent;
 
-    [Header("열려야 되는 위치")][SerializeField] private Transform openedPosition;
-    [Header("열리는 속도")][SerializeField] private float slideSpeed = 0.1f;
+    [SerializeField] private GameObject questInfoPanelPrefab;
+    private List<GameObject> questInfoPanelInstance;
+    private RandomQuest questToCancel;
+    [SerializeField] private GameObject checkQuestUI;
+
+    [Header("열려야 되는 위치")] [SerializeField] private Transform openedPosition;
+    [Header("열리는 속도")] [SerializeField] private float slideSpeed = 0.1f;
 
     private Vector3 closedPosition;
     private Coroutine slideCoroutine;
@@ -40,6 +48,7 @@ public class SlidePanelController : MonoBehaviour
 
     private List<CrewInfoPanel> crewInfoPanelList = new();
     private Dictionary<RoomType, ShipInfoPanel> shipInfoPanelDictionary = new();
+    private List<QuestInfoPanel> questInfoPanelList = new();
 
     private void Start()
     {
@@ -51,7 +60,7 @@ public class SlidePanelController : MonoBehaviour
     {
         if (isOpen && Input.GetMouseButtonDown(0))
         {
-            if (equipmentDetailPanel.activeInHierarchy)
+            if (equipmentDetailPanel.activeInHierarchy || checkQuestUI.activeInHierarchy)
                 return;
 
             // 클릭된 UI 요소가 현재 패널이 아닌지 체크
@@ -82,6 +91,7 @@ public class SlidePanelController : MonoBehaviour
 
         if (targetPanel == panelShip) InitializeShipPanel();
         if (targetPanel == panelCrew) InitializeCrewPanel();
+        if (targetPanel == panelQuest) InitializeQuestPanel();
 
 
         ShowOnly(targetPanel);
@@ -170,7 +180,6 @@ public class SlidePanelController : MonoBehaviour
                     .GetComponent<ShipInfoPanel>();
                 shipInfoPanel.Initialize(room);
                 shipInfoPanelDictionary.Add(room.roomType, shipInfoPanel);
-                Debug.Log(room.roomType + "더함!");
             }
             else
             {
@@ -210,10 +219,59 @@ public class SlidePanelController : MonoBehaviour
 
         foreach (CrewMember crew in GameManager.Instance.playerShip.allCrews)
         {
-            CrewInfoPanel crewInfoPanel = Instantiate(crewInfoPanelPrefab, crewPanelContent.transform).GetComponent<CrewInfoPanel>();
+            CrewInfoPanel crewInfoPanel = Instantiate(crewInfoPanelPrefab, crewPanelContent.transform)
+                .GetComponent<CrewInfoPanel>();
             crewInfoPanel.Initialize(crew);
             crewInfoPanelList.Add(crewInfoPanel);
         }
+    }
+
+    #endregion
+
+    #region 퀘스트 패널 설정
+
+    private void InitializeQuestPanel()
+    {
+        foreach (QuestInfoPanel panel in questInfoPanelList) Destroy(panel.gameObject);
+
+        questInfoPanelList.Clear();
+
+
+        foreach (PlanetData planet in GameManager.Instance.PlanetDataList)
+        foreach (RandomQuest quest in planet.questList)
+        {
+            QuestInfoPanel questInfoPanel = Instantiate(questInfoPanelPrefab, questPanelContent.transform)
+                .GetComponent<QuestInfoPanel>();
+
+            questInfoPanel.Initialize(quest);
+            questInfoPanelList.Add(questInfoPanel);
+        }
+
+        List<Transform> questPanelTransforms = new();
+
+        foreach (Transform child in questPanelContent.transform) questPanelTransforms.Add(child);
+
+
+        questPanelTransforms = questPanelTransforms
+            .OrderBy(q => q.GetComponent<QuestInfoPanel>().currentQuest.GetCanComplete()).ToList();
+
+        for (int i = 0; i < questPanelTransforms.Count; i++) questPanelTransforms[i].SetSiblingIndex(i);
+    }
+
+    public void RequestQuestCancel(RandomQuest quest)
+    {
+        checkQuestUI.SetActive(true);
+        questToCancel = quest;
+    }
+
+    public void OnQuestCancelConfirmButtonClicked()
+    {
+        PlanetData planetData =
+            GameManager.Instance.PlanetDataList.Find(d => d.questList.Contains(questToCancel));
+
+        planetData.FailQuest(questToCancel);
+        questToCancel = null;
+        InitializeQuestPanel();
     }
 
     #endregion

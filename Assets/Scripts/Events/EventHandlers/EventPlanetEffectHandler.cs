@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// PlanetEffect를 받아 아이템 카테고리별 가격 변동을 처리하는 유틸리티 핸들러입니다.
@@ -40,8 +42,9 @@ public class EventPlanetEffectHandler
             Debug.Log($"[PlanetEffect] 카테고리: {effect.categoryType}, 변동률: {effect.changeAmount}%");
 
             // 행성에 효과 등록
-            GameManager.Instance.PlanetDataList[Random.Range(0, GameManager.Instance.PlanetDataList.Count)]
-                .RegisterPlanetEffect(effect);
+            List<PlanetData> planetDatas =
+                GameManager.Instance.PlanetDataList.Where(d => d.activeEffects.Count == 0).ToList();
+            planetDatas[Random.Range(0, planetDatas.Count)].RegisterPlanetEffect(effect);
         }
     }
 }

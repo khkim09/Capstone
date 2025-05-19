@@ -34,6 +34,9 @@ public class PlanetData
     /// </summary>
     public Vector2 normalizedPosition;
 
+
+    public Sprite currentSprite;
+
     /// <summary>
     /// 판매하는 티어 1 아이템 리스트
     /// </summary>
@@ -65,9 +68,9 @@ public class PlanetData
     [Range(25, 75)] public int currentFuelPrice = 50;
 
     /// <summary>
-    /// 현재 행성 퀘스트 리스트
+    /// 현재 행성의 퀘스트 리스트.
     /// </summary>
-    public List<RandomQuest> questsList = new();
+    public List<RandomQuest> questList = new();
 
     /// <summary>
     /// 현재 적용 중인 행성 효과 데이터
@@ -75,9 +78,14 @@ public class PlanetData
     public List<PlanetEffect> activeEffects = new();
 
     /// <summary>
-    /// 카테고리별 현재 가격 변동율 (%)
+    /// 이벤트로 변동되는 카테고리별 현재 가격 변동율 (%)
     /// </summary>
     private Dictionary<ItemCategory, float> categoryPriceModifiers = new();
+
+    /// <summary>
+    /// 아이템의 현재 가격 딕셔너리
+    /// </summary>
+    private Dictionary<int, int> itemPriceDictionary = new();
 
     public PlanetRace PlanetRace => planetRace;
 
@@ -207,6 +215,11 @@ public class PlanetData
 
             validPosition = true;
 
+            float distancePlayer = Vector2.Distance(candidatePosition, GameManager.Instance.normalizedPlayerPosition);
+
+            if (distancePlayer <= Constants.Planets.PlanetSpacingMin)
+                validPosition = false;
+
             // 기존의 모든 행성과의 거리 체크
             foreach (PlanetData existingPlanet in GameManager.Instance.PlanetDataList)
             {
@@ -260,6 +273,18 @@ public class PlanetData
             .GetItemsByPlanet(itemPlanet)
             .Where(item => item.tier == ItemTierLevel.T3)
             .ToList();
+
+        foreach (TradingItemData item in GameObjectFactory.Instance.ItemFactory.itemDataBase.allItems)
+            itemPriceDictionary.Add(item.id, Random.Range(item.costMin, item.costMax));
+    }
+
+    public void ChangeItemPrice()
+    {
+        foreach (KeyValuePair<int, int> pair in itemPriceDictionary)
+        {
+            TradingItemData item = GameObjectFactory.Instance.ItemFactory.itemDataBase.allItems[pair.Key];
+            itemPriceDictionary[item.id] = Random.Range(item.costMin, item.costMax);
+        }
     }
 
     #endregion
@@ -359,6 +384,7 @@ public class PlanetData
         }
     }
 
+
     /// <summary>
     /// 특정 카테고리의 현재 가격 변동률 반환
     /// </summary>
@@ -408,6 +434,89 @@ public class PlanetData
         Debug.Log("=== 적용 중인 효과 ===");
         foreach (PlanetEffect effect in activeEffects)
             Debug.Log($"카테고리: {effect.categoryType}, 변동률: {effect.changeAmount}%, 종료 년도: {effect.EndYear}");
+    }
+
+    #endregion
+
+    #region 퀘스트
+
+    public void CheckQuestExpirations(int currentYear)
+    {
+        foreach (RandomQuest quest in questList)
+            if (quest.QuestExpiredYear >= currentYear)
+                FailQuest(quest);
+    }
+
+    /// <summary>
+    /// 퀘스트를 실패 처리합니다.
+    /// </summary>
+    /// <param name="quest">실패할 퀘스트</param>
+    public void FailQuest(RandomQuest quest)
+    {
+        quest.status = QuestStatus.Failed;
+        questList.Remove(quest);
+    }
+
+    public void TrySpawnQuest()
+    {
+        if (Random.value <= Constants.Quest.QuestCreateRate) CreateRandomQuest();
+    }
+
+    private void CreateRandomQuest()
+    {
+        RandomQuest quest = new();
+        QuestObjective objective = new();
+        int reward = 0;
+        Array values = Enum.GetValues(typeof(QuestObjectiveType));
+        QuestObjectiveType randomType = (QuestObjectiveType)values.GetValue(Random.Range(0, values.Length - 1));
+
+        PlanetData randomPlanetData = GameManager.Instance.GetRandomPlanetData();
+
+        randomType = QuestObjectiveType.ItemProcurement;
+        TradingItemDataBase itemDatabase = GameObjectFactory.Instance.ItemFactory.itemDataBase;
+        TradingItemData item = null;
+        switch (randomType)
+        {
+            case QuestObjectiveType.PirateHunt:
+                objective.amount = Random.Range(5, 21);
+                objective.targetPlanetData = this;
+                objective.description = "ui.quest.objective.piratehunt".Localize(objective.amount);
+                reward = objective.amount * 100;
+                break;
+            case QuestObjectiveType.ItemTransport:
+                item = itemDatabase.GetRandomItem();
+                objective.targetId = item.id;
+                objective.amount = item.capacity;
+                objective.targetPlanetData = randomPlanetData;
+                objective.description = "ui.quest.objective.itemtransport".Localize(item.itemName.Localize(),
+                    objective.amount,
+                    objective.targetPlanetData.planetName);
+
+                reward = (int)(item.costMax * 1.1f * objective.amount);
+                break;
+            case QuestObjectiveType.ItemProcurement:
+                item = itemDatabase.GetRandomItem();
+                objective.targetId = item.id;
+                objective.amount = item.capacity;
+                objective.targetPlanetData = this;
+                objective.description =
+                    "ui.quest.objective.itemprocurement".Localize(item.itemName.Localize(), objective.amount);
+                reward = (int)(item.costMax * 1.1f * objective.amount);
+                break;
+            case QuestObjectiveType.CrewTransport:
+                objective.amount = 1;
+                objective.targetPlanetData = randomPlanetData;
+                objective.description = objective.description =
+                    "ui.quest.objective.crewtransport".Localize(objective.amount, objective.targetPlanetData);
+
+                reward = objective.amount * 500;
+                break;
+        }
+
+        quest.rewards.Add(new QuestReward() { questRewardType = QuestRewardType.COMA, amount = reward });
+        quest.status = QuestStatus.NotStarted;
+        quest.objectives.Add(objective);
+        questList.Add(quest);
     }
 
     #endregion

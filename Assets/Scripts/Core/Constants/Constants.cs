@@ -105,10 +105,23 @@ public static class Constants
         public const int Tier3RevenueRequirement = 15000;
     }
 
+    public static class Quest
+    {
+        /// <summary>
+        /// 퀘스트가 만료되기까지 걸리는 시간 (년)
+        /// </summary>
+        public const int QuestDuration = 20;
+
+        /// <summary>
+        /// 워프 시마다 퀘스트가 생성되는 확률
+        /// </summary>
+        public const float QuestCreateRate = 0.8f;
+    }
+
     /// <summary>
     /// 회전 관련 상수
     /// </summary>
-    public class Rotations
+    public static class Rotations
     {
         /// <summary>
         /// 4방향 회전

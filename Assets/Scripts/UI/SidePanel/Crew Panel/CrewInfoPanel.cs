@@ -42,7 +42,6 @@ public class CrewInfoPanel : TooltipPanelBase
         if (crew.equippedAssistant != null)
             assistImage.sprite = crew.equippedAssistant.eqIcon;
 
-        // TODO : 장비 UI SetActive(true)
         atkButton.onClick.AddListener(() => { slidePanelController.OnCrewPanelEquipmentButtonClicked(crew); });
         defButton.onClick.AddListener(() => { slidePanelController.OnCrewPanelEquipmentButtonClicked(crew); });
         assistButton.onClick.AddListener(() => { slidePanelController.OnCrewPanelEquipmentButtonClicked(crew); });
