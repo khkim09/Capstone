@@ -86,8 +86,6 @@ public class RTSSelectionManager : MonoBehaviour
     /// </summary>
     public CrewMovementValidator enemyMovementValidator;
 
-    public EnemyCamInteraction EnemyCamInteraction;
-
     /// <summary>
     /// 적 함선
     /// </summary>
