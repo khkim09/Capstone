@@ -5,6 +5,14 @@
 /// </summary>
 public static class Constants
 {
+    public static class Endings
+    {
+        /// <summary>
+        /// 엔딩을 보기 위한 최소 년도
+        /// </summary>
+        public const int EndingYear = 500;
+    }
+
     /// <summary>
     /// 이벤트 관련 상수
     /// </summary>
@@ -25,6 +33,25 @@ public static class Constants
         /// 그리드 사이즈
         /// </summary>
         public const float CellSize = 1.0f;
+    }
+
+    public static class WarpNodes
+    {
+        public const float NodeSize = 0.05f;
+
+        public const float EdgeMarginHorizontal = 0.1f;
+        public const float EdgeMarginVertical = 0.2f;
+
+
+        public const int LayerNodeCountMin = 2;
+
+        public const int LayerNodeCountMax = 5;
+
+        public const float ConnectionLineThickness = 0.1f;
+
+        public const float EventNodeRate = 0.6f;
+
+        public const float CombatNodeRate = 1 - EventNodeRate;
     }
 
     /// <summary>
@@ -51,6 +78,21 @@ public static class Constants
         /// 행성이 맵에 그려질 때, 가장자리와 떨어진 최소 간격
         /// </summary>
         public const float PlanetSpacingEdge = PlanetSize * 1.5f;
+
+        /// <summary>
+        /// 현재 위치 표시기가 맵에 그려지는 상대적인 크기
+        /// </summary>
+        public const float PlanetCurrentPositionIndicatorSize = PlanetSize * 2f;
+
+        /// <summary>
+        /// 유저가 찍는 노드가 맵에 그려지는 상대적인 크기
+        /// </summary>
+        public const float PlanetNodeSize = PlanetSize * 0.5f;
+
+        /// <summary>
+        /// 유저가 현재 위치부터 이동할 수 있는 범위의 상대적인 크기
+        /// </summary>
+        public const float PlanetNodeValidRadius = PlanetSize * 6f;
 
         /// <summary>
         /// 2 티어 아이템 해금을 위해 필요한 거래 총액

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 /// <summary>
@@ -147,7 +148,6 @@ public class Ship : MonoBehaviour
         RecalculateAllStats();
 
         doorLevel = 1;
-        // GameManager.Instance.SetPlayerShip(this);
     }
 
 
@@ -1077,6 +1077,14 @@ public class Ship : MonoBehaviour
         return allWeapons;
     }
 
+    public void RemoveAllWeapons()
+    {
+        foreach (ShipWeapon weapon in allWeapons)
+            Destroy(weapon.gameObject);
+
+        allWeapons.Clear();
+    }
+
     /// <summary>
     /// 무기 시스템 수정자를 적용한 후의 실제 피해량을 계산합니다.
     /// </summary>
@@ -1202,6 +1210,7 @@ public class Ship : MonoBehaviour
                 ApplyDamageToCrewsInArea(hitPosition, finalDamage, false); // false = 단일 지점
             }
         }
+        InfoPanelChanged?.Invoke();
     }
 
 
@@ -1501,4 +1510,14 @@ public class Ship : MonoBehaviour
     }
 
     #endregion
+
+    #region EnemyInfoPanel
+
+    /// <summary>
+    /// EnemyInfoPanel 갱신을 위한 이벤트
+    /// </summary>
+    public event Action InfoPanelChanged;
+
+    #endregion
+
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /// <summary>
 /// 선원 RTS 선택 및 이동 명령 관리 (단일, 다중 선택)
@@ -17,8 +18,12 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 드래그 시작 위치입니다.
     /// </summary>
-    private Vector2 dragStartPos;
+    public Vector2 dragStartPos;
 
+    /// <summary>
+    /// 드래그 종료 위치입니다.
+    /// </summary>
+    public Vector2 dragEndPos;
     /// <summary>
     /// 드래그 중인지 여부
     /// </summary>
@@ -27,7 +32,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 단일 클릭 임계값
     /// </summary>
-    private float clickThreshold = 10f;
+    public float clickThreshold = 10f;
 
     /// <summary>
     /// 선택된 선원 리스트
@@ -76,7 +81,6 @@ public class RTSSelectionManager : MonoBehaviour
     /// </summary>
     public CrewMovementValidator enemyMovementValidator;
 
-
     /// <summary>
     /// 적 함선
     /// </summary>
@@ -112,7 +116,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// </summary>
     /// <param name="crew"></param>
     /// <param name="onoff"></param>
-    private void SetOutline(CrewMember crew, bool onoff)
+    public void SetOutline(CrewMember crew, bool onoff)
     {
         crew.spriteRenderer.material = onoff ? new Material(outlineMaterial) : defaultMaterial;
     }
@@ -149,7 +153,10 @@ public class RTSSelectionManager : MonoBehaviour
                 return;
             }
 
-            dragStartPos = Input.mousePosition;
+            if(!IsUIWithTagClicked("CombatUI"))
+            {
+                dragStartPos = Input.mousePosition;
+            }
             isDragging = true;
         }
 
@@ -166,12 +173,19 @@ public class RTSSelectionManager : MonoBehaviour
             {
                 isDragging = false;
 
-                float distance = Vector2.Distance(dragStartPos, Input.mousePosition);
+                dragEndPos = Input.mousePosition;
 
-                if (distance < clickThreshold)
-                    SelectSingleCrew();
-                else
-                    SelectMultipleCrew();
+                float distance = Vector2.Distance(dragStartPos, dragEndPos);
+
+                if(!IsUIWithTagClicked("CombatUI"))
+                {
+                    if (distance < clickThreshold)
+                    {
+                        SelectSingleCrew();
+                    }
+                    else
+                        SelectMultipleCrew();
+                }
             }
         }
 
@@ -179,9 +193,27 @@ public class RTSSelectionManager : MonoBehaviour
         // 오른쪽 마우스 버튼 클릭: 이동 명령 발동
         if (/*isMainUI && */Input.GetMouseButtonDown(1))
         {
+            if (IsUIWithTagClicked("CombatUI"))
+                return;
             CleanUpSelectedCrew();
             IssueMoveCommand();
         }
+    }
+
+    public GraphicRaycaster combatUIGRC;
+    private bool IsUIWithTagClicked(string tag)
+    {
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+        pointerEventData.position = Input.mousePosition;
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        combatUIGRC.Raycast(pointerEventData, results);
+        foreach (RaycastResult result in results)
+        {
+            if (result.gameObject.CompareTag(tag))
+                return true;
+        }
+        return false;
     }
 
     /// <summary>
@@ -268,7 +300,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 선택한 선원 모두 해제
     /// </summary>
-    private void DeselectAll()
+    public void DeselectAll()
     {
         selectedCrew.Clear();
         CrewMember[] allCrew = FindObjectsByType<CrewMember>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
@@ -308,6 +340,7 @@ public class RTSSelectionManager : MonoBehaviour
     {
         // 선택 리스트 초기화
         selectedCrew.Clear();
+
         Rect selectionRect = GetScreenRect(dragStartPos, Input.mousePosition);
 
         // 모든 CrewMember를 찾아서 선택 영역 안에 있는지 확인
@@ -342,7 +375,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 죽은 선원을 선택된 선원 리스트에서 제거 (갱신)
     /// </summary>
-    private void CleanUpSelectedCrew()
+    public void CleanUpSelectedCrew()
     {
         selectedCrew.RemoveAll(cm => cm == null || !cm.isAlive);
     }

@@ -23,7 +23,7 @@ public static class ShipSerialization
             ES3.DeleteFile(filename);
 
         ES3Settings settings = new() { referenceMode = ES3.ReferenceMode.ByRefAndValue };
-        ES3.Save("ship", ship.gameObject, filename, settings);
+        ES3.Save("playerShip", ship.gameObject, filename, settings);
 
         if (Debug.isDebugBuild)
             Debug.Log($"Ship saved to {filename}");
@@ -44,12 +44,13 @@ public static class ShipSerialization
 
         ES3Settings settings = new() { referenceMode = ES3.ReferenceMode.ByRefAndValue };
 
-        GameObject shipObj = ES3.Load<GameObject>("ship", filename, settings);
+        GameObject shipObj = ES3.Load<GameObject>("playerShip", filename, settings);
+        shipObj = ES3.Load<GameObject>("playerShip", filename, settings);
         Ship loadedShip = shipObj.GetComponent<Ship>();
 
         // HACK : 제대로 참조가 연결되지 않아서 임의로 복구하는 방식으로 구현. 나중에 문제가 생기거나 비슷한 참조 관계의 객체를 직렬화할 때 문제가 생길 것임
-        // foreach (TradingItem item in loadedShip.GetAllItems())
-        //     item.Initialize(item.GetItemData(), item.amount, item.GetItemState());
+        foreach (TradingItem item in loadedShip.GetAllItems())
+            item.Initialize(item.GetItemData(), item.amount, item.GetItemState());
 
         return loadedShip;
     }

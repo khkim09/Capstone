@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// 게임의 전체 상태와 흐름을 관리하는 매니저.
 /// 게임 상태 전환, 날짜 및 연도 진행, 플레이어/적 함선 정보 등을 통합적으로 제어합니다.
 /// </summary>
+[DefaultExecutionOrder(-10)]
 public class GameManager : MonoBehaviour
 {
     /// <summary>
@@ -28,6 +31,31 @@ public class GameManager : MonoBehaviour
     /// 현재 게임의 행성들
     /// </summary>
     private List<PlanetData> planetDataList = new();
+
+    /// <summary>
+    /// 월드맵의 노드 데이터
+    /// </summary>
+    private List<WorldNodeData> worldNodeDataList = new();
+
+    /// <summary>
+    /// 워프맵의 노드 데이터
+    /// </summary>
+    private List<WarpNodeData> warpNodeDataList = new();
+
+    /// <summary>
+    /// 현재 워프 노드의 ID
+    /// </summary>
+    private int currentWarpNodeId = -1;
+
+    /// <summary>
+    /// 현재 워프 목표 행성 ID
+    /// </summary>
+    private int currentWarpTargetPlanetId = -1;
+
+    /// <summary>
+    /// 현재 행성맵에서의 유저의 위치
+    /// </summary>
+    public Vector2 normalizedPlayerPosition = Vector2.zero;
 
     /// <summary>
     /// 게임 상태 변경 이벤트 델리게이트입니다.
@@ -62,6 +90,15 @@ public class GameManager : MonoBehaviour
 
     public List<PlanetData> PlanetDataList => planetDataList;
 
+    public List<WorldNodeData> WorldNodeDataList => worldNodeDataList;
+
+    public List<WarpNodeData> WarpNodeDataList => warpNodeDataList;
+
+    public int CurrentWarpTargetPlanetId => currentWarpTargetPlanetId;
+
+    public int CurrentWarpNodeId => currentWarpNodeId;
+
+
     public event Action OnShipInitialized;
 
 
@@ -93,18 +130,19 @@ public class GameManager : MonoBehaviour
         LocalizationManager.Initialize(this);
         LocalizationManager.OnLanguageChanged += OnLanguageChanged;
 
-        if (playerShip == null)
+        playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
+        playerShip.Initialize();
+
+        LoadGameData();
+
+        if (playerShip != null)
         {
+            playerShip.isPlayerShip = true; // 유저 함선
+            OnShipInitialized?.Invoke();
         }
 
-        playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
         currentEnemyShip = GameObject.Find("EnemyShip")?.GetComponent<Ship>();
 
-        playerShip.Initialize();
-        playerShip.isPlayerShip = true; // 유저 함선
-
-        // CreateDefaultPlayerShip();
-        OnShipInitialized?.Invoke();
 
         if (currentEnemyShip != null)
         {
@@ -135,7 +173,7 @@ public class GameManager : MonoBehaviour
             if (room.GetIsDamageable() && room.roomType == type)
                 canGo.Add(room);
 
-        return canGo[UnityEngine.Random.Range(0, canGo.Count)];
+        return canGo[Random.Range(0, canGo.Count)];
     }
 
     // 피격 테스트
@@ -257,20 +295,20 @@ public class GameManager : MonoBehaviour
         storage.AddItem(item2, new Vector2Int(2, 2), Constants.Rotations.Rotation.Rotation0);
         StorageRoomBase storage2 = (StorageRoomBase)storageRoom2;
         storage2.AddItem(item3, new Vector2Int(1, 1), Constants.Rotations.Rotation.Rotation0);
-        // Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
-        // playerShip.AddRoom(temp, new Vector2Int(50, 31),  Constants.Rotations.Rotation.Rotation90);
+        Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
+        playerShip.AddRoom(temp, new Vector2Int(50, 31), Constants.Rotations.Rotation.Rotation90);
         playerShip.AddWeapon(1, new Vector2Int(35, 33), ShipWeaponAttachedDirection.East);
 
         // playerShip.AddWeapon(8, new Vector)
 
-        // CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        // CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
-        // CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
-        //
-        // if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
-        // if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
-        // if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
+        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
+        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
 
+        if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
+        if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
+        if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
+        //
         playerShip.UpdateOuterHullVisuals();
 
         return null;
@@ -377,12 +415,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void StartNewGame()
     {
-        if (currentState != GameState.MainMenu) return;
+        DeleteGameData();
+        CreateDefaultPlayerShip();
+        playerShip.isPlayerShip = true;
+        OnShipInitialized?.Invoke();
 
-        ES3.DeleteKey("planetList"); // 기존 데이터 삭제
         GeneratePlanetsData(); // 새 데이터 생성
-        SavePlanets(); // 새로 생성한 걸 저장
-
+        SaveGameData();
 
         currentState = GameState.Gameplay;
         SceneChanger.Instance.LoadScene("Idle");
@@ -393,11 +432,31 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ContinueGame()
     {
-        if (currentState != GameState.MainMenu) return;
+        // 저장된 상태에 따라 적절한 씬으로 이동
+        switch (currentState)
+        {
+            case GameState.Gameplay:
+                SceneChanger.Instance.LoadScene("Idle");
+                break;
 
-        LoadGameData();
+            case GameState.Warp:
+                SceneChanger.Instance.LoadScene("Idle"); // 워프 UI는 Idle 씬에서 표시
+                break;
 
-        currentState = GameState.Gameplay;
+            case GameState.Combat:
+                SceneChanger.Instance.LoadScene("Combat");
+                break;
+
+            case GameState.Event:
+                SceneChanger.Instance.LoadScene("Idle");
+                break;
+
+            default:
+                // 기본적으로 Idle 씬으로 이동
+                SceneChanger.Instance.LoadScene("Idle");
+                break;
+        }
+
         SceneChanger.Instance.LoadScene("Idle");
     }
 
@@ -406,7 +465,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SaveGameData()
     {
-        SavePlanets();
+        Debug.Log("저장 시작");
+        SaveWorldMap();
+        SaveWarpMap();
         SavePlayerData();
         // TODO : 현재 배, 재화, 플레이어 데이터 등 게임 플레이에 관련된 모든 것을 저장하는 함수.
     }
@@ -416,9 +477,17 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void LoadGameData()
     {
-        LoadPlanets();
+        LoadWorldMap();
         LoadPlayerData();
+        LoadWarpMap();
         // TODO : 현재 배, 재화, 플레이어 데이터 등 게임 플레이에 관련된 모든 것을 저장하는 함수.
+    }
+
+    public void DeleteGameData()
+    {
+        DeleteWorldMap();
+        DeletePlayerData();
+        DeleteWarpMap();
     }
 
     /// <summary>
@@ -426,7 +495,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SavePlayerData()
     {
-        ES3.Save("playerData", playerData);
+        ES3.Save<PlayerData>("playerData", playerData);
+        ES3.Save<GameState>("gameState", currentState);
+        ShipSerialization.SaveShip(playerShip, "playerShip");
     }
 
     /// <summary>
@@ -434,36 +505,78 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void LoadPlayerData()
     {
-        if (ES3.KeyExists("planetList")) ES3.Load<PlayerData>("playerData", playerData);
+        if (ES3.KeyExists("playerData")) playerData = ES3.Load<PlayerData>("playerData");
+        if (ES3.KeyExists("gameState")) currentState = ES3.Load<GameState>("gameState");
+        if (ES3.KeyExists("playerShip", "playerShip"))
+        {
+            Debug.Log("소환시도");
+
+            ShipSerialization.LoadShip("playerShip");
+            OnShipInitialized?.Invoke();
+        }
+        else
+        {
+            Debug.Log("없어서 기본함선 만듦");
+            CreateDefaultPlayerShip();
+            OnShipInitialized?.Invoke();
+        }
+    }
+
+    public void DeletePlayerData()
+    {
+        ES3.DeleteKey("playerShip");
+        playerShip.RemoveAllRooms();
+        playerShip.RemoveAllCrews();
+        playerShip.RemoveAllWeapons();
+        playerShip.RemoveAllItems();
+
+        ES3.DeleteKey("playerData");
+        ES3.DeleteKey("gameState");
     }
 
     #endregion
 
 
-    #region 행성
+    #region 행성 맵
 
-    public void SavePlanets()
+    public void SaveWorldMap()
     {
         ES3.Save("planetList", planetDataList);
+        ES3.Save("worldNodeList", worldNodeDataList);
+        ES3.Save("currentPosition", normalizedPlayerPosition);
     }
 
-    public void LoadPlanets()
+    public void LoadWorldMap()
     {
         if (ES3.KeyExists("planetList"))
         {
             planetDataList = ES3.Load<List<PlanetData>>("planetList");
+
+            if (ES3.KeyExists("worldNodeList"))
+                worldNodeDataList = ES3.Load<List<WorldNodeData>>("worldNodeList");
+
+            if (ES3.KeyExists("currentPosition"))
+                normalizedPlayerPosition = ES3.Load<Vector2>("currentPosition");
         }
         else
         {
             // 데이터가 없으면 새로 생성 후 저장
             GeneratePlanetsData();
-            SavePlanets();
+            SaveWorldMap();
         }
+    }
+
+    public void DeleteWorldMap()
+    {
+        ES3.DeleteKey("planetList");
+        ES3.DeleteKey("worldNodeList");
+        ES3.DeleteKey("currentPosition");
     }
 
     private void GeneratePlanetsData()
     {
         planetDataList.Clear();
+        worldNodeDataList.Clear();
 
         for (int index = 0; index < Constants.Planets.PlanetTotalCount; index++)
         {
@@ -471,6 +584,86 @@ public class GameManager : MonoBehaviour
             newData.CreateRandomData();
             planetDataList.Add(newData);
         }
+
+        normalizedPlayerPosition =
+            new Vector2(
+                Random.Range(Constants.Planets.PlanetCurrentPositionIndicatorSize * 2,
+                    1 - Constants.Planets.PlanetCurrentPositionIndicatorSize * 2),
+                Random.Range(Constants.Planets.PlanetCurrentPositionIndicatorSize * 2,
+                    1 - Constants.Planets.PlanetCurrentPositionIndicatorSize * 2));
+    }
+
+    #endregion
+
+    #region 워프 맵
+
+    // 워프맵 저장
+    public void SaveWarpMap()
+    {
+        if (warpNodeDataList.Count > 0)
+        {
+            ES3.Save("currentWarpNodes", warpNodeDataList);
+            ES3.Save("currentWarpTargetPlanetId", currentWarpTargetPlanetId);
+            ES3.Save("currentWarpNodeId", currentWarpNodeId);
+            Debug.Log($"워프맵 저장: {warpNodeDataList.Count}개 노드");
+        }
+    }
+
+    // 워프맵 로드
+    public void LoadWarpMap()
+    {
+        if (ES3.KeyExists("currentWarpNodes"))
+        {
+            warpNodeDataList = ES3.Load<List<WarpNodeData>>("currentWarpNodes");
+
+            if (ES3.KeyExists("currentWarpTargetPlanetId"))
+                currentWarpTargetPlanetId = ES3.Load<int>("currentWarpTargetPlanetId");
+
+            if (ES3.KeyExists("currentWarpNodeId"))
+                currentWarpNodeId = ES3.Load<int>("currentWarpNodeId");
+
+            Debug.Log($"워프맵 로드: {warpNodeDataList.Count}개 노드");
+            Debug.Log($"타겟 행성 ID : {currentWarpTargetPlanetId}");
+        }
+        else
+        {
+            warpNodeDataList.Clear();
+            currentWarpTargetPlanetId = -1;
+        }
+    }
+
+    // 워프맵 삭제
+    public void DeleteWarpMap()
+    {
+        ES3.DeleteKey("currentWarpNodes");
+        ES3.DeleteKey("currentWarpTargetPlanetId");
+        warpNodeDataList.Clear();
+        currentWarpTargetPlanetId = -1;
+        Debug.Log("워프맵 데이터 삭제");
+    }
+
+    public void SetCurrentWarpMap(List<WarpNodeData> nodes, int targetPlanetId)
+    {
+        warpNodeDataList = new List<WarpNodeData>(nodes);
+        currentWarpTargetPlanetId = targetPlanetId;
+    }
+
+    public void SetCurrentWarpNodeId(int nodeId)
+    {
+        currentWarpNodeId = nodeId;
+    }
+
+    // 워프맵 클리어
+    public void ClearCurrentWarpMap()
+    {
+        warpNodeDataList.Clear();
+        currentWarpTargetPlanetId = -1;
+    }
+
+    public void LandOnPlanet()
+    {
+        ChangeGameState(GameState.Planet);
+        SceneChanger.Instance.LoadScene("Planet");
     }
 
     #endregion
@@ -498,6 +691,11 @@ public enum GameState
     /// 적 함선 만난 상태
     /// </summary>
     Combat,
+
+    /// <summary>
+    /// 행성에 있는 상태
+    /// </summary>
+    Planet,
 
     /// <summary>게임이 일시정지된 상태입니다.</summary>
     Paused,

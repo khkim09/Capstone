@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// 실제 무기 인스턴스를 나타내는 클래스.
@@ -9,7 +11,7 @@ public class ShipWeapon : MonoBehaviour
     /// <summary>
     /// 현재 쿨타임.
     /// </summary>
-    private float currentCooldown = 0f;
+    public float currentCooldown = 0f;
 
     /// <summary>
     /// 이 무기에 해당하는 무기 데이터입니다.
@@ -120,6 +122,7 @@ public class ShipWeapon : MonoBehaviour
     public void SetEnabled(bool enabled)
     {
         isEnabled = enabled;
+        updateWeaponPanel?.Invoke();
     }
 
     /// <summary>
@@ -185,8 +188,10 @@ public class ShipWeapon : MonoBehaviour
         {
             currentCooldown += deltaTime * GetCooldownPerSecond() * reloadBonus;
 
-            // 쿨다운이 완료되면 자동 발사 시도
-            if (IsReady()) TryAutoFire();
+            // // 쿨다운이 완료되면 자동 발사 시도
+            // if (IsReady()) TryAutoFire();
+
+            updateWeaponPanel?.Invoke();
         }
     }
 
@@ -355,6 +360,9 @@ public class ShipWeapon : MonoBehaviour
             );
 
             ResetCooldown();
+
+            updateWeaponPanel?.Invoke();
+
             return true;
         }
 
@@ -462,5 +470,16 @@ public class ShipWeapon : MonoBehaviour
         hits = other.hits;
         totalDamageDealt = other.totalDamageDealt;
         isEnabled = other.isEnabled;
+    }
+
+    public event Action updateWeaponPanel;
+
+    /// <summary>
+    /// 현재 무기가 충전된 정도를 백분율로 반환 (0~1)
+    /// </summary>
+    /// <returns></returns>
+    public float GetCooldownPercentage()
+    {
+        return currentCooldown/100f;
     }
 }

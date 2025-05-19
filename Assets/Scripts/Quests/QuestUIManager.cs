@@ -8,6 +8,8 @@ using UnityEngine.UI;
 /// </summary>
 public class QuestUIManager : MonoBehaviour
 {
+    public static QuestUIManager Instance { get; private set; }
+
     /// <summary>퀘스트 제안 UI 패널</summary>
     public GameObject offerPanel;
 
@@ -41,16 +43,49 @@ public class QuestUIManager : MonoBehaviour
     /// <summary>완료 전 QuestOffer 패널 상태 저장용</summary>
     private bool wasQuestOfferOpen = false;
 
+    /// <summary>현재 행성</summary>
+    private Planet currentPlanet;
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+
     /// <summary>
     /// 버튼 클릭 이벤트를 등록합니다.
     /// </summary>
     private void Start()
     {
+        // null 체크 추가
+        if (offerPanel == null || completePanel == null)
+        {
+            Debug.LogError("QuestUIManager: 필수 패널이 할당되지 않았습니다.");
+            return;
+        }
+
         offerPanel.SetActive(false);
         completePanel.SetActive(false);
-        acceptBtn.onClick.AddListener(OnAccept);
-        declineBtn.onClick.AddListener(OnDecline);
-        completeBtn.onClick.AddListener(OnCompleteConfirmed);
+
+        if (acceptBtn != null)
+            acceptBtn.onClick.AddListener(OnAccept);
+        if (declineBtn != null)
+            declineBtn.onClick.AddListener(OnDecline);
+        if (completeBtn != null)
+            completeBtn.onClick.AddListener(OnCompleteConfirmed);
+    }
+
+    /// <summary>
+    /// 이벤트 리스너 해제
+    /// </summary>
+    private void OnDestroy()
+    {
+        if (acceptBtn != null)
+            acceptBtn.onClick.RemoveListener(OnAccept);
+        if (declineBtn != null)
+            declineBtn.onClick.RemoveListener(OnDecline);
+        if (completeBtn != null)
+            completeBtn.onClick.RemoveListener(OnCompleteConfirmed);
     }
 
     /// <summary>
@@ -59,15 +94,28 @@ public class QuestUIManager : MonoBehaviour
     /// <param name="quest">표시할 퀘스트</param>
     public void ShowQuestOffer(RandomQuest quest)
     {
+        // quest 체크 추가
+        if (quest == null)
+        {
+            Debug.LogWarning("ShowQuestOffer: quest가 null입니다.");
+            return;
+        }
+
         // Complete 중이면 ShowQuestOffer 방지
         if (isCompletingQuest)
             return;
 
-        currentQuest = quest;
-        offerPanel.SetActive(true);
-        questText.text = "";
-        StopAllCoroutines();
-        StartCoroutine(TypeText(quest.title + "\n\n" + quest.description));
+        currentQuest = Instantiate(quest);
+
+        if (offerPanel != null)
+            offerPanel.SetActive(true);
+
+        if (questText != null)
+        {
+            questText.text = "";
+            StopAllCoroutines();
+            StartCoroutine(TypeText(quest.title + "\n\n" + quest.description));
+        }
     }
 
     /// <summary>
@@ -77,6 +125,8 @@ public class QuestUIManager : MonoBehaviour
     /// <returns>IEnumerator</returns>
     private System.Collections.IEnumerator TypeText(string text)
     {
+        if (questText == null) yield break;
+
         questText.text = "";
         foreach (char c in text)
         {
@@ -94,24 +144,21 @@ public class QuestUIManager : MonoBehaviour
     {
         if (currentQuest != null)
         {
-            currentQuest.Accept();
-            if (QuestManager.Instance != null)
-            {
-                QuestManager.Instance.AddQuest(currentQuest);
-            }
-            else
-            {
-                Debug.LogWarning("QuestManager.Instance가 존재하지 않습니다.");
-            }
+            string planetId = currentPlanet != null ? currentPlanet.PlanetData.planetName : null;
+            currentQuest.Accept(planetId);
 
+            if (QuestManager.Instance != null)
+                QuestManager.Instance.AddQuest(currentQuest);
+
+            // 싱글톤 대신 캐싱된 인스턴스 사용
             QuestListUI questListUI = FindObjectOfType<QuestListUI>();
             if (questListUI != null)
-            {
-                questListUI.Open();
-            }
+                questListUI.OpenQuestListForPlanet(currentPlanet);
         }
 
-        offerPanel.SetActive(false);
+        if (offerPanel != null)
+            offerPanel.SetActive(false);
+
         currentQuest = null;
     }
 
@@ -123,7 +170,9 @@ public class QuestUIManager : MonoBehaviour
     {
         if (currentQuest != null) currentQuest.Decline();
 
-        offerPanel.SetActive(false);
+        if (offerPanel != null)
+            offerPanel.SetActive(false);
+
         currentQuest = null;
     }
 
@@ -134,7 +183,14 @@ public class QuestUIManager : MonoBehaviour
     /// <param name="quest">완료된 퀘스트</param>
     public void ShowCompletion(RandomQuest quest)
     {
+        if (quest == null || quest.rewards == null || quest.rewards.Count == 0)
+        {
+            Debug.LogWarning("ShowCompletion: quest 또는 rewards가 null입니다.");
+            return;
+        }
+
         isCompletingQuest = true;
+        currentQuest = quest;  // 현재 완료 중인 퀘스트 저장
 
         QuestListUI questListUI = FindObjectOfType<QuestListUI>();
         if (questListUI != null)
@@ -145,11 +201,14 @@ public class QuestUIManager : MonoBehaviour
         }
 
         wasQuestOfferOpen = IsOfferPanelOpen();
-        if (wasQuestOfferOpen)
+        if (wasQuestOfferOpen && offerPanel != null)
             offerPanel.SetActive(false);
 
-        completePanel.SetActive(true);
-        completeText.text = "ui.quest.complete.text".Localize(quest.rewards[0].amount);
+        if (completePanel != null)
+            completePanel.SetActive(true);
+
+        if (completeText != null)
+            completeText.text = "ui.quest.complete.text".Localize(quest.rewards[0].amount);
     }
 
     /// <summary>
@@ -158,21 +217,23 @@ public class QuestUIManager : MonoBehaviour
     /// </summary>
     private void OnCompleteConfirmed()
     {
-        completePanel.SetActive(false);
+        if (completePanel != null)
+            completePanel.SetActive(false);
 
         if (currentQuest != null && QuestManager.Instance != null)
             QuestManager.Instance.GrantRewardForQuest(currentQuest);
 
         QuestListUI questListUI = FindObjectOfType<QuestListUI>();
-        if (wasQuestListOpen && questListUI != null)
-            questListUI.Open();
+        if (wasQuestListOpen && questListUI != null && currentPlanet != null)
+            questListUI.OpenQuestListForPlanet(currentPlanet);
 
-        if (wasQuestOfferOpen && !offerPanel.activeSelf)
+        if (wasQuestOfferOpen && offerPanel != null && !offerPanel.activeSelf)
             offerPanel.SetActive(true);
 
         wasQuestListOpen = false;
         wasQuestOfferOpen = false;
         isCompletingQuest = false;
+        currentQuest = null;  // 참조 해제
     }
 
     /// <summary>
@@ -180,7 +241,7 @@ public class QuestUIManager : MonoBehaviour
     /// </summary>
     public bool IsOfferPanelOpen()
     {
-        return offerPanel.activeSelf;
+        return offerPanel != null && offerPanel.activeSelf;
     }
 
     /// <summary>
@@ -189,5 +250,15 @@ public class QuestUIManager : MonoBehaviour
     public bool IsCompletingQuest()
     {
         return isCompletingQuest;
+    }
+
+    public void SetCurrentPlanet(Planet planet)
+    {
+        currentPlanet = planet;
+    }
+
+    public Planet GetCurrentPlanet()
+    {
+        return currentPlanet;
     }
 }

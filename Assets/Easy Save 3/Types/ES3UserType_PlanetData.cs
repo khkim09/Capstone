@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("planetName", "planetRace", "itemPlanet", "normalizedPosition", "itemsTier1", "itemsTier2", "itemsTier3", "currentRevenue", "currentTier", "currentFuelPrice", "currentQuest", "currentEvent")]
+	[ES3PropertiesAttribute("planetId", "planetName", "planetRace", "itemPlanet", "normalizedPosition", "itemsTier1", "itemsTier2", "itemsTier3", "currentRevenue", "currentTier", "currentFuelPrice")]
 	public class ES3UserType_PlanetData : ES3ObjectType
 	{
 		public static ES3Type Instance = null;
@@ -16,9 +16,10 @@ namespace ES3Types
 		{
 			var instance = (PlanetData)obj;
 			
+			writer.WriteProperty("planetId", instance.planetId, ES3Type_int.Instance);
 			writer.WriteProperty("planetName", instance.planetName, ES3Type_string.Instance);
-			writer.WritePrivateField("planetRace", instance);
-			writer.WritePrivateField("itemPlanet", instance);
+			writer.WriteProperty("planetRace", instance.planetRace, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(PlanetRace)));
+			writer.WriteProperty("itemPlanet", instance.itemPlanet, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(ItemPlanet)));
 			writer.WriteProperty("normalizedPosition", instance.normalizedPosition, ES3Type_Vector2.Instance);
 			writer.WriteProperty("itemsTier1", instance.itemsTier1, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<TradingItemData>)));
 			writer.WriteProperty("itemsTier2", instance.itemsTier2, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<TradingItemData>)));
@@ -26,8 +27,6 @@ namespace ES3Types
 			writer.WriteProperty("currentRevenue", instance.currentRevenue, ES3Type_int.Instance);
 			writer.WriteProperty("currentTier", instance.currentTier, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(ItemTierLevel)));
 			writer.WriteProperty("currentFuelPrice", instance.currentFuelPrice, ES3Type_int.Instance);
-			writer.WritePropertyByRef("currentQuest", instance.currentQuest);
-			writer.WritePropertyByRef("currentEvent", instance.currentEvent);
 		}
 
 		protected override void ReadObject<T>(ES3Reader reader, object obj)
@@ -38,15 +37,18 @@ namespace ES3Types
 				switch(propertyName)
 				{
 					
+					case "planetId":
+						instance.planetId = reader.Read<System.Int32>(ES3Type_int.Instance);
+						break;
 					case "planetName":
 						instance.planetName = reader.Read<System.String>(ES3Type_string.Instance);
 						break;
 					case "planetRace":
-					instance = (PlanetData)reader.SetPrivateField("planetRace", reader.Read<PlanetRace>(), instance);
-					break;
+						instance.planetRace = reader.Read<PlanetRace>();
+						break;
 					case "itemPlanet":
-					instance = (PlanetData)reader.SetPrivateField("itemPlanet", reader.Read<ItemPlanet>(), instance);
-					break;
+						instance.itemPlanet = reader.Read<ItemPlanet>();
+						break;
 					case "normalizedPosition":
 						instance.normalizedPosition = reader.Read<UnityEngine.Vector2>(ES3Type_Vector2.Instance);
 						break;
@@ -67,12 +69,6 @@ namespace ES3Types
 						break;
 					case "currentFuelPrice":
 						instance.currentFuelPrice = reader.Read<System.Int32>(ES3Type_int.Instance);
-						break;
-					case "currentQuest":
-						instance.currentQuest = reader.Read<RandomQuest>();
-						break;
-					case "currentEvent":
-						instance.currentEvent = reader.Read<RandomEvent>();
 						break;
 					default:
 						reader.Skip();
