@@ -1,3 +1,5 @@
+using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -158,12 +160,10 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
     }
 
 
-    public float enemyCamPadding = 1f;
+    public float enemyCamPadding = 1.1f;
     private void EnemyCamAim(Bounds bound)
     {
-        enemyCam.transform.position = new Vector3(bound.center.x, bound.center.y, 16);
-
-        Debug.Log(bound.center);
+        enemyCam.transform.position = new Vector3(bound.center.x, bound.center.y,0);
 
         float camHeight = bound.size.y * 0.5f * enemyCamPadding;
         float camWidth = bound.size.x * 0.5f * enemyCamPadding / enemyCam.aspect;
@@ -177,6 +177,13 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
         displayRect=transform.GetChild(0).GetComponent<RectTransform>();
         enemyCamTexture = enemyCam.targetTexture;
 
+        EnemyCamAim(CalculateBounds());
+        Debug.Log("Camera forward: " + enemyCam.transform.forward);
+
+    }
+
+    void Update()
+    {
         EnemyCamAim(CalculateBounds());
     }
 }
