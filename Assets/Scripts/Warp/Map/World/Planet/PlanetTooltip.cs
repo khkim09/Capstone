@@ -20,6 +20,6 @@ public class PlanetTooltip : MonoBehaviour
     public TextMeshProUGUI planetEventUpText;
     public TextMeshProUGUI planetEventDownText;
 
-    public TextMeshProUGUI planetQuestTitleText;
-    public TextMeshProUGUI planetCurrentQuestText;
+    public TextMeshProUGUI planetActiveQuestTitleText;
+    public TextMeshProUGUI planetInActiveQuestTitleText;
 }

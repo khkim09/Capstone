@@ -42,4 +42,10 @@ public class TradingItemDataBase : ScriptableObject
 
         return result;
     }
+
+    public TradingItemData GetRandomItem()
+    {
+        int index = Random.Range(0, allItems.Count);
+        return allItems[index];
+    }
 }

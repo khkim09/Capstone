@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// 퀘스트의 등록, 진행도 갱신, 완료 처리 등을 담당하는 퀘스트 매니저.
@@ -13,10 +14,11 @@ public class QuestManager : MonoBehaviour
     /// </summary>
     public delegate void QuestChangedHandler(RandomQuest quest);
 
+    /// <summary>아이템 정보가 들어있는 데이터베이스</summary>
+    [Header("아이템 데이터베이스")] public TradingItemDataBase itemDatabase;
 
     [SerializeField] private List<RandomQuest> activeQuests = new();
     [SerializeField] private List<RandomQuest> completedQuests = new();
-    [SerializeField] private List<RandomQuest> failedQuests = new List<RandomQuest>();
 
     /// <summary>
     /// 퀘스트 매니저의 싱글톤 인스턴스
@@ -39,13 +41,19 @@ public class QuestManager : MonoBehaviour
     private void OnEnable()
     {
         if (GameManager.Instance != null)
+        {
             GameManager.Instance.OnYearChanged += CheckQuestExpiration;
+            GameManager.Instance.OnYearChanged += TrySpawnQuest;
+        }
     }
 
     private void OnDisable()
     {
         if (GameManager.Instance != null)
+        {
             GameManager.Instance.OnYearChanged -= CheckQuestExpiration;
+            GameManager.Instance.OnYearChanged -= TrySpawnQuest;
+        }
     }
 
     /// <summary>퀘스트가 새로 추가될 때 발생하는 이벤트</summary>
@@ -95,19 +103,19 @@ public class QuestManager : MonoBehaviour
         {
             QuestObjective objective = quest.objectives[objectiveIndex];
             objective.currentAmount += amount;
-            objective.isCompleted = objective.currentAmount >= objective.amount;
+            objective.canComplete = objective.currentAmount >= objective.amount;
 
             OnQuestUpdated?.Invoke(quest);
 
             bool allCompleted = true;
             foreach (QuestObjective obj in quest.objectives)
-                if (!obj.isCompleted)
+                if (!obj.canComplete)
                 {
                     allCompleted = false;
                     break;
                 }
 
-            if (allCompleted) CompleteQuest(quest);
+            if (allCompleted) quest.SetCanComplete(true);
         }
     }
 
@@ -118,17 +126,11 @@ public class QuestManager : MonoBehaviour
     /// <param name="quest">완료된 퀘스트</param>
     private void CompleteQuest(RandomQuest quest)
     {
-        // 현재 UI 상태 저장
-        QuestListUI questListUI = FindObjectOfType<QuestListUI>();
-        QuestUIManager questUIManager = FindObjectOfType<QuestUIManager>();
-
         // 원래 Complete 처리
         quest.status = QuestStatus.Completed;
         activeQuests.Remove(quest);
         completedQuests.Add(quest);
 
-        if (questUIManager != null)
-            questUIManager.ShowCompletion(quest);
 
         OnQuestCompleted?.Invoke(quest);
         Debug.Log($"Quest completed: {quest.title}");
@@ -158,14 +160,36 @@ public class QuestManager : MonoBehaviour
     {
         List<RandomQuest> expiredQuests = new();
         foreach (RandomQuest quest in activeQuests)
-        {
-            if (quest.questAcceptedYear >= 0 &&
-                currentYear - quest.questAcceptedYear >= 20)
-                expiredQuests.Add(quest);
-        }
+            if (quest.QuestExpiredYear >= currentYear)
+                FailQuest(quest);
+    }
 
-        foreach (RandomQuest quest in expiredQuests)
-            FailQuest(quest);
+    private void TrySpawnQuest(int year)
+    {
+        if (Random.value <= Constants.Quest.QuestCreateRate) CreateRandomQuest();
+    }
+
+    private void CreateRandomQuest()
+    {
+        Array values = Enum.GetValues(typeof(QuestObjectiveType));
+        QuestObjectiveType randomType = (QuestObjectiveType)values.GetValue(Random.Range(0, values.Length));
+
+        PlanetData randomPlanetData = GameManager.Instance.GetRandomPlanetData();
+
+
+        switch (randomType)
+        {
+            case QuestObjectiveType.PirateHunt:
+                break;
+            case QuestObjectiveType.ItemTransport:
+
+                break;
+            case QuestObjectiveType.ItemProcurement:
+
+                break;
+            case QuestObjectiveType.CrewTransport:
+                break;
+        }
     }
 
     /// <summary>
@@ -176,7 +200,6 @@ public class QuestManager : MonoBehaviour
     {
         quest.status = QuestStatus.Failed;
         activeQuests.Remove(quest);
-        failedQuests.Add(quest);
 
         OnQuestFailed?.Invoke(quest);
         Debug.Log($"Quest failed due to expiration: {quest.title}");
@@ -206,14 +229,5 @@ public class QuestManager : MonoBehaviour
     public List<RandomQuest> GetCompletedQuests()
     {
         return completedQuests;
-    }
-
-    /// <summary>
-    /// 실패한 퀘스트 목록을 반환합니다.
-    /// </summary>
-    /// <returns>실패한 퀘스트 리스트</returns>
-    public List<RandomQuest> GetFailedQuests()
-    {
-        return failedQuests;
     }
 }

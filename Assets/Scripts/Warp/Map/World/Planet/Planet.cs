@@ -13,9 +13,7 @@ public class Planet : TooltipPanelBase
     private PlanetData planetData;
 
     [Header("행성 스프라이트 목록")] [SerializeField]
-    private List<Sprite> planetSprites;
-
-    private Sprite currentSprite;
+    public List<Sprite> planetSprites;
 
     [Header("행성 거래 티어 스프라이트 목록")] [SerializeField]
     private List<Sprite> tradeTierSprites;
@@ -27,7 +25,7 @@ public class Planet : TooltipPanelBase
     public PlanetData PlanetData => planetData;
 
     public bool HasEvent => planetData.activeEffects.Count != 0;
-    public bool HasQuest => planetData.questsList.Count != 0;
+    public bool HasQuest => planetData.questList.Count != 0;
 
     protected override void Start()
     {
@@ -64,8 +62,14 @@ public class Planet : TooltipPanelBase
     private void OnYearChanged(int currentYear)
     {
         if (planetData != null)
+        {
             // 행성 효과 만료 체크
             planetData.CheckEventExpirations(currentYear);
+            planetData.CheckQuestExpirations(currentYear);
+            planetData.TrySpawnQuest();
+
+            if (currentYear % 10 == 0) planetData.ChangeItemPrice();
+        }
     }
 
     public void HideTooltip()
@@ -81,7 +85,7 @@ public class Planet : TooltipPanelBase
 
         if (planetTooltip != null)
         {
-            planetTooltip.planetIcon.sprite = currentSprite;
+            planetTooltip.planetIcon.sprite = planetData.currentSprite;
             planetTooltip.planetNameText.text = planetData.planetName;
             planetTooltip.planetTradeTierIcon.sprite = tradeTierSprites[(int)planetData.currentTier];
 
@@ -92,8 +96,8 @@ public class Planet : TooltipPanelBase
                 planetTooltip.planetEventUpText.text = "";
                 planetTooltip.planetEventDownText.text = "";
 
-                planetTooltip.planetQuestTitleText.text = "";
-                planetTooltip.planetCurrentQuestText.text = "";
+                planetTooltip.planetActiveQuestTitleText.text = "";
+                planetTooltip.planetInActiveQuestTitleText.text = "";
                 planetTooltip.planetDescriptionText.text =
                     $"{"ui.planetinfo." + planetData.itemPlanet.ToString().ToLower() + ".description"}".Localize();
 
@@ -102,11 +106,10 @@ public class Planet : TooltipPanelBase
 
             planetTooltip.planetDescriptionText.text = "";
             planetTooltip.planetEventTitleText.text = "";
-            planetTooltip.planetQuestTitleText.text = "ui.planetinfo.quest.title".Localize();
+            planetTooltip.planetActiveQuestTitleText.text = "";
             if (HasEvent)
             {
-                planetTooltip.planetEventTitleText.text = "ui.planetinfo.event.title".Localize();
-
+                planetTooltip.planetEventTitleText.text = planetData.activeEffects[0].parentEventName.Localize();
 
                 List<PlanetEffect> upList = planetData.activeEffects.Where(e => e.changeAmount > 0).ToList();
                 List<PlanetEffect> downList = planetData.activeEffects.Where(e => e.changeAmount < 0).ToList();
@@ -123,18 +126,23 @@ public class Planet : TooltipPanelBase
 
             if (HasQuest)
             {
-                List<RandomQuest> activeQuests = planetData.questsList
+                List<RandomQuest> activeQuestList = planetData.questList
                     .Where(q => q.status == QuestStatus.Active)
-                    .OrderByDescending(q => q.IsQuestCompleteReady())
+                    .OrderByDescending(q => q.GetCanComplete())
                     .ToList();
+                int activeQuestCount = activeQuestList.Count;
+                if (activeQuestCount > 0)
+                    planetTooltip.planetActiveQuestTitleText.text =
+                        $"{"ui.planetinfo.quest.active".Localize()} : {activeQuestList[0].title.Localize()}{(activeQuestCount > 1 ? " " + (activeQuestCount - 1).ToString() : "")}";
 
-                if (activeQuests.Count > 0)
-                    planetTooltip.planetCurrentQuestText.text =
-                        $"{activeQuests[0].title.Localize()} {(activeQuests.Count > 1 ? $" + {activeQuests.Count - 1}" : "")}";
-            }
-            else
-            {
-                planetTooltip.planetCurrentQuestText.text = "-";
+                List<RandomQuest> inactiveQuestList = planetData.questList
+                    .Where(q => q.status == QuestStatus.NotStarted)
+                    .ToList();
+                int inactiveQuestCount = inactiveQuestList.Count;
+
+                if (inactiveQuestList.Count > 0)
+                    planetTooltip.planetInActiveQuestTitleText.text =
+                        $"{"ui.planetinfo.quest.inactive".Localize()} : {inactiveQuestList[0].title.Localize()}{(inactiveQuestCount > 1 ? " " + (inactiveQuestCount - 1).ToString() : "")}";
             }
         }
     }
@@ -142,8 +150,8 @@ public class Planet : TooltipPanelBase
     public void SetPlanetData(PlanetData planetData)
     {
         this.planetData = planetData;
-        currentSprite = planetSprites[(int)planetData.itemPlanet];
-        GetComponentInChildren<Image>().sprite = currentSprite;
+        planetData.currentSprite = planetSprites[(int)planetData.itemPlanet];
+        GetComponent<Image>().sprite = planetData.currentSprite;
 
         if (planetButton != null)
         {
@@ -154,6 +162,6 @@ public class Planet : TooltipPanelBase
 
     public Sprite GetCurrentSprite()
     {
-        return currentSprite;
+        return planetData.currentSprite;
     }
 }
