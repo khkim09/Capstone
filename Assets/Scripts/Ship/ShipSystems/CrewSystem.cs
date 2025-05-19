@@ -192,6 +192,7 @@ public class CrewSystem : ShipSystem
             CrewMember originCrew =
                 GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(data.race, data.crewName) as CrewMember;
 
+            originCrew.needsOxygen = data.needsOxygen;
             originCrew.position = data.position;
             originCrew.currentRoom = room;
             originCrew.transform.position = parentShip.GetWorldPositionFromGrid(data.position);
@@ -251,6 +252,7 @@ public class CrewSystem : ShipSystem
                 // 랜덤 타일 선택
                 Vector2Int spawnTile = candidates[Random.Range(0, candidates.Count)];
 
+                crew.needsOxygen = data.needsOxygen;
                 // 위치 설정
                 crew.position = spawnTile;
                 crew.currentRoom = room;

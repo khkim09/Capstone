@@ -70,8 +70,8 @@ public class WeaponFrameFunction : MonoBehaviour
         SetFireButton();
         energyBar.fillAmount = weapon.GetCooldownPercentage();
 
-        // if (powerState == Power.auto)
-        //     weapon.TryFire();
+        if (powerState == Power.auto)
+             weapon.TryFire();
     }
 
     /// <summary>

@@ -11,7 +11,7 @@ public class ShipWeapon : MonoBehaviour
     /// <summary>
     /// 현재 쿨타임.
     /// </summary>
-    private float currentCooldown = 0f;
+    public float currentCooldown = 0f;
 
     /// <summary>
     /// 이 무기에 해당하는 무기 데이터입니다.
@@ -188,8 +188,8 @@ public class ShipWeapon : MonoBehaviour
         {
             currentCooldown += deltaTime * GetCooldownPerSecond() * reloadBonus;
 
-            // 쿨다운이 완료되면 자동 발사 시도
-            if (IsReady()) TryAutoFire();
+            // // 쿨다운이 완료되면 자동 발사 시도
+            // if (IsReady()) TryAutoFire();
 
             updateWeaponPanel?.Invoke();
         }

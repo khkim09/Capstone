@@ -59,11 +59,9 @@ public class CameraZoomController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (CrewUIHandler.Instance.GetCurrentActiveUI() == customizeUI)
-        {
-            HandleZoom();
-            CameraMove();
-        }
+        // tag로 zoom 가능한 곳 지정 후 검색해서 이 CanControlCamera 태그에서만 가능하도록
+        HandleZoom();
+        CameraMove();
     }
 
     /// <summary>

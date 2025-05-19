@@ -28,6 +28,11 @@ public class ShipValidationHelper
         if (!requiredRoomsCheck.IsValid)
             return requiredRoomsCheck;
 
+        // 산소 호흡 종족 있을 시 산소실 필수 필요
+        ValidationResult oxygenRoomRequired = CheckOxygenBreathe(rooms, ship.backupCrewDatas);
+        if (!oxygenRoomRequired.IsValid)
+            return oxygenRoomRequired;
+
         // 모든 방의 연결성 확인 (선원이 모든 방을 순회하고 원위치로 복귀할 수 있는가)
         ValidationResult pathConnectivity = CheckAllRoomsPathConnectedByDoors(rooms, ship.GetGridSize());
         if (!pathConnectivity.IsValid)
@@ -84,6 +89,39 @@ public class ShipValidationHelper
                 "shipvalidation.error.nocrewquartersroom");
 
         // 모두 정상
+        return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
+    }
+
+    /// <summary>
+    /// 산소 호흡 종족 소유 여부에 따라 산소실 배치 체크
+    /// </summary>
+    /// <param name="rooms"></param>
+    /// <param name="crews"></param>
+    /// <returns></returns>
+    public ValidationResult CheckOxygenBreathe(List<Room> rooms, List<BackupCrewData> crewDatas)
+    {
+        bool needOxygenRoom = false;
+
+        Debug.LogError($"보유 선원 수 : {crewDatas.Count}");
+
+        // 산소 호흡 종족 소유 여부 - 산소실 배치 여부
+        foreach (BackupCrewData data in crewDatas)
+        {
+            Debug.LogError($"{data.race}");
+            if (data.needsOxygen)
+            {
+                Debug.LogError($"{data.race}, {data.needsOxygen}");
+                needOxygenRoom = true;
+                break;
+            }
+        }
+
+        bool hasOxygenBP = rooms.Any(r => r.roomType == RoomType.Oxygen);
+        if (needOxygenRoom)
+            if (!hasOxygenBP)
+                return new ValidationResult(ShipValidationError.MissingRequiredRoom, "shipvalidation.error.nooxygenroom");
+
+        // 정상
         return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
     }
 
@@ -189,14 +227,14 @@ public class ShipValidationHelper
         queue.Enqueue(startRoom);
         visitedRooms.Add(startRoom);
 
-        int i = 0;
+        // int i = 0;
 
         // BFS + DFS 탐색
         while (queue.Count > 0)
         {
             // BFS 현재 방 dequeue
             Room current = queue.Dequeue();
-            Debug.Log($"{i++} : {current} 방 진입 currentroompos : {current.position}");
+            // Debug.Log($"{i++} : {current} 방 진입 currentroompos : {current.position}");
 
             // 현재 방의 문 방향 리스트 (회전각 반영)
             List<DoorPosition> doors = current.GetRoomData()
@@ -205,8 +243,7 @@ public class ShipValidationHelper
             // 현재 방의 모든 문에 대해 검사 (현재 방 : 복도 or 일반 방 무관)
             foreach (DoorPosition door in doors)
             {
-                Debug.Log(
-                    $"currentroompos : {current.position}, doorpos : {door.position}, doordir : {door.direction}");
+                // Debug.Log($"currentroompos : {current.position}, doorpos : {door.position}, doordir : {door.direction}");
 
                 // 인접 타일, 인접 방 검색
                 Vector2Int neighborTile = GetAdjacentTile(door.position, door.direction);
@@ -219,8 +256,8 @@ public class ShipValidationHelper
 
                 Room neighborRoom = rooms.FirstOrDefault(r => r.OccupiesTile(neighborTile));
 
-                if (neighborRoom != null)
-                    Debug.Log($"{neighborRoom}, pos: {neighborRoom.position}");
+                // if (neighborRoom != null)
+                // Debug.Log($"{neighborRoom}, pos: {neighborRoom.position}");
 
                 // 이미 방문한 방 통과 (BFS)
                 if (neighborRoom == null || visitedRooms.Contains(neighborRoom))
@@ -240,7 +277,7 @@ public class ShipValidationHelper
                         neighborRoom.currentRotation);
                 DoorDirection opposite = GetOppositeDoorDirection(door.direction);
 
-                Debug.Log($"dir : {door.direction}, 현재 문의 반대방향 (추구) : {opposite}");
+                // Debug.Log($"dir : {door.direction}, 현재 문의 반대방향 (추구) : {opposite}");
 
                 bool isConnected = false;
 
@@ -251,7 +288,7 @@ public class ShipValidationHelper
                     // 월드 좌표로 변환한 반대편 방 문 방향 (현실)
                     DoorDirection nWorldDir = ndoor.direction;
 
-                    Debug.Log($"반대편 방 문 방향 (현실) : {nWorldDir}");
+                    // Debug.Log($"반대편 방 문 방향 (현실) : {nWorldDir}");
 
                     // 조건 1 : 인접한 위치
                     bool positionMatch = DoorPositionMatch(door.position, door.direction, ndoor.position, nWorldDir,
@@ -260,7 +297,7 @@ public class ShipValidationHelper
                     // 조건 2 : 문끼리 서로 마주봄
                     bool directionMatch = opposite == nWorldDir;
 
-                    Debug.Log($"posMatch : {positionMatch}, dirMatch : {directionMatch}");
+                    // Debug.Log($"posMatch : {positionMatch}, dirMatch : {directionMatch}");
 
                     // 조건 1 & 2 만족 : 연결 보장
                     if (positionMatch && directionMatch)
@@ -273,7 +310,7 @@ public class ShipValidationHelper
                 // 연결되어 있으니 이동
                 if (isConnected)
                 {
-                    Debug.Log($"연결 O - 위치 : {neighborTile}, 문 방향 : {opposite}");
+                    // Debug.Log($"연결 O - 위치 : {neighborTile}, 문 방향 : {opposite}");
                     visitedRooms.Add(neighborRoom);
                     queue.Enqueue(neighborRoom);
                 }
@@ -287,7 +324,7 @@ public class ShipValidationHelper
         visualizer.visitedRooms = visitedRooms.ToList();
         visualizer.allRooms = rooms;
 
-        Debug.LogWarning($"visited : {visitedRooms.Count}, rooms : {rooms.Count}");
+        // Debug.LogWarning($"visited : {visitedRooms.Count}, rooms : {rooms.Count}");
         // 방문한 방 수 != 실제 설치된 방 수
         if (visitedRooms.Count != rooms.Count)
             return new ValidationResult(ShipValidationError.DisconnectedRooms, "shipvalidation.error.isolatedroom");
@@ -517,10 +554,10 @@ public class ShipValidationHelper
             // 범위를 벗어난 경우
             return false;
 
-        Debug.Log($"반대 방 문 pos : {doorPosB}, 반대 방 문 검사 : {expectedNeighborForA}");
+        // Debug.Log($"반대 방 문 pos : {doorPosB}, 반대 방 문 검사 : {expectedNeighborForA}");
         bool currentRoomCheck = doorPosB == expectedNeighborForA;
 
-        Debug.Log($"현재 방 문 pos : {doorPosA}, 현재 방 문 검사 : {expectedNeighborForB}");
+        // Debug.Log($"현재 방 문 pos : {doorPosA}, 현재 방 문 검사 : {expectedNeighborForB}");
         bool neighborRoomCheck = doorPosA == expectedNeighborForB;
 
         return currentRoomCheck && neighborRoomCheck;

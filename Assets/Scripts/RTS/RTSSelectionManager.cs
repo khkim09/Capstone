@@ -16,11 +16,6 @@ public class RTSSelectionManager : MonoBehaviour
     public Texture2D selectionTexture;
 
     /// <summary>
-    /// 이동 가능 지면으로 인식할 레이어입니다.
-    /// </summary>
-    public LayerMask groundLayer;
-
-    /// <summary>
     /// 드래그 시작 위치입니다.
     /// </summary>
     public Vector2 dragStartPos;
@@ -86,8 +81,6 @@ public class RTSSelectionManager : MonoBehaviour
     /// </summary>
     public CrewMovementValidator enemyMovementValidator;
 
-    public EnemyCamInteraction EnemyCamInteraction;
-
     /// <summary>
     /// 적 함선
     /// </summary>
@@ -125,7 +118,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <param name="onoff"></param>
     public void SetOutline(CrewMember crew, bool onoff)
     {
-        crew.GetSpriteRenderer().material = onoff ? new Material(outlineMaterial) : defaultMaterial;
+        crew.spriteRenderer.material = onoff ? new Material(outlineMaterial) : defaultMaterial;
     }
 
     #endregion

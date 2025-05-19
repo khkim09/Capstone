@@ -9,7 +9,7 @@ public enum ShipValidationError
     None,
 
     /// <summary>
-    /// 필수 방이 없음 : 전력실, 조종실, 엔진실
+    /// 필수 방이 없음
     /// </summary>
     MissingRequiredRoom,
 

@@ -15,7 +15,7 @@ public class Ship : MonoBehaviour
     /// </summary>
     public bool isPlayerShip;
 
-    [Header("Ship Info")] [SerializeField] public string shipName = "Milky";
+    [Header("Ship Info")][SerializeField] public string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -61,7 +61,7 @@ public class Ship : MonoBehaviour
     /// <summary>
     /// 외갑판 데이터
     /// </summary>
-    [Header("외갑판 설정")] [SerializeField] public OuterHullData outerHullData;
+    [Header("외갑판 설정")][SerializeField] public OuterHullData outerHullData;
 
     /// <summary>
     /// 외갑판 prefab
@@ -211,7 +211,7 @@ public class Ship : MonoBehaviour
 
         // 체력 검사 색깔 판정
         // 타입 검사 종류 판점
-        room.UpdateRoomVisual();
+        // room.UpdateRoomVisual();
 
         // 룸 위치 설정
         Vector2Int size = roomData.GetRoomDataByLevel(level).size;
@@ -408,11 +408,11 @@ public class Ship : MonoBehaviour
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-        for (int y = 0; y < room.GetSize().y; y++)
-        {
-            Vector2Int gridPos = room.position + new Vector2Int(x, y);
-            roomGrid.Remove(gridPos);
-        }
+            for (int y = 0; y < room.GetSize().y; y++)
+            {
+                Vector2Int gridPos = room.position + new Vector2Int(x, y);
+                roomGrid.Remove(gridPos);
+            }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -494,6 +494,7 @@ public class Ship : MonoBehaviour
             {
                 race = crew.race,
                 crewName = crew.crewName,
+                needsOxygen = crew.needsOxygen,
                 position = crew.position,
                 roomPos = crew.currentRoom.position
             });
@@ -519,7 +520,9 @@ public class Ship : MonoBehaviour
         foreach (ShipWeapon wp in GetAllWeapons())
             backupWeapons.Add(new WeaponBackupData()
             {
-                weaponData = wp.weaponData, position = wp.GetGridPosition(), direction = wp.GetAttachedDirection()
+                weaponData = wp.weaponData,
+                position = wp.GetGridPosition(),
+                direction = wp.GetAttachedDirection()
             });
     }
 
@@ -634,12 +637,12 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-        for (int y = 0; y < size.y; y++)
-        {
-            Vector2Int checkPos = pos + new Vector2Int(x, y);
-            if (roomGrid.ContainsKey(checkPos))
-                return false;
-        }
+            for (int y = 0; y < size.y; y++)
+            {
+                Vector2Int checkPos = pos + new Vector2Int(x, y);
+                if (roomGrid.ContainsKey(checkPos))
+                    return false;
+            }
 
         return true;
     }
@@ -1139,8 +1142,8 @@ public class Ship : MonoBehaviour
     {
         List<Vector2Int> targetPositions = new();
         foreach (Room r in allRooms)
-        foreach (Vector2Int tile in r.GetOccupiedTiles())
-            targetPositions.Add(tile);
+            foreach (Vector2Int tile in r.GetOccupiedTiles())
+                targetPositions.Add(tile);
 
         Vector2Int randomPosition = targetPositions[Random.Range(0, targetPositions.Count)];
 
@@ -1269,15 +1272,15 @@ public class Ship : MonoBehaviour
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
-            for (int y = -1; y <= 1; y++)
-            {
-                if (x == 0 && y == 0) continue;
+                for (int y = -1; y <= 1; y++)
+                {
+                    if (x == 0 && y == 0) continue;
 
-                Vector2Int checkPos = position + new Vector2Int(x, y);
+                    Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                // 해당 위치에 있는 선원들에게 데미지 적용
-                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
-            }
+                    // 해당 위치에 있는 선원들에게 데미지 적용
+                    ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
+                }
     }
 
     #endregion
