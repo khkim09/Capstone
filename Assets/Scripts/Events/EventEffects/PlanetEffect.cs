@@ -27,6 +27,11 @@ public class PlanetEffect
     public int startYear;
 
     /// <summary>
+    /// 부모 이벤트 이름
+    /// </summary>
+    public string parentEventName;
+
+    /// <summary>
     /// 아이템 가격 변동의 지속 시간
     /// 상수값을 사용하지만 만약 이벤트 별로 다르게 설정하고 싶으면
     /// NonSerialized 필드를 제거하고 각 ScriptableObject에서 설정할 것
@@ -45,11 +50,14 @@ public class PlanetEffect
     /// <param name="changeAmount">가격 변동량 (%)</param>
     /// <param name="startYear">효과 시작 년도</param>
     /// <param name="duration">효과 지속 기간</param>
-    public PlanetEffect(ItemCategory categoryType, float changeAmount, int startYear, int duration)
+    /// <param name="parentEventName">부모 이벤트 이름</param>
+    public PlanetEffect(ItemCategory categoryType, float changeAmount, int startYear, int duration,
+        string parentEventName)
     {
         this.categoryType = categoryType;
         this.changeAmount = changeAmount;
         this.startYear = startYear;
         this.duration = duration;
+        this.parentEventName = parentEventName;
     }
 }

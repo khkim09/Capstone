@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public PlayerData playerData;
 
     /// <summary>
-    /// 현재 게임의 행성들
+    /// 현재 게임의 행성 데이터들
     /// </summary>
     private List<PlanetData> planetDataList = new();
 
@@ -577,19 +577,25 @@ public class GameManager : MonoBehaviour
         planetDataList.Clear();
         worldNodeDataList.Clear();
 
-        for (int index = 0; index < Constants.Planets.PlanetTotalCount; index++)
-        {
-            PlanetData newData = new();
-            newData.CreateRandomData();
-            planetDataList.Add(newData);
-        }
-
         normalizedPlayerPosition =
             new Vector2(
                 Random.Range(Constants.Planets.PlanetCurrentPositionIndicatorSize * 2,
                     1 - Constants.Planets.PlanetCurrentPositionIndicatorSize * 2),
                 Random.Range(Constants.Planets.PlanetCurrentPositionIndicatorSize * 2,
                     1 - Constants.Planets.PlanetCurrentPositionIndicatorSize * 2));
+
+        for (int index = 0; index < Constants.Planets.PlanetTotalCount; index++)
+        {
+            PlanetData newData = new();
+            newData.CreateRandomData();
+            planetDataList.Add(newData);
+        }
+    }
+
+    public PlanetData GetRandomPlanetData()
+    {
+        int index = Random.Range(0, planetDataList.Count);
+        return planetDataList[index];
     }
 
     #endregion
@@ -662,7 +668,8 @@ public class GameManager : MonoBehaviour
     public void LandOnPlanet()
     {
         ChangeGameState(GameState.Planet);
-        SceneChanger.Instance.LoadScene("Planet");
+        //  SceneChanger.Instance.LoadScene("Planet");
+        SceneChanger.Instance.LoadScene("PlanetTestScene");
     }
 
     #endregion
