@@ -48,6 +48,8 @@ public class SceneChanger : MonoBehaviour
         SetInputBlocking(true);
 
         DontDestroyOnLoad(GameManager.Instance.playerShip);
+        GameObject esManager = GameObject.FindWithTag("ESManager");
+        DontDestroyOnLoad(esManager);
 
         yield return StartCoroutine(Fade(1)); // 페이드 아웃
         yield return SceneManager.LoadSceneAsync(sceneName);
@@ -57,8 +59,9 @@ public class SceneChanger : MonoBehaviour
 
         SceneManager.MoveGameObjectToScene(GameManager.Instance.playerShip.gameObject,
             SceneManager.GetActiveScene());
-        GameObject.Find("Main Camera").GetComponent<ShipFollowCamera>().targetShip =
-            GameManager.Instance.playerShip;
+        SceneManager.MoveGameObjectToScene(esManager, SceneManager.GetActiveScene());
+        // GameObject.Find("Main Camera").GetComponent<ShipFollowCamera>().targetShip =
+        //     GameManager.Instance.playerShip;
 
         yield return StartCoroutine(Fade(0)); // 페이드 인
 

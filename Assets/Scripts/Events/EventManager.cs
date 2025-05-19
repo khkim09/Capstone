@@ -14,7 +14,7 @@ public class EventManager : MonoBehaviour
     [Header("불가사의 출현 확률 설정")] [SerializeField] [Range(0f, 1f)]
     private float mysteryEventChance = 0.03f;
 
-    [Header("행성 이벤트 출현 확률 설정")] [SerializeField]
+    [Header("행성 이벤트 출현 확률 설정")] [SerializeField] [Range(0f, 1f)]
     private float planetEventChance = 0.07f; // 행성 도착 시 이벤트 발생 확률
 
     public float ShipEventChance => 1f - mysteryEventChance;

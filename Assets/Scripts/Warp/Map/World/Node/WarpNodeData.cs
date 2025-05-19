@@ -20,6 +20,8 @@ public class WarpNodeData
     // 노드 고유 ID
     public int nodeId;
 
+    public WarpNodeType nodeType = WarpNodeType.Event;
+
     // ID로 연결 설정하는 메서드
     public void SetConnectionsByIds(Dictionary<int, WarpNodeData> nodeMap)
     {

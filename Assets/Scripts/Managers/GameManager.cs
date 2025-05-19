@@ -43,6 +43,11 @@ public class GameManager : MonoBehaviour
     private List<WarpNodeData> warpNodeDataList = new();
 
     /// <summary>
+    /// 현재 워프 노드의 ID
+    /// </summary>
+    private int currentWarpNodeId = -1;
+
+    /// <summary>
     /// 현재 워프 목표 행성 ID
     /// </summary>
     private int currentWarpTargetPlanetId = -1;
@@ -90,6 +95,8 @@ public class GameManager : MonoBehaviour
 
     public int CurrentWarpTargetPlanetId => currentWarpTargetPlanetId;
 
+    public int CurrentWarpNodeId => currentWarpNodeId;
+
 
     public event Action OnShipInitialized;
 
@@ -125,7 +132,8 @@ public class GameManager : MonoBehaviour
         playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
         playerShip.Initialize();
 
-        CreateDefaultPlayerShip();
+        LoadGameData();
+
         if (playerShip != null)
         {
             playerShip.isPlayerShip = true; // 유저 함선
@@ -406,17 +414,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void StartNewGame()
     {
-        // if (currentState != GameState.MainMenu) return;
-
-        //DeleteGameData();
-        //CreateDefaultPlayerShip();
+        DeleteGameData();
+        CreateDefaultPlayerShip();
         playerShip.isPlayerShip = true;
         OnShipInitialized?.Invoke();
 
-        //GeneratePlanetsData(); // 새 데이터 생성
+        GeneratePlanetsData(); // 새 데이터 생성
         SaveGameData();
 
-        //currentState = GameState.Gameplay;
+        currentState = GameState.Gameplay;
         SceneChanger.Instance.LoadScene("Idle");
     }
 
@@ -425,10 +431,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ContinueGame()
     {
-        if (currentState != GameState.MainMenu) return;
-
-        LoadGameData();
-
         // 저장된 상태에 따라 적절한 씬으로 이동
         switch (currentState)
         {
@@ -522,10 +524,10 @@ public class GameManager : MonoBehaviour
     public void DeletePlayerData()
     {
         ES3.DeleteKey("playerShip");
-        // playerShip.RemoveAllRooms();
-        // playerShip.RemoveAllCrews();
-        // playerShip.RemoveAllWeapons();
-        // playerShip.RemoveAllItems();
+        playerShip.RemoveAllRooms();
+        playerShip.RemoveAllCrews();
+        playerShip.RemoveAllWeapons();
+        playerShip.RemoveAllItems();
 
         ES3.DeleteKey("playerData");
         ES3.DeleteKey("gameState");
@@ -601,6 +603,7 @@ public class GameManager : MonoBehaviour
         {
             ES3.Save("currentWarpNodes", warpNodeDataList);
             ES3.Save("currentWarpTargetPlanetId", currentWarpTargetPlanetId);
+            ES3.Save("currentWarpNodeId", currentWarpNodeId);
             Debug.Log($"워프맵 저장: {warpNodeDataList.Count}개 노드");
         }
     }
@@ -614,6 +617,9 @@ public class GameManager : MonoBehaviour
 
             if (ES3.KeyExists("currentWarpTargetPlanetId"))
                 currentWarpTargetPlanetId = ES3.Load<int>("currentWarpTargetPlanetId");
+
+            if (ES3.KeyExists("currentWarpNodeId"))
+                currentWarpNodeId = ES3.Load<int>("currentWarpNodeId");
 
             Debug.Log($"워프맵 로드: {warpNodeDataList.Count}개 노드");
             Debug.Log($"타겟 행성 ID : {currentWarpTargetPlanetId}");
@@ -641,11 +647,22 @@ public class GameManager : MonoBehaviour
         currentWarpTargetPlanetId = targetPlanetId;
     }
 
-// 워프맵 클리어
+    public void SetCurrentWarpNodeId(int nodeId)
+    {
+        currentWarpNodeId = nodeId;
+    }
+
+    // 워프맵 클리어
     public void ClearCurrentWarpMap()
     {
         warpNodeDataList.Clear();
         currentWarpTargetPlanetId = -1;
+    }
+
+    public void LandOnPlanet()
+    {
+        ChangeGameState(GameState.Planet);
+        SceneChanger.Instance.LoadScene("Planet");
     }
 
     #endregion
@@ -673,6 +690,11 @@ public enum GameState
     /// 적 함선 만난 상태
     /// </summary>
     Combat,
+
+    /// <summary>
+    /// 행성에 있는 상태
+    /// </summary>
+    Planet,
 
     /// <summary>게임이 일시정지된 상태입니다.</summary>
     Paused,

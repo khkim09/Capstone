@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.EventSystems;
+using Random = UnityEngine.Random;
 
 public class MapPanelController : MonoBehaviour
 {
@@ -20,6 +21,12 @@ public class MapPanelController : MonoBehaviour
     [Header("워프 패널 설정")] [SerializeField] private GameObject warpPanelContent;
     [SerializeField] private GameObject warpNodePrefab;
     [SerializeField] private GameObject nodeConnectionPrefab;
+    [SerializeField] private GameObject checkWarpUI;
+    private WarpNode recentClickedNode;
+
+    [Header("행성 도착 버튼")] [SerializeField] private Button buttonPlanetLand;
+
+
     private Planet targetPlanet;
 
     private int nodeLayerCount => GameManager.Instance.WorldNodeDataList.Count;
@@ -56,6 +63,10 @@ public class MapPanelController : MonoBehaviour
 
     private bool IsPlayerMoved => GameManager.Instance.normalizedPlayerPosition != playerPositionBefore;
 
+    private void Awake()
+    {
+        buttonPlanetLand.onClick.AddListener(() => GameManager.Instance.LandOnPlanet());
+    }
 
     private void Start()
     {
@@ -194,9 +205,7 @@ public class MapPanelController : MonoBehaviour
 
         if (targetPlanet != null)
         {
-            Vector2 startPos = GameManager.Instance.normalizedPlayerPosition;
-            Vector2 endPos = targetPlanet.PlanetData.normalizedPosition;
-            GenerateNodeMap(startPos, endPos, nodeLayerCount);
+            GenerateNodeMap(nodeLayerCount);
 
             // 생성된 워프맵을 GameManager에 저장
             SaveWarpMapToGameManager();
@@ -279,12 +288,80 @@ public class MapPanelController : MonoBehaviour
         {
             Debug.LogWarning($"워프맵 저장 실패 - 노드 수: {warpNodes.Count}, 타겟 행성: {(targetPlanet != null ? "있음" : "없음")}");
         }
+
+        RestoreWarpMapFromGameManager();
+
+        GameManager.Instance.SaveGameData();
     }
 
-    public void OnWarpCompleted()
+    private void OnWarpNodeClicked(WarpNode clickedNode)
     {
-        GameManager.Instance.ClearCurrentWarpMap();
-        ClearWarpNodes();
+        // 클릭한 워프 노드 처리
+        Debug.Log($"워프 노드 클릭됨: 레이어 {clickedNode.NodeData.layer}, 인덱스 {clickedNode.NodeData.indexInLayer}");
+
+        // 현재 플레이어와 직접 연결된 노드만 이동 가능
+        if (!clickedNode.IsDirectlyConnectedToPlayer())
+        {
+            Debug.Log("해당 노드로 직접 이동할 수 없습니다.");
+            return;
+        }
+
+        recentClickedNode = clickedNode;
+        checkWarpUI.SetActive(true);
+    }
+
+    public void Warp()
+    {
+        if (recentClickedNode == null)
+            return;
+        checkWarpUI.SetActive(false);
+
+
+        GameManager.Instance.AddYear();
+        // 플레이어 이동
+        MovePlayerToNode(recentClickedNode);
+
+        SlideClose();
+    }
+
+    // 플레이어를 특정 노드로 이동
+    private void MovePlayerToNode(WarpNode targetNode)
+    {
+        // 이전 노드의 현재 플레이어 표시 해제
+        foreach (Transform child in warpPanelContent.transform)
+        {
+            WarpNode node = child.GetComponent<WarpNode>();
+            if (node != null) node.SetCurrentPlayerNode(false);
+        }
+
+        // 새 노드로 플레이어 이동
+        GameManager.Instance.SetCurrentWarpNodeId(targetNode.NodeData.nodeId);
+        targetNode.SetCurrentPlayerNode(true);
+
+        // 모든 노드의 상태 업데이트 (도달 가능성 재계산)
+        RefreshAllNodeStates();
+
+        Debug.Log($"플레이어가 노드 {targetNode.NodeData.nodeId}로 이동했습니다.");
+
+        // 끝 노드에 도달했다면 워프 완료 처리
+        if (targetNode.NodeData.isEndNode) OnWarpCompleted();
+
+        // 게임 상태 저장
+        GameManager.Instance.SaveGameData();
+    }
+
+    private void OnWarpCompleted()
+    {
+        buttonPlanetLand.gameObject.SetActive(true);
+    }
+
+    private void RefreshAllNodeStates()
+    {
+        foreach (Transform child in warpPanelContent.transform)
+        {
+            WarpNode node = child.GetComponent<WarpNode>();
+            if (node != null) node.SetNodeData(node.NodeData); // 상태 업데이트 트리거
+        }
     }
 
 
@@ -315,7 +392,7 @@ public class MapPanelController : MonoBehaviour
     }
 
 
-    private void GenerateNodeMap(Vector2 startPosition, Vector2 endPosition, int layerCount)
+    private void GenerateNodeMap(int layerCount)
     {
         // 데이터 구조 초기화
         warpNodes.Clear();
@@ -329,7 +406,7 @@ public class MapPanelController : MonoBehaviour
         // 1. 시작 노드 생성 (레이어 0)
         WarpNodeData startNode = new()
         {
-            normalizedPosition = new Vector2(Constants.WarpNodes.EdgeMarginHorizontal, startPosition.y),
+            normalizedPosition = new Vector2(Constants.WarpNodes.EdgeMarginHorizontal, 0.5f),
             isStartNode = true,
             isEndNode = false,
             layer = 0,
@@ -348,7 +425,7 @@ public class MapPanelController : MonoBehaviour
                          (1f - 2f * Constants.WarpNodes.EdgeMarginHorizontal) * layer / (layerCount + 1);
 
             // 해당 레이어의 노드 수 결정 (2~5개)
-            int nodesInLayer = UnityEngine.Random.Range(
+            int nodesInLayer = Random.Range(
                 Constants.WarpNodes.LayerNodeCountMin,
                 Constants.WarpNodes.LayerNodeCountMax + 1);
 
@@ -367,7 +444,10 @@ public class MapPanelController : MonoBehaviour
                     isEndNode = false,
                     layer = layer,
                     indexInLayer = i,
-                    nodeId = nodeIdCounter++
+                    nodeId = nodeIdCounter++,
+                    nodeType = Random.value < Constants.WarpNodes.EventNodeRate
+                        ? WarpNodeType.Event
+                        : WarpNodeType.Combat
                 };
 
                 warpNodes.Add(node);
@@ -378,7 +458,7 @@ public class MapPanelController : MonoBehaviour
         // 3. 끝 노드 생성 (레이어 layerCount+1)
         WarpNodeData endNode = new()
         {
-            normalizedPosition = new Vector2(1f - Constants.WarpNodes.EdgeMarginHorizontal, endPosition.y),
+            normalizedPosition = new Vector2(1f - Constants.WarpNodes.EdgeMarginHorizontal, 0.5f),
             isStartNode = false,
             isEndNode = true,
             layer = layerCount + 1,
@@ -484,7 +564,7 @@ public class MapPanelController : MonoBehaviour
                         endIndex = startIndex + 1;
 
                     // 추가 연결 생성 (1~2개 더)
-                    int additionalConnections = UnityEngine.Random.Range(0, 4);
+                    int additionalConnections = Random.Range(0, 4);
                     int maxConnections = Mathf.Min(
                         currentNode.connections.Count + additionalConnections,
                         endIndex - startIndex);
@@ -499,7 +579,7 @@ public class MapPanelController : MonoBehaviour
 
                     while (currentNode.connections.Count < maxConnections)
                     {
-                        int randomIndex = UnityEngine.Random.Range(startIndex, endIndex);
+                        int randomIndex = Random.Range(startIndex, endIndex);
                         if (!existingConnections.Contains(randomIndex))
                         {
                             currentNode.AddConnection(nextLayerNodes[randomIndex]);
@@ -629,7 +709,7 @@ public class MapPanelController : MonoBehaviour
             // 시작/끝 노드에 따른 시각적 차별화
             if (nodeData.isStartNode)
                 node.SetAsStartNode();
-            else if (nodeData.isEndNode) node.SetAsEndNode();
+            else if (nodeData.isEndNode) node.SetAsEndNode(targetPlanet);
 
             // 노드 클릭 이벤트 설정
             node.onClicked = OnWarpNodeClicked;
@@ -669,14 +749,6 @@ public class MapPanelController : MonoBehaviour
         connectionRect.localRotation = Quaternion.Euler(0, 0, angle);
     }
 
-    private void OnWarpNodeClicked(WarpNode clickedNode)
-    {
-        // 클릭한 워프 노드 처리
-        Debug.Log($"워프 노드 클릭됨: 레이어 {clickedNode.NodeData.layer}, 인덱스 {clickedNode.NodeData.indexInLayer}");
-
-        // 여기에 노드 클릭 시 처리 로직 추가
-        // 예: 경로 선택, 이동 처리 등
-    }
 
     private void ClearWarpNodes()
     {
@@ -904,6 +976,9 @@ public class MapPanelController : MonoBehaviour
         Debug.Log($"MapPanelController: 행성 클릭됨 -");
 
         targetPlanet = clickedPlanet;
+        targetPlanet.HideTooltip();
+
+        GameManager.Instance.SetCurrentWarpNodeId(0);
 
         int planetIndex = GameManager.Instance.PlanetDataList.IndexOf(clickedPlanet.PlanetData);
         Debug.Log($"클릭된 행성 인덱스: {planetIndex}");
