@@ -98,9 +98,7 @@ public class GameManager : MonoBehaviour
 
     public int CurrentWarpNodeId => currentWarpNodeId;
 
-
     public event Action OnShipInitialized;
-
 
     /// <summary>
     /// 게임 상태 변경 이벤트 델리게이트입니다.
@@ -133,7 +131,7 @@ public class GameManager : MonoBehaviour
         playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
         playerShip.Initialize();
 
-        LoadGameData();
+        // LoadGameData();
 
         if (playerShip != null)
         {

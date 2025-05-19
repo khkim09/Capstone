@@ -8,6 +8,8 @@ public class BlueprintWeaponDragHandler : MonoBehaviour
 {
     [Header("References")] public GameObject previewPrefab;
     public GridPlacer gridPlacer;
+    public GameObject roomSelectionUI;
+    private RoomSelectionHandler rshandler;
     public BlueprintShip blueprintShip;
 
     [Header("Preview sprite color")] public Color validColor = new(0, 1, 0, 0.5f);
@@ -37,6 +39,12 @@ public class BlueprintWeaponDragHandler : MonoBehaviour
     public static bool IsWeaponBeingDragged =>
         BlueprintDragManager.Instance != null && BlueprintDragManager.Instance.IsWeaponBeingDragged;
 
+    private void Start()
+    {
+        if (roomSelectionUI != null)
+            rshandler = roomSelectionUI.GetComponent<RoomSelectionHandler>();
+    }
+
     /// <summary>
     /// 드래그 시작 시 호출됨.
     /// </summary>
@@ -45,6 +53,9 @@ public class BlueprintWeaponDragHandler : MonoBehaviour
         // 이미 다른 드래그가 진행 중이면 무시
         if (!BlueprintDragManager.Instance.StartWeaponDrag())
             return;
+
+        if (rshandler != null)
+            rshandler.Deselect();
 
         if (previewGO != null)
             Destroy(previewGO);

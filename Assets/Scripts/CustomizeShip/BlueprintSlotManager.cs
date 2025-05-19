@@ -24,6 +24,11 @@ public class BlueprintSlotManager : MonoBehaviour
     /// </summary>
     public List<HashSet<Vector2Int>> occupiedTilesPerSlot = new(4);
 
+    /// <summary>
+    /// 유효한 도안인지 (즉시 함선 변경 가능)
+    /// </summary>
+    public List<bool> isValidBP = new(4);
+
     [SerializeField] private GameObject customize0Panel;
 
     private void Awake()
@@ -38,6 +43,9 @@ public class BlueprintSlotManager : MonoBehaviour
         // 그리드 관리
         for (int i = occupiedTilesPerSlot.Count; i < 4; i++)
             occupiedTilesPerSlot.Add(new HashSet<Vector2Int>());
+
+        for (int i = isValidBP.Count; i < 4; i++)
+            isValidBP.Add(false);
 
         InitializeSlotButtonColor();
     }
@@ -73,7 +81,11 @@ public class BlueprintSlotManager : MonoBehaviour
         if (index < 0 || index >= blueprintSlots.Count)
             return null;
 
-        return blueprintSlots[index];
+        BlueprintSaveData data = blueprintSlots[index];
+        if (data == null || (data.rooms == null && data.weapons == null))
+            return null;
+
+        return data;
     }
 
     public void SaveOccupiedTilesToCurrentSlot(HashSet<Vector2Int> occupied)

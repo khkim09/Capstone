@@ -10,19 +10,24 @@ public class Customize_0_Controller : MonoBehaviour
     [SerializeField] private GameObject customize2Panel;
 
     [Header("Fields")]
-    [SerializeField] Button applyButton;
-    [SerializeField] Button editButton;
-    [SerializeField] BPPreviewArea bpPreviewArea;
+    [SerializeField] private Button exitButton;
+    [SerializeField] private Button applyButton;
+    [SerializeField] private Button editButton;
+    [SerializeField] private BPPreviewArea bpPreviewArea;
 
-    [SerializeField] Button slot1Button;
-    [SerializeField] Button slot2Button;
-    [SerializeField] Button slot3Button;
-    [SerializeField] Button slot4Button;
+    [SerializeField] private Button slot1Button;
+    [SerializeField] private Button slot2Button;
+    [SerializeField] private Button slot3Button;
+    [SerializeField] private Button slot4Button;
 
     public List<Button> slotButtons = new();
 
+    /// <summary>
+    /// button 클릭 함수 연결
+    /// </summary>
     private void Start()
     {
+        exitButton.onClick.AddListener(() => { OnClickExit(); });
         applyButton.onClick.AddListener(() => { OnClickApply(); });
         editButton.onClick.AddListener(() => { OnClickEdit(); });
 
@@ -30,14 +35,31 @@ public class Customize_0_Controller : MonoBehaviour
         slot2Button.onClick.AddListener(() => { OnClickSlot(1); });
         slot3Button.onClick.AddListener(() => { OnClickSlot(2); });
         slot4Button.onClick.AddListener(() => { OnClickSlot(3); });
+
+        applyButton.interactable = false;
+        editButton.interactable = false;
     }
 
+    /// <summary>
+    /// TODO : Idle scene으로 전환 구현 필요!!
+    /// </summary>
+    public void OnClickExit()
+    {
+        // scene 전환
+    }
+
+    /// <summary>
+    /// 함선 교체 버튼 (도안 실제 적용시키겠다)
+    /// </summary>
     public void OnClickApply()
     {
         customize0Panel.SetActive(false);
         customize2Panel.SetActive(true);
     }
 
+    /// <summary>
+    /// 도안 편집
+    /// </summary>
     public void OnClickEdit()
     {
         customize0Panel.SetActive(false);
@@ -48,12 +70,17 @@ public class Customize_0_Controller : MonoBehaviour
         controller.ReloadBlueprintFromSlot(BlueprintSlotManager.Instance.currentSlotIndex);
     }
 
+    /// <summary>
+    /// 도안 유효성에 따른 slot button 갱신
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="isValid"></param>
     public void UpdateSlotButtonColor(int index, bool isValid)
     {
         if (index < 0 || index >= slotButtons.Count)
             return;
 
-        var btn = slotButtons[index];
+        Button btn = slotButtons[index];
         ColorBlock cb = btn.colors;
 
         if (BlueprintSlotManager.Instance.GetBlueprintAt(index) == null)
@@ -66,13 +93,14 @@ public class Customize_0_Controller : MonoBehaviour
         btn.colors = cb;
     }
 
-
     /// <summary>
     /// 슬롯 버튼 클릭
     /// </summary>
     /// <param name="slotIndex"></param>
     public void OnClickSlot(int slotIndex)
     {
+        editButton.interactable = true;
+
         BlueprintSlotManager.Instance.currentSlotIndex = slotIndex;
 
         BlueprintSaveData selectedData = BlueprintSlotManager.Instance.GetBlueprintAt(slotIndex);
@@ -80,14 +108,29 @@ public class Customize_0_Controller : MonoBehaviour
         {
             Debug.LogError($"도안 {slotIndex}: 방 {selectedData.rooms.Count}, 무기 {selectedData.weapons.Count}");
             bpPreviewArea.Show(selectedData); // 도안 미리보기 표시
-            applyButton.interactable = true;
-            // editButton.interactable = true;
+
+            CheckApplyAvailable();
         }
         else
         {
             bpPreviewArea.Clear(); // 미리보기 제거
             applyButton.interactable = false;
-            // editButton.interactable = false;
         }
+    }
+
+    /// <summary>
+    /// 실제 함선으로 교체 버튼 활성화 체크
+    /// </summary>
+    private void CheckApplyAvailable()
+    {
+        int index = BlueprintSlotManager.Instance.currentSlotIndex;
+
+        if (index < 0)
+            return;
+
+        if (!BlueprintSlotManager.Instance.isValidBP[index])
+            applyButton.interactable = false;
+        else
+            applyButton.interactable = true;
     }
 }

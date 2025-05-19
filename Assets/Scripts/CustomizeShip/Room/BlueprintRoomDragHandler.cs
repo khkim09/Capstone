@@ -8,6 +8,8 @@ public class BlueprintRoomDragHandler : MonoBehaviour
 {
     [Header("References")] public GameObject previewPrefab;
     public GridPlacer gridPlacer;
+    public GameObject roomSelectionUI;
+    private RoomSelectionHandler rshandler;
 
     [Header("preview sprite color")] public Color validColor = new(0, 1, 0, 0.5f);
     public Color invalidColor = new(1, 0, 0, 0.5f);
@@ -26,6 +28,12 @@ public class BlueprintRoomDragHandler : MonoBehaviour
     public static bool IsRoomBeingDragged =>
         BlueprintDragManager.Instance != null && BlueprintDragManager.Instance.IsRoomBeingDragged;
 
+    private void Start()
+    {
+        if (roomSelectionUI != null)
+            rshandler = roomSelectionUI.GetComponent<RoomSelectionHandler>();
+    }
+
     /// <summary>
     /// 드래그 시작 시 호출됨.
     /// </summary>
@@ -34,6 +42,9 @@ public class BlueprintRoomDragHandler : MonoBehaviour
         // 이미 다른 드래그가 진행 중이면 무시
         if (!BlueprintDragManager.Instance.StartRoomDrag())
             return;
+
+        if (rshandler != null)
+            rshandler.Deselect();
 
         if (previewGO != null)
             Destroy(previewGO);

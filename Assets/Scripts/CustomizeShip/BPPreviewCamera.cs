@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +7,24 @@ public class BPPreviewCamera : MonoBehaviour
     [SerializeField] private Camera previewCamera;
     private float padding = 1f;
 
+    public void RenderOnce()
+    {
+        StartCoroutine(RenderAtEndOfFrame());
+    }
+
+    private IEnumerator RenderAtEndOfFrame()
+    {
+        yield return new WaitForEndOfFrame();
+
+        if (previewCamera != null)
+            previewCamera.Render();
+    }
+
     /// <summary>
     /// preview Area 사이즈에 맞게 도안 띄우기
     /// </summary>
     /// <param name="tilePositions"></param>
-    public void FitToBlueprint(List<Vector2Int> tilePositions)
+    public void FitToBlueprint(List<Vector2Int> tilePositions, Vector3 startPos)
     {
         if (tilePositions == null || tilePositions.Count == 0 || previewCamera == null)
             return;
@@ -28,7 +42,11 @@ public class BPPreviewCamera : MonoBehaviour
         Vector2 centerGridPos = new Vector2((min.x + max.x) / 2f, (min.y + max.y) / 2f);
         Vector3 centerWorldPos = GridToWorldPosition(centerGridPos);
 
-        previewCamera.transform.position = new Vector3(centerWorldPos.x, centerWorldPos.y, previewCamera.transform.position.z);
+        previewCamera.transform.position = new Vector3(
+            startPos.x + centerWorldPos.x,
+            startPos.y + centerWorldPos.y,
+            startPos.z + previewCamera.transform.position.z
+        );
 
         float width = (max.x - min.x + 1) * Constants.Grids.CellSize;
         float height = (max.y - min.y + 1) * Constants.Grids.CellSize;
