@@ -39,7 +39,8 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")] [SerializeField]
+    [Header("Game State")]
+    [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -102,7 +103,7 @@ public class GameManager : MonoBehaviour
         playerShip.Initialize();
         playerShip.isPlayerShip = true; // 유저 함선
 
-        CreateDefaultPlayerShip();
+        // CreateDefaultPlayerShip();
         OnShipInitialized?.Invoke();
 
         if (currentEnemyShip != null)

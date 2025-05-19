@@ -11,11 +11,6 @@ using UnityEngine.UI;
 public class CustomizeShipUIHandler : MonoBehaviour
 {
     /// <summary>
-    /// 메인 화면 UI입니다.
-    /// </summary>
-    [Header("UI")] public GameObject mainUI;
-
-    /// <summary>
     /// 커스터마이즈 UI 화면입니다.
     /// </summary>
     public GameObject customizeUI;
@@ -281,7 +276,8 @@ public class CustomizeShipUIHandler : MonoBehaviour
         foreach (BlueprintRoom r in bpRooms)
             Destroy(r.gameObject);
 
-        foreach (BlueprintWeapon w in bpWeapons) Destroy(w.gameObject);
+        foreach (BlueprintWeapon w in bpWeapons)
+            Destroy(w.gameObject);
 
         targetBlueprintShip.ClearRooms();
     }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class ShipFollowCamera : MonoBehaviour
 {
     [SerializeField] private Ship targetShip;
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera cam;
     [SerializeField] private float targetShipPositionX = 0.3f; // 함선 중심이 위치할 화면 X 좌표 (0.3 = 30%)
     [SerializeField] private float targetShipPositionY = 0.5f; // 함선 중심이 위치할 화면 Y 좌표 (0.5 = 50%)
     [SerializeField] private float leftBoundaryPercent = 0.0f; // 함선이 표시될 영역의 왼쪽 경계 (0%)
@@ -51,7 +51,7 @@ public class ShipFollowCamera : MonoBehaviour
         if ((allRooms == null || allRooms.Count == 0) && (allWeapons == null || allWeapons.Count == 0))
         {
             Vector3 gridCenter = targetShip.GetWorldPositionFromGrid(targetShip.GetGridSize() / 2);
-            PositionCamera(gridCenter, camera.orthographicSize);
+            PositionCamera(gridCenter, cam.orthographicSize);
             return;
         }
 
@@ -128,7 +128,7 @@ public class ShipFollowCamera : MonoBehaviour
     private void CalculateCameraSettings()
     {
         // 디버깅 도구로써 원래 값 저장
-        float originalOrthoSize = camera.orthographicSize;
+        float originalOrthoSize = cam.orthographicSize;
 
         // 패딩이 적용된 함선 크기 계산
         float paddedShipWidth = shipWidth * (1 + paddingPercent * 2);
@@ -137,7 +137,7 @@ public class ShipFollowCamera : MonoBehaviour
         DebugLog($"패딩 적용된 함선 크기 - 너비: {paddedShipWidth}, 높이: {paddedShipHeight}");
 
         // 화면 비율 계산
-        float screenAspect = camera.aspect;
+        float screenAspect = cam.aspect;
         DebugLog($"화면 비율(width/height): {screenAspect}");
 
         // 함선의 가로세로 비율
@@ -174,7 +174,7 @@ public class ShipFollowCamera : MonoBehaviour
         DebugLog($"카메라 크기 변경: {originalOrthoSize} -> {clampedOrthoSize}");
 
         // 6. 카메라 크기 설정 및 위치 조정
-        camera.orthographicSize = clampedOrthoSize;
+        cam.orthographicSize = clampedOrthoSize;
         PositionCamera(shipCenter, clampedOrthoSize);
 
         // 7. 계산 후 함선 위치 시각화 (디버깅용)
@@ -190,7 +190,7 @@ public class ShipFollowCamera : MonoBehaviour
         float requiredScreenWidth = shipWidth / effectiveWidthRatio;
 
         // 필요한 orthographicSize 계산 (화면 너비 = 2 * orthoSize * aspect)
-        float orthoSize = requiredScreenWidth / (2 * camera.aspect);
+        float orthoSize = requiredScreenWidth / (2 * cam.aspect);
 
         DebugLog(
             $"가로 계산 - 함선 너비: {shipWidth}, 유효 가용 비율: {effectiveWidthRatio}, 필요너비: {requiredScreenWidth}, orthoSize: {orthoSize}");
@@ -219,7 +219,7 @@ public class ShipFollowCamera : MonoBehaviour
     {
         // 화면 크기 계산
         float cameraHeight = 2f * orthoSize;
-        float cameraWidth = cameraHeight * camera.aspect;
+        float cameraWidth = cameraHeight * cam.aspect;
 
         float xOffset;
 
@@ -251,10 +251,10 @@ public class ShipFollowCamera : MonoBehaviour
         Vector3 newCameraPosition = new(
             targetPosition.x + xOffset, // + 오프셋으로 카메라가 오른쪽으로 이동 → 함선이 화면 왼쪽으로 이동
             targetPosition.y + yOffset, // + 오프셋으로 카메라가 위로 이동 → 함선이 화면 아래로 이동
-            camera.transform.position.z
+            cam.transform.position.z
         );
 
-        camera.transform.position = newCameraPosition;
+        cam.transform.position = newCameraPosition;
 
         DebugLog(
             $"카메라 위치 조정 - 화면크기: ({cameraWidth}, {cameraHeight}), 제한 요소: {(isWidthConstraining ? "가로" : "세로")}, " +
@@ -265,13 +265,13 @@ public class ShipFollowCamera : MonoBehaviour
     {
         // 디버깅용: 함선의 위치가 화면에서 어디에 표시되는지 확인
         float cameraHeight = 2f * orthoSize;
-        float cameraWidth = cameraHeight * camera.aspect;
+        float cameraWidth = cameraHeight * cam.aspect;
 
         // 카메라 기준 월드 좌표 계산
-        float camLeft = camera.transform.position.x - cameraWidth * 0.5f;
-        float camRight = camera.transform.position.x + cameraWidth * 0.5f;
-        float camTop = camera.transform.position.y + cameraHeight * 0.5f;
-        float camBottom = camera.transform.position.y - cameraHeight * 0.5f;
+        float camLeft = cam.transform.position.x - cameraWidth * 0.5f;
+        float camRight = cam.transform.position.x + cameraWidth * 0.5f;
+        float camTop = cam.transform.position.y + cameraHeight * 0.5f;
+        float camBottom = cam.transform.position.y - cameraHeight * 0.5f;
 
         // 함선 경계 위치
         float shipLeft = shipCenter.x - shipWidth * 0.5f;

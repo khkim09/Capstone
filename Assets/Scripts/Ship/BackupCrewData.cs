@@ -9,6 +9,7 @@ public struct BackupCrewData
 {
     public CrewRace race;
     public string crewName;
+    public bool needsOxygen;
     public Vector2Int position;
     public Vector2Int roomPos;
 }

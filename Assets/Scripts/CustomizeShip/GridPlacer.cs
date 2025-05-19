@@ -60,13 +60,13 @@ public class GridPlacer : MonoBehaviour
     public void GenerateTiles()
     {
         for (int x = 0; x < gridSize.x; x++)
-        for (int y = 0; y < gridSize.y; y++)
-        {
-            Vector3 pos = GetWorldPositionFromGrid(new Vector2Int(x, y));
-            GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
-            tile.transform.localScale = Vector3.one * Constants.Grids.CellSize;
-            tile.transform.position += new Vector3(0, 0, 17);
-        }
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                Vector3 pos = GetWorldPositionFromGrid(new Vector2Int(x, y));
+                GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity, gridTiles);
+                tile.transform.localScale = Vector3.one * Constants.Grids.CellSize;
+                tile.transform.position += new Vector3(0, 0, 17);
+            }
     }
 
     /// <summary>
@@ -395,7 +395,6 @@ public class GridPlacer : MonoBehaviour
         targetBlueprintShip.AddPlaceable(bpRoom);
     }
 
-
     /// <summary>
     /// 실제 무기를 해당 위치에 배치함
     /// </summary>
@@ -428,4 +427,68 @@ public class GridPlacer : MonoBehaviour
 
         return bpWeapon;
     }
+
+    #region BPPreviewArea 용 함수
+
+    /// <summary>
+    /// 실제 방을 해당 위치에 배치함
+    /// </summary>
+    public GameObject PlacePreviewRoom(RoomData data, int level, Vector2Int position, Constants.Rotations.Rotation rotation, Transform previewRoot, List<Vector2Int> tilePos)
+    {
+        Vector2Int size = RoomRotationUtility.GetRotatedSize(data.GetRoomDataByLevel(level).size, rotation);
+        Vector2 offset = RoomRotationUtility.GetRotationOffset(size, rotation);
+        Vector3 worldPos = GetWorldPositionFromGrid(position) + (Vector3)offset;
+
+        GameObject previewObj = Instantiate(roomPrefab, previewRoot);
+        previewObj.transform.position = worldPos + new Vector3(0, 0, 10f);
+        previewObj.transform.rotation = Quaternion.Euler(0, 0, -(int)rotation * 90);
+        previewObj.name = $"PreviewRoom_{data.name}";
+
+        BlueprintRoom bpRoom = previewObj.GetComponent<BlueprintRoom>();
+        // bpRoom.SetGridPlacer(this);
+        bpRoom.Initialize(data, level, position, rotation);
+        // bpRoom.SetBlueprint(targetBlueprintShip);
+
+        foreach (Vector2Int tile in bpRoom.GetOccupiedTiles())
+            tilePos.Add(tile);
+
+        return previewObj;
+    }
+
+    /// <summary>
+    /// 실제 무기를 해당 위치에 배치함
+    /// </summary>
+    /// <returns>생성된 BlueprintWeapon 인스턴스</returns>
+    public GameObject PlacePreviewWeapon(ShipWeaponData data, Vector2Int position, ShipWeaponAttachedDirection direction, Transform previewRoot, List<Vector2Int> tilePos)
+    {
+        if (data == null)
+            return null;
+
+        Vector2Int size = new(2, 1);
+        Vector2 offset = RoomRotationUtility.GetRotationOffset(size, Constants.Rotations.Rotation.Rotation0);
+        Vector3 worldPos = GetWorldPositionFromGrid(position) + (Vector3)offset;
+
+        GameObject previewObj = Instantiate(weaponPrefab, previewRoot);
+        previewObj.transform.position = worldPos + new Vector3(0, 0, 10f);
+        previewObj.name = $"PreviewWeapon_{data.name}";
+
+        BlueprintWeapon bpWeapon = previewObj.GetComponent<BlueprintWeapon>();
+        // bpWeapon.SetGridPlacer(this);
+        bpWeapon.Initialize(data, position, direction);
+
+        // 설계도 함선의 외갑판 레벨 적용 (함선에 추가하기 전)
+        int currentHullLevel = targetBlueprintShip.GetHullLevel();
+        bpWeapon.SetHullLevel(currentHullLevel);
+        // bpWeapon.SetBlueprint(targetBlueprintShip);
+
+        foreach (Vector2Int tile in bpWeapon.GetOccupiedTiles())
+            tilePos.Add(tile);
+
+        // 함선에 무기 추가 (BlueprintShip.AddPlaceable 메서드에서 다시 한번 외갑판 레벨 적용)
+        // targetBlueprintShip.AddPlaceable(bpWeapon);
+
+        return previewObj;
+    }
+
+    #endregion
 }
