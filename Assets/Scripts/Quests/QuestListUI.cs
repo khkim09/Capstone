@@ -32,41 +32,78 @@ public class QuestListUI : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        if (panel == null)
+        {
+            Debug.LogError("QuestListUI: panel이 할당되지 않았습니다.");
+            return;
+        }
+
         panel.SetActive(false);
-        QuestManager.Instance.OnQuestCompleted += OnQuestCompleted;
+
+        if (QuestManager.Instance != null)
+            QuestManager.Instance.OnQuestCompleted += OnQuestCompleted;
+    }
+
+    /// <summary>
+    /// 이벤트 리스너 해제
+    /// </summary>
+    private void OnDestroy()
+    {
+        if (QuestManager.Instance != null)
+            QuestManager.Instance.OnQuestCompleted -= OnQuestCompleted;
     }
 
     /// <summary>
     /// 퀘스트 목록 창을 열고 목록을 표시합니다.
     /// 완료 가능한 퀘스트를 먼저 추가한 뒤 진행 중 퀘스트를 추가합니다.
     /// </summary>
-    public void Open()
+    public void OpenQuestListForPlanet(Planet currentPlanet = null)
     {
         Clear();
         panel.SetActive(true);
+
+        string currentPlanetId = currentPlanet?.PlanetData?.planetName;
+
+        if (QuestManager.Instance == null)
+        {
+            Debug.LogWarning("QuestManager.Instance가 존재하지 않습니다.");
+            return;
+        }
 
         List<RandomQuest> quests = QuestManager.Instance.GetActiveQuests();
 
         // 완료 가능한 퀘스트 먼저
         foreach (RandomQuest quest in quests)
-            if (IsQuestCompleteReady(quest))
+        {
+            bool isCompleteReady = !string.IsNullOrEmpty(currentPlanetId) && quest.IsQuestCompleteReady(currentPlanetId);
+            if (isCompleteReady)
                 AddToQuestListPanel(quest, true);
+        }
 
-        // 나머지 진행 중 퀘스트
+        // 그 외 퀘스트
         foreach (RandomQuest quest in quests)
-            if (!IsQuestCompleteReady(quest))
+        {
+            bool isCompleteReady = !string.IsNullOrEmpty(currentPlanetId) && quest.IsQuestCompleteReady(currentPlanetId);
+            if (!isCompleteReady)
                 AddToQuestListPanel(quest, false);
+        }
     }
+
 
     /// <summary>
     /// 외부 버튼에서 호출될 때 사용되는 열기/닫기 함수입니다.
     /// </summary>
     public void ToggleFromButton()
     {
+        if (panel == null) return;
+
         if (panel.activeSelf)
             Close();
         else
-            Open();
+        {
+            Planet planet = QuestUIManager.Instance?.GetCurrentPlanet();
+            OpenQuestListForPlanet(planet);
+        }
     }
 
     /// <summary>
@@ -74,7 +111,9 @@ public class QuestListUI : MonoBehaviour
     /// </summary>
     public void Close()
     {
-        panel.SetActive(false);
+        if (panel != null)
+            panel.SetActive(false);
+
         Clear();
     }
 
@@ -93,8 +132,10 @@ public class QuestListUI : MonoBehaviour
     /// </summary>
     private void OnQuestCompleted(RandomQuest quest)
     {
-        if (IsOpen())
-            Open();
+        if (!IsOpen()) return;
+
+        Planet planet = QuestUIManager.Instance?.GetCurrentPlanet();
+        OpenQuestListForPlanet(planet);
     }
 
     /// <summary>
@@ -102,23 +143,7 @@ public class QuestListUI : MonoBehaviour
     /// </summary>
     public bool IsOpen()
     {
-        return panel.activeSelf;
-    }
-
-    /// <summary>
-    /// 완료 준비 상태인지 판별합니다.
-    /// 모든 목표가 완료된 활성 퀘스트만 true를 반환합니다.
-    /// </summary>
-    private bool IsQuestCompleteReady(RandomQuest quest)
-    {
-        if (quest.status != QuestStatus.Active)
-            return false;
-
-        foreach (QuestObjective obj in quest.objectives)
-            if (!obj.isCompleted)
-                return false;
-
-        return true;
+        return panel != null && panel.activeSelf;
     }
 
     /// <summary>
@@ -127,15 +152,25 @@ public class QuestListUI : MonoBehaviour
     /// </summary>
     private void AddToQuestListPanel(RandomQuest quest, bool isCompleteReady = false)
     {
+        if (quest == null || contentParent == null || questSlotPrefab == null)
+        {
+            Debug.LogWarning("AddToQuestListPanel: 필요한 오브젝트가 null입니다.");
+            return;
+        }
+
         GameObject slot = Instantiate(questSlotPrefab, contentParent);
+        if (slot == null) return;
+
         slot.SetActive(true);
 
-        TextMeshProUGUI titleText = slot.transform.Find("QuestTitle")?.GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI descText = slot.transform.Find("QuestDescription")?.GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI statusText = slot.transform.Find("QuestStatus")?.GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI deadlineText = slot.transform.Find("QuestDeadline")?.GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI rewardText = slot.transform.Find("QuestReward")?.GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI planetText = slot.transform.Find("QuestPlanet")?.GetComponent<TextMeshProUGUI>();
+        // 캐싱을 통한 최적화
+        Transform slotTransform = slot.transform;
+        TextMeshProUGUI titleText = slotTransform.Find("QuestTitle")?.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI descText = slotTransform.Find("QuestDescription")?.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI statusText = slotTransform.Find("QuestStatus")?.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI deadlineText = slotTransform.Find("QuestDeadline")?.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI rewardText = slotTransform.Find("QuestReward")?.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI planetText = slotTransform.Find("QuestPlanet")?.GetComponent<TextMeshProUGUI>();
 
         if (titleText != null)
             titleText.text = quest.title;
@@ -146,7 +181,7 @@ public class QuestListUI : MonoBehaviour
         if (statusText != null)
             statusText.text = quest.status.ToString();
 
-        if (deadlineText != null)
+        if (deadlineText != null && GameManager.Instance != null)
         {
             int currentYear = GameManager.Instance.CurrentYear;
             int yearsPassed = currentYear - quest.questAcceptedYear;
@@ -154,7 +189,7 @@ public class QuestListUI : MonoBehaviour
             deadlineText.text = $"남은연도: {yearsLeft}";
         }
 
-        if (rewardText != null && quest.rewards.Count > 0)
+        if (rewardText != null && quest.rewards != null && quest.rewards.Count > 0)
         {
             QuestReward reward = quest.rewards[0];
             rewardText.text = $"{reward.amount} {reward.questRewardType}";
@@ -186,20 +221,28 @@ public class QuestListUI : MonoBehaviour
         {
             btn.onClick.AddListener(() =>
             {
-                QuestUIManager ui = FindObjectOfType<QuestUIManager>();
+                QuestUIManager ui = QuestUIManager.Instance;
                 if (ui != null)
                     ui.ShowCompletion(quest);
             });
         }
 
         // 취소 버튼 연결
-        Button failButton = slot.transform.Find("FailButton")?.GetComponent<Button>();
+        Button failButton = slotTransform.Find("FailButton")?.GetComponent<Button>();
         if (failButton != null)
         {
             failButton.onClick.AddListener(() =>
             {
+                if (QuestManager.Instance == null) return;
+
                 QuestManager.Instance.RequestFailQuest(quest);
-                Open();
+                QuestUIManager ui = QuestUIManager.Instance;
+                if (ui != null)
+                {
+                    Planet planet = ui.GetCurrentPlanet();
+                    if (planet != null)
+                        OpenQuestListForPlanet(planet);
+                }
             });
         }
 

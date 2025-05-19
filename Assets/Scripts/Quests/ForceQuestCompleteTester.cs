@@ -15,7 +15,19 @@ public class ForceQuestCompleteTester : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        completeQuestButton.onClick.AddListener(ForceCompleteQuest);
+        if (completeQuestButton != null)
+            completeQuestButton.onClick.AddListener(ForceCompleteQuest);
+        else
+            Debug.LogWarning("퀘스트 완료 버튼이 할당되지 않았습니다.");
+    }
+
+    /// <summary>
+    /// OnDestroy에서 리스너 제거
+    /// </summary>
+    private void OnDestroy()
+    {
+        if (completeQuestButton != null)
+            completeQuestButton.onClick.RemoveListener(ForceCompleteQuest);
     }
 
     /// <summary>
@@ -36,25 +48,22 @@ public class ForceQuestCompleteTester : MonoBehaviour
         List<RandomQuest> quests = QuestManager.Instance.GetActiveQuests();
         if (quests.Count == 0)
         {
-            Debug.LogWarning("완료 가능한 상태로 만들 퀘스트가 없습니다.");
+            Debug.LogWarning("완료 가능한 퀘스트가 없습니다.");
             return;
         }
 
-        // 랜덤으로 하나 선택
         RandomQuest quest = quests[Random.Range(0, quests.Count)];
-
-        // 모든 목표의 currentAmount를 amount로 맞춰서 "완료 가능" 상태로 만듬
-        for (int i = 0; i < quest.objectives.Count; i++)
+        foreach (var obj in quest.objectives)
         {
-            quest.objectives[i].currentAmount = quest.objectives[i].amount;
-            quest.objectives[i].isCompleted = true;
+            obj.currentAmount = obj.amount;
+            obj.isCompleted = true;
         }
 
-        Debug.Log($"랜덤 퀘스트를 완료 가능 상태로 변경함: {quest.title}");
+        Debug.Log($"랜덤 퀘스트 완료 가능 상태로 변경함: {quest.title}");
 
-        // 리스트 갱신
-        if (questListUI != null)
-            questListUI.Open();
+        // GetCurrentPlanet 사용 전 QuestUIManager.Instance가 null인지 확인
+        Planet planet = QuestUIManager.Instance != null ? QuestUIManager.Instance.GetCurrentPlanet() : null;
+        if (questListUI != null && planet != null)
+            questListUI.OpenQuestListForPlanet(planet);
     }
-
 }
