@@ -60,8 +60,8 @@ public class SceneChanger : MonoBehaviour
         SceneManager.MoveGameObjectToScene(GameManager.Instance.playerShip.gameObject,
             SceneManager.GetActiveScene());
         SceneManager.MoveGameObjectToScene(esManager, SceneManager.GetActiveScene());
-        GameObject.Find("Main Camera").GetComponent<ShipFollowCamera>().targetShip =
-            GameManager.Instance.playerShip;
+        // GameObject.Find("Main Camera").GetComponent<ShipFollowCamera>().targetShip =
+        //     GameManager.Instance.playerShip;
 
         yield return StartCoroutine(Fade(0)); // 페이드 인
 

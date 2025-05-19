@@ -5,6 +5,14 @@
 /// </summary>
 public static class Constants
 {
+    public static class Endings
+    {
+        /// <summary>
+        /// 엔딩을 보기 위한 최소 년도
+        /// </summary>
+        public const int EndingYear = 500;
+    }
+
     /// <summary>
     /// 이벤트 관련 상수
     /// </summary>

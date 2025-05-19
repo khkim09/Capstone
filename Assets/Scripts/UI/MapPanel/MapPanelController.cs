@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.EventSystems;
+using Random = UnityEngine.Random;
 
 public class MapPanelController : MonoBehaviour
 {
@@ -20,6 +21,12 @@ public class MapPanelController : MonoBehaviour
     [Header("워프 패널 설정")] [SerializeField] private GameObject warpPanelContent;
     [SerializeField] private GameObject warpNodePrefab;
     [SerializeField] private GameObject nodeConnectionPrefab;
+    [SerializeField] private GameObject checkWarpUI;
+    private WarpNode recentClickedNode;
+
+    [Header("행성 도착 버튼")] [SerializeField] private Button buttonPlanetLand;
+
+
     private Planet targetPlanet;
 
     private int nodeLayerCount => GameManager.Instance.WorldNodeDataList.Count;
@@ -56,6 +63,10 @@ public class MapPanelController : MonoBehaviour
 
     private bool IsPlayerMoved => GameManager.Instance.normalizedPlayerPosition != playerPositionBefore;
 
+    private void Awake()
+    {
+        buttonPlanetLand.onClick.AddListener(() => GameManager.Instance.LandOnPlanet());
+    }
 
     private void Start()
     {
@@ -295,9 +306,20 @@ public class MapPanelController : MonoBehaviour
             return;
         }
 
+        recentClickedNode = clickedNode;
+        checkWarpUI.SetActive(true);
+    }
+
+    public void Warp()
+    {
+        if (recentClickedNode == null)
+            return;
+        checkWarpUI.SetActive(false);
+
+
         GameManager.Instance.AddYear();
         // 플레이어 이동
-        MovePlayerToNode(clickedNode);
+        MovePlayerToNode(recentClickedNode);
 
         SlideClose();
     }
@@ -322,10 +344,15 @@ public class MapPanelController : MonoBehaviour
         Debug.Log($"플레이어가 노드 {targetNode.NodeData.nodeId}로 이동했습니다.");
 
         // 끝 노드에 도달했다면 워프 완료 처리
-        // if (targetNode.NodeData.isEndNode) onWarpCompleted();
+        if (targetNode.NodeData.isEndNode) OnWarpCompleted();
 
         // 게임 상태 저장
         GameManager.Instance.SaveGameData();
+    }
+
+    private void OnWarpCompleted()
+    {
+        buttonPlanetLand.gameObject.SetActive(true);
     }
 
     private void RefreshAllNodeStates()
@@ -398,7 +425,7 @@ public class MapPanelController : MonoBehaviour
                          (1f - 2f * Constants.WarpNodes.EdgeMarginHorizontal) * layer / (layerCount + 1);
 
             // 해당 레이어의 노드 수 결정 (2~5개)
-            int nodesInLayer = UnityEngine.Random.Range(
+            int nodesInLayer = Random.Range(
                 Constants.WarpNodes.LayerNodeCountMin,
                 Constants.WarpNodes.LayerNodeCountMax + 1);
 
@@ -417,7 +444,10 @@ public class MapPanelController : MonoBehaviour
                     isEndNode = false,
                     layer = layer,
                     indexInLayer = i,
-                    nodeId = nodeIdCounter++
+                    nodeId = nodeIdCounter++,
+                    nodeType = Random.value < Constants.WarpNodes.EventNodeRate
+                        ? WarpNodeType.Event
+                        : WarpNodeType.Combat
                 };
 
                 warpNodes.Add(node);
@@ -534,7 +564,7 @@ public class MapPanelController : MonoBehaviour
                         endIndex = startIndex + 1;
 
                     // 추가 연결 생성 (1~2개 더)
-                    int additionalConnections = UnityEngine.Random.Range(0, 4);
+                    int additionalConnections = Random.Range(0, 4);
                     int maxConnections = Mathf.Min(
                         currentNode.connections.Count + additionalConnections,
                         endIndex - startIndex);
@@ -549,7 +579,7 @@ public class MapPanelController : MonoBehaviour
 
                     while (currentNode.connections.Count < maxConnections)
                     {
-                        int randomIndex = UnityEngine.Random.Range(startIndex, endIndex);
+                        int randomIndex = Random.Range(startIndex, endIndex);
                         if (!existingConnections.Contains(randomIndex))
                         {
                             currentNode.AddConnection(nextLayerNodes[randomIndex]);

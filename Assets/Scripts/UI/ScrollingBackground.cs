@@ -68,6 +68,8 @@ public class ScrollingBackground : MonoBehaviour
     /// </summary>
     [SerializeField] private float maxScrollSpeed = 10.0f;
 
+    [SerializeField] private GameObject noTouchPanel;
+
     /// <summary>
     /// 현재 활성화된 배경 (true: main, false: sub)
     /// </summary>
@@ -211,7 +213,11 @@ public class ScrollingBackground : MonoBehaviour
 
     private void OnYearChanged(int year)
     {
-        if (!isTransitioning) StartCoroutine(TransitionToNewBackground());
+        if (!isTransitioning)
+        {
+            StartCoroutine(ShowNoTouchPanelForSeconds(transitionDuration));
+            StartCoroutine(TransitionToNewBackground());
+        }
     }
 
     /// <summary>
@@ -329,6 +335,14 @@ public class ScrollingBackground : MonoBehaviour
         scrollSpeed = originalScrollSpeed;
 
         isTransitioning = false;
+    }
+
+    private IEnumerator ShowNoTouchPanelForSeconds(float seconds)
+    {
+        Debug.Log("패널 활성화 시도");
+        noTouchPanel.SetActive(true);
+        yield return new WaitForSeconds(seconds);
+        noTouchPanel.SetActive(false);
     }
 
     /// <summary>

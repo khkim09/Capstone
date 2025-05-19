@@ -659,6 +659,12 @@ public class GameManager : MonoBehaviour
         currentWarpTargetPlanetId = -1;
     }
 
+    public void LandOnPlanet()
+    {
+        ChangeGameState(GameState.Planet);
+        SceneChanger.Instance.LoadScene("Planet");
+    }
+
     #endregion
 }
 
@@ -684,6 +690,11 @@ public enum GameState
     /// 적 함선 만난 상태
     /// </summary>
     Combat,
+
+    /// <summary>
+    /// 행성에 있는 상태
+    /// </summary>
+    Planet,
 
     /// <summary>게임이 일시정지된 상태입니다.</summary>
     Paused,
