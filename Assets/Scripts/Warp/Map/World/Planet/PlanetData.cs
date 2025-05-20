@@ -282,9 +282,11 @@ public class PlanetData
 
     public void ChangeItemPrice()
     {
-        foreach (KeyValuePair<int, int> pair in itemPriceDictionary)
+        List<int> keys = new(itemPriceDictionary.Keys); // 키 복사
+
+        foreach (int key in keys)
         {
-            TradingItemData item = GameObjectFactory.Instance.ItemFactory.itemDataBase.allItems[pair.Key];
+            TradingItemData item = GameObjectFactory.Instance.ItemFactory.itemDataBase.allItems[key];
             itemPriceDictionary[item.id] = Random.Range(item.costMin, item.costMax);
         }
     }
@@ -318,7 +320,7 @@ public class PlanetData
         ApplyPlanetEffectValue(effectData);
 
         Debug.Log(
-            $"[PlanetEffect] 행성 {planetName}에 {effectData.categoryType} 효과가 적용되었습니다. 변동률: {effectData.changeAmount}%, 종료 년도: {effectData.EndYear}");
+            $"[PlanetEffect] 행성 {planetName}에 {effectData.categoryType} 효과가 적용되었습니다. 변동률: {effectData.changeAmount}%, 종료 년도: {effectData.EndYear}, 시작 년도 : {GameManager.Instance.CurrentYear}");
     }
 
     /// <summary>
@@ -444,10 +446,12 @@ public class PlanetData
 
     public void CheckQuestExpirations(int currentYear)
     {
-        foreach (RandomQuest quest in questList)
-            if (quest.QuestExpiredYear >= currentYear)
-                FailQuest(quest);
+        List<RandomQuest> activeQuestList = questList.Where(q => q.status == QuestStatus.Active).ToList();
+        for (int i = activeQuestList.Count - 1; i >= 0; i--)
+            if (activeQuestList[i].QuestExpiredYear >= currentYear)
+                FailQuest(activeQuestList[i]);
     }
+
 
     /// <summary>
     /// 퀘스트를 실패 처리합니다.
@@ -471,45 +475,57 @@ public class PlanetData
         int reward = 0;
         Array values = Enum.GetValues(typeof(QuestObjectiveType));
         QuestObjectiveType randomType = (QuestObjectiveType)values.GetValue(Random.Range(0, values.Length - 1));
+        PlanetData randomPlanetData = null;
+        do
+        {
+            randomPlanetData = GameManager.Instance.GetRandomPlanetData();
+        } while (randomPlanetData == this);
 
-        PlanetData randomPlanetData = GameManager.Instance.GetRandomPlanetData();
 
         randomType = QuestObjectiveType.ItemProcurement;
         TradingItemDataBase itemDatabase = GameObjectFactory.Instance.ItemFactory.itemDataBase;
         TradingItemData item = null;
+        PlanetData targetPlanetData = null;
         switch (randomType)
         {
             case QuestObjectiveType.PirateHunt:
+                quest.title = "ui.quest.title.piratehunt";
                 objective.amount = Random.Range(5, 21);
-                objective.targetPlanetData = this;
+                objective.targetPlanetDataId = planetId;
                 objective.description = "ui.quest.objective.piratehunt".Localize(objective.amount);
+
                 reward = objective.amount * 100;
                 break;
             case QuestObjectiveType.ItemTransport:
+                quest.title = "ui.quest.title.itemtransport";
                 item = itemDatabase.GetRandomItem();
                 objective.targetId = item.id;
                 objective.amount = item.capacity;
-                objective.targetPlanetData = randomPlanetData;
+                objective.targetPlanetDataId = randomPlanetData.planetId;
+                targetPlanetData = GameManager.Instance.PlanetDataList[randomPlanetData.planetId];
                 objective.description = "ui.quest.objective.itemtransport".Localize(item.itemName.Localize(),
                     objective.amount,
-                    objective.targetPlanetData.planetName);
+                    targetPlanetData.planetName);
 
                 reward = (int)(item.costMax * 1.1f * objective.amount);
                 break;
             case QuestObjectiveType.ItemProcurement:
+                quest.title = "ui.quest.title.itemprocurement";
                 item = itemDatabase.GetRandomItem();
                 objective.targetId = item.id;
                 objective.amount = item.capacity;
-                objective.targetPlanetData = this;
+                objective.targetPlanetDataId = planetId;
                 objective.description =
                     "ui.quest.objective.itemprocurement".Localize(item.itemName.Localize(), objective.amount);
                 reward = (int)(item.costMax * 1.1f * objective.amount);
                 break;
             case QuestObjectiveType.CrewTransport:
+                quest.title = "ui.quest.title.crewtransport";
                 objective.amount = 1;
-                objective.targetPlanetData = randomPlanetData;
+                objective.targetPlanetDataId = randomPlanetData.planetId;
+                targetPlanetData = GameManager.Instance.PlanetDataList[randomPlanetData.planetId];
                 objective.description = objective.description =
-                    "ui.quest.objective.crewtransport".Localize(objective.amount, objective.targetPlanetData);
+                    "ui.quest.objective.crewtransport".Localize(objective.amount, targetPlanetData.planetName);
 
                 reward = objective.amount * 500;
                 break;

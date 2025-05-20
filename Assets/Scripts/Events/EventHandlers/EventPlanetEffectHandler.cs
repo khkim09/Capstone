@@ -28,23 +28,24 @@ public class EventPlanetEffectHandler
     /// PlanetEffect 리스트를 받아 로그 출력 및 현재 행성에 적용합니다.
     /// </summary>
     /// <param name="planetEffects">적용할 행성 효과 리스트</param>
+    /// <returns>행성의 이름</returns>
     public void ApplyEffects(List<PlanetEffect> planetEffects)
     {
         if (planetEffects == null || planetEffects.Count == 0)
-        {
             Debug.LogWarning("[EventPlanetEffectHandler] 적용할 PlanetEffect가 없습니다.");
-            return;
-        }
 
         // 각 효과를 현재 행성에 등록
-        foreach (PlanetEffect effect in planetEffects)
+        for (int i = 0; i < planetEffects.Count; ++i)
         {
-            Debug.Log($"[PlanetEffect] 카테고리: {effect.categoryType}, 변동률: {effect.changeAmount}%");
+            PlanetEffect effect = planetEffects[i];
 
+            Debug.Log($"[PlanetEffect] 카테고리: {effect.categoryType}, 변동률: {effect.changeAmount}%");
+            effect.startYear = GameManager.Instance.CurrentYear;
             // 행성에 효과 등록
             List<PlanetData> planetDatas =
                 GameManager.Instance.PlanetDataList.Where(d => d.activeEffects.Count == 0).ToList();
-            planetDatas[Random.Range(0, planetDatas.Count)].RegisterPlanetEffect(effect);
+            int index = Random.Range(0, planetDatas.Count);
+            planetDatas[index].RegisterPlanetEffect(effect);
         }
     }
 }

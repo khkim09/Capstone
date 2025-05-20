@@ -24,8 +24,9 @@ public class SpecialEffectHandlerFactory
         RegisterHandler(SpecialEffectType.None, null);
         RegisterHandler(SpecialEffectType.TriggerNextEvent, new EventNextEventEffectHandler());
         RegisterHandler(SpecialEffectType.AddQuest, new AddQuestEffectHandler());
-        handlers[SpecialEffectType.RoomDamage] = new RoomDamageEffectHandler();
-        handlers[SpecialEffectType.Battle] = new BattleEffectHandler();
+        RegisterHandler(SpecialEffectType.RoomDamage, new RoomDamageEffectHandler());
+        RegisterHandler(SpecialEffectType.Battle, new BattleEffectHandler());
+        RegisterHandler(SpecialEffectType.TeleportToRandomPlanet, new TeleportEffectHandler());
     }
 
     /// <summary>

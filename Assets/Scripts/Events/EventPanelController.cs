@@ -43,7 +43,7 @@ public class EventPanelController : MonoBehaviour
     public void ShowEvent(RandomEvent randomEvent)
     {
         currentEvent = randomEvent;
-
+        gameObject.SetActive(true);
         // 이전 타이핑 코루틴 강제 종료
         StopAllCoroutines();
 
@@ -62,13 +62,22 @@ public class EventPanelController : MonoBehaviour
         // 선택지 클리어
         ClearChoices();
 
-        gameObject.SetActive(true);
 
         // 이벤트 정보 설정
         if (eventTitleText != null)
             eventTitleText.text = randomEvent.eventTitle.Localize();
         if (eventDescriptionText != null)
-            StartCoroutine(TypeText(eventDescriptionText, randomEvent.eventDescription.Localize()));
+        {
+            if (randomEvent.eventType == EventType.Planet)
+            {
+                string planetName = GameManager.Instance.PlanetDataList[randomEvent.planetId].planetName;
+                StartCoroutine(TypeText(eventDescriptionText, randomEvent.eventDescription.Localize(planetName)));
+            }
+            else
+            {
+                StartCoroutine(TypeText(eventDescriptionText, randomEvent.eventDescription.Localize()));
+            }
+        }
 
         // 선택지 버튼 생성
         SetupChoiceButtons(randomEvent);

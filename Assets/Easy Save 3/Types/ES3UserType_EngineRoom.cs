@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("currentRoomLevelData", "roomData", "position", "currentLevel", "currentHitPoints", "roomType", "isDamageable", "connectedDoors", "currentRotation", "crewInRoom", "isActive", "isPowered", "isPowerRequested", "parentShip", "gridSize", "damageCondition")]
+	[ES3PropertiesAttribute("currentRoomLevelData", "roomData", "position", "currentLevel", "currentHitPoints", "roomType", "isDamageable", "connectedDoors", "currentRotation", "crewInRoom", "isActive", "isPowered", "isPowerRequested", "roomRenderer", "parentShip", "icon", "gridSize", "damageCondition", "workDirection")]
 	public class ES3UserType_EngineRoom : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -29,9 +29,12 @@ namespace ES3Types
 			writer.WriteProperty("isActive", instance.isActive, ES3Type_bool.Instance);
 			writer.WritePrivateField("isPowered", instance);
 			writer.WritePrivateField("isPowerRequested", instance);
+			writer.WritePrivateFieldByRef("roomRenderer", instance);
 			writer.WritePropertyByRef("parentShip", instance.parentShip);
+			writer.WritePrivateFieldByRef("icon", instance);
 			writer.WritePrivateField("gridSize", instance);
 			writer.WriteProperty("damageCondition", instance.damageCondition, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(DamageLevel)));
+			writer.WriteProperty("workDirection", instance.workDirection, ES3Type_Vector2Int.Instance);
 		}
 
 		protected override void ReadComponent<T>(ES3Reader reader, object obj)
@@ -81,14 +84,23 @@ namespace ES3Types
 					case "isPowerRequested":
 					instance = (EngineRoom)reader.SetPrivateField("isPowerRequested", reader.Read<System.Boolean>(), instance);
 					break;
+					case "roomRenderer":
+					instance = (EngineRoom)reader.SetPrivateField("roomRenderer", reader.Read<UnityEngine.SpriteRenderer>(), instance);
+					break;
 					case "parentShip":
 						instance.parentShip = reader.Read<Ship>(ES3UserType_Ship.Instance);
 						break;
+					case "icon":
+					instance = (EngineRoom)reader.SetPrivateField("icon", reader.Read<UnityEngine.SpriteRenderer>(), instance);
+					break;
 					case "gridSize":
 					instance = (EngineRoom)reader.SetPrivateField("gridSize", reader.Read<UnityEngine.Vector2Int>(), instance);
 					break;
 					case "damageCondition":
 						instance.damageCondition = reader.Read<DamageLevel>();
+						break;
+					case "workDirection":
+						instance.workDirection = reader.Read<UnityEngine.Vector2Int>(ES3Type_Vector2Int.Instance);
 						break;
 					default:
 						reader.Skip();

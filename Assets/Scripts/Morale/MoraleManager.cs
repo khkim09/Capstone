@@ -124,10 +124,10 @@ public class MoraleManager : MonoBehaviour
             // LayoutElement 추가 (레이아웃 그룹 내에서 크기 설정)
             LayoutElement layoutElement = iconObj.GetComponent<LayoutElement>();
             if (layoutElement == null) layoutElement = iconObj.AddComponent<LayoutElement>();
-            layoutElement.minWidth = 40f;
-            layoutElement.minHeight = 40f;
-            layoutElement.preferredWidth = 40f;
-            layoutElement.preferredHeight = 40f;
+            layoutElement.minWidth = 60f;
+            layoutElement.minHeight = 60f;
+            layoutElement.preferredWidth = 80f;
+            layoutElement.preferredHeight = 80f;
 
             // MoraleIcon 초기화
             MoraleIcon icon = iconObj.GetComponent<MoraleIcon>();

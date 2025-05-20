@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public class MoraleIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class MoraleIcon : TooltipPanelBase
 {
     /// <summary>
     /// 종족 유형
@@ -23,27 +21,26 @@ public class MoraleIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public Image iconImage;
 
     /// <summary>
-    /// 툴팁 관련 속성들
-    /// </summary>
-    [SerializeField] private GameObject tooltipPrefab;
-
-    private GameObject tooltipInstance;
-    private RectTransform tooltipRectTransform;
-    private TextMeshProUGUI tooltipTextComponent;
-    private CanvasGroup tooltipCanvasGroup;
-    private Canvas parentCanvas;
-    private Coroutine fadeCoroutine;
-    [SerializeField] private float fadeTime = 0.1f;
-
-    /// <summary>
     /// 이 아이콘을 통해 표시되는 개별 사기 효과들의 목록
     /// </summary>
     private List<MoraleEffectData> effectDataList = new();
 
-    private void Update()
+    protected override void Start()
     {
-        if (tooltipInstance != null && tooltipInstance.activeSelf)
-            UpdateTooltipPosition();
+        base.Start(); // TooltipPanelBase의 Start 호출 (툴팁 생성)
+
+        // 이미지 컴포넌트 가져오기
+        if (iconImage == null)
+        {
+            iconImage = GetComponent<Image>();
+            if (iconImage == null) iconImage = gameObject.AddComponent<Image>();
+        }
+
+        // 초기값 설정 (아직 Initialize가 호출되지 않았을 경우)
+        if (totalValue == 0 && effectDataList.Count == 0)
+        {
+            UpdateSprite();
+        }
     }
 
     /// <summary>
@@ -53,46 +50,23 @@ public class MoraleIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         this.race = race;
 
-        // 이미지 컴포넌트 가져오기
-        iconImage = GetComponent<Image>();
-        if (iconImage == null) iconImage = gameObject.AddComponent<Image>();
-
-        // 캔버스 찾기
-        Canvas canvas = GetComponentInParent<Canvas>();
-        if (canvas == null)
+        // 이미 Start가 호출됐는지 확인하고, 아니라면 기본 초기화 진행
+        if (currentToolTip == null)
         {
-            canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-            if (canvas == null)
+            // 캔버스 컴포넌트 찾기 및 툴팁 생성
+            base.Start();
+
+            // 이미지 컴포넌트 가져오기
+            if (iconImage == null)
             {
-                Debug.LogError("Canvas not found!");
-                return;
+                iconImage = GetComponent<Image>();
+                if (iconImage == null) iconImage = gameObject.AddComponent<Image>();
             }
         }
 
-        parentCanvas = canvas;
-
-        // 툴팁 인스턴스 생성
-        tooltipInstance = Instantiate(tooltipPrefab, canvas.transform);
-
-        // 필요한 컴포넌트 가져오기
-        tooltipRectTransform = tooltipInstance.GetComponent<RectTransform>();
-        tooltipTextComponent = tooltipInstance.GetComponentInChildren<TextMeshProUGUI>();
-        tooltipCanvasGroup = tooltipInstance.GetComponent<CanvasGroup>();
-
-        if (tooltipRectTransform == null)
-            Debug.LogError("tooltipRectTransform is null!");
-
-        if (tooltipTextComponent == null)
-            Debug.LogError("tooltipTextComponent is null!");
-
-        if (tooltipCanvasGroup == null)
-            Debug.LogError("tooltipCanvasGroup is null!");
-
-        // 기본 스프라이트 설정 (초기값 0으로 설정)
+        // 초기값 설정
         totalValue = 0;
         UpdateSprite();
-
-        tooltipInstance.SetActive(false);
     }
 
     /// <summary>
@@ -103,7 +77,6 @@ public class MoraleIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         effectDataList.Add(data);
         RecalculateTotalValue();
         UpdateSprite();
-        UpdateTooltipText();
     }
 
     /// <summary>
@@ -114,7 +87,6 @@ public class MoraleIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         effectDataList.Remove(data);
         RecalculateTotalValue();
         UpdateSprite();
-        UpdateTooltipText();
     }
 
     /// <summary>
@@ -125,7 +97,6 @@ public class MoraleIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         effectDataList.Clear();
         totalValue = 0;
         UpdateSprite();
-        UpdateTooltipText();
     }
 
     /// <summary>
@@ -142,6 +113,8 @@ public class MoraleIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     /// </summary>
     private void UpdateSprite()
     {
+        if (iconImage == null) return;
+
         string spritePath = "Sprites/UI/";
         string change = totalValue >= 0 ? "up" : "down";
 
@@ -192,10 +165,13 @@ public class MoraleIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     }
 
     /// <summary>
-    /// 툴팁 텍스트 업데이트
+    /// 툴팁 텍스트 업데이트 (TooltipPanelBase에서 상속)
     /// </summary>
-    private void UpdateTooltipText()
+    protected override void SetToolTipText()
     {
+        if (currentToolTip == null) return;
+
+        TextMeshProUGUI tooltipTextComponent = currentToolTip.GetComponentInChildren<TextMeshProUGUI>();
         if (tooltipTextComponent == null) return;
 
         string raceStr = race.Localize();
@@ -203,12 +179,10 @@ public class MoraleIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         string baseText = "";
 
-
         if (race == CrewRace.None)
             baseText = "ui.morale.tooltip.4".Localize(changeAmount);
         else
             baseText = "ui.morale.tooltip.1".Localize(raceStr, changeAmount);
-
 
         // 세부 효과 목록 추가
         if (effectDataList.Count > 0)
@@ -226,111 +200,5 @@ public class MoraleIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
 
         tooltipTextComponent.text = baseText;
-    }
-
-    // 마우스 이벤트 핸들러
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        ShowTooltip();
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        HideTooltip();
-    }
-
-    private void ShowTooltip()
-    {
-        if (tooltipInstance == null) return;
-
-        // 툴팁 텍스트 최신화
-        UpdateTooltipText();
-
-        // 위치 업데이트
-        tooltipInstance.SetActive(true);
-        UpdateTooltipPosition();
-
-        // 이전 페이드 코루틴 중지
-        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
-
-        // 페이드 인 코루틴 시작
-        fadeCoroutine = StartCoroutine(FadeTooltip(0f, 1f, fadeTime));
-    }
-
-    private void HideTooltip()
-    {
-        if (tooltipInstance == null) return;
-
-        // 이전 페이드 코루틴 중지
-        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
-
-        // 페이드 아웃 코루틴 시작
-        fadeCoroutine = StartCoroutine(FadeTooltip(1f, 0f, fadeTime));
-    }
-
-    private IEnumerator FadeTooltip(float startAlpha, float targetAlpha, float duration)
-    {
-        if (tooltipCanvasGroup == null) yield break;
-
-        float elapsedTime = 0f;
-        tooltipCanvasGroup.alpha = startAlpha;
-
-        while (elapsedTime < duration)
-        {
-            elapsedTime += Time.deltaTime;
-            tooltipCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, elapsedTime / duration);
-            yield return null;
-        }
-
-        tooltipCanvasGroup.alpha = targetAlpha;
-
-        // 페이드 아웃 완료 후 비활성화
-        if (targetAlpha <= 0f) tooltipInstance.SetActive(false);
-    }
-
-    private void UpdateTooltipPosition()
-    {
-        if (tooltipRectTransform == null || parentCanvas == null) return;
-
-        // 마우스 위치 가져오기
-        Vector2 mousePosition = Input.mousePosition;
-
-        // 스크린 좌표를 캔버스 좌표로 변환
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            parentCanvas.GetComponent<RectTransform>(),
-            mousePosition,
-            parentCanvas.worldCamera,
-            out Vector2 localPoint);
-
-        // 툴팁 위치 설정 (마우스 커서 오른쪽 위에 표시)
-        tooltipRectTransform.localPosition = localPoint + new Vector2(290f, -140f);
-
-        // 화면 밖으로 나가지 않도록 조정
-        Vector2 canvasSize = parentCanvas.GetComponent<RectTransform>().rect.size;
-        Vector2 tooltipSize = tooltipRectTransform.rect.size;
-        Vector2 tooltipPos = tooltipRectTransform.localPosition;
-
-        // 경계 체크 및 조정
-        if (tooltipPos.x + tooltipSize.x > canvasSize.x / 2) tooltipPos.x = localPoint.x - tooltipSize.x - 15f;
-        if (tooltipPos.x - tooltipSize.x < -canvasSize.x / 2) tooltipPos.x = -canvasSize.x / 2 + tooltipSize.x;
-        if (tooltipPos.y + tooltipSize.y > canvasSize.y / 2) tooltipPos.y = canvasSize.y / 2 - tooltipSize.y;
-        if (tooltipPos.y - tooltipSize.y < -canvasSize.y / 2) tooltipPos.y = localPoint.y + 15f;
-
-        tooltipRectTransform.localPosition = tooltipPos;
-    }
-
-    // 정리 메서드
-    private void OnDisable()
-    {
-        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
-    }
-
-    private void OnDestroy()
-    {
-        if (tooltipInstance != null)
-        {
-            Destroy(tooltipInstance);
-            tooltipInstance = null;
-        }
     }
 }

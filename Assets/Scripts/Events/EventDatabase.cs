@@ -214,7 +214,8 @@ public class EventDatabase : ScriptableObject
             evt != null &&
             evt.eventType == type &&
             evt.minimumYear <= year &&
-            evt.minimumCOMA <= coma
+            evt.minimumCOMA <= coma &&
+            evt.minimumFuel <= fuel
         ).ToList();
 
         // 선원 종족 필터 적용
@@ -225,7 +226,6 @@ public class EventDatabase : ScriptableObject
                 // 필요한 모든 종족을 보유
                 evt.requiredCrewRace.All(required => availableRaces.Contains(required))
             ).ToList();
-
         return filteredEvents;
     }
 

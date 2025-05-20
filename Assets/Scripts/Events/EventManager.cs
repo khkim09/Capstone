@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 게임 내 이벤트 시스템을 관리하는 매니저 클래스
@@ -10,15 +12,6 @@ public class EventManager : MonoBehaviour
     public static EventManager Instance { get; private set; }
 
     [Header("데이터베이스 참조")] [SerializeField] private EventDatabase eventDatabase;
-
-    [Header("불가사의 출현 확률 설정")] [SerializeField] [Range(0f, 1f)]
-    private float mysteryEventChance = 0.03f;
-
-    [Header("행성 이벤트 출현 확률 설정")] [SerializeField] [Range(0f, 1f)]
-    private float planetEventChance = 0.07f; // 행성 도착 시 이벤트 발생 확률
-
-    public float ShipEventChance => 1f - mysteryEventChance;
-    public float MysteryEventChance => mysteryEventChance;
 
     public EventPanelController EventPanelController { get; set; }
 
@@ -34,7 +27,9 @@ public class EventManager : MonoBehaviour
 
     // 이벤트 히스토리
     private List<int> recentEventIds = new();
-    private int maxHistorySize = 10; // 최근 10개 이벤트 ID를 기억
+
+    private Queue<RandomEvent> pendingEvents = new();
+    private bool isProcessingEvent = false;
 
     private void Awake()
     {
@@ -50,7 +45,11 @@ public class EventManager : MonoBehaviour
         crewEffectHandler = new EventCrewEffectHandler();
         planetEffectHandler = new EventPlanetEffectHandler();
         specialEffectHandlerFactory = new SpecialEffectHandlerFactory();
+
+        GameManager.Instance.OnYearChanged += TryTriggerPlanetEvent;
+        GameManager.Instance.OnYearChanged += TryTriggerShipEvent;
     }
+
 
     private void Start()
     {
@@ -91,81 +90,93 @@ public class EventManager : MonoBehaviour
         return eventDatabase.GetEvent(id);
     }
 
-    /// <summary>
-    /// 노드 이동 시 이벤트 발생 여부를 체크하고 이벤트를 실행합니다.
-    /// </summary>
-    /// <returns>이벤트가 발생했는지 여부</returns>
-    public bool TryTriggerNodeEvent()
+    public void TryTriggerShipEvent(int year)
     {
-        if (Random.value <= ShipEventChance)
-        {
-            RandomEvent evt = SelectAppropriateEvent(EventType.Ship);
-            if (evt != null)
-            {
-                TriggerEvent(evt);
-                return true;
-            }
-        }
-
-        return false;
+        StartCoroutine(TryTriggerShipEventCoroutine());
     }
 
+    private IEnumerator TryTriggerShipEventCoroutine()
+    {
+        yield return new WaitForSeconds(Constants.WarpNodes.WarpingDuration);
+
+
+        if (GameManager.Instance.WarpNodeDataList[GameManager.Instance.CurrentWarpNodeId].nodeType !=
+            WarpNodeType.Event)
+            yield break;
+
+        RandomEvent evt;
+        if (Random.value <= Constants.Events.ShipEventChance)
+            evt = SelectAppropriateEvent(EventType.Ship);
+        else
+            evt = SelectAppropriateEvent(EventType.Mystery);
+
+        //TriggerEventById(4);
+        if (evt != null) TriggerEvent(evt);
+    }
+
+
     /// <summary>
-    /// 행성 도착 시 이벤트 발생 여부를 체크하고 이벤트를 실행합니다.
+    /// 워프 시 이벤트 발생 여부를 체크하고 이벤트를 실행합니다.
     /// </summary>
     /// <returns>이벤트가 발생했는지 여부</returns>
-    public bool TryTriggerPlanetEvent()
+    public void TryTriggerPlanetEvent(int year)
     {
-        if (Random.value <= planetEventChance)
+        StartCoroutine(TryTriggerPlanetEventCoroutine());
+    }
+
+    private IEnumerator TryTriggerPlanetEventCoroutine()
+    {
+        yield return new WaitForSeconds(Constants.WarpNodes.WarpingDuration);
+
+        if (GameManager.Instance.PlanetDataList.Where(d => d.activeEffects.Count == 0).ToList().Count == 0) yield break;
+
+        if (Random.value <= Constants.Events.PlanetEventChance)
         {
             RandomEvent evt = SelectAppropriateEvent(EventType.Planet);
-            if (evt != null)
-            {
-                TriggerEvent(evt);
-                return true;
-            }
+            if (evt != null) TriggerEvent(evt);
         }
-
-        return false;
     }
 
     /// <summary>
-    /// 미스터리 이벤트 발생 여부를 체크하고 이벤트를 실행합니다.
+    /// 이벤트를 트리거합니다. 이미 진행 중인 이벤트가 있다면 큐에 추가합니다.
     /// </summary>
-    /// <returns>이벤트가 발생했는지 여부</returns>
-    public bool TryTriggerMysteryEvent()
-    {
-        if (Random.value <= mysteryEventChance)
-        {
-            RandomEvent evt = SelectAppropriateEvent(EventType.Mystery);
-            if (evt != null)
-            {
-                TriggerEvent(evt);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    /// 특정 이벤트를 강제로 실행합니다.
-    /// </summary>
-    /// <param name="randomEvent">실행할 이벤트</param>
     public void TriggerEvent(RandomEvent randomEvent)
     {
         if (randomEvent == null)
             return;
 
-        currentEvent = randomEvent;
-
         // 최근 이벤트 목록에 추가
         AddToRecentEvents(randomEvent.eventId);
-        EventPanelController.ShowEvent(randomEvent);
 
+        // 큐에 이벤트 추가
+        pendingEvents.Enqueue(randomEvent);
+        Debug.Log($"이벤트 큐에 추가: {randomEvent.debugName} (ID: {randomEvent.eventId})");
 
-        Debug.Log($"이벤트 실행: {randomEvent.debugName} (ID: {randomEvent.eventId})");
+        // 이벤트 처리가 진행 중이 아니라면 처리 시작
+        if (!isProcessingEvent) ProcessNextEvent();
     }
+
+    /// <summary>
+    /// 큐에서 다음 이벤트를 처리합니다.
+    /// </summary>
+    private void ProcessNextEvent()
+    {
+        if (pendingEvents.Count == 0)
+        {
+            isProcessingEvent = false;
+            return;
+        }
+
+        isProcessingEvent = true;
+        currentEvent = pendingEvents.Dequeue();
+        EventPanelController.ShowEvent(currentEvent);
+
+        Debug.Log(
+            "현재 노드 타입 : " + GameManager.Instance.WarpNodeDataList[GameManager.Instance.CurrentWarpNodeId].nodeType);
+        Debug.Log("현재 노드 Index : " + GameManager.Instance.CurrentWarpNodeId);
+        Debug.Log($"이벤트 실행: {currentEvent.debugName} (ID: {currentEvent.eventId})");
+    }
+
 
     /// <summary>
     /// 특정 ID의 이벤트를 강제로 실행합니다.
@@ -194,13 +205,25 @@ public class EventManager : MonoBehaviour
         EventChoice choice = randomEvent.choices[choiceIndex];
         EventOutcome outcome = choice.GetRandomOutcome();
 
-        if (outcome == null)
-            return;
-        EventPanelController
-            .ShowOutcome(outcome.outcomeText.Localize());
-
         // 각종 효과 적용
         ApplyOutcomeEffects(outcome);
+
+
+        if (outcome == null)
+            return;
+
+        if (randomEvent.eventType == EventType.Planet)
+        {
+            string planetName = GameManager.Instance.PlanetDataList[randomEvent.planetId].planetName;
+
+            EventPanelController
+                .ShowOutcome(outcome.outcomeText.Localize(planetName));
+        }
+        else
+        {
+            EventPanelController.ShowOutcome(outcome.outcomeText.Localize());
+        }
+
 
         Debug.Log(
             $"이벤트 선택: {randomEvent.debugName}, 선택지: {choiceIndex + 1}, 결과: {outcome.outcomeText.Substring(0, Mathf.Min(30, outcome.outcomeText.Length))}...");
@@ -256,6 +279,19 @@ public class EventManager : MonoBehaviour
     {
         currentEvent = null;
         Debug.Log("이벤트 종료");
+
+        // 다음 대기 중인 이벤트 처리
+        ProcessNextEvent();
+    }
+
+    /// <summary>
+    /// 대기 중인 모든 이벤트를 취소합니다.
+    /// </summary>
+    public void ClearPendingEvents()
+    {
+        pendingEvents.Clear();
+        if (!isProcessingEvent)
+            isProcessingEvent = false;
     }
 
     /// <summary>
@@ -299,6 +335,17 @@ public class EventManager : MonoBehaviour
 
         // 랜덤하게 하나 선택
         int randomIndex = Random.Range(0, filteredEvents.Count);
+        int planetId = 0;
+        if (type == EventType.Planet)
+        {
+            List<PlanetData> planetDatas =
+                GameManager.Instance.PlanetDataList.Where(p => p.activeEffects.Count == 0).ToList();
+            int index = Random.Range(0, planetDatas.Count);
+            planetId = planetDatas[index].planetId;
+        }
+
+        filteredEvents[randomIndex].planetId = planetId;
+
         return filteredEvents[randomIndex];
     }
 
@@ -333,7 +380,7 @@ public class EventManager : MonoBehaviour
         recentEventIds.Insert(0, eventId);
 
         // 최대 기록 크기 유지
-        if (recentEventIds.Count > maxHistorySize)
+        if (recentEventIds.Count > Constants.Events.RecentEventHistoryCount)
             recentEventIds.RemoveAt(recentEventIds.Count - 1);
     }
 
