@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
         playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
         playerShip.Initialize();
 
-        // LoadGameData();
+        LoadGameData();
 
         if (playerShip != null)
         {
@@ -663,11 +663,26 @@ public class GameManager : MonoBehaviour
         currentWarpTargetPlanetId = -1;
     }
 
+    public void SetCurrentWarpTargetPlanetId(int planetId)
+    {
+        currentWarpTargetPlanetId = planetId;
+    }
+
     public void LandOnPlanet()
     {
         ChangeGameState(GameState.Planet);
         //  SceneChanger.Instance.LoadScene("Planet");
         SceneChanger.Instance.LoadScene("PlanetTestScene");
+    }
+
+    #endregion
+
+    #region 행성씬전용
+
+    public PlanetData WhereIAm()
+    {
+        PlanetData planetData = planetDataList[currentWarpTargetPlanetId];
+        return planetData;
     }
 
     #endregion

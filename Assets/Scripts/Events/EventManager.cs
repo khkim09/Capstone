@@ -110,7 +110,7 @@ public class EventManager : MonoBehaviour
         else
             evt = SelectAppropriateEvent(EventType.Mystery);
 
-
+        //TriggerEventById(4);
         if (evt != null) TriggerEvent(evt);
     }
 
@@ -214,15 +214,14 @@ public class EventManager : MonoBehaviour
 
         if (randomEvent.eventType == EventType.Planet)
         {
-            string planetName = GameManager.Instance.PlanetDataList[randomEvent.planetId].planetName + " ";
+            string planetName = GameManager.Instance.PlanetDataList[randomEvent.planetId].planetName;
 
             EventPanelController
-                .ShowOutcome(planetName + outcome.outcomeText.Localize());
+                .ShowOutcome(outcome.outcomeText.Localize(planetName));
         }
         else
         {
-            EventPanelController
-                .ShowOutcome(outcome.outcomeText.Localize());
+            EventPanelController.ShowOutcome(outcome.outcomeText.Localize());
         }
 
 

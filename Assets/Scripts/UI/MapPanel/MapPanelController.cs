@@ -44,6 +44,8 @@ public class MapPanelController : MonoBehaviour
     [SerializeField] private GameObject validRangeIndicatorPrefab;
     [SerializeField] private GameObject worldNodePrefab;
     private Vector2 currentWorldNodePosition;
+    private GameObject currentPositionIndicator;
+    [SerializeField] private float indicatorRotationSpeed = 30f; // 초당 회전 각도
 
 
     [Header("열려야 되는 위치")] [SerializeField] private Transform openedPosition;
@@ -80,6 +82,10 @@ public class MapPanelController : MonoBehaviour
             // 클릭된 UI 요소가 현재 패널이 아닌지 체크
             if (!IsClickingOnSelf())
                 SlideClose();
+
+        if (currentPositionIndicator != null)
+            // 현재 회전에 계속해서 각도 추가
+            currentPositionIndicator.transform.Rotate(Vector3.back, indicatorRotationSpeed * Time.deltaTime);
     }
 
     private void OnEnable()
@@ -338,13 +344,21 @@ public class MapPanelController : MonoBehaviour
         GameManager.Instance.SetCurrentWarpNodeId(targetNode.NodeData.nodeId);
         targetNode.SetCurrentPlayerNode(true);
 
+        if (!targetNode.NodeData.isEndNode)
+            GameManager.Instance.normalizedPlayerPosition =
+                GameManager.Instance.WorldNodeDataList[targetNode.NodeData.layer - 1].normalizedPosition;
+
         // 모든 노드의 상태 업데이트 (도달 가능성 재계산)
         RefreshAllNodeStates();
 
         Debug.Log($"플레이어가 노드 {targetNode.NodeData.nodeId}로 이동했습니다.");
 
+        if (currentPositionIndicator != null) UpdatePlayerIndicator();
+
+
         // 끝 노드에 도달했다면 워프 완료 처리
         if (targetNode.NodeData.isEndNode) OnWarpCompleted();
+
 
         // 게임 상태 저장
         GameManager.Instance.SaveGameData();
@@ -767,6 +781,9 @@ public class MapPanelController : MonoBehaviour
 
     private void InitializeWorldPanel()
     {
+        RectMask2D rectMask = worldPanelContent.GetComponent<RectMask2D>();
+        if (rectMask == null) worldPanelContent.AddComponent<RectMask2D>();
+
         // 월드 패널 컨텐츠에 클릭 이벤트 추가
         EventTrigger trigger = worldPanelContent.GetComponent<EventTrigger>();
         if (trigger == null)
@@ -886,16 +903,19 @@ public class MapPanelController : MonoBehaviour
         if (currentWorldNodePosition == new Vector2(0, 0))
             currentWorldNodePosition = GameManager.Instance.normalizedPlayerPosition;
 
-        // 유효 범위 표시기 그리기
-        GameObject validRangeIndicator = Instantiate(validRangeIndicatorPrefab, worldPanelContent.transform);
-        validRangeIndicator.name = "Valid Range Indicator";
-        RectTransform validRangeIndicatorRect = validRangeIndicator.GetComponent<RectTransform>();
-        SetupMapObject(
-            validRangeIndicatorRect,
-            currentWorldNodePosition,
-            Constants.Planets.PlanetNodeValidRadius,
-            contentRect
-        );
+        // 워프 상태가 아닐 때만 유효 범위 표시기 그리기
+        if (GameManager.Instance.CurrentState != GameState.Warp)
+        {
+            GameObject validRangeIndicator = Instantiate(validRangeIndicatorPrefab, worldPanelContent.transform);
+            validRangeIndicator.name = "Valid Range Indicator";
+            RectTransform validRangeIndicatorRect = validRangeIndicator.GetComponent<RectTransform>();
+            SetupMapObject(
+                validRangeIndicatorRect,
+                currentWorldNodePosition,
+                Constants.Planets.PlanetNodeValidRadius,
+                contentRect
+            );
+        }
     }
 
     private void DrawWorldMap()
@@ -904,9 +924,8 @@ public class MapPanelController : MonoBehaviour
         if (isMapInitialized && !IsPlayerMoved)
             return;
 
-        // TODO : 테스트용 키 삭제코드.
-        //GameManager.Instance.DeleteWorldMap();
         GameManager.Instance.LoadWorldMap();
+
 
         List<PlanetData> planetDatas = GameManager.Instance.PlanetDataList;
         RectTransform contentRect = worldPanelContent.GetComponent<RectTransform>();
@@ -930,8 +949,13 @@ public class MapPanelController : MonoBehaviour
 
         DrawWorldNodesAndIndicator();
 
+        if (currentPositionIndicator != null)
+            Destroy(currentPositionIndicator);
+
         // 플레이어의 현재 위치 표시기 배치
-        GameObject currentPositionIndicator = Instantiate(currentPlayerIndicatorPrefab, worldPanelContent.transform);
+        currentPositionIndicator = Instantiate(currentPlayerIndicatorPrefab, worldPanelContent.transform);
+
+
         RectTransform positionIndicatorRect = currentPositionIndicator.GetComponent<RectTransform>();
         SetupMapObject(
             positionIndicatorRect,
@@ -940,8 +964,29 @@ public class MapPanelController : MonoBehaviour
             contentRect
         );
 
+        playerPositionBefore = GameManager.Instance.normalizedPlayerPosition;
+
 
         isMapInitialized = true;
+    }
+
+    private void UpdatePlayerIndicator()
+    {
+        if (currentPositionIndicator == null)
+            return;
+
+        RectTransform contentRect = worldPanelContent.GetComponent<RectTransform>();
+        RectTransform positionIndicatorRect = currentPositionIndicator.GetComponent<RectTransform>();
+
+        SetupMapObject(
+            positionIndicatorRect,
+            GameManager.Instance.normalizedPlayerPosition,
+            Constants.Planets.PlanetCurrentPositionIndicatorSize,
+            contentRect
+        );
+
+        // 현재 위치 저장
+        playerPositionBefore = GameManager.Instance.normalizedPlayerPosition;
     }
 
     private void SetupMapObject(RectTransform rectTransform, Vector2 normalizedPosition, float sizeScale,
@@ -1011,6 +1056,11 @@ public class MapPanelController : MonoBehaviour
 
         int planetIndex = GameManager.Instance.PlanetDataList.IndexOf(clickedPlanet.PlanetData);
         Debug.Log($"클릭된 행성 인덱스: {planetIndex}");
+
+        // 월드맵의 유효 범위 인디케이터 제거
+        foreach (Transform child in worldPanelContent.transform)
+            if (child.name.Contains("Valid Range Indicator"))
+                Destroy(child.gameObject);
 
         GameManager.Instance.ChangeGameState(GameState.Warp);
 
