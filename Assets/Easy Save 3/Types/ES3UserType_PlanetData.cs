@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("planetId", "planetName", "planetRace", "itemPlanet", "normalizedPosition", "itemsTier1", "itemsTier2", "itemsTier3", "currentRevenue", "currentTier", "currentFuelPrice")]
+	[ES3PropertiesAttribute("planetId", "planetName", "planetRace", "itemPlanet", "normalizedPosition", "itemsTier1", "itemsTier2", "itemsTier3", "currentRevenue", "currentTier", "currentFuelPrice", "questList", "activeEffects", "categoryPriceModifiers", "itemPriceDictionary")]
 	public class ES3UserType_PlanetData : ES3ObjectType
 	{
 		public static ES3Type Instance = null;
@@ -27,6 +27,10 @@ namespace ES3Types
 			writer.WriteProperty("currentRevenue", instance.currentRevenue, ES3Type_int.Instance);
 			writer.WriteProperty("currentTier", instance.currentTier, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(ItemTierLevel)));
 			writer.WriteProperty("currentFuelPrice", instance.currentFuelPrice, ES3Type_int.Instance);
+			writer.WriteProperty("questList", instance.questList, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<RandomQuest>)));
+			writer.WriteProperty("activeEffects", instance.activeEffects, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<PlanetEffect>)));
+			writer.WritePrivateField("categoryPriceModifiers", instance);
+			writer.WritePrivateField("itemPriceDictionary", instance);
 		}
 
 		protected override void ReadObject<T>(ES3Reader reader, object obj)
@@ -70,6 +74,18 @@ namespace ES3Types
 					case "currentFuelPrice":
 						instance.currentFuelPrice = reader.Read<System.Int32>(ES3Type_int.Instance);
 						break;
+					case "questList":
+						instance.questList = reader.Read<System.Collections.Generic.List<RandomQuest>>();
+						break;
+					case "activeEffects":
+						instance.activeEffects = reader.Read<System.Collections.Generic.List<PlanetEffect>>();
+						break;
+					case "categoryPriceModifiers":
+					instance = (PlanetData)reader.SetPrivateField("categoryPriceModifiers", reader.Read<System.Collections.Generic.Dictionary<ItemCategory, System.Single>>(), instance);
+					break;
+					case "itemPriceDictionary":
+					instance = (PlanetData)reader.SetPrivateField("itemPriceDictionary", reader.Read<System.Collections.Generic.Dictionary<System.Int32, System.Int32>>(), instance);
+					break;
 					default:
 						reader.Skip();
 						break;

@@ -67,8 +67,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -421,7 +420,6 @@ public class GameManager : MonoBehaviour
         OnShipInitialized?.Invoke();
 
         GeneratePlanetsData(); // 새 데이터 생성
-        SaveGameData();
 
         currentState = GameState.Gameplay;
         SceneChanger.Instance.LoadScene("Idle");
@@ -507,7 +505,8 @@ public class GameManager : MonoBehaviour
     {
         if (ES3.KeyExists("playerData")) playerData = ES3.Load<PlayerData>("playerData");
         if (ES3.KeyExists("gameState")) currentState = ES3.Load<GameState>("gameState");
-        if (ES3.KeyExists("playerShip", "playerShip"))
+
+        if (ES3.FileExists("playerShip"))
         {
             Debug.Log("소환시도");
 
@@ -524,7 +523,7 @@ public class GameManager : MonoBehaviour
 
     public void DeletePlayerData()
     {
-        ES3.DeleteKey("playerShip");
+        ES3.DeleteFile("playerShip");
         playerShip.RemoveAllRooms();
         playerShip.RemoveAllCrews();
         playerShip.RemoveAllWeapons();

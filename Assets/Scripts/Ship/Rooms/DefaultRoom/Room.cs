@@ -68,7 +68,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>소속된 Ship 참조.</summary>
     public Ship parentShip;
 
-    private SpriteRenderer icon;
+    [SerializeField] private SpriteRenderer icon;
 
     /// <summary>
     /// 각 방에 collider 추가, isTrigger = true 설정을 통해 선원 충돌 방해 제거
@@ -556,6 +556,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
                     color = "red";
                     break;
             }
+
 
         if (icon == null)
             icon = Instantiate(roomData.GetRoomDataByLevel(currentLevel).roomIconPrefab, transform)

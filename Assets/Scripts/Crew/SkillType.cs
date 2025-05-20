@@ -1,7 +1,10 @@
-﻿/// <summary>
+﻿using System;
+
+/// <summary>
 /// 선원이 보유할 수 있는 다양한 숙련도(스킬) 타입을 정의합니다.
 /// 각 스킬은 특정 방 작업이나 행동에 영향을 미칩니다.
 /// </summary>
+[Serializable]
 public enum SkillType
 {
     /// <summary>해당 없음 (기본값).</summary>

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("outerHullData", "currentLevel", "currentLevelData", "gridPosition", "direction", "parentShip")]
+	[ES3PropertiesAttribute("outerHullData", "currentLevel", "currentLevelData", "gridPosition", "direction", "spriteRenderer", "parentShip")]
 	public class ES3UserType_OuterHull : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -21,6 +21,7 @@ namespace ES3Types
 			writer.WritePrivateField("currentLevelData", instance);
 			writer.WriteProperty("gridPosition", instance.gridPosition, ES3Type_Vector2Int.Instance);
 			writer.WriteProperty("direction", instance.direction, ES3Type_int.Instance);
+			writer.WritePrivateFieldByRef("spriteRenderer", instance);
 			writer.WritePrivateFieldByRef("parentShip", instance);
 		}
 
@@ -47,6 +48,9 @@ namespace ES3Types
 					case "direction":
 						instance.direction = reader.Read<System.Int32>(ES3Type_int.Instance);
 						break;
+					case "spriteRenderer":
+					instance = (OuterHull)reader.SetPrivateField("spriteRenderer", reader.Read<UnityEngine.SpriteRenderer>(), instance);
+					break;
 					case "parentShip":
 					instance = (OuterHull)reader.SetPrivateField("parentShip", reader.Read<Ship>(), instance);
 					break;

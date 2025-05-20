@@ -463,7 +463,8 @@ public class MapPanelController : MonoBehaviour
             isEndNode = true,
             layer = layerCount + 1,
             indexInLayer = 0,
-            nodeId = nodeIdCounter++
+            nodeId = nodeIdCounter++,
+            nodeType = WarpNodeType.Planet
         };
 
         warpNodes.Add(endNode);
@@ -974,6 +975,34 @@ public class MapPanelController : MonoBehaviour
             return;
 
         Debug.Log($"MapPanelController: 행성 클릭됨 -");
+
+        RectTransform contentRect = worldPanelContent.GetComponent<RectTransform>();
+        float mapWidth = contentRect.rect.width;
+        float mapHeight = contentRect.rect.height;
+        float mapMin = Mathf.Min(mapWidth, mapHeight);
+
+        // 종횡비를 고려한 위치 계산
+        Vector2 planetPosition = clickedPlanet.PlanetData.normalizedPosition;
+        Vector2 aspectAdjustedPlanetPosition = new(
+            planetPosition.x * (mapWidth / mapMin),
+            planetPosition.y * (mapHeight / mapMin)
+        );
+
+        Vector2 aspectAdjustedNodePosition = new(
+            currentWorldNodePosition.x * (mapWidth / mapMin),
+            currentWorldNodePosition.y * (mapHeight / mapMin)
+        );
+
+        // 종횡비가 반영된 거리 계산
+        float distance = Vector2.Distance(aspectAdjustedPlanetPosition, aspectAdjustedNodePosition);
+        float validRadius = Constants.Planets.PlanetNodeValidRadius / 2;
+
+        // 거리가 유효 범위를 벗어나면 처리하지 않음
+        if (distance > validRadius)
+        {
+            Debug.Log($"행성이 유효 범위를 벗어남: 거리 {distance}, 최대 {validRadius}");
+            return;
+        }
 
         targetPlanet = clickedPlanet;
         targetPlanet.HideTooltip();

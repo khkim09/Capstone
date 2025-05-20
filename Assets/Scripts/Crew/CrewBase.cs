@@ -144,7 +144,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         // 종족별 애니메이터 연결
         if (animator == null)
         {
-            animator = gameObject.AddComponent<Animator>();
+            animator = gameObject.GetComponent<Animator>();
             animator.runtimeAnimatorController
                 = Resources.Load<RuntimeAnimatorController>($"Animation/{race.ToString()}/{race.ToString()}");
         }

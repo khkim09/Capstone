@@ -22,7 +22,7 @@ public class QuestObjective
     public int currentAmount;
 
     /// <summary>목표 행성 ID</summary>
-    public PlanetData targetPlanetData;
+    public int targetPlanetDataId;
 
     /// <summary>
     /// 완료 조건 충족 여부

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("crewName", "isPlayerControlled", "race", "maxHealth", "attack", "defense", "learningSpeed", "needsOxygen", "maxSkillValueArray", "maxPilotSkillValue", "maxEngineSkillValue", "maxPowerSkillValue", "maxShieldSkillValue", "maxWeaponSkillValue", "maxAmmunitionSkillValue", "maxMedBaySkillValue", "maxRepairSkillValue", "skills", "equipAdditionalSkills", "equippedWeapon", "equippedShield", "equippedAssistant", "currentRoom", "position", "targetPosition", "moveSpeed", "health", "isAlive", "isMoving", "currentShip", "spriteRenderer", "animator")]
+	[ES3PropertiesAttribute("crewName", "isPlayerControlled", "race", "maxHealth", "attack", "defense", "learningSpeed", "needsOxygen", "maxSkillValueArray", "maxPilotSkillValue", "maxEngineSkillValue", "maxPowerSkillValue", "maxShieldSkillValue", "maxWeaponSkillValue", "maxAmmunitionSkillValue", "maxMedBaySkillValue", "maxRepairSkillValue", "skills", "equipAdditionalSkills", "equippedWeapon", "equippedShield", "equippedAssistant", "currentRoom", "position", "targetPosition", "moveSpeed", "health", "isAlive", "isMoving", "currentShip", "spriteRenderer", "animator", "healthBarController")]
 	public class ES3UserType_CrewMember : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -48,6 +48,7 @@ namespace ES3Types
 			writer.WritePropertyByRef("currentShip", instance.currentShip);
 			writer.WritePropertyByRef("spriteRenderer", instance.spriteRenderer);
 			writer.WritePropertyByRef("animator", instance.animator);
+			writer.WritePrivateFieldByRef("healthBarController", instance);
 		}
 
 		protected override void ReadComponent<T>(ES3Reader reader, object obj)
@@ -65,7 +66,7 @@ namespace ES3Types
 						instance.isPlayerControlled = reader.Read<System.Boolean>(ES3Type_bool.Instance);
 						break;
 					case "race":
-						instance.race = reader.Read<CrewRace>();
+						instance.race = reader.Read<CrewRace>(ES3Type_enum.Instance);
 						break;
 					case "maxHealth":
 						instance.maxHealth = reader.Read<System.Single>(ES3Type_float.Instance);
@@ -154,6 +155,9 @@ namespace ES3Types
 					case "animator":
 						instance.animator = reader.Read<UnityEngine.Animator>();
 						break;
+					case "healthBarController":
+					instance = (CrewMember)reader.SetPrivateField("healthBarController", reader.Read<CrewHealthBar>(), instance);
+					break;
 					default:
 						reader.Skip();
 						break;

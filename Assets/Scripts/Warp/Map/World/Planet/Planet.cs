@@ -106,6 +106,8 @@ public class Planet : TooltipPanelBase
 
             planetTooltip.planetDescriptionText.text = "";
             planetTooltip.planetEventTitleText.text = "";
+            planetTooltip.planetEventUpText.text = "";
+            planetTooltip.planetEventDownText.text = "";
             planetTooltip.planetActiveQuestTitleText.text = "";
             if (HasEvent)
             {
@@ -133,7 +135,7 @@ public class Planet : TooltipPanelBase
                 int activeQuestCount = activeQuestList.Count;
                 if (activeQuestCount > 0)
                     planetTooltip.planetActiveQuestTitleText.text =
-                        $"{"ui.planetinfo.quest.active".Localize()} : {activeQuestList[0].title.Localize()}{(activeQuestCount > 1 ? " " + (activeQuestCount - 1).ToString() : "")}";
+                        $"{"ui.planetinfo.quest.active".Localize()} : {activeQuestList[0].title.Localize()}{(activeQuestCount > 1 ? " " + "+ " + (activeQuestCount - 1).ToString() : "")}";
 
                 List<RandomQuest> inactiveQuestList = planetData.questList
                     .Where(q => q.status == QuestStatus.NotStarted)
@@ -142,7 +144,7 @@ public class Planet : TooltipPanelBase
 
                 if (inactiveQuestList.Count > 0)
                     planetTooltip.planetInActiveQuestTitleText.text =
-                        $"{"ui.planetinfo.quest.inactive".Localize()} : {inactiveQuestList[0].title.Localize()}{(inactiveQuestCount > 1 ? " " + (inactiveQuestCount - 1).ToString() : "")}";
+                        $"{"ui.planetinfo.quest.inactive".Localize()} : {inactiveQuestList[0].title.Localize()}{(inactiveQuestCount > 1 ? " " + "+ " + (inactiveQuestCount - 1).ToString() : "")}";
             }
         }
     }
