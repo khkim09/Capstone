@@ -89,6 +89,8 @@ public class PlanetData
 
     public PlanetRace PlanetRace => planetRace;
 
+    public bool isHome = false;
+
     /// <summary>
     /// 행성의 데이터를 랜덤으로 생성합니다. 게임 시작할 때 호출되며, 게임의 여러 요소가 한 쪽으로 편향되지 않게 적절한 설정이 적용.
     /// </summary>

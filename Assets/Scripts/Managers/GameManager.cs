@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
         playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
         playerShip.Initialize();
 
-        // LoadGameData();
+        LoadGameData();
 
         if (playerShip != null)
         {
@@ -669,6 +669,16 @@ public class GameManager : MonoBehaviour
         ChangeGameState(GameState.Planet);
         //  SceneChanger.Instance.LoadScene("Planet");
         SceneChanger.Instance.LoadScene("PlanetTestScene");
+    }
+
+    #endregion
+
+    #region 행성씬전용
+
+    public PlanetData WhereIAm()
+    {
+        PlanetData planetData = planetDataList[currentWarpTargetPlanetId];
+        return planetData;
     }
 
     #endregion
