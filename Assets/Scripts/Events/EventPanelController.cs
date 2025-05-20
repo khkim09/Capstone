@@ -70,8 +70,8 @@ public class EventPanelController : MonoBehaviour
         {
             if (randomEvent.eventType == EventType.Planet)
             {
-                string planetName = GameManager.Instance.PlanetDataList[randomEvent.planetId].planetName + " ";
-                StartCoroutine(TypeText(eventDescriptionText, planetName + randomEvent.eventDescription.Localize()));
+                string planetName = GameManager.Instance.PlanetDataList[randomEvent.planetId].planetName;
+                StartCoroutine(TypeText(eventDescriptionText, randomEvent.eventDescription.Localize(planetName)));
             }
             else
             {

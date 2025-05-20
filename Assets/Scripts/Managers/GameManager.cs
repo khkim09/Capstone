@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
         playerShip = GameObject.Find("PlayerShip")?.GetComponent<Ship>();
         playerShip.Initialize();
 
-        // LoadGameData();
+        LoadGameData();
 
         if (playerShip != null)
         {
@@ -661,6 +661,11 @@ public class GameManager : MonoBehaviour
     {
         warpNodeDataList.Clear();
         currentWarpTargetPlanetId = -1;
+    }
+
+    public void SetCurrentWarpTargetPlanetId(int planetId)
+    {
+        currentWarpTargetPlanetId = planetId;
     }
 
     public void LandOnPlanet()
