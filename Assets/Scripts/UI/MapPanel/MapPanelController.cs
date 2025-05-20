@@ -324,7 +324,10 @@ public class MapPanelController : MonoBehaviour
 
 
         GameManager.Instance.AddYear();
-        ResourceManager.Instance.ChangeResource(ResourceType.Fuel, -Constants.Resources.FuelPerWarp);
+        Ship playerShip = GameManager.Instance.GetPlayerShip();
+        float fuelAmount = playerShip.CalculateWarpFuelCost();
+        ResourceManager.Instance.ChangeResource(ResourceType.Fuel,
+            GameManager.Instance.playerShip.CalculateWarpFuelCost());
         // 플레이어 이동
         MovePlayerToNode(recentClickedNode);
 

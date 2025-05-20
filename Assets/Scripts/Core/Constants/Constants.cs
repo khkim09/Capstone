@@ -148,11 +148,6 @@ public static class Constants
     public static class Resources
     {
         /// <summary>
-        /// 워프 시 소모하는 기본 연료량
-        /// </summary>
-        public const float FuelPerWarp = 10f;
-
-        /// <summary>
         /// 게임 시작 시 기본 COMA
         /// </summary>
         public const int DefaultCOMA = 10000;

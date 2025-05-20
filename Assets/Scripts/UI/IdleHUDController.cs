@@ -53,12 +53,13 @@ public class IdleHUDController : MonoBehaviour
 
         Ship playerShip = GameManager.Instance.GetPlayerShip();
 
-        shipStatusText.text = "ui.idle.shipstat".Localize(playerShip.allCrews.Count,
+        shipStatusText.text = $"ui.idle.shipstat".Localize(playerShip.allCrews.Count,
             playerShip.GetStat(ShipStat.CrewCapacity),
             playerShip.GetStat(ShipStat.PowerUsing), playerShip.GetStat(ShipStat.PowerCapacity),
             playerShip.ShieldSystem.GetCurrentShield(), playerShip.GetStat(ShipStat.ShieldMaxAmount),
             100 + playerShip.GetStat(ShipStat.Accuracy),
             100 + playerShip.GetStat(ShipStat.ReloadTimeBonus),
+            100 + playerShip.GetStat(ShipStat.DamageBonus),
             playerShip.GetStat(ShipStat.DodgeChance),
             playerShip.GetStat(ShipStat.FuelEfficiency),
             playerShip.OxygenSystem.GetOxygenRate());

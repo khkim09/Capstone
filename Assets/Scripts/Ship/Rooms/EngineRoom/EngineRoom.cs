@@ -16,7 +16,7 @@ public class EngineRoom : Room<EngineRoomData, EngineRoomData.EngineRoomLevel>
 
         // 방 타입 설정
         roomType = RoomType.Engine;
-        workDirection=Vector2Int.up;
+        workDirection = Vector2Int.up;
     }
 
 
@@ -59,6 +59,9 @@ public class EngineRoom : Room<EngineRoomData, EngineRoomData.EngineRoomLevel>
             contributions[ShipStat.FuelConsumption] *= crewBonus;
         }
 
+        contributions[ShipStat.FuelStoreCapacity] = currentRoomLevelData.fuelStoreLiter;
+
+
         return contributions;
     }
 
@@ -69,11 +72,12 @@ public class EngineRoom : Room<EngineRoomData, EngineRoomData.EngineRoomLevel>
     /// <returns></returns>
     public override bool CanITouch(CrewMember crew)
     {
-        if (crew.GetCrewSkillValue().ContainsKey(SkillType.EngineSkill) && workingCrew ==null)
+        if (crew.GetCrewSkillValue().ContainsKey(SkillType.EngineSkill) && workingCrew == null)
         {
             workingCrew = crew;
             return true;
         }
+
         return false;
     }
 
