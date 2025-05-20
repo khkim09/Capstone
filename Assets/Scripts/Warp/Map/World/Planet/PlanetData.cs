@@ -80,12 +80,12 @@ public class PlanetData
     /// <summary>
     /// 이벤트로 변동되는 카테고리별 현재 가격 변동율 (%)
     /// </summary>
-    private Dictionary<ItemCategory, float> categoryPriceModifiers = new();
+    public Dictionary<ItemCategory, float> categoryPriceModifiers = new();
 
     /// <summary>
     /// 아이템의 현재 가격 딕셔너리
     /// </summary>
-    private Dictionary<int, int> itemPriceDictionary = new();
+    public Dictionary<int, int> itemPriceDictionary = new();
 
     public PlanetRace PlanetRace => planetRace;
 

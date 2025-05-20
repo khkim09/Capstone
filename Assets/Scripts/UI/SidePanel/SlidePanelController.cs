@@ -25,18 +25,29 @@ public class SlidePanelController : MonoBehaviour
 
     [Header("함선 패널 설정")] [SerializeField] private GameObject shipPanelContent;
     [SerializeField] private GameObject roomInfoPanelPrefab;
+    private Dictionary<RoomType, ShipInfoPanel> shipInfoPanelDictionary = new();
+
 
     [Header("승무원 패널 설정")] [SerializeField] private GameObject crewPanelContent;
     [SerializeField] private GameObject crewInfoPanelPrefab;
     [SerializeField] private GameObject equipmentDetailPanel;
+    private List<CrewInfoPanel> crewInfoPanelList = new();
+
 
     [FormerlySerializedAs("qeustPanelContent")] [Header("퀘스트 패널 설정")] [SerializeField]
     private GameObject questPanelContent;
 
     [SerializeField] private GameObject questInfoPanelPrefab;
-    private List<GameObject> questInfoPanelInstance;
-    private RandomQuest questToCancel;
     [SerializeField] private GameObject checkQuestUI;
+    private List<QuestInfoPanel> questInfoPanelList = new();
+    private RandomQuest questToCancel;
+
+    [Header("창고 패널 설정")] [SerializeField] private GameObject storagePanelContent;
+    [SerializeField] private GameObject storageInfoPanelPrefab;
+    [SerializeField] private ItemMapController itemMapPanel;
+    private List<StorageInfoPanel> storageInfoPanelInstance = new();
+    private StorageInfoPanel selectedStoragePanel = null;
+
 
     [Header("열려야 되는 위치")] [SerializeField] private Transform openedPosition;
     [Header("열리는 속도")] [SerializeField] private float slideSpeed = 0.1f;
@@ -46,9 +57,6 @@ public class SlidePanelController : MonoBehaviour
     private bool isOpen = false;
     private GameObject currentPanel = null;
 
-    private List<CrewInfoPanel> crewInfoPanelList = new();
-    private Dictionary<RoomType, ShipInfoPanel> shipInfoPanelDictionary = new();
-    private List<QuestInfoPanel> questInfoPanelList = new();
 
     private void Start()
     {
@@ -60,7 +68,8 @@ public class SlidePanelController : MonoBehaviour
     {
         if (isOpen && Input.GetMouseButtonDown(0))
         {
-            if (equipmentDetailPanel.activeInHierarchy || checkQuestUI.activeInHierarchy)
+            if (equipmentDetailPanel.activeInHierarchy || checkQuestUI.activeInHierarchy ||
+                itemMapPanel.gameObject.activeInHierarchy)
                 return;
 
             // 클릭된 UI 요소가 현재 패널이 아닌지 체크
@@ -92,7 +101,7 @@ public class SlidePanelController : MonoBehaviour
         if (targetPanel == panelShip) InitializeShipPanel();
         if (targetPanel == panelCrew) InitializeCrewPanel();
         if (targetPanel == panelQuest) InitializeQuestPanel();
-
+        if (targetPanel == panelStorage) InitializeStoragePanel();
 
         ShowOnly(targetPanel);
         SlideOpen();
@@ -132,6 +141,8 @@ public class SlidePanelController : MonoBehaviour
         currentPanel?.SetActive(false);
         currentPanel = null;
         isOpen = false;
+
+        SetSelectedStoragePanel(null);
     }
 
     private IEnumerator SlideToPosition(Vector3 targetPosition)
@@ -226,6 +237,15 @@ public class SlidePanelController : MonoBehaviour
         }
     }
 
+    public void OnCrewPanelEquipmentButtonClicked(CrewMember selectedCrew)
+    {
+        EquipmentApplyHandler handler = equipmentDetailPanel.GetComponent<EquipmentApplyHandler>();
+        handler.Initialize();
+        handler.OnCrewIconSelected(selectedCrew);
+
+        equipmentDetailPanel.SetActive(true);
+    }
+
     #endregion
 
     #region 퀘스트 패널 설정
@@ -276,12 +296,50 @@ public class SlidePanelController : MonoBehaviour
 
     #endregion
 
-    public void OnCrewPanelEquipmentButtonClicked(CrewMember selectedCrew)
-    {
-        EquipmentApplyHandler handler = equipmentDetailPanel.GetComponent<EquipmentApplyHandler>();
-        handler.Initialize();
-        handler.OnCrewIconSelected(selectedCrew);
+    #region 창고 패널 설정
 
-        equipmentDetailPanel.SetActive(true);
+    public void InitializeStoragePanel()
+    {
+        // Clear storage panel selection when changing tabs
+        SetSelectedStoragePanel(null);
+
+        foreach (StorageInfoPanel panel in storageInfoPanelInstance) Destroy(panel.gameObject);
+
+        storageInfoPanelInstance.Clear();
+
+        List<TradingItem> allItems = GameManager.Instance.playerShip.GetAllItems();
+
+        foreach (TradingItem item in allItems)
+        {
+            StorageInfoPanel storageInfoPanel = Instantiate(storageInfoPanelPrefab, storagePanelContent.transform)
+                .GetComponent<StorageInfoPanel>();
+
+            storageInfoPanel.Initialize(item);
+            storageInfoPanelInstance.Add(storageInfoPanel);
+        }
     }
+
+    public void OnStorageInfoPanelButtonClicked(TradingItemData selectedItem)
+    {
+        // 이미 선택된 패널의 아이템과 동일한지 확인
+        if (itemMapPanel.gameObject.activeInHierarchy &&
+            selectedStoragePanel != null &&
+            selectedStoragePanel.CurrentItem == selectedItem)
+            // 이미 같은 아이템 맵이 열려있으면 아무 작업도 하지 않음
+            return;
+
+        // 새 아이템이거나 패널이 닫혀있으면 맵 활성화 및 초기화
+        itemMapPanel.gameObject.SetActive(true);
+        itemMapPanel.Initialize(selectedItem);
+    }
+
+    public void SetSelectedStoragePanel(StorageInfoPanel panel)
+    {
+        if (selectedStoragePanel != null) selectedStoragePanel.SetSelected(false);
+
+        selectedStoragePanel = panel;
+        if (selectedStoragePanel != null) selectedStoragePanel.SetSelected(true);
+    }
+
+    #endregion
 }

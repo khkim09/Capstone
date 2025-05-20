@@ -23,4 +23,6 @@ public class TradingItemData : ScriptableObject
     public int costMax;
     public string description;
     public Sprite itemSprite;
+    public int amount;
+    public int boughtCost;
 }
