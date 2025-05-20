@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4862824770561014487}
   - component: {fileID: 4351251526423562058}
+  - component: {fileID: 5653495742560892708}
   - component: {fileID: 6321186401316226529}
-  - component: {fileID: 5140226616889720842}
-  m_Layer: 0
-  m_Name: BPWPPrefab
+  m_Layer: 10
+  m_Name: PreviewAreaRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 4361620ce8b414f46a98c5461df53d1e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -89,6 +89,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5653495742560892708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2726010895847266727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05056d9025dc90d449dde89aa3224fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bpRoomData: {fileID: 0}
+  bpLevelIndex: 0
+  bpRotation: 0
+  bpPosition: {x: 0, y: 0}
+  bpRoomCost: 0
+  bpRoomSize: {x: 0, y: 0}
+  occupiedTiles: []
 --- !u!61 &6321186401316226529
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135,24 +154,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0
---- !u!114 &5140226616889720842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2726010895847266727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2c7981472014691af720c97f2683a8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bpWeaponData: {fileID: 0}
-  bpAttachedDirection: 0
-  bpPosition: {x: 0, y: 0}
-  bpWeaponCost: 0
-  bpWeaponSize: {x: 2, y: 1}
-  bpRotation: 0
-  occupiedTiles: []
-  roomSelectionUI: {fileID: 6607712920937840344, guid: 30954a46a3e1f8d44a6c1ac32414f205, type: 3}
-  hullLevel: 0

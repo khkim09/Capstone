@@ -9,6 +9,11 @@ public class BlueprintSaveData
     public List<BlueprintRoomSaveData> rooms;
     public List<BlueprintWeaponSaveData> weapons;
 
+    /// <summary>
+    /// 도안 정보 저장
+    /// </summary>
+    /// <param name="rooms"></param>
+    /// <param name="weapons"></param>
     public BlueprintSaveData(List<BlueprintRoomSaveData> rooms, List<BlueprintWeaponSaveData> weapons)
     {
         this.rooms = rooms;

@@ -557,7 +557,7 @@ public class Ship : MonoBehaviour
     }
 
     /// <summary>
-    /// 현재 설계도 함선을 실제 함선 구조로 반영
+    /// 현재 설계도 함선을 실제 함선 구조로 반영 - bpship 버전
     /// (방뿐 아니라 무기도 함께 적용)
     /// </summary>
     /// <param name="bpShip">설계도 함선</param>
@@ -613,6 +613,60 @@ public class Ship : MonoBehaviour
             if (newWeapon != null) newWeapon.ApplyRotationSprite(GetOuterHullLevel());
         }
     }
+
+    /*
+    /// <summary>
+    /// 도안 -> 실제 함선 교체 (BlueprintSaveData 버전)
+    /// </summary>
+    /// <param name="saveData"></param>
+    public void ReplaceShipFromBlueprint(BlueprintSaveData saveData, int selectedHullLevel)
+    {
+        // 1. 기존 선원 모두 삭제
+        foreach (CrewMember crew in allCrews)
+            Destroy(crew.gameObject);
+        allCrews.Clear();
+
+        // 2. 기존 방 삭제
+        foreach (Room room in allRooms)
+            Destroy(room.gameObject);
+        allRooms.Clear();
+        roomGrid.Clear(); // 그리드 정보도 초기화
+        roomsByType.Clear(); // 타입별 룸 목록도 초기화
+
+        // 3. 기존 무기 삭제
+        foreach (ShipWeapon weapon in allWeapons)
+            Destroy(weapon.gameObject);
+        allWeapons.Clear();
+
+        // // 4. 외갑판 레벨 설정
+        // Debug.LogError($"외갑판 설정: {selectedHullLevel}");
+        // SetOuterHullLevel(selectedHullLevel);
+
+        // 4. 방 배치
+        foreach (BlueprintRoomSaveData roomData in saveData.rooms)
+        {
+            AddRoom(
+                roomData.bpLevelIndex,
+                roomData.bpRoomData,
+                roomData.bpPosition,
+                roomData.bpRotation
+            );
+        }
+
+        // 5. 무기 배치
+        foreach (BlueprintWeaponSaveData weaponData in saveData.weapons)
+        {
+            ShipWeapon newWeapon = AddWeapon(
+                weaponData.bpWeaponData.id,
+                weaponData.bpPosition,
+                weaponData.bpDirection
+            );
+
+            if (newWeapon != null)
+                newWeapon.ApplyRotationSprite(selectedHullLevel);
+        }
+    }
+    */
 
     // ---------------- <기현> 여기까지 --------------------
 

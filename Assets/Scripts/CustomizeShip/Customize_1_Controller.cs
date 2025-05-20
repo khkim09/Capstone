@@ -140,12 +140,6 @@ public class Customize_1_Controller : MonoBehaviour
             }
         }
 
-        // 설계도 방 호출, 배치
-        // GetSavedBPRooms();
-
-        // 설계도 함선 무기 호출, 배치
-        // GetSavedWeaponRooms();
-
         // 카메라 - 설계도 함선 기준으로 세팅
         CenterCameraToBP();
 
@@ -165,9 +159,6 @@ public class Customize_1_Controller : MonoBehaviour
     {
         if (gridTiles.activeInHierarchy)
             gridTiles.SetActive(false);
-
-        // 설계도 설치한 방 데이터 모두 저장 후 제거
-        // SaveBPRoomsandDestroy();
 
         // 카메라 - 기존 함선 기준으로 복구
         ResetCameraToOriginShip();
@@ -201,19 +192,23 @@ public class Customize_1_Controller : MonoBehaviour
         Camera.main.orthographicSize = 5;
     }
 
+    /// <summary>
+    /// 클릭한 슬롯 도안 호출
+    /// </summary>
+    /// <param name="slotIndex"></param>
     public void ReloadBlueprintFromSlot(int slotIndex)
     {
         gridTiles.SetActive(true);
         targetBlueprintShip.ClearRooms();
 
-        var data = BlueprintSlotManager.Instance.GetBlueprintAt(slotIndex);
+        BlueprintSaveData data = BlueprintSlotManager.Instance.GetBlueprintAt(slotIndex);
 
         if (data != null)
         {
-            foreach (var room in data.rooms)
+            foreach (BlueprintRoomSaveData room in data.rooms)
                 gridPlacer.PlaceRoom(room.bpRoomData, room.bpLevelIndex, room.bpPosition, room.bpRotation);
 
-            foreach (var weapon in data.weapons)
+            foreach (BlueprintWeaponSaveData weapon in data.weapons)
             {
                 BlueprintWeapon w = gridPlacer.PlaceWeapon(weapon.bpWeaponData, weapon.bpPosition, weapon.bpDirection);
                 w.ApplyAttachedDirectionSprite();
@@ -223,54 +218,7 @@ public class Customize_1_Controller : MonoBehaviour
         gridPlacer.occupiedGridTiles = BlueprintSlotManager.Instance.GetOccupiedTiles(slotIndex);
 
         CenterCameraToBP();
-        GameManager.Instance.playerShip.ClearExistingHulls();
         SetPlayerShipCollidersActive(false);
-    }
-
-
-    /// <summary>
-    /// 기존에 작업중이던 설계도의 모든 방 데이터 호출 및 배치
-    /// </summary>
-    private void GetSavedBPRooms()
-    {
-        List<BlueprintRoomSaveData> layout = BlueprintLayoutSaver.LoadRoomLayout();
-
-        foreach (BlueprintRoomSaveData saved in layout)
-            gridPlacer.PlaceRoom(saved.bpRoomData, saved.bpLevelIndex, saved.bpPosition, saved.bpRotation);
-    }
-
-    /// <summary>
-    /// 기존에 작업 중이던 설계도의 모든 함선 무기 데이터 호출 및 배치
-    /// </summary>
-    private void GetSavedWeaponRooms()
-    {
-        List<BlueprintWeaponSaveData> layout = BlueprintLayoutSaver.LoadWeaponLayout();
-
-        foreach (BlueprintWeaponSaveData saved in layout)
-        {
-            BlueprintWeapon bw = gridPlacer.PlaceWeapon(saved.bpWeaponData, saved.bpPosition, saved.bpDirection);
-            bw.ApplyAttachedDirectionSprite();
-        }
-    }
-
-    /// <summary>
-    /// 작업중이던 설계도 저장 및 방 제거
-    /// </summary>
-    private void SaveBPRoomsandDestroy()
-    {
-        BlueprintRoom[] bpRooms = targetBlueprintShip.GetComponentsInChildren<BlueprintRoom>();
-        BlueprintLayoutSaver.SaveRoomLayout(bpRooms);
-
-        BlueprintWeapon[] bpWeapons = targetBlueprintShip.GetComponentsInChildren<BlueprintWeapon>();
-        BlueprintLayoutSaver.SaveWeaponLayout(bpWeapons);
-
-        // 설치했던 모든 설계도 방 제거
-        foreach (BlueprintRoom r in bpRooms)
-            Destroy(r.gameObject);
-
-        foreach (BlueprintWeapon w in bpWeapons) Destroy(w.gameObject);
-
-        targetBlueprintShip.ClearRooms();
     }
 
     /// <summary>
@@ -292,71 +240,6 @@ public class Customize_1_Controller : MonoBehaviour
 
     #region 함선 제작 버튼 (유효성 검사 및 교체)
 
-    /*
-        /// <summary>
-        /// '함선 제작' 버튼 클릭 시 호출.
-        /// 조건 만족 시 기존 함선을 설계도의 함선으로 교체합니다.
-        /// 이후 방, 문의 연결 유효성 검사 수행 후 만족 여부에 따라 실제 함선으로 교체, 다시 설계도로 복구를 수행
-        /// </summary>
-        public void OnClickBuild()
-        {
-            // 2. 기존 선원, 함선 백업
-            GameManager.Instance.playerShip.BackupAllCrews();
-            GameManager.Instance.playerShip.BackupCurrentShip();
-
-            // 3. 설계도 -> 실제 함선 (bpRoom -> Room) 변환
-            GameManager.Instance.playerShip.ReplaceShipFromBlueprint(targetBlueprintShip);
-
-            // 4. 실제 Ship 상태 기준 유효성 검사 수행
-            validationResult = new ShipValidationHelper().ValidateShipLayout(GameManager.Instance.playerShip);
-
-            // feedbackText.text = $"{validationResult.Message}";
-            // 5. 유효성 검사
-            if (!validationResult.IsValid)
-            {
-                Debug.LogError("유효 X");
-
-                // 실패
-                feedbackText.text = $"X {validationResult.Message}";
-
-                // 기존 함선으로 복원
-                GameManager.Instance.playerShip.RevertToOriginalShip();
-
-                // 기존 선원 복원
-                GameManager.Instance.playerShip.CrewSystem.RevertOriginalCrews(GameManager.Instance.playerShip.backupCrewDatas);
-
-                // build 버튼 색상 일시적 빨간색
-                if (flashCoroutine != null)
-                    StopCoroutine(flashCoroutine);
-
-                flashCoroutine = StartCoroutine(FlashBuildButtonColor(new Color(1, 0, 0, 0.5f), 2f));
-            }
-            else
-            {
-                Debug.LogError("유효 O");
-
-                // 성공 -> 함선 교체
-                feedbackText.text = $"O Ship updated successfully\n{validationResult.Message}!";
-
-                // RTS 이동을 위한 data 업데이트
-                RTSSelectionManager.Instance.RefreshMovementData();
-
-                // 1) 함선 내 모든 방의 타일 - 선원 점유 상태 초기화
-                Debug.LogError($"빌드 후 전체 방 수 : {GameManager.Instance.playerShip.GetAllRooms().Count}");
-                CrewReservationManager.ClearAllReservations(GameManager.Instance.playerShip);
-
-                // 2) 기존 선원 복구 및 랜덤 배치
-                GameManager.Instance.playerShip.CrewSystem.RestoreCrewAfterBuild(GameManager.Instance.playerShip.backupCrewDatas);
-
-                GameManager.Instance.playerShip.AllFreeze();
-            }
-
-            // 함선 스텟 다시 계산
-            // GameManager.Instance.playerShip.Initialize();
-            GameManager.Instance.playerShip.RecalculateAllStats();
-        }
-    */
-
     /// <summary>
     /// 도안 저장 버튼 클릭 - 유효성 검사
     /// </summary>
@@ -364,7 +247,7 @@ public class Customize_1_Controller : MonoBehaviour
     {
         Ship playerShip = GameManager.Instance.playerShip;
 
-        // 5. 편집 중이던 도안 slot에 저장
+        // 1. 편집 중이던 도안 slot에 저장
         BlueprintRoom[] bpRooms = targetBlueprintShip.GetComponentsInChildren<BlueprintRoom>();
         BlueprintLayoutSaver.SaveRoomLayout(bpRooms);
 
@@ -375,21 +258,21 @@ public class Customize_1_Controller : MonoBehaviour
         List<BlueprintWeaponSaveData> savedWeapons = BlueprintLayoutSaver.LoadWeaponLayout();
         BlueprintSaveData newData = new(savedRooms, savedWeapons);
 
-        // 6. 슬롯에 저장
+        // 2. 슬롯에 저장
         BlueprintSlotManager.Instance.SaveBlueprintToCurrentSlot(newData);
         BlueprintSlotManager.Instance.SaveOccupiedTilesToCurrentSlot(gridPlacer.occupiedGridTiles);
 
-        // 1. 기존 선원, 함선 백업
+        // 3. 기존 선원, 함선 백업
         playerShip.BackupAllCrews();
         playerShip.BackupCurrentShip();
 
-        // 2. 설계도 -> 실제 함선으로 변환 (유효성 검사 위한 단계)
+        // 4. 설계도 -> 실제 함선으로 변환 (유효성 검사 위한 단계)
         playerShip.ReplaceShipFromBlueprint(targetBlueprintShip);
 
-        // 3. 유효성 검사
+        // 5. 유효성 검사
         validationResult = new ShipValidationHelper().ValidateShipLayout(playerShip);
 
-        // 4. 유효성 검사 결과
+        // 6. 유효성 검사 결과
         if (!validationResult.IsValid)
         {
             feedbackText.text = $"X {validationResult.Message}";
@@ -401,24 +284,22 @@ public class Customize_1_Controller : MonoBehaviour
             flashCoroutine = StartCoroutine(FlashSaveButtonColor(new Color(1, 0, 0, 0.5f), 2f));
         }
 
-        // // 5. 편집 중이던 도안 slot에 저장
-        // List<BlueprintRoomSaveData> savedRooms = BlueprintLayoutSaver.LoadRoomLayout();
-        // List<BlueprintWeaponSaveData> savedWeapons = BlueprintLayoutSaver.LoadWeaponLayout();
-        // BlueprintSaveData newData = new(savedRooms, savedWeapons);
-
-        // // 6. 슬롯에 저장
-        // BlueprintSlotManager.Instance.SaveBlueprintToCurrentSlot(newData);
-
+        // 7. 검사 결과에 따라 slot 버튼 업데이트
         Customize_0_Controller controller0 = customize0Panel.GetComponent<Customize_0_Controller>();
         controller0.UpdateSlotButtonColor(BlueprintSlotManager.Instance.currentSlotIndex, validationResult.IsValid);
 
-        // 7. 도안은 도안이므로 기존 함선으로 복구 (함선, 선원)
+        BlueprintSlotManager.Instance.isValidBP[BlueprintSlotManager.Instance.currentSlotIndex] = validationResult.IsValid;
+
+        // 8. 도안은 도안이므로 기존 함선으로 복구 (함선, 선원)
         playerShip.RevertToOriginalShip();
         playerShip.CrewSystem.RevertOriginalCrews(playerShip.backupCrewDatas);
     }
 
     #endregion
 
+    /// <summary>
+    /// customize_0_panel로 복귀
+    /// </summary>
     public void OnClickBack()
     {
         // blueprintship 초기화
@@ -435,6 +316,10 @@ public class Customize_1_Controller : MonoBehaviour
 
         customize1Panel.SetActive(false);
         customize0Panel.SetActive(true);
+
+        // 도안 최신화
+        Customize_0_Controller controller0 = customize0Panel.GetComponent<Customize_0_Controller>();
+        controller0.OnClickSlot(BlueprintSlotManager.Instance.currentSlotIndex);
     }
 
     #region Control Tab (clear, save)

@@ -184,6 +184,6 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
 
     void Update()
     {
-        EnemyCamAim(CalculateBounds());
+        //EnemyCamAim(CalculateBounds());
     }
 }

@@ -77,6 +77,10 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     /// </summary>
     private GameObject mouseDownTarget;
 
+    public GameObject roomSelectionUI;
+
+    private RoomSelectionHandler rshandler;
+
     /// <summary>
     /// 함선 외갑판 레벨 (0: 레벨 1, 1: 레벨 2, 2: 레벨 3)
     /// 이 변수는 단지 캐싱 용도로만 사용됨. 실제 레벨은 blueprintShip.GetHullLevel()에서 가져와야 함
@@ -102,6 +106,9 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
             hullLevel = blueprintShip.GetHullLevel();
             ApplyAttachedDirectionSprite();
         }
+
+        if (roomSelectionUI != null)
+            rshandler = roomSelectionUI.GetComponent<RoomSelectionHandler>();
     }
 
     /// <summary>
@@ -126,6 +133,9 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         // 드래그 시작 (좌클릭)
         if (!isDragging && Input.GetMouseButtonDown(0))
         {
+            if (rshandler != null)
+                rshandler.Deselect();
+
             if (IsPointerOverBlockingUI())
                 return;
 

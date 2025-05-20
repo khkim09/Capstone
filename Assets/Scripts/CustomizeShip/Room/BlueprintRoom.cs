@@ -81,6 +81,9 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
     /// </summary>
     private GameObject mouseDownTarget;
 
+    public GameObject roomSelectionUI;
+    private RoomSelectionHandler rshandler;
+
     /// <summary>
     /// collider size 맞춤
     /// </summary>
@@ -93,6 +96,9 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
         float height = sprite.rect.height / sprite.pixelsPerUnit;
 
         GetComponent<BoxCollider2D>().size = new Vector2(width, height);
+
+        if (roomSelectionUI != null)
+            rshandler = roomSelectionUI.GetComponent<RoomSelectionHandler>();
     }
 
     /// <summary>
@@ -117,6 +123,9 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
         // 드래그 시작 (좌클릭)
         if (!isDragging && Input.GetMouseButtonDown(0))
         {
+            if (rshandler != null)
+                rshandler.Deselect();
+
             // UI 위에 마우스가 있는지 확인하는 개선된 방법
             if (IsPointerOverBlockingUI())
                 return;
