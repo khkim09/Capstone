@@ -10,4 +10,11 @@ public class PlayerData
     public int mysteryFound = 0;
 
     public int pirateDefeated = 0;
+
+    public void ResetPlayerData()
+    {
+        questCleared = 0;
+        mysteryFound = 0;
+        pirateDefeated = 0;
+    }
 }

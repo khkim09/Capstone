@@ -20,7 +20,7 @@ public class MoraleManager : MonoBehaviour
     /// <summary>
     /// 현재 적용 중인 사기 효과 데이터
     /// </summary>
-    private List<MoraleEffectData> activeEffects = new();
+    public List<MoraleEffectData> activeEffects = new();
 
     /// <summary>
     /// 종족별 사기
@@ -72,14 +72,9 @@ public class MoraleManager : MonoBehaviour
             {
                 GameObject panelObj = GameObject.Find("Morale Status Layout");
                 if (panelObj != null)
-                {
                     moraleStatusPanel = panelObj.GetComponent<RectTransform>();
-                }
                 else
-                {
-                    Debug.LogError("Morale Status Layout을 찾을 수 없습니다!");
                     return;
-                }
             }
 
             // Horizontal Layout Group 확인 및 추가
@@ -95,6 +90,8 @@ public class MoraleManager : MonoBehaviour
 
             // 종족별 아이콘 미리 생성
             CreateRaceIcons();
+
+            ReapplyLoadedEffects();
         }
     }
 
@@ -329,6 +326,38 @@ public class MoraleManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 저장된 사기 효과들을 다시 적용합니다 (로드 후 호출용)
+    /// </summary>
+    public void ReapplyLoadedEffects()
+    {
+        // 먼저 모든 사기 값 초기화
+        humanMorale = 0f;
+        amorphousMorale = 0f;
+        mechanicTankMorale = 0f;
+        mechanicSupMorale = 0f;
+        beastMorale = 0f;
+        insectMorale = 0f;
+        globalMorale = 0f;
+
+        // 모든 UI 아이콘 비활성화 및 초기화
+        foreach (MoraleIcon icon in raceIcons.Values)
+        {
+            icon.ClearEffectData();
+            icon.gameObject.SetActive(false);
+        }
+
+        // 로드된 효과들 다시 적용
+        foreach (MoraleEffectData effect in activeEffects)
+        {
+            // 사기 값 적용
+            ApplyMoraleEffectValue(effect);
+
+            // 해당 종족의 아이콘 업데이트
+            UpdateRaceIcon(effect.targetRace);
+        }
+    }
+
+    /// <summary>
     /// 모든 종족 아이콘 업데이트
     /// </summary>
     private void UpdateAllRaceIcons()
@@ -365,6 +394,7 @@ public class MoraleManager : MonoBehaviour
         // 변경된 종족의 아이콘만 업데이트
         foreach (CrewRace race in racesToUpdate) UpdateRaceIcon(race);
     }
+
 
     /// <summary>
     /// 전체 사기 상태 출력 (디버깅용)

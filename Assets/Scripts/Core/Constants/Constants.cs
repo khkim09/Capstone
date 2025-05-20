@@ -145,6 +145,34 @@ public static class Constants
         public const float QuestCreateRate = 0.05f;
     }
 
+    public static class Resources
+    {
+        /// <summary>
+        /// 워프 시 소모하는 기본 연료량
+        /// </summary>
+        public const float FuelPerWarp = 10f;
+
+        /// <summary>
+        /// 게임 시작 시 기본 COMA
+        /// </summary>
+        public const int DefaultCOMA = 10000;
+
+        /// <summary>
+        /// 게임 시작 시 기본 연료
+        /// </summary>
+        public const float DefaultFuel = 100f;
+
+        /// <summary>
+        /// 게임 시작 시 기본 미사일탄
+        /// </summary>
+        public const float DefaultMissile = 0;
+
+        /// <summary>
+        /// 게임 시작 시 기본 초음속탄
+        /// </summary>
+        public const float DefaultHypersonic = 0;
+    }
+
     /// <summary>
     /// 회전 관련 상수
     /// </summary>

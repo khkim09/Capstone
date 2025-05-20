@@ -110,7 +110,6 @@ public class EventManager : MonoBehaviour
         else
             evt = SelectAppropriateEvent(EventType.Mystery);
 
-        //TriggerEventById(4);
         if (evt != null) TriggerEvent(evt);
     }
 
