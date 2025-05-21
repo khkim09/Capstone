@@ -349,6 +349,7 @@ public class MapPanelController : MonoBehaviour
         targetNode.SetCurrentPlayerNode(true);
         EventManager.Instance.CurrentWarpNode = targetNode;
 
+
         if (!targetNode.NodeData.isEndNode)
             GameManager.Instance.normalizedPlayerPosition =
                 GameManager.Instance.WorldNodeDataList[targetNode.NodeData.layer - 1].normalizedPosition;

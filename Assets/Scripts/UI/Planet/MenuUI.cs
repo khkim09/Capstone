@@ -9,8 +9,9 @@ public class MenuUI : MonoBehaviour
     private GameObject moveButton;
 
     public int moveCost = 1000;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         planetData = GameManager.Instance.WhereIAm();
 
@@ -35,7 +36,7 @@ public class MenuUI : MonoBehaviour
 
     public void OnTradeButtonClicked()
     {
-        //SceneChanger.Instance.LoadScene("Trade");
+        SceneChanger.Instance.LoadScene("Trade");
     }
 
     public void OnStorageButtonClicked()
@@ -57,7 +58,7 @@ public class MenuUI : MonoBehaviour
 
     public void OnBlueprintButtonClicked()
     {
-        // SceneChanger.Instance.LoadScene("Customize");
+        SceneChanger.Instance.LoadScene("Customize");
     }
 
     public void OnMoveAcceptButtonClicked()
@@ -65,7 +66,7 @@ public class MenuUI : MonoBehaviour
         if (ResourceManager.Instance.COMA >= moveCost)
         {
             planetData.isHome = true;
-            ResourceManager.Instance.ChangeResource(ResourceType.COMA,-moveCost);
+            ResourceManager.Instance.ChangeResource(ResourceType.COMA, -moveCost);
             transform.Find("MoveMessage").gameObject.SetActive(false);
         }
         else
