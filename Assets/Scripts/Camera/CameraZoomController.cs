@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -23,19 +24,11 @@ public class CameraZoomController : MonoBehaviour
     private float maxSize = 15f;
 
     /// <summary>
-    /// 설계도 화면
-    /// </summary>
-    public GameObject customizeUI;
-
-    /// <summary>
     /// 조정할 메인 카메라
     /// </summary>
     private Camera cam;
 
-    /// <summary>
-    /// 그리드 타일 배치 작업을 위한 오브젝트
-    /// </summary>
-    public GridPlacer gridPlacer;
+    [SerializeField] public Ship targetShip;
 
     /// <summary>
     /// 가장 최신 줌 사이즈
@@ -45,14 +38,24 @@ public class CameraZoomController : MonoBehaviour
     /// <summary>
     /// 함선 위치로 카메라 세팅, 줌 사이즈 = 5
     /// </summary>
-    private void Start()
+    private void OnEnable()
     {
         cam = Camera.main;
 
-        Vector3 startPos = gridPlacer.GetCameraStartPositionToOriginShip();
+        StartCoroutine(CameraCoroutine());
+    }
+
+    private IEnumerator CameraCoroutine()
+    {
+        yield return null;
+
+        targetShip = GameManager.Instance.playerShip;
+
+        Vector3 startPos = GetCameraStartPositionToOriginShip();
         Camera.main.transform.position = new Vector3(startPos.x, startPos.y, Camera.main.transform.position.z);
         Camera.main.orthographicSize = 5;
     }
+
 
     /// <summary>
     /// 설계도 작업 시에만 카메라 컨트롤 적용
@@ -145,48 +148,41 @@ public class CameraZoomController : MonoBehaviour
         }
     }
 
-    /* 마우스 창고 위
     /// <summary>
-    /// 마우스가 UI가 아닌 창고 위에만 있는지 확인
+    /// 기존 소유 함선을 이루는 방들의 중심으로 카메라 시작 위치 보정
     /// </summary>
     /// <returns></returns>
-    private bool IsMouseOverStorageOnly()
+    public Vector3 GetCameraStartPositionToOriginShip()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
-            return false; // UI가 아니면 false
+        List<Room> allRooms = targetShip.GetAllRooms();
+        List<ShipWeapon> allWeapons = targetShip.GetAllWeapons(); // 함선의 모든 무기 가져오기 (구현 필요)
 
-        // 마우스 위치에서 레이캐스트
-        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
+        // 배치된 방 없으면 그리드 중앙
+        if ((allRooms == null || allRooms.Count == 0) && (allWeapons == null || allWeapons.Count == 0))
+            return targetShip.GetWorldPositionFromGrid(targetShip.GetGridSize() / 2);
 
-        // 창고에 맞히고 다른 UI가 없는지 확인
-        if (hit.collider != null && hit.collider.GetComponentInParent<StorageRoomBase>() != null)
+        // 전체 타일 평균 위치 계산
+        List<Vector2Int> allTiles = new();
+
+        foreach (Room room in allRooms)
+            allTiles.AddRange(room.GetOccupiedTiles());
+
+        foreach (ShipWeapon weapon in allWeapons)
         {
-            // 추가 검사: UI 캔버스에 맞히는지 확인
-            PointerEventData eventData = new(EventSystem.current);
-            eventData.position = Input.mousePosition;
-
-            List<RaycastResult> results = new();
-            EventSystem.current.RaycastAll(eventData, results);
-
-            // UI 요소가 있는지 확인
-            bool hasUIElement = false;
-            foreach (RaycastResult result in results)
-                // Canvas의 자식이거나 UI 레이어인 경우 UI 요소로 간주
-                if (result.gameObject.GetComponentInParent<Canvas>() != null ||
-                    result.gameObject.layer == LayerMask.NameToLayer("UI"))
-                {
-                    hasUIElement = true;
-                    break;
-                }
-
-            // UI 요소가 없고 창고에만 맞힌 경우 true 반환
-            return !hasUIElement;
+            // 무기가 점유하는 타일 추가 (구현 필요)
+            Vector2Int pos = weapon.GetGridPosition();
+            allTiles.Add(pos);
+            allTiles.Add(new Vector2Int(pos.x + 1, pos.y));
         }
 
-        return false;
+        Vector2 average = Vector2.zero;
+        foreach (Vector2Int tile in allTiles)
+            average += (Vector2)tile;
+
+        average /= allTiles.Count;
+
+        return targetShip.GetWorldPositionFromGrid(Vector2Int.RoundToInt(average));
     }
-    */
 
     /// <summary>
     /// 유저의 마우스가 GameView 내에 위치한지 확인합니다.

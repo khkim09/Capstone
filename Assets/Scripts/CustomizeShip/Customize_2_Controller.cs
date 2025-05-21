@@ -95,6 +95,7 @@ public class Customize_2_Controller : MonoBehaviour
         buyButton.onClick.AddListener(() => { OnClickBuy(); });
         cancelButton.onClick.AddListener(() => { OnClickCancel(); });
 
+        playerShip = GameManager.Instance.playerShip;
     }
 
     /// <summary>

@@ -101,6 +101,8 @@ public class Customize_1_Controller : MonoBehaviour
         storageButton.onClick.AddListener(() => { bcbHandler.ShowStorage(); });
         corridorButton.onClick.AddListener(() => { bcbHandler.ShowEtc(); });
         weaponButton.onClick.AddListener(() => { bcbHandler.ShowWeapons(); });
+
+        playerShip = GameManager.Instance.playerShip;
     }
 
     /// <summary>
@@ -298,6 +300,9 @@ public class Customize_1_Controller : MonoBehaviour
         // 8. 도안은 도안이므로 기존 함선으로 복구 (함선, 선원)
         playerShip.RevertToOriginalShip();
         playerShip.CrewSystem.RevertOriginalCrews(playerShip.backupCrewDatas);
+
+        // 유저 함선 내 모든 하위 오브젝트 비활성화
+        playerShip.SetShipContentsActive(false);
     }
 
     #endregion
