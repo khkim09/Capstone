@@ -4,7 +4,7 @@
 /// 전투 전체 흐름을 관리하는 매니저 클래스입니다.
 /// 전투 상태를 전환하고, 관련 컨트롤러를 초기화하거나 업데이트합니다.
 /// </summary>
-public class CombatManager : MonoBehaviour, IGameStateMachine
+public class CombatManager : MonoBehaviour
 {
     /// <summary>
     /// CombatManager의 싱글톤 인스턴스입니다.
@@ -42,39 +42,44 @@ public class CombatManager : MonoBehaviour, IGameStateMachine
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject); // 씬 이동 시에도 유지
+        //DontDestroyOnLoad(gameObject); // 씬 이동 시에도 유지
     }
 
     /// <summary>
     /// 전투 상태머신이 시작될 때 호출됩니다.
     /// 초기 상태로 설정됩니다.
     /// </summary>
-    public void Enter()
+    public void Start()
     {
         currentPhase = CombatPhase.Initialize;
+
+        Ship enemyShip = GameObject.Find("EnemyShip").GetComponent<Ship>();
+        enemyShip.Initialize();
+
+        GameManager.Instance.CreateDefaultEnemyShip(enemyShip);
     }
 
     /// <summary>
     /// 매 프레임마다 호출되며 현재 전투 상태에 따라 로직을 처리합니다.
     /// </summary>
-    public void Update()
-    {
-        switch (currentPhase)
-        {
-            case CombatPhase.Initialize:
-                break;
-            case CombatPhase.Combat:
-                break;
-            case CombatPhase.DestroyAnimation:
-                break;
-            case CombatPhase.Reward:
-                break;
-            case CombatPhase.End:
-                break;
-            default:
-                break;
-        }
-    }
+    // public void Update()
+    // {
+    //     switch (currentPhase)
+    //     {
+    //         case CombatPhase.Initialize:
+    //             break;
+    //         case CombatPhase.Combat:
+    //             break;
+    //         case CombatPhase.DestroyAnimation:
+    //             break;
+    //         case CombatPhase.Reward:
+    //             break;
+    //         case CombatPhase.End:
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // }
 
     /// <summary>
     /// 전투 상태가 종료될 때 호출됩니다. (현재 구현 없음)
