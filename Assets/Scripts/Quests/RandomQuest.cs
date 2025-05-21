@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// 랜덤 퀘스트의 데이터 정의를 위한 클래스입니다.
 /// </summary>
-public class RandomQuest : MonoBehaviour
+public class RandomQuest
 {
     /// <summary>퀘스트 고유 ID</summary>
     public string questId;

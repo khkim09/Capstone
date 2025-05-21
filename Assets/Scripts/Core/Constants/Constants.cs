@@ -70,7 +70,7 @@ public static class Constants
 
         public const float ConnectionLineThickness = 0.1f;
 
-        public const float EventNodeRate = 0.6f;
+        public const float EventNodeRate = 1f;
 
         public const float CombatNodeRate = 1 - EventNodeRate;
 
@@ -142,7 +142,7 @@ public static class Constants
         /// <summary>
         /// 워프 시마다 퀘스트가 생성되는 확률
         /// </summary>
-        public const float QuestCreateRate = 0.05f;
+        public const float QuestCreateRate = 1f;
     }
 
     public static class Resources
