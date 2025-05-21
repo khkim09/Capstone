@@ -138,15 +138,15 @@ public class GameManager : MonoBehaviour
             OnShipInitialized?.Invoke();
         }
 
-        currentEnemyShip = GameObject.Find("EnemyShip")?.GetComponent<Ship>();
-
-
-        if (currentEnemyShip != null)
-        {
-            currentEnemyShip.Initialize();
-            currentEnemyShip.isPlayerShip = false;
-            GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("combat_test");
-        }
+        // currentEnemyShip = GameObject.Find("EnemyShip")?.GetComponent<Ship>();
+        //
+        //
+        // if (currentEnemyShip != null)
+        // {
+        //     currentEnemyShip.Initialize();
+        //     currentEnemyShip.isPlayerShip = false;
+        //     GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("combat_test");
+        // }
 
         // 기존으로 돌릴라면 아래 3개 주석 처리
 

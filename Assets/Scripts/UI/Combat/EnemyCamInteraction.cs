@@ -143,30 +143,33 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
         return selectionRect;
     }
 
-    private Bounds CalculateBounds()
+    private void CalculateBounds()
     {
-        Ship enemyShip = GameObject.Find("PlayerShip").GetComponent<Ship>();
+        Ship enemyShip = GameObject.Find("EnemyShip").GetComponent<Ship>();
         //todo:EnemyShip으로 변경 필요
         Renderer[] renderers = enemyShip.GetComponentsInChildren<Renderer>();
         if (renderers.Length == 0)
-            return new Bounds(enemyShip.transform.position, Vector3.zero);
+            return;
 
         Bounds bounds = renderers[0].bounds;
         for (int i = 1; i < renderers.Length; i++)
         {
             bounds.Encapsulate(renderers[i].bounds);
         }
-        return bounds;
+        enemyBound = bounds;
     }
 
+    private Bounds enemyBound;
 
     public float enemyCamPadding = 1.1f;
-    private void EnemyCamAim(Bounds bound)
+    public void EnemyCamAim()
     {
-        enemyCam.transform.position = new Vector3(bound.center.x, bound.center.y,0);
+        CalculateBounds();
 
-        float camHeight = bound.size.y * 0.5f * enemyCamPadding;
-        float camWidth = bound.size.x * 0.5f * enemyCamPadding / enemyCam.aspect;
+        enemyCam.transform.position = new Vector3(enemyBound.center.x, enemyBound.center.y,0);
+
+        float camHeight = enemyBound.size.y * 0.5f * enemyCamPadding;
+        float camWidth = enemyBound.size.x * 0.5f * enemyCamPadding / enemyCam.aspect;
 
         enemyCam.orthographicSize = Mathf.Max(camHeight, camWidth);
     }
@@ -177,7 +180,7 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
         displayRect=transform.GetChild(0).GetComponent<RectTransform>();
         enemyCamTexture = enemyCam.targetTexture;
 
-        EnemyCamAim(CalculateBounds());
+        //EnemyCamAim();
         Debug.Log("Camera forward: " + enemyCam.transform.forward);
 
     }
