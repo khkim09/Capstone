@@ -34,12 +34,12 @@ public class RepairAlert : MonoBehaviour
         if(destoryedRoomsCount>0)
         {
             transform.Find("AlertText").GetComponent<TextMeshProUGUI>().text =
-                $"Destoryed Rooms\nx {destoryedRooms.Count}";
+                $"{"ui.planet.alert.destroyed".Localize()}\nx {destoryedRooms.Count}";
             animator=gameObject.GetComponent<Animator>();
             animator.SetTrigger("In");
 
             transform.Find("RepairButton").GetChild(0).GetComponent<TextMeshProUGUI>().text
-                = $"Repair: {repairCost} COMA";
+                = $"{"ui.planet.alert.repair".Localize()}: {repairCost} COMA";
         }
     }
 

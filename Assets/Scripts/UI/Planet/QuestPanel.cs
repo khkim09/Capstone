@@ -14,13 +14,13 @@ public class QuestPanel : MonoBehaviour
     private TextMeshProUGUI tmp;
 
     private List<RandomQuest> completableQuests=new List<RandomQuest>();
-    private List<RandomQuest> acceptableQuests=new List<RandomQuest>();
-    private List<RandomQuest> inGoingQuests=new List<RandomQuest>();
+    private List<RandomQuest> availableQuests=new List<RandomQuest>();
+    private List<RandomQuest> activeQuests=new List<RandomQuest>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public Sprite completablePanel;
-    public Sprite acceptablePanel;
-    public Sprite inGoingPanel;
+    public Sprite availablePanel;
+    public Sprite activePanel;
     void Start()
     {
         planet = GameManager.Instance.WhereIAm();
@@ -39,8 +39,8 @@ public class QuestPanel : MonoBehaviour
 
             //먼저 퀘스트 리스트를 다 비우고
             completableQuests.Clear();
-            acceptableQuests.Clear();
-            inGoingQuests.Clear();
+            availableQuests.Clear();
+            activeQuests.Clear();
 
             foreach (RandomQuest quest in planet.questList)
             {
@@ -49,29 +49,29 @@ public class QuestPanel : MonoBehaviour
                     completableQuests.Add(quest);
                 }
                 else if(quest.status==QuestStatus.NotStarted)
-                    acceptableQuests.Add(quest);
+                    availableQuests.Add(quest);
                 else if(quest.status==QuestStatus.Active)
-                    inGoingQuests.Add(quest);
+                    activeQuests.Add(quest);
             }
 
             //완료 가능한 퀘스트가 있는 경우
             if (completableQuests.Count > 0)
             {
-                tmp.text = $"There are completable quests";
+                tmp.text = $"{"ui.planet.quest.completable".Localize()}";
                 panel.sprite = completablePanel;
             }
             //수락 가능한 퀘스트가 있는 경우
-            else if (acceptableQuests.Count > 0)
+            else if (availableQuests.Count > 0)
             {
-                tmp.text = $"There are acceptable quests";
-                panel.sprite = acceptablePanel;
-            }
-            else if (inGoingQuests.Count > 0)
-            {
-                tmp.text = $"There are ingoing quests";
-                panel.sprite = inGoingPanel;
+                tmp.text = $"{"ui.planet.quest.available".Localize()}";
+                panel.sprite = availablePanel;
             }
             //진행 중인 퀘스트가 있는 경우
+            else if (activeQuests.Count > 0)
+            {
+                tmp.text = $"{"ui.planet.quest.active".Localize()}";
+                panel.sprite = activePanel;
+            }
         }
         //퀘스트가 없는 경우
         else if (planet.questList.Count == 0 && isActive)
