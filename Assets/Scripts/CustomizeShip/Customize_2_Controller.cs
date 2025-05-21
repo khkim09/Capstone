@@ -11,6 +11,7 @@ public class Customize_2_Controller : MonoBehaviour
     [SerializeField] private GameObject customize2Panel;
 
     [Header("선택된 외갑판")]
+    [SerializeField] public int originHullLevel = -1;
     [SerializeField] public int selectedHullLevel = -1;
 
     [Header("Buttons")]
@@ -115,6 +116,8 @@ public class Customize_2_Controller : MonoBehaviour
         // BlueprintSaveData 기반으로 blueprintShip 생성
         bpShip = MakeBPShipWithSaveData();
 
+        originHullLevel = selectedData.hullLevel;
+
         if (bpShip != null && playerShip != null)
         {
             AdjustRawImageAspect();
@@ -165,8 +168,9 @@ public class Customize_2_Controller : MonoBehaviour
         selectedData = BlueprintSlotManager.Instance.GetBlueprintAt(BlueprintSlotManager.Instance.currentSlotIndex);
         if (selectedData == null)
             return null;
+
         if (selectedData.rooms.Count == 0)
-            return null;
+            return bpShip;
 
         foreach (BlueprintRoomSaveData room in selectedData.rooms)
         {
@@ -176,7 +180,8 @@ public class Customize_2_Controller : MonoBehaviour
         }
 
         if (selectedData.weapons.Count == 0)
-            return null;
+            return bpShip;
+
         foreach (BlueprintWeaponSaveData weapon in selectedData.weapons)
         {
             GameObject bpWeapon = gridPlacer.PlacePreviewWeapon(weapon.bpWeaponData, weapon.bpPosition, weapon.bpDirection, bpShip.transform, tiles);
@@ -185,7 +190,8 @@ public class Customize_2_Controller : MonoBehaviour
             bpShip.AddPlaceable(bw);
         }
 
-        return gridPlacer.targetBlueprintShip;
+        // return gridPlacer.targetBlueprintShip;
+        return bpShip;
     }
 
     /// <summary>
@@ -279,9 +285,10 @@ public class Customize_2_Controller : MonoBehaviour
         {
             bpShip.ClearPreviewOuterHulls();
 
-            // 외갑판 초기화 (적용 X)
-            bpShip.SetBPHullLevel(-1, previewOuterHullPrefab);
-            selectedData.hullLevel = -1;
+            selectedData.hullLevel = originHullLevel;
+
+            // 외갑판 초기화
+            bpShip.SetBPHullLevel(selectedData.hullLevel, previewOuterHullPrefab);
         }
 
         buyClicked = false;

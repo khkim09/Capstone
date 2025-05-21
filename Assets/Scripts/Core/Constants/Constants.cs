@@ -150,7 +150,8 @@ public static class Constants
         /// <summary>
         /// 게임 시작 시 기본 COMA
         /// </summary>
-        public const int DefaultCOMA = 10000;
+        // public const int DefaultCOMA = 10000;
+        public const int DefaultCOMA = 100000; // 테스트 코드
 
         /// <summary>
         /// 게임 시작 시 기본 연료

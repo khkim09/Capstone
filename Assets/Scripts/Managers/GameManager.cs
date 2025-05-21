@@ -67,7 +67,8 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")] [SerializeField]
+    [Header("Game State")]
+    [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -725,7 +726,7 @@ public class GameManager : MonoBehaviour
 
     #region 워프 맵
 
-// 워프맵 저장
+    // 워프맵 저장
     public void SaveWarpMap()
     {
         if (warpNodeDataList.Count > 0)
@@ -737,7 +738,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-// 워프맵 로드
+    // 워프맵 로드
     public void LoadWarpMap()
     {
         if (ES3.KeyExists("currentWarpNodes"))
@@ -760,7 +761,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-// 워프맵 삭제
+    // 워프맵 삭제
     public void DeleteWarpMap()
     {
         ES3.DeleteKey("currentWarpNodes");
@@ -781,7 +782,7 @@ public class GameManager : MonoBehaviour
         currentWarpNodeId = nodeId;
     }
 
-// 워프맵 클리어
+    // 워프맵 클리어
     public void ClearCurrentWarpMap()
     {
         warpNodeDataList.Clear();
