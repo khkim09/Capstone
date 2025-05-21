@@ -1430,6 +1430,11 @@ public class Ship : MonoBehaviour
         StorageSystem.RemoveAllItems();
     }
 
+    public void RemoveItem(TradingItem item)
+    {
+        StorageSystem.RemoveItem(item);
+    }
+
     #endregion
 
     #region 외갑판

@@ -67,8 +67,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -631,8 +630,8 @@ public class GameManager : MonoBehaviour
     {
         // 함선
         ES3.DeleteFile("playerShip");
-        playerShip.RemoveAllRooms();
         playerShip.RemoveAllCrews();
+        playerShip.RemoveAllRooms();
         playerShip.RemoveAllWeapons();
         playerShip.RemoveAllItems();
 

@@ -149,7 +149,7 @@ public class ResourceManager : MonoBehaviour
             float newAmount = currentAmount + amount;
 
             data.SetAmount(newAmount);
-            OnResourceChanged?.Invoke(type, data.GetAmount());
+            OnResourceChanged?.Invoke(type,amount);
 
             if (data.GetAmount() <= 0)
                 HandleResourceDepletion(type);
