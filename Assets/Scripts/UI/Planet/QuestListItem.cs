@@ -1,18 +1,18 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
 
 public class QuestListItem : MonoBehaviour
 {
-    private RandomQuest questInfo;
+    public string questID;
+    public RandomQuest questInfo;
     private Image backPanel;
+    public QuestList questList;
     private void Start()
     {
-        questInfo = GetComponent<RandomQuest>();
-        backPanel=GetComponent<Image>();
-        //todo:행성 나갈때 연결해제 필요
     }
 
     public void OnAcceptButtonClicked()
@@ -30,30 +30,62 @@ public class QuestListItem : MonoBehaviour
     public void OnDeclineButtonClicked()
     {
         QuestManager.Instance.RequestFailQuest(questInfo);
-        UpdateItem();
+        Destroy(gameObject);
     }
+
+    public TextMeshProUGUI title;
+    public TextMeshProUGUI description;
+    public TextMeshProUGUI destination;
+    public TextMeshProUGUI reward;
 
     public void UpdateItem()
     {
         switch (questInfo.status)
         {
             case QuestStatus.NotStarted:
-                backPanel.sprite=transform.parent.GetComponent<QuestList>().availableSprite;
+                GetComponent<Image>().sprite=questList.GetComponent<QuestList>().availableSprite;
                 ButtonActivate("Accept");
                 break;
             case QuestStatus.Active:
                 if (questInfo.GetCanComplete())
                 {
-                    backPanel.sprite=transform.parent.GetComponent<QuestList>().completableSprite;
+                    GetComponent<Image>().sprite=questList.GetComponent<QuestList>().completableSprite;
                     ButtonActivate("Complete");
                 }
                 else
                 {
-                    backPanel.sprite = transform.parent.GetComponent<QuestList>().activeSprite;
+                    GetComponent<Image>().sprite =questList.GetComponent<QuestList>().activeSprite;
                     ButtonActivate("Decline");
                 }
                 break;
         }
+        title.text=questInfo.title.Localize();
+        QuestObjective questObjective=questInfo.objectives[0];
+        string questDescription="";
+        GameObjectFactory.Instance.ItemFactory.itemDataBase.GetItemData(questObjective.targetId).itemName.Localize();
+        string itemName="";
+        switch (questObjective.objectiveType)
+        {
+            case QuestObjectiveType.PirateHunt:
+                questDescription=questObjective.description.Localize(questObjective.amount);
+                break;
+            case QuestObjectiveType.ItemTransport:
+                itemName = GameObjectFactory.Instance.ItemFactory.itemDataBase.GetItemData(questObjective.targetId).itemName.Localize();
+                questDescription=questObjective.description.Localize(itemName, questObjective.amount,GameManager.Instance.PlanetDataList[questObjective.targetPlanetDataId].planetName);
+                break;
+            case QuestObjectiveType.ItemProcurement:
+                itemName = GameObjectFactory.Instance.ItemFactory.itemDataBase.GetItemData(questObjective.targetId).itemName.Localize();
+                questDescription=questObjective.description.Localize(itemName,questObjective.amount);
+                break;
+            case QuestObjectiveType.CrewTransport:
+                questDescription=questObjective.description.Localize(questObjective.amount,GameManager.Instance.PlanetDataList[questObjective.targetPlanetDataId].planetName);
+                break;
+        }
+        description.text=questDescription;
+        PlanetData planetData = GameManager.Instance.PlanetDataList[questInfo.objectives[0].targetPlanetDataId];
+        destination.text = planetData.planetName;
+        reward.text = "ui.planet.quest.reward".Localize() +": "+ questInfo.rewards[0].amount +" COMA";
+        transform.Find("PlanetSprite").GetComponent<Image>().sprite = GameManager.Instance.PlanetDataList[questObjective.targetPlanetDataId].currentSprite;
     }
 
     private void ButtonActivate(string whichButton)

@@ -6,6 +6,7 @@ public class QuestList : MonoBehaviour
 {
     public GameObject questListItem;
     private PlanetData planetData;
+    public GameObject content;
 
     private List<RandomQuest> quests;
 
@@ -25,22 +26,11 @@ public class QuestList : MonoBehaviour
 
     private void AddQuestToListUI(RandomQuest quest)
     {
-        GameObject questItem = Instantiate(questListItem, transform,false);
-        RandomQuest questInfo = questItem.GetComponent<RandomQuest>();
-        questInfo = quest;
+        QuestListItem questItem = Instantiate(questListItem, content.transform,false).GetComponent<QuestListItem>();
+        questItem.questInfo = quest;
+        questItem.questList = this;
 
-        switch (questInfo.status)
-        {
-            case QuestStatus.NotStarted:
-                questItem.GetComponent<Image>().sprite = availableSprite;
-                break;
-            case QuestStatus.Active:
-                if(questInfo.GetCanComplete())
-                    questItem.GetComponent<Image>().sprite = completableSprite;
-                else
-                    questItem.GetComponent<Image>().sprite = activeSprite;
-                break;
-        }
+        questItem.UpdateItem();
     }
 
     public void UpdateList()
@@ -57,16 +47,14 @@ public class QuestList : MonoBehaviour
         UpdateList();
     }
 
-    public void AcceptQuest(string questId)
+
+    public void CloseQuestList()
     {
-        foreach (RandomQuest quest in quests)
-        {
-            if (quest.questId == questId)
-            {
-                SetQuestStatus(quest, QuestStatus.Active);
-                return;
-            }
-        }
+        gameObject.SetActive(false);
     }
 
+    public void OpenQuestList()
+    {
+        gameObject.SetActive(true);
+    }
 }

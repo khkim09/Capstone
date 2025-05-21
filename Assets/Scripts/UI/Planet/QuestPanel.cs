@@ -27,54 +27,57 @@ public class QuestPanel : MonoBehaviour
         animator = GetComponent<Animator>();
         panel = GetComponent<Image>();
         tmp = GetComponentInChildren<TextMeshProUGUI>();
+
+        UpdatePanel();
     }
 
-    private void UpdatePanel()
+    public void UpdatePanel()
     {
+        //먼저 퀘스트 리스트를 다 비우고
+        completableQuests.Clear();
+        availableQuests.Clear();
+        activeQuests.Clear();
+
+        foreach (RandomQuest quest in planet.questList)
+        {
+            if (quest.GetCanComplete())
+            {
+                completableQuests.Add(quest);
+            }
+            else if(quest.status==QuestStatus.NotStarted)
+                availableQuests.Add(quest);
+            else if(quest.status==QuestStatus.Active)
+                activeQuests.Add(quest);
+        }
+
+        //완료 가능한 퀘스트가 있는 경우
+        if (completableQuests.Count > 0)
+        {
+            tmp.text = $"{"ui.planet.quest.completable".Localize()}";
+            panel.sprite = completablePanel;
+        }
+        //수락 가능한 퀘스트가 있는 경우
+        else if (availableQuests.Count > 0)
+        {
+            tmp.text = $"{"ui.planet.quest.available".Localize()}";
+            panel.sprite = availablePanel;
+        }
+        //진행 중인 퀘스트가 있는 경우
+        else if (activeQuests.Count > 0)
+        {
+            tmp.text = $"{"ui.planet.quest.active".Localize()}";
+            panel.sprite = activePanel;
+        }
+
+
         //퀘스트가 있는 경우 패널이 들어온다.
-        if (planet.questList.Count > 0 && !isActive)
+        if (completableQuests.Count+availableQuests.Count+activeQuests.Count > 0 && !isActive)
         {
             animator.SetTrigger("In");
             isActive = true;
-
-            //먼저 퀘스트 리스트를 다 비우고
-            completableQuests.Clear();
-            availableQuests.Clear();
-            activeQuests.Clear();
-
-            foreach (RandomQuest quest in planet.questList)
-            {
-                if (quest.GetCanComplete())
-                {
-                    completableQuests.Add(quest);
-                }
-                else if(quest.status==QuestStatus.NotStarted)
-                    availableQuests.Add(quest);
-                else if(quest.status==QuestStatus.Active)
-                    activeQuests.Add(quest);
-            }
-
-            //완료 가능한 퀘스트가 있는 경우
-            if (completableQuests.Count > 0)
-            {
-                tmp.text = $"{"ui.planet.quest.completable".Localize()}";
-                panel.sprite = completablePanel;
-            }
-            //수락 가능한 퀘스트가 있는 경우
-            else if (availableQuests.Count > 0)
-            {
-                tmp.text = $"{"ui.planet.quest.available".Localize()}";
-                panel.sprite = availablePanel;
-            }
-            //진행 중인 퀘스트가 있는 경우
-            else if (activeQuests.Count > 0)
-            {
-                tmp.text = $"{"ui.planet.quest.active".Localize()}";
-                panel.sprite = activePanel;
-            }
         }
         //퀘스트가 없는 경우
-        else if (planet.questList.Count == 0 && isActive)
+        else if (completableQuests.Count+availableQuests.Count+activeQuests.Count == 0 && isActive)
         {
             animator.SetTrigger("Out");
             isActive = false;
