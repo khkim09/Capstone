@@ -60,7 +60,9 @@ public class Customize_0_Controller : MonoBehaviour
     private void OnEnable()
     {
         // playerShip 내 모든 오브젝트 비활성화
-        // playerShip.SetShipContentsActive(false);
+        if (playerShip == null)
+            playerShip = GameManager.Instance.playerShip;
+        playerShip.SetShipContentsActive(false);
 
         for (int i = 0; i < appliedTags.Count; i++)
         {

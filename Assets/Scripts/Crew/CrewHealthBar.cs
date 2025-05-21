@@ -61,7 +61,11 @@ public class CrewHealthBar : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (this != null && targetCamera == null)
+        {
+            if (SceneManager.GetActiveScene().name == "Customize")
+                return;
             StartCoroutine(HealthBarCamera());
+        }
     }
 
     private IEnumerator HealthBarCamera()

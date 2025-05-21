@@ -53,6 +53,7 @@ public class GridPlacer : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        playerShip = GameManager.Instance.playerShip;
         GenerateTiles();
     }
 

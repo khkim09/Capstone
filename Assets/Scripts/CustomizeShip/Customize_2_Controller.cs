@@ -106,6 +106,7 @@ public class Customize_2_Controller : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
+        playerShip = GameManager.Instance.playerShip;
         playerShip.SetShipContentsActive(false);
 
         selectedData = BlueprintSlotManager.Instance.GetBlueprintAt(BlueprintSlotManager.Instance.currentSlotIndex);
