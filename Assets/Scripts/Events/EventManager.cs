@@ -110,7 +110,6 @@ public class EventManager : MonoBehaviour
         else
             evt = SelectAppropriateEvent(EventType.Mystery);
 
-        //TriggerEventById(4);
         if (evt != null) TriggerEvent(evt);
     }
 
@@ -252,7 +251,7 @@ public class EventManager : MonoBehaviour
         // 3. 행성 효과 적용
         if (outcome.planetEffects.Count > 0)
         {
-            planetEffectHandler.ApplyEffects(outcome.planetEffects);
+            planetEffectHandler.ApplyEffects(outcome.planetEffects, currentEvent.eventTitle);
             Debug.Log($"행성 효과 적용: {outcome.planetEffects.Count}개");
         }
 

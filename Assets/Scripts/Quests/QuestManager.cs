@@ -124,7 +124,7 @@ public class QuestManager : MonoBehaviour
     /// 완료 시 UI 패널 상태를 기억하고 완료 후 원래대로 복구합니다.
     /// </summary>
     /// <param name="quest">완료된 퀘스트</param>
-    private void CompleteQuest(RandomQuest quest)
+    public void CompleteQuest(RandomQuest quest)
     {
         // 원래 Complete 처리
         quest.status = QuestStatus.Completed;

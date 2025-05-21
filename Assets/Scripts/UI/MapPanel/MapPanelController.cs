@@ -324,6 +324,10 @@ public class MapPanelController : MonoBehaviour
 
 
         GameManager.Instance.AddYear();
+        Ship playerShip = GameManager.Instance.GetPlayerShip();
+        float fuelAmount = playerShip.CalculateWarpFuelCost();
+        ResourceManager.Instance.ChangeResource(ResourceType.Fuel,
+            -fuelAmount);
         // 플레이어 이동
         MovePlayerToNode(recentClickedNode);
 
@@ -347,6 +351,10 @@ public class MapPanelController : MonoBehaviour
         if (!targetNode.NodeData.isEndNode)
             GameManager.Instance.normalizedPlayerPosition =
                 GameManager.Instance.WorldNodeDataList[targetNode.NodeData.layer - 1].normalizedPosition;
+        else
+            GameManager.Instance.normalizedPlayerPosition = GameManager.Instance
+                .PlanetDataList[GameManager.Instance.CurrentWarpTargetPlanetId].normalizedPosition;
+
 
         // 모든 노드의 상태 업데이트 (도달 가능성 재계산)
         RefreshAllNodeStates();
@@ -949,12 +957,11 @@ public class MapPanelController : MonoBehaviour
 
         DrawWorldNodesAndIndicator();
 
+
         if (currentPositionIndicator != null)
             Destroy(currentPositionIndicator);
 
-        // 플레이어의 현재 위치 표시기 배치
         currentPositionIndicator = Instantiate(currentPlayerIndicatorPrefab, worldPanelContent.transform);
-
 
         RectTransform positionIndicatorRect = currentPositionIndicator.GetComponent<RectTransform>();
         SetupMapObject(

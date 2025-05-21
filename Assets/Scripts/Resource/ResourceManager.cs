@@ -9,12 +9,6 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class ResourceManager : MonoBehaviour
 {
-    public enum ResourceValueType
-    {
-        Int,
-        Float
-    }
-
     /// <summary>
     /// 자원 변경 이벤트 델리게이트입니다.
     /// </summary>
@@ -22,7 +16,7 @@ public class ResourceManager : MonoBehaviour
     /// <param name="newAmount">변경 후 자원 수치.</param>
     public delegate void ResourceChangedHandler(ResourceType type, float newAmount);
 
-    [SerializeField] private List<ResourceData> resources = new();
+    [SerializeField] public List<ResourcesData> resources = new();
 
     public static ResourceManager Instance { get; private set; }
 
@@ -58,7 +52,7 @@ public class ResourceManager : MonoBehaviour
             {
                 ResourceValueType valueType = GetValueType(type);
 
-                ResourceData data = new() { type = type, valueType = valueType };
+                ResourcesData data = new() { type = type, valueType = valueType };
 
                 if (valueType == ResourceValueType.Float)
                 {
@@ -77,25 +71,25 @@ public class ResourceManager : MonoBehaviour
 
     private int GetCOMA()
     {
-        ResourceData data = resources.Find(r => r.type == ResourceType.COMA);
+        ResourcesData data = resources.Find(r => r.type == ResourceType.COMA);
         return data?.intAmount ?? 0;
     }
 
     private float GetFuel()
     {
-        ResourceData data = resources.Find(r => r.type == ResourceType.Fuel);
+        ResourcesData data = resources.Find(r => r.type == ResourceType.Fuel);
         return data?.floatAmount ?? 0;
     }
 
     private int GetMissle()
     {
-        ResourceData data = resources.Find(r => r.type == ResourceType.Missile);
+        ResourcesData data = resources.Find(r => r.type == ResourceType.Missile);
         return data?.intAmount ?? 0;
     }
 
     private int GetHypersonic()
     {
-        ResourceData data = resources.Find(r => r.type == ResourceType.Hypersonic);
+        ResourcesData data = resources.Find(r => r.type == ResourceType.Hypersonic);
         return data?.intAmount ?? 0;
     }
 
@@ -104,13 +98,13 @@ public class ResourceManager : MonoBehaviour
         switch (type)
         {
             case ResourceType.Fuel:
-                return 100;
+                return Constants.Resources.DefaultFuel;
             case ResourceType.COMA:
-                return 100000;
+                return Constants.Resources.DefaultCOMA;
             case ResourceType.Hypersonic:
-                return 0;
+                return Constants.Resources.DefaultHypersonic;
             case ResourceType.Missile:
-                return 0;
+                return Constants.Resources.DefaultMissile;
             default:
                 return 0;
         }
@@ -147,7 +141,7 @@ public class ResourceManager : MonoBehaviour
 
     public void ChangeResource(ResourceType type, float amount)
     {
-        ResourceData data = resources.Find(r => r.type == type);
+        ResourcesData data = resources.Find(r => r.type == type);
 
         if (data != null)
         {
@@ -166,7 +160,7 @@ public class ResourceManager : MonoBehaviour
 
     public void SetResource(ResourceType type, float newValue)
     {
-        ResourceData data = resources.Find(r => r.type == type);
+        ResourcesData data = resources.Find(r => r.type == type);
         if (data != null)
         {
             data.SetAmount(newValue);
@@ -187,29 +181,9 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    [Serializable]
-    public class ResourceData
+    public void ResetResources()
     {
-        public ResourceType type;
-        public ResourceValueType valueType;
-
-        public float floatAmount;
-        public int intAmount;
-
-        public float maxFloatAmount;
-        public int maxIntAmount;
-
-        public float GetAmount()
-        {
-            return valueType == ResourceValueType.Float ? floatAmount : intAmount;
-        }
-
-        public void SetAmount(float value)
-        {
-            if (valueType == ResourceValueType.Float)
-                floatAmount = Mathf.Clamp(value, 0, maxFloatAmount);
-            else
-                intAmount = Mathf.Clamp((int)value, 0, maxIntAmount);
-        }
+        resources.Clear();
+        InitializeResources();
     }
 }

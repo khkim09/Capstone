@@ -80,12 +80,12 @@ public class PlanetData
     /// <summary>
     /// 이벤트로 변동되는 카테고리별 현재 가격 변동율 (%)
     /// </summary>
-    private Dictionary<ItemCategory, float> categoryPriceModifiers = new();
+    public Dictionary<ItemCategory, float> categoryPriceModifiers = new();
 
     /// <summary>
     /// 아이템의 현재 가격 딕셔너리
     /// </summary>
-    private Dictionary<int, int> itemPriceDictionary = new();
+    public Dictionary<int, int> itemPriceDictionary = new();
 
     public PlanetRace PlanetRace => planetRace;
 
@@ -289,6 +289,15 @@ public class PlanetData
             TradingItemData item = GameObjectFactory.Instance.ItemFactory.itemDataBase.allItems[key];
             itemPriceDictionary[item.id] = Random.Range(item.costMin, item.costMax);
         }
+    }
+
+    public int GetItemPrice(int itemId)
+    {
+        TradingItemData item = GameObjectFactory.Instance.ItemFactory.itemDataBase.GetItemData(itemId);
+        float multiplier = categoryPriceModifiers[item.type];
+        int planetPrice = itemPriceDictionary[item.id];
+
+        return (int)(planetPrice * (100 + multiplier) / 100);
     }
 
     #endregion

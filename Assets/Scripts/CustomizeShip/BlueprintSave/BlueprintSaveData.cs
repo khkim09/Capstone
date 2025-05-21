@@ -8,15 +8,17 @@ public class BlueprintSaveData
 {
     public List<BlueprintRoomSaveData> rooms;
     public List<BlueprintWeaponSaveData> weapons;
+    public int hullLevel = -1;
 
     /// <summary>
     /// 도안 정보 저장
     /// </summary>
     /// <param name="rooms"></param>
     /// <param name="weapons"></param>
-    public BlueprintSaveData(List<BlueprintRoomSaveData> rooms, List<BlueprintWeaponSaveData> weapons)
+    public BlueprintSaveData(List<BlueprintRoomSaveData> rooms, List<BlueprintWeaponSaveData> weapons, int hullLevel = -1)
     {
         this.rooms = rooms;
         this.weapons = weapons;
+        this.hullLevel = hullLevel;
     }
 }

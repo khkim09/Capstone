@@ -29,7 +29,7 @@ public class EventPlanetEffectHandler
     /// </summary>
     /// <param name="planetEffects">적용할 행성 효과 리스트</param>
     /// <returns>행성의 이름</returns>
-    public void ApplyEffects(List<PlanetEffect> planetEffects)
+    public void ApplyEffects(List<PlanetEffect> planetEffects, string eventTitle = "")
     {
         if (planetEffects == null || planetEffects.Count == 0)
             Debug.LogWarning("[EventPlanetEffectHandler] 적용할 PlanetEffect가 없습니다.");
@@ -41,6 +41,7 @@ public class EventPlanetEffectHandler
 
             Debug.Log($"[PlanetEffect] 카테고리: {effect.categoryType}, 변동률: {effect.changeAmount}%");
             effect.startYear = GameManager.Instance.CurrentYear;
+            effect.parentEventName = eventTitle;
             // 행성에 효과 등록
             List<PlanetData> planetDatas =
                 GameManager.Instance.PlanetDataList.Where(d => d.activeEffects.Count == 0).ToList();

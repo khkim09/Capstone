@@ -40,4 +40,8 @@ public class MoraleEffectData
         this.duration = duration;
         this.source = source;
     }
+
+    public MoraleEffectData()
+    {
+    }
 }

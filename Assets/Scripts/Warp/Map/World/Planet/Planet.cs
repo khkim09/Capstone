@@ -21,7 +21,6 @@ public class Planet : TooltipPanelBase
     [Header("행성 버튼")] [SerializeField] private Button planetButton;
     public System.Action<Planet> onClicked; // 외부에서 콜백 등록할 수 있게
 
-
     public PlanetData PlanetData => planetData;
 
     public bool HasEvent => planetData.activeEffects.Count != 0;
@@ -74,7 +73,8 @@ public class Planet : TooltipPanelBase
 
     public void HideTooltip()
     {
-        currentToolTip.SetActive(false);
+        if (currentToolTip != null)
+            currentToolTip.SetActive(false);
     }
 
     protected override void SetToolTipText()

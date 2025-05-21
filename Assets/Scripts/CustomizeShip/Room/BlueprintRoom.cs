@@ -81,9 +81,6 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
     /// </summary>
     private GameObject mouseDownTarget;
 
-    public GameObject roomSelectionUI;
-    private RoomSelectionHandler rshandler;
-
     /// <summary>
     /// collider size 맞춤
     /// </summary>
@@ -96,9 +93,6 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
         float height = sprite.rect.height / sprite.pixelsPerUnit;
 
         GetComponent<BoxCollider2D>().size = new Vector2(width, height);
-
-        if (roomSelectionUI != null)
-            rshandler = roomSelectionUI.GetComponent<RoomSelectionHandler>();
     }
 
     /// <summary>
@@ -123,9 +117,6 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
         // 드래그 시작 (좌클릭)
         if (!isDragging && Input.GetMouseButtonDown(0))
         {
-            if (rshandler != null)
-                rshandler.Deselect();
-
             // UI 위에 마우스가 있는지 확인하는 개선된 방법
             if (IsPointerOverBlockingUI())
                 return;
@@ -133,6 +124,9 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
             if (EventSystem.current.IsPointerOverGameObject())
                 if (IsPointerOverUIObject(RoomSelectionHandler.Instance.selectionUI))
                     return;
+
+            if (RoomSelectionHandler.Instance != null)
+                RoomSelectionHandler.Instance.Deselect();
 
             // 드래그 전 선택된 방 해제
             RoomSelectionHandler.Instance.Deselect();
@@ -228,7 +222,12 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
                 result.gameObject.name.Contains("Scroll View") || result.gameObject.name.Contains("Essential") ||
                 result.gameObject.name.Contains("Auxiliary") || result.gameObject.name.Contains("Living") ||
                 result.gameObject.name.Contains("Storage") || result.gameObject.name.Contains("Etc") ||
-                result.gameObject.name.Contains("Weapon") || result.gameObject.name.Contains("Hull"))
+                result.gameObject.name.Contains("Weapon") || result.gameObject.name.Contains("Hull") ||
+                result.gameObject.name.Contains("ControlTab") || result.gameObject.name.Contains("ClearButton") ||
+                result.gameObject.name.Contains("SaveButton") || result.gameObject.name.Contains("BPCostText") ||
+                result.gameObject.name.Contains("FeedBackText") || result.gameObject.name.Contains("BackButton") ||
+                result.gameObject.name.Contains("RoomButtonPrefab")
+                )
                 return true;
 
         return false;

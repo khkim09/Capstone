@@ -19,8 +19,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
     [SerializeField] private TradingItemData itemData;
 
-    public int amount;
-
     [SerializeField] private SpriteRenderer boxRenderer;
     [SerializeField] private SpriteRenderer itemRenderer;
     [SerializeField] private SpriteRenderer frameRenderer;
@@ -39,9 +37,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
     // 한 번 계산된 최종 가격을 캐싱할 변수
     private float? cachedPrice = null;
-
-    // 구매 당시 가격을 저장하는 변수
-    private float purchasePrice;
 
     // 처음 호출되었는지 여부 (한 번만 초기화할지 판단)
     private bool priceInitialized = false;
@@ -75,11 +70,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
         itemRenderer.sortingOrder = Constants.SortingOrders.TradingItemIcon;
 
-        amount = quantity;
-        Math.Clamp(amount, 0, data.capacity);
-        amount = 1; // 테스트용 하나
-
-
         if (transform.parent != null) parentStorage = transform.parent.GetComponent<StorageRoomBase>();
     }
 
@@ -93,7 +83,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
         // 기본 데이터 복사
         itemData = other.itemData;
-        amount = other.amount;
         itemState = other.itemState;
         rotation = other.rotation;
         gridPosition = other.gridPosition;
@@ -365,15 +354,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
 
     /// <summary>
-    /// 구매 당시 가격(kg 기준)을 저장합니다.
-    /// </summary>
-    public void SetPurchasePrice(float pricePerKg)
-    {
-        purchasePrice = pricePerKg;
-    }
-
-
-    /// <summary>
     /// boxGrid 정보를 기반으로 아이템 모양에 맞게 BoxCollider2D를 생성합니다.
     /// 창고의 회전도 고려하여 실제 표시되는 모양에 맞게 콜라이더를 생성합니다.
     /// </summary>
@@ -641,12 +621,5 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     public StorageRoomBase GetParentStorage()
     {
         return parentStorage;
-    }
-    /// <summary>
-    /// 구매 당시 가격을 반환합니다.
-    /// </summary>
-    public float GetPurchasePrice()
-    {
-        return purchasePrice;
     }
 }

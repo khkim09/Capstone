@@ -476,6 +476,8 @@ public class GameManager : MonoBehaviour
         LoadWorldMap();
         LoadPlayerData();
         LoadWarpMap();
+
+        ;
         // TODO : 현재 배, 재화, 플레이어 데이터 등 게임 플레이에 관련된 모든 것을 저장하는 함수.
     }
 
@@ -491,9 +493,23 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SavePlayerData()
     {
+        // 플레이어 데이터 (엔딩 관련)
         ES3.Save<PlayerData>("playerData", playerData);
+
+        // 게임 스테이트
         ES3.Save<GameState>("gameState", currentState);
+
+        // 함선
         ShipSerialization.SaveShip(playerShip, "playerShip");
+
+        // 사기 효과
+        ES3.Save<List<MoraleEffectData>>("moraleEffect", MoraleManager.Instance.activeEffects);
+
+        // 년도
+        ES3.Save<int>("currentYear", currentYear);
+
+        // 재화
+        ES3.Save<List<ResourcesData>>("resources", ResourceManager.Instance.resources);
     }
 
     /// <summary>
@@ -501,9 +517,28 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void LoadPlayerData()
     {
+        // 유저 데이터 (엔딩 관련)
         if (ES3.KeyExists("playerData")) playerData = ES3.Load<PlayerData>("playerData");
+
+        // 게임 스테이트
         if (ES3.KeyExists("gameState")) currentState = ES3.Load<GameState>("gameState");
 
+        // 현재 년도
+        if (ES3.KeyExists("currentYear")) currentYear = ES3.Load<int>("currentYear");
+
+        // 사기 효과
+        if (ES3.KeyExists("moraleEffect"))
+        {
+            MoraleManager.Instance.activeEffects = ES3.Load<List<MoraleEffectData>>("moraleEffect");
+
+            MoraleManager.Instance.ReapplyLoadedEffects(); // 로드 직후 효과 재적용
+        }
+
+        // 재화
+        if (ES3.KeyExists("resources")) ResourceManager.Instance.resources = ES3.Load<List<ResourcesData>>("resources");
+
+
+        // 망할놈의 함선
         if (ES3.FileExists("playerShip"))
         {
             Debug.Log("소환시도");
@@ -521,14 +556,32 @@ public class GameManager : MonoBehaviour
 
     public void DeletePlayerData()
     {
+        // 함선
         ES3.DeleteFile("playerShip");
         playerShip.RemoveAllRooms();
         playerShip.RemoveAllCrews();
         playerShip.RemoveAllWeapons();
         playerShip.RemoveAllItems();
 
+        // 사기 효과
+        ES3.DeleteFile("moraleEffect");
+        MoraleManager.Instance.ResetAllMorale();
+
+        // 현재 년도
+        ES3.DeleteFile("currentYear");
+        currentYear = 0;
+
+        // 플레이어 데이터 (엔딩 관련)
         ES3.DeleteKey("playerData");
+        playerData.ResetPlayerData();
+
+        // 게임 스테이트
         ES3.DeleteKey("gameState");
+        ChangeGameState(GameState.MainMenu);
+
+        // 재화
+        ES3.DeleteKey("resources");
+        ResourceManager.Instance.ResetResources();
     }
 
     #endregion
@@ -600,7 +653,7 @@ public class GameManager : MonoBehaviour
 
     #region 워프 맵
 
-    // 워프맵 저장
+// 워프맵 저장
     public void SaveWarpMap()
     {
         if (warpNodeDataList.Count > 0)
@@ -612,7 +665,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // 워프맵 로드
+// 워프맵 로드
     public void LoadWarpMap()
     {
         if (ES3.KeyExists("currentWarpNodes"))
@@ -635,7 +688,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // 워프맵 삭제
+// 워프맵 삭제
     public void DeleteWarpMap()
     {
         ES3.DeleteKey("currentWarpNodes");
@@ -656,7 +709,7 @@ public class GameManager : MonoBehaviour
         currentWarpNodeId = nodeId;
     }
 
-    // 워프맵 클리어
+// 워프맵 클리어
     public void ClearCurrentWarpMap()
     {
         warpNodeDataList.Clear();
@@ -671,8 +724,7 @@ public class GameManager : MonoBehaviour
     public void LandOnPlanet()
     {
         ChangeGameState(GameState.Planet);
-        //  SceneChanger.Instance.LoadScene("Planet");
-        SceneChanger.Instance.LoadScene("PlanetTestScene");
+        SceneChanger.Instance.LoadScene("Planet");
     }
 
     #endregion
@@ -715,6 +767,11 @@ public enum GameState
     /// 행성에 있는 상태
     /// </summary>
     Planet,
+
+    /// <summary>
+    /// 도안 작성 상태
+    /// </summary>
+    Customize,
 
     /// <summary>게임이 일시정지된 상태입니다.</summary>
     Paused,

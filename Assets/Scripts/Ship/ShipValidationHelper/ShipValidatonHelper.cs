@@ -102,8 +102,6 @@ public class ShipValidationHelper
     {
         bool needOxygenRoom = false;
 
-        Debug.LogError($"보유 선원 수 : {crewDatas.Count}");
-
         // 산소 호흡 종족 소유 여부 - 산소실 배치 여부
         foreach (BackupCrewData data in crewDatas)
         {
