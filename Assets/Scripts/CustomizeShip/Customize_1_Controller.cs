@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -318,6 +319,21 @@ public class Customize_1_Controller : MonoBehaviour
 
         targetBlueprintShip.ClearRooms();
 
+        // flashCoroutine 작동 정지
+        if (flashCoroutine != null)
+        {
+            StopCoroutine(flashCoroutine);
+            flashCoroutine = null;
+        }
+
+        // save 버튼 색상 복구
+        Image buttonImage = saveButton.GetComponent<Image>();
+        if (buttonImage != null && originButtonColor.HasValue)
+            buttonImage.color = originButtonColor.Value;
+
+        validationResult = null;
+        feedbackText.text = "";
+
         customize1Panel.SetActive(false);
         customize0Panel.SetActive(true);
 
@@ -335,6 +351,8 @@ public class Customize_1_Controller : MonoBehaviour
     {
         targetBlueprintShip.ClearRooms();
         gridPlacer.occupiedGridTiles = new HashSet<Vector2Int>();
+        validationResult = null;
+        feedbackText.text = "";
     }
 
     #endregion

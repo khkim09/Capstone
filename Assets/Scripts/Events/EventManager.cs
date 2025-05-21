@@ -128,11 +128,24 @@ public class EventManager : MonoBehaviour
         yield return new WaitForSeconds(Constants.WarpNodes.WarpingDuration);
 
         if (GameManager.Instance.PlanetDataList.Where(d => d.activeEffects.Count == 0).ToList().Count == 0) yield break;
+        if (CurrentWarpNode.NodeData.nodeType != WarpNodeType.Event)
+            yield break;
 
         if (Random.value <= Constants.Events.PlanetEventChance)
         {
             RandomEvent evt = SelectAppropriateEvent(EventType.Planet);
             if (evt != null) TriggerEvent(evt);
+        }
+    }
+
+    public WarpNode CurrentWarpNode;
+
+    public void CombatOccur()
+    {
+        if (CurrentWarpNode.NodeData.nodeType == WarpNodeType.Combat)
+        {
+            GameManager.Instance.ChangeGameState(GameState.Combat);
+            SceneChanger.Instance.LoadScene("Combat");
         }
     }
 

@@ -103,7 +103,7 @@ public static class Constants
         /// <summary>
         /// 행성이 맵에 그려질 때, 가장자리와 떨어진 최소 간격
         /// </summary>
-        public const float PlanetSpacingEdge = PlanetSize * 1.5f;
+        public const float PlanetSpacingEdge = PlanetSize * 2.0f;
 
         /// <summary>
         /// 현재 위치 표시기가 맵에 그려지는 상대적인 크기
@@ -150,7 +150,8 @@ public static class Constants
         /// <summary>
         /// 게임 시작 시 기본 COMA
         /// </summary>
-        public const int DefaultCOMA = 10000;
+        // public const int DefaultCOMA = 10000;
+        public const int DefaultCOMA = 100000; // 테스트 코드
 
         /// <summary>
         /// 게임 시작 시 기본 연료

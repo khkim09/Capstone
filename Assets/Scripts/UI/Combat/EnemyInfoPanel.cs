@@ -33,7 +33,7 @@ public class EnemyInfoPanel : MonoBehaviour
     {
         //적 함선과 아군 함선 연결 후 초기화
         enemyShip = GameObject.Find("EnemyShip").GetComponent<Ship>();
-        playerShip = GameObject.Find("PlayerShip").GetComponent<Ship>();
+        playerShip = GameManager.Instance.playerShip;
         if (enemyShip != null)
         {
             maxHealth = enemyShip.HitpointSystem.GetHitPoint();

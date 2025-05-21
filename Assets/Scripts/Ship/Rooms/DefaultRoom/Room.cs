@@ -446,38 +446,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>방의 그리드 크기 (에디터 전용).</summary>
     private Vector2Int gridSize = new(2, 2);
 
-    /// <summary>
-    /// 방 회전시키기
-    /// </summary>
-    public void RotateRoom(int rotationSteps)
-    {
-        // 현재 크기
-        Vector2Int originalSize = GetSize();
-
-        // 회전 상태 업데이트
-        currentRotation = (Constants.Rotations.Rotation)(((int)currentRotation + rotationSteps) % 4);
-
-        // 방 오브젝트 회전
-        transform.rotation = Quaternion.Euler(0, 0, -(int)currentRotation * 90f);
-
-        // 새 크기 계산 (90도/270도 회전 시 가로세로 바뀜)
-        Vector2Int newSize = originalSize;
-        if ((int)currentRotation % 2 != 0) // 90도 또는 270도
-            newSize = new Vector2Int(originalSize.y, originalSize.x);
-
-        // gridSize 업데이트
-        gridSize = newSize;
-
-        // 새 월드 위치 계산 - 항상 같은 그리드 위치(좌측 하단)를 유지
-        // 중요: 좌표계는 그리드 좌측 하단이 (0,0)이라고 가정
-        Vector3 newPosition = ShipGridHelper.GetRoomWorldPosition(position, gridSize);
-
-        // 위치 적용
-        transform.position = newPosition;
-
-        // 문 위치와 방향 업데이트
-        UpdateDoorsPositionAndRotation();
-    }
 
     /// <summary>
     /// 방 회전에 따라 문들의 위치와 방향 업데이트
@@ -559,8 +527,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
 
         if (icon == null)
-            icon = Instantiate(roomData.GetRoomDataByLevel(currentLevel).roomIconPrefab, transform)
-                .GetComponent<SpriteRenderer>();
+            icon = Instantiate(roomData.GetRoomDataByLevel(currentLevel).roomIconPrefab,transform,false ).GetComponent<SpriteRenderer>();
 
         if (position == new Vector2Int(0, 0)) return;
 

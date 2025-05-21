@@ -32,7 +32,7 @@ public class WeaponPanel : MonoBehaviour
         WeaponPanelOff = transform.GetChild(0).gameObject;
         WeaponPanelOn=transform.GetChild(1).gameObject;
 
-        playerShip=GameObject.Find("PlayerShip").GetComponent<Ship>();
+        playerShip=GameManager.Instance.playerShip;
         if (playerShip != null)
         {
             List<ShipWeapon> weapons = playerShip.GetAllWeapons();
