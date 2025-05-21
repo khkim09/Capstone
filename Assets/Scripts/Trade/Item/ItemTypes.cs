@@ -93,7 +93,7 @@ public enum ItemState
     SlightlyDamaged,
 
     /// <summary>다소 훼손됨 (가치 50% 하락)</summary>
-    ModeratelyDamaged,
+    Damaged,
 
     /// <summary>판매 불가 (가치 100% 하락)</summary>
     Unsellable

@@ -61,7 +61,7 @@ public class ScrollingBackground : MonoBehaviour
     /// 배경 전환 시간
     /// </summary>
     [SerializeField]
-    private float transitionDuration = 5.0f;
+    private readonly float transitionDuration = Constants.WarpNodes.WarpingDuration;
 
     /// <summary>
     /// 전환 중 최대 스크롤 속도

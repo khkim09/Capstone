@@ -33,6 +33,7 @@ public class RandomEvent : ScriptableObject
     public Sprite eventImage;
     public EventType eventType;
     public EventOutcomeType outcomeType;
+    public int planetId; // 행성 이벤트일 경우 행성 id 저장
 
     #region 퀘스트 출현 조건
 

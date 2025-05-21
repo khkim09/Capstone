@@ -59,5 +59,10 @@ public enum ShipStat
     DamageBonus,
 
     /// <summary>전체 사기(Morale)에 영향을 주는 보너스</summary>
-    CrewMoraleBonus
+    CrewMoraleBonus,
+
+    /// <summary>
+    /// 연료 보관 최대 용량
+    /// </summary>
+    FuelStoreCapacity
 }

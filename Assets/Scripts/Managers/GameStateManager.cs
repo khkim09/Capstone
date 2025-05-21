@@ -37,8 +37,6 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        // 초기 상태 설정
-        ChangeState(new WarpStateMachine());
     }
 
     /// <summary>

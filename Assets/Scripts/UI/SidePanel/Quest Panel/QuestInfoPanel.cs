@@ -36,7 +36,8 @@ public class QuestInfoPanel : TooltipPanelBase
         questName.text = currentQuest.title;
         questDescription.text = currentQuest.description;
 
-        PlanetData targetPlanetData = currentQuest.objectives[0].targetPlanetData;
+        PlanetData targetPlanetData =
+            GameManager.Instance.PlanetDataList[currentQuest.objectives[0].targetPlanetDataId];
 
         targetPlanetImage.sprite = targetPlanetData.currentSprite;
         targetPlanetName.text = targetPlanetData.planetName;
@@ -49,7 +50,10 @@ public class QuestInfoPanel : TooltipPanelBase
         // TODO : 나중가서 복수 보상 처리를 해야할 것. 일단은 인덱스 0 번을 사용
         QuestReward reward = currentQuest.rewards[0];
         questRewards.text = $"{reward.amount} {reward.questRewardType}";
-        questDurationLeft.text = $"{"ui.questinfo.duration".Localize()} : {quest.QuestDurationLeft}";
+        if (quest.status == QuestStatus.Active)
+            questDurationLeft.text = $"{"ui.questinfo.duration".Localize()} : {quest.QuestDurationLeft}";
+        else
+            questDurationLeft.text = $"{"ui.questinfo.inactive".Localize()}";
     }
 
     public void OnQuestCancelButton()

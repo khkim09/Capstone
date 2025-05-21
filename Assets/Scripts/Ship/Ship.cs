@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -15,7 +16,7 @@ public class Ship : MonoBehaviour
     /// </summary>
     public bool isPlayerShip;
 
-    [Header("Ship Info")][SerializeField] public string shipName = "Milky";
+    [Header("Ship Info")] [SerializeField] public string shipName = "Milky";
 
     /// <summary>
     /// 함선의 격자 크기 (방 배치 제한 범위).
@@ -61,7 +62,7 @@ public class Ship : MonoBehaviour
     /// <summary>
     /// 외갑판 데이터
     /// </summary>
-    [Header("외갑판 설정")][SerializeField] public OuterHullData outerHullData;
+    [Header("외갑판 설정")] [SerializeField] public OuterHullData outerHullData;
 
     /// <summary>
     /// 외갑판 prefab
@@ -410,11 +411,11 @@ public class Ship : MonoBehaviour
 
         // Remove from grid
         for (int x = 0; x < room.GetSize().x; x++)
-            for (int y = 0; y < room.GetSize().y; y++)
-            {
-                Vector2Int gridPos = room.position + new Vector2Int(x, y);
-                roomGrid.Remove(gridPos);
-            }
+        for (int y = 0; y < room.GetSize().y; y++)
+        {
+            Vector2Int gridPos = room.position + new Vector2Int(x, y);
+            roomGrid.Remove(gridPos);
+        }
 
         // Remove from room type dictionary
         if (roomsByType.ContainsKey(room.roomType))
@@ -528,9 +529,7 @@ public class Ship : MonoBehaviour
         foreach (ShipWeapon wp in GetAllWeapons())
             backupWeapons.Add(new WeaponBackupData()
             {
-                weaponData = wp.weaponData,
-                position = wp.GetGridPosition(),
-                direction = wp.GetAttachedDirection()
+                weaponData = wp.weaponData, position = wp.GetGridPosition(), direction = wp.GetAttachedDirection()
             });
     }
 
@@ -655,12 +654,12 @@ public class Ship : MonoBehaviour
             return false;
 
         for (int x = 0; x < size.x; x++)
-            for (int y = 0; y < size.y; y++)
-            {
-                Vector2Int checkPos = pos + new Vector2Int(x, y);
-                if (roomGrid.ContainsKey(checkPos))
-                    return false;
-            }
+        for (int y = 0; y < size.y; y++)
+        {
+            Vector2Int checkPos = pos + new Vector2Int(x, y);
+            if (roomGrid.ContainsKey(checkPos))
+                return false;
+        }
 
         return true;
     }
@@ -750,6 +749,7 @@ public class Ship : MonoBehaviour
         currentStats[ShipStat.HealPerSecond] = 0f;
         currentStats[ShipStat.CrewCapacity] = 0f;
         currentStats[ShipStat.DamageReduction] = 0f;
+        currentStats[ShipStat.FuelStoreCapacity] = 0f;
     }
 
     /// <summary>
@@ -801,6 +801,9 @@ public class Ship : MonoBehaviour
                 currentStats[ShipStat.OxygenUsingPerSecond] += oxygenUsage;
         }
 
+        // 외갑판
+        currentStats[ShipStat.DamageReduction] = outerHullData.GetOuterHullData(GetOuterHullLevel()).damageReduction;
+
         // 디버깅 정보 출력
         if (showDebugInfo)
             PrintDebugStatInfo();
@@ -836,6 +839,7 @@ public class Ship : MonoBehaviour
             case ShipStat.HealPerSecond:
             case ShipStat.CrewCapacity:
             case ShipStat.DamageReduction:
+            case ShipStat.FuelStoreCapacity:
 
                 return true;
             default:
@@ -938,29 +942,27 @@ public class Ship : MonoBehaviour
         // Implement game over logic
     }
 
-    // ===== Warp System =====
+    #region 워프
 
-    public bool Warp()
+    /// <summary>
+    /// 워프가 가능한지 여부를 반환합니다.
+    /// </summary>
+    /// <returns>워프가 가능한지 여부</returns>
+    public bool CanWarp()
     {
         float fuelCost = CalculateWarpFuelCost();
 
+        // 충분한 연료량이 있지 않으면 워프 실패
         if (ResourceManager.Instance.Fuel < fuelCost)
             return false;
 
         List<Room> engineRooms = GetRoomsByType(RoomType.Engine);
         List<Room> cockpitRooms = GetRoomsByType(RoomType.Cockpit);
 
-        // Check if crew requirement is met
-        foreach (Room engineRoom in engineRooms)
-            if (!engineRoom.HasEnoughCrew())
-                return false;
+        bool hasActiveEngine = engineRooms.Any(r => r.isActive && r.workingCrew != null);
+        bool hasActiveCockpit = cockpitRooms.Any(r => r.isActive && r.workingCrew != null);
 
-        foreach (Room cockpitRoom in cockpitRooms)
-            if (!cockpitRoom.HasEnoughCrew())
-                return false;
-
-        ResourceManager.Instance.ChangeResource(ResourceType.Fuel, -fuelCost);
-        return true;
+        return hasActiveCockpit && hasActiveEngine;
     }
 
     /// <summary>
@@ -978,6 +980,8 @@ public class Ship : MonoBehaviour
 
         return fuelCost;
     }
+
+    #endregion
 
     #region 선원
 
@@ -1160,8 +1164,8 @@ public class Ship : MonoBehaviour
     {
         List<Vector2Int> targetPositions = new();
         foreach (Room r in allRooms)
-            foreach (Vector2Int tile in r.GetOccupiedTiles())
-                targetPositions.Add(tile);
+        foreach (Vector2Int tile in r.GetOccupiedTiles())
+            targetPositions.Add(tile);
 
         Vector2Int randomPosition = targetPositions[Random.Range(0, targetPositions.Count)];
 
@@ -1228,6 +1232,7 @@ public class Ship : MonoBehaviour
                 ApplyDamageToCrewsInArea(hitPosition, finalDamage, false); // false = 단일 지점
             }
         }
+
         InfoPanelChanged?.Invoke();
     }
 
@@ -1290,15 +1295,15 @@ public class Ship : MonoBehaviour
         if (isSplash)
             // 3x3 영역 내 선원들에게 데미지 적용
             for (int x = -1; x <= 1; x++)
-                for (int y = -1; y <= 1; y++)
-                {
-                    if (x == 0 && y == 0) continue;
+            for (int y = -1; y <= 1; y++)
+            {
+                if (x == 0 && y == 0) continue;
 
-                    Vector2Int checkPos = position + new Vector2Int(x, y);
+                Vector2Int checkPos = position + new Vector2Int(x, y);
 
-                    // 해당 위치에 있는 선원들에게 데미지 적용
-                    ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
-                }
+                // 해당 위치에 있는 선원들에게 데미지 적용
+                ApplyDamageToCrewsAtPosition(checkPos, damage * 0.8f);
+            }
     }
 
     #endregion
@@ -1537,5 +1542,4 @@ public class Ship : MonoBehaviour
     public event Action InfoPanelChanged;
 
     #endregion
-
 }

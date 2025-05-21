@@ -374,10 +374,10 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
                 Debug.Log($"Item {item.GetItemData().itemName} is slightly damaged. Value decreased by 25%.");
                 break;
             case ItemState.SlightlyDamaged:
-                item.SetItemState(ItemState.ModeratelyDamaged);
+                item.SetItemState(ItemState.Damaged);
                 Debug.Log($"Item {item.GetItemData().itemName} is moderately damaged. Value decreased by 50%.");
                 break;
-            case ItemState.ModeratelyDamaged:
+            case ItemState.Damaged:
                 item.SetItemState(ItemState.Unsellable);
                 Debug.Log($"Item {item.GetItemData().itemName} is completely damaged and unsellable.");
                 break;

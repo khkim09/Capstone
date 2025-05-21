@@ -41,7 +41,7 @@ public class PlanetEffect
     /// <summary>
     /// 효과 종료 년도
     /// </summary>
-    public int EndYear => startYear + duration;
+    public int EndYear => startYear + Constants.Events.EventDuration;
 
     /// <summary>
     /// 행성 효과 데이터 생성자
