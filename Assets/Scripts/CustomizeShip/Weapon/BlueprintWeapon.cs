@@ -77,10 +77,6 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
     /// </summary>
     private GameObject mouseDownTarget;
 
-    public GameObject roomSelectionUI;
-
-    private RoomSelectionHandler rshandler;
-
     /// <summary>
     /// 함선 외갑판 레벨 (0: 레벨 1, 1: 레벨 2, 2: 레벨 3)
     /// 이 변수는 단지 캐싱 용도로만 사용됨. 실제 레벨은 blueprintShip.GetHullLevel()에서 가져와야 함
@@ -103,12 +99,9 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         // 시작 시 함선의 외갑판 레벨로 업데이트
         if (blueprintShip != null)
         {
-            hullLevel = blueprintShip.GetHullLevel();
+            SetHullLevel(blueprintShip.GetHullLevel());
             ApplyAttachedDirectionSprite();
         }
-
-        if (roomSelectionUI != null)
-            rshandler = roomSelectionUI.GetComponent<RoomSelectionHandler>();
     }
 
     /// <summary>
@@ -133,15 +126,15 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         // 드래그 시작 (좌클릭)
         if (!isDragging && Input.GetMouseButtonDown(0))
         {
-            if (rshandler != null)
-                rshandler.Deselect();
-
             if (IsPointerOverBlockingUI())
                 return;
 
             if (EventSystem.current.IsPointerOverGameObject())
                 if (IsPointerOverUIObject(RoomSelectionHandler.Instance.selectionUI))
                     return;
+
+            if (RoomSelectionHandler.Instance != null)
+                RoomSelectionHandler.Instance.Deselect();
 
             // 드래그 전 선택된 오브젝트 해제
             RoomSelectionHandler.Instance.Deselect();
@@ -338,7 +331,7 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         // 함선이 할당되면 함선의 현재 외갑판 레벨로 업데이트
         if (blueprintShip != null)
         {
-            hullLevel = blueprintShip.GetHullLevel();
+            SetHullLevel(blueprintShip.GetHullLevel());
             ApplyAttachedDirectionSprite();
         }
     }
@@ -405,7 +398,8 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         }
 
         // 함선에서 외갑판 레벨 가져오기 (캐싱된 값이 아닌 실제 함선의 값 사용)
-        int currentHullLevel = blueprintShip != null ? blueprintShip.GetHullLevel() : hullLevel;
+        // int currentHullLevel = blueprintShip != null ? blueprintShip.GetHullLevel() : hullLevel;
+        int currentHullLevel = hullLevel;
 
         // 외갑판 레벨과 방향에 맞는 스프라이트 적용
         try
@@ -419,7 +413,7 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         }
         catch (System.Exception ex)
         {
-            Debug.LogWarning($"무기 스프라이트 적용 중 오류 발생: {ex.Message}");
+            Debug.LogError($"무기 스프라이트 적용 중 오류 발생: {ex.Message}");
         }
 
         // 스프라이트가 없으면 아이콘으로 대체
@@ -443,6 +437,11 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         if (level >= 0 && level < 3)
         {
             hullLevel = level;
+            ApplyAttachedDirectionSprite();
+        }
+        else
+        {
+            hullLevel = 0;
             ApplyAttachedDirectionSprite();
         }
     }

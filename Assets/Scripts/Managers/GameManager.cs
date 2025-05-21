@@ -702,6 +702,11 @@ public enum GameState
     /// </summary>
     Planet,
 
+    /// <summary>
+    /// 도안 작성 상태
+    /// </summary>
+    Customize,
+
     /// <summary>게임이 일시정지된 상태입니다.</summary>
     Paused,
 

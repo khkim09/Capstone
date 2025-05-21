@@ -24,7 +24,7 @@ public class BPPreviewCamera : MonoBehaviour
     /// preview Area 사이즈에 맞게 도안 띄우기
     /// </summary>
     /// <param name="tilePositions"></param>
-    public void FitToBlueprint(List<Vector2Int> tilePositions, Vector3 startPos)
+    public void FitToBlueprint(List<Vector2Int> tilePositions)
     {
         if (tilePositions == null || tilePositions.Count == 0 || previewCamera == null)
             return;
@@ -42,11 +42,7 @@ public class BPPreviewCamera : MonoBehaviour
         Vector2 centerGridPos = new Vector2((min.x + max.x) / 2f, (min.y + max.y) / 2f);
         Vector3 centerWorldPos = GridToWorldPosition(centerGridPos);
 
-        previewCamera.transform.position = new Vector3(
-            startPos.x + centerWorldPos.x,
-            startPos.y + centerWorldPos.y,
-            startPos.z + previewCamera.transform.position.z
-        );
+        previewCamera.transform.position = new Vector3(centerWorldPos.x, centerWorldPos.y, previewCamera.transform.position.z);
 
         float width = (max.x - min.x + 1) * Constants.Grids.CellSize;
         float height = (max.y - min.y + 1) * Constants.Grids.CellSize;

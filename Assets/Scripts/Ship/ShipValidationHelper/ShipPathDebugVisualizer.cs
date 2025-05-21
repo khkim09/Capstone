@@ -10,10 +10,7 @@ public class ShipPathDebugVisualizer : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (allRooms == null || allRooms.Count == 0)
-        {
-            Debug.LogWarning("no rooms");
             return;
-        }
 
         foreach (Room room in allRooms)
         {

@@ -23,7 +23,7 @@ public class BlueprintWeaponSaveData
     public ShipWeaponData bpWeaponData;
     public Vector2Int bpPosition;
     public ShipWeaponAttachedDirection bpDirection;
-    public int hullLevel; // 외갑판 레벨 저장 (0: 레벨 1, 1: 레벨 2, 2: 레벨 3)
+    // public int hullLevel; // 외갑판 레벨 저장 (0: 레벨 1, 1: 레벨 2, 2: 레벨 3)
 }
 
 /// <summary>
@@ -34,6 +34,14 @@ public static class BlueprintLayoutSaver
     // 게임 실행 중에만 메모리에 저장되는 정적 변수
     private static List<BlueprintRoomSaveData> savedRooms = new();
     private static List<BlueprintWeaponSaveData> savedWeapons = new();
+    private static int savedHullLevel = -1;
+
+    public static void SaveLayout(BlueprintRoom[] rooms, BlueprintWeapon[] weapons, int hullLevel)
+    {
+        SaveRoomLayout(rooms);
+        SaveWeaponLayout(weapons);
+        savedHullLevel = hullLevel;
+    }
 
     /// <summary>
     /// 현재 방 배치 상태를 저장합니다.
@@ -84,7 +92,7 @@ public static class BlueprintLayoutSaver
                 bpWeaponData = weapon.bpWeaponData,
                 bpPosition = weapon.bpPosition,
                 bpDirection = weapon.bpAttachedDirection,
-                hullLevel = weapon.GetHullLevel() // 외갑판 레벨 저장
+                // hullLevel = weapon.GetHullLevel() // 외갑판 레벨 저장
             };
 
             savedWeapons.Add(saveData);
@@ -111,6 +119,11 @@ public static class BlueprintLayoutSaver
         return new List<BlueprintWeaponSaveData>(savedWeapons);
     }
 
+    public static int LoadHullLevel()
+    {
+        return savedHullLevel;
+    }
+
     /// <summary>
     /// 모든 저장 데이터를 초기화합니다.
     /// </summary>
@@ -118,6 +131,7 @@ public static class BlueprintLayoutSaver
     {
         savedRooms.Clear();
         savedWeapons.Clear();
+        savedHullLevel = -1;
         Debug.Log("모든 설계도 배치 데이터 초기화 완료");
     }
 }
