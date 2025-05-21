@@ -14,7 +14,9 @@ public class MenuUI : MonoBehaviour
     {
         planetData = GameManager.Instance.WhereIAm();
 
-        IsHome();
+        //IsHome();
+
+        Debug.Log(planetData.planetRace);
     }
 
     private void IsHome()

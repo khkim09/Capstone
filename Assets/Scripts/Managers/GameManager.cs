@@ -724,8 +724,7 @@ public class GameManager : MonoBehaviour
     public void LandOnPlanet()
     {
         ChangeGameState(GameState.Planet);
-        //  SceneChanger.Instance.LoadScene("Planet");
-        SceneChanger.Instance.LoadScene("PlanetTestScene");
+        SceneChanger.Instance.LoadScene("Planet");
     }
 
     #endregion
