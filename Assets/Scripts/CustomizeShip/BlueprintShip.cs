@@ -184,8 +184,9 @@ public class BlueprintShip : MonoBehaviour
             return;
 
         // 1. 무기 외갑판 sprite 적용
-        foreach (BlueprintWeapon weapon in PlacedBlueprintWeapons)
-            weapon.SetHullLevel(currentHullLevel);
+        if (PlacedBlueprintWeapons.Count > 0)
+            foreach (BlueprintWeapon weapon in PlacedBlueprintWeapons)
+                weapon.SetHullLevel(currentHullLevel);
 
         OuterHullData outerHullData = GameManager.Instance.playerShip.outerHullData;
         if (outerHullData == null || previewOuterHullPrefab == null)
@@ -196,6 +197,10 @@ public class BlueprintShip : MonoBehaviour
 
         // 방 그리드 좌표 세트 생성 (점유 중인 타일)
         HashSet<Vector2Int> occupiedTiles = new();
+
+        if (PlacedBlueprintRooms.Count <= 0)
+            return;
+
         foreach (BlueprintRoom room in PlacedBlueprintRooms)
         {
             Vector2Int size = room.bpRoomData.GetRoomDataByLevel(room.bpLevelIndex).size;
