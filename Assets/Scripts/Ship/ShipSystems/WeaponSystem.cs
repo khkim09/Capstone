@@ -138,8 +138,8 @@ public class WeaponSystem : ShipSystem
         weapon.transform.SetParent(parentShip.transform);
         // parentShip.allWeapons.Add(weapon);
 
-        weapon.transform.position =
-            ShipGridHelper.GetRoomWorldPosition(gridPosition, weapon.gridSize) + new Vector3(0, 0, 5f);
+        weapon.transform.position = parentShip.GetWorldPositionFromGrid(gridPosition);
+
         weapon.ApplyRotationSprite(parentShip.GetOuterHullLevel());
 
         // 임시
@@ -156,8 +156,7 @@ public class WeaponSystem : ShipSystem
         weapon.transform.SetParent(parentShip.transform);
         weapon.ApplyRotationSprite(parentShip.GetOuterHullLevel());
 
-        weapon.transform.position = ShipGridHelper.GetRoomWorldPosition(weapon.GetGridPosition(), weapon.gridSize) +
-                                    new Vector3(0, 0, 5f);
+        weapon.transform.position = parentShip.GetWorldPositionFromGrid(weapon.GetGridPosition());
         parentShip.allWeapons.Add(weapon);
 
         return weapon;

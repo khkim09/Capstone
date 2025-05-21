@@ -46,7 +46,7 @@ public class IdleHUDController : MonoBehaviour
             재장전 속도 : {7}%
             피해량 : {8}%
             회피율 : {9}%
-            연료 효율 : {1}%
+            연료 효율 : {1.}%
             산소량 : {11}%
 "
          */

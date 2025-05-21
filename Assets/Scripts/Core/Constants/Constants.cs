@@ -70,7 +70,8 @@ public static class Constants
 
         public const float ConnectionLineThickness = 0.1f;
 
-        public const float EventNodeRate = 0.6f;
+        // TODO :원래 값 0.6
+        public const float EventNodeRate = 0.99f;
 
         public const float CombatNodeRate = 1 - EventNodeRate;
 
@@ -103,7 +104,7 @@ public static class Constants
         /// <summary>
         /// 행성이 맵에 그려질 때, 가장자리와 떨어진 최소 간격
         /// </summary>
-        public const float PlanetSpacingEdge = PlanetSize * 1.5f;
+        public const float PlanetSpacingEdge = PlanetSize * 2.0f;
 
         /// <summary>
         /// 현재 위치 표시기가 맵에 그려지는 상대적인 크기
@@ -142,7 +143,7 @@ public static class Constants
         /// <summary>
         /// 워프 시마다 퀘스트가 생성되는 확률
         /// </summary>
-        public const float QuestCreateRate = 0.05f;
+        public const float QuestCreateRate = 0.8f;
     }
 
     public static class Resources

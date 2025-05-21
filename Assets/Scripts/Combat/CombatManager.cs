@@ -6,6 +6,7 @@
 /// </summary>
 public class CombatManager : MonoBehaviour
 {
+    public EnemyCamInteraction cam;
     /// <summary>
     /// CombatManager의 싱글톤 인스턴스입니다.
     /// </summary>
@@ -57,6 +58,14 @@ public class CombatManager : MonoBehaviour
         enemyShip.Initialize();
 
         GameManager.Instance.CreateDefaultEnemyShip(enemyShip);
+
+        RTSSelectionManager.Instance.enemyShip = enemyShip;
+        RTSSelectionManager.Instance.playerShip=GameManager.Instance.playerShip;
+
+        enemyShip.MoveShipToFacingTargetShip(GameManager.Instance.playerShip);
+        cam.EnemyCamAim();
+
+        RTSSelectionManager.Instance.RefreshMovementData();
     }
 
     /// <summary>

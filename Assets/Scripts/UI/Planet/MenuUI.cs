@@ -10,7 +10,7 @@ public class MenuUI : MonoBehaviour
 
     public int moveCost = 1000;
 
-    void Start()
+    private void Start()
     {
         planetData = GameManager.Instance.WhereIAm();
 
@@ -35,7 +35,7 @@ public class MenuUI : MonoBehaviour
 
     public void OnTradeButtonClicked()
     {
-        //SceneChanger.Instance.LoadScene("Trade");
+        SceneChanger.Instance.LoadScene("Trade");
     }
 
     public void OnStorageButtonClicked()
