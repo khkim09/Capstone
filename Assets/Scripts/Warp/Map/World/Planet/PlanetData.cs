@@ -291,6 +291,15 @@ public class PlanetData
         }
     }
 
+    public int GetItemPrice(int itemId)
+    {
+        TradingItemData item = GameObjectFactory.Instance.ItemFactory.itemDataBase.GetItemData(itemId);
+        float multiplier = categoryPriceModifiers[item.type];
+        int planetPrice = itemPriceDictionary[item.id];
+
+        return (int)(planetPrice * (100 + multiplier) / 100);
+    }
+
     #endregion
 
     #region 행성 이벤트 효과

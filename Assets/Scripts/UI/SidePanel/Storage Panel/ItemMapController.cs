@@ -138,7 +138,8 @@ public class ItemMapController : MonoBehaviour
             if (!planetInstances.TryGetValue(planetData.planetId, out Planet planetInstance))
                 continue;
 
-            int planetPrice = planetData.itemPriceDictionary[currentItem.id];
+            int planetPrice = planetData.GetItemPrice(currentItem.id);
+
             int boughtPrice = currentItem.boughtCost;
 
             TextMeshProUGUI planetPriceText = planetInstance.GetComponentInChildren<TextMeshProUGUI>();

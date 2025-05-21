@@ -68,7 +68,8 @@ public class IdleHUDController : MonoBehaviour
     public void SetResourcesText()
     {
         COMAText.text = CurrentCOMA.ToString("N0");
-        fuelText.text = ((int)CurrentFuel).ToString();
+        fuelText.text =
+            $"{((int)CurrentFuel).ToString()}/{((int)GameManager.Instance.GetPlayerShip().GetStat(ShipStat.FuelStoreCapacity)).ToString()}";
         missileText.text = CurrentMissle.ToString();
         hypersonicText.text = CurrentHypersonic.ToString();
     }

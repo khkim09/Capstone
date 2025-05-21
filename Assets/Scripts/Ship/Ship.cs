@@ -837,6 +837,9 @@ public class Ship : MonoBehaviour
                 currentStats[ShipStat.OxygenUsingPerSecond] += oxygenUsage;
         }
 
+        // 외갑판
+        currentStats[ShipStat.DamageReduction] = outerHullData.GetOuterHullData(GetOuterHullLevel()).damageReduction;
+
         // 디버깅 정보 출력
         if (showDebugInfo)
             PrintDebugStatInfo();
@@ -872,6 +875,7 @@ public class Ship : MonoBehaviour
             case ShipStat.HealPerSecond:
             case ShipStat.CrewCapacity:
             case ShipStat.DamageReduction:
+            case ShipStat.FuelStoreCapacity:
 
                 return true;
             default:
