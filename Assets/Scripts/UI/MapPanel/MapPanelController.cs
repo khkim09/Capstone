@@ -347,6 +347,7 @@ public class MapPanelController : MonoBehaviour
         // 새 노드로 플레이어 이동
         GameManager.Instance.SetCurrentWarpNodeId(targetNode.NodeData.nodeId);
         targetNode.SetCurrentPlayerNode(true);
+        EventManager.Instance.CurrentWarpNode = targetNode;
 
         if (!targetNode.NodeData.isEndNode)
             GameManager.Instance.normalizedPlayerPosition =
@@ -370,6 +371,8 @@ public class MapPanelController : MonoBehaviour
 
         // 게임 상태 저장
         GameManager.Instance.SaveGameData();
+
+        EventManager.Instance.CombatOccur();
     }
 
     private void OnWarpCompleted()
