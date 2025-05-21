@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("id", "planet", "tier", "itemName", "debugName", "type", "temperatureMin", "temperatureMax", "shape", "costBase", "capacity", "costMin", "costChangerate", "costMax", "description", "itemSprite", "amount", "boughtCost")]
+	[ES3PropertiesAttribute("id", "planet", "tier", "itemState", "itemName", "debugName", "type", "temperatureMin", "temperatureMax", "shape", "costBase", "capacity", "costMin", "costChangerate", "costMax", "description", "itemSprite", "amount", "boughtCost")]
 	public class ES3UserType_TradingItemData : ES3ScriptableObjectType
 	{
 		public static ES3Type Instance = null;
@@ -19,6 +19,7 @@ namespace ES3Types
 			writer.WriteProperty("id", instance.id, ES3Type_int.Instance);
 			writer.WriteProperty("planet", instance.planet, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(ItemPlanet)));
 			writer.WriteProperty("tier", instance.tier, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(ItemTierLevel)));
+			writer.WriteProperty("itemState", instance.itemState, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(ItemState)));
 			writer.WriteProperty("itemName", instance.itemName, ES3Type_string.Instance);
 			writer.WriteProperty("debugName", instance.debugName, ES3Type_string.Instance);
 			writer.WriteProperty("type", instance.type, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(ItemCategory)));
@@ -52,6 +53,9 @@ namespace ES3Types
 						break;
 					case "tier":
 						instance.tier = reader.Read<ItemTierLevel>();
+						break;
+					case "itemState":
+						instance.itemState = reader.Read<ItemState>();
 						break;
 					case "itemName":
 						instance.itemName = reader.Read<System.String>(ES3Type_string.Instance);

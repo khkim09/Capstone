@@ -305,7 +305,24 @@ public class PlanetData
         float multiplier = categoryPriceModifiers[item.type];
         int planetPrice = itemPriceDictionary[item.id];
 
-        return (int)(planetPrice * (100 + multiplier) / 100);
+        float stateMulitplier = 100;
+        switch (item.itemState)
+        {
+            case ItemState.Normal:
+                stateMulitplier = 0;
+                break;
+            case ItemState.SlightlyDamaged:
+                stateMulitplier = -25;
+                break;
+            case ItemState.Damaged:
+                stateMulitplier = -50;
+                break;
+            case ItemState.Unsellable:
+                stateMulitplier = -100;
+                break;
+        }
+
+        return (int)(planetPrice * (100 + multiplier) / 100 * (100 + stateMulitplier) / 100);
     }
 
     #endregion

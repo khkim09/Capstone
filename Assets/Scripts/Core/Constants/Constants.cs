@@ -71,7 +71,7 @@ public static class Constants
         public const float ConnectionLineThickness = 0.1f;
 
         // TODO :원래 값 0.6
-        public const float EventNodeRate = 0.6f;
+        public const float EventNodeRate = 0.99f;
 
         public const float CombatNodeRate = 1 - EventNodeRate;
 
@@ -121,6 +121,7 @@ public static class Constants
         /// </summary>
         public const float PlanetNodeValidRadius = PlanetSize * 4f;
         // public const float PlanetNodeValidRadius = PlanetSize * 10f;
+        // TODO : 원본 * 4;
 
         /// <summary>
         /// 2 티어 아이템 해금을 위해 필요한 거래 총액

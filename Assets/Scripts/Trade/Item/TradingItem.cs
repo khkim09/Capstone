@@ -12,11 +12,6 @@ using UnityEngine.EventSystems;
 public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler,
     IGridPlaceable
 {
-    /// <summary>
-    /// 아이템 상태
-    /// </summary>
-    [Tooltip("아이템 상태")] private ItemState itemState;
-
     [SerializeField] private TradingItemData itemData;
 
     [SerializeField] private SpriteRenderer boxRenderer;
@@ -66,7 +61,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
         // 아이템 이미지 설정 (예: 아이템별 개별 스프라이트)
         itemRenderer.sprite = itemData.itemSprite;
-        itemState = state;
 
         itemRenderer.sortingOrder = Constants.SortingOrders.TradingItemIcon;
 
@@ -83,7 +77,6 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
         // 기본 데이터 복사
         itemData = other.itemData;
-        itemState = other.itemState;
         rotation = other.rotation;
         gridPosition = other.gridPosition;
 
@@ -543,12 +536,12 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
     public ItemState GetItemState()
     {
-        return itemState;
+        return itemData.itemState;
     }
 
     public void SetItemState(ItemState state)
     {
-        itemState = state;
+        itemData.itemState = state;
     }
 
     public ItemPlanet GetItemPlanet()

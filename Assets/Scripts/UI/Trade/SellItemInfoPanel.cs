@@ -9,10 +9,15 @@ public class SellItemInfoPanel : TooltipPanelBase, IPointerClickHandler
     [SerializeField] private Button panelButton;
     [SerializeField] private Image panelBackground;
 
+    [SerializeField] private Image itemShape;
+    [SerializeField] private List<Sprite> itemShapeSprites;
+
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private TextMeshProUGUI itemCategory;
     [SerializeField] private TextMeshProUGUI itemAmount;
+    [SerializeField] private TextMeshProUGUI itemPrice;
+
 
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color slightlyDamagedColor = Color.Lerp(Color.white, Color.red, 0.33f);
@@ -52,6 +57,7 @@ public class SellItemInfoPanel : TooltipPanelBase, IPointerClickHandler
     public void Initialize(TradingItem item)
     {
         currentItem = item.GetItemData();
+        itemShape.sprite = itemShapeSprites[item.GetItemShape()];
         itemName.text = item.GetItemData().itemName.Localize();
         itemCategory.text = item.GetItemData().type.Localize();
         itemImage.sprite = item.GetItemSprite();
@@ -72,17 +78,8 @@ public class SellItemInfoPanel : TooltipPanelBase, IPointerClickHandler
                 break;
         }
 
-        // Reset selection state
-        SetSelected(false);
-    }
-
-    public void SetSelected(bool selected)
-    {
-        isSelected = selected;
-        if (selected)
-            panelBackground.color = selectedBackgroundColor;
-        else
-            panelBackground.color = new Color(0, 0, 0, 0); // 완전 투명
+        itemPrice.text = item.GetItemData().boughtCost.ToString() + "->" +
+                         GameManager.Instance.WhereIAm().GetItemPrice(item.GetItemData()).ToString();
     }
 
     protected override void OnMouseEnter(PointerEventData eventData)

@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TradeUIController : MonoBehaviour
@@ -172,6 +173,11 @@ public class TradeUIController : MonoBehaviour
         onComplete?.Invoke();
     }
 
+    public void OnGoBackButtonClicked()
+    {
+        SceneChanger.Instance.LoadScene("Planet");
+    }
+
     #region 재화 패널 설정
 
     public void InitializeResourcesText()
@@ -268,14 +274,6 @@ public class TradeUIController : MonoBehaviour
         else
             // 선택된 아이템이 없는 경우에는 맵을 숨김
             itemMapPanel.gameObject.SetActive(false);
-    }
-
-    public void SetSelectedSellItemInfoPanel(SellItemInfoPanel panel)
-    {
-        if (selectedSellItemInfoPanel != null) selectedSellItemInfoPanel.SetSelected(false);
-
-        selectedSellItemInfoPanel = panel;
-        if (selectedSellItemInfoPanel != null) selectedSellItemInfoPanel.SetSelected(true);
     }
 
     public void SellItem(TradingItemData selectedItem)

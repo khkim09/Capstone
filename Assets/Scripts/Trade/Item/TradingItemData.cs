@@ -10,6 +10,8 @@ public class TradingItemData : ScriptableObject
     public int id;
     public ItemPlanet planet;
     public ItemTierLevel tier;
+    public ItemState itemState;
+
     public string itemName;
     public string debugName;
     public ItemCategory type;

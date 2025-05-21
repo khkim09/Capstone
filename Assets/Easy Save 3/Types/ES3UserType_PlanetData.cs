@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("planetId", "planetName", "planetRace", "itemPlanet", "normalizedPosition", "itemsTier1", "itemsTier2", "itemsTier3", "currentRevenue", "currentTier", "currentFuelPrice", "questList", "activeEffects", "categoryPriceModifiers", "itemPriceDictionary")]
+	[ES3PropertiesAttribute("planetId", "planetName", "planetRace", "itemPlanet", "normalizedPosition", "currentSprite", "itemsTier1", "itemsTier2", "itemsTier3", "currentRevenue", "currentTier", "currentFuelPrice", "questList", "activeEffects", "categoryPriceModifiers", "itemPriceDictionary", "isHome")]
 	public class ES3UserType_PlanetData : ES3ObjectType
 	{
 		public static ES3Type Instance = null;
@@ -21,6 +21,7 @@ namespace ES3Types
 			writer.WriteProperty("planetRace", instance.planetRace, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(PlanetRace)));
 			writer.WriteProperty("itemPlanet", instance.itemPlanet, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(ItemPlanet)));
 			writer.WriteProperty("normalizedPosition", instance.normalizedPosition, ES3Type_Vector2.Instance);
+			writer.WritePropertyByRef("currentSprite", instance.currentSprite);
 			writer.WriteProperty("itemsTier1", instance.itemsTier1, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<TradingItemData>)));
 			writer.WriteProperty("itemsTier2", instance.itemsTier2, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<TradingItemData>)));
 			writer.WriteProperty("itemsTier3", instance.itemsTier3, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<TradingItemData>)));
@@ -29,8 +30,9 @@ namespace ES3Types
 			writer.WriteProperty("currentFuelPrice", instance.currentFuelPrice, ES3Type_int.Instance);
 			writer.WriteProperty("questList", instance.questList, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<RandomQuest>)));
 			writer.WriteProperty("activeEffects", instance.activeEffects, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<PlanetEffect>)));
-			writer.WritePrivateField("categoryPriceModifiers", instance);
-			writer.WritePrivateField("itemPriceDictionary", instance);
+			writer.WriteProperty("categoryPriceModifiers", instance.categoryPriceModifiers, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.Dictionary<ItemCategory, System.Single>)));
+			writer.WriteProperty("itemPriceDictionary", instance.itemPriceDictionary, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.Dictionary<System.Int32, System.Int32>)));
+			writer.WriteProperty("isHome", instance.isHome, ES3Type_bool.Instance);
 		}
 
 		protected override void ReadObject<T>(ES3Reader reader, object obj)
@@ -55,6 +57,9 @@ namespace ES3Types
 						break;
 					case "normalizedPosition":
 						instance.normalizedPosition = reader.Read<UnityEngine.Vector2>(ES3Type_Vector2.Instance);
+						break;
+					case "currentSprite":
+						instance.currentSprite = reader.Read<UnityEngine.Sprite>(ES3Type_Sprite.Instance);
 						break;
 					case "itemsTier1":
 						instance.itemsTier1 = reader.Read<System.Collections.Generic.List<TradingItemData>>();
@@ -81,11 +86,14 @@ namespace ES3Types
 						instance.activeEffects = reader.Read<System.Collections.Generic.List<PlanetEffect>>();
 						break;
 					case "categoryPriceModifiers":
-					instance = (PlanetData)reader.SetPrivateField("categoryPriceModifiers", reader.Read<System.Collections.Generic.Dictionary<ItemCategory, System.Single>>(), instance);
-					break;
+						instance.categoryPriceModifiers = reader.Read<System.Collections.Generic.Dictionary<ItemCategory, System.Single>>();
+						break;
 					case "itemPriceDictionary":
-					instance = (PlanetData)reader.SetPrivateField("itemPriceDictionary", reader.Read<System.Collections.Generic.Dictionary<System.Int32, System.Int32>>(), instance);
-					break;
+						instance.itemPriceDictionary = reader.Read<System.Collections.Generic.Dictionary<System.Int32, System.Int32>>();
+						break;
+					case "isHome":
+						instance.isHome = reader.Read<System.Boolean>(ES3Type_bool.Instance);
+						break;
 					default:
 						reader.Skip();
 						break;

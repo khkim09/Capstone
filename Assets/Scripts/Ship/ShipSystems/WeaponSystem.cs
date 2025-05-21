@@ -137,8 +137,10 @@ public class WeaponSystem : ShipSystem
 
         weapon.transform.SetParent(parentShip.transform);
         // parentShip.allWeapons.Add(weapon);
+        Vector2 offset = RoomRotationUtility.GetRotationOffset(weapon.gridSize, Constants.Rotations.Rotation.Rotation0);
 
-        weapon.transform.position = parentShip.GetWorldPositionFromGrid(gridPosition);
+        weapon.transform.position = parentShip.GetWorldPositionFromGrid(gridPosition) + (Vector3)offset;
+
 
         weapon.ApplyRotationSprite(parentShip.GetOuterHullLevel());
 
@@ -156,7 +158,9 @@ public class WeaponSystem : ShipSystem
         weapon.transform.SetParent(parentShip.transform);
         weapon.ApplyRotationSprite(parentShip.GetOuterHullLevel());
 
-        weapon.transform.position = parentShip.GetWorldPositionFromGrid(weapon.GetGridPosition());
+        Vector2 offset = RoomRotationUtility.GetRotationOffset(weapon.gridSize, Constants.Rotations.Rotation.Rotation0);
+
+        weapon.transform.position = parentShip.GetWorldPositionFromGrid(weapon.GetGridPosition()) + (Vector3)offset;
         parentShip.allWeapons.Add(weapon);
 
         return weapon;
