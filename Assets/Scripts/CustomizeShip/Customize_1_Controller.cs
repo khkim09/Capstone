@@ -135,6 +135,8 @@ public class Customize_1_Controller : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
+        if (playerShip == null)
+            playerShip = GameManager.Instance.playerShip;
         playerShip.SetShipContentsActive(false);
 
         ReloadBlueprintFromSlot(BlueprintSlotManager.Instance.currentSlotIndex);
