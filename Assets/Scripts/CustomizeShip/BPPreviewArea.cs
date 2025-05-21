@@ -8,8 +8,6 @@ using UnityEngine.Video;
 public class BPPreviewArea : MonoBehaviour
 {
     [SerializeField] private Transform previewRoot;
-    [SerializeField] private GameObject previewRoomPrefab;
-    [SerializeField] private GameObject previewWeaponPrefab;
     [SerializeField] private BPPreviewCamera previewCamera;
     [SerializeField] private GridPlacer gridPlacer;
 
@@ -19,7 +17,7 @@ public class BPPreviewArea : MonoBehaviour
     /// 도안 preview Area에 띄우기 (미리보기)
     /// </summary>
     /// <param name="data"></param>
-    public void Show(BlueprintSaveData data)
+    public void UpdateAndShow(BlueprintSaveData data)
     {
         Clear();
 
@@ -28,7 +26,7 @@ public class BPPreviewArea : MonoBehaviour
         foreach (BlueprintRoomSaveData room in data.rooms)
         {
             spawnedPreviews.Add(
-                PlacePreviewRoom(
+                gridPlacer.PlacePreviewRoom(
                     room.bpRoomData,
                     room.bpLevelIndex,
                     room.bpPosition,
@@ -39,14 +37,10 @@ public class BPPreviewArea : MonoBehaviour
             );
         }
 
-        // Debug.LogError("프리뷰 카메라 위치 계산용 tilePos 포함 타일");
-        // foreach (Vector2Int tile in tilePos)
-        //     Debug.LogError($"{tile}");
-
         foreach (BlueprintWeaponSaveData weapon in data.weapons)
         {
             spawnedPreviews.Add(
-                PlacePreviewWeapon(
+                gridPlacer.PlacePreviewWeapon(
                     weapon.bpWeaponData,
                     weapon.bpPosition,
                     weapon.bpDirection,
@@ -56,7 +50,7 @@ public class BPPreviewArea : MonoBehaviour
             );
         }
 
-        previewCamera.FitToBlueprint(tilePos, previewRoot.position);
+        previewCamera.FitToBlueprint(tilePos);
 
         // 강제 렌더링 한 프레임 수행
         previewCamera.RenderOnce();
@@ -92,68 +86,4 @@ public class BPPreviewArea : MonoBehaviour
     {
         return transform.TransformPoint(GridToWorldPosition(gridPos));
     }
-
-    #region BPPreviewArea 용 함수
-
-    /// <summary>
-    /// 실제 방을 해당 위치에 배치함
-    /// </summary>
-    public GameObject PlacePreviewRoom(RoomData data, int level, Vector2Int position, Constants.Rotations.Rotation rotation, Transform previewRoot, List<Vector2Int> tilePos)
-    {
-        Vector2Int size = RoomRotationUtility.GetRotatedSize(data.GetRoomDataByLevel(level).size, rotation);
-        Vector2 offset = RoomRotationUtility.GetRotationOffset(size, rotation);
-        Vector3 worldPos = GetWorldPositionFromGrid(position) + (Vector3)offset;
-
-        GameObject previewObj = Instantiate(previewRoomPrefab, previewRoot);
-        previewObj.transform.position = worldPos + new Vector3(0, 0, 10f);
-        previewObj.transform.rotation = Quaternion.Euler(0, 0, -(int)rotation * 90);
-        previewObj.name = $"PreviewRoom_{data.name}";
-
-        BlueprintRoom bpRoom = previewObj.GetComponent<BlueprintRoom>();
-        // bpRoom.SetGridPlacer(this);
-        bpRoom.Initialize(data, level, position, rotation);
-        // bpRoom.SetBlueprint(targetBlueprintShip);
-
-        foreach (Vector2Int tile in bpRoom.GetOccupiedTiles())
-            tilePos.Add(tile);
-
-        return previewObj;
-    }
-
-    /// <summary>
-    /// 실제 무기를 해당 위치에 배치함
-    /// </summary>
-    /// <returns>생성된 BlueprintWeapon 인스턴스</returns>
-    public GameObject PlacePreviewWeapon(ShipWeaponData data, Vector2Int position, ShipWeaponAttachedDirection direction, Transform previewRoot, List<Vector2Int> tilePos)
-    {
-        if (data == null)
-            return null;
-
-        Vector2Int size = new(2, 1);
-        Vector2 offset = RoomRotationUtility.GetRotationOffset(size, Constants.Rotations.Rotation.Rotation0);
-        Vector3 worldPos = GetWorldPositionFromGrid(position) + (Vector3)offset;
-
-        GameObject previewObj = Instantiate(previewWeaponPrefab, previewRoot);
-        previewObj.transform.position = worldPos + new Vector3(0, 0, 10f);
-        previewObj.name = $"PreviewWeapon_{data.name}";
-
-        BlueprintWeapon bpWeapon = previewObj.GetComponent<BlueprintWeapon>();
-        // bpWeapon.SetGridPlacer(this);
-        bpWeapon.Initialize(data, position, direction);
-
-        // 설계도 함선의 외갑판 레벨 적용 (함선에 추가하기 전)
-        // int currentHullLevel = targetBlueprintShip.GetHullLevel();
-        // bpWeapon.SetHullLevel(currentHullLevel);
-        // bpWeapon.SetBlueprint(targetBlueprintShip);
-
-        foreach (Vector2Int tile in bpWeapon.GetOccupiedTiles())
-            tilePos.Add(tile);
-
-        // 함선에 무기 추가 (BlueprintShip.AddPlaceable 메서드에서 다시 한번 외갑판 레벨 적용)
-        // targetBlueprintShip.AddPlaceable(bpWeapon);
-
-        return previewObj;
-    }
-
-    #endregion
 }

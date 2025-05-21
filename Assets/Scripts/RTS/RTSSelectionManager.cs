@@ -153,12 +153,12 @@ public class RTSSelectionManager : MonoBehaviour
                 return;
             }
 
-            /*
+
             if (!IsUIWithTagClicked("CombatUI"))
             {
                 dragStartPos = Input.mousePosition;
             }
-            */
+
             isDragging = true;
         }
 
@@ -195,10 +195,9 @@ public class RTSSelectionManager : MonoBehaviour
         // 오른쪽 마우스 버튼 클릭: 이동 명령 발동
         if (/*isMainUI && */Input.GetMouseButtonDown(1))
         {
-            /*
             if (IsUIWithTagClicked("CombatUI"))
                 return;
-                */
+
             CleanUpSelectedCrew();
             IssueMoveCommand();
         }
@@ -246,7 +245,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// </summary>
     private void OnGUI()
     {
-        if (isDragging && IsMainUIActive())
+        if (isDragging)
         {
             Rect rect = GetScreenRect(dragStartPos, Input.mousePosition);
             DrawScreenRect(rect, new Color(0.8f, 0.8f, 0.95f, 0.25f));

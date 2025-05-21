@@ -15,7 +15,7 @@ public class RepairAlert : MonoBehaviour
 
     void Start()
     {
-        playerShip = GameObject.Find("PlayerShip").GetComponent<Ship>();
+        playerShip = GameManager.Instance.playerShip;
         List<Room> rooms = playerShip.GetAllRooms();
 
         destoryedRooms = new List<Room>();

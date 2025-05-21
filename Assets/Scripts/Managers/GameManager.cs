@@ -67,7 +67,8 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")] [SerializeField]
+    [Header("Game State")]
+    [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -138,15 +139,15 @@ public class GameManager : MonoBehaviour
             OnShipInitialized?.Invoke();
         }
 
-        currentEnemyShip = GameObject.Find("EnemyShip")?.GetComponent<Ship>();
-
-
-        if (currentEnemyShip != null)
-        {
-            currentEnemyShip.Initialize();
-            currentEnemyShip.isPlayerShip = false;
-            GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("combat_test");
-        }
+        // currentEnemyShip = GameObject.Find("EnemyShip")?.GetComponent<Ship>();
+        //
+        //
+        // if (currentEnemyShip != null)
+        // {
+        //     currentEnemyShip.Initialize();
+        //     currentEnemyShip.isPlayerShip = false;
+        //     GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("combat_test");
+        // }
 
         // 기존으로 돌릴라면 아래 3개 주석 처리
 
@@ -309,6 +310,78 @@ public class GameManager : MonoBehaviour
         playerShip.UpdateOuterHullVisuals();
 
         return null;
+    }
+
+    public void CreateDefaultEnemyShip(Ship enemyShip)
+    {
+        Room cockpit = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Cockpit);
+        Room engine = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
+        Room power = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Power);
+        Room crewQuarters = GameObjectFactory.Instance.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Basic);
+        Room teleporter = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Teleporter);
+        Room[] corridors = new Room[15];
+
+        Room engine2 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
+        Room engine3 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
+        enemyShip.AddRoom(engine2, new Vector2Int(40, 40), Constants.Rotations.Rotation.Rotation0);
+        enemyShip.AddRoom(engine3, new Vector2Int(43, 43), Constants.Rotations.Rotation.Rotation0);
+
+
+        for (int index = 0; index < corridors.Length; index++)
+            corridors[index] = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
+
+
+        enemyShip.AddRoom(cockpit, new Vector2Int(35, 31), Constants.Rotations.Rotation.Rotation90);
+        enemyShip.AddRoom(engine, new Vector2Int(34, 28), Constants.Rotations.Rotation.Rotation270);
+        enemyShip.AddRoom(power, new Vector2Int(33, 33), Constants.Rotations.Rotation.Rotation90);
+        enemyShip.AddRoom(crewQuarters, new Vector2Int(32, 26), Constants.Rotations.Rotation.Rotation270);
+        enemyShip.AddRoom(teleporter, new Vector2Int(32, 32), Constants.Rotations.Rotation.Rotation90);
+
+        enemyShip.AddRoom(corridors[0], new Vector2Int(31, 32));
+        enemyShip.AddRoom(corridors[1], new Vector2Int(31, 31));
+        enemyShip.AddRoom(corridors[2], new Vector2Int(31, 30));
+        enemyShip.AddRoom(corridors[3], new Vector2Int(32, 31));
+        enemyShip.AddRoom(corridors[4], new Vector2Int(32, 30));
+        enemyShip.AddRoom(corridors[5], new Vector2Int(33, 30));
+        enemyShip.AddRoom(corridors[6], new Vector2Int(34, 31));
+        enemyShip.AddRoom(corridors[7], new Vector2Int(34, 30));
+        enemyShip.AddRoom(corridors[8], new Vector2Int(33, 31));
+        enemyShip.AddRoom(corridors[9], new Vector2Int(31, 33));
+        enemyShip.AddRoom(corridors[10], new Vector2Int(32, 33));
+        enemyShip.AddRoom(corridors[11], new Vector2Int(31, 34));
+        enemyShip.AddRoom(corridors[12], new Vector2Int(32, 34));
+        enemyShip.AddRoom(corridors[13], new Vector2Int(31, 35));
+        enemyShip.AddRoom(corridors[14], new Vector2Int(32, 35));
+
+        Room storageRoom = GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+        Room storageRoom2 =
+            GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+
+        enemyShip.AddRoom(storageRoom, new Vector2Int(27, 26), Constants.Rotations.Rotation.Rotation270);
+        enemyShip.AddRoom(storageRoom2, new Vector2Int(38, 24), Constants.Rotations.Rotation.Rotation90);
+        StorageRoomBase storage = (StorageRoomBase)storageRoom;
+        TradingItem item = GameObjectFactory.Instance.CreateItemInstance(0, 20);
+        TradingItem item2 = GameObjectFactory.Instance.CreateItemInstance(2, 10);
+        TradingItem item3 = GameObjectFactory.Instance.CreateItemInstance(21, 1);
+        storage.AddItem(item, new Vector2Int(0, 0), Constants.Rotations.Rotation.Rotation0);
+        storage.AddItem(item2, new Vector2Int(2, 2), Constants.Rotations.Rotation.Rotation0);
+        StorageRoomBase storage2 = (StorageRoomBase)storageRoom2;
+        storage2.AddItem(item3, new Vector2Int(1, 1), Constants.Rotations.Rotation.Rotation0);
+        Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
+        enemyShip.AddRoom(temp, new Vector2Int(50, 31), Constants.Rotations.Rotation.Rotation90);
+        enemyShip.AddWeapon(1, new Vector2Int(35, 33), ShipWeaponAttachedDirection.East);
+
+        // playerShip.AddWeapon(8, new Vector)
+
+        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
+        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
+
+        if (crewBase1 is CrewMember crewMember) enemyShip.AddCrew(crewMember);
+        if (crewBase2 is CrewMember crewMember2) enemyShip.AddCrew(crewMember2);
+        if (crewBase3 is CrewMember crewMember3) enemyShip.AddCrew(crewMember3);
+        //
+        enemyShip.UpdateOuterHullVisuals();
     }
 
     /// <summary>
@@ -653,7 +726,7 @@ public class GameManager : MonoBehaviour
 
     #region 워프 맵
 
-// 워프맵 저장
+    // 워프맵 저장
     public void SaveWarpMap()
     {
         if (warpNodeDataList.Count > 0)
@@ -665,7 +738,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-// 워프맵 로드
+    // 워프맵 로드
     public void LoadWarpMap()
     {
         if (ES3.KeyExists("currentWarpNodes"))
@@ -688,7 +761,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-// 워프맵 삭제
+    // 워프맵 삭제
     public void DeleteWarpMap()
     {
         ES3.DeleteKey("currentWarpNodes");
@@ -709,7 +782,7 @@ public class GameManager : MonoBehaviour
         currentWarpNodeId = nodeId;
     }
 
-// 워프맵 클리어
+    // 워프맵 클리어
     public void ClearCurrentWarpMap()
     {
         warpNodeDataList.Clear();
@@ -767,6 +840,11 @@ public enum GameState
     /// 행성에 있는 상태
     /// </summary>
     Planet,
+
+    /// <summary>
+    /// 도안 작성 상태
+    /// </summary>
+    Customize,
 
     /// <summary>게임이 일시정지된 상태입니다.</summary>
     Paused,

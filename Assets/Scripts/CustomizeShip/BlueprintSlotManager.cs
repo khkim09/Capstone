@@ -14,6 +14,11 @@ public class BlueprintSlotManager : MonoBehaviour
     /// </summary>
     public int currentSlotIndex = -1;
 
+    /// <summary>
+    /// 현재 유저 함선으로 적용 중인 슬롯 index (0번에 기본 함선 주어질 것이기 때문)
+    /// </summary>
+    public int appliedSlotIndex = 0;
+
     ///<summary>
     /// 슬롯별 저장된 설계도
     /// </summary>
@@ -38,7 +43,7 @@ public class BlueprintSlotManager : MonoBehaviour
 
         // 4칸 초기화
         for (int i = blueprintSlots.Count; i < 4; i++)
-            blueprintSlots.Add(null);
+            blueprintSlots.Add(new BlueprintSaveData(new(), new(), -1));
 
         // 그리드 관리
         for (int i = occupiedTilesPerSlot.Count; i < 4; i++)
@@ -70,7 +75,6 @@ public class BlueprintSlotManager : MonoBehaviour
             return;
 
         blueprintSlots[currentSlotIndex] = data;
-        Debug.LogError($"{currentSlotIndex}에 저장 완료 / {data.rooms.Count}, {data.weapons.Count}");
     }
 
     /// <summary>
