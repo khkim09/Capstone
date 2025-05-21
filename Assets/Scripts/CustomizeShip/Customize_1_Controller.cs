@@ -15,6 +15,7 @@ public class Customize_1_Controller : MonoBehaviour
     [Header("Customize UI Panel")]
     public GameObject customize0Panel;
     public GameObject customize1Panel;
+    public GameObject customize2Panel;
     [SerializeField] BlueprintCategoryButtonHandler bcbHandler;
 
     /// <summary>
@@ -37,6 +38,11 @@ public class Customize_1_Controller : MonoBehaviour
     /// 그리드 타일 배치 작업을 위한 오브젝트
     /// </summary>
     public GridPlacer gridPlacer;
+
+    /// <summary>
+    /// 유저 함선
+    /// </summary>
+    public Ship playerShip;
 
     /// <summary>
     /// 제작한 설계도
@@ -76,6 +82,8 @@ public class Customize_1_Controller : MonoBehaviour
     /// 버튼 기본 색상 저장
     /// </summary>
     private Color? originButtonColor = null;
+
+    [SerializeField] BlueprintInventoryUI blueprintInventoryUI;
 
     /// <summary>
     /// button 클릭 함수 연결
@@ -124,21 +132,13 @@ public class Customize_1_Controller : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
-        gridTiles.SetActive(true);
+        playerShip.SetShipContentsActive(false);
 
-        BlueprintSaveData data = BlueprintSlotManager.Instance.GetBlueprintAt(BlueprintSlotManager.Instance.currentSlotIndex);
+        ReloadBlueprintFromSlot(BlueprintSlotManager.Instance.currentSlotIndex);
 
-        if (data != null)
-        {
-            foreach (BlueprintRoomSaveData room in data.rooms)
-                gridPlacer.PlaceRoom(room.bpRoomData, room.bpLevelIndex, room.bpPosition, room.bpRotation);
-
-            foreach (BlueprintWeaponSaveData weapon in data.weapons)
-            {
-                BlueprintWeapon bw = gridPlacer.PlaceWeapon(weapon.bpWeaponData, weapon.bpPosition, weapon.bpDirection);
-                bw.ApplyAttachedDirectionSprite();
-            }
-        }
+        // 항상 essential로 초기화
+        blueprintInventoryUI.FilterByCategory(RoomCategory.Essential);
+        blueprintInventoryUI.categoryButtonHandler.SetButtonState(RoomCategory.Essential);
 
         // 카메라 - 설계도 함선 기준으로 세팅
         CenterCameraToBP();
@@ -203,7 +203,7 @@ public class Customize_1_Controller : MonoBehaviour
 
         BlueprintSaveData data = BlueprintSlotManager.Instance.GetBlueprintAt(slotIndex);
 
-        if (data != null)
+        if (data != null && (data.rooms.Count > 0 || data.weapons.Count > 0))
         {
             foreach (BlueprintRoomSaveData room in data.rooms)
                 gridPlacer.PlaceRoom(room.bpRoomData, room.bpLevelIndex, room.bpPosition, room.bpRotation);
@@ -211,7 +211,7 @@ public class Customize_1_Controller : MonoBehaviour
             foreach (BlueprintWeaponSaveData weapon in data.weapons)
             {
                 BlueprintWeapon w = gridPlacer.PlaceWeapon(weapon.bpWeaponData, weapon.bpPosition, weapon.bpDirection);
-                w.ApplyAttachedDirectionSprite();
+                w.SetHullLevel(data.hullLevel);
             }
         }
 
@@ -249,14 +249,18 @@ public class Customize_1_Controller : MonoBehaviour
 
         // 1. 편집 중이던 도안 slot에 저장
         BlueprintRoom[] bpRooms = targetBlueprintShip.GetComponentsInChildren<BlueprintRoom>();
-        BlueprintLayoutSaver.SaveRoomLayout(bpRooms);
+        // BlueprintLayoutSaver.SaveRoomLayout(bpRooms);
 
         BlueprintWeapon[] bpWeapons = targetBlueprintShip.GetComponentsInChildren<BlueprintWeapon>();
-        BlueprintLayoutSaver.SaveWeaponLayout(bpWeapons);
+        // BlueprintLayoutSaver.SaveWeaponLayout(bpWeapons);
+
+        Customize_2_Controller controller2 = customize2Panel.GetComponent<Customize_2_Controller>();
+        BlueprintLayoutSaver.SaveLayout(bpRooms, bpWeapons, controller2.selectedHullLevel);
 
         List<BlueprintRoomSaveData> savedRooms = BlueprintLayoutSaver.LoadRoomLayout();
         List<BlueprintWeaponSaveData> savedWeapons = BlueprintLayoutSaver.LoadWeaponLayout();
-        BlueprintSaveData newData = new(savedRooms, savedWeapons);
+        int hullLvl = controller2.selectedHullLevel;
+        BlueprintSaveData newData = new(savedRooms, savedWeapons, hullLvl);
 
         // 2. 슬롯에 저장
         BlueprintSlotManager.Instance.SaveBlueprintToCurrentSlot(newData);

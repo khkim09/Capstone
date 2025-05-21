@@ -348,7 +348,7 @@ public class OuterHullSystem : ShipSystem
             }
         }
 
-//        Debug.Log($"Created {currentOuterHulls.Count} outer hull tiles at level {level + 1}");
+        //        Debug.Log($"Created {currentOuterHulls.Count} outer hull tiles at level {level + 1}");
     }
 
     /// <summary>
@@ -424,7 +424,7 @@ public class OuterHullSystem : ShipSystem
     /// <summary>
     /// 외갑판 유형
     /// </summary>
-    private enum HullType
+    public enum HullType
     {
         Straight, // 상하좌우 직선
         OuterCorner, // 외부 모서리
@@ -434,7 +434,7 @@ public class OuterHullSystem : ShipSystem
     /// <summary>
     /// 외갑판 배치 정보
     /// </summary>
-    private class HullPlacementInfo
+    public class HullPlacementInfo
     {
         // 외갑판 유형
         public HullType type = HullType.Straight;
@@ -468,7 +468,7 @@ public class OuterHullSystem : ShipSystem
         }
 
         // 프리팹 인스턴스 생성
-        GameObject hullObj = GameObject.Instantiate(hullPrefab, parentShip.transform);
+        GameObject hullObj = GameObject.Instantiate(hullPrefab, parentShip.outerHulls);
 
         // 위치 설정 (그리드 -> 월드 좌표 변환)
         Vector3 worldPos = parentShip.GetWorldPositionFromGrid(hullPosition);

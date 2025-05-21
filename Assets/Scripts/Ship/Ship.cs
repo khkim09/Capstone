@@ -69,6 +69,8 @@ public class Ship : MonoBehaviour
     /// </summary>
     [SerializeField] public GameObject outerHullPrefab;
 
+    [SerializeField] public Transform outerHulls;
+
     /// <summary>
     /// 룸 타입별로 분류된 룸 리스트 딕셔너리.
     /// 예: LifeSupport, Engine, Cockpit 등.
@@ -467,7 +469,13 @@ public class Ship : MonoBehaviour
     public int GetTotalShipValue()
     {
         int total = 0;
-        foreach (Room room in allRooms) total += room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).cost;
+
+        foreach (Room room in allRooms)
+            total += room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).cost;
+
+        foreach (ShipWeapon weapon in allWeapons)
+            total += weapon.weaponData.cost;
+
         return total;
     }
 
@@ -613,60 +621,16 @@ public class Ship : MonoBehaviour
         }
     }
 
-    /*
-    /// <summary>
-    /// 도안 -> 실제 함선 교체 (BlueprintSaveData 버전)
-    /// </summary>
-    /// <param name="saveData"></param>
-    public void ReplaceShipFromBlueprint(BlueprintSaveData saveData, int selectedHullLevel)
+    public void SetShipContentsActive(bool isActive)
     {
-        // 1. 기존 선원 모두 삭제
-        foreach (CrewMember crew in allCrews)
-            Destroy(crew.gameObject);
-        allCrews.Clear();
+        foreach (Room room in GetAllRooms())
+            room.gameObject.SetActive(isActive);
 
-        // 2. 기존 방 삭제
-        foreach (Room room in allRooms)
-            Destroy(room.gameObject);
-        allRooms.Clear();
-        roomGrid.Clear(); // 그리드 정보도 초기화
-        roomsByType.Clear(); // 타입별 룸 목록도 초기화
+        foreach (ShipWeapon weapon in GetAllWeapons())
+            weapon.gameObject.SetActive(isActive);
 
-        // 3. 기존 무기 삭제
-        foreach (ShipWeapon weapon in allWeapons)
-            Destroy(weapon.gameObject);
-        allWeapons.Clear();
-
-        // // 4. 외갑판 레벨 설정
-        // Debug.LogError($"외갑판 설정: {selectedHullLevel}");
-        // SetOuterHullLevel(selectedHullLevel);
-
-        // 4. 방 배치
-        foreach (BlueprintRoomSaveData roomData in saveData.rooms)
-        {
-            AddRoom(
-                roomData.bpLevelIndex,
-                roomData.bpRoomData,
-                roomData.bpPosition,
-                roomData.bpRotation
-            );
-        }
-
-        // 5. 무기 배치
-        foreach (BlueprintWeaponSaveData weaponData in saveData.weapons)
-        {
-            ShipWeapon newWeapon = AddWeapon(
-                weaponData.bpWeaponData.id,
-                weaponData.bpPosition,
-                weaponData.bpDirection
-            );
-
-            if (newWeapon != null)
-                newWeapon.ApplyRotationSprite(selectedHullLevel);
-        }
+        outerHulls.gameObject.SetActive(isActive);
     }
-    */
-
     // ---------------- <기현> 여기까지 --------------------
 
     #endregion

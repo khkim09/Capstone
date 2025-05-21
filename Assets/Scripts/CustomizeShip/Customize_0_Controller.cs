@@ -1,9 +1,16 @@
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.InputSystem.XInput;
 using UnityEngine.UI;
 
 public class Customize_0_Controller : MonoBehaviour
 {
+    [Header("Ship")]
+    [SerializeField] private Ship playerShip;
+    [SerializeField] private BlueprintShip bpShip;
+
     [Header("UI Panels")]
     [SerializeField] private GameObject customize0Panel;
     [SerializeField] private GameObject customize1Panel;
@@ -11,14 +18,17 @@ public class Customize_0_Controller : MonoBehaviour
 
     [Header("Fields")]
     [SerializeField] private Button exitButton;
-    [SerializeField] private Button applyButton;
+    [SerializeField] public Button applyButton;
     [SerializeField] private Button editButton;
-    [SerializeField] private BPPreviewArea bpPreviewArea;
+    [SerializeField] public BPPreviewArea bpPreviewArea;
 
     [SerializeField] private Button slot1Button;
     [SerializeField] private Button slot2Button;
     [SerializeField] private Button slot3Button;
     [SerializeField] private Button slot4Button;
+
+    [Header("Applied Tags")]
+    [SerializeField] private List<Image> appliedTags = new();
 
     public List<Button> slotButtons = new();
 
@@ -41,11 +51,43 @@ public class Customize_0_Controller : MonoBehaviour
     }
 
     /// <summary>
+    /// 적용 중인 도안 표시
+    /// </summary>
+    private void OnEnable()
+    {
+        // playerShip 내 모든 오브젝트 비활성화
+        playerShip.SetShipContentsActive(false);
+
+        for (int i = 0; i < appliedTags.Count; i++)
+        {
+            appliedTags[i].enabled = false;
+
+            TextMeshProUGUI tmp = appliedTags[i].GetComponentInChildren<TextMeshProUGUI>();
+            if (tmp != null)
+                tmp.enabled = false;
+        }
+
+        int index = 0;
+        if (BlueprintSlotManager.Instance != null)
+            index = BlueprintSlotManager.Instance.appliedSlotIndex;
+
+        if (index >= 0 && index < appliedTags.Count)
+        {
+            appliedTags[index].enabled = true;
+            TextMeshProUGUI tmp = appliedTags[index].GetComponentInChildren<TextMeshProUGUI>();
+            if (tmp != null)
+                tmp.enabled = true;
+        }
+    }
+
+    /// <summary>
     /// TODO : Idle scene으로 전환 구현 필요!!
     /// </summary>
     public void OnClickExit()
     {
         // scene 전환
+        // playerShip.SetShipContentsActive(true); // 유저 함선 보이게
+        SceneChanger.Instance.LoadScene("Planet");
     }
 
     /// <summary>
@@ -66,8 +108,8 @@ public class Customize_0_Controller : MonoBehaviour
         customize1Panel.SetActive(true);
 
         // Customize_1_Controller로 슬롯 정보 넘기기 (슬롯 번호는 BlueprintSlotManager.Instance.currentSlotIndex로 저장됨)
-        Customize_1_Controller controller = customize1Panel.GetComponent<Customize_1_Controller>();
-        controller.ReloadBlueprintFromSlot(BlueprintSlotManager.Instance.currentSlotIndex);
+        Customize_1_Controller controller1 = customize1Panel.GetComponent<Customize_1_Controller>();
+        controller1.ReloadBlueprintFromSlot(BlueprintSlotManager.Instance.currentSlotIndex);
     }
 
     /// <summary>
@@ -83,7 +125,8 @@ public class Customize_0_Controller : MonoBehaviour
         Button btn = slotButtons[index];
         ColorBlock cb = btn.colors;
 
-        if (BlueprintSlotManager.Instance.GetBlueprintAt(index) == null)
+        BlueprintSaveData data = BlueprintSlotManager.Instance.GetBlueprintAt(index);
+        if (data == null || (data.rooms.Count == 0 && data.weapons.Count == 0))
             cb.normalColor = Color.gray;
         else if (!isValid)
             cb.normalColor = Color.red;
@@ -102,18 +145,41 @@ public class Customize_0_Controller : MonoBehaviour
         editButton.interactable = true;
 
         BlueprintSlotManager.Instance.currentSlotIndex = slotIndex;
+        Customize_2_Controller controller2 = customize2Panel.GetComponent<Customize_2_Controller>();
 
         BlueprintSaveData selectedData = BlueprintSlotManager.Instance.GetBlueprintAt(slotIndex);
-        if (selectedData != null)
-        {
-            Debug.LogError($"도안 {slotIndex}: 방 {selectedData.rooms.Count}, 무기 {selectedData.weapons.Count}");
-            bpPreviewArea.Show(selectedData); // 도안 미리보기 표시
 
+        // 해당 슬롯에 도안에 뭔가 있음
+        if (selectedData != null && (selectedData.rooms.Count > 0 || selectedData.weapons.Count > 0))
+        {
+            // 외갑판 preview도 슬롯 별로
+            if (selectedData.hullLevel >= 0)
+            {
+                Debug.Log($"controller0 도안에 뭐 있고 외갑판 레벨 0이상 : {selectedData.hullLevel}");
+                bpShip = controller2.MakeBPShipWithSaveData();
+                bpShip.SetBPHullLevel(selectedData.hullLevel, controller2.previewOuterHullPrefab);
+            }
+            else
+            {
+                Debug.Log($"cont0 도안에 뭐 있지만 외갑판 세팅한 적 없음 : {selectedData.hullLevel}");
+                bpShip = controller2.MakeBPShipWithSaveData();
+                bpShip.SetBPHullLevel(-1, controller2.previewOuterHullPrefab);
+            }
+
+            bpPreviewArea.UpdateAndShow(selectedData); // 도안 미리보기 표시
+
+            // 실제 함선으로 교체 가능한지 체크
             CheckApplyAvailable();
         }
         else
         {
-            bpPreviewArea.Clear(); // 미리보기 제거
+            // 외갑판 삭제
+            bpShip.ClearRooms();
+            bpShip.ClearPreviewOuterHulls();
+            bpShip.SetBPHullLevel(0, controller2.previewOuterHullPrefab);
+
+            // 도안 미리보기 제거
+            bpPreviewArea.Clear();
             applyButton.interactable = false;
         }
     }

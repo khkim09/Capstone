@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class Customize_2_Controller : MonoBehaviour
 {
     [Header("UI panel")]
+    [SerializeField] private BPPreviewCamera previewCam;
     [SerializeField] private GameObject customize0Panel;
     [SerializeField] private GameObject customize2Panel;
 
     [Header("선택된 외갑판")]
-    [SerializeField] private int selectedHullLevel = 0;
+    [SerializeField] public int selectedHullLevel = -1;
 
     [Header("Buttons")]
     [SerializeField] private Button outerhullbutton1;
@@ -50,7 +51,7 @@ public class Customize_2_Controller : MonoBehaviour
     /// <summary>
     /// 제작한 설계도
     /// </summary>
-    public BlueprintShip targetBlueprintShip;
+    public BlueprintShip bpShip;
 
     /// <summary>
     /// 배치용 가이드라인
@@ -72,11 +73,23 @@ public class Customize_2_Controller : MonoBehaviour
     /// </summary>
     private BlueprintSaveData selectedData;
 
+    /// <summary>
+    /// 외갑판 prefab (preview용)
+    /// </summary>
+    [SerializeField] public GameObject previewOuterHullPrefab;
+
+    /// <summary>
+    /// 외갑판 적용 preview 보여줄 이미지
+    /// </summary>
+    [SerializeField] private RawImage hullPreviewImage;
+
+    private bool buyClicked = false;
+
     private void Start()
     {
-        outerhullbutton1.onClick.AddListener(() => { OnClickOuterHullButton(1); });
-        outerhullbutton2.onClick.AddListener(() => { OnClickOuterHullButton(2); });
-        outerhullbutton3.onClick.AddListener(() => { OnClickOuterHullButton(3); });
+        outerhullbutton1.onClick.AddListener(() => { OnClickOuterHullButton(0); });
+        outerhullbutton2.onClick.AddListener(() => { OnClickOuterHullButton(1); });
+        outerhullbutton3.onClick.AddListener(() => { OnClickOuterHullButton(2); });
 
         buyButton.onClick.AddListener(() => { OnClickBuy(); });
         cancelButton.onClick.AddListener(() => { OnClickCancel(); });
@@ -91,14 +104,23 @@ public class Customize_2_Controller : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
+        playerShip.SetShipContentsActive(false);
+
         selectedData = BlueprintSlotManager.Instance.GetBlueprintAt(BlueprintSlotManager.Instance.currentSlotIndex);
         if (selectedData == null)
             return;
+        if (selectedData.rooms.Count == 0 && selectedData.weapons.Count == 0)
+            return;
 
-        if (targetBlueprintShip != null && playerShip != null)
+        // BlueprintSaveData 기반으로 blueprintShip 생성
+        bpShip = MakeBPShipWithSaveData();
+
+        if (bpShip != null && playerShip != null)
         {
+            AdjustRawImageAspect();
+
             int currentCurrency = ResourceManager.Instance.COMA; // 보유 재화량
-            totalBPCost = targetBlueprintShip.GetTotalBPCost(); // 설계도 가격
+            totalBPCost = bpShip.GetTotalBPCost(); // 설계도 가격
             originalShipCost = playerShip.GetTotalShipValue(); // 사용중인 함선 가격
 
             currency.text = $"Currency : {currentCurrency}";
@@ -128,24 +150,42 @@ public class Customize_2_Controller : MonoBehaviour
                 buyButton.interactable = false;
             }
         }
-
-        // BlueprintSaveData 기반으로 blueprintShip 생성
-        MakeBPShipWithSaveData();
     }
 
     /// <summary>
     /// BlueprintSaveData 기반으로 blueprintShip 생성
     /// </summary>
-    private void MakeBPShipWithSaveData()
+    public BlueprintShip MakeBPShipWithSaveData()
     {
-        foreach (BlueprintRoomSaveData room in selectedData.rooms)
-            gridPlacer.PlaceRoom(room.bpRoomData, room.bpLevelIndex, room.bpPosition, room.bpRotation);
+        List<Vector2Int> tiles = new();
 
+        bpShip.ClearRooms();
+        bpShip.ClearPreviewOuterHulls();
+
+        selectedData = BlueprintSlotManager.Instance.GetBlueprintAt(BlueprintSlotManager.Instance.currentSlotIndex);
+        if (selectedData == null)
+            return null;
+        if (selectedData.rooms.Count == 0)
+            return null;
+
+        foreach (BlueprintRoomSaveData room in selectedData.rooms)
+        {
+            GameObject bpRoom = gridPlacer.PlacePreviewRoom(room.bpRoomData, room.bpLevelIndex, room.bpPosition, room.bpRotation, bpShip.transform, tiles);
+            BlueprintRoom br = bpRoom.GetComponent<BlueprintRoom>();
+            bpShip.AddPlaceable(br);
+        }
+
+        if (selectedData.weapons.Count == 0)
+            return null;
         foreach (BlueprintWeaponSaveData weapon in selectedData.weapons)
         {
-            BlueprintWeapon bw = gridPlacer.PlaceWeapon(weapon.bpWeaponData, weapon.bpPosition, weapon.bpDirection);
+            GameObject bpWeapon = gridPlacer.PlacePreviewWeapon(weapon.bpWeaponData, weapon.bpPosition, weapon.bpDirection, bpShip.transform, tiles);
+            BlueprintWeapon bw = bpWeapon.GetComponent<BlueprintWeapon>();
             bw.ApplyAttachedDirectionSprite();
+            bpShip.AddPlaceable(bw);
         }
+
+        return gridPlacer.targetBlueprintShip;
     }
 
     /// <summary>
@@ -155,15 +195,17 @@ public class Customize_2_Controller : MonoBehaviour
     /// </summary>
     public void OnClickBuy()
     {
-        // selectedData = BlueprintSlotManager.Instance.GetBlueprintAt(BlueprintSlotManager.Instance.currentSlotIndex);
-        if (selectedData == null)
+        if (selectedData == null || (selectedData.rooms.Count == 0 && selectedData.weapons.Count == 0))
             return;
 
-        if (selectedHullLevel == 0)
+        if (selectedHullLevel == -1)
         {
             feedbackText.text = "Select your OuterHull";
             return;
         }
+
+        // 도안에 외갑판 레벨 저장
+        selectedData.hullLevel = selectedHullLevel;
 
         // 1. 기존 함선 가격 저장
         originalShipCost = playerShip.GetTotalShipValue();
@@ -172,22 +214,19 @@ public class Customize_2_Controller : MonoBehaviour
         playerShip.BackupAllCrews();
 
         // 3. 설계도 -> 실제 함선 (bpRoom -> Room) 변환
-        playerShip.ReplaceShipFromBlueprint(targetBlueprintShip);
+        playerShip.ReplaceShipFromBlueprint(bpShip);
 
         // 4. 함선 교체 로직
-        Debug.LogError("유효 O");
-
         // 기존 함선 판매
         ResourceManager.Instance.ChangeResource(ResourceType.COMA, originalShipCost);
 
         // 설계도 함선 구매 (재화량 차감)
-        ResourceManager.Instance.ChangeResource(ResourceType.COMA, -targetBlueprintShip.GetTotalBPCost());
+        ResourceManager.Instance.ChangeResource(ResourceType.COMA, -bpShip.GetTotalBPCost());
 
         // RTS 이동을 위한 data 업데이트
         RTSSelectionManager.Instance.RefreshMovementData();
 
         // 1) 함선 내 모든 방의 타일 - 선원 점유 상태 초기화
-        Debug.LogError($"빌드 후 전체 방 수 : {playerShip.GetAllRooms().Count}");
         CrewReservationManager.ClearAllReservations(playerShip);
 
         // 2) 기존 선원 복구 및 랜덤 배치
@@ -198,6 +237,17 @@ public class Customize_2_Controller : MonoBehaviour
         // 함선 스텟 다시 계산
         playerShip.RecalculateAllStats();
 
+        // 외갑판 실제로 생성
+        playerShip.SetOuterHullLevel(selectedHullLevel);
+        playerShip.UpdateOuterHullVisuals();
+        BlueprintSlotManager.Instance.appliedSlotIndex = BlueprintSlotManager.Instance.currentSlotIndex;
+
+        // 도안도 playership으로 업데이트
+        BlueprintSaveData data = BlueprintSlotManager.Instance.GetBlueprintAt(BlueprintSlotManager.Instance.currentSlotIndex);
+        Customize_0_Controller controller0 = customize0Panel.GetComponent<Customize_0_Controller>();
+        controller0.bpPreviewArea.UpdateAndShow(data);
+
+        buyClicked = true;
         OnClickCancel();
     }
 
@@ -211,7 +261,31 @@ public class Customize_2_Controller : MonoBehaviour
 
         // 초기화 작업
         BlueprintSlotManager.Instance.currentSlotIndex = -1;
-        selectedHullLevel = 0;
+        selectedHullLevel = -1;
+        feedbackText.text = "";
+        Customize_0_Controller controller0 = customize0Panel.GetComponent<Customize_0_Controller>();
+        controller0.applyButton.interactable = false;
+
+        BlueprintRoom[] bpRooms = bpShip.GetComponentsInChildren<BlueprintRoom>();
+        BlueprintWeapon[] bpWeapons = bpShip.GetComponentsInChildren<BlueprintWeapon>();
+
+        foreach (BlueprintRoom r in bpRooms)
+            Destroy(r.gameObject);
+
+        foreach (BlueprintWeapon w in bpWeapons)
+            Destroy(w.gameObject);
+
+        if (!buyClicked)
+        {
+            bpShip.ClearPreviewOuterHulls();
+
+            // 외갑판 초기화 (적용 X)
+            bpShip.SetBPHullLevel(-1, previewOuterHullPrefab);
+            selectedData.hullLevel = -1;
+        }
+
+        buyClicked = false;
+        bpShip.ClearRooms();
     }
 
     /// <summary>
@@ -223,14 +297,34 @@ public class Customize_2_Controller : MonoBehaviour
         selectedHullLevel = level;
 
         // 외갑판 적용
-        if (targetBlueprintShip != null)
-            targetBlueprintShip.SetHullLevel(selectedHullLevel);
+        if (bpShip != null)
+            bpShip.SetBPHullLevel(selectedHullLevel, previewOuterHullPrefab);
 
-        // 그냥 onenable()에서 replacefromblueprint()해버리고 - onclickbuy() 1~3
-        // onclickbuy()에서는 구매작업만
-        // onclickcancel()누르면 reverttooriginalship() 다시 가져오면
-        // outerhull 작업 + 카메라로 preview띄우기 쉬울듯?
+        // 데이터에 저장
+        selectedData.hullLevel = level;
 
-        // bpship으로 할 수 있는 방법 있으면 bpship으로 외갑판 + preview하면 젤 간단
+        // 비율 조정
+        AdjustRawImageAspect();
+
+        // 강제 렌더링
+        previewCam.RenderOnce();
+    }
+
+    /// <summary>
+    /// Image 비율 조정
+    /// </summary>
+    private void AdjustRawImageAspect()
+    {
+        if (hullPreviewImage == null || hullPreviewImage.texture == null)
+            return;
+
+        float textureWidth = hullPreviewImage.texture.width;
+        float textureHeight = hullPreviewImage.texture.height;
+        float aspectRatio = textureWidth / textureHeight;
+
+        RectTransform rt = hullPreviewImage.GetComponent<RectTransform>();
+
+        float baseHeight = rt.sizeDelta.y;
+        rt.sizeDelta = new Vector2(baseHeight * aspectRatio, baseHeight);
     }
 }
