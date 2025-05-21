@@ -9,6 +9,16 @@ using UnityEngine.SceneManagement;
 public class EndingInfoDisplay : MonoBehaviour
 {
     /// <summary>
+    /// 1번 캔버스
+    /// </summary>
+    [SerializeField] private GameObject firstEndingCanvas;
+
+    /// <summary>
+    /// 2번 캔버스
+    /// </summary>
+    [SerializeField] private GameObject secondEndingCanvas;
+
+    /// <summary>
     /// 출력할 TextMeshProUGUI 컴포넌트
     /// </summary>
     [SerializeField] private TextMeshProUGUI endingText;
@@ -102,7 +112,14 @@ public class EndingInfoDisplay : MonoBehaviour
 
     private void GoToNextScene()
     {
-        // 원하는 방식으로 씬 전환 가능
-        SceneManager.LoadScene("EndingScene2");
+        SwitchCanvas();
+    }
+    /// <summary>
+    /// 현재 캔버스를 끄고 다음 캔버스를 켭니다.
+    /// </summary>
+    private void SwitchCanvas()
+    {
+        if (firstEndingCanvas != null) firstEndingCanvas.SetActive(false);
+        if (secondEndingCanvas != null) secondEndingCanvas.SetActive(true);
     }
 }
