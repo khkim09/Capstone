@@ -509,7 +509,7 @@ public class PlanetData
                 quest.title = "ui.quest.title.piratehunt";
                 objective.amount = Random.Range(5, 21);
                 objective.targetPlanetDataId = planetId;
-                objective.description = "ui.quest.objective.piratehunt".Localize(objective.amount);
+                objective.description = "ui.quest.objective.piratehunt";
 
                 reward = objective.amount * 100;
                 break;
@@ -520,9 +520,7 @@ public class PlanetData
                 objective.amount = item.capacity;
                 objective.targetPlanetDataId = randomPlanetData.planetId;
                 targetPlanetData = GameManager.Instance.PlanetDataList[randomPlanetData.planetId];
-                objective.description = "ui.quest.objective.itemtransport".Localize(item.itemName.Localize(),
-                    objective.amount,
-                    targetPlanetData.planetName);
+                objective.description = "ui.quest.objective.itemtransport";
 
                 reward = (int)(item.costMax * 1.1f * objective.amount);
                 break;
@@ -533,8 +531,7 @@ public class PlanetData
                 objective.amount = item.capacity;
                 objective.targetPlanetDataId = planetId;
                 objective.description =
-                    "ui.quest.objective.itemprocurement".Localize(item.itemName.Localize(), objective.amount);
-                reward = (int)(item.costMax * 1.1f * objective.amount);
+                    "ui.quest.objective.itemprocurement";
                 break;
             case QuestObjectiveType.CrewTransport:
                 quest.title = "ui.quest.title.crewtransport";
@@ -542,7 +539,7 @@ public class PlanetData
                 objective.targetPlanetDataId = randomPlanetData.planetId;
                 targetPlanetData = GameManager.Instance.PlanetDataList[randomPlanetData.planetId];
                 objective.description = objective.description =
-                    "ui.quest.objective.crewtransport".Localize(objective.amount, targetPlanetData.planetName);
+                    "ui.quest.objective.crewtransport";
 
                 reward = objective.amount * 500;
                 break;

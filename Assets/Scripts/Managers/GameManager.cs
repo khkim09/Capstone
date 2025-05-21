@@ -246,10 +246,10 @@ public class GameManager : MonoBehaviour
         Room teleporter = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Teleporter);
         Room[] corridors = new Room[15];
 
-        Room engine2 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
-        Room engine3 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
-        playerShip.AddRoom(engine2, new Vector2Int(40, 40), Constants.Rotations.Rotation.Rotation0);
-        playerShip.AddRoom(engine3, new Vector2Int(43, 43), Constants.Rotations.Rotation.Rotation0);
+        // Room engine2 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
+        // Room engine3 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
+        // playerShip.AddRoom(engine2, new Vector2Int(40, 40), Constants.Rotations.Rotation.Rotation0);
+        // playerShip.AddRoom(engine3, new Vector2Int(43, 43), Constants.Rotations.Rotation.Rotation0);
 
 
         for (int index = 0; index < corridors.Length; index++)
@@ -278,33 +278,33 @@ public class GameManager : MonoBehaviour
         playerShip.AddRoom(corridors[13], new Vector2Int(31, 35));
         playerShip.AddRoom(corridors[14], new Vector2Int(32, 35));
 
-        Room storageRoom = GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
-        Room storageRoom2 =
-            GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
-
-        playerShip.AddRoom(storageRoom, new Vector2Int(27, 26), Constants.Rotations.Rotation.Rotation270);
-        playerShip.AddRoom(storageRoom2, new Vector2Int(38, 24), Constants.Rotations.Rotation.Rotation90);
-        StorageRoomBase storage = (StorageRoomBase)storageRoom;
-        TradingItem item = GameObjectFactory.Instance.CreateItemInstance(0, 20);
-        TradingItem item2 = GameObjectFactory.Instance.CreateItemInstance(2, 10);
-        TradingItem item3 = GameObjectFactory.Instance.CreateItemInstance(21, 1);
-        storage.AddItem(item, new Vector2Int(0, 0), Constants.Rotations.Rotation.Rotation0);
-        storage.AddItem(item2, new Vector2Int(2, 2), Constants.Rotations.Rotation.Rotation0);
-        StorageRoomBase storage2 = (StorageRoomBase)storageRoom2;
-        storage2.AddItem(item3, new Vector2Int(1, 1), Constants.Rotations.Rotation.Rotation0);
-        Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
-        playerShip.AddRoom(temp, new Vector2Int(50, 31), Constants.Rotations.Rotation.Rotation90);
+        // Room storageRoom = GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+        // Room storageRoom2 =
+        //     GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+        //
+        // playerShip.AddRoom(storageRoom, new Vector2Int(27, 26), Constants.Rotations.Rotation.Rotation270);
+        // playerShip.AddRoom(storageRoom2, new Vector2Int(38, 24), Constants.Rotations.Rotation.Rotation90);
+        // StorageRoomBase storage = (StorageRoomBase)storageRoom;
+        // TradingItem item = GameObjectFactory.Instance.CreateItemInstance(0, 20);
+        // TradingItem item2 = GameObjectFactory.Instance.CreateItemInstance(2, 10);
+        // TradingItem item3 = GameObjectFactory.Instance.CreateItemInstance(21, 1);
+        // storage.AddItem(item, new Vector2Int(0, 0), Constants.Rotations.Rotation.Rotation0);
+        // storage.AddItem(item2, new Vector2Int(2, 2), Constants.Rotations.Rotation.Rotation0);
+        // StorageRoomBase storage2 = (StorageRoomBase)storageRoom2;
+        // storage2.AddItem(item3, new Vector2Int(1, 1), Constants.Rotations.Rotation.Rotation0);
+        // Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
+        // playerShip.AddRoom(temp, new Vector2Int(50, 31), Constants.Rotations.Rotation.Rotation90);
         playerShip.AddWeapon(1, new Vector2Int(35, 33), ShipWeaponAttachedDirection.East);
 
         // playerShip.AddWeapon(8, new Vector)
 
-        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
-        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
-
-        if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
-        if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
-        if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
+        // CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
+        // CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
+        // CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
+        //
+        // if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
+        // if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
+        // if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
         //
         playerShip.UpdateOuterHullVisuals();
 
