@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("id", "planet", "tier", "itemName", "debugName", "type", "temperatureMin", "temperatureMax", "shape", "costBase", "capacity", "costMin", "costChangerate", "costMax", "description")]
+	[ES3PropertiesAttribute("id", "planet", "tier", "itemName", "debugName", "type", "temperatureMin", "temperatureMax", "shape", "costBase", "capacity", "costMin", "costChangerate", "costMax", "description", "itemSprite", "amount", "boughtCost")]
 	public class ES3UserType_TradingItemData : ES3ScriptableObjectType
 	{
 		public static ES3Type Instance = null;
@@ -31,6 +31,9 @@ namespace ES3Types
 			writer.WriteProperty("costChangerate", instance.costChangerate, ES3Type_float.Instance);
 			writer.WriteProperty("costMax", instance.costMax, ES3Type_int.Instance);
 			writer.WriteProperty("description", instance.description, ES3Type_string.Instance);
+			writer.WritePropertyByRef("itemSprite", instance.itemSprite);
+			writer.WriteProperty("amount", instance.amount, ES3Type_int.Instance);
+			writer.WriteProperty("boughtCost", instance.boughtCost, ES3Type_int.Instance);
 		}
 
 		protected override void ReadScriptableObject<T>(ES3Reader reader, object obj)
@@ -85,6 +88,15 @@ namespace ES3Types
 						break;
 					case "description":
 						instance.description = reader.Read<System.String>(ES3Type_string.Instance);
+						break;
+					case "itemSprite":
+						instance.itemSprite = reader.Read<UnityEngine.Sprite>(ES3Type_Sprite.Instance);
+						break;
+					case "amount":
+						instance.amount = reader.Read<System.Int32>(ES3Type_int.Instance);
+						break;
+					case "boughtCost":
+						instance.boughtCost = reader.Read<System.Int32>(ES3Type_int.Instance);
 						break;
 					default:
 						reader.Skip();

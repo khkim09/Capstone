@@ -608,18 +608,15 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         //피해발생 이후에 현재 체력에 따라 시설의 피해 단계를 변화시킨다.
         if (currentHitPoints <=
             roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
-        {
             damageCondition = DamageLevel.breakdown;
-            OnDisabled();
-        }
+        //  OnDisabled();
         else if (currentHitPoints <=
                  roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
-        {
             damageCondition = DamageLevel.scratch;
-        }
 
         // 스탯 기여도 변화 알림
         NotifyStateChanged();
+        UpdateRoomVisual();
     }
 
     public virtual void DownDamageCondition()
