@@ -68,6 +68,15 @@ public class StorageSystem : ShipSystem
                 storageRoom.RemoveAllItems();
     }
 
+    public void RemoveItem(TradingItem item)
+    {
+        if (!GetAllItems().Contains(item)) Debug.LogError("없는 아이템 삭제 시도");
+
+        foreach (Room room in parentShip.GetAllRooms())
+            if (room is StorageRoomBase storageRoom && storageRoom.storedItems.Contains(item))
+                storageRoom.RemoveItem(item);
+    }
+
     public void SetOtherRoomsGray()
     {
         foreach (Room room in parentShip.GetAllRooms())

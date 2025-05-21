@@ -10,12 +10,11 @@ public class MenuUI : MonoBehaviour
 
     public int moveCost = 1000;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         planetData = GameManager.Instance.WhereIAm();
 
-        //IsHome();
+        // IsHome();
 
         Debug.Log(planetData.planetRace);
     }

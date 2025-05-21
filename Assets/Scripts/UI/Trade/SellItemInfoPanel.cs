@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SellItemInfoPanel : TooltipPanelBase
+public class SellItemInfoPanel : TooltipPanelBase, IPointerClickHandler
 {
     [SerializeField] private Button panelButton;
     [SerializeField] private Image panelBackground;
@@ -20,7 +20,7 @@ public class SellItemInfoPanel : TooltipPanelBase
     [SerializeField] private Color unsellableColor = Color.red;
 
     private Color originalColor = Color.white;
-    [SerializeField] private Color hightlightFontColor = Color.yellow;
+    [SerializeField] private float hightlightAlpha = 180f;
 
     [SerializeField]
     private Color selectedBackgroundColor = new(0.2f, 0.4f, 0.8f, 0.3f); // Background color when selected
@@ -44,6 +44,9 @@ public class SellItemInfoPanel : TooltipPanelBase
                 panelBackground.color = new Color(0, 0, 0, 0); // Transparent by default
             }
         }
+
+        // 텍스트 원래 색상 저장
+        if (itemName != null) originalColor = itemName.color;
     }
 
     public void Initialize(TradingItem item)
@@ -69,13 +72,6 @@ public class SellItemInfoPanel : TooltipPanelBase
                 break;
         }
 
-        panelButton.onClick.RemoveAllListeners();
-        panelButton.onClick.AddListener(() =>
-        {
-            tradeUIController.OnSellItemInfoPanelButtonClicked(currentItem);
-            tradeUIController.SetSelectedSellItemInfoPanel(this);
-        });
-
         // Reset selection state
         SetSelected(false);
     }
@@ -84,48 +80,56 @@ public class SellItemInfoPanel : TooltipPanelBase
     {
         isSelected = selected;
         if (selected)
-        {
             panelBackground.color = selectedBackgroundColor;
-            if (itemName != null) itemName.color = hightlightFontColor;
-            if (itemCategory != null) itemCategory.color = hightlightFontColor;
-            if (itemAmount != null) itemAmount.color = hightlightFontColor;
-        }
         else
-        {
-            panelBackground.color = new Color(0, 0, 0, 0);
-            if (itemName != null) itemName.color = originalColor;
-            if (itemCategory != null) itemCategory.color = originalColor;
-            if (itemAmount != null) itemAmount.color = originalColor;
-        }
+            panelBackground.color = new Color(0, 0, 0, 0); // 완전 투명
     }
 
     protected override void OnMouseEnter(PointerEventData eventData)
     {
         base.OnMouseEnter(eventData);
 
+        // 호버 시 아이템 맵 표시
+        if (currentItem != null && tradeUIController != null) tradeUIController.ShowItemMap(currentItem);
+
+        // 선택되지 않은 상태일 때만 호버 효과 적용
         if (!isSelected)
         {
-            if (itemName != null) itemName.color = hightlightFontColor;
-            if (itemCategory != null) itemCategory.color = hightlightFontColor;
-            if (itemAmount != null) itemAmount.color = hightlightFontColor;
+            // panelBackground 알파값 변경 (180/255)
+            Color backgroundColor = panelBackground.color;
+            backgroundColor.a = hightlightAlpha / 255f;
+            panelBackground.color = backgroundColor;
         }
-
-        tradeUIController.OnSellItemInfoPanelButtonClicked(currentItem);
     }
 
     protected override void OnMouseExit(PointerEventData eventData)
     {
         base.OnMouseExit(eventData);
 
+        // 호버에서 벗어날 때 아이템 맵 숨김
+        if (tradeUIController != null) tradeUIController.HideItemMap();
+
+        // 선택되지 않은 상태일 때만 호버 효과 제거
         if (!isSelected)
         {
-            if (itemName != null) itemName.color = originalColor;
-            if (itemCategory != null) itemCategory.color = originalColor;
-            if (itemAmount != null) itemAmount.color = originalColor;
+            // panelBackground 알파값 0으로 변경 (완전 투명)
+            Color backgroundColor = panelBackground.color;
+            backgroundColor.a = 0f;
+            panelBackground.color = backgroundColor;
         }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        // 마우스 우클릭 감지
+        if (eventData.button == PointerEventData.InputButton.Right)
+            if (currentItem != null && tradeUIController != null)
+                // 여기서 판매 함수 호출
+                tradeUIController.SellItem(currentItem);
     }
 
     protected override void SetToolTipText()
     {
+        // 필요한 경우 툴팁 텍스트 설정 가능
     }
 }

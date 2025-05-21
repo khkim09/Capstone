@@ -1,15 +1,19 @@
 ﻿using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CrewHealthBar : MonoBehaviour
 {
-    [Header("Health Bar Components")] [SerializeField]
+    [Header("Health Bar Components")]
+    [SerializeField]
     private Image healthBarFill;
 
     [SerializeField] private Canvas healthBarCanvas;
 
-    [Header("Settings")] [SerializeField] private Vector3 offset = new(0, 0.8f, 0); // 선원 머리 위 위치
+    [Header("Settings")][SerializeField] private Vector3 offset = new(0, 0.8f, 0); // 선원 머리 위 위치
 
     // 현재 체력과 최대 체력은 크루에서 참조
     private float currentHealth;
@@ -17,13 +21,18 @@ public class CrewHealthBar : MonoBehaviour
 
     // 따라다닐 타겟 (선원)
     private Transform target;
-    private Camera targetCamera;
+    [SerializeField] private Camera targetCamera;
 
     // 선원 참조
     private CrewBase crewBase;
 
     private void Start()
     {
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            targetCamera = Camera.main;
+            Debug.LogError($"헬스바 targetcamera : {targetCamera}");
+        }
         // 타겟 설정 (직접 부모로 설정 - 선원 오브젝트)
         target = transform.parent;
 
@@ -41,13 +50,40 @@ public class CrewHealthBar : MonoBehaviour
             InitializeHealthFromCrew();
         }
 
-        if (crewBase.currentShip == GameManager.Instance.playerShip)
-            targetCamera = Camera.main;
-        else
-            foreach (Camera camera in Camera.allCameras)
-                if (camera.name == "Enemy Camera")
-                    targetCamera = camera;
+        // StartCoroutine(HealthBarCamera());
+    }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (this != null && targetCamera == null)
+            StartCoroutine(HealthBarCamera());
+    }
+
+    private IEnumerator HealthBarCamera()
+    {
+        Debug.LogError("코루틴 호출됨");
+        while (targetCamera == null)
+        {
+            yield return null;
+
+            if (crewBase.currentShip == GameManager.Instance.playerShip)
+            {
+                Debug.LogError($"발견, {this.GetComponentInParent<CrewMember>().race}, {this.GetComponentInParent<CrewMember>().crewName}");
+                targetCamera = Camera.main;
+            }//이거로 하면 헬스바 부모 선원 출력하는데 보면
+            else
+            {
+                if (SceneManager.GetActiveScene().name == "Combat")
+                    targetCamera = GameObject.FindWithTag("EnemyCamera").GetComponent<Camera>();
+                else
+                    yield break;
+            }
+        }
 
         // Canvas 설정
         SetupCanvas();
