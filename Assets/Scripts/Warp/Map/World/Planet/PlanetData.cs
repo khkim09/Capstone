@@ -60,7 +60,11 @@ public class PlanetData
     /// <summary>
     /// 현재 해금되어있는 티어
     /// </summary>
-    public ItemTierLevel currentTier = ItemTierLevel.T1;
+    public ItemTierLevel CurrentTier => currentRevenue > Constants.Planets.Tier3RevenueRequirement
+        ? ItemTierLevel.T3
+        : currentRevenue > Constants.Planets.Tier2RevenueRequirement
+            ? ItemTierLevel.T2
+            : ItemTierLevel.T1;
 
     /// <summary>
     /// 현재 연료 가격
@@ -121,8 +125,6 @@ public class PlanetData
         SetItems();
 
         currentRevenue = 0;
-
-        currentTier = ItemTierLevel.T1;
         currentFuelPrice = Random.Range(25, 75);
 
         // 효과 관련 데이터 초기화

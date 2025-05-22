@@ -30,6 +30,14 @@ public class ItemMapController : MonoBehaviour
     private Dictionary<int, Planet> planetInstances = new();
     private bool isMapInitialized = false;
 
+    /// <summary>
+    /// 행성의 상점에서 판매 중인 아이템의 아이템 맵인지 여부를 결정하는 bool.
+    /// default 인 false 일 땐, 내가 구매했던 가격과 현재 시세를 비교하고,
+    /// true 일 땐, 행성에서 판매 중인 가격과 현재 시세를 비교한다.
+    /// </summary>
+    [Header("행성에서 판매 중인 가격과 비교할지 여부")] [SerializeField]
+    private bool isPlanetItemMap = false;
+
     private void Start()
     {
         RectMask2D rectMask = mapContent.GetComponent<RectMask2D>();
@@ -139,24 +147,45 @@ public class ItemMapController : MonoBehaviour
                 continue;
 
             int planetPrice = planetData.GetItemPrice(currentItem.id);
-
             int boughtPrice = currentItem.boughtCost;
-
             TextMeshProUGUI planetPriceText = planetInstance.GetComponentInChildren<TextMeshProUGUI>();
-            if (planetPrice < boughtPrice)
+            if (isPlanetItemMap)
             {
-                planetPriceText.color = downColor;
-                planetPriceText.text = planetPrice.ToString() + "▼";
-            }
-            else if (planetPrice == boughtPrice)
-            {
-                planetPriceText.color = sameColor;
-                planetPriceText.text = planetPrice.ToString() + "-";
+                int currentPlanetPrice = GameManager.Instance.WhereIAm().GetItemPrice(currentItem.id);
+
+                if (currentPlanetPrice > planetPrice)
+                {
+                    planetPriceText.color = downColor;
+                    planetPriceText.text = planetPrice.ToString() + "▼";
+                }
+                else if (currentPlanetPrice == planetPrice)
+                {
+                    planetPriceText.color = sameColor;
+                    planetPriceText.text = planetPrice.ToString() + "-";
+                }
+                else
+                {
+                    planetPriceText.color = upColor;
+                    planetPriceText.text = planetPrice.ToString() + "▲";
+                }
             }
             else
             {
-                planetPriceText.color = upColor;
-                planetPriceText.text = planetPrice.ToString() + "▲";
+                if (planetPrice < boughtPrice)
+                {
+                    planetPriceText.color = downColor;
+                    planetPriceText.text = planetPrice.ToString() + "▼";
+                }
+                else if (planetPrice == boughtPrice)
+                {
+                    planetPriceText.color = sameColor;
+                    planetPriceText.text = planetPrice.ToString() + "-";
+                }
+                else
+                {
+                    planetPriceText.color = upColor;
+                    planetPriceText.text = planetPrice.ToString() + "▲";
+                }
             }
         }
     }
@@ -202,5 +231,10 @@ public class ItemMapController : MonoBehaviour
     {
         isMapInitialized = false;
         Initialize(currentItem);
+    }
+
+    public void SetIsPlanetItemMap(bool value)
+    {
+        isPlanetItemMap = value;
     }
 }

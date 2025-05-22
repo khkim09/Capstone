@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("planetId", "planetName", "planetRace", "itemPlanet", "normalizedPosition", "currentSprite", "itemsTier1", "itemsTier2", "itemsTier3", "currentRevenue", "currentTier", "currentFuelPrice", "questList", "activeEffects", "categoryPriceModifiers", "itemPriceDictionary", "isHome")]
+	[ES3PropertiesAttribute("planetId", "planetName", "planetRace", "itemPlanet", "normalizedPosition", "currentSprite", "itemsTier1", "itemsTier2", "itemsTier3", "currentRevenue", "currentFuelPrice", "questList", "activeEffects", "categoryPriceModifiers", "itemPriceDictionary", "isHome")]
 	public class ES3UserType_PlanetData : ES3ObjectType
 	{
 		public static ES3Type Instance = null;
@@ -26,7 +26,6 @@ namespace ES3Types
 			writer.WriteProperty("itemsTier2", instance.itemsTier2, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<TradingItemData>)));
 			writer.WriteProperty("itemsTier3", instance.itemsTier3, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<TradingItemData>)));
 			writer.WriteProperty("currentRevenue", instance.currentRevenue, ES3Type_int.Instance);
-			writer.WriteProperty("currentTier", instance.currentTier, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(ItemTierLevel)));
 			writer.WriteProperty("currentFuelPrice", instance.currentFuelPrice, ES3Type_int.Instance);
 			writer.WriteProperty("questList", instance.questList, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<RandomQuest>)));
 			writer.WriteProperty("activeEffects", instance.activeEffects, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<PlanetEffect>)));
@@ -72,9 +71,6 @@ namespace ES3Types
 						break;
 					case "currentRevenue":
 						instance.currentRevenue = reader.Read<System.Int32>(ES3Type_int.Instance);
-						break;
-					case "currentTier":
-						instance.currentTier = reader.Read<ItemTierLevel>();
 						break;
 					case "currentFuelPrice":
 						instance.currentFuelPrice = reader.Read<System.Int32>(ES3Type_int.Instance);

@@ -25,6 +25,8 @@ public class BuyCheckPanel : MonoBehaviour
     [SerializeField] private Button buyButton;
     [SerializeField] private Button closeButton;
 
+    [SerializeField] private TradeUIController tradeUIController;
+
     private TradingItemData currentItem;
 
     private int currentAmount;
@@ -39,8 +41,10 @@ public class BuyCheckPanel : MonoBehaviour
         shapeImage.sprite = itemShapeSprites[currentItem.shape];
         nameText.text = currentItem.itemName.Localize();
         descriptionText.text = currentItem.description.Localize();
+        int currentPrice = GameManager.Instance.WhereIAm().GetItemPrice(currentItem);
+        currentItem.boughtCost = currentPrice;
         priceText.text =
-            $"{"ui.trade.currentprice".Localize()} : {GameManager.Instance.WhereIAm().GetItemPrice(currentItem).ToString()}";
+            $"{"ui.trade.currentprice".Localize()} : {currentPrice.ToString()}";
 
         maxAmount = currentItem.capacity;
         minAmount = 1;
@@ -80,6 +84,12 @@ public class BuyCheckPanel : MonoBehaviour
     public void UpdateAmount()
     {
         amountText.text = currentAmount.ToString();
+        currentItem.amount = currentAmount;
+    }
+
+    public void OnBuyButtonClicked()
+    {
+        tradeUIController.OnBuyCheckBuyButtonClicked(currentItem);
     }
 }
 

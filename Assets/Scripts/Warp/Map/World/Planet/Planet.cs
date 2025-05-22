@@ -87,7 +87,7 @@ public class Planet : TooltipPanelBase
         {
             planetTooltip.planetIcon.sprite = planetData.currentSprite;
             planetTooltip.planetNameText.text = planetData.planetName;
-            planetTooltip.planetTradeTierIcon.sprite = tradeTierSprites[(int)planetData.currentTier];
+            planetTooltip.planetTradeTierIcon.sprite = tradeTierSprites[(int)planetData.CurrentTier];
 
 
             if (!HasQuest && !HasEvent)

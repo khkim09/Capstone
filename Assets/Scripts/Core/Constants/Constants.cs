@@ -121,6 +121,7 @@ public static class Constants
         /// </summary>
         // public const float PlanetNodeValidRadius = PlanetSize * 4f;
         public const float PlanetNodeValidRadius = PlanetSize * 10f;
+        
         /// <summary>
         /// 2 티어 아이템 해금을 위해 필요한 거래 총액
         /// </summary>
