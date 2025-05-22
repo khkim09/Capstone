@@ -516,6 +516,7 @@ public class PlanetData
         } while (randomPlanetData == this);
 
 
+        // TODO : 테스트용 퀘스트 고정 코드
         randomType = QuestObjectiveType.ItemProcurement;
         TradingItemDataBase itemDatabase = GameObjectFactory.Instance.ItemFactory.itemDataBase;
         TradingItemData item = null;
@@ -523,6 +524,7 @@ public class PlanetData
         switch (randomType)
         {
             case QuestObjectiveType.PirateHunt:
+                quest.objectives[0].objectiveType = QuestObjectiveType.PirateHunt;
                 quest.title = "ui.quest.title.piratehunt";
                 objective.amount = Random.Range(5, 21);
                 objective.targetPlanetDataId = planetId;
@@ -531,6 +533,7 @@ public class PlanetData
                 reward = objective.amount * 100;
                 break;
             case QuestObjectiveType.ItemTransport:
+                quest.objectives[0].objectiveType = QuestObjectiveType.ItemTransport;
                 quest.title = "ui.quest.title.itemtransport";
                 item = itemDatabase.GetRandomItem();
                 objective.targetId = item.id;
@@ -542,6 +545,7 @@ public class PlanetData
                 reward = (int)(item.costMax * 1.1f * objective.amount);
                 break;
             case QuestObjectiveType.ItemProcurement:
+                quest.objectives[0].objectiveType = QuestObjectiveType.ItemProcurement;
                 quest.title = "ui.quest.title.itemprocurement";
                 item = itemDatabase.GetRandomItem();
                 objective.targetId = item.id;
@@ -549,8 +553,10 @@ public class PlanetData
                 objective.targetPlanetDataId = planetId;
                 objective.description =
                     "ui.quest.objective.itemprocurement";
+                reward = (int)(item.costMax * 1.1f * objective.amount);
                 break;
             case QuestObjectiveType.CrewTransport:
+                quest.objectives[0].objectiveType = QuestObjectiveType.CrewTransport;
                 quest.title = "ui.quest.title.crewtransport";
                 objective.amount = 1;
                 objective.targetPlanetDataId = randomPlanetData.planetId;
