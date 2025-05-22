@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 // 디버깅용으로 에디터에서도 실행되도록 설정
 [ExecuteInEditMode]
@@ -22,11 +25,7 @@ public class ShipFollowCamera : MonoBehaviour
     /// <summary>
     /// 런타임에서 Follow Ship 을 정하기 위한 boolean
     /// </summary>
-    [SerializeField] private bool isFollowPlayerShip = false;
-    /// <summary>
-    /// 런타임에서 Follow Ship 을 정하기 위한 boolean
-    /// </summary>
-    [SerializeField] private bool isFollowEnemyShip = false;
+    [SerializeField] private bool isFollowPlayerShip = true;
 
     private Vector3 shipCenter; // 함선 중심 위치
     private float shipWidth, shipHeight; // 함선 크기
@@ -36,24 +35,28 @@ public class ShipFollowCamera : MonoBehaviour
     {
         if (!Application.isPlaying) return;
         if (GameManager.Instance != null)
-        {
             GameManager.Instance.OnShipInitialized += GetCameraStartPositionToOriginShip;
-
-            if (isFollowPlayerShip) targetShip = GameManager.Instance.playerShip;
-        }
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        if (isFollowEnemyShip)
-        {
-            targetShip = GameObject.Find("EnemyShip").GetComponent<Ship>();
-        }
+        StartCoroutine(CameraCoroutine());
+    }
+
+    private IEnumerator CameraCoroutine()
+    {
+        yield return null;
+
+        if (isFollowPlayerShip)
+            targetShip = GameManager.Instance.playerShip;
+
+        GetCameraStartPositionToOriginShip();
     }
 
     private void Update()
     {
-        if (updateEveryFrame && targetShip != null && Application.isPlaying) GetCameraStartPositionToOriginShip();
+        if (updateEveryFrame && targetShip != null && Application.isPlaying)
+            GetCameraStartPositionToOriginShip();
     }
 
     private void DebugLog(string message)

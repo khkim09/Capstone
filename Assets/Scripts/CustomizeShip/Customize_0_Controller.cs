@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor.SearchService;
@@ -48,6 +49,9 @@ public class Customize_0_Controller : MonoBehaviour
 
         applyButton.interactable = false;
         editButton.interactable = false;
+
+        playerShip = GameManager.Instance.playerShip;
+        playerShip.SetShipContentsActive(false);
     }
 
     /// <summary>
@@ -56,6 +60,8 @@ public class Customize_0_Controller : MonoBehaviour
     private void OnEnable()
     {
         // playerShip 내 모든 오브젝트 비활성화
+        if (playerShip == null)
+            playerShip = GameManager.Instance.playerShip;
         playerShip.SetShipContentsActive(false);
 
         for (int i = 0; i < appliedTags.Count; i++)
@@ -81,12 +87,14 @@ public class Customize_0_Controller : MonoBehaviour
     }
 
     /// <summary>
-    /// TODO : Idle scene으로 전환 구현 필요!!
+    /// TODO : Planet scene으로 전환 구현 필요!!
     /// </summary>
     public void OnClickExit()
     {
         // scene 전환
-        // playerShip.SetShipContentsActive(true); // 유저 함선 보이게
+        Camera mainCam = Camera.main;
+        mainCam.transform.position = new Vector3(-100f, -100f, mainCam.transform.position.z);
+        playerShip.SetShipContentsActive(true);
         SceneChanger.Instance.LoadScene("Planet");
     }
 

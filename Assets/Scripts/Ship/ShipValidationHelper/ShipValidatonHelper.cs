@@ -105,10 +105,8 @@ public class ShipValidationHelper
         // 산소 호흡 종족 소유 여부 - 산소실 배치 여부
         foreach (BackupCrewData data in crewDatas)
         {
-            Debug.LogError($"{data.race}");
             if (data.needsOxygen)
             {
-                Debug.LogError($"{data.race}, {data.needsOxygen}");
                 needOxygenRoom = true;
                 break;
             }

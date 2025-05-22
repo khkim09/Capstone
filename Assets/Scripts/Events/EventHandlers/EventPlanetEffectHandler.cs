@@ -46,7 +46,9 @@ public class EventPlanetEffectHandler
             List<PlanetData> planetDatas =
                 GameManager.Instance.PlanetDataList.Where(d => d.activeEffects.Count == 0).ToList();
             int index = Random.Range(0, planetDatas.Count);
-            planetDatas[index].RegisterPlanetEffect(effect);
+
+            if (planetDatas.Count > 0)
+                planetDatas[index].RegisterPlanetEffect(effect);
         }
     }
 }

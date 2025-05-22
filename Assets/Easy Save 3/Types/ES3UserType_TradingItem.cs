@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("itemState", "itemData", "boxRenderer", "itemRenderer", "frameRenderer", "frameOffsetY", "rotation", "boxSprites", "boxGrid", "parentStorage", "gridPosition", "cachedPrice", "priceInitialized")]
+	[ES3PropertiesAttribute("itemData", "boxRenderer", "itemRenderer", "frameRenderer", "frameOffsetY", "rotation", "boxSprites", "boxGrid", "parentStorage", "gridPosition", "cachedPrice", "priceInitialized")]
 	public class ES3UserType_TradingItem : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -16,7 +16,6 @@ namespace ES3Types
 		{
 			var instance = (TradingItem)obj;
 			
-			writer.WritePrivateField("itemState", instance);
 			writer.WritePrivateFieldByRef("itemData", instance);
 			writer.WritePrivateFieldByRef("boxRenderer", instance);
 			writer.WritePrivateFieldByRef("itemRenderer", instance);
@@ -39,9 +38,6 @@ namespace ES3Types
 				switch(propertyName)
 				{
 					
-					case "itemState":
-					instance = (TradingItem)reader.SetPrivateField("itemState", reader.Read<ItemState>(), instance);
-					break;
 					case "itemData":
 					instance = (TradingItem)reader.SetPrivateField("itemData", reader.Read<TradingItemData>(), instance);
 					break;

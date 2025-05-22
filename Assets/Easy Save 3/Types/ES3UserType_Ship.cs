@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("isPlayerShip", "shipName", "gridSize", "allRooms", "allWeapons", "allCrews", "doorData", "doorLevel", "outerHullData", "outerHullPrefab", "systems", "outerHullSystem", "weaponSystem", "oxygenSystem", "crewSystem", "hitpointSystem", "moraleSystem", "powerSystem", "storageSystem", "shieldSystem", "backupRoomDatas")]
+	[ES3PropertiesAttribute("isPlayerShip", "shipName", "gridSize", "allRooms", "allWeapons", "allCrews", "doorData", "doorLevel", "outerHullData", "outerHullPrefab", "outerHulls", "systems", "outerHullSystem", "weaponSystem", "oxygenSystem", "crewSystem", "hitpointSystem", "moraleSystem", "powerSystem", "storageSystem", "shieldSystem", "backupRoomDatas")]
 	public class ES3UserType_Ship : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -26,6 +26,7 @@ namespace ES3Types
 			writer.WritePrivateField("doorLevel", instance);
 			writer.WritePropertyByRef("outerHullData", instance.outerHullData);
 			writer.WritePropertyByRef("outerHullPrefab", instance.outerHullPrefab);
+			writer.WritePropertyByRef("outerHulls", instance.outerHulls);
 			writer.WritePrivateField("systems", instance);
 			writer.WritePrivateField("outerHullSystem", instance);
 			writer.WritePrivateField("weaponSystem", instance);
@@ -72,10 +73,13 @@ namespace ES3Types
 					instance = (Ship)reader.SetPrivateField("doorLevel", reader.Read<System.Int32>(), instance);
 					break;
 					case "outerHullData":
-						instance.outerHullData = reader.Read<OuterHullData>();
+						instance.outerHullData = reader.Read<OuterHullData>(ES3UserType_OuterHullData.Instance);
 						break;
 					case "outerHullPrefab":
 						instance.outerHullPrefab = reader.Read<UnityEngine.GameObject>(ES3Type_GameObject.Instance);
+						break;
+					case "outerHulls":
+						instance.outerHulls = reader.Read<UnityEngine.Transform>(ES3Type_Transform.Instance);
 						break;
 					case "systems":
 					instance = (Ship)reader.SetPrivateField("systems", reader.Read<System.Collections.Generic.Dictionary<System.Type, ShipSystem>>(), instance);

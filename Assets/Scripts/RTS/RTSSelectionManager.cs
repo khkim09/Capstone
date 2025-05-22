@@ -153,7 +153,6 @@ public class RTSSelectionManager : MonoBehaviour
                 return;
             }
 
-
             if (!IsUIWithTagClicked("CombatUI"))
             {
                 dragStartPos = Input.mousePosition;
@@ -190,7 +189,6 @@ public class RTSSelectionManager : MonoBehaviour
                 }
             }
         }
-
 
         // 오른쪽 마우스 버튼 클릭: 이동 명령 발동
         if (/*isMainUI && */Input.GetMouseButtonDown(1))

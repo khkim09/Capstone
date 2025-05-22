@@ -378,8 +378,21 @@ public class MapPanelController : MonoBehaviour
 
     private void OnWarpCompleted()
     {
+        ShowPlanetButton();
+    }
+
+    private void ShowPlanetButton()
+    {
+        StartCoroutine(ShowPlanetButtonCoroutine());
+    }
+
+    private IEnumerator ShowPlanetButtonCoroutine()
+    {
+        yield return new WaitForSeconds(Constants.WarpNodes.WarpingDuration);
+
         buttonPlanetLand.gameObject.SetActive(true);
     }
+
 
     private void RefreshAllNodeStates()
     {

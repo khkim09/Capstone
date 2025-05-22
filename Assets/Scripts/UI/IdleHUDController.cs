@@ -62,7 +62,7 @@ public class IdleHUDController : MonoBehaviour
             100 + playerShip.GetStat(ShipStat.DamageBonus),
             playerShip.GetStat(ShipStat.DodgeChance),
             playerShip.GetStat(ShipStat.FuelEfficiency),
-            playerShip.OxygenSystem.GetOxygenRate());
+            playerShip.OxygenSystem.GetOxygenRate().ToString("F1"));
     }
 
     public void SetResourcesText()

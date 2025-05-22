@@ -67,8 +67,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -247,10 +246,10 @@ public class GameManager : MonoBehaviour
         Room teleporter = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Teleporter);
         Room[] corridors = new Room[15];
 
-        Room engine2 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
-        Room engine3 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
-        playerShip.AddRoom(engine2, new Vector2Int(40, 40), Constants.Rotations.Rotation.Rotation0);
-        playerShip.AddRoom(engine3, new Vector2Int(43, 43), Constants.Rotations.Rotation.Rotation0);
+        // Room engine2 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
+        // Room engine3 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
+        // playerShip.AddRoom(engine2, new Vector2Int(40, 40), Constants.Rotations.Rotation.Rotation0);
+        // playerShip.AddRoom(engine3, new Vector2Int(43, 43), Constants.Rotations.Rotation.Rotation0);
 
 
         for (int index = 0; index < corridors.Length; index++)
@@ -297,7 +296,6 @@ public class GameManager : MonoBehaviour
         playerShip.AddRoom(temp, new Vector2Int(50, 31), Constants.Rotations.Rotation.Rotation90);
         playerShip.AddWeapon(1, new Vector2Int(35, 33), ShipWeaponAttachedDirection.East);
 
-        // playerShip.AddWeapon(8, new Vector)
 
         CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
         CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
@@ -306,7 +304,7 @@ public class GameManager : MonoBehaviour
         if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
         if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
         if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
-        //
+
         playerShip.UpdateOuterHullVisuals();
 
         return null;
@@ -631,10 +629,11 @@ public class GameManager : MonoBehaviour
     {
         // 함선
         ES3.DeleteFile("playerShip");
-        playerShip.RemoveAllRooms();
         playerShip.RemoveAllCrews();
+        playerShip.RemoveAllRooms();
         playerShip.RemoveAllWeapons();
         playerShip.RemoveAllItems();
+        playerShip.Initialize();
 
         // 사기 효과
         ES3.DeleteFile("moraleEffect");
