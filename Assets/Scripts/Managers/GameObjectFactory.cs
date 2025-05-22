@@ -99,7 +99,7 @@ public class GameObjectFactory : MonoBehaviour
 
     #region TradingItem
 
-    public GameObject CreateItemObject(int itemId, int quantity, Vector2Int position)
+    public GameObject CreateItemObject(int itemId, int quantity, Vector2Int position = new())
     {
         return ItemFactory.CreateItemObject(itemId, quantity, position);
     }

@@ -31,6 +31,19 @@ public class ShipFollowCamera : MonoBehaviour
     private float shipWidth, shipHeight; // 함선 크기
     private bool isWidthConstraining; // 가로가 제한 요소인지 여부
 
+    public float TargetShipPositionX
+    {
+        get => targetShipPositionX;
+        set => targetShipPositionX = value;
+    }
+
+    public float TargetShipPositionY
+    {
+        get => targetShipPositionY;
+        set => targetShipPositionY = value;
+    }
+
+
     private void Awake()
     {
         if (!Application.isPlaying) return;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SellItemInfoPanel : TooltipPanelBase, IPointerClickHandler
+public class BuyItemInfoPanel : TooltipPanelBase, IPointerClickHandler
 {
     [SerializeField] private Button panelButton;
     [SerializeField] private Image panelBackground;
@@ -17,12 +17,6 @@ public class SellItemInfoPanel : TooltipPanelBase, IPointerClickHandler
     [SerializeField] private TextMeshProUGUI itemCategory;
     [SerializeField] private TextMeshProUGUI itemAmount;
     [SerializeField] private TextMeshProUGUI itemPrice;
-
-
-    [SerializeField] private Color normalColor = Color.white;
-    [SerializeField] private Color slightlyDamagedColor = Color.Lerp(Color.white, Color.red, 0.33f);
-    [SerializeField] private Color damagedColor = Color.Lerp(Color.white, Color.red, 0.66f);
-    [SerializeField] private Color unsellableColor = Color.red;
 
     private Color originalColor = Color.white;
     [SerializeField] private float hightlightAlpha = 180f;
@@ -54,33 +48,17 @@ public class SellItemInfoPanel : TooltipPanelBase, IPointerClickHandler
         if (itemName != null) originalColor = itemName.color;
     }
 
-    public void Initialize(TradingItem item)
+    public void Initialize(TradingItemData item)
     {
-        currentItem = item.GetItemData();
-        itemShape.sprite = itemShapeSprites[item.GetItemShape()];
-        itemName.text = item.GetItemData().itemName.Localize();
-        itemCategory.text = item.GetItemData().type.Localize();
-        itemImage.sprite = item.GetItemSprite();
-        itemAmount.text = item.GetItemData().amount.ToString();
+        currentItem = item;
+        itemShape.sprite = itemShapeSprites[item.shape];
+        itemName.text = item.itemName.Localize();
+        itemCategory.text = item.type.Localize();
+        itemImage.sprite = item.itemSprite;
+        itemAmount.text = item.capacity.ToString();
 
-        switch (item.GetItemState())
-        {
-            case ItemState.Normal:
-                itemImage.color = normalColor;
-                break;
-            case ItemState.SlightlyDamaged:
-                itemImage.color = slightlyDamagedColor;
-                break;
-            case ItemState.Damaged:
-                itemImage.color = damagedColor;
-                break;
-            case ItemState.Unsellable:
-                itemImage.color = unsellableColor;
-                break;
-        }
 
-        itemPrice.text = item.GetItemData().boughtCost.ToString() + "->" +
-                         GameManager.Instance.WhereIAm().GetItemPrice(item.GetItemData()).ToString();
+        itemPrice.text = GameManager.Instance.WhereIAm().GetItemPrice(item).ToString();
     }
 
     protected override void OnMouseEnter(PointerEventData eventData)
@@ -88,7 +66,7 @@ public class SellItemInfoPanel : TooltipPanelBase, IPointerClickHandler
         base.OnMouseEnter(eventData);
 
         // 호버 시 아이템 맵 표시
-        if (currentItem != null && tradeUIController != null) tradeUIController.ShowSellItemMap(currentItem);
+        if (currentItem != null && tradeUIController != null) tradeUIController.ShowBuyItemMap(currentItem);
 
         // 선택되지 않은 상태일 때만 호버 효과 적용
         if (!isSelected)
@@ -120,10 +98,9 @@ public class SellItemInfoPanel : TooltipPanelBase, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         // 마우스 우클릭 감지
-        if (eventData.button == PointerEventData.InputButton.Right)
+        if (eventData.button == PointerEventData.InputButton.Left)
             if (currentItem != null && tradeUIController != null)
-                // 여기서 판매 함수 호출
-                tradeUIController.SellItem(currentItem);
+                tradeUIController.ShowBuyCheckPanel(currentItem);
     }
 
     protected override void SetToolTipText()
