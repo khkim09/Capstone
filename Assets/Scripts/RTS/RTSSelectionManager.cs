@@ -325,7 +325,7 @@ public class RTSSelectionManager : MonoBehaviour
 
 
             // 아군만 선택 가능
-            if (crew != null  && crew.isPlayerControlled)
+            if (crew != null && crew.isPlayerControlled)
             {
                 selectedCrew.Add(crew);
                 SetOutline(crew, true);
@@ -353,7 +353,7 @@ public class RTSSelectionManager : MonoBehaviour
             screenPos.y = Screen.height - screenPos.y;
 
             // 아군만 선택 가능
-            if (selectionRect.Contains(screenPos, true)  && crew.isPlayerControlled)
+            if (selectionRect.Contains(screenPos, true) && crew.isPlayerControlled)
             {
                 selectedCrew.Add(crew);
                 // 선택됨 표시 (예: 색상 변경)
@@ -394,7 +394,7 @@ public class RTSSelectionManager : MonoBehaviour
 
         if (enemyShip != null)
         {
-            Debug.LogError($"적 함선 찾음 : {enemyShip}");
+            Debug.Log($"적 함선 찾음 : {enemyShip}");
             enemyMovementValidator.Initialize(enemyShip.GetAllRooms());
             enemyPathFinder.Initialize(enemyMovementValidator);
         }
@@ -479,7 +479,7 @@ public class RTSSelectionManager : MonoBehaviour
 
             if (availableTiles.Count <= 0)
             {
-                Debug.LogError("모든 타일이 점유됨");
+                Debug.LogWarning("모든 타일이 점유됨");
                 return;
             }
 
@@ -793,7 +793,7 @@ public class RTSSelectionManager : MonoBehaviour
     {
         combat = null;
         if (CombatManager == null)
-            CombatManager=GameObject.Find("CombatManager");
+            CombatManager = GameObject.Find("CombatManager");
         if (CombatManager == null)
             return false;
         else

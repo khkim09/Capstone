@@ -123,11 +123,27 @@ public class EmployController : MonoBehaviour
         // 구매한 선원 카드 제거
         if (selectedCardInstance != null)
         {
+            int siblingIndex = selectedCardInstance.transform.GetSiblingIndex();
+
             LayoutElement layout = selectedCardInstance.GetComponent<LayoutElement>();
             if (layout != null)
                 layout.ignoreLayout = true;
 
             selectedCardInstance.SetActive(false);
+
+            // 선원 카드 자리에 placeholder 추가
+            GameObject placeholder = new GameObject("Placeholder", typeof(LayoutElement));
+            placeholder.transform.SetParent(employPanel, false);
+
+            RectTransform rt = placeholder.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(500f, 900f);
+
+            LayoutElement le = placeholder.GetComponent<LayoutElement>();
+            le.preferredWidth = 500f;
+            le.preferredHeight = 900f;
+
+            // 기존 카드 위치에 삽입
+            placeholder.transform.SetSiblingIndex(siblingIndex);
 
             Canvas.ForceUpdateCanvases();
 
@@ -145,6 +161,7 @@ public class EmployController : MonoBehaviour
 
     private void OnClickExit()
     {
-        SceneChanger.Instance.LoadScene("Trade");
+        SceneChanger.Instance.LoadScene("Planet");
+
     }
 }

@@ -28,16 +28,11 @@ public class CrewHealthBar : MonoBehaviour
     // 선원 참조
     private CrewBase crewBase;
 
-    // 적군일 때 healthbar 적용 sprite
-    [SerializeField] private Sprite enemyBack;
-    [SerializeField] private Sprite enemyFill;
-
     private void Start()
     {
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
             targetCamera = Camera.main;
-            Debug.LogError($"헬스바 targetcamera : {targetCamera}");
         }
         // 타겟 설정 (직접 부모로 설정 - 선원 오브젝트)
         target = transform.parent;
@@ -48,15 +43,13 @@ public class CrewHealthBar : MonoBehaviour
             crewBase = target.GetComponent<CrewBase>();
             if (crewBase == null)
             {
-                Debug.LogError($"HealthBar: {target.name}에서 CrewBase 컴포넌트를 찾을 수 없습니다!");
+                Debug.LogWarning($"HealthBar: {target.name}에서 CrewBase 컴포넌트를 찾을 수 없습니다!");
                 return;
             }
 
             // 선원의 체력 정보 초기화
             InitializeHealthFromCrew();
         }
-
-        // StartCoroutine(HealthBarCamera());
     }
 
     private void OnEnable()
@@ -114,7 +107,6 @@ public class CrewHealthBar : MonoBehaviour
             if (!crewBase.isPlayerControlled)
             {
                 healthBarCanvas.GetComponentInChildren<Image>().sprite = enemyBack;
-                // healthBarFill.color = new Color(188, 65, 65, 255);
                 healthBarFill.sprite = enemyFill;
             }
         }
@@ -128,13 +120,6 @@ public class CrewHealthBar : MonoBehaviour
             // Canvas 자체의 위치를 선원 위치 + offset으로 설정
             Vector3 worldPosition = target.position + offset;
             healthBarCanvas.transform.position = worldPosition;
-
-            // // 카메라가 있다면 카메라를 바라보도록 회전
-            // if (targetCamera != null)
-            // {
-            //     Vector3 lookDirection = targetCamera.transform.position - healthBarCanvas.transform.position;
-            //     healthBarCanvas.transform.rotation = Quaternion.LookRotation(lookDirection);
-            // }
         }
 
         // 선원의 체력 정보와 동기화

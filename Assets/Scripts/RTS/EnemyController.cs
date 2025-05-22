@@ -56,15 +56,11 @@ public class EnemyController : MonoBehaviour
 
                     if (teleportRoom == null)
                     {
-                        Debug.LogError("enemyship에 텔포 방 없음");
+                        Debug.Log("enemyship에 텔포 방 없음");
                         cm.BackToThePeace();
                     }
-                    else
-                    {
-                        Debug.LogError($"{teleportRoom.position}");
-                    }
 
-                    RTSSelectionManager.Instance.IssueMoveCommand(teleportRoom,cm);
+                    RTSSelectionManager.Instance.IssueMoveCommand(teleportRoom, cm);
                     /// 보니까 텔포방에 들어가면 바로 이동 시작하게 해놨더라고
                     /// IssueMoveCommand에서 텔포방으로 이동하도록 좌표찍어서 인자 넣어주면 될거야
                     /// EnemyController는 update에서 계속 도는 애라 어태치 하는 순간 바로 작동될거야
