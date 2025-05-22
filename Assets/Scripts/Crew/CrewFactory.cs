@@ -317,7 +317,7 @@ public class CrewFactory : MonoBehaviour
     /// </summary>
     /// <param name="race">선원 종족</param>
     /// <returns>생성된 이름</returns>
-    private string GenerateRandomName(CrewRace race)
+    public string GenerateRandomName(CrewRace race)
     {
         List<string> namePool;
 
@@ -348,7 +348,8 @@ public class CrewFactory : MonoBehaviour
         }
 
         // 이름 풀이 비어있는 경우 기본 이름 생성
-        if (namePool == null || namePool.Count == 0) return $"{race}-{nextCrewId++}";
+        if (namePool == null || namePool.Count == 0)
+            return $"{race}-{nextCrewId++}";
 
         // 랜덤 이름 선택
         int randomIndex = Random.Range(0, namePool.Count);

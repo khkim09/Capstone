@@ -84,6 +84,9 @@ public class Customize_0_Controller : MonoBehaviour
             if (tmp != null)
                 tmp.enabled = true;
         }
+
+        Camera mainCam = Camera.main;
+        mainCam.orthographicSize = 6f;
     }
 
     /// <summary>

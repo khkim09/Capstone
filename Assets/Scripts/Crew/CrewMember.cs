@@ -286,7 +286,7 @@ public class CrewMember : CrewBase
         if (currentRoom != null)
             currentRoom.OnCrewEnter(this);
 
-        Debug.LogError($"현재 방: {currentRoom}");
+        Debug.Log($"현재 방: {currentRoom}");
         reservedRoom = null;
 
         // 본인 함선의 텔포 방일 경우, 즉시 텔포 수행
@@ -306,7 +306,7 @@ public class CrewMember : CrewBase
         // 도착한 방에서 적군 탐지
         if (isWithEnemy() && inCombat == false)
         {
-            Debug.LogError("적 있음");
+            Debug.Log("적 있음");
             // 이동 중이던 선원이 우선적으로 마저 이동 (적군을 찾아감)
             RTSSelectionManager.Instance.MoveForCombat(this);
 
@@ -316,7 +316,7 @@ public class CrewMember : CrewBase
         }
         else // 도착한 방에 적군이 없음
         {
-            Debug.LogError("적없음");
+            Debug.Log("적없음");
             // 내 배가 아닐 경우 부수는 행동 개시
             if (!IsOwnShip())
                 combatCoroutine = StartCoroutine(CombatRoutine());
@@ -550,7 +550,7 @@ public class CrewMember : CrewBase
 
         // 실제로 데미지가 들어가는 부분
         yield return new WaitForSeconds(attackBeforeDelay);
-        Debug.LogError("공격 딜레이 종료");
+        Debug.Log("공격 딜레이 종료");
 
         // 실제 데미지 적용
         Attack(this, combatTarget);
@@ -707,7 +707,7 @@ public class CrewMember : CrewBase
             {
                 hittingMan.inCombat = false;
                 hittingMan.combatTarget = null;
-                if(combatCoroutine!=null)
+                if (combatCoroutine != null)
                     StopCoroutine(hittingMan.combatCoroutine);
                 hittingMan.combatCoroutine = null;
                 hittingMan.bullier.Remove(this);
@@ -810,11 +810,11 @@ public class CrewMember : CrewBase
         {
             if (someone.isPlayerControlled != isPlayerControlled && someone.isAlive)
             {
-                Debug.LogError($"방안 적 찾음 {someone.race}");
+                Debug.Log($"방안 적 찾음 {someone.race}");
                 return true;
             }
         }
-        Debug.LogError("방안에 적 못 찾음");
+        Debug.Log("방안에 적 못 찾음");
         return false;
     }
 
@@ -1132,13 +1132,13 @@ public class CrewMember : CrewBase
         CrewHealthBar healthBar = gameObject.transform.GetChild(0).GetComponent<CrewHealthBar>();
         if (targetShip == GameManager.Instance.playerShip)
         {
-            healthBar.targetCamera=Camera.main;
+            healthBar.targetCamera = Camera.main;
         }
         else
         {
             if (RTSSelectionManager.Instance.CallCombatManager(out CombatManager combatManager))
             {
-                healthBar.targetCamera=combatManager.cam.enemyCam;
+                healthBar.targetCamera = combatManager.cam.enemyCam;
             }
         }
 
