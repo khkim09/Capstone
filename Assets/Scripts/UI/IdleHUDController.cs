@@ -29,7 +29,7 @@ public class IdleHUDController : MonoBehaviour
     {
         GameManager.Instance.OnYearChanged += CheckShowEnding;
         GameManager.Instance.playerShip.InfoPanelChanged += UpdateHealthBar;
-        shipHealthBarFill=transform.Find("Ship Health Bar/Background/Fill").GetComponent<Image>();
+        //shipHealthBarFill=transform.Find("Ship Health Bar/Background/Fill").GetComponent<Image>();
     }
 
     private void Update()

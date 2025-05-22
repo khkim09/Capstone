@@ -1269,6 +1269,14 @@ public class Ship : MonoBehaviour
         InfoPanelChanged?.Invoke();
     }
 
+    public void RepairDamage(float repair)
+    {
+        HitPointSystem hitPointSystem = HitpointSystem;
+        hitPointSystem.ChangeHitPoint(repair);
+
+        InfoPanelChanged?.Invoke();
+    }
+
     /// <summary>
     /// 지정된 방에 있는 모든 크루에게 피해를 적용합니다.
     /// </summary>
