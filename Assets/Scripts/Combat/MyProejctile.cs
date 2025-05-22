@@ -111,7 +111,7 @@ public class MyProjectile : MonoBehaviour
 
         // 목표 도달 체크
         if ((isParabolic && hasStartedParabolic && journeyProgress >= 1f) ||
-            Vector3.Distance(transform.position, targetPosition) < 0.1f)
+            Vector3.Distance(transform.position, targetPosition) < 0.12f)
             OnHitTarget();
     }
 
