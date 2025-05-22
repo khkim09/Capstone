@@ -19,7 +19,23 @@ public class HitPointSystem : ShipSystem
     {
         base.Initialize(ship);
 
+        Refresh();
+    }
+
+    public override void Refresh()
+    {
         currentHitPoint = GetShipStat(ShipStat.HitPointsMax);
+    }
+
+    public void RecalculateHitPoint()
+    {
+        float sum = 0;
+        foreach (Room room in parentShip.GetAllRooms())
+        {
+            sum += room.currentHitPoints;
+        }
+
+        currentHitPoint = sum;
     }
 
     /// <summary>

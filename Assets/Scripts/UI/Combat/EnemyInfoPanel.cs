@@ -49,6 +49,7 @@ public class EnemyInfoPanel : MonoBehaviour
         if(playerShip==null)
             Debug.LogError("EnemyInfoPanel에서 아군 함선을 찾지 못했습니다.");
         display=transform.parent.Find("CCTV").gameObject;
+        UpdateInfoPanel();
     }
 
     /// <summary>
@@ -56,8 +57,13 @@ public class EnemyInfoPanel : MonoBehaviour
     /// </summary>
     void UpdateInfoPanel()
     {
-        hp.fillAmount = 1-enemyShip.GetCurrentHitPoints()/maxHealth;
-        shield.fillAmount=1-enemyShip.ShieldSystem.GetCurrentShield()/maxShield;
+        if (maxHealth == 0)
+            return;
+        hp.fillAmount = enemyShip.GetCurrentHitPoints()/maxHealth;
+        if (maxShield == 0)
+            shield.fillAmount = 0;
+        else
+            shield.fillAmount=enemyShip.ShieldSystem.GetCurrentShield()/maxShield;
     }
 
 

@@ -21,7 +21,7 @@ public class CrewHealthBar : MonoBehaviour
 
     // 따라다닐 타겟 (선원)
     private Transform target;
-    [SerializeField] private Camera targetCamera;
+    [SerializeField] public Camera targetCamera;
 
     // 선원 참조
     private CrewBase crewBase;
