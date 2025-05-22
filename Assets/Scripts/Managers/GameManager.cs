@@ -67,7 +67,8 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")] [SerializeField]
+    [Header("Game State")]
+    [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -371,9 +372,9 @@ public class GameManager : MonoBehaviour
 
         // playerShip.AddWeapon(8, new Vector)
 
-        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
-        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
+        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human, null, false);
+        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast, null, false);
+        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect, null, false);
 
         if (crewBase1 is CrewMember crewMember) enemyShip.AddCrew(crewMember);
         if (crewBase2 is CrewMember crewMember2) enemyShip.AddCrew(crewMember2);

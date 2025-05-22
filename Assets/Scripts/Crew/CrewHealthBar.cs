@@ -8,16 +8,18 @@ using UnityEngine.UI;
 public class CrewHealthBar : MonoBehaviour
 {
     [Header("Health Bar Components")]
-    [SerializeField]
-    private Image healthBarFill;
-
     [SerializeField] private Canvas healthBarCanvas;
+    [SerializeField] private Image healthBarFill;
 
     [Header("Settings")][SerializeField] private Vector3 offset = new(0, 0.8f, 0); // 선원 머리 위 위치
 
     // 현재 체력과 최대 체력은 크루에서 참조
     private float currentHealth;
     private float maxHealth;
+
+    // 적군일 때 healthbar 적용 sprite
+    [SerializeField] private Sprite enemyBack;
+    [SerializeField] private Sprite enemyFill;
 
     // 따라다닐 타겟 (선원)
     private Transform target;
@@ -70,16 +72,16 @@ public class CrewHealthBar : MonoBehaviour
 
     private IEnumerator HealthBarCamera()
     {
-        Debug.LogError("코루틴 호출됨");
+        Debug.LogWarning("코루틴 호출됨");
         while (targetCamera == null)
         {
             yield return null;
 
             if (crewBase.currentShip == GameManager.Instance.playerShip)
             {
-                Debug.LogError($"발견, {this.GetComponentInParent<CrewMember>().race}, {this.GetComponentInParent<CrewMember>().crewName}");
+                Debug.LogWarning($"발견, {this.GetComponentInParent<CrewMember>().race}, {this.GetComponentInParent<CrewMember>().crewName}");
                 targetCamera = Camera.main;
-            }//이거로 하면 헬스바 부모 선원 출력하는데 보면
+            }
             else
             {
                 if (SceneManager.GetActiveScene().name == "Combat")
@@ -103,6 +105,14 @@ public class CrewHealthBar : MonoBehaviour
         {
             maxHealth = crewBase.maxHealth;
             currentHealth = crewBase.health;
+
+            // 적군일 경우 sprite 빨간색으로 변경
+            if (!crewBase.isPlayerControlled)
+            {
+                healthBarCanvas.GetComponentInChildren<Image>().sprite = enemyBack;
+                // healthBarFill.color = new Color(188, 65, 65, 255);
+                healthBarFill.sprite = enemyFill;
+            }
         }
     }
 
@@ -132,7 +142,8 @@ public class CrewHealthBar : MonoBehaviour
         if (healthBarCanvas == null)
         {
             healthBarCanvas = GetComponent<Canvas>();
-            if (healthBarCanvas == null) healthBarCanvas = gameObject.AddComponent<Canvas>();
+            if (healthBarCanvas == null)
+                healthBarCanvas = gameObject.AddComponent<Canvas>();
         }
 
         // World Space Canvas 설정
