@@ -10,71 +10,55 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d12a08b2288716469c6d3d9919ec838, type: 3}
-  m_Name: Med-bot Discovery
+  m_Name: AI Development
   m_EditorClassIdentifier: 
-  eventId: 48
-  debugName: Med-bot Discovery
-  eventTitle: event.name.48
-  eventDescription: event.description.48
+  eventId: 78
+  debugName: AI Development
+  eventTitle: event.name.78
+  eventDescription: event.description.78
   eventImage: {fileID: 0}
   eventType: 0
-  outcomeType: 1
+  outcomeType: 0
   planetId: 0
   minimumYear: 0
-  requiredCrewRace: 
+  requiredCrewRace: 0300000004000000
   minimumCOMA: 0
   minimumFuel: 0
   choices:
-  - choiceText: event.choice.48.1
+  - choiceText: event.choice.78.1
     possibleOutcomes:
-    - outcomeText: event.result.48.1.1
-      probability: 30
+    - outcomeText: event.result.78.1.1
+      probability: 100
       planetEffects: []
-      resourceEffects: []
+      resourceEffects:
+      - amount: 20
+        resourceType: 0
       crewEffects:
-      - effectType: 0
-        raceType: 0
-        changeAmount: 50
+      - effectType: 1
+        raceType: 3
+        changeAmount: 2
         skill: 0
         status: 0
         persistenceCondition: 0
         conditionData: 
-        conditionAmount: 0
+        conditionAmount: 12
+        effectIcon: {fileID: 0}
+      - effectType: 1
+        raceType: 4
+        changeAmount: 2
+        skill: 0
+        status: 0
+        persistenceCondition: 0
+        conditionData: 
+        conditionAmount: 12
         effectIcon: {fileID: 0}
       specialEffectType: 0
       specialEffectValue: 
       specialEffectAmount: 0
       nextEvent: {fileID: 0}
-    - outcomeText: event.result.48.1.2
-      probability: 60
-      planetEffects: []
-      resourceEffects: []
-      crewEffects: []
-      specialEffectType: 0
-      specialEffectValue: 
-      specialEffectAmount: 0
-      nextEvent: {fileID: 0}
-    - outcomeText: event.result.48.1.3
-      probability: 10
-      planetEffects: []
-      resourceEffects: []
-      crewEffects:
-      - effectType: 0
-        raceType: 0
-        changeAmount: -20
-        skill: 0
-        status: 0
-        persistenceCondition: 0
-        conditionData: 
-        conditionAmount: 0
-        effectIcon: {fileID: 0}
-      specialEffectType: 0
-      specialEffectValue: 
-      specialEffectAmount: 0
-      nextEvent: {fileID: 0}
-  - choiceText: event.choice.48.2
+  - choiceText: event.choice.78.2
     possibleOutcomes:
-    - outcomeText: event.result.48.2.1
+    - outcomeText: event.result.78.2.1
       probability: 100
       planetEffects: []
       resourceEffects: []
