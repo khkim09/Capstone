@@ -38,6 +38,11 @@ public class MenuUI : MonoBehaviour
         SceneChanger.Instance.LoadScene("Trade");
     }
 
+    public void OnBlueprintButtonClicked()
+    {
+        SceneChanger.Instance.LoadScene("Customize");
+    }
+
     public void OnStorageButtonClicked()
     {
         //SceneChanger.Instance.LoadScene("Storage");
@@ -53,11 +58,7 @@ public class MenuUI : MonoBehaviour
     public void OnEmployButtonClicked()
     {
         //todo:고용창 활성화
-    }
-
-    public void OnBlueprintButtonClicked()
-    {
-        SceneChanger.Instance.LoadScene("Customize");
+        SceneChanger.Instance.LoadScene("Employ");
     }
 
     public void OnMoveAcceptButtonClicked()
