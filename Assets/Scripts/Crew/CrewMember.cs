@@ -78,20 +78,20 @@ public class CrewMember : CrewBase
         switch (race)
         {
             case CrewRace.Amorphous:
-                attackBeforeDelay = 0.7f;
-                attackBeforeDelay = 0.4f;
+                attackBeforeDelay = 0.72f;
+                attackAfterDelay = 0.27f;
                 repairBeforeDelay = 0.572f;
                 repairAfterDelay = 0.428f;
                 break;
             case CrewRace.Beast:
-                attackBeforeDelay = 0.4f;
-                attackAfterDelay = 0.3f;
+                attackBeforeDelay = 0.57f;
+                attackAfterDelay = 0.43f;
                 repairBeforeDelay = 0.5f;
                 repairAfterDelay = 0.5f;
                 break;
             case CrewRace.Human:
-                attackBeforeDelay = 0.7f;
-                attackAfterDelay = 0.4f;
+                attackBeforeDelay = 0.72f;
+                attackAfterDelay = 0.27f;
                 repairBeforeDelay = 0.375f;
                 repairAfterDelay = 0.625f;
                 break;
@@ -106,8 +106,8 @@ public class CrewMember : CrewBase
                 repairAfterDelay = 0.6f;
                 break;
             case CrewRace.MechanicTank:
-                attackBeforeDelay = 0.4f;
-                attackAfterDelay = 0.2f;
+                attackBeforeDelay = 0.66f;
+                attackAfterDelay = 0.34f;
                 break;
         }
     }
@@ -707,7 +707,8 @@ public class CrewMember : CrewBase
             {
                 hittingMan.inCombat = false;
                 hittingMan.combatTarget = null;
-                StopCoroutine(hittingMan.combatCoroutine);
+                if(combatCoroutine!=null)
+                    StopCoroutine(hittingMan.combatCoroutine);
                 hittingMan.combatCoroutine = null;
                 hittingMan.bullier.Remove(this);
                 if (hittingMan.isWithEnemy())
@@ -782,7 +783,7 @@ public class CrewMember : CrewBase
     /// </summary>
     public void BackToThePeace()
     {
-        if (isAlive && !inCombat)
+        if (isAlive && !inCombat && !isMoving)
         {
             StopAllCoroutines();
 
@@ -855,11 +856,11 @@ public class CrewMember : CrewBase
         {
             repairCoroutine = StartCoroutine(RepairRoutine());
         }
-        else // 수리 중인 코루틴이 있는데 왜 할당 해제함?
-        {
-            StopCoroutine(repairCoroutine);
-            repairCoroutine = null;
-        }
+        // else // 수리 중인 코루틴이 있는데 왜 할당 해제함?
+        // {
+        //     StopCoroutine(repairCoroutine);
+        //     repairCoroutine = null;
+        // }
     }
 
     /// <summary>
@@ -1052,6 +1053,11 @@ public class CrewMember : CrewBase
         else
         {
             Debug.LogError("본인 함선 아님");
+            // 유저 함선 && 적 선원
+            if (crew.isPlayerControlled)
+                targetShip = GameManager.Instance.playerShip;
+            else // 적 함선 && 아군 선원
+                targetShip = GameManager.Instance.currentEnemyShip;
         }
 
         // 2. 상대 함선의 랜덤 위치에 선원 생성
@@ -1123,6 +1129,18 @@ public class CrewMember : CrewBase
         PlayAnimation("tp_in");
         yield return new WaitForSeconds(delay);
         isTPing = false;
+        CrewHealthBar healthBar = gameObject.transform.GetChild(0).GetComponent<CrewHealthBar>();
+        if (targetShip == GameManager.Instance.playerShip)
+        {
+            healthBar.targetCamera=Camera.main;
+        }
+        else
+        {
+            if (RTSSelectionManager.Instance.CallCombatManager(out CombatManager combatManager))
+            {
+                healthBar.targetCamera=combatManager.cam.enemyCam;
+            }
+        }
 
         // 3. 텔포 후 도착한 방에 적 있을 경우 : 자동 전투, lookatme()로 광역 어그로
         if (crew.isWithEnemy() && crew.inCombat == false)

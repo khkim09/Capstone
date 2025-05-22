@@ -581,6 +581,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
                  roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
             damageCondition = DamageLevel.scratch;
 
+        parentShip.TakeDamage(damage);
+
         // 스탯 기여도 변화 알림
         NotifyStateChanged();
         UpdateRoomVisual();
@@ -615,6 +617,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
                 damageCondition = DamageLevel.good;
         }
 
+        parentShip.RepairDamage(amount);
         // 스탯 기여도 변화 알림
         NotifyStateChanged();
     }

@@ -56,8 +56,7 @@ public class WeaponFrameFunction : MonoBehaviour
         ready = transform.Find("FireButton").Find("Ready").gameObject;
         charging = transform.Find("FireButton").Find("Charging").gameObject;
 
-        Transform weaponPanel = transform.parent.parent.parent.parent.parent;
-        weaponPanel.Find("AllFire").GetComponent<Button>().onClick.AddListener(FireButtonClicked);
+        UpdateWeaponPanel();
     }
 
     /// <summary>
@@ -68,9 +67,10 @@ public class WeaponFrameFunction : MonoBehaviour
     {
         SetPowerButton(powerState);
         SetFireButton();
-        energyBar.fillAmount = weapon.GetCooldownPercentage();
+        float percentage = weapon.GetCooldownPercentage();
+        energyBar.fillAmount = percentage;
 
-        if (powerState == Power.auto)
+        if (powerState == Power.auto && percentage>=1)
              weapon.TryFire();
     }
 
@@ -118,6 +118,7 @@ public class WeaponFrameFunction : MonoBehaviour
             case Power.on:
                 powerState = Power.auto;
                 SetPowerButton(powerState);
+                weapon.TryFire();
                 break;
             case Power.off:
                 powerState = Power.on;
@@ -133,7 +134,7 @@ public class WeaponFrameFunction : MonoBehaviour
     public void FireButtonClicked()
     {
         Debug.Log("발사");
-        //weapon.TryFire();
+        weapon.TryFire();
         //todo: 무기 실제로 연결해줘야됨
     }
 }

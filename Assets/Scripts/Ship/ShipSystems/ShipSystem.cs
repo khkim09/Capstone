@@ -19,6 +19,11 @@ public abstract class ShipSystem
         parentShip = ship;
     }
 
+    public virtual void Refresh()
+    {
+        return;
+    }
+
     /// <summary>
     /// 매 프레임마다 호출되는 시스템 업데이트 함수입니다.
     /// 구체적인 동작은 각 서브 클래스에서 구현됩니다.

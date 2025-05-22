@@ -53,7 +53,7 @@ public class CameraZoomController : MonoBehaviour
 
         Vector3 startPos = GetCameraStartPositionToOriginShip();
         Camera.main.transform.position = new Vector3(startPos.x, startPos.y, Camera.main.transform.position.z);
-        Camera.main.orthographicSize = 5;
+        Camera.main.orthographicSize = (maxSize + minSize)/2;
     }
 
 

@@ -11,7 +11,7 @@ public class CrewHealthBar : MonoBehaviour
     [SerializeField] private Canvas healthBarCanvas;
     [SerializeField] private Image healthBarFill;
 
-    [Header("Settings")][SerializeField] private Vector3 offset = new(0, 0.8f, 0); // 선원 머리 위 위치
+    [Header("Settings")][SerializeField] private Vector3 offset = new(0, 0.7f, -3); // 선원 머리 위 위치
 
     // 현재 체력과 최대 체력은 크루에서 참조
     private float currentHealth;
@@ -23,10 +23,14 @@ public class CrewHealthBar : MonoBehaviour
 
     // 따라다닐 타겟 (선원)
     private Transform target;
-    [SerializeField] private Camera targetCamera;
+    [SerializeField] public Camera targetCamera;
 
     // 선원 참조
     private CrewBase crewBase;
+
+    // 적군일 때 healthbar 적용 sprite
+    [SerializeField] private Sprite enemyBack;
+    [SerializeField] private Sprite enemyFill;
 
     private void Start()
     {
@@ -125,12 +129,12 @@ public class CrewHealthBar : MonoBehaviour
             Vector3 worldPosition = target.position + offset;
             healthBarCanvas.transform.position = worldPosition;
 
-            // 카메라가 있다면 카메라를 바라보도록 회전
-            if (targetCamera != null)
-            {
-                Vector3 lookDirection = targetCamera.transform.position - healthBarCanvas.transform.position;
-                healthBarCanvas.transform.rotation = Quaternion.LookRotation(lookDirection);
-            }
+            // // 카메라가 있다면 카메라를 바라보도록 회전
+            // if (targetCamera != null)
+            // {
+            //     Vector3 lookDirection = targetCamera.transform.position - healthBarCanvas.transform.position;
+            //     healthBarCanvas.transform.rotation = Quaternion.LookRotation(lookDirection);
+            // }
         }
 
         // 선원의 체력 정보와 동기화

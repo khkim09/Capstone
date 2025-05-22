@@ -24,7 +24,7 @@ public class ItemFactory : MonoBehaviour
         return itemDataBase.GetItemData(id);
     }
 
-    public GameObject CreateItemObject(int itemId, int quantity, Vector2Int position)
+    public GameObject CreateItemObject(int itemId, int quantity, Vector2Int position = new())
     {
         TradingItemData itemData = GetItemData(itemId);
         if (itemData == null) return null;
