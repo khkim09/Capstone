@@ -28,6 +28,8 @@ public class IdleHUDController : MonoBehaviour
     private void Awake()
     {
         GameManager.Instance.OnYearChanged += CheckShowEnding;
+        GameManager.Instance.playerShip.InfoPanelChanged += UpdateHealthBar;
+        shipHealthBarFill=transform.Find("Ship Health Bar/Background/Fill").GetComponent<Image>();
     }
 
     private void Update()
@@ -78,5 +80,16 @@ public class IdleHUDController : MonoBehaviour
     public void CheckShowEnding(int year)
     {
         if (year >= Constants.Endings.EndingYear) buttonEnding.gameObject.SetActive(true);
+    }
+
+    private void UpdateHealthBar()
+    {
+        float healthPercent=GameManager.Instance.playerShip.GetCurrentHitPoints()/MaxHitpoints;
+        if(shipHealthBarFill)
+            shipHealthBarFill.fillAmount = healthPercent;
+        else
+        {
+            Debug.Log("함선 체력바 참조 실패");
+        }
     }
 }

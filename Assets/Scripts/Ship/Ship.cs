@@ -1221,7 +1221,7 @@ public class Ship : MonoBehaviour
         if (finalDamage > 0)
         {
             // 함선 전체에 데미지 적용
-            TakeDamage(finalDamage);
+            //TakeDamage(finalDamage);
 
             if (shipWeaponType == ShipWeaponType.Missile)
             {

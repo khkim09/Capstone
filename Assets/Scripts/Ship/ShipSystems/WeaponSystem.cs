@@ -11,7 +11,7 @@ public class WeaponSystem : ShipSystem
     /// <summary>
     /// 자동 발사 활성화 여부
     /// </summary>
-    [SerializeField] private bool autoFireEnabled = true;
+    [SerializeField] private bool autoFireEnabled = false;
 
     /// <summary>
     /// 매 프레임마다 호출되어 각 무기의 쿨다운 상태를 업데이트합니다.
@@ -30,7 +30,11 @@ public class WeaponSystem : ShipSystem
         foreach (ShipWeapon weapon in parentShip.allWeapons)
             // 재장전 보너스를 적용한 쿨다운 업데이트
             // 여기서 무기가 준비되면 자동으로 발사됨
+        {
             UpdateWeaponCooldownWithBonus(weapon, deltaTime, reloadBonus);
+            if (autoFireEnabled && weapon.IsReady())
+                weapon.TryFire();
+        }
     }
 
     /// <summary>

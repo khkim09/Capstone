@@ -27,6 +27,17 @@ public class HitPointSystem : ShipSystem
         currentHitPoint = GetShipStat(ShipStat.HitPointsMax);
     }
 
+    public void RecalculateHitPoint()
+    {
+        float sum = 0;
+        foreach (Room room in parentShip.GetAllRooms())
+        {
+            sum += room.currentHitPoints;
+        }
+
+        currentHitPoint = sum;
+    }
+
     /// <summary>
     /// 매 프레임마다 호출되어 시스템 상태를 갱신합니다.
     /// </summary>
