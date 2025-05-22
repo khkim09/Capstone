@@ -3,13 +3,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class TradeUIController : MonoBehaviour
 {
+    [Header("카메라")] [SerializeField] private ShipFollowCamera shipFollowCamera;
+    [SerializeField] private Vector2 buyPanelOpenedShipPosition = new(0.6f, 0.5f);
+    [SerializeField] private Vector2 sellPanelOpenedShipPosition = new(0.4f, 0.5f);
+
     [Header("재화 패널")] [SerializeField] private TextMeshProUGUI COMAText;
     [SerializeField] private TextMeshProUGUI fuelText;
     [SerializeField] private TextMeshProUGUI missileText;
@@ -27,10 +33,21 @@ public class TradeUIController : MonoBehaviour
     [SerializeField] private GameObject panelSell;
 
     [Header("구매 패널 설정")] [SerializeField] private GameObject buyPanelContent;
+    [SerializeField] private GameObject buyItemInfoPrefab;
+    [SerializeField] private GameObject equipmentItemInfoPrefab;
+    [SerializeField] private GameObject fuelBuyButton;
+    [SerializeField] private GameObject missileBuyButton;
+    [SerializeField] private GameObject hypersonicBuyButton;
+    [SerializeField] private Transform itemMapBuyPosition;
+    [SerializeField] private BuyCheckPanel buyCheckPanel;
+    private BuyItemInfoPanel selectedBuyItemInfoPanel;
+    private List<BuyItemInfoPanel> buyItemInfoPanelInstance = new();
+    private bool isBuyPanelInitialized = false;
+
 
     [Header("판매 패널 설정")] [SerializeField] private GameObject sellPanelContent;
     [SerializeField] private GameObject sellItemInfoPrefab;
-    [SerializeField] private ItemMapController itemMapPanel;
+    [SerializeField] private Transform itemMapSellPosition;
     private SellItemInfoPanel selectedSellItemInfoPanel;
     private List<SellItemInfoPanel> sellItemInfoPanelInstance = new();
 
@@ -39,6 +56,9 @@ public class TradeUIController : MonoBehaviour
     [SerializeField] private Transform SellPanelOpenendPosition;
 
     [Header("열리는 속도")] [SerializeField] private float slideSpeed = 0.1f;
+
+    [SerializeField] private ItemMapController itemMapPanel;
+
 
     private Vector3 buyPanelClosedPosition;
     private Vector3 sellPanelClosedPosition;
@@ -50,14 +70,25 @@ public class TradeUIController : MonoBehaviour
     private bool isBuyPanelOpen = false;
     private bool isSellPanelOpen = false;
 
+    // 카메라 위치 변경 관련 변수
+    private Vector2 originalCameraPosition;
+    private Coroutine cameraTransitionCoroutine;
+
 
     private void Start()
     {
         buyPanelClosedPosition = panelBuy.transform.position;
         sellPanelClosedPosition = panelSell.transform.position;
 
+        // 원래 카메라 위치 저장
+        if (shipFollowCamera != null)
+            originalCameraPosition =
+                new Vector2(shipFollowCamera.TargetShipPositionX, shipFollowCamera.TargetShipPositionY);
+
         AddButtonListeners();
         InitializeResourcesText();
+
+        isBuyPanelInitialized = false;
     }
 
     private void Update()
@@ -65,8 +96,14 @@ public class TradeUIController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (isBuyPanelOpen)
+            {
+                if (buyCheckPanel.gameObject.activeInHierarchy)
+                    return;
+
                 if (!IsClickingOnSelf(panelBuy))
                     SlideBuyClose();
+            }
+
 
             if (isSellPanelOpen)
                 if (!IsClickingOnSelf(panelSell))
@@ -122,6 +159,9 @@ public class TradeUIController : MonoBehaviour
         buySlideCoroutine = StartCoroutine(SlideToPosition(panelBuy, buyPanelOpenedPosition.position));
         isBuyPanelOpen = true;
 
+        // 카메라 위치도 함께 변경
+        TransitionCameraToPosition(buyPanelOpenedShipPosition);
+
         buttonBuy.gameObject.SetActive(false);
     }
 
@@ -132,6 +172,9 @@ public class TradeUIController : MonoBehaviour
 
         sellSlideCoroutine = StartCoroutine(SlideToPosition(panelSell, SellPanelOpenendPosition.position));
         isSellPanelOpen = true;
+
+        // 카메라 위치도 함께 변경
+        TransitionCameraToPosition(sellPanelOpenedShipPosition);
 
         buttonSell.gameObject.SetActive(false);
     }
@@ -144,6 +187,9 @@ public class TradeUIController : MonoBehaviour
         buySlideCoroutine = StartCoroutine(
             SlideToPosition(panelBuy, buyPanelClosedPosition, () => buttonBuy.gameObject.SetActive(true)));
         isBuyPanelOpen = false;
+
+        // 카메라 위치를 원래대로 복귀
+        TransitionCameraToPosition(originalCameraPosition);
     }
 
     private void SlideSellClose()
@@ -154,6 +200,9 @@ public class TradeUIController : MonoBehaviour
         sellSlideCoroutine = StartCoroutine(
             SlideToPosition(panelSell, sellPanelClosedPosition, () => buttonSell.gameObject.SetActive(true)));
         isSellPanelOpen = false;
+
+        // 카메라 위치를 원래대로 복귀
+        TransitionCameraToPosition(originalCameraPosition);
     }
 
     private IEnumerator SlideToPosition(GameObject targetPanel, Vector3 targetPosition, Action onComplete = null)
@@ -171,6 +220,45 @@ public class TradeUIController : MonoBehaviour
         targetPanel.transform.position = targetPosition;
 
         onComplete?.Invoke();
+    }
+
+    // 카메라 위치 전환 코루틴
+    private void TransitionCameraToPosition(Vector2 targetPosition)
+    {
+        if (shipFollowCamera == null) return;
+
+        if (cameraTransitionCoroutine != null)
+            StopCoroutine(cameraTransitionCoroutine);
+
+        cameraTransitionCoroutine = StartCoroutine(CameraTransitionCoroutine(targetPosition));
+    }
+
+    private IEnumerator CameraTransitionCoroutine(Vector2 targetPosition)
+    {
+        if (shipFollowCamera == null) yield break;
+
+        Vector2 startPosition = new(shipFollowCamera.TargetShipPositionX, shipFollowCamera.TargetShipPositionY);
+        float elapsed = 0f;
+
+        while (elapsed < slideSpeed)
+        {
+            float t = elapsed / slideSpeed;
+            Vector2 currentPosition = Vector2.Lerp(startPosition, targetPosition, t);
+
+            shipFollowCamera.TargetShipPositionX = currentPosition.x;
+            shipFollowCamera.TargetShipPositionY = currentPosition.y;
+
+            // 카메라 위치 재계산
+            shipFollowCamera.GetCameraStartPositionToOriginShip();
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // 최종 위치 설정
+        shipFollowCamera.TargetShipPositionX = targetPosition.x;
+        shipFollowCamera.TargetShipPositionY = targetPosition.y;
+        shipFollowCamera.GetCameraStartPositionToOriginShip();
     }
 
     public void OnGoBackButtonClicked()
@@ -230,6 +318,100 @@ public class TradeUIController : MonoBehaviour
 
     public void InitializeBuyPanel()
     {
+        if (isBuyPanelInitialized)
+            return;
+        foreach (BuyItemInfoPanel panel in buyItemInfoPanelInstance) Destroy(panel.gameObject);
+
+        buyItemInfoPanelInstance.Clear();
+
+        PlanetData currentPlanet = GameManager.Instance.WhereIAm();
+        List<TradingItemData> tier1 = currentPlanet.itemsTier1;
+        List<TradingItemData> tier2 = currentPlanet.itemsTier2;
+        List<TradingItemData> tier3 = currentPlanet.itemsTier3;
+
+        foreach (TradingItemData item in tier1)
+        {
+            BuyItemInfoPanel buyItemInfoPanel = Instantiate(buyItemInfoPrefab, buyPanelContent.transform)
+                .GetComponent<BuyItemInfoPanel>();
+
+            buyItemInfoPanel.Initialize(item);
+            buyItemInfoPanelInstance.Add(buyItemInfoPanel);
+            buyItemInfoPanel.gameObject.SetActive(false);
+        }
+
+        foreach (TradingItemData item in tier2)
+        {
+            BuyItemInfoPanel buyItemInfoPanel = Instantiate(buyItemInfoPrefab, buyPanelContent.transform)
+                .GetComponent<BuyItemInfoPanel>();
+
+            buyItemInfoPanel.Initialize(item);
+            buyItemInfoPanelInstance.Add(buyItemInfoPanel);
+            buyItemInfoPanel.gameObject.SetActive(false);
+        }
+
+        foreach (TradingItemData item in tier3)
+        {
+            BuyItemInfoPanel buyItemInfoPanel = Instantiate(buyItemInfoPrefab, buyPanelContent.transform)
+                .GetComponent<BuyItemInfoPanel>();
+
+            buyItemInfoPanel.Initialize(item);
+            buyItemInfoPanelInstance.Add(buyItemInfoPanel);
+            buyItemInfoPanel.gameObject.SetActive(false);
+        }
+
+        UpdateBuyPanel();
+        InitializeResourcesText();
+
+        isBuyPanelInitialized = true;
+    }
+
+    public void UpdateBuyPanel()
+    {
+        PlanetData currentPlanet = GameManager.Instance.WhereIAm();
+        if (currentPlanet.currentTier >= ItemTierLevel.T1)
+        {
+            List<BuyItemInfoPanel> tier1 = buyItemInfoPanelInstance.Where(i => i.CurrentItem.tier == ItemTierLevel.T1)
+                .ToList();
+
+            foreach (BuyItemInfoPanel item in tier1) item.gameObject.SetActive(true);
+        }
+
+        if (currentPlanet.currentTier >= ItemTierLevel.T2)
+        {
+            List<BuyItemInfoPanel> tier2 = buyItemInfoPanelInstance.Where(i => i.CurrentItem.tier == ItemTierLevel.T2)
+                .ToList();
+
+            foreach (BuyItemInfoPanel item in tier2) item.gameObject.SetActive(true);
+        }
+
+        if (currentPlanet.currentTier == ItemTierLevel.T3)
+        {
+            List<BuyItemInfoPanel> tier3 = buyItemInfoPanelInstance.Where(i => i.CurrentItem.tier == ItemTierLevel.T3)
+                .ToList();
+
+            foreach (BuyItemInfoPanel item in tier3) item.gameObject.SetActive(true);
+        }
+    }
+
+    public void ShowBuyItemMap(TradingItemData selectedItem)
+    {
+        itemMapPanel.gameObject.SetActive(true);
+        itemMapPanel.transform.position = itemMapBuyPosition.position;
+        itemMapPanel.Initialize(selectedItem);
+    }
+
+    public void ShowBuyCheckPanel(TradingItemData selectedItem)
+    {
+        buyCheckPanel.gameObject.SetActive(true);
+        buyCheckPanel.Initialize(selectedItem);
+    }
+
+    public void OnBuyCheckBuyButtonClicked()
+    {
+    }
+
+    public void OnBuyCheckCloseButtonClicked()
+    {
     }
 
     #endregion
@@ -257,12 +439,14 @@ public class TradeUIController : MonoBehaviour
     }
 
     // 호버 시 아이템 맵 표시 (SellItemInfoPanel에서 OnMouseEnter에서 호출)
-    public void ShowItemMap(TradingItemData selectedItem)
+    public void ShowSellItemMap(TradingItemData selectedItem)
     {
         // 아이템 맵 활성화 및 초기화
         itemMapPanel.gameObject.SetActive(true);
+        itemMapPanel.transform.position = itemMapSellPosition.position;
         itemMapPanel.Initialize(selectedItem);
     }
+
 
     // 호버가 벗어났을 때 아이템 맵 숨김 (SellItemInfoPanel에서 OnMouseExit에서 호출)
     public void HideItemMap()
@@ -298,3 +482,5 @@ public class TradeUIController : MonoBehaviour
 
     #endregion
 }
+
+// 바꾸기 전

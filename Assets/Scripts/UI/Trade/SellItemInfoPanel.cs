@@ -61,6 +61,7 @@ public class SellItemInfoPanel : TooltipPanelBase, IPointerClickHandler
         itemName.text = item.GetItemData().itemName.Localize();
         itemCategory.text = item.GetItemData().type.Localize();
         itemImage.sprite = item.GetItemSprite();
+        itemAmount.text = item.GetItemData().amount.ToString();
 
         switch (item.GetItemState())
         {
@@ -87,7 +88,7 @@ public class SellItemInfoPanel : TooltipPanelBase, IPointerClickHandler
         base.OnMouseEnter(eventData);
 
         // 호버 시 아이템 맵 표시
-        if (currentItem != null && tradeUIController != null) tradeUIController.ShowItemMap(currentItem);
+        if (currentItem != null && tradeUIController != null) tradeUIController.ShowSellItemMap(currentItem);
 
         // 선택되지 않은 상태일 때만 호버 효과 적용
         if (!isSelected)

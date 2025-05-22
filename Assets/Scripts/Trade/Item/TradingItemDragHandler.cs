@@ -637,3 +637,5 @@ public class TradingItemDragHandler : MonoBehaviour
         if (previewObject != null && previewBoxRenderer != null) previewBoxRenderer.color = originalBoxColor;
     }
 }
+
+// 바꾸기전

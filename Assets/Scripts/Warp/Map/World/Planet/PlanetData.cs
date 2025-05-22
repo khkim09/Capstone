@@ -521,6 +521,7 @@ public class PlanetData
         TradingItemDataBase itemDatabase = GameObjectFactory.Instance.ItemFactory.itemDataBase;
         TradingItemData item = null;
         PlanetData targetPlanetData = null;
+
         switch (randomType)
         {
             case QuestObjectiveType.PirateHunt:
