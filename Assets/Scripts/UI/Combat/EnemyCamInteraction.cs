@@ -8,7 +8,7 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
     public Camera enemyCam;
     public RectTransform displayRect;
     public RenderTexture enemyCamTexture;
-    private bool displayOn = true;
+    private bool displayOn = false;
 
     public void PanelClicked()
     {
@@ -73,7 +73,7 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
 
 
                 // 아군만 선택 가능
-                if (crew != null /* && crew.isPlayerControlled*/)
+                if (crew != null  && crew.isPlayerControlled)
                 {
                     RTSSelectionManager.Instance.selectedCrew.Add(crew);
                     RTSSelectionManager.Instance.SetOutline(crew, true);
@@ -89,7 +89,7 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
                 CrewMember[] allCrew = FindObjectsByType<CrewMember>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
                 foreach (CrewMember crew in allCrew)
                 {
-                    if (selectionRect.Contains(crew.transform.position))
+                    if (selectionRect.Contains(crew.transform.position) && crew.isPlayerControlled)
                     {
                         RTSSelectionManager.Instance.selectedCrew.Add(crew);
                         RTSSelectionManager.Instance.SetOutline(crew, true);
@@ -183,6 +183,7 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
         //EnemyCamAim();
         Debug.Log("Camera forward: " + enemyCam.transform.forward);
 
+        gameObject.SetActive(false);
     }
 
     void Update()

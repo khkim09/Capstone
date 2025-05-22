@@ -19,6 +19,11 @@ public class HitPointSystem : ShipSystem
     {
         base.Initialize(ship);
 
+        Refresh();
+    }
+
+    public override void Refresh()
+    {
         currentHitPoint = GetShipStat(ShipStat.HitPointsMax);
     }
 

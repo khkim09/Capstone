@@ -61,6 +61,7 @@ public class CombatManager : MonoBehaviour
 
         RTSSelectionManager.Instance.enemyShip = enemyShip;
         RTSSelectionManager.Instance.playerShip=GameManager.Instance.playerShip;
+        GameManager.Instance.SetCurrentEnemyShip(enemyShip);
 
         enemyShip.MoveShipToFacingTargetShip(GameManager.Instance.playerShip);
         cam.EnemyCamAim();

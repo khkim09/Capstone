@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using NUnit.Framework.Constraints;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 
 public class WeaponPanel : MonoBehaviour
 {
@@ -46,6 +48,7 @@ public class WeaponPanel : MonoBehaviour
                 }
             }
         }
+        WeaponPanelOn.SetActive(false);
     }
 
     public void OpenPanelClicked()
@@ -75,6 +78,7 @@ public class WeaponPanel : MonoBehaviour
         GameObject weaponFrame = Instantiate(weaponFramePrefab, contentTransform,false);
         WeaponFrameFunction weaponFrameFunction = weaponFrame.GetComponent<WeaponFrameFunction>();
         weaponFrameFunction.weapon = weapon;
+        transform.Find("AllFire").GetComponent<Button>().onClick.AddListener(weaponFrameFunction.FireButtonClicked);
     }
 
     //todo: WeaponFrame이랑 InfoPanel에서 액션리스너 제거해줘야됨

@@ -371,13 +371,25 @@ public class GameManager : MonoBehaviour
 
         // playerShip.AddWeapon(8, new Vector)
 
-        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
-        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
-        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
+        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human,"인간해적",false);
+        CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast,"짐승해적",false);
+        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect,"벌레해적",false);
 
-        if (crewBase1 is CrewMember crewMember) enemyShip.AddCrew(crewMember);
-        if (crewBase2 is CrewMember crewMember2) enemyShip.AddCrew(crewMember2);
-        if (crewBase3 is CrewMember crewMember3) enemyShip.AddCrew(crewMember3);
+        if (crewBase1 is CrewMember crewMember)
+        {
+            //crewMember.gameObject.AddComponent<EnemyController>();
+            enemyShip.AddCrew(crewMember);
+        }
+        if (crewBase2 is CrewMember crewMember2)
+        {
+            //crewMember2.gameObject.AddComponent<EnemyController>();
+            enemyShip.AddCrew(crewMember2);
+        }
+        if (crewBase3 is CrewMember crewMember3)
+        {
+            //crewMember3.gameObject.AddComponent<EnemyController>();
+            enemyShip.AddCrew(crewMember3);
+        }
         //
         enemyShip.UpdateOuterHullVisuals();
     }

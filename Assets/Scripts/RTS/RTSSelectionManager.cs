@@ -325,7 +325,7 @@ public class RTSSelectionManager : MonoBehaviour
 
 
             // 아군만 선택 가능
-            if (crew != null /* && crew.isPlayerControlled*/)
+            if (crew != null  && crew.isPlayerControlled)
             {
                 selectedCrew.Add(crew);
                 SetOutline(crew, true);
@@ -353,7 +353,7 @@ public class RTSSelectionManager : MonoBehaviour
             screenPos.y = Screen.height - screenPos.y;
 
             // 아군만 선택 가능
-            if (selectionRect.Contains(screenPos, true) /* && crew.isPlayerControlled*/)
+            if (selectionRect.Contains(screenPos, true)  && crew.isPlayerControlled)
             {
                 selectedCrew.Add(crew);
                 // 선택됨 표시 (예: 색상 변경)

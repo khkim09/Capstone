@@ -21,6 +21,11 @@ public class CrewSystem : ShipSystem
     {
         base.Initialize(ship);
 
+        Refresh();
+    }
+
+    public override void Refresh()
+    {
         if (GetCrewCount() == 0)
         {
             // AlertNeedCrew();

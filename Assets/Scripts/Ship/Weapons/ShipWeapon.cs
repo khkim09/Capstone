@@ -73,6 +73,8 @@ public class ShipWeapon : MonoBehaviour
 
         // 소유 함선 찾기
         ownerShip = GetComponentInParent<Ship>();
+
+        ResetCooldown(0);
     }
 
     /// <summary>
@@ -186,7 +188,7 @@ public class ShipWeapon : MonoBehaviour
     {
         if (currentCooldown < 100)
         {
-            currentCooldown += deltaTime * GetCooldownPerSecond() * reloadBonus;
+            currentCooldown += deltaTime * GetCooldownPerSecond() * reloadBonus *(isEnabled?1:0);
 
             // // 쿨다운이 완료되면 자동 발사 시도
             // if (IsReady()) TryAutoFire();
@@ -210,6 +212,7 @@ public class ShipWeapon : MonoBehaviour
     public void ResetCooldown()
     {
         currentCooldown = 0f;
+        updateWeaponPanel?.Invoke();
     }
 
     /// <summary>
@@ -316,6 +319,30 @@ public class ShipWeapon : MonoBehaviour
         // if (!IsReady() || !isEnabled || ownerShip == null)
         //     return false;
         // TODO : 임시로 무조건 통과. 나중에 없애야함.
+
+        if (!IsReady())
+        {
+            Debug.Log("충전이 완료되지 않은 무기입니다.");
+            return false;
+        }
+
+        if (!isEnabled)
+        {
+            Debug.Log("비활성화된 무기입니다.");
+            return false;
+        }
+
+        if (GetWeaponType() == ShipWeaponType.Missile && ResourceManager.Instance.Missile <= 0)
+        {
+            Debug.Log("미사일탄이 없어 발사에 실패했습니다.");
+            return false;
+        }
+
+        if (GetWeaponType() == ShipWeaponType.Railgun && ResourceManager.Instance.Hypersonic <= 0)
+        {
+            Debug.Log("초음속탄이 없어 발사에 실패했습니다.");
+            return false;
+        }
 
         // 타겟 결정
         Ship targetShip = GetTargetShip();
