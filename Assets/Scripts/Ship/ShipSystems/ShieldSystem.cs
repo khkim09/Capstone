@@ -28,6 +28,11 @@ public class ShieldSystem : ShipSystem
     public override void Initialize(Ship ship)
     {
         base.Initialize(ship);
+        Refresh();
+    }
+
+    public override void Refresh()
+    {
         currentShield = GetShipStat(ShipStat.ShieldMaxAmount);
     }
 

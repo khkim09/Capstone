@@ -325,7 +325,7 @@ public class RTSSelectionManager : MonoBehaviour
 
 
             // 아군만 선택 가능
-            if (crew != null /* && crew.isPlayerControlled*/)
+            if (crew != null  && crew.isPlayerControlled)
             {
                 selectedCrew.Add(crew);
                 SetOutline(crew, true);
@@ -353,7 +353,7 @@ public class RTSSelectionManager : MonoBehaviour
             screenPos.y = Screen.height - screenPos.y;
 
             // 아군만 선택 가능
-            if (selectionRect.Contains(screenPos, true) /* && crew.isPlayerControlled*/)
+            if (selectionRect.Contains(screenPos, true)  && crew.isPlayerControlled)
             {
                 selectedCrew.Add(crew);
                 // 선택됨 표시 (예: 색상 변경)
@@ -497,7 +497,16 @@ public class RTSSelectionManager : MonoBehaviour
             {
                 // 다른 배에서 이동 명령 실수로 찍음
                 if (crew.currentShip != targetShip)
+                {
+                    if (targetRoom.roomType == RoomType.Teleporter)
+                    {
+                        // 텔포 준비
+                        crew.Freeze();
+
+                        StartCoroutine(crew.TeleportAfterDelay(crew, 0.5f));
+                    }
                     continue;
+                }
 
                 // 죽은 선원은 이동 불가
                 if (!crew.isAlive)
@@ -776,5 +785,21 @@ public class RTSSelectionManager : MonoBehaviour
         SetOutline(crew, true);
         crew.originPosTile = crew.GetCurrentTile();
         Debug.LogError("누름!");
+    }
+
+    public GameObject CombatManager;
+
+    public bool CallCombatManager(out CombatManager combat)
+    {
+        combat = null;
+        if (CombatManager == null)
+            CombatManager=GameObject.Find("CombatManager");
+        if (CombatManager == null)
+            return false;
+        else
+        {
+            combat = CombatManager.GetComponent<CombatManager>();
+        }
+        return true;
     }
 }

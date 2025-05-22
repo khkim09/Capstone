@@ -24,6 +24,11 @@ public class OxygenSystem : ShipSystem
     public override void Initialize(Ship ship)
     {
         base.Initialize(ship);
+        Refresh();
+    }
+
+    public override void Refresh()
+    {
         currentOxygenRate = 100.0f;
         currentOxygenLevel = OxygenLevel.Normal;
     }

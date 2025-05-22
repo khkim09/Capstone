@@ -42,7 +42,7 @@ public class OuterHullSystem : ShipSystem
     /// <returns>피해 감소가 적용된 최종 피해량.</returns>
     public float ReduceDamage(float damage)
     {
-        float damageAfterHull = damage * (100 - parentShip.GetStat(ShipStat.DamageReduction) / 100);
+        float damageAfterHull = damage * ((100 - parentShip.GetStat(ShipStat.DamageReduction)) / 100);
         //float damageAfterHull = damage;
         return damageAfterHull;
     }

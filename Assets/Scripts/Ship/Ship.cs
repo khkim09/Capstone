@@ -298,6 +298,8 @@ public class Ship : MonoBehaviour
         // 룸 목록에 추가
         allRooms.Add(room);
 
+        room.parentShip = this;
+
         // 타입별 딕셔너리에 추가
         if (!roomsByType.ContainsKey(roomType))
             roomsByType[roomType] = new List<Room>();
@@ -314,6 +316,7 @@ public class Ship : MonoBehaviour
 
         // 스탯 재계산
         RecalculateAllStats();
+        RefreshAllSystems();
 
         return room;
     }
@@ -434,6 +437,7 @@ public class Ship : MonoBehaviour
 
         // Recalculate stats
         RecalculateAllStats();
+        RefreshAllSystems();
 
         return true;
     }
@@ -814,6 +818,18 @@ public class Ship : MonoBehaviour
 
     // TODO: 스탯 추가할 때마다 합연산인지 곱연산인지 분류
 
+    public void RefreshAllSystems()
+    {
+        shieldSystem.Refresh();
+        weaponSystem.Refresh();
+        outerHullSystem.Refresh();
+        crewSystem.Refresh();
+        moraleSystem.Refresh();
+        storageSystem.Refresh();
+        hitpointSystem.Refresh();
+        oxygenSystem.Refresh();
+        powerSystem.Refresh();
+    }
 
     /// <summary>
     /// 주어진 ShipStat이 가산형(덧셈 방식) 스탯인지 여부를 반환합니다.
@@ -1205,7 +1221,7 @@ public class Ship : MonoBehaviour
         if (finalDamage > 0)
         {
             // 함선 전체에 데미지 적용
-            TakeDamage(finalDamage);
+            //TakeDamage(finalDamage);
 
             if (shipWeaponType == ShipWeaponType.Missile)
             {
@@ -1244,10 +1260,21 @@ public class Ship : MonoBehaviour
     /// <param name="damage">적용할 피해량.</param>
     public void TakeDamage(float damage)
     {
+        Debug.Log("damage: "+damage);
         HitPointSystem hitPointSystem = HitpointSystem;
         hitPointSystem.ChangeHitPoint(-damage);
 
         if (hitPointSystem.GetHitPoint() <= 0f) OnShipDestroyed();
+
+        InfoPanelChanged?.Invoke();
+    }
+
+    public void RepairDamage(float repair)
+    {
+        HitPointSystem hitPointSystem = HitpointSystem;
+        hitPointSystem.ChangeHitPoint(repair);
+
+        InfoPanelChanged?.Invoke();
     }
 
     /// <summary>
