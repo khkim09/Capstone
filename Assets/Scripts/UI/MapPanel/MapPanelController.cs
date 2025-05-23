@@ -9,22 +9,22 @@ using Random = UnityEngine.Random;
 
 public class MapPanelController : MonoBehaviour
 {
-    [Header("탭 버튼")] [SerializeField] private Button buttonWarp;
+    [Header("탭 버튼")][SerializeField] private Button buttonWarp;
     [SerializeField] private Button buttonWorld;
 
-    [Header("전체 탭")] [SerializeField] private GameObject Tabs;
+    [Header("전체 탭")][SerializeField] private GameObject Tabs;
 
-    [Header("패널 목록")] [SerializeField] private GameObject panelWarp;
+    [Header("패널 목록")][SerializeField] private GameObject panelWarp;
     [SerializeField] private GameObject panelWorld;
     [SerializeField] private GameObject panelUnselected;
 
-    [Header("워프 패널 설정")] [SerializeField] private GameObject warpPanelContent;
+    [Header("워프 패널 설정")][SerializeField] private GameObject warpPanelContent;
     [SerializeField] private GameObject warpNodePrefab;
     [SerializeField] private GameObject nodeConnectionPrefab;
     [SerializeField] private GameObject checkWarpUI;
     private WarpNode recentClickedNode;
 
-    [Header("행성 도착 버튼")] [SerializeField] private Button buttonPlanetLand;
+    [Header("행성 도착 버튼")][SerializeField] private Button buttonPlanetLand;
 
 
     private Planet targetPlanet;
@@ -38,18 +38,26 @@ public class MapPanelController : MonoBehaviour
     private List<List<WarpNodeData>> nodesByLayer = new();
 
 
-    [Header("월드 패널 설정")] [SerializeField] private GameObject worldPanelContent;
+    [Header("월드 패널 설정")][SerializeField] private GameObject worldPanelContent;
     [SerializeField] private GameObject planetPrefab;
     [SerializeField] private GameObject currentPlayerIndicatorPrefab;
     [SerializeField] private GameObject validRangeIndicatorPrefab;
     [SerializeField] private GameObject worldNodePrefab;
+
+    /// <summary>
+    /// 이동 찍으면 생기는 노드
+    /// </summary>
     private Vector2 currentWorldNodePosition;
+
+    /// <summary>
+    /// currentWorldNodePosition 기준으로 생기는 범위
+    /// </summary>
     private GameObject currentPositionIndicator;
     [SerializeField] private float indicatorRotationSpeed = 30f; // 초당 회전 각도
 
 
-    [Header("열려야 되는 위치")] [SerializeField] private Transform openedPosition;
-    [Header("열리는 속도")] [SerializeField] private float slideSpeed = 0.1f;
+    [Header("열려야 되는 위치")][SerializeField] private Transform openedPosition;
+    [Header("열리는 속도")][SerializeField] private float slideSpeed = 0.1f;
 
     private Vector3 closedPosition;
     private Coroutine slideCoroutine;
@@ -74,6 +82,8 @@ public class MapPanelController : MonoBehaviour
     {
         closedPosition = Tabs.transform.position; // 시작 위치 저장
         AddButtonListeners();
+
+        currentWorldNodePosition = GameManager.Instance.normalizedPlayerPosition;
     }
 
     private void Update()
@@ -349,11 +359,11 @@ public class MapPanelController : MonoBehaviour
         targetNode.SetCurrentPlayerNode(true);
         EventManager.Instance.CurrentWarpNode = targetNode;
 
-
+        // 일반 노드
         if (!targetNode.NodeData.isEndNode)
             GameManager.Instance.normalizedPlayerPosition =
                 GameManager.Instance.WorldNodeDataList[targetNode.NodeData.layer - 1].normalizedPosition;
-        else
+        else // 행성 도착
             GameManager.Instance.normalizedPlayerPosition = GameManager.Instance
                 .PlanetDataList[GameManager.Instance.CurrentWarpTargetPlanetId].normalizedPosition;
 
@@ -718,12 +728,12 @@ public class MapPanelController : MonoBehaviour
 
         // 2. 노드 연결선 그리기
         foreach (WarpNodeData node in warpNodes)
-        foreach (WarpNodeData connectedNode in node.connections)
-            if (nodeVisuals.ContainsKey(node) && nodeVisuals.ContainsKey(connectedNode))
-                CreateNodeConnection(
-                    nodeVisuals[node],
-                    nodeVisuals[connectedNode]
-                );
+            foreach (WarpNodeData connectedNode in node.connections)
+                if (nodeVisuals.ContainsKey(node) && nodeVisuals.ContainsKey(connectedNode))
+                    CreateNodeConnection(
+                        nodeVisuals[node],
+                        nodeVisuals[connectedNode]
+                    );
     }
 
     private WarpNode CreateNodeVisual(WarpNodeData nodeData, RectTransform contentRect)
@@ -869,7 +879,9 @@ public class MapPanelController : MonoBehaviour
             // 클릭한 위치에 새 월드 노드 생성
             WorldNodeData newNodeData = new()
             {
-                normalizedPosition = normalizedPosition, isVisited = false, isCurrentNode = true
+                normalizedPosition = normalizedPosition,
+                isVisited = false,
+                isCurrentNode = true
             };
 
             // 기존 현재 노드 상태 해제
@@ -1043,6 +1055,11 @@ public class MapPanelController : MonoBehaviour
         if (GameManager.Instance.CurrentState == GameState.Warp)
             return;
 
+        if (GameManager.Instance.CurrentWarpTargetPlanetId != -1
+                && GameManager.Instance.WhereIAm().normalizedPosition == GameManager.Instance.normalizedPlayerPosition
+                && GameManager.Instance.normalizedPlayerPosition == currentWorldNodePosition)
+            return;
+
         Debug.Log($"MapPanelController: 행성 클릭됨 -");
 
         RectTransform contentRect = worldPanelContent.GetComponent<RectTransform>();
@@ -1087,6 +1104,9 @@ public class MapPanelController : MonoBehaviour
                 Destroy(child.gameObject);
 
         GameManager.Instance.ChangeGameState(GameState.Warp);
+
+        // 목적지 행성 갱신
+        GameManager.Instance.SetCurrentWarpTargetPlanetId(targetPlanet.PlanetData.planetId);
 
         GameManager.Instance.SaveGameData();
 

@@ -67,7 +67,8 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")] [SerializeField]
+    [Header("Game State")]
+    [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -820,8 +821,11 @@ public class GameManager : MonoBehaviour
 
     #region 행성씬전용
 
+    public Dictionary<int, List<CrewCardSaveData>> employCardsPerPlanet = new();
+
     public PlanetData WhereIAm()
     {
+        Debug.LogError($"현재 행성 : {currentWarpTargetPlanetId}");
         PlanetData planetData = planetDataList[currentWarpTargetPlanetId];
         return planetData;
     }

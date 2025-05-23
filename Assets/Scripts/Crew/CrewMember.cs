@@ -644,7 +644,8 @@ public class CrewMember : CrewBase
         // if (healthBarController != null)
         //     healthBarController.UpdateHealth(health);
 
-        if (health <= 0) Die();
+        if (health <= 0)
+            Die();
     }
 
     /// <summary>
@@ -742,6 +743,7 @@ public class CrewMember : CrewBase
         }
 
         Destroy(gameObject);
+        // object pulling -> 죽은 선원 집합소 생성 (setparent())
 
         Debug.Log($"{crewName} 사망 처리 완료");
     }
@@ -1109,11 +1111,14 @@ public class CrewMember : CrewBase
             if (anim != null)
                 anim.enabled = true;
 
-            //crew.Freeze();
+            // crew.Freeze();
 
             // 적 함선으로 텔레포트 했으므로 enemy 리스트에 추가
             exitShip.allCrews.Remove(crew);
             targetShip.allEnemies.Add(crew);
+
+            if (RTSSelectionManager.Instance.selectedCrew.Contains(this))
+                RTSSelectionManager.Instance.selectedCrew.RemoveAll(cm => cm == null || cm == this);
 
             assigned = true;
             break;
