@@ -818,7 +818,6 @@ public class GameManager : MonoBehaviour
 
     public PlanetData WhereIAm()
     {
-        Debug.LogError($"현재 행성 : {currentWarpTargetPlanetId}");
         PlanetData planetData = planetDataList[currentWarpTargetPlanetId];
         return planetData;
     }

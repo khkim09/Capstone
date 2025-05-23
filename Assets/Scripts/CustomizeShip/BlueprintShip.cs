@@ -520,7 +520,6 @@ public class BlueprintShip : MonoBehaviour
         previewOuterHulls.Add(hullObj);
     }
 
-    // public void SetBPHullLevel(int level, GameObject previewOuterHullPrefab) { }
     public void ClearPreviewOuterHulls()
     {
         foreach (GameObject go in previewOuterHulls)
