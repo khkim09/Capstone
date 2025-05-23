@@ -27,6 +27,7 @@ public class CombatManager : MonoBehaviour
     /// </summary>
     private CombatUIController uiController;
 
+
     // [SerializeField] private ProjectilePool projectilePool; // 탄환 풀링
 
     /// <summary>
@@ -70,7 +71,25 @@ public class CombatManager : MonoBehaviour
 
         enemyShip.WeaponSystem.SetAutoFireEnabled(true);
         GameManager.Instance.playerShip.HitpointSystem.RecalculateHitPoint();
+
+        enemyShip.shipExplosion += CombatEnding;
+        GameManager.Instance.playerShip.shipExplosion+= CombatEnding;
     }
+
+    public void CombatEnding(Ship ship)
+    {
+        if (ship == GameManager.Instance.playerShip)
+        {
+            defeatUI.SetActive(true);
+        }
+        else
+        {
+            winUI.SetActive(true);
+        }
+    }
+
+    public GameObject defeatUI;
+    public GameObject winUI;
 
     /// <summary>
     /// 매 프레임마다 호출되며 현재 전투 상태에 따라 로직을 처리합니다.
