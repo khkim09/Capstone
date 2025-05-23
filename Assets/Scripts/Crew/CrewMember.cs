@@ -548,18 +548,29 @@ public class CrewMember : CrewBase
 
         PlayAnimation("attack");
 
-        // 실제로 데미지가 들어가는 부분
-        yield return new WaitForSeconds(attackBeforeDelay);
-        Debug.Log("공격 딜레이 종료");
+        // // 실제로 데미지가 들어가는 부분
+        // yield return new WaitForSeconds(attackBeforeDelay);
+        // Debug.Log("공격 딜레이 종료");
+        //
+        // // 실제 데미지 적용
+        // Attack();
+        // yield return new WaitForSeconds(attackAfterDelay);
+        //
+        // // 부술 방도 없고 적군도 죽은 상태
+        // if (madRoom == null && combatTarget == null) yield break;
+        //
+        // // 부술 방이 있거나 적군이 있다면 계속 전투 루틴 실행
+        // combatCoroutine = StartCoroutine(CombatRoutine());
+    }
 
-        // 실제 데미지 적용
-        Attack(this, combatTarget);
-        yield return new WaitForSeconds(attackAfterDelay);
-
-        // 부술 방도 없고 적군도 죽은 상태
-        if (madRoom == null && combatTarget == null) yield break;
-
-        // 부술 방이 있거나 적군이 있다면 계속 전투 루틴 실행
+    public void RepeatCombatRoutine()
+    {
+        if(madRoom==null && combatTarget==null)
+            if(combatCoroutine!=null)
+            {
+                StopCoroutine(combatCoroutine);
+                combatCoroutine = null;
+            }
         combatCoroutine = StartCoroutine(CombatRoutine());
     }
 
@@ -600,11 +611,11 @@ public class CrewMember : CrewBase
     ///공격한 상대가 살아있는지 여부를 반환한다.<br/>
     /// True: 아직 살아있음 / False: 죽었음
     /// </returns>
-    public void Attack(CrewMember attacker, CrewMember target)
+    public void Attack()
     {
         // 피해량 계산식: (공격 주체 기본 공격 + 장비 공격력(tmp)) * (1 - (상대 방어력 / 100))
         float damage = attack + GetEquipmentAttack(); //(attacker.attack + attacker.equippedWeapon.eqAttackBonus) * (1 - target.defense / 100f);
-        if (target == null)
+        if (combatTarget == null)
         {
             //인자로 받는 target이 combatRoutine에서 현재 적군을 찾을 수 없는 경우에는 null로 전달되기 때문에 하위 분기에서 시설 파괴로 진행
             if (madRoom == null)
@@ -628,8 +639,8 @@ public class CrewMember : CrewBase
             return;
         }
 
-        Debug.Log($"{attacker.crewName}이(가) {target.crewName}에게 {damage}의 피해를 입혔습니다.");
-        target.TakeDamage(damage);
+        Debug.Log($"{this.crewName}이(가) {combatTarget.crewName}에게 {damage}의 피해를 입혔습니다.");
+        combatTarget.TakeDamage(damage);
     }
 
     /// <summary>
@@ -660,7 +671,7 @@ public class CrewMember : CrewBase
         isAlive = false;
         isWorking = false;
 
-        StopAllCoroutines();
+        StopAllCrewCoroutine();
         DontTouchMe();
 
         if (currentRoom.workingCrew == this) WalkOut();
@@ -688,7 +699,7 @@ public class CrewMember : CrewBase
         if (inCombat)
         {
             inCombat = false;
-            StopCoroutine(combatCoroutine);
+            if(combatCoroutine!=null) StopCoroutine(combatCoroutine);
             combatCoroutine = null;
             madRoom = null;
             combatTarget = null;
@@ -787,7 +798,7 @@ public class CrewMember : CrewBase
     {
         if (isAlive && !inCombat && !isMoving)
         {
-            StopAllCoroutines();
+            StopAllCrewCoroutine();
 
             PlayAnimation("idle");
 
@@ -969,7 +980,7 @@ public class CrewMember : CrewBase
     public void Freeze()
     {
         // 일단 모든 코루틴을 멈추고
-        StopAllCoroutines();
+        StopAllCrewCoroutine();
 
         // 전투 중단
         inCombat = false;
@@ -1159,4 +1170,13 @@ public class CrewMember : CrewBase
     }
 
     #endregion
+
+    private void StopAllCrewCoroutine()
+    {
+        StopAllCoroutines();
+        combatCoroutine = null;
+        repairCoroutine = null;
+        moveCoroutine = null;
+        DieCoroutine = null;
+    }
 }

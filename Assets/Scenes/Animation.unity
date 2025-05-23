@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 697057976}
   - component: {fileID: 697057975}
   - component: {fileID: 697057974}
+  - component: {fileID: 697057977}
   m_Layer: 0
   m_Name: beast_0
   m_TagString: Untagged
@@ -229,6 +230,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &697057977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697057973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791b09b089bf46908c4be15a222db189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewName: 
+  isPlayerControlled: 0
+  race: 0
+  maxHealth: 0
+  attack: 0
+  defense: 0
+  learningSpeed: 0
+  needsOxygen: 0
+  maxPilotSkillValue: 0
+  maxEngineSkillValue: 0
+  maxPowerSkillValue: 0
+  maxShieldSkillValue: 0
+  maxWeaponSkillValue: 0
+  maxAmmunitionSkillValue: 0
+  maxMedBaySkillValue: 0
+  maxRepairSkillValue: 0
+  equippedWeapon: {fileID: 0}
+  equippedShield: {fileID: 0}
+  equippedAssistant: {fileID: 0}
+  currentRoom: {fileID: 0}
+  position: {x: 0, y: 0}
+  targetPosition: {x: 0, y: 0}
+  moveSpeed: 3
+  health: 0
+  isAlive: 0
+  isMoving: 0
+  currentShip: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  animator: {fileID: 0}
+  healthBarController: {fileID: 0}
+  reservedRoom: {fileID: 0}
+  oldReservedRoom: {fileID: 0}
+  reservedTile: {x: 0, y: 0}
+  oldReservedTile: {x: 0, y: 0}
+  originPosTile: {x: 0, y: 0}
+  hasEnteredTPRoom: 0
+  inCombat: 0
+  madRoom: {fileID: 0}
+  repairCoefficient: 10
+  repairBeforeDelay: 0.5
+  repairAfterDelay: 0.5
+  isWorking: 0
+  isTPing: 0
 --- !u!1 &713916853
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +296,7 @@ GameObject:
   - component: {fileID: 713916856}
   - component: {fileID: 713916855}
   - component: {fileID: 713916854}
+  - component: {fileID: 713916857}
   m_Layer: 0
   m_Name: insect_0
   m_TagString: Untagged
@@ -339,6 +396,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &713916857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713916853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791b09b089bf46908c4be15a222db189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewName: 
+  isPlayerControlled: 0
+  race: 0
+  maxHealth: 0
+  attack: 0
+  defense: 0
+  learningSpeed: 0
+  needsOxygen: 0
+  maxPilotSkillValue: 0
+  maxEngineSkillValue: 0
+  maxPowerSkillValue: 0
+  maxShieldSkillValue: 0
+  maxWeaponSkillValue: 0
+  maxAmmunitionSkillValue: 0
+  maxMedBaySkillValue: 0
+  maxRepairSkillValue: 0
+  equippedWeapon: {fileID: 0}
+  equippedShield: {fileID: 0}
+  equippedAssistant: {fileID: 0}
+  currentRoom: {fileID: 0}
+  position: {x: 0, y: 0}
+  targetPosition: {x: 0, y: 0}
+  moveSpeed: 3
+  health: 0
+  isAlive: 0
+  isMoving: 0
+  currentShip: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  animator: {fileID: 0}
+  healthBarController: {fileID: 0}
+  reservedRoom: {fileID: 0}
+  oldReservedRoom: {fileID: 0}
+  reservedTile: {x: 0, y: 0}
+  oldReservedTile: {x: 0, y: 0}
+  originPosTile: {x: 0, y: 0}
+  hasEnteredTPRoom: 0
+  inCombat: 0
+  madRoom: {fileID: 0}
+  repairCoefficient: 10
+  repairBeforeDelay: 0.5
+  repairAfterDelay: 0.5
+  isWorking: 0
+  isTPing: 0
 --- !u!1 &961854321
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +599,7 @@ GameObject:
   - component: {fileID: 1069624159}
   - component: {fileID: 1069624158}
   - component: {fileID: 1069624157}
+  - component: {fileID: 1069624160}
   m_Layer: 0
   m_Name: attacker_0
   m_TagString: Untagged
@@ -586,6 +699,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1069624160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069624156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791b09b089bf46908c4be15a222db189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewName: 
+  isPlayerControlled: 0
+  race: 0
+  maxHealth: 0
+  attack: 0
+  defense: 0
+  learningSpeed: 0
+  needsOxygen: 0
+  maxPilotSkillValue: 0
+  maxEngineSkillValue: 0
+  maxPowerSkillValue: 0
+  maxShieldSkillValue: 0
+  maxWeaponSkillValue: 0
+  maxAmmunitionSkillValue: 0
+  maxMedBaySkillValue: 0
+  maxRepairSkillValue: 0
+  equippedWeapon: {fileID: 0}
+  equippedShield: {fileID: 0}
+  equippedAssistant: {fileID: 0}
+  currentRoom: {fileID: 0}
+  position: {x: 0, y: 0}
+  targetPosition: {x: 0, y: 0}
+  moveSpeed: 3
+  health: 0
+  isAlive: 0
+  isMoving: 0
+  currentShip: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  animator: {fileID: 0}
+  healthBarController: {fileID: 0}
+  reservedRoom: {fileID: 0}
+  oldReservedRoom: {fileID: 0}
+  reservedTile: {x: 0, y: 0}
+  oldReservedTile: {x: 0, y: 0}
+  originPosTile: {x: 0, y: 0}
+  hasEnteredTPRoom: 0
+  inCombat: 0
+  madRoom: {fileID: 0}
+  repairCoefficient: 10
+  repairBeforeDelay: 0.5
+  repairAfterDelay: 0.5
+  isWorking: 0
+  isTPing: 0
 --- !u!1 &1365773959
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,6 +875,7 @@ GameObject:
   - component: {fileID: 1866007939}
   - component: {fileID: 1866007938}
   - component: {fileID: 1866007937}
+  - component: {fileID: 1866007940}
   m_Layer: 0
   m_Name: unshaped
   m_TagString: Untagged
@@ -806,6 +975,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1866007940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866007936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791b09b089bf46908c4be15a222db189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewName: 
+  isPlayerControlled: 0
+  race: 0
+  maxHealth: 0
+  attack: 0
+  defense: 0
+  learningSpeed: 0
+  needsOxygen: 0
+  maxPilotSkillValue: 0
+  maxEngineSkillValue: 0
+  maxPowerSkillValue: 0
+  maxShieldSkillValue: 0
+  maxWeaponSkillValue: 0
+  maxAmmunitionSkillValue: 0
+  maxMedBaySkillValue: 0
+  maxRepairSkillValue: 0
+  equippedWeapon: {fileID: 0}
+  equippedShield: {fileID: 0}
+  equippedAssistant: {fileID: 0}
+  currentRoom: {fileID: 0}
+  position: {x: 0, y: 0}
+  targetPosition: {x: 0, y: 0}
+  moveSpeed: 3
+  health: 0
+  isAlive: 0
+  isMoving: 0
+  currentShip: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  animator: {fileID: 0}
+  healthBarController: {fileID: 0}
+  reservedRoom: {fileID: 0}
+  oldReservedRoom: {fileID: 0}
+  reservedTile: {x: 0, y: 0}
+  oldReservedTile: {x: 0, y: 0}
+  originPosTile: {x: 0, y: 0}
+  hasEnteredTPRoom: 0
+  inCombat: 0
+  madRoom: {fileID: 0}
+  repairCoefficient: 10
+  repairBeforeDelay: 0.5
+  repairAfterDelay: 0.5
+  isWorking: 0
+  isTPing: 0
 --- !u!1 &2086185616
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,6 +1041,7 @@ GameObject:
   - component: {fileID: 2086185619}
   - component: {fileID: 2086185618}
   - component: {fileID: 2086185617}
+  - component: {fileID: 2086185620}
   m_Layer: 0
   m_Name: human
   m_TagString: Untagged
@@ -916,6 +1141,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2086185620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086185616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791b09b089bf46908c4be15a222db189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewName: 
+  isPlayerControlled: 0
+  race: 0
+  maxHealth: 0
+  attack: 0
+  defense: 0
+  learningSpeed: 0
+  needsOxygen: 0
+  maxPilotSkillValue: 0
+  maxEngineSkillValue: 0
+  maxPowerSkillValue: 0
+  maxShieldSkillValue: 0
+  maxWeaponSkillValue: 0
+  maxAmmunitionSkillValue: 0
+  maxMedBaySkillValue: 0
+  maxRepairSkillValue: 0
+  equippedWeapon: {fileID: 0}
+  equippedShield: {fileID: 0}
+  equippedAssistant: {fileID: 0}
+  currentRoom: {fileID: 0}
+  position: {x: 0, y: 0}
+  targetPosition: {x: 0, y: 0}
+  moveSpeed: 3
+  health: 0
+  isAlive: 0
+  isMoving: 0
+  currentShip: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  animator: {fileID: 0}
+  healthBarController: {fileID: 0}
+  reservedRoom: {fileID: 0}
+  oldReservedRoom: {fileID: 0}
+  reservedTile: {x: 0, y: 0}
+  oldReservedTile: {x: 0, y: 0}
+  originPosTile: {x: 0, y: 0}
+  hasEnteredTPRoom: 0
+  inCombat: 0
+  madRoom: {fileID: 0}
+  repairCoefficient: 10
+  repairBeforeDelay: 0.5
+  repairAfterDelay: 0.5
+  isWorking: 0
+  isTPing: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

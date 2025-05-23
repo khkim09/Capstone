@@ -180,7 +180,10 @@ public class Ship : MonoBehaviour
         foreach (Room room in allRooms)
             if (room != null)
                 room.OnRoomStateChanged -= OnRoomStateChanged;
+        shipExplosion?.Invoke(this);
     }
+
+    public event Action<Ship> shipExplosion;
 
     // ===== Room Management =====
 
@@ -956,6 +959,8 @@ public class Ship : MonoBehaviour
     {
         Debug.Log($"Ship {shipName} destroyed!");
         // Implement game over logic
+        shipExplosion?.Invoke(this);
+
     }
 
     #region 워프
