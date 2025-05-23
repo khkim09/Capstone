@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -190,6 +191,11 @@ public class RTSSelectionManager : MonoBehaviour
             }
         }
 
+
+    }
+
+    private void LateUpdate()
+    {
         // 오른쪽 마우스 버튼 클릭: 이동 명령 발동
         if (/*isMainUI && */Input.GetMouseButtonDown(1))
         {
