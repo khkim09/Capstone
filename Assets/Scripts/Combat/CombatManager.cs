@@ -69,15 +69,18 @@ public class CombatManager : MonoBehaviour
 
         RTSSelectionManager.Instance.RefreshMovementData();
 
-        enemyShip.WeaponSystem.SetAutoFireEnabled(true);
+        enemyShip.WeaponSystem.SetAutoFireEnabled(false);
         GameManager.Instance.playerShip.HitpointSystem.RecalculateHitPoint();
 
         enemyShip.shipExplosion += CombatEnding;
         GameManager.Instance.playerShip.shipExplosion+= CombatEnding;
     }
 
+    public GameObject CCTV;
     public void CombatEnding(Ship ship)
     {
+        CCTV.SetActive(false);
+        Time.timeScale = 0;
         if (ship == GameManager.Instance.playerShip)
         {
             defeatUI.SetActive(true);
@@ -90,6 +93,8 @@ public class CombatManager : MonoBehaviour
 
     public GameObject defeatUI;
     public GameObject winUI;
+
+
 
     /// <summary>
     /// 매 프레임마다 호출되며 현재 전투 상태에 따라 로직을 처리합니다.

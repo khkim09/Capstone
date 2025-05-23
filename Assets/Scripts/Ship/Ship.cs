@@ -1225,8 +1225,6 @@ public class Ship : MonoBehaviour
 
         if (finalDamage > 0)
         {
-            // 함선 전체에 데미지 적용
-            //TakeDamage(finalDamage);
 
             if (shipWeaponType == ShipWeaponType.Missile)
             {
@@ -1579,4 +1577,14 @@ public class Ship : MonoBehaviour
     public event Action InfoPanelChanged;
 
     #endregion
+
+    public void BackToTheDefaultShip()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        GameManager.Instance.CreateDefaultPlayerShip();
+    }
 }
