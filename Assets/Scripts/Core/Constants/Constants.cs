@@ -56,31 +56,6 @@ public static class Constants
         public const float CellSize = 1.0f;
     }
 
-    public static class WarpNodes
-    {
-        public const float NodeSize = 0.05f;
-
-        public const float EdgeMarginHorizontal = 0.1f;
-        public const float EdgeMarginVertical = 0.2f;
-
-
-        public const int LayerNodeCountMin = 2;
-
-        public const int LayerNodeCountMax = 5;
-
-        public const float ConnectionLineThickness = 0.1f;
-
-        // TODO :원래 값 0.6
-        public const float EventNodeRate = 0.6f;
-
-        public const float CombatNodeRate = 1 - EventNodeRate;
-
-        /// <summary>
-        /// 워프할 때 나오는 트랜지션의 지속시간
-        /// </summary>
-        public const float WarpingDuration = 2.5f;
-    }
-
     /// <summary>
     /// 행성 관련 상수
     /// </summary>
@@ -121,7 +96,7 @@ public static class Constants
         /// </summary>
         // public const float PlanetNodeValidRadius = PlanetSize * 4f;
         public const float PlanetNodeValidRadius = PlanetSize * 10f;
-        
+
         /// <summary>
         /// 2 티어 아이템 해금을 위해 필요한 거래 총액
         /// </summary>
@@ -213,5 +188,30 @@ public static class Constants
         /// Scene 전환 시 트래지션에 사용되는 페이드 효과. 이것보다 높은 Sorting Order는 존재하면 안됨
         /// </summary>
         public const int SceneFade = 2000;
+    }
+
+    public static class WarpNodes
+    {
+        public const float NodeSize = 0.05f;
+
+        public const float EdgeMarginHorizontal = 0.1f;
+        public const float EdgeMarginVertical = 0.2f;
+
+
+        public const int LayerNodeCountMin = 2;
+
+        public const int LayerNodeCountMax = 5;
+
+        public const float ConnectionLineThickness = 0.1f;
+
+        // TODO :원래 값 0.6
+        public const float EventNodeRate = 0.99f;
+
+        public const float CombatNodeRate = 1 - EventNodeRate;
+
+        /// <summary>
+        /// 워프할 때 나오는 트랜지션의 지속시간
+        /// </summary>
+        public const float WarpingDuration = 2.5f;
     }
 }
