@@ -61,7 +61,8 @@ public class ShipFollowCamera : MonoBehaviour
         yield return null;
 
         if (isFollowPlayerShip)
-            targetShip = GameManager.Instance.playerShip;
+            if(GameManager.Instance.playerShip!=null)
+                targetShip = GameManager.Instance.playerShip;
 
         GetCameraStartPositionToOriginShip();
     }

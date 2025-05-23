@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -190,6 +191,11 @@ public class RTSSelectionManager : MonoBehaviour
             }
         }
 
+
+    }
+
+    private void LateUpdate()
+    {
         // 오른쪽 마우스 버튼 클릭: 이동 명령 발동
         if (/*isMainUI && */Input.GetMouseButtonDown(1))
         {
@@ -608,7 +614,7 @@ public class RTSSelectionManager : MonoBehaviour
 
             if (bestCrew == null)
             {
-                Debug.LogError("해당 타일까지 갈 수 있는 선원이 없음.");
+                Debug.LogWarning("해당 타일까지 갈 수 있는 선원이 없음.");
                 break;
             }
 
@@ -638,7 +644,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <param name="readyCombatCrew"></param>
     public void MoveForCombat(CrewMember readyCombatCrew)
     {
-        Debug.LogError("전투 이동 검사 시작");
+        Debug.Log("전투 이동 검사 시작");
 
         // 1. 도착한 방에서 적군 탐색
         List<CrewMember> enemiesInRoom = new();
@@ -653,7 +659,7 @@ public class RTSSelectionManager : MonoBehaviour
 
         if (enemiesInRoom.Count == 0)
         {
-            Debug.LogError("적군 없음");
+            Debug.LogWarning("적군 없음");
             return;
         }
 
@@ -724,7 +730,7 @@ public class RTSSelectionManager : MonoBehaviour
         // 전투 참여 불가
         if (neighborTileCandi.Count == 0)
         {
-            Debug.LogError($"{readyCombatCrew.race} : {closestEnemy.race} 주변 빈 타일 없어 전투 참여 불가");
+            Debug.LogWarning($"{readyCombatCrew.race} : {closestEnemy.race} 주변 빈 타일 없어 전투 참여 불가");
             return;
         }
 
@@ -768,7 +774,7 @@ public class RTSSelectionManager : MonoBehaviour
         else
             readyCombatCrew.AssignPathAndMove(bestPathToNeighborTile);
 
-        Debug.LogError($"{readyCombatCrew.race}가 {closestEnemy.race} 이웃 타일로 이동");
+        Debug.Log($"{readyCombatCrew.race}가 {closestEnemy.race} 이웃 타일로 이동");
         Debug.Log("전투 개시");
 
         return;
@@ -784,7 +790,7 @@ public class RTSSelectionManager : MonoBehaviour
         selectedCrew.Add(crew);
         SetOutline(crew, true);
         crew.originPosTile = crew.GetCurrentTile();
-        Debug.LogError("누름!");
+        Debug.Log("누름!");
     }
 
     public GameObject CombatManager;

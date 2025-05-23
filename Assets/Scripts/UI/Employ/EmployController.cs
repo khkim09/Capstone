@@ -33,20 +33,21 @@ public class EmployController : MonoBehaviour
         buyButton.onClick.AddListener(() => { OnClickBuy(); });
         cancelButton.onClick.AddListener(() => { OnClickCancel(); });
 
-        PopulateRandomCrewCards();
+        int currentPlanetId = GameManager.Instance.WhereIAm().planetId;
+
+        // 행성 내 고용 창 최초 진입 - 랜덤 3장 생성 후 저장
+        if (!GameManager.Instance.employCardsPerPlanet.ContainsKey(currentPlanetId))
+            PopulateRandomCrewCardsAndSave(currentPlanetId);
+
+        // 항상 현재 행성의 crewCard UI 표시
+        PopulateCardsFromSavedData(currentPlanetId);
     }
 
-    /// <summary>
-    /// crewcard 랜덤 3개 배치
-    /// </summary>
-    public void PopulateRandomCrewCards()
+    private void PopulateRandomCrewCardsAndSave(int planetId)
     {
-        foreach (Transform child in employPanel)
-            Destroy(child.gameObject);
+        List<int> pool = new List<int> { 0, 1, 2, 3, 4, 5 };
 
-        List<int> pool = new List<int> { 0, 1, 2, 3, 4, 5 }; // prefab 인덱스
-
-        // Tank/Sup 동시에 못 나오게 제한
+        // 기계형 두 개 동시 생성 불가
         int mechTankIndex = 2, mechSupIndex = 3;
         if (Random.value < 0.5f)
             pool.Remove(mechSupIndex);
@@ -60,19 +61,49 @@ public class EmployController : MonoBehaviour
             if (!chosen.Contains(rand)) chosen.Add(rand);
         }
 
+        List<CrewCardSaveData> saveData = new();
         foreach (int index in chosen)
         {
-            GameObject card = Instantiate(crewCardPrefabs[index], employPanel);
             CrewRace race = (CrewRace)(index + 1);
-
             string randomName = GameObjectFactory.Instance.CrewFactory.GenerateRandomName(race);
+            saveData.Add(new CrewCardSaveData(race, randomName));
+        }
+
+        GameManager.Instance.employCardsPerPlanet[planetId] = saveData;
+    }
+
+    private void PopulateCardsFromSavedData(int planetId)
+    {
+        foreach (Transform child in employPanel)
+            Destroy(child.gameObject);
+
+        List<CrewCardSaveData> savedCards = GameManager.Instance.employCardsPerPlanet[planetId];
+
+        foreach (CrewCardSaveData data in savedCards)
+        {
+            if (data.isPurchased)
+            {
+                GameObject placeholder = new GameObject("Placeholder", typeof(RectTransform), typeof(LayoutElement));
+                placeholder.transform.SetParent(employPanel, false);
+
+                RectTransform rt = placeholder.GetComponent<RectTransform>();
+                rt.sizeDelta = new Vector2(500f, 900f);
+
+                LayoutElement le = placeholder.GetComponent<LayoutElement>();
+                le.preferredWidth = 500f;
+                le.preferredHeight = 900f;
+
+                continue;
+            }
+
+            GameObject card = Instantiate(crewCardPrefabs[(int)data.race - 1], employPanel);
             CrewCardUI crewCardUI = card.GetComponent<CrewCardUI>();
-            crewCardUI.SetCrewName(randomName);
+            crewCardUI.SetCrewName(data.name);
 
             // 로컬 복사
             GameObject cardCopy = card;
-            CrewRace raceCopy = race;
-            string nameCopy = randomName;
+            CrewRace raceCopy = data.race;
+            string nameCopy = data.name;
 
             Button cardBtn = cardCopy.GetComponent<Button>();
             cardBtn.onClick.AddListener(() => OnClickCrewCard(cardCopy, raceCopy, nameCopy));
@@ -120,19 +151,26 @@ public class EmployController : MonoBehaviour
         playerCurrency -= 1500;
         purchaseConfirmPanel.SetActive(false);
 
+        // data 갱신
+        int currentPlanetId = GameManager.Instance.WhereIAm().planetId;
+        List<CrewCardSaveData> cards = GameManager.Instance.employCardsPerPlanet[currentPlanetId];
+        CrewCardSaveData target = cards.Find(c => c.race == selectedRace && c.name == selectedRandomName);
+        if (target != null)
+            target.isPurchased = true;
+
         // 구매한 선원 카드 제거
         if (selectedCardInstance != null)
         {
             int siblingIndex = selectedCardInstance.transform.GetSiblingIndex();
 
-            LayoutElement layout = selectedCardInstance.GetComponent<LayoutElement>();
-            if (layout != null)
-                layout.ignoreLayout = true;
+            // LayoutElement layout = selectedCardInstance.GetComponent<LayoutElement>();
+            // if (layout != null)
+            //     layout.ignoreLayout = true;
 
             selectedCardInstance.SetActive(false);
 
             // 선원 카드 자리에 placeholder 추가
-            GameObject placeholder = new GameObject("Placeholder", typeof(LayoutElement));
+            GameObject placeholder = new GameObject("Placeholder", typeof(RectTransform), typeof(LayoutElement));
             placeholder.transform.SetParent(employPanel, false);
 
             RectTransform rt = placeholder.GetComponent<RectTransform>();
@@ -145,13 +183,8 @@ public class EmployController : MonoBehaviour
             // 기존 카드 위치에 삽입
             placeholder.transform.SetSiblingIndex(siblingIndex);
 
-            Canvas.ForceUpdateCanvases();
-
             Destroy(selectedCardInstance, 0.5f);
         }
-
-        // 다시 새 카드 뽑기
-        // PopulateRandomCrewCards();
     }
 
     private void OnClickCancel()

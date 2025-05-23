@@ -180,7 +180,10 @@ public class Ship : MonoBehaviour
         foreach (Room room in allRooms)
             if (room != null)
                 room.OnRoomStateChanged -= OnRoomStateChanged;
+        shipExplosion?.Invoke(this);
     }
+
+    public event Action<Ship> shipExplosion;
 
     // ===== Room Management =====
 
@@ -956,6 +959,8 @@ public class Ship : MonoBehaviour
     {
         Debug.Log($"Ship {shipName} destroyed!");
         // Implement game over logic
+        shipExplosion?.Invoke(this);
+
     }
 
     #region 워프
@@ -1220,8 +1225,6 @@ public class Ship : MonoBehaviour
 
         if (finalDamage > 0)
         {
-            // 함선 전체에 데미지 적용
-            //TakeDamage(finalDamage);
 
             if (shipWeaponType == ShipWeaponType.Missile)
             {
@@ -1574,4 +1577,14 @@ public class Ship : MonoBehaviour
     public event Action InfoPanelChanged;
 
     #endregion
+
+    public void BackToTheDefaultShip()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        GameManager.Instance.CreateDefaultPlayerShip();
+    }
 }
