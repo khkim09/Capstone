@@ -571,15 +571,19 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>지정된 피해만큼 체력을 감소시킵니다.</summary>
     public virtual void TakeDamage(float damage)
     {
-        currentHitPoints = Mathf.Max(0, currentHitPoints - damage);
+
         //피해발생 이후에 현재 체력에 따라 시설의 피해 단계를 변화시킨다.
-        if (currentHitPoints <=
-            roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
-            damageCondition = DamageLevel.breakdown;
-        //  OnDisabled();
-        else if (currentHitPoints <=
-                 roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
-            damageCondition = DamageLevel.scratch;
+        if(isDamageable)
+        {
+            currentHitPoints = Mathf.Max(0, currentHitPoints - damage);
+            if (currentHitPoints <=
+                roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
+                damageCondition = DamageLevel.breakdown;
+            //  OnDisabled();
+            else if (currentHitPoints <=
+                     roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+                damageCondition = DamageLevel.scratch;
+        }
 
         parentShip.TakeDamage(damage);
 
