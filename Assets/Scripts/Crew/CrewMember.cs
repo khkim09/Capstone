@@ -695,9 +695,9 @@ public class CrewMember : CrewBase
 
         if (isWorking)
         {
-            Debug.LogError("작업 중이었던");
+            Debug.Log("작업 중이었던");
             WalkOut();
-            Debug.LogError("작업 선원 할당 해제");
+            Debug.Log("작업 선원 할당 해제");
         }
 
         if (bullier.Count > 0)
@@ -751,27 +751,27 @@ public class CrewMember : CrewBase
     /// </summary>
     public void LookAtMe()
     {
-        Debug.LogError("나를 바라봐");
+        Debug.Log("나를 바라봐");
         List<CrewMember> others = new(currentRoom.GetTotalCrewsInRoom());
         foreach (CrewMember other in others)
         {
-            Debug.LogError($"검색 선원 : {other.race}");
+            Debug.Log($"검색 선원 : {other.race}");
             if (other == this)
             {
-                Debug.LogError($"{other.race} 나야");
+                Debug.Log($"{other.race} 나야");
                 continue;
             }
 
             if (other.isPlayerControlled == isPlayerControlled)
             {
-                Debug.LogError($"{other.race} 아군이야");
+                Debug.Log($"{other.race} 아군이야");
                 continue;
             }
 
             if ((other.combatTarget == null || other.madRoom == null) && other.isMoving == false)
             {
                 // 방에 있는 상대를 나에게 이동
-                Debug.LogError($"{other.race}야, {race}한테 와");
+                Debug.Log($"{other.race}야, {race}한테 와");
                 other.WalkOut();
                 RTSSelectionManager.Instance.MoveForCombat(other);
             }
@@ -856,11 +856,11 @@ public class CrewMember : CrewBase
         {
             repairCoroutine = StartCoroutine(RepairRoutine());
         }
-        // else // 수리 중인 코루틴이 있는데 왜 할당 해제함?
-        // {
-        //     StopCoroutine(repairCoroutine);
-        //     repairCoroutine = null;
-        // }
+        else // 수리 중인 코루틴이 있는데 왜 할당 해제함?
+        {
+            StopCoroutine(repairCoroutine);
+            repairCoroutine = null;
+        }
     }
 
     /// <summary>
@@ -1052,7 +1052,7 @@ public class CrewMember : CrewBase
         }
         else
         {
-            Debug.LogError("본인 함선 아님");
+            Debug.LogWarning("본인 함선 아님");
             // 유저 함선 && 적 선원
             if (crew.isPlayerControlled)
                 targetShip = GameManager.Instance.playerShip;
@@ -1122,7 +1122,7 @@ public class CrewMember : CrewBase
         // 상대 함선 모든 타일이 꽉 차서 텔포 불가
         if (!assigned)
         {
-            Debug.LogError("상대 함선의 모든 타일이 차있어 텔포 불가");
+            Debug.LogWarning("상대 함선의 모든 타일이 차있어 텔포 불가");
             yield return null;
         }
 
@@ -1145,7 +1145,7 @@ public class CrewMember : CrewBase
         // 3. 텔포 후 도착한 방에 적 있을 경우 : 자동 전투, lookatme()로 광역 어그로
         if (crew.isWithEnemy() && crew.inCombat == false)
         {
-            Debug.LogError("텔포 후 스폰된 방에서 적 찾음");
+            Debug.Log("텔포 후 스폰된 방에서 적 찾음");
 
             RTSSelectionManager.Instance.MoveForCombat(crew);
 
