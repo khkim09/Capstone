@@ -620,8 +620,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
                     .damageHitPointRate[RoomDamageLevel.DamageLevelOne])
                 damageCondition = DamageLevel.good;
         }
-
-        parentShip.RepairDamage(amount);
         // 스탯 기여도 변화 알림
         NotifyStateChanged();
     }
