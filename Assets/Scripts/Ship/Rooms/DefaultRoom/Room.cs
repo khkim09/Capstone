@@ -545,6 +545,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         icon.GetComponent<SpriteRenderer>().sprite =
             Resources.Load<Sprite>($"Sprites/UI/Room Icons/{color}/{roomType.ToString().ToLower()}_{color}");
         icon.GetComponent<SpriteRenderer>().sortingOrder = Constants.SortingOrders.RoomIcon;
+        icon.GetComponent<BoxCollider2D>().size = icon.GetComponent<Renderer>().bounds.size;
     }
 
     #region 수리
@@ -620,8 +621,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
                     .damageHitPointRate[RoomDamageLevel.DamageLevelOne])
                 damageCondition = DamageLevel.good;
         }
-
-        parentShip.RepairDamage(amount);
         // 스탯 기여도 변화 알림
         NotifyStateChanged();
     }
