@@ -7,17 +7,17 @@ public class CombatEndingUI : MonoBehaviour
     {
         ResourceManager.Instance.ChangeResource(ResourceType.COMA,1000);
 
-        GameManager.Instance.ChangeGameState(GameState.Gameplay);
-        SceneChanger.Instance.LoadScene("Idle");
+        GameManager.Instance.ChangeGameState(GameState.Warp);
+        SceneChanger.Instance.CombatDefeatedAndGoHome(false);
     }
 
     public void OnLoseClicked()
     {
         int coma = ResourceManager.Instance.COMA;
         ResourceManager.Instance.SetResource(ResourceType.COMA, (int)(coma * 0.9f));
-        //todo: 무역품 날리고 근처 행성으로 이동까지
+        //todo:근처 행성으로 이동시켜야됨
 
-        GameManager.Instance.ChangeGameState(GameState.Gameplay);
-        SceneChanger.Instance.LoadScene("Idle");
+        GameManager.Instance.ChangeGameState(GameState.Warp);
+        SceneChanger.Instance.CombatDefeatedAndGoHome(true);
     }
 }

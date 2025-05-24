@@ -222,6 +222,9 @@ public class Customize_1_Controller : MonoBehaviour
 
         gridPlacer.occupiedGridTiles = BlueprintSlotManager.Instance.GetOccupiedTiles(slotIndex);
 
+        if (targetBlueprintShip.CurrentHullLevel == -1)
+            targetBlueprintShip.SetHullLevel(0);
+
         CenterCameraToBP();
         SetPlayerShipCollidersActive(false);
     }
@@ -260,11 +263,12 @@ public class Customize_1_Controller : MonoBehaviour
         // BlueprintLayoutSaver.SaveWeaponLayout(bpWeapons);
 
         Customize_2_Controller controller2 = customize2Panel.GetComponent<Customize_2_Controller>();
-        BlueprintLayoutSaver.SaveLayout(bpRooms, bpWeapons, controller2.selectedHullLevel);
+        int index = BlueprintSlotManager.Instance.currentSlotIndex;
+        BlueprintLayoutSaver.SaveLayout(bpRooms, bpWeapons, BlueprintSlotManager.Instance.blueprintSlots[index].hullLevel);
 
         List<BlueprintRoomSaveData> savedRooms = BlueprintLayoutSaver.LoadRoomLayout();
         List<BlueprintWeaponSaveData> savedWeapons = BlueprintLayoutSaver.LoadWeaponLayout();
-        int hullLvl = controller2.selectedHullLevel;
+        int hullLvl = BlueprintSlotManager.Instance.blueprintSlots[index].hullLevel;
         BlueprintSaveData newData = new(savedRooms, savedWeapons, hullLvl);
 
         // 2. 슬롯에 저장

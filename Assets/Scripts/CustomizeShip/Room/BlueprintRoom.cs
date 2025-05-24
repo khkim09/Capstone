@@ -117,6 +117,12 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
         // 드래그 시작 (좌클릭)
         if (!isDragging && Input.GetMouseButtonDown(0))
         {
+            if (BlockBPMovement())
+            {
+                isDragging = false;
+                return;
+            }
+
             // UI 위에 마우스가 있는지 확인하는 개선된 방법
             if (IsPointerOverBlockingUI())
                 return;
@@ -150,6 +156,12 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
         // 드래그 중
         if (isDragging && Input.GetMouseButton(0))
         {
+            if (BlockBPMovement())
+            {
+                isDragging = false;
+                return;
+            }
+
             Vector2Int newPos = gridPlacer.WorldToGridPosition(mouseWorldPos);
             bpPosition = newPos;
 
@@ -205,6 +217,14 @@ public class BlueprintRoom : MonoBehaviour, IBlueprintPlaceable
         }
     }
 
+    private bool BlockBPMovement()
+    {
+        // RTS 선택도 막아야돼서 통일시켜 쓰겠음
+        GameObject blockPanel = GameObject.FindWithTag("BlockRTSNBPMove");
+        if (blockPanel != null && blockPanel.activeInHierarchy)
+            return true;
+        return false;
+    }
 
     /// <summary>
     /// 특정 UI 요소들 위에 마우스가 있는지 확인

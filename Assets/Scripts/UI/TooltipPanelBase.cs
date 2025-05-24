@@ -39,12 +39,12 @@ public abstract class TooltipPanelBase : MonoBehaviour, IPointerEnterHandler, IP
     /// <summary>
     /// 툴팁 한 곳에 모아둘 부모
     /// </summary>
-    private GameObject tooltipParent;
+    protected GameObject tooltipParent;
 
     /// <summary>
     /// 마지막 마우스 위치 저장 (위치 업데이트 최적화용)
     /// </summary>
-    private Vector2 lastMousePosition;
+    protected Vector2 lastMousePosition;
 
     protected virtual void Start()
     {

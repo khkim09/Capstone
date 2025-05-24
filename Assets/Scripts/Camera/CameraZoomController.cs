@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 함선 커스터마이징 시 camera의 zoom-in, zoom-out과 우클릭으로의 화면 이동을 관리합니다.
@@ -53,9 +54,11 @@ public class CameraZoomController : MonoBehaviour
 
         Vector3 startPos = GetCameraStartPositionToOriginShip();
         Camera.main.transform.position = new Vector3(startPos.x, startPos.y, Camera.main.transform.position.z);
-        Camera.main.orthographicSize = (maxSize + minSize)/2;
+        if (SceneManager.GetActiveScene().name == "Customize")
+            Camera.main.orthographicSize = 6f;
+        else
+            Camera.main.orthographicSize = (maxSize + minSize) / 2;
     }
-
 
     /// <summary>
     /// 설계도 작업 시에만 카메라 컨트롤 적용

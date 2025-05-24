@@ -1,5 +1,16 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+[Serializable]
+public class BlueprintSlotSaveWrapper
+{
+    public List<BlueprintSaveData> blueprintSlots;
+    public List<List<Vector2Int>> occupiedTilesPerSlot;
+    public List<bool> isValidBP;
+}
 
 /// <summary>
 /// 도안 슬롯 저장소 (최대 4개).
@@ -39,7 +50,14 @@ public class BlueprintSlotManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
         // 4칸 초기화
         for (int i = blueprintSlots.Count; i < 4; i++)
@@ -52,7 +70,8 @@ public class BlueprintSlotManager : MonoBehaviour
         for (int i = isValidBP.Count; i < 4; i++)
             isValidBP.Add(false);
 
-        InitializeSlotButtonColor();
+        if (SceneManager.GetActiveScene().name == "Customize")
+            InitializeSlotButtonColor();
     }
 
     /// <summary>
@@ -92,6 +111,10 @@ public class BlueprintSlotManager : MonoBehaviour
         return data;
     }
 
+    /// <summary>
+    /// 방의 점유 타일을 선택된 슬롯 도안에 저장
+    /// </summary>
+    /// <param name="occupied"></param>
     public void SaveOccupiedTilesToCurrentSlot(HashSet<Vector2Int> occupied)
     {
         if (currentSlotIndex < 0 || currentSlotIndex >= occupiedTilesPerSlot.Count)
@@ -100,11 +123,52 @@ public class BlueprintSlotManager : MonoBehaviour
         occupiedTilesPerSlot[currentSlotIndex] = new HashSet<Vector2Int>(occupied);
     }
 
+    /// <summary>
+    /// 도안의 점유 타일 호출
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
     public HashSet<Vector2Int> GetOccupiedTiles(int index)
     {
         if (index < 0 || index >= occupiedTilesPerSlot.Count)
             return new();
 
         return new HashSet<Vector2Int>(occupiedTilesPerSlot[index]);
+    }
+
+    public void SaveAllBlueprints()
+    {
+        BlueprintSlotSaveWrapper wrapper = new()
+        {
+            blueprintSlots = blueprintSlots,
+            isValidBP = isValidBP,
+            occupiedTilesPerSlot = new()
+        };
+
+        foreach (HashSet<Vector2Int> tileSet in occupiedTilesPerSlot)
+        {
+            wrapper.occupiedTilesPerSlot.Add(new List<Vector2Int>(tileSet));
+        }
+
+        string json = JsonUtility.ToJson(wrapper);
+        File.WriteAllText(Application.persistentDataPath + "/blueprints.json", json);
+    }
+
+    public void LoadAllBlueprints()
+    {
+        string path = Application.persistentDataPath + "/blueprints.json";
+        if (!File.Exists(path)) return;
+
+        string json = File.ReadAllText(path);
+        BlueprintSlotSaveWrapper wrapper = JsonUtility.FromJson<BlueprintSlotSaveWrapper>(json);
+
+        blueprintSlots = wrapper.blueprintSlots;
+        isValidBP = wrapper.isValidBP;
+        occupiedTilesPerSlot = new();
+
+        foreach (List<Vector2Int> tileList in wrapper.occupiedTilesPerSlot)
+        {
+            occupiedTilesPerSlot.Add(new HashSet<Vector2Int>(tileList));
+        }
     }
 }

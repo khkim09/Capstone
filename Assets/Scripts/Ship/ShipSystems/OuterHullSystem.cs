@@ -10,7 +10,7 @@ public class OuterHullSystem : ShipSystem
     /// <summary>
     /// 현재 생성된 외갑판 객체들
     /// </summary>
-    private List<OuterHull> currentOuterHulls = new();
+    public List<OuterHull> currentOuterHulls = new();
 
     /// <summary>
     /// 외부 선체 시스템의 현재 레벨을 나타냅니다.
@@ -68,7 +68,8 @@ public class OuterHullSystem : ShipSystem
 
             // 외갑판 레벨이 변경되면 모든 무기 스프라이트 업데이트
             List<ShipWeapon> weapons = parentShip.GetAllWeapons();
-            foreach (ShipWeapon weapon in weapons) weapon.ApplyRotationSprite(level);
+            foreach (ShipWeapon weapon in weapons)
+                weapon.ApplyRotationSprite(level);
 
             // 모든 외갑판 객체의 레벨 업데이트
             foreach (OuterHull hull in currentOuterHulls)
@@ -530,7 +531,7 @@ public class OuterHullSystem : ShipSystem
         // Debug.Log($"외갑판 생성: 위치 {hullPosition}, 유형 {typeStr}, 방향 {dirStr}, 스프라이트 {spriteIndex}");
 
         // 생성된 외갑판 저장
-        currentOuterHulls.Add(outerHull);
+        parentShip.outerHullList.Add(outerHull);
     }
 
     /// <summary>
@@ -538,9 +539,12 @@ public class OuterHullSystem : ShipSystem
     /// </summary>
     public void ClearExistingHulls()
     {
-        foreach (OuterHull hull in currentOuterHulls)
+        foreach (OuterHull hull in parentShip.outerHullList)
             if (hull != null)
+            {
+                hull.transform.SetParent(null);
                 GameObject.Destroy(hull.gameObject);
+            }
 
         currentOuterHulls.Clear();
     }

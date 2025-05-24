@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -70,6 +71,69 @@ public class SceneChanger : MonoBehaviour
         IsTransitioning = false;
     }
 
+    public void CombatDefeatedAndGoHome(bool isDefeated)
+    {
+        // 이미 전환 중이라면 무시
+        if (IsTransitioning) return;
+
+        StartCoroutine(BackToTheHome(isDefeated));
+    }
+
+    private IEnumerator BackToTheHome(bool isDefeated)
+    {
+        // 씬 전환 시작 - 입력 차단
+        IsTransitioning = true;
+        SetInputBlocking(true);
+
+        DontDestroyOnLoad(GameManager.Instance.playerShip);
+        GameObject esManager = GameObject.FindWithTag("ESManager");
+        DontDestroyOnLoad(esManager);
+
+        if (!isDefeated)
+        {
+            List<CrewMember> cms = GameManager.Instance.currentEnemyShip.allEnemies;
+            foreach (CrewMember cm in cms)
+            {
+                cm.Freeze();
+                StartCoroutine(cm.TeleportAfterDelay(cm, 0));
+            }
+
+            List<CrewMember> enemy = GameManager.Instance.playerShip.allEnemies;
+            foreach (CrewMember cm in enemy)
+            {
+                cm.Freeze();
+                StartCoroutine(cm.TeleportAfterDelay(cm, 0));
+            }
+        }
+        yield return StartCoroutine(Fade(1)); // 페이드 아웃
+
+        if (isDefeated)
+        {
+            GameManager.Instance.playerShip.BackToTheDefaultShip();
+        }
+
+        GameManager.Instance.SaveGameData();
+
+        yield return SceneManager.LoadSceneAsync("Idle");
+
+        // 씬 로드 후 fadeImage가 확실히 검은색(알파 1)로 설정되어 있는지 확인
+        fadeImage.color = new Color(0, 0, 0, 1);
+
+        SceneManager.MoveGameObjectToScene(GameManager.Instance.playerShip.gameObject,
+            SceneManager.GetActiveScene());
+        SceneManager.MoveGameObjectToScene(esManager, SceneManager.GetActiveScene());
+        // GameObject.Find("Main Camera").GetComponent<ShipFollowCamera>().targetShip =
+        //     GameManager.Instance.playerShip;
+
+        Time.timeScale = 1f;
+
+        yield return StartCoroutine(Fade(0)); // 페이드 인
+
+        // 씬 전환 완료 - 입력 차단 해제
+        SetInputBlocking(false);
+        IsTransitioning = false;
+    }
+
     /// <summary>
     /// 입력 차단/해제 설정
     /// </summary>
@@ -95,7 +159,7 @@ public class SceneChanger : MonoBehaviour
 
         while (time < fadeDuration)
         {
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(time / fadeDuration);
             float alpha = Mathf.Lerp(startAlpha, targetAlpha, t);
             fadeImage.color = new Color(0, 0, 0, alpha);
