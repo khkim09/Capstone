@@ -350,13 +350,11 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         // 기본 빈 구현 (모든 방이 기본적으로 기여하는 스탯이 없음)
         Dictionary<ShipStat, float> contributions = new();
 
-        contributions[ShipStat.HitPointsMax] = roomData.GetRoomDataByLevel(currentLevel).hitPoint;
-
         // 방 상태가 작동 불능이면 아무런 기여도 없음
         if (!IsOperational())
             return contributions;
 
-
+        contributions[ShipStat.HitPointsMax] = roomData.GetRoomDataByLevel(currentLevel).hitPoint;
 
         // 방의 건강 상태에 따라 기여도에 효율 적용
         // 파생 클래스는 이 베이스 메서드를 호출하고 반환된 Dictionary에 값을 추가/조정해야 함
