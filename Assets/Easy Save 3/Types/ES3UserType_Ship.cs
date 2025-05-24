@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("isPlayerShip", "shipName", "gridSize", "allRooms", "allWeapons", "allCrews", "doorData", "doorLevel", "outerHullData", "outerHullPrefab", "outerHulls", "systems", "outerHullSystem", "weaponSystem", "oxygenSystem", "crewSystem", "hitpointSystem", "moraleSystem", "powerSystem", "storageSystem", "shieldSystem", "backupRoomDatas")]
+	[ES3PropertiesAttribute("isPlayerShip", "shipName", "gridSize", "allRooms", "allWeapons", "allCrews", "unUsedItems", "doorData", "doorLevel", "outerHullData", "outerHullPrefab", "outerHulls", "currentStats", "systems", "outerHullSystem", "weaponSystem", "oxygenSystem", "crewSystem", "hitpointSystem", "moraleSystem", "powerSystem", "storageSystem", "shieldSystem", "backupRoomDatas")]
 	public class ES3UserType_Ship : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -22,11 +22,13 @@ namespace ES3Types
 			writer.WriteProperty("allRooms", instance.allRooms, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<Room>)));
 			writer.WriteProperty("allWeapons", instance.allWeapons, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<ShipWeapon>)));
 			writer.WriteProperty("allCrews", instance.allCrews, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<CrewMember>)));
+			writer.WriteProperty("unUsedItems", instance.unUsedItems, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.HashSet<EquipmentItem>)));
 			writer.WritePrivateFieldByRef("doorData", instance);
 			writer.WritePrivateField("doorLevel", instance);
 			writer.WritePropertyByRef("outerHullData", instance.outerHullData);
 			writer.WritePropertyByRef("outerHullPrefab", instance.outerHullPrefab);
 			writer.WritePropertyByRef("outerHulls", instance.outerHulls);
+			writer.WriteProperty("currentStats", instance.currentStats, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.Dictionary<ShipStat, System.Single>)));
 			writer.WritePrivateField("systems", instance);
 			writer.WritePrivateField("outerHullSystem", instance);
 			writer.WritePrivateField("weaponSystem", instance);
@@ -66,6 +68,9 @@ namespace ES3Types
 					case "allCrews":
 						instance.allCrews = reader.Read<System.Collections.Generic.List<CrewMember>>();
 						break;
+					case "unUsedItems":
+						instance.unUsedItems = reader.Read<System.Collections.Generic.HashSet<EquipmentItem>>();
+						break;
 					case "doorData":
 					instance = (Ship)reader.SetPrivateField("doorData", reader.Read<DoorData>(), instance);
 					break;
@@ -80,6 +85,9 @@ namespace ES3Types
 						break;
 					case "outerHulls":
 						instance.outerHulls = reader.Read<UnityEngine.Transform>(ES3Type_Transform.Instance);
+						break;
+					case "currentStats":
+						instance.currentStats = reader.Read<System.Collections.Generic.Dictionary<ShipStat, System.Single>>();
 						break;
 					case "systems":
 					instance = (Ship)reader.SetPrivateField("systems", reader.Read<System.Collections.Generic.Dictionary<System.Type, ShipSystem>>(), instance);
