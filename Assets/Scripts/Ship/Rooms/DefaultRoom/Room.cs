@@ -655,7 +655,10 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             currentHitPoints = Mathf.Min(roomData.GetRoomDataByLevel(currentLevel).hitPoint, currentHitPoints + amount);
             if (currentHitPoints > roomData.GetRoomDataByLevel(currentLevel)
                     .damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+            {
                 damageCondition = DamageLevel.good;
+                UpdateRoomVisual();
+            }
         }
 
         // 스탯 기여도 변화 알림
