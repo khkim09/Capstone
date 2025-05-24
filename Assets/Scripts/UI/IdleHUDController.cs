@@ -1,19 +1,18 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class IdleHUDController : MonoBehaviour
 {
-    [Header("함선 스탯 패널")] [SerializeField] private TextMeshProUGUI shipStatusText;
+    [Header("함선 스탯 패널")][SerializeField] private TextMeshProUGUI shipStatusText;
 
-    [Header("재화 패널")] [SerializeField] private TextMeshProUGUI COMAText;
+    [Header("재화 패널")][SerializeField] private TextMeshProUGUI COMAText;
     [SerializeField] private TextMeshProUGUI fuelText;
     [SerializeField] private TextMeshProUGUI missileText;
     [SerializeField] private TextMeshProUGUI hypersonicText;
 
 
-    [Header("함선 체력바")] [SerializeField] private Image shipHealthBarFill;
+    [Header("함선 체력바")][SerializeField] private Image shipHealthBarFill;
 
     [SerializeField] private Button buttonEnding;
 
@@ -30,6 +29,11 @@ public class IdleHUDController : MonoBehaviour
         GameManager.Instance.OnYearChanged += CheckShowEnding;
         GameManager.Instance.playerShip.InfoPanelChanged += UpdateHealthBar;
         //shipHealthBarFill=transform.Find("Ship Health Bar/Background/Fill").GetComponent<Image>();
+    }
+
+    private void Start()
+    {
+        buttonEnding.onClick.AddListener(() => { OnClickEndingButton(); });
     }
 
     private void Update()
@@ -84,12 +88,17 @@ public class IdleHUDController : MonoBehaviour
 
     private void UpdateHealthBar()
     {
-        float healthPercent=GameManager.Instance.playerShip.GetCurrentHitPoints()/MaxHitpoints;
-        if(shipHealthBarFill)
+        float healthPercent = GameManager.Instance.playerShip.GetCurrentHitPoints() / MaxHitpoints;
+        if (shipHealthBarFill)
             shipHealthBarFill.fillAmount = healthPercent;
         else
         {
             Debug.Log("함선 체력바 참조 실패");
         }
+    }
+
+    private void OnClickEndingButton()
+    {
+        GameManager.Instance.ShowEnding();
     }
 }
