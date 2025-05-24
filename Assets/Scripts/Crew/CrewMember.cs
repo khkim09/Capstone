@@ -71,7 +71,7 @@ public class CrewMember : CrewBase
     /// <summary>
     /// Scriptable Object로 수정 필요!!
     /// </summary>
-    public void Start()
+    public override void Start()
     {
         base.Start();
 
@@ -117,7 +117,7 @@ public class CrewMember : CrewBase
     /// 기본 숙련도, 장비 보너스, 사기 보너스를 포함합니다.
     /// </summary>
     /// <returns>스킬 타입별 총 숙련도 값 딕셔너리.</returns>
-    public virtual Dictionary<SkillType, float> GetCrewSkillValue()
+    public override Dictionary<SkillType, float> GetCrewSkillValue()
     {
         Dictionary<SkillType, float> totalSkills = new();
 
@@ -525,7 +525,6 @@ public class CrewMember : CrewBase
                 yield break;
             }
 
-
             // 방 부수기 진입 시 true
             inCombat = true;
         }
@@ -547,31 +546,23 @@ public class CrewMember : CrewBase
         }
 
         PlayAnimation("attack");
-
-        // // 실제로 데미지가 들어가는 부분
-        // yield return new WaitForSeconds(attackBeforeDelay);
-        // Debug.Log("공격 딜레이 종료");
-        //
-        // // 실제 데미지 적용
-        // Attack();
-        // yield return new WaitForSeconds(attackAfterDelay);
-        //
-        // // 부술 방도 없고 적군도 죽은 상태
-        // if (madRoom == null && combatTarget == null) yield break;
-        //
-        // // 부술 방이 있거나 적군이 있다면 계속 전투 루틴 실행
-        // combatCoroutine = StartCoroutine(CombatRoutine());
     }
 
+    /// <summary>
+    /// CombatRoutine()은 1회 공격 -> 반복해라
+    /// </summary>
     public void RepeatCombatRoutine()
     {
-        if(madRoom==null && combatTarget==null)
-            if(combatCoroutine!=null)
+        if (madRoom == null && combatTarget == null)
+        {
+            if (combatCoroutine != null)
             {
                 StopCoroutine(combatCoroutine);
                 combatCoroutine = null;
             }
-        combatCoroutine = StartCoroutine(CombatRoutine());
+        }// 여기 맞지?
+        else
+            combatCoroutine = StartCoroutine(CombatRoutine());
     }
 
     /// <summary>
@@ -699,7 +690,7 @@ public class CrewMember : CrewBase
         if (inCombat)
         {
             inCombat = false;
-            if(combatCoroutine!=null) StopCoroutine(combatCoroutine);
+            if (combatCoroutine != null) StopCoroutine(combatCoroutine);
             combatCoroutine = null;
             madRoom = null;
             combatTarget = null;
@@ -972,6 +963,33 @@ public class CrewMember : CrewBase
 
     #endregion
 
+    #region 치유
+
+    /// <summary>
+    /// 선원의 체력을 회복합니다. 최대 체력을 초과하지 않습니다.
+    /// </summary>
+    /// <param name="amount">회복량.</param>
+    public void Heal(float amount)
+    {
+        health = Mathf.Min(health + amount, maxHealth);
+
+        // 체력바 업데이트
+        if (healthBarController != null)
+            healthBarController.UpdateHealth(health);
+    }
+
+    /// <summary>
+    /// 체력이 최대치보다 낮은지 여부를 반환합니다.
+    /// </summary>
+    /// <returns>치료가 필요하면 true.</returns>
+    public bool NeedsHealing()
+    {
+        return health < maxHealth;
+    }
+
+    #endregion
+
+
     #region 코루틴 초기화
 
     /// <summary>
@@ -1053,42 +1071,53 @@ public class CrewMember : CrewBase
 
         // 1. 현재 선원의 모선을 확인 후 상대 함선 추적
         Ship targetShip = null;
+        Ship exitShip = null;
 
-        // 일단 본인 함선이야
+        // 일단 본인 함선이야 - 텔포로 상대 배로 가는 행동
         if (crew.IsOwnShip())
         {
             // 유저 함선 && 유저 선원
             if (crew.isPlayerControlled)
+            {
                 targetShip = GameManager.Instance.currentEnemyShip;
+                exitShip = GameManager.Instance.playerShip;
+            }
             else // 적 함선 && 적 선원
+            {
                 targetShip = GameManager.Instance.playerShip;
+                exitShip = GameManager.Instance.currentEnemyShip;
+            }
         }
-        else
+        else // 본인 함선으로 복귀 행동
         {
             Debug.LogWarning("본인 함선 아님");
-            // 유저 함선 && 적 선원
+            // 적 함선 && 유저 선원
             if (crew.isPlayerControlled)
+            {
                 targetShip = GameManager.Instance.playerShip;
-            else // 적 함선 && 아군 선원
+                exitShip = GameManager.Instance.currentEnemyShip;
+            }
+            else // 유저 함선 && 적 선원
+            {
                 targetShip = GameManager.Instance.currentEnemyShip;
+                exitShip = GameManager.Instance.playerShip;
+            }
         }
+        Debug.LogError($"targetship : {targetShip}, exitship : {exitShip}");
 
         // 2. 상대 함선의 랜덤 위치에 선원 생성
         List<Room> oppositeAllRooms = targetShip.GetAllRooms();
-        List<Room> oppositeShuffled = oppositeAllRooms.OrderBy(_ => UnityEngine.Random.value).ToList();
+        List<Room> oppositeShuffled = oppositeAllRooms.Where(
+            r => r.roomType != RoomType.Teleporter
+        ).OrderBy(_ => UnityEngine.Random.value).ToList();
 
+        Room assignedRoom = null;
+        Vector2Int assignedTile = Vector2Int.zero;
         bool assigned = false;
-
-        // 기존 함선 텔포 방 점유 해제
-        Ship exitShip = crew.isPlayerControlled ? GameManager.Instance.playerShip : GameManager.Instance.currentEnemyShip;
-        CrewReservationManager.ExitTile(exitShip, crew.currentRoom, crew.reservedTile, crew);
 
         // 텔포 방은 피해서 스폰
         foreach (Room targetRoom in oppositeShuffled)
         {
-            if (targetRoom.roomType == RoomType.Teleporter)
-                continue;
-
             List<Vector2Int> candidates = targetRoom.GetRotatedCrewEntryGridPriority().Where
             (
                 t => !CrewReservationManager.IsTileOccupied(targetShip, t)
@@ -1097,75 +1126,79 @@ public class CrewMember : CrewBase
             if (candidates.Count == 0)
                 continue;
 
-            // 랜덤 타일 선택
-            Vector2Int oppositeSpawnTile = candidates[UnityEngine.Random.Range(0, candidates.Count)];
-
-            // 위치 설정
-            crew.position = oppositeSpawnTile;
-            crew.currentRoom = targetRoom;
-            crew.transform.position = targetShip.GetWorldPositionFromGrid(oppositeSpawnTile);
-            crew.transform.SetParent(targetRoom.transform);
-            crew.currentShip = targetShip;
-
-            // 타겟 함선 랜덤 위치 점유 등록
-            CrewReservationManager.ReserveTile(targetShip, targetRoom, oppositeSpawnTile, crew);
-
-            // 컴포넌트 활성화
-            crew.gameObject.SetActive(true);
-            crew.enabled = true;
-
-            BoxCollider2D col = crew.GetComponent<BoxCollider2D>();
-            if (col != null)
-                col.enabled = true;
-
-            Animator anim = crew.GetComponent<Animator>();
-            if (anim != null)
-                anim.enabled = true;
-
-            // crew.Freeze();
-
-            // 적 함선으로 텔레포트 했으므로 enemy 리스트에 추가
-            exitShip.allCrews.Remove(crew);
-            targetShip.allEnemies.Add(crew);
-
-            if (RTSSelectionManager.Instance.selectedCrew.Contains(this))
-                RTSSelectionManager.Instance.selectedCrew.RemoveAll(cm => cm == null || cm == this);
-
+            assignedTile = candidates[UnityEngine.Random.Range(0, candidates.Count)];
+            assignedRoom = targetRoom;
             assigned = true;
             break;
         }
 
-        // 상대 함선 모든 타일이 꽉 차서 텔포 불가
-        if (!assigned)
+        // 3. 실제 이동 처리
+        if (assigned)
         {
-            Debug.LogWarning("상대 함선의 모든 타일이 차있어 텔포 불가");
-            yield return null;
-        }
+            // 1) 기존 함선 점유 타일 해제, 선원 리스트 갱신
+            CrewReservationManager.ExitTile(exitShip, crew.currentRoom, crew.reservedTile, crew);
+            if (crew.IsOwnShip())
+                exitShip.allCrews.Remove(crew);
+            else
+                exitShip.allEnemies.Remove(crew);
 
-        PlayAnimation("tp_in");
-        yield return new WaitForSeconds(delay);
-        isTPing = false;
-        CrewHealthBar healthBar = gameObject.transform.GetChild(0).GetComponent<CrewHealthBar>();
-        if (targetShip == GameManager.Instance.playerShip)
-        {
-            healthBar.targetCamera = Camera.main;
+            // 2) 타겟 함선 점유 타일 등록, 선원 리스트 갱신
+            CrewReservationManager.ReserveTile(targetShip, assignedRoom, assignedTile, crew);
+            if (crew.IsOwnShip())
+                targetShip.allCrews.Add(crew);
+            else
+                targetShip.allEnemies.Add(crew);
+
+            // 3) 위치 설정
+            crew.position = assignedTile;
+            crew.currentRoom = assignedRoom;
+            crew.transform.position = targetShip.GetWorldPositionFromGrid(assignedTile);
+            crew.transform.SetParent(assignedRoom.transform);
+            crew.currentShip = targetShip;
+
+            // 4) 컴포넌트 활성화
+            crew.gameObject.SetActive(true);
+            crew.enabled = true;
+
+            BoxCollider2D colTP = crew.GetComponent<BoxCollider2D>();
+            if (colTP != null)
+                colTP.enabled = true;
+
+            Animator animTP = crew.GetComponent<Animator>();
+            if (animTP != null)
+                animTP.enabled = true;
+
+            // 5) 타겟 함선이 본인 모선이 아닐 경우 (상대 함선으로 넘어갈 때 RTSSelection 해제)
+            if (targetShip != IsOwnShip())
+                if (RTSSelectionManager.Instance.selectedCrew.Contains(this))
+                    RTSSelectionManager.Instance.selectedCrew.RemoveAll(cm => cm == null || cm == this);
+
+            // 6) 애니메이션 + 체력바 카메라 세팅
+            PlayAnimation("tp_in");
+            yield return new WaitForSeconds(delay);
+
+            isTPing = false;
+
+            CrewHealthBar healthBarTP = gameObject.transform.GetChild(0).GetComponent<CrewHealthBar>();
+            if (targetShip == GameManager.Instance.playerShip)
+                healthBarTP.targetCamera = Camera.main;
+            else
+                if (RTSSelectionManager.Instance.CallCombatManager(out CombatManager combatManager))
+                healthBarTP.targetCamera = combatManager.cam.enemyCam;
+
+            // 7) 텔포 후 도착한 방에 적 있을 경우 : 자동 전투, lookatme()로 광역 어그로
+            if (crew.isWithEnemy() && crew.inCombat == false)
+            {
+                Debug.Log("텔포 후 스폰된 방에서 적 찾음");
+                RTSSelectionManager.Instance.MoveForCombat(crew);
+                crew.LookAtMe();
+            }
         }
         else
         {
-            if (RTSSelectionManager.Instance.CallCombatManager(out CombatManager combatManager))
-            {
-                healthBar.targetCamera = combatManager.cam.enemyCam;
-            }
-        }
-
-        // 3. 텔포 후 도착한 방에 적 있을 경우 : 자동 전투, lookatme()로 광역 어그로
-        if (crew.isWithEnemy() && crew.inCombat == false)
-        {
-            Debug.Log("텔포 후 스폰된 방에서 적 찾음");
-
-            RTSSelectionManager.Instance.MoveForCombat(crew);
-
-            crew.LookAtMe();
+            Debug.LogWarning("상대 함선의 모든 타일이 차있어 텔포 불가");
+            isTPing = false;
+            yield return null;
         }
     }
 

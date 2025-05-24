@@ -71,14 +71,24 @@ public class SceneChanger : MonoBehaviour
         IsTransitioning = false;
     }
 
+    /// <summary>
+    /// 전투 종료 후 집으로 가라
+    /// </summary>
+    /// <param name="isDefeated"></param>
     public void CombatDefeatedAndGoHome(bool isDefeated)
     {
         // 이미 전환 중이라면 무시
-        if (IsTransitioning) return;
+        if (IsTransitioning)
+            return;
 
         StartCoroutine(BackToTheHome(isDefeated));
     }
 
+    /// <summary>
+    /// 모선으로 복귀하라
+    /// </summary>
+    /// <param name="isDefeated"></param>
+    /// <returns></returns>
     private IEnumerator BackToTheHome(bool isDefeated)
     {
         // 씬 전환 시작 - 입력 차단
@@ -108,9 +118,7 @@ public class SceneChanger : MonoBehaviour
         yield return StartCoroutine(Fade(1)); // 페이드 아웃
         RTSSelectionManager.Instance.SetGRC(null);
         if (isDefeated)
-        {
             GameManager.Instance.playerShip.BackToTheDefaultShip();
-        }
 
         GameManager.Instance.SaveGameData();
 

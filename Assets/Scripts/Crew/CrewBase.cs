@@ -134,14 +134,14 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// </summary>
     [Header("Health Bar")]
     [SerializeField]
-    private CrewHealthBar healthBarController;
+    public CrewHealthBar healthBarController;
 
     /// <summary>
     /// 해당 선원을 때리고 있는 선원 리스트
     /// </summary>
     public HashSet<CrewMember> bullier = new();
 
-    public void Start()
+    public virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = Constants.SortingOrders.Character;
@@ -297,110 +297,6 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         skills[skill] = Mathf.Min(skills[skill] + amount, maxSkillValue);
     }
 
-    // 전투 관련
-
-    /*
-    /// <summary>
-    /// 지정된 적 선원을 공격합니다. 공격력은 반올림 처리됩니다.
-    /// </summary>
-    /// <param name="target">공격 대상 선원.</param>
-    public void Attack(CrewMember target)
-    {
-        // 공격 가하는 crew의 공격력 인자로 넘김
-        float measuredAttack = (float)Math.Round(attack, 2);
-        target.TakeAttack(measuredAttack);
-    }
-
-    /// <summary>
-    /// 적 선원에게 공격을 받을 때 호출됩니다. 방어력을 반영하여 최종 데미지를 계산합니다.
-    /// </summary>
-    /// <param name="ocAttack">공격자의 공격력.</param>
-    public void TakeAttack(float ocAttack)
-    {
-        // 방어력 적용 - 최종 피해량
-        float measuredDefense = (float)Math.Round(defense, 2);
-        float receivedDamage = ocAttack * (100.0f - measuredDefense) / 100.0f;
-        receivedDamage = (float)Math.Round(receivedDamage, 2); // 소수점 셋째자리에서 반올림
-
-        TakeDamage(receivedDamage);
-    }
-
-    /// <summary>
-    /// 체력에 데미지를 적용하고, 체력이 0 이하가 되면 사망 처리합니다.
-    /// </summary>
-    /// <param name="damage">적용할 데미지.</param>
-    public void TakeDamage(float damage)
-    {
-        health -= damage;
-
-        if (healthBarController != null) healthBarController.UpdateHealth(health);
-
-        if (health <= 0)
-        {
-            health = 0;
-            Die();
-        }
-    }
-
-    /// <summary>
-    /// 선원이 사망했을 때 호출됩니다. 함선 및 방에서 제거되고 오브젝트가 파괴됩니다.
-    /// </summary>
-    private void Die()
-    {
-        isAlive = false;
-
-        // 현재 방에서 제거
-        if (currentRoom != null)
-            currentRoom.OnCrewExit(this);
-
-        // TODO : 임시로 작동되게 해놓음.
-
-        if (currentShip.GetAllCrew().Contains(this as CrewMember))
-            currentShip.GetAllCrew().Remove(this as CrewMember);
-
-        // 아래는 원래 코드
-        // /*
-        //  *  // 사망 이벤트 발생 등 추가 처리
-        // if (CrewManager.Instance.crewList.Contains(this))
-        // {
-        //     CrewManager.Instance.crewList.Remove(this); // 해당 선원 찾아 제외
-        //     CrewManager.Instance.RefreshCrewList(CrewManager.Instance.crewList.Count,
-        //         CrewManager.Instance.maxCrewCount); // 총 선원 수 갱신
-        // }
-
-        //  *
-        //
-
-
-        // 사망 처리 - 0.5초 후 사라짐
-        Destroy(gameObject, 0.5f);
-
-        Debug.Log($"{crewName} 사망 처리 완료");
-    }
-    */
-
-
-    /// <summary>
-    /// 선원의 체력을 회복합니다. 최대 체력을 초과하지 않습니다.
-    /// </summary>
-    /// <param name="amount">회복량.</param>
-    public void Heal(float amount)
-    {
-        health = Mathf.Min(health + amount, maxHealth);
-
-        // 체력바 업데이트
-        if (healthBarController != null) healthBarController.UpdateHealth(health);
-    }
-
-    /// <summary>
-    /// 체력이 최대치보다 낮은지 여부를 반환합니다.
-    /// </summary>
-    /// <returns>치료가 필요하면 true.</returns>
-    public bool NeedsHealing()
-    {
-        return health < maxHealth;
-    }
-
     /// <summary>
     /// 선원의 숙련도를 반환합니다. 추후 사기 수치 등도 반영 예정입니다.
     /// </summary>
@@ -408,7 +304,6 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     public virtual Dictionary<SkillType, float> GetCrewSkillValue()
     {
         Dictionary<SkillType, float> totalSkills = new();
-
 
         return totalSkills;
     }
