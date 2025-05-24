@@ -172,7 +172,7 @@ public class EquipmentApplyHandler : MonoBehaviour
         // 상세 정보 패널 표시
         // crewDetailPanel.SetActive(true);
 
-        detailCrewImage.sprite = crew.spriteRenderer.sprite;
+        detailCrewImage.sprite = crew.portraitSprite;
 
         Image detailWeaponImage = detailWeaponButton.GetComponent<Image>();
         Image detailShieldImage = detailShieldButton.GetComponent<Image>();

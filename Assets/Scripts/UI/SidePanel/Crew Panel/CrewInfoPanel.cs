@@ -29,7 +29,7 @@ public class CrewInfoPanel : TooltipPanelBase
         currentCrew = crew;
         crewName.text = crew.crewName;
         currentHealth.text = $"{crew.health}/{crew.maxHealth}";
-        crewIcon.sprite = crew.spriteRenderer.sprite;
+        crewIcon.sprite = crew.portraitSprite;
 
         Image atkImage = atkButton.GetComponent<Image>();
         Image defImage = defButton.GetComponent<Image>();

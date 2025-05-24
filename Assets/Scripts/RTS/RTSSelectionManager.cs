@@ -84,6 +84,11 @@ public class RTSSelectionManager : MonoBehaviour
     private GraphicRaycaster combatUIGRC;
 
     /// <summary>
+    /// 전투 담당 매니저
+    /// </summary>
+    public GameObject combatManager;
+
+    /// <summary>
     /// 싱글톤 instance
     /// </summary>
     public static RTSSelectionManager Instance { get; private set; }
@@ -131,6 +136,9 @@ public class RTSSelectionManager : MonoBehaviour
         outlineMaterial = Resources.Load<Material>("Material/UnitOutlineMaterial");
         defaultMaterial = Resources.Load<Material>("Material/UnitDefaultMaterial");
         SetGRC(null);
+
+        playerShip = GameManager.Instance.playerShip;
+        RefreshMovementData();
     }
 
     /// <summary>
@@ -184,8 +192,6 @@ public class RTSSelectionManager : MonoBehaviour
                 }
             }
         }
-
-
     }
 
     private void LateUpdate()
@@ -208,6 +214,9 @@ public class RTSSelectionManager : MonoBehaviour
         {
             combatUIGRC = transform.GetChild(0).GetComponent<GraphicRaycaster>();
         }
+
+        if (CallCombatManager(out CombatManager cManager))
+            combatManager = cManager.gameObject;
     }
 
     private bool IsUIWithTagClicked(string tag)
@@ -223,15 +232,6 @@ public class RTSSelectionManager : MonoBehaviour
                 return true;
         }
         return false;
-    }
-
-    /// <summary>
-    /// MainUI에서만 RTS기능이 동작하도록 제한하는 함수
-    /// </summary>
-    /// <returns></returns>
-    private bool IsMainUIActive()
-    {
-        return CrewUIHandler.Instance != null && CrewUIHandler.Instance.mainUIScreen != null && CrewUIHandler.Instance.mainUIScreen.activeSelf;
     }
 
     /// <summary>
@@ -338,7 +338,6 @@ public class RTSSelectionManager : MonoBehaviour
         if (hit.collider != null)
         {
             CrewMember crew = hit.collider.GetComponent<CrewMember>();
-
 
             // 아군만 선택 가능
             if (crew != null && crew.isPlayerControlled)
@@ -770,14 +769,6 @@ public class RTSSelectionManager : MonoBehaviour
         readyCombatCrew.reservedRoom = readyCombatCrew.currentRoom;
         readyCombatCrew.reservedTile = bestNeighborTile;
 
-        // 6. reservedTiles 갱신
-        // reservedTiles.Remove(readyCombatCrew.oldReservedTile);
-        // reservedTiles.Add(neighborTile);
-        // CrewReservationManager.ExitTile(readyCombatCrew.currentShip, readyCombatCrew.oldReservedRoom,
-        //     readyCombatCrew.oldReservedTile, readyCombatCrew);
-        // CrewReservationManager.ReserveTile(readyCombatCrew.currentShip, readyCombatCrew.reservedRoom,
-        //     readyCombatCrew.reservedTile, readyCombatCrew);
-
         // 7. 실제 이동 처리
         if (readyCombatCrew.isMoving)
             readyCombatCrew.CancelAndRedirect(bestPathToNeighborTile);
@@ -803,19 +794,16 @@ public class RTSSelectionManager : MonoBehaviour
         Debug.Log("누름!");
     }
 
-    public GameObject CombatManager;
-
     public bool CallCombatManager(out CombatManager combat)
     {
         combat = null;
-        if (CombatManager == null)
-            CombatManager = GameObject.Find("CombatManager");
-        if (CombatManager == null)
+        if (combatManager == null)
+            combatManager = GameObject.Find("CombatManager");
+
+        if (combatManager == null)
             return false;
         else
-        {
-            combat = CombatManager.GetComponent<CombatManager>();
-        }
+            combat = combatManager.GetComponent<CombatManager>();
         return true;
     }
 }
