@@ -323,6 +323,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>방이 작동 가능한 상태인지 확인합니다.</summary>
     public bool IsOperational()
     {
+        if (damageCondition == DamageLevel.breakdown)
+            return false;
         if (isActive)
         {
             if (isPowerRequested && !isPowered)
@@ -369,11 +371,13 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         // 기본 빈 구현 (모든 방이 기본적으로 기여하는 스탯이 없음)
         Dictionary<ShipStat, float> contributions = new();
 
+        contributions[ShipStat.HitPointsMax] = roomData.GetRoomDataByLevel(currentLevel).hitPoint;
+
         // 방 상태가 작동 불능이면 아무런 기여도 없음
         if (!IsOperational())
             return contributions;
 
-        contributions[ShipStat.HitPointsMax] = roomData.GetRoomDataByLevel(currentLevel).hitPoint;
+
 
         // 방의 건강 상태에 따라 기여도에 효율 적용
         // 파생 클래스는 이 베이스 메서드를 호출하고 반환된 Dictionary에 값을 추가/조정해야 함
@@ -424,6 +428,11 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>상태 변경을 알립니다.</summary>
     protected virtual void NotifyStateChanged()
     {
+        if (workingCrew != null)
+        {
+            workingCrew.WalkOut();
+            workingCrew.TryWork();
+        }
         OnRoomStateChanged?.Invoke(this);
     }
 
@@ -532,17 +541,23 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             color = "red";
         else
         {
-            if (!isActive)
+            if (!IsOperational())
                 color = "gray";
             else
             {
                 if(damageCondition==DamageLevel.scratch)
                     color = "yellow";
-                else
+                else if(damageCondition==DamageLevel.good)
                 {
                     color = "green";
                 }
             }
+        }
+
+        if (color.Equals(""))
+        {
+            Debug.LogError(name+": Room has no color assigned.");
+            return;
         }
 
 

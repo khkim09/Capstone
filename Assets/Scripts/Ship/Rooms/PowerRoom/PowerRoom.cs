@@ -66,7 +66,7 @@ public class PowerRoom : Room<PowerRoomData, PowerRoomData.PowerRoomLevel>
     /// <returns></returns>
     public override bool CanITouch(CrewMember crew)
     {
-        if (crew.GetCrewSkillValue().ContainsKey(SkillType.PowerSkill) && workingCrew ==null)
+        if (crew.GetCrewSkillValue().ContainsKey(SkillType.PowerSkill) && workingCrew ==null && IsOperational())
         {
             workingCrew = crew;
             return true;

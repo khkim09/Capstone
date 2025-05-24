@@ -31,12 +31,12 @@ public class CrewQuartersRoom : Room<CrewQuartersRoomData, CrewQuartersRoomData.
     {
         // 기본 기여도 가져오기 (작동 상태 체크 등)
         Dictionary<ShipStat, float> contributions = base.GetStatContributions();
-
+        contributions[ShipStat.CrewCapacity] = 0;
         // 작동 상태가 아니면 기여도 없음
         if (!IsOperational() || currentRoomLevelData == null)
             return contributions;
 
-        contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
+        //contributions[ShipStat.PowerUsing] = currentRoomLevelData.powerRequirement;
         contributions[ShipStat.CrewCapacity] = currentRoomLevelData.maxCrewCapacity;
 
         return contributions;
