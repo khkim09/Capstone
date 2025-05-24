@@ -304,10 +304,12 @@ public class GameManager : MonoBehaviour
         CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
         CrewBase crewBase2 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Beast);
         CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect);
+        CrewBase crewBase4 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.MechanicSup);
 
         if (crewBase1 is CrewMember crewMember) playerShip.AddCrew(crewMember);
         if (crewBase2 is CrewMember crewMember2) playerShip.AddCrew(crewMember2);
         if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
+        if (crewBase4 is CrewMember crewMember4) playerShip.AddCrew(crewMember4);
 
         playerShip.UpdateOuterHullVisuals();
 

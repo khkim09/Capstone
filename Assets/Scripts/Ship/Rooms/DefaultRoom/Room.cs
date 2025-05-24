@@ -42,7 +42,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [SerializeField] public Constants.Rotations.Rotation currentRotation;
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
-    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
+    [Header("방 효과")][SerializeField] protected ParticleSystem roomParticles;
 
     /// <summary>방 작동 시 사운드 효과.</summary>
     [SerializeField] protected AudioSource roomSound;
@@ -562,7 +562,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
 
         if (icon == null)
-            icon = Instantiate(roomData.GetRoomDataByLevel(currentLevel).roomIconPrefab,transform,false ).GetComponent<SpriteRenderer>();
+            icon = Instantiate(roomData.GetRoomDataByLevel(currentLevel).roomIconPrefab, transform, false).GetComponent<SpriteRenderer>();
 
         if (position == new Vector2Int(0, 0)) return;
 
@@ -607,9 +607,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>지정된 피해만큼 체력을 감소시킵니다.</summary>
     public virtual void TakeDamage(float damage)
     {
-
         //피해발생 이후에 현재 체력에 따라 시설의 피해 단계를 변화시킨다.
-        if(isDamageable)
+        if (isDamageable)
         {
             currentHitPoints = Mathf.Max(0, currentHitPoints - damage);
             if (currentHitPoints <=
@@ -658,7 +657,20 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
                     .damageHitPointRate[RoomDamageLevel.DamageLevelOne])
                 damageCondition = DamageLevel.good;
         }
+
         // 스탯 기여도 변화 알림
+        NotifyStateChanged();
+    }
+
+    /// <summary>
+    /// 100% 수리
+    /// </summary>
+    /// <param name="amount"></param>
+    public void FullRepair(float amount)
+    {
+        currentHitPoints = amount;
+        damageCondition = DamageLevel.good;
+
         NotifyStateChanged();
     }
 
@@ -803,7 +815,7 @@ public abstract class Room<TData, TLevel> : Room
 
 
         InitializeIsDamageable();
-     //   InitializeDoor();
+        //   InitializeDoor();
 
         UpdateRoomLevelData();
     }

@@ -513,7 +513,7 @@ public class RTSSelectionManager : MonoBehaviour
                 // 다른 배에서 이동 명령 실수로 찍음
                 if (crew.currentShip != targetShip)
                 {
-                    if (targetRoom.roomType == RoomType.Teleporter)
+                    if (/*targetShip == GameManager.Instance.playerShip && */targetRoom.roomType == RoomType.Teleporter)
                     {
                         // 텔포 준비
                         crew.Freeze();

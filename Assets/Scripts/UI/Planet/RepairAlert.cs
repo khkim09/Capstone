@@ -7,7 +7,7 @@ public class RepairAlert : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Ship playerShip;
     private List<Room> destoryedRooms;
-    private int  destoryedRoomsCount;
+    private int destoryedRoomsCount;
     private Animator animator;
 
     public int repairCF = 10;
@@ -22,20 +22,20 @@ public class RepairAlert : MonoBehaviour
         repairCost = 0;
         foreach (Room room in rooms)
         {
-            if(room.damageCondition==DamageLevel.breakdown)
+            if (room.damageCondition == DamageLevel.breakdown)
             {
                 destoryedRooms.Add(room);
-                repairCost+=(int)(room.GetMaxHitPoints() - room.currentHitPoints) * repairCF;
+                repairCost += (int)(room.GetMaxHitPoints() - room.currentHitPoints) * repairCF;
             }
         }
 
         destoryedRoomsCount = destoryedRooms.Count;
 
-        if(destoryedRoomsCount>0)
+        if (destoryedRoomsCount > 0)
         {
             transform.Find("AlertText").GetComponent<TextMeshProUGUI>().text =
                 $"{"ui.planet.alert.destroyed".Localize()}\nx {destoryedRooms.Count}";
-            animator=gameObject.GetComponent<Animator>();
+            animator = gameObject.GetComponent<Animator>();
             animator.SetTrigger("In");
 
             transform.Find("RepairButton").GetChild(0).GetComponent<TextMeshProUGUI>().text
@@ -47,12 +47,12 @@ public class RepairAlert : MonoBehaviour
     {
         if (ResourceManager.Instance.COMA >= repairCost)
         {
-            ResourceManager.Instance.ChangeResource(ResourceType.COMA,-repairCost);
+            ResourceManager.Instance.ChangeResource(ResourceType.COMA, -repairCost);
             animator.SetTrigger("Out");
             List<Room> rooms = playerShip.GetAllRooms();
             foreach (Room room in rooms)
             {
-                room.Repair(room.GetMaxHitPoints());
+                room.FullRepair(room.GetMaxHitPoints());
             }
         }
     }
