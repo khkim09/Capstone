@@ -91,18 +91,19 @@ public class SceneChanger : MonoBehaviour
 
         if (!isDefeated)
         {
-            List<CrewMember> cms = GameManager.Instance.currentEnemyShip.allEnemies;
-            foreach (CrewMember cm in cms)
+            List<CrewMember> allCrews = GameManager.Instance.playerShip.allEnemies;
+            allCrews.AddRange(GameManager.Instance.currentEnemyShip.allCrews);
+            for (int i = allCrews.Count - 1; i >= 0; i--)
             {
-                cm.Freeze();
-                StartCoroutine(cm.TeleportAfterDelay(cm, 0));
-            }
-
-            List<CrewMember> enemy = GameManager.Instance.playerShip.allEnemies;
-            foreach (CrewMember cm in enemy)
-            {
-                cm.Freeze();
-                StartCoroutine(cm.TeleportAfterDelay(cm, 0));
+                if(allCrews[i].isPlayerControlled)
+                {
+                    allCrews[i].Freeze();
+                    StartCoroutine(allCrews[i].TeleportAfterDelay(allCrews[i], 0));
+                }
+                else
+                {
+                    allCrews[i].Die();
+                }
             }
         }
         yield return StartCoroutine(Fade(1)); // 페이드 아웃
