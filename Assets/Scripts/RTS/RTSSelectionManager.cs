@@ -451,6 +451,8 @@ public class RTSSelectionManager : MonoBehaviour
                 return;
 
             targetRoom = hit.collider.GetComponent<Room>();
+            if(targetRoom==null)
+                targetRoom = hit.collider.GetComponent<IconInteraction>().room;
         }
 
         if (targetRoom == null)
