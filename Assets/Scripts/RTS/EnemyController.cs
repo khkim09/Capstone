@@ -106,7 +106,7 @@ public class EnemyController : MonoBehaviour
                         break;
                     case 1: // 무작위 조종실로 이동
                         Room room1 = WhereToGo(RoomType.Cockpit);
-                        if (room1 = null)
+                        if (room1 == null)
                             break;
 
                         RTSSelectionManager.Instance.IssueMoveCommand(room1, cm);
