@@ -48,11 +48,6 @@ public class RTSSelectionManager : MonoBehaviour
     //--- RTS 이동 관련---
 
     /// <summary>
-    /// 기본 그리드
-    /// </summary>
-    public GridPlacer gridPlacer;
-
-    /// <summary>
     /// 유저 함선
     /// </summary>
     public Ship playerShip;
@@ -83,9 +78,9 @@ public class RTSSelectionManager : MonoBehaviour
     public CrewMovementValidator enemyMovementValidator;
 
     /// <summary>
-    /// 적 함선
+    /// 전투 시 필요 canvas
     /// </summary>
-    // public Ship enemyShip;
+    public GraphicRaycaster combatUIGRC;
 
     /// <summary>
     /// 싱글톤 instance
@@ -104,7 +99,7 @@ public class RTSSelectionManager : MonoBehaviour
         }
 
         Instance = this;
-
+        DontDestroyOnLoad(this.gameObject);
     }
 
     #region 외곽 효과
@@ -142,11 +137,8 @@ public class RTSSelectionManager : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        // bool isMainUI = IsMainUIActive();
-
-
         // 왼쪽 마우스 버튼 눌림: 선택 시작
-        if (/*isMainUI && */Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             if (BlockRTSSelection() || BlockRTSNBPMove())
             {
@@ -197,7 +189,7 @@ public class RTSSelectionManager : MonoBehaviour
     private void LateUpdate()
     {
         // 오른쪽 마우스 버튼 클릭: 이동 명령 발동
-        if (/*isMainUI && */Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
         {
             if (IsUIWithTagClicked("CombatUI"))
                 return;
@@ -207,7 +199,6 @@ public class RTSSelectionManager : MonoBehaviour
         }
     }
 
-    public GraphicRaycaster combatUIGRC;
     private bool IsUIWithTagClicked(string tag)
     {
         PointerEventData pointerEventData = new PointerEventData(EventSystem.current);

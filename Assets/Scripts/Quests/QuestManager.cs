@@ -159,9 +159,12 @@ public class QuestManager : MonoBehaviour
     private void CheckQuestExpiration(int currentYear)
     {
         List<RandomQuest> expiredQuests = new();
-        foreach (RandomQuest quest in activeQuests)
+        for (int i = activeQuests.Count - 1; i >= 0; i--)
+        {
+            RandomQuest quest = activeQuests[i];
             if (quest.QuestExpiredYear >= currentYear)
                 FailQuest(quest);
+        }
     }
 
     private void TrySpawnQuest(int year)

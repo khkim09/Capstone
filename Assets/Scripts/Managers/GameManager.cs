@@ -67,7 +67,8 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")] [SerializeField]
+    [Header("Game State")]
+    [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -485,7 +486,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void AddYear()
     {
-        currentYear++;
+        // TODO: currentYear++;
+        currentYear += 100;
         OnYearChanged?.Invoke(currentYear);
         Debug.Log($"[워프 완료] 현재 연도 : {currentYear}");
     }
@@ -837,6 +839,11 @@ public class GameManager : MonoBehaviour
     {
         ChangeGameState(GameState.Planet);
         SceneChanger.Instance.LoadScene("Planet");
+    }
+
+    public void ShowEnding()
+    {
+        SceneChanger.Instance.LoadScene("EndingScene");
     }
 
     #endregion
