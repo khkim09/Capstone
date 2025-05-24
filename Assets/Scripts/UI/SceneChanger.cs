@@ -106,7 +106,7 @@ public class SceneChanger : MonoBehaviour
             }
         }
         yield return StartCoroutine(Fade(1)); // 페이드 아웃
-
+        RTSSelectionManager.Instance.SetGRC(null);
         if (isDefeated)
         {
             GameManager.Instance.playerShip.BackToTheDefaultShip();

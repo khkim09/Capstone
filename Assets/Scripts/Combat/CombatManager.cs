@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// 전투 전체 흐름을 관리하는 매니저 클래스입니다.
@@ -27,6 +28,7 @@ public class CombatManager : MonoBehaviour
     /// </summary>
     private CombatUIController uiController;
 
+    [SerializeField] private GraphicRaycaster combatUI;
 
     // [SerializeField] private ProjectilePool projectilePool; // 탄환 풀링
 
@@ -45,6 +47,8 @@ public class CombatManager : MonoBehaviour
 
         Instance = this;
         //DontDestroyOnLoad(gameObject); // 씬 이동 시에도 유지
+
+        RTSSelectionManager.Instance.SetGRC(combatUI);
     }
 
     /// <summary>

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -80,7 +81,7 @@ public class RTSSelectionManager : MonoBehaviour
     /// <summary>
     /// 전투 시 필요 canvas
     /// </summary>
-    public GraphicRaycaster combatUIGRC;
+    private GraphicRaycaster combatUIGRC;
 
     /// <summary>
     /// 싱글톤 instance
@@ -129,6 +130,7 @@ public class RTSSelectionManager : MonoBehaviour
 
         outlineMaterial = Resources.Load<Material>("Material/UnitOutlineMaterial");
         defaultMaterial = Resources.Load<Material>("Material/UnitDefaultMaterial");
+        SetGRC(null);
     }
 
     /// <summary>
@@ -196,6 +198,15 @@ public class RTSSelectionManager : MonoBehaviour
 
             CleanUpSelectedCrew();
             IssueMoveCommand();
+        }
+    }
+
+    public void SetGRC(GraphicRaycaster GRC)
+    {
+        combatUIGRC = GRC;
+        if (combatUIGRC == null)
+        {
+            combatUIGRC = transform.GetChild(0).GetComponent<GraphicRaycaster>();
         }
     }
 
