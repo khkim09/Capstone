@@ -1145,10 +1145,6 @@ public class CrewMember : CrewBase
 
             // 2) 타겟 함선 점유 타일 등록, 선원 리스트 갱신
             CrewReservationManager.ReserveTile(targetShip, assignedRoom, assignedTile, crew);
-            if (crew.IsOwnShip())
-                targetShip.allCrews.Add(crew);
-            else
-                targetShip.allEnemies.Add(crew);
 
             // 3) 위치 설정
             crew.position = assignedTile;
@@ -1156,6 +1152,11 @@ public class CrewMember : CrewBase
             crew.transform.position = targetShip.GetWorldPositionFromGrid(assignedTile);
             crew.transform.SetParent(assignedRoom.transform);
             crew.currentShip = targetShip;
+
+            if (crew.IsOwnShip())
+                targetShip.allCrews.Add(crew);
+            else
+                targetShip.allEnemies.Add(crew);
 
             // 4) 컴포넌트 활성화
             crew.gameObject.SetActive(true);

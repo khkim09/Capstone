@@ -79,7 +79,10 @@ public class SceneChanger : MonoBehaviour
     {
         // 이미 전환 중이라면 무시
         if (IsTransitioning)
+        {
+            Debug.LogError("씬 전환으로인해 무시됨");
             return;
+        }
 
         StartCoroutine(BackToTheHome(isDefeated));
     }
@@ -99,23 +102,6 @@ public class SceneChanger : MonoBehaviour
         GameObject esManager = GameObject.FindWithTag("ESManager");
         DontDestroyOnLoad(esManager);
 
-        if (!isDefeated)
-        {
-            List<CrewMember> allCrews = GameManager.Instance.playerShip.allEnemies;
-            allCrews.AddRange(GameManager.Instance.currentEnemyShip.allCrews);
-            for (int i = allCrews.Count - 1; i >= 0; i--)
-            {
-                if(allCrews[i].isPlayerControlled)
-                {
-                    allCrews[i].Freeze();
-                    StartCoroutine(allCrews[i].TeleportAfterDelay(allCrews[i], 0));
-                }
-                else
-                {
-                    allCrews[i].Die();
-                }
-            }
-        }
         yield return StartCoroutine(Fade(1)); // 페이드 아웃
         RTSSelectionManager.Instance.SetGRC(null);
         if (isDefeated)
