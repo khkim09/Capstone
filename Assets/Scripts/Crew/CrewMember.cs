@@ -620,6 +620,7 @@ public class CrewMember : CrewBase
                 return;
             }
 
+            currentShip.TakeDamage(damage);
             madRoom.TakeDamage(damage);
             if (madRoom.currentHitPoints <= 0)
             {
@@ -1024,7 +1025,7 @@ public class CrewMember : CrewBase
     /// <summary>
     /// 현재 하던 작업 행동을 멈추고 자신을 Room.workingCrew로 할당한 Room을 찾아 할당 해제시키고 함선 능력치를 재계산한다.
     /// </summary>
-    private void WalkOut()
+    public void WalkOut()
     {
         if (isWorking)
         {

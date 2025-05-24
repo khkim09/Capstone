@@ -66,7 +66,7 @@ public class CockpitRoom : Room<CockpitRoomData, CockpitRoomData.CockpitRoomLeve
     /// <returns></returns>
     public override bool CanITouch(CrewMember crew)
     {
-        if (crew.GetCrewSkillValue().ContainsKey(SkillType.PilotSkill) && workingCrew ==null)
+        if (crew.GetCrewSkillValue().ContainsKey(SkillType.PilotSkill) && workingCrew ==null && IsOperational())
         {
             workingCrew = crew;
             return true;

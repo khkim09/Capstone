@@ -63,7 +63,7 @@ public class WeaponControlRoom : Room<WeaponControlRoomData, WeaponControlRoomDa
     /// <returns></returns>
     public override bool CanITouch(CrewMember crew)
     {
-        if (crew.GetCrewSkillValue().ContainsKey(SkillType.WeaponSkill) && workingCrew ==null)
+        if (crew.GetCrewSkillValue().ContainsKey(SkillType.WeaponSkill) && workingCrew ==null && IsOperational())
         {
             workingCrew = crew;
             return true;
