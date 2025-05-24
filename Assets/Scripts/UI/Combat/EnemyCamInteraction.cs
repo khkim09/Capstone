@@ -41,6 +41,8 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
             if (hit.collider == null)
                 return;
             Room targetRoom = hit.collider.GetComponent<Room>();
+            if(targetRoom==null)
+                targetRoom = hit.collider.GetComponent<IconInteraction>().room;
 
             Debug.Log(targetRoom.name);
 

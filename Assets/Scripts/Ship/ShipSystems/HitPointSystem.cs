@@ -24,7 +24,7 @@ public class HitPointSystem : ShipSystem
 
     public override void Refresh()
     {
-        currentHitPoint = GetShipStat(ShipStat.HitPointsMax);
+        RecalculateHitPoint();
     }
 
     public void RecalculateHitPoint()

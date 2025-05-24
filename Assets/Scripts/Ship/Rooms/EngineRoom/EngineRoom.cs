@@ -30,6 +30,7 @@ public class EngineRoom : Room<EngineRoomData, EngineRoomData.EngineRoomLevel>
         // 기본 기여도 가져오기 (작동 상태 체크 등)
         Dictionary<ShipStat, float> contributions = base.GetStatContributions();
 
+        contributions[ShipStat.FuelStoreCapacity] = currentRoomLevelData.fuelStoreLiter;
         // 작동 상태가 아니면 기여도 없음
         if (!IsOperational() || currentRoomLevelData == null)
             return contributions;
@@ -56,10 +57,10 @@ public class EngineRoom : Room<EngineRoomData, EngineRoomData.EngineRoomLevel>
             float crewBonus = workingCrew.GetCrewSkillValue()[SkillType.EngineSkill];
             contributions[ShipStat.DodgeChance] *= crewBonus;
             contributions[ShipStat.FuelEfficiency] *= crewBonus;
-            contributions[ShipStat.FuelConsumption] *= crewBonus;
+            //contributions[ShipStat.FuelConsumption] *= crewBonus;
         }
 
-        contributions[ShipStat.FuelStoreCapacity] = currentRoomLevelData.fuelStoreLiter;
+
 
 
         return contributions;
@@ -72,7 +73,7 @@ public class EngineRoom : Room<EngineRoomData, EngineRoomData.EngineRoomLevel>
     /// <returns></returns>
     public override bool CanITouch(CrewMember crew)
     {
-        if (crew.GetCrewSkillValue().ContainsKey(SkillType.EngineSkill) && workingCrew == null)
+        if (crew.GetCrewSkillValue().ContainsKey(SkillType.EngineSkill) && workingCrew == null && IsOperational())
         {
             workingCrew = crew;
             return true;

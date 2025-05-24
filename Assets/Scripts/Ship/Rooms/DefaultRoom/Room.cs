@@ -42,7 +42,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [SerializeField] public Constants.Rotations.Rotation currentRotation;
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
-    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
+    [Header("방 효과")][SerializeField] protected ParticleSystem roomParticles;
 
     /// <summary>방 작동 시 사운드 효과.</summary>
     [SerializeField] protected AudioSource roomSound;
@@ -57,10 +57,10 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     public bool isActive = true;
 
     /// <summary>전력이 공급되고 있는지 여부.</summary>
-    protected bool isPowered;
+    protected bool isPowered = true;
 
     /// <summary>전력 공급이 요청되었는지 여부.</summary>
-    protected bool isPowerRequested;
+    protected bool isPowerRequested = false;
 
     /// <summary>방의 시각적 렌더러.</summary>
     protected SpriteRenderer roomRenderer; // 방 렌더러
@@ -280,6 +280,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         }
     }
 
+
     /// <summary>방을 초기화합니다.</summary>
     public virtual void Initialize(int level)
     {
@@ -291,6 +292,10 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         gridSize = roomData.GetRoomDataByLevel(level).size;
         roomType = GetRoomData().GetRoomType();
         roomRenderer.sortingOrder = Constants.SortingOrders.Room;
+
+        //requested initialize 필요
+        if (GetPowerConsumption() > 0)
+            isPowerRequested = true;
 
         // 부모 Ship 컴포넌트 찾기
         parentShip = GetComponentInParent<Ship>();
@@ -318,9 +323,15 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>방이 작동 가능한 상태인지 확인합니다.</summary>
     public bool IsOperational()
     {
-        // TODO : 임시로 True 로 설정
-        return true;
-        // return isActive && isPowered && HasEnoughCrew();
+        if (damageCondition == DamageLevel.breakdown)
+            return false;
+        if (isActive)
+        {
+            if (isPowerRequested && !isPowered)
+                return false;
+            return true;
+        }
+        return false;
     }
 
 
@@ -333,6 +344,16 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         isPowerRequested = requested;
         UpdateEffects();
         NotifyStateChanged();
+    }
+
+    public void BlackOut()
+    {
+        if (isPowered)
+        {
+            isPowered = false;
+            UpdateEffects();
+            UpdateRoomVisual();
+        }
     }
 
     /// <summary>체력 퍼센티지를 반환합니다.</summary>
@@ -350,11 +371,13 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         // 기본 빈 구현 (모든 방이 기본적으로 기여하는 스탯이 없음)
         Dictionary<ShipStat, float> contributions = new();
 
+        contributions[ShipStat.HitPointsMax] = roomData.GetRoomDataByLevel(currentLevel).hitPoint;
+
         // 방 상태가 작동 불능이면 아무런 기여도 없음
         if (!IsOperational())
             return contributions;
 
-        contributions[ShipStat.HitPointsMax] = roomData.GetRoomDataByLevel(currentLevel).hitPoint;
+
 
         // 방의 건강 상태에 따라 기여도에 효율 적용
         // 파생 클래스는 이 베이스 메서드를 호출하고 반환된 Dictionary에 값을 추가/조정해야 함
@@ -405,6 +428,11 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>상태 변경을 알립니다.</summary>
     protected virtual void NotifyStateChanged()
     {
+        if (workingCrew != null)
+        {
+            workingCrew.WalkOut();
+            workingCrew.TryWork();
+        }
         OnRoomStateChanged?.Invoke(this);
     }
 
@@ -509,25 +537,32 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
         string color = "";
 
-        if (!isActive)
-            color = "gray";
+        if (damageCondition == DamageLevel.breakdown)
+            color = "red";
         else
-            switch (damageCondition)
+        {
+            if (!IsOperational())
+                color = "gray";
+            else
             {
-                case DamageLevel.good:
-                    color = "green";
-                    break;
-                case DamageLevel.scratch:
+                if (damageCondition == DamageLevel.scratch)
                     color = "yellow";
-                    break;
-                case DamageLevel.breakdown:
-                    color = "red";
-                    break;
+                else if(damageCondition==DamageLevel.good)
+                {
+                    color = "green";
+                }
             }
+        }
+
+        if (color.Equals(""))
+        {
+            Debug.LogError(name+": Room has no color assigned.");
+            return;
+        }
 
 
         if (icon == null)
-            icon = Instantiate(roomData.GetRoomDataByLevel(currentLevel).roomIconPrefab,transform,false ).GetComponent<SpriteRenderer>();
+            icon = Instantiate(roomData.GetRoomDataByLevel(currentLevel).roomIconPrefab, transform, false).GetComponent<SpriteRenderer>();
 
         if (position == new Vector2Int(0, 0)) return;
 
@@ -572,21 +607,19 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>지정된 피해만큼 체력을 감소시킵니다.</summary>
     public virtual void TakeDamage(float damage)
     {
-
-        //피해발생 이후에 현재 체력에 따라 시설의 피해 단계를 변화시킨다.
-        if(isDamageable)
+        // 피해발생 이후에 현재 체력에 따라 시설의 피해 단계를 변화시킨다.
+        if (isDamageable)
         {
             currentHitPoints = Mathf.Max(0, currentHitPoints - damage);
             if (currentHitPoints <=
                 roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
+            {
                 damageCondition = DamageLevel.breakdown;
-            //  OnDisabled();
-            else if (currentHitPoints <=
-                     roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+            }
+            // OnDisabled();
+            else if (currentHitPoints <= roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
                 damageCondition = DamageLevel.scratch;
         }
-
-        parentShip.TakeDamage(damage);
 
         // 스탯 기여도 변화 알림
         NotifyStateChanged();
@@ -619,9 +652,25 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             currentHitPoints = Mathf.Min(roomData.GetRoomDataByLevel(currentLevel).hitPoint, currentHitPoints + amount);
             if (currentHitPoints > roomData.GetRoomDataByLevel(currentLevel)
                     .damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+            {
                 damageCondition = DamageLevel.good;
+                UpdateRoomVisual();
+            }
         }
+
         // 스탯 기여도 변화 알림
+        NotifyStateChanged();
+    }
+
+    /// <summary>
+    /// 100% 수리
+    /// </summary>
+    /// <param name="amount"></param>
+    public void FullRepair(float amount)
+    {
+        currentHitPoints = amount;
+        damageCondition = DamageLevel.good;
+
         NotifyStateChanged();
     }
 
@@ -665,6 +714,13 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     }
 
     #endregion
+
+    public void SetIsActive(bool activate)
+    {
+        isActive = activate;
+        NotifyStateChanged();
+        UpdateRoomVisual();
+    }
 }
 
 /// <summary>
@@ -759,7 +815,7 @@ public abstract class Room<TData, TLevel> : Room
 
 
         InitializeIsDamageable();
-     //   InitializeDoor();
+        //   InitializeDoor();
 
         UpdateRoomLevelData();
     }
@@ -795,6 +851,8 @@ public abstract class Room<TData, TLevel> : Room
             return;
         }
     }
+
+
 }
 
 public enum DamageLevel

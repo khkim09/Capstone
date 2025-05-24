@@ -501,6 +501,11 @@ public class ShipWeapon : MonoBehaviour
 
     public event Action updateWeaponPanel;
 
+    public void DisconnectAction()
+    {
+        updateWeaponPanel = null;
+    }
+
     /// <summary>
     /// 현재 무기가 충전된 정도를 백분율로 반환 (0~1)
     /// </summary>

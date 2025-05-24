@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -83,7 +85,12 @@ public class CombatManager : MonoBehaviour
     public GameObject CCTV;
     public void CombatEnding(Ship ship)
     {
-        CCTV.SetActive(false);
+        foreach (ShipWeapon wp in GameManager.Instance.playerShip.GetAllWeapons())
+        {
+            wp.DisconnectAction();
+        }
+        if (CCTV)
+            CCTV.SetActive(false);
         Time.timeScale = 0;
         if (ship == GameManager.Instance.playerShip)
         {
@@ -98,6 +105,55 @@ public class CombatManager : MonoBehaviour
     public GameObject defeatUI;
     public GameObject winUI;
 
+
+    public void CombatDefeatedAndGoHome(bool isDefeated)
+    {
+        StartCoroutine(BackToTheHome(isDefeated));
+    }
+
+    /// <summary>
+    /// 모선으로 복귀하라 (승리 : isDefeated = false, 패배 : isDefeated = true)
+    /// </summary>
+    /// <param name="isDefeated"></param>
+    /// <returns></returns>
+    private IEnumerator BackToTheHome(bool isDefeated)
+    {
+        // 승리
+        if (!isDefeated)
+        {
+            // 적 함선에 있는 내 선원 복귀
+            List<CrewMember> needToBackMine = GameManager.Instance.currentEnemyShip.allEnemies;
+            foreach (CrewMember crew in needToBackMine)
+            {
+                crew.Freeze();
+                StartCoroutine(crew.TeleportAfterDelay(crew, 0f));
+            }
+
+            // 내 함선에 있는 적 선원 복귀 및 자동 삭제
+            List<CrewMember> needToDestroy = GameManager.Instance.playerShip.allEnemies;
+            foreach (CrewMember crew in needToDestroy)
+            {
+                crew.Freeze();
+                StartCoroutine(crew.TeleportAfterDelay(crew, 0f));
+            }
+
+            GameManager.Instance.playerShip.allEnemies.Clear();
+        }
+        else // 패배
+        {
+            // 내 함선 내 모든 선원 삭제
+            List<CrewMember> playerShipAllCrews = GameManager.Instance.playerShip.allCrews;
+            foreach (CrewMember crew in playerShipAllCrews)
+                Destroy(crew.gameObject);
+            GameManager.Instance.playerShip.allCrews.Clear();
+
+            List<CrewMember> playerShipAllEnemies = GameManager.Instance.playerShip.allEnemies;
+            foreach (CrewMember crew in playerShipAllEnemies)
+                Destroy(crew.gameObject);
+            GameManager.Instance.playerShip.allEnemies.Clear();
+        }
+        yield return null;
+    }
 
 
     /// <summary>
