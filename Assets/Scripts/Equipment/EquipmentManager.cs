@@ -39,6 +39,14 @@ public class EquipmentManager : MonoBehaviour
     /// </summary>
     [SerializeField] private EquipmentItem[] availableAssistantEquipments;
 
+    public EquipmentItem globalWeaponLevel1;
+    public EquipmentItem globalWeaponLevel2;
+    public EquipmentItem globalWeaponLevel3;
+
+    public EquipmentItem globalShieldLevel1;
+    public EquipmentItem globalShieldLevel2;
+    public EquipmentItem globalShieldLevel3;
+
     /// <summary>
     /// 인스턴스를 초기화합니다. 중복 객체는 제거됩니다.
     /// </summary>
@@ -113,5 +121,33 @@ public class EquipmentManager : MonoBehaviour
             EquipmentType.AssistantEquipment => defaultAssistant,
             _ => null
         };
+    }
+
+    public EquipmentItem GetNextLevelEquipment(EquipmentType type)
+    {
+        if (type == EquipmentType.AssistantEquipment)
+        {
+            Debug.LogError("보조 장비는 다음 레벨이 없음");
+            return null;
+        }
+
+        if (type == EquipmentType.WeaponEquipment)
+        {
+            if (GameManager.Instance.CurrentGlobalWeaponLevel == 3)
+                return null;
+            else if (GameManager.Instance.CurrentGlobalWeaponLevel == 2)
+                return globalWeaponLevel3;
+            else
+                return globalWeaponLevel2;
+        }
+        else
+        {
+            if (GameManager.Instance.CurrentGlobalShieldLevel == 3)
+                return null;
+            else if (GameManager.Instance.CurrentGlobalShieldLevel == 2)
+                return globalShieldLevel3;
+            else
+                return globalShieldLevel2;
+        }
     }
 }

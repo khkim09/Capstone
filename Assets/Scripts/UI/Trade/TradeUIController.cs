@@ -99,11 +99,6 @@ public class TradeUIController : MonoBehaviour
     [SerializeField] private GameObject buyItemInfoPrefab;
 
     /// <summary>
-    /// 장비 구매 패널에 담기는 정보 게임 오브젝트 프리팹
-    /// </summary>
-    [SerializeField] private GameObject equipmentItemInfoPrefab;
-
-    /// <summary>
     /// 연료 구매 버튼
     /// </summary>
     [SerializeField] private GameObject fuelBuyButton;
@@ -183,7 +178,6 @@ public class TradeUIController : MonoBehaviour
     /// </summary>
     private TradingItem itemInstance;
 
-
     /// <summary>
     /// 아이템 판매 패널에 표시될 정보를 담는 곳
     /// </summary>
@@ -209,6 +203,20 @@ public class TradeUIController : MonoBehaviour
     /// </summary>
     private List<SellItemInfoPanel> sellItemInfoPanelInstance = new();
 
+    [Header("장비 패널 설정")] [SerializeField] private EquipmentDatabase equipmentDatabase;
+    [SerializeField] private GameObject equipmentItemInfoPrefab;
+    private EquipmentInfoPanel equipmentLeftInstance;
+    private EquipmentInfoPanel equipmentRightInstance;
+    private EquipmentInfoPanel equipmentMiddleInstance;
+    [SerializeField] private GameObject equipmentLeftContainer;
+    [SerializeField] private GameObject equipmentMiddleContainer;
+    [SerializeField] private GameObject equipmentRightContainer;
+    [SerializeField] private GameObject equipmentSoldOutPrefab;
+    private GameObject equipmentLeftSoldOutInstance;
+    private GameObject equipmentRightSoldOutInstance;
+    private GameObject equipmentMiddleSoldOutInstance;
+    [SerializeField] private GameObject equipmentGlobalApplyAllPanel;
+    private EquipmentItem recentBoughtEquipment;
 
     /// <summary>
     /// 구매 패널이 열려야되는 위치
@@ -234,6 +242,11 @@ public class TradeUIController : MonoBehaviour
     /// 씬 나가기 버튼
     /// </summary>
     [SerializeField] private Button exitButton;
+
+    /// <summary>
+    /// 돈 부족 알림 텍스트
+    /// </summary>
+    [SerializeField] private TextMeshProUGUI notEnoughCOMAText;
 
     /// <summary>
     /// 구매 패널의 닫혀있는 위치 참조
@@ -298,6 +311,15 @@ public class TradeUIController : MonoBehaviour
         AddButtonListeners();
         InitializeResourcesText();
 
+        recentBoughtEquipment = null;
+
+        equipmentRightSoldOutInstance = Instantiate(equipmentSoldOutPrefab, equipmentRightContainer.transform);
+        equipmentLeftSoldOutInstance = Instantiate(equipmentSoldOutPrefab, equipmentLeftContainer.transform);
+        equipmentMiddleSoldOutInstance = Instantiate(equipmentSoldOutPrefab, equipmentMiddleContainer.transform);
+        equipmentLeftSoldOutInstance.SetActive(false);
+        equipmentRightSoldOutInstance.SetActive(false);
+        equipmentMiddleSoldOutInstance.SetActive(false);
+
         isBuyPanelInitialized = false;
     }
 
@@ -350,6 +372,7 @@ public class TradeUIController : MonoBehaviour
         if (targetPanel == panelBuy)
         {
             InitializeBuyPanel();
+            InitializeEquipmentPanel();
             SlideBuyOpen();
         }
 
@@ -767,6 +790,14 @@ public class TradeUIController : MonoBehaviour
     public void BuyItem(TradingItemData selectedItem)
     {
         int price = selectedItem.amount * selectedItem.boughtCost;
+
+        if (price > ResourceManager.Instance.COMA)
+        {
+            notEnoughCOMAText.gameObject.SetActive(true);
+            StartCoroutine(HideChangeText(notEnoughCOMAText, 1.5f));
+            return;
+        }
+
         ResourceManager.Instance.ChangeResource(ResourceType.COMA, -price);
 
         GameManager.Instance.WhereIAm().currentRevenue += price;
@@ -865,6 +896,241 @@ public class TradeUIController : MonoBehaviour
 
         InitializeSellPanel();
         itemMapPanel.gameObject.SetActive(false);
+    }
+
+    #endregion
+
+    #region 장비 패널 설정
+
+    public void InitializeEquipmentPanel()
+    {
+        if (equipmentLeftInstance != null)
+        {
+            equipmentLeftInstance.transform.SetParent(null);
+            Destroy(equipmentLeftInstance.gameObject);
+        }
+
+        if (equipmentMiddleInstance != null)
+        {
+            equipmentMiddleInstance.transform.SetParent(null);
+            Destroy(equipmentMiddleInstance.gameObject);
+        }
+
+        if (equipmentRightInstance != null)
+        {
+            equipmentRightInstance.transform.SetParent(null);
+            Destroy(equipmentRightInstance.gameObject);
+        }
+
+
+        PlanetData currentPlanet = GameManager.Instance.WhereIAm();
+
+        EquipmentItem nextWeapon = EquipmentManager.Instance.GetNextLevelEquipment(EquipmentType.WeaponEquipment);
+
+        if (nextWeapon != null)
+        {
+            EquipmentInfoPanel leftEquipmentInfoPanel =
+                Instantiate(equipmentItemInfoPrefab, equipmentLeftContainer.transform)
+                    .GetComponent<EquipmentInfoPanel>();
+
+            leftEquipmentInfoPanel.Initialize(nextWeapon);
+            leftEquipmentInfoPanel.panelButton.onClick.AddListener(OnClickWeaponEquipmentPanel);
+
+            equipmentLeftInstance = leftEquipmentInfoPanel;
+        }
+        else
+        {
+            equipmentLeftSoldOutInstance.SetActive(true);
+        }
+
+
+        EquipmentItem nextShield = EquipmentManager.Instance.GetNextLevelEquipment(EquipmentType.ShieldEquipment);
+
+        if (nextShield != null)
+        {
+            EquipmentInfoPanel middleEquipmentInfoPanel =
+                Instantiate(equipmentItemInfoPrefab, equipmentMiddleContainer.transform)
+                    .GetComponent<EquipmentInfoPanel>();
+
+            middleEquipmentInfoPanel.Initialize(nextShield);
+            middleEquipmentInfoPanel.panelButton.onClick.AddListener(OnClickShieldEquipmentPanel);
+
+            equipmentMiddleInstance = middleEquipmentInfoPanel;
+        }
+        else
+        {
+            equipmentMiddleSoldOutInstance.SetActive(true);
+        }
+
+        if (!GameManager.Instance.isBoughtEquipment)
+        {
+            EquipmentItem randomItem = currentPlanet.currentRandomEquipmentItem;
+
+            EquipmentInfoPanel rightEquipmentInfoPanel =
+                Instantiate(equipmentItemInfoPrefab, equipmentRightContainer.transform)
+                    .GetComponent<EquipmentInfoPanel>();
+            rightEquipmentInfoPanel.Initialize(randomItem);
+
+            rightEquipmentInfoPanel.panelButton.onClick.AddListener(OnClickRandomEquipmentPanel);
+
+            equipmentRightInstance = rightEquipmentInfoPanel;
+        }
+        else
+        {
+            equipmentRightSoldOutInstance.SetActive(true);
+        }
+    }
+
+    public void UpdateEquipmentPanel()
+    {
+        EquipmentItem nextWeapon = EquipmentManager.Instance.GetNextLevelEquipment(EquipmentType.WeaponEquipment);
+
+        EquipmentInfoPanel targetPanel = null;
+        if (nextWeapon == null)
+        {
+            targetPanel = equipmentLeftInstance;
+            if (targetPanel != null)
+            {
+                targetPanel.gameObject.SetActive(false);
+
+                targetPanel.HideTooltip();
+            }
+
+            equipmentLeftSoldOutInstance.SetActive(true);
+        }
+        else
+        {
+            if (equipmentLeftInstance != null)
+            {
+                targetPanel = equipmentLeftInstance;
+                targetPanel.Initialize(nextWeapon);
+                targetPanel.HideTooltip();
+            }
+        }
+
+        EquipmentItem nextShield = EquipmentManager.Instance.GetNextLevelEquipment(EquipmentType.ShieldEquipment);
+
+        if (nextShield == null)
+        {
+            equipmentMiddleSoldOutInstance.SetActive(true);
+            if (equipmentMiddleInstance != null)
+            {
+                targetPanel = equipmentMiddleInstance;
+                targetPanel.gameObject.SetActive(false);
+                targetPanel.HideTooltip();
+            }
+        }
+        else
+        {
+            targetPanel = equipmentMiddleInstance;
+            targetPanel.Initialize(nextShield);
+            targetPanel.HideTooltip();
+        }
+
+        if (GameManager.Instance.isBoughtEquipment)
+        {
+            equipmentRightSoldOutInstance.SetActive(true);
+            if (equipmentRightInstance != null)
+            {
+                targetPanel = equipmentRightInstance;
+                if (targetPanel != null)
+                {
+                    targetPanel.gameObject.SetActive(false);
+
+                    targetPanel.HideTooltip();
+                }
+            }
+        }
+        else
+        {
+            targetPanel = equipmentRightInstance;
+            targetPanel.Initialize(GameManager.Instance.WhereIAm().currentRandomEquipmentItem);
+            targetPanel.HideTooltip();
+        }
+    }
+
+
+    public void OnClickRandomEquipmentPanel()
+    {
+        BuyRandomEquipment(GameManager.Instance.WhereIAm().currentRandomEquipmentItem);
+    }
+
+    public void OnClickWeaponEquipmentPanel()
+    {
+        BuyEquipment(EquipmentManager.Instance.GetNextLevelEquipment(EquipmentType.WeaponEquipment));
+    }
+
+    public void OnClickShieldEquipmentPanel()
+    {
+        BuyEquipment(EquipmentManager.Instance.GetNextLevelEquipment(EquipmentType.ShieldEquipment));
+    }
+
+    public void BuyEquipment(EquipmentItem item)
+    {
+        int price = item.eqPrice;
+
+        if (price > ResourceManager.Instance.COMA)
+        {
+            notEnoughCOMAText.gameObject.SetActive(true);
+            StartCoroutine(HideChangeText(notEnoughCOMAText, 1.5f));
+            return;
+        }
+
+        ResourceManager.Instance.ChangeResource(ResourceType.COMA, -price);
+
+        if (EquipmentManager.Instance.globalWeaponLevel2 == item)
+        {
+            GameManager.Instance.CurrentGlobalWeaponLevel = 2;
+            GameManager.Instance.playerShip.unUsedItems.Add(EquipmentManager.Instance.globalWeaponLevel2);
+        }
+        else if (EquipmentManager.Instance.globalWeaponLevel3 == item)
+        {
+            GameManager.Instance.CurrentGlobalWeaponLevel = 3;
+            GameManager.Instance.playerShip.unUsedItems.Add(EquipmentManager.Instance.globalWeaponLevel3);
+        }
+
+        else if (EquipmentManager.Instance.globalShieldLevel2 == item)
+        {
+            GameManager.Instance.CurrentGlobalShieldLevel = 2;
+            GameManager.Instance.playerShip.unUsedItems.Add(EquipmentManager.Instance.globalShieldLevel2);
+        }
+        else if (EquipmentManager.Instance.globalShieldLevel3 == item)
+        {
+            GameManager.Instance.CurrentGlobalShieldLevel = 3;
+            GameManager.Instance.playerShip.unUsedItems.Add(EquipmentManager.Instance.globalShieldLevel3);
+        }
+
+        equipmentGlobalApplyAllPanel.SetActive(true);
+        recentBoughtEquipment = item;
+
+        UpdateEquipmentPanel();
+    }
+
+    public void BuyRandomEquipment(EquipmentItem item)
+    {
+        int price = item.eqPrice;
+
+        if (price > ResourceManager.Instance.COMA)
+        {
+            notEnoughCOMAText.gameObject.SetActive(true);
+            StartCoroutine(HideChangeText(notEnoughCOMAText, 1.5f));
+            return;
+        }
+
+        ResourceManager.Instance.ChangeResource(ResourceType.COMA, -price);
+
+        GameManager.Instance.isBoughtEquipment = true;
+
+        UpdateEquipmentPanel();
+    }
+
+    public void OnClickApplyGlobalEquipmentConfirmButton()
+    {
+        equipmentGlobalApplyAllPanel.SetActive(false);
+        if (recentBoughtEquipment == null)
+            return;
+        EquipmentManager.Instance.PurchaseAndEquipGlobal(recentBoughtEquipment);
+        recentBoughtEquipment = null;
     }
 
     #endregion

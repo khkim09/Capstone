@@ -67,8 +67,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -82,6 +81,9 @@ public class GameManager : MonoBehaviour
     /// 현재 연도 (읽기 전용).
     /// </summary>
     public int CurrentYear => currentYear;
+
+    public int CurrentGlobalWeaponLevel { get; set; }
+    public int CurrentGlobalShieldLevel { get; set; }
 
     /// <summary>
     /// 싱글턴 인스턴스입니다.
@@ -592,6 +594,13 @@ public class GameManager : MonoBehaviour
 
         // 재화
         ES3.Save<List<ResourcesData>>("resources", ResourceManager.Instance.resources);
+
+        // 공용 장비 레벨
+        ES3.Save<int>("globalWeaponLevel", CurrentGlobalWeaponLevel);
+        ES3.Save<int>("globalShieldLevel", CurrentGlobalShieldLevel);
+
+        // 행성에서 장비 구매했는지 여부
+        ES3.Save<bool>("isBoughtEquipment", isBoughtEquipment);
     }
 
     /// <summary>
@@ -619,6 +628,12 @@ public class GameManager : MonoBehaviour
         // 재화
         if (ES3.KeyExists("resources")) ResourceManager.Instance.resources = ES3.Load<List<ResourcesData>>("resources");
 
+        // 공용 장비 레벨
+        if (ES3.KeyExists("globalWeaponLevel")) CurrentGlobalWeaponLevel = ES3.Load<int>("globalWeaponLevel");
+        if (ES3.KeyExists("globalShieldLevel")) CurrentGlobalShieldLevel = ES3.Load<int>("globalShieldLevel");
+
+        // 행성에서 장비 구매했는지 여부
+        if (ES3.KeyExists("isBoughtEquipment")) isBoughtEquipment = ES3.Load<bool>("isBoughtEquipment");
 
         // 망할놈의 함선
         if (ES3.FileExists("playerShip"))
@@ -665,6 +680,17 @@ public class GameManager : MonoBehaviour
         // 재화
         ES3.DeleteKey("resources");
         ResourceManager.Instance.ResetResources();
+
+        // 공용 장비 레벨
+        ES3.DeleteKey("globalWeaponLevel");
+        CurrentGlobalWeaponLevel = 0;
+
+        ES3.DeleteKey("globalShieldLevel");
+        CurrentGlobalShieldLevel = 0;
+
+        // 행성 씬 장비 구매 여부
+        ES3.DeleteKey("isBoughtEquipment");
+        isBoughtEquipment = false;
     }
 
     #endregion
@@ -815,10 +841,10 @@ public class GameManager : MonoBehaviour
     #region 행성씬전용
 
     public Dictionary<int, List<CrewCardSaveData>> employCardsPerPlanet = new();
+    public bool isBoughtEquipment = false;
 
     public PlanetData WhereIAm()
     {
-        Debug.LogError($"현재 행성 : {currentWarpTargetPlanetId}");
         PlanetData planetData = planetDataList[currentWarpTargetPlanetId];
         return planetData;
     }

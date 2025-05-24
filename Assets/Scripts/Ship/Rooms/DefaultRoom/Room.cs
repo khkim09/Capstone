@@ -760,7 +760,7 @@ public abstract class Room<TData, TLevel> : Room
 
 
         InitializeIsDamageable();
-        InitializeDoor();
+     //   InitializeDoor();
 
         UpdateRoomLevelData();
     }
