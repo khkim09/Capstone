@@ -91,6 +91,11 @@ public class PlanetData
     /// </summary>
     public Dictionary<int, int> itemPriceDictionary = new();
 
+    /// <summary>
+    /// 현재 판매하고 있는 장비 아이템 (Trade 의 장비 거래 패널의 세 번째 슬롯).
+    /// </summary>
+    public EquipmentItem currentRandomEquipmentItem;
+
     public PlanetRace PlanetRace => planetRace;
 
     public bool isHome = false;
@@ -123,6 +128,8 @@ public class PlanetData
         SetRandomPosition();
 
         SetItems();
+
+        RefreshEquipmentSelling();
 
         currentRevenue = 0;
         currentFuelPrice = Random.Range(25, 75);
@@ -575,6 +582,22 @@ public class PlanetData
         quest.status = QuestStatus.NotStarted;
         quest.objectives.Add(objective);
         questList.Add(quest);
+    }
+
+    #endregion
+
+    #region 고용
+
+    #endregion
+
+    #region 장비 판매
+
+    public void RefreshEquipmentSelling()
+    {
+        List<EquipmentItem> allRandomEquipmentList =
+            EquipmentManager.Instance.equipmentDatabase.GetEquipmentByPlanet(itemPlanet);
+
+        currentRandomEquipmentItem = allRandomEquipmentList[Random.Range(0, allRandomEquipmentList.Count)];
     }
 
     #endregion

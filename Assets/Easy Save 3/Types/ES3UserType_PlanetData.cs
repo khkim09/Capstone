@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("planetId", "planetName", "planetRace", "itemPlanet", "normalizedPosition", "currentSprite", "itemsTier1", "itemsTier2", "itemsTier3", "currentRevenue", "currentFuelPrice", "questList", "activeEffects", "categoryPriceModifiers", "itemPriceDictionary", "isHome")]
+	[ES3PropertiesAttribute("planetId", "planetName", "planetRace", "itemPlanet", "normalizedPosition", "currentSprite", "itemsTier1", "itemsTier2", "itemsTier3", "currentRevenue", "currentFuelPrice", "questList", "activeEffects", "categoryPriceModifiers", "itemPriceDictionary", "currentRandomEquipmentItem", "isHome")]
 	public class ES3UserType_PlanetData : ES3ObjectType
 	{
 		public static ES3Type Instance = null;
@@ -31,6 +31,7 @@ namespace ES3Types
 			writer.WriteProperty("activeEffects", instance.activeEffects, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<PlanetEffect>)));
 			writer.WriteProperty("categoryPriceModifiers", instance.categoryPriceModifiers, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.Dictionary<ItemCategory, System.Single>)));
 			writer.WriteProperty("itemPriceDictionary", instance.itemPriceDictionary, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.Dictionary<System.Int32, System.Int32>)));
+			writer.WritePropertyByRef("currentRandomEquipmentItem", instance.currentRandomEquipmentItem);
 			writer.WriteProperty("isHome", instance.isHome, ES3Type_bool.Instance);
 		}
 
@@ -86,6 +87,9 @@ namespace ES3Types
 						break;
 					case "itemPriceDictionary":
 						instance.itemPriceDictionary = reader.Read<System.Collections.Generic.Dictionary<System.Int32, System.Int32>>();
+						break;
+					case "currentRandomEquipmentItem":
+						instance.currentRandomEquipmentItem = reader.Read<EquipmentItem>();
 						break;
 					case "isHome":
 						instance.isHome = reader.Read<System.Boolean>(ES3Type_bool.Instance);

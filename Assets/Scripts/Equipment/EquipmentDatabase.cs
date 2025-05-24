@@ -25,4 +25,9 @@ public class EquipmentDatabase : ScriptableObject
     {
         return allEquipments.Find(eq => eq.eqType == type && eq.eqId == id);
     }
+
+    public List<EquipmentItem> GetEquipmentByPlanet(ItemPlanet planet)
+    {
+        return allEquipments.FindAll(eq => eq.planet == planet);
+    }
 }

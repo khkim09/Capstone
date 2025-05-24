@@ -22,5 +22,10 @@ public enum ItemPlanet
     KTL = 4,
 
     /// <summary>기본</summary>
-    Default
+    Default,
+
+    /// <summary>
+    /// 전부
+    /// </summary>
+    ALL
 }
