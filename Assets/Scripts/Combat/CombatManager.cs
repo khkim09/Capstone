@@ -83,7 +83,12 @@ public class CombatManager : MonoBehaviour
     public GameObject CCTV;
     public void CombatEnding(Ship ship)
     {
-        CCTV.SetActive(false);
+        foreach (ShipWeapon wp in GameManager.Instance.playerShip.GetAllWeapons())
+        {
+            wp.DisconnectAction();
+        }
+        if(CCTV)
+            CCTV.SetActive(false);
         Time.timeScale = 0;
         if (ship == GameManager.Instance.playerShip)
         {

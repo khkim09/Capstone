@@ -57,10 +57,10 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     public bool isActive = true;
 
     /// <summary>전력이 공급되고 있는지 여부.</summary>
-    protected bool isPowered;
+    protected bool isPowered = true;
 
     /// <summary>전력 공급이 요청되었는지 여부.</summary>
-    protected bool isPowerRequested;
+    protected bool isPowerRequested = false;
 
     /// <summary>방의 시각적 렌더러.</summary>
     protected SpriteRenderer roomRenderer; // 방 렌더러
@@ -280,6 +280,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         }
     }
 
+
     /// <summary>방을 초기화합니다.</summary>
     public virtual void Initialize(int level)
     {
@@ -291,6 +292,10 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         gridSize = roomData.GetRoomDataByLevel(level).size;
         roomType = GetRoomData().GetRoomType();
         roomRenderer.sortingOrder = Constants.SortingOrders.Room;
+
+        //requested initialize 필요
+        if (GetPowerConsumption() > 0)
+            isPowerRequested = true;
 
         // 부모 Ship 컴포넌트 찾기
         parentShip = GetComponentInParent<Ship>();
@@ -318,9 +323,13 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>방이 작동 가능한 상태인지 확인합니다.</summary>
     public bool IsOperational()
     {
-        // TODO : 임시로 True 로 설정
-        return true;
-        // return isActive && isPowered && HasEnoughCrew();
+        if (isActive)
+        {
+            if (isPowerRequested && !isPowered)
+                return false;
+            return true;
+        }
+        return false;
     }
 
 
@@ -333,6 +342,16 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         isPowerRequested = requested;
         UpdateEffects();
         NotifyStateChanged();
+    }
+
+    public void BlackOut()
+    {
+        if (isPowered)
+        {
+            isPowered = false;
+            UpdateEffects();
+            UpdateRoomVisual();
+        }
     }
 
     /// <summary>체력 퍼센티지를 반환합니다.</summary>
@@ -509,21 +528,22 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
         string color = "";
 
-        if (!isActive)
-            color = "gray";
+        if (damageCondition == DamageLevel.breakdown)
+            color = "red";
         else
-            switch (damageCondition)
+        {
+            if (!isActive)
+                color = "gray";
+            else
             {
-                case DamageLevel.good:
-                    color = "green";
-                    break;
-                case DamageLevel.scratch:
+                if(damageCondition==DamageLevel.scratch)
                     color = "yellow";
-                    break;
-                case DamageLevel.breakdown:
-                    color = "red";
-                    break;
+                else
+                {
+                    color = "green";
+                }
             }
+        }
 
 
         if (icon == null)
@@ -578,7 +598,9 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             currentHitPoints = Mathf.Max(0, currentHitPoints - damage);
             if (currentHitPoints <=
                 roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
+            {
                 damageCondition = DamageLevel.breakdown;
+            }
             //  OnDisabled();
             else if (currentHitPoints <=
                      roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
@@ -677,6 +699,13 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     }
 
     #endregion
+
+    public void SetIsActive(bool activate)
+    {
+        isActive = activate;
+        NotifyStateChanged();
+        UpdateRoomVisual();
+    }
 }
 
 /// <summary>
@@ -807,6 +836,8 @@ public abstract class Room<TData, TLevel> : Room
             return;
         }
     }
+
+
 }
 
 public enum DamageLevel

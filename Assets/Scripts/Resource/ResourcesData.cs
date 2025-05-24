@@ -21,7 +21,7 @@ public class ResourcesData
     public void SetAmount(float value)
     {
         if (valueType == ResourceValueType.Float)
-            floatAmount = Mathf.Clamp(value, 0, maxFloatAmount);
+            floatAmount = Mathf.Clamp(value, 0, GameManager.Instance.playerShip.GetStat(ShipStat.FuelStoreCapacity));
         else
             intAmount = Mathf.Clamp((int)value, 0, maxIntAmount);
     }

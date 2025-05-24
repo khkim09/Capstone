@@ -181,7 +181,7 @@ public class Ship : MonoBehaviour
         foreach (Room room in allRooms)
             if (room != null)
                 room.OnRoomStateChanged -= OnRoomStateChanged;
-        shipExplosion?.Invoke(this);
+        //shipExplosion?.Invoke(this);
     }
 
     public event Action<Ship> shipExplosion;
@@ -923,8 +923,15 @@ public class Ship : MonoBehaviour
             Debug.Log($"Room state changed: {room.name}");
 
         RecalculateAllStats();
+        powerCheckNeed?.Invoke();
     }
 
+    public event Action powerCheckNeed;
+
+    public bool IsPowerCheckNeedConnected()
+    {
+        return powerCheckNeed != null;
+    }
 
     // ===== Power Management =====
 

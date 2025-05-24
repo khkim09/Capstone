@@ -286,8 +286,9 @@ public class TradingItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             return;
         }
 
-        // 이제 TradingItemDragHandler로 드래그 처리를 위임
-        TradingItemDragHandler.Instance.StartDragging(this, parentStorage, eventData.position);
+        if (TradingItemDragHandler.Instance != null)
+            // 이제 TradingItemDragHandler로 드래그 처리를 위임
+            TradingItemDragHandler.Instance.StartDragging(this, parentStorage, eventData.position);
     }
 
     // 드래그 중 호출 (개선된 핸들러를 사용하므로 빈 구현)
