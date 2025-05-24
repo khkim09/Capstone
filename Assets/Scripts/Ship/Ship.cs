@@ -1218,6 +1218,7 @@ public class Ship : MonoBehaviour
                 {
                     Debug.Log($"피격 방 : {hitRoom}, 피격 지점 : {hitPosition}");
                     hitRoom.TakeDamage(finalDamage);
+                    TakeDamage(finalDamage);
                 }
 
                 // 직접 타격 지점과 주변 8칸에 있는 선원들에게 데미지 적용
@@ -1230,6 +1231,7 @@ public class Ship : MonoBehaviour
                 {
                     Debug.Log($"피격 방 : {hitRoom}, 피격 지점 : {hitPosition}");
                     hitRoom.TakeDamage(finalDamage);
+                    TakeDamage(finalDamage);
                 }
 
                 // 그 위치에 있는 선원들에게 데미지 적용

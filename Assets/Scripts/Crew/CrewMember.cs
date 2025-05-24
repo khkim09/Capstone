@@ -629,6 +629,7 @@ public class CrewMember : CrewBase
                 return;
             }
 
+            currentShip.TakeDamage(damage);
             madRoom.TakeDamage(damage);
             if (madRoom.currentHitPoints <= 0)
             {

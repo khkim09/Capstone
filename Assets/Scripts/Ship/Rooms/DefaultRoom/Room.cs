@@ -622,8 +622,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
                 damageCondition = DamageLevel.scratch;
         }
 
-        parentShip.TakeDamage(damage);
-
         // 스탯 기여도 변화 알림
         NotifyStateChanged();
         UpdateRoomVisual();
