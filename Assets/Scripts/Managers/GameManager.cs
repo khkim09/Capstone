@@ -450,6 +450,9 @@ public class GameManager : MonoBehaviour
                 case GameState.Paused:
                     Time.timeScale = 0f;
                     break;
+                case GameState.Warp:
+                    Time.timeScale = 1f;
+                    break;
                 case GameState.GameOver:
                     HandleGameOver();
                     break;

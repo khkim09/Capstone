@@ -598,6 +598,8 @@ public class PlanetData
             EquipmentManager.Instance.equipmentDatabase.GetEquipmentByPlanet(itemPlanet);
 
         currentRandomEquipmentItem = allRandomEquipmentList[Random.Range(0, allRandomEquipmentList.Count)];
+
+        GameManager.Instance.isBoughtEquipment = false;
     }
 
     #endregion
