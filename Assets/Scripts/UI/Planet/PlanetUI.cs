@@ -50,8 +50,6 @@ public class PlanetUI : MonoBehaviour
         // 3. currentWorldNodePosition 현재 행성 위치로
         // currentWorldNodePosition = GameManager.Instance.PlanetDataList[GameManager.Instance.CurrentWarpTargetPlanetId].normalizedPosition;
 
-        // 4. 행성에서 랜덤 판매 무기 구매 여부 초기화
-        GameManager.Instance.isBoughtEquipment = false;
 
         SceneChanger.Instance.LoadScene("Idle");
     }

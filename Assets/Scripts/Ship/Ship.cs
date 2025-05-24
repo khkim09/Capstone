@@ -82,7 +82,7 @@ public class Ship : MonoBehaviour
     /// 현재 함선의 스탯 상태를 저장하는 딕셔너리.
     /// 예: 산소 생성량, 연료 효율, 쉴드 최대치 등.
     /// </summary>
-    private readonly Dictionary<ShipStat, float> currentStats = new();
+    public Dictionary<ShipStat, float> currentStats = new();
 
     /// <summary>
     /// 각 룸이 기여한 스탯 값을 저장하는 디버그용 데이터.

@@ -332,7 +332,8 @@ public class TradeUIController : MonoBehaviour
         {
             if (isBuyPanelOpen)
             {
-                if (buyCheckPanel.gameObject.activeInHierarchy)
+                if (buyCheckPanel.gameObject.activeInHierarchy ||
+                    equipmentGlobalApplyAllPanel.gameObject.activeInHierarchy)
                     return;
 
                 if (!IsClickingOnSelf(panelBuy))
@@ -1118,7 +1119,7 @@ public class TradeUIController : MonoBehaviour
         }
 
         ResourceManager.Instance.ChangeResource(ResourceType.COMA, -price);
-
+        GameManager.Instance.playerShip.unUsedItems.Add(item);
         GameManager.Instance.isBoughtEquipment = true;
 
         UpdateEquipmentPanel();

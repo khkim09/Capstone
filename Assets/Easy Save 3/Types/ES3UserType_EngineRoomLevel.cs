@@ -29,7 +29,7 @@ namespace ES3Types
 			writer.WriteProperty("cost", instance.cost, ES3Type_int.Instance);
 			writer.WriteProperty("crewRequirement", instance.crewRequirement, ES3Type_int.Instance);
 			writer.WriteProperty("powerRequirement", instance.powerRequirement, ES3Type_float.Instance);
-			writer.WriteProperty("damageHitPointRate", instance.damageHitPointRate, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(RoomDamageRates)));
+			writer.WriteProperty("damageHitPointRate", instance.damageHitPointRate, ES3UserType_RoomDamageRates.Instance);
 			writer.WritePropertyByRef("roomSprite", instance.roomSprite);
 			writer.WritePropertyByRef("roomIconPrefab", instance.roomIconPrefab);
 			writer.WritePropertyByRef("toolTipPrefab", instance.toolTipPrefab);
@@ -85,7 +85,7 @@ namespace ES3Types
 						instance.powerRequirement = reader.Read<System.Single>(ES3Type_float.Instance);
 						break;
 					case "damageHitPointRate":
-						instance.damageHitPointRate = reader.Read<RoomDamageRates>();
+						instance.damageHitPointRate = reader.Read<RoomDamageRates>(ES3UserType_RoomDamageRates.Instance);
 						break;
 					case "roomSprite":
 						instance.roomSprite = reader.Read<UnityEngine.Sprite>(ES3Type_Sprite.Instance);
