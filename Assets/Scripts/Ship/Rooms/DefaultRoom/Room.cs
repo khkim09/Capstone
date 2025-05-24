@@ -431,7 +431,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         if (workingCrew != null)
         {
             workingCrew.WalkOut();
-            workingCrew.TryWork();
+            workingCrew.BackToThePeace();
         }
         OnRoomStateChanged?.Invoke(this);
     }
