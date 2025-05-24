@@ -29,14 +29,11 @@ public class Planet : TooltipPanelBase
     protected override void Start()
     {
         base.Start();
-
-        // 게임 매니저에 연도 변경 이벤트 등록
         if (GameManager.Instance != null) GameManager.Instance.OnYearChanged += OnYearChanged;
     }
 
     private void OnEnable()
     {
-        // 게임 매니저에 연도 변경 이벤트 등록
         if (GameManager.Instance != null) GameManager.Instance.OnYearChanged += OnYearChanged;
     }
 
@@ -44,6 +41,9 @@ public class Planet : TooltipPanelBase
     {
         // 게임 매니저에서 연도 변경 이벤트 해제
         if (GameManager.Instance != null) GameManager.Instance.OnYearChanged -= OnYearChanged;
+        GameEvents.OnItemAcquired -= CheckItemQuests;
+        GameEvents.OnPirateKilled -= CheckPirateQuests;
+        GameEvents.OnItemRemoved -= CheckItemQuests;
     }
 
     private void OnClicked()
@@ -75,6 +75,16 @@ public class Planet : TooltipPanelBase
                 planetData.ChangeFuelPrice();
             }
         }
+    }
+
+    private void CheckPirateQuests()
+    {
+        planetData.CheckPirateQuests();
+    }
+
+    private void CheckItemQuests(int itemId)
+    {
+        planetData.CheckItemQuests(itemId);
     }
 
     public void HideTooltip()

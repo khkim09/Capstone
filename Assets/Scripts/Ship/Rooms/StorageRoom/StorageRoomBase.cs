@@ -236,6 +236,8 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
 
         item.PositionFrameAtGridCenter();
 
+        GameEvents.ItemAcquired(item.GetItemData().id);
+
         return true;
     }
 
@@ -281,6 +283,8 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
             // 저장된 아이템 목록에서도 제거
             storedItems.Remove(item);
 
+            GameEvents.ItemRemoved(item.GetItemData().id);
+
             return true;
         }
         catch (System.Exception e)
@@ -325,6 +329,8 @@ public abstract class StorageRoomBase : Room<StorageRoomBaseData, StorageRoomBas
 
         // 목록에서 제거
         storedItems.Remove(item);
+
+        GameEvents.ItemRemoved(item.GetItemData().id);
 
         // GameObject 파괴
         Destroy(item.gameObject);

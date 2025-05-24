@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 
@@ -332,10 +333,17 @@ public class MapPanelController : MonoBehaviour
             return;
         checkWarpUI.SetActive(false);
 
-
-        GameManager.Instance.AddYear();
         Ship playerShip = GameManager.Instance.GetPlayerShip();
         float fuelAmount = playerShip.CalculateWarpFuelCost();
+
+        if (fuelAmount > ResourceManager.Instance.Fuel)
+        {
+            driftUI.SetActive(true);
+            SlideClose();
+            return;
+        }
+
+        GameManager.Instance.AddYear();
         ResourceManager.Instance.ChangeResource(ResourceType.Fuel,
             -fuelAmount);
         // 플레이어 이동
@@ -1114,4 +1122,40 @@ public class MapPanelController : MonoBehaviour
     }
 
     #endregion
+
+    public void GoToThePlanet(PlanetData destPlanet)
+    {
+        GameManager.Instance.SetCurrentWarpTargetPlanetId(destPlanet.planetId);
+        GameManager.Instance.normalizedPlayerPosition=destPlanet.normalizedPosition;
+        OnWarpCompleted();
+        GameManager.Instance.SaveGameData();
+    }
+
+    public PlanetData NearestPlanet()
+    {
+        int originalTargetPlanetId = GameManager.Instance.CurrentWarpTargetPlanetId;
+        int newTargetPlanetId = originalTargetPlanetId;
+        float shortestDistance = 2f;
+        foreach (PlanetData planetData in GameManager.Instance.PlanetDataList)
+        {
+            float distance = Vector2.Distance(planetData.normalizedPosition, GameManager.Instance.normalizedPlayerPosition);
+            if (distance < shortestDistance)
+            {
+                shortestDistance = distance;
+                newTargetPlanetId = planetData.planetId;
+            }
+        }
+        return GameManager.Instance.PlanetDataList[newTargetPlanetId];
+    }
+
+    public GameObject driftUI;
+
+    public void OnDriftButtonClicked()
+    {
+        driftUI.SetActive(false);
+
+        SceneChanger.Instance.JustStay();
+
+        GoToThePlanet(NearestPlanet());
+    }
 }

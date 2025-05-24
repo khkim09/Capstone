@@ -92,5 +92,3 @@ public class BuyCheckPanel : MonoBehaviour
         tradeUIController.OnBuyCheckBuyButtonClicked(currentItem);
     }
 }
-
-// 바꾸기 전

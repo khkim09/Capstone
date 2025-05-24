@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -67,8 +68,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -100,6 +100,16 @@ public class GameManager : MonoBehaviour
     public int CurrentWarpTargetPlanetId => currentWarpTargetPlanetId;
 
     public int CurrentWarpNodeId => currentWarpNodeId;
+
+    /// <summary>
+    /// 완료된 미스터리 이벤트 ID 목록 (한 번 뜬 미스터리 이벤트는 다시 나오지 않음)
+    /// </summary>
+    private List<int> completedMysteryEventIds = new();
+
+    /// <summary>
+    /// 완료된 미스터리 이벤트 ID 목록을 반환합니다 (읽기 전용)
+    /// </summary>
+    public List<int> CompletedMysteryEventIds => completedMysteryEventIds.ToList();
 
     public event Action OnShipInitialized;
 
@@ -163,6 +173,20 @@ public class GameManager : MonoBehaviour
 
         // // 미사일 피격 테스트
         // StartCoroutine(DelayedMissileTest());
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnItemAcquired += (itemId) => CheckItemQuests();
+        GameEvents.OnPirateKilled += CheckPirateQuests;
+        GameEvents.OnItemRemoved += (itemId) => CheckItemQuests();
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.OnItemAcquired -= (itemId) => CheckItemQuests();
+        GameEvents.OnPirateKilled -= CheckPirateQuests;
+        GameEvents.OnItemRemoved -= (itemId) => CheckItemQuests();
     }
 
     // 피격 테스트
@@ -620,6 +644,13 @@ public class GameManager : MonoBehaviour
         // 유저 데이터 (엔딩 관련)
         if (ES3.KeyExists("playerData")) playerData = ES3.Load<PlayerData>("playerData");
 
+        // 완료된 미스터리 이벤트 ID 목록 로드
+        if (ES3.KeyExists("completedMysteryEventIds"))
+        {
+            completedMysteryEventIds = ES3.Load<List<int>>("completedMysteryEventIds");
+            playerData.mysteryFound = completedMysteryEventIds.Count;
+        }
+
         // 게임 스테이트
         if (ES3.KeyExists("gameState")) currentState = ES3.Load<GameState>("gameState");
 
@@ -670,6 +701,9 @@ public class GameManager : MonoBehaviour
         playerShip.RemoveAllItems();
         playerShip.Initialize();
 
+        ES3.DeleteKey("completedMysteryEventIds");
+        completedMysteryEventIds.Clear();
+
         // 사기 효과
         ES3.DeleteFile("moraleEffect");
         MoraleManager.Instance.ResetAllMorale();
@@ -678,9 +712,13 @@ public class GameManager : MonoBehaviour
         ES3.DeleteFile("currentYear");
         currentYear = 0;
 
+        // 완료된 미스터리 이벤트 ID 목록 저장
+        ES3.Save<List<int>>("completedMysteryEventIds", completedMysteryEventIds);
+
         // 플레이어 데이터 (엔딩 관련)
         ES3.DeleteKey("playerData");
         playerData.ResetPlayerData();
+
 
         // 게임 스테이트
         ES3.DeleteKey("gameState");
@@ -864,6 +902,78 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+    #region 퀘스트
+
+    public void OnPirateKilled()
+    {
+        playerData.pirateDefeated++;
+        CheckPirateQuests();
+    }
+
+    /// <summary>
+    /// 해적 처치 시 모든 해적 잡기 퀘스트를 체크합니다.
+    /// </summary>
+    public void CheckPirateQuests()
+    {
+        foreach (PlanetData planet in planetDataList)
+        foreach (RandomQuest quest in planet.questList.Where(q =>
+                     q.objectives[0].objectiveType == QuestObjectiveType.PirateHunt &&
+                     q.status == QuestStatus.Active))
+        {
+            quest.objectives[0].currentAmount++;
+
+            if (quest.objectives[0].currentAmount >= quest.objectives[0].amount) quest.SetCanComplete(true);
+        }
+    }
+
+    /// <summary>
+    /// 모든 아이템 관련 퀘스트를 체크합니다.
+    /// </summary>
+    public void CheckItemQuests()
+    {
+        foreach (PlanetData planet in planetDataList)
+        foreach (RandomQuest quest in planet.questList.Where(q =>
+                     (q.objectives[0].objectiveType == QuestObjectiveType.ItemTransport ||
+                      q.objectives[0].objectiveType == QuestObjectiveType.ItemProcurement) &&
+                     q.status == QuestStatus.Active))
+        {
+            int targetId = quest.objectives[0].targetId;
+            int targetAmount = quest.objectives[0].amount;
+
+            // ID와 양이 정확히 일치하는 아이템이 있는지 체크
+            bool hasMatchingItem = playerShip.GetAllItems()
+                .Any(i => i.GetItemId() == targetId && i.GetItemData().amount == targetAmount);
+
+            quest.SetCanComplete(hasMatchingItem);
+        }
+    }
+
+    #endregion
+
+    /// <summary>
+    /// 미스터리 이벤트 완료 시 호출하여 ID를 기록합니다
+    /// </summary>
+    /// <param name="eventId">완료된 미스터리 이벤트 ID</param>
+    public void AddCompletedMysteryEvent(int eventId)
+    {
+        if (!completedMysteryEventIds.Contains(eventId))
+        {
+            completedMysteryEventIds.Add(eventId);
+            playerData.mysteryFound++;
+            Debug.Log($"미스터리 이벤트 완료 기록: ID {eventId}");
+        }
+    }
+
+    /// <summary>
+    /// 특정 미스터리 이벤트가 이미 완료되었는지 확인합니다
+    /// </summary>
+    /// <param name="eventId">확인할 이벤트 ID</param>
+    /// <returns>완료된 경우 true</returns>
+    public bool IsMysteryEventCompleted(int eventId)
+    {
+        return completedMysteryEventIds.Contains(eventId);
+    }
 }
 
 /// <summary>

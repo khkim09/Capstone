@@ -688,6 +688,7 @@ public class CrewMember : CrewBase
             if (currentShip.allEnemies.Contains(this))
                 currentShip.allEnemies.Remove(this);
 
+            GameEvents.PirateKilled();
             DieCoroutine = StartCoroutine(ImDying());
         }
     }
@@ -700,7 +701,7 @@ public class CrewMember : CrewBase
         if (inCombat)
         {
             inCombat = false;
-            if (combatCoroutine != null) StopCoroutine(combatCoroutine);
+            if(combatCoroutine!=null) StopCoroutine(combatCoroutine);
             combatCoroutine = null;
             madRoom = null;
             combatTarget = null;
