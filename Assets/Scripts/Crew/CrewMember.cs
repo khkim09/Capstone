@@ -285,22 +285,28 @@ public class CrewMember : CrewBase
 
         // 도착 후 방 진입 표시
         if (currentRoom != null)
+        {
             currentRoom.OnCrewEnter(this);
+
+            // 테스트 코드
+            currentRoom.occupyingTiles.Add(new Room.ot { crewMember = this, tile = this.reservedTile });
+        }
 
         Debug.Log($"현재 방: {currentRoom}");
         reservedRoom = null;
 
         // 본인 함선의 텔포 방일 경우, 즉시 텔포 수행
-        if (hasEnteredTPRoom
-            && currentRoom.roomType == RoomType.Teleporter
-            && SceneManager.GetActiveScene().name == "Combat")
+        if (hasEnteredTPRoom && currentRoom.roomType == RoomType.Teleporter)
         {
             hasEnteredTPRoom = false;
 
-            // 텔포 준비
-            Freeze();
+            if (SceneManager.GetActiveScene().name == "Combat")
+            {
+                // 텔포 준비
+                Freeze();
 
-            StartCoroutine(TeleportAfterDelay(this, 0.5f));
+                StartCoroutine(TeleportAfterDelay(this, 0.5f));
+            }
 
             yield break;
         }

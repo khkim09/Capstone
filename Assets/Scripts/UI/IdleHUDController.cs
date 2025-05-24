@@ -83,7 +83,8 @@ public class IdleHUDController : MonoBehaviour
 
     public void CheckShowEnding(int year)
     {
-        if (year >= Constants.Endings.EndingYear) buttonEnding.gameObject.SetActive(true);
+        if (year >= Constants.Endings.EndingYear)
+            buttonEnding.gameObject.SetActive(true);
     }
 
     private void UpdateHealthBar()

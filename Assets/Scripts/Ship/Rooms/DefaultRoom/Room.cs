@@ -70,6 +70,14 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     [SerializeField] private SpriteRenderer icon;
 
+    [System.Serializable]
+    public class ot
+    {
+        public CrewMember crewMember;
+        public Vector2Int tile;
+    }
+    public List<ot> occupyingTiles = new();
+
     /// <summary>
     /// 각 방에 collider 추가, isTrigger = true 설정을 통해 선원 충돌 방해 제거
     /// </summary>
