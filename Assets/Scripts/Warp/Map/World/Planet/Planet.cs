@@ -67,11 +67,12 @@ public class Planet : TooltipPanelBase
             planetData.CheckQuestExpirations(currentYear);
             planetData.TrySpawnQuest();
 
-            // 10년마다 바뀌는 것들 (아이템 시세, 고용창 갱신, 장비 판매 갱신)
+            // 10년마다 바뀌는 것들 (아이템 시세, 고용창 갱신, 장비 판매 갱신, 연료 가격 갱신)
             if (currentYear % 10 == 0)
             {
                 planetData.ChangeItemPrice();
                 planetData.RefreshEquipmentSelling();
+                planetData.ChangeFuelPrice();
             }
         }
     }
