@@ -451,7 +451,7 @@ public class RTSSelectionManager : MonoBehaviour
                 return;
 
             targetRoom = hit.collider.GetComponent<Room>();
-            if(targetRoom==null)
+            if (targetRoom == null)
                 targetRoom = hit.collider.GetComponent<IconInteraction>().room;
         }
 
@@ -515,7 +515,9 @@ public class RTSSelectionManager : MonoBehaviour
                 // 다른 배에서 이동 명령 실수로 찍음
                 if (crew.currentShip != targetShip)
                 {
-                    if (/*targetShip == GameManager.Instance.playerShip && */targetRoom.roomType == RoomType.Teleporter)
+                    if (targetShip == GameManager.Instance.playerShip
+                        && targetRoom.roomType == RoomType.Teleporter
+                        && SceneManager.GetActiveScene().name == "Combat")
                     {
                         // 텔포 준비
                         crew.Freeze();

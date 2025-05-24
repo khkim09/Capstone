@@ -426,7 +426,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     }
 
     /// <summary>상태 변경을 알립니다.</summary>
-    protected virtual void NotifyStateChanged()
+    public virtual void NotifyStateChanged()
     {
         if (workingCrew != null)
         {
@@ -547,7 +547,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             {
                 if (damageCondition == DamageLevel.scratch)
                     color = "yellow";
-                else if(damageCondition==DamageLevel.good)
+                else if (damageCondition == DamageLevel.good)
                 {
                     color = "green";
                 }
@@ -556,7 +556,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
         if (color.Equals(""))
         {
-            Debug.LogError(name+": Room has no color assigned.");
+            Debug.LogError(name + ": Room has no color assigned.");
             return;
         }
 

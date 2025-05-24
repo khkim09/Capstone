@@ -35,8 +35,8 @@ public class MenuUI : MonoBehaviour
 
     public void OnTradeButtonClicked()
     {
-        if (BlueprintSlotManager.Instance != null)
-            BlueprintSlotManager.Instance.LoadAllBlueprints();
+        // if (BlueprintSlotManager.Instance != null)
+        //     BlueprintSlotManager.Instance.LoadAllBlueprints();
 
         SceneChanger.Instance.LoadScene("Trade");
     }

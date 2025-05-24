@@ -1,10 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class IconInteraction : TooltipPanelBase
@@ -13,15 +10,16 @@ public class IconInteraction : TooltipPanelBase
     public Room room;
 
     private TextMeshProUGUI description;
-    void Start()
-    {
 
+    protected void Start()
+    {
         room = transform.parent.GetComponent<Room>();
         roomType = room.roomType;
     }
+
     protected override void SetToolTipText()
     {
-        string text = room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).roomName.Localize()+"\n";
+        string text = room.GetRoomData().GetRoomDataByLevel(room.GetCurrentLevel()).roomName.Localize() + "\n";
         switch (roomType)
         {
             case RoomType.Ammunition:
@@ -31,7 +29,7 @@ public class IconInteraction : TooltipPanelBase
             case RoomType.Power:
             case RoomType.Shield:
             case RoomType.WeaponControl:
-                text += "ui.room.icon.workingCrew".Localize()+"\n";
+                text += "ui.room.icon.workingCrew".Localize() + "\n";
                 if (room.workingCrew != null)
                     text += room.workingCrew.crewName;
                 else
@@ -45,7 +43,7 @@ public class IconInteraction : TooltipPanelBase
         contributions.Remove(ShipStat.HitPointsMax);
         foreach (KeyValuePair<ShipStat, float> pair in contributions)
         {
-            if(pair.Value!=0)
+            if (pair.Value != 0)
             {
                 text += "    -" + pair.Key.ToString().Localize() + " +" + pair.Value + "\n";
             }
@@ -59,7 +57,7 @@ public class IconInteraction : TooltipPanelBase
     protected void OnMouseEnter()
     {
         // 캔버스 컴포넌트 찾기
-		GameObject canvasObject = GameObject.FindWithTag("RoomIconTooltip");
+        GameObject canvasObject = GameObject.FindWithTag("RoomIconTooltip");
         if (canvasObject == null)
             return;
         canvasComponent = GameObject.FindWithTag("RoomIconTooltip").GetComponent<Canvas>();
@@ -160,7 +158,7 @@ public class IconInteraction : TooltipPanelBase
 
     private void OnMouseDown()
     {
-        if(room.GetIsPowerRequested())
+        if (room.GetIsPowerRequested())
         {
             room.SetIsActive(!room.isActive);
             OnMouseExit();
