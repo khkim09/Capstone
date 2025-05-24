@@ -135,7 +135,6 @@ public class WeaponFrameFunction : MonoBehaviour
     {
         Debug.Log("발사");
         weapon.TryFire();
-        //todo: 무기 실제로 연결해줘야됨
     }
 }
 

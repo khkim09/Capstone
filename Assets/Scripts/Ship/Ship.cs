@@ -181,7 +181,7 @@ public class Ship : MonoBehaviour
         foreach (Room room in allRooms)
             if (room != null)
                 room.OnRoomStateChanged -= OnRoomStateChanged;
-        shipExplosion?.Invoke(this);
+        //shipExplosion?.Invoke(this);
     }
 
     public event Action<Ship> shipExplosion;
