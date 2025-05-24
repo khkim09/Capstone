@@ -923,8 +923,15 @@ public class Ship : MonoBehaviour
             Debug.Log($"Room state changed: {room.name}");
 
         RecalculateAllStats();
+        powerCheckNeed?.Invoke();
     }
 
+    public event Action powerCheckNeed;
+
+    public bool IsPowerCheckNeedConnected()
+    {
+        return powerCheckNeed != null;
+    }
 
     // ===== Power Management =====
 

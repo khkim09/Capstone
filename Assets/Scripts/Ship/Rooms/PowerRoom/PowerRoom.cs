@@ -19,6 +19,12 @@ public class PowerRoom : Room<PowerRoomData, PowerRoomData.PowerRoomLevel>
         workDirection=Vector2Int.up;
     }
 
+    public override void Initialize(int level)
+    {
+        base.Initialize(level);
+        isPowerRequested = false;
+    }
+
     /// <summary>
     /// 이 방이 함선 스탯에 기여하는 값을 계산합니다.
     /// 작동 여부 및 손상 상태에 따라 전력 생산량이 달라집니다.

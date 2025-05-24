@@ -160,8 +160,11 @@ public class IconInteraction : TooltipPanelBase
 
     private void OnMouseDown()
     {
-
-
-        room.UpdateRoomVisual();
+        if(room.GetIsPowerRequested())
+        {
+            room.SetIsActive(!room.isActive);
+            OnMouseExit();
+            OnMouseEnter();
+        }
     }
 }

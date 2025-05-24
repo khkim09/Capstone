@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// 함선의 전력 공급을 관리하는 시스템.
@@ -6,12 +7,62 @@
 /// </summary>
 public class PowerSystem : ShipSystem
 {
+    private List<Room> powerRequestedRooms;
     /// <summary>
     /// 매 프레임마다 호출되어 시스템 상태를 갱신합니다.
     /// </summary>
     /// <param name="deltaTime">경과 시간 (초).</param>
     public override void Update(float deltaTime)
     {
+
+    }
+
+    public override void Initialize(Ship ship)
+    {
+        base.Initialize(ship);
+        parentShip.powerCheckNeed += NotEnoughPower;
+    }
+
+    public override void Refresh()
+    {
+        if(powerRequestedRooms==null)
+        {
+            powerRequestedRooms = new List<Room>();
+        }
+        if(parentShip.IsPowerCheckNeedConnected())
+            parentShip.powerCheckNeed += NotEnoughPower;
+
+        powerRequestedRooms.Clear();
+        foreach (Room room in parentShip.GetAllRooms())
+        {
+            if (room.GetIsPowerRequested())
+                powerRequestedRooms.Add(room);
+        }
+        powerRequestedRooms.Sort((room1,room2)=>room2.GetPowerConsumption().CompareTo(room1.GetPowerConsumption()));
+    }
+
+    private void NotEnoughPower()
+    {
+        if(powerRequestedRooms==null)
+            Refresh();
+        float powerUsing = parentShip.GetStat(ShipStat.PowerUsing);
+        float powerCapacity = parentShip.GetStat(ShipStat.PowerCapacity);
+        foreach (Room room in powerRequestedRooms)
+        {
+            if (powerUsing > powerCapacity)
+            {
+                if (room.GetIsPowered())
+                {
+                    room.BlackOut();
+                    powerUsing -= room.GetPowerConsumption();
+                }
+            }
+            else
+            {
+                parentShip.RecalculateAllStats();
+                return;
+            }
+        }
     }
 
     /// <summary>
