@@ -1,7 +1,9 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 엔딩 평가 항목 4개를 등급 이름 + 설명 + 스프라이트로 출력하는 클래스.
@@ -27,17 +29,39 @@ public class EndingResultDisplay : MonoBehaviour
     [SerializeField] private List<Sprite> questRankSprites;
     [SerializeField] private List<Sprite> mysteryRankSprites;
 
-    private void Start()
+    [Header("노터치 패널")]
+    [SerializeField] private GameObject noTouchPanel;
+
+    private bool canClickToFinish = false;
+
+    public void ShowEndingResult()
     {
         DisplayResults();
+
+        if (noTouchPanel != null)
+        {
+            noTouchPanel.SetActive(true);
+            StartCoroutine(AllowClickAfterSeconds(3f));
+        }
     }
 
-    /// <summary>
-    /// 외부 호출용 함수입니다.
-    /// </summary>
-    public void ForceDisplay()
+    private IEnumerator AllowClickAfterSeconds(float seconds)
     {
-        DisplayResults();
+        yield return new WaitForSeconds(seconds);
+        canClickToFinish = true;
+
+        if (noTouchPanel != null)
+            noTouchPanel.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (canClickToFinish && Input.GetMouseButtonDown(0) &&
+            endingImage1 != null && endingImage1.gameObject.activeInHierarchy)
+        {
+            GameManager.Instance.DeleteGameData();
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     private void DisplayResults()
