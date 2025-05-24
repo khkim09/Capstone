@@ -69,7 +69,17 @@ public class PlanetData
     /// <summary>
     /// 현재 연료 가격
     /// </summary>
-    [Range(25, 75)] public int currentFuelPrice = 50;
+    [Range(50, 150)] public int currentFuelPrice = 100;
+
+    /// <summary>
+    /// 현재 미사일 가격
+    /// </summary>
+    public int currentMissilePrice = 300;
+
+    /// <summary>
+    /// 현재 초음속탄 가격
+    /// </summary>
+    public int currentHypersonicPrice = 500;
 
     /// <summary>
     /// 현재 행성의 퀘스트 리스트.
@@ -132,7 +142,7 @@ public class PlanetData
         RefreshEquipmentSelling();
 
         currentRevenue = 0;
-        currentFuelPrice = Random.Range(25, 75);
+        currentFuelPrice = Random.Range(50, 151);
 
         // 효과 관련 데이터 초기화
         activeEffects.Clear();
@@ -600,6 +610,15 @@ public class PlanetData
         currentRandomEquipmentItem = allRandomEquipmentList[Random.Range(0, allRandomEquipmentList.Count)];
 
         GameManager.Instance.isBoughtEquipment = false;
+    }
+
+    #endregion
+
+    #region 자원
+
+    public void ChangeFuelPrice()
+    {
+        currentFuelPrice = Random.Range(50, 151);
     }
 
     #endregion

@@ -98,20 +98,6 @@ public class TradeUIController : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject buyItemInfoPrefab;
 
-    /// <summary>
-    /// 연료 구매 버튼
-    /// </summary>
-    [SerializeField] private GameObject fuelBuyButton;
-
-    /// <summary>
-    /// 미사일 구매 버튼
-    /// </summary>
-    [SerializeField] private GameObject missileBuyButton;
-
-    /// <summary>
-    /// 초음속탄 구매 버튼
-    /// </summary>
-    [SerializeField] private GameObject hypersonicBuyButton;
 
     /// <summary>
     /// 구매 중일 때의 아이템 맵 위치
@@ -149,9 +135,14 @@ public class TradeUIController : MonoBehaviour
     [SerializeField] private Vector2 normalizedTradeShipPosition = new(0.1f, 0.5f);
 
     /// <summary>
-    ///
+    /// 임시 창고가 비어있지 않다는 경고 텍스트
     /// </summary>
     [SerializeField] private TextMeshProUGUI notEmptyWarningText;
+
+    /// <summary>
+    /// 임시 창고에 함선을 두지 마라는 경고 텍스트
+    /// </summary>
+    [SerializeField] private TextMeshProUGUI dontPlaceItemHereText;
 
     /// <summary>
     /// 선택 중인 구매 아이템 정보 오브젝트 참조
@@ -217,6 +208,38 @@ public class TradeUIController : MonoBehaviour
     private GameObject equipmentMiddleSoldOutInstance;
     [SerializeField] private GameObject equipmentGlobalApplyAllPanel;
     private EquipmentItem recentBoughtEquipment;
+
+    /// <summary>
+    /// 연료 구매 버튼
+    /// </summary>
+    [Header("자원 구매 패널")] [SerializeField] private Button fuelBuyButton;
+
+    /// <summary>
+    /// 미사일 구매 버튼
+    /// </summary>
+    [SerializeField] private Button missileBuyButton;
+
+    /// <summary>
+    /// 초음속탄 구매 버튼
+    /// </summary>
+    [SerializeField] private Button hypersonicBuyButton;
+
+    /// <summary>
+    /// 연료 가격
+    /// </summary>
+    [SerializeField] private TextMeshProUGUI fuelPrice;
+
+    /// <summary>
+    /// 미사일 가격
+    /// </summary>
+    [SerializeField] private TextMeshProUGUI missilePrice;
+
+    /// <summary>
+    /// 미사일 가격
+    /// </summary>
+    [SerializeField] private TextMeshProUGUI hypersonicPrice;
+
+    [SerializeField] private TextMeshProUGUI notEnoughFuelCapacityText;
 
     /// <summary>
     /// 구매 패널이 열려야되는 위치
@@ -374,6 +397,7 @@ public class TradeUIController : MonoBehaviour
         {
             InitializeBuyPanel();
             InitializeEquipmentPanel();
+            InitializeResourceBuyPanel();
             SlideBuyOpen();
         }
 
@@ -729,6 +753,16 @@ public class TradeUIController : MonoBehaviour
     /// <param name="selectedItem">선택한 아이템</param>
     public void OnBuyCheckBuyButtonClicked(TradingItemData selectedItem)
     {
+        int price = selectedItem.amount * selectedItem.boughtCost;
+
+        if (price > ResourceManager.Instance.COMA)
+        {
+            notEnoughCOMAText.gameObject.SetActive(true);
+            StartCoroutine(HideChangeText(notEnoughCOMAText, 1.5f));
+            return;
+        }
+
+
         buyCheckPanel.gameObject.SetActive(false);
         tradeShip.gameObject.SetActive(true);
 
@@ -771,8 +805,28 @@ public class TradeUIController : MonoBehaviour
     /// </summary>
     public void OnBuyCancelButtonClicked()
     {
-        Destroy(itemInstance.gameObject);
-        tradeStorage.RemoveItem(itemInstance);
+        if (tradeStorage.storedItems.Any(i => i != itemInstance))
+        {
+            dontPlaceItemHereText.gameObject.SetActive(true);
+            StartCoroutine(HideChangeText(dontPlaceItemHereText, 1.5f));
+            return;
+        }
+
+        if (tradeStorage.storedItems.Contains(itemInstance))
+        {
+            tradeStorage.RemoveItem(itemInstance);
+            Destroy(itemInstance.gameObject);
+        }
+        else
+        {
+            List<Room> allRooms = GameManager.Instance.playerShip.allRooms;
+            foreach (Room room in allRooms)
+                if (room is StorageRoomBase storageRoom)
+                    if (storageRoom.storedItems.Contains(itemInstance))
+                        storageRoom.DestroyItem(itemInstance);
+        }
+
+
         tradeShip.gameObject.SetActive(false);
         buyConfirmButton.gameObject.SetActive(false);
         buyCancelButton.gameObject.SetActive(false);
@@ -791,13 +845,6 @@ public class TradeUIController : MonoBehaviour
     public void BuyItem(TradingItemData selectedItem)
     {
         int price = selectedItem.amount * selectedItem.boughtCost;
-
-        if (price > ResourceManager.Instance.COMA)
-        {
-            notEnoughCOMAText.gameObject.SetActive(true);
-            StartCoroutine(HideChangeText(notEnoughCOMAText, 1.5f));
-            return;
-        }
 
         ResourceManager.Instance.ChangeResource(ResourceType.COMA, -price);
 
@@ -888,12 +935,14 @@ public class TradeUIController : MonoBehaviour
             return;
         }
 
-
-        GameManager.Instance.playerShip.RemoveItem(item);
-
-        int price = GameManager.Instance.WhereIAm().GetItemPrice(selectedItem);
+        int price = GameManager.Instance.WhereIAm().GetItemPrice(selectedItem) * selectedItem.amount;
 
         ResourceManager.Instance.ChangeResource(ResourceType.COMA, price);
+
+        foreach (Room room in GameManager.Instance.playerShip.GetAllRooms())
+            if (room is StorageRoomBase storageRoom && storageRoom.storedItems.Contains(item))
+                storageRoom.DestroyItem(item);
+
 
         InitializeSellPanel();
         itemMapPanel.gameObject.SetActive(false);
@@ -1132,6 +1181,89 @@ public class TradeUIController : MonoBehaviour
             return;
         EquipmentManager.Instance.PurchaseAndEquipGlobal(recentBoughtEquipment);
         recentBoughtEquipment = null;
+    }
+
+    #endregion
+
+    #region 자원 구매 패널 설정
+
+    public void InitializeResourceBuyPanel()
+    {
+        PlanetData currentPlanet = GameManager.Instance.WhereIAm();
+        fuelPrice.text = currentPlanet.currentFuelPrice.ToString();
+        missilePrice.text = currentPlanet.currentMissilePrice.ToString();
+        hypersonicPrice.text = currentPlanet.currentHypersonicPrice.ToString();
+    }
+
+    public void OnClickFuelBuyButton()
+    {
+        BuyFuel();
+    }
+
+    public void OnClickMissileBuyButton()
+    {
+        BuyMissile();
+    }
+
+    public void OnClickHypersonicBuyButton()
+    {
+        BuyHypersonic();
+    }
+
+    private void BuyFuel()
+    {
+        PlanetData currentPlanet = GameManager.Instance.WhereIAm();
+        int price = currentPlanet.currentFuelPrice;
+
+        if (price > ResourceManager.Instance.COMA)
+        {
+            notEnoughCOMAText.gameObject.SetActive(true);
+            StartCoroutine(HideChangeText(notEnoughCOMAText, 1.5f));
+            return;
+        }
+
+        if (ResourceManager.Instance.Fuel == GameManager.Instance.playerShip.GetStat(ShipStat.FuelStoreCapacity))
+        {
+            notEnoughFuelCapacityText.gameObject.SetActive(true);
+            StartCoroutine(HideChangeText(notEnoughFuelCapacityText, 1.5f));
+            return;
+        }
+
+
+        ResourceManager.Instance.ChangeResource(ResourceType.COMA, -price);
+        ResourceManager.Instance.ChangeResource(ResourceType.Fuel, 100);
+    }
+
+    private void BuyMissile()
+    {
+        PlanetData currentPlanet = GameManager.Instance.WhereIAm();
+        int price = currentPlanet.currentMissilePrice;
+
+        if (price > ResourceManager.Instance.COMA)
+        {
+            notEnoughCOMAText.gameObject.SetActive(true);
+            StartCoroutine(HideChangeText(notEnoughCOMAText, 1.5f));
+            return;
+        }
+
+        ResourceManager.Instance.ChangeResource(ResourceType.COMA, -price);
+        ResourceManager.Instance.ChangeResource(ResourceType.Missile, 1);
+    }
+
+    private void BuyHypersonic()
+    {
+        PlanetData currentPlanet = GameManager.Instance.WhereIAm();
+        int price = currentPlanet.currentHypersonicPrice;
+
+        if (price > ResourceManager.Instance.COMA)
+        {
+            notEnoughCOMAText.gameObject.SetActive(true);
+            StartCoroutine(HideChangeText(notEnoughCOMAText, 1.5f));
+            return;
+        }
+
+        ResourceManager.Instance.ChangeResource(ResourceType.COMA, -price);
+        ResourceManager.Instance.ChangeResource(ResourceType.Hypersonic, 1);
     }
 
     #endregion
