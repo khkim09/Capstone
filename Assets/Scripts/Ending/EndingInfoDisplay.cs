@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 엔딩 씬에서 플레이 정보를 화면에 출력하는 클래스.
@@ -33,8 +32,18 @@ public class EndingInfoDisplay : MonoBehaviour
     /// </summary>
     [SerializeField] private float charDelay = 0.05f;
 
+    /// <summary>
+    /// 노 터치 패널
+    /// </summary>
+    [SerializeField] private GameObject noTouchPanel;
+
+    /// <summary>
+    /// 다음 캔버스 관련 코드
+    /// </summary>
+    [SerializeField] private EndingResultDisplay endingResultDisplay;
 
     private bool isFinished = false;
+    private bool hasSceneSwitched = false;
     private float lastClickTime = 0f;
     private float doubleClickThreshold = 0.3f;
 
@@ -47,16 +56,16 @@ public class EndingInfoDisplay : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (hasSceneSwitched)
+                return;
+
             float timeSinceLastClick = Time.time - lastClickTime;
             lastClickTime = Time.time;
 
-            if (isFinished)
+            if (isFinished || timeSinceLastClick < doubleClickThreshold)
             {
                 GoToNextScene();
-            }
-            else if (timeSinceLastClick < doubleClickThreshold)
-            {
-                GoToNextScene(); // 출력 중이더라도 더블클릭 시 넘어감
+                hasSceneSwitched = true;
             }
         }
     }
@@ -94,6 +103,10 @@ public class EndingInfoDisplay : MonoBehaviour
         yield return new WaitForSeconds(lineDelay);
 
         yield return StartCoroutine(TypeLine("화면을 클릭하시면 엔딩을 확인하실 수 있습니다.\n"));
+        yield return new WaitForSeconds(1f);
+
+        if (noTouchPanel != null)
+            noTouchPanel.SetActive(false);
 
         isFinished = true;
     }
@@ -119,7 +132,16 @@ public class EndingInfoDisplay : MonoBehaviour
     /// </summary>
     private void SwitchCanvas()
     {
-        if (firstEndingCanvas != null) firstEndingCanvas.SetActive(false);
-        if (secondEndingCanvas != null) secondEndingCanvas.SetActive(true);
+        if (firstEndingCanvas != null)
+            firstEndingCanvas.SetActive(false);
+
+        if (noTouchPanel != null)
+            noTouchPanel.SetActive(true);
+
+        if (secondEndingCanvas != null)
+            secondEndingCanvas.SetActive(true);
+
+        if (endingResultDisplay != null)
+            endingResultDisplay.ShowEndingResult();
     }
 }

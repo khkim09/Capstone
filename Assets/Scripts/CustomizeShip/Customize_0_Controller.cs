@@ -48,7 +48,7 @@ public class Customize_0_Controller : MonoBehaviour
         editButton.interactable = false;
 
         playerShip = GameManager.Instance.playerShip;
-        RTSSelectionManager.Instance.playerShip = GameManager.Instance.playerShip;
+        // RTSSelectionManager.Instance.playerShip = GameManager.Instance.playerShip;
         playerShip.SetShipContentsActive(false);
     }
 
@@ -61,7 +61,7 @@ public class Customize_0_Controller : MonoBehaviour
         if (playerShip == null)
         {
             playerShip = GameManager.Instance.playerShip;
-            RTSSelectionManager.Instance.playerShip = GameManager.Instance.playerShip;
+            // RTSSelectionManager.Instance.playerShip = GameManager.Instance.playerShip;
         }
         playerShip.SetShipContentsActive(false);
 

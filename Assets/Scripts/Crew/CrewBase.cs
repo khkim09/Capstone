@@ -120,6 +120,11 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     public SpriteRenderer spriteRenderer;
 
     /// <summary>
+    /// 정면샷 (crewInfoPanel, crewDetailPanel 에서 선원 정면 Sprite 필요)
+    /// </summary>
+    public Sprite portraitSprite;
+
+    /// <summary>
     /// 애니메이션 작동 Animator
     /// </summary>
     public Animator animator;
@@ -127,7 +132,8 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// <summary>
     /// 선원 체력 바
     /// </summary>
-    [Header("Health Bar")] [SerializeField]
+    [Header("Health Bar")]
+    [SerializeField]
     private CrewHealthBar healthBarController;
 
     /// <summary>
@@ -140,6 +146,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = Constants.SortingOrders.Character;
         spriteRenderer.sprite = Resources.Load<Sprite>($"Sprites/Crew/{race.ToString().ToLower()}");
+        InitializePortrait();
 
         // 종족별 애니메이터 연결
         if (animator == null)
@@ -172,6 +179,14 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
         // 산소 농도 체크 - 체력 감소
         ApplyOxygenDamage();
+    }
+
+    /// <summary>
+    /// 초기 정면샷 저장
+    /// </summary>
+    private void InitializePortrait()
+    {
+        portraitSprite = spriteRenderer.sprite;
     }
 
     /// <summary>
