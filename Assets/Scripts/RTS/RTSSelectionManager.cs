@@ -148,7 +148,7 @@ public class RTSSelectionManager : MonoBehaviour
         // 왼쪽 마우스 버튼 눌림: 선택 시작
         if (/*isMainUI && */Input.GetMouseButtonDown(0))
         {
-            if (BlockRTSSelection())
+            if (BlockRTSSelection() || BlockRTSNBPMove())
             {
                 isDragging = false;
                 return;
@@ -165,7 +165,7 @@ public class RTSSelectionManager : MonoBehaviour
         // 왼쪽 마우스 버튼 뗌: 선택 완료
         if (Input.GetMouseButtonUp(0))
         {
-            if (BlockRTSSelection())
+            if (BlockRTSSelection() || BlockRTSNBPMove())
             {
                 isDragging = false;
                 return;
@@ -239,6 +239,14 @@ public class RTSSelectionManager : MonoBehaviour
     private bool BlockRTSSelection()
     {
         GameObject blockPanel = GameObject.FindWithTag("BlockRTSSelect");
+        if (blockPanel != null && blockPanel.activeInHierarchy)
+            return true;
+        return false;
+    }
+
+    private bool BlockRTSNBPMove()
+    {
+        GameObject blockPanel = GameObject.FindWithTag("BlockRTSNBPMove");
         if (blockPanel != null && blockPanel.activeInHierarchy)
             return true;
         return false;

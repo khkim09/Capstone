@@ -118,7 +118,8 @@ public class Customize_2_Controller : MonoBehaviour
         // BlueprintSaveData 기반으로 blueprintShip 생성
         bpShip = MakeBPShipWithSaveData();
 
-        originHullLevel = selectedData.hullLevel;
+        int index = BlueprintSlotManager.Instance.currentSlotIndex;
+        originHullLevel = BlueprintSlotManager.Instance.blueprintSlots[index].hullLevel;
 
         if (bpShip != null && playerShip != null)
         {
@@ -165,7 +166,11 @@ public class Customize_2_Controller : MonoBehaviour
         List<Vector2Int> tiles = new();
 
         bpShip.ClearRooms();
-        bpShip.ClearPreviewOuterHulls();
+
+        int index = BlueprintSlotManager.Instance.currentSlotIndex;
+        bool isValidIndex = (0 <= index && index <= 3) ? true : false;
+        if (!isValidIndex)
+            bpShip.ClearPreviewOuterHulls();
 
         selectedData = BlueprintSlotManager.Instance.GetBlueprintAt(BlueprintSlotManager.Instance.currentSlotIndex);
         if (selectedData == null)
@@ -188,8 +193,20 @@ public class Customize_2_Controller : MonoBehaviour
         {
             GameObject bpWeapon = gridPlacer.PlacePreviewWeapon(weapon.bpWeaponData, weapon.bpPosition, weapon.bpDirection, bpShip.transform, tiles);
             BlueprintWeapon bw = bpWeapon.GetComponent<BlueprintWeapon>();
-            bw.ApplyAttachedDirectionSprite();
-            bpShip.AddPlaceable(bw);
+
+            // 외갑판 세팅 X (하양으로 초기화) - 임시 0레벨
+            if (bw.GetHullLevel() == -1)
+            {
+                bw.SetHullLevel(0);
+                bw.ApplyAttachedDirectionSprite();
+                bpShip.AddPlaceable(bw);
+                bw.SetHullLevel(-1);
+            }
+            else // 외갑판 세팅 이미 했었음
+            {
+                bw.ApplyAttachedDirectionSprite();
+                bpShip.AddPlaceable(bw);
+            }
         }
 
         // return gridPlacer.targetBlueprintShip;
@@ -245,6 +262,9 @@ public class Customize_2_Controller : MonoBehaviour
         // 함선 스텟 다시 계산
         playerShip.RecalculateAllStats();
 
+        // 기존 외갑판 삭제
+        playerShip.OuterHullSystem.ClearExistingHulls();
+
         // 외갑판 실제로 생성
         playerShip.SetOuterHullLevel(selectedHullLevel);
         playerShip.UpdateOuterHullVisuals();
@@ -254,6 +274,7 @@ public class Customize_2_Controller : MonoBehaviour
         BlueprintSaveData data = BlueprintSlotManager.Instance.GetBlueprintAt(BlueprintSlotManager.Instance.currentSlotIndex);
         Customize_0_Controller controller0 = customize0Panel.GetComponent<Customize_0_Controller>();
         controller0.bpPreviewArea.UpdateAndShow(data);
+        controller0.OnClickSlot(BlueprintSlotManager.Instance.appliedSlotIndex);
 
         buyClicked = true;
         OnClickCancel();
@@ -268,7 +289,6 @@ public class Customize_2_Controller : MonoBehaviour
         customize0Panel.SetActive(true);
 
         // 초기화 작업
-        BlueprintSlotManager.Instance.currentSlotIndex = -1;
         selectedHullLevel = -1;
         feedbackText.text = "";
         Customize_0_Controller controller0 = customize0Panel.GetComponent<Customize_0_Controller>();
@@ -322,18 +342,42 @@ public class Customize_2_Controller : MonoBehaviour
     /// <summary>
     /// Image 비율 조정
     /// </summary>
+    // private void AdjustRawImageAspect()
+    // {
+    //     if (hullPreviewImage == null || hullPreviewImage.texture == null)
+    //         return;
+
+    //     float textureWidth = hullPreviewImage.texture.width;
+    //     float textureHeight = hullPreviewImage.texture.height;
+    //     float aspectRatio = textureWidth / textureHeight;
+
+    //     RectTransform rt = hullPreviewImage.GetComponent<RectTransform>();
+
+    //     float baseHeight = rt.sizeDelta.y;
+    //     rt.sizeDelta = new Vector2(baseHeight * aspectRatio, baseHeight);
+    // }
+
     private void AdjustRawImageAspect()
     {
-        if (hullPreviewImage == null || hullPreviewImage.texture == null)
-            return;
+        RenderTexture rt = previewCam.gameObject.GetComponent<Camera>().targetTexture;
+        float textureWidth = rt.width;
+        float textureHeight = rt.height;
 
-        float textureWidth = hullPreviewImage.texture.width;
-        float textureHeight = hullPreviewImage.texture.height;
-        float aspectRatio = textureWidth / textureHeight;
+        float imageWidth = hullPreviewImage.rectTransform.rect.width;
+        float imageHeight = hullPreviewImage.rectTransform.rect.height;
 
-        RectTransform rt = hullPreviewImage.GetComponent<RectTransform>();
+        float textureRatio = textureWidth / textureHeight;
+        float imageRatio = imageWidth / imageHeight;
 
-        float baseHeight = rt.sizeDelta.y;
-        rt.sizeDelta = new Vector2(baseHeight * aspectRatio, baseHeight);
+        // 더 튀어나가지 않는 방향으로 기준 잡기
+        if (textureRatio > imageRatio) // 텍스처가 더 가로로 길다
+        {
+            hullPreviewImage.rectTransform.sizeDelta = new Vector2(imageWidth, imageWidth / textureRatio);
+        }
+        else // 텍스처가 더 세로로 길다
+        {
+            hullPreviewImage.rectTransform.sizeDelta = new Vector2(imageHeight * textureRatio, imageHeight);
+        }
     }
+
 }

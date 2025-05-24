@@ -53,14 +53,9 @@ public class TradingItemDragHandler : MonoBehaviour
     {
         // 싱글톤 설정
         if (Instance == null)
-        {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
         else
-        {
             Destroy(gameObject);
-        }
     }
 
     /// <summary>

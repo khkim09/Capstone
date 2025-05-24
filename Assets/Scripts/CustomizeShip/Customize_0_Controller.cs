@@ -1,9 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.InputSystem.XInput;
 using UnityEngine.UI;
 
 public class Customize_0_Controller : MonoBehaviour
@@ -51,6 +48,7 @@ public class Customize_0_Controller : MonoBehaviour
         editButton.interactable = false;
 
         playerShip = GameManager.Instance.playerShip;
+        RTSSelectionManager.Instance.playerShip = GameManager.Instance.playerShip;
         playerShip.SetShipContentsActive(false);
     }
 
@@ -61,7 +59,10 @@ public class Customize_0_Controller : MonoBehaviour
     {
         // playerShip 내 모든 오브젝트 비활성화
         if (playerShip == null)
+        {
             playerShip = GameManager.Instance.playerShip;
+            RTSSelectionManager.Instance.playerShip = GameManager.Instance.playerShip;
+        }
         playerShip.SetShipContentsActive(false);
 
         for (int i = 0; i < appliedTags.Count; i++)
@@ -84,9 +85,6 @@ public class Customize_0_Controller : MonoBehaviour
             if (tmp != null)
                 tmp.enabled = true;
         }
-
-        Camera mainCam = Camera.main;
-        mainCam.orthographicSize = 6f;
     }
 
     /// <summary>
@@ -94,6 +92,8 @@ public class Customize_0_Controller : MonoBehaviour
     /// </summary>
     public void OnClickExit()
     {
+        BlueprintSlotManager.Instance.SaveAllBlueprints();
+
         // scene 전환
         Camera mainCam = Camera.main;
         mainCam.transform.position = new Vector3(-100f, -100f, mainCam.transform.position.z);

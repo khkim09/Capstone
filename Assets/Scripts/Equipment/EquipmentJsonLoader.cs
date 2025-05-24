@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+/// <summary>
+/// JSON 으로 정의된 장비를 자동으로 ScriptableObject 로 Import 해주는 툴
+/// </summary>
 public class EquipmentJsonLoader : EditorWindow
 {
     private string weaponJsonPath = "Assets/StreamingAssets/EquipmentWeapon.json";
@@ -121,6 +124,39 @@ public class EquipmentJsonLoader : EditorWindow
         Selection.activeObject = newDatabase;
     }
 
+    /// <summary>
+    /// 문자열 location을 ItemPlanet enum으로 변환합니다.
+    /// </summary>
+    /// <param name="locationString">location 문자열</param>
+    /// <returns>변환된 ItemPlanet enum</returns>
+    private ItemPlanet ParseLocationToPlanet(string locationString)
+    {
+        if (string.IsNullOrEmpty(locationString))
+            return ItemPlanet.Default;
+
+        // 대소문자 구분 없이 매칭
+        string location = locationString.Trim().ToUpper();
+
+        switch (location)
+        {
+            case "SIS":
+                return ItemPlanet.SIS;
+            case "CCK":
+                return ItemPlanet.CCK;
+            case "ICM":
+                return ItemPlanet.ICM;
+            case "RCE":
+                return ItemPlanet.RCE;
+            case "KTL":
+                return ItemPlanet.KTL;
+            case "ALL":
+                return ItemPlanet.ALL;
+            default:
+                Debug.LogWarning($"알 수 없는 location 값: {locationString}. Default로 설정됩니다.");
+                return ItemPlanet.Default;
+        }
+    }
+
     private void ConvertJsonToScriptableObjects(string jsonFilePath, EquipmentType equipType)
     {
         if (string.IsNullOrEmpty(jsonFilePath) || databaseAsset == null)
@@ -189,54 +225,88 @@ public class EquipmentJsonLoader : EditorWindow
                 equipSO.eqName = equipName;
                 equipSO.eqType = equipType;
                 equipSO.eqPrice = equipToken["cost"] != null ? (int)equipToken["cost"] : 0;
+                equipSO.eqDescription = equipToken["description"] != null ? (string)equipToken["description"] : "";
+                // TODO : 나중엔 CSV 에 Global 장비 여부도 추가 후, 여기서 설정을 해줘야 한다.
                 equipSO.isGlobalEquip = equipToken["is_global"] != null
                     ? (bool)equipToken["is_global"]
                     : equipType != EquipmentType.AssistantEquipment; // 기본값 설정
 
+                // Location을 ItemPlanet으로 변환하여 설정
+                string locationString = equipToken["location"] != null ? (string)equipToken["location"] : "";
+                equipSO.planet = ParseLocationToPlanet(locationString);
+
                 // 공격/방어 보너스 설정
                 equipSO.eqAttackBonus =
-                    equipToken["attack"] != null ? (float)(double)equipToken["attack"] : 0f;
+                    equipToken["attack"] != null ? (int)equipToken["attack"] : 0;
                 equipSO.eqDefenseBonus =
-                    equipToken["defense"] != null ? (float)(double)equipToken["defense"] : 0f;
+                    equipToken["defense"] != null ? (int)equipToken["defense"] : 0;
                 equipSO.eqHealthBonus =
-                    equipToken["hitpoint"] != null ? (float)(double)equipToken["hitpoint"] : 0f;
+                    equipToken["hitpoint"] != null ? (int)equipToken["hitpoint"] : 0;
 
                 // 어시스턴트 장비인 경우 스킬 보너스 설정
                 if (equipType == EquipmentType.AssistantEquipment)
                 {
                     equipSO.eqAdditionalPilotSkill = equipToken["pilot"] != null
-                        ? (float)(double)equipToken["pilot"]
-                        : 0f;
+                        ? (int)equipToken["pilot"]
+                        : 0;
                     equipSO.eqAdditionalEngineSkill = equipToken["engine"] != null
-                        ? (float)(double)equipToken["engine"]
-                        : 0f;
+                        ? (int)equipToken["engine"]
+                        : 0;
                     equipSO.eqAdditionalPowerSkill = equipToken["power"] != null
-                        ? (float)(double)equipToken["power"]
-                        : 0f;
+                        ? (int)equipToken["power"]
+                        : 0;
                     equipSO.eqAdditionalShieldSkill = equipToken["shield"] != null
-                        ? (float)(double)equipToken["shield"]
-                        : 0f;
+                        ? (int)equipToken["shield"]
+                        : 0;
                     equipSO.eqAdditionalWeaponSkill = equipToken["weapon"] != null
-                        ? (float)(double)equipToken["weapon"]
-                        : 0f;
+                        ? (int)equipToken["weapon"]
+                        : 0;
+                    // CSV에서는 weaponcontrol로 되어있지만, JSON에서는 weapon으로 처리
+
                     equipSO.eqAdditionalAmmunitionSkill = equipToken["ammunition"] != null
-                        ? (float)(double)equipToken["ammunition"]
-                        : 0f;
+                        ? (int)equipToken["ammunition"]
+                        : 0;
                     equipSO.eqAdditionalMedBaySkill = equipToken["medbay"] != null
-                        ? (float)(double)equipToken["medbay"]
-                        : 0f;
+                        ? (int)equipToken["medbay"]
+                        : 0;
                     equipSO.eqAdditionalRepairSkill = equipToken["repair"] != null
-                        ? (float)(double)equipToken["repair"]
-                        : 0f;
+                        ? (int)equipToken["repair"]
+                        : 0;
                 }
 
-                // 아이콘 로드
-                string iconPath = $"Sprites/Equipment/{equipTypeName}_{equipId}";
-                Sprite sprite = Resources.Load<Sprite>(iconPath);
-                if (sprite != null)
-                    equipSO.eqIcon = sprite;
+                // 아이콘 로드 - slice된 스프라이트에서 이름으로 찾기
+                string equipmentFileName = "";
+                switch (equipType)
+                {
+                    case EquipmentType.WeaponEquipment:
+                        equipmentFileName = "EquipmentWeapon";
+                        break;
+                    case EquipmentType.ShieldEquipment:
+                        equipmentFileName = "EquipmentShield";
+                        break;
+                    case EquipmentType.AssistantEquipment:
+                        equipmentFileName = "EquipmentAssistant";
+                        break;
+                }
+
+                Sprite[] sprites = Resources.LoadAll<Sprite>($"Sprites/Item/{equipmentFileName}");
+
+                if (sprites != null && sprites.Length > 0)
+                {
+                    // 스프라이트 이름 매칭 (equipId를 직접 사용)
+                    string spriteName = $"{equipmentFileName}_{equipId}";
+                    Sprite targetSprite = Array.Find(sprites, s => s.name == spriteName);
+
+                    if (targetSprite != null)
+                        equipSO.eqIcon = targetSprite;
+                    else
+                        Debug.LogWarning(
+                            $"장비 스프라이트를 찾을 수 없습니다. 찾은 이름: {spriteName}, 사용 가능한 스프라이트: {string.Join(", ", Array.ConvertAll(sprites, s => s.name))}");
+                }
                 else
-                    Debug.LogWarning($"장비 아이콘을 찾을 수 없습니다: {iconPath}");
+                {
+                    Debug.LogWarning($"장비 스프라이트를 찾을 수 없습니다: Sprites/Item/{equipmentFileName}");
+                }
 
                 if (isNew)
                 {

@@ -61,7 +61,7 @@ public class CombatManager : MonoBehaviour
         GameManager.Instance.CreateDefaultEnemyShip(enemyShip);
 
         RTSSelectionManager.Instance.enemyShip = enemyShip;
-        RTSSelectionManager.Instance.playerShip=GameManager.Instance.playerShip;
+        RTSSelectionManager.Instance.playerShip = GameManager.Instance.playerShip;
         GameManager.Instance.SetCurrentEnemyShip(enemyShip);
 
         //enemyShip.MoveShipToFacingTargetShip(GameManager.Instance.playerShip);
@@ -73,7 +73,7 @@ public class CombatManager : MonoBehaviour
         GameManager.Instance.playerShip.HitpointSystem.RecalculateHitPoint();
 
         enemyShip.shipExplosion += CombatEnding;
-        GameManager.Instance.playerShip.shipExplosion+= CombatEnding;
+        GameManager.Instance.playerShip.shipExplosion += CombatEnding;
     }
 
     public GameObject CCTV;
