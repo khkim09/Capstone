@@ -59,7 +59,10 @@ public class IconInteraction : TooltipPanelBase
     protected void OnMouseEnter()
     {
         // 캔버스 컴포넌트 찾기
-            canvasComponent = GameObject.FindWithTag("RoomIconTooltip").GetComponent<Canvas>();
+		GameObject canvasObject = GameObject.FindWithTag("RoomIconTooltip");
+        if (canvasObject == null)
+            return;
+        canvasComponent = GameObject.FindWithTag("RoomIconTooltip").GetComponent<Canvas>();
         if (canvasComponent != null)
             canvasRectTransform = canvasComponent.transform as RectTransform;
 
