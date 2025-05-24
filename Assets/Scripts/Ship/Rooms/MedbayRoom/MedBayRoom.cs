@@ -65,7 +65,7 @@ public class MedBayRoom : Room<MedBayRoomData, MedBayRoomData.MedBayRoomLevel>
     /// <returns></returns>
     public override bool CanITouch(CrewMember crew)
     {
-        if (crew.GetCrewSkillValue().ContainsKey(SkillType.MedBaySkill) && workingCrew ==null)
+        if (crew.GetCrewSkillValue().ContainsKey(SkillType.MedBaySkill) && workingCrew ==null && IsOperational())
         {
             workingCrew = crew;
             return true;

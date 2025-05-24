@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class IconInteraction : TooltipPanelBase
 {
     private RoomType roomType;
-    private Room room;
+    public Room room;
 
     private TextMeshProUGUI description;
     void Start()
@@ -160,8 +160,11 @@ public class IconInteraction : TooltipPanelBase
 
     private void OnMouseDown()
     {
-
-
-        room.UpdateRoomVisual();
+        if(room.GetIsPowerRequested())
+        {
+            room.SetIsActive(!room.isActive);
+            OnMouseExit();
+            OnMouseEnter();
+        }
     }
 }

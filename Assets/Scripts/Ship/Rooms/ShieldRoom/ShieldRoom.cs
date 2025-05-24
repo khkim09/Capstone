@@ -69,7 +69,7 @@ public class ShieldRoom : Room<ShieldRoomData, ShieldRoomData.ShieldRoomLevel>
     /// <returns></returns>
     public override bool CanITouch(CrewMember crew)
     {
-        if (crew.GetCrewSkillValue().ContainsKey(SkillType.ShieldSkill) && workingCrew ==null)
+        if (crew.GetCrewSkillValue().ContainsKey(SkillType.ShieldSkill) && workingCrew ==null && IsOperational())
         {
             workingCrew = crew;
             return true;
