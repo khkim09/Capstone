@@ -44,7 +44,7 @@ public class WeaponFrameFunction : MonoBehaviour
             powerState = Power.on;
         else
             powerState = Power.off;
-        weapon.updateWeaponPanel+=UpdateWeaponPanel;
+        weapon.updateWeaponPanel += UpdateWeaponPanel;
 
         GetComponentInChildren<TextMeshProUGUI>().text = weapon.GetWeaponName();
 
@@ -70,8 +70,8 @@ public class WeaponFrameFunction : MonoBehaviour
         float percentage = weapon.GetCooldownPercentage();
         energyBar.fillAmount = percentage;
 
-        if (powerState == Power.auto && percentage>=1)
-             weapon.TryFire();
+        if (powerState == Power.auto && percentage >= 1)
+            weapon.TryFire();
     }
 
     /// <summary>
