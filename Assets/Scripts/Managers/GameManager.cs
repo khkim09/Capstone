@@ -303,6 +303,7 @@ public class GameManager : MonoBehaviour
         playerShip.AddRoom(corridors[7], new Vector2Int(32, 31));
 
 
+        // 6,7,8 미사일 9,10,11 초음속탄 (총알 필요)
         playerShip.AddWeapon(0, new Vector2Int(34, 32), ShipWeaponAttachedDirection.North);
         playerShip.AddWeapon(3, new Vector2Int(34, 29), ShipWeaponAttachedDirection.South);
 

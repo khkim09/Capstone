@@ -119,7 +119,7 @@ public static class Constants
         /// <summary>
         /// 워프 시마다 퀘스트가 생성되는 확률
         /// </summary>
-        public const float QuestCreateRate = 0.05f;
+        public const float QuestCreateRate = 1f;
     }
 
     public static class Resources
