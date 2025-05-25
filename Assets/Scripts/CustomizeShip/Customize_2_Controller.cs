@@ -262,6 +262,7 @@ public class Customize_2_Controller : MonoBehaviour
 
         // 함선 스텟 다시 계산
         playerShip.RecalculateAllStats();
+        playerShip.RefreshAllSystems();
 
         // 기존 외갑판 삭제
         playerShip.OuterHullSystem.ClearExistingHulls();

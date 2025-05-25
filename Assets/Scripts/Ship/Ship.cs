@@ -266,6 +266,7 @@ public class Ship : MonoBehaviour
 
         // 스탯 재계산
         RecalculateAllStats();
+        RefreshAllSystems();
 
         return true;
     }

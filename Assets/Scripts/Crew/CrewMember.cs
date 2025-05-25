@@ -687,7 +687,7 @@ public class CrewMember : CrewBase
                 currentShip.allCrews.Remove(this);
             if (currentShip.allEnemies.Contains(this))
                 currentShip.allEnemies.Remove(this);
-            if(!isPlayerControlled)
+            if (!isPlayerControlled)
                 GameEvents.PirateKilled();
             DieCoroutine = StartCoroutine(ImDying());
         }
