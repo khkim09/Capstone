@@ -179,14 +179,14 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnItemAcquired += (itemId) => CheckItemQuests();
-        GameEvents.OnPirateKilled += CheckPirateQuests;
+        GameEvents.OnPirateKilled += OnPirateKilled;
         GameEvents.OnItemRemoved += (itemId) => CheckItemQuests();
     }
 
     private void OnDestroy()
     {
         GameEvents.OnItemAcquired -= (itemId) => CheckItemQuests();
-        GameEvents.OnPirateKilled -= CheckPirateQuests;
+        GameEvents.OnPirateKilled -= OnPirateKilled;
         GameEvents.OnItemRemoved -= (itemId) => CheckItemQuests();
     }
 
@@ -539,6 +539,12 @@ public class GameManager : MonoBehaviour
     public void StartNewGame()
     {
         DeleteGameData();
+        StartCoroutine(DelayedStartNewGame());
+    }
+
+    private IEnumerator DelayedStartNewGame()
+    {
+        yield return new WaitForSeconds(0.25f);
         CreateDefaultPlayerShip();
         playerShip.isPlayerShip = true;
         OnShipInitialized?.Invoke();
@@ -702,8 +708,8 @@ public class GameManager : MonoBehaviour
         }
 
         // 도안 데이터 로드
-        if (BlueprintSlotManager.Instance != null)
-            BlueprintSlotManager.Instance.LoadAllBlueprints();
+        // if (BlueprintSlotManager.Instance != null)
+        //     BlueprintSlotManager.Instance.LoadAllBlueprints();
     }
 
     public void DeletePlayerData()

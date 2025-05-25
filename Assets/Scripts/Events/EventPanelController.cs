@@ -37,6 +37,11 @@ public class EventPanelController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void ContinueButtonChange()
+    {
+        continueButton.onClick.AddListener(EventManager.Instance.CombatOccur);
+    }
+
     /// <summary>
     /// 이벤트 표시 - UIManager에서 호출
     /// </summary>

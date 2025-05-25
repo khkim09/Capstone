@@ -2,6 +2,6 @@
 {
     public void HandleEffect(EventOutcome outcome)
     {
-        EventManager.Instance.CombatOccur();
+        EventManager.Instance.EventPanelController.ContinueButtonChange();
     }
 }
