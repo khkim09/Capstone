@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("isPlayerShip", "shipName", "gridSize", "allRooms", "allWeapons", "allCrews", "unUsedItems", "doorData", "doorLevel", "outerHullData", "outerHullPrefab", "outerHulls", "currentStats", "systems", "outerHullSystem", "weaponSystem", "oxygenSystem", "crewSystem", "hitpointSystem", "moraleSystem", "powerSystem", "storageSystem", "shieldSystem", "backupRoomDatas")]
+	[ES3PropertiesAttribute("isPlayerShip", "shipName", "gridSize", "allRooms", "allWeapons", "allCrews", "unUsedItems", "doorData", "doorLevel", "outerHullData", "outerHullPrefab", "outerHulls", "currentStats", "systems", "outerHullSystem", "weaponSystem", "oxygenSystem", "crewSystem", "hitpointSystem", "moraleSystem", "powerSystem", "storageSystem", "shieldSystem", "backupRoomDatas", "outerHullList")]
 	public class ES3UserType_Ship : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -40,6 +40,7 @@ namespace ES3Types
 			writer.WritePrivateField("storageSystem", instance);
 			writer.WritePrivateField("shieldSystem", instance);
 			writer.WriteProperty("backupRoomDatas", instance.backupRoomDatas, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<RoomBackupData>)));
+			writer.WriteProperty("outerHullList", instance.outerHullList, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<OuterHull>)));
 		}
 
 		protected override void ReadComponent<T>(ES3Reader reader, object obj)
@@ -121,6 +122,9 @@ namespace ES3Types
 					break;
 					case "backupRoomDatas":
 						instance.backupRoomDatas = reader.Read<System.Collections.Generic.List<RoomBackupData>>();
+						break;
+					case "outerHullList":
+						instance.outerHullList = reader.Read<System.Collections.Generic.List<OuterHull>>();
 						break;
 					default:
 						reader.Skip();

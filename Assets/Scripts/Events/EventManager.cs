@@ -34,11 +34,16 @@ public class EventManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
-        else
-            Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
+        }
 
-        DontDestroyOnLoad(gameObject);
+        else
+        {
+            Destroy(gameObject);
+        }
+
 
         // 핸들러 초기화
         resourceEffectHandler = new EventResourceEffectHandler();
