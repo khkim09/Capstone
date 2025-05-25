@@ -184,6 +184,9 @@ public class BlueprintSlotManager : MonoBehaviour
         isValidBP = wrapper.isValidBP;
         occupiedTilesPerSlot = new();
 
+        if (wrapper == null)
+            Debug.LogError("wrapper가 null임");
+
         foreach (List<Vector2Int> tileList in wrapper.occupiedTilesPerSlot)
         {
             if (tileList == null)

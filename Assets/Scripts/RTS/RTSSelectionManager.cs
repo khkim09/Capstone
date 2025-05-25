@@ -444,18 +444,11 @@ public class RTSSelectionManager : MonoBehaviour
     {
         if (targetRoom == null)
         {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
 
-            RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-
-            if (hits==null)
+            if (hit.collider == null)
                 return;
-
-            RaycastHit2D hit=hits[0];
-            foreach (RaycastHit2D rayResult in hits)
-            {
-                if (rayResult.collider.GetComponent<Room>())
-                    hit = rayResult;
-            }
 
             // 1차적으로 클릭한 방 찾아 할당
             targetRoom = hit.collider.GetComponent<Room>();
