@@ -284,7 +284,7 @@ public class RoomFactory : MonoBehaviour
                 break;
             case RoomType.MedBay:
                 // 의무실 구현 필요
-                roomComponent = roomObject.AddComponent<Room>();
+                roomComponent = roomObject.AddComponent<MedBayRoom>();
                 break;
             case RoomType.Teleporter:
                 // 텔레포터 구현 필요

@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class CombatManager : MonoBehaviour
 {
     public EnemyCamInteraction cam;
+
     /// <summary>
     /// CombatManager의 싱글톤 인스턴스입니다.
     /// </summary>
@@ -84,12 +85,10 @@ public class CombatManager : MonoBehaviour
     }
 
     public GameObject CCTV;
+
     public void CombatEnding(Ship ship)
     {
-        foreach (ShipWeapon wp in GameManager.Instance.playerShip.GetAllWeapons())
-        {
-            wp.DisconnectAction();
-        }
+        foreach (ShipWeapon wp in GameManager.Instance.playerShip.GetAllWeapons()) wp.DisconnectAction();
         if (CCTV)
             CCTV.SetActive(false);
         Time.timeScale = 0;
@@ -128,8 +127,8 @@ public class CombatManager : MonoBehaviour
     /// </summary>
     /// <param name="isDefeated"></param>
     /// <returns></returns>
-    private IEnumerator BackToTheHome(bool isDefeated)  /// 이거 void로 바꿔서 해보기
-    // 굳이 코루틴 안해도 될듯
+    private IEnumerator BackToTheHome(bool isDefeated) /// 이거 void로 바꿔서 해보기
+        // 굳이 코루틴 안해도 될듯
     {
         // 승리
         if (!isDefeated)
@@ -141,6 +140,7 @@ public class CombatManager : MonoBehaviour
                 needToDestroy[i].Freeze();
                 needToDestroy[i].Die();
             }
+
             GameManager.Instance.playerShip.allEnemies.Clear();
             needToDestroy.Clear();
 
@@ -151,6 +151,7 @@ public class CombatManager : MonoBehaviour
                 needToBackMine[i].Freeze();
                 StartCoroutine(needToBackMine[i].TeleportAfterDelay(needToBackMine[i], 0.3f));
             }
+
             GameManager.Instance.currentEnemyShip.allEnemies.Clear();
             needToBackMine.Clear();
         }
@@ -158,21 +159,16 @@ public class CombatManager : MonoBehaviour
         {
             // 내 함선 내 모든 선원 삭제
             List<CrewMember> playerShipAllCrews = GameManager.Instance.playerShip.allCrews;
-            for (int i = playerShipAllCrews.Count - 1; i >= 0; i--)
-            {
-                playerShipAllCrews[i].Die();
-            }
+            for (int i = playerShipAllCrews.Count - 1; i >= 0; i--) playerShipAllCrews[i].Die();
             GameManager.Instance.playerShip.allCrews.Clear();
             playerShipAllCrews.Clear();
 
             List<CrewMember> playerShipAllEnemies = GameManager.Instance.playerShip.allEnemies;
-            for (int i = playerShipAllEnemies.Count - 1; i >= 0; i--)
-            {
-                playerShipAllEnemies[i].Die();
-            }
+            for (int i = playerShipAllEnemies.Count - 1; i >= 0; i--) playerShipAllEnemies[i].Die();
             GameManager.Instance.playerShip.allEnemies.Clear();
             playerShipAllEnemies.Clear();
         }
+
         yield return null;
     }
 

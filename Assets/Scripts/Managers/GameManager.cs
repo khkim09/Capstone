@@ -273,7 +273,8 @@ public class GameManager : MonoBehaviour
         Room crewQuarters = GameObjectFactory.Instance.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Basic);
         Room teleporter = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Teleporter);
         Room oxygenRoom = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Oxygen);
-        Room storageRoom = GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Medium);
+        Room storageRoom =
+            GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Medium);
         Room[] corridors = new Room[8];
         for (int index = 0; index < corridors.Length; index++)
             corridors[index] = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
@@ -282,9 +283,6 @@ public class GameManager : MonoBehaviour
         // Room engine3 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
         // playerShip.AddRoom(engine2, new Vector2Int(40, 40), Constants.Rotations.Rotation.Rotation0);
         // playerShip.AddRoom(engine3, new Vector2Int(43, 43), Constants.Rotations.Rotation.Rotation0);
-
-
-
 
 
         playerShip.AddRoom(cockpit, new Vector2Int(33, 31), Constants.Rotations.Rotation.Rotation90);
@@ -404,6 +402,84 @@ public class GameManager : MonoBehaviour
         }
 
         //
+        enemyShip.UpdateOuterHullVisuals();
+    }
+
+    public void CreateDefaultEnemyShip2(Ship enemyShip)
+    {
+        Room cockpit = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Cockpit);
+        Room engine = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
+        Room power = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Power, 2);
+        Room crewQuarters = GameObjectFactory.Instance.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Basic);
+        Room teleporter = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Teleporter);
+        Room medbay = GameObjectFactory.Instance.CreateRoomInstance(RoomType.MedBay);
+        Room oxygen = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Oxygen, 2);
+        Room[] corridors = new Room[8];
+
+
+        for (int index = 0; index < corridors.Length; index++)
+            corridors[index] = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
+
+
+        enemyShip.AddRoom(cockpit, new Vector2Int(32, 31), Constants.Rotations.Rotation.Rotation90);
+        enemyShip.AddRoom(engine, new Vector2Int(31, 33), Constants.Rotations.Rotation.Rotation90);
+        enemyShip.AddRoom(power, new Vector2Int(30, 29), Constants.Rotations.Rotation.Rotation90);
+        enemyShip.AddRoom(crewQuarters, new Vector2Int(24, 30), Constants.Rotations.Rotation.Rotation0);
+        enemyShip.AddRoom(teleporter, new Vector2Int(28, 32), Constants.Rotations.Rotation.Rotation90);
+        enemyShip.AddRoom(medbay, new Vector2Int(28, 28), Constants.Rotations.Rotation.Rotation270);
+        enemyShip.AddRoom(oxygen, new Vector2Int(29, 28), Constants.Rotations.Rotation.Rotation270);
+
+        enemyShip.AddRoom(corridors[0], new Vector2Int(31, 30), Constants.Rotations.Rotation.Rotation0);
+        enemyShip.AddRoom(corridors[1], new Vector2Int(31, 31), Constants.Rotations.Rotation.Rotation0);
+        enemyShip.AddRoom(corridors[2], new Vector2Int(30, 30), Constants.Rotations.Rotation.Rotation0);
+        enemyShip.AddRoom(corridors[3], new Vector2Int(29, 30), Constants.Rotations.Rotation.Rotation0);
+        enemyShip.AddRoom(corridors[4], new Vector2Int(29, 31), Constants.Rotations.Rotation.Rotation0);
+        enemyShip.AddRoom(corridors[5], new Vector2Int(28, 30), Constants.Rotations.Rotation.Rotation0);
+        enemyShip.AddRoom(corridors[6], new Vector2Int(28, 30), Constants.Rotations.Rotation.Rotation0);
+        enemyShip.AddRoom(corridors[7], new Vector2Int(28, 31), Constants.Rotations.Rotation.Rotation0);
+
+
+        enemyShip.AddWeapon(0, new Vector2Int(31, 34), ShipWeaponAttachedDirection.North);
+        enemyShip.AddWeapon(3, new Vector2Int(31, 26), ShipWeaponAttachedDirection.South);
+
+
+        // Room storageRoom = GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+        // Room storageRoom2 =
+        //     GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+        //
+        // enemyShip.AddRoom(storageRoom, new Vector2Int(27, 26), Constants.Rotations.Rotation.Rotation270);
+        // enemyShip.AddRoom(storageRoom2, new Vector2Int(38, 24), Constants.Rotations.Rotation.Rotation90);
+        // StorageRoomBase storage = (StorageRoomBase)storageRoom;
+        // TradingItem item = GameObjectFactory.Instance.CreateItemInstance(0, 20);
+        // TradingItem item2 = GameObjectFactory.Instance.CreateItemInstance(2, 10);
+        // TradingItem item3 = GameObjectFactory.Instance.CreateItemInstance(21, 1);
+        // storage.AddItem(item, new Vector2Int(0, 0), Constants.Rotations.Rotation.Rotation0);
+        // storage.AddItem(item2, new Vector2Int(2, 2), Constants.Rotations.Rotation.Rotation0);
+        // StorageRoomBase storage2 = (StorageRoomBase)storageRoom2;
+        // storage2.AddItem(item3, new Vector2Int(1, 1), Constants.Rotations.Rotation.Rotation0);
+        // Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
+        // enemyShip.AddRoom(temp, new Vector2Int(50, 31), Constants.Rotations.Rotation.Rotation90);
+
+
+        // playerShip.AddWeapon(8, new Vector)
+
+        enemyShip.MoveShipToFacingTargetShip(playerShip);
+
+        CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human, "인간해적", false);
+        CrewBase crewBase3 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Insect, "벌레해적", false);
+
+        if (crewBase1 is CrewMember crewMember)
+        {
+            crewMember.gameObject.AddComponent<EnemyController>();
+            enemyShip.AddCrew(crewMember);
+        }
+
+        if (crewBase3 is CrewMember crewMember3)
+        {
+            crewMember3.gameObject.AddComponent<EnemyController>();
+            enemyShip.AddCrew(crewMember3);
+        }
+
         enemyShip.UpdateOuterHullVisuals();
     }
 
