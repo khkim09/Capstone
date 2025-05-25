@@ -101,15 +101,15 @@ public class EnemyController : MonoBehaviour
                         Room room = WhereToGo();
                         if (room == null)
                             break;
-
-                        RTSSelectionManager.Instance.IssueMoveCommand(room, cm);
+                        if(cm.isAlive)
+                            RTSSelectionManager.Instance.IssueMoveCommand(room, cm);
                         break;
                     case 1: // 무작위 조종실로 이동
                         Room room1 = WhereToGo(RoomType.Cockpit);
                         if (room1 == null)
                             break;
-
-                        RTSSelectionManager.Instance.IssueMoveCommand(room1, cm);
+                        if(cm.isAlive)
+                            RTSSelectionManager.Instance.IssueMoveCommand(room1, cm);
                         break;
                 }
             }

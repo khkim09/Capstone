@@ -395,6 +395,11 @@ public class MapPanelController : MonoBehaviour
             EventManager.Instance.CombatOccur();
     }
 
+    public void ImmediateLandingCall()
+    {
+        buttonPlanetLand.gameObject.SetActive(true);
+    }
+
     private void OnWarpCompleted()
     {
         ShowPlanetButton();

@@ -47,7 +47,8 @@ public class WeaponSystem : ShipSystem
     {
         // ShipWeapon의 새로운 메서드를 호출하여 재장전 보너스 적용
         // 여기서 쿨다운이 완료되면 자동으로 발사됨
-        weapon.UpdateCooldownWithBonus(deltaTime, reloadBonus);
+        if(weapon)
+            weapon.UpdateCooldownWithBonus(deltaTime, reloadBonus);
     }
 
     /// <summary>
