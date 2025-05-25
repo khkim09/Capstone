@@ -15,6 +15,7 @@ public class AnimationCleanser : MonoBehaviour
     void Start()
     {
         StartCoroutine(AnimationCleans());
+        StartCoroutine(RefreshRoom());
     }
 
     private IEnumerator AnimationCleans()
@@ -47,5 +48,16 @@ public class AnimationCleanser : MonoBehaviour
             }
             crew.PlayAnimation("idle");
         }
+    }
+
+    private IEnumerator RefreshRoom()
+    {
+        yield return null;
+        yield return null;
+        yield return null;
+
+        GameManager.Instance.playerShip.RecalculateAllStats();
+        GameManager.Instance.playerShip.RefreshAllSystems();
+        GameManager.Instance.playerShip.ActionReconnect();
     }
 }
