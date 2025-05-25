@@ -338,7 +338,7 @@ public class MapPanelController : MonoBehaviour
 
         if (fuelAmount > ResourceManager.Instance.Fuel)
         {
-            driftUI.SetActive(true);
+            helpMeUI.SetActive(true);
             SlideClose();
             return;
         }
@@ -391,7 +391,8 @@ public class MapPanelController : MonoBehaviour
         // 게임 상태 저장
         GameManager.Instance.SaveGameData();
 
-        EventManager.Instance.CombatOccur();
+        if(targetNode.NodeData.nodeType==WarpNodeType.Combat)
+            EventManager.Instance.CombatOccur();
     }
 
     private void OnWarpCompleted()
@@ -1128,6 +1129,15 @@ public class MapPanelController : MonoBehaviour
         GameManager.Instance.SetCurrentWarpTargetPlanetId(destPlanet.planetId);
         GameManager.Instance.normalizedPlayerPosition=destPlanet.normalizedPosition;
         OnWarpCompleted();
+
+        ClearWarpNodes();
+        ClearWorldNodesAndIndicator();
+
+        GameManager.Instance.WorldNodeDataList.Clear();
+        if (currentPositionIndicator != null) UpdatePlayerIndicator();
+        //DrawWorldNodesAndIndicator();
+        GameManager.Instance.ClearCurrentWarpMap();
+
         GameManager.Instance.SaveGameData();
     }
 
@@ -1148,14 +1158,37 @@ public class MapPanelController : MonoBehaviour
         return GameManager.Instance.PlanetDataList[newTargetPlanetId];
     }
 
-    public GameObject driftUI;
+    #region 표류기
 
-    public void OnDriftButtonClicked()
+    public GameObject helpMeUI;
+    public GameObject pirateAppearAlert;
+
+    public void RestAssured()
     {
-        driftUI.SetActive(false);
-
         GameManager.Instance.WarpEffect();
         SceneChanger.Instance.JustStay();
         GoToThePlanet(NearestPlanet());
     }
+
+    public void SurpriseMotherFucker()
+    {
+        pirateAppearAlert.SetActive(true);
+    }
+
+    public void EnterCombat()
+    {
+        EventManager.Instance.CombatOccur();
+    }
+
+    public void RescueOrPirate()
+    {
+        float lucky = Random.value;
+        helpMeUI.SetActive(false);
+        if (lucky >= Constants.WarpNodes.SurprisePirate)
+            RestAssured();
+        else
+            SurpriseMotherFucker();
+    }
+
+    #endregion
 }

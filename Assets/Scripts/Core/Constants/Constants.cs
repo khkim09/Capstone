@@ -213,5 +213,7 @@ public static class Constants
         /// 워프할 때 나오는 트랜지션의 지속시간
         /// </summary>
         public const float WarpingDuration = 2.5f;
+
+        public const float SurprisePirate = 0.01f;
     }
 }
