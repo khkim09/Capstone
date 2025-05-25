@@ -787,7 +787,7 @@ public class MapPanelController : MonoBehaviour
         GameObject connectionObj = Instantiate(nodeConnectionPrefab, warpPanelContent.transform);
 
         // 연결선을 노드보다 먼저 그려지도록 설정 (레이어 순서)
-        connectionObj.transform.SetSiblingIndex(0);
+        connectionObj.transform.SetSiblingIndex(1);
 
         RectTransform connectionRect = connectionObj.GetComponent<RectTransform>();
 
@@ -816,7 +816,11 @@ public class MapPanelController : MonoBehaviour
     private void ClearWarpNodes()
     {
         // 워프 패널의 모든 자식 오브젝트 제거
-        foreach (Transform child in warpPanelContent.transform) Destroy(child.gameObject);
+        int nodeCount = transform.childCount;
+        for (int i = nodeCount - 1; i > 0; i--)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
 
         // 노드 데이터 초기화
         warpNodes.Clear();

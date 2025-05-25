@@ -44,8 +44,6 @@ public class SceneChanger : MonoBehaviour
 
     private IEnumerator FadeAndSwitchScene(string sceneName)
     {
-        yield return new WaitForSeconds(0.25f);
-
         // 씬 전환 시작 - 입력 차단
         IsTransitioning = true;
         SetInputBlocking(true);
@@ -160,7 +158,8 @@ public class SceneChanger : MonoBehaviour
 
         if (GameManager.Instance.CurrentState == GameState.Looser)
         {
-            GameObject.FindWithTag("RoomIconTooltip").GetComponentInChildren<MapPanelController>().ImmediateLandingCall();
+            GameObject.FindWithTag("RoomIconTooltip").GetComponentInChildren<MapPanelController>()
+                .ImmediateLandingCall();
             GameManager.Instance.ChangeGameState(GameState.Warp);
         }
     }

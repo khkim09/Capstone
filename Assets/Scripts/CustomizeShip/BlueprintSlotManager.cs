@@ -10,6 +10,8 @@ public class BlueprintSlotSaveWrapper
     public List<BlueprintSaveData> blueprintSlots;
     public List<List<Vector2Int>> occupiedTilesPerSlot;
     public List<bool> isValidBP;
+    public int currentSlotIndex = -1;
+    public int appliedSlotIndex = 0;
 }
 
 /// <summary>

@@ -6,17 +6,14 @@ using UnityEngine.UI;
 
 public class Customize_2_Controller : MonoBehaviour
 {
-    [Header("UI panel")]
-    [SerializeField] private BPPreviewCamera previewCam;
+    [Header("UI panel")] [SerializeField] private BPPreviewCamera previewCam;
     [SerializeField] private GameObject customize0Panel;
     [SerializeField] private GameObject customize2Panel;
 
-    [Header("선택된 외갑판")]
-    [SerializeField] public int originHullLevel = -1;
+    [Header("선택된 외갑판")] [SerializeField] public int originHullLevel = -1;
     [SerializeField] public int selectedHullLevel = -1;
 
-    [Header("Buttons")]
-    [SerializeField] private Button outerhullbutton1;
+    [Header("Buttons")] [SerializeField] private Button outerhullbutton1;
     [SerializeField] private Button outerhullbutton2;
     [SerializeField] private Button outerhullbutton3;
 
@@ -47,8 +44,7 @@ public class Customize_2_Controller : MonoBehaviour
     /// <summary>
     /// 현재 커스터마이징 중인 플레이어 함선입니다.
     /// </summary>
-    [Header("Ship")]
-    public Ship playerShip;
+    [Header("Ship")] public Ship playerShip;
 
     /// <summary>
     /// 제작한 설계도
@@ -169,7 +165,7 @@ public class Customize_2_Controller : MonoBehaviour
         bpShip.ClearRooms();
 
         int index = BlueprintSlotManager.Instance.currentSlotIndex;
-        bool isValidIndex = (0 <= index && index <= 3) ? true : false;
+        bool isValidIndex = 0 <= index && index <= 3 ? true : false;
         if (!isValidIndex)
             bpShip.ClearPreviewOuterHulls();
 
@@ -182,7 +178,8 @@ public class Customize_2_Controller : MonoBehaviour
 
         foreach (BlueprintRoomSaveData room in selectedData.rooms)
         {
-            GameObject bpRoom = gridPlacer.PlacePreviewRoom(room.bpRoomData, room.bpLevelIndex, room.bpPosition, room.bpRotation, bpShip.transform, tiles);
+            GameObject bpRoom = gridPlacer.PlacePreviewRoom(room.bpRoomData, room.bpLevelIndex, room.bpPosition,
+                room.bpRotation, bpShip.transform, tiles);
             BlueprintRoom br = bpRoom.GetComponent<BlueprintRoom>();
             bpShip.AddPlaceable(br);
         }
@@ -192,7 +189,8 @@ public class Customize_2_Controller : MonoBehaviour
 
         foreach (BlueprintWeaponSaveData weapon in selectedData.weapons)
         {
-            GameObject bpWeapon = gridPlacer.PlacePreviewWeapon(weapon.bpWeaponData, weapon.bpPosition, weapon.bpDirection, bpShip.transform, tiles);
+            GameObject bpWeapon = gridPlacer.PlacePreviewWeapon(weapon.bpWeaponData, weapon.bpPosition,
+                weapon.bpDirection, bpShip.transform, tiles);
             BlueprintWeapon bw = bpWeapon.GetComponent<BlueprintWeapon>();
 
             // 외갑판 세팅 X (하양으로 초기화) - 임시 0레벨
@@ -273,7 +271,8 @@ public class Customize_2_Controller : MonoBehaviour
         BlueprintSlotManager.Instance.appliedSlotIndex = BlueprintSlotManager.Instance.currentSlotIndex;
 
         // 도안도 playership으로 업데이트
-        BlueprintSaveData data = BlueprintSlotManager.Instance.GetBlueprintAt(BlueprintSlotManager.Instance.currentSlotIndex);
+        BlueprintSaveData data =
+            BlueprintSlotManager.Instance.GetBlueprintAt(BlueprintSlotManager.Instance.currentSlotIndex);
         Customize_0_Controller controller0 = customize0Panel.GetComponent<Customize_0_Controller>();
         controller0.bpPreviewArea.UpdateAndShow(data);
         controller0.OnClickSlot(BlueprintSlotManager.Instance.appliedSlotIndex);
@@ -286,7 +285,6 @@ public class Customize_2_Controller : MonoBehaviour
 
         // ShipSerialization.SaveShip(GameManager.Instance.playerShip, "playership");
 
-        ES3.DeleteFile("playership");
 
         StartCoroutine(SaveAfterDelay());
 
@@ -295,7 +293,7 @@ public class Customize_2_Controller : MonoBehaviour
 
     private IEnumerator SaveAfterDelay()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
 
         ShipSerialization.SaveShip(GameManager.Instance.playerShip, "playerShip");
         OnClickCancel();
@@ -377,13 +375,8 @@ public class Customize_2_Controller : MonoBehaviour
 
         // 더 튀어나가지 않는 방향으로 기준 잡기
         if (textureRatio > imageRatio) // 텍스처가 더 가로로 길다
-        {
             hullPreviewImage.rectTransform.sizeDelta = new Vector2(imageWidth, imageWidth / textureRatio);
-        }
         else // 텍스처가 더 세로로 길다
-        {
             hullPreviewImage.rectTransform.sizeDelta = new Vector2(imageHeight * textureRatio, imageHeight);
-        }
     }
-
 }
