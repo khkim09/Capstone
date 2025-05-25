@@ -520,6 +520,13 @@ public class GameManager : MonoBehaviour
         Debug.Log($"[워프 완료] 현재 연도 : {currentYear}");
     }
 
+    public event Action<int> OnlyWarpEffect;
+
+    public void WarpEffect()
+    {
+        OnlyWarpEffect?.Invoke(currentYear);
+    }
+
     #region 게임 데이터 관련
 
     // TODO: 게임 데이터 초기화 로직 및 진짜 새로운 게임 시작할 건지 물어야함.

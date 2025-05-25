@@ -202,13 +202,19 @@ public class ScrollingBackground : MonoBehaviour
     private void OnEnable()
     {
         if (GameManager.Instance != null)
+        {
             GameManager.Instance.OnYearChanged += OnYearChanged;
+            GameManager.Instance.OnlyWarpEffect += OnYearChanged;
+        }
     }
 
     private void OnDisable()
     {
         if (GameManager.Instance != null)
+        {
             GameManager.Instance.OnYearChanged -= OnYearChanged;
+            GameManager.Instance.OnlyWarpEffect -= OnYearChanged;
+        }
     }
 
     private void OnYearChanged(int year)
