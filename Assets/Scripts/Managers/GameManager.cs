@@ -68,7 +68,8 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")] [SerializeField]
+    [Header("Game State")]
+    [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -681,13 +682,13 @@ public class GameManager : MonoBehaviour
             Debug.Log("소환시도");
 
             ShipSerialization.LoadShip("playerShip");
-            OnShipInitialized?.Invoke();
+            // OnShipInitialized?.Invoke();
         }
         else
         {
             Debug.Log("없어서 기본함선 만듦");
             CreateDefaultPlayerShip();
-            OnShipInitialized?.Invoke();
+            // OnShipInitialized?.Invoke();
         }
     }
 
@@ -917,14 +918,14 @@ public class GameManager : MonoBehaviour
     public void CheckPirateQuests()
     {
         foreach (PlanetData planet in planetDataList)
-        foreach (RandomQuest quest in planet.questList.Where(q =>
-                     q.objectives[0].objectiveType == QuestObjectiveType.PirateHunt &&
-                     q.status == QuestStatus.Active))
-        {
-            quest.objectives[0].currentAmount++;
+            foreach (RandomQuest quest in planet.questList.Where(q =>
+                         q.objectives[0].objectiveType == QuestObjectiveType.PirateHunt &&
+                         q.status == QuestStatus.Active))
+            {
+                quest.objectives[0].currentAmount++;
 
-            if (quest.objectives[0].currentAmount >= quest.objectives[0].amount) quest.SetCanComplete(true);
-        }
+                if (quest.objectives[0].currentAmount >= quest.objectives[0].amount) quest.SetCanComplete(true);
+            }
     }
 
     /// <summary>
@@ -933,20 +934,20 @@ public class GameManager : MonoBehaviour
     public void CheckItemQuests()
     {
         foreach (PlanetData planet in planetDataList)
-        foreach (RandomQuest quest in planet.questList.Where(q =>
-                     (q.objectives[0].objectiveType == QuestObjectiveType.ItemTransport ||
-                      q.objectives[0].objectiveType == QuestObjectiveType.ItemProcurement) &&
-                     q.status == QuestStatus.Active))
-        {
-            int targetId = quest.objectives[0].targetId;
-            int targetAmount = quest.objectives[0].amount;
+            foreach (RandomQuest quest in planet.questList.Where(q =>
+                         (q.objectives[0].objectiveType == QuestObjectiveType.ItemTransport ||
+                          q.objectives[0].objectiveType == QuestObjectiveType.ItemProcurement) &&
+                         q.status == QuestStatus.Active))
+            {
+                int targetId = quest.objectives[0].targetId;
+                int targetAmount = quest.objectives[0].amount;
 
-            // ID와 양이 정확히 일치하는 아이템이 있는지 체크
-            bool hasMatchingItem = playerShip.GetAllItems()
-                .Any(i => i.GetItemId() == targetId && i.GetItemData().amount == targetAmount);
+                // ID와 양이 정확히 일치하는 아이템이 있는지 체크
+                bool hasMatchingItem = playerShip.GetAllItems()
+                    .Any(i => i.GetItemId() == targetId && i.GetItemData().amount == targetAmount);
 
-            quest.SetCanComplete(hasMatchingItem);
-        }
+                quest.SetCanComplete(hasMatchingItem);
+            }
     }
 
     #endregion

@@ -101,6 +101,20 @@ public class Customize_0_Controller : MonoBehaviour
         Camera mainCam = Camera.main;
         mainCam.transform.position = new Vector3(-100f, -100f, mainCam.transform.position.z);
         playerShip.SetShipContentsActive(true);
+
+        playerShip.RemoveAllCrews();
+        playerShip.RemoveAllRooms();
+        playerShip.RemoveAllWeapons();
+        playerShip.RemoveAllItems();
+        // GameManager.Instance.LoadPlayerData();
+
+        if (ES3.FileExists("playerShip"))
+        {
+            Debug.Log("소환시도");
+
+            ShipSerialization.LoadShip("playerShip");
+        }
+
         SceneChanger.Instance.LoadScene("Planet");
     }
 

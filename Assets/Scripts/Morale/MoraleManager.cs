@@ -344,8 +344,11 @@ public class MoraleManager : MonoBehaviour
         // 모든 UI 아이콘 비활성화 및 초기화
         foreach (MoraleIcon icon in raceIcons.Values)
         {
-            icon.ClearEffectData();
-            icon.gameObject.SetActive(false);
+            if (icon != null)
+            {
+                icon.ClearEffectData();
+                icon.gameObject.SetActive(false);
+            }
         }
 
         // 로드된 효과들 다시 적용
