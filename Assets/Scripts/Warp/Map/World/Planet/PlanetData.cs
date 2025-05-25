@@ -402,6 +402,37 @@ public class PlanetData
             $"[PlanetEffect] {planetName} 행성의 {effect.categoryType} 가격 변동률 효과 제거: 현재 {categoryPriceModifiers[effect.categoryType]}%");
     }
 
+    public void CheckPirateQuests()
+    {
+        foreach (RandomQuest quest in questList.Where(q =>
+                     q.objectives[0].objectiveType == QuestObjectiveType.PirateHunt && q.status == QuestStatus.Active))
+        {
+            quest.objectives[0].currentAmount++;
+
+            if (quest.objectives[0].currentAmount > quest.objectives[0].amount) quest.SetCanComplete(true);
+        }
+    }
+
+    public void CheckItemQuests(int itemId)
+    {
+        foreach (RandomQuest quest in questList.Where(q =>
+                     q.objectives[0].objectiveType == QuestObjectiveType.ItemTransport ||
+                     q.objectives[0].objectiveType == QuestObjectiveType.ItemProcurement ||
+                     q.status == QuestStatus.Active))
+        {
+            int targetId = quest.objectives[0].targetId;
+            int targetAmount = quest.objectives[0].amount;
+
+            bool hasMatchingItem = GameManager.Instance.playerShip.GetAllItems()
+                .Any(i => i.GetItemId() == targetId && i.GetItemData().amount == targetAmount);
+
+            if (hasMatchingItem)
+                quest.SetCanComplete(true);
+            else
+                quest.SetCanComplete(false);
+        }
+    }
+
     /// <summary>
     /// 현재 이벤트 상태를 확인하고 만료된 효과를 제거합니다
     /// </summary>
@@ -505,6 +536,48 @@ public class PlanetData
                 FailQuest(activeQuestList[i]);
     }
 
+    public void ActivateQuest(RandomQuest quest)
+    {
+        quest.status = QuestStatus.Active;
+        quest.questAcceptedYear = GameManager.Instance.CurrentYear;
+    }
+
+    public void CompleteQuest(RandomQuest quest)
+    {
+        quest.status = QuestStatus.Completed;
+        int reward = 0;
+        if (quest.rewards[0].questRewardType == QuestRewardType.COMA)
+            reward = quest.rewards[0].amount;
+
+
+        switch (quest.objectives[0].objectiveType)
+        {
+            case QuestObjectiveType.ItemTransport:
+            case QuestObjectiveType.ItemProcurement:
+                int targetItemId = quest.objectives[0].targetId;
+                int targetAmount = quest.objectives[0].amount;
+                foreach (Room room in GameManager.Instance.playerShip.GetAllRooms())
+                    if (room is StorageRoomBase storageRoom)
+                    {
+                        TradingItem targetItem = storageRoom.storedItems
+                            .FirstOrDefault(t =>
+                                t.GetItemData().id == targetItemId && t.GetItemData().amount == targetAmount);
+
+                        if (targetItem != null) storageRoom.DestroyItem(targetItem);
+                    }
+
+                break;
+            case QuestObjectiveType.PirateHunt:
+
+                break;
+            case QuestObjectiveType.CrewTransport:
+                break;
+        }
+
+        ResourceManager.Instance.ChangeResource(ResourceType.COMA, reward);
+        questList.Remove(quest);
+    }
+
 
     /// <summary>
     /// 퀘스트를 실패 처리합니다.
@@ -518,6 +591,7 @@ public class PlanetData
 
     public void TrySpawnQuest()
     {
+        Debug.LogError("호출됨!");
         if (Random.value <= Constants.Quest.QuestCreateRate) CreateRandomQuest();
     }
 
@@ -535,8 +609,6 @@ public class PlanetData
         } while (randomPlanetData == this);
 
 
-        // TODO : 테스트용 퀘스트 고정 코드
-        randomType = QuestObjectiveType.ItemProcurement;
         TradingItemDataBase itemDatabase = GameObjectFactory.Instance.ItemFactory.itemDataBase;
         TradingItemData item = null;
         PlanetData targetPlanetData = null;
@@ -560,6 +632,7 @@ public class PlanetData
                 objective.amount = item.capacity;
                 objective.targetPlanetDataId = randomPlanetData.planetId;
                 targetPlanetData = GameManager.Instance.PlanetDataList[randomPlanetData.planetId];
+                objective.targetPlanetDataId = targetPlanetData.planetId;
                 objective.description = "ui.quest.objective.itemtransport";
 
                 reward = (int)(item.costMax * 1.1f * objective.amount);
@@ -569,6 +642,7 @@ public class PlanetData
                 quest.title = "ui.quest.title.itemprocurement";
                 item = itemDatabase.GetRandomItem();
                 objective.targetId = item.id;
+
                 objective.amount = item.capacity;
                 objective.targetPlanetDataId = planetId;
                 objective.description =
@@ -581,12 +655,15 @@ public class PlanetData
                 objective.amount = 1;
                 objective.targetPlanetDataId = randomPlanetData.planetId;
                 targetPlanetData = GameManager.Instance.PlanetDataList[randomPlanetData.planetId];
+                objective.targetPlanetDataId = targetPlanetData.planetId;
+
                 objective.description = objective.description =
                     "ui.quest.objective.crewtransport";
 
                 reward = objective.amount * 500;
                 break;
         }
+
 
         quest.rewards.Add(new QuestReward() { questRewardType = QuestRewardType.COMA, amount = reward });
         quest.status = QuestStatus.NotStarted;

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -5,17 +6,14 @@ using UnityEngine.UI;
 
 public class Customize_0_Controller : MonoBehaviour
 {
-    [Header("Ship")]
-    [SerializeField] private Ship playerShip;
+    [Header("Ship")] [SerializeField] private Ship playerShip;
     [SerializeField] private BlueprintShip bpShip;
 
-    [Header("UI Panels")]
-    [SerializeField] private GameObject customize0Panel;
+    [Header("UI Panels")] [SerializeField] private GameObject customize0Panel;
     [SerializeField] private GameObject customize1Panel;
     [SerializeField] private GameObject customize2Panel;
 
-    [Header("Fields")]
-    [SerializeField] private Button exitButton;
+    [Header("Fields")] [SerializeField] private Button exitButton;
     [SerializeField] public Button applyButton;
     [SerializeField] private Button editButton;
     [SerializeField] public BPPreviewArea bpPreviewArea;
@@ -25,8 +23,8 @@ public class Customize_0_Controller : MonoBehaviour
     [SerializeField] private Button slot3Button;
     [SerializeField] private Button slot4Button;
 
-    [Header("Applied Tags")]
-    [SerializeField] private List<Image> appliedTags = new();
+    [Header("Applied Tags")] [SerializeField]
+    private List<Image> appliedTags = new();
 
     public List<Button> slotButtons = new();
 
@@ -50,6 +48,9 @@ public class Customize_0_Controller : MonoBehaviour
         playerShip = GameManager.Instance.playerShip;
         // RTSSelectionManager.Instance.playerShip = GameManager.Instance.playerShip;
         playerShip.SetShipContentsActive(false);
+
+        if (BlueprintSlotManager.Instance != null)
+            BlueprintSlotManager.Instance.RegisterCustomizePanel(gameObject);
     }
 
     /// <summary>
@@ -58,11 +59,8 @@ public class Customize_0_Controller : MonoBehaviour
     private void OnEnable()
     {
         // playerShip 내 모든 오브젝트 비활성화
-        if (playerShip == null)
-        {
-            playerShip = GameManager.Instance.playerShip;
-            // RTSSelectionManager.Instance.playerShip = GameManager.Instance.playerShip;
-        }
+        if (playerShip == null) playerShip = GameManager.Instance.playerShip;
+        // RTSSelectionManager.Instance.playerShip = GameManager.Instance.playerShip;
         playerShip.SetShipContentsActive(false);
 
         for (int i = 0; i < appliedTags.Count; i++)
@@ -98,6 +96,31 @@ public class Customize_0_Controller : MonoBehaviour
         Camera mainCam = Camera.main;
         mainCam.transform.position = new Vector3(-100f, -100f, mainCam.transform.position.z);
         playerShip.SetShipContentsActive(true);
+
+        playerShip.RemoveAllCrews();
+        playerShip.RemoveAllRooms();
+        playerShip.RemoveAllWeapons();
+        playerShip.RemoveAllItems();
+        // GameManager.Instance.LoadPlayerData();
+
+        // 로딩 코루틴 실행
+        StartCoroutine(DelayedLoadShipAndScene());
+    }
+
+    private IEnumerator DelayedLoadShipAndScene()
+    {
+        // 1초 대기 (혹은 필요한 만큼 조정)
+        yield return new WaitForSeconds(1f);
+
+        if (ES3.FileExists("playerShip"))
+        {
+            Debug.Log("소환시도");
+
+            ShipSerialization.LoadShip("playerShip");
+        }
+
+        RTSSelectionManager.Instance.RefreshMovementData();
+
         SceneChanger.Instance.LoadScene("Planet");
     }
 

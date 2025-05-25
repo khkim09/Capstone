@@ -60,4 +60,8 @@ public class PlanetEffect
         this.duration = duration;
         this.parentEventName = parentEventName;
     }
+
+    public PlanetEffect()
+    {
+    }
 }

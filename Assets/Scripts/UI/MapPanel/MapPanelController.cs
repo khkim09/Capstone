@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 
@@ -332,10 +333,17 @@ public class MapPanelController : MonoBehaviour
             return;
         checkWarpUI.SetActive(false);
 
-
-        GameManager.Instance.AddYear();
         Ship playerShip = GameManager.Instance.GetPlayerShip();
         float fuelAmount = playerShip.CalculateWarpFuelCost();
+
+        if (fuelAmount > ResourceManager.Instance.Fuel)
+        {
+            helpMeUI.SetActive(true);
+            SlideClose();
+            return;
+        }
+
+        GameManager.Instance.AddYear();
         ResourceManager.Instance.ChangeResource(ResourceType.Fuel,
             -fuelAmount);
         // 플레이어 이동
@@ -383,7 +391,8 @@ public class MapPanelController : MonoBehaviour
         // 게임 상태 저장
         GameManager.Instance.SaveGameData();
 
-        EventManager.Instance.CombatOccur();
+        if(targetNode.NodeData.nodeType==WarpNodeType.Combat)
+            EventManager.Instance.CombatOccur();
     }
 
     private void OnWarpCompleted()
@@ -1111,6 +1120,74 @@ public class MapPanelController : MonoBehaviour
         GameManager.Instance.SaveGameData();
 
         OnPanelButtonClicked(panelWarp);
+    }
+
+    #endregion
+
+    public void GoToThePlanet(PlanetData destPlanet)
+    {
+        GameManager.Instance.SetCurrentWarpTargetPlanetId(destPlanet.planetId);
+        GameManager.Instance.normalizedPlayerPosition=destPlanet.normalizedPosition;
+        OnWarpCompleted();
+
+        ClearWarpNodes();
+        ClearWorldNodesAndIndicator();
+
+        GameManager.Instance.WorldNodeDataList.Clear();
+        if (currentPositionIndicator != null) UpdatePlayerIndicator();
+        //DrawWorldNodesAndIndicator();
+        GameManager.Instance.ClearCurrentWarpMap();
+
+        GameManager.Instance.SaveGameData();
+    }
+
+    public PlanetData NearestPlanet()
+    {
+        int originalTargetPlanetId = GameManager.Instance.CurrentWarpTargetPlanetId;
+        int newTargetPlanetId = originalTargetPlanetId;
+        float shortestDistance = 2f;
+        foreach (PlanetData planetData in GameManager.Instance.PlanetDataList)
+        {
+            float distance = Vector2.Distance(planetData.normalizedPosition, GameManager.Instance.normalizedPlayerPosition);
+            if (distance < shortestDistance)
+            {
+                shortestDistance = distance;
+                newTargetPlanetId = planetData.planetId;
+            }
+        }
+        return GameManager.Instance.PlanetDataList[newTargetPlanetId];
+    }
+
+    #region 표류기
+
+    public GameObject helpMeUI;
+    public GameObject pirateAppearAlert;
+
+    public void RestAssured()
+    {
+        GameManager.Instance.WarpEffect();
+        SceneChanger.Instance.JustStay();
+        GoToThePlanet(NearestPlanet());
+    }
+
+    public void SurpriseMotherFucker()
+    {
+        pirateAppearAlert.SetActive(true);
+    }
+
+    public void EnterCombat()
+    {
+        EventManager.Instance.CombatOccur();
+    }
+
+    public void RescueOrPirate()
+    {
+        float lucky = Random.value;
+        helpMeUI.SetActive(false);
+        if (lucky >= Constants.WarpNodes.SurprisePirate)
+            RestAssured();
+        else
+            SurpriseMotherFucker();
     }
 
     #endregion

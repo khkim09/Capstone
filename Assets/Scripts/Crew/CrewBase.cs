@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using UnityEditor.Animations;
 using UnityEngine;
 
 /// <summary>
@@ -132,8 +133,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// <summary>
     /// 선원 체력 바
     /// </summary>
-    [Header("Health Bar")]
-    [SerializeField]
+    [Header("Health Bar")] [SerializeField]
     public CrewHealthBar healthBarController;
 
     /// <summary>
@@ -141,19 +141,73 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// </summary>
     public HashSet<CrewMember> bullier = new();
 
+    [SerializeField] private List<Sprite> allRaceSprites;
+
+    [SerializeField] private List<AnimatorController> allRaceAnimations;
+
+
     public virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = Constants.SortingOrders.Character;
-        spriteRenderer.sprite = Resources.Load<Sprite>($"Sprites/Crew/{race.ToString().ToLower()}");
+        //spriteRenderer.sprite = Resources.Load<Sprite>($"Sprites/Crew/{race.ToString().ToLower()}");
+        switch (race)
+        {
+            case CrewRace.Amorphous:
+                spriteRenderer.sprite = allRaceSprites[0];
+                break;
+            case CrewRace.Beast:
+                spriteRenderer.sprite = allRaceSprites[1];
+                break;
+            case CrewRace.Human:
+                spriteRenderer.sprite = allRaceSprites[2];
+                break;
+            case CrewRace.Insect:
+                spriteRenderer.sprite = allRaceSprites[3];
+                break;
+            case CrewRace.MechanicSup:
+                spriteRenderer.sprite = allRaceSprites[4];
+                break;
+            case CrewRace.MechanicTank:
+                spriteRenderer.sprite = allRaceSprites[5];
+                break;
+        }
+
+        spriteRenderer.material = Resources.Load<Material>("Material/UnitDefaultMaterial");
+
         InitializePortrait();
+
+        // animator.runtimeAnimatorController =
+        //     Resources.Load<RuntimeAnimatorController>($"Animation/{race.ToString()}/{race.ToString()}");
 
         // 종족별 애니메이터 연결
         if (animator == null)
         {
             animator = gameObject.GetComponent<Animator>();
-            animator.runtimeAnimatorController
-                = Resources.Load<RuntimeAnimatorController>($"Animation/{race.ToString()}/{race.ToString()}");
+            switch (race)
+            {
+                case CrewRace.Amorphous:
+                    animator.runtimeAnimatorController = allRaceAnimations[0];
+                    break;
+                case CrewRace.Beast:
+                    animator.runtimeAnimatorController = allRaceAnimations[1];
+                    break;
+                case CrewRace.Human:
+                    animator.runtimeAnimatorController = allRaceAnimations[2];
+                    break;
+                case CrewRace.Insect:
+                    animator.runtimeAnimatorController = allRaceAnimations[3];
+                    break;
+                case CrewRace.MechanicSup:
+                    animator.runtimeAnimatorController = allRaceAnimations[4];
+                    break;
+                case CrewRace.MechanicTank:
+                    animator.runtimeAnimatorController = allRaceAnimations[5];
+                    break;
+            }
+
+
+            Debug.Log("여기 호출됨");
         }
 
         SetupHealthBar();

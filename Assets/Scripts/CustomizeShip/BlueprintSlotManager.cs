@@ -53,6 +53,7 @@ public class BlueprintSlotManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -69,9 +70,19 @@ public class BlueprintSlotManager : MonoBehaviour
 
         for (int i = isValidBP.Count; i < 4; i++)
             isValidBP.Add(false);
+    }
 
-        if (SceneManager.GetActiveScene().name == "Customize")
-            InitializeSlotButtonColor();
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Customize")
+            if (customize0Panel != null)
+                InitializeSlotButtonColor();
     }
 
     /// <summary>
@@ -79,10 +90,17 @@ public class BlueprintSlotManager : MonoBehaviour
     /// </summary>
     private void InitializeSlotButtonColor()
     {
+        Debug.LogError("slotmanager 버튼 초기화");
         Customize_0_Controller controller0 = customize0Panel.GetComponent<Customize_0_Controller>();
 
         for (int i = 0; i < blueprintSlots.Count; i++)
-            controller0.UpdateSlotButtonColor(i, false);
+            controller0.UpdateSlotButtonColor(i, isValidBP[i]);
+    }
+
+    public void RegisterCustomizePanel(GameObject panel)
+    {
+        customize0Panel = panel;
+        InitializeSlotButtonColor();
     }
 
     /// <summary>

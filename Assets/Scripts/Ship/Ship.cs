@@ -191,7 +191,7 @@ public class Ship : MonoBehaviour
     /// <summary>
     /// 룸을 생성하고 배치하며, 초기화는 Room의 Initialize 메서드를 사용합니다.
     /// </summary>
-    public bool AddRoom(int level, RoomData roomData, Vector2Int position, Constants.Rotations.Rotation rotation)
+    public bool AddRoom(int level, RoomData roomData, Vector2Int position, Constants.Rotations.Rotation rotation, float hitPoints)
     {
         // 룸 타입 확인
         RoomType roomType = roomData.GetRoomType();
@@ -199,7 +199,6 @@ public class Ship : MonoBehaviour
         // 룸 오브젝트 생성
         GameObject roomObject = new($"Room_{roomData.GetRoomDataByLevel(level).roomName}");
         roomObject.transform.SetParent(transform);
-
 
         // 타입에 맞는 컴포넌트 추가
         Room room = AddRoomComponent(roomObject, roomType, roomData);
@@ -230,6 +229,21 @@ public class Ship : MonoBehaviour
         room.gameObject.transform.rotation = Quaternion.Euler(0, 0, -(int)rotation * 90);
 
         room.Initialize(level);
+
+        // 커스터마이징 이후에도 기존 손상도 복구 위한 작업
+        room.currentHitPoints = hitPoints;
+        room.damageCondition = DamageLevel.good;
+
+        if (room.GetIsDamageable())
+        {
+            if (room.currentHitPoints <= roomData.GetRoomDataByLevel(level).damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
+                room.damageCondition = DamageLevel.breakdown;
+            else if (room.currentHitPoints <= roomData.GetRoomDataByLevel(level).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+                room.damageCondition = DamageLevel.scratch;
+        }
+
+        // 스탯 기여도 변화 알림
+        room.NotifyStateChanged();
 
         room.UpdateRoomVisual();
 
@@ -531,7 +545,8 @@ public class Ship : MonoBehaviour
                 roomData = room.GetRoomData(),
                 level = room.GetCurrentLevel(),
                 position = room.position,
-                rotation = room.currentRotation
+                rotation = room.currentRotation,
+                hitPoints = room.currentHitPoints
             });
 
         foreach (ShipWeapon wp in GetAllWeapons())
@@ -565,8 +580,13 @@ public class Ship : MonoBehaviour
         // 기존 함선으로 복구
         foreach (RoomBackupData backupData in backupRoomDatas)
         {
-            AddRoom(backupData.level, backupData.roomData, backupData.position, backupData.rotation);
-            Room placed = GetRoomAtPosition(backupData.position);
+            AddRoom(
+                backupData.level,
+                backupData.roomData,
+                backupData.position,
+                backupData.rotation,
+                backupData.hitPoints
+            );
         }
 
         foreach (WeaponBackupData backupData in backupWeapons)
@@ -612,7 +632,8 @@ public class Ship : MonoBehaviour
                 bpRoom.bpLevelIndex,
                 bpRoom.bpRoomData,
                 bpRoom.bpPosition,
-                bpRoom.bpRotation
+                bpRoom.bpRotation,
+                bpRoom.bpRoomData.GetRoomDataByLevel(bpRoom.bpLevelIndex).hitPoint
             );
 
         // 6. 설계도 → 함선: 무기 배치

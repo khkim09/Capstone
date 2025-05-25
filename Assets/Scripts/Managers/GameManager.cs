@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -67,8 +68,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -100,6 +100,16 @@ public class GameManager : MonoBehaviour
     public int CurrentWarpTargetPlanetId => currentWarpTargetPlanetId;
 
     public int CurrentWarpNodeId => currentWarpNodeId;
+
+    /// <summary>
+    /// 완료된 미스터리 이벤트 ID 목록 (한 번 뜬 미스터리 이벤트는 다시 나오지 않음)
+    /// </summary>
+    private List<int> completedMysteryEventIds = new();
+
+    /// <summary>
+    /// 완료된 미스터리 이벤트 ID 목록을 반환합니다 (읽기 전용)
+    /// </summary>
+    public List<int> CompletedMysteryEventIds => completedMysteryEventIds.ToList();
 
     public event Action OnShipInitialized;
 
@@ -163,6 +173,20 @@ public class GameManager : MonoBehaviour
 
         // // 미사일 피격 테스트
         // StartCoroutine(DelayedMissileTest());
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnItemAcquired += (itemId) => CheckItemQuests();
+        GameEvents.OnPirateKilled += CheckPirateQuests;
+        GameEvents.OnItemRemoved += (itemId) => CheckItemQuests();
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.OnItemAcquired -= (itemId) => CheckItemQuests();
+        GameEvents.OnPirateKilled -= CheckPirateQuests;
+        GameEvents.OnItemRemoved -= (itemId) => CheckItemQuests();
     }
 
     // 피격 테스트
@@ -282,23 +306,23 @@ public class GameManager : MonoBehaviour
         playerShip.AddRoom(corridors[13], new Vector2Int(31, 35));
         playerShip.AddRoom(corridors[14], new Vector2Int(32, 35));
 
-        // Room storageRoom = GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
-        // Room storageRoom2 =
-        //     GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+        Room storageRoom = GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+        Room storageRoom2 =
+            GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
 
-        // playerShip.AddRoom(storageRoom, new Vector2Int(27, 26), Constants.Rotations.Rotation.Rotation270);
-        // playerShip.AddRoom(storageRoom2, new Vector2Int(38, 24), Constants.Rotations.Rotation.Rotation90);
-        // StorageRoomBase storage = (StorageRoomBase)storageRoom;
-        // TradingItem item = GameObjectFactory.Instance.CreateItemInstance(0, 20);
-        // TradingItem item2 = GameObjectFactory.Instance.CreateItemInstance(2, 10);
-        // TradingItem item3 = GameObjectFactory.Instance.CreateItemInstance(21, 1);
-        // storage.AddItem(item, new Vector2Int(0, 0), Constants.Rotations.Rotation.Rotation0);
-        // storage.AddItem(item2, new Vector2Int(2, 2), Constants.Rotations.Rotation.Rotation0);
-        // StorageRoomBase storage2 = (StorageRoomBase)storageRoom2;
-        // storage2.AddItem(item3, new Vector2Int(1, 1), Constants.Rotations.Rotation.Rotation0);
+        playerShip.AddRoom(storageRoom, new Vector2Int(27, 26), Constants.Rotations.Rotation.Rotation270);
+        playerShip.AddRoom(storageRoom2, new Vector2Int(38, 24), Constants.Rotations.Rotation.Rotation90);
+        StorageRoomBase storage = (StorageRoomBase)storageRoom;
+        TradingItem item = GameObjectFactory.Instance.CreateItemInstance(0, 20);
+        TradingItem item2 = GameObjectFactory.Instance.CreateItemInstance(2, 10);
+        TradingItem item3 = GameObjectFactory.Instance.CreateItemInstance(21, 1);
+        storage.AddItem(item, new Vector2Int(0, 0), Constants.Rotations.Rotation.Rotation0);
+        storage.AddItem(item2, new Vector2Int(2, 2), Constants.Rotations.Rotation.Rotation0);
+        StorageRoomBase storage2 = (StorageRoomBase)storageRoom2;
+        storage2.AddItem(item3, new Vector2Int(1, 1), Constants.Rotations.Rotation.Rotation0);
 
-        // Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
-        // playerShip.AddRoom(temp, new Vector2Int(50, 31), Constants.Rotations.Rotation.Rotation90);
+        Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
+        playerShip.AddRoom(temp, new Vector2Int(50, 31), Constants.Rotations.Rotation.Rotation90);
 
         playerShip.AddWeapon(1, new Vector2Int(35, 33), ShipWeaponAttachedDirection.East);
 
@@ -496,6 +520,13 @@ public class GameManager : MonoBehaviour
         Debug.Log($"[워프 완료] 현재 연도 : {currentYear}");
     }
 
+    public event Action<int> OnlyWarpEffect;
+
+    public void WarpEffect()
+    {
+        OnlyWarpEffect?.Invoke(currentYear);
+    }
+
     #region 게임 데이터 관련
 
     // TODO: 게임 데이터 초기화 로직 및 진짜 새로운 게임 시작할 건지 물어야함.
@@ -536,8 +567,8 @@ public class GameManager : MonoBehaviour
                 SceneChanger.Instance.LoadScene("Combat");
                 break;
 
-            case GameState.Event:
-                SceneChanger.Instance.LoadScene("Idle");
+            case GameState.Planet:
+                SceneChanger.Instance.LoadScene("Planet");
                 break;
 
             default:
@@ -610,6 +641,9 @@ public class GameManager : MonoBehaviour
 
         // 행성에서 장비 구매했는지 여부
         ES3.Save<bool>("isBoughtEquipment", isBoughtEquipment);
+
+        // 도안 데이터 저장
+        if (BlueprintSlotManager.Instance != null) BlueprintSlotManager.Instance.SaveAllBlueprints();
     }
 
     /// <summary>
@@ -619,6 +653,13 @@ public class GameManager : MonoBehaviour
     {
         // 유저 데이터 (엔딩 관련)
         if (ES3.KeyExists("playerData")) playerData = ES3.Load<PlayerData>("playerData");
+
+        // 완료된 미스터리 이벤트 ID 목록 로드
+        if (ES3.KeyExists("completedMysteryEventIds"))
+        {
+            completedMysteryEventIds = ES3.Load<List<int>>("completedMysteryEventIds");
+            playerData.mysteryFound = completedMysteryEventIds.Count;
+        }
 
         // 게임 스테이트
         if (ES3.KeyExists("gameState")) currentState = ES3.Load<GameState>("gameState");
@@ -650,14 +691,17 @@ public class GameManager : MonoBehaviour
             Debug.Log("소환시도");
 
             ShipSerialization.LoadShip("playerShip");
-            OnShipInitialized?.Invoke();
+            // OnShipInitialized?.Invoke();
         }
         else
         {
             Debug.Log("없어서 기본함선 만듦");
             CreateDefaultPlayerShip();
-            OnShipInitialized?.Invoke();
+            // OnShipInitialized?.Invoke();
         }
+
+        // 도안 데이터 로드
+        if (BlueprintSlotManager.Instance != null) BlueprintSlotManager.Instance.LoadAllBlueprints();
     }
 
     public void DeletePlayerData()
@@ -670,6 +714,9 @@ public class GameManager : MonoBehaviour
         playerShip.RemoveAllItems();
         playerShip.Initialize();
 
+        ES3.DeleteKey("completedMysteryEventIds");
+        completedMysteryEventIds.Clear();
+
         // 사기 효과
         ES3.DeleteFile("moraleEffect");
         MoraleManager.Instance.ResetAllMorale();
@@ -678,9 +725,13 @@ public class GameManager : MonoBehaviour
         ES3.DeleteFile("currentYear");
         currentYear = 0;
 
+        // 완료된 미스터리 이벤트 ID 목록 저장
+        ES3.Save<List<int>>("completedMysteryEventIds", completedMysteryEventIds);
+
         // 플레이어 데이터 (엔딩 관련)
         ES3.DeleteKey("playerData");
         playerData.ResetPlayerData();
+
 
         // 게임 스테이트
         ES3.DeleteKey("gameState");
@@ -700,6 +751,29 @@ public class GameManager : MonoBehaviour
         // 행성 씬 장비 구매 여부
         ES3.DeleteKey("isBoughtEquipment");
         isBoughtEquipment = false;
+
+        // 도안 데이터 삭제 (JSON 파일 삭제)
+        if (BlueprintSlotManager.Instance != null)
+        {
+            string blueprintPath = Application.persistentDataPath + "/blueprints.json";
+            if (System.IO.File.Exists(blueprintPath))
+            {
+                System.IO.File.Delete(blueprintPath);
+                Debug.Log("도안 데이터 파일 삭제됨");
+            }
+
+            // 메모리상의 데이터도 초기화
+            for (int i = 0; i < BlueprintSlotManager.Instance.blueprintSlots.Count; i++)
+            {
+                BlueprintSlotManager.Instance.blueprintSlots[i] =
+                    new BlueprintSaveData(new List<BlueprintRoomSaveData>(), new List<BlueprintWeaponSaveData>(), -1);
+                BlueprintSlotManager.Instance.occupiedTilesPerSlot[i].Clear();
+                BlueprintSlotManager.Instance.isValidBP[i] = false;
+            }
+
+            BlueprintSlotManager.Instance.currentSlotIndex = -1;
+            BlueprintSlotManager.Instance.appliedSlotIndex = 0;
+        }
     }
 
     #endregion
@@ -864,6 +938,78 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+    #region 퀘스트
+
+    public void OnPirateKilled()
+    {
+        playerData.pirateDefeated++;
+        CheckPirateQuests();
+    }
+
+    /// <summary>
+    /// 해적 처치 시 모든 해적 잡기 퀘스트를 체크합니다.
+    /// </summary>
+    public void CheckPirateQuests()
+    {
+        foreach (PlanetData planet in planetDataList)
+        foreach (RandomQuest quest in planet.questList.Where(q =>
+                     q.objectives[0].objectiveType == QuestObjectiveType.PirateHunt &&
+                     q.status == QuestStatus.Active))
+        {
+            quest.objectives[0].currentAmount++;
+
+            if (quest.objectives[0].currentAmount >= quest.objectives[0].amount) quest.SetCanComplete(true);
+        }
+    }
+
+    /// <summary>
+    /// 모든 아이템 관련 퀘스트를 체크합니다.
+    /// </summary>
+    public void CheckItemQuests()
+    {
+        foreach (PlanetData planet in planetDataList)
+        foreach (RandomQuest quest in planet.questList.Where(q =>
+                     (q.objectives[0].objectiveType == QuestObjectiveType.ItemTransport ||
+                      q.objectives[0].objectiveType == QuestObjectiveType.ItemProcurement) &&
+                     q.status == QuestStatus.Active))
+        {
+            int targetId = quest.objectives[0].targetId;
+            int targetAmount = quest.objectives[0].amount;
+
+            // ID와 양이 정확히 일치하는 아이템이 있는지 체크
+            bool hasMatchingItem = playerShip.GetAllItems()
+                .Any(i => i.GetItemId() == targetId && i.GetItemData().amount == targetAmount);
+
+            quest.SetCanComplete(hasMatchingItem);
+        }
+    }
+
+    #endregion
+
+    /// <summary>
+    /// 미스터리 이벤트 완료 시 호출하여 ID를 기록합니다
+    /// </summary>
+    /// <param name="eventId">완료된 미스터리 이벤트 ID</param>
+    public void AddCompletedMysteryEvent(int eventId)
+    {
+        if (!completedMysteryEventIds.Contains(eventId))
+        {
+            completedMysteryEventIds.Add(eventId);
+            playerData.mysteryFound++;
+            Debug.Log($"미스터리 이벤트 완료 기록: ID {eventId}");
+        }
+    }
+
+    /// <summary>
+    /// 특정 미스터리 이벤트가 이미 완료되었는지 확인합니다
+    /// </summary>
+    /// <param name="eventId">확인할 이벤트 ID</param>
+    /// <returns>완료된 경우 true</returns>
+    public bool IsMysteryEventCompleted(int eventId)
+    {
+        return completedMysteryEventIds.Contains(eventId);
+    }
 }
 
 /// <summary>

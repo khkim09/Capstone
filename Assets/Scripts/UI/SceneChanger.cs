@@ -71,6 +71,34 @@ public class SceneChanger : MonoBehaviour
         IsTransitioning = false;
     }
 
+    public void JustStay()
+    {
+        // 이미 전환 중이라면 무시
+        if (IsTransitioning) return;
+
+        GameManager.Instance.SaveGameData();
+
+        StartCoroutine(stillStand());
+    }
+
+    private IEnumerator stillStand()
+    {
+        // 씬 전환 시작 - 입력 차단
+        IsTransitioning = true;
+        SetInputBlocking(true);
+        fadeDuration = 2f;
+        yield return StartCoroutine(Fade(1)); // 페이드 아웃
+        // 씬 로드 후 fadeImage가 확실히 검은색(알파 1)로 설정되어 있는지 확인
+        fadeImage.color = new Color(0, 0, 0, 1);
+
+        fadeDuration = 1f;
+        yield return StartCoroutine(Fade(0)); // 페이드 인
+
+        // 씬 전환 완료 - 입력 차단 해제
+        SetInputBlocking(false);
+        IsTransitioning = false;
+    }
+
     /// <summary>
     /// 전투 종료 후 집으로 가라
     /// </summary>

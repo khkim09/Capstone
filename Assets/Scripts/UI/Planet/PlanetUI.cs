@@ -1,41 +1,41 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlanetUI : MonoBehaviour
 {
-    private Image portrait;
+    [SerializeField] private Image portrait;
 
-    private Image planetIllust;
+    [SerializeField] private Image planetIllust;
+
+    [SerializeField] private List<PlanetSpriteInfo> spritesInfo;
+
+    private Dictionary<PlanetRace, PlanetSpriteInfo> spriteDict;
+
+
+    private void Awake()
+    {
+        spriteDict = new Dictionary<PlanetRace, PlanetSpriteInfo>();
+
+        foreach (PlanetSpriteInfo info in spritesInfo)
+            if (!spriteDict.ContainsKey(info.key))
+                spriteDict.Add(info.key, info);
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        portrait = transform.Find("Portrait/PortraitImage").GetComponent<Image>();
-        planetIllust = transform.Find("PlanetIllust").GetComponent<Image>();
-
         PlanetRace curPlanetRace = GameManager.Instance.WhereIAm().planetRace;
-        switch (curPlanetRace)
+
+        if (spriteDict.TryGetValue(curPlanetRace, out PlanetSpriteInfo info))
         {
-            case PlanetRace.Aquatic:
-                portrait.sprite = Resources.Load<Sprite>("Sprites/UI/Planet/Portrait/SIS");
-                planetIllust.sprite = Resources.Load<Sprite>("Sprites/UI/Planet/Illust/SIS");
-                break;
-            case PlanetRace.Avian:
-                portrait.sprite = Resources.Load<Sprite>("Sprites/UI/Planet/Portrait/CCK");
-                planetIllust.sprite = Resources.Load<Sprite>("Sprites/UI/Planet/Illust/CCK");
-                break;
-            case PlanetRace.IceMan:
-                portrait.sprite = Resources.Load<Sprite>("Sprites/UI/Planet/Portrait/ICM");
-                planetIllust.sprite = Resources.Load<Sprite>("Sprites/UI/Planet/Illust/ICM");
-                break;
-            case PlanetRace.Human:
-                portrait.sprite = Resources.Load<Sprite>("Sprites/UI/Planet/Portrait/RCE");
-                planetIllust.sprite = Resources.Load<Sprite>("Sprites/UI/Planet/Illust/RCE");
-                break;
-            case PlanetRace.Amorphous:
-                portrait.sprite = Resources.Load<Sprite>("Sprites/UI/Planet/Portrait/KTL");
-                planetIllust.sprite = Resources.Load<Sprite>("Sprites/UI/Planet/Illust/KTL");
-                break;
+            portrait.sprite = info.portraitValue;
+            planetIllust.sprite = info.planetIllustValue;
+        }
+        else
+        {
+            Debug.LogWarning($"PlanetRace {curPlanetRace}에 대한 스프라이트 정보가 없습니다.");
         }
     }
 
@@ -53,4 +53,12 @@ public class PlanetUI : MonoBehaviour
 
         SceneChanger.Instance.LoadScene("Idle");
     }
+}
+
+[Serializable]
+public class PlanetSpriteInfo
+{
+    public PlanetRace key;
+    public Sprite portraitValue;
+    public Sprite planetIllustValue;
 }

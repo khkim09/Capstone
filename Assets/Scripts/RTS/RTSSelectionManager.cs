@@ -450,9 +450,20 @@ public class RTSSelectionManager : MonoBehaviour
             if (hit.collider == null)
                 return;
 
+            // 1차적으로 클릭한 방 찾아 할당
             targetRoom = hit.collider.GetComponent<Room>();
-            if(targetRoom==null)
-                targetRoom = hit.collider.GetComponent<IconInteraction>().room;
+
+            // 2차적으로 방 아이콘 찾아 해당 방 할당
+            if (targetRoom == null)
+            {
+                IconInteraction ii = hit.collider.GetComponent<IconInteraction>();
+                if (ii != null)
+                    targetRoom = ii.room;
+            }
+
+            // 이마저도 없으면 (방 || 아이콘 < 선원) 순서로 겹쳐 선원을 우클릭한 경우 -> 이동 명령 무시
+            if (targetRoom == null)
+                return;
         }
 
         if (targetRoom == null)
@@ -497,12 +508,15 @@ public class RTSSelectionManager : MonoBehaviour
             if (availableTiles.Count <= 0)
             {
                 Debug.LogWarning("모든 타일이 점유됨");
+                foreach (Vector2Int et in entryTiles)
+                    Debug.LogError($"{CrewReservationManager.GetOccupyingCrew(targetShip, et)}가 {et} 점유중");
                 return;
             }
 
             // 우선순위 가장 높은 빈 타일을 목적지 타일로 지정
             Vector2Int tile = availableTiles[0];
             availableTiles.RemoveAt(0);
+            Debug.LogError($"{unassignedCrew.Count} 남음 : {tile}로 이동 - issuemovecommand");
 
             // 3-1. 이동에 필요한 필드 값 세팅
             CrewMember bestCrew = null;
@@ -512,10 +526,13 @@ public class RTSSelectionManager : MonoBehaviour
             // 3-2. 아직 이동하지 않은 선원들 중 목적지 타일까지 최단 거리 선원 탐색
             foreach (CrewMember crew in unassignedCrew)
             {
-                // 다른 배에서 이동 명령 실수로 찍음
+                // 선원이 위치한 배가 아닌 다른 배를 눌러 이동 명령 내릴 경우 무시
                 if (crew.currentShip != targetShip)
                 {
-                    if (/*targetShip == GameManager.Instance.playerShip && */targetRoom.roomType == RoomType.Teleporter)
+                    // 단, 유저 함선의 텔포 방 누를 시 선원 유저 함선으로 불러오기
+                    if (targetShip == GameManager.Instance.playerShip
+                        && targetRoom.roomType == RoomType.Teleporter
+                        && SceneManager.GetActiveScene().name == "Combat")
                     {
                         // 텔포 준비
                         crew.Freeze();

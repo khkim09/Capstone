@@ -108,6 +108,15 @@ public class CombatManager : MonoBehaviour
 
     public void CombatDefeatedAndGoHome(bool isDefeated)
     {
+        foreach (CrewMember crew in GameManager.Instance.playerShip.allCrews)
+            crew.Freeze();
+        foreach (CrewMember crew in GameManager.Instance.playerShip.allEnemies)
+            crew.Freeze();
+        foreach (CrewMember crew in GameManager.Instance.currentEnemyShip.allCrews)
+            crew.Freeze();
+        foreach (CrewMember crew in GameManager.Instance.currentEnemyShip.allCrews)
+            crew.Freeze();
+
         StartCoroutine(BackToTheHome(isDefeated));
     }
 
@@ -121,17 +130,17 @@ public class CombatManager : MonoBehaviour
         // 승리
         if (!isDefeated)
         {
-            // 적 함선에 있는 내 선원 복귀
-            List<CrewMember> needToBackMine = GameManager.Instance.currentEnemyShip.allEnemies;
-            foreach (CrewMember crew in needToBackMine)
-            {
-                crew.Freeze();
-                StartCoroutine(crew.TeleportAfterDelay(crew, 0f));
-            }
-
             // 내 함선에 있는 적 선원 복귀 및 자동 삭제
             List<CrewMember> needToDestroy = GameManager.Instance.playerShip.allEnemies;
             foreach (CrewMember crew in needToDestroy)
+            {
+                crew.Freeze();
+                crew.Die();
+            }
+
+            // 적 함선에 있는 내 선원 복귀
+            List<CrewMember> needToBackMine = GameManager.Instance.currentEnemyShip.allEnemies;
+            foreach (CrewMember crew in needToBackMine)
             {
                 crew.Freeze();
                 StartCoroutine(crew.TeleportAfterDelay(crew, 0f));
@@ -144,12 +153,12 @@ public class CombatManager : MonoBehaviour
             // 내 함선 내 모든 선원 삭제
             List<CrewMember> playerShipAllCrews = GameManager.Instance.playerShip.allCrews;
             foreach (CrewMember crew in playerShipAllCrews)
-                Destroy(crew.gameObject);
+                crew.Die();
             GameManager.Instance.playerShip.allCrews.Clear();
 
             List<CrewMember> playerShipAllEnemies = GameManager.Instance.playerShip.allEnemies;
             foreach (CrewMember crew in playerShipAllEnemies)
-                Destroy(crew.gameObject);
+                crew.Die();
             GameManager.Instance.playerShip.allEnemies.Clear();
         }
         yield return null;

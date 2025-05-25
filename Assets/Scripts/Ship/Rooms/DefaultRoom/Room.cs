@@ -42,7 +42,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [SerializeField] public Constants.Rotations.Rotation currentRotation;
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
-    [Header("방 효과")][SerializeField] protected ParticleSystem roomParticles;
+    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
 
     /// <summary>방 작동 시 사운드 효과.</summary>
     [SerializeField] protected AudioSource roomSound;
@@ -69,6 +69,15 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     public Ship parentShip;
 
     [SerializeField] private SpriteRenderer icon;
+
+    [Serializable]
+    public class ot
+    {
+        public CrewMember crewMember;
+        public Vector2Int tile;
+    }
+
+    public List<ot> occupyingTiles = new();
 
     /// <summary>
     /// 각 방에 collider 추가, isTrigger = true 설정을 통해 선원 충돌 방해 제거
@@ -331,6 +340,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
                 return false;
             return true;
         }
+
         return false;
     }
 
@@ -376,7 +386,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         // 방 상태가 작동 불능이면 아무런 기여도 없음
         if (!IsOperational())
             return contributions;
-
 
 
         // 방의 건강 상태에 따라 기여도에 효율 적용
@@ -426,12 +435,13 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     }
 
     /// <summary>상태 변경을 알립니다.</summary>
-    protected virtual void NotifyStateChanged()
+    public virtual void NotifyStateChanged()
     {
         if (workingCrew != null)
         {
-            workingCrew.WalkOut();
-            workingCrew.TryWork();
+            CrewMember worker = workingCrew;
+            worker.WalkOut();
+            worker.BackToThePeace();
         }
         OnRoomStateChanged?.Invoke(this);
     }
@@ -538,31 +548,33 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         string color = "";
 
         if (damageCondition == DamageLevel.breakdown)
+        {
             color = "red";
+        }
         else
         {
             if (!IsOperational())
+            {
                 color = "gray";
+            }
             else
             {
                 if (damageCondition == DamageLevel.scratch)
                     color = "yellow";
-                else if(damageCondition==DamageLevel.good)
-                {
-                    color = "green";
-                }
+                else if (damageCondition == DamageLevel.good) color = "green";
             }
         }
 
         if (color.Equals(""))
         {
-            Debug.LogError(name+": Room has no color assigned.");
+            Debug.LogError(name + ": Room has no color assigned.");
             return;
         }
 
 
         if (icon == null)
-            icon = Instantiate(roomData.GetRoomDataByLevel(currentLevel).roomIconPrefab, transform, false).GetComponent<SpriteRenderer>();
+            icon = Instantiate(roomData.GetRoomDataByLevel(currentLevel).roomIconPrefab, transform, false)
+                .GetComponent<SpriteRenderer>();
 
         if (position == new Vector2Int(0, 0)) return;
 
@@ -613,11 +625,10 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             currentHitPoints = Mathf.Max(0, currentHitPoints - damage);
             if (currentHitPoints <=
                 roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelTwo])
-            {
                 damageCondition = DamageLevel.breakdown;
-            }
             // OnDisabled();
-            else if (currentHitPoints <= roomData.GetRoomDataByLevel(currentLevel).damageHitPointRate[RoomDamageLevel.DamageLevelOne])
+            else if (currentHitPoints <= roomData.GetRoomDataByLevel(currentLevel)
+                         .damageHitPointRate[RoomDamageLevel.DamageLevelOne])
                 damageCondition = DamageLevel.scratch;
         }
 
@@ -851,8 +862,6 @@ public abstract class Room<TData, TLevel> : Room
             return;
         }
     }
-
-
 }
 
 public enum DamageLevel

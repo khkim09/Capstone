@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("crewName", "isPlayerControlled", "race", "maxHealth", "attack", "defense", "learningSpeed", "needsOxygen", "maxSkillValueArray", "maxPilotSkillValue", "maxEngineSkillValue", "maxPowerSkillValue", "maxShieldSkillValue", "maxWeaponSkillValue", "maxAmmunitionSkillValue", "maxMedBaySkillValue", "maxRepairSkillValue", "skills", "equipAdditionalSkills", "equippedWeapon", "equippedShield", "equippedAssistant", "currentRoom", "position", "targetPosition", "moveSpeed", "health", "isAlive", "isMoving", "currentShip", "spriteRenderer", "animator", "healthBarController")]
+	[ES3PropertiesAttribute("crewName", "isPlayerControlled", "race", "maxHealth", "attack", "defense", "learningSpeed", "needsOxygen", "maxSkillValueArray", "maxPilotSkillValue", "maxEngineSkillValue", "maxPowerSkillValue", "maxShieldSkillValue", "maxWeaponSkillValue", "maxAmmunitionSkillValue", "maxMedBaySkillValue", "maxRepairSkillValue", "skills", "equipAdditionalSkills", "equippedWeapon", "equippedShield", "equippedAssistant", "currentRoom", "position", "moveSpeed", "health", "isAlive", "currentShip", "spriteRenderer", "portraitSprite", "animator", "healthBarController")]
 	public class ES3UserType_CrewMember : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -40,15 +40,14 @@ namespace ES3Types
 			writer.WritePropertyByRef("equippedAssistant", instance.equippedAssistant);
 			writer.WritePropertyByRef("currentRoom", instance.currentRoom);
 			writer.WriteProperty("position", instance.position, ES3Type_Vector2Int.Instance);
-			writer.WriteProperty("targetPosition", instance.targetPosition, ES3Type_Vector2Int.Instance);
 			writer.WriteProperty("moveSpeed", instance.moveSpeed, ES3Type_float.Instance);
 			writer.WriteProperty("health", instance.health, ES3Type_float.Instance);
 			writer.WriteProperty("isAlive", instance.isAlive, ES3Type_bool.Instance);
-			writer.WriteProperty("isMoving", instance.isMoving, ES3Type_bool.Instance);
 			writer.WritePropertyByRef("currentShip", instance.currentShip);
 			writer.WritePropertyByRef("spriteRenderer", instance.spriteRenderer);
+			writer.WritePropertyByRef("portraitSprite", instance.portraitSprite);
 			writer.WritePropertyByRef("animator", instance.animator);
-			writer.WritePrivateFieldByRef("healthBarController", instance);
+			writer.WritePropertyByRef("healthBarController", instance.healthBarController);
 		}
 
 		protected override void ReadComponent<T>(ES3Reader reader, object obj)
@@ -66,7 +65,7 @@ namespace ES3Types
 						instance.isPlayerControlled = reader.Read<System.Boolean>(ES3Type_bool.Instance);
 						break;
 					case "race":
-						instance.race = reader.Read<CrewRace>(ES3Type_enum.Instance);
+						instance.race = reader.Read<CrewRace>();
 						break;
 					case "maxHealth":
 						instance.maxHealth = reader.Read<System.Single>(ES3Type_float.Instance);
@@ -117,22 +116,19 @@ namespace ES3Types
 						instance.equipAdditionalSkills = reader.Read<System.Collections.Generic.Dictionary<SkillType, System.Single>>();
 						break;
 					case "equippedWeapon":
-						instance.equippedWeapon = reader.Read<EquipmentItem>();
+						instance.equippedWeapon = reader.Read<EquipmentItem>(ES3UserType_EquipmentItem.Instance);
 						break;
 					case "equippedShield":
-						instance.equippedShield = reader.Read<EquipmentItem>();
+						instance.equippedShield = reader.Read<EquipmentItem>(ES3UserType_EquipmentItem.Instance);
 						break;
 					case "equippedAssistant":
-						instance.equippedAssistant = reader.Read<EquipmentItem>();
+						instance.equippedAssistant = reader.Read<EquipmentItem>(ES3UserType_EquipmentItem.Instance);
 						break;
 					case "currentRoom":
 						instance.currentRoom = reader.Read<Room>();
 						break;
 					case "position":
 						instance.position = reader.Read<UnityEngine.Vector2Int>(ES3Type_Vector2Int.Instance);
-						break;
-					case "targetPosition":
-						instance.targetPosition = reader.Read<UnityEngine.Vector2Int>(ES3Type_Vector2Int.Instance);
 						break;
 					case "moveSpeed":
 						instance.moveSpeed = reader.Read<System.Single>(ES3Type_float.Instance);
@@ -143,21 +139,21 @@ namespace ES3Types
 					case "isAlive":
 						instance.isAlive = reader.Read<System.Boolean>(ES3Type_bool.Instance);
 						break;
-					case "isMoving":
-						instance.isMoving = reader.Read<System.Boolean>(ES3Type_bool.Instance);
-						break;
 					case "currentShip":
 						instance.currentShip = reader.Read<Ship>(ES3UserType_Ship.Instance);
 						break;
 					case "spriteRenderer":
 						instance.spriteRenderer = reader.Read<UnityEngine.SpriteRenderer>(ES3Type_SpriteRenderer.Instance);
 						break;
+					case "portraitSprite":
+						instance.portraitSprite = reader.Read<UnityEngine.Sprite>(ES3Type_Sprite.Instance);
+						break;
 					case "animator":
 						instance.animator = reader.Read<UnityEngine.Animator>();
 						break;
 					case "healthBarController":
-					instance = (CrewMember)reader.SetPrivateField("healthBarController", reader.Read<CrewHealthBar>(), instance);
-					break;
+						instance.healthBarController = reader.Read<CrewHealthBar>(ES3UserType_CrewHealthBar.Instance);
+						break;
 					default:
 						reader.Skip();
 						break;

@@ -10,31 +10,33 @@ using UnityEngine.Serialization;
 
 public class SlidePanelController : MonoBehaviour
 {
-    [Header("탭 버튼")] [SerializeField] private Button buttonShip;
+    [Header("탭 버튼")][SerializeField] private Button buttonShip;
     [SerializeField] private Button buttonCrew;
     [SerializeField] private Button buttonQuest;
     [SerializeField] private Button buttonStorage;
 
-    [Header("전체 탭")] [SerializeField] private GameObject Tabs;
+    [Header("전체 탭")][SerializeField] private GameObject Tabs;
 
-    [Header("패널 목록")] [SerializeField] private GameObject panelShip;
+    [Header("패널 목록")][SerializeField] private GameObject panelShip;
     [SerializeField] private GameObject panelCrew;
     [SerializeField] private GameObject panelQuest;
     [SerializeField] private GameObject panelStorage;
     [SerializeField] private GameObject panelUnselected;
 
-    [Header("함선 패널 설정")] [SerializeField] private GameObject shipPanelContent;
+    [Header("함선 패널 설정")][SerializeField] private GameObject shipPanelContent;
     [SerializeField] private GameObject roomInfoPanelPrefab;
     private Dictionary<RoomType, ShipInfoPanel> shipInfoPanelDictionary = new();
 
 
-    [Header("승무원 패널 설정")] [SerializeField] private GameObject crewPanelContent;
+    [Header("승무원 패널 설정")][SerializeField] private GameObject crewPanelContent;
     [SerializeField] private GameObject crewInfoPanelPrefab;
     [SerializeField] private GameObject equipmentDetailPanel;
     private List<CrewInfoPanel> crewInfoPanelList = new();
 
 
-    [FormerlySerializedAs("qeustPanelContent")] [Header("퀘스트 패널 설정")] [SerializeField]
+    [FormerlySerializedAs("qeustPanelContent")]
+    [Header("퀘스트 패널 설정")]
+    [SerializeField]
     private GameObject questPanelContent;
 
     [SerializeField] private GameObject questInfoPanelPrefab;
@@ -42,15 +44,15 @@ public class SlidePanelController : MonoBehaviour
     private List<QuestInfoPanel> questInfoPanelList = new();
     private RandomQuest questToCancel;
 
-    [Header("창고 패널 설정")] [SerializeField] private GameObject storagePanelContent;
+    [Header("창고 패널 설정")][SerializeField] private GameObject storagePanelContent;
     [SerializeField] private GameObject storageInfoPanelPrefab;
     [SerializeField] private ItemMapController itemMapPanel;
     private List<StorageInfoPanel> storageInfoPanelInstance = new();
     private StorageInfoPanel selectedStoragePanel = null;
 
 
-    [Header("열려야 되는 위치")] [SerializeField] private Transform openedPosition;
-    [Header("열리는 속도")] [SerializeField] private float slideSpeed = 0.1f;
+    [Header("열려야 되는 위치")][SerializeField] private Transform openedPosition;
+    [Header("열리는 속도")][SerializeField] private float slideSpeed = 0.1f;
 
     private Vector3 closedPosition;
     private Coroutine slideCoroutine;
@@ -216,14 +218,6 @@ public class SlidePanelController : MonoBehaviour
 
     public void InitializeCrewPanel()
     {
-        /*
-        for (int index = crewInfoPanelList.Count - 1; index >= 0; index--)
-        {
-            CrewInfoPanel infoPanel = crewInfoPanelList[index];
-            crewInfoPanelList.Remove(infoPanel);
-            Destroy(infoPanel.gameObject);
-        }
-        */
         foreach (CrewInfoPanel cip in crewInfoPanelList)
             Destroy(cip.gameObject);
         crewInfoPanelList.Clear();
@@ -258,14 +252,14 @@ public class SlidePanelController : MonoBehaviour
 
 
         foreach (PlanetData planet in GameManager.Instance.PlanetDataList)
-        foreach (RandomQuest quest in planet.questList)
-        {
-            QuestInfoPanel questInfoPanel = Instantiate(questInfoPanelPrefab, questPanelContent.transform)
-                .GetComponent<QuestInfoPanel>();
+            foreach (RandomQuest quest in planet.questList)
+            {
+                QuestInfoPanel questInfoPanel = Instantiate(questInfoPanelPrefab, questPanelContent.transform)
+                    .GetComponent<QuestInfoPanel>();
 
-            questInfoPanel.Initialize(quest);
-            questInfoPanelList.Add(questInfoPanel);
-        }
+                questInfoPanel.Initialize(quest);
+                questInfoPanelList.Add(questInfoPanel);
+            }
 
         List<Transform> questPanelTransforms = new();
 

@@ -41,9 +41,14 @@ public class MoraleManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(this);
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
     private void Start()
@@ -207,10 +212,11 @@ public class MoraleManager : MonoBehaviour
 
         // 모든 아이콘 비활성화
         foreach (MoraleIcon icon in raceIcons.Values)
-        {
-            icon.ClearEffectData();
-            icon.gameObject.SetActive(false);
-        }
+            if (icon != null)
+            {
+                icon.ClearEffectData();
+                icon.gameObject.SetActive(false);
+            }
     }
 
     /// <summary>
@@ -299,11 +305,7 @@ public class MoraleManager : MonoBehaviour
     /// </summary>
     private void UpdateRaceIcon(CrewRace race)
     {
-        if (!raceIcons.TryGetValue(race, out MoraleIcon icon))
-        {
-            Debug.LogError($"아이콘을 찾을 수 없습니다: {race}");
-            return;
-        }
+        if (!raceIcons.TryGetValue(race, out MoraleIcon icon)) return;
 
         // 이 종족에 대한 모든 효과 찾기
         List<MoraleEffectData> raceEffects = activeEffects.FindAll(e => e.targetRace == race);
@@ -342,8 +344,11 @@ public class MoraleManager : MonoBehaviour
         // 모든 UI 아이콘 비활성화 및 초기화
         foreach (MoraleIcon icon in raceIcons.Values)
         {
-            icon.ClearEffectData();
-            icon.gameObject.SetActive(false);
+            if (icon != null)
+            {
+                icon.ClearEffectData();
+                icon.gameObject.SetActive(false);
+            }
         }
 
         // 로드된 효과들 다시 적용

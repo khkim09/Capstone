@@ -34,11 +34,16 @@ public class EventManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
-        else
-            Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
+        }
 
-        DontDestroyOnLoad(gameObject);
+        else
+        {
+            Destroy(gameObject);
+        }
+
 
         // 핸들러 초기화
         resourceEffectHandler = new EventResourceEffectHandler();
@@ -142,11 +147,9 @@ public class EventManager : MonoBehaviour
 
     public void CombatOccur()
     {
-        if (CurrentWarpNode.NodeData.nodeType == WarpNodeType.Combat)
-        {
-            GameManager.Instance.ChangeGameState(GameState.Combat);
-            SceneChanger.Instance.LoadScene("Combat");
-        }
+        GameManager.Instance.ChangeGameState(GameState.Combat);
+        SceneChanger.Instance.LoadScene("Combat");
+
     }
 
     /// <summary>
@@ -219,6 +222,13 @@ public class EventManager : MonoBehaviour
 
         // 각종 효과 적용
         ApplyOutcomeEffects(outcome);
+
+        // 미스터리 이벤트 완료 기록
+        if (randomEvent.eventType == EventType.Mystery)
+        {
+            GameManager.Instance.AddCompletedMysteryEvent(randomEvent.eventId);
+            Debug.Log($"미스터리 이벤트 완료 기록: {randomEvent.debugName} (ID: {randomEvent.eventId})");
+        }
 
 
         if (outcome == null)
@@ -338,6 +348,15 @@ public class EventManager : MonoBehaviour
 
         // 최근에 발생한 이벤트 제외
         filteredEvents = filteredEvents.Where(evt => !recentEventIds.Contains(evt.eventId)).ToList();
+
+        // 미스터리 이벤트의 경우 이미 완료된 이벤트 제외
+        if (type == EventType.Mystery)
+        {
+            List<int> completedMysteryIds = GameManager.Instance.CompletedMysteryEventIds;
+            filteredEvents = filteredEvents.Where(evt => !completedMysteryIds.Contains(evt.eventId)).ToList();
+            Debug.Log(
+                $"미스터리 이벤트 필터링: 전체 {eventDatabase.GetEventsByType(EventType.Mystery).Count}개 중 완료된 {completedMysteryIds.Count}개 제외, 사용 가능한 이벤트 {filteredEvents.Count}개");
+        }
 
         if (filteredEvents.Count == 0)
         {
