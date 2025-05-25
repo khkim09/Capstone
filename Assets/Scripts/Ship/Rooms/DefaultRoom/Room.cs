@@ -57,10 +57,10 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     public bool isActive = true;
 
     /// <summary>전력이 공급되고 있는지 여부.</summary>
-    protected bool isPowered = true;
+    public bool isPowered = true;
 
     /// <summary>전력 공급이 요청되었는지 여부.</summary>
-    protected bool isPowerRequested = false;
+    public bool isPowerRequested = false;
 
     /// <summary>방의 시각적 렌더러.</summary>
     protected SpriteRenderer roomRenderer; // 방 렌더러

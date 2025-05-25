@@ -128,7 +128,8 @@ public class CombatManager : MonoBehaviour
     /// </summary>
     /// <param name="isDefeated"></param>
     /// <returns></returns>
-    private IEnumerator BackToTheHome(bool isDefeated)
+    private IEnumerator BackToTheHome(bool isDefeated)  /// 이거 void로 바꿔서 해보기
+    // 굳이 코루틴 안해도 될듯
     {
         // 승리
         if (!isDefeated)
@@ -140,6 +141,8 @@ public class CombatManager : MonoBehaviour
                 needToDestroy[i].Freeze();
                 needToDestroy[i].Die();
             }
+            GameManager.Instance.playerShip.allEnemies.Clear();
+            needToDestroy.Clear();
 
             // 적 함선에 있는 내 선원 복귀
             List<CrewMember> needToBackMine = GameManager.Instance.currentEnemyShip.allEnemies;
@@ -148,8 +151,8 @@ public class CombatManager : MonoBehaviour
                 needToBackMine[i].Freeze();
                 StartCoroutine(needToBackMine[i].TeleportAfterDelay(needToBackMine[i], 0.3f));
             }
-
-            GameManager.Instance.playerShip.allEnemies.Clear();
+            GameManager.Instance.currentEnemyShip.allEnemies.Clear();
+            needToBackMine.Clear();
         }
         else // 패배
         {
@@ -160,6 +163,7 @@ public class CombatManager : MonoBehaviour
                 playerShipAllCrews[i].Die();
             }
             GameManager.Instance.playerShip.allCrews.Clear();
+            playerShipAllCrews.Clear();
 
             List<CrewMember> playerShipAllEnemies = GameManager.Instance.playerShip.allEnemies;
             for (int i = playerShipAllEnemies.Count - 1; i >= 0; i--)
@@ -167,6 +171,7 @@ public class CombatManager : MonoBehaviour
                 playerShipAllEnemies[i].Die();
             }
             GameManager.Instance.playerShip.allEnemies.Clear();
+            playerShipAllEnemies.Clear();
         }
         yield return null;
     }

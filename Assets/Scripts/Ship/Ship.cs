@@ -259,13 +259,14 @@ public class Ship : MonoBehaviour
         roomsByType[roomType].Add(room);
 
         // 룸 상태 변경 이벤트 등록
-        room.OnRoomStateChanged += OnRoomStateChanged;
+        // room.OnRoomStateChanged += OnRoomStateChanged;
 
         // 그리드에 추가
         AddRoomToGrid(room, size);
 
         // 스탯 재계산
         RecalculateAllStats();
+        RefreshAllSystems();
 
         return true;
     }

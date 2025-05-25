@@ -205,7 +205,7 @@ public static class Constants
         public const float ConnectionLineThickness = 0.1f;
 
         // TODO :원래 값 0.6
-        public const float EventNodeRate = 0.9f;
+        public const float EventNodeRate = 0.6f;
 
         public const float CombatNodeRate = 1 - EventNodeRate;
 
