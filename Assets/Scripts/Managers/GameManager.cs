@@ -544,6 +544,9 @@ public class GameManager : MonoBehaviour
                 case GameState.GameOver:
                     HandleGameOver();
                     break;
+                case GameState.Planet:
+                    Time.timeScale = 1f;
+                    break;
             }
         }
     }
