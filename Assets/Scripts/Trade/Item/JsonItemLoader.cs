@@ -153,6 +153,7 @@ public class JsonToScriptableObjectConverter : EditorWindow
                 itemSO.tier = Enum.TryParse<ItemTierLevel>((string)itemToken["tier"], out ItemTierLevel parsedTier)
                     ? parsedTier
                     : ItemTierLevel.Default;
+
                 // TODO: 아이템 카테고리 종류가 추가되면, JSON 파싱을 위해 ENUM도 추가하여야 한다.
                 itemSO.type = Enum.TryParse<ItemCategory>((string)itemToken["type"], out ItemCategory parsedType)
                     ? parsedType

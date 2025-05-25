@@ -82,7 +82,6 @@ public abstract class RoomData : ScriptableObject
 
         /// <summary>해당 레벨의 방 스프라이트</summary>
         public Sprite roomSprite;
-        // TODO: 스프라이트 완성되면 각 Scriptable Object 에 스프라이트 추가할 것, roomPrefab(실제 배치될 방 prefab), previewPrefab(roomPrefab에서 alpha값만 0.5)
 
         /// <summary>
         /// 방 상징 아이콘

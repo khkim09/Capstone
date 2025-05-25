@@ -40,27 +40,11 @@ public class MenuUI : MonoBehaviour
 
     public void OnBlueprintButtonClicked()
     {
-        // if (BlueprintSlotManager.Instance != null)
-        //     BlueprintSlotManager.Instance.LoadAllBlueprints();
-
         SceneChanger.Instance.LoadScene("Customize");
-    }
-
-    public void OnStorageButtonClicked()
-    {
-        //SceneChanger.Instance.LoadScene("Storage");
-    }
-
-    public void OnMoveButtonClicked()
-    {
-        //todo:거점 이동용 현재 재화 확인 및 체크 후 ishome 전환
-        GameObject message = transform.Find("MoveMessage").gameObject;
-        message.SetActive(true);
     }
 
     public void OnEmployButtonClicked()
     {
-        //todo:고용창 활성화
         SceneChanger.Instance.LoadScene("Employ");
     }
 

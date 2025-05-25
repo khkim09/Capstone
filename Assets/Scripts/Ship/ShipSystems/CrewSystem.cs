@@ -47,7 +47,7 @@ public class CrewSystem : ShipSystem
     /// <returns>추가에 성공하면 true, 크루 정원이 초과되었으면 false.</returns>
     public bool AddCrew(CrewBase newCrew)
     {
-        // TODO : 조건 검사를 밖에서 해서 capacity 부족하다는 걸 전달해야됨
+        // TODO : 검사 밖으로 빼기
         if (newCrew.isPlayerControlled)
             if (parentShip.allCrews.Count >= GetShipStat(ShipStat.CrewCapacity))
                 return false;
@@ -114,8 +114,6 @@ public class CrewSystem : ShipSystem
             parentShip.allEnemies.Remove(crewToRemove);
 
         Object.Destroy(crewToRemove.gameObject);
-
-        // TODO: 방에서 나가는 처리도 해야할 수도 있다. 추후 구현 필요하면 구현할 것
 
         return true;
     }

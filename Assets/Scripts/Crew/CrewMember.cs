@@ -896,7 +896,7 @@ public class CrewMember : CrewBase
 
         // 실제 수리 실행
         RepairFacility(currentRoom);
-        //todo: 수리 숙련도 적용시켜야됨
+
         yield return new WaitForSeconds(repairAfterDelay);
 
         if (currentRoom.NeedsRepair())
@@ -918,7 +918,6 @@ public class CrewMember : CrewBase
         // 수리 스킬에 따른 수리량 계산
         // float repairSkillBonus = skills.ContainsKey(SkillType.RepairSkill) ? skills[SkillType.RepairSkill] / 100f : 0f;
 
-        //TODO:장비 완성되면 장비와 사기, 숙련도에 대한 보너스 추가 필요
         float repairAmount = repairCoefficient * GetCrewSkillValue()[SkillType.RepairSkill];
 
         // 수리 실행

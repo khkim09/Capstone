@@ -13,8 +13,6 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// <summary>선원 이름.</summary>
     [Header("Basic Info")] public string crewName; // 이름
 
-    // TODO : 어차피 crewmember, crewenemy(가칭) 으로 나눌 거니 이 작업은 굳이 필요 없을 듯
-    //         나중에 게터로 is crewmember 반환하면 되니까
     /// <summary>플레이어 소속 여부 (true = 아군, false = 적군).</summary>
     public bool isPlayerControlled;
 
@@ -133,7 +131,8 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
     /// <summary>
     /// 선원 체력 바
     /// </summary>
-    [Header("Health Bar")] [SerializeField]
+    [Header("Health Bar")]
+    [SerializeField]
     public CrewHealthBar healthBarController;
 
     /// <summary>

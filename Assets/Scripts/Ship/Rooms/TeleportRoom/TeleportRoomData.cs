@@ -22,7 +22,6 @@ public class TeleportRoomData : RoomData<TeleportRoomData.TeleportRoomLevel>
         /// <summary>텔레포트 재사용 대기 시간 (초).</summary>
         public float teleportRespawnTime = 1.0f; // 재소환 딜레이
     }
-    // TODO: 텔레포터 관련 스탯 더 세부적으로 정해야할 것
 
     /// <summary>
     /// 기본 텔레포트실 레벨 데이터를 초기화합니다.

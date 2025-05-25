@@ -52,7 +52,7 @@ public class MiddlePanelUI : MonoBehaviour
     [SerializeField] private List<Sprite> itemShapeSprites;
 
     /// <summary>
-    /// 임시 테스트용 코마 관리 텍스트입니다. TODO
+    /// 임시 테스트용 코마 관리 텍스트입니다.
     /// </summary>
     [SerializeField] private TextMeshProUGUI playerCOMAText;
 

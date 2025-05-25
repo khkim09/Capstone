@@ -452,8 +452,6 @@ public class Ship : MonoBehaviour
 
         Destroy(room.gameObject);
 
-        // TODO: MoraleManager에서 사기 계산하기 해야됨
-
         // Recalculate stats
         RecalculateAllStats();
         RefreshAllSystems();
@@ -819,8 +817,6 @@ public class Ship : MonoBehaviour
         OnStatsChanged?.Invoke();
     }
 
-    // TODO: 스탯 추가할 때마다 합연산인지 곱연산인지 분류
-
     public void RefreshAllSystems()
     {
         shieldSystem.Refresh();
@@ -838,7 +834,7 @@ public class Ship : MonoBehaviour
     {
         foreach (Room room in allRooms)
         {
-            if(!room.isActionConnected())
+            if (!room.isActionConnected())
                 room.OnRoomStateChanged += OnRoomStateChanged;
         }
     }

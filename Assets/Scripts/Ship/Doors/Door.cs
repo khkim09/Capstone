@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-// TODO: 문 회전 부분 수정해야 함.
-
 /// <summary>
 /// 방에 부착되어 있는 문 객체입니다.
 /// </summary>

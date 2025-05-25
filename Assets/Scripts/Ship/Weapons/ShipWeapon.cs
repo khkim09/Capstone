@@ -82,7 +82,6 @@ public class ShipWeapon : MonoBehaviour
     /// </summary>
     public void Initialize()
     {
-        // TODO: 회전 상태와 외갑판에 따른 스프라이트 설정 필요
     }
 
     /// <summary>
@@ -106,8 +105,6 @@ public class ShipWeapon : MonoBehaviour
     public void SetAttachedDirection(ShipWeaponAttachedDirection newDirection)
     {
         attachedDirection = newDirection;
-
-        // TODO: 회전 상태와 외갑판에 따른 스프라이트 설정 필요
     }
 
     /// <summary>
@@ -188,7 +185,7 @@ public class ShipWeapon : MonoBehaviour
     {
         if (currentCooldown < 100)
         {
-            currentCooldown += deltaTime * GetCooldownPerSecond() * reloadBonus *(isEnabled?1:0);
+            currentCooldown += deltaTime * GetCooldownPerSecond() * reloadBonus * (isEnabled ? 1 : 0);
 
             // // 쿨다운이 완료되면 자동 발사 시도
             // if (IsReady()) TryAutoFire();
@@ -316,10 +313,6 @@ public class ShipWeapon : MonoBehaviour
     /// <returns>발사 성공 여부</returns>
     public bool TryFire()
     {
-        // if (!IsReady() || !isEnabled || ownerShip == null)
-        //     return false;
-        // TODO : 임시로 무조건 통과. 나중에 없애야함.
-
         if (!IsReady())
         {
             Debug.Log("충전이 완료되지 않은 무기입니다.");
@@ -512,6 +505,6 @@ public class ShipWeapon : MonoBehaviour
     /// <returns></returns>
     public float GetCooldownPercentage()
     {
-        return currentCooldown/100f;
+        return currentCooldown / 100f;
     }
 }

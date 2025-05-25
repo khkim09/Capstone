@@ -160,7 +160,7 @@ public class EnemyCamInteraction : MonoBehaviour, IPointerDownHandler, IPointerU
     private void CalculateBounds()
     {
         Ship enemyShip = GameObject.Find("EnemyShip").GetComponent<Ship>();
-        //todo:EnemyShip으로 변경 필요
+
         Renderer[] renderers = enemyShip.GetComponentsInChildren<Renderer>();
         if (renderers.Length == 0)
             return;

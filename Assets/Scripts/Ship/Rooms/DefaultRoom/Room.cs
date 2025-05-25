@@ -291,7 +291,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     public bool isActionConnected()
     {
-        if (OnRoomStateChanged==null)
+        if (OnRoomStateChanged == null)
             return false;
         return true;
     }
@@ -330,8 +330,8 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>필요한 선원이 충분한지 확인합니다.</summary>
     public bool HasEnoughCrew()
     {
-        // TODO : 테스트 용으로 일단 true, 나중엔 실제로 선원 세야함
         return true;
+        // 테스트 용으로 일단 true, 나중엔 실제로 선원 세야함
         // return crewInRoom.Count >= roomData.GetRoomDataByLevel(currentLevel).crewRequirement;
     }
 
@@ -490,18 +490,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>방의 그리드 크기 (에디터 전용).</summary>
     private Vector2Int gridSize = new(2, 2);
 
-
-    /// <summary>
-    /// 방 회전에 따라 문들의 위치와 방향 업데이트
-    /// </summary>
-    private void UpdateDoorsPositionAndRotation()
-    {
-        // 기존 가능한 문 위치 정보와 현재 부착된 문들을 비교하여 업데이트
-        foreach (Door door in connectedDoors) door.RotateDirectionClockwise();
-    }
-
-    // TODO : 나중엔 이런 월드 좌표가 아니라, 싱글턴 그리드 좌표에 맞는 월드 좌표로 변환하는 함수가 필요하다.
-
     /// <summary>
     /// 회전각을 고려하여 방의 점유 타일 반환
     /// </summary>
@@ -549,8 +537,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// </summary>
     public void UpdateRoomVisual()
     {
-        // TODO : 아이콘 체력상황, 타입에 맞게 업데이트
-
         string color = "";
 
         if (damageCondition == DamageLevel.breakdown)
@@ -698,9 +684,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     {
         isActive = false;
         // 방별 비활성화 처리
-
-        // TODO: MoraleManager 에서 사기 계산하게 해야됨.
-
 
         // 스탯 기여도 변화 알림
         NotifyStateChanged();

@@ -87,7 +87,7 @@ public class Customize_0_Controller : MonoBehaviour
     }
 
     /// <summary>
-    /// TODO : Planet scene으로 전환 구현 필요!!
+    /// Planet scene으로 전환
     /// </summary>
     public void OnClickExit()
     {

@@ -11,15 +11,12 @@ public class FuelPanelUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI fuelValueText;     // 현재 연료량 표시 텍스트
     [SerializeField] private Button buyButton;           // 구매 버튼
 
-    //TODO 100리터당 연료 가격
     private int basePricePer100 = 100;                   // 기준 연료 가격 (100당)
 
-    //TODO 변동 연료 가격
     private int fluctuatedPrice;                         // 변동된 연료 가격
-    //TODO 연료 가격 변동 폭
+
     private float fluctuationRange = 0.5f;               // 변동폭 ±50%
 
-    //TODO 연료 최대 량
     public float MaxFuelAmount = 1000f;                  // 최대 연료량 (임시 로컬 변수)
 
     /// <summary>마지막 가격 업데이트 된 연도입니다.</summary>

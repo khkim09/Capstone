@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EmployController : MonoBehaviour
@@ -135,7 +134,7 @@ public class EmployController : MonoBehaviour
 
         purchaseConfirmPanel.SetActive(true);
 
-        if (playerCurrency < 1500)
+        if (playerCurrency < 1500 || GameManager.Instance.playerShip.allCrews.Count >= GameManager.Instance.playerShip.GetStat(ShipStat.CrewCapacity))
             buyButton.interactable = false;
         else
             buyButton.interactable = true;

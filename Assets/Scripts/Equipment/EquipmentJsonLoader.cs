@@ -226,6 +226,7 @@ public class EquipmentJsonLoader : EditorWindow
                 equipSO.eqType = equipType;
                 equipSO.eqPrice = equipToken["cost"] != null ? (int)equipToken["cost"] : 0;
                 equipSO.eqDescription = equipToken["description"] != null ? (string)equipToken["description"] : "";
+
                 // TODO : 나중엔 CSV 에 Global 장비 여부도 추가 후, 여기서 설정을 해줘야 한다.
                 equipSO.isGlobalEquip = equipToken["is_global"] != null
                     ? (bool)equipToken["is_global"]

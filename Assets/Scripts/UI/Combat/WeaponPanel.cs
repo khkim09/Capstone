@@ -32,9 +32,9 @@ public class WeaponPanel : MonoBehaviour
     {
         animator = GetComponentInParent<Animator>();
         WeaponPanelOff = transform.GetChild(0).gameObject;
-        WeaponPanelOn=transform.GetChild(1).gameObject;
+        WeaponPanelOn = transform.GetChild(1).gameObject;
 
-        playerShip=GameManager.Instance.playerShip;
+        playerShip = GameManager.Instance.playerShip;
         if (playerShip != null)
         {
             List<ShipWeapon> weapons = playerShip.GetAllWeapons();
@@ -63,7 +63,7 @@ public class WeaponPanel : MonoBehaviour
             WeaponPanelOn.SetActive(true);
             WeaponPanelOff.SetActive(false);
         }
-        isActive=!isActive;
+        isActive = !isActive;
         animator.SetBool("OnPanel", isActive);
     }
 
@@ -75,13 +75,11 @@ public class WeaponPanel : MonoBehaviour
     /// <param name="weapon"></param>
     private void AddWeaponFrame(ShipWeapon weapon)
     {
-        GameObject weaponFrame = Instantiate(weaponFramePrefab, contentTransform,false);
+        GameObject weaponFrame = Instantiate(weaponFramePrefab, contentTransform, false);
         WeaponFrameFunction weaponFrameFunction = weaponFrame.GetComponent<WeaponFrameFunction>();
         weaponFrameFunction.weapon = weapon;
         transform.Find("AllFire").GetComponent<Button>().onClick.AddListener(weaponFrameFunction.FireButtonClicked);
     }
-
-    //todo: WeaponFrame이랑 InfoPanel에서 액션리스너 제거해줘야됨
 
     public void AllFireButtonClicked()
     {

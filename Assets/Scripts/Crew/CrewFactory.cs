@@ -68,10 +68,6 @@ public class CrewFactory : MonoBehaviour
         crew.race = race;
         crew.isPlayerControlled = isPlayerControlled;
 
-        // TODO : 이거 equipment manager 완성되고 주석 해제해야함
-        //crew.equippedAssistant = EquipmentManager.Instance.GetEquipmentByTypeAndId(EquipmentType.AssistantEquipment, 0);
-
-
         // Factory에서 직접 선원 초기화 (스탯, 스킬 설정)
         InitializeCrewStats(crew);
 

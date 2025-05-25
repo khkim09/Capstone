@@ -50,7 +50,6 @@ public class EnemyShipFactory : MonoBehaviour
             {
                 Ship playerShip = GameManager.Instance.GetPlayerShip();
 
-                // TODO: MoveTo 함수 완성하기
                 loadedShip.MoveShipToFacingTargetShip(playerShip);
 
                 GeneratePirateCrew(loadedShip, template);
