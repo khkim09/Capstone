@@ -497,8 +497,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void AddYear()
     {
-        currentYear++;
-        // TestCode : currentYear += 100;
+        // currentYear++;
+        //TestCode :
+        currentYear += 100;
         OnYearChanged?.Invoke(currentYear);
         Debug.Log($"[워프 완료] 현재 연도 : {currentYear}");
     }
