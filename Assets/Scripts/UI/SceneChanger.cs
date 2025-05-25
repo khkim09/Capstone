@@ -10,7 +10,7 @@ public class SceneChanger : MonoBehaviour
 
     [Header("UI Components")] public Image fadeImage; // 전체 화면을 덮는 검정 이미지
 
-    [Header("Fade Settings")] public float fadeDuration = 1.0f;
+    [Header("Fade Settings")] public float fadeDuration = 0.5f;
 
     // 씬 전환 중 입력 차단을 위한 변수
     public static bool IsTransitioning { get; private set; } = false;
@@ -37,6 +37,8 @@ public class SceneChanger : MonoBehaviour
         // 이미 전환 중이라면 무시
         if (IsTransitioning) return;
 
+        Debug.LogError($"scene name {sceneName}");
+
         GameManager.Instance.SaveGameData();
 
         StartCoroutine(FadeAndSwitchScene(sceneName));
@@ -44,6 +46,8 @@ public class SceneChanger : MonoBehaviour
 
     private IEnumerator FadeAndSwitchScene(string sceneName)
     {
+        yield return new WaitForSeconds(0.25f);
+
         // 씬 전환 시작 - 입력 차단
         IsTransitioning = true;
         SetInputBlocking(true);

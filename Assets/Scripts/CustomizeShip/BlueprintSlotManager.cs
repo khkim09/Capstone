@@ -186,6 +186,8 @@ public class BlueprintSlotManager : MonoBehaviour
 
         foreach (List<Vector2Int> tileList in wrapper.occupiedTilesPerSlot)
         {
+            if (tileList == null)
+                continue;
             occupiedTilesPerSlot.Add(new HashSet<Vector2Int>(tileList));
         }
     }

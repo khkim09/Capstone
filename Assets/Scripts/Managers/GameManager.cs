@@ -68,7 +68,8 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")] [SerializeField]
+    [Header("Game State")]
+    [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -576,8 +577,6 @@ public class GameManager : MonoBehaviour
                 SceneChanger.Instance.LoadScene("Idle");
                 break;
         }
-
-        SceneChanger.Instance.LoadScene("Idle");
     }
 
     /// <summary>
@@ -643,7 +642,8 @@ public class GameManager : MonoBehaviour
         ES3.Save<bool>("isBoughtEquipment", isBoughtEquipment);
 
         // 도안 데이터 저장
-        if (BlueprintSlotManager.Instance != null) BlueprintSlotManager.Instance.SaveAllBlueprints();
+        if (BlueprintSlotManager.Instance != null)
+            BlueprintSlotManager.Instance.SaveAllBlueprints();
     }
 
     /// <summary>
@@ -701,7 +701,8 @@ public class GameManager : MonoBehaviour
         }
 
         // 도안 데이터 로드
-        if (BlueprintSlotManager.Instance != null) BlueprintSlotManager.Instance.LoadAllBlueprints();
+        if (BlueprintSlotManager.Instance != null)
+            BlueprintSlotManager.Instance.LoadAllBlueprints();
     }
 
     public void DeletePlayerData()
@@ -712,6 +713,7 @@ public class GameManager : MonoBehaviour
         playerShip.RemoveAllRooms();
         playerShip.RemoveAllWeapons();
         playerShip.RemoveAllItems();
+        playerShip.ClearExistingHulls();
         playerShip.Initialize();
 
         ES3.DeleteKey("completedMysteryEventIds");
@@ -953,14 +955,14 @@ public class GameManager : MonoBehaviour
     public void CheckPirateQuests()
     {
         foreach (PlanetData planet in planetDataList)
-        foreach (RandomQuest quest in planet.questList.Where(q =>
-                     q.objectives[0].objectiveType == QuestObjectiveType.PirateHunt &&
-                     q.status == QuestStatus.Active))
-        {
-            quest.objectives[0].currentAmount++;
+            foreach (RandomQuest quest in planet.questList.Where(q =>
+                         q.objectives[0].objectiveType == QuestObjectiveType.PirateHunt &&
+                         q.status == QuestStatus.Active))
+            {
+                quest.objectives[0].currentAmount++;
 
-            if (quest.objectives[0].currentAmount >= quest.objectives[0].amount) quest.SetCanComplete(true);
-        }
+                if (quest.objectives[0].currentAmount >= quest.objectives[0].amount) quest.SetCanComplete(true);
+            }
     }
 
     /// <summary>
@@ -969,20 +971,20 @@ public class GameManager : MonoBehaviour
     public void CheckItemQuests()
     {
         foreach (PlanetData planet in planetDataList)
-        foreach (RandomQuest quest in planet.questList.Where(q =>
-                     (q.objectives[0].objectiveType == QuestObjectiveType.ItemTransport ||
-                      q.objectives[0].objectiveType == QuestObjectiveType.ItemProcurement) &&
-                     q.status == QuestStatus.Active))
-        {
-            int targetId = quest.objectives[0].targetId;
-            int targetAmount = quest.objectives[0].amount;
+            foreach (RandomQuest quest in planet.questList.Where(q =>
+                         (q.objectives[0].objectiveType == QuestObjectiveType.ItemTransport ||
+                          q.objectives[0].objectiveType == QuestObjectiveType.ItemProcurement) &&
+                         q.status == QuestStatus.Active))
+            {
+                int targetId = quest.objectives[0].targetId;
+                int targetAmount = quest.objectives[0].amount;
 
-            // ID와 양이 정확히 일치하는 아이템이 있는지 체크
-            bool hasMatchingItem = playerShip.GetAllItems()
-                .Any(i => i.GetItemId() == targetId && i.GetItemData().amount == targetAmount);
+                // ID와 양이 정확히 일치하는 아이템이 있는지 체크
+                bool hasMatchingItem = playerShip.GetAllItems()
+                    .Any(i => i.GetItemId() == targetId && i.GetItemData().amount == targetAmount);
 
-            quest.SetCanComplete(hasMatchingItem);
-        }
+                quest.SetCanComplete(hasMatchingItem);
+            }
     }
 
     #endregion

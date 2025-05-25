@@ -387,7 +387,6 @@ public class MapPanelController : MonoBehaviour
         // 끝 노드에 도달했다면 워프 완료 처리
         if (targetNode.NodeData.isEndNode) OnWarpCompleted();
 
-
         // 게임 상태 저장
         GameManager.Instance.SaveGameData();
 
@@ -1126,7 +1125,7 @@ public class MapPanelController : MonoBehaviour
     public void GoToThePlanet(PlanetData destPlanet)
     {
         GameManager.Instance.SetCurrentWarpTargetPlanetId(destPlanet.planetId);
-        GameManager.Instance.normalizedPlayerPosition=destPlanet.normalizedPosition;
+        GameManager.Instance.normalizedPlayerPosition = destPlanet.normalizedPosition;
         OnWarpCompleted();
         GameManager.Instance.SaveGameData();
     }
