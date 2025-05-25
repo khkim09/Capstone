@@ -834,6 +834,15 @@ public class Ship : MonoBehaviour
         powerSystem.Refresh();
     }
 
+    public void ActionReconnect()
+    {
+        foreach (Room room in allRooms)
+        {
+            if(!room.isActionConnected())
+                room.OnRoomStateChanged += OnRoomStateChanged;
+        }
+    }
+
     /// <summary>
     /// 주어진 ShipStat이 가산형(덧셈 방식) 스탯인지 여부를 반환합니다.
     /// 예: 쉴드 최대량, 산소 생성량 등은 단순 덧셈으로 누적됩니다.
