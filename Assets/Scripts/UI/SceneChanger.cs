@@ -55,6 +55,8 @@ public class SceneChanger : MonoBehaviour
         yield return StartCoroutine(Fade(1)); // 페이드 아웃
         yield return SceneManager.LoadSceneAsync(sceneName);
 
+        AudioManager.Instance.PlayBGM();
+
         // 씬 로드 후 fadeImage가 확실히 검은색(알파 1)로 설정되어 있는지 확인
         fadeImage.color = new Color(0, 0, 0, 1);
 
@@ -138,6 +140,8 @@ public class SceneChanger : MonoBehaviour
         GameManager.Instance.SaveGameData();
 
         yield return SceneManager.LoadSceneAsync("Idle");
+
+        AudioManager.Instance.ChangeBGM("idle");
 
         // 씬 로드 후 fadeImage가 확실히 검은색(알파 1)로 설정되어 있는지 확인
         fadeImage.color = new Color(0, 0, 0, 1);

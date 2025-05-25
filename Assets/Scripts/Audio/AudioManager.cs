@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -11,6 +13,15 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private string bgmVolumeParameter = "BGMVolume";
     [SerializeField] private string sfxVolumeParameter = "SFXVolume";
 
+    public AudioClip idleBGM;
+    public AudioClip mainmenuBGM;
+    public AudioClip combatBGM;
+    public AudioClip planetBGM;
+
+    public AudioSource audioSource;
+
+    [SerializeField] private float fadeDuration=0.5f;
+
     private void Awake()
     {
         // 싱글톤 패턴
@@ -21,12 +32,41 @@ public class AudioManager : MonoBehaviour
 
             // 초기 오디오 설정 로드
             LoadVolumes();
+
         }
         else
         {
             Destroy(gameObject);
             return;
         }
+    }
+
+    private void Start()
+    {
+        SetBGMVolume(GetBGMVolume());
+        SetSFXVolume(GetSFXVolume());
+        audioSource=GetComponent<AudioSource>();
+    }
+
+    public void ChangeBGM(string bgm)
+    {
+        audioSource.Stop();
+        switch (bgm)
+        {
+            case "idle":
+                audioSource.clip=idleBGM;
+                break;
+            case "mainmenu":
+                audioSource.clip=mainmenuBGM;
+                break;
+            case "combat":
+                audioSource.clip=combatBGM;
+                break;
+            case "planet":
+                audioSource.clip=planetBGM;
+                break;
+        }
+        audioSource.Play();
     }
 
     // 초기 볼륨 설정 로드 및 적용
@@ -87,5 +127,61 @@ public class AudioManager : MonoBehaviour
     {
         // PlayerPrefs에서 저장된 값 반환
         return PlayerPrefs.GetFloat("SFXVolume", 0.8f);
+    }
+
+    public void PlayBGM()
+    {
+        AudioClip newClip=mainmenuBGM;
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "MainMenu":
+            case "EndingScene":
+                newClip = mainmenuBGM;
+                break;
+            case "Combat":
+                newClip = combatBGM;
+                break;
+            case "Planet":
+            case "Customize":
+            case "Trade":
+            case "Employ":
+                newClip = planetBGM;
+                break;
+            case "Idle":
+                newClip = idleBGM;
+                break;
+        }
+
+        StartCoroutine(SwitchBGM(newClip));
+    }
+
+    private IEnumerator SwitchBGM(AudioClip newClip)
+    {
+        if (audioSource.clip != newClip)
+        {
+            // 1. Fade out
+            float startVolume = audioSource.volume;
+            for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+            {
+                audioSource.volume = Mathf.Lerp(startVolume, 0f, t / fadeDuration);
+                yield return null;
+            }
+            audioSource.volume = 0f;
+            audioSource.Stop();
+
+            // 2. Switch clip
+            audioSource.clip = newClip;
+            audioSource.Play();
+
+
+            // 3. Fade in
+            for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+            {
+                audioSource.volume = Mathf.Lerp(0f, startVolume, t / fadeDuration);
+                yield return null;
+            }
+
+            audioSource.volume = startVolume;
+        }
     }
 }
