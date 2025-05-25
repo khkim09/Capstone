@@ -613,8 +613,6 @@ public class PlanetData
         TradingItemData item = null;
         PlanetData targetPlanetData = null;
 
-        /// TODO : 퀘스트 테스트 타입 고정
-        randomType = QuestObjectiveType.ItemProcurement;
         switch (randomType)
         {
             case QuestObjectiveType.PirateHunt:
@@ -666,8 +664,6 @@ public class PlanetData
                 break;
         }
 
-        objective.targetId = 23;
-        objective.amount = 300;
 
         quest.rewards.Add(new QuestReward() { questRewardType = QuestRewardType.COMA, amount = reward });
         quest.status = QuestStatus.NotStarted;
