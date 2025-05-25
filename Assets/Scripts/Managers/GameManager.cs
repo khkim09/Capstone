@@ -272,7 +272,11 @@ public class GameManager : MonoBehaviour
         Room power = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Power);
         Room crewQuarters = GameObjectFactory.Instance.CreateCrewQuartersRoomInstance(CrewQuartersRoomSize.Basic);
         Room teleporter = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Teleporter);
-        Room[] corridors = new Room[15];
+        Room oxygenRoom = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Oxygen);
+        Room storageRoom = GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Medium);
+        Room[] corridors = new Room[8];
+        for (int index = 0; index < corridors.Length; index++)
+            corridors[index] = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
 
         // Room engine2 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
         // Room engine3 = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Engine);
@@ -280,51 +284,29 @@ public class GameManager : MonoBehaviour
         // playerShip.AddRoom(engine3, new Vector2Int(43, 43), Constants.Rotations.Rotation.Rotation0);
 
 
-        for (int index = 0; index < corridors.Length; index++)
-            corridors[index] = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
 
 
-        playerShip.AddRoom(cockpit, new Vector2Int(35, 31), Constants.Rotations.Rotation.Rotation90);
-        playerShip.AddRoom(engine, new Vector2Int(34, 28), Constants.Rotations.Rotation.Rotation270);
-        playerShip.AddRoom(power, new Vector2Int(33, 33), Constants.Rotations.Rotation.Rotation90);
-        playerShip.AddRoom(crewQuarters, new Vector2Int(32, 26), Constants.Rotations.Rotation.Rotation270);
-        playerShip.AddRoom(teleporter, new Vector2Int(32, 32), Constants.Rotations.Rotation.Rotation90);
 
-        playerShip.AddRoom(corridors[0], new Vector2Int(31, 32));
-        playerShip.AddRoom(corridors[1], new Vector2Int(31, 31));
-        playerShip.AddRoom(corridors[2], new Vector2Int(31, 30));
-        playerShip.AddRoom(corridors[3], new Vector2Int(32, 31));
-        playerShip.AddRoom(corridors[4], new Vector2Int(32, 30));
-        playerShip.AddRoom(corridors[5], new Vector2Int(33, 30));
-        playerShip.AddRoom(corridors[6], new Vector2Int(34, 31));
-        playerShip.AddRoom(corridors[7], new Vector2Int(34, 30));
-        playerShip.AddRoom(corridors[8], new Vector2Int(33, 31));
-        playerShip.AddRoom(corridors[9], new Vector2Int(31, 33));
-        playerShip.AddRoom(corridors[10], new Vector2Int(32, 33));
-        playerShip.AddRoom(corridors[11], new Vector2Int(31, 34));
-        playerShip.AddRoom(corridors[12], new Vector2Int(32, 34));
-        playerShip.AddRoom(corridors[13], new Vector2Int(31, 35));
-        playerShip.AddRoom(corridors[14], new Vector2Int(32, 35));
+        playerShip.AddRoom(cockpit, new Vector2Int(33, 31), Constants.Rotations.Rotation.Rotation90);
+        playerShip.AddRoom(engine, new Vector2Int(31, 33), Constants.Rotations.Rotation.Rotation90);
+        playerShip.AddRoom(power, new Vector2Int(32, 28), Constants.Rotations.Rotation.Rotation270);
+        playerShip.AddRoom(crewQuarters, new Vector2Int(27, 31), Constants.Rotations.Rotation.Rotation0);
+        playerShip.AddRoom(teleporter, new Vector2Int(26, 30), Constants.Rotations.Rotation.Rotation0);
+        playerShip.AddRoom(oxygenRoom, new Vector2Int(30, 28), Constants.Rotations.Rotation.Rotation270);
+        playerShip.AddRoom(storageRoom, new Vector2Int(27, 29), Constants.Rotations.Rotation.Rotation90);
 
-        Room storageRoom = GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
-        Room storageRoom2 =
-            GameObjectFactory.Instance.CreateStorageRoomInstance(StorageType.Regular, StorageSize.Big);
+        playerShip.AddRoom(corridors[0], new Vector2Int(27, 30));
+        playerShip.AddRoom(corridors[1], new Vector2Int(28, 30));
+        playerShip.AddRoom(corridors[2], new Vector2Int(29, 30));
+        playerShip.AddRoom(corridors[3], new Vector2Int(30, 30));
+        playerShip.AddRoom(corridors[4], new Vector2Int(31, 30));
+        playerShip.AddRoom(corridors[5], new Vector2Int(32, 30));
+        playerShip.AddRoom(corridors[6], new Vector2Int(31, 31));
+        playerShip.AddRoom(corridors[7], new Vector2Int(32, 31));
 
-        playerShip.AddRoom(storageRoom, new Vector2Int(27, 26), Constants.Rotations.Rotation.Rotation270);
-        playerShip.AddRoom(storageRoom2, new Vector2Int(38, 24), Constants.Rotations.Rotation.Rotation90);
-        StorageRoomBase storage = (StorageRoomBase)storageRoom;
-        TradingItem item = GameObjectFactory.Instance.CreateItemInstance(0, 20);
-        TradingItem item2 = GameObjectFactory.Instance.CreateItemInstance(2, 10);
-        TradingItem item3 = GameObjectFactory.Instance.CreateItemInstance(21, 1);
-        storage.AddItem(item, new Vector2Int(0, 0), Constants.Rotations.Rotation.Rotation0);
-        storage.AddItem(item2, new Vector2Int(2, 2), Constants.Rotations.Rotation.Rotation0);
-        StorageRoomBase storage2 = (StorageRoomBase)storageRoom2;
-        storage2.AddItem(item3, new Vector2Int(1, 1), Constants.Rotations.Rotation.Rotation0);
 
-        Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
-        playerShip.AddRoom(temp, new Vector2Int(50, 31), Constants.Rotations.Rotation.Rotation90);
-
-        playerShip.AddWeapon(5, new Vector2Int(35, 33), ShipWeaponAttachedDirection.East);
+        playerShip.AddWeapon(0, new Vector2Int(34, 32), ShipWeaponAttachedDirection.North);
+        playerShip.AddWeapon(3, new Vector2Int(34, 29), ShipWeaponAttachedDirection.South);
 
 
         CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);
