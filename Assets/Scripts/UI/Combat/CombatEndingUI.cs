@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CombatEndingUI : MonoBehaviour
 {
+    public MapPanelController mapPanelController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void OnWinClicked()
     {
@@ -15,11 +16,13 @@ public class CombatEndingUI : MonoBehaviour
     public void OnLoseClicked()
     {
         int coma = ResourceManager.Instance.COMA;
-        ResourceManager.Instance.SetResource(ResourceType.COMA, (int)(coma * 0.9f));
-        //todo:근처 행성으로 이동시켜야됨
+        ResourceManager.Instance.ChangeResource(ResourceType.COMA, -(coma*0.3f));
+
+        mapPanelController.gameObject.SetActive(true);
 
         CombatManager.Instance.CombatDefeatedAndGoHome(true);
-        GameManager.Instance.ChangeGameState(GameState.Warp);
+        GameManager.Instance.ChangeGameState(GameState.Looser);
+        mapPanelController.GoToThePlanet(mapPanelController.NearestPlanet());
         SceneChanger.Instance.CombatDefeatedAndGoHome(true);
     }
 }

@@ -3,7 +3,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
+public class EnemyCamInteraction : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public Camera enemyCam;
     public RectTransform displayRect;
@@ -29,29 +29,41 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
     Vector2 dragEndPos;
     public void OnPointerDown(PointerEventData eventData)
     {
-        dragStartPos=MainScreenPointToEnemyCamScreenPoint(eventData).Value;
+        dragStartPos = MainScreenPointToEnemyCamScreenPoint(eventData).Value;
 
-        //우클릭
+        // 우클릭
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             RTSSelectionManager.Instance.CleanUpSelectedCrew();
 
             Ray ray = enemyCam.ScreenPointToRay(MainScreenPointToEnemyCamScreenPoint(eventData).Value);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+
             if (hit.collider == null)
                 return;
+
             Room targetRoom = hit.collider.GetComponent<Room>();
-            if(targetRoom==null)
-                targetRoom = hit.collider.GetComponent<IconInteraction>().room;
+
+            // 2차적으로 방 아이콘 찾아 해당 방 할당
+            if (targetRoom == null)
+            {
+                IconInteraction ii = hit.collider.GetComponent<IconInteraction>();
+                if (ii != null)
+                    targetRoom = ii.room;
+            }
+
+            // 이마저도 없으면 (방 || 아이콘 < 선원) 순서로 겹쳐 선원을 우클릭한 경우 -> 이동 명령 무시
+            if (targetRoom == null)
+                return;
 
             Debug.Log(targetRoom.name);
 
             RTSSelectionManager.Instance.IssueMoveCommand(targetRoom);
         }
-        //좌클릭
+        // 좌클릭
         else if (eventData.button == PointerEventData.InputButton.Left)
         {
-            RTSSelectionManager.Instance.dragStartPos=Input.mousePosition;
+            RTSSelectionManager.Instance.dragStartPos = Input.mousePosition;
         }
     }
 
@@ -60,12 +72,12 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             RTSSelectionManager.Instance.DeselectAll();
-            dragEndPos=MainScreenPointToEnemyCamScreenPoint(eventData).Value;
+            dragEndPos = MainScreenPointToEnemyCamScreenPoint(eventData).Value;
 
             float dragDistance = Vector2.Distance(dragStartPos, dragEndPos);
 
             //단일 유닛 선택
-            if(dragDistance<RTSSelectionManager.Instance.clickThreshold)
+            if (dragDistance < RTSSelectionManager.Instance.clickThreshold)
             {
                 Ray ray = enemyCam.ScreenPointToRay(MainScreenPointToEnemyCamScreenPoint(eventData).Value);
                 RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
@@ -75,7 +87,7 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
 
 
                 // 아군만 선택 가능
-                if (crew != null  && crew.isPlayerControlled)
+                if (crew != null && crew.isPlayerControlled)
                 {
                     RTSSelectionManager.Instance.selectedCrew.Add(crew);
                     RTSSelectionManager.Instance.SetOutline(crew, true);
@@ -98,7 +110,7 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
                     }
                     else
                     {
-                        RTSSelectionManager.Instance.SetOutline(crew,false);
+                        RTSSelectionManager.Instance.SetOutline(crew, false);
                     }
                 }
 
@@ -123,10 +135,10 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(displayRect, eventData.position,
                 eventData.pressEventCamera, out localPoint))
         {
-            Vector2 uv = RectPointToUV(localPoint,displayRect);
-            worldPoint=new Vector2(
-                uv.x*enemyCamTexture.width,
-                uv.y*enemyCamTexture.height);
+            Vector2 uv = RectPointToUV(localPoint, displayRect);
+            worldPoint = new Vector2(
+                uv.x * enemyCamTexture.width,
+                uv.y * enemyCamTexture.height);
             return worldPoint;
         }
         return null;
@@ -135,7 +147,7 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
     private Rect GetWorldRect()
     {
         Vector2 worldDragStartPos = enemyCam.ScreenToWorldPoint(dragStartPos);
-        Vector2 worldDragEndPos=enemyCam.ScreenToWorldPoint(dragEndPos);
+        Vector2 worldDragEndPos = enemyCam.ScreenToWorldPoint(dragEndPos);
         Vector2 LeftBottom = Vector2.Min(worldDragStartPos, worldDragEndPos);
         Vector2 RightTop = Vector2.Max(worldDragStartPos, worldDragEndPos);
         float width = RightTop.x - LeftBottom.x;
@@ -168,7 +180,7 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
     {
         CalculateBounds();
 
-        enemyCam.transform.position = new Vector3(enemyBound.center.x, enemyBound.center.y,0);
+        enemyCam.transform.position = new Vector3(enemyBound.center.x, enemyBound.center.y, 0);
 
         float camHeight = enemyBound.size.y * 0.5f * enemyCamPadding;
         float camWidth = enemyBound.size.x * 0.5f * enemyCamPadding / enemyCam.aspect;
@@ -178,8 +190,8 @@ public class EnemyCamInteraction : MonoBehaviour,IPointerDownHandler,IPointerUpH
 
     void Start()
     {
-        enemyCam=GameObject.Find("EnemyCam").GetComponent<Camera>();
-        displayRect=transform.GetChild(0).GetComponent<RectTransform>();
+        enemyCam = GameObject.Find("EnemyCam").GetComponent<Camera>();
+        displayRect = transform.GetChild(0).GetComponent<RectTransform>();
         enemyCamTexture = enemyCam.targetTexture;
 
         //EnemyCamAim();

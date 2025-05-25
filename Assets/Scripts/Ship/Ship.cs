@@ -1072,8 +1072,11 @@ public class Ship : MonoBehaviour
     /// </summary>
     public void RemoveAllCrews()
     {
+        CrewReservationManager.ClearAllReservations(this);
         foreach (CrewMember crew in allCrews)
+        {
             Destroy(crew.gameObject);
+        }
 
         allCrews.Clear();
         // GetSystem<CrewSystem>().crews.Clear();
@@ -1590,10 +1593,11 @@ public class Ship : MonoBehaviour
 
     public void BackToTheDefaultShip()
     {
-        foreach (Transform child in transform)
-        {
-            Destroy(child.gameObject);
-        }
+        RemoveAllWeapons();
+        RemoveAllItems();
+        RemoveAllRooms();
+
+
 
         GameManager.Instance.CreateDefaultPlayerShip();
     }

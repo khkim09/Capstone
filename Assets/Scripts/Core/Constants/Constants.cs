@@ -94,8 +94,8 @@ public static class Constants
         /// <summary>
         /// 유저가 현재 위치부터 이동할 수 있는 범위의 상대적인 크기
         /// </summary>
-        // public const float PlanetNodeValidRadius = PlanetSize * 4f;
-        public const float PlanetNodeValidRadius = PlanetSize * 10f;
+        // TODO : public const float PlanetNodeValidRadius = PlanetSize * 4f;
+        public const float PlanetNodeValidRadius = PlanetSize * 100f;
 
         /// <summary>
         /// 2 티어 아이템 해금을 위해 필요한 거래 총액
@@ -205,7 +205,7 @@ public static class Constants
         public const float ConnectionLineThickness = 0.1f;
 
         // TODO :원래 값 0.6
-        public const float EventNodeRate = 0.99f;
+        public const float EventNodeRate = 0.1f;
 
         public const float CombatNodeRate = 1 - EventNodeRate;
 

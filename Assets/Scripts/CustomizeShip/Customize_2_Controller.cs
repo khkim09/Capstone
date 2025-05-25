@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -276,7 +277,26 @@ public class Customize_2_Controller : MonoBehaviour
         controller0.bpPreviewArea.UpdateAndShow(data);
         controller0.OnClickSlot(BlueprintSlotManager.Instance.appliedSlotIndex);
 
+        playerShip.SetShipContentsActive(false);
+
         buyClicked = true;
+
+        Debug.Log("갈아끼워");
+
+        // ShipSerialization.SaveShip(GameManager.Instance.playerShip, "playership");
+
+        ES3.DeleteFile("playership");
+
+        StartCoroutine(SaveAfterDelay());
+
+        // OnClickCancel();
+    }
+
+    private IEnumerator SaveAfterDelay()
+    {
+        yield return new WaitForSeconds(0.25f);
+
+        ShipSerialization.SaveShip(GameManager.Instance.playerShip, "playerShip");
         OnClickCancel();
     }
 
@@ -342,21 +362,6 @@ public class Customize_2_Controller : MonoBehaviour
     /// <summary>
     /// Image 비율 조정
     /// </summary>
-    // private void AdjustRawImageAspect()
-    // {
-    //     if (hullPreviewImage == null || hullPreviewImage.texture == null)
-    //         return;
-
-    //     float textureWidth = hullPreviewImage.texture.width;
-    //     float textureHeight = hullPreviewImage.texture.height;
-    //     float aspectRatio = textureWidth / textureHeight;
-
-    //     RectTransform rt = hullPreviewImage.GetComponent<RectTransform>();
-
-    //     float baseHeight = rt.sizeDelta.y;
-    //     rt.sizeDelta = new Vector2(baseHeight * aspectRatio, baseHeight);
-    // }
-
     private void AdjustRawImageAspect()
     {
         RenderTexture rt = previewCam.gameObject.GetComponent<Camera>().targetTexture;
