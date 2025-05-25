@@ -1200,6 +1200,7 @@ public class CrewMember : CrewBase
                 RTSSelectionManager.Instance.MoveForCombat(crew);
                 crew.LookAtMe();
             }
+            StopAllCrewCoroutine();
         }
         else
         {

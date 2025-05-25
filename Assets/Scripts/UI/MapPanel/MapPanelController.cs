@@ -390,7 +390,7 @@ public class MapPanelController : MonoBehaviour
         // 게임 상태 저장
         GameManager.Instance.SaveGameData();
 
-        if(targetNode.NodeData.nodeType==WarpNodeType.Combat)
+        if (targetNode.NodeData.nodeType == WarpNodeType.Combat)
             EventManager.Instance.CombatOccur();
     }
 
@@ -816,11 +816,12 @@ public class MapPanelController : MonoBehaviour
     private void ClearWarpNodes()
     {
         // 워프 패널의 모든 자식 오브젝트 제거
-        int nodeCount = transform.childCount;
+        // foreach (Transform child in warpPanelContent.transform)
+        //     Destroy(child.gameObject);
+
+        int nodeCount = warpPanelContent.transform.childCount;
         for (int i = nodeCount - 1; i > 0; i--)
-        {
-            Destroy(transform.GetChild(i).gameObject);
-        }
+            Destroy(warpPanelContent.transform.GetChild(i).gameObject);
 
         // 노드 데이터 초기화
         warpNodes.Clear();
