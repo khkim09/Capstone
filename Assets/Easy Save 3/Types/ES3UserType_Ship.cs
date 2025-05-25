@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("isPlayerShip", "shipName", "gridSize", "allRooms", "allWeapons", "allCrews", "unUsedItems", "doorData", "doorLevel", "outerHullData", "outerHullPrefab", "outerHulls", "currentStats", "systems", "outerHullSystem", "weaponSystem", "oxygenSystem", "crewSystem", "hitpointSystem", "moraleSystem", "powerSystem", "storageSystem", "shieldSystem", "backupRoomDatas", "outerHullList")]
+	[ES3PropertiesAttribute("isPlayerShip", "shipName", "gridSize", "allRooms", "allWeapons", "allCrews", "unUsedItems", "doorData", "doorLevel", "outerHullData", "outerHullPrefab", "outerHulls", "currentStats", "systems", "outerHullSystem", "weaponSystem", "oxygenSystem", "crewSystem", "hitpointSystem", "moraleSystem", "powerSystem", "storageSystem", "shieldSystem", "OnStatsChanged", "OnRoomChanged", "backupRoomDatas", "outerHullList")]
 	public class ES3UserType_Ship : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -39,6 +39,8 @@ namespace ES3Types
 			writer.WritePrivateField("powerSystem", instance);
 			writer.WritePrivateField("storageSystem", instance);
 			writer.WritePrivateField("shieldSystem", instance);
+			writer.WritePrivateField("OnStatsChanged", instance);
+			writer.WritePrivateField("OnRoomChanged", instance);
 			writer.WriteProperty("backupRoomDatas", instance.backupRoomDatas, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<RoomBackupData>)));
 			writer.WriteProperty("outerHullList", instance.outerHullList, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<OuterHull>)));
 		}
@@ -119,6 +121,12 @@ namespace ES3Types
 					break;
 					case "shieldSystem":
 					instance = (Ship)reader.SetPrivateField("shieldSystem", reader.Read<ShieldSystem>(), instance);
+					break;
+					case "OnStatsChanged":
+					instance = (Ship)reader.SetPrivateField("OnStatsChanged", reader.Read<System.Action>(), instance);
+					break;
+					case "OnRoomChanged":
+					instance = (Ship)reader.SetPrivateField("OnRoomChanged", reader.Read<System.Action>(), instance);
 					break;
 					case "backupRoomDatas":
 						instance.backupRoomDatas = reader.Read<System.Collections.Generic.List<RoomBackupData>>();
