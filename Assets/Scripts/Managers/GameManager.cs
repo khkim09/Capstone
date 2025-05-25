@@ -68,8 +68,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -544,7 +543,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator DelayedStartNewGame()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
         CreateDefaultPlayerShip();
         playerShip.isPlayerShip = true;
         OnShipInitialized?.Invoke();
@@ -648,9 +647,7 @@ public class GameManager : MonoBehaviour
         // 행성에서 장비 구매했는지 여부
         ES3.Save<bool>("isBoughtEquipment", isBoughtEquipment);
 
-        // 도안 데이터 저장
-        if (BlueprintSlotManager.Instance != null)
-            BlueprintSlotManager.Instance.SaveAllBlueprints();
+        SaveBlueprintData();
     }
 
     /// <summary>
@@ -707,9 +704,7 @@ public class GameManager : MonoBehaviour
             // OnShipInitialized?.Invoke();
         }
 
-        // 도안 데이터 로드
-        // if (BlueprintSlotManager.Instance != null)
-        //     BlueprintSlotManager.Instance.LoadAllBlueprints();
+        LoadBlueprintData();
     }
 
     public void DeletePlayerData()
@@ -761,28 +756,7 @@ public class GameManager : MonoBehaviour
         ES3.DeleteKey("isBoughtEquipment");
         isBoughtEquipment = false;
 
-        // 도안 데이터 삭제 (JSON 파일 삭제)
-        if (BlueprintSlotManager.Instance != null)
-        {
-            string blueprintPath = Application.persistentDataPath + "/blueprints.json";
-            if (System.IO.File.Exists(blueprintPath))
-            {
-                System.IO.File.Delete(blueprintPath);
-                Debug.Log("도안 데이터 파일 삭제됨");
-            }
-
-            // 메모리상의 데이터도 초기화
-            for (int i = 0; i < BlueprintSlotManager.Instance.blueprintSlots.Count; i++)
-            {
-                BlueprintSlotManager.Instance.blueprintSlots[i] =
-                    new BlueprintSaveData(new List<BlueprintRoomSaveData>(), new List<BlueprintWeaponSaveData>(), -1);
-                BlueprintSlotManager.Instance.occupiedTilesPerSlot[i].Clear();
-                BlueprintSlotManager.Instance.isValidBP[i] = false;
-            }
-
-            BlueprintSlotManager.Instance.currentSlotIndex = -1;
-            BlueprintSlotManager.Instance.appliedSlotIndex = 0;
-        }
+        DeleteBlueprintData();
     }
 
     #endregion
@@ -962,14 +936,14 @@ public class GameManager : MonoBehaviour
     public void CheckPirateQuests()
     {
         foreach (PlanetData planet in planetDataList)
-            foreach (RandomQuest quest in planet.questList.Where(q =>
-                         q.objectives[0].objectiveType == QuestObjectiveType.PirateHunt &&
-                         q.status == QuestStatus.Active))
-            {
-                quest.objectives[0].currentAmount++;
+        foreach (RandomQuest quest in planet.questList.Where(q =>
+                     q.objectives[0].objectiveType == QuestObjectiveType.PirateHunt &&
+                     q.status == QuestStatus.Active))
+        {
+            quest.objectives[0].currentAmount++;
 
-                if (quest.objectives[0].currentAmount >= quest.objectives[0].amount) quest.SetCanComplete(true);
-            }
+            if (quest.objectives[0].currentAmount >= quest.objectives[0].amount) quest.SetCanComplete(true);
+        }
     }
 
     /// <summary>
@@ -978,20 +952,164 @@ public class GameManager : MonoBehaviour
     public void CheckItemQuests()
     {
         foreach (PlanetData planet in planetDataList)
-            foreach (RandomQuest quest in planet.questList.Where(q =>
-                         (q.objectives[0].objectiveType == QuestObjectiveType.ItemTransport ||
-                          q.objectives[0].objectiveType == QuestObjectiveType.ItemProcurement) &&
-                         q.status == QuestStatus.Active))
+        foreach (RandomQuest quest in planet.questList.Where(q =>
+                     (q.objectives[0].objectiveType == QuestObjectiveType.ItemTransport ||
+                      q.objectives[0].objectiveType == QuestObjectiveType.ItemProcurement) &&
+                     q.status == QuestStatus.Active))
+        {
+            int targetId = quest.objectives[0].targetId;
+            int targetAmount = quest.objectives[0].amount;
+
+            // ID와 양이 정확히 일치하는 아이템이 있는지 체크
+            bool hasMatchingItem = playerShip.GetAllItems()
+                .Any(i => i.GetItemId() == targetId && i.GetItemData().amount == targetAmount);
+
+            quest.SetCanComplete(hasMatchingItem);
+        }
+    }
+
+    #endregion
+
+    #region Blueprint 데이터 관리
+
+    /// <summary>
+    /// Blueprint 데이터를 JSON 파일로 저장합니다.
+    /// </summary>
+    public void SaveBlueprintData()
+    {
+        try
+        {
+            if (BlueprintSlotManager.Instance != null)
             {
-                int targetId = quest.objectives[0].targetId;
-                int targetAmount = quest.objectives[0].amount;
+                BlueprintSlotSaveWrapper wrapper = new()
+                {
+                    blueprintSlots = BlueprintSlotManager.Instance.blueprintSlots,
+                    isValidBP = BlueprintSlotManager.Instance.isValidBP,
+                    currentSlotIndex = BlueprintSlotManager.Instance.currentSlotIndex,
+                    appliedSlotIndex = BlueprintSlotManager.Instance.appliedSlotIndex,
+                    occupiedTilesPerSlot = new List<List<Vector2Int>>()
+                };
 
-                // ID와 양이 정확히 일치하는 아이템이 있는지 체크
-                bool hasMatchingItem = playerShip.GetAllItems()
-                    .Any(i => i.GetItemId() == targetId && i.GetItemData().amount == targetAmount);
+                // HashSet을 List로 변환하여 저장
+                foreach (HashSet<Vector2Int> tileSet in BlueprintSlotManager.Instance.occupiedTilesPerSlot)
+                    wrapper.occupiedTilesPerSlot.Add(new List<Vector2Int>(tileSet));
 
-                quest.SetCanComplete(hasMatchingItem);
+                string json = JsonUtility.ToJson(wrapper);
+                System.IO.File.WriteAllText(Application.persistentDataPath + "/blueprints.json", json);
+
+                Debug.Log("Blueprint 데이터 저장 완료");
             }
+            else
+            {
+                Debug.LogWarning("BlueprintSlotManager가 존재하지 않아 Blueprint 데이터를 저장할 수 없습니다.");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Blueprint 데이터 저장 중 오류 발생: {e.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Blueprint 데이터를 JSON 파일에서 로드합니다.
+    /// </summary>
+    public void LoadBlueprintData()
+    {
+        try
+        {
+            string path = Application.persistentDataPath + "/blueprints.json";
+
+            if (!System.IO.File.Exists(path))
+            {
+                Debug.Log("Blueprint 저장 파일이 존재하지 않습니다.");
+                return;
+            }
+
+            string json = System.IO.File.ReadAllText(path);
+            BlueprintSlotSaveWrapper wrapper = JsonUtility.FromJson<BlueprintSlotSaveWrapper>(json);
+
+            if (BlueprintSlotManager.Instance != null)
+            {
+                // 데이터 복원
+                BlueprintSlotManager.Instance.blueprintSlots = wrapper.blueprintSlots ?? new List<BlueprintSaveData>();
+                BlueprintSlotManager.Instance.isValidBP = wrapper.isValidBP ?? new List<bool>();
+                BlueprintSlotManager.Instance.currentSlotIndex = wrapper.currentSlotIndex;
+                BlueprintSlotManager.Instance.appliedSlotIndex = wrapper.appliedSlotIndex;
+
+                // occupiedTilesPerSlot 복원
+                BlueprintSlotManager.Instance.occupiedTilesPerSlot = new List<HashSet<Vector2Int>>();
+
+                if (wrapper.occupiedTilesPerSlot != null)
+                    foreach (List<Vector2Int> tileList in wrapper.occupiedTilesPerSlot)
+                        BlueprintSlotManager.Instance.occupiedTilesPerSlot.Add(new HashSet<Vector2Int>(tileList));
+
+                // 4칸 보장 (누락된 슬롯이 있으면 빈 데이터로 채움)
+                while (BlueprintSlotManager.Instance.blueprintSlots.Count < 4)
+                    BlueprintSlotManager.Instance.blueprintSlots.Add(
+                        new BlueprintSaveData(new List<BlueprintRoomSaveData>(), new List<BlueprintWeaponSaveData>(),
+                            -1));
+
+                while (BlueprintSlotManager.Instance.occupiedTilesPerSlot.Count < 4)
+                    BlueprintSlotManager.Instance.occupiedTilesPerSlot.Add(new HashSet<Vector2Int>());
+
+                while (BlueprintSlotManager.Instance.isValidBP.Count < 4)
+                    BlueprintSlotManager.Instance.isValidBP.Add(false);
+
+                Debug.Log("Blueprint 데이터 로드 완료");
+            }
+            else
+            {
+                Debug.LogWarning("BlueprintSlotManager가 존재하지 않아 Blueprint 데이터를 로드할 수 없습니다.");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Blueprint 데이터 로드 중 오류 발생: {e.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Blueprint 데이터 파일을 삭제하고 SlotManager 데이터를 초기화합니다.
+    /// </summary>
+    public void DeleteBlueprintData()
+    {
+        try
+        {
+            string path = Application.persistentDataPath + "/blueprints.json";
+
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+                Debug.Log("Blueprint 데이터 파일 삭제 완료");
+            }
+
+            // SlotManager가 존재하면 데이터 초기화
+            if (BlueprintSlotManager.Instance != null)
+            {
+                BlueprintSlotManager.Instance.currentSlotIndex = -1;
+                BlueprintSlotManager.Instance.appliedSlotIndex = 0;
+
+                // 4칸 빈 데이터로 초기화
+                BlueprintSlotManager.Instance.blueprintSlots.Clear();
+                BlueprintSlotManager.Instance.occupiedTilesPerSlot.Clear();
+                BlueprintSlotManager.Instance.isValidBP.Clear();
+
+                for (int i = 0; i < 4; i++)
+                {
+                    BlueprintSlotManager.Instance.blueprintSlots.Add(
+                        new BlueprintSaveData(new List<BlueprintRoomSaveData>(), new List<BlueprintWeaponSaveData>(),
+                            -1));
+                    BlueprintSlotManager.Instance.occupiedTilesPerSlot.Add(new HashSet<Vector2Int>());
+                    BlueprintSlotManager.Instance.isValidBP.Add(false);
+                }
+
+                Debug.Log("BlueprintSlotManager 데이터 초기화 완료");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Blueprint 데이터 삭제 중 오류 발생: {e.Message}");
+        }
     }
 
     #endregion
