@@ -591,7 +591,6 @@ public class PlanetData
 
     public void TrySpawnQuest()
     {
-        Debug.LogError("호출됨!");
         if (Random.value <= Constants.Quest.QuestCreateRate) CreateRandomQuest();
     }
 

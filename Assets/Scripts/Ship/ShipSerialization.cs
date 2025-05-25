@@ -16,12 +16,7 @@ public static class ShipSerialization
     public static void SaveShip(Ship ship, string filename)
     {
         if (ship == null)
-        {
-            Debug.LogError("ship - null"); //testcode
             return;
-        }
-
-        Debug.LogError("일단 null은 아님");
 
         // 파일이 이미 존재한다면 해당 파일 삭제 (덮어쓰기)
         if (ES3.FileExists(filename))

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -94,12 +95,12 @@ public class CombatManager : MonoBehaviour
         Time.timeScale = 0;
         if (ship == GameManager.Instance.playerShip)
         {
-            if(defeatUI)
+            if (defeatUI)
                 defeatUI.SetActive(true);
         }
         else
         {
-            if(winUI)
+            if (winUI)
                 winUI.SetActive(true);
         }
     }
@@ -134,18 +135,18 @@ public class CombatManager : MonoBehaviour
         {
             // 내 함선에 있는 적 선원 복귀 및 자동 삭제
             List<CrewMember> needToDestroy = GameManager.Instance.playerShip.allEnemies;
-            foreach (CrewMember crew in needToDestroy)
+            for (int i = needToDestroy.Count - 1; i >= 0; i--)
             {
-                crew.Freeze();
-                crew.Die();
+                needToDestroy[i].Freeze();
+                needToDestroy[i].Die();
             }
 
             // 적 함선에 있는 내 선원 복귀
             List<CrewMember> needToBackMine = GameManager.Instance.currentEnemyShip.allEnemies;
-            foreach (CrewMember crew in needToBackMine)
+            for (int i = needToBackMine.Count - 1; i >= 0; i--)
             {
-                crew.Freeze();
-                StartCoroutine(crew.TeleportAfterDelay(crew, 0f));
+                needToBackMine[i].Freeze();
+                StartCoroutine(needToBackMine[i].TeleportAfterDelay(needToBackMine[i], 0.3f));
             }
 
             GameManager.Instance.playerShip.allEnemies.Clear();

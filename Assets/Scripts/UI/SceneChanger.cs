@@ -37,8 +37,6 @@ public class SceneChanger : MonoBehaviour
         // 이미 전환 중이라면 무시
         if (IsTransitioning) return;
 
-        Debug.LogError($"scene name {sceneName}");
-
         GameManager.Instance.SaveGameData();
 
         StartCoroutine(FadeAndSwitchScene(sceneName));
@@ -160,7 +158,7 @@ public class SceneChanger : MonoBehaviour
         SetInputBlocking(false);
         IsTransitioning = false;
 
-        if(GameManager.Instance.CurrentState==GameState.Looser)
+        if (GameManager.Instance.CurrentState == GameState.Looser)
         {
             GameObject.FindWithTag("RoomIconTooltip").GetComponentInChildren<MapPanelController>().ImmediateLandingCall();
             GameManager.Instance.ChangeGameState(GameState.Warp);

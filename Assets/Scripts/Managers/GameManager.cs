@@ -325,7 +325,7 @@ public class GameManager : MonoBehaviour
         Room temp = GameObjectFactory.Instance.CreateRoomInstance(RoomType.Corridor);
         playerShip.AddRoom(temp, new Vector2Int(50, 31), Constants.Rotations.Rotation.Rotation90);
 
-        playerShip.AddWeapon(1, new Vector2Int(35, 33), ShipWeaponAttachedDirection.East);
+        playerShip.AddWeapon(5, new Vector2Int(35, 33), ShipWeaponAttachedDirection.East);
 
 
         CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);

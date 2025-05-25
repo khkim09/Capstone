@@ -42,7 +42,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     [SerializeField] public Constants.Rotations.Rotation currentRotation;
 
     /// <summary>방 작동 시 시각 효과 파티클.</summary>
-    [Header("방 효과")] [SerializeField] protected ParticleSystem roomParticles;
+    [Header("방 효과")][SerializeField] protected ParticleSystem roomParticles;
 
     /// <summary>방 작동 시 사운드 효과.</summary>
     [SerializeField] protected AudioSource roomSound;
@@ -681,6 +681,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     {
         currentHitPoints = amount;
         damageCondition = DamageLevel.good;
+        UpdateRoomVisual();
 
         NotifyStateChanged();
     }

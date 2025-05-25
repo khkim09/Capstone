@@ -96,7 +96,7 @@ public class Customize_0_Controller : MonoBehaviour
         // scene 전환
         Camera mainCam = Camera.main;
         mainCam.transform.position = new Vector3(-100f, -100f, mainCam.transform.position.z);
-        playerShip.SetShipContentsActive(true);
+        // playerShip.SetShipContentsActive(true);
 
         playerShip.RemoveAllCrews();
         playerShip.RemoveAllRooms();
@@ -120,6 +120,7 @@ public class Customize_0_Controller : MonoBehaviour
         }
 
         RTSSelectionManager.Instance.RefreshMovementData();
+        GameManager.Instance.playerShip.SetShipContentsActive(true);
 
         SceneChanger.Instance.LoadScene("Planet");
     }

@@ -701,7 +701,7 @@ public class CrewMember : CrewBase
         if (inCombat)
         {
             inCombat = false;
-            if(combatCoroutine!=null) StopCoroutine(combatCoroutine);
+            if (combatCoroutine != null) StopCoroutine(combatCoroutine);
             combatCoroutine = null;
             madRoom = null;
             combatTarget = null;
@@ -1187,6 +1187,7 @@ public class CrewMember : CrewBase
             // 6) 애니메이션 + 체력바 카메라 세팅
             PlayAnimation("tp_in");
             yield return new WaitForSeconds(delay);
+            PlayAnimation("idle");
 
             isTPing = false;
 
