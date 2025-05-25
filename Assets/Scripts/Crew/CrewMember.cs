@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -284,7 +285,12 @@ public class CrewMember : CrewBase
 
         // 도착 후 방 진입 표시
         if (currentRoom != null)
+        {
             currentRoom.OnCrewEnter(this);
+
+            // 테스트 코드
+            currentRoom.occupyingTiles.Add(new Room.ot { crewMember = this, tile = this.reservedTile });
+        }
 
         Debug.Log($"현재 방: {currentRoom}");
         reservedRoom = null;
@@ -294,10 +300,13 @@ public class CrewMember : CrewBase
         {
             hasEnteredTPRoom = false;
 
-            // 텔포 준비
-            Freeze();
+            if (SceneManager.GetActiveScene().name == "Combat")
+            {
+                // 텔포 준비
+                Freeze();
 
-            StartCoroutine(TeleportAfterDelay(this, 0.5f));
+                StartCoroutine(TeleportAfterDelay(this, 0.5f));
+            }
 
             yield break;
         }
@@ -1105,7 +1114,6 @@ public class CrewMember : CrewBase
                 exitShip = GameManager.Instance.playerShip;
             }
         }
-        Debug.LogError($"targetship : {targetShip}, exitship : {exitShip}");
 
         // 2. 상대 함선의 랜덤 위치에 선원 생성
         List<Room> oppositeAllRooms = targetShip.GetAllRooms();
@@ -1199,7 +1207,7 @@ public class CrewMember : CrewBase
         }
         else
         {
-            Debug.LogWarning("상대 함선의 모든 타일이 차있어 텔포 불가");
+            Debug.LogError("상대 함선의 모든 타일이 차있어 텔포 불가");
             isTPing = false;
             yield return null;
         }

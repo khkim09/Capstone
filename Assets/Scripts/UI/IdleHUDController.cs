@@ -14,7 +14,7 @@ public class IdleHUDController : MonoBehaviour
 
     [Header("함선 체력바")][SerializeField] private Image shipHealthBarFill;
 
-    [SerializeField] private Button buttonEnding;
+    [SerializeField] private GameObject buttonEnding;
 
     private float CurrentHitpoints => GameManager.Instance.GetPlayerShip().GetCurrentHitPoints();
     private float MaxHitpoints => GameManager.Instance.GetPlayerShip().GetStat(ShipStat.HitPointsMax);
@@ -33,7 +33,9 @@ public class IdleHUDController : MonoBehaviour
 
     private void Start()
     {
-        buttonEnding.onClick.AddListener(() => { OnClickEndingButton(); });
+        if(buttonEnding)
+            buttonEnding.GetComponent<Button>().onClick.AddListener(() => { OnClickEndingButton(); });
+        CheckShowEnding(GameManager.Instance.CurrentYear);
     }
 
     private void Update()
@@ -83,7 +85,11 @@ public class IdleHUDController : MonoBehaviour
 
     public void CheckShowEnding(int year)
     {
-        if (year >= Constants.Endings.EndingYear) buttonEnding.gameObject.SetActive(true);
+        if (year >= Constants.Endings.EndingYear)
+        {
+            if(buttonEnding)
+                buttonEnding.SetActive(true);
+        }
     }
 
     private void UpdateHealthBar()

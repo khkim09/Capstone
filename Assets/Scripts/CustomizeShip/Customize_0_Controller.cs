@@ -50,6 +50,9 @@ public class Customize_0_Controller : MonoBehaviour
         playerShip = GameManager.Instance.playerShip;
         // RTSSelectionManager.Instance.playerShip = GameManager.Instance.playerShip;
         playerShip.SetShipContentsActive(false);
+
+        if (BlueprintSlotManager.Instance != null)
+            BlueprintSlotManager.Instance.RegisterCustomizePanel(this.gameObject);
     }
 
     /// <summary>

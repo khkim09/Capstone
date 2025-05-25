@@ -7,9 +7,9 @@ using UnityEngine;
 /// </summary>
 public class OuterHullSystem : ShipSystem
 {
-    /// <summary>
-    /// 현재 생성된 외갑판 객체들
-    /// </summary>
+    // /// <summary>
+    // /// 현재 생성된 외갑판 객체들
+    // /// </summary>
     public List<OuterHull> currentOuterHulls = new();
 
     /// <summary>
@@ -72,12 +72,12 @@ public class OuterHullSystem : ShipSystem
                 weapon.ApplyRotationSprite(level);
 
             // 모든 외갑판 객체의 레벨 업데이트
-            foreach (OuterHull hull in currentOuterHulls)
+            foreach (OuterHull hull in parentShip.outerHullList)
                 if (hull != null)
                     hull.SetLevel(level);
 
             Debug.Log(
-                $"Ship outer hull level set to {level + 1}, updated {weapons.Count} weapons and {currentOuterHulls.Count} hull tiles");
+                $"Ship outer hull level set to {level + 1}, updated {weapons.Count} weapons and {parentShip.outerHullList.Count} hull tiles");
         }
         else
         {
@@ -348,30 +348,6 @@ public class OuterHullSystem : ShipSystem
                 CreateOuterHull(hullPosition, spriteIndex, level, outerHullData, outerHullPrefab, placementInfo.type);
             }
         }
-
-        //        Debug.Log($"Created {currentOuterHulls.Count} outer hull tiles at level {level + 1}");
-    }
-
-    /// <summary>
-    /// 내부 모서리 타일 추가
-    /// </summary>
-    private void AddInnerCorner(List<HullPlacementInfo> placements, int directionIndex)
-    {
-        HullPlacementInfo innerCornerInfo = new();
-        innerCornerInfo.type = HullType.InnerCorner;
-        innerCornerInfo.directionIndex = directionIndex;
-        AddPlacementIfNotDuplicate(placements, innerCornerInfo);
-    }
-
-    /// <summary>
-    /// 외부 모서리 타일 추가
-    /// </summary>
-    private void AddOuterCorner(List<HullPlacementInfo> placements, int directionIndex)
-    {
-        HullPlacementInfo outerCornerInfo = new();
-        outerCornerInfo.type = HullType.OuterCorner;
-        outerCornerInfo.directionIndex = directionIndex;
-        AddPlacementIfNotDuplicate(placements, outerCornerInfo);
     }
 
     /// <summary>
@@ -380,8 +356,8 @@ public class OuterHullSystem : ShipSystem
     private bool IsOutOfBounds(Vector2Int pos)
     {
         return pos.x < 0 || pos.y < 0 ||
-               pos.x >= parentShip.GetGridSize().x ||
-               pos.y >= parentShip.GetGridSize().y;
+            pos.x >= parentShip.GetGridSize().x ||
+            pos.y >= parentShip.GetGridSize().y;
     }
 
     /// <summary>
@@ -532,6 +508,7 @@ public class OuterHullSystem : ShipSystem
 
         // 생성된 외갑판 저장
         parentShip.outerHullList.Add(outerHull);
+        currentOuterHulls.Add(outerHull);
     }
 
     /// <summary>
@@ -546,6 +523,7 @@ public class OuterHullSystem : ShipSystem
                 GameObject.Destroy(hull.gameObject);
             }
 
+        parentShip.outerHullList.Clear();
         currentOuterHulls.Clear();
     }
 }

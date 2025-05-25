@@ -70,6 +70,14 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
     [SerializeField] private SpriteRenderer icon;
 
+    [System.Serializable]
+    public class ot
+    {
+        public CrewMember crewMember;
+        public Vector2Int tile;
+    }
+    public List<ot> occupyingTiles = new();
+
     /// <summary>
     /// 각 방에 collider 추가, isTrigger = true 설정을 통해 선원 충돌 방해 제거
     /// </summary>
@@ -426,12 +434,12 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     }
 
     /// <summary>상태 변경을 알립니다.</summary>
-    protected virtual void NotifyStateChanged()
+    public virtual void NotifyStateChanged()
     {
         if (workingCrew != null)
         {
             workingCrew.WalkOut();
-            workingCrew.TryWork();
+            workingCrew.BackToThePeace();
         }
         OnRoomStateChanged?.Invoke(this);
     }
@@ -547,7 +555,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
             {
                 if (damageCondition == DamageLevel.scratch)
                     color = "yellow";
-                else if(damageCondition==DamageLevel.good)
+                else if (damageCondition == DamageLevel.good)
                 {
                     color = "green";
                 }
@@ -556,7 +564,7 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
 
         if (color.Equals(""))
         {
-            Debug.LogError(name+": Room has no color assigned.");
+            Debug.LogError(name + ": Room has no color assigned.");
             return;
         }
 

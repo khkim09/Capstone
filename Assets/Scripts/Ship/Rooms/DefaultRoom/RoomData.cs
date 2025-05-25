@@ -38,6 +38,7 @@ public struct RoomBackupData
     public int level;
     public Vector2Int position;
     public Constants.Rotations.Rotation rotation;
+    public float hitPoints;
 }
 
 /// <summary>
