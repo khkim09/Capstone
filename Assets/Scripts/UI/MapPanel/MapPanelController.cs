@@ -1154,8 +1154,8 @@ public class MapPanelController : MonoBehaviour
     {
         driftUI.SetActive(false);
 
+        GameManager.Instance.WarpEffect();
         SceneChanger.Instance.JustStay();
-
         GoToThePlanet(NearestPlanet());
     }
 }
