@@ -687,8 +687,8 @@ public class CrewMember : CrewBase
                 currentShip.allCrews.Remove(this);
             if (currentShip.allEnemies.Contains(this))
                 currentShip.allEnemies.Remove(this);
-
-            GameEvents.PirateKilled();
+            if(!isPlayerControlled)
+                GameEvents.PirateKilled();
             DieCoroutine = StartCoroutine(ImDying());
         }
     }
@@ -1014,7 +1014,6 @@ public class CrewMember : CrewBase
         // 전투 중단
         inCombat = false;
         //PlayAnimation("attack");
-        combatCoroutine = null;
         combatTarget = null;
         madRoom = null;
 
@@ -1023,10 +1022,6 @@ public class CrewMember : CrewBase
 
         // 이동 중단
         isMoving = false;
-        moveCoroutine = null;
-
-        // 수리 중단
-        repairCoroutine = null;
 
         // 애니메이션 대기상태로 전환
         PlayAnimation("idle");

@@ -179,14 +179,14 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnItemAcquired += (itemId) => CheckItemQuests();
-        GameEvents.OnPirateKilled += CheckPirateQuests;
+        GameEvents.OnPirateKilled += OnPirateKilled;
         GameEvents.OnItemRemoved += (itemId) => CheckItemQuests();
     }
 
     private void OnDestroy()
     {
         GameEvents.OnItemAcquired -= (itemId) => CheckItemQuests();
-        GameEvents.OnPirateKilled -= CheckPirateQuests;
+        GameEvents.OnPirateKilled -= OnPirateKilled;
         GameEvents.OnItemRemoved -= (itemId) => CheckItemQuests();
     }
 
