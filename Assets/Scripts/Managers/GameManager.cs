@@ -68,8 +68,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 현재 게임 상태입니다.
     /// </summary>
-    [Header("Game State")]
-    [SerializeField]
+    [Header("Game State")] [SerializeField]
     private GameState currentState = GameState.MainMenu;
 
     public GameState CurrentState => currentState;
@@ -642,6 +641,9 @@ public class GameManager : MonoBehaviour
 
         // 행성에서 장비 구매했는지 여부
         ES3.Save<bool>("isBoughtEquipment", isBoughtEquipment);
+
+        // 도안 데이터 저장
+        if (BlueprintSlotManager.Instance != null) BlueprintSlotManager.Instance.SaveAllBlueprints();
     }
 
     /// <summary>
@@ -697,6 +699,9 @@ public class GameManager : MonoBehaviour
             CreateDefaultPlayerShip();
             // OnShipInitialized?.Invoke();
         }
+
+        // 도안 데이터 로드
+        if (BlueprintSlotManager.Instance != null) BlueprintSlotManager.Instance.LoadAllBlueprints();
     }
 
     public void DeletePlayerData()
@@ -746,6 +751,29 @@ public class GameManager : MonoBehaviour
         // 행성 씬 장비 구매 여부
         ES3.DeleteKey("isBoughtEquipment");
         isBoughtEquipment = false;
+
+        // 도안 데이터 삭제 (JSON 파일 삭제)
+        if (BlueprintSlotManager.Instance != null)
+        {
+            string blueprintPath = Application.persistentDataPath + "/blueprints.json";
+            if (System.IO.File.Exists(blueprintPath))
+            {
+                System.IO.File.Delete(blueprintPath);
+                Debug.Log("도안 데이터 파일 삭제됨");
+            }
+
+            // 메모리상의 데이터도 초기화
+            for (int i = 0; i < BlueprintSlotManager.Instance.blueprintSlots.Count; i++)
+            {
+                BlueprintSlotManager.Instance.blueprintSlots[i] =
+                    new BlueprintSaveData(new List<BlueprintRoomSaveData>(), new List<BlueprintWeaponSaveData>(), -1);
+                BlueprintSlotManager.Instance.occupiedTilesPerSlot[i].Clear();
+                BlueprintSlotManager.Instance.isValidBP[i] = false;
+            }
+
+            BlueprintSlotManager.Instance.currentSlotIndex = -1;
+            BlueprintSlotManager.Instance.appliedSlotIndex = 0;
+        }
     }
 
     #endregion
@@ -925,14 +953,14 @@ public class GameManager : MonoBehaviour
     public void CheckPirateQuests()
     {
         foreach (PlanetData planet in planetDataList)
-            foreach (RandomQuest quest in planet.questList.Where(q =>
-                         q.objectives[0].objectiveType == QuestObjectiveType.PirateHunt &&
-                         q.status == QuestStatus.Active))
-            {
-                quest.objectives[0].currentAmount++;
+        foreach (RandomQuest quest in planet.questList.Where(q =>
+                     q.objectives[0].objectiveType == QuestObjectiveType.PirateHunt &&
+                     q.status == QuestStatus.Active))
+        {
+            quest.objectives[0].currentAmount++;
 
-                if (quest.objectives[0].currentAmount >= quest.objectives[0].amount) quest.SetCanComplete(true);
-            }
+            if (quest.objectives[0].currentAmount >= quest.objectives[0].amount) quest.SetCanComplete(true);
+        }
     }
 
     /// <summary>
@@ -941,20 +969,20 @@ public class GameManager : MonoBehaviour
     public void CheckItemQuests()
     {
         foreach (PlanetData planet in planetDataList)
-            foreach (RandomQuest quest in planet.questList.Where(q =>
-                         (q.objectives[0].objectiveType == QuestObjectiveType.ItemTransport ||
-                          q.objectives[0].objectiveType == QuestObjectiveType.ItemProcurement) &&
-                         q.status == QuestStatus.Active))
-            {
-                int targetId = quest.objectives[0].targetId;
-                int targetAmount = quest.objectives[0].amount;
+        foreach (RandomQuest quest in planet.questList.Where(q =>
+                     (q.objectives[0].objectiveType == QuestObjectiveType.ItemTransport ||
+                      q.objectives[0].objectiveType == QuestObjectiveType.ItemProcurement) &&
+                     q.status == QuestStatus.Active))
+        {
+            int targetId = quest.objectives[0].targetId;
+            int targetAmount = quest.objectives[0].amount;
 
-                // ID와 양이 정확히 일치하는 아이템이 있는지 체크
-                bool hasMatchingItem = playerShip.GetAllItems()
-                    .Any(i => i.GetItemId() == targetId && i.GetItemData().amount == targetAmount);
+            // ID와 양이 정확히 일치하는 아이템이 있는지 체크
+            bool hasMatchingItem = playerShip.GetAllItems()
+                .Any(i => i.GetItemId() == targetId && i.GetItemData().amount == targetAmount);
 
-                quest.SetCanComplete(hasMatchingItem);
-            }
+            quest.SetCanComplete(hasMatchingItem);
+        }
     }
 
     #endregion
