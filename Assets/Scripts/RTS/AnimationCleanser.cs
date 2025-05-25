@@ -16,6 +16,7 @@ public class AnimationCleanser : MonoBehaviour
     {
         StartCoroutine(AnimationCleans());
         StartCoroutine(KillAllCrews());
+        StartCoroutine(RefreshRoom());
     }
 
     private IEnumerator AnimationCleans()
@@ -57,5 +58,16 @@ public class AnimationCleanser : MonoBehaviour
         yield return null;
         foreach (CrewMember crew in GameManager.Instance.playerShip.allEnemies)
             crew.Die();
+    }
+
+    private IEnumerator RefreshRoom()
+    {
+        yield return null;
+        yield return null;
+        yield return null;
+
+        GameManager.Instance.playerShip.RecalculateAllStats();
+        GameManager.Instance.playerShip.RefreshAllSystems();
+        GameManager.Instance.playerShip.ActionReconnect();
     }
 }

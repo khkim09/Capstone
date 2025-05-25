@@ -289,6 +289,12 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         }
     }
 
+    public bool isActionConnected()
+    {
+        if (OnRoomStateChanged==null)
+            return false;
+        return true;
+    }
 
     /// <summary>방을 초기화합니다.</summary>
     public virtual void Initialize(int level)
