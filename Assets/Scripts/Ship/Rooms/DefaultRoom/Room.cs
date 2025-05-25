@@ -437,13 +437,13 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
     /// <summary>상태 변경을 알립니다.</summary>
     public virtual void NotifyStateChanged()
     {
-        // TODO : 계속 NULL REF 떠서 주석 처리함. 필요하면 수정하고 다시 해제
-        // if (workingCrew != null)
-        // {
-        //     workingCrew.WalkOut();
-        //     workingCrew.BackToThePeace();
-        // }
-        // OnRoomStateChanged?.Invoke(this);
+        if (workingCrew != null)
+        {
+            CrewMember worker = workingCrew;
+            worker.WalkOut();
+            worker.BackToThePeace();
+        }
+        OnRoomStateChanged?.Invoke(this);
     }
 
     /// <summary>현재 업그레이드 레벨을 반환합니다.</summary>
