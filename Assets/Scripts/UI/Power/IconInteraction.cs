@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class IconInteraction : TooltipPanelBase
@@ -56,6 +57,11 @@ public class IconInteraction : TooltipPanelBase
 
     protected void OnMouseEnter()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
         // 캔버스 컴포넌트 찾기
         GameObject canvasObject = GameObject.FindWithTag("RoomIconTooltip");
         if (canvasObject == null)
@@ -158,6 +164,10 @@ public class IconInteraction : TooltipPanelBase
 
     private void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         if (room.GetIsPowerRequested())
         {
             room.SetIsActive(!room.isActive);
