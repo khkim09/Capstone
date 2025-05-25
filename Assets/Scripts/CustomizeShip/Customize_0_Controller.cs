@@ -115,8 +115,9 @@ public class Customize_0_Controller : MonoBehaviour
         if (ES3.FileExists("playerShip"))
         {
             Debug.Log("소환시도");
-
+            GameManager.Instance.playerShip.Initialize();
             ShipSerialization.LoadShip("playerShip");
+            GameManager.Instance.playerShip.RefreshAllSystems();
         }
 
         RTSSelectionManager.Instance.RefreshMovementData();

@@ -307,6 +307,9 @@ public class Customize_1_Controller : MonoBehaviour
         playerShip.RevertToOriginalShip();
         playerShip.CrewSystem.RevertOriginalCrews(playerShip.backupCrewDatas);
 
+        GameManager.Instance.playerShip.Initialize();
+        GameManager.Instance.playerShip.RefreshAllSystems();
+
         // 유저 함선 내 모든 하위 오브젝트 비활성화
         playerShip.SetShipContentsActive(false);
     }
