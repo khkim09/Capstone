@@ -1590,10 +1590,11 @@ public class Ship : MonoBehaviour
 
     public void BackToTheDefaultShip()
     {
-        foreach (Transform child in transform)
-        {
-            Destroy(child.gameObject);
-        }
+        RemoveAllWeapons();
+        RemoveAllItems();
+        RemoveAllRooms();
+
+
 
         GameManager.Instance.CreateDefaultPlayerShip();
     }

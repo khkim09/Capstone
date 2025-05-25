@@ -338,6 +338,7 @@ public class GameManager : MonoBehaviour
         if (crewBase3 is CrewMember crewMember3) playerShip.AddCrew(crewMember3);
         if (crewBase4 is CrewMember crewMember4) playerShip.AddCrew(crewMember4);
 
+        playerShip.SetOuterHullLevel(0);
         playerShip.UpdateOuterHullVisuals();
 
         return null;
@@ -1051,5 +1052,10 @@ public enum GameState
     Paused,
 
     /// <summary>게임 오버 상태입니다.</summary>
-    GameOver
+    GameOver,
+
+    /// <summary>
+    /// 전투에서 진 패잔병입니다.
+    /// </summary>
+    Looser
 }

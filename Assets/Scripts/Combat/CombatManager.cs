@@ -94,11 +94,13 @@ public class CombatManager : MonoBehaviour
         Time.timeScale = 0;
         if (ship == GameManager.Instance.playerShip)
         {
-            defeatUI.SetActive(true);
+            if(defeatUI)
+                defeatUI.SetActive(true);
         }
         else
         {
-            winUI.SetActive(true);
+            if(winUI)
+                winUI.SetActive(true);
         }
     }
 
@@ -152,13 +154,17 @@ public class CombatManager : MonoBehaviour
         {
             // 내 함선 내 모든 선원 삭제
             List<CrewMember> playerShipAllCrews = GameManager.Instance.playerShip.allCrews;
-            foreach (CrewMember crew in playerShipAllCrews)
-                crew.Die();
+            for (int i = playerShipAllCrews.Count - 1; i >= 0; i--)
+            {
+                playerShipAllCrews[i].Die();
+            }
             GameManager.Instance.playerShip.allCrews.Clear();
 
             List<CrewMember> playerShipAllEnemies = GameManager.Instance.playerShip.allEnemies;
-            foreach (CrewMember crew in playerShipAllEnemies)
-                crew.Die();
+            for (int i = playerShipAllEnemies.Count - 1; i >= 0; i--)
+            {
+                playerShipAllEnemies[i].Die();
+            }
             GameManager.Instance.playerShip.allEnemies.Clear();
         }
         yield return null;

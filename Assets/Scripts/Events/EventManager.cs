@@ -147,11 +147,9 @@ public class EventManager : MonoBehaviour
 
     public void CombatOccur()
     {
-        if (CurrentWarpNode.NodeData.nodeType == WarpNodeType.Combat)
-        {
-            GameManager.Instance.ChangeGameState(GameState.Combat);
-            SceneChanger.Instance.LoadScene("Combat");
-        }
+        GameManager.Instance.ChangeGameState(GameState.Combat);
+        SceneChanger.Instance.LoadScene("Combat");
+
     }
 
     /// <summary>

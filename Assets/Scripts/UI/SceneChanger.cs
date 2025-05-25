@@ -159,6 +159,12 @@ public class SceneChanger : MonoBehaviour
         // 씬 전환 완료 - 입력 차단 해제
         SetInputBlocking(false);
         IsTransitioning = false;
+
+        if(GameManager.Instance.CurrentState==GameState.Looser)
+        {
+            GameObject.FindWithTag("RoomIconTooltip").GetComponentInChildren<MapPanelController>().ImmediateLandingCall();
+            GameManager.Instance.ChangeGameState(GameState.Warp);
+        }
     }
 
     /// <summary>
