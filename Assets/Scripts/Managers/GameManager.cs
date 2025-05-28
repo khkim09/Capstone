@@ -656,38 +656,68 @@ public class GameManager : MonoBehaviour
     public void LoadPlayerData()
     {
         // 유저 데이터 (엔딩 관련)
-        if (ES3.KeyExists("playerData")) playerData = ES3.Load<PlayerData>("playerData");
+        if (ES3.KeyExists("playerData"))
+        {
+            playerData = ES3.Load<PlayerData>("playerData");
+            playerData = ES3.Load<PlayerData>("playerData");
+        }
 
         // 완료된 미스터리 이벤트 ID 목록 로드
         if (ES3.KeyExists("completedMysteryEventIds"))
         {
             completedMysteryEventIds = ES3.Load<List<int>>("completedMysteryEventIds");
+            completedMysteryEventIds = ES3.Load<List<int>>("completedMysteryEventIds");
             playerData.mysteryFound = completedMysteryEventIds.Count;
         }
 
         // 게임 스테이트
-        if (ES3.KeyExists("gameState")) currentState = ES3.Load<GameState>("gameState");
+        if (ES3.KeyExists("gameState"))
+        {
+            currentState = ES3.Load<GameState>("gameState");
+            currentState = ES3.Load<GameState>("gameState");
+        }
 
         // 현재 년도
-        if (ES3.KeyExists("currentYear")) currentYear = ES3.Load<int>("currentYear");
+        if (ES3.KeyExists("currentYear"))
+        {
+            currentYear = ES3.Load<int>("currentYear");
+            currentYear = ES3.Load<int>("currentYear");
+        }
 
         // 사기 효과
         if (ES3.KeyExists("moraleEffect"))
         {
+            MoraleManager.Instance.activeEffects = ES3.Load<List<MoraleEffectData>>("moraleEffect");
             MoraleManager.Instance.activeEffects = ES3.Load<List<MoraleEffectData>>("moraleEffect");
 
             MoraleManager.Instance.ReapplyLoadedEffects(); // 로드 직후 효과 재적용
         }
 
         // 재화
-        if (ES3.KeyExists("resources")) ResourceManager.Instance.resources = ES3.Load<List<ResourcesData>>("resources");
+        if (ES3.KeyExists("resources"))
+        {
+            ResourceManager.Instance.resources = ES3.Load<List<ResourcesData>>("resources");
+            ResourceManager.Instance.resources = ES3.Load<List<ResourcesData>>("resources");
+        }
 
         // 공용 장비 레벨
-        if (ES3.KeyExists("globalWeaponLevel")) CurrentGlobalWeaponLevel = ES3.Load<int>("globalWeaponLevel");
-        if (ES3.KeyExists("globalShieldLevel")) CurrentGlobalShieldLevel = ES3.Load<int>("globalShieldLevel");
+        if (ES3.KeyExists("globalWeaponLevel"))
+        {
+            CurrentGlobalWeaponLevel = ES3.Load<int>("globalWeaponLevel");
+            CurrentGlobalWeaponLevel = ES3.Load<int>("globalWeaponLevel");
+        }
+        if (ES3.KeyExists("globalShieldLevel"))
+        {
+            CurrentGlobalShieldLevel = ES3.Load<int>("globalShieldLevel");
+            CurrentGlobalShieldLevel = ES3.Load<int>("globalShieldLevel");
+        }
 
         // 행성에서 장비 구매했는지 여부
-        if (ES3.KeyExists("isBoughtEquipment")) isBoughtEquipment = ES3.Load<bool>("isBoughtEquipment");
+        if (ES3.KeyExists("isBoughtEquipment"))
+        {
+            isBoughtEquipment = ES3.Load<bool>("isBoughtEquipment");
+            isBoughtEquipment = ES3.Load<bool>("isBoughtEquipment");
+        }
 
         // 망할놈의 함선
         if (ES3.FileExists("playerShip"))
@@ -776,12 +806,19 @@ public class GameManager : MonoBehaviour
         if (ES3.KeyExists("planetList"))
         {
             planetDataList = ES3.Load<List<PlanetData>>("planetList");
+            planetDataList = ES3.Load<List<PlanetData>>("planetList");
 
             if (ES3.KeyExists("worldNodeList"))
+            {
                 worldNodeDataList = ES3.Load<List<WorldNodeData>>("worldNodeList");
+                worldNodeDataList = ES3.Load<List<WorldNodeData>>("worldNodeList");
+            }
 
             if (ES3.KeyExists("currentPosition"))
+            {
                 normalizedPlayerPosition = ES3.Load<Vector2>("currentPosition");
+                normalizedPlayerPosition = ES3.Load<Vector2>("currentPosition");
+            }
         }
         else
         {
@@ -846,12 +883,19 @@ public class GameManager : MonoBehaviour
         if (ES3.KeyExists("currentWarpNodes"))
         {
             warpNodeDataList = ES3.Load<List<WarpNodeData>>("currentWarpNodes");
+            warpNodeDataList = ES3.Load<List<WarpNodeData>>("currentWarpNodes");
 
             if (ES3.KeyExists("currentWarpTargetPlanetId"))
+            {
                 currentWarpTargetPlanetId = ES3.Load<int>("currentWarpTargetPlanetId");
+                currentWarpTargetPlanetId = ES3.Load<int>("currentWarpTargetPlanetId");
+            }
 
             if (ES3.KeyExists("currentWarpNodeId"))
+            {
                 currentWarpNodeId = ES3.Load<int>("currentWarpNodeId");
+                currentWarpNodeId = ES3.Load<int>("currentWarpNodeId");
+            }
 
             Debug.Log($"워프맵 로드: {warpNodeDataList.Count}개 노드");
             Debug.Log($"타겟 행성 ID : {currentWarpTargetPlanetId}");
