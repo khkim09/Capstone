@@ -776,6 +776,10 @@ public class GameManager : MonoBehaviour
         if (ES3.KeyExists("planetList"))
         {
             planetDataList = ES3.Load<List<PlanetData>>("planetList");
+            foreach (PlanetData planet in planetDataList)
+            {
+                planet.currentSprite=Resources.Load<Sprite>($"Sprites/Planet/{planet.GetSpeciesPrefix(planet.PlanetRace)}");
+            }
 
             if (ES3.KeyExists("worldNodeList"))
                 worldNodeDataList = ES3.Load<List<WorldNodeData>>("worldNodeList");

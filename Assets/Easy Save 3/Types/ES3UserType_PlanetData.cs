@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("planetId", "planetName", "planetRace", "itemPlanet", "normalizedPosition", "currentSprite", "itemsTier1", "itemsTier2", "itemsTier3", "currentRevenue", "currentFuelPrice", "currentMissilePrice", "currentHypersonicPrice", "questList", "activeEffects", "categoryPriceModifiers", "itemPriceDictionary", "currentRandomEquipmentItem", "isHome")]
+	[ES3PropertiesAttribute("planetId", "planetName", "planetRace", "itemPlanet", "normalizedPosition", "itemsTier1", "itemsTier2", "itemsTier3", "currentRevenue", "currentFuelPrice", "currentMissilePrice", "currentHypersonicPrice", "questList", "activeEffects", "categoryPriceModifiers", "itemPriceDictionary", "currentRandomEquipmentItem", "isHome")]
 	public class ES3UserType_PlanetData : ES3ObjectType
 	{
 		public static ES3Type Instance = null;
@@ -21,7 +21,6 @@ namespace ES3Types
 			writer.WriteProperty("planetRace", instance.planetRace, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(PlanetRace)));
 			writer.WriteProperty("itemPlanet", instance.itemPlanet, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(ItemPlanet)));
 			writer.WriteProperty("normalizedPosition", instance.normalizedPosition, ES3Type_Vector2.Instance);
-			writer.WritePropertyByRef("currentSprite", instance.currentSprite);
 			writer.WriteProperty("itemsTier1", instance.itemsTier1, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<TradingItemData>)));
 			writer.WriteProperty("itemsTier2", instance.itemsTier2, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<TradingItemData>)));
 			writer.WriteProperty("itemsTier3", instance.itemsTier3, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<TradingItemData>)));
@@ -60,9 +59,6 @@ namespace ES3Types
 					case "normalizedPosition":
 						instance.normalizedPosition = reader.Read<UnityEngine.Vector2>(ES3Type_Vector2.Instance);
 						break;
-					case "currentSprite":
-						instance.currentSprite = reader.Read<UnityEngine.Sprite>(ES3Type_Sprite.Instance);
-						break;
 					case "itemsTier1":
 						instance.itemsTier1 = reader.Read<System.Collections.Generic.List<TradingItemData>>();
 						break;
@@ -97,7 +93,7 @@ namespace ES3Types
 						instance.itemPriceDictionary = reader.Read<System.Collections.Generic.Dictionary<System.Int32, System.Int32>>();
 						break;
 					case "currentRandomEquipmentItem":
-						instance.currentRandomEquipmentItem = reader.Read<EquipmentItem>();
+						instance.currentRandomEquipmentItem = reader.Read<EquipmentItem>(ES3UserType_EquipmentItem.Instance);
 						break;
 					case "isHome":
 						instance.isHome = reader.Read<System.Boolean>(ES3Type_bool.Instance);
