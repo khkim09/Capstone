@@ -16,8 +16,6 @@ public class ShipValidationHelper
     /// <returns></returns>
     public ValidationResult ValidateShipLayout(Ship ship)
     {
-        return new ValidationResult(ShipValidationError.None, "shipvalidation.error.none");
-
         // 모든 방 순회
         List<Room> rooms = ship.GetAllRooms();
 

@@ -26,18 +26,19 @@ public static class Constants
         /// <summary>
         /// 이벤트 노드에서 불가사의 이벤트가 걸릴 확률
         /// </summary>
-        public const float MysteryEventChance = 0.03f;
+        // TODO : 0.03
+        public const float MysteryEventChance = 0.3f;
 
         /// <summary>
         /// 이벤트 노드에서 함선 이벤트가 걸릴 확률
         /// </summary>
         public const float ShipEventChance = 1 - MysteryEventChance;
 
-        // TODO : 원본값 0.05
         /// <summary>
         /// 워프 때마다 행성 이벤트가 발생할 확률
         /// </summary>
-        public const float PlanetEventChance = 0.05f;
+        // TODO : 원본값 0.05
+        public const float PlanetEventChance = 0.5f;
 
         /// <summary>
         /// 최근 발생한 이벤트의 기록 개수. 중복 이벤트가 자주 뜨는 것을 막기 위함.
@@ -94,7 +95,8 @@ public static class Constants
         /// <summary>
         /// 유저가 현재 위치부터 이동할 수 있는 범위의 상대적인 크기
         /// </summary>
-        public const float PlanetNodeValidRadius = PlanetSize * 4f;
+        // public const float PlanetNodeValidRadius = PlanetSize * 4f;
+        public const float PlanetNodeValidRadius = PlanetSize * 6f;
         // public const float PlanetNodeValidRadius = PlanetSize * 100f;
 
         /// <summary>
@@ -115,11 +117,11 @@ public static class Constants
         /// </summary>
         public const int QuestDuration = 20;
 
-        // TODO : 테스트용 80% -> 5%로 바꾸기
         /// <summary>
         /// 워프 시마다 퀘스트가 생성되는 확률
         /// </summary>
-        public const float QuestCreateRate = 0.05f;
+        // TODO : 테스트용 80% -> 5%로 바꾸기
+        public const float QuestCreateRate = 1f;
     }
 
     public static class Resources
@@ -127,8 +129,9 @@ public static class Constants
         /// <summary>
         /// 게임 시작 시 기본 COMA
         /// </summary>
-        public const int DefaultCOMA = 10000;
-        // TODO: 10000 // public const int DefaultCOMA = 100000; // 테스트 코드
+        // TODO: 10000
+        // public const int DefaultCOMA = 10000;
+        public const int DefaultCOMA = 100000; // 테스트 코드
 
         /// <summary>
         /// 게임 시작 시 기본 연료
@@ -138,12 +141,16 @@ public static class Constants
         /// <summary>
         /// 게임 시작 시 기본 미사일탄
         /// </summary>
-        public const float DefaultMissile = 5;
+        /// TODO
+        // public const float DefaultMissile = 5;
+        public const float DefaultMissile = 12;
 
         /// <summary>
         /// 게임 시작 시 기본 초음속탄
         /// </summary>
-        public const float DefaultHypersonic = 3;
+        /// TODO
+        // public const float DefaultHypersonic = 3;
+        public const float DefaultHypersonic = 8;
     }
 
     /// <summary>
@@ -205,7 +212,7 @@ public static class Constants
         public const float ConnectionLineThickness = 0.1f;
 
         // TODO :원래 값 0.6
-        public const float EventNodeRate = 0.6f;
+        public const float EventNodeRate = 0.5f;
 
         public const float CombatNodeRate = 1 - EventNodeRate;
 

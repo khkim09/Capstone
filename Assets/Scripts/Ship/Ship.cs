@@ -1102,6 +1102,17 @@ public class Ship : MonoBehaviour
         return allRooms;
     }
 
+    public List<Room> GetDestroyedRooms()
+    {
+        List<Room> destroyedRooms = new List<Room>();
+        foreach (Room room in allRooms)
+        {
+            if(room.damageCondition==DamageLevel.breakdown)
+                destroyedRooms.Add(room);
+        }
+        return destroyedRooms;
+    }
+
     /// <summary>
     /// 랜덤한 방 반환
     /// </summary>
