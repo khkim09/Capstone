@@ -692,20 +692,72 @@ public class CrewMember : CrewBase
 
         if (currentRoom.workingCrew == this) WalkOut();
 
-        if (DieCoroutine == null)
-        {
-            // 이거 해결해야 될 듯
-            if (RTSSelectionManager.Instance.selectedCrew.Contains(this))
-                RTSSelectionManager.Instance.selectedCrew.RemoveAll(cm => cm == null || cm == this);
+        // 이거 해결해야 될 듯
+        if (RTSSelectionManager.Instance.selectedCrew.Contains(this))
+            RTSSelectionManager.Instance.selectedCrew.RemoveAll(cm => cm == null || cm == this);
 
-            if (currentShip.allCrews.Contains(this))
-                currentShip.allCrews.Remove(this);
-            if (currentShip.allEnemies.Contains(this))
-                currentShip.allEnemies.Remove(this);
-            if (!isPlayerControlled)
-                GameEvents.PirateKilled();
-            DieCoroutine = StartCoroutine(ImDying());
+        if (currentShip.allCrews.Contains(this))
+            currentShip.allCrews.Remove(this);
+        if (currentShip.allEnemies.Contains(this))
+            currentShip.allEnemies.Remove(this);
+        if (!isPlayerControlled)
+            GameEvents.PirateKilled();
+
+
+        PlayAnimation("die");
+    }
+
+    public void AfterDie()
+    {
+        if (currentRoom != null)
+        {
+            if (!wasMoving)
+                CrewReservationManager.ExitTile(currentShip, currentRoom, GetCurrentTile(), this);
+            else
+                CrewReservationManager.ExitTile(currentShip, reservedRoom, reservedTile, this);
         }
+
+        Destroy(gameObject);
+        // object pulling -> 죽은 선원 집합소 생성 (setparent())
+
+        Debug.Log($"{crewName} 사망 처리 완료");
+    }
+
+    public void InstantKill()
+    {
+        wasMoving = isMoving;
+        isMoving = false;
+        inCombat = false;
+        isAlive = false;
+        isWorking = false;
+
+        StopAllCrewCoroutine();
+        DontTouchMe();
+
+        if (currentRoom.workingCrew == this) WalkOut();
+
+        // 이거 해결해야 될 듯
+        if (RTSSelectionManager.Instance.selectedCrew.Contains(this))
+            RTSSelectionManager.Instance.selectedCrew.RemoveAll(cm => cm == null || cm == this);
+
+        if (currentShip.allCrews.Contains(this))
+            currentShip.allCrews.Remove(this);
+        if (currentShip.allEnemies.Contains(this))
+            currentShip.allEnemies.Remove(this);
+        if (!isPlayerControlled)
+            GameEvents.PirateKilled();
+        if (currentRoom != null)
+        {
+            if (!wasMoving)
+                CrewReservationManager.ExitTile(currentShip, currentRoom, GetCurrentTile(), this);
+            else
+                CrewReservationManager.ExitTile(currentShip, reservedRoom, reservedTile, this);
+        }
+
+        Destroy(gameObject);
+        // object pulling -> 죽은 선원 집합소 생성 (setparent())
+
+        Debug.Log($"{crewName} 사망 처리 완료");
     }
 
     /// <summary>

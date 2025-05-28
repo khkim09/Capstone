@@ -138,7 +138,7 @@ public class CombatManager : MonoBehaviour
             for (int i = needToDestroy.Count - 1; i >= 0; i--)
             {
                 needToDestroy[i].Freeze();
-                needToDestroy[i].Die();
+                needToDestroy[i].InstantKill();
             }
 
             GameManager.Instance.playerShip.allEnemies.Clear();
@@ -159,12 +159,12 @@ public class CombatManager : MonoBehaviour
         {
             // 내 함선 내 모든 선원 삭제
             List<CrewMember> playerShipAllCrews = GameManager.Instance.playerShip.allCrews;
-            for (int i = playerShipAllCrews.Count - 1; i >= 0; i--) playerShipAllCrews[i].Die();
+            for (int i = playerShipAllCrews.Count - 1; i >= 0; i--) playerShipAllCrews[i].InstantKill();
             GameManager.Instance.playerShip.allCrews.Clear();
             playerShipAllCrews.Clear();
 
             List<CrewMember> playerShipAllEnemies = GameManager.Instance.playerShip.allEnemies;
-            for (int i = playerShipAllEnemies.Count - 1; i >= 0; i--) playerShipAllEnemies[i].Die();
+            for (int i = playerShipAllEnemies.Count - 1; i >= 0; i--) playerShipAllEnemies[i].InstantKill();
             GameManager.Instance.playerShip.allEnemies.Clear();
             playerShipAllEnemies.Clear();
         }
