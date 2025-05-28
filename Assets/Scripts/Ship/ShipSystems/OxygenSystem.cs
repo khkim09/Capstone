@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// 함선의 산소 수치를 관리하는 시스템.
@@ -29,9 +30,15 @@ public class OxygenSystem : ShipSystem
 
     public override void Refresh()
     {
-        currentOxygenRate = 100.0f;
-        currentOxygenLevel = OxygenLevel.Normal;
+        //currentOxygenRate = 100.0f;
+        //currentOxygenLevel = OxygenLevel.Normal;
+        if (currentOxygenRate > 0)
+            currentOxygenLevel = OxygenLevel.Normal;
+        else if (currentOxygenRate == 0)
+            currentOxygenLevel = OxygenLevel.None;
     }
+
+    public float damageCheckInterval = 0;
 
     /// <summary>
     /// 매 프레임마다 호출되어 산소 수치를 갱신합니다.
@@ -44,16 +51,26 @@ public class OxygenSystem : ShipSystem
 
         currentOxygenRate = Mathf.Clamp(currentOxygenRate, 0, 100);
 
-        if (currentOxygenRate > 80)
+        if (currentOxygenRate > 0)
             currentOxygenLevel = OxygenLevel.Normal;
-        else if (currentOxygenRate > 60)
-            currentOxygenLevel = OxygenLevel.Medium;
-        else if (currentOxygenRate > 40)
-            currentOxygenLevel = OxygenLevel.Low;
-        else if (currentOxygenRate > 20)
-            currentOxygenLevel = OxygenLevel.Critical;
         else if (currentOxygenRate == 0)
             currentOxygenLevel = OxygenLevel.None;
+
+        if (currentOxygenLevel == OxygenLevel.None)
+        {
+            damageCheckInterval += deltaTime;
+            if (damageCheckInterval > 1f)
+            {
+                damageCheckInterval = 0;
+                List<CrewMember> crews = parentShip.GetAllCrew();
+                for (int i = crews.Count - 1; i >= 0; i--)
+                {
+                    crews[i].TakeOxygenDamage();
+                }
+            }
+        }
+        else
+            damageCheckInterval = 0;
     }
 
     /// <summary>

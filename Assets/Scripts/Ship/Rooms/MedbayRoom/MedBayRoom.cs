@@ -21,6 +21,29 @@ public class MedBayRoom : Room<MedBayRoomData, MedBayRoomData.MedBayRoomLevel>
         workDirection=Vector2Int.up;
     }
 
+    private float healInterval=0;
+
+    public override void Update()
+    {
+        base.Update();
+
+        healInterval+=Time.deltaTime;
+        if(healInterval>1)
+        {
+            healInterval = 0;
+            float healPerSec = GetStatContributions()[ShipStat.HealPerSecond];
+            if (workingCrew)
+                healInterval *= workingCrew.GetCrewSkillValue()[SkillType.MedBaySkill];
+            List<CrewMember> crews = crewInRoom;
+            for (int i = crews.Count - 1; i >= 0; i--)
+            {
+                if(crews[i].isPlayerControlled==parentShip.isPlayerShip)
+                    crews[i].Heal(healPerSec);
+            }
+        }
+
+    }
+
     /// <summary>
     /// 이 방이 함선 스탯에 기여하는 값을 계산합니다.
     /// 작동 상태 및 손상 정도에 따라 회복량과 전력 사용량이 조정됩니다.

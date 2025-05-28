@@ -661,6 +661,21 @@ public class CrewMember : CrewBase
     }
 
     /// <summary>
+    ///
+    /// </summary>
+    /// <param name="damage"></param>
+    public void TakeOxygenDamage()
+    {
+        if(needsOxygen)
+        {
+            float damage = maxHealth / 60f;
+            health -= damage;
+            if (health <= 0)
+                Die();
+        }
+    }
+
+    /// <summary>
     /// 사망 시, 자신을 combatTarget으로 지정한 선원들에게서 자신을 할당 해제시키고 다른 목표를 탐색하도록한다.
     /// 또한 애니메이션 재생을 마친 후에 Destroy
     /// </summary>
