@@ -152,28 +152,6 @@ public class GameManager : MonoBehaviour
             playerShip.isPlayerShip = true; // 유저 함선
             OnShipInitialized?.Invoke();
         }
-
-        // currentEnemyShip = GameObject.Find("EnemyShip")?.GetComponent<Ship>();
-        //
-        //
-        // if (currentEnemyShip != null)
-        // {
-        //     currentEnemyShip.Initialize();
-        //     currentEnemyShip.isPlayerShip = false;
-        //     GameObjectFactory.Instance.EnemyShipFactory.SpawnPirateShip("combat_test");
-        // }
-
-        // 기존으로 돌릴라면 아래 3개 주석 처리
-
-
-        // // 이동 명령
-        // StartCoroutine(MoveTest());
-
-        // // 선행 피격 테스트 - 이거 되면 사고임
-        // StartCoroutine(PreviousMissileTest());
-
-        // // 미사일 피격 테스트
-        // StartCoroutine(DelayedMissileTest());
     }
 
     private void OnEnable()
@@ -188,47 +166,6 @@ public class GameManager : MonoBehaviour
         GameEvents.OnItemAcquired -= (itemId) => CheckItemQuests();
         GameEvents.OnPirateKilled -= OnPirateKilled;
         GameEvents.OnItemRemoved -= (itemId) => CheckItemQuests();
-    }
-
-    // 피격 테스트
-    private Room WhereToGo(RoomType type)
-    {
-        List<Room> rooms = playerShip.GetAllRooms();
-        List<Room> canGo = new();
-        foreach (Room room in rooms)
-            if (room.GetIsDamageable() && room.roomType == type)
-                canGo.Add(room);
-
-        return canGo[Random.Range(0, canGo.Count)];
-    }
-
-    // 피격 테스트
-    private IEnumerator MoveTest()
-    {
-        yield return new WaitForSeconds(7f);
-
-        foreach (CrewMember crew in playerShip.allCrews)
-            RTSSelectionManager.Instance.IssueMoveCommand(WhereToGo(RoomType.Engine));
-    }
-
-    // 선 피격 테스트
-    private IEnumerator PreviousMissileTest()
-    {
-        yield return new WaitForSeconds(7.1f);
-
-        Debug.LogError("엔진룸 (26, 33) 미사일 피격!!");
-        playerShip.TakeAttack(30f, ShipWeaponType.Missile, new Vector2Int(26, 33));
-    }
-
-    // 피격 테스트
-    private IEnumerator DelayedMissileTest()
-    {
-        yield return new WaitForSeconds(8f);
-
-        Debug.LogError("복도 3개 (28~30, 32) 미사일 피격!!");
-        playerShip.TakeAttack(110f, ShipWeaponType.Laser, new Vector2Int(28, 32));
-        playerShip.TakeAttack(110f, ShipWeaponType.Laser, new Vector2Int(29, 32));
-        playerShip.TakeAttack(110f, ShipWeaponType.Laser, new Vector2Int(30, 32));
     }
 
     /// <summary>
@@ -304,8 +241,8 @@ public class GameManager : MonoBehaviour
 
 
         // 6,7,8 미사일 9,10,11 초음속탄 (총알 필요)
-        playerShip.AddWeapon(0, new Vector2Int(34, 32), ShipWeaponAttachedDirection.North);
-        playerShip.AddWeapon(3, new Vector2Int(34, 29), ShipWeaponAttachedDirection.South);
+        playerShip.AddWeapon(6, new Vector2Int(34, 32), ShipWeaponAttachedDirection.North);
+        playerShip.AddWeapon(9, new Vector2Int(34, 29), ShipWeaponAttachedDirection.South);
 
 
         CrewBase crewBase1 = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(CrewRace.Human);

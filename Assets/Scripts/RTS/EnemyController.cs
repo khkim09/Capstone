@@ -137,11 +137,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        if (canGo.Count == 0)
-        {
-            isEnd = true;
-            return null;
-        }
+
 
         List<CrewMember> currentShipAllCrew = cm.currentShip.GetAllCrew();
         foreach (CrewMember him in currentShipAllCrew)
@@ -151,6 +147,24 @@ public class EnemyController : MonoBehaviour
                 if (him.currentRoom.GetRoomType() != RoomType.Corridor)
                     canGo.Add(him.currentRoom);
             }
+        }
+
+        for (int i = canGo.Count - 1; i >= 0; i--)
+        {
+            foreach(CrewMember crew in canGo[i].crewInRoom)
+            {
+                if (crew.isPlayerControlled == cm.isPlayerControlled)
+                {
+                    canGo.RemoveAt(i);
+                    break;
+                }
+            }
+        }
+
+        if (canGo.Count == 0)
+        {
+            isEnd = true;
+            return null;
         }
 
         return canGo[Random.Range(0, canGo.Count)];
