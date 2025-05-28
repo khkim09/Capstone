@@ -134,8 +134,8 @@ public class SceneChanger : MonoBehaviour
 
         yield return StartCoroutine(Fade(1)); // 페이드 아웃
         RTSSelectionManager.Instance.SetGRC(null);
-        if (isDefeated)
-            GameManager.Instance.playerShip.BackToTheDefaultShip();
+        // if (isDefeated)
+        //     GameManager.Instance.playerShip.BackToTheDefaultShip();
 
         GameManager.Instance.SaveGameData();
 
@@ -152,6 +152,7 @@ public class SceneChanger : MonoBehaviour
         // GameObject.Find("Main Camera").GetComponent<ShipFollowCamera>().targetShip =
         //     GameManager.Instance.playerShip;
 
+        // 시간 흐르도록 세팅 (0 = 정지)
         Time.timeScale = 1f;
 
         yield return StartCoroutine(Fade(0)); // 페이드 인

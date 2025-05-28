@@ -89,7 +89,9 @@ public class CrewSystem : ShipSystem
 
             Debug.Log($"선원 랜덤 스폰 위치 : {spawnTile}");
 
+            // 점유 타일 등록
             CrewReservationManager.ReserveTile(parentShip, room, spawnTile, crew);
+            room.OnCrewEnter(crew);
 
             parentShip.allCrews.Add(crew);
             return true;
@@ -202,7 +204,9 @@ public class CrewSystem : ShipSystem
             originCrew.transform.SetParent(room.transform);
             originCrew.currentShip = parentShip;
 
+            // 점유 타일 등록
             CrewReservationManager.ReserveTile(parentShip, room, data.position, originCrew);
+            room.OnCrewEnter(originCrew);
 
             // 오브젝트 및 컴포넌트 활성화
             originCrew.gameObject.SetActive(true);
@@ -265,6 +269,7 @@ public class CrewSystem : ShipSystem
 
                 // 점유 등록
                 CrewReservationManager.ReserveTile(parentShip, room, spawnTile, crew);
+                room.OnCrewEnter(crew);
 
                 // 컴포넌트 활성화
                 crew.gameObject.SetActive(true);

@@ -146,11 +146,21 @@ public class CombatManager : MonoBehaviour
 
             // 적 함선에 있는 내 선원 복귀
             List<CrewMember> needToBackMine = GameManager.Instance.currentEnemyShip.allEnemies;
-            for (int i = needToBackMine.Count - 1; i >= 0; i--)
+            List<BackupCrewData> backMines = new();
+
+            foreach (CrewMember crew in needToBackMine)
             {
-                needToBackMine[i].Freeze();
-                StartCoroutine(needToBackMine[i].TeleportAfterDelay(needToBackMine[i], 0.3f));
+                backMines.Add(new BackupCrewData
+                {
+                    race = crew.race,
+                    crewName = crew.crewName,
+                    needsOxygen = crew.needsOxygen,
+                    position = crew.position,
+                    roomPos = crew.currentRoom.position
+                });
             }
+
+            GameManager.Instance.playerShip.CrewSystem.RestoreCrewAfterBuild(backMines);
 
             GameManager.Instance.currentEnemyShip.allEnemies.Clear();
             needToBackMine.Clear();
@@ -159,14 +169,18 @@ public class CombatManager : MonoBehaviour
         {
             // 내 함선 내 모든 선원 삭제
             List<CrewMember> playerShipAllCrews = GameManager.Instance.playerShip.allCrews;
-            for (int i = playerShipAllCrews.Count - 1; i >= 0; i--) playerShipAllCrews[i].Die();
+            for (int i = playerShipAllCrews.Count - 1; i >= 0; i--)
+                playerShipAllCrews[i].Die();
             GameManager.Instance.playerShip.allCrews.Clear();
             playerShipAllCrews.Clear();
 
             List<CrewMember> playerShipAllEnemies = GameManager.Instance.playerShip.allEnemies;
-            for (int i = playerShipAllEnemies.Count - 1; i >= 0; i--) playerShipAllEnemies[i].Die();
+            for (int i = playerShipAllEnemies.Count - 1; i >= 0; i--)
+                playerShipAllEnemies[i].Die();
             GameManager.Instance.playerShip.allEnemies.Clear();
             playerShipAllEnemies.Clear();
+
+            GameManager.Instance.playerShip.BackToTheDefaultShip();
         }
 
         yield return null;
