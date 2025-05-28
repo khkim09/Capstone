@@ -66,6 +66,8 @@ public class SceneChanger : MonoBehaviour
         // GameObject.Find("Main Camera").GetComponent<ShipFollowCamera>().targetShip =
         //     GameManager.Instance.playerShip;
 
+        Resources.UnloadUnusedAssets();
+
         yield return StartCoroutine(Fade(0)); // 페이드 인
 
         // 씬 전환 완료 - 입력 차단 해제

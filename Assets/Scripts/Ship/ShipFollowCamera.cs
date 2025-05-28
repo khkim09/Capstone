@@ -58,9 +58,9 @@ public class ShipFollowCamera : MonoBehaviour
 
     private IEnumerator CameraCoroutine()
     {
-        yield return null;
+        yield return new WaitUntil(()=>GameManager.Instance != null);
 
-        if (isFollowPlayerShip)
+        if (isFollowPlayerShip && GameManager.Instance)
             if(GameManager.Instance.playerShip!=null)
                 targetShip = GameManager.Instance.playerShip;
 
