@@ -21,7 +21,7 @@ public class RepairAlert : MonoBehaviour
         repairCost = 0;
         foreach (Room room in rooms)
         {
-            if (room.damageCondition == DamageLevel.breakdown)
+            if (room.NeedsRepair())
             {
                 destroyedRooms.Add(room);
                 repairCost += (int)(room.GetMaxHitPoints() - room.currentHitPoints) * repairCF;
