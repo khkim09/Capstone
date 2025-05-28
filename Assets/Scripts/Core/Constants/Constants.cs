@@ -95,6 +95,7 @@ public static class Constants
         /// <summary>
         /// 유저가 현재 위치부터 이동할 수 있는 범위의 상대적인 크기
         /// </summary>
+        /// TODO :
         // public const float PlanetNodeValidRadius = PlanetSize * 4f;
         public const float PlanetNodeValidRadius = PlanetSize * 6f;
         // public const float PlanetNodeValidRadius = PlanetSize * 100f;

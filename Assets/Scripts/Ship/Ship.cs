@@ -526,7 +526,8 @@ public class Ship : MonoBehaviour
                 crewName = crew.crewName,
                 needsOxygen = crew.needsOxygen,
                 position = crew.position,
-                roomPos = crew.currentRoom.position
+                roomPos = crew.currentRoom.position,
+                currentHP = crew.health
             });
     }
 
@@ -1100,17 +1101,6 @@ public class Ship : MonoBehaviour
     public List<Room> GetAllRooms()
     {
         return allRooms;
-    }
-
-    public List<Room> GetDestroyedRooms()
-    {
-        List<Room> destroyedRooms = new List<Room>();
-        foreach (Room room in allRooms)
-        {
-            if(room.damageCondition==DamageLevel.breakdown)
-                destroyedRooms.Add(room);
-        }
-        return destroyedRooms;
     }
 
     /// <summary>

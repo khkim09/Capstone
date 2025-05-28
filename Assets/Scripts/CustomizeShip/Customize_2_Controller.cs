@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class Customize_2_Controller : MonoBehaviour
 {
-    [Header("UI panel")] [SerializeField] private BPPreviewCamera previewCam;
+    [Header("UI panel")][SerializeField] private BPPreviewCamera previewCam;
     [SerializeField] private GameObject customize0Panel;
     [SerializeField] private GameObject customize2Panel;
 
-    [Header("선택된 외갑판")] [SerializeField] public int originHullLevel = -1;
+    [Header("선택된 외갑판")][SerializeField] public int originHullLevel = -1;
     [SerializeField] public int selectedHullLevel = -1;
 
-    [Header("Buttons")] [SerializeField] private Button outerhullbutton1;
+    [Header("Buttons")][SerializeField] private Button outerhullbutton1;
     [SerializeField] private Button outerhullbutton2;
     [SerializeField] private Button outerhullbutton3;
 
@@ -137,10 +137,14 @@ public class Customize_2_Controller : MonoBehaviour
             // 2. 기존 함선 모든 방 내구도 100%
             bool shipFullyRepaired = playerShip.IsFullHitPoint();
 
+            // 3. 창고 내 아이템 0개 (창고 비어있음)
+            bool isEmptyStorage = GameManager.Instance.playerShip.GetAllItems().Count == 0;
+
             // 조건 체크
-            if (hasEnoughMoney && shipFullyRepaired)
+            if (hasEnoughMoney && shipFullyRepaired && isEmptyStorage)
             {
                 feedbackText.text = "Can Buy!";
+                feedbackText.color = new Color(0.3066038f, 1f, 0.374394f, 1f);
                 buyButton.interactable = true;
             }
             else
@@ -149,7 +153,10 @@ public class Customize_2_Controller : MonoBehaviour
                     feedbackText.text = "Not Enough Money";
                 if (!shipFullyRepaired)
                     feedbackText.text = "Your Ship needs Repairs";
+                if (!isEmptyStorage)
+                    feedbackText.text = "Clear your Storages";
 
+                feedbackText.color = new Color(1f, 0.2971698f, 0.2971698f);
                 buyButton.interactable = false;
             }
         }
@@ -283,12 +290,7 @@ public class Customize_2_Controller : MonoBehaviour
 
         Debug.Log("갈아끼워");
 
-        // ShipSerialization.SaveShip(GameManager.Instance.playerShip, "playership");
-
-
         StartCoroutine(SaveAfterDelay());
-
-        // OnClickCancel();
     }
 
     private IEnumerator SaveAfterDelay()

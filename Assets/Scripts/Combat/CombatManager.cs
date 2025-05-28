@@ -156,7 +156,8 @@ public class CombatManager : MonoBehaviour
                     crewName = crew.crewName,
                     needsOxygen = crew.needsOxygen,
                     position = crew.position,
-                    roomPos = crew.currentRoom.position
+                    roomPos = crew.currentRoom.position,
+                    currentHP = crew.health
                 });
             }
 
@@ -164,6 +165,10 @@ public class CombatManager : MonoBehaviour
 
             GameManager.Instance.currentEnemyShip.allEnemies.Clear();
             needToBackMine.Clear();
+
+            // 현재 유저 함선에 존재하는 모든 유저 소속 crew에 대해 backtothepeace()
+            foreach (CrewMember crew in GameManager.Instance.playerShip.allCrews)
+                crew.BackToThePeace();
         }
         else // 패배
         {

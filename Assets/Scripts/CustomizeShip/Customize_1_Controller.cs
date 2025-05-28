@@ -152,7 +152,7 @@ public class Customize_1_Controller : MonoBehaviour
         GameManager.Instance.playerShip.ClearExistingHulls();
 
         // 함선의 방 collider 비활성화 (RTS를 위한 collider와 겹침 방지)
-        SetPlayerShipCollidersActive(false);
+        playerShip.SetShipContentsActive(false);
     }
 
     /// <summary>
@@ -172,7 +172,7 @@ public class Customize_1_Controller : MonoBehaviour
         GameManager.Instance.playerShip.UpdateOuterHullVisuals();
 
         // 함선 방 collider 활성화
-        SetPlayerShipCollidersActive(true);
+        playerShip.SetShipContentsActive(true);
     }
 
     /// <summary>
@@ -226,24 +226,7 @@ public class Customize_1_Controller : MonoBehaviour
             targetBlueprintShip.SetHullLevel(0);
 
         CenterCameraToBP();
-        SetPlayerShipCollidersActive(false);
-    }
-
-    /// <summary>
-    /// 함선의 모든 방에 대해 collider 활성화/비활성화
-    /// </summary>
-    /// <param name="active"></param>
-    private void SetPlayerShipCollidersActive(bool active)
-    {
-        if (GameManager.Instance.playerShip == null)
-            return;
-
-        foreach (Room room in GameManager.Instance.playerShip.GetAllRooms())
-        {
-            BoxCollider2D collider = room.GetComponent<BoxCollider2D>();
-            if (collider != null)
-                collider.enabled = active;
-        }
+        playerShip.SetShipContentsActive(false);
     }
 
     #region 함선 제작 버튼 (유효성 검사 및 교체)

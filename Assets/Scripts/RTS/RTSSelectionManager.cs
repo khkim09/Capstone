@@ -508,15 +508,14 @@ public class RTSSelectionManager : MonoBehaviour
             if (availableTiles.Count <= 0)
             {
                 Debug.LogWarning("모든 타일이 점유됨");
-                foreach (Vector2Int et in entryTiles)
-                    Debug.LogError($"{CrewReservationManager.GetOccupyingCrew(targetShip, et)}가 {et} 점유중");
+                // foreach (Vector2Int et in entryTiles)
+                //     Debug.LogError($"{CrewReservationManager.GetOccupyingCrew(targetShip, et)}가 {et} 점유중");
                 return;
             }
 
             // 우선순위 가장 높은 빈 타일을 목적지 타일로 지정
             Vector2Int tile = availableTiles[0];
             availableTiles.RemoveAt(0);
-            Debug.LogError($"{unassignedCrew.Count} 남음 : {tile}로 이동 - issuemovecommand");
 
             // 3-1. 이동에 필요한 필드 값 세팅
             CrewMember bestCrew = null;

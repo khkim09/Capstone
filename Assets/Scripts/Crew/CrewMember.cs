@@ -666,7 +666,7 @@ public class CrewMember : CrewBase
     /// <param name="damage"></param>
     public void TakeOxygenDamage()
     {
-        if(needsOxygen)
+        if (needsOxygen)
         {
             float damage = maxHealth / 60f;
             health -= damage;
@@ -1215,6 +1215,7 @@ public class CrewMember : CrewBase
 
             // 2) 타겟 함선 점유 타일 등록, 선원 리스트 갱신
             CrewReservationManager.ReserveTile(targetShip, assignedRoom, assignedTile, crew);
+            assignedRoom.OnCrewEnter(crew);
 
             // 3) 위치 설정
             crew.position = assignedTile;
