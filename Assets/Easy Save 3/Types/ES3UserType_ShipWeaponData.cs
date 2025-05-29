@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("id", "weaponName", "description", "damage", "cooldownPerSecond", "weaponIcon", "blueprintSprites", "flattenedSprites", "weaponType", "effectData", "effectPower", "cost", "warheadType", "projectileId")]
+	[ES3PropertiesAttribute("id", "weaponName", "description", "damage", "cooldownPerSecond", "weaponIcon", "flattenedSprites", "weaponType", "effectData", "effectPower", "cost", "warheadType", "projectileId")]
 	public class ES3UserType_ShipWeaponData : ES3ScriptableObjectType
 	{
 		public static ES3Type Instance = null;
@@ -22,7 +22,6 @@ namespace ES3Types
 			writer.WriteProperty("damage", instance.damage, ES3Type_float.Instance);
 			writer.WriteProperty("cooldownPerSecond", instance.cooldownPerSecond, ES3Type_float.Instance);
 			writer.WritePropertyByRef("weaponIcon", instance.weaponIcon);
-			writer.WriteProperty("blueprintSprites", instance.blueprintSprites, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(UnityEngine.Sprite[,])));
 			writer.WriteProperty("flattenedSprites", instance.flattenedSprites, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(UnityEngine.Sprite[])));
 			writer.WritePropertyByRef("weaponType", instance.weaponType);
 			writer.WritePropertyByRef("effectData", instance.effectData);
@@ -57,9 +56,6 @@ namespace ES3Types
 						break;
 					case "weaponIcon":
 						instance.weaponIcon = reader.Read<UnityEngine.Sprite>(ES3Type_Sprite.Instance);
-						break;
-					case "blueprintSprites":
-						instance.blueprintSprites = reader.Read<UnityEngine.Sprite[,]>();
 						break;
 					case "flattenedSprites":
 						instance.flattenedSprites = reader.Read<UnityEngine.Sprite[]>();

@@ -65,8 +65,8 @@ public class BlueprintWeaponDragHandler : MonoBehaviour
 
         try
         {
-            if (data.blueprintSprites != null && data.blueprintSprites[hullLevel, 0] != null)
-                previewRenderer.sprite = data.blueprintSprites[hullLevel, 0];
+            if (data.flattenedSprites != null && data.flattenedSprites[hullLevel*3] != null)
+                previewRenderer.sprite = data.flattenedSprites[hullLevel*3];
             else if (data.weaponIcon != null)
                 previewRenderer.sprite = data.weaponIcon; // 아이콘으로 대체
         }
@@ -145,9 +145,11 @@ public class BlueprintWeaponDragHandler : MonoBehaviour
             // 방향에 맞는 스프라이트로 변경 (외갑판 레벨 고려)
             try
             {
-                if (draggingWeaponData.blueprintSprites != null &&
-                    draggingWeaponData.blueprintSprites[hullLevel, directionIndex] != null)
-                    previewRenderer.sprite = draggingWeaponData.blueprintSprites[hullLevel, directionIndex];
+                if (draggingWeaponData.flattenedSprites != null &&
+                    draggingWeaponData.flattenedSprites[hullLevel*3+ directionIndex] != null)
+                {
+                    previewRenderer.sprite = draggingWeaponData.flattenedSprites[hullLevel*3+ directionIndex];
+                }
             }
             catch (System.Exception ex)
             {
