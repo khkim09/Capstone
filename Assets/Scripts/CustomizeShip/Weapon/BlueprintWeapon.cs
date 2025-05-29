@@ -229,6 +229,11 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         }
     }
 
+    private void LateUpdate()
+    {
+        ApplyAttachedDirectionSprite();
+    }
+
     private bool BlockBPMovement()
     {
         // RTS 선택도 막아야돼서 통일시켜 쓰겠음
