@@ -285,12 +285,7 @@ public class CrewMember : CrewBase
 
         // 도착 후 방 진입 표시
         if (currentRoom != null)
-        {
             currentRoom.OnCrewEnter(this);
-
-            // 테스트 코드
-            currentRoom.occupyingTiles.Add(new Room.ot { crewMember = this, tile = this.reservedTile });
-        }
 
         Debug.Log($"현재 방: {currentRoom}");
         reservedRoom = null;
@@ -305,7 +300,8 @@ public class CrewMember : CrewBase
                 // 텔포 준비
                 Freeze();
 
-                StartCoroutine(TeleportAfterDelay(this, 0.5f));
+                if (currentRoom.IsOperational())
+                    StartCoroutine(TeleportAfterDelay(this, 0.5f));
             }
 
             yield break;

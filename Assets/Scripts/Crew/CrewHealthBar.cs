@@ -49,6 +49,8 @@ public class CrewHealthBar : MonoBehaviour
 
             // 선원의 체력 정보 초기화
             InitializeHealthFromCrew();
+
+            UpdateHealthBarVisual();
         }
     }
 
@@ -146,7 +148,7 @@ public class CrewHealthBar : MonoBehaviour
         if (canvasRect != null)
         {
             // Canvas 크기 설정 (픽셀 단위)
-            canvasRect.sizeDelta = new Vector2(150, 30);
+            canvasRect.sizeDelta = new Vector2(120, 30);
 
             // 스케일 설정 - 이 값을 조정해서 크기를 맞추세요
             canvasRect.localScale = Vector3.one * 0.01f; // 크기 조정
