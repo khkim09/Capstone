@@ -51,7 +51,7 @@ public class PowerSystem : ShipSystem
         {
             if (powerUsing > powerCapacity)
             {
-                if (room.GetIsPowered())
+                if (room.GetIsPowered() && room.roomType!=RoomType.Power)
                 {
                     room.BlackOut();
                     powerUsing -= room.GetPowerConsumption();
@@ -59,10 +59,10 @@ public class PowerSystem : ShipSystem
             }
             else
             {
-                parentShip.RecalculateAllStats();
-                return;
+                break;
             }
         }
+        parentShip.RecalculateAllStats();
     }
 
     /// <summary>
