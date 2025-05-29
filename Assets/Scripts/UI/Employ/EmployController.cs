@@ -42,6 +42,10 @@ public class EmployController : MonoBehaviour
         PopulateCardsFromSavedData(currentPlanetId);
     }
 
+    /// <summary>
+    /// 랜덤 3개 선원 카드 생성 (기계형은 동시 생성 불가)
+    /// </summary>
+    /// <param name="planetId"></param>
     private void PopulateRandomCrewCardsAndSave(int planetId)
     {
         List<int> pool = new List<int> { 0, 1, 2, 3, 4, 5 };
@@ -71,6 +75,10 @@ public class EmployController : MonoBehaviour
         GameManager.Instance.employCardsPerPlanet[planetId] = saveData;
     }
 
+    /// <summary>
+    /// TODO : 해당 행성에서 구매했음을 공유하기 위한 장치 (10년 주기로 새로고침 구현 필요)
+    /// </summary>
+    /// <param name="planetId"></param>
     private void PopulateCardsFromSavedData(int planetId)
     {
         foreach (Transform child in employPanel)
@@ -109,6 +117,12 @@ public class EmployController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 선원 카드 선택
+    /// </summary>
+    /// <param name="card"></param>
+    /// <param name="race"></param>
+    /// <param name="name"></param>
     private void OnClickCrewCard(GameObject card, CrewRace race, string name)
     {
         selectedCardInstance = card;
@@ -140,6 +154,9 @@ public class EmployController : MonoBehaviour
             buyButton.interactable = true;
     }
 
+    /// <summary>
+    /// 선원 고용 확정
+    /// </summary>
     private void OnClickBuy()
     {
         string finalName = string.IsNullOrWhiteSpace(nameInputField.text) ? selectedRandomName : nameInputField.text;
@@ -161,10 +178,6 @@ public class EmployController : MonoBehaviour
         if (selectedCardInstance != null)
         {
             int siblingIndex = selectedCardInstance.transform.GetSiblingIndex();
-
-            // LayoutElement layout = selectedCardInstance.GetComponent<LayoutElement>();
-            // if (layout != null)
-            //     layout.ignoreLayout = true;
 
             selectedCardInstance.SetActive(false);
 
@@ -194,6 +207,5 @@ public class EmployController : MonoBehaviour
     private void OnClickExit()
     {
         SceneChanger.Instance.LoadScene("Planet");
-
     }
 }

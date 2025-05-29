@@ -1331,7 +1331,7 @@ public class Ship : MonoBehaviour
         List<CrewMember> crewsAtPosition = CrewSystem.GetCrewsAtPosition(position);
         foreach (CrewMember crew in crewsAtPosition)
         {
-            Debug.LogError($"피격 지점 : {position}, {damage} 데미지 선원 : {crew}");
+            Debug.Log($"피격 지점 : {position}, {damage} 데미지 선원 : {crew}");
             crew.TakeDamage(damage);
         }
     }

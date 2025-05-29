@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -63,7 +64,7 @@ public class QuestListItem : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private System.Collections.IEnumerator CheckItemQuestsDelayed()
+    private IEnumerator CheckItemQuestsDelayed()
     {
         yield return new WaitForSeconds(1.0f);
 
@@ -72,6 +73,7 @@ public class QuestListItem : MonoBehaviour
     }
 
     public TextMeshProUGUI title;
+    public Image planetImage;
     public TextMeshProUGUI description;
     public TextMeshProUGUI destination;
     public TextMeshProUGUI reward;
@@ -130,8 +132,8 @@ public class QuestListItem : MonoBehaviour
         PlanetData planetData = GameManager.Instance.PlanetDataList[questInfo.objectives[0].targetPlanetDataId];
         destination.text = planetData.planetName;
         reward.text = "ui.planet.quest.reward".Localize() + ": " + questInfo.rewards[0].amount + " COMA";
-        transform.Find("PlanetSprite").GetComponent<Image>().sprite =
-            GameManager.Instance.PlanetDataList[questObjective.targetPlanetDataId].currentSprite;
+
+        planetImage.sprite = planetData.currentSprite;
     }
 
     private void ButtonActivate(Button whichButton)
