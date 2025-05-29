@@ -191,7 +191,7 @@ public class PlanetData
     /// </summary>
     /// <param name="species">종족 타입</param>
     /// <returns>종족 접두어 문자열</returns>
-    private string GetSpeciesPrefix(PlanetRace species)
+    public string GetSpeciesPrefix(PlanetRace species)
     {
         switch (species)
         {
