@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
-using UnityEditor.Animations;
 using UnityEngine;
 
 /// <summary>
@@ -142,7 +141,7 @@ public abstract class CrewBase : MonoBehaviour, IShipStatContributor
 
     [SerializeField] private List<Sprite> allRaceSprites;
 
-    [SerializeField] private List<AnimatorController> allRaceAnimations;
+    [SerializeField] private List<RuntimeAnimatorController> allRaceAnimations;
 
 
     public virtual void Start()

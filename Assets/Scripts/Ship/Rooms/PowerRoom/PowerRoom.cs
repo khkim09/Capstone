@@ -22,7 +22,7 @@ public class PowerRoom : Room<PowerRoomData, PowerRoomData.PowerRoomLevel>
     public override void Initialize(int level)
     {
         base.Initialize(level);
-        isPowerRequested = false;
+        isPowerRequested = true;
     }
 
     /// <summary>

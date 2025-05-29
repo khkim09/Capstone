@@ -168,8 +168,15 @@ public class IconInteraction : TooltipPanelBase
         {
             return;
         }
+
         if (room.GetIsPowerRequested())
         {
+            if (!room.GetIsPowered() && room.parentShip.GetStat(ShipStat.PowerUsing) + room.GetPowerConsumption() <
+                room.parentShip.GetStat(ShipStat.PowerCapacity))
+            {
+                room.isPowered = true;
+                room.SetIsActive(false);
+            }
             room.SetIsActive(!room.isActive);
             OnMouseExit();
             OnMouseEnter();
