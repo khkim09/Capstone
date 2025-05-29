@@ -14,6 +14,8 @@ public class TeleportEffectHandler : ISpecialEffectHandler
         GameManager.Instance.ClearCurrentWarpMap();
         GameManager.Instance.SetCurrentWarpTargetPlanetId(targetPlanet.planetId);
 
+        EventManager.Instance.ClearPendingEvents();
+
         GameManager.Instance.WorldNodeDataList.Clear();
         // 함선 위치 행성으로 텔레포트
         Vector2 planetPos = targetPlanet.normalizedPosition;

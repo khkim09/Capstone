@@ -312,8 +312,8 @@ public class EventManager : MonoBehaviour
     public void ClearPendingEvents()
     {
         pendingEvents.Clear();
-        if (!isProcessingEvent)
-            isProcessingEvent = false;
+
+        isProcessingEvent = false;
     }
 
     /// <summary>
