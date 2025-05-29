@@ -1,15 +1,14 @@
 using System.Collections;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class AnimationCleanser : MonoBehaviour
 {
-    public AnimatorController humanoidAnimator;
-    public AnimatorController amorphousAnimator;
-    public AnimatorController beastAnimator;
-    public AnimatorController mechaTankAnimator;
-    public AnimatorController mechaSupAnimator;
-    public AnimatorController insectAnimator;
+    public RuntimeAnimatorController humanoidAnimator;
+    public RuntimeAnimatorController amorphousAnimator;
+    public RuntimeAnimatorController beastAnimator;
+    public RuntimeAnimatorController mechaTankAnimator;
+    public RuntimeAnimatorController mechaSupAnimator;
+    public RuntimeAnimatorController insectAnimator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -18,5 +18,6 @@ public class MainMenuUIController : MonoBehaviour
 
     public void OnExitButtonClicked()
     {
+        Application.Quit();
     }
 }
