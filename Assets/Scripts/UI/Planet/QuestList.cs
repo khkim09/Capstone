@@ -1,11 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class QuestList : MonoBehaviour
 {
+    /// <summary>
+    /// 퀘스트 아이템 prefab
+    /// </summary>
     public GameObject questListItem;
+
+    /// <summary>
+    /// 행성 정보
+    /// </summary>
     private PlanetData planetData;
+
+    /// <summary>
+    /// 퀘스트 아이템 루트 content
+    /// </summary>
     public GameObject content;
 
     private List<RandomQuest> quests;
@@ -13,8 +23,8 @@ public class QuestList : MonoBehaviour
     public Sprite availableSprite;
     public Sprite activeSprite;
     public Sprite completableSprite;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Start()
     {
         planetData = GameManager.Instance.WhereIAm();
         quests = planetData.questList;
@@ -26,7 +36,7 @@ public class QuestList : MonoBehaviour
 
     private void AddQuestToListUI(RandomQuest quest)
     {
-        QuestListItem questItem = Instantiate(questListItem, content.transform,false).GetComponent<QuestListItem>();
+        QuestListItem questItem = Instantiate(questListItem, content.transform, false).GetComponent<QuestListItem>();
         questItem.questInfo = quest;
         questItem.questList = this;
 

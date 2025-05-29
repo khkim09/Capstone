@@ -34,7 +34,9 @@ public class PlanetData
     /// </summary>
     public Vector2 normalizedPosition;
 
-
+    /// <summary>
+    /// 행성 sprite
+    /// </summary>
     public Sprite currentSprite;
 
     /// <summary>

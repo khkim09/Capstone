@@ -33,7 +33,7 @@ public class IdleHUDController : MonoBehaviour
 
     private void Start()
     {
-        if(buttonEnding)
+        if (buttonEnding)
             buttonEnding.GetComponent<Button>().onClick.AddListener(() => { OnClickEndingButton(); });
         CheckShowEnding(GameManager.Instance.CurrentYear);
     }
@@ -56,7 +56,7 @@ public class IdleHUDController : MonoBehaviour
             회피율 : {9}%
             연료 효율 : {1.}%
             산소량 : {11}%
-"
+        "
          */
 
         Ship playerShip = GameManager.Instance.GetPlayerShip();
@@ -87,7 +87,7 @@ public class IdleHUDController : MonoBehaviour
     {
         if (year >= Constants.Endings.EndingYear)
         {
-            if(buttonEnding)
+            if (buttonEnding)
                 buttonEnding.SetActive(true);
         }
     }
