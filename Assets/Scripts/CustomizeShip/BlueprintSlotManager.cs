@@ -92,7 +92,6 @@ public class BlueprintSlotManager : MonoBehaviour
     /// </summary>
     private void InitializeSlotButtonColor()
     {
-        Debug.LogError("slotmanager 버튼 초기화");
         Customize_0_Controller controller0 = customize0Panel.GetComponent<Customize_0_Controller>();
 
         for (int i = 0; i < blueprintSlots.Count; i++)

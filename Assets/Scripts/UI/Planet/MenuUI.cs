@@ -40,8 +40,8 @@ public class MenuUI : MonoBehaviour
 
     public void OnBlueprintButtonClicked()
     {
-        if(GameManager.Instance.playerShip.GetDestroyedRooms().Count==0 && GameManager.Instance.playerShip.GetAllItems().Count==0)
-            SceneChanger.Instance.LoadScene("Customize");
+        // if(GameManager.Instance.playerShip.GetDestroyedRooms().Count==0 && GameManager.Instance.playerShip.GetAllItems().Count==0)
+        SceneChanger.Instance.LoadScene("Customize");
     }
 
     public void OnEmployButtonClicked()

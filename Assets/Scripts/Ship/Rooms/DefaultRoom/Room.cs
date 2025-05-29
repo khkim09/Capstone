@@ -674,8 +674,6 @@ public abstract class Room : MonoBehaviour, IShipStatContributor
         currentHitPoints = amount;
         damageCondition = DamageLevel.good;
         UpdateRoomVisual();
-
-        NotifyStateChanged();
     }
 
 

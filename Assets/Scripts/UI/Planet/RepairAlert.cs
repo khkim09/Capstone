@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class RepairAlert : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Ship playerShip;
-    private List<Room> destoryedRooms;
-    private int destoryedRoomsCount;
+    private List<Room> destroyedRooms;
+    private int destroyedRoomsCount;
     private Animator animator;
 
     public int repairCF = 10;
@@ -18,23 +17,23 @@ public class RepairAlert : MonoBehaviour
         playerShip = GameManager.Instance.playerShip;
         List<Room> rooms = playerShip.GetAllRooms();
 
-        destoryedRooms = new List<Room>();
+        destroyedRooms = new List<Room>();
         repairCost = 0;
         foreach (Room room in rooms)
         {
             if (room.NeedsRepair())
             {
-                destoryedRooms.Add(room);
+                destroyedRooms.Add(room);
                 repairCost += (int)(room.GetMaxHitPoints() - room.currentHitPoints) * repairCF;
             }
         }
 
-        destoryedRoomsCount = destoryedRooms.Count;
+        destroyedRoomsCount = destroyedRooms.Count;
 
-        if (destoryedRoomsCount > 0)
+        if (destroyedRoomsCount > 0)
         {
             transform.Find("AlertText").GetComponent<TextMeshProUGUI>().text =
-                $"{"ui.planet.alert.destroyed".Localize()}\nx {destoryedRooms.Count}";
+                $"{"ui.planet.alert.destroyed".Localize()}\nx {destroyedRooms.Count}";
             animator = gameObject.GetComponent<Animator>();
             animator.SetTrigger("In");
 
@@ -51,11 +50,9 @@ public class RepairAlert : MonoBehaviour
             animator.SetTrigger("Out");
             List<Room> rooms = playerShip.GetAllRooms();
             foreach (Room room in rooms)
-            {
                 room.FullRepair(room.GetMaxHitPoints());
-            }
+
+            GameManager.Instance.playerShip.RecalculateAllStats();
         }
     }
-
-
 }

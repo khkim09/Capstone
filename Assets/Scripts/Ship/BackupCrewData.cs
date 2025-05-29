@@ -12,4 +12,5 @@ public struct BackupCrewData
     public bool needsOxygen;
     public Vector2Int position;
     public Vector2Int roomPos;
+    public float currentHP;
 }
