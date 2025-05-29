@@ -151,6 +151,28 @@ public class PlanetData
         InitializeCategoryModifiers();
     }
 
+    public void LoadSprites()
+    {
+        switch (itemPlanet)
+        {
+            case ItemPlanet.CCK:
+                currentSprite = Resources.Load<Sprite>("Sprites/Planet/CCK");
+                break;
+            case ItemPlanet.ICM:
+                currentSprite = Resources.Load<Sprite>("Sprites/Planet/ICM");
+                break;
+            case ItemPlanet.RCE:
+                currentSprite = Resources.Load<Sprite>("Sprites/Planet/RCE");
+                break;
+            case ItemPlanet.KTL:
+                currentSprite = Resources.Load<Sprite>("Sprites/Planet/KTL");
+                break;
+            case ItemPlanet.SIS:
+                currentSprite = Resources.Load<Sprite>("Sprites/Planet/SIS");
+                break;
+        }
+    }
+
     /// <summary>
     /// 카테고리별 가격 변동율 초기화
     /// </summary>

@@ -808,6 +808,8 @@ public class GameManager : MonoBehaviour
             planetDataList = ES3.Load<List<PlanetData>>("planetList");
             planetDataList = ES3.Load<List<PlanetData>>("planetList");
 
+            foreach (PlanetData planetData in planetDataList) planetData.LoadSprites();
+
             if (ES3.KeyExists("worldNodeList"))
             {
                 worldNodeDataList = ES3.Load<List<WorldNodeData>>("worldNodeList");
