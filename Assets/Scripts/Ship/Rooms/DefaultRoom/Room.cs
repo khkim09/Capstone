@@ -850,6 +850,11 @@ public abstract class Room<TData, TLevel> : Room
             return;
         }
     }
+
+    private void OnDestroy()
+    {
+        OnRoomStateChanged -= parentShip.OnRoomStateChanged;
+    }
 }
 
 public enum DamageLevel

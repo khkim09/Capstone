@@ -118,6 +118,7 @@ public class Customize_0_Controller : MonoBehaviour
             GameManager.Instance.playerShip.Initialize();
             ShipSerialization.LoadShip("playerShip");
             GameManager.Instance.playerShip.RefreshAllSystems();
+            GameManager.Instance.playerShip.ReconnectAction();
         }
 
         RTSSelectionManager.Instance.RefreshMovementData();

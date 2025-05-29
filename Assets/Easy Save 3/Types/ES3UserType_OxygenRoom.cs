@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("currentRoomLevelData", "roomData", "position", "currentLevel", "currentHitPoints", "roomType", "isDamageable", "connectedDoors", "currentRotation", "OnRoomStateChanged", "crewInRoom", "isActive", "isPowered", "isPowerRequested", "roomRenderer", "parentShip", "icon", "gridSize", "damageCondition", "workDirection")]
+	[ES3PropertiesAttribute("currentRoomLevelData", "roomData", "position", "currentLevel", "currentHitPoints", "roomType", "isDamageable", "connectedDoors", "currentRotation", "crewInRoom", "isActive", "isPowered", "isPowerRequested", "roomRenderer", "parentShip", "icon", "gridSize", "damageCondition", "workDirection")]
 	public class ES3UserType_OxygenRoom : ES3ComponentType
 	{
 		public static ES3Type Instance = null;
@@ -25,7 +25,6 @@ namespace ES3Types
 			writer.WritePrivateField("isDamageable", instance);
 			writer.WritePrivateField("connectedDoors", instance);
 			writer.WriteProperty("currentRotation", instance.currentRotation, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(Constants.Rotations.Rotation)));
-			writer.WritePrivateField("OnRoomStateChanged", instance);
 			writer.WriteProperty("crewInRoom", instance.crewInRoom, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<CrewMember>)));
 			writer.WriteProperty("isActive", instance.isActive, ES3Type_bool.Instance);
 			writer.WriteProperty("isPowered", instance.isPowered, ES3Type_bool.Instance);
@@ -73,9 +72,6 @@ namespace ES3Types
 					case "currentRotation":
 						instance.currentRotation = reader.Read<Constants.Rotations.Rotation>();
 						break;
-					case "OnRoomStateChanged":
-					instance = (OxygenRoom)reader.SetPrivateField("OnRoomStateChanged", reader.Read<System.Action<Room>>(), instance);
-					break;
 					case "crewInRoom":
 						instance.crewInRoom = reader.Read<System.Collections.Generic.List<CrewMember>>();
 						break;

@@ -186,12 +186,21 @@ public class Ship : MonoBehaviour
 
     public event Action<Ship> shipExplosion;
 
+    public void ReconnectAction()
+    {
+        foreach (Room room in allRooms)
+            room.OnRoomStateChanged += OnRoomStateChanged;
+
+        powerCheckNeed += PowerSystem.NotEnoughPower;
+    }
+
     // ===== Room Management =====
 
     /// <summary>
     /// 룸을 생성하고 배치하며, 초기화는 Room의 Initialize 메서드를 사용합니다.
     /// </summary>
-    public bool AddRoom(int level, RoomData roomData, Vector2Int position, Constants.Rotations.Rotation rotation, float hitPoints)
+    public bool AddRoom(int level, RoomData roomData, Vector2Int position, Constants.Rotations.Rotation rotation,
+        float hitPoints)
     {
         // 룸 타입 확인
         RoomType roomType = roomData.GetRoomType();

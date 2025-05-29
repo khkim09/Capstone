@@ -726,6 +726,7 @@ public class GameManager : MonoBehaviour
 
             ShipSerialization.LoadShip("playerShip");
             // OnShipInitialized?.Invoke();
+            Instance.playerShip.ReconnectAction();
         }
         else
         {
