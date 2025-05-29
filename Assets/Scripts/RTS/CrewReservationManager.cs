@@ -66,8 +66,6 @@ public static class CrewReservationManager
         // 선원 나감 처리, 오브젝트 종속 해제
         room.OnCrewExit(crew);
         crew.transform.SetParent(null);
-
-        room.occupyingTiles.Remove(new Room.ot { crewMember = crew, tile = tile });
     }
 
     /// <summary>

@@ -127,8 +127,7 @@ public class CombatManager : MonoBehaviour
     /// </summary>
     /// <param name="isDefeated"></param>
     /// <returns></returns>
-    private IEnumerator BackToTheHome(bool isDefeated) /// 이거 void로 바꿔서 해보기
-        // 굳이 코루틴 안해도 될듯
+    private IEnumerator BackToTheHome(bool isDefeated)
     {
         // 승리
         if (!isDefeated)

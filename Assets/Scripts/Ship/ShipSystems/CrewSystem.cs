@@ -233,8 +233,7 @@ public class CrewSystem : ShipSystem
     {
         foreach (BackupCrewData data in backupCrewDatas)
         {
-            CrewMember crew =
-                GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(data.race, data.crewName) as CrewMember;
+            CrewMember crew = GameObjectFactory.Instance.CrewFactory.CreateCrewInstance(data.race, data.crewName) as CrewMember;
             if (crew == null)
                 continue;
 
