@@ -139,6 +139,8 @@ public class EmployController : MonoBehaviour
         RectTransform rt = copied.GetComponent<RectTransform>();
 
         rt.SetParent(crewCardPlace, false);
+        rt.anchorMin = new Vector2(0f, 0f);
+        rt.anchorMax = new Vector2(0f, 0f);
         rt.anchoredPosition = new Vector2(250f, 450f);
         rt.localRotation = Quaternion.identity;
         rt.localScale = Vector3.one;

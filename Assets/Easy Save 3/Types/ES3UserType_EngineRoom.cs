@@ -27,8 +27,8 @@ namespace ES3Types
 			writer.WriteProperty("currentRotation", instance.currentRotation, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(Constants.Rotations.Rotation)));
 			writer.WriteProperty("crewInRoom", instance.crewInRoom, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<CrewMember>)));
 			writer.WriteProperty("isActive", instance.isActive, ES3Type_bool.Instance);
-			writer.WritePrivateField("isPowered", instance);
-			writer.WritePrivateField("isPowerRequested", instance);
+			writer.WriteProperty("isPowered", instance.isPowered, ES3Type_bool.Instance);
+			writer.WriteProperty("isPowerRequested", instance.isPowerRequested, ES3Type_bool.Instance);
 			writer.WritePrivateFieldByRef("roomRenderer", instance);
 			writer.WritePropertyByRef("parentShip", instance.parentShip);
 			writer.WritePrivateFieldByRef("icon", instance);
@@ -79,11 +79,11 @@ namespace ES3Types
 						instance.isActive = reader.Read<System.Boolean>(ES3Type_bool.Instance);
 						break;
 					case "isPowered":
-					instance = (EngineRoom)reader.SetPrivateField("isPowered", reader.Read<System.Boolean>(), instance);
-					break;
+						instance.isPowered = reader.Read<System.Boolean>(ES3Type_bool.Instance);
+						break;
 					case "isPowerRequested":
-					instance = (EngineRoom)reader.SetPrivateField("isPowerRequested", reader.Read<System.Boolean>(), instance);
-					break;
+						instance.isPowerRequested = reader.Read<System.Boolean>(ES3Type_bool.Instance);
+						break;
 					case "roomRenderer":
 					instance = (EngineRoom)reader.SetPrivateField("roomRenderer", reader.Read<UnityEngine.SpriteRenderer>(), instance);
 					break;
