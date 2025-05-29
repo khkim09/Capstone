@@ -550,7 +550,10 @@ public class CrewMember : CrewBase
             movementDirection = combatTarget.GetCurrentTile() - GetCurrentTile();
         }
 
-        PlayAnimation("attack");
+        if (health <= 0)
+            PlayAnimation("die");
+        else
+            PlayAnimation("attack");
     }
 
     /// <summary>
