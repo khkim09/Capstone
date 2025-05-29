@@ -41,7 +41,7 @@ public class PowerSystem : ShipSystem
         powerRequestedRooms.Sort((room1,room2)=>room2.GetPowerConsumption().CompareTo(room1.GetPowerConsumption()));
     }
 
-    private void NotEnoughPower()
+    public void NotEnoughPower()
     {
         if(powerRequestedRooms==null)
             Refresh();

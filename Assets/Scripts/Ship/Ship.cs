@@ -954,7 +954,7 @@ public class Ship : MonoBehaviour
     /// 디버그 로그를 출력하고 전체 스탯을 다시 계산합니다.
     /// </summary>
     /// <param name="room">상태가 변경된 룸 객체.</param>
-    private void OnRoomStateChanged(Room room)
+    public void OnRoomStateChanged(Room room)
     {
         if (showDebugInfo)
             Debug.Log($"Room state changed: {room.name}");
