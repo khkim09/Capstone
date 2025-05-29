@@ -34,7 +34,9 @@ public class PlanetData
     /// </summary>
     public Vector2 normalizedPosition;
 
-
+    /// <summary>
+    /// 행성 sprite
+    /// </summary>
     public Sprite currentSprite;
 
     /// <summary>
@@ -147,6 +149,28 @@ public class PlanetData
         // 효과 관련 데이터 초기화
         activeEffects.Clear();
         InitializeCategoryModifiers();
+    }
+
+    public void LoadSprites()
+    {
+        switch (itemPlanet)
+        {
+            case ItemPlanet.CCK:
+                currentSprite = Resources.Load<Sprite>("Sprites/Planet/CCK");
+                break;
+            case ItemPlanet.ICM:
+                currentSprite = Resources.Load<Sprite>("Sprites/Planet/ICM");
+                break;
+            case ItemPlanet.RCE:
+                currentSprite = Resources.Load<Sprite>("Sprites/Planet/RCE");
+                break;
+            case ItemPlanet.KTL:
+                currentSprite = Resources.Load<Sprite>("Sprites/Planet/KTL");
+                break;
+            case ItemPlanet.SIS:
+                currentSprite = Resources.Load<Sprite>("Sprites/Planet/SIS");
+                break;
+        }
     }
 
     /// <summary>
