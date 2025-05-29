@@ -425,10 +425,10 @@ public class BlueprintWeapon : MonoBehaviour, IBlueprintPlaceable
         // 외갑판 레벨과 방향에 맞는 스프라이트 적용
         try
         {
-            if (bpWeaponData.blueprintSprites != null &&
-                bpWeaponData.blueprintSprites[currentHullLevel, directionIndex] != null)
+            if (bpWeaponData.flattenedSprites != null &&
+                bpWeaponData.flattenedSprites[currentHullLevel*3+ directionIndex] != null)
             {
-                sr.sprite = bpWeaponData.blueprintSprites[currentHullLevel, directionIndex];
+                sr.sprite = bpWeaponData.flattenedSprites[currentHullLevel*3+ directionIndex];
                 return;
             }
         }

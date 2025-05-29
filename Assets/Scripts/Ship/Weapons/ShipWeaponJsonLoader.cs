@@ -363,7 +363,6 @@ public class ShipWeaponJsonLoader : EditorWindow
                     }
 
                     // Force OnValidate to update the 2D array
-                    weaponSO.OnValidate();
                 }
 
                 if (isNew)

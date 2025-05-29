@@ -47,7 +47,7 @@ public class ShipWeaponData : ScriptableObject
     /// ...
     /// [2,2] = 외갑판 레벨 3, South 방향
     /// </summary>
-    [SerializeField] public Sprite[,] blueprintSprites = new Sprite[3, 3];
+    //[SerializeField] public Sprite[] blueprintSprites = new Sprite[9];
 
     /// <summary>
     /// Inspector에서 표시할 1차원 스프라이트 배열 (외갑판 레벨 1 North, East, South, 레벨 2 North, East, South, ...)
@@ -120,22 +120,4 @@ public class ShipWeaponData : ScriptableObject
         return weaponType.weaponType;
     }
 
-    /// <summary>
-    /// 1차원 배열에서 2차원 배열로 변환 (Inspector에서 사용)
-    /// </summary>
-    public void OnValidate()
-    {
-        if (flattenedSprites.Length != 9)
-            Array.Resize(ref flattenedSprites, 9);
-
-        // 1차원 배열을 2차원 배열로 변환
-        blueprintSprites = new Sprite[3, 3];
-        for (int hull = 0; hull < 3; hull++)
-        for (int dir = 0; dir < 3; dir++)
-        {
-            int index = hull * 3 + dir;
-            if (index < flattenedSprites.Length)
-                blueprintSprites[hull, dir] = flattenedSprites[index];
-        }
-    }
 }
