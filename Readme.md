@@ -49,7 +49,7 @@
 
 프로젝트의 코드 구조와 함수에 대한 상세 문서를 확인할 수 있습니다:
 
-[코드 문서 보기](https://khkim09.github.io/Capstone/)
+[Class 계층도](https://khkim09.github.io/Capstone/)
 
 ## 기여 방법
 
