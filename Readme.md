@@ -12,7 +12,7 @@
 
 ## 프로젝트 소개
 
-TODO : 짧게 프로젝트 소개
+2D 우주 무역 RTS 전략 시뮬레이션 게임 (Unity 기반)
 
 ## 시작하기
 
@@ -73,14 +73,12 @@ TODO : 짧게 프로젝트 소개
 
 이 프로젝트는 MIT 라이선스에 따라 라이선스가 부여됩니다.
 
-## 팀원
+## 팀원 구성
 
-TODO : 팀원 역할 적기, 깃허브 링크는 선택 사항
-
-- [권혁재](링크) - 역할
-- [김기현](링크) - 역할
-- [손재민](링크) - 역할
-- [조준영](링크) - 역할
+- [김기현](https://github.com/khkim09) - 팀장
+- [권혁재](https://github.com/HyukJaeKwon1) - 팀원
+- [손재민](https://github.com/Cheshire75) - 팀원
+- [조준영](https://github.com/jun-uni) - 팀원
 
 ## Acknowledgments
 
