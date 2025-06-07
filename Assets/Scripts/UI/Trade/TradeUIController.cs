@@ -762,11 +762,40 @@ public class TradeUIController : MonoBehaviour
             return;
         }
 
+        // 새로운 TradingItemData 인스턴스 생성 및 복사
+        TradingItemData copiedItemData = ScriptableObject.CreateInstance<TradingItemData>();
+
+        // 모든 필드 복사
+        copiedItemData.id = selectedItem.id;
+        copiedItemData.planet = selectedItem.planet;
+        copiedItemData.tier = selectedItem.tier;
+        copiedItemData.itemState = selectedItem.itemState;
+        copiedItemData.itemName = selectedItem.itemName;
+        copiedItemData.debugName = selectedItem.debugName;
+        copiedItemData.type = selectedItem.type;
+        copiedItemData.temperatureMin = selectedItem.temperatureMin;
+        copiedItemData.temperatureMax = selectedItem.temperatureMax;
+        copiedItemData.shape = selectedItem.shape;
+        copiedItemData.costBase = selectedItem.costBase;
+        copiedItemData.capacity = selectedItem.capacity;
+        copiedItemData.costMin = selectedItem.costMin;
+        copiedItemData.costChangerate = selectedItem.costChangerate;
+        copiedItemData.costMax = selectedItem.costMax;
+        copiedItemData.description = selectedItem.description;
+        copiedItemData.itemSprite = selectedItem.itemSprite;
+        copiedItemData.amount = selectedItem.amount; // BuyCheckPanel에서 설정된 수량
+        copiedItemData.boughtCost = selectedItem.boughtCost;
 
         buyCheckPanel.gameObject.SetActive(false);
         tradeShip.gameObject.SetActive(true);
 
-        itemInstance = GameObjectFactory.Instance.CreateItemInstance(selectedItem.id, selectedItem.amount);
+        // 복사된 데이터를 사용하여 아이템 인스턴스 생성
+        itemInstance = GameObjectFactory.Instance.CreateItemInstance(copiedItemData.id, copiedItemData.amount);
+
+        // 아이템 인스턴스의 데이터를 복사된 것으로 교체
+        itemInstance.GetComponent<TradingItem>()
+            .Initialize(copiedItemData, copiedItemData.amount, copiedItemData.itemState);
+
         tradeStorage.AddItem(itemInstance, new Vector2Int(2, 1), Constants.Rotations.Rotation.Rotation0);
 
         buyConfirmButton.gameObject.SetActive(true);

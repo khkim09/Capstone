@@ -52,6 +52,7 @@ public class StorageInfoPanel : TooltipPanelBase
         itemName.text = item.GetItemData().itemName.Localize();
         itemCategory.text = item.GetItemData().type.Localize();
         itemImage.sprite = item.GetItemSprite();
+        itemAmount.text = item.GetItemData().amount.ToString();
 
         switch (item.GetItemState())
         {
