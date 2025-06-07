@@ -1,0 +1,657 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classBlueprintShip" kind="class" language="C#" prot="public">
+    <compoundname>BlueprintShip</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classBlueprintShip_1a89da8b0bac88474e037698bd43ce3ace" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform BlueprintShip.outerHulls</definition>
+        <argsstring></argsstring>
+        <name>outerHulls</name>
+        <qualifiedname>BlueprintShip.outerHulls</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="17" column="24" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintShip_1ac00e477d83103b1880b2b8d9147a78ae" prot="private" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int BlueprintShip.gridSize</definition>
+        <argsstring></argsstring>
+        <name>gridSize</name>
+        <qualifiedname>BlueprintShip.gridSize</qualifiedname>
+        <initializer>= new(60, 60)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="18" column="25" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintShip_1a562e4e4a21055189f349feebad5d1992" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="interfaceIBlueprintPlaceable" kindref="compound">IBlueprintPlaceable</ref> &gt;</type>
+        <definition>List&lt;IBlueprintPlaceable&gt; BlueprintShip.placedBlueprintObjects</definition>
+        <argsstring></argsstring>
+        <name>placedBlueprintObjects</name>
+        <qualifiedname>BlueprintShip.placedBlueprintObjects</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="19" column="19" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintShip_1afb004691aaaa83f7c76c5e7c2de343d1" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int BlueprintShip.currentHullLevel</definition>
+        <argsstring></argsstring>
+        <name>currentHullLevel</name>
+        <qualifiedname>BlueprintShip.currentHullLevel</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>함선 외갑판 레벨 (0: 레벨 1, 1: 레벨 2, 2: 레벨 3) - 함선 전체에 적용되는 하나의 값 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="24" column="18" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="24" bodyend="-1"/>
+        <referencedby refid="classBlueprintShip_1ab8c6bef407ee2520f0ee47c39089196b" compoundref="BlueprintShip_8cs" startline="140" endline="147">AddPlaceable</referencedby>
+        <referencedby refid="classBlueprintShip_1af261ef03f43fb9025372b1ff117489e1" compoundref="BlueprintShip_8cs" startline="94" endline="97">GetHullLevel</referencedby>
+        <referencedby refid="classBlueprintShip_1a1c492e0713444916c84c37894b82c71d" compoundref="BlueprintShip_8cs" startline="178" endline="437">SetBPHullLevel</referencedby>
+        <referencedby refid="classBlueprintShip_1a41ae0821d0cb0ee7a80425161e129732" compoundref="BlueprintShip_8cs" startline="76" endline="88">SetHullLevel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintShip_1aa5279a8072d70397db7c110e33bb4a67" prot="private" static="no" mutable="no">
+        <type>List&lt; GameObject &gt;</type>
+        <definition>List&lt;GameObject&gt; BlueprintShip.previewOuterHulls</definition>
+        <argsstring></argsstring>
+        <name>previewOuterHulls</name>
+        <qualifiedname>BlueprintShip.previewOuterHulls</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="171" column="18" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="171" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classBlueprintShip_1af914c27271f1b0e5b873222f2ad7cd97" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int BlueprintShip.CurrentHullLevel</definition>
+        <argsstring></argsstring>
+        <name>CurrentHullLevel</name>
+        <qualifiedname>BlueprintShip.CurrentHullLevel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="25" column="16" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classBlueprintShip_1a4fb24c4ffc9c91069cb2a274838a5d66" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>List&lt; <ref refid="classBlueprintRoom" kindref="compound">BlueprintRoom</ref> &gt;</type>
+        <definition>List&lt;BlueprintRoom&gt; BlueprintShip.PlacedBlueprintRooms</definition>
+        <argsstring></argsstring>
+        <name>PlacedBlueprintRooms</name>
+        <qualifiedname>BlueprintShip.PlacedBlueprintRooms</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="28" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classBlueprintShip_1adb7761c6f19a81eb0c160cb62a1d35f3" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>List&lt; <ref refid="classBlueprintWeapon" kindref="compound">BlueprintWeapon</ref> &gt;</type>
+        <definition>List&lt;BlueprintWeapon&gt; BlueprintShip.PlacedBlueprintWeapons</definition>
+        <argsstring></argsstring>
+        <name>PlacedBlueprintWeapons</name>
+        <qualifiedname>BlueprintShip.PlacedBlueprintWeapons</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="31" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classBlueprintShip_1ac5a09a995766d975be353c15119c30d0" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int BlueprintShip.CenterPosition</definition>
+        <argsstring></argsstring>
+        <name>CenterPosition</name>
+        <qualifiedname>BlueprintShip.CenterPosition</qualifiedname>
+        <briefdescription>
+<para>유저가 배치한 모든 오브젝트의 중심값 호출 (함선의 중심을 기준으로 유저에게 보이는 UI 설계) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="102" column="23" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="103" bodyend="121"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classBlueprintShip_1a164624e18a7ffa28f1ca3ca4baea4e5d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IReadOnlyList&lt; <ref refid="classBlueprintRoom" kindref="compound">BlueprintRoom</ref> &gt;</type>
+        <definition>IReadOnlyList&lt; BlueprintRoom &gt; BlueprintShip.GetPlacedBlueprintRooms</definition>
+        <argsstring>()</argsstring>
+        <name>GetPlacedBlueprintRooms</name>
+        <qualifiedname>BlueprintShip.GetPlacedBlueprintRooms</qualifiedname>
+        <briefdescription>
+<para>현재 설계도에 배치된 방 리스트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="37" column="26" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="37" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintShip_1a277803953dfc93efaa83448ab5d294ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IReadOnlyList&lt; <ref refid="classBlueprintWeapon" kindref="compound">BlueprintWeapon</ref> &gt;</type>
+        <definition>IReadOnlyList&lt; BlueprintWeapon &gt; BlueprintShip.GetPlacedBlueprintWeapons</definition>
+        <argsstring>()</argsstring>
+        <name>GetPlacedBlueprintWeapons</name>
+        <qualifiedname>BlueprintShip.GetPlacedBlueprintWeapons</qualifiedname>
+        <briefdescription>
+<para>현재 설계도에 배치된 무기 리스트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="45" column="26" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintShip_1a4d0bb68f1e596c3a4f8799c565b6faf2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int BlueprintShip.GetTotalBPCost</definition>
+        <argsstring>()</argsstring>
+        <name>GetTotalBPCost</name>
+        <qualifiedname>BlueprintShip.GetTotalBPCost</qualifiedname>
+        <briefdescription>
+<para>함선 설계도의 총 가격 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="54" column="16" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="54" bodyend="62"/>
+        <references refid="interfaceIBlueprintPlaceable_1ae9ea0c6d296c89ec5569152b697996a0">IBlueprintPlaceable.GetCost</references>
+        <referencedby refid="classCustomizeShipUIHandler_1a0a87df1bbf10a142bcfb73c4634a7bd4" compoundref="CustomizeShipUIHandler_8cs" startline="307" endline="372">CustomizeShipUIHandler.OnClickBuild</referencedby>
+        <referencedby refid="classCustomize__2__Controller_1a4f017401dbc31501a4109324ccec2bd7" compoundref="Customize__2__Controller_8cs" startline="227" endline="294">Customize_2_Controller.OnClickBuy</referencedby>
+        <referencedby refid="classCustomize__2__Controller_1ad190ea208317fc26a5c88d844be8922a" compoundref="Customize__2__Controller_8cs" startline="104" endline="163">Customize_2_Controller.OnEnable</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1aaeda9c5302ebc01c1dc38d73ea5d7797" compoundref="Customize__1__Controller_8cs" startline="114" endline="128">Customize_1_Controller.Update</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1adde307bcbd691ffa7aef84998ef3f69a" compoundref="CustomizeShipUIHandler_8cs" startline="94" endline="136">CustomizeShipUIHandler.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintShip_1a2a0b55d621a2ed5e53900c7599845bbc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintShip.ClearPlacedBPObjects</definition>
+        <argsstring>()</argsstring>
+        <name>ClearPlacedBPObjects</name>
+        <qualifiedname>BlueprintShip.ClearPlacedBPObjects</qualifiedname>
+        <briefdescription>
+<para>설계도에 배치된 모든 오브젝트 리스트 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="67" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="67" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintShip_1a41ae0821d0cb0ee7a80425161e129732" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintShip.SetHullLevel</definition>
+        <argsstring>(int level)</argsstring>
+        <name>SetHullLevel</name>
+        <qualifiedname>BlueprintShip.SetHullLevel</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+<para>현재 함선의 외갑판 레벨 설정 - 모든 무기에 적용 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>설정할 외갑판 레벨 (0-2)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="76" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="76" bodyend="88"/>
+        <references refid="classBlueprintShip_1afb004691aaaa83f7c76c5e7c2de343d1" compoundref="BlueprintShip_8cs" startline="24">currentHullLevel</references>
+        <references refid="classBlueprintWeapon_1ab44eb8d7287bbcaa5504a8629a4bbf4f" compoundref="BlueprintWeapon_8cs" startline="461" endline="473">BlueprintWeapon.SetHullLevel</references>
+        <referencedby refid="classCustomize__1__Controller_1a765b5d6af2c3ccd94e113c0d3bc1a6fa" compoundref="Customize__1__Controller_8cs" startline="204" endline="230">Customize_1_Controller.ReloadBlueprintFromSlot</referencedby>
+        <referencedby refid="classBlueprintHullLevelInventoryUI_1a6ea8923efd75fc9a547fd4ef263eb625" compoundref="BlueprintHullLevelInventoryUI_8cs" startline="65" endline="80">BlueprintHullLevelInventoryUI.SetHullLevel</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintShip_1af261ef03f43fb9025372b1ff117489e1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int BlueprintShip.GetHullLevel</definition>
+        <argsstring>()</argsstring>
+        <name>GetHullLevel</name>
+        <qualifiedname>BlueprintShip.GetHullLevel</qualifiedname>
+        <briefdescription>
+<para>현재 함선의 외갑판 레벨 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>현재 외갑판 레벨 (0-2)</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="94" column="16" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="94" bodyend="97"/>
+        <references refid="classBlueprintShip_1afb004691aaaa83f7c76c5e7c2de343d1" compoundref="BlueprintShip_8cs" startline="24">currentHullLevel</references>
+        <referencedby refid="classBlueprintWeapon_1a0712ed25bae75789be7da28745378fc7" compoundref="BlueprintWeapon_8cs" startline="481" endline="484">BlueprintWeapon.GetHullLevel</referencedby>
+        <referencedby refid="classGridPlacer_1a38cc9ea2fbdde83a506c75b7cad9010c" compoundref="GridPlacer_8cs" startline="466" endline="489">GridPlacer.PlacePreviewWeapon</referencedby>
+        <referencedby refid="classGridPlacer_1a60364dec18d1d693cef75d517e768de6" compoundref="GridPlacer_8cs" startline="406" endline="433">GridPlacer.PlaceWeapon</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a484e24eaf4ebb1994f8c9817dcbb2f6f" compoundref="BlueprintWeapon_8cs" startline="353" endline="363">BlueprintWeapon.SetBlueprint</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a02428af6837f9cd492ccfd830eaec4e7" compoundref="BlueprintWeapon_8cs" startline="89" endline="105">BlueprintWeapon.Start</referencedby>
+        <referencedby refid="classBlueprintWeaponDragHandler_1a5834a6e49dd8a0724bb81e6e36ee9642" compoundref="BlueprintWeaponDragHandler_8cs" startline="43" endline="85">BlueprintWeaponDragHandler.StartDragging</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintShip_1a07b30426ab59f1fdc876c4e560d322c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="interfaceIBlueprintPlaceable" kindref="compound">IBlueprintPlaceable</ref></type>
+        <definition>IBlueprintPlaceable BlueprintShip.GetObjectAt</definition>
+        <argsstring>(Vector2Int gridPos)</argsstring>
+        <name>GetObjectAt</name>
+        <qualifiedname>BlueprintShip.GetObjectAt</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>gridPos</declname>
+        </param>
+        <briefdescription>
+<para>인자 gridPos에 위치한 오브젝트 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gridPos</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="128" column="32" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="128" bodyend="134"/>
+        <references refid="interfaceIBlueprintPlaceable_1a018a87125833cd2bc8f09d7b0433bc33">IBlueprintPlaceable.GetOccupiedTiles</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintShip_1ab8c6bef407ee2520f0ee47c39089196b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintShip.AddPlaceable</definition>
+        <argsstring>(IBlueprintPlaceable placeable)</argsstring>
+        <name>AddPlaceable</name>
+        <qualifiedname>BlueprintShip.AddPlaceable</qualifiedname>
+        <param>
+          <type><ref refid="interfaceIBlueprintPlaceable" kindref="compound">IBlueprintPlaceable</ref></type>
+          <declname>placeable</declname>
+        </param>
+        <briefdescription>
+<para>설계도에 오브젝트를 추가하고 가격을 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>placeable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>배치 가능 오브젝트</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="140" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="140" bodyend="147"/>
+        <references refid="classBlueprintShip_1afb004691aaaa83f7c76c5e7c2de343d1" compoundref="BlueprintShip_8cs" startline="24">currentHullLevel</references>
+        <referencedby refid="classCustomize__2__Controller_1af70f75f637519d654732d526e3bcdcdd" compoundref="Customize__2__Controller_8cs" startline="168" endline="220">Customize_2_Controller.MakeBPShipWithSaveData</referencedby>
+        <referencedby refid="classGridPlacer_1a2392673a4205e76f004e252a493286b5" compoundref="GridPlacer_8cs" startline="382" endline="400">GridPlacer.PlaceRoom</referencedby>
+        <referencedby refid="classGridPlacer_1a60364dec18d1d693cef75d517e768de6" compoundref="GridPlacer_8cs" startline="406" endline="433">GridPlacer.PlaceWeapon</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintShip_1a0b5ffa5700ce8e93ecc7458f45b1efdc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintShip.RemovePlaceable</definition>
+        <argsstring>(IBlueprintPlaceable placeable)</argsstring>
+        <name>RemovePlaceable</name>
+        <qualifiedname>BlueprintShip.RemovePlaceable</qualifiedname>
+        <param>
+          <type><ref refid="interfaceIBlueprintPlaceable" kindref="compound">IBlueprintPlaceable</ref></type>
+          <declname>placeable</declname>
+        </param>
+        <briefdescription>
+<para>설계도에서 오브젝트를 제거하고 가격을 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>placeable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>배치 가능 오브젝트</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="153" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="153" bodyend="156"/>
+        <referencedby refid="classRoomSelectionHandler_1a146498f3749b2c31f48ad72228898c5b" compoundref="RoomSelectionHandler_8cs" startline="105" endline="115">RoomSelectionHandler.ConfirmDelete</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintShip_1a0b1c462bd0416b30a0c2af3095eee278" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintShip.ClearRooms</definition>
+        <argsstring>()</argsstring>
+        <name>ClearRooms</name>
+        <qualifiedname>BlueprintShip.ClearRooms</qualifiedname>
+        <briefdescription>
+<para>설계도 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="161" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="161" bodyend="167"/>
+        <referencedby refid="classCustomize__2__Controller_1af70f75f637519d654732d526e3bcdcdd" compoundref="Customize__2__Controller_8cs" startline="168" endline="220">Customize_2_Controller.MakeBPShipWithSaveData</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1a6efbdf30cb4fc11fa3f6b1bfbf6eb061" compoundref="Customize__1__Controller_8cs" startline="305" endline="340">Customize_1_Controller.OnClickBack</referencedby>
+        <referencedby refid="classCustomize__2__Controller_1aa17c4b0f6af07ecacc4fc62ef050c81c" compoundref="Customize__2__Controller_8cs" startline="307" endline="339">Customize_2_Controller.OnClickCancel</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1ab84f6e8bbe0bc78346c60770414a44bf" compoundref="Customize__1__Controller_8cs" startline="347" endline="353">Customize_1_Controller.OnClickClear</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1ab3507370ace4541d5366637598723eac" compoundref="CustomizeShipUIHandler_8cs" startline="377" endline="381">CustomizeShipUIHandler.OnClickClear</referencedby>
+        <referencedby refid="classCustomize__0__Controller_1a574259bae338d10309582b4ec5c4120f" compoundref="Customize__0__Controller_8cs" startline="180" endline="222">Customize_0_Controller.OnClickSlot</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1a765b5d6af2c3ccd94e113c0d3bc1a6fa" compoundref="Customize__1__Controller_8cs" startline="204" endline="230">Customize_1_Controller.ReloadBlueprintFromSlot</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1ae5cc3065b385dfe6c56409c2b0da302d" compoundref="CustomizeShipUIHandler_8cs" startline="267" endline="283">CustomizeShipUIHandler.SaveBPRoomsandDestroy</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintShip_1a1c492e0713444916c84c37894b82c71d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintShip.SetBPHullLevel</definition>
+        <argsstring>(int level, GameObject previewOuterHullPrefab)</argsstring>
+        <name>SetBPHullLevel</name>
+        <qualifiedname>BlueprintShip.SetBPHullLevel</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>GameObject</type>
+          <declname>previewOuterHullPrefab</declname>
+        </param>
+        <briefdescription>
+<para>외갑판 세팅 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>level</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>previewOuterHullPrefab</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="178" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="178" bodyend="437"/>
+        <references refid="classBlueprintShip_1aeadcaa00abc9c7654507f23d6c2bef78" compoundref="BlueprintShip_8cs" startline="442" endline="451">AddPlacementIfNotDuplicate</references>
+        <references refid="classBlueprintRoom_1a3cb43036fb9af681986b6cea42d3ba73" compoundref="BlueprintRoom_8cs" startline="15">BlueprintRoom.bpLevelIndex</references>
+        <references refid="classBlueprintRoom_1a6deed6b26e20e780c04054ab8e0bba38" compoundref="BlueprintRoom_8cs" startline="21">BlueprintRoom.bpPosition</references>
+        <references refid="classBlueprintRoom_1af0266eb4ade96baa01af05c4ee797bde" compoundref="BlueprintRoom_8cs" startline="12">BlueprintRoom.bpRoomData</references>
+        <references refid="classBlueprintRoom_1a3094262bc3e6432e1b2ee2244c97e88e" compoundref="BlueprintRoom_8cs" startline="18">BlueprintRoom.bpRotation</references>
+        <references refid="classBlueprintShip_1a8827839dae653ca4af9e268efc1506f7" compoundref="BlueprintShip_8cs" startline="456" endline="475">CalculateSpriteIndex</references>
+        <references refid="classBlueprintShip_1a392c4c1316b3611f52f2b957aa93d06c" compoundref="BlueprintShip_8cs" startline="487" endline="521">CreateOuterHull</references>
+        <references refid="classBlueprintShip_1afb004691aaaa83f7c76c5e7c2de343d1" compoundref="BlueprintShip_8cs" startline="24">currentHullLevel</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classShip_1ad41ae54e34748ef39fa64dbb8f87e4bd" compoundref="Ship_8cs" startline="66">Ship.outerHullData</references>
+        <references refid="classGameManager_1af31b125ee50ee4ffee177b8357ef1f11" compoundref="GameManager_8cs" startline="19">GameManager.playerShip</references>
+        <references refid="classBlueprintWeapon_1ab44eb8d7287bbcaa5504a8629a4bbf4f" compoundref="BlueprintWeapon_8cs" startline="461" endline="473">BlueprintWeapon.SetHullLevel</references>
+        <references refid="classRoomData_1_1RoomLevel_1a1038e7c8647b924aed778b2c211dc049" compoundref="RoomData_8cs" startline="69">RoomData&lt; T &gt;.RoomLevel.size</references>
+        <referencedby refid="classCustomize__2__Controller_1aa17c4b0f6af07ecacc4fc62ef050c81c" compoundref="Customize__2__Controller_8cs" startline="307" endline="339">Customize_2_Controller.OnClickCancel</referencedby>
+        <referencedby refid="classCustomize__2__Controller_1a7910153a485c7e8377d503e989d099e5" compoundref="Customize__2__Controller_8cs" startline="345" endline="361">Customize_2_Controller.OnClickOuterHullButton</referencedby>
+        <referencedby refid="classCustomize__0__Controller_1a574259bae338d10309582b4ec5c4120f" compoundref="Customize__0__Controller_8cs" startline="180" endline="222">Customize_0_Controller.OnClickSlot</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintShip_1ab83480836fedfd870832fd05ee6a3899" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintShip.ClearPreviewOuterHulls</definition>
+        <argsstring>()</argsstring>
+        <name>ClearPreviewOuterHulls</name>
+        <qualifiedname>BlueprintShip.ClearPreviewOuterHulls</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="523" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="523" bodyend="528"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classBlueprintShip_1aeadcaa00abc9c7654507f23d6c2bef78" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintShip.AddPlacementIfNotDuplicate</definition>
+        <argsstring>(List&lt; HullPlacementInfo &gt; placements, HullPlacementInfo newInfo)</argsstring>
+        <name>AddPlacementIfNotDuplicate</name>
+        <qualifiedname>BlueprintShip.AddPlacementIfNotDuplicate</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="classHullPlacementInfo" kindref="compound">HullPlacementInfo</ref> &gt;</type>
+          <declname>placements</declname>
+        </param>
+        <param>
+          <type><ref refid="classHullPlacementInfo" kindref="compound">HullPlacementInfo</ref></type>
+          <declname>newInfo</declname>
+        </param>
+        <briefdescription>
+<para>중복 검사 후 배치 정보 추가 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="442" column="18" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="442" bodyend="451"/>
+        <referencedby refid="classBlueprintShip_1a1c492e0713444916c84c37894b82c71d" compoundref="BlueprintShip_8cs" startline="178" endline="437">SetBPHullLevel</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintShip_1a8827839dae653ca4af9e268efc1506f7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int BlueprintShip.CalculateSpriteIndex</definition>
+        <argsstring>(HullPlacementInfo info)</argsstring>
+        <name>CalculateSpriteIndex</name>
+        <qualifiedname>BlueprintShip.CalculateSpriteIndex</qualifiedname>
+        <param>
+          <type><ref refid="classHullPlacementInfo" kindref="compound">HullPlacementInfo</ref></type>
+          <declname>info</declname>
+        </param>
+        <briefdescription>
+<para>외갑판 배치 정보에 따른 스프라이트 인덱스 계산 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="456" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="456" bodyend="475"/>
+        <referencedby refid="classBlueprintShip_1a1c492e0713444916c84c37894b82c71d" compoundref="BlueprintShip_8cs" startline="178" endline="437">SetBPHullLevel</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintShip_1a392c4c1316b3611f52f2b957aa93d06c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintShip.CreateOuterHull</definition>
+        <argsstring>(Vector2Int hullPosition, int spriteIndex, int level, OuterHullData hullData, GameObject hullPrefab, OuterHullSystem.HullType hullType)</argsstring>
+        <name>CreateOuterHull</name>
+        <qualifiedname>BlueprintShip.CreateOuterHull</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>hullPosition</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>spriteIndex</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type><ref refid="classOuterHullData" kindref="compound">OuterHullData</ref></type>
+          <declname>hullData</declname>
+        </param>
+        <param>
+          <type>GameObject</type>
+          <declname>hullPrefab</declname>
+        </param>
+        <param>
+          <type><ref refid="classOuterHullSystem_1afbdd66498c2e772751342e20721366c9" kindref="member">OuterHullSystem.HullType</ref></type>
+          <declname>hullType</declname>
+        </param>
+        <briefdescription>
+<para>지정된 위치에 외갑판을 생성합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hullPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>외갑판 위치</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spriteIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>스프라이트 인덱스 (0-3: 하좌상우 기본, 4-7: 하좌상우 변형, 8-11: 외부 모서리, 12-15: 내부 모서리)</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>외갑판 레벨 (0-2)</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hullData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>외갑판 데이터</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hullPrefab</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>외갑판 프리팹</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hullType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>외갑판 유형</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="487" column="18" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="487" bodyend="521"/>
+        <references refid="classOuterHullData_1a96a23b3ef4a7ccdd9770367243248111" compoundref="OuterHullData_8cs" startline="99" endline="107">OuterHullData.GetSpecificHullSprite</references>
+        <references refid="classShip_1acc377098e3c61bbd4b8fc53595d09293" compoundref="Ship_8cs" startline="1456" endline="1459">Ship.GetWorldPositionFromGrid</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classGameManager_1af31b125ee50ee4ffee177b8357ef1f11" compoundref="GameManager_8cs" startline="19">GameManager.playerShip</references>
+        <referencedby refid="classBlueprintShip_1a1c492e0713444916c84c37894b82c71d" compoundref="BlueprintShip_8cs" startline="178" endline="437">SetBPHullLevel</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>실제 설계도 데이터를 관리하는 인스턴스 클래스. 방/무기 배치, 가격 계산, 중심 좌표 제공. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>BlueprintShip</label>
+        <link refid="classBlueprintShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>BlueprintShip</label>
+        <link refid="classBlueprintShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="15" column="7" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="16" bodyend="531"/>
+    <listofallmembers>
+      <member refid="classBlueprintShip_1ab8c6bef407ee2520f0ee47c39089196b" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>AddPlaceable</name></member>
+      <member refid="classBlueprintShip_1aeadcaa00abc9c7654507f23d6c2bef78" prot="private" virt="non-virtual"><scope>BlueprintShip</scope><name>AddPlacementIfNotDuplicate</name></member>
+      <member refid="classBlueprintShip_1a8827839dae653ca4af9e268efc1506f7" prot="private" virt="non-virtual"><scope>BlueprintShip</scope><name>CalculateSpriteIndex</name></member>
+      <member refid="classBlueprintShip_1ac5a09a995766d975be353c15119c30d0" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>CenterPosition</name></member>
+      <member refid="classBlueprintShip_1a2a0b55d621a2ed5e53900c7599845bbc" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>ClearPlacedBPObjects</name></member>
+      <member refid="classBlueprintShip_1ab83480836fedfd870832fd05ee6a3899" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>ClearPreviewOuterHulls</name></member>
+      <member refid="classBlueprintShip_1a0b1c462bd0416b30a0c2af3095eee278" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>ClearRooms</name></member>
+      <member refid="classBlueprintShip_1a392c4c1316b3611f52f2b957aa93d06c" prot="private" virt="non-virtual"><scope>BlueprintShip</scope><name>CreateOuterHull</name></member>
+      <member refid="classBlueprintShip_1af914c27271f1b0e5b873222f2ad7cd97" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>CurrentHullLevel</name></member>
+      <member refid="classBlueprintShip_1afb004691aaaa83f7c76c5e7c2de343d1" prot="private" virt="non-virtual"><scope>BlueprintShip</scope><name>currentHullLevel</name></member>
+      <member refid="classBlueprintShip_1af261ef03f43fb9025372b1ff117489e1" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>GetHullLevel</name></member>
+      <member refid="classBlueprintShip_1a07b30426ab59f1fdc876c4e560d322c4" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>GetObjectAt</name></member>
+      <member refid="classBlueprintShip_1a164624e18a7ffa28f1ca3ca4baea4e5d" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>GetPlacedBlueprintRooms</name></member>
+      <member refid="classBlueprintShip_1a277803953dfc93efaa83448ab5d294ed" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>GetPlacedBlueprintWeapons</name></member>
+      <member refid="classBlueprintShip_1a4d0bb68f1e596c3a4f8799c565b6faf2" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>GetTotalBPCost</name></member>
+      <member refid="classBlueprintShip_1ac00e477d83103b1880b2b8d9147a78ae" prot="private" virt="non-virtual"><scope>BlueprintShip</scope><name>gridSize</name></member>
+      <member refid="classBlueprintShip_1a89da8b0bac88474e037698bd43ce3ace" prot="private" virt="non-virtual"><scope>BlueprintShip</scope><name>outerHulls</name></member>
+      <member refid="classBlueprintShip_1a562e4e4a21055189f349feebad5d1992" prot="private" virt="non-virtual"><scope>BlueprintShip</scope><name>placedBlueprintObjects</name></member>
+      <member refid="classBlueprintShip_1a4fb24c4ffc9c91069cb2a274838a5d66" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>PlacedBlueprintRooms</name></member>
+      <member refid="classBlueprintShip_1adb7761c6f19a81eb0c160cb62a1d35f3" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>PlacedBlueprintWeapons</name></member>
+      <member refid="classBlueprintShip_1aa5279a8072d70397db7c110e33bb4a67" prot="private" virt="non-virtual"><scope>BlueprintShip</scope><name>previewOuterHulls</name></member>
+      <member refid="classBlueprintShip_1a0b5ffa5700ce8e93ecc7458f45b1efdc" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>RemovePlaceable</name></member>
+      <member refid="classBlueprintShip_1a1c492e0713444916c84c37894b82c71d" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>SetBPHullLevel</name></member>
+      <member refid="classBlueprintShip_1a41ae0821d0cb0ee7a80425161e129732" prot="public" virt="non-virtual"><scope>BlueprintShip</scope><name>SetHullLevel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

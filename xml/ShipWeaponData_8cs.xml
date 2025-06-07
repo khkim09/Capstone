@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="ShipWeaponData_8cs" kind="file" language="C#">
+    <compoundname>ShipWeaponData.cs</compoundname>
+    <innerclass refid="classShipWeaponData" prot="public">ShipWeaponData</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">System;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">[CreateAssetMenu(fileName<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;New<sp/>Weapon&quot;</highlight><highlight class="normal">,<sp/>menuName<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Ship/Weapon/Weapon&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="9" refid="classShipWeaponData" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref><sp/>:<sp/>ScriptableObject</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="14" refid="classShipWeaponData_1a2cc99759e5c587c7f2beba9f46ed260a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponData_1a2cc99759e5c587c7f2beba9f46ed260a" kindref="member">id</ref>;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="classShipWeaponData_1a7928a3832b5b84cf9f916566902dc334" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponData_1a7928a3832b5b84cf9f916566902dc334" kindref="member">weaponName</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="classShipWeaponData_1a66250ee5cf169b36984b344d697d4640" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]<sp/>[TextArea(3,<sp/>5)]<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponData_1a66250ee5cf169b36984b344d697d4640" kindref="member">description</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="classShipWeaponData_1a8d5ad610b7e9bdcc9475da2d1b296b44" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponData_1a8d5ad610b7e9bdcc9475da2d1b296b44" kindref="member">damage</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="classShipWeaponData_1a2c5bab2a075127a719c237917afd8cfa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponData_1a2c5bab2a075127a719c237917afd8cfa" kindref="member">cooldownPerSecond</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="classShipWeaponData_1a56f63799379c96ba15619ddc6c46cc8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Sprite<sp/><ref refid="classShipWeaponData_1a56f63799379c96ba15619ddc6c46cc8a" kindref="member">weaponIcon</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//[SerializeField]<sp/>public<sp/>Sprite[]<sp/>blueprintSprites<sp/>=<sp/>new<sp/>Sprite[9];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="classShipWeaponData_1a5009269e1870870e046676ed08a2816f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Sprite[]<sp/><ref refid="classShipWeaponData_1a5009269e1870870e046676ed08a2816f" kindref="member">flattenedSprites</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Sprite[9];</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="classShipWeaponData_1a4cad508a237e921866f922e5b9218bb7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponTypeData" kindref="compound">ShipWeaponTypeData</ref><sp/><ref refid="classShipWeaponData_1a4cad508a237e921866f922e5b9218bb7" kindref="member">weaponType</ref>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="classShipWeaponData_1a96eddd70e517e0c8cc844a41e6d0ed6f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classWeaponEffectData" kindref="compound">WeaponEffectData</ref><sp/><ref refid="classShipWeaponData_1a96eddd70e517e0c8cc844a41e6d0ed6f" kindref="member">effectData</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="classShipWeaponData_1a2bd1aed76418f7216bb2e83ce9bfa7d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponData_1a2bd1aed76418f7216bb2e83ce9bfa7d3" kindref="member">effectPower</ref>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="classShipWeaponData_1a727fc0357337090258667b2ee1f02d52" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponData_1a727fc0357337090258667b2ee1f02d52" kindref="member">cost</ref>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="classShipWeaponData_1a033091eea5b0a474e680a432f2d6ef4d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classWarheadTypeData" kindref="compound">WarheadTypeData</ref><sp/><ref refid="classShipWeaponData_1a033091eea5b0a474e680a432f2d6ef4d" kindref="member">warheadType</ref>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>[Header(</highlight><highlight class="stringliteral">&quot;투사체<sp/>설정&quot;</highlight><highlight class="normal">)]<sp/>[Tooltip(</highlight><highlight class="stringliteral">&quot;이<sp/>무기가<sp/>사용할<sp/>투사체<sp/>ID&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>projectileId;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="classShipWeaponData_1a1baf2fc0621f73c6f67f2340706a5f7a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponData_1a1baf2fc0621f73c6f67f2340706a5f7a" kindref="member">GetWeaponName</ref>()</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponData_1a7928a3832b5b84cf9f916566902dc334" kindref="member">weaponName</ref>;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="classShipWeaponData_1ae20f1d78d88a9f90560976fe90b09509" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponData_1ae20f1d78d88a9f90560976fe90b09509" kindref="member">GetDamage</ref>()</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponData_1a8d5ad610b7e9bdcc9475da2d1b296b44" kindref="member">damage</ref>;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="classShipWeaponData_1ae9ddb6827e3cf2bb5ef81e92d87a8c0b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponData_1ae9ddb6827e3cf2bb5ef81e92d87a8c0b" kindref="member">GetCooldownPerSecond</ref>()</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponData_1a2c5bab2a075127a719c237917afd8cfa" kindref="member">cooldownPerSecond</ref>;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="classShipWeaponData_1ab7df606779417892c192358728fd1f80" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>ShipWeaponType<sp/><ref refid="classShipWeaponData_1ab7df606779417892c192358728fd1f80" kindref="member">GetWeaponType</ref>()</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classShipWeaponData_1a4cad508a237e921866f922e5b9218bb7" kindref="member">weaponType</ref>.<ref refid="classShipWeaponTypeData_1a445d05e3182d3441d8453f84743d8695" kindref="member">weaponType</ref>;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Assets/Scripts/Ship/Weapons/ShipWeaponData.cs"/>
+  </compounddef>
+</doxygen>

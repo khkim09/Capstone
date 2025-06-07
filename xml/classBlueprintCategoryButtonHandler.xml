@@ -1,0 +1,752 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classBlueprintCategoryButtonHandler" kind="class" language="C#" prot="public">
+    <compoundname>BlueprintCategoryButtonHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classBlueprintCategoryButtonHandler_1a1f49024347069dc0bfcdc091e751505a" prot="public" static="no" mutable="no">
+        <type><ref refid="classBlueprintInventoryUI" kindref="compound">BlueprintInventoryUI</ref></type>
+        <definition>BlueprintInventoryUI BlueprintCategoryButtonHandler.bpInventoryUI</definition>
+        <argsstring></argsstring>
+        <name>bpInventoryUI</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.bpInventoryUI</qualifiedname>
+        <briefdescription>
+<para>설계도 UI 오브젝트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="15" column="33" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="15" bodyend="-1"/>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1a026fcdc9661beb2781142152ac7ad9c6" compoundref="BlueprintCategoryButtonHandler_8cs" startline="174" endline="178">ShowAuxiliary</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1af99bd86d6d0bd98c7cab019b0bd50838" compoundref="BlueprintCategoryButtonHandler_8cs" startline="165" endline="169">ShowEssential</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1aec39fe0caf4357a68597c4014c7cbcec" compoundref="BlueprintCategoryButtonHandler_8cs" startline="201" endline="205">ShowEtc</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1ae30670a8337edc32e4fdea3d22c9feb2" compoundref="BlueprintCategoryButtonHandler_8cs" startline="183" endline="187">ShowLiving</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1a5473325806b25140ff1d614804c16b3c" compoundref="BlueprintCategoryButtonHandler_8cs" startline="192" endline="196">ShowStorage</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintCategoryButtonHandler_1aca7302ca9d4fc856e9a131ea8b5e5a0c" prot="public" static="no" mutable="no">
+        <type><ref refid="classBlueprintWeaponInventoryUI" kindref="compound">BlueprintWeaponInventoryUI</ref></type>
+        <definition>BlueprintWeaponInventoryUI BlueprintCategoryButtonHandler.bpWeaponInventoryUI</definition>
+        <argsstring></argsstring>
+        <name>bpWeaponInventoryUI</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.bpWeaponInventoryUI</qualifiedname>
+        <briefdescription>
+<para>무기 인벤토리 UI </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="20" column="39" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="20" bodyend="-1"/>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1a7a952ac2945481827bd5c04e55e0d951" compoundref="BlueprintCategoryButtonHandler_8cs" startline="210" endline="219">ShowWeapons</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintCategoryButtonHandler_1aff068b1422d640dc32799209ecca0eb8" prot="public" static="no" mutable="no">
+        <type><ref refid="classBlueprintHullLevelInventoryUI" kindref="compound">BlueprintHullLevelInventoryUI</ref></type>
+        <definition>BlueprintHullLevelInventoryUI BlueprintCategoryButtonHandler.hullInventoryUI</definition>
+        <argsstring></argsstring>
+        <name>hullInventoryUI</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.hullInventoryUI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="22" column="42" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintCategoryButtonHandler_1ad73ef6bcd243132c7261b6e7cf44af5b" prot="public" static="no" mutable="no">
+        <type>List&lt; Button &gt;</type>
+        <definition>List&lt;Button&gt; BlueprintCategoryButtonHandler.categoryButtons</definition>
+        <argsstring></argsstring>
+        <name>categoryButtons</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.categoryButtons</qualifiedname>
+        <briefdescription>
+<para>카테고리 버튼들 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="27" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="27" bodyend="-1"/>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1acce33bb416d68823e537ad80c41cd60b" compoundref="BlueprintCategoryButtonHandler_8cs" startline="67" endline="102">SetButtonState</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1a9ea29665ca0da7f5cfe03f123d5dfa10" compoundref="BlueprintCategoryButtonHandler_8cs" startline="136" endline="160">SetHullButtonState</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1aba4ef4c32a9cefefe424b1954ca9d172" compoundref="BlueprintCategoryButtonHandler_8cs" startline="107" endline="131">SetWeaponButtonState</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintCategoryButtonHandler_1a49bcfedf65a21129ba5d7d050dac30f4" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color BlueprintCategoryButtonHandler.selectedBG</definition>
+        <argsstring></argsstring>
+        <name>selectedBG</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.selectedBG</qualifiedname>
+        <initializer>= Color.white</initializer>
+        <briefdescription>
+<para>선택 된 카테고리의 배경, 글자 색 조정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="32" column="18" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="32" bodyend="-1"/>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1acce33bb416d68823e537ad80c41cd60b" compoundref="BlueprintCategoryButtonHandler_8cs" startline="67" endline="102">SetButtonState</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1a9ea29665ca0da7f5cfe03f123d5dfa10" compoundref="BlueprintCategoryButtonHandler_8cs" startline="136" endline="160">SetHullButtonState</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1aba4ef4c32a9cefefe424b1954ca9d172" compoundref="BlueprintCategoryButtonHandler_8cs" startline="107" endline="131">SetWeaponButtonState</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintCategoryButtonHandler_1a6e46f123888ed77160a661782994a484" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color BlueprintCategoryButtonHandler.selectedText</definition>
+        <argsstring></argsstring>
+        <name>selectedText</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.selectedText</qualifiedname>
+        <initializer>= Color.black</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="34" column="18" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintCategoryButtonHandler_1af9d35f66b8e5ac3c5d457bf9fcca6e8f" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color BlueprintCategoryButtonHandler.defaultBG</definition>
+        <argsstring></argsstring>
+        <name>defaultBG</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.defaultBG</qualifiedname>
+        <initializer>= new(0.4509804f, 0.4509804f, 0.4509804f, 0.6392157f)</initializer>
+        <briefdescription>
+<para>기본 카테고리 배경, 글자 색 조정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="39" column="18" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="39" bodyend="-1"/>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1acce33bb416d68823e537ad80c41cd60b" compoundref="BlueprintCategoryButtonHandler_8cs" startline="67" endline="102">SetButtonState</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1a9ea29665ca0da7f5cfe03f123d5dfa10" compoundref="BlueprintCategoryButtonHandler_8cs" startline="136" endline="160">SetHullButtonState</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1aba4ef4c32a9cefefe424b1954ca9d172" compoundref="BlueprintCategoryButtonHandler_8cs" startline="107" endline="131">SetWeaponButtonState</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintCategoryButtonHandler_1a7f10ea7ea6458c7325de2de06b699c6a" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color BlueprintCategoryButtonHandler.defaultText</definition>
+        <argsstring></argsstring>
+        <name>defaultText</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.defaultText</qualifiedname>
+        <initializer>= Color.white</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="41" column="18" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintCategoryButtonHandler_1ae31929b90c898dcf0cd73b8eccf80d7a" prot="public" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform BlueprintCategoryButtonHandler.contentRoot</definition>
+        <argsstring></argsstring>
+        <name>contentRoot</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.contentRoot</qualifiedname>
+        <briefdescription>
+<para>내용 표시 영역 (방/무기 UI가 표시될 공간) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="46" column="22" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintCategoryButtonHandler_1aefb2008266b34421e2e7540522303b15" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject BlueprintCategoryButtonHandler.roomInventoryUIObject</definition>
+        <argsstring></argsstring>
+        <name>roomInventoryUIObject</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.roomInventoryUIObject</qualifiedname>
+        <briefdescription>
+<para>방 인벤토리 UI 게임 오브젝트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="51" column="23" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="51" bodyend="-1"/>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1acce33bb416d68823e537ad80c41cd60b" compoundref="BlueprintCategoryButtonHandler_8cs" startline="67" endline="102">SetButtonState</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1a9ea29665ca0da7f5cfe03f123d5dfa10" compoundref="BlueprintCategoryButtonHandler_8cs" startline="136" endline="160">SetHullButtonState</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1aba4ef4c32a9cefefe424b1954ca9d172" compoundref="BlueprintCategoryButtonHandler_8cs" startline="107" endline="131">SetWeaponButtonState</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintCategoryButtonHandler_1a1239bf2961680c2bc373dd5fff71cdc5" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject BlueprintCategoryButtonHandler.weaponInventoryUIObject</definition>
+        <argsstring></argsstring>
+        <name>weaponInventoryUIObject</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.weaponInventoryUIObject</qualifiedname>
+        <briefdescription>
+<para>무기 인벤토리 UI 게임 오브젝트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="56" column="23" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="56" bodyend="-1"/>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1acce33bb416d68823e537ad80c41cd60b" compoundref="BlueprintCategoryButtonHandler_8cs" startline="67" endline="102">SetButtonState</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1a9ea29665ca0da7f5cfe03f123d5dfa10" compoundref="BlueprintCategoryButtonHandler_8cs" startline="136" endline="160">SetHullButtonState</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1aba4ef4c32a9cefefe424b1954ca9d172" compoundref="BlueprintCategoryButtonHandler_8cs" startline="107" endline="131">SetWeaponButtonState</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintCategoryButtonHandler_1ab24784cddb7af7b19e94a02fef8e435c" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject BlueprintCategoryButtonHandler.hullInventoryUIObject</definition>
+        <argsstring></argsstring>
+        <name>hullInventoryUIObject</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.hullInventoryUIObject</qualifiedname>
+        <briefdescription>
+<para>외갑판 레벨 선택 패널 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="61" column="23" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="61" bodyend="-1"/>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1acce33bb416d68823e537ad80c41cd60b" compoundref="BlueprintCategoryButtonHandler_8cs" startline="67" endline="102">SetButtonState</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1a9ea29665ca0da7f5cfe03f123d5dfa10" compoundref="BlueprintCategoryButtonHandler_8cs" startline="136" endline="160">SetHullButtonState</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1aba4ef4c32a9cefefe424b1954ca9d172" compoundref="BlueprintCategoryButtonHandler_8cs" startline="107" endline="131">SetWeaponButtonState</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classBlueprintCategoryButtonHandler_1acce33bb416d68823e537ad80c41cd60b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintCategoryButtonHandler.SetButtonState</definition>
+        <argsstring>(RoomCategory selectedCategory)</argsstring>
+        <name>SetButtonState</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.SetButtonState</qualifiedname>
+        <param>
+          <type>RoomCategory</type>
+          <declname>selectedCategory</declname>
+        </param>
+        <briefdescription>
+<para>카테고리 버튼의 상태 갱신 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>selectedCategory</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>선택된 카테고리</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="67" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="67" bodyend="102"/>
+        <references refid="classBlueprintCategoryButtonHandler_1ad73ef6bcd243132c7261b6e7cf44af5b" compoundref="BlueprintCategoryButtonHandler_8cs" startline="27">categoryButtons</references>
+        <references refid="classBlueprintCategoryButtonHandler_1af9d35f66b8e5ac3c5d457bf9fcca6e8f" compoundref="BlueprintCategoryButtonHandler_8cs" startline="39">defaultBG</references>
+        <references refid="classBlueprintCategoryButtonHandler_1ab24784cddb7af7b19e94a02fef8e435c" compoundref="BlueprintCategoryButtonHandler_8cs" startline="61">hullInventoryUIObject</references>
+        <references refid="classBlueprintCategoryButtonHandler_1aefb2008266b34421e2e7540522303b15" compoundref="BlueprintCategoryButtonHandler_8cs" startline="51">roomInventoryUIObject</references>
+        <references refid="classBlueprintCategoryButtonHandler_1a49bcfedf65a21129ba5d7d050dac30f4" compoundref="BlueprintCategoryButtonHandler_8cs" startline="32">selectedBG</references>
+        <references refid="classBlueprintCategoryButtonHandler_1a1239bf2961680c2bc373dd5fff71cdc5" compoundref="BlueprintCategoryButtonHandler_8cs" startline="56">weaponInventoryUIObject</references>
+        <referencedby refid="classCustomize__1__Controller_1aa35f4f305d8242a209520c05d6c3a2d9" compoundref="Customize__1__Controller_8cs" startline="136" endline="156">Customize_1_Controller.OnEnable</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1a026fcdc9661beb2781142152ac7ad9c6" compoundref="BlueprintCategoryButtonHandler_8cs" startline="174" endline="178">ShowAuxiliary</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1af99bd86d6d0bd98c7cab019b0bd50838" compoundref="BlueprintCategoryButtonHandler_8cs" startline="165" endline="169">ShowEssential</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1aec39fe0caf4357a68597c4014c7cbcec" compoundref="BlueprintCategoryButtonHandler_8cs" startline="201" endline="205">ShowEtc</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1ae30670a8337edc32e4fdea3d22c9feb2" compoundref="BlueprintCategoryButtonHandler_8cs" startline="183" endline="187">ShowLiving</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1a5473325806b25140ff1d614804c16b3c" compoundref="BlueprintCategoryButtonHandler_8cs" startline="192" endline="196">ShowStorage</referencedby>
+        <referencedby refid="classBlueprintInventoryUI_1a8252cd8e83d16cf5a87770ee86c16c46" compoundref="BlueprintInventoryUI_8cs" startline="39" endline="45">BlueprintInventoryUI.Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintCategoryButtonHandler_1aba4ef4c32a9cefefe424b1954ca9d172" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintCategoryButtonHandler.SetWeaponButtonState</definition>
+        <argsstring>()</argsstring>
+        <name>SetWeaponButtonState</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.SetWeaponButtonState</qualifiedname>
+        <briefdescription>
+<para>무기 카테고리 선택 시 버튼 상태 갱신 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="107" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="107" bodyend="131"/>
+        <references refid="classBlueprintCategoryButtonHandler_1ad73ef6bcd243132c7261b6e7cf44af5b" compoundref="BlueprintCategoryButtonHandler_8cs" startline="27">categoryButtons</references>
+        <references refid="classBlueprintCategoryButtonHandler_1af9d35f66b8e5ac3c5d457bf9fcca6e8f" compoundref="BlueprintCategoryButtonHandler_8cs" startline="39">defaultBG</references>
+        <references refid="classBlueprintCategoryButtonHandler_1ab24784cddb7af7b19e94a02fef8e435c" compoundref="BlueprintCategoryButtonHandler_8cs" startline="61">hullInventoryUIObject</references>
+        <references refid="classBlueprintCategoryButtonHandler_1aefb2008266b34421e2e7540522303b15" compoundref="BlueprintCategoryButtonHandler_8cs" startline="51">roomInventoryUIObject</references>
+        <references refid="classBlueprintCategoryButtonHandler_1a49bcfedf65a21129ba5d7d050dac30f4" compoundref="BlueprintCategoryButtonHandler_8cs" startline="32">selectedBG</references>
+        <references refid="classBlueprintCategoryButtonHandler_1a1239bf2961680c2bc373dd5fff71cdc5" compoundref="BlueprintCategoryButtonHandler_8cs" startline="56">weaponInventoryUIObject</references>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1a7a952ac2945481827bd5c04e55e0d951" compoundref="BlueprintCategoryButtonHandler_8cs" startline="210" endline="219">ShowWeapons</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintCategoryButtonHandler_1a9ea29665ca0da7f5cfe03f123d5dfa10" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintCategoryButtonHandler.SetHullButtonState</definition>
+        <argsstring>()</argsstring>
+        <name>SetHullButtonState</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.SetHullButtonState</qualifiedname>
+        <briefdescription>
+<para>외갑판 레벨 카테고리 선택 시 버튼 상태 갱신 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="136" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="136" bodyend="160"/>
+        <references refid="classBlueprintCategoryButtonHandler_1ad73ef6bcd243132c7261b6e7cf44af5b" compoundref="BlueprintCategoryButtonHandler_8cs" startline="27">categoryButtons</references>
+        <references refid="classBlueprintCategoryButtonHandler_1af9d35f66b8e5ac3c5d457bf9fcca6e8f" compoundref="BlueprintCategoryButtonHandler_8cs" startline="39">defaultBG</references>
+        <references refid="classBlueprintCategoryButtonHandler_1ab24784cddb7af7b19e94a02fef8e435c" compoundref="BlueprintCategoryButtonHandler_8cs" startline="61">hullInventoryUIObject</references>
+        <references refid="classBlueprintCategoryButtonHandler_1aefb2008266b34421e2e7540522303b15" compoundref="BlueprintCategoryButtonHandler_8cs" startline="51">roomInventoryUIObject</references>
+        <references refid="classBlueprintCategoryButtonHandler_1a49bcfedf65a21129ba5d7d050dac30f4" compoundref="BlueprintCategoryButtonHandler_8cs" startline="32">selectedBG</references>
+        <references refid="classBlueprintCategoryButtonHandler_1a1239bf2961680c2bc373dd5fff71cdc5" compoundref="BlueprintCategoryButtonHandler_8cs" startline="56">weaponInventoryUIObject</references>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1a4fc4d237ec831649022b49cf205f8cb7" compoundref="BlueprintCategoryButtonHandler_8cs" startline="225" endline="229">ShowHull</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintCategoryButtonHandler_1af99bd86d6d0bd98c7cab019b0bd50838" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintCategoryButtonHandler.ShowEssential</definition>
+        <argsstring>()</argsstring>
+        <name>ShowEssential</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.ShowEssential</qualifiedname>
+        <briefdescription>
+<para>필수 시설 - 인벤토리에 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="165" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="165" bodyend="169"/>
+        <references refid="classBlueprintCategoryButtonHandler_1a1f49024347069dc0bfcdc091e751505a" compoundref="BlueprintCategoryButtonHandler_8cs" startline="15">bpInventoryUI</references>
+        <references refid="classBlueprintInventoryUI_1ab12fd348917c304198c6bd0c519dea3b" compoundref="BlueprintInventoryUI_8cs" startline="51" endline="73">BlueprintInventoryUI.FilterByCategory</references>
+        <references refid="classBlueprintCategoryButtonHandler_1acce33bb416d68823e537ad80c41cd60b" compoundref="BlueprintCategoryButtonHandler_8cs" startline="67" endline="102">SetButtonState</references>
+        <referencedby refid="classCustomize__1__Controller_1aec55e07635dd1dfd43176946b3dd6f2b" compoundref="Customize__1__Controller_8cs" startline="92" endline="106">Customize_1_Controller.Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintCategoryButtonHandler_1a026fcdc9661beb2781142152ac7ad9c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintCategoryButtonHandler.ShowAuxiliary</definition>
+        <argsstring>()</argsstring>
+        <name>ShowAuxiliary</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.ShowAuxiliary</qualifiedname>
+        <briefdescription>
+<para>보조 시설 - 인벤토리에 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="174" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="174" bodyend="178"/>
+        <references refid="classBlueprintCategoryButtonHandler_1a1f49024347069dc0bfcdc091e751505a" compoundref="BlueprintCategoryButtonHandler_8cs" startline="15">bpInventoryUI</references>
+        <references refid="classBlueprintInventoryUI_1ab12fd348917c304198c6bd0c519dea3b" compoundref="BlueprintInventoryUI_8cs" startline="51" endline="73">BlueprintInventoryUI.FilterByCategory</references>
+        <references refid="classBlueprintCategoryButtonHandler_1acce33bb416d68823e537ad80c41cd60b" compoundref="BlueprintCategoryButtonHandler_8cs" startline="67" endline="102">SetButtonState</references>
+        <referencedby refid="classCustomize__1__Controller_1aec55e07635dd1dfd43176946b3dd6f2b" compoundref="Customize__1__Controller_8cs" startline="92" endline="106">Customize_1_Controller.Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintCategoryButtonHandler_1ae30670a8337edc32e4fdea3d22c9feb2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintCategoryButtonHandler.ShowLiving</definition>
+        <argsstring>()</argsstring>
+        <name>ShowLiving</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.ShowLiving</qualifiedname>
+        <briefdescription>
+<para>생활활 시설 - 인벤토리에 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="183" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="183" bodyend="187"/>
+        <references refid="classBlueprintCategoryButtonHandler_1a1f49024347069dc0bfcdc091e751505a" compoundref="BlueprintCategoryButtonHandler_8cs" startline="15">bpInventoryUI</references>
+        <references refid="classBlueprintInventoryUI_1ab12fd348917c304198c6bd0c519dea3b" compoundref="BlueprintInventoryUI_8cs" startline="51" endline="73">BlueprintInventoryUI.FilterByCategory</references>
+        <references refid="classBlueprintCategoryButtonHandler_1acce33bb416d68823e537ad80c41cd60b" compoundref="BlueprintCategoryButtonHandler_8cs" startline="67" endline="102">SetButtonState</references>
+        <referencedby refid="classCustomize__1__Controller_1aec55e07635dd1dfd43176946b3dd6f2b" compoundref="Customize__1__Controller_8cs" startline="92" endline="106">Customize_1_Controller.Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintCategoryButtonHandler_1a5473325806b25140ff1d614804c16b3c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintCategoryButtonHandler.ShowStorage</definition>
+        <argsstring>()</argsstring>
+        <name>ShowStorage</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.ShowStorage</qualifiedname>
+        <briefdescription>
+<para>저장고 - 인벤토리에 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="192" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="192" bodyend="196"/>
+        <references refid="classBlueprintCategoryButtonHandler_1a1f49024347069dc0bfcdc091e751505a" compoundref="BlueprintCategoryButtonHandler_8cs" startline="15">bpInventoryUI</references>
+        <references refid="classBlueprintInventoryUI_1ab12fd348917c304198c6bd0c519dea3b" compoundref="BlueprintInventoryUI_8cs" startline="51" endline="73">BlueprintInventoryUI.FilterByCategory</references>
+        <references refid="classBlueprintCategoryButtonHandler_1acce33bb416d68823e537ad80c41cd60b" compoundref="BlueprintCategoryButtonHandler_8cs" startline="67" endline="102">SetButtonState</references>
+        <referencedby refid="classCustomize__1__Controller_1aec55e07635dd1dfd43176946b3dd6f2b" compoundref="Customize__1__Controller_8cs" startline="92" endline="106">Customize_1_Controller.Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintCategoryButtonHandler_1aec39fe0caf4357a68597c4014c7cbcec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintCategoryButtonHandler.ShowEtc</definition>
+        <argsstring>()</argsstring>
+        <name>ShowEtc</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.ShowEtc</qualifiedname>
+        <briefdescription>
+<para>복도 - 인벤토리에 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="201" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="201" bodyend="205"/>
+        <references refid="classBlueprintCategoryButtonHandler_1a1f49024347069dc0bfcdc091e751505a" compoundref="BlueprintCategoryButtonHandler_8cs" startline="15">bpInventoryUI</references>
+        <references refid="classBlueprintInventoryUI_1ab12fd348917c304198c6bd0c519dea3b" compoundref="BlueprintInventoryUI_8cs" startline="51" endline="73">BlueprintInventoryUI.FilterByCategory</references>
+        <references refid="classBlueprintCategoryButtonHandler_1acce33bb416d68823e537ad80c41cd60b" compoundref="BlueprintCategoryButtonHandler_8cs" startline="67" endline="102">SetButtonState</references>
+        <referencedby refid="classCustomize__1__Controller_1aec55e07635dd1dfd43176946b3dd6f2b" compoundref="Customize__1__Controller_8cs" startline="92" endline="106">Customize_1_Controller.Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintCategoryButtonHandler_1a7a952ac2945481827bd5c04e55e0d951" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintCategoryButtonHandler.ShowWeapons</definition>
+        <argsstring>()</argsstring>
+        <name>ShowWeapons</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.ShowWeapons</qualifiedname>
+        <briefdescription>
+<para>무기 - 인벤토리에 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="210" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="210" bodyend="219"/>
+        <references refid="classBlueprintCategoryButtonHandler_1aca7302ca9d4fc856e9a131ea8b5e5a0c" compoundref="BlueprintCategoryButtonHandler_8cs" startline="20">bpWeaponInventoryUI</references>
+        <references refid="classShipWeaponDatabase_1ac3ed57afc88e15e264b9886f16fab2d4" compoundref="ShipWeaponDatabase_8cs" startline="22" endline="25">ShipWeaponDatabase.Initialize</references>
+        <references refid="classBlueprintWeaponInventoryUI_1ab30acac82d2da8413c2826835b73ebcd" compoundref="BlueprintWeaponInventoryUI_8cs" startline="48" endline="81">BlueprintWeaponInventoryUI.LoadWeapons</references>
+        <references refid="classBlueprintCategoryButtonHandler_1aba4ef4c32a9cefefe424b1954ca9d172" compoundref="BlueprintCategoryButtonHandler_8cs" startline="107" endline="131">SetWeaponButtonState</references>
+        <references refid="classBlueprintWeaponInventoryUI_1afd66635e2520c1926b63fc43bed6061e" compoundref="BlueprintWeaponInventoryUI_8cs" startline="12">BlueprintWeaponInventoryUI.weaponDatabase</references>
+        <referencedby refid="classCustomize__1__Controller_1aec55e07635dd1dfd43176946b3dd6f2b" compoundref="Customize__1__Controller_8cs" startline="92" endline="106">Customize_1_Controller.Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintCategoryButtonHandler_1a4fc4d237ec831649022b49cf205f8cb7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintCategoryButtonHandler.ShowHull</definition>
+        <argsstring>()</argsstring>
+        <name>ShowHull</name>
+        <qualifiedname>BlueprintCategoryButtonHandler.ShowHull</qualifiedname>
+        <briefdescription>
+<para>외갑판 카테고리 - 인벤토리에 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="225" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="225" bodyend="229"/>
+        <references refid="classBlueprintHullLevelInventoryUI_1a9e6bced96af04b2ce2b1d8b97f97dfbf" compoundref="BlueprintHullLevelInventoryUI_8cs" startline="36" endline="60">BlueprintHullLevelInventoryUI.LoadHullLevelButtons</references>
+        <references refid="classBlueprintCategoryButtonHandler_1a9ea29665ca0da7f5cfe03f123d5dfa10" compoundref="BlueprintCategoryButtonHandler_8cs" startline="136" endline="160">SetHullButtonState</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>카테고리 별 분류 가능하도록 카테고리 버튼에 함수 연결 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>BlueprintCategoryButtonHandler</label>
+        <link refid="classBlueprintCategoryButtonHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>BlueprintCategoryButtonHandler</label>
+        <link refid="classBlueprintCategoryButtonHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+bpInventoryUI</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>+bpWeaponInventoryUI</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>+hullInventoryUI</edgelabel>
+        </childnode>
+      </node>
+      <node id="31">
+        <label>BlueprintHullLevelInventoryUI</label>
+        <link refid="classBlueprintHullLevelInventoryUI"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+blueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>+weaponDragHandler</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>BlueprintInventoryUI</label>
+        <link refid="classBlueprintInventoryUI"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+dragHandler</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>+categoryButtonHandler</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>BlueprintRoomDragHandler</label>
+        <link refid="classBlueprintRoomDragHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>+gridPlacer</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-draggingRoomData</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>-draggingRotation</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>BlueprintShip</label>
+        <link refid="classBlueprintShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>BlueprintWeaponDragHandler</label>
+        <link refid="classBlueprintWeaponDragHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>+gridPlacer</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+blueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>-draggingWeaponData</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>BlueprintWeaponInventoryUI</label>
+        <link refid="classBlueprintWeaponInventoryUI"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>+weaponDatabase</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>+dragHandler</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>+categoryButtonHandler</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>Constants</label>
+      </node>
+      <node id="15">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GridPlacer</label>
+        <link refid="classGridPlacer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+targetBlueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-gridOrigin</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="17">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="20">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="27">
+        <label>ShipWeaponData</label>
+        <link refid="classShipWeaponData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>+weaponType</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>+effectData</edgelabel>
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>+warheadType</edgelabel>
+        </childnode>
+      </node>
+      <node id="25">
+        <label>ShipWeaponDatabase</label>
+        <link refid="classShipWeaponDatabase"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>ShipWeaponTypeData</label>
+        <link refid="classShipWeaponTypeData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>UnityEngine</label>
+      </node>
+      <node id="30">
+        <label>WarheadTypeData</label>
+        <link refid="classWarheadTypeData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>WeaponEffectData</label>
+        <link refid="classWeaponEffectData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" line="10" column="7" bodyfile="Assets/Scripts/CustomizeShip/BlueprintCategoryButtonHandler.cs" bodystart="11" bodyend="230"/>
+    <listofallmembers>
+      <member refid="classBlueprintCategoryButtonHandler_1a1f49024347069dc0bfcdc091e751505a" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>bpInventoryUI</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1aca7302ca9d4fc856e9a131ea8b5e5a0c" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>bpWeaponInventoryUI</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1ad73ef6bcd243132c7261b6e7cf44af5b" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>categoryButtons</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1ae31929b90c898dcf0cd73b8eccf80d7a" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>contentRoot</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1af9d35f66b8e5ac3c5d457bf9fcca6e8f" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>defaultBG</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1a7f10ea7ea6458c7325de2de06b699c6a" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>defaultText</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1aff068b1422d640dc32799209ecca0eb8" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>hullInventoryUI</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1ab24784cddb7af7b19e94a02fef8e435c" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>hullInventoryUIObject</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1aefb2008266b34421e2e7540522303b15" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>roomInventoryUIObject</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1a49bcfedf65a21129ba5d7d050dac30f4" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>selectedBG</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1a6e46f123888ed77160a661782994a484" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>selectedText</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1acce33bb416d68823e537ad80c41cd60b" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>SetButtonState</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1a9ea29665ca0da7f5cfe03f123d5dfa10" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>SetHullButtonState</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1aba4ef4c32a9cefefe424b1954ca9d172" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>SetWeaponButtonState</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1a026fcdc9661beb2781142152ac7ad9c6" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>ShowAuxiliary</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1af99bd86d6d0bd98c7cab019b0bd50838" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>ShowEssential</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1aec39fe0caf4357a68597c4014c7cbcec" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>ShowEtc</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1a4fc4d237ec831649022b49cf205f8cb7" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>ShowHull</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1ae30670a8337edc32e4fdea3d22c9feb2" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>ShowLiving</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1a5473325806b25140ff1d614804c16b3c" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>ShowStorage</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1a7a952ac2945481827bd5c04e55e0d951" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>ShowWeapons</name></member>
+      <member refid="classBlueprintCategoryButtonHandler_1a1239bf2961680c2bc373dd5fff71cdc5" prot="public" virt="non-virtual"><scope>BlueprintCategoryButtonHandler</scope><name>weaponInventoryUIObject</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

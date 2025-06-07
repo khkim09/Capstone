@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classGameStateManager" kind="class" language="C#" prot="public">
+    <compoundname>GameStateManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classGameStateManager_1ad6c81ee9ec40a6522bcf47bdc7172b07" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="classGameStateManager" kindref="compound">GameStateManager</ref></type>
+        <definition>GameStateManager GameStateManager.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>GameStateManager.Instance</qualifiedname>
+        <briefdescription>
+<para>싱글턴 인스턴스입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Managers/GameStateManager.cs" line="12" column="36" bodyfile="Assets/Scripts/Managers/GameStateManager.cs" bodystart="12" bodyend="12"/>
+        <referencedby refid="classGameStateManager_1ad6348496aec9b561747ea76858594f28" compoundref="GameStateManager_8cs" startline="22" endline="33">Awake</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classGameStateManager_1ae8e2a875b6f21da54f422c8671140f11" prot="private" static="no" mutable="no">
+        <type><ref refid="interfaceIGameStateMachine" kindref="compound">IGameStateMachine</ref></type>
+        <definition>IGameStateMachine GameStateManager.currentStateMachine</definition>
+        <argsstring></argsstring>
+        <name>currentStateMachine</name>
+        <qualifiedname>GameStateManager.currentStateMachine</qualifiedname>
+        <briefdescription>
+<para>현재 활성화된 상태 머신입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Managers/GameStateManager.cs" line="17" column="31" bodyfile="Assets/Scripts/Managers/GameStateManager.cs" bodystart="17" bodyend="-1"/>
+        <referencedby refid="classGameStateManager_1a594e8bcac8ce79b389b82a41a9e6f3dc" compoundref="GameStateManager_8cs" startline="55" endline="65">ChangeState</referencedby>
+        <referencedby refid="classGameStateManager_1aafd65d08a33dcd5cf32adf580991cef3" compoundref="GameStateManager_8cs" startline="45" endline="49">Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classGameStateManager_1ad6348496aec9b561747ea76858594f28" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GameStateManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>GameStateManager.Awake</qualifiedname>
+        <briefdescription>
+<para>인스턴스를 초기화하고 싱글턴을 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Managers/GameStateManager.cs" line="22" column="18" bodyfile="Assets/Scripts/Managers/GameStateManager.cs" bodystart="22" bodyend="33"/>
+        <references refid="classGameStateManager_1ad6c81ee9ec40a6522bcf47bdc7172b07" compoundref="GameStateManager_8cs" startline="12" endline="12">Instance</references>
+      </memberdef>
+      <memberdef kind="function" id="classGameStateManager_1aa51fa225eced948ca89212ace3a8bbe4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GameStateManager.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>GameStateManager.Start</qualifiedname>
+        <briefdescription>
+<para>게임 시작 시 초기 상태를 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Managers/GameStateManager.cs" line="38" column="18" bodyfile="Assets/Scripts/Managers/GameStateManager.cs" bodystart="38" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classGameStateManager_1aafd65d08a33dcd5cf32adf580991cef3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GameStateManager.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>GameStateManager.Update</qualifiedname>
+        <briefdescription>
+<para>매 프레임마다 현재 상태의 Update 로직을 호출합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Managers/GameStateManager.cs" line="45" column="18" bodyfile="Assets/Scripts/Managers/GameStateManager.cs" bodystart="45" bodyend="49"/>
+        <references refid="classGameStateManager_1ae8e2a875b6f21da54f422c8671140f11" compoundref="GameStateManager_8cs" startline="17">currentStateMachine</references>
+        <references refid="interfaceIGameStateMachine_1a45f4ed009db9a9c2c4f3d9f6adcde190">IGameStateMachine.Update</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classGameStateManager_1a594e8bcac8ce79b389b82a41a9e6f3dc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GameStateManager.ChangeState</definition>
+        <argsstring>(IGameStateMachine newStateMachine)</argsstring>
+        <name>ChangeState</name>
+        <qualifiedname>GameStateManager.ChangeState</qualifiedname>
+        <param>
+          <type><ref refid="interfaceIGameStateMachine" kindref="compound">IGameStateMachine</ref></type>
+          <declname>newStateMachine</declname>
+        </param>
+        <briefdescription>
+<para>현재 상태를 종료하고, 새 상태로 전환한 뒤 진입 로직을 실행합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>newStateMachine</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>전환할 새 상태 머신.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Managers/GameStateManager.cs" line="55" column="17" bodyfile="Assets/Scripts/Managers/GameStateManager.cs" bodystart="55" bodyend="65"/>
+        <references refid="classGameStateManager_1ae8e2a875b6f21da54f422c8671140f11" compoundref="GameStateManager_8cs" startline="17">currentStateMachine</references>
+        <references refid="interfaceIGameStateMachine_1a79c9bc3bd4793b46e9b270695bea4373">IGameStateMachine.Enter</references>
+        <references refid="interfaceIGameStateMachine_1a8f9fcc92f077661aff680f682bb19b56">IGameStateMachine.Exit</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>게임의 상태 머신을 관리하는 매니저. 상태 전환 및 현재 상태의 업데이트/종료/진입 흐름을 제어합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GameStateManager</label>
+        <link refid="classGameStateManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GameStateManager</label>
+        <link refid="classGameStateManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-currentStateMachine</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IGameStateMachine</label>
+        <link refid="interfaceIGameStateMachine"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Managers/GameStateManager.cs" line="7" column="7" bodyfile="Assets/Scripts/Managers/GameStateManager.cs" bodystart="8" bodyend="66"/>
+    <listofallmembers>
+      <member refid="classGameStateManager_1ad6348496aec9b561747ea76858594f28" prot="private" virt="non-virtual"><scope>GameStateManager</scope><name>Awake</name></member>
+      <member refid="classGameStateManager_1a594e8bcac8ce79b389b82a41a9e6f3dc" prot="public" virt="non-virtual"><scope>GameStateManager</scope><name>ChangeState</name></member>
+      <member refid="classGameStateManager_1ae8e2a875b6f21da54f422c8671140f11" prot="private" virt="non-virtual"><scope>GameStateManager</scope><name>currentStateMachine</name></member>
+      <member refid="classGameStateManager_1ad6c81ee9ec40a6522bcf47bdc7172b07" prot="public" virt="non-virtual"><scope>GameStateManager</scope><name>Instance</name></member>
+      <member refid="classGameStateManager_1aa51fa225eced948ca89212ace3a8bbe4" prot="private" virt="non-virtual"><scope>GameStateManager</scope><name>Start</name></member>
+      <member refid="classGameStateManager_1aafd65d08a33dcd5cf32adf580991cef3" prot="private" virt="non-virtual"><scope>GameStateManager</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

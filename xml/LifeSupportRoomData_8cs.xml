@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="LifeSupportRoomData_8cs" kind="file" language="C#">
+    <compoundname>LifeSupportRoomData.cs</compoundname>
+    <innerclass refid="classLifeSupportRoomData" prot="public">LifeSupportRoomData</innerclass>
+    <innerclass refid="classLifeSupportRoomData_1_1LifeSupportRoomLevel" prot="public">LifeSupportRoomData::LifeSupportRoomLevel</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using<sp/></highlight><highlight class="normal">System.Collections;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">System.Collections.Generic;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine.Serialization;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>NOTE:<sp/>생활<sp/>시설<sp/>Data는<sp/>다른<sp/>시설과<sp/>다르게<sp/>Initialize<sp/>에<sp/>모든<sp/>정보가<sp/>쓰여있지<sp/>않다.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>생활<sp/>시설은<sp/>레벨로<sp/>분류되는<sp/>것이<sp/>아니라<sp/>종류가<sp/>다르기<sp/>때문에<sp/>그렇다.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>즉,<sp/>이<sp/>클래스를<sp/>수정할<sp/>경우<sp/>무조건<sp/>무조건<sp/>생성된<sp/>Scriptable<sp/>Object<sp/>에<sp/>값을<sp/>할당할<sp/>것!!!!</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>값이<sp/>날라갔을<sp/>때를<sp/>대비하여<sp/>기본값을<sp/>하단에<sp/>명기함.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>오락실<sp/>:<sp/>roomName<sp/>=<sp/>&quot;room.lifesupport.game&quot;,<sp/>size<sp/>=<sp/>(3,2),<sp/>cost<sp/>=<sp/>1200,<sp/>powerRequirement<sp/>=<sp/>20,<sp/>crewMoraleBonus<sp/>=<sp/>3</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/>수면실<sp/>:<sp/>roomName<sp/>=<sp/>&quot;room.lifesupport.sleep&quot;,<sp/>size<sp/>=<sp/>(2,2),<sp/>cost<sp/>=<sp/>1200,<sp/>crewMoraleBonus<sp/>=<sp/>1</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/>사우나<sp/>:<sp/>roomName<sp/>=<sp/>&quot;room.lifesupport.sauna&quot;,<sp/>size<sp/>=<sp/>(3,2),<sp/>cost<sp/>=<sp/>1500,<sp/>crewMoraleBonus<sp/>=<sp/>1</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/>영화관<sp/>:<sp/>roomName<sp/>=<sp/>&quot;room.lifesupport.theater&quot;,<sp/><sp/>size<sp/>=<sp/>(4,3),<sp/>cost<sp/>=<sp/>2000,<sp/>powerRequirement<sp/>=<sp/>20,<sp/>crewMoraleBonus<sp/>=<sp/>4</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">[CreateAssetMenu(fileName<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;LifeSupportRoomData&quot;</highlight><highlight class="normal">,<sp/>menuName<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;RoomData/LifeSupportRoom<sp/>Data&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="24" refid="classLifeSupportRoomData" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classLifeSupportRoomData" kindref="compound">LifeSupportRoomData</ref><sp/>:<sp/><ref refid="classRoomData" kindref="compound">RoomData</ref>&lt;LifeSupportRoomData.LifeSupportRoomLevel&gt;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>[System.Serializable]</highlight></codeline>
+<codeline lineno="30" refid="classLifeSupportRoomData_1_1LifeSupportRoomLevel" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classLifeSupportRoomData_1_1LifeSupportRoomLevel" kindref="compound">LifeSupportRoomLevel</ref><sp/>:<sp/>RoomLevel</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>crewMoraleBonus;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="classLifeSupportRoomData_1a8a857e6b346132b34fcf78807de46936" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classLifeSupportRoomData_1a8a857e6b346132b34fcf78807de46936" kindref="member">InitializeDefaultLevels</ref>()</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoomData_1a9144ad59a48334cb742b0ac7af31cc93" kindref="member">RoomLevels</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>List&lt;LifeSupportRoomLevel&gt;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal">()</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>roomType<sp/>=<sp/>RoomType.LifeSupport,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>category<sp/>=<sp/>RoomCategory.Living,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>level<sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hitPoint<sp/>=<sp/>100</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Assets/Scripts/Ship/Rooms/LifeSupportRoom/LifeSupportRoomData.cs"/>
+  </compounddef>
+</doxygen>

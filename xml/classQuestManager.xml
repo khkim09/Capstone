@@ -1,0 +1,605 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQuestManager" kind="class" language="C#" prot="public">
+    <compoundname>QuestManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classQuestManager_1aea8c3be54d41eff0ba13028a42ae3f69" prot="public" static="no" mutable="no">
+        <type><ref refid="classTradingItemDataBase" kindref="compound">TradingItemDataBase</ref></type>
+        <definition>TradingItemDataBase QuestManager.itemDatabase</definition>
+        <argsstring></argsstring>
+        <name>itemDatabase</name>
+        <qualifiedname>QuestManager.itemDatabase</qualifiedname>
+        <briefdescription>
+<para>아이템 정보가 들어있는 데이터베이스 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="18" column="33" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQuestManager_1a74719bf2639bb38fc39f3e798c49a7d3" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="classRandomQuest" kindref="compound">RandomQuest</ref> &gt;</type>
+        <definition>List&lt;RandomQuest&gt; QuestManager.activeQuests</definition>
+        <argsstring></argsstring>
+        <name>activeQuests</name>
+        <qualifiedname>QuestManager.activeQuests</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="20" column="19" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQuestManager_1a116942f2937d595f38cdb40aea7fcc90" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="classRandomQuest" kindref="compound">RandomQuest</ref> &gt;</type>
+        <definition>List&lt;RandomQuest&gt; QuestManager.completedQuests</definition>
+        <argsstring></argsstring>
+        <name>completedQuests</name>
+        <qualifiedname>QuestManager.completedQuests</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="21" column="19" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQuestManager_1a8e1cd09cf2af8f04d6854f0b54d8b0bf" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="classQuestManager" kindref="compound">QuestManager</ref></type>
+        <definition>QuestManager QuestManager.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>QuestManager.Instance</qualifiedname>
+        <briefdescription>
+<para>퀘스트 매니저의 싱글톤 인스턴스 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="26" column="32" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="26" bodyend="26"/>
+        <referencedby refid="classAddQuestEffectHandler_1a9ff4a6a74a331f951021b1fd147bcd67" compoundref="AddQuestEffectHandler_8cs" startline="12" endline="34">AddQuestEffectHandler.HandleEffect</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="event">
+      <memberdef kind="event" id="classQuestManager_1a28272f48fe0a438270322bf1fa667c87" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="classQuestManager_1af2bd7796ba772f6212bdca66b8a58190" kindref="member">QuestChangedHandler</ref></type>
+        <definition>QuestChangedHandler QuestManager.OnQuestAdded</definition>
+        <argsstring></argsstring>
+        <name>OnQuestAdded</name>
+        <qualifiedname>QuestManager.OnQuestAdded</qualifiedname>
+        <briefdescription>
+<para>퀘스트가 새로 추가될 때 발생하는 이벤트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="60" column="38" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="60" bodyend="-1"/>
+        <referencedby refid="classQuestManager_1a9111108be651a726ac547887956de24f" compoundref="QuestManager_8cs" startline="75" endline="82">AddQuest</referencedby>
+      </memberdef>
+      <memberdef kind="event" id="classQuestManager_1a3314357ece035336a23a04269d2c6ad0" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="classQuestManager_1af2bd7796ba772f6212bdca66b8a58190" kindref="member">QuestChangedHandler</ref></type>
+        <definition>QuestChangedHandler QuestManager.OnQuestUpdated</definition>
+        <argsstring></argsstring>
+        <name>OnQuestUpdated</name>
+        <qualifiedname>QuestManager.OnQuestUpdated</qualifiedname>
+        <briefdescription>
+<para>퀘스트가 갱신될 때 발생하는 이벤트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="63" column="38" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="63" bodyend="-1"/>
+        <referencedby refid="classQuestManager_1a9224075f1f147e3130ee07ea19492d89" compoundref="QuestManager_8cs" startline="99" endline="120">UpdateQuestObjective</referencedby>
+      </memberdef>
+      <memberdef kind="event" id="classQuestManager_1a9d3151974c8acff45dbb4d243cf1b2df" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="classQuestManager_1af2bd7796ba772f6212bdca66b8a58190" kindref="member">QuestChangedHandler</ref></type>
+        <definition>QuestChangedHandler QuestManager.OnQuestCompleted</definition>
+        <argsstring></argsstring>
+        <name>OnQuestCompleted</name>
+        <qualifiedname>QuestManager.OnQuestCompleted</qualifiedname>
+        <briefdescription>
+<para>퀘스트가 완료될 때 발생하는 이벤트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="66" column="38" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="66" bodyend="-1"/>
+        <referencedby refid="classQuestManager_1a9025be2592a6cac2ed3a51de072297d9" compoundref="QuestManager_8cs" startline="127" endline="137">CompleteQuest</referencedby>
+        <referencedby refid="classQuestManager_1af85af901036402fc04ce671529e13609" compoundref="QuestManager_8cs" startline="88" endline="91">TriggerQuestCompleted</referencedby>
+      </memberdef>
+      <memberdef kind="event" id="classQuestManager_1a1a4f12fe9a4cd085717886d6a2e84346" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="classQuestManager_1af2bd7796ba772f6212bdca66b8a58190" kindref="member">QuestChangedHandler</ref></type>
+        <definition>QuestChangedHandler QuestManager.OnQuestFailed</definition>
+        <argsstring></argsstring>
+        <name>OnQuestFailed</name>
+        <qualifiedname>QuestManager.OnQuestFailed</qualifiedname>
+        <briefdescription>
+<para>퀘스트가 실패할 때 발생하는 이벤트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="69" column="38" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="69" bodyend="-1"/>
+        <referencedby refid="classQuestManager_1aaa4c7d7cb80da05f556f606f1d8ec00c" compoundref="QuestManager_8cs" startline="202" endline="209">FailQuest</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQuestManager_1af2bd7796ba772f6212bdca66b8a58190" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void QuestManager.QuestChangedHandler</definition>
+        <argsstring>(RandomQuest quest)</argsstring>
+        <name>QuestChangedHandler</name>
+        <qualifiedname>QuestManager.QuestChangedHandler</qualifiedname>
+        <param>
+          <type><ref refid="classRandomQuest" kindref="compound">RandomQuest</ref></type>
+          <declname>quest</declname>
+        </param>
+        <briefdescription>
+<para>퀘스트 변경 이벤트 핸들러 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="15" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classQuestManager_1a9111108be651a726ac547887956de24f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QuestManager.AddQuest</definition>
+        <argsstring>(RandomQuest quest)</argsstring>
+        <name>AddQuest</name>
+        <qualifiedname>QuestManager.AddQuest</qualifiedname>
+        <param>
+          <type><ref refid="classRandomQuest" kindref="compound">RandomQuest</ref></type>
+          <declname>quest</declname>
+        </param>
+        <briefdescription>
+<para>새로운 퀘스트를 추가합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>quest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>추가할 퀘스트</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="75" column="17" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="75" bodyend="82"/>
+        <references refid="classGameManager_1a0a5c70718a18bd796bdcf70f7411a539" compoundref="GameManager_8cs" startline="85">GameManager.CurrentYear</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classQuestManager_1a28272f48fe0a438270322bf1fa667c87" compoundref="QuestManager_8cs" startline="60">OnQuestAdded</references>
+        <referencedby refid="classAddQuestEffectHandler_1a9ff4a6a74a331f951021b1fd147bcd67" compoundref="AddQuestEffectHandler_8cs" startline="12" endline="34">AddQuestEffectHandler.HandleEffect</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classQuestManager_1af85af901036402fc04ce671529e13609" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QuestManager.TriggerQuestCompleted</definition>
+        <argsstring>(RandomQuest quest)</argsstring>
+        <name>TriggerQuestCompleted</name>
+        <qualifiedname>QuestManager.TriggerQuestCompleted</qualifiedname>
+        <param>
+          <type><ref refid="classRandomQuest" kindref="compound">RandomQuest</ref></type>
+          <declname>quest</declname>
+        </param>
+        <briefdescription>
+<para>외부에서 퀘스트 완료 처리를 강제로 호출할 때 사용합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>quest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>완료된 퀘스트</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="88" column="17" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="88" bodyend="91"/>
+        <references refid="classQuestManager_1a9d3151974c8acff45dbb4d243cf1b2df" compoundref="QuestManager_8cs" startline="66">OnQuestCompleted</references>
+      </memberdef>
+      <memberdef kind="function" id="classQuestManager_1a9224075f1f147e3130ee07ea19492d89" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QuestManager.UpdateQuestObjective</definition>
+        <argsstring>(string questId, int objectiveIndex, int amount)</argsstring>
+        <name>UpdateQuestObjective</name>
+        <qualifiedname>QuestManager.UpdateQuestObjective</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>questId</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>objectiveIndex</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>amount</declname>
+        </param>
+        <briefdescription>
+<para>특정 퀘스트 목표의 진행도를 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>questId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>퀘스트 ID</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>objectiveIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>목표 인덱스</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>amount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>추가할 수치</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="99" column="17" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="99" bodyend="120"/>
+        <references refid="classQuestObjective_1ab5f9adc058bfc88659496bdd7a724d4c" compoundref="QuestObjective_8cs" startline="20">QuestObjective.amount</references>
+        <references refid="classQuestObjective_1a10e353b087e0f5a4ba8f8bf0089dec42" compoundref="QuestObjective_8cs" startline="30">QuestObjective.canComplete</references>
+        <references refid="classRandomQuest_1a6d5086f8c788825038e7f250a1db0331" compoundref="RandomQuest_8cs" startline="40">RandomQuest.objectives</references>
+        <references refid="classQuestManager_1a3314357ece035336a23a04269d2c6ad0" compoundref="QuestManager_8cs" startline="63">OnQuestUpdated</references>
+      </memberdef>
+      <memberdef kind="function" id="classQuestManager_1a9025be2592a6cac2ed3a51de072297d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QuestManager.CompleteQuest</definition>
+        <argsstring>(RandomQuest quest)</argsstring>
+        <name>CompleteQuest</name>
+        <qualifiedname>QuestManager.CompleteQuest</qualifiedname>
+        <param>
+          <type><ref refid="classRandomQuest" kindref="compound">RandomQuest</ref></type>
+          <declname>quest</declname>
+        </param>
+        <briefdescription>
+<para>퀘스트를 완료 처리합니다. 완료 시 UI 패널 상태를 기억하고 완료 후 원래대로 복구합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>quest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>완료된 퀘스트</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="127" column="17" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="127" bodyend="137"/>
+        <references refid="classQuestManager_1a9d3151974c8acff45dbb4d243cf1b2df" compoundref="QuestManager_8cs" startline="66">OnQuestCompleted</references>
+      </memberdef>
+      <memberdef kind="function" id="classQuestManager_1afa0504dfd362777b9a0d7d8d33513c4c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QuestManager.GrantRewardForQuest</definition>
+        <argsstring>(RandomQuest quest)</argsstring>
+        <name>GrantRewardForQuest</name>
+        <qualifiedname>QuestManager.GrantRewardForQuest</qualifiedname>
+        <param>
+          <type><ref refid="classRandomQuest" kindref="compound">RandomQuest</ref></type>
+          <declname>quest</declname>
+        </param>
+        <briefdescription>
+<para>퀘스트 보상을 지급하는 함수입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>quest</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="143" column="17" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="143" bodyend="153"/>
+        <references refid="classQuestReward_1a34ed6087e4d46e1e2c5b48230a7974a4" compoundref="QuestReward_8cs" startline="12">QuestReward.amount</references>
+        <references refid="classRandomQuest_1acad13a181b060dfd71c52594159d668e" compoundref="RandomQuest_8cs" startline="43">RandomQuest.rewards</references>
+        <references refid="classRandomQuest_1ad04280b9b186d22306ecf50063641f42" compoundref="RandomQuest_8cs" startline="37">RandomQuest.status</references>
+      </memberdef>
+      <memberdef kind="function" id="classQuestManager_1a6e28dfc17599415e3cd107625f58a4bc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QuestManager.RequestFailQuest</definition>
+        <argsstring>(RandomQuest quest)</argsstring>
+        <name>RequestFailQuest</name>
+        <qualifiedname>QuestManager.RequestFailQuest</qualifiedname>
+        <param>
+          <type><ref refid="classRandomQuest" kindref="compound">RandomQuest</ref></type>
+          <declname>quest</declname>
+        </param>
+        <briefdescription>
+<para>외부에서 호출할 수 있는 퀘스트 실패 처리 함수입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="214" column="17" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="214" bodyend="217"/>
+        <references refid="classQuestManager_1aaa4c7d7cb80da05f556f606f1d8ec00c" compoundref="QuestManager_8cs" startline="202" endline="209">FailQuest</references>
+      </memberdef>
+      <memberdef kind="function" id="classQuestManager_1a3150cba9fdc0fa8ffa721eb2516e358f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classRandomQuest" kindref="compound">RandomQuest</ref> &gt;</type>
+        <definition>List&lt; RandomQuest &gt; QuestManager.GetActiveQuests</definition>
+        <argsstring>()</argsstring>
+        <name>GetActiveQuests</name>
+        <qualifiedname>QuestManager.GetActiveQuests</qualifiedname>
+        <briefdescription>
+<para>현재 진행 중인 퀘스트 목록을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>진행 중인 퀘스트 리스트</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="223" column="17" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="223" bodyend="226"/>
+        <referencedby refid="classAddQuestEffectHandler_1a9ff4a6a74a331f951021b1fd147bcd67" compoundref="AddQuestEffectHandler_8cs" startline="12" endline="34">AddQuestEffectHandler.HandleEffect</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classQuestManager_1a941f50621eec06e8506e9945dc742323" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classRandomQuest" kindref="compound">RandomQuest</ref> &gt;</type>
+        <definition>List&lt; RandomQuest &gt; QuestManager.GetCompletedQuests</definition>
+        <argsstring>()</argsstring>
+        <name>GetCompletedQuests</name>
+        <qualifiedname>QuestManager.GetCompletedQuests</qualifiedname>
+        <briefdescription>
+<para>완료된 퀘스트 목록을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>완료된 퀘스트 리스트</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="232" column="17" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="232" bodyend="235"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQuestManager_1a2d2528cbadf5d2a5fcd93500287037bc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QuestManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>QuestManager.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="28" column="18" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="28" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classQuestManager_1a6d61aa6d1f992d2d3cef7e5407acff84" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QuestManager.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <qualifiedname>QuestManager.OnEnable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="41" column="18" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="41" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classQuestManager_1abe391d391eb236ca41a0c6d06e408f24" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QuestManager.OnDisable</definition>
+        <argsstring>()</argsstring>
+        <name>OnDisable</name>
+        <qualifiedname>QuestManager.OnDisable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="50" column="18" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="50" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classQuestManager_1a60bf09da184b25e5dffc3fb8c35d5f8b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QuestManager.CheckQuestExpiration</definition>
+        <argsstring>(int currentYear)</argsstring>
+        <name>CheckQuestExpiration</name>
+        <qualifiedname>QuestManager.CheckQuestExpiration</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>currentYear</declname>
+        </param>
+        <briefdescription>
+<para>매년 호출되어 20년 이상 지난 퀘스트를 자동 실패 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>currentYear</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>현재 연도</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="159" column="18" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="159" bodyend="168"/>
+        <references refid="classQuestManager_1aaa4c7d7cb80da05f556f606f1d8ec00c" compoundref="QuestManager_8cs" startline="202" endline="209">FailQuest</references>
+        <references refid="classRandomQuest_1a6a79ce13b73255b34ff04f66c5719cd4" compoundref="RandomQuest_8cs" startline="26">RandomQuest.QuestExpiredYear</references>
+      </memberdef>
+      <memberdef kind="function" id="classQuestManager_1acaa79d5264ad192bab9f9e2e39b83757" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QuestManager.TrySpawnQuest</definition>
+        <argsstring>(int year)</argsstring>
+        <name>TrySpawnQuest</name>
+        <qualifiedname>QuestManager.TrySpawnQuest</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>year</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="170" column="18" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="170" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="classQuestManager_1a888e6d76fa21ea62f7cf70389b864065" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QuestManager.CreateRandomQuest</definition>
+        <argsstring>()</argsstring>
+        <name>CreateRandomQuest</name>
+        <qualifiedname>QuestManager.CreateRandomQuest</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="175" column="18" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="175" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="function" id="classQuestManager_1aaa4c7d7cb80da05f556f606f1d8ec00c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QuestManager.FailQuest</definition>
+        <argsstring>(RandomQuest quest)</argsstring>
+        <name>FailQuest</name>
+        <qualifiedname>QuestManager.FailQuest</qualifiedname>
+        <param>
+          <type><ref refid="classRandomQuest" kindref="compound">RandomQuest</ref></type>
+          <declname>quest</declname>
+        </param>
+        <briefdescription>
+<para>퀘스트를 실패 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>quest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>실패할 퀘스트</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Quests/QuestManager.cs" line="202" column="18" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="202" bodyend="209"/>
+        <references refid="classQuestManager_1a1a4f12fe9a4cd085717886d6a2e84346" compoundref="QuestManager_8cs" startline="69">OnQuestFailed</references>
+        <referencedby refid="classQuestManager_1a60bf09da184b25e5dffc3fb8c35d5f8b" compoundref="QuestManager_8cs" startline="159" endline="168">CheckQuestExpiration</referencedby>
+        <referencedby refid="classQuestManager_1a6e28dfc17599415e3cd107625f58a4bc" compoundref="QuestManager_8cs" startline="214" endline="217">RequestFailQuest</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>퀘스트의 등록, 진행도 갱신, 완료 처리 등을 담당하는 퀘스트 매니저. Singleton 방식으로 동작하며 퀘스트 변경 이벤트도 제공합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>QuestManager</label>
+        <link refid="classQuestManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>QuestManager</label>
+        <link refid="classQuestManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+itemDatabase</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="3">
+        <label>TradingItemDataBase</label>
+        <link refid="classTradingItemDataBase"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Quests/QuestManager.cs" line="10" column="7" bodyfile="Assets/Scripts/Quests/QuestManager.cs" bodystart="11" bodyend="236"/>
+    <listofallmembers>
+      <member refid="classQuestManager_1a74719bf2639bb38fc39f3e798c49a7d3" prot="private" virt="non-virtual"><scope>QuestManager</scope><name>activeQuests</name></member>
+      <member refid="classQuestManager_1a9111108be651a726ac547887956de24f" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>AddQuest</name></member>
+      <member refid="classQuestManager_1a2d2528cbadf5d2a5fcd93500287037bc" prot="private" virt="non-virtual"><scope>QuestManager</scope><name>Awake</name></member>
+      <member refid="classQuestManager_1a60bf09da184b25e5dffc3fb8c35d5f8b" prot="private" virt="non-virtual"><scope>QuestManager</scope><name>CheckQuestExpiration</name></member>
+      <member refid="classQuestManager_1a116942f2937d595f38cdb40aea7fcc90" prot="private" virt="non-virtual"><scope>QuestManager</scope><name>completedQuests</name></member>
+      <member refid="classQuestManager_1a9025be2592a6cac2ed3a51de072297d9" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>CompleteQuest</name></member>
+      <member refid="classQuestManager_1a888e6d76fa21ea62f7cf70389b864065" prot="private" virt="non-virtual"><scope>QuestManager</scope><name>CreateRandomQuest</name></member>
+      <member refid="classQuestManager_1aaa4c7d7cb80da05f556f606f1d8ec00c" prot="private" virt="non-virtual"><scope>QuestManager</scope><name>FailQuest</name></member>
+      <member refid="classQuestManager_1a3150cba9fdc0fa8ffa721eb2516e358f" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>GetActiveQuests</name></member>
+      <member refid="classQuestManager_1a941f50621eec06e8506e9945dc742323" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>GetCompletedQuests</name></member>
+      <member refid="classQuestManager_1afa0504dfd362777b9a0d7d8d33513c4c" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>GrantRewardForQuest</name></member>
+      <member refid="classQuestManager_1a8e1cd09cf2af8f04d6854f0b54d8b0bf" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>Instance</name></member>
+      <member refid="classQuestManager_1aea8c3be54d41eff0ba13028a42ae3f69" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>itemDatabase</name></member>
+      <member refid="classQuestManager_1abe391d391eb236ca41a0c6d06e408f24" prot="private" virt="non-virtual"><scope>QuestManager</scope><name>OnDisable</name></member>
+      <member refid="classQuestManager_1a6d61aa6d1f992d2d3cef7e5407acff84" prot="private" virt="non-virtual"><scope>QuestManager</scope><name>OnEnable</name></member>
+      <member refid="classQuestManager_1a28272f48fe0a438270322bf1fa667c87" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>OnQuestAdded</name></member>
+      <member refid="classQuestManager_1a9d3151974c8acff45dbb4d243cf1b2df" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>OnQuestCompleted</name></member>
+      <member refid="classQuestManager_1a1a4f12fe9a4cd085717886d6a2e84346" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>OnQuestFailed</name></member>
+      <member refid="classQuestManager_1a3314357ece035336a23a04269d2c6ad0" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>OnQuestUpdated</name></member>
+      <member refid="classQuestManager_1af2bd7796ba772f6212bdca66b8a58190" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>QuestChangedHandler</name></member>
+      <member refid="classQuestManager_1a6e28dfc17599415e3cd107625f58a4bc" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>RequestFailQuest</name></member>
+      <member refid="classQuestManager_1af85af901036402fc04ce671529e13609" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>TriggerQuestCompleted</name></member>
+      <member refid="classQuestManager_1acaa79d5264ad192bab9f9e2e39b83757" prot="private" virt="non-virtual"><scope>QuestManager</scope><name>TrySpawnQuest</name></member>
+      <member refid="classQuestManager_1a9224075f1f147e3130ee07ea19492d89" prot="public" virt="non-virtual"><scope>QuestManager</scope><name>UpdateQuestObjective</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

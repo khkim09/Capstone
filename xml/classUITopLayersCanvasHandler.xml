@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classUITopLayersCanvasHandler" kind="class" language="C#" prot="public">
+    <compoundname>UITopLayersCanvasHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classUITopLayersCanvasHandler_1a6be68a2532a995b193595b33ae182778" prot="public" static="no" mutable="no">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship UITopLayersCanvasHandler.playerShip</definition>
+        <argsstring></argsstring>
+        <name>playerShip</name>
+        <qualifiedname>UITopLayersCanvasHandler.playerShip</qualifiedname>
+        <briefdescription>
+<para>보유 함선 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UITopLayersCanvasHandler.cs" line="9" column="17" bodyfile="Assets/Scripts/UITopLayersCanvasHandler.cs" bodystart="9" bodyend="-1"/>
+        <referencedby refid="classUITopLayersCanvasHandler_1aeda7a17faa3cb1978831f4cbff400dc5" compoundref="UITopLayersCanvasHandler_8cs" startline="30" endline="36">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classUITopLayersCanvasHandler_1ab0d15ad2ff5b4df6036f8e31a8baf910" prot="public" static="no" mutable="no">
+        <type>TMP_Text</type>
+        <definition>TMP_Text UITopLayersCanvasHandler.crewReserve</definition>
+        <argsstring></argsstring>
+        <name>crewReserve</name>
+        <qualifiedname>UITopLayersCanvasHandler.crewReserve</qualifiedname>
+        <briefdescription>
+<para>보유 선원 수 및 제한 표기 텍스트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UITopLayersCanvasHandler.cs" line="24" column="21" bodyfile="Assets/Scripts/UITopLayersCanvasHandler.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classUITopLayersCanvasHandler_1aee69fb4831f80f7e9bae7aab526cdfef" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UITopLayersCanvasHandler.currentCrewCount</definition>
+        <argsstring></argsstring>
+        <name>currentCrewCount</name>
+        <qualifiedname>UITopLayersCanvasHandler.currentCrewCount</qualifiedname>
+        <briefdescription>
+<para>보유 선원 수 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UITopLayersCanvasHandler.cs" line="14" column="17" bodyfile="Assets/Scripts/UITopLayersCanvasHandler.cs" bodystart="14" bodyend="-1"/>
+        <referencedby refid="classUITopLayersCanvasHandler_1aeda7a17faa3cb1978831f4cbff400dc5" compoundref="UITopLayersCanvasHandler_8cs" startline="30" endline="36">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classUITopLayersCanvasHandler_1ad4cded4a5ff887c6b2d9ce9f297617a8" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UITopLayersCanvasHandler.maxCrewCount</definition>
+        <argsstring></argsstring>
+        <name>maxCrewCount</name>
+        <qualifiedname>UITopLayersCanvasHandler.maxCrewCount</qualifiedname>
+        <briefdescription>
+<para>최대 보유 가능 선원 수 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UITopLayersCanvasHandler.cs" line="19" column="17" bodyfile="Assets/Scripts/UITopLayersCanvasHandler.cs" bodystart="19" bodyend="-1"/>
+        <referencedby refid="classUITopLayersCanvasHandler_1aeda7a17faa3cb1978831f4cbff400dc5" compoundref="UITopLayersCanvasHandler_8cs" startline="30" endline="36">Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classUITopLayersCanvasHandler_1aeda7a17faa3cb1978831f4cbff400dc5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UITopLayersCanvasHandler.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>UITopLayersCanvasHandler.Update</qualifiedname>
+        <briefdescription>
+<para>현재 보유 선원 수, 최대 보유 가능 선원 수 갱신해서 텍스트로 표기 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UITopLayersCanvasHandler.cs" line="30" column="10" bodyfile="Assets/Scripts/UITopLayersCanvasHandler.cs" bodystart="30" bodyend="36"/>
+        <references refid="classUITopLayersCanvasHandler_1aee69fb4831f80f7e9bae7aab526cdfef" compoundref="UITopLayersCanvasHandler_8cs" startline="14">currentCrewCount</references>
+        <references refid="classShip_1a89be268214921c4585f6b70038b98c8e" compoundref="Ship_8cs" startline="1034" endline="1037">Ship.GetCrewCount</references>
+        <references refid="classShip_1a4deb55bdb782e3f411387b68f55e1edb" compoundref="Ship_8cs" startline="1042" endline="1045">Ship.GetMaxCrew</references>
+        <references refid="classUITopLayersCanvasHandler_1ad4cded4a5ff887c6b2d9ce9f297617a8" compoundref="UITopLayersCanvasHandler_8cs" startline="19">maxCrewCount</references>
+        <references refid="classUITopLayersCanvasHandler_1a6be68a2532a995b193595b33ae182778" compoundref="UITopLayersCanvasHandler_8cs" startline="9">playerShip</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>UITopLayersCanvasHandler</label>
+        <link refid="classUITopLayersCanvasHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="11">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="13">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="16">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>UITopLayersCanvasHandler</label>
+        <link refid="classUITopLayersCanvasHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/UITopLayersCanvasHandler.cs" line="4" column="7" bodyfile="Assets/Scripts/UITopLayersCanvasHandler.cs" bodystart="5" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classUITopLayersCanvasHandler_1ab0d15ad2ff5b4df6036f8e31a8baf910" prot="public" virt="non-virtual"><scope>UITopLayersCanvasHandler</scope><name>crewReserve</name></member>
+      <member refid="classUITopLayersCanvasHandler_1aee69fb4831f80f7e9bae7aab526cdfef" prot="private" virt="non-virtual"><scope>UITopLayersCanvasHandler</scope><name>currentCrewCount</name></member>
+      <member refid="classUITopLayersCanvasHandler_1ad4cded4a5ff887c6b2d9ce9f297617a8" prot="private" virt="non-virtual"><scope>UITopLayersCanvasHandler</scope><name>maxCrewCount</name></member>
+      <member refid="classUITopLayersCanvasHandler_1a6be68a2532a995b193595b33ae182778" prot="public" virt="non-virtual"><scope>UITopLayersCanvasHandler</scope><name>playerShip</name></member>
+      <member refid="classUITopLayersCanvasHandler_1aeda7a17faa3cb1978831f4cbff400dc5" prot="private" virt="non-virtual"><scope>UITopLayersCanvasHandler</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

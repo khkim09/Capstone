@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="EnableES3AssemblyDefinitions_8cs" kind="file" language="C#">
+    <compoundname>EnableES3AssemblyDefinitions.cs</compoundname>
+    <innerclass refid="classEnableES3AssemblyDefinitions" prot="public">EnableES3AssemblyDefinitions</innerclass>
+    <innernamespace refid="namespaceSystem_1_1IO">System::IO</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEditor;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">System.IO;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="classEnableES3AssemblyDefinitions" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classEnableES3AssemblyDefinitions" kindref="compound">EnableES3AssemblyDefinitions</ref><sp/>:<sp/>UnityEditor.Editor</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>[MenuItem(</highlight><highlight class="stringliteral">&quot;Tools/Easy<sp/>Save<sp/>3/Enable<sp/>Assembly<sp/>Definition<sp/>Files&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>150)]</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>EnableAsmDef()</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>pathToEasySaveFolder<sp/>=<sp/><ref refid="classES3Settings" kindref="compound">ES3Settings</ref>.PathToEasySaveFolder();</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>File.Delete(pathToEasySaveFolder<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;Editor/EasySave3.asmdef.disabled.meta&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>File.Delete(pathToEasySaveFolder<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;Editor/EasySave3Editor.asmdef.disabled.meta&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>File.Move(pathToEasySaveFolder<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;Editor/EasySave3Editor.asmdef.disabled&quot;</highlight><highlight class="normal">,<sp/>pathToEasySaveFolder<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;Editor/EasySave3Editor.asmdef&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>File.Move(pathToEasySaveFolder<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;Editor/EasySave3.asmdef.disabled&quot;</highlight><highlight class="normal">,<sp/>pathToEasySaveFolder<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;EasySave3.asmdef&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EditorUtility.DisplayDialog(</highlight><highlight class="stringliteral">&quot;Assembly<sp/>definition<sp/>files<sp/>installed&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Assembly<sp/>definition<sp/>files<sp/>for<sp/>Easy<sp/>Save<sp/>3<sp/>installed.\n\nYou<sp/>may<sp/>need<sp/>to<sp/>go<sp/>to<sp/>&apos;Assets<sp/>&gt;<sp/>Reimport&apos;<sp/>to<sp/>apply<sp/>the<sp/>changes.&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Done&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>[MenuItem(</highlight><highlight class="stringliteral">&quot;Tools/Easy<sp/>Save<sp/>3/Enable<sp/>Assembly<sp/>Definition<sp/>Files&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,<sp/>150)]</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>CanEnableAsmDef()</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!File.Exists(<ref refid="classES3Settings" kindref="compound">ES3Settings</ref>.PathToEasySaveFolder()<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;EasySave3.asmdef&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Assets/Plugins/Easy Save 3/Editor/EnableES3AssemblyDefinitions.cs"/>
+  </compounddef>
+</doxygen>

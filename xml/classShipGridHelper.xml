@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classShipGridHelper" kind="class" language="C#" prot="public">
+    <compoundname>ShipGridHelper</compoundname>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classShipGridHelper_1ac6cf5e9bd95e28b6128c5089d060ede5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector3</type>
+        <definition>static Vector3 ShipGridHelper.GetRoomWorldPosition</definition>
+        <argsstring>(Vector2Int gridPosition, Vector2Int size)</argsstring>
+        <name>GetRoomWorldPosition</name>
+        <qualifiedname>ShipGridHelper.GetRoomWorldPosition</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>gridPosition</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>룸의 월드 위치를 설정합니다. 좌측 하단 모서리를 기준으로 계산합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipGridHelper.cs" line="10" column="27" bodyfile="Assets/Scripts/Ship/ShipGridHelper.cs" bodystart="10" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipGridHelper_1a3fc4947146a5040a8dfb234735eb95a2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>static Vector2Int ShipGridHelper.WorldToGridPosition</definition>
+        <argsstring>(Vector2 worldPos)</argsstring>
+        <name>WorldToGridPosition</name>
+        <qualifiedname>ShipGridHelper.WorldToGridPosition</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>worldPos</declname>
+        </param>
+        <briefdescription>
+<para>월드 좌표를 그리드 좌표로 변환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>worldPos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>변환할 월드 좌표.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 위치의 그리드 좌표.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipGridHelper.cs" line="32" column="30" bodyfile="Assets/Scripts/Ship/ShipGridHelper.cs" bodystart="32" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipGridHelper_1a331f5b1bd7d25def72355f30fdaf4e71" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector3</type>
+        <definition>static Vector3 ShipGridHelper.GridToWorldPosition</definition>
+        <argsstring>(Vector2Int gridPos)</argsstring>
+        <name>GridToWorldPosition</name>
+        <qualifiedname>ShipGridHelper.GridToWorldPosition</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>gridPos</declname>
+        </param>
+        <briefdescription>
+<para>그리드 좌표를 월드 좌표로 변환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gridPos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>변환할 그리드 좌표.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 위치의 월드 좌표.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipGridHelper.cs" line="44" column="27" bodyfile="Assets/Scripts/Ship/ShipGridHelper.cs" bodystart="44" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipGridHelper_1a770d14a63bea8f67dd5f98afeaf99ee4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2</type>
+        <definition>static Vector2 ShipGridHelper.GetShipRotationOffset</definition>
+        <argsstring>(Ship ship, Constants.Rotations.Rotation rotation)</argsstring>
+        <name>GetShipRotationOffset</name>
+        <qualifiedname>ShipGridHelper.GetShipRotationOffset</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>배가 차지하는 그리드 위치를 기반으로 회전 오프셋을 계산합니다 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>오프셋을 계산할 배</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>회전 상태</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>회전에 따른 오프셋 값</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipGridHelper.cs" line="56" column="27" bodyfile="Assets/Scripts/Ship/ShipGridHelper.cs" bodystart="56" bodyend="89"/>
+        <references refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" compoundref="Room_8cs" startline="482" endline="488">Room&lt; TData, TLevel &gt;.GetOccupiedTiles</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>ShipGridHelper</label>
+        <link refid="classShipGridHelper"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipGridHelper.cs" line="4" column="7" bodyfile="Assets/Scripts/Ship/ShipGridHelper.cs" bodystart="5" bodyend="90"/>
+    <listofallmembers>
+      <member refid="classShipGridHelper_1ac6cf5e9bd95e28b6128c5089d060ede5" prot="public" virt="non-virtual"><scope>ShipGridHelper</scope><name>GetRoomWorldPosition</name></member>
+      <member refid="classShipGridHelper_1a770d14a63bea8f67dd5f98afeaf99ee4" prot="public" virt="non-virtual"><scope>ShipGridHelper</scope><name>GetShipRotationOffset</name></member>
+      <member refid="classShipGridHelper_1a331f5b1bd7d25def72355f30fdaf4e71" prot="public" virt="non-virtual"><scope>ShipGridHelper</scope><name>GridToWorldPosition</name></member>
+      <member refid="classShipGridHelper_1a3fc4947146a5040a8dfb234735eb95a2" prot="public" virt="non-virtual"><scope>ShipGridHelper</scope><name>WorldToGridPosition</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

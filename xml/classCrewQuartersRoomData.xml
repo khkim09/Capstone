@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCrewQuartersRoomData" kind="class" language="C#" prot="public">
+    <compoundname>CrewQuartersRoomData</compoundname>
+    <basecompoundref refid="classRoomData" prot="public" virt="non-virtual">RoomData&lt; CrewQuartersRoomData.CrewQuartersRoomLevel &gt;</basecompoundref>
+    <innerclass refid="classCrewQuartersRoomData_1_1CrewQuartersRoomLevel" prot="public">CrewQuartersRoomData::CrewQuartersRoomLevel</innerclass>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classCrewQuartersRoomData_1a0c8b062fd9e11209e619408e67181d91" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void CrewQuartersRoomData.InitializeDefaultLevels</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeDefaultLevels</name>
+        <qualifiedname>CrewQuartersRoomData.InitializeDefaultLevels</qualifiedname>
+        <briefdescription>
+<para>기본 데이터 초기화. (최소 레벨 1, 체력 100만 설정됨) 실제 데이터는 ScriptableObject 인스턴스에 수동 입력 필요. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/CrewQuartersRoom/CrewQuartersRoomData.cs" line="44" column="29" bodyfile="Assets/Scripts/Ship/Rooms/CrewQuartersRoom/CrewQuartersRoomData.cs" bodystart="44" bodyend="55"/>
+        <references refid="classRoomData_1a9144ad59a48334cb742b0ac7af31cc93" compoundref="RoomData_8cs" startline="234">RoomData&lt; CrewQuartersRoomData.CrewQuartersRoomLevel &gt;::RoomLevels</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>승무원 선실의 데이터를 저장하는 ScriptableObject. 선실은 &quot;레벨&quot;이 아닌 &quot;종류&quot;로 구분되며, 종류별로 수용 인원과 사기 보너스 등이 달라집니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CrewQuartersRoomData</label>
+        <link refid="classCrewQuartersRoomData"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>RoomData&lt; CrewQuartersRoomData.CrewQuartersRoomLevel &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="template-instance">
+          <edgelabel>&lt; CrewQuartersRoomData.CrewQuartersRoomLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ScriptableObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>CrewQuartersRoomData</label>
+        <link refid="classCrewQuartersRoomData"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>RoomData&lt; CrewQuartersRoomData.CrewQuartersRoomLevel &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="template-instance">
+          <edgelabel>&lt; CrewQuartersRoomData.CrewQuartersRoomLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ScriptableObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/Rooms/CrewQuartersRoom/CrewQuartersRoomData.cs" line="23" column="7" bodyfile="Assets/Scripts/Ship/Rooms/CrewQuartersRoom/CrewQuartersRoomData.cs" bodystart="24" bodyend="56"/>
+    <listofallmembers>
+      <member refid="classRoomData_1a3be4a000471a38acbbf4ec931ecb0918" prot="protected" virt="non-virtual"><scope>CrewQuartersRoomData</scope><name>CheckIfNeedsInitialization</name></member>
+      <member refid="classRoomData_1a9381d814061ccf50969c7cc1b194721b" prot="protected" virt="non-virtual"><scope>CrewQuartersRoomData</scope><name>CheckIfNeedsInitialization</name></member>
+      <member refid="classRoomData_1ad74ec1dbd907adfea1eca9b7d32ce76f" prot="public" virt="non-virtual"><scope>CrewQuartersRoomData</scope><name>GetAllLevels</name></member>
+      <member refid="classRoomData_1a54cbcad19abe32eb743e76d3609d21c4" prot="public" virt="non-virtual"><scope>CrewQuartersRoomData</scope><name>GetAllLevels</name></member>
+      <member refid="classRoomData_1a32d344538a3e29e053bad7a953f6d088" prot="public" virt="non-virtual"><scope>CrewQuartersRoomData</scope><name>GetDoorPositionsWithDirection</name></member>
+      <member refid="classRoomData_1a93ada549c4d197d14917913e944f46c2" prot="public" virt="non-virtual"><scope>CrewQuartersRoomData</scope><name>GetRoomDataByLevel</name></member>
+      <member refid="classRoomData_1a00b57e4ed23ddfeb9665caa90e9a94f3" prot="public" virt="non-virtual"><scope>CrewQuartersRoomData</scope><name>GetRoomDataByLevel</name></member>
+      <member refid="classRoomData_1a2749054989ec817744231aa8e6e75e5c" prot="public" virt="non-virtual"><scope>CrewQuartersRoomData</scope><name>GetRoomType</name></member>
+      <member refid="classRoomData_1ac5eea85482100577e37c421191d087aa" prot="public" virt="non-virtual"><scope>CrewQuartersRoomData</scope><name>GetTypedRoomData</name></member>
+      <member refid="classCrewQuartersRoomData_1a0c8b062fd9e11209e619408e67181d91" prot="protected" virt="non-virtual"><scope>CrewQuartersRoomData</scope><name>InitializeDefaultLevels</name></member>
+      <member refid="classRoomData_1a0e2c8b9c01cc29fc17b8a0e3baa4256c" prot="private" virt="non-virtual"><scope>CrewQuartersRoomData</scope><name>LocalDirToWorldDir</name></member>
+      <member refid="classRoomData_1a22a6084a38c59f6e47f00b00357e2144" prot="protected" virt="virtual"><scope>CrewQuartersRoomData</scope><name>OnEnable</name></member>
+      <member refid="classRoomData_1a9144ad59a48334cb742b0ac7af31cc93" prot="public" virt="non-virtual"><scope>CrewQuartersRoomData</scope><name>RoomLevels</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

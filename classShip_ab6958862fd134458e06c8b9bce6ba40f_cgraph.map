@@ -1,0 +1,129 @@
+<map id="Ship.ApplyDamageToCrewsInRoom" name="Ship.ApplyDamageToCrewsInRoom">
+<area shape="rect" id="Node000001" title="지정된 방에 있는 모든 크루에게 피해를 적용합니다." alt="" coords="5,711,317,739"/>
+<area shape="rect" id="Node000002" href="$classCrewMember.html#ab2132618bc1788d25a42db80dd3bd70f" title="현재 선원의 방어력을 고려한 피해 발생" alt="" coords="365,711,597,739"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="318,722,352,722,352,727,318,727"/>
+<area shape="rect" id="Node000003" href="$classCrewMember.html#aa5c7668b76acb42a080c33cbcc949965" title="사망 시, 자신을 combatTarget으로 지정한 선원들에게서 자신을 할당 해제시키고 다른 목표를 탐색하도록한다. 또한 애니메이션 재생을 마친 후에 Destroy" alt="" coords="725,684,888,712"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="597,713,711,703,712,708,598,718"/>
+<area shape="rect" id="Node000052" href="$classCrewMember.html#a2c66362578e3109fbc6ac3f85c545c00" title="현재 착용 중인 장비들의 방어력 수치 합계" alt="" coords="645,736,968,764"/>
+<area shape="poly" id="edge75_Node000002_Node000052" title=" " alt="" coords="598,731,632,734,631,739,597,736"/>
+<area shape="rect" id="Node000004" href="$classCrewMember.html#a5e60edae0eee3d5844c455ca6d698ccd" title="전투 상황에서 자신이 이동했을 때, 자신을 공격하던 다른 선원들에게 자신을 공격하는 행위 이외의 다른 행동을 하도록 명령" alt="" coords="1016,684,1259,712"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="888,695,1002,695,1002,701,888,701"/>
+<area shape="rect" id="Node000007" href="$classCrewMember.html#a536ad7d67b7d95eac17c63ac7449fbe1" title="animation 실행" alt="" coords="3619,1032,3881,1060"/>
+<area shape="poly" id="edge73_Node000003_Node000007" title=" " alt="" coords="889,698,930,707,969,722,1017,753,1056,787,1089,825,1116,866,1158,951,1193,1036,1230,1113,1251,1147,1277,1177,1307,1201,1344,1220,1388,1231,1441,1235,3081,1235,3221,1241,3332,1248,3384,1247,3439,1239,3500,1224,3570,1198,3619,1171,3663,1137,3699,1101,3727,1069,3731,1073,3703,1104,3666,1141,3621,1176,3572,1203,3502,1229,3440,1245,3385,1252,3332,1254,3221,1247,3081,1241,1441,1241,1387,1236,1342,1224,1304,1206,1273,1180,1247,1150,1225,1116,1188,1038,1153,953,1111,868,1084,828,1052,791,1013,757,967,727,928,712,888,704"/>
+<area shape="rect" id="Node000020" href="$classCrewMember.html#a5161a521053d829ee86ecae3de914b22" title="현재 하던 작업 행동을 멈추고 자신을 Room.workingCrew로 할당한 Room을 찾아 할당 해제시키고 함선 능력치를 재계산한다." alt="" coords="3323,597,3526,625"/>
+<area shape="poly" id="edge74_Node000003_Node000020" title=" " alt="" coords="841,681,941,644,1088,598,1172,577,1261,560,1352,548,1441,543,2705,543,2873,548,3040,561,3316,593,3316,598,3039,566,2873,554,2705,549,1441,549,1352,553,1262,565,1173,582,1089,603,943,649,843,686"/>
+<area shape="rect" id="Node000005" href="$classCrewMember.html#ae80f1831860b8a260b6899410f48bc1d" title="Idle 상태 이후" alt="" coords="1307,845,1579,873"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1166,710,1404,836,1402,841,1164,714"/>
+<area shape="rect" id="Node000014" href="$classCrewMember.html#a11bff82217c9aa131dd188028cffd5d2" title="방 안의 적군 탐지" alt="" coords="2583,736,2825,764"/>
+<area shape="poly" id="edge63_Node000004_Node000014" title=" " alt="" coords="1239,709,1466,734,1601,744,1737,747,2030,747,2569,747,2569,753,2030,753,1737,753,1601,749,1466,739,1238,715"/>
+<area shape="poly" id="edge72_Node000004_Node000020" title=" " alt="" coords="1241,681,1468,657,1602,648,1737,645,2705,645,2870,642,3034,635,3309,618,3310,623,3035,641,2870,647,2705,650,1737,650,1603,654,1469,663,1242,687"/>
+<area shape="rect" id="Node000047" href="$classRTSSelectionManager.html#ad41f57db47b19c1fc53f8415a0ec46c3" title="같은 방 내에 적이 있다면 공격 AI" alt="" coords="2213,333,2475,378"/>
+<area shape="poly" id="edge64_Node000004_Node000047" title=" " alt="" coords="1167,682,1230,654,1306,626,1381,604,1441,591,1578,562,1951,463,2249,379,2251,384,1953,468,1579,567,1442,596,1383,610,1308,631,1232,659,1170,686"/>
+<area shape="rect" id="Node000006" href="$classCrewMember.html#a2a72214520c246d394664e2f4bf4a03c" title="현재 선원이 탑승해 있는 함선이 선원의 모선인지 확인 (상대 배에 타있으면 false)" alt="" coords="1917,872,2140,900"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1579,863,1903,878,1903,883,1579,868"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="1459,872,1536,947,1596,998,1668,1052,1749,1102,1838,1145,1884,1161,1931,1174,1979,1182,2027,1185,3081,1185,3220,1189,3329,1193,3382,1191,3437,1184,3498,1172,3570,1151,3613,1134,3654,1112,3720,1066,3723,1071,3657,1116,3615,1139,3572,1157,3499,1177,3437,1190,3382,1196,3329,1198,3220,1194,3081,1190,2027,1190,1978,1187,1930,1179,1882,1166,1836,1150,1747,1107,1665,1056,1593,1002,1532,951,1455,875"/>
+<area shape="rect" id="Node000009" href="$classCrewMember.html#a2e19d5fd76a3e3435eb7b6c313057ef8" title="본인 함선에서 수리 시도" alt="" coords="1627,924,1849,952"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="1497,871,1672,918,1671,923,1496,876"/>
+<area shape="rect" id="Node000043" href="$classCrewMember.html#a4786d3c0560290a9558f6420dc3304b3" title="주변 적들의 유무와 현재 자신의 위치한 타일, 작업 가능한 방인지 여부에 따라 작업 행동을 시도한다. 선원의 작업 숙련도 유무와 숙련도 적용은 Room...." alt="" coords="2243,911,2445,939"/>
+<area shape="poly" id="edge62_Node000005_Node000043" title=" " alt="" coords="1579,843,1703,835,1849,833,2006,839,2084,847,2161,858,2235,878,2300,903,2298,908,2234,883,2159,863,2083,852,2005,844,1849,838,1703,841,1579,848"/>
+<area shape="rect" id="Node000008" href="$classCrewMember.html#a3c76b7a048169237b4038ee133aa1704" title="애니메이션 방향 설정" alt="" coords="3929,1019,4272,1047"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="3881,1038,3916,1037,3916,1042,3882,1044"/>
+<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="1816,921,1936,900,1937,905,1817,927"/>
+<area shape="rect" id="Node000010" href="$classCrewMember.html#aad4604b549178c53a36eb89d903633e8" title="현재 선원의 모든 스킬 값을 계산하여 반환합니다. 기본 숙련도, 장비 보너스, 사기 보너스를 포함합니다." alt="" coords="2553,1117,2855,1145"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1758,950,1817,994,1857,1018,1898,1038,1979,1066,2064,1089,2149,1106,2235,1118,2398,1132,2539,1135,2539,1140,2398,1138,2234,1124,2148,1111,2062,1094,1978,1072,1896,1043,1854,1023,1814,999,1754,954"/>
+<area shape="rect" id="Node000013" href="$classCrewMember.html#a8ee5c024823e872d9addf84d0858879b" title="수리 루틴" alt="" coords="1897,1000,2160,1028"/>
+<area shape="poly" id="edge13_Node000009_Node000013" title=" " alt="" coords="1793,949,1961,994,1960,999,1792,955"/>
+<area shape="poly" id="edge61_Node000009_Node000043" title=" " alt="" coords="1850,933,2229,925,2229,930,1850,938"/>
+<area shape="rect" id="Node000011" href="$classMoraleManager.html#ae4bd0f13d318a29833b66d05fe6b632e" title="선원의 총 사기 반환" alt="" coords="2928,1105,3231,1150"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="2856,1127,2914,1126,2914,1132,2856,1132"/>
+<area shape="rect" id="Node000012" href="$classMoraleManager.html#ad25d3eb792d8fede14408e5b7a9863d0" title="종족 별 사기 반환" alt="" coords="3279,1113,3571,1141"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="3231,1125,3265,1125,3265,1130,3231,1130"/>
+<area shape="poly" id="edge15_Node000013_Node000007" title=" " alt="" coords="2092,1025,2208,1045,2298,1052,2368,1053,2528,1051,3127,1051,3605,1046,3605,1051,3127,1057,2528,1057,2368,1058,2298,1057,2208,1050,2091,1031"/>
+<area shape="poly" id="edge52_Node000013_Node000013" title=" " alt="" coords="1981,1002,1972,992,1978,981,1997,975,2029,973,2069,977,2080,982,2085,988,2081,991,2077,986,2068,982,2029,979,1998,981,1981,986,1977,991,1984,998"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="2047,998,2116,950,2207,897,2293,854,2363,824,2434,800,2527,774,2574,764,2575,769,2529,779,2436,805,2365,829,2296,859,2209,902,2119,955,2050,1002"/>
+<area shape="rect" id="Node000015" href="$classCrewMember.html#a6d2b12f78fe2bb8cae67fa23d5878e4d" title="특정 방을 수리하며 수리 스킬을 향상시킵니다." alt="" coords="2208,1007,2480,1035"/>
+<area shape="poly" id="edge16_Node000013_Node000015" title=" " alt="" coords="2160,1014,2194,1015,2194,1020,2160,1019"/>
+<area shape="poly" id="edge53_Node000013_Node000043" title=" " alt="" coords="2078,997,2280,940,2281,945,2080,1003"/>
+<area shape="poly" id="edge17_Node000015_Node000010" title=" " alt="" coords="2391,1032,2645,1111,2643,1116,2390,1037"/>
+<area shape="rect" id="Node000016" href="$classCrewBase.html#a186f7b2292966c554c5dabc126baeb11" title="특정 스킬을 주어진 수치만큼 향상시키며 최대치를 넘지 않도록 제한합니다." alt="" coords="2588,1013,2820,1041"/>
+<area shape="poly" id="edge18_Node000015_Node000016" title=" " alt="" coords="2480,1021,2574,1022,2574,1028,2480,1026"/>
+<area shape="rect" id="Node000017" href="$classRoom.html#ab0d240e0649b42fe9bec652095f91c35" title="지정된 양만큼 체력을 회복시킵니다." alt="" coords="2638,859,2770,887"/>
+<area shape="poly" id="edge19_Node000015_Node000017" title=" " alt="" coords="2379,1004,2655,889,2657,894,2381,1009"/>
+<area shape="rect" id="Node000018" href="$classRoomData.html#a93ada549c4d197d14917913e944f46c2" title="주어진 레벨에 해당하는 RoomLevel 데이터를 반환합니다. 각 파생 클래스에서 구현해야 합니다." alt="" coords="4320,820,4612,848"/>
+<area shape="poly" id="edge20_Node000017_Node000018" title=" " alt="" coords="2770,869,2960,869,3234,873,3555,883,3882,903,3930,910,4028,923,4106,937,4142,940,4181,937,4223,928,4271,910,4286,900,4294,886,4303,872,4319,858,4336,850,4338,855,4321,863,4307,875,4299,889,4290,903,4273,915,4224,933,4181,943,4142,945,4105,942,4027,928,3929,915,3881,909,3555,888,3234,878,2960,875,2770,875"/>
+<area shape="rect" id="Node000019" href="$classRoom.html#a24a2b295f97d7b3d6efbe51b8f865415" title="상태 변경을 알립니다." alt="" coords="2953,685,3205,713"/>
+<area shape="poly" id="edge21_Node000017_Node000019" title=" " alt="" coords="2770,869,2824,861,2879,844,2894,835,2903,825,2926,803,3044,719,3047,723,2930,807,2907,829,2897,839,2881,848,2826,866,2770,874"/>
+<area shape="rect" id="Node000038" href="$classRoom.html#ae5b8e019f27766e7e2537bb65f0d5f2e" title="현재 레벨의 시각적 요소 (스프라이트 등)를 갱신합니다." alt="" coords="3634,808,3866,836"/>
+<area shape="poly" id="edge44_Node000017_Node000038" title=" " alt="" coords="2770,864,2928,853,3305,834,3620,823,3621,828,3306,840,2928,858,2770,870"/>
+<area shape="poly" id="edge22_Node000019_Node000005" title=" " alt="" coords="2953,702,2345,701,2027,701,1948,705,1868,717,1789,734,1713,755,1581,802,1486,842,1484,837,1579,797,1712,750,1788,729,1867,711,1947,700,2027,695,2345,695,2953,696"/>
+<area shape="poly" id="edge23_Node000019_Node000020" title=" " alt="" coords="3147,683,3230,663,3363,627,3365,632,3231,669,3148,688"/>
+<area shape="poly" id="edge25_Node000020_Node000007" title=" " alt="" coords="3458,623,3516,657,3546,681,3573,710,3593,745,3601,777,3607,809,3621,848,3678,944,3731,1019,3727,1022,3674,947,3616,850,3602,811,3596,778,3588,747,3569,713,3543,685,3513,662,3456,628"/>
+<area shape="rect" id="Node000021" href="$classShip.html#a8ced30f0d71c2a5cf333b3de23af48f2" title="모든 룸 정보를 반환합니다." alt="" coords="4375,392,4557,420"/>
+<area shape="poly" id="edge24_Node000020_Node000021" title=" " alt="" coords="3526,608,3705,605,3921,596,4126,578,4209,564,4271,548,4322,523,4369,491,4440,428,4443,432,4372,495,4325,527,4273,552,4210,570,4126,583,3922,601,3706,611,3526,614"/>
+<area shape="rect" id="Node000022" href="$classShip.html#a8f3f2bdca106f32f2d4c2b3f892a139f" title="현재 함선의 모든 스탯을 다시 계산합니다. 방, 시스템, 선원의 기여도를 반영합니다." alt="" coords="3619,309,3881,337"/>
+<area shape="poly" id="edge26_Node000020_Node000022" title=" " alt="" coords="3440,595,3721,344,3725,348,3444,599"/>
+<area shape="rect" id="Node000023" href="$classMoraleSystem.html#aa5e29aef57bec024e207404bb90894b3" title="현재 함선의 전체 사기 수치를 계산합니다. 생명유지실과 승무원 침실이 기여하며, 승무원 수가 수용 가능 인원을 초과할 경우 패널티가 적용됩니다." alt="" coords="3949,162,4252,207"/>
+<area shape="poly" id="edge27_Node000022_Node000023" title=" " alt="" coords="3770,307,3838,263,3882,239,3928,218,3956,209,3958,214,3930,223,3884,244,3841,268,3773,311"/>
+<area shape="rect" id="Node000026" href="$classCrewSystem.html#a211d4d37de0e70c08101ad8733367bd7" title="현재 탑승 중인 아군, 적군 포함 모든 크루 객체의 목록을 반환합니다." alt="" coords="3995,5,4207,33"/>
+<area shape="poly" id="edge31_Node000022_Node000026" title=" " alt="" coords="3758,308,3853,156,3928,43,3953,30,3980,21,3982,26,3955,34,3931,47,3858,159,3763,310"/>
+<area shape="rect" id="Node000027" href="$classOuterHullData.html#a51ad6d062c547a1cad0fb2c08ff593eb" title="지정한 레벨에 해당하는 외갑판 데이터를 반환합니다." alt="" coords="3939,109,4262,137"/>
+<area shape="poly" id="edge32_Node000022_Node000027" title=" " alt="" coords="3759,308,3784,274,3823,230,3872,185,3928,148,3948,139,3950,144,3931,152,3875,189,3827,233,3788,277,3763,311"/>
+<area shape="rect" id="Node000028" href="$classShip.html#a61cb09945d19adc35f1c2aaf845c39ce" title="현재 함선의 외갑판 레벨을 반환합니다." alt="" coords="3979,57,4222,85"/>
+<area shape="poly" id="edge33_Node000022_Node000028" title=" " alt="" coords="3755,308,3778,265,3814,206,3865,145,3895,117,3928,94,3965,79,3967,83,3931,99,3898,121,3869,148,3819,209,3782,267,3760,310"/>
+<area shape="rect" id="Node000030" href="$classCrewBase.html#a0c35d7b81e7bbda6c1187cd56da46b19" title="선원이 함선 스탯에 기여하는 수치를 반환합니다. 예: 산소 소모량 등." alt="" coords="3945,232,4257,260"/>
+<area shape="poly" id="edge35_Node000022_Node000030" title=" " alt="" coords="3795,307,3929,270,3982,260,3983,265,3930,275,3796,312"/>
+<area shape="rect" id="Node000031" href="$classRoom.html#a8533094cb230185cce7735d640d950f1" title="방이 함선 스탯에 기여하는 값을 반환합니다." alt="" coords="3965,613,4237,641"/>
+<area shape="poly" id="edge36_Node000022_Node000031" title=" " alt="" coords="3761,336,3786,377,3824,433,3873,493,3931,548,3986,582,4042,606,4040,611,3983,587,3928,552,3869,497,3820,436,3781,379,3757,339"/>
+<area shape="rect" id="Node000033" href="$classShip.html#a7ce33b470844e7f8b04df7741582010a" title="함선의 기본 스탯을 초기화합니다. 모든 ShipStat 값을 0으로 설정하여 이후 계산의 기준을 만듭니다." alt="" coords="3969,284,4232,312"/>
+<area shape="poly" id="edge39_Node000022_Node000033" title=" " alt="" coords="3881,311,3955,306,3956,311,3882,317"/>
+<area shape="rect" id="Node000034" href="$classShip.html#a4ef99106ff3d8b5e7149f15ff9317769" title="주어진 ShipStat이 가산형(덧셈 방식) 스탯인지 여부를 반환합니다. 예: 쉴드 최대량, 산소 생성량 등은 단순 덧셈으로 누적됩니다." alt="" coords="3975,336,4227,364"/>
+<area shape="poly" id="edge40_Node000022_Node000034" title=" " alt="" coords="3882,331,3961,337,3961,342,3881,336"/>
+<area shape="rect" id="Node000035" href="$classShip.html#ae9a8351b5c780010ba90040c511976f6" title="주어진 ShipStat이 배율형(곱셈 방식) 스탯인지 여부를 반환합니다. 예: 회피율 보너스 %, 데미지 증폭 % 등이 해당됩니다. 현재는 정의된 곱셈 스탯이 없습니다." alt="" coords="3945,388,4257,416"/>
+<area shape="poly" id="edge41_Node000022_Node000035" title=" " alt="" coords="3793,335,3857,355,3930,374,3976,383,3975,388,3929,379,3856,360,3791,340"/>
+<area shape="rect" id="Node000036" href="$classShip.html#ad8f70687934e3a804bf86e704ca18150" title="현재 함선의 스탯과 룸별 스탯 기여도를 콘솔에 출력합니다. 디버깅 모드가 활성화된 경우에만 호출되며, 전체 스탯 상태를 확인할 수 있습니다." alt="" coords="3975,440,4227,468"/>
+<area shape="poly" id="edge42_Node000022_Node000036" title=" " alt="" coords="3771,335,3839,381,3883,406,3930,426,3962,435,3960,441,3928,431,3881,411,3836,386,3768,340"/>
+<area shape="rect" id="Node000037" href="$classMoraleManager.html#af1cb805b49d259cc84441559dd0bb1c6" title="전체 선원 사기 한 번에 할당" alt="" coords="3969,493,4232,538"/>
+<area shape="poly" id="edge43_Node000022_Node000037" title=" " alt="" coords="3765,336,3830,405,3877,445,3931,478,3957,490,3955,494,3928,483,3874,449,3826,409,3761,339"/>
+<area shape="poly" id="edge28_Node000023_Node000021" title=" " alt="" coords="4243,205,4273,218,4329,255,4378,299,4419,343,4448,379,4444,383,4415,346,4374,303,4325,259,4271,223,4241,210"/>
+<area shape="rect" id="Node000024" href="$classShip.html#a89be268214921c4585f6b70038b98c8e" title="현재 탑승 중인 크루 수를 반환합니다." alt="" coords="4370,171,4562,199"/>
+<area shape="poly" id="edge29_Node000023_Node000024" title=" " alt="" coords="4252,182,4356,182,4356,187,4252,187"/>
+<area shape="rect" id="Node000025" href="$classCrewSystem.html#ae270e71cdbafb68eb26d6f031758b1f5" title="현재 탑승 중인 크루의 수를 반환합니다." alt="" coords="4660,171,4912,199"/>
+<area shape="poly" id="edge30_Node000024_Node000025" title=" " alt="" coords="4562,182,4646,182,4646,187,4562,187"/>
+<area shape="rect" id="Node000029" href="$classOuterHullSystem.html#ab352abfc02989177392c3b60dd28ddc3" title="외부 선체 시스템의 현재 레벨을 반환합니다." alt="" coords="4335,49,4597,94"/>
+<area shape="poly" id="edge34_Node000028_Node000029" title=" " alt="" coords="4222,69,4321,69,4321,74,4222,74"/>
+<area shape="poly" id="edge37_Node000031_Node000018" title=" " alt="" coords="4151,639,4213,666,4245,686,4274,710,4291,736,4297,761,4303,785,4310,796,4322,807,4328,811,4325,815,4318,811,4306,799,4299,787,4292,763,4286,738,4270,713,4242,690,4211,671,4149,644"/>
+<area shape="rect" id="Node000032" href="$classRoom.html#af15fefedd48a2009da56d461a9084ed8" title="방이 작동 가능한 상태인지 확인합니다." alt="" coords="4365,640,4567,668"/>
+<area shape="poly" id="edge38_Node000031_Node000032" title=" " alt="" coords="4237,635,4351,643,4351,648,4237,640"/>
+<area shape="poly" id="edge48_Node000038_Node000018" title=" " alt="" coords="3866,821,4306,829,4306,834,3866,827"/>
+<area shape="poly" id="edge51_Node000038_Node000032" title=" " alt="" coords="3784,805,3850,780,3929,754,4040,726,4153,702,4352,667,4353,673,4155,707,4041,731,3930,759,3852,785,3786,810"/>
+<area shape="rect" id="Node000039" href="$classRoom.html#a18ac2f2af25dbf2e6181db75eab061ae" title="회전각을 고려하여 방의 점유 타일 반환" alt="" coords="3985,872,4217,900"/>
+<area shape="poly" id="edge45_Node000038_Node000039" title=" " alt="" coords="3828,833,4010,867,4009,872,3827,839"/>
+<area shape="rect" id="Node000041" href="$classShip.html#acc377098e3c61bbd4b8fc53595d09293" title="실제 월드 위치 반환" alt="" coords="3945,768,4257,796"/>
+<area shape="poly" id="edge49_Node000038_Node000041" title=" " alt="" coords="3866,806,3963,795,3964,800,3867,811"/>
+<area shape="poly" id="edge47_Node000039_Node000018" title=" " alt="" coords="4199,869,4353,847,4354,853,4200,875"/>
+<area shape="rect" id="Node000040" href="$classRoom.html#ae14b08f3ba19cce81b077d6fefcb1fd5" title="현재 업그레이드 레벨을 반환합니다." alt="" coords="4355,872,4577,900"/>
+<area shape="poly" id="edge46_Node000039_Node000040" title=" " alt="" coords="4217,883,4341,883,4341,889,4217,889"/>
+<area shape="rect" id="Node000042" href="$classShip.html#a84f03b9700fea23f4e8a48f1233de137" title="그리드 좌표를 월드 좌표로 변환 ((0, 0) ~ (60, 60) 그리드 내 좌표라 local relative 좌표임)" alt="" coords="4335,768,4597,796"/>
+<area shape="poly" id="edge50_Node000041_Node000042" title=" " alt="" coords="4257,779,4321,779,4321,785,4257,785"/>
+<area shape="poly" id="edge59_Node000043_Node000007" title=" " alt="" coords="2446,933,2528,941,3127,993,3605,1032,3605,1037,3127,999,2528,946,2446,938"/>
+<area shape="poly" id="edge60_Node000043_Node000008" title=" " alt="" coords="2445,922,3078,922,3426,922,3512,925,3600,932,3771,956,3922,986,4035,1013,4034,1018,3920,991,3770,961,3599,937,3512,930,3426,927,3078,927,2445,927"/>
+<area shape="poly" id="edge58_Node000043_Node000014" title=" " alt="" coords="2385,908,2432,886,2478,853,2493,833,2500,813,2508,793,2526,774,2568,755,2571,760,2530,779,2513,796,2505,815,2498,836,2482,857,2435,890,2387,913"/>
+<area shape="rect" id="Node000044" href="$classCrewMember.html#adf2ef6b08d0e224b1b592ee7f68a1d39" title="현재 방에서 선원이 점유 중인 타일의 우선순위 인덱스 반환" alt="" coords="2568,789,2840,834"/>
+<area shape="poly" id="edge54_Node000043_Node000044" title=" " alt="" coords="2373,908,2442,877,2527,845,2563,835,2565,840,2529,850,2444,882,2375,913"/>
+<area shape="rect" id="Node000045" href="$classCrewMember.html#af4b290dc38d44cde63972f5260377c43" title="현재 위치 반환 (가장 가까운 타일)" alt="" coords="2943,341,3215,369"/>
+<area shape="poly" id="edge55_Node000044_Node000045" title=" " alt="" coords="2839,796,2878,775,2899,752,2908,730,2914,704,2926,673,3063,381,3068,383,2930,675,2920,706,2913,732,2903,755,2882,779,2842,801"/>
+<area shape="rect" id="Node000046" href="$classRoom.html#a08dfe5c5a797aacad22c29926b3482e4" title="방의 우선순위 타일에 따른 그리드에서의 위치 반환 (회전각 적용)" alt="" coords="3293,723,3556,769"/>
+<area shape="poly" id="edge56_Node000044_Node000046" title=" " alt="" coords="2840,796,3280,756,3280,762,2841,802"/>
+<area shape="poly" id="edge57_Node000046_Node000018" title=" " alt="" coords="3523,721,3674,696,3766,687,3865,683,3969,686,4073,697,4175,719,4273,754,4290,766,4299,780,4307,794,4321,806,4335,813,4332,818,4319,811,4303,798,4294,783,4286,770,4271,759,4174,724,4072,702,3968,691,3865,689,3767,693,3675,702,3524,726"/>
+<area shape="poly" id="edge67_Node000047_Node000026" title=" " alt="" coords="2365,331,2433,268,2478,234,2527,206,2673,144,2735,124,2794,110,2854,101,2918,95,3078,93,3426,93,3535,86,3685,71,3986,33,3987,38,3685,76,3536,92,3426,98,3078,98,2919,101,2854,106,2795,115,2736,129,2675,149,2529,211,2481,239,2436,272,2368,334"/>
+<area shape="poly" id="edge68_Node000047_Node000045" title=" " alt="" coords="2476,332,2528,327,2704,320,2880,327,2975,337,2974,342,2880,333,2704,325,2528,333,2476,338"/>
+<area shape="rect" id="Node000048" href="$classCrewPathfinder.html#a5511dc3dd1f1dd7fefda36d5c9e044c2" title="인자로 들어온 위치의 타일까지 최단 경로 검색" alt="" coords="2548,341,2860,369"/>
+<area shape="poly" id="edge65_Node000047_Node000048" title=" " alt="" coords="2475,353,2534,353,2534,358,2475,358"/>
+<area shape="rect" id="Node000049" href="$classRTSSelectionManager.html#ae5c3f854603e7329447bf4cd81a1be14" title="이동 가능 검사기 설정" alt="" coords="2538,394,2870,439"/>
+<area shape="poly" id="edge69_Node000047_Node000049" title=" " alt="" coords="2476,375,2558,389,2557,394,2475,380"/>
+<area shape="rect" id="Node000050" href="$classRTSSelectionManager.html#ae59ec6d9fbc150d1b018fb03d62b17fe" title="이동 경로 탐색기 설정" alt="" coords="2528,463,2880,509"/>
+<area shape="poly" id="edge70_Node000047_Node000050" title=" " alt="" coords="2382,376,2449,413,2529,449,2555,457,2554,462,2527,454,2447,418,2380,380"/>
+<area shape="rect" id="Node000051" href="$classCrewMovementValidator.html#a5d4caf53367c1f0d9ac691bfd9c553cc" title="타일이 이동 가능한 영역인가 (방/복도에 속하는가)" alt="" coords="2573,221,2835,266"/>
+<area shape="poly" id="edge71_Node000047_Node000051" title=" " alt="" coords="2397,330,2527,282,2582,267,2584,272,2529,287,2399,335"/>
+<area shape="poly" id="edge66_Node000048_Node000045" title=" " alt="" coords="2860,353,2930,353,2930,358,2860,358"/>
+</map>

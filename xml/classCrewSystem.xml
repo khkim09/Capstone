@@ -1,0 +1,483 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCrewSystem" kind="class" language="C#" prot="public">
+    <compoundname>CrewSystem</compoundname>
+    <basecompoundref refid="classShipSystem" prot="public" virt="non-virtual">ShipSystem</basecompoundref>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCrewSystem_1ad9fa8a9d39ab44589b80012f3e80c642" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void CrewSystem.Initialize</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>CrewSystem.Initialize</qualifiedname>
+        <reimplements refid="classShipSystem_1ab0e5623073f8bfb48c02955484cfcd4e">Initialize</reimplements>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>현재 배치된 크루들의 목록입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>시스템을 초기화합니다. 크루가 없는 경우 경고를 표시할 수 있습니다.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>초기화할 대상 함선 객체.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" line="20" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" bodystart="20" bodyend="25"/>
+        <referencedby refid="classShip_1a5246a04784a96576460f8494bce02887" compoundref="Ship_8cs" startline="715" endline="737">Ship.InitializeSystems</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewSystem_1a952aa3f7d506230aff1b73d4e6ea0253" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void CrewSystem.Refresh</definition>
+        <argsstring>()</argsstring>
+        <name>Refresh</name>
+        <qualifiedname>CrewSystem.Refresh</qualifiedname>
+        <reimplements refid="classShipSystem_1ad94492134ef4577b127382af0877f6d6">Refresh</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" line="27" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" bodystart="27" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewSystem_1a86db327d536a37d3abf5d2be69bc1af4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void CrewSystem.Update</definition>
+        <argsstring>(float deltaTime)</argsstring>
+        <name>Update</name>
+        <qualifiedname>CrewSystem.Update</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>deltaTime</declname>
+        </param>
+        <briefdescription>
+<para>매 프레임마다 호출되어 시스템 상태를 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>deltaTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>경과 시간 (초).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" line="39" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" bodystart="39" bodyend="41"/>
+        <referencedby refid="classShip_1a6ab0aaf28782b38d9c80bf19e652f46c" compoundref="Ship_8cs" startline="161" endline="172">Ship.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewSystem_1a5b59e65fd0e697d23dcab8598f9a7516" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CrewSystem.AddCrew</definition>
+        <argsstring>(CrewBase newCrew)</argsstring>
+        <name>AddCrew</name>
+        <qualifiedname>CrewSystem.AddCrew</qualifiedname>
+        <param>
+          <type><ref refid="classCrewBase" kindref="compound">CrewBase</ref></type>
+          <declname>newCrew</declname>
+        </param>
+        <briefdescription>
+<para>새로운 크루 멤버를 추가합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>newCrew</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>추가할 크루 멤버.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>추가에 성공하면 true, 크루 정원이 초과되었으면 false.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" line="48" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" bodystart="48" bodyend="101"/>
+        <references refid="classShip_1a77e8600c112c136e294bf98d19625546" compoundref="Ship_8cs" startline="46">Ship.allCrews</references>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classRoom_1a08dfe5c5a797aacad22c29926b3482e4" compoundref="Room_8cs" startline="123" endline="154">Room&lt; TData, TLevel &gt;.GetRotatedCrewEntryGridPriority</references>
+        <references refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" compoundref="ShipSystem_8cs" startline="39" endline="42">ShipSystem.GetShipStat</references>
+        <references refid="classShip_1acc377098e3c61bbd4b8fc53595d09293" compoundref="Ship_8cs" startline="1456" endline="1459">Ship.GetWorldPositionFromGrid</references>
+        <references refid="classCrewBase_1a24c27571ccbe1263b7bcc0b1edf78010" compoundref="CrewBase_8cs" startline="16">CrewBase.isPlayerControlled</references>
+        <references refid="classRoom_1a577bbc93f6479096f0d4bedd6cefc26e" compoundref="Room_8cs" startline="104" endline="108">Room&lt; TData, TLevel &gt;.OnCrewEnter</references>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <references refid="classShip_1a8f3f2bdca106f32f2d4c2b3f892a139f" compoundref="Ship_8cs" startline="774" endline="828">Ship.RecalculateAllStats</references>
+        <references refid="classRoom_1af4b97c8e2306beda35f26f8803734eb5" compoundref="Room_8cs" startline="24">Room&lt; TData, TLevel &gt;.roomType</references>
+        <referencedby refid="classShip_1ada608dfe1708f8859e0a1c202c8ab121" compoundref="Ship_8cs" startline="1072" endline="1075">Ship.AddCrew</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewSystem_1ab12357b039ecb5394ab6d5155bdf3af6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CrewSystem.RemoveCrew</definition>
+        <argsstring>(CrewMember crewToRemove)</argsstring>
+        <name>RemoveCrew</name>
+        <qualifiedname>CrewSystem.RemoveCrew</qualifiedname>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crewToRemove</declname>
+        </param>
+        <briefdescription>
+<para>기존의 크루 멤버를 제거합니다. (아군, 적군 모두 제거) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>crewToRemove</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>제거할 크루 멤버.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>제거에 성공하면 true, 해당 크루가 존재하지 않으면 false.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" line="108" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" bodystart="108" bodyend="121"/>
+        <references refid="classShip_1a77e8600c112c136e294bf98d19625546" compoundref="Ship_8cs" startline="46">Ship.allCrews</references>
+        <references refid="classShip_1aa7ca40e2dae616881351d9a3e025bb79" compoundref="Ship_8cs" startline="49">Ship.allEnemies</references>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <referencedby refid="classCrewSystem_1abc0641c84a7671cd1b539fd3df5af3d7" compoundref="CrewSystem_8cs" startline="126" endline="133">RemoveAllCrews</referencedby>
+        <referencedby refid="classShip_1a3de39e8ae50e04b646f5e491649ca7f6" compoundref="Ship_8cs" startline="1081" endline="1084">Ship.RemoveCrew</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewSystem_1abc0641c84a7671cd1b539fd3df5af3d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewSystem.RemoveAllCrews</definition>
+        <argsstring>()</argsstring>
+        <name>RemoveAllCrews</name>
+        <qualifiedname>CrewSystem.RemoveAllCrews</qualifiedname>
+        <briefdescription>
+<para>소유하고 있는 모든 선원을 제거 (아군, 적군) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" line="126" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" bodystart="126" bodyend="133"/>
+        <references refid="classShip_1a77e8600c112c136e294bf98d19625546" compoundref="Ship_8cs" startline="46">Ship.allCrews</references>
+        <references refid="classShip_1aa7ca40e2dae616881351d9a3e025bb79" compoundref="Ship_8cs" startline="49">Ship.allEnemies</references>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <references refid="classCrewSystem_1ab12357b039ecb5394ab6d5155bdf3af6" compoundref="CrewSystem_8cs" startline="108" endline="121">RemoveCrew</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewSystem_1ae270e71cdbafb68eb26d6f031758b1f5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int CrewSystem.GetCrewCount</definition>
+        <argsstring>()</argsstring>
+        <name>GetCrewCount</name>
+        <qualifiedname>CrewSystem.GetCrewCount</qualifiedname>
+        <briefdescription>
+<para>현재 탑승 중인 크루의 수를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>현재 크루 수.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" line="139" column="16" bodyfile="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" bodystart="139" bodyend="142"/>
+        <references refid="classShip_1a77e8600c112c136e294bf98d19625546" compoundref="Ship_8cs" startline="46">Ship.allCrews</references>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <referencedby refid="classShip_1a89be268214921c4585f6b70038b98c8e" compoundref="Ship_8cs" startline="1034" endline="1037">Ship.GetCrewCount</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewSystem_1a211d4d37de0e70c08101ad8733367bd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classCrewMember" kindref="compound">CrewMember</ref> &gt;</type>
+        <definition>List&lt; CrewMember &gt; CrewSystem.GetCrews</definition>
+        <argsstring>()</argsstring>
+        <name>GetCrews</name>
+        <qualifiedname>CrewSystem.GetCrews</qualifiedname>
+        <briefdescription>
+<para>현재 탑승 중인 아군, 적군 포함 모든 크루 객체의 목록을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>크루 객체 리스트.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" line="148" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" bodystart="148" bodyend="159"/>
+        <references refid="classShip_1a77e8600c112c136e294bf98d19625546" compoundref="Ship_8cs" startline="46">Ship.allCrews</references>
+        <references refid="classShip_1aa7ca40e2dae616881351d9a3e025bb79" compoundref="Ship_8cs" startline="49">Ship.allEnemies</references>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <referencedby refid="classShip_1ad420fae7a6eed955adb71ba76673d55e" compoundref="Ship_8cs" startline="1051" endline="1054">Ship.GetAllCrew</referencedby>
+        <referencedby refid="classCrewSystem_1adf775801adec8ad3bb12192969605e08" compoundref="CrewSystem_8cs" startline="166" endline="177">GetCrewsAtPosition</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" compoundref="RTSSelectionManager_8cs" startline="672" endline="800">RTSSelectionManager.MoveForCombat</referencedby>
+        <referencedby refid="classShip_1a8f3f2bdca106f32f2d4c2b3f892a139f" compoundref="Ship_8cs" startline="774" endline="828">Ship.RecalculateAllStats</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewSystem_1adf775801adec8ad3bb12192969605e08" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classCrewMember" kindref="compound">CrewMember</ref> &gt;</type>
+        <definition>List&lt; CrewMember &gt; CrewSystem.GetCrewsAtPosition</definition>
+        <argsstring>(Vector2Int position)</argsstring>
+        <name>GetCrewsAtPosition</name>
+        <qualifiedname>CrewSystem.GetCrewsAtPosition</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>특정 위치에 있는 모든 선원들을 반환합니다. (아군, 적군 모두) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>확인할 격자 위치</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 위치에 있는 선원들의 리스트</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" line="166" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" bodystart="166" bodyend="177"/>
+        <references refid="classCrewSystem_1a211d4d37de0e70c08101ad8733367bd7" compoundref="CrewSystem_8cs" startline="148" endline="159">GetCrews</references>
+        <references refid="classCrewBase_1a1025f6ffef015905221678bf57959773" compoundref="CrewBase_8cs" startline="91">CrewBase.position</references>
+        <referencedby refid="classShip_1acce93654d385d59ee798d2a4f76005c9" compoundref="Ship_8cs" startline="1329" endline="1337">Ship.ApplyDamageToCrewsAtPosition</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewSystem_1a8fa6c2c5bfdf4e92705a212bb4e2fe3c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewSystem.RevertOriginalCrews</definition>
+        <argsstring>(List&lt; BackupCrewData &gt; backupDatas)</argsstring>
+        <name>RevertOriginalCrews</name>
+        <qualifiedname>CrewSystem.RevertOriginalCrews</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="structBackupCrewData" kindref="compound">BackupCrewData</ref> &gt;</type>
+          <declname>backupDatas</declname>
+        </param>
+        <briefdescription>
+<para>유효성 검사 실패 시, 기존 선원들을 백업된 위치 및 방으로 복구 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" line="182" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" bodystart="182" bodyend="226"/>
+        <references refid="classShip_1a77e8600c112c136e294bf98d19625546" compoundref="Ship_8cs" startline="46">Ship.allCrews</references>
+        <references refid="classCrewFactory_1aec5572d50c5f18479de10fc97839e5d5" compoundref="CrewFactory_8cs" startline="47" endline="81">CrewFactory.CreateCrewInstance</references>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classShip_1acc377098e3c61bbd4b8fc53595d09293" compoundref="Ship_8cs" startline="1456" endline="1459">Ship.GetWorldPositionFromGrid</references>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <referencedby refid="classCustomizeShipUIHandler_1a0a87df1bbf10a142bcfb73c4634a7bd4" compoundref="CustomizeShipUIHandler_8cs" startline="307" endline="372">CustomizeShipUIHandler.OnClickBuild</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1ac71022868de14f02fffd845270ffb42b" compoundref="Customize__1__Controller_8cs" startline="237" endline="298">Customize_1_Controller.OnClickSave</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewSystem_1ad3044664f70376b994206ccfed121df3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewSystem.RestoreCrewAfterBuild</definition>
+        <argsstring>(List&lt; BackupCrewData &gt; backupCrewDatas)</argsstring>
+        <name>RestoreCrewAfterBuild</name>
+        <qualifiedname>CrewSystem.RestoreCrewAfterBuild</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="structBackupCrewData" kindref="compound">BackupCrewData</ref> &gt;</type>
+          <declname>backupCrewDatas</declname>
+        </param>
+        <briefdescription>
+<para>새로운 함선의 랜덤한 방의 랜덤 타일에 선원 배치 (겹치지 않게 타일 점유 등록) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>backupCrewDatas</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" line="232" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" bodystart="232" bodyend="300"/>
+        <references refid="classShip_1a77e8600c112c136e294bf98d19625546" compoundref="Ship_8cs" startline="46">Ship.allCrews</references>
+        <references refid="classCrewMember_1ae80f1831860b8a260b6899410f48bc1d" compoundref="CrewMember_8cs" startline="865" endline="882">CrewMember.BackToThePeace</references>
+        <references refid="classCrewFactory_1aec5572d50c5f18479de10fc97839e5d5" compoundref="CrewFactory_8cs" startline="47" endline="81">CrewFactory.CreateCrewInstance</references>
+        <references refid="classCrewMember_1a41c7608e6555b803935adbc401e44bbe" compoundref="CrewMember_8cs" startline="1074" endline="1093">CrewMember.Freeze</references>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classRoom_1a08dfe5c5a797aacad22c29926b3482e4" compoundref="Room_8cs" startline="123" endline="154">Room&lt; TData, TLevel &gt;.GetRotatedCrewEntryGridPriority</references>
+        <references refid="classShip_1acc377098e3c61bbd4b8fc53595d09293" compoundref="Ship_8cs" startline="1456" endline="1459">Ship.GetWorldPositionFromGrid</references>
+        <references refid="classRoom_1a577bbc93f6479096f0d4bedd6cefc26e" compoundref="Room_8cs" startline="104" endline="108">Room&lt; TData, TLevel &gt;.OnCrewEnter</references>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <references refid="classRoom_1af4b97c8e2306beda35f26f8803734eb5" compoundref="Room_8cs" startline="24">Room&lt; TData, TLevel &gt;.roomType</references>
+        <referencedby refid="classCombatManager_1aee060c280528f8f8ffcbd2b5e94dc91e" compoundref="CombatManager_8cs" startline="130" endline="191">CombatManager.BackToTheHome</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a0a87df1bbf10a142bcfb73c4634a7bd4" compoundref="CustomizeShipUIHandler_8cs" startline="307" endline="372">CustomizeShipUIHandler.OnClickBuild</referencedby>
+        <referencedby refid="classCustomize__2__Controller_1a4f017401dbc31501a4109324ccec2bd7" compoundref="Customize__2__Controller_8cs" startline="227" endline="294">Customize_2_Controller.OnClickBuy</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선의 크루(승무원) 관리 시스템. 크루의 추가, 제거 및 크루 수 관련 기능을 담당. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="12">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="15">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" line="9" column="7" bodyfile="Assets/Scripts/Ship/ShipSystems/CrewSystem.cs" bodystart="10" bodyend="301"/>
+    <listofallmembers>
+      <member refid="classCrewSystem_1a5b59e65fd0e697d23dcab8598f9a7516" prot="public" virt="non-virtual"><scope>CrewSystem</scope><name>AddCrew</name></member>
+      <member refid="classCrewSystem_1ae270e71cdbafb68eb26d6f031758b1f5" prot="public" virt="non-virtual"><scope>CrewSystem</scope><name>GetCrewCount</name></member>
+      <member refid="classCrewSystem_1a211d4d37de0e70c08101ad8733367bd7" prot="public" virt="non-virtual"><scope>CrewSystem</scope><name>GetCrews</name></member>
+      <member refid="classCrewSystem_1adf775801adec8ad3bb12192969605e08" prot="public" virt="non-virtual"><scope>CrewSystem</scope><name>GetCrewsAtPosition</name></member>
+      <member refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" prot="protected" virt="non-virtual"><scope>CrewSystem</scope><name>GetShipStat</name></member>
+      <member refid="classCrewSystem_1ad9fa8a9d39ab44589b80012f3e80c642" prot="public" virt="virtual"><scope>CrewSystem</scope><name>Initialize</name></member>
+      <member refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" prot="protected" virt="non-virtual"><scope>CrewSystem</scope><name>parentShip</name></member>
+      <member refid="classCrewSystem_1a952aa3f7d506230aff1b73d4e6ea0253" prot="public" virt="virtual"><scope>CrewSystem</scope><name>Refresh</name></member>
+      <member refid="classCrewSystem_1abc0641c84a7671cd1b539fd3df5af3d7" prot="public" virt="non-virtual"><scope>CrewSystem</scope><name>RemoveAllCrews</name></member>
+      <member refid="classCrewSystem_1ab12357b039ecb5394ab6d5155bdf3af6" prot="public" virt="non-virtual"><scope>CrewSystem</scope><name>RemoveCrew</name></member>
+      <member refid="classCrewSystem_1ad3044664f70376b994206ccfed121df3" prot="public" virt="non-virtual"><scope>CrewSystem</scope><name>RestoreCrewAfterBuild</name></member>
+      <member refid="classCrewSystem_1a8fa6c2c5bfdf4e92705a212bb4e2fe3c" prot="public" virt="non-virtual"><scope>CrewSystem</scope><name>RevertOriginalCrews</name></member>
+      <member refid="classCrewSystem_1a86db327d536a37d3abf5d2be69bc1af4" prot="public" virt="non-virtual"><scope>CrewSystem</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

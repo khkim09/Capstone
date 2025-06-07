@@ -1,0 +1,538 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEquipmentManager" kind="class" language="C#" prot="public">
+    <compoundname>EquipmentManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classEquipmentManager_1ac1e25a54adbc1f163ae3ee0ac62c37e7" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="classEquipmentManager" kindref="compound">EquipmentManager</ref></type>
+        <definition>EquipmentManager EquipmentManager.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>EquipmentManager.Instance</qualifiedname>
+        <briefdescription>
+<para>싱글턴 인스턴스입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="13" column="36" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="13" bodyend="13"/>
+        <referencedby refid="classEquipmentManager_1a42be5a313bcf057a1aa69ed5dc6bdf06" compoundref="EquipmentManager_8cs" startline="53" endline="64">Awake</referencedby>
+        <referencedby refid="classCrewFactory_1aca193ba6438f6936d36301bb3a436e6c" compoundref="CrewFactory_8cs" startline="103" endline="179">CrewFactory.InitializeCrewStats</referencedby>
+        <referencedby refid="classEquipmentUIHandler_1a36609bab2603d9760f69e61c2ff4dbde" compoundref="EquipmentUIHandler_8cs" startline="275" endline="308">EquipmentUIHandler.OnClickBuy</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1abd424807c871bb5f37f1b82c9bd008db" compoundref="EquipmentApplyHandler_8cs" startline="311" endline="341">EquipmentApplyHandler.OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentUIHandler_1a6185fb10654f2cfbd33acf4ef73126a2" compoundref="EquipmentUIHandler_8cs" startline="540" endline="570">EquipmentUIHandler.OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" compoundref="EquipmentApplyHandler_8cs" startline="361" endline="406">EquipmentApplyHandler.OnClickStatApplyButton</referencedby>
+        <referencedby refid="classEquipmentUIHandler_1a64413f18f8e2e2448bdde4a42834a9df" compoundref="EquipmentUIHandler_8cs" startline="590" endline="625">EquipmentUIHandler.OnClickStatApplyButton</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classEquipmentManager_1ab81695d39214c80feb1cf14519a23f8b" prot="public" static="no" mutable="no">
+        <type><ref refid="classEquipmentDatabase" kindref="compound">EquipmentDatabase</ref></type>
+        <definition>EquipmentDatabase EquipmentManager.equipmentDatabase</definition>
+        <argsstring></argsstring>
+        <name>equipmentDatabase</name>
+        <qualifiedname>EquipmentManager.equipmentDatabase</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="15" column="30" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentManager_1a40f1f1382937d24afb96b3f19b5109ec" prot="public" static="no" mutable="no">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentManager.defaultWeapon</definition>
+        <argsstring></argsstring>
+        <name>defaultWeapon</name>
+        <qualifiedname>EquipmentManager.defaultWeapon</qualifiedname>
+        <briefdescription>
+<para>기본 장착 무기 장비 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="20" column="26" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="20" bodyend="-1"/>
+        <referencedby refid="classEquipmentManager_1a59c00f08f3b14747fea08fa3ff8211c6" compoundref="EquipmentManager_8cs" startline="120" endline="129">GetDefaultEquipment</referencedby>
+        <referencedby refid="classCrewFactory_1aca193ba6438f6936d36301bb3a436e6c" compoundref="CrewFactory_8cs" startline="103" endline="179">CrewFactory.InitializeCrewStats</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1abd424807c871bb5f37f1b82c9bd008db" compoundref="EquipmentApplyHandler_8cs" startline="311" endline="341">EquipmentApplyHandler.OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentUIHandler_1a6185fb10654f2cfbd33acf4ef73126a2" compoundref="EquipmentUIHandler_8cs" startline="540" endline="570">EquipmentUIHandler.OnClickPendingUnEquip</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentManager_1a1f54095ae7e284228a950f5df50c2017" prot="public" static="no" mutable="no">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentManager.defaultShield</definition>
+        <argsstring></argsstring>
+        <name>defaultShield</name>
+        <qualifiedname>EquipmentManager.defaultShield</qualifiedname>
+        <briefdescription>
+<para>기본 장착 방어구 장비 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="25" column="26" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="25" bodyend="-1"/>
+        <referencedby refid="classEquipmentManager_1a59c00f08f3b14747fea08fa3ff8211c6" compoundref="EquipmentManager_8cs" startline="120" endline="129">GetDefaultEquipment</referencedby>
+        <referencedby refid="classCrewFactory_1aca193ba6438f6936d36301bb3a436e6c" compoundref="CrewFactory_8cs" startline="103" endline="179">CrewFactory.InitializeCrewStats</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1abd424807c871bb5f37f1b82c9bd008db" compoundref="EquipmentApplyHandler_8cs" startline="311" endline="341">EquipmentApplyHandler.OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentUIHandler_1a6185fb10654f2cfbd33acf4ef73126a2" compoundref="EquipmentUIHandler_8cs" startline="540" endline="570">EquipmentUIHandler.OnClickPendingUnEquip</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentManager_1ae273b3db3b9f64a405560cd76bbed441" prot="public" static="no" mutable="no">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentManager.defaultAssistant</definition>
+        <argsstring></argsstring>
+        <name>defaultAssistant</name>
+        <qualifiedname>EquipmentManager.defaultAssistant</qualifiedname>
+        <briefdescription>
+<para>기본 장착 보조 장비 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="30" column="26" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="30" bodyend="-1"/>
+        <referencedby refid="classEquipmentManager_1a59c00f08f3b14747fea08fa3ff8211c6" compoundref="EquipmentManager_8cs" startline="120" endline="129">GetDefaultEquipment</referencedby>
+        <referencedby refid="classCrewFactory_1aca193ba6438f6936d36301bb3a436e6c" compoundref="CrewFactory_8cs" startline="103" endline="179">CrewFactory.InitializeCrewStats</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1abd424807c871bb5f37f1b82c9bd008db" compoundref="EquipmentApplyHandler_8cs" startline="311" endline="341">EquipmentApplyHandler.OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentUIHandler_1a6185fb10654f2cfbd33acf4ef73126a2" compoundref="EquipmentUIHandler_8cs" startline="540" endline="570">EquipmentUIHandler.OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" compoundref="EquipmentApplyHandler_8cs" startline="361" endline="406">EquipmentApplyHandler.OnClickStatApplyButton</referencedby>
+        <referencedby refid="classEquipmentUIHandler_1a64413f18f8e2e2448bdde4a42834a9df" compoundref="EquipmentUIHandler_8cs" startline="590" endline="625">EquipmentUIHandler.OnClickStatApplyButton</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentManager_1a0715cebeb4d1cc584fc306623ebeac08" prot="public" static="no" mutable="no">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentManager.globalWeaponLevel1</definition>
+        <argsstring></argsstring>
+        <name>globalWeaponLevel1</name>
+        <qualifiedname>EquipmentManager.globalWeaponLevel1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="42" column="26" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentManager_1a9b80c065285790766b3e50b9e1ae29da" prot="public" static="no" mutable="no">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentManager.globalWeaponLevel2</definition>
+        <argsstring></argsstring>
+        <name>globalWeaponLevel2</name>
+        <qualifiedname>EquipmentManager.globalWeaponLevel2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="43" column="26" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentManager_1acad0b81b9d39c423d6d4a0713f5c3544" prot="public" static="no" mutable="no">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentManager.globalWeaponLevel3</definition>
+        <argsstring></argsstring>
+        <name>globalWeaponLevel3</name>
+        <qualifiedname>EquipmentManager.globalWeaponLevel3</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="44" column="26" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentManager_1a44c91a95628aa226b13b9d9bd1933dc9" prot="public" static="no" mutable="no">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentManager.globalShieldLevel1</definition>
+        <argsstring></argsstring>
+        <name>globalShieldLevel1</name>
+        <qualifiedname>EquipmentManager.globalShieldLevel1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="46" column="26" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentManager_1a24283eb6ebb01a39820fcca01e74d16b" prot="public" static="no" mutable="no">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentManager.globalShieldLevel2</definition>
+        <argsstring></argsstring>
+        <name>globalShieldLevel2</name>
+        <qualifiedname>EquipmentManager.globalShieldLevel2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="47" column="26" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentManager_1acfad2bc1c5ea5d4b88dcdf416af9d9fc" prot="public" static="no" mutable="no">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentManager.globalShieldLevel3</definition>
+        <argsstring></argsstring>
+        <name>globalShieldLevel3</name>
+        <qualifiedname>EquipmentManager.globalShieldLevel3</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="48" column="26" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="48" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classEquipmentManager_1a2f75f23b8f647749782390d7989bdf19" prot="private" static="no" mutable="no">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref>[]</type>
+        <definition>EquipmentItem [] EquipmentManager.availableGlobalEquipments</definition>
+        <argsstring></argsstring>
+        <name>availableGlobalEquipments</name>
+        <qualifiedname>EquipmentManager.availableGlobalEquipments</qualifiedname>
+        <briefdescription>
+<para>UI에서 선택 가능한 전역 장비 목록입니다. (무기, 방어구 등) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="35" column="28" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentManager_1aaa32661b73c3e017d285e83d4b660339" prot="private" static="no" mutable="no">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref>[]</type>
+        <definition>EquipmentItem [] EquipmentManager.availableAssistantEquipments</definition>
+        <argsstring></argsstring>
+        <name>availableAssistantEquipments</name>
+        <qualifiedname>EquipmentManager.availableAssistantEquipments</qualifiedname>
+        <briefdescription>
+<para>UI에서 선택 가능한 보조 장비 목록입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="40" column="28" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEquipmentManager_1a42be5a313bcf057a1aa69ed5dc6bdf06" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>EquipmentManager.Awake</qualifiedname>
+        <briefdescription>
+<para>인스턴스를 초기화합니다. 중복 객체는 제거됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="53" column="18" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="53" bodyend="64"/>
+        <references refid="classEquipmentManager_1ac1e25a54adbc1f163ae3ee0ac62c37e7" compoundref="EquipmentManager_8cs" startline="13" endline="13">Instance</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEquipmentManager_1ac4e3818c3b6daa9db63cd7a78f07bfdf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentManager.PurchaseAndEquipGlobal</definition>
+        <argsstring>(EquipmentItem eqItem)</argsstring>
+        <name>PurchaseAndEquipGlobal</name>
+        <qualifiedname>EquipmentManager.PurchaseAndEquipGlobal</qualifiedname>
+        <param>
+          <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+          <declname>eqItem</declname>
+        </param>
+        <briefdescription>
+<para>전 크루에게 적용되는 전역 장비 구매 및 장착 처리. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eqItem</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>구매한 장비 아이템.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="70" column="17" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="70" bodyend="77"/>
+        <references refid="classCrewBase_1a9dddfbc358fd94633bac8de4575e4f8a" compoundref="CrewBase_8cs" startline="465" endline="473">CrewBase.ApplyPersonalEquipment</references>
+        <references refid="classShip_1ad420fae7a6eed955adb71ba76673d55e" compoundref="Ship_8cs" startline="1051" endline="1054">Ship.GetAllCrew</references>
+        <references refid="classGameManager_1a1f54b41e89308bda97cf48e599ec549d" compoundref="GameManager_8cs" startline="427" endline="430">GameManager.GetPlayerShip</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <referencedby refid="classEquipmentUIHandler_1a36609bab2603d9760f69e61c2ff4dbde" compoundref="EquipmentUIHandler_8cs" startline="275" endline="308">EquipmentUIHandler.OnClickBuy</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentManager_1a90239daf1d91e83617f4863e00a4b2e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentManager.PurchaseAndEquipPersonal</definition>
+        <argsstring>(CrewBase crew, EquipmentItem eqItem)</argsstring>
+        <name>PurchaseAndEquipPersonal</name>
+        <qualifiedname>EquipmentManager.PurchaseAndEquipPersonal</qualifiedname>
+        <param>
+          <type><ref refid="classCrewBase" kindref="compound">CrewBase</ref></type>
+          <declname>crew</declname>
+        </param>
+        <param>
+          <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+          <declname>eqItem</declname>
+        </param>
+        <briefdescription>
+<para>개별 크루에게 장비를 구매하고 적용합니다. 전역 장비는 무시됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>crew</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>장비를 적용할 크루.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eqItem</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>구매한 장비 아이템.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="85" column="17" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="85" bodyend="88"/>
+        <references refid="classCrewBase_1a9dddfbc358fd94633bac8de4575e4f8a" compoundref="CrewBase_8cs" startline="465" endline="473">CrewBase.ApplyPersonalEquipment</references>
+        <referencedby refid="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" compoundref="EquipmentApplyHandler_8cs" startline="361" endline="406">EquipmentApplyHandler.OnClickStatApplyButton</referencedby>
+        <referencedby refid="classEquipmentUIHandler_1a64413f18f8e2e2448bdde4a42834a9df" compoundref="EquipmentUIHandler_8cs" startline="590" endline="625">EquipmentUIHandler.OnClickStatApplyButton</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentManager_1add801018567b63bae98f2ef1e8e7f704" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref> &gt;</type>
+        <definition>List&lt; EquipmentItem &gt; EquipmentManager.GetEquipmentsByType</definition>
+        <argsstring>(EquipmentType type)</argsstring>
+        <name>GetEquipmentsByType</name>
+        <qualifiedname>EquipmentManager.GetEquipmentsByType</qualifiedname>
+        <param>
+          <type>EquipmentType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>장비 타입별로 필터링하는 유틸리티 메소드 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="95" column="17" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="95" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentManager_1ac93d5c18d29885ade92fbd5dd29f0664" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentManager.GetEquipmentByName</definition>
+        <argsstring>(string name)</argsstring>
+        <name>GetEquipmentByName</name>
+        <qualifiedname>EquipmentManager.GetEquipmentByName</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>이름으로 장비 찾기 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="105" column="26" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="105" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentManager_1a970993a767a504f42c9f02b363bc46d6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentManager.GetEquipmentByTypeAndId</definition>
+        <argsstring>(EquipmentType type, int id)</argsstring>
+        <name>GetEquipmentByTypeAndId</name>
+        <qualifiedname>EquipmentManager.GetEquipmentByTypeAndId</qualifiedname>
+        <param>
+          <type>EquipmentType</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="110" column="26" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="110" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentManager_1a59c00f08f3b14747fea08fa3ff8211c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentManager.GetDefaultEquipment</definition>
+        <argsstring>(EquipmentType type)</argsstring>
+        <name>GetDefaultEquipment</name>
+        <qualifiedname>EquipmentManager.GetDefaultEquipment</qualifiedname>
+        <param>
+          <type>EquipmentType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>기본 장비 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="120" column="26" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="120" bodyend="129"/>
+        <references refid="classEquipmentManager_1ae273b3db3b9f64a405560cd76bbed441" compoundref="EquipmentManager_8cs" startline="30">defaultAssistant</references>
+        <references refid="classEquipmentManager_1a1f54095ae7e284228a950f5df50c2017" compoundref="EquipmentManager_8cs" startline="25">defaultShield</references>
+        <references refid="classEquipmentManager_1a40f1f1382937d24afb96b3f19b5109ec" compoundref="EquipmentManager_8cs" startline="20">defaultWeapon</references>
+        <referencedby refid="classEquipmentApplyHandler_1abd424807c871bb5f37f1b82c9bd008db" compoundref="EquipmentApplyHandler_8cs" startline="311" endline="341">EquipmentApplyHandler.OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentUIHandler_1a6185fb10654f2cfbd33acf4ef73126a2" compoundref="EquipmentUIHandler_8cs" startline="540" endline="570">EquipmentUIHandler.OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" compoundref="EquipmentApplyHandler_8cs" startline="361" endline="406">EquipmentApplyHandler.OnClickStatApplyButton</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentManager_1a896bd827cfa71b3d5dab1ec3732ba745" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentManager.GetNextLevelEquipment</definition>
+        <argsstring>(EquipmentType type)</argsstring>
+        <name>GetNextLevelEquipment</name>
+        <qualifiedname>EquipmentManager.GetNextLevelEquipment</qualifiedname>
+        <param>
+          <type>EquipmentType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="131" column="26" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="131" bodyend="157"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>장비 구매 및 장착을 관리하는 매니저 클래스. 전역 장비(Global)와 개인 장비(Personal)의 적용을 담당합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EquipmentManager</label>
+        <link refid="classEquipmentManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>EquipmentDatabase</label>
+        <link refid="classEquipmentDatabase"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>EquipmentItem</label>
+        <link refid="classEquipmentItem"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>EquipmentManager</label>
+        <link refid="classEquipmentManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+equipmentDatabase</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>+defaultAssistant</edgelabel>
+          <edgelabel>+defaultShield</edgelabel>
+          <edgelabel>+defaultWeapon</edgelabel>
+          <edgelabel>+globalShieldLevel1</edgelabel>
+          <edgelabel>+globalShieldLevel2</edgelabel>
+          <edgelabel>+globalShieldLevel3</edgelabel>
+          <edgelabel>+globalWeaponLevel1</edgelabel>
+          <edgelabel>+globalWeaponLevel2</edgelabel>
+          <edgelabel>+globalWeaponLevel3</edgelabel>
+          <edgelabel>-availableAssistantEquipments</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="4">
+        <label>ScriptableObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Equipment/EquipmentManager.cs" line="8" column="7" bodyfile="Assets/Scripts/Equipment/EquipmentManager.cs" bodystart="9" bodyend="158"/>
+    <listofallmembers>
+      <member refid="classEquipmentManager_1aaa32661b73c3e017d285e83d4b660339" prot="private" virt="non-virtual"><scope>EquipmentManager</scope><name>availableAssistantEquipments</name></member>
+      <member refid="classEquipmentManager_1a2f75f23b8f647749782390d7989bdf19" prot="private" virt="non-virtual"><scope>EquipmentManager</scope><name>availableGlobalEquipments</name></member>
+      <member refid="classEquipmentManager_1a42be5a313bcf057a1aa69ed5dc6bdf06" prot="private" virt="non-virtual"><scope>EquipmentManager</scope><name>Awake</name></member>
+      <member refid="classEquipmentManager_1ae273b3db3b9f64a405560cd76bbed441" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>defaultAssistant</name></member>
+      <member refid="classEquipmentManager_1a1f54095ae7e284228a950f5df50c2017" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>defaultShield</name></member>
+      <member refid="classEquipmentManager_1a40f1f1382937d24afb96b3f19b5109ec" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>defaultWeapon</name></member>
+      <member refid="classEquipmentManager_1ab81695d39214c80feb1cf14519a23f8b" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>equipmentDatabase</name></member>
+      <member refid="classEquipmentManager_1a59c00f08f3b14747fea08fa3ff8211c6" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>GetDefaultEquipment</name></member>
+      <member refid="classEquipmentManager_1ac93d5c18d29885ade92fbd5dd29f0664" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>GetEquipmentByName</name></member>
+      <member refid="classEquipmentManager_1a970993a767a504f42c9f02b363bc46d6" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>GetEquipmentByTypeAndId</name></member>
+      <member refid="classEquipmentManager_1add801018567b63bae98f2ef1e8e7f704" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>GetEquipmentsByType</name></member>
+      <member refid="classEquipmentManager_1a896bd827cfa71b3d5dab1ec3732ba745" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>GetNextLevelEquipment</name></member>
+      <member refid="classEquipmentManager_1a44c91a95628aa226b13b9d9bd1933dc9" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>globalShieldLevel1</name></member>
+      <member refid="classEquipmentManager_1a24283eb6ebb01a39820fcca01e74d16b" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>globalShieldLevel2</name></member>
+      <member refid="classEquipmentManager_1acfad2bc1c5ea5d4b88dcdf416af9d9fc" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>globalShieldLevel3</name></member>
+      <member refid="classEquipmentManager_1a0715cebeb4d1cc584fc306623ebeac08" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>globalWeaponLevel1</name></member>
+      <member refid="classEquipmentManager_1a9b80c065285790766b3e50b9e1ae29da" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>globalWeaponLevel2</name></member>
+      <member refid="classEquipmentManager_1acad0b81b9d39c423d6d4a0713f5c3544" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>globalWeaponLevel3</name></member>
+      <member refid="classEquipmentManager_1ac1e25a54adbc1f163ae3ee0ac62c37e7" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>Instance</name></member>
+      <member refid="classEquipmentManager_1ac4e3818c3b6daa9db63cd7a78f07bfdf" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>PurchaseAndEquipGlobal</name></member>
+      <member refid="classEquipmentManager_1a90239daf1d91e83617f4863e00a4b2e2" prot="public" virt="non-virtual"><scope>EquipmentManager</scope><name>PurchaseAndEquipPersonal</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

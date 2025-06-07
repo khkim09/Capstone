@@ -1,0 +1,354 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classOxygenSystem" kind="class" language="C#" prot="public">
+    <compoundname>OxygenSystem</compoundname>
+    <basecompoundref refid="classShipSystem" prot="public" virt="non-virtual">ShipSystem</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classOxygenSystem_1a493b016736112c78ce3d47e2590c43e4" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float OxygenSystem.currentOxygenRate</definition>
+        <argsstring></argsstring>
+        <name>currentOxygenRate</name>
+        <qualifiedname>OxygenSystem.currentOxygenRate</qualifiedname>
+        <briefdescription>
+<para>현재 산소 수치 (% 단위, 0 ~ 100). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" line="13" column="19" bodyfile="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" bodystart="13" bodyend="-1"/>
+        <referencedby refid="classOxygenSystem_1ab79f7ad017d2c8eddcf7567e12c1a3dd" compoundref="OxygenSystem_8cs" startline="93" endline="96">GetOxygenRate</referencedby>
+        <referencedby refid="classOxygenSystem_1a82e6211ee26cf9357f35825709431420" compoundref="OxygenSystem_8cs" startline="48" endline="74">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classOxygenSystem_1a4ad92d8e771de0691678f881be235af9" prot="private" static="no" mutable="no">
+        <type>OxygenLevel</type>
+        <definition>OxygenLevel OxygenSystem.currentOxygenLevel</definition>
+        <argsstring></argsstring>
+        <name>currentOxygenLevel</name>
+        <qualifiedname>OxygenSystem.currentOxygenLevel</qualifiedname>
+        <briefdescription>
+<para>현재 산소 레벨 (총 5단계) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" line="18" column="25" bodyfile="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" bodystart="18" bodyend="-1"/>
+        <referencedby refid="classOxygenSystem_1aeb40c3e2129042adf0cee659c8f70219" compoundref="OxygenSystem_8cs" startline="102" endline="105">GetOxygenLevel</referencedby>
+        <referencedby refid="classOxygenSystem_1a82e6211ee26cf9357f35825709431420" compoundref="OxygenSystem_8cs" startline="48" endline="74">Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classOxygenSystem_1a8e087c1a92e4a40209a3825c8cf89479" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float OxygenSystem.damageCheckInterval</definition>
+        <argsstring></argsstring>
+        <name>damageCheckInterval</name>
+        <qualifiedname>OxygenSystem.damageCheckInterval</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" line="41" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classOxygenSystem_1ab132ddfc48df11f104012d52f52e55d5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void OxygenSystem.Initialize</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>OxygenSystem.Initialize</qualifiedname>
+        <reimplements refid="classShipSystem_1ab0e5623073f8bfb48c02955484cfcd4e">Initialize</reimplements>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>시스템을 초기화하고 산소 수치를 100로 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>초기화할 대상 함선 객체.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" line="25" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" bodystart="25" bodyend="29"/>
+        <referencedby refid="classShip_1a5246a04784a96576460f8494bce02887" compoundref="Ship_8cs" startline="715" endline="737">Ship.InitializeSystems</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOxygenSystem_1a4be1e0a7e21b4f57c69fb63c1cb85b6d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void OxygenSystem.Refresh</definition>
+        <argsstring>()</argsstring>
+        <name>Refresh</name>
+        <qualifiedname>OxygenSystem.Refresh</qualifiedname>
+        <reimplements refid="classShipSystem_1ad94492134ef4577b127382af0877f6d6">Refresh</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" line="31" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" bodystart="31" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classOxygenSystem_1a82e6211ee26cf9357f35825709431420" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void OxygenSystem.Update</definition>
+        <argsstring>(float deltaTime)</argsstring>
+        <name>Update</name>
+        <qualifiedname>OxygenSystem.Update</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>deltaTime</declname>
+        </param>
+        <briefdescription>
+<para>매 프레임마다 호출되어 산소 수치를 갱신합니다. 산소 생성량과 소비량을 계산하여 변화량을 적용합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>deltaTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>경과 시간 (초).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" line="48" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" bodystart="48" bodyend="74"/>
+        <references refid="classOxygenSystem_1a9e7b971ccb3d4aedc8221e90bfd48a11" compoundref="OxygenSystem_8cs" startline="81" endline="87">CalculateOxygenChange</references>
+        <references refid="classOxygenSystem_1a4ad92d8e771de0691678f881be235af9" compoundref="OxygenSystem_8cs" startline="18">currentOxygenLevel</references>
+        <references refid="classOxygenSystem_1a493b016736112c78ce3d47e2590c43e4" compoundref="OxygenSystem_8cs" startline="13">currentOxygenRate</references>
+        <references refid="classShip_1ad420fae7a6eed955adb71ba76673d55e" compoundref="Ship_8cs" startline="1051" endline="1054">Ship.GetAllCrew</references>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <referencedby refid="classShip_1a6ab0aaf28782b38d9c80bf19e652f46c" compoundref="Ship_8cs" startline="161" endline="172">Ship.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOxygenSystem_1a9e7b971ccb3d4aedc8221e90bfd48a11" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float OxygenSystem.CalculateOxygenChange</definition>
+        <argsstring>()</argsstring>
+        <name>CalculateOxygenChange</name>
+        <qualifiedname>OxygenSystem.CalculateOxygenChange</qualifiedname>
+        <briefdescription>
+<para>현재 산소 변화량을 계산합니다. 산소 생성량에서 소비량을 뺀 값을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>1초당 산소 변화량.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" line="81" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" bodystart="81" bodyend="87"/>
+        <references refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" compoundref="ShipSystem_8cs" startline="39" endline="42">ShipSystem.GetShipStat</references>
+        <referencedby refid="classOxygenSystem_1a82e6211ee26cf9357f35825709431420" compoundref="OxygenSystem_8cs" startline="48" endline="74">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOxygenSystem_1ab79f7ad017d2c8eddcf7567e12c1a3dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float OxygenSystem.GetOxygenRate</definition>
+        <argsstring>()</argsstring>
+        <name>GetOxygenRate</name>
+        <qualifiedname>OxygenSystem.GetOxygenRate</qualifiedname>
+        <briefdescription>
+<para>현재 산소량을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>현재 산소량.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" line="93" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" bodystart="93" bodyend="96"/>
+        <references refid="classOxygenSystem_1a493b016736112c78ce3d47e2590c43e4" compoundref="OxygenSystem_8cs" startline="13">currentOxygenRate</references>
+        <referencedby refid="classShip_1a97aa2727da91825968187e6fcf695673" compoundref="Ship_8cs" startline="1374" endline="1377">Ship.GetOxygenRate</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOxygenSystem_1aeb40c3e2129042adf0cee659c8f70219" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>OxygenLevel</type>
+        <definition>OxygenLevel OxygenSystem.GetOxygenLevel</definition>
+        <argsstring>()</argsstring>
+        <name>GetOxygenLevel</name>
+        <qualifiedname>OxygenSystem.GetOxygenLevel</qualifiedname>
+        <briefdescription>
+<para>현재 산소 레벨을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>현재 산소 레벨.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" line="102" column="24" bodyfile="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" bodystart="102" bodyend="105"/>
+        <references refid="classOxygenSystem_1a4ad92d8e771de0691678f881be235af9" compoundref="OxygenSystem_8cs" startline="18">currentOxygenLevel</references>
+        <referencedby refid="classShip_1a1671698818beba1abc36a09b0e7d1458" compoundref="Ship_8cs" startline="1383" endline="1386">Ship.GetOxygenLevel</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선의 산소 수치를 관리하는 시스템. 산소 생성량과 소비량을 바탕으로 현재 산소 수치를 계산합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="10">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="12">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="15">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" line="8" column="7" bodyfile="Assets/Scripts/Ship/ShipSystems/OxygenSystem.cs" bodystart="9" bodyend="106"/>
+    <listofallmembers>
+      <member refid="classOxygenSystem_1a9e7b971ccb3d4aedc8221e90bfd48a11" prot="public" virt="non-virtual"><scope>OxygenSystem</scope><name>CalculateOxygenChange</name></member>
+      <member refid="classOxygenSystem_1a4ad92d8e771de0691678f881be235af9" prot="private" virt="non-virtual"><scope>OxygenSystem</scope><name>currentOxygenLevel</name></member>
+      <member refid="classOxygenSystem_1a493b016736112c78ce3d47e2590c43e4" prot="private" virt="non-virtual"><scope>OxygenSystem</scope><name>currentOxygenRate</name></member>
+      <member refid="classOxygenSystem_1a8e087c1a92e4a40209a3825c8cf89479" prot="public" virt="non-virtual"><scope>OxygenSystem</scope><name>damageCheckInterval</name></member>
+      <member refid="classOxygenSystem_1aeb40c3e2129042adf0cee659c8f70219" prot="public" virt="non-virtual"><scope>OxygenSystem</scope><name>GetOxygenLevel</name></member>
+      <member refid="classOxygenSystem_1ab79f7ad017d2c8eddcf7567e12c1a3dd" prot="public" virt="non-virtual"><scope>OxygenSystem</scope><name>GetOxygenRate</name></member>
+      <member refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" prot="protected" virt="non-virtual"><scope>OxygenSystem</scope><name>GetShipStat</name></member>
+      <member refid="classOxygenSystem_1ab132ddfc48df11f104012d52f52e55d5" prot="public" virt="virtual"><scope>OxygenSystem</scope><name>Initialize</name></member>
+      <member refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" prot="protected" virt="non-virtual"><scope>OxygenSystem</scope><name>parentShip</name></member>
+      <member refid="classOxygenSystem_1a4be1e0a7e21b4f57c69fb63c1cb85b6d" prot="public" virt="virtual"><scope>OxygenSystem</scope><name>Refresh</name></member>
+      <member refid="classOxygenSystem_1a82e6211ee26cf9357f35825709431420" prot="public" virt="non-virtual"><scope>OxygenSystem</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

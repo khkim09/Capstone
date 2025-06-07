@@ -1,0 +1,2917 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classES3Cloud" kind="class" language="C#" prot="public">
+    <compoundname>ES3Cloud</compoundname>
+    <basecompoundref refid="classES3Internal_1_1ES3WebClass" prot="public" virt="non-virtual">ES3Internal.ES3WebClass</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classES3Cloud_1a5e18bdf08c468fa39b87086c5714053e" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ES3Cloud.timeout</definition>
+        <argsstring></argsstring>
+        <name>timeout</name>
+        <qualifiedname>ES3Cloud.timeout</qualifiedname>
+        <initializer>= 20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="17" column="9" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Cloud_1a652ffa0a3786801be272ccbd52b396bb" prot="private" static="no" mutable="no">
+        <type>byte[]</type>
+        <definition>byte [] ES3Cloud._data</definition>
+        <argsstring></argsstring>
+        <name>_data</name>
+        <qualifiedname>ES3Cloud._data</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="36" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classES3Cloud_1acf8a030bd025f7c6500ff5b9794276fa" prot="public" static="no" mutable="no">
+        <type>System.Text.Encoding</type>
+        <definition>System.Text.Encoding ES3Cloud.encoding</definition>
+        <argsstring></argsstring>
+        <name>encoding</name>
+        <qualifiedname>ES3Cloud.encoding</qualifiedname>
+        <initializer>= System.Text.Encoding.UTF8</initializer>
+        <briefdescription>
+<para>The encoding to use when encoding and decoding data as strings. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="33" column="31" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classES3Cloud_1ad5dee45f3ca0dd0158cddb8000e16b27" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>byte[]</type>
+        <definition>byte [] ES3Cloud.data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <qualifiedname>ES3Cloud.data</qualifiedname>
+        <briefdescription>
+<para>Any downloaded data, if applicable. This may also contain an error message, so you should check the &apos;ifError&apos; variable before reading data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="38" column="13" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="39" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="property" id="classES3Cloud_1aa8bd70bb2105c12c7677efe41fffa819" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string ES3Cloud.text</definition>
+        <argsstring></argsstring>
+        <name>text</name>
+        <qualifiedname>ES3Cloud.text</qualifiedname>
+        <briefdescription>
+<para>The downloaded data as text, decoded using the encoding specified by the &apos;encoding&apos; variable. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="44" column="15" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="45" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="property" id="classES3Cloud_1a92ea3eccbd0ba2827da04e38b17b3973" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>string[]</type>
+        <definition>string [] ES3Cloud.filenames</definition>
+        <argsstring></argsstring>
+        <name>filenames</name>
+        <qualifiedname>ES3Cloud.filenames</qualifiedname>
+        <briefdescription>
+<para>An array of filenames downloaded from the server. This must only be accessed after calling the &apos;DownloadFilenames&apos; routine. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="55" column="15" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="56" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="property" id="classES3Cloud_1a4940a7b8e232022dca24464838d4f365" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>DateTime</type>
+        <definition>DateTime ES3Cloud.timestamp</definition>
+        <argsstring></argsstring>
+        <name>timestamp</name>
+        <qualifiedname>ES3Cloud.timestamp</qualifiedname>
+        <briefdescription>
+<para>A UTC DateTime object representing the date and time a file on the server was last updated. This should only be called after calling the &apos;DownloadTimestamp&apos; routine. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="67" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="68" bodyend="80"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classES3Cloud_1a902cb030768d753810309a12a35f297e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3Cloud.ES3Cloud</definition>
+        <argsstring>(string url, string apiKey)</argsstring>
+        <name>ES3Cloud</name>
+        <qualifiedname>ES3Cloud.ES3Cloud</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>apiKey</declname>
+        </param>
+        <briefdescription>
+<para>Constructs an new <ref refid="classES3Cloud" kindref="compound">ES3Cloud</ref> object with the given URL to an ES3.php file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>url</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The URL of the ES3.php file on your server you want to use.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="21" column="8" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="21" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1ac3d077175dae583327924ba1031f190e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3Cloud.ES3Cloud</definition>
+        <argsstring>(string url, string apiKey, int timeout)</argsstring>
+        <name>ES3Cloud</name>
+        <qualifiedname>ES3Cloud.ES3Cloud</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>apiKey</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>timeout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="25" column="12" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="25" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a517303e9eea6d7072207080e37c56edf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.Sync</definition>
+        <argsstring>()</argsstring>
+        <name>Sync</name>
+        <qualifiedname>ES3Cloud.Sync</qualifiedname>
+        <briefdescription>
+<para>Synchronises the default file with a file on the server. If the file on the server is newer than the local copy, the local file will be overwritten by the file on the server. Otherwise, the file on the server will be overwritten. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="87" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="87" bodyend="90"/>
+        <references refid="classES3Cloud_1a517303e9eea6d7072207080e37c56edf" compoundref="ES3Cloud_8cs" startline="87" endline="90">Sync</references>
+        <referencedby refid="classES3Cloud_1a517303e9eea6d7072207080e37c56edf" compoundref="ES3Cloud_8cs" startline="87" endline="90">Sync</referencedby>
+        <referencedby refid="classES3Cloud_1a3772f387deefb0e5f1592b00b17cbdef" compoundref="ES3Cloud_8cs" startline="94" endline="97">Sync</referencedby>
+        <referencedby refid="classES3Cloud_1a9e877f7a949bfc738edff365e411baf8" compoundref="ES3Cloud_8cs" startline="121" endline="124">Sync</referencedby>
+        <referencedby refid="classES3Cloud_1aba64b3176413d28b247dd3105b78a08c" compoundref="ES3Cloud_8cs" startline="102" endline="105">Sync</referencedby>
+        <referencedby refid="classES3Cloud_1a9898cc67cc0f2a893eee7ac7e8c2aecc" compoundref="ES3Cloud_8cs" startline="130" endline="133">Sync</referencedby>
+        <referencedby refid="classES3Cloud_1af61195d42bf99f256fafa9dc97fc90c3" compoundref="ES3Cloud_8cs" startline="111" endline="114">Sync</referencedby>
+        <referencedby refid="classES3Cloud_1ad49715fb339b2ab49849932a14d65d6d" compoundref="ES3Cloud_8cs" startline="140" endline="143">Sync</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a3772f387deefb0e5f1592b00b17cbdef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.Sync</definition>
+        <argsstring>(string filePath)</argsstring>
+        <name>Sync</name>
+        <qualifiedname>ES3Cloud.Sync</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+<para>Synchronises a local file with a file on the server. If the file on the server is newer than the local copy, the local file will be overwritten by the file on the server. Otherwise, the file on the server will be overwritten. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the local file we want to synchronise.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="94" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="94" bodyend="97"/>
+        <references refid="classES3Cloud_1a517303e9eea6d7072207080e37c56edf" compoundref="ES3Cloud_8cs" startline="87" endline="90">Sync</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1aba64b3176413d28b247dd3105b78a08c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.Sync</definition>
+        <argsstring>(string filePath, string user)</argsstring>
+        <name>Sync</name>
+        <qualifiedname>ES3Cloud.Sync</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <briefdescription>
+<para>Synchronises a local file with a file on the server. If the file on the server is newer than the local copy, the local file will be overwritten by the file on the server. Otherwise, the file on the server will be overwritten. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the local file we want to synchronise.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="102" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="102" bodyend="105"/>
+        <references refid="classES3Cloud_1a517303e9eea6d7072207080e37c56edf" compoundref="ES3Cloud_8cs" startline="87" endline="90">Sync</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1af61195d42bf99f256fafa9dc97fc90c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.Sync</definition>
+        <argsstring>(string filePath, string user, string password)</argsstring>
+        <name>Sync</name>
+        <qualifiedname>ES3Cloud.Sync</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+<para>Synchronises a local file with a file on the server. If the file on the server is newer than the local copy, the local file will be overwritten by the file on the server. Otherwise, the file on the server will be overwritten. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the local file we want to synchronise.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="111" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="111" bodyend="114"/>
+        <references refid="classES3Cloud_1a517303e9eea6d7072207080e37c56edf" compoundref="ES3Cloud_8cs" startline="87" endline="90">Sync</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a9e877f7a949bfc738edff365e411baf8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.Sync</definition>
+        <argsstring>(string filePath, ES3Settings settings)</argsstring>
+        <name>Sync</name>
+        <qualifiedname>ES3Cloud.Sync</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Synchronises a local file with a file on the server. If the file on the server is newer than the local copy, the local file will be overwritten by the file on the server. Otherwise, the file on the server will be overwritten. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the local file we want to synchronise.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="121" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="121" bodyend="124"/>
+        <references refid="classES3Cloud_1a517303e9eea6d7072207080e37c56edf" compoundref="ES3Cloud_8cs" startline="87" endline="90">Sync</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a9898cc67cc0f2a893eee7ac7e8c2aecc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.Sync</definition>
+        <argsstring>(string filePath, string user, ES3Settings settings)</argsstring>
+        <name>Sync</name>
+        <qualifiedname>ES3Cloud.Sync</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Synchronises a local file with a file on the server. If the file on the server is newer than the local copy, the local file will be overwritten by the file on the server. Otherwise, the file on the server will be overwritten. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to use.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="130" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="130" bodyend="133"/>
+        <references refid="classES3Cloud_1a517303e9eea6d7072207080e37c56edf" compoundref="ES3Cloud_8cs" startline="87" endline="90">Sync</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1ad49715fb339b2ab49849932a14d65d6d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.Sync</definition>
+        <argsstring>(string filePath, string user, string password, ES3Settings settings)</argsstring>
+        <name>Sync</name>
+        <qualifiedname>ES3Cloud.Sync</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Synchronises a local file with a file on the server. If the file on the server is newer than the local copy, the local file will be overwritten by the file on the server. Otherwise, the file on the server will be overwritten. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the local file we want to synchronise.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="140" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="140" bodyend="143"/>
+        <references refid="classES3Cloud_1a517303e9eea6d7072207080e37c56edf" compoundref="ES3Cloud_8cs" startline="87" endline="90">Sync</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.UploadFile</definition>
+        <argsstring>()</argsstring>
+        <name>UploadFile</name>
+        <qualifiedname>ES3Cloud.UploadFile</qualifiedname>
+        <briefdescription>
+<para>Uploads the default file to the server, overwriting any existing file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="173" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="173" bodyend="176"/>
+        <references refid="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" compoundref="ES3Cloud_8cs" startline="173" endline="176">UploadFile</references>
+        <referencedby refid="classES3Cloud_1a360045cc94dce619e926fee9fd7a78f5" compoundref="ES3Cloud_8cs" startline="149" endline="166">Sync</referencedby>
+        <referencedby refid="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" compoundref="ES3Cloud_8cs" startline="173" endline="176">UploadFile</referencedby>
+        <referencedby refid="classES3Cloud_1afbe81e7dcdeb42727b1f278abba65b5a" compoundref="ES3Cloud_8cs" startline="231" endline="234">UploadFile</referencedby>
+        <referencedby refid="classES3Cloud_1a4316b5b7b70dc1b99aa8a9be5fb521eb" compoundref="ES3Cloud_8cs" startline="239" endline="242">UploadFile</referencedby>
+        <referencedby refid="classES3Cloud_1ae0ecd327505d956906ae5eebbb6a4173" compoundref="ES3Cloud_8cs" startline="248" endline="251">UploadFile</referencedby>
+        <referencedby refid="classES3Cloud_1a8fd40839975c47d733acfda31a272ba6" compoundref="ES3Cloud_8cs" startline="256" endline="259">UploadFile</referencedby>
+        <referencedby refid="classES3Cloud_1a66944f98d503ca047d3c814fdfdfb35d" compoundref="ES3Cloud_8cs" startline="180" endline="183">UploadFile</referencedby>
+        <referencedby refid="classES3Cloud_1a08ab615b3224389e6540ceac8f2f105f" compoundref="ES3Cloud_8cs" startline="205" endline="208">UploadFile</referencedby>
+        <referencedby refid="classES3Cloud_1aa504b224314b4db30a2aeea1f5b7e467" compoundref="ES3Cloud_8cs" startline="188" endline="191">UploadFile</referencedby>
+        <referencedby refid="classES3Cloud_1a2d8c29e636a5c6ae009ab4168852cfbb" compoundref="ES3Cloud_8cs" startline="214" endline="217">UploadFile</referencedby>
+        <referencedby refid="classES3Cloud_1a6c609844e6316aaecbae832109d4784e" compoundref="ES3Cloud_8cs" startline="197" endline="200">UploadFile</referencedby>
+        <referencedby refid="classES3Cloud_1a9f3d0239dcde08bccac333892fced896" compoundref="ES3Cloud_8cs" startline="224" endline="227">UploadFile</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a66944f98d503ca047d3c814fdfdfb35d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.UploadFile</definition>
+        <argsstring>(string filePath)</argsstring>
+        <name>UploadFile</name>
+        <qualifiedname>ES3Cloud.UploadFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+<para>Uploads a local file to the server, overwriting any existing file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to use.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="180" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="180" bodyend="183"/>
+        <references refid="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" compoundref="ES3Cloud_8cs" startline="173" endline="176">UploadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1aa504b224314b4db30a2aeea1f5b7e467" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.UploadFile</definition>
+        <argsstring>(string filePath, string user)</argsstring>
+        <name>UploadFile</name>
+        <qualifiedname>ES3Cloud.UploadFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <briefdescription>
+<para>Uploads a local file to the server, overwriting any existing file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to use.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="188" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="188" bodyend="191"/>
+        <references refid="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" compoundref="ES3Cloud_8cs" startline="173" endline="176">UploadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a6c609844e6316aaecbae832109d4784e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.UploadFile</definition>
+        <argsstring>(string filePath, string user, string password)</argsstring>
+        <name>UploadFile</name>
+        <qualifiedname>ES3Cloud.UploadFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+<para>Uploads a local file to the server, overwriting any existing file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to use.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="197" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="197" bodyend="200"/>
+        <references refid="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" compoundref="ES3Cloud_8cs" startline="173" endline="176">UploadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a08ab615b3224389e6540ceac8f2f105f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.UploadFile</definition>
+        <argsstring>(string filePath, ES3Settings settings)</argsstring>
+        <name>UploadFile</name>
+        <qualifiedname>ES3Cloud.UploadFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Uploads a local file to the server, overwriting any existing file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to use.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="205" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="205" bodyend="208"/>
+        <references refid="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" compoundref="ES3Cloud_8cs" startline="173" endline="176">UploadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a2d8c29e636a5c6ae009ab4168852cfbb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.UploadFile</definition>
+        <argsstring>(string filePath, string user, ES3Settings settings)</argsstring>
+        <name>UploadFile</name>
+        <qualifiedname>ES3Cloud.UploadFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Uploads a local file to the server, overwriting any existing file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to use.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="214" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="214" bodyend="217"/>
+        <references refid="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" compoundref="ES3Cloud_8cs" startline="173" endline="176">UploadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a9f3d0239dcde08bccac333892fced896" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.UploadFile</definition>
+        <argsstring>(string filePath, string user, string password, ES3Settings settings)</argsstring>
+        <name>UploadFile</name>
+        <qualifiedname>ES3Cloud.UploadFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Uploads a local file to the server, overwriting any existing file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to use.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="224" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="224" bodyend="227"/>
+        <references refid="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" compoundref="ES3Cloud_8cs" startline="173" endline="176">UploadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1afbe81e7dcdeb42727b1f278abba65b5a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.UploadFile</definition>
+        <argsstring>(ES3File es3File)</argsstring>
+        <name>UploadFile</name>
+        <qualifiedname>ES3Cloud.UploadFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3File" kindref="compound">ES3File</ref></type>
+          <declname>es3File</declname>
+        </param>
+        <briefdescription>
+<para>Uploads a local file to the server, overwriting any existing file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>es3File</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An <ref refid="classES3File" kindref="compound">ES3File</ref> containing the data we want to upload.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="231" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="231" bodyend="234"/>
+        <references refid="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" compoundref="ES3Cloud_8cs" startline="173" endline="176">UploadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a4316b5b7b70dc1b99aa8a9be5fb521eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.UploadFile</definition>
+        <argsstring>(ES3File es3File, string user)</argsstring>
+        <name>UploadFile</name>
+        <qualifiedname>ES3Cloud.UploadFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3File" kindref="compound">ES3File</ref></type>
+          <declname>es3File</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <briefdescription>
+<para>Uploads a local file to the server, overwriting any existing file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>es3File</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An <ref refid="classES3File" kindref="compound">ES3File</ref> containing the data we want to upload.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="239" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="239" bodyend="242"/>
+        <references refid="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" compoundref="ES3Cloud_8cs" startline="173" endline="176">UploadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1ae0ecd327505d956906ae5eebbb6a4173" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.UploadFile</definition>
+        <argsstring>(ES3File es3File, string user, string password)</argsstring>
+        <name>UploadFile</name>
+        <qualifiedname>ES3Cloud.UploadFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3File" kindref="compound">ES3File</ref></type>
+          <declname>es3File</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+<para>Uploads a local file to the server, overwriting any existing file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>es3File</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An <ref refid="classES3File" kindref="compound">ES3File</ref> containing the data we want to upload.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="248" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="248" bodyend="251"/>
+        <references refid="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" compoundref="ES3Cloud_8cs" startline="173" endline="176">UploadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a8fd40839975c47d733acfda31a272ba6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.UploadFile</definition>
+        <argsstring>(ES3Settings settings, string user, string password)</argsstring>
+        <name>UploadFile</name>
+        <qualifiedname>ES3Cloud.UploadFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+<para>Uploads a local file to the server, overwriting any existing file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="256" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="256" bodyend="259"/>
+        <references refid="classES3_1a5ffd0b12e24d6a33c7bd22e0e8ca149c" compoundref="ES3_8cs" startline="661" endline="664">ES3.LoadRawBytes</references>
+        <references refid="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" compoundref="ES3Cloud_8cs" startline="173" endline="176">UploadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a340f4c272cbf67ce2d43d062c71e0d91" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.UploadFile</definition>
+        <argsstring>(byte[] bytes, ES3Settings settings, string user, string password)</argsstring>
+        <name>UploadFile</name>
+        <qualifiedname>ES3Cloud.UploadFile</qualifiedname>
+        <param>
+          <type>byte[]</type>
+          <declname>bytes</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="261" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="261" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1ab0f7872560f0c81a8b065b7a251e41c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadFile</definition>
+        <argsstring>()</argsstring>
+        <name>DownloadFile</name>
+        <qualifiedname>ES3Cloud.DownloadFile</qualifiedname>
+        <briefdescription>
+<para>Downloads the default file from the server and saves it locally, overwriting the existing local default file. An error is returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="292" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="292" bodyend="295"/>
+        <references refid="classES3Cloud_1ab0f7872560f0c81a8b065b7a251e41c5" compoundref="ES3Cloud_8cs" startline="292" endline="295">DownloadFile</references>
+        <referencedby refid="classES3Cloud_1ab0f7872560f0c81a8b065b7a251e41c5" compoundref="ES3Cloud_8cs" startline="292" endline="295">DownloadFile</referencedby>
+        <referencedby refid="classES3Cloud_1aec295dab081a085e2d53c27cff49c662" compoundref="ES3Cloud_8cs" startline="350" endline="353">DownloadFile</referencedby>
+        <referencedby refid="classES3Cloud_1a41622b0cc57a698370378e90b9125227" compoundref="ES3Cloud_8cs" startline="358" endline="361">DownloadFile</referencedby>
+        <referencedby refid="classES3Cloud_1aaecddac7df3c8e7c19a90c088e2ec72d" compoundref="ES3Cloud_8cs" startline="367" endline="370">DownloadFile</referencedby>
+        <referencedby refid="classES3Cloud_1aca575521486a02b19fef5e5fc6acda88" compoundref="ES3Cloud_8cs" startline="299" endline="302">DownloadFile</referencedby>
+        <referencedby refid="classES3Cloud_1a38e4b60ec6ad749b5b7ca5eec32ab423" compoundref="ES3Cloud_8cs" startline="324" endline="327">DownloadFile</referencedby>
+        <referencedby refid="classES3Cloud_1a2c608d8cb475243f87f31efe3af919fe" compoundref="ES3Cloud_8cs" startline="307" endline="310">DownloadFile</referencedby>
+        <referencedby refid="classES3Cloud_1a424548f92cc1e4f9b247e5e71efaddcd" compoundref="ES3Cloud_8cs" startline="333" endline="336">DownloadFile</referencedby>
+        <referencedby refid="classES3Cloud_1ac79c9bce4a43cf00639c19736722906e" compoundref="ES3Cloud_8cs" startline="316" endline="319">DownloadFile</referencedby>
+        <referencedby refid="classES3Cloud_1a09a25b32c4a30f83b4f5872b9b9805eb" compoundref="ES3Cloud_8cs" startline="343" endline="346">DownloadFile</referencedby>
+        <referencedby refid="classES3Cloud_1a360045cc94dce619e926fee9fd7a78f5" compoundref="ES3Cloud_8cs" startline="149" endline="166">Sync</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1aca575521486a02b19fef5e5fc6acda88" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadFile</definition>
+        <argsstring>(string filePath)</argsstring>
+        <name>DownloadFile</name>
+        <qualifiedname>ES3Cloud.DownloadFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+<para>Downloads a file from the server and saves it locally, overwriting any existing local file. An error is returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to download.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="299" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="299" bodyend="302"/>
+        <references refid="classES3Cloud_1ab0f7872560f0c81a8b065b7a251e41c5" compoundref="ES3Cloud_8cs" startline="292" endline="295">DownloadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a2c608d8cb475243f87f31efe3af919fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadFile</definition>
+        <argsstring>(string filePath, string user)</argsstring>
+        <name>DownloadFile</name>
+        <qualifiedname>ES3Cloud.DownloadFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <briefdescription>
+<para>Downloads a file from the server and saves it locally, overwriting any existing local file. An error is returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to download.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="307" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="307" bodyend="310"/>
+        <references refid="classES3Cloud_1ab0f7872560f0c81a8b065b7a251e41c5" compoundref="ES3Cloud_8cs" startline="292" endline="295">DownloadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1ac79c9bce4a43cf00639c19736722906e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadFile</definition>
+        <argsstring>(string filePath, string user, string password)</argsstring>
+        <name>DownloadFile</name>
+        <qualifiedname>ES3Cloud.DownloadFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+<para>Downloads a file from the server and saves it locally, overwriting any existing local file. An error is returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to download.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="316" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="316" bodyend="319"/>
+        <references refid="classES3Cloud_1ab0f7872560f0c81a8b065b7a251e41c5" compoundref="ES3Cloud_8cs" startline="292" endline="295">DownloadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a38e4b60ec6ad749b5b7ca5eec32ab423" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadFile</definition>
+        <argsstring>(string filePath, ES3Settings settings)</argsstring>
+        <name>DownloadFile</name>
+        <qualifiedname>ES3Cloud.DownloadFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Downloads a file from the server and saves it locally, overwriting any existing local file. An error is returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to download.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="324" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="324" bodyend="327"/>
+        <references refid="classES3Cloud_1ab0f7872560f0c81a8b065b7a251e41c5" compoundref="ES3Cloud_8cs" startline="292" endline="295">DownloadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a424548f92cc1e4f9b247e5e71efaddcd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadFile</definition>
+        <argsstring>(string filePath, string user, ES3Settings settings)</argsstring>
+        <name>DownloadFile</name>
+        <qualifiedname>ES3Cloud.DownloadFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Downloads a file from the server and saves it locally, overwriting any existing local file. An error is returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to download.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="333" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="333" bodyend="336"/>
+        <references refid="classES3Cloud_1ab0f7872560f0c81a8b065b7a251e41c5" compoundref="ES3Cloud_8cs" startline="292" endline="295">DownloadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a09a25b32c4a30f83b4f5872b9b9805eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadFile</definition>
+        <argsstring>(string filePath, string user, string password, ES3Settings settings)</argsstring>
+        <name>DownloadFile</name>
+        <qualifiedname>ES3Cloud.DownloadFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Downloads a file from the server and saves it locally, overwriting any existing local file. An error is returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to download.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="343" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="343" bodyend="346"/>
+        <references refid="classES3Cloud_1ab0f7872560f0c81a8b065b7a251e41c5" compoundref="ES3Cloud_8cs" startline="292" endline="295">DownloadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1aec295dab081a085e2d53c27cff49c662" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadFile</definition>
+        <argsstring>(ES3File es3File)</argsstring>
+        <name>DownloadFile</name>
+        <qualifiedname>ES3Cloud.DownloadFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3File" kindref="compound">ES3File</ref></type>
+          <declname>es3File</declname>
+        </param>
+        <briefdescription>
+<para>Downloads a file from the server and saves it locally, overwriting any existing local file. An error is returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>es3File</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classES3File" kindref="compound">ES3File</ref> we want to load our data into. The filename in the settings of the <ref refid="classES3File" kindref="compound">ES3File</ref> will be used when downloading.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="350" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="350" bodyend="353"/>
+        <references refid="classES3Cloud_1ab0f7872560f0c81a8b065b7a251e41c5" compoundref="ES3Cloud_8cs" startline="292" endline="295">DownloadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a41622b0cc57a698370378e90b9125227" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadFile</definition>
+        <argsstring>(ES3File es3File, string user)</argsstring>
+        <name>DownloadFile</name>
+        <qualifiedname>ES3Cloud.DownloadFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3File" kindref="compound">ES3File</ref></type>
+          <declname>es3File</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <briefdescription>
+<para>Downloads a file from the server and saves it locally, overwriting any existing local file. An error is returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>es3File</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classES3File" kindref="compound">ES3File</ref> we want to load our data into. The filename in the settings of the <ref refid="classES3File" kindref="compound">ES3File</ref> will be used when downloading.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="358" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="358" bodyend="361"/>
+        <references refid="classES3Cloud_1ab0f7872560f0c81a8b065b7a251e41c5" compoundref="ES3Cloud_8cs" startline="292" endline="295">DownloadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1aaecddac7df3c8e7c19a90c088e2ec72d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadFile</definition>
+        <argsstring>(ES3File es3File, string user, string password)</argsstring>
+        <name>DownloadFile</name>
+        <qualifiedname>ES3Cloud.DownloadFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3File" kindref="compound">ES3File</ref></type>
+          <declname>es3File</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+<para>Downloads a file from the server and saves it locally, overwriting any existing local file. An error is returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>es3File</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classES3File" kindref="compound">ES3File</ref> we want to load our data into. The filename in the settings of the <ref refid="classES3File" kindref="compound">ES3File</ref> will be used when downloading.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="367" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="367" bodyend="370"/>
+        <references refid="classES3Cloud_1ab0f7872560f0c81a8b065b7a251e41c5" compoundref="ES3Cloud_8cs" startline="292" endline="295">DownloadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1aeaa82ec536bcefc9ca792547dbbde4d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DeleteFile</definition>
+        <argsstring>()</argsstring>
+        <name>DeleteFile</name>
+        <qualifiedname>ES3Cloud.DeleteFile</qualifiedname>
+        <briefdescription>
+<para>Deletes the default file from the server. An error is <emphasis>not</emphasis> returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="445" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="445" bodyend="448"/>
+        <references refid="classES3Cloud_1aeaa82ec536bcefc9ca792547dbbde4d3" compoundref="ES3Cloud_8cs" startline="445" endline="448">DeleteFile</references>
+        <referencedby refid="classES3Cloud_1aeaa82ec536bcefc9ca792547dbbde4d3" compoundref="ES3Cloud_8cs" startline="445" endline="448">DeleteFile</referencedby>
+        <referencedby refid="classES3Cloud_1a0e5bffb72662fe4d6f3d39599c39843a" compoundref="ES3Cloud_8cs" startline="452" endline="455">DeleteFile</referencedby>
+        <referencedby refid="classES3Cloud_1a2341aaacb313ec94032d7c0b7d07f6b0" compoundref="ES3Cloud_8cs" startline="477" endline="480">DeleteFile</referencedby>
+        <referencedby refid="classES3Cloud_1a043482b69be8e917dab1273fecb9c288" compoundref="ES3Cloud_8cs" startline="460" endline="463">DeleteFile</referencedby>
+        <referencedby refid="classES3Cloud_1a29bdfa5126427ffdeaf67bbf734d3d36" compoundref="ES3Cloud_8cs" startline="486" endline="489">DeleteFile</referencedby>
+        <referencedby refid="classES3Cloud_1ae619775744233e0132c87933f8a20971" compoundref="ES3Cloud_8cs" startline="469" endline="472">DeleteFile</referencedby>
+        <referencedby refid="classES3Cloud_1a06654e0acc67b343be00dfd2b264ce76" compoundref="ES3Cloud_8cs" startline="496" endline="499">DeleteFile</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a0e5bffb72662fe4d6f3d39599c39843a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DeleteFile</definition>
+        <argsstring>(string filePath)</argsstring>
+        <name>DeleteFile</name>
+        <qualifiedname>ES3Cloud.DeleteFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+<para>Deletes a file from the server. An error is <emphasis>not</emphasis> returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to delete.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="452" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="452" bodyend="455"/>
+        <references refid="classES3Cloud_1aeaa82ec536bcefc9ca792547dbbde4d3" compoundref="ES3Cloud_8cs" startline="445" endline="448">DeleteFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a043482b69be8e917dab1273fecb9c288" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DeleteFile</definition>
+        <argsstring>(string filePath, string user)</argsstring>
+        <name>DeleteFile</name>
+        <qualifiedname>ES3Cloud.DeleteFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <briefdescription>
+<para>Deletes a file from the server. An error is <emphasis>not</emphasis> returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to delete.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="460" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="460" bodyend="463"/>
+        <references refid="classES3Cloud_1aeaa82ec536bcefc9ca792547dbbde4d3" compoundref="ES3Cloud_8cs" startline="445" endline="448">DeleteFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1ae619775744233e0132c87933f8a20971" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DeleteFile</definition>
+        <argsstring>(string filePath, string user, string password)</argsstring>
+        <name>DeleteFile</name>
+        <qualifiedname>ES3Cloud.DeleteFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+<para>Deletes a file from the server. An error is <emphasis>not</emphasis> returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to delete.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="469" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="469" bodyend="472"/>
+        <references refid="classES3Cloud_1aeaa82ec536bcefc9ca792547dbbde4d3" compoundref="ES3Cloud_8cs" startline="445" endline="448">DeleteFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a2341aaacb313ec94032d7c0b7d07f6b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DeleteFile</definition>
+        <argsstring>(string filePath, ES3Settings settings)</argsstring>
+        <name>DeleteFile</name>
+        <qualifiedname>ES3Cloud.DeleteFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Deletes a file from the server. An error is <emphasis>not</emphasis> returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to delete.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="477" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="477" bodyend="480"/>
+        <references refid="classES3Cloud_1aeaa82ec536bcefc9ca792547dbbde4d3" compoundref="ES3Cloud_8cs" startline="445" endline="448">DeleteFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a29bdfa5126427ffdeaf67bbf734d3d36" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DeleteFile</definition>
+        <argsstring>(string filePath, string user, ES3Settings settings)</argsstring>
+        <name>DeleteFile</name>
+        <qualifiedname>ES3Cloud.DeleteFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Deletes a file from the server. An error is <emphasis>not</emphasis> returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to delete.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="486" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="486" bodyend="489"/>
+        <references refid="classES3Cloud_1aeaa82ec536bcefc9ca792547dbbde4d3" compoundref="ES3Cloud_8cs" startline="445" endline="448">DeleteFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a06654e0acc67b343be00dfd2b264ce76" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DeleteFile</definition>
+        <argsstring>(string filePath, string user, string password, ES3Settings settings)</argsstring>
+        <name>DeleteFile</name>
+        <qualifiedname>ES3Cloud.DeleteFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Deletes a file from the server. An error is <emphasis>not</emphasis> returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to delete.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="496" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="496" bodyend="499"/>
+        <references refid="classES3Cloud_1aeaa82ec536bcefc9ca792547dbbde4d3" compoundref="ES3Cloud_8cs" startline="445" endline="448">DeleteFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a32ca9b1e5753fc6ac4a6eb68efd685f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.RenameFile</definition>
+        <argsstring>(string filePath, string newFilePath)</argsstring>
+        <name>RenameFile</name>
+        <qualifiedname>ES3Cloud.RenameFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>newFilePath</declname>
+        </param>
+        <briefdescription>
+<para>Renames a file from the server. An error is <emphasis>not</emphasis> returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to delete.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="527" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="527" bodyend="530"/>
+        <references refid="classES3Cloud_1a32ca9b1e5753fc6ac4a6eb68efd685f9" compoundref="ES3Cloud_8cs" startline="527" endline="530">RenameFile</references>
+        <referencedby refid="classES3Cloud_1a32ca9b1e5753fc6ac4a6eb68efd685f9" compoundref="ES3Cloud_8cs" startline="527" endline="530">RenameFile</referencedby>
+        <referencedby refid="classES3Cloud_1afead09651fa66e88ee9683e6bd18cfa1" compoundref="ES3Cloud_8cs" startline="552" endline="555">RenameFile</referencedby>
+        <referencedby refid="classES3Cloud_1a56d8002ce833903ddc82311098651ca1" compoundref="ES3Cloud_8cs" startline="535" endline="538">RenameFile</referencedby>
+        <referencedby refid="classES3Cloud_1aabf44fadeb5576034f80ba81d161f9ff" compoundref="ES3Cloud_8cs" startline="561" endline="564">RenameFile</referencedby>
+        <referencedby refid="classES3Cloud_1a7704eb0ee5782a557f57373a089bb8fc" compoundref="ES3Cloud_8cs" startline="544" endline="547">RenameFile</referencedby>
+        <referencedby refid="classES3Cloud_1ab3a259148f0bb3891833a5d80fc35158" compoundref="ES3Cloud_8cs" startline="571" endline="574">RenameFile</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a56d8002ce833903ddc82311098651ca1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.RenameFile</definition>
+        <argsstring>(string filePath, string newFilePath, string user)</argsstring>
+        <name>RenameFile</name>
+        <qualifiedname>ES3Cloud.RenameFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>newFilePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <briefdescription>
+<para>Renames a file from the server. An error is <emphasis>not</emphasis> returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to delete.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="535" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="535" bodyend="538"/>
+        <references refid="classES3Cloud_1a32ca9b1e5753fc6ac4a6eb68efd685f9" compoundref="ES3Cloud_8cs" startline="527" endline="530">RenameFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a7704eb0ee5782a557f57373a089bb8fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.RenameFile</definition>
+        <argsstring>(string filePath, string newFilePath, string user, string password)</argsstring>
+        <name>RenameFile</name>
+        <qualifiedname>ES3Cloud.RenameFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>newFilePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+<para>Renames a file from the server. An error is <emphasis>not</emphasis> returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to delete.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="544" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="544" bodyend="547"/>
+        <references refid="classES3Cloud_1a32ca9b1e5753fc6ac4a6eb68efd685f9" compoundref="ES3Cloud_8cs" startline="527" endline="530">RenameFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1afead09651fa66e88ee9683e6bd18cfa1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.RenameFile</definition>
+        <argsstring>(string filePath, string newFilePath, ES3Settings settings)</argsstring>
+        <name>RenameFile</name>
+        <qualifiedname>ES3Cloud.RenameFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>newFilePath</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Renames a file from the server. An error is <emphasis>not</emphasis> returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to delete.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="552" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="552" bodyend="555"/>
+        <references refid="classES3Cloud_1a32ca9b1e5753fc6ac4a6eb68efd685f9" compoundref="ES3Cloud_8cs" startline="527" endline="530">RenameFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1aabf44fadeb5576034f80ba81d161f9ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.RenameFile</definition>
+        <argsstring>(string filePath, string newFilePath, string user, ES3Settings settings)</argsstring>
+        <name>RenameFile</name>
+        <qualifiedname>ES3Cloud.RenameFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>newFilePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Renames a file from the server. An error is <emphasis>not</emphasis> returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to delete.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="561" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="561" bodyend="564"/>
+        <references refid="classES3Cloud_1a32ca9b1e5753fc6ac4a6eb68efd685f9" compoundref="ES3Cloud_8cs" startline="527" endline="530">RenameFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1ab3a259148f0bb3891833a5d80fc35158" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.RenameFile</definition>
+        <argsstring>(string filePath, string newFilePath, string user, string password, ES3Settings settings)</argsstring>
+        <name>RenameFile</name>
+        <qualifiedname>ES3Cloud.RenameFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>newFilePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Renames a file from the server. An error is <emphasis>not</emphasis> returned if the file does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to delete.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="571" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="571" bodyend="574"/>
+        <references refid="classES3Cloud_1a32ca9b1e5753fc6ac4a6eb68efd685f9" compoundref="ES3Cloud_8cs" startline="527" endline="530">RenameFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a87763bcc0fef00b6c1294a90f3c16576" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadFilenames</definition>
+        <argsstring>(string user=&quot;&quot;, string password=&quot;&quot;)</argsstring>
+        <name>DownloadFilenames</name>
+        <qualifiedname>ES3Cloud.DownloadFilenames</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Downloads the names of all of the files on the server. Downloaded filenames are stored in the &apos;filenames&apos; variable of the <ref refid="classES3Cloud" kindref="compound">ES3Cloud</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user we want to find the filenames of.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user we want to find the filenames of.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="604" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="604" bodyend="623"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1aace2fc675b62fc03dda2d8345605d61a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.SearchFilenames</definition>
+        <argsstring>(string searchPattern, string user=&quot;&quot;, string password=&quot;&quot;)</argsstring>
+        <name>SearchFilenames</name>
+        <qualifiedname>ES3Cloud.SearchFilenames</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>searchPattern</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Downloads the names of all of the files on the server. Downloaded filenames are stored in the &apos;filenames&apos; variable of the <ref refid="classES3Cloud" kindref="compound">ES3Cloud</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user we want to find the filenames of.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user we want to find the filenames of.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>searchPattern</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A search pattern containing &apos;&apos; or &apos;_&apos; wildcards where &apos;&apos; represents zero, one, or multiple characters, and &apos;_&apos; represents a single character.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="629" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="629" bodyend="650"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1ac11a9ae58c03d3e81e8bcd3742d390e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadTimestamp</definition>
+        <argsstring>()</argsstring>
+        <name>DownloadTimestamp</name>
+        <qualifiedname>ES3Cloud.DownloadTimestamp</qualifiedname>
+        <briefdescription>
+<para>Downloads the timestamp representing when the server file was last updated. The downloaded timestamp is stored in the &apos;timestamp&apos; variable of the <ref refid="classES3Cloud" kindref="compound">ES3Cloud</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="657" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="657" bodyend="660"/>
+        <references refid="classES3Cloud_1ac11a9ae58c03d3e81e8bcd3742d390e0" compoundref="ES3Cloud_8cs" startline="657" endline="660">DownloadTimestamp</references>
+        <referencedby refid="classES3Cloud_1ac11a9ae58c03d3e81e8bcd3742d390e0" compoundref="ES3Cloud_8cs" startline="657" endline="660">DownloadTimestamp</referencedby>
+        <referencedby refid="classES3Cloud_1aeddac70656994a2fe1daa2c3aa8f88fe" compoundref="ES3Cloud_8cs" startline="664" endline="667">DownloadTimestamp</referencedby>
+        <referencedby refid="classES3Cloud_1a10c7854126fc9d7060b96c6b414c45e2" compoundref="ES3Cloud_8cs" startline="689" endline="692">DownloadTimestamp</referencedby>
+        <referencedby refid="classES3Cloud_1ae896174e6275ad96dfab8f8cf1a6775a" compoundref="ES3Cloud_8cs" startline="672" endline="675">DownloadTimestamp</referencedby>
+        <referencedby refid="classES3Cloud_1a8c93ceef2bb0ed0ed3b45df523370219" compoundref="ES3Cloud_8cs" startline="698" endline="701">DownloadTimestamp</referencedby>
+        <referencedby refid="classES3Cloud_1a42ab92148714c57f0b9fb2c2be811ce4" compoundref="ES3Cloud_8cs" startline="681" endline="684">DownloadTimestamp</referencedby>
+        <referencedby refid="classES3Cloud_1aa80f70fd52ddee3daf05b4f4520bce31" compoundref="ES3Cloud_8cs" startline="708" endline="711">DownloadTimestamp</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1aeddac70656994a2fe1daa2c3aa8f88fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadTimestamp</definition>
+        <argsstring>(string filePath)</argsstring>
+        <name>DownloadTimestamp</name>
+        <qualifiedname>ES3Cloud.DownloadTimestamp</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+<para>Downloads the timestamp representing when the server file was last updated. The downloaded timestamp is stored in the &apos;timestamp&apos; variable of the <ref refid="classES3Cloud" kindref="compound">ES3Cloud</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to get the timestamp of.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="664" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="664" bodyend="667"/>
+        <references refid="classES3Cloud_1ac11a9ae58c03d3e81e8bcd3742d390e0" compoundref="ES3Cloud_8cs" startline="657" endline="660">DownloadTimestamp</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1ae896174e6275ad96dfab8f8cf1a6775a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadTimestamp</definition>
+        <argsstring>(string filePath, string user)</argsstring>
+        <name>DownloadTimestamp</name>
+        <qualifiedname>ES3Cloud.DownloadTimestamp</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <briefdescription>
+<para>Downloads the timestamp representing when the server file was last updated. The downloaded timestamp is stored in the &apos;timestamp&apos; variable of the <ref refid="classES3Cloud" kindref="compound">ES3Cloud</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to get the timestamp of.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="672" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="672" bodyend="675"/>
+        <references refid="classES3Cloud_1ac11a9ae58c03d3e81e8bcd3742d390e0" compoundref="ES3Cloud_8cs" startline="657" endline="660">DownloadTimestamp</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a42ab92148714c57f0b9fb2c2be811ce4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadTimestamp</definition>
+        <argsstring>(string filePath, string user, string password)</argsstring>
+        <name>DownloadTimestamp</name>
+        <qualifiedname>ES3Cloud.DownloadTimestamp</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+<para>Downloads the timestamp representing when the server file was last updated. The downloaded timestamp is stored in the &apos;timestamp&apos; variable of the <ref refid="classES3Cloud" kindref="compound">ES3Cloud</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to get the timestamp of.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="681" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="681" bodyend="684"/>
+        <references refid="classES3Cloud_1ac11a9ae58c03d3e81e8bcd3742d390e0" compoundref="ES3Cloud_8cs" startline="657" endline="660">DownloadTimestamp</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a10c7854126fc9d7060b96c6b414c45e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadTimestamp</definition>
+        <argsstring>(string filePath, ES3Settings settings)</argsstring>
+        <name>DownloadTimestamp</name>
+        <qualifiedname>ES3Cloud.DownloadTimestamp</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Downloads the timestamp representing when the server file was last updated. The downloaded timestamp is stored in the &apos;timestamp&apos; variable of the <ref refid="classES3Cloud" kindref="compound">ES3Cloud</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to get the timestamp of.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="689" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="689" bodyend="692"/>
+        <references refid="classES3Cloud_1ac11a9ae58c03d3e81e8bcd3742d390e0" compoundref="ES3Cloud_8cs" startline="657" endline="660">DownloadTimestamp</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a8c93ceef2bb0ed0ed3b45df523370219" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadTimestamp</definition>
+        <argsstring>(string filePath, string user, ES3Settings settings)</argsstring>
+        <name>DownloadTimestamp</name>
+        <qualifiedname>ES3Cloud.DownloadTimestamp</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Downloads the timestamp representing when the server file was last updated. The downloaded timestamp is stored in the &apos;timestamp&apos; variable of the <ref refid="classES3Cloud" kindref="compound">ES3Cloud</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to get the timestamp of.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="698" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="698" bodyend="701"/>
+        <references refid="classES3Cloud_1ac11a9ae58c03d3e81e8bcd3742d390e0" compoundref="ES3Cloud_8cs" startline="657" endline="660">DownloadTimestamp</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1aa80f70fd52ddee3daf05b4f4520bce31" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadTimestamp</definition>
+        <argsstring>(string filePath, string user, string password, ES3Settings settings)</argsstring>
+        <name>DownloadTimestamp</name>
+        <qualifiedname>ES3Cloud.DownloadTimestamp</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Downloads the timestamp representing when the server file was last updated. The downloaded timestamp is stored in the &apos;timestamp&apos; variable of the <ref refid="classES3Cloud" kindref="compound">ES3Cloud</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to get the timestamp of.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="708" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="708" bodyend="711"/>
+        <references refid="classES3Cloud_1ac11a9ae58c03d3e81e8bcd3742d390e0" compoundref="ES3Cloud_8cs" startline="657" endline="660">DownloadTimestamp</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classES3Cloud_1a360045cc94dce619e926fee9fd7a78f5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.Sync</definition>
+        <argsstring>(ES3Settings settings, string user, string password)</argsstring>
+        <name>Sync</name>
+        <qualifiedname>ES3Cloud.Sync</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+<para>Synchronises a local file with a file on the server. If the file on the server is newer than the local copy, the local file will be overwritten by the file on the server. Otherwise, the file on the server will be overwritten. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique name of the user this file belongs to, if the file isn&apos;t globally accessible.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password of the user this file belongs to.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="149" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="149" bodyend="166"/>
+        <references refid="classES3Cloud_1ab0f7872560f0c81a8b065b7a251e41c5" compoundref="ES3Cloud_8cs" startline="292" endline="295">DownloadFile</references>
+        <references refid="classES3Internal_1_1ES3WebClass_1a50d7fe0e38d9f472da5aa212a8c75bab" compoundref="ES3WebClass_8cs" startline="47">ES3Internal.ES3WebClass.errorCode</references>
+        <references refid="classES3_1a248c68f2b255ae21a240540630889142" compoundref="ES3_8cs" startline="1344" endline="1347">ES3.FileExists</references>
+        <references refid="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" compoundref="ES3Cloud_8cs" startline="173" endline="176">UploadFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1ae7150a3059a439f855270e7c66bffad4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.UploadFile</definition>
+        <argsstring>(byte[] bytes, ES3Settings settings, string user, string password, long fileTimestamp)</argsstring>
+        <name>UploadFile</name>
+        <qualifiedname>ES3Cloud.UploadFile</qualifiedname>
+        <param>
+          <type>byte[]</type>
+          <declname>bytes</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>fileTimestamp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="266" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="266" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a58acb8ebc333c68f726d502ff6b8ad95" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadFile</definition>
+        <argsstring>(ES3File es3File, string user, string password, long timestamp)</argsstring>
+        <name>DownloadFile</name>
+        <qualifiedname>ES3Cloud.DownloadFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3File" kindref="compound">ES3File</ref></type>
+          <declname>es3File</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>timestamp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="372" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="372" bodyend="405"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a31bcba0fc18e460a2275aafa56df2f79" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadFile</definition>
+        <argsstring>(ES3Settings settings, string user, string password, long timestamp)</argsstring>
+        <name>DownloadFile</name>
+        <qualifiedname>ES3Cloud.DownloadFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>timestamp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="407" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="407" bodyend="438"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1ad322ca8d0d40f168cc464b838be97e46" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DeleteFile</definition>
+        <argsstring>(ES3Settings settings, string user, string password)</argsstring>
+        <name>DeleteFile</name>
+        <qualifiedname>ES3Cloud.DeleteFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="501" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="501" bodyend="519"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1af23a74d73a10922dd945da5dbcbd7cf9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.RenameFile</definition>
+        <argsstring>(ES3Settings settings, ES3Settings newSettings, string user, string password)</argsstring>
+        <name>RenameFile</name>
+        <qualifiedname>ES3Cloud.RenameFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>newSettings</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="576" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="576" bodyend="595"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1a02c340bd815cf3ab0a6b67730a122b5e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Cloud.DownloadTimestamp</definition>
+        <argsstring>(ES3Settings settings, string user, string password)</argsstring>
+        <name>DownloadTimestamp</name>
+        <qualifiedname>ES3Cloud.DownloadTimestamp</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="713" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="713" bodyend="732"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1ac54d21a3d07cfeaa481f6f6dbe1ffe85" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>long</type>
+        <definition>long ES3Cloud.DateTimeToUnixTimestamp</definition>
+        <argsstring>(DateTime dt)</argsstring>
+        <name>DateTimeToUnixTimestamp</name>
+        <qualifiedname>ES3Cloud.DateTimeToUnixTimestamp</qualifiedname>
+        <param>
+          <type>DateTime</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="738" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="738" bodyend="741"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Cloud_1af51aec17f7f088c93ac533254e29335e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>long</type>
+        <definition>long ES3Cloud.GetFileTimestamp</definition>
+        <argsstring>(ES3Settings settings)</argsstring>
+        <name>GetFileTimestamp</name>
+        <qualifiedname>ES3Cloud.GetFileTimestamp</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="743" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="743" bodyend="746"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classES3Cloud_1afda8d92443dc08489633a3bc60c6008c" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ES3Cloud.Reset</definition>
+        <argsstring>()</argsstring>
+        <name>Reset</name>
+        <qualifiedname>ES3Cloud.Reset</qualifiedname>
+        <reimplements refid="classES3Internal_1_1ES3WebClass_1a6dd83d5f047075b050e68c28aa4ec09f">Reset</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="748" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="748" bodyend="752"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ES3Cloud</label>
+        <link refid="classES3Cloud"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ES3WebClass</label>
+        <link refid="classES3Internal_1_1ES3WebClass"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ES3Cloud</label>
+        <link refid="classES3Cloud"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+encoding</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ES3WebClass</label>
+        <link refid="classES3Internal_1_1ES3WebClass"/>
+      </node>
+      <node id="3">
+        <label>System</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" line="15" column="7" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3Cloud.cs" bodystart="16" bodyend="755"/>
+    <listofallmembers>
+      <member refid="classES3Cloud_1a652ffa0a3786801be272ccbd52b396bb" prot="private" virt="non-virtual"><scope>ES3Cloud</scope><name>_data</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a50cc2681c2da6e9080fda5a502045a01" prot="protected" virt="non-virtual"><scope>ES3Cloud</scope><name>_webRequest</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1ac84e26e34a46b653d9c20be48a8dcd2a" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>AddPOSTField</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1adeb2b99df39fcb92c8ca265c749743fc" prot="protected" virt="non-virtual"><scope>ES3Cloud</scope><name>apiKey</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1ab4d813f68d4459eb0912af035e7d989a" prot="protected" virt="non-virtual"><scope>ES3Cloud</scope><name>CreateWWWForm</name></member>
+      <member refid="classES3Cloud_1ad5dee45f3ca0dd0158cddb8000e16b27" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>data</name></member>
+      <member refid="classES3Cloud_1ac54d21a3d07cfeaa481f6f6dbe1ffe85" prot="private" virt="non-virtual"><scope>ES3Cloud</scope><name>DateTimeToUnixTimestamp</name></member>
+      <member refid="classES3Cloud_1aeaa82ec536bcefc9ca792547dbbde4d3" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DeleteFile</name></member>
+      <member refid="classES3Cloud_1a0e5bffb72662fe4d6f3d39599c39843a" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DeleteFile</name></member>
+      <member refid="classES3Cloud_1a043482b69be8e917dab1273fecb9c288" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DeleteFile</name></member>
+      <member refid="classES3Cloud_1ae619775744233e0132c87933f8a20971" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DeleteFile</name></member>
+      <member refid="classES3Cloud_1a2341aaacb313ec94032d7c0b7d07f6b0" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DeleteFile</name></member>
+      <member refid="classES3Cloud_1a29bdfa5126427ffdeaf67bbf734d3d36" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DeleteFile</name></member>
+      <member refid="classES3Cloud_1a06654e0acc67b343be00dfd2b264ce76" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DeleteFile</name></member>
+      <member refid="classES3Cloud_1ad322ca8d0d40f168cc464b838be97e46" prot="private" virt="non-virtual"><scope>ES3Cloud</scope><name>DeleteFile</name></member>
+      <member refid="classES3Cloud_1ab0f7872560f0c81a8b065b7a251e41c5" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadFile</name></member>
+      <member refid="classES3Cloud_1aca575521486a02b19fef5e5fc6acda88" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadFile</name></member>
+      <member refid="classES3Cloud_1a2c608d8cb475243f87f31efe3af919fe" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadFile</name></member>
+      <member refid="classES3Cloud_1ac79c9bce4a43cf00639c19736722906e" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadFile</name></member>
+      <member refid="classES3Cloud_1a38e4b60ec6ad749b5b7ca5eec32ab423" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadFile</name></member>
+      <member refid="classES3Cloud_1a424548f92cc1e4f9b247e5e71efaddcd" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadFile</name></member>
+      <member refid="classES3Cloud_1a09a25b32c4a30f83b4f5872b9b9805eb" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadFile</name></member>
+      <member refid="classES3Cloud_1aec295dab081a085e2d53c27cff49c662" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadFile</name></member>
+      <member refid="classES3Cloud_1a41622b0cc57a698370378e90b9125227" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadFile</name></member>
+      <member refid="classES3Cloud_1aaecddac7df3c8e7c19a90c088e2ec72d" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadFile</name></member>
+      <member refid="classES3Cloud_1a58acb8ebc333c68f726d502ff6b8ad95" prot="private" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadFile</name></member>
+      <member refid="classES3Cloud_1a31bcba0fc18e460a2275aafa56df2f79" prot="private" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadFile</name></member>
+      <member refid="classES3Cloud_1a87763bcc0fef00b6c1294a90f3c16576" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadFilenames</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a9a720d15a01fbaf26c269ee055ac0232" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>downloadProgress</name></member>
+      <member refid="classES3Cloud_1ac11a9ae58c03d3e81e8bcd3742d390e0" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadTimestamp</name></member>
+      <member refid="classES3Cloud_1aeddac70656994a2fe1daa2c3aa8f88fe" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadTimestamp</name></member>
+      <member refid="classES3Cloud_1ae896174e6275ad96dfab8f8cf1a6775a" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadTimestamp</name></member>
+      <member refid="classES3Cloud_1a42ab92148714c57f0b9fb2c2be811ce4" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadTimestamp</name></member>
+      <member refid="classES3Cloud_1a10c7854126fc9d7060b96c6b414c45e2" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadTimestamp</name></member>
+      <member refid="classES3Cloud_1a8c93ceef2bb0ed0ed3b45df523370219" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadTimestamp</name></member>
+      <member refid="classES3Cloud_1aa80f70fd52ddee3daf05b4f4520bce31" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadTimestamp</name></member>
+      <member refid="classES3Cloud_1a02c340bd815cf3ab0a6b67730a122b5e" prot="private" virt="non-virtual"><scope>ES3Cloud</scope><name>DownloadTimestamp</name></member>
+      <member refid="classES3Cloud_1acf8a030bd025f7c6500ff5b9794276fa" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>encoding</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a59d8b6a710a0b66952edf92ad12bfb82" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>error</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a50d7fe0e38d9f472da5aa212a8c75bab" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>errorCode</name></member>
+      <member refid="classES3Cloud_1a902cb030768d753810309a12a35f297e" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>ES3Cloud</name></member>
+      <member refid="classES3Cloud_1ac3d077175dae583327924ba1031f190e" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>ES3Cloud</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a0cce9dca81cf51276509c7ef66a38612" prot="protected" virt="non-virtual"><scope>ES3Cloud</scope><name>ES3WebClass</name></member>
+      <member refid="classES3Cloud_1a92ea3eccbd0ba2827da04e38b17b3973" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>filenames</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1ae9a4594770a17dbe843009c4115c830a" prot="protected" virt="non-virtual"><scope>ES3Cloud</scope><name>formData</name></member>
+      <member refid="classES3Cloud_1af51aec17f7f088c93ac533254e29335e" prot="private" virt="non-virtual"><scope>ES3Cloud</scope><name>GetFileTimestamp</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a9fd07d57fac1be9f48970aecae5e80dc" prot="protected" virt="non-virtual"><scope>ES3Cloud</scope><name>GetUser</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a7453d1100c442a5a606baa70fe9c56d2" prot="protected" virt="non-virtual"><scope>ES3Cloud</scope><name>HandleError</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a9057d6c4ab87aec4217397a573fef15d" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>isDone</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a081f40fabdc04520fae215bc71f25509" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>isError</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1ac7d9d6ce2c25ac4352c573c6c68b83a3" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>IsNetworkError</name></member>
+      <member refid="classES3Cloud_1a32ca9b1e5753fc6ac4a6eb68efd685f9" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>RenameFile</name></member>
+      <member refid="classES3Cloud_1a56d8002ce833903ddc82311098651ca1" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>RenameFile</name></member>
+      <member refid="classES3Cloud_1a7704eb0ee5782a557f57373a089bb8fc" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>RenameFile</name></member>
+      <member refid="classES3Cloud_1afead09651fa66e88ee9683e6bd18cfa1" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>RenameFile</name></member>
+      <member refid="classES3Cloud_1aabf44fadeb5576034f80ba81d161f9ff" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>RenameFile</name></member>
+      <member refid="classES3Cloud_1ab3a259148f0bb3891833a5d80fc35158" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>RenameFile</name></member>
+      <member refid="classES3Cloud_1af23a74d73a10922dd945da5dbcbd7cf9" prot="private" virt="non-virtual"><scope>ES3Cloud</scope><name>RenameFile</name></member>
+      <member refid="classES3Cloud_1afda8d92443dc08489633a3bc60c6008c" prot="protected" virt="virtual"><scope>ES3Cloud</scope><name>Reset</name></member>
+      <member refid="classES3Cloud_1aace2fc675b62fc03dda2d8345605d61a" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>SearchFilenames</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1acf2a72d4f2dfdedc2458ff3132af37d0" prot="protected" virt="non-virtual"><scope>ES3Cloud</scope><name>SendWebRequest</name></member>
+      <member refid="classES3Cloud_1a517303e9eea6d7072207080e37c56edf" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>Sync</name></member>
+      <member refid="classES3Cloud_1a3772f387deefb0e5f1592b00b17cbdef" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>Sync</name></member>
+      <member refid="classES3Cloud_1aba64b3176413d28b247dd3105b78a08c" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>Sync</name></member>
+      <member refid="classES3Cloud_1af61195d42bf99f256fafa9dc97fc90c3" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>Sync</name></member>
+      <member refid="classES3Cloud_1a9e877f7a949bfc738edff365e411baf8" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>Sync</name></member>
+      <member refid="classES3Cloud_1a9898cc67cc0f2a893eee7ac7e8c2aecc" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>Sync</name></member>
+      <member refid="classES3Cloud_1ad49715fb339b2ab49849932a14d65d6d" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>Sync</name></member>
+      <member refid="classES3Cloud_1a360045cc94dce619e926fee9fd7a78f5" prot="private" virt="non-virtual"><scope>ES3Cloud</scope><name>Sync</name></member>
+      <member refid="classES3Cloud_1aa8bd70bb2105c12c7677efe41fffa819" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>text</name></member>
+      <member refid="classES3Cloud_1a5e18bdf08c468fa39b87086c5714053e" prot="private" virt="non-virtual"><scope>ES3Cloud</scope><name>timeout</name></member>
+      <member refid="classES3Cloud_1a4940a7b8e232022dca24464838d4f365" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>timestamp</name></member>
+      <member refid="classES3Cloud_1aeb408111236e39ee1d4e6fda04a14db6" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>UploadFile</name></member>
+      <member refid="classES3Cloud_1a66944f98d503ca047d3c814fdfdfb35d" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>UploadFile</name></member>
+      <member refid="classES3Cloud_1aa504b224314b4db30a2aeea1f5b7e467" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>UploadFile</name></member>
+      <member refid="classES3Cloud_1a6c609844e6316aaecbae832109d4784e" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>UploadFile</name></member>
+      <member refid="classES3Cloud_1a08ab615b3224389e6540ceac8f2f105f" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>UploadFile</name></member>
+      <member refid="classES3Cloud_1a2d8c29e636a5c6ae009ab4168852cfbb" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>UploadFile</name></member>
+      <member refid="classES3Cloud_1a9f3d0239dcde08bccac333892fced896" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>UploadFile</name></member>
+      <member refid="classES3Cloud_1afbe81e7dcdeb42727b1f278abba65b5a" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>UploadFile</name></member>
+      <member refid="classES3Cloud_1a4316b5b7b70dc1b99aa8a9be5fb521eb" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>UploadFile</name></member>
+      <member refid="classES3Cloud_1ae0ecd327505d956906ae5eebbb6a4173" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>UploadFile</name></member>
+      <member refid="classES3Cloud_1a8fd40839975c47d733acfda31a272ba6" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>UploadFile</name></member>
+      <member refid="classES3Cloud_1a340f4c272cbf67ce2d43d062c71e0d91" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>UploadFile</name></member>
+      <member refid="classES3Cloud_1ae7150a3059a439f855270e7c66bffad4" prot="private" virt="non-virtual"><scope>ES3Cloud</scope><name>UploadFile</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1ae09407822d5bd0740c81dd13b75f329e" prot="public" virt="non-virtual"><scope>ES3Cloud</scope><name>uploadProgress</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1ae1f772d8c7afb70bb1b06e110bb84a0a" prot="protected" virt="non-virtual"><scope>ES3Cloud</scope><name>url</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

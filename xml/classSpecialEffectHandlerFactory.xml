@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classSpecialEffectHandlerFactory" kind="class" language="C#" prot="public">
+    <compoundname>SpecialEffectHandlerFactory</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classSpecialEffectHandlerFactory_1a8c36def9db221ec8ce69f7df30e2ea81" prot="private" static="no" mutable="no">
+        <type>readonly Dictionary&lt; SpecialEffectType, <ref refid="interfaceISpecialEffectHandler" kindref="compound">ISpecialEffectHandler</ref> &gt;</type>
+        <definition>readonly Dictionary&lt;SpecialEffectType, ISpecialEffectHandler&gt; SpecialEffectHandlerFactory.handlers</definition>
+        <argsstring></argsstring>
+        <name>handlers</name>
+        <qualifiedname>SpecialEffectHandlerFactory.handlers</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventHandlers/SpecialEffectHandlerFactory.cs" line="9" column="33" bodyfile="Assets/Scripts/Events/EventHandlers/SpecialEffectHandlerFactory.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSpecialEffectHandlerFactory_1a3dd2d5dff4f43b4959632d32e6ba0bc6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SpecialEffectHandlerFactory.SpecialEffectHandlerFactory</definition>
+        <argsstring>()</argsstring>
+        <name>SpecialEffectHandlerFactory</name>
+        <qualifiedname>SpecialEffectHandlerFactory.SpecialEffectHandlerFactory</qualifiedname>
+        <briefdescription>
+<para>생성자: 모든 기본 SpecialEffectType에 대해 핸들러를 등록합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventHandlers/SpecialEffectHandlerFactory.cs" line="14" column="12" bodyfile="Assets/Scripts/Events/EventHandlers/SpecialEffectHandlerFactory.cs" bodystart="14" bodyend="17"/>
+        <references refid="classSpecialEffectHandlerFactory_1a70d5a161097c08051f6ec5b36f04a6c4" compoundref="SpecialEffectHandlerFactory_8cs" startline="22" endline="30">RegisterAllDefaultHandlers</references>
+      </memberdef>
+      <memberdef kind="function" id="classSpecialEffectHandlerFactory_1a1c91b7986d36fdc014ff293073f89a96" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="interfaceISpecialEffectHandler" kindref="compound">ISpecialEffectHandler</ref></type>
+        <definition>ISpecialEffectHandler SpecialEffectHandlerFactory.GetHandler</definition>
+        <argsstring>(SpecialEffectType type)</argsstring>
+        <name>GetHandler</name>
+        <qualifiedname>SpecialEffectHandlerFactory.GetHandler</qualifiedname>
+        <param>
+          <type>SpecialEffectType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>특정 SpecialEffectType에 해당하는 핸들러를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventHandlers/SpecialEffectHandlerFactory.cs" line="49" column="34" bodyfile="Assets/Scripts/Events/EventHandlers/SpecialEffectHandlerFactory.cs" bodystart="49" bodyend="58"/>
+        <referencedby refid="classEventManager_1a355c69c40c2d9bb101476692466ac9ac" compoundref="EventManager_8cs" startline="258" endline="295">EventManager.ApplyOutcomeEffects</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classSpecialEffectHandlerFactory_1a70d5a161097c08051f6ec5b36f04a6c4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SpecialEffectHandlerFactory.RegisterAllDefaultHandlers</definition>
+        <argsstring>()</argsstring>
+        <name>RegisterAllDefaultHandlers</name>
+        <qualifiedname>SpecialEffectHandlerFactory.RegisterAllDefaultHandlers</qualifiedname>
+        <briefdescription>
+<para>모든 기본 핸들러들을 등록합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventHandlers/SpecialEffectHandlerFactory.cs" line="22" column="18" bodyfile="Assets/Scripts/Events/EventHandlers/SpecialEffectHandlerFactory.cs" bodystart="22" bodyend="30"/>
+        <references refid="classSpecialEffectHandlerFactory_1a5b24a4b9da7256a2db5fbdf10fcbb526" compoundref="SpecialEffectHandlerFactory_8cs" startline="35" endline="44">RegisterHandler</references>
+        <referencedby refid="classSpecialEffectHandlerFactory_1a3dd2d5dff4f43b4959632d32e6ba0bc6" compoundref="SpecialEffectHandlerFactory_8cs" startline="14" endline="17">SpecialEffectHandlerFactory</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSpecialEffectHandlerFactory_1a5b24a4b9da7256a2db5fbdf10fcbb526" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SpecialEffectHandlerFactory.RegisterHandler</definition>
+        <argsstring>(SpecialEffectType type, ISpecialEffectHandler handler)</argsstring>
+        <name>RegisterHandler</name>
+        <qualifiedname>SpecialEffectHandlerFactory.RegisterHandler</qualifiedname>
+        <param>
+          <type>SpecialEffectType</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type><ref refid="interfaceISpecialEffectHandler" kindref="compound">ISpecialEffectHandler</ref></type>
+          <declname>handler</declname>
+        </param>
+        <briefdescription>
+<para>특정 SpecialEffectType에 해당하는 핸들러를 등록합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventHandlers/SpecialEffectHandlerFactory.cs" line="35" column="18" bodyfile="Assets/Scripts/Events/EventHandlers/SpecialEffectHandlerFactory.cs" bodystart="35" bodyend="44"/>
+        <referencedby refid="classSpecialEffectHandlerFactory_1a70d5a161097c08051f6ec5b36f04a6c4" compoundref="SpecialEffectHandlerFactory_8cs" startline="22" endline="30">RegisterAllDefaultHandlers</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>SpecialEffectType에 대응되는 핸들러를 생성하고 제공하는 팩토리 클래스입니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>SpecialEffectHandlerFactory</label>
+        <link refid="classSpecialEffectHandlerFactory"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Events/EventHandlers/SpecialEffectHandlerFactory.cs" line="7" column="7" bodyfile="Assets/Scripts/Events/EventHandlers/SpecialEffectHandlerFactory.cs" bodystart="8" bodyend="59"/>
+    <listofallmembers>
+      <member refid="classSpecialEffectHandlerFactory_1a1c91b7986d36fdc014ff293073f89a96" prot="public" virt="non-virtual"><scope>SpecialEffectHandlerFactory</scope><name>GetHandler</name></member>
+      <member refid="classSpecialEffectHandlerFactory_1a8c36def9db221ec8ce69f7df30e2ea81" prot="private" virt="non-virtual"><scope>SpecialEffectHandlerFactory</scope><name>handlers</name></member>
+      <member refid="classSpecialEffectHandlerFactory_1a70d5a161097c08051f6ec5b36f04a6c4" prot="private" virt="non-virtual"><scope>SpecialEffectHandlerFactory</scope><name>RegisterAllDefaultHandlers</name></member>
+      <member refid="classSpecialEffectHandlerFactory_1a5b24a4b9da7256a2db5fbdf10fcbb526" prot="private" virt="non-virtual"><scope>SpecialEffectHandlerFactory</scope><name>RegisterHandler</name></member>
+      <member refid="classSpecialEffectHandlerFactory_1a3dd2d5dff4f43b4959632d32e6ba0bc6" prot="public" virt="non-virtual"><scope>SpecialEffectHandlerFactory</scope><name>SpecialEffectHandlerFactory</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

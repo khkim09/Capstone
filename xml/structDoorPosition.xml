@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structDoorPosition" kind="struct" language="C#" prot="public">
+    <compoundname>DoorPosition</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structDoorPosition_1aa9b01dac11a0393895589472bb644d60" prot="public" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int DoorPosition.position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <qualifiedname>DoorPosition.position</qualifiedname>
+        <briefdescription>
+<para>문의 상대적 위치 (방 내부 그리드 기준) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/DoorPosition.cs" line="11" column="23" bodyfile="Assets/Scripts/Ship/Doors/DoorPosition.cs" bodystart="11" bodyend="-1"/>
+        <referencedby refid="classCrewMovementValidator_1a22d0bc7e909e7090b18c4956d997da22" compoundref="CrewMovementValidator_8cs" startline="110" endline="134">CrewMovementValidator.AreRoomsConnectedThroughDoors</referencedby>
+        <referencedby refid="classShipValidationHelper_1a11fc072a1eafd79fadee661b4af713a6" compoundref="ShipValidatonHelper_8cs" startline="212" endline="330">ShipValidationHelper.CheckAllRoomsPathConnectedByDoors</referencedby>
+        <referencedby refid="structDoorPosition_1abbe05402adec9f20840aa61cb93f2204" compoundref="DoorPosition_8cs" startline="21" endline="25">DoorPosition</referencedby>
+        <referencedby refid="classRoomData_1a32d344538a3e29e053bad7a953f6d088" compoundref="RoomData_8cs" startline="153" endline="177">RoomData&lt; T &gt;.GetDoorPositionsWithDirection</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structDoorPosition_1a57a3b25d1cc64716f7ffb23cd1ac8752" prot="public" static="no" mutable="no">
+        <type>DoorDirection</type>
+        <definition>DoorDirection DoorPosition.direction</definition>
+        <argsstring></argsstring>
+        <name>direction</name>
+        <qualifiedname>DoorPosition.direction</qualifiedname>
+        <briefdescription>
+<para>문의 방향 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/DoorPosition.cs" line="14" column="26" bodyfile="Assets/Scripts/Ship/Doors/DoorPosition.cs" bodystart="14" bodyend="-1"/>
+        <referencedby refid="classCrewMovementValidator_1a22d0bc7e909e7090b18c4956d997da22" compoundref="CrewMovementValidator_8cs" startline="110" endline="134">CrewMovementValidator.AreRoomsConnectedThroughDoors</referencedby>
+        <referencedby refid="classShipValidationHelper_1a11fc072a1eafd79fadee661b4af713a6" compoundref="ShipValidatonHelper_8cs" startline="212" endline="330">ShipValidationHelper.CheckAllRoomsPathConnectedByDoors</referencedby>
+        <referencedby refid="classCrewMovementValidator_1a5f57c030a16c4ecb73d0ceb9e31a82e6" compoundref="CrewMovementValidator_8cs" startline="85" endline="104">CrewMovementValidator.CorridorRoomConnectionValid</referencedby>
+        <referencedby refid="structDoorPosition_1abbe05402adec9f20840aa61cb93f2204" compoundref="DoorPosition_8cs" startline="21" endline="25">DoorPosition</referencedby>
+        <referencedby refid="classRoomData_1a32d344538a3e29e053bad7a953f6d088" compoundref="RoomData_8cs" startline="153" endline="177">RoomData&lt; T &gt;.GetDoorPositionsWithDirection</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structDoorPosition_1abbe05402adec9f20840aa61cb93f2204" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>DoorPosition.DoorPosition</definition>
+        <argsstring>(Vector2Int pos, DoorDirection dir)</argsstring>
+        <name>DoorPosition</name>
+        <qualifiedname>DoorPosition.DoorPosition</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>DoorDirection</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>문 기본 생성자 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>문의 상대적 위치 (방 내부 그리드 기준)</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>문의 방향</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/DoorPosition.cs" line="21" column="12" bodyfile="Assets/Scripts/Ship/Doors/DoorPosition.cs" bodystart="21" bodyend="25"/>
+        <references refid="structDoorPosition_1a57a3b25d1cc64716f7ffb23cd1ac8752" compoundref="DoorPosition_8cs" startline="14">direction</references>
+        <references refid="structDoorPosition_1aa9b01dac11a0393895589472bb644d60" compoundref="DoorPosition_8cs" startline="11">position</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>문의 위치와 방향 정보를 담는 구조체 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>DoorPosition</label>
+        <link refid="structDoorPosition"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/Doors/DoorPosition.cs" line="8" column="7" bodyfile="Assets/Scripts/Ship/Doors/DoorPosition.cs" bodystart="9" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structDoorPosition_1a57a3b25d1cc64716f7ffb23cd1ac8752" prot="public" virt="non-virtual"><scope>DoorPosition</scope><name>direction</name></member>
+      <member refid="structDoorPosition_1abbe05402adec9f20840aa61cb93f2204" prot="public" virt="non-virtual"><scope>DoorPosition</scope><name>DoorPosition</name></member>
+      <member refid="structDoorPosition_1aa9b01dac11a0393895589472bb644d60" prot="public" virt="non-virtual"><scope>DoorPosition</scope><name>position</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

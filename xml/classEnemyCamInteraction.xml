@@ -1,0 +1,365 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEnemyCamInteraction" kind="class" language="C#" prot="public">
+    <compoundname>EnemyCamInteraction</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerDownHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerUpHandler</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classEnemyCamInteraction_1ab858d701fd4ad49ef50eb61386e79921" prot="public" static="no" mutable="no">
+        <type>Camera</type>
+        <definition>Camera EnemyCamInteraction.enemyCam</definition>
+        <argsstring></argsstring>
+        <name>enemyCam</name>
+        <qualifiedname>EnemyCamInteraction.enemyCam</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="8" column="19" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyCamInteraction_1ac5eeefc263e3c667b346ca6849ef8351" prot="public" static="no" mutable="no">
+        <type>RectTransform</type>
+        <definition>RectTransform EnemyCamInteraction.displayRect</definition>
+        <argsstring></argsstring>
+        <name>displayRect</name>
+        <qualifiedname>EnemyCamInteraction.displayRect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="9" column="26" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyCamInteraction_1a856a23694a8c52fd7b0cb91b53589018" prot="public" static="no" mutable="no">
+        <type>RenderTexture</type>
+        <definition>RenderTexture EnemyCamInteraction.enemyCamTexture</definition>
+        <argsstring></argsstring>
+        <name>enemyCamTexture</name>
+        <qualifiedname>EnemyCamInteraction.enemyCamTexture</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="10" column="26" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyCamInteraction_1a7431eeae9b5148c7fe106b3e511d869a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float EnemyCamInteraction.enemyCamPadding</definition>
+        <argsstring></argsstring>
+        <name>enemyCamPadding</name>
+        <qualifiedname>EnemyCamInteraction.enemyCamPadding</qualifiedname>
+        <initializer>= 1.1f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="178" column="18" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="178" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classEnemyCamInteraction_1a448f05d3d82b03b4a835f4744c95a771" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool EnemyCamInteraction.displayOn</definition>
+        <argsstring></argsstring>
+        <name>displayOn</name>
+        <qualifiedname>EnemyCamInteraction.displayOn</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="11" column="18" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyCamInteraction_1a9ce8e702584cf6638665c8838a950e90" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 EnemyCamInteraction.dragStartPos</definition>
+        <argsstring></argsstring>
+        <name>dragStartPos</name>
+        <qualifiedname>EnemyCamInteraction.dragStartPos</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="28" column="13" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyCamInteraction_1a09728558dcd2ed4c349c91e9c906aa03" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 EnemyCamInteraction.dragEndPos</definition>
+        <argsstring></argsstring>
+        <name>dragEndPos</name>
+        <qualifiedname>EnemyCamInteraction.dragEndPos</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="29" column="13" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyCamInteraction_1ae5e92d7168abb65f64acf9c3bd723702" prot="private" static="no" mutable="no">
+        <type>Bounds</type>
+        <definition>Bounds EnemyCamInteraction.enemyBound</definition>
+        <argsstring></argsstring>
+        <name>enemyBound</name>
+        <qualifiedname>EnemyCamInteraction.enemyBound</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="176" column="20" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="176" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEnemyCamInteraction_1a0baf8dc30cc909008588d6cd6d61d4c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnemyCamInteraction.PanelClicked</definition>
+        <argsstring>()</argsstring>
+        <name>PanelClicked</name>
+        <qualifiedname>EnemyCamInteraction.PanelClicked</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="13" column="17" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="13" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyCamInteraction_1a2c8b928b05477a7a75bfe5d84c4d021b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnemyCamInteraction.OnPointerDown</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerDown</name>
+        <qualifiedname>EnemyCamInteraction.OnPointerDown</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="30" column="17" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="30" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyCamInteraction_1aab16f4abe2b064621da0d640f57cfed5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnemyCamInteraction.OnPointerUp</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerUp</name>
+        <qualifiedname>EnemyCamInteraction.OnPointerUp</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="70" column="17" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="70" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyCamInteraction_1a83bbaeb4c1d5b1f0b62ea6c01f1d9038" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnemyCamInteraction.EnemyCamAim</definition>
+        <argsstring>()</argsstring>
+        <name>EnemyCamAim</name>
+        <qualifiedname>EnemyCamInteraction.EnemyCamAim</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="179" column="17" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="179" bodyend="189"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEnemyCamInteraction_1a2903df66948e118b914e20c9952a56c8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2</type>
+        <definition>Vector2 EnemyCamInteraction.RectPointToUV</definition>
+        <argsstring>(Vector2 point, RectTransform rect)</argsstring>
+        <name>RectPointToUV</name>
+        <qualifiedname>EnemyCamInteraction.RectPointToUV</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>point</declname>
+        </param>
+        <param>
+          <type>RectTransform</type>
+          <declname>rect</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="125" column="21" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="125" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyCamInteraction_1a9fb6a353c2b09a8c009528075eb9076c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2?</type>
+        <definition>Vector2? EnemyCamInteraction.MainScreenPointToEnemyCamScreenPoint</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>MainScreenPointToEnemyCamScreenPoint</name>
+        <qualifiedname>EnemyCamInteraction.MainScreenPointToEnemyCamScreenPoint</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="131" column="21" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="131" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyCamInteraction_1ac0cda404ce2eee8080a2c7f7039da2c6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Rect</type>
+        <definition>Rect EnemyCamInteraction.GetWorldRect</definition>
+        <argsstring>()</argsstring>
+        <name>GetWorldRect</name>
+        <qualifiedname>EnemyCamInteraction.GetWorldRect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="147" column="18" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="147" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyCamInteraction_1a538d1f1c6ad8530fbcdb55041a3bb9dc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnemyCamInteraction.CalculateBounds</definition>
+        <argsstring>()</argsstring>
+        <name>CalculateBounds</name>
+        <qualifiedname>EnemyCamInteraction.CalculateBounds</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="160" column="18" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="160" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyCamInteraction_1a457076aa7bfddfd40c1a1220c58f30fa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnemyCamInteraction.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>EnemyCamInteraction.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="191" column="10" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="191" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyCamInteraction_1ab31efe63aab5aca8ba23c1c9de19df6a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnemyCamInteraction.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>EnemyCamInteraction.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="203" column="10" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="203" bodyend="206"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EnemyCamInteraction</label>
+        <link refid="classEnemyCamInteraction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IPointerDownHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerUpHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>EnemyCamInteraction</label>
+        <link refid="classEnemyCamInteraction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-dragEndPos</edgelabel>
+          <edgelabel>-dragStartPos</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IPointerDownHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerUpHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="5">
+        <label>UnityEngine</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" line="6" column="7" bodyfile="Assets/Scripts/UI/Combat/EnemyCamInteraction.cs" bodystart="7" bodyend="207"/>
+    <listofallmembers>
+      <member refid="classEnemyCamInteraction_1a538d1f1c6ad8530fbcdb55041a3bb9dc" prot="private" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>CalculateBounds</name></member>
+      <member refid="classEnemyCamInteraction_1a448f05d3d82b03b4a835f4744c95a771" prot="private" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>displayOn</name></member>
+      <member refid="classEnemyCamInteraction_1ac5eeefc263e3c667b346ca6849ef8351" prot="public" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>displayRect</name></member>
+      <member refid="classEnemyCamInteraction_1a09728558dcd2ed4c349c91e9c906aa03" prot="private" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>dragEndPos</name></member>
+      <member refid="classEnemyCamInteraction_1a9ce8e702584cf6638665c8838a950e90" prot="private" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>dragStartPos</name></member>
+      <member refid="classEnemyCamInteraction_1ae5e92d7168abb65f64acf9c3bd723702" prot="private" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>enemyBound</name></member>
+      <member refid="classEnemyCamInteraction_1ab858d701fd4ad49ef50eb61386e79921" prot="public" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>enemyCam</name></member>
+      <member refid="classEnemyCamInteraction_1a83bbaeb4c1d5b1f0b62ea6c01f1d9038" prot="public" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>EnemyCamAim</name></member>
+      <member refid="classEnemyCamInteraction_1a7431eeae9b5148c7fe106b3e511d869a" prot="public" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>enemyCamPadding</name></member>
+      <member refid="classEnemyCamInteraction_1a856a23694a8c52fd7b0cb91b53589018" prot="public" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>enemyCamTexture</name></member>
+      <member refid="classEnemyCamInteraction_1ac0cda404ce2eee8080a2c7f7039da2c6" prot="private" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>GetWorldRect</name></member>
+      <member refid="classEnemyCamInteraction_1a9fb6a353c2b09a8c009528075eb9076c" prot="private" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>MainScreenPointToEnemyCamScreenPoint</name></member>
+      <member refid="classEnemyCamInteraction_1a2c8b928b05477a7a75bfe5d84c4d021b" prot="public" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>OnPointerDown</name></member>
+      <member refid="classEnemyCamInteraction_1aab16f4abe2b064621da0d640f57cfed5" prot="public" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>OnPointerUp</name></member>
+      <member refid="classEnemyCamInteraction_1a0baf8dc30cc909008588d6cd6d61d4c9" prot="public" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>PanelClicked</name></member>
+      <member refid="classEnemyCamInteraction_1a2903df66948e118b914e20c9952a56c8" prot="private" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>RectPointToUV</name></member>
+      <member refid="classEnemyCamInteraction_1a457076aa7bfddfd40c1a1220c58f30fa" prot="private" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>Start</name></member>
+      <member refid="classEnemyCamInteraction_1ab31efe63aab5aca8ba23c1c9de19df6a" prot="private" virt="non-virtual"><scope>EnemyCamInteraction</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

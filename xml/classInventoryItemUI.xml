@@ -1,0 +1,755 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classInventoryItemUI" kind="class" language="C#" prot="public">
+    <compoundname>InventoryItemUI</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerEnterHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerExitHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerClickHandler</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classInventoryItemUI_1a27cf865509718757701f2952ee963564" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool InventoryItemUI.isInteractable</definition>
+        <argsstring></argsstring>
+        <name>isInteractable</name>
+        <qualifiedname>InventoryItemUI.isInteractable</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>이 슬롯이 클릭 및 하이라이트 가능한지 여부입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="14" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="14" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1a1bb0b78417bfa62ed33e337121659f59" compoundref="InventoryItemUI_8cs" startline="174" endline="211">OnPointerClick</referencedby>
+        <referencedby refid="classInventoryItemUI_1a854a9ada22732f40d4f4e5d9d0f9af7a" compoundref="InventoryItemUI_8cs" startline="160" endline="164">OnPointerEnter</referencedby>
+        <referencedby refid="classInventoryItemUI_1a3e36b64f7526dd700877dbfaad86ff27" compoundref="InventoryItemUI_8cs" startline="167" endline="171">OnPointerExit</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classInventoryItemUI_1a775b81913a28e744f7fec9a5675f2868" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image InventoryItemUI.itemShapeImage</definition>
+        <argsstring></argsstring>
+        <name>itemShapeImage</name>
+        <qualifiedname>InventoryItemUI.itemShapeImage</qualifiedname>
+        <briefdescription>
+<para>아이템 모양을 표시할 Image 컴포넌트입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="17" column="20" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="17" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1a6415995ca217cb1127e9258caecee975" prot="private" static="no" mutable="no">
+        <type>List&lt; Sprite &gt;</type>
+        <definition>List&lt;Sprite&gt; InventoryItemUI.itemShapeSprites</definition>
+        <argsstring></argsstring>
+        <name>itemShapeSprites</name>
+        <qualifiedname>InventoryItemUI.itemShapeSprites</qualifiedname>
+        <briefdescription>
+<para>아이템 모양별로 사용할 스프라이트 리스트입니다. shape enum 순서에 맞춰야 합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="20" column="19" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="20" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1ad11f94aa89e13dafa90594bf4091b10d" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image InventoryItemUI.itemImage</definition>
+        <argsstring></argsstring>
+        <name>itemImage</name>
+        <qualifiedname>InventoryItemUI.itemImage</qualifiedname>
+        <briefdescription>
+<para>아이템 이미지를 보여주는 UI 요소입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="23" column="20" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="23" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1a3bd99963ba2eb9a2048b83db0243f596" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI InventoryItemUI.itemNameText</definition>
+        <argsstring></argsstring>
+        <name>itemNameText</name>
+        <qualifiedname>InventoryItemUI.itemNameText</qualifiedname>
+        <briefdescription>
+<para>아이템 이름을 표시하는 텍스트 UI 요소입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="26" column="30" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="26" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1a0d9fd41fc111f34c6c7ccfaf1577e76b" compoundref="InventoryItemUI_8cs" startline="77" endline="83">ApplyColor</referencedby>
+        <referencedby refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1a6d081d58432527f9d41a6acb8a830ad6" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI InventoryItemUI.categoryText</definition>
+        <argsstring></argsstring>
+        <name>categoryText</name>
+        <qualifiedname>InventoryItemUI.categoryText</qualifiedname>
+        <briefdescription>
+<para>아이템 종류를 표시하는 텍스트 UI 요소입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="29" column="30" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="29" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1a0d9fd41fc111f34c6c7ccfaf1577e76b" compoundref="InventoryItemUI_8cs" startline="77" endline="83">ApplyColor</referencedby>
+        <referencedby refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1a41ae5960c6780c36d55c34d4b4dbf379" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI InventoryItemUI.quantityText</definition>
+        <argsstring></argsstring>
+        <name>quantityText</name>
+        <qualifiedname>InventoryItemUI.quantityText</qualifiedname>
+        <briefdescription>
+<para>아이템 수량을 표시하는 텍스트 UI 요소입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="32" column="30" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="32" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1a0d9fd41fc111f34c6c7ccfaf1577e76b" compoundref="InventoryItemUI_8cs" startline="77" endline="83">ApplyColor</referencedby>
+        <referencedby refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1abd4e5a269736ac881a0541bbe46686bf" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI InventoryItemUI.priceText</definition>
+        <argsstring></argsstring>
+        <name>priceText</name>
+        <qualifiedname>InventoryItemUI.priceText</qualifiedname>
+        <briefdescription>
+<para>아이템 가격을 표시하는 텍스트 UI 요소입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="35" column="30" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="35" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1a0d9fd41fc111f34c6c7ccfaf1577e76b" compoundref="InventoryItemUI_8cs" startline="77" endline="83">ApplyColor</referencedby>
+        <referencedby refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1addffab0638454fbd64d165414b528522" prot="private" static="no" mutable="no">
+        <type><ref refid="classMiddlePanelUI" kindref="compound">MiddlePanelUI</ref></type>
+        <definition>MiddlePanelUI InventoryItemUI.middlePanel</definition>
+        <argsstring></argsstring>
+        <name>middlePanel</name>
+        <qualifiedname>InventoryItemUI.middlePanel</qualifiedname>
+        <briefdescription>
+<para>아이템 선택 시 열리는 MiddlePanel UI입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="38" column="28" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="38" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1a1bb0b78417bfa62ed33e337121659f59" compoundref="InventoryItemUI_8cs" startline="174" endline="211">OnPointerClick</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1a8a6b4e5e6ae6ae141008439c235167bb" prot="private" static="no" mutable="no">
+        <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+        <definition>TradingItemData InventoryItemUI.currentItemData</definition>
+        <argsstring></argsstring>
+        <name>currentItemData</name>
+        <qualifiedname>InventoryItemUI.currentItemData</qualifiedname>
+        <briefdescription>
+<para>현재 슬롯에 연결된 아이템 데이터입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="43" column="29" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="43" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1aa8b961683770e713e8abb140dc84dac9" compoundref="InventoryItemUI_8cs" startline="227" endline="230">GetItemData</referencedby>
+        <referencedby refid="classInventoryItemUI_1a9242f54fd97f34dc928217add3393f4f" compoundref="InventoryItemUI_8cs" startline="154" endline="157">GetStoredItemName</referencedby>
+        <referencedby refid="classInventoryItemUI_1a1bb0b78417bfa62ed33e337121659f59" compoundref="InventoryItemUI_8cs" startline="174" endline="211">OnPointerClick</referencedby>
+        <referencedby refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1a6d97fbab8a5b1f853ffe0c3f8f10802c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int InventoryItemUI.currentQuantity</definition>
+        <argsstring></argsstring>
+        <name>currentQuantity</name>
+        <qualifiedname>InventoryItemUI.currentQuantity</qualifiedname>
+        <briefdescription>
+<para>현재 슬롯의 수량입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="46" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="46" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1a68ff06239d5b2115ffec37f47d83127d" compoundref="InventoryItemUI_8cs" startline="233" endline="236">GetQuantity</referencedby>
+        <referencedby refid="classInventoryItemUI_1a1bb0b78417bfa62ed33e337121659f59" compoundref="InventoryItemUI_8cs" startline="174" endline="211">OnPointerClick</referencedby>
+        <referencedby refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1a52f6c7aa8f5e208ad597352e4d844876" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float InventoryItemUI.currentPurchasePrice</definition>
+        <argsstring></argsstring>
+        <name>currentPurchasePrice</name>
+        <qualifiedname>InventoryItemUI.currentPurchasePrice</qualifiedname>
+        <briefdescription>
+<para>현재 슬롯의 구매 당시 가격입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="49" column="19" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="49" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1a934fc6bb7dc3d491e2fc3eeba7dd6e53" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool InventoryItemUI.isSelected</definition>
+        <argsstring></argsstring>
+        <name>isSelected</name>
+        <qualifiedname>InventoryItemUI.isSelected</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>현재 슬롯의 선택 상태입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="58" column="18" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="58" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1a1bb0b78417bfa62ed33e337121659f59" compoundref="InventoryItemUI_8cs" startline="174" endline="211">OnPointerClick</referencedby>
+        <referencedby refid="classInventoryItemUI_1a854a9ada22732f40d4f4e5d9d0f9af7a" compoundref="InventoryItemUI_8cs" startline="160" endline="164">OnPointerEnter</referencedby>
+        <referencedby refid="classInventoryItemUI_1a3e36b64f7526dd700877dbfaad86ff27" compoundref="InventoryItemUI_8cs" startline="167" endline="171">OnPointerExit</referencedby>
+        <referencedby refid="classInventoryItemUI_1a3fe4150cf97c171d203c8c3272ac20c0" compoundref="InventoryItemUI_8cs" startline="214" endline="218">SetSelected</referencedby>
+        <referencedby refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1a443cbf12b8e530c7fce0a64d95165695" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color InventoryItemUI.highlightColor</definition>
+        <argsstring></argsstring>
+        <name>highlightColor</name>
+        <qualifiedname>InventoryItemUI.highlightColor</qualifiedname>
+        <initializer>= Color.yellow</initializer>
+        <briefdescription>
+<para>하이라이트 시 적용할 색상입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="65" column="20" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="65" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1a854a9ada22732f40d4f4e5d9d0f9af7a" compoundref="InventoryItemUI_8cs" startline="160" endline="164">OnPointerEnter</referencedby>
+        <referencedby refid="classInventoryItemUI_1a3fe4150cf97c171d203c8c3272ac20c0" compoundref="InventoryItemUI_8cs" startline="214" endline="218">SetSelected</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1a9af2b923bc651ca19de037037026e71f" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color InventoryItemUI.itemNameOriginalColor</definition>
+        <argsstring></argsstring>
+        <name>itemNameOriginalColor</name>
+        <qualifiedname>InventoryItemUI.itemNameOriginalColor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="67" column="19" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1a718d349202a4e5b44aeaa68127b3ba95" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color InventoryItemUI.priceOriginalColor</definition>
+        <argsstring></argsstring>
+        <name>priceOriginalColor</name>
+        <qualifiedname>InventoryItemUI.priceOriginalColor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="68" column="19" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1ab497355cf7a6013d351aff31998d4fb4" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color InventoryItemUI.quantityOriginalColor</definition>
+        <argsstring></argsstring>
+        <name>quantityOriginalColor</name>
+        <qualifiedname>InventoryItemUI.quantityOriginalColor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="69" column="19" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryItemUI_1aee557b02140b8363ea5c4fdef005042f" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color InventoryItemUI.categoryOriginalColor</definition>
+        <argsstring></argsstring>
+        <name>categoryOriginalColor</name>
+        <qualifiedname>InventoryItemUI.categoryOriginalColor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="70" column="19" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="70" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classInventoryItemUI_1a8ca12d02d05b6beb57e1104fdede84c4" prot="private" static="yes" mutable="no">
+        <type><ref refid="classInventoryItemUI" kindref="compound">InventoryItemUI</ref></type>
+        <definition>InventoryItemUI InventoryItemUI._currentSelectedItem</definition>
+        <argsstring></argsstring>
+        <name>_currentSelectedItem</name>
+        <qualifiedname>InventoryItemUI._currentSelectedItem</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>현재 선택된 슬롯 인스턴스입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="52" column="36" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="52" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1afb94e5e9c907477c99ee0c6631f85a11" compoundref="InventoryItemUI_8cs" startline="221" endline="224">GetCurrentSelectedItem</referencedby>
+        <referencedby refid="classInventoryItemUI_1a1bb0b78417bfa62ed33e337121659f59" compoundref="InventoryItemUI_8cs" startline="174" endline="211">OnPointerClick</referencedby>
+        <referencedby refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">Setup</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classInventoryItemUI_1a924b56ba121d3954cd5699859bdbca70" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string InventoryItemUI.currentlySelectedItemName</definition>
+        <argsstring></argsstring>
+        <name>currentlySelectedItemName</name>
+        <qualifiedname>InventoryItemUI.currentlySelectedItemName</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+<para>전역으로 저장된 선택된 아이템 이름입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="55" column="26" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="55" bodyend="-1"/>
+        <referencedby refid="classInventoryItemUI_1a1bb0b78417bfa62ed33e337121659f59" compoundref="InventoryItemUI_8cs" startline="174" endline="211">OnPointerClick</referencedby>
+        <referencedby refid="classTradeUIManager_1a93f1aab4674dca59610b349bc4e7f3c9" compoundref="TradeUIManager_8cs" startline="178" endline="186">TradeUIManager.OnSellItemSelected</referencedby>
+        <referencedby refid="classTradeUIManager_1a742412bbb3aa546667abb3d745245d63" compoundref="TradeUIManager_8cs" startline="213" endline="260">TradeUIManager.OpenSellPanel</referencedby>
+        <referencedby refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">Setup</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classInventoryItemUI_1a0d9fd41fc111f34c6c7ccfaf1577e76b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InventoryItemUI.ApplyColor</definition>
+        <argsstring>(Color targetColor)</argsstring>
+        <name>ApplyColor</name>
+        <qualifiedname>InventoryItemUI.ApplyColor</qualifiedname>
+        <param>
+          <type>Color</type>
+          <declname>targetColor</declname>
+        </param>
+        <briefdescription>
+<para>4개 텍스트 색상을 모두 지정된 색으로 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="77" column="18" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="77" bodyend="83"/>
+        <references refid="classInventoryItemUI_1a6d081d58432527f9d41a6acb8a830ad6" compoundref="InventoryItemUI_8cs" startline="29">categoryText</references>
+        <references refid="classInventoryItemUI_1a3bd99963ba2eb9a2048b83db0243f596" compoundref="InventoryItemUI_8cs" startline="26">itemNameText</references>
+        <references refid="classInventoryItemUI_1abd4e5a269736ac881a0541bbe46686bf" compoundref="InventoryItemUI_8cs" startline="35">priceText</references>
+        <references refid="classInventoryItemUI_1a41ae5960c6780c36d55c34d4b4dbf379" compoundref="InventoryItemUI_8cs" startline="32">quantityText</references>
+        <referencedby refid="classInventoryItemUI_1a854a9ada22732f40d4f4e5d9d0f9af7a" compoundref="InventoryItemUI_8cs" startline="160" endline="164">OnPointerEnter</referencedby>
+        <referencedby refid="classInventoryItemUI_1a3e36b64f7526dd700877dbfaad86ff27" compoundref="InventoryItemUI_8cs" startline="167" endline="171">OnPointerExit</referencedby>
+        <referencedby refid="classInventoryItemUI_1a3fe4150cf97c171d203c8c3272ac20c0" compoundref="InventoryItemUI_8cs" startline="214" endline="218">SetSelected</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InventoryItemUI.Setup</definition>
+        <argsstring>(TradingItemData itemData, int quantity, float purchasePrice)</argsstring>
+        <name>Setup</name>
+        <qualifiedname>InventoryItemUI.Setup</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+          <declname>itemData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>quantity</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>purchasePrice</declname>
+        </param>
+        <briefdescription>
+<para>아이템 데이터와 수량, 구매 당시 가격을 받아 UI를 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itemData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>아이템 데이터</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>quantity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>아이템 수량</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>purchasePrice</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>구매 당시 가격 (kg당)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="91" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="91" bodyend="151"/>
+        <references refid="classInventoryItemUI_1a8ca12d02d05b6beb57e1104fdede84c4" compoundref="InventoryItemUI_8cs" startline="52">_currentSelectedItem</references>
+        <references refid="classInventoryItemUI_1a6d081d58432527f9d41a6acb8a830ad6" compoundref="InventoryItemUI_8cs" startline="29">categoryText</references>
+        <references refid="classInventoryItemUI_1a8a6b4e5e6ae6ae141008439c235167bb" compoundref="InventoryItemUI_8cs" startline="43">currentItemData</references>
+        <references refid="classInventoryItemUI_1a924b56ba121d3954cd5699859bdbca70" compoundref="InventoryItemUI_8cs" startline="55">currentlySelectedItemName</references>
+        <references refid="classInventoryItemUI_1a52f6c7aa8f5e208ad597352e4d844876" compoundref="InventoryItemUI_8cs" startline="49">currentPurchasePrice</references>
+        <references refid="classInventoryItemUI_1a6d97fbab8a5b1f853ffe0c3f8f10802c" compoundref="InventoryItemUI_8cs" startline="46">currentQuantity</references>
+        <references refid="classInventoryItemUI_1a934fc6bb7dc3d491e2fc3eeba7dd6e53" compoundref="InventoryItemUI_8cs" startline="58">isSelected</references>
+        <references refid="classInventoryItemUI_1ad11f94aa89e13dafa90594bf4091b10d" compoundref="InventoryItemUI_8cs" startline="23">itemImage</references>
+        <references refid="classInventoryItemUI_1a3bd99963ba2eb9a2048b83db0243f596" compoundref="InventoryItemUI_8cs" startline="26">itemNameText</references>
+        <references refid="classInventoryItemUI_1a775b81913a28e744f7fec9a5675f2868" compoundref="InventoryItemUI_8cs" startline="17">itemShapeImage</references>
+        <references refid="classInventoryItemUI_1a6415995ca217cb1127e9258caecee975" compoundref="InventoryItemUI_8cs" startline="20">itemShapeSprites</references>
+        <references refid="classInventoryItemUI_1abd4e5a269736ac881a0541bbe46686bf" compoundref="InventoryItemUI_8cs" startline="35">priceText</references>
+        <references refid="classInventoryItemUI_1a41ae5960c6780c36d55c34d4b4dbf379" compoundref="InventoryItemUI_8cs" startline="32">quantityText</references>
+        <references refid="classInventoryItemUI_1a3fe4150cf97c171d203c8c3272ac20c0" compoundref="InventoryItemUI_8cs" startline="214" endline="218">SetSelected</references>
+        <referencedby refid="classInventoryUI_1a02cb5fa8b7ff46802da04cdb620227ff" compoundref="InventoryUI_8cs" startline="41" endline="66">InventoryUI.PopulateInventory</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classInventoryItemUI_1a9242f54fd97f34dc928217add3393f4f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string InventoryItemUI.GetStoredItemName</definition>
+        <argsstring>()</argsstring>
+        <name>GetStoredItemName</name>
+        <qualifiedname>InventoryItemUI.GetStoredItemName</qualifiedname>
+        <briefdescription>
+<para>이 슬롯에 연결된 아이템 이름을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="154" column="19" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="154" bodyend="157"/>
+        <references refid="classInventoryItemUI_1a8a6b4e5e6ae6ae141008439c235167bb" compoundref="InventoryItemUI_8cs" startline="43">currentItemData</references>
+      </memberdef>
+      <memberdef kind="function" id="classInventoryItemUI_1a854a9ada22732f40d4f4e5d9d0f9af7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InventoryItemUI.OnPointerEnter</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerEnter</name>
+        <qualifiedname>InventoryItemUI.OnPointerEnter</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>마우스 오버 시 강조 색상 적용 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="160" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="160" bodyend="164"/>
+        <references refid="classInventoryItemUI_1a0d9fd41fc111f34c6c7ccfaf1577e76b" compoundref="InventoryItemUI_8cs" startline="77" endline="83">ApplyColor</references>
+        <references refid="classInventoryItemUI_1a443cbf12b8e530c7fce0a64d95165695" compoundref="InventoryItemUI_8cs" startline="65">highlightColor</references>
+        <references refid="classInventoryItemUI_1a27cf865509718757701f2952ee963564" compoundref="InventoryItemUI_8cs" startline="14">isInteractable</references>
+        <references refid="classInventoryItemUI_1a934fc6bb7dc3d491e2fc3eeba7dd6e53" compoundref="InventoryItemUI_8cs" startline="58">isSelected</references>
+      </memberdef>
+      <memberdef kind="function" id="classInventoryItemUI_1a3e36b64f7526dd700877dbfaad86ff27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InventoryItemUI.OnPointerExit</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerExit</name>
+        <qualifiedname>InventoryItemUI.OnPointerExit</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>마우스 벗어날 때 원래 색상 복구 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="167" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="167" bodyend="171"/>
+        <references refid="classInventoryItemUI_1a0d9fd41fc111f34c6c7ccfaf1577e76b" compoundref="InventoryItemUI_8cs" startline="77" endline="83">ApplyColor</references>
+        <references refid="classInventoryItemUI_1a27cf865509718757701f2952ee963564" compoundref="InventoryItemUI_8cs" startline="14">isInteractable</references>
+        <references refid="classInventoryItemUI_1a934fc6bb7dc3d491e2fc3eeba7dd6e53" compoundref="InventoryItemUI_8cs" startline="58">isSelected</references>
+      </memberdef>
+      <memberdef kind="function" id="classInventoryItemUI_1a1bb0b78417bfa62ed33e337121659f59" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InventoryItemUI.OnPointerClick</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerClick</name>
+        <qualifiedname>InventoryItemUI.OnPointerClick</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>슬롯 클릭 시 선택 토글 및 MiddlePanel/하이라이터 갱신 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="174" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="174" bodyend="211"/>
+        <references refid="classInventoryItemUI_1a8ca12d02d05b6beb57e1104fdede84c4" compoundref="InventoryItemUI_8cs" startline="52">_currentSelectedItem</references>
+        <references refid="classInventoryItemUI_1a8a6b4e5e6ae6ae141008439c235167bb" compoundref="InventoryItemUI_8cs" startline="43">currentItemData</references>
+        <references refid="classInventoryItemUI_1a924b56ba121d3954cd5699859bdbca70" compoundref="InventoryItemUI_8cs" startline="55">currentlySelectedItemName</references>
+        <references refid="classInventoryItemUI_1a6d97fbab8a5b1f853ffe0c3f8f10802c" compoundref="InventoryItemUI_8cs" startline="46">currentQuantity</references>
+        <references refid="classStorageHighlightManager_1a6db160775ca800d74bdf92a796a0b737" compoundref="StorageHighlightManager_8cs" startline="24" endline="32">StorageHighlightManager.HighlightItem</references>
+        <references refid="classTradeUIManager_1a298c8e71eda7d6410024c00604ba8a9f" compoundref="TradeUIManager_8cs" startline="105" endline="105">TradeUIManager.Instance</references>
+        <references refid="classInventoryItemUI_1a27cf865509718757701f2952ee963564" compoundref="InventoryItemUI_8cs" startline="14">isInteractable</references>
+        <references refid="classInventoryItemUI_1a934fc6bb7dc3d491e2fc3eeba7dd6e53" compoundref="InventoryItemUI_8cs" startline="58">isSelected</references>
+        <references refid="classInventoryItemUI_1addffab0638454fbd64d165414b528522" compoundref="InventoryItemUI_8cs" startline="38">middlePanel</references>
+        <references refid="classTradeUIManager_1a93f1aab4674dca59610b349bc4e7f3c9" compoundref="TradeUIManager_8cs" startline="178" endline="186">TradeUIManager.OnSellItemSelected</references>
+        <references refid="classInventoryItemUI_1a3fe4150cf97c171d203c8c3272ac20c0" compoundref="InventoryItemUI_8cs" startline="214" endline="218">SetSelected</references>
+        <references refid="classMiddlePanelUI_1ae3536e2b3e7184a4e0ab728ed1eacdd5" compoundref="MiddlePanelUI_8cs" startline="103" endline="135">MiddlePanelUI.SetSelectedItem</references>
+        <references refid="classMiddlePanelUI_1ae90d302987b61efa4a72c9a138cb140f" compoundref="MiddlePanelUI_8cs" startline="184" endline="190">MiddlePanelUI.UpdatePlayerComa</references>
+      </memberdef>
+      <memberdef kind="function" id="classInventoryItemUI_1a3fe4150cf97c171d203c8c3272ac20c0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InventoryItemUI.SetSelected</definition>
+        <argsstring>(bool selected)</argsstring>
+        <name>SetSelected</name>
+        <qualifiedname>InventoryItemUI.SetSelected</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>selected</declname>
+        </param>
+        <briefdescription>
+<para>현재 슬롯의 선택 상태를 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="214" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="214" bodyend="218"/>
+        <references refid="classInventoryItemUI_1a0d9fd41fc111f34c6c7ccfaf1577e76b" compoundref="InventoryItemUI_8cs" startline="77" endline="83">ApplyColor</references>
+        <references refid="classInventoryItemUI_1a443cbf12b8e530c7fce0a64d95165695" compoundref="InventoryItemUI_8cs" startline="65">highlightColor</references>
+        <references refid="classInventoryItemUI_1a934fc6bb7dc3d491e2fc3eeba7dd6e53" compoundref="InventoryItemUI_8cs" startline="58">isSelected</references>
+        <referencedby refid="classInventoryItemUI_1a1bb0b78417bfa62ed33e337121659f59" compoundref="InventoryItemUI_8cs" startline="174" endline="211">OnPointerClick</referencedby>
+        <referencedby refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classInventoryItemUI_1aa8b961683770e713e8abb140dc84dac9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+        <definition>TradingItemData InventoryItemUI.GetItemData</definition>
+        <argsstring>()</argsstring>
+        <name>GetItemData</name>
+        <qualifiedname>InventoryItemUI.GetItemData</qualifiedname>
+        <briefdescription>
+<para>현재 슬롯의 아이템 데이터를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="227" column="28" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="227" bodyend="230"/>
+        <references refid="classInventoryItemUI_1a8a6b4e5e6ae6ae141008439c235167bb" compoundref="InventoryItemUI_8cs" startline="43">currentItemData</references>
+      </memberdef>
+      <memberdef kind="function" id="classInventoryItemUI_1a68ff06239d5b2115ffec37f47d83127d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int InventoryItemUI.GetQuantity</definition>
+        <argsstring>()</argsstring>
+        <name>GetQuantity</name>
+        <qualifiedname>InventoryItemUI.GetQuantity</qualifiedname>
+        <briefdescription>
+<para>현재 슬롯의 수량을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="233" column="16" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="233" bodyend="236"/>
+        <references refid="classInventoryItemUI_1a6d97fbab8a5b1f853ffe0c3f8f10802c" compoundref="InventoryItemUI_8cs" startline="46">currentQuantity</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classInventoryItemUI_1afb94e5e9c907477c99ee0c6631f85a11" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classInventoryItemUI" kindref="compound">InventoryItemUI</ref></type>
+        <definition>static InventoryItemUI InventoryItemUI.GetCurrentSelectedItem</definition>
+        <argsstring>()</argsstring>
+        <name>GetCurrentSelectedItem</name>
+        <qualifiedname>InventoryItemUI.GetCurrentSelectedItem</qualifiedname>
+        <briefdescription>
+<para>현재 선택된 <ref refid="classInventoryItemUI" kindref="compound">InventoryItemUI</ref> 슬롯을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="221" column="35" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="221" bodyend="224"/>
+        <references refid="classInventoryItemUI_1a8ca12d02d05b6beb57e1104fdede84c4" compoundref="InventoryItemUI_8cs" startline="52">_currentSelectedItem</references>
+        <referencedby refid="classTradeUIManager_1a742412bbb3aa546667abb3d745245d63" compoundref="TradeUIManager_8cs" startline="213" endline="260">TradeUIManager.OpenSellPanel</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>InventoryItemUI는 인벤토리 항목의 정보를 UI로 표시하고 마우스 입력에 따라 하이라이트 및 선택 기능을 수행합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="3">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="1">
+        <label>InventoryItemUI</label>
+        <link refid="classInventoryItemUI"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="3">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="1">
+        <label>InventoryItemUI</label>
+        <link refid="classInventoryItemUI"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-middlePanel</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-currentItemData</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>-_currentSelectedItem</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>MiddlePanelUI</label>
+        <link refid="classMiddlePanelUI"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-buyButton</edgelabel>
+          <edgelabel>-sellButton</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-selectedItemData</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-tradeManager</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="9">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="10">
+        <label>TradeManager</label>
+        <link refid="classTradeManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>TradingItemData</label>
+        <link refid="classTradingItemData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>UnityEngine</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" line="11" column="7" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryItemUI.cs" bodystart="12" bodyend="237"/>
+    <listofallmembers>
+      <member refid="classInventoryItemUI_1a8ca12d02d05b6beb57e1104fdede84c4" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>_currentSelectedItem</name></member>
+      <member refid="classInventoryItemUI_1a0d9fd41fc111f34c6c7ccfaf1577e76b" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>ApplyColor</name></member>
+      <member refid="classInventoryItemUI_1aee557b02140b8363ea5c4fdef005042f" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>categoryOriginalColor</name></member>
+      <member refid="classInventoryItemUI_1a6d081d58432527f9d41a6acb8a830ad6" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>categoryText</name></member>
+      <member refid="classInventoryItemUI_1a8a6b4e5e6ae6ae141008439c235167bb" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>currentItemData</name></member>
+      <member refid="classInventoryItemUI_1a924b56ba121d3954cd5699859bdbca70" prot="public" virt="non-virtual"><scope>InventoryItemUI</scope><name>currentlySelectedItemName</name></member>
+      <member refid="classInventoryItemUI_1a52f6c7aa8f5e208ad597352e4d844876" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>currentPurchasePrice</name></member>
+      <member refid="classInventoryItemUI_1a6d97fbab8a5b1f853ffe0c3f8f10802c" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>currentQuantity</name></member>
+      <member refid="classInventoryItemUI_1afb94e5e9c907477c99ee0c6631f85a11" prot="public" virt="non-virtual"><scope>InventoryItemUI</scope><name>GetCurrentSelectedItem</name></member>
+      <member refid="classInventoryItemUI_1aa8b961683770e713e8abb140dc84dac9" prot="public" virt="non-virtual"><scope>InventoryItemUI</scope><name>GetItemData</name></member>
+      <member refid="classInventoryItemUI_1a68ff06239d5b2115ffec37f47d83127d" prot="public" virt="non-virtual"><scope>InventoryItemUI</scope><name>GetQuantity</name></member>
+      <member refid="classInventoryItemUI_1a9242f54fd97f34dc928217add3393f4f" prot="public" virt="non-virtual"><scope>InventoryItemUI</scope><name>GetStoredItemName</name></member>
+      <member refid="classInventoryItemUI_1a443cbf12b8e530c7fce0a64d95165695" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>highlightColor</name></member>
+      <member refid="classInventoryItemUI_1a27cf865509718757701f2952ee963564" prot="public" virt="non-virtual"><scope>InventoryItemUI</scope><name>isInteractable</name></member>
+      <member refid="classInventoryItemUI_1a934fc6bb7dc3d491e2fc3eeba7dd6e53" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>isSelected</name></member>
+      <member refid="classInventoryItemUI_1ad11f94aa89e13dafa90594bf4091b10d" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>itemImage</name></member>
+      <member refid="classInventoryItemUI_1a9af2b923bc651ca19de037037026e71f" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>itemNameOriginalColor</name></member>
+      <member refid="classInventoryItemUI_1a3bd99963ba2eb9a2048b83db0243f596" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>itemNameText</name></member>
+      <member refid="classInventoryItemUI_1a775b81913a28e744f7fec9a5675f2868" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>itemShapeImage</name></member>
+      <member refid="classInventoryItemUI_1a6415995ca217cb1127e9258caecee975" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>itemShapeSprites</name></member>
+      <member refid="classInventoryItemUI_1addffab0638454fbd64d165414b528522" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>middlePanel</name></member>
+      <member refid="classInventoryItemUI_1a1bb0b78417bfa62ed33e337121659f59" prot="public" virt="non-virtual"><scope>InventoryItemUI</scope><name>OnPointerClick</name></member>
+      <member refid="classInventoryItemUI_1a854a9ada22732f40d4f4e5d9d0f9af7a" prot="public" virt="non-virtual"><scope>InventoryItemUI</scope><name>OnPointerEnter</name></member>
+      <member refid="classInventoryItemUI_1a3e36b64f7526dd700877dbfaad86ff27" prot="public" virt="non-virtual"><scope>InventoryItemUI</scope><name>OnPointerExit</name></member>
+      <member refid="classInventoryItemUI_1a718d349202a4e5b44aeaa68127b3ba95" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>priceOriginalColor</name></member>
+      <member refid="classInventoryItemUI_1abd4e5a269736ac881a0541bbe46686bf" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>priceText</name></member>
+      <member refid="classInventoryItemUI_1ab497355cf7a6013d351aff31998d4fb4" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>quantityOriginalColor</name></member>
+      <member refid="classInventoryItemUI_1a41ae5960c6780c36d55c34d4b4dbf379" prot="private" virt="non-virtual"><scope>InventoryItemUI</scope><name>quantityText</name></member>
+      <member refid="classInventoryItemUI_1a3fe4150cf97c171d203c8c3272ac20c0" prot="public" virt="non-virtual"><scope>InventoryItemUI</scope><name>SetSelected</name></member>
+      <member refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" prot="public" virt="non-virtual"><scope>InventoryItemUI</scope><name>Setup</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

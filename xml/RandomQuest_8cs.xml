@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="RandomQuest_8cs" kind="file" language="C#">
+    <compoundname>RandomQuest.cs</compoundname>
+    <innerclass refid="classRandomQuest" prot="public">RandomQuest</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using<sp/></highlight><highlight class="normal">System;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">System.Collections.Generic;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Unity.VisualScripting;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="classRandomQuest" refkind="compound"><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classRandomQuest" kindref="compound">RandomQuest</ref></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="12" refid="classRandomQuest_1a3e5b6c037594df66ce196d2f562d0c54" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classRandomQuest_1a3e5b6c037594df66ce196d2f562d0c54" kindref="member">questId</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="classRandomQuest_1a6afaa50385e2a7052f5b3b0193176749" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classRandomQuest_1a6afaa50385e2a7052f5b3b0193176749" kindref="member">title</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="classRandomQuest_1a11389768dc810bbdb5b734dc72cb332b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classRandomQuest_1a11389768dc810bbdb5b734dc72cb332b" kindref="member">description</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="classRandomQuest_1a43861aaf29ad90f01a7b6db8a9a3aeaa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classRandomQuest_1a43861aaf29ad90f01a7b6db8a9a3aeaa" kindref="member">questAcceptedYear</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="classRandomQuest_1a6a79ce13b73255b34ff04f66c5719cd4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classRandomQuest_1a6a79ce13b73255b34ff04f66c5719cd4" kindref="member">QuestExpiredYear</ref><sp/>=&gt;<sp/><ref refid="classRandomQuest_1a43861aaf29ad90f01a7b6db8a9a3aeaa" kindref="member">questAcceptedYear</ref><sp/>+<sp/>Constants.Quest.QuestDuration;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="classRandomQuest_1aa8f17d630915ab84844c46e2898b1508" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classRandomQuest_1aa8f17d630915ab84844c46e2898b1508" kindref="member">QuestDurationLeft</ref><sp/>=&gt;<sp/><ref refid="classRandomQuest_1a6a79ce13b73255b34ff04f66c5719cd4" kindref="member">QuestExpiredYear</ref><sp/>-<sp/><ref refid="classGameManager" kindref="compound">GameManager</ref>.<ref refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" kindref="member">Instance</ref>.<ref refid="classGameManager_1a0a5c70718a18bd796bdcf70f7411a539" kindref="member">CurrentYear</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="classRandomQuest_1a518a7719ba59a522b431811c27363882" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classRandomQuest_1a518a7719ba59a522b431811c27363882" kindref="member">acceptedPlanetId</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="classRandomQuest_1ad04280b9b186d22306ecf50063641f42" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QuestStatus<sp/><ref refid="classRandomQuest_1ad04280b9b186d22306ecf50063641f42" kindref="member">status</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="classRandomQuest_1a6d5086f8c788825038e7f250a1db0331" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>List&lt;QuestObjective&gt;<sp/><ref refid="classRandomQuest_1a6d5086f8c788825038e7f250a1db0331" kindref="member">objectives</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal">();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="classRandomQuest_1acad13a181b060dfd71c52594159d668e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>List&lt;QuestReward&gt;<sp/><ref refid="classRandomQuest_1acad13a181b060dfd71c52594159d668e" kindref="member">rewards</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal">();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="classRandomQuest_1a199505030f175f29d4fc5db53dc2675a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classRandomQuest_1a199505030f175f29d4fc5db53dc2675a" kindref="member">canCompleteQuest</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="classRandomQuest_1aeb46ec2e1e077e48a5b0f8eacf6c8e08" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classRandomQuest_1aeb46ec2e1e077e48a5b0f8eacf6c8e08" kindref="member">Accept</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>planetId)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRandomQuest_1ad04280b9b186d22306ecf50063641f42" kindref="member">status</ref><sp/>=<sp/>QuestStatus.Active;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRandomQuest_1a518a7719ba59a522b431811c27363882" kindref="member">acceptedPlanetId</ref><sp/>=<sp/>planetId;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRandomQuest_1a43861aaf29ad90f01a7b6db8a9a3aeaa" kindref="member">questAcceptedYear</ref><sp/>=<sp/>GameManager.Instance<sp/>!=<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal"><sp/>?<sp/>GameManager.Instance.CurrentYear<sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="classRandomQuest_1a1efcbeaf9ca982b479ba1ef30b29d880" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classRandomQuest_1a1efcbeaf9ca982b479ba1ef30b29d880" kindref="member">Decline</ref>()</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRandomQuest_1ad04280b9b186d22306ecf50063641f42" kindref="member">status</ref><sp/>=<sp/>QuestStatus.NotStarted;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="classRandomQuest_1aa2cfc7492db8a1aa794ddca06f564d93" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classRandomQuest_1aa2cfc7492db8a1aa794ddca06f564d93" kindref="member">GetCanComplete</ref>()</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classRandomQuest_1a199505030f175f29d4fc5db53dc2675a" kindref="member">canCompleteQuest</ref>;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetCanComplete(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>canComplete)</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRandomQuest_1a199505030f175f29d4fc5db53dc2675a" kindref="member">canCompleteQuest</ref><sp/>=<sp/>canComplete;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Assets/Scripts/Quests/RandomQuest.cs"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classShipWeaponSerialization" kind="class" language="C#" prot="public">
+    <compoundname>ShipWeaponSerialization</compoundname>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classShipWeaponSerialization_1a30be666d98b24d00c9eb0236a4a11930" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ShipWeaponSerialization.SaveAllWeapons</definition>
+        <argsstring>(List&lt; ShipWeapon &gt; weapons, string filename)</argsstring>
+        <name>SaveAllWeapons</name>
+        <qualifiedname>ShipWeaponSerialization.SaveAllWeapons</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="classShipWeapon" kindref="compound">ShipWeapon</ref> &gt;</type>
+          <declname>weapons</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>모든 무기를 저장합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>weapons</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장할 무기 목록</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장 파일명</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeaponSerialization.cs" line="15" column="24" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeaponSerialization.cs" bodystart="15" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeaponSerialization_1ac09f014409d1009491b176a774ffe1f0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ShipWeaponSerialization.SaveShipWeapons</definition>
+        <argsstring>(Ship ship, string filename)</argsstring>
+        <name>SaveShipWeapons</name>
+        <qualifiedname>ShipWeaponSerialization.SaveShipWeapons</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>함선의 모든 무기를 저장합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>무기가 설치된 함선</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장 파일명</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeaponSerialization.cs" line="33" column="24" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeaponSerialization.cs" bodystart="33" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeaponSerialization_1a47b34be77997f76fa83a713438f13ead" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classShipWeapon" kindref="compound">ShipWeapon</ref> &gt;</type>
+        <definition>static List&lt; ShipWeapon &gt; ShipWeaponSerialization.LoadAllWeapons</definition>
+        <argsstring>(string filename)</argsstring>
+        <name>LoadAllWeapons</name>
+        <qualifiedname>ShipWeaponSerialization.LoadAllWeapons</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>저장된 모든 무기를 불러옵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>불러올 파일명</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>불러온 무기 목록</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeaponSerialization.cs" line="46" column="24" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeaponSerialization.cs" bodystart="46" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeaponSerialization_1a1d1aca3f9e9f2e688ac4e5a7d6955d38" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int ShipWeaponSerialization.RestoreAllWeaponsToShip</definition>
+        <argsstring>(string filename, Ship ship)</argsstring>
+        <name>RestoreAllWeaponsToShip</name>
+        <qualifiedname>ShipWeaponSerialization.RestoreAllWeaponsToShip</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>함선에 모든 무기를 복원합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>불러올 파일명</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>대상 함선</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>복원된 무기 수</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeaponSerialization.cs" line="74" column="23" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeaponSerialization.cs" bodystart="74" bodyend="91"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Easy Save 3를 사용하여 함선 무기의 직렬화 및 역직렬화를 담당하는 유틸리티 클래스 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>ShipWeaponSerialization</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/Weapons/ShipWeaponSerialization.cs" line="8" column="15" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeaponSerialization.cs" bodystart="9" bodyend="92"/>
+    <listofallmembers>
+      <member refid="classShipWeaponSerialization_1a47b34be77997f76fa83a713438f13ead" prot="public" virt="non-virtual"><scope>ShipWeaponSerialization</scope><name>LoadAllWeapons</name></member>
+      <member refid="classShipWeaponSerialization_1a1d1aca3f9e9f2e688ac4e5a7d6955d38" prot="public" virt="non-virtual"><scope>ShipWeaponSerialization</scope><name>RestoreAllWeaponsToShip</name></member>
+      <member refid="classShipWeaponSerialization_1a30be666d98b24d00c9eb0236a4a11930" prot="public" virt="non-virtual"><scope>ShipWeaponSerialization</scope><name>SaveAllWeapons</name></member>
+      <member refid="classShipWeaponSerialization_1ac09f014409d1009491b176a774ffe1f0" prot="public" virt="non-virtual"><scope>ShipWeaponSerialization</scope><name>SaveShipWeapons</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

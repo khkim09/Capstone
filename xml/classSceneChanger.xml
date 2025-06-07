@@ -1,0 +1,310 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classSceneChanger" kind="class" language="C#" prot="public">
+    <compoundname>SceneChanger</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classSceneChanger_1a328079870231cd27a759591a57e22ede" prot="public" static="yes" mutable="no">
+        <type><ref refid="classSceneChanger" kindref="compound">SceneChanger</ref></type>
+        <definition>SceneChanger SceneChanger.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>SceneChanger.Instance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/SceneChanger.cs" line="9" column="32" bodyfile="Assets/Scripts/UI/SceneChanger.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classSceneChanger_1a0b57433a2abfd796a1adc921ebac0faa" prot="public" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image SceneChanger.fadeImage</definition>
+        <argsstring></argsstring>
+        <name>fadeImage</name>
+        <qualifiedname>SceneChanger.fadeImage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/SceneChanger.cs" line="11" column="19" bodyfile="Assets/Scripts/UI/SceneChanger.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSceneChanger_1a2aa1215d2a63174eaf65cca259d9231b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SceneChanger.fadeDuration</definition>
+        <argsstring></argsstring>
+        <name>fadeDuration</name>
+        <qualifiedname>SceneChanger.fadeDuration</qualifiedname>
+        <initializer>= 0.5f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/SceneChanger.cs" line="13" column="19" bodyfile="Assets/Scripts/UI/SceneChanger.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classSceneChanger_1a9f5bcee1c267ffa1397310fccb9b2309" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SceneChanger.IsTransitioning</definition>
+        <argsstring></argsstring>
+        <name>IsTransitioning</name>
+        <qualifiedname>SceneChanger.IsTransitioning</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/SceneChanger.cs" line="16" column="24" bodyfile="Assets/Scripts/UI/SceneChanger.cs" bodystart="16" bodyend="16"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classSceneChanger_1a6d4378b06526cdd4f97fc4d0a4e23c18" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SceneChanger.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>SceneChanger.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/SceneChanger.cs" line="18" column="18" bodyfile="Assets/Scripts/UI/SceneChanger.cs" bodystart="18" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classSceneChanger_1ace900f4671e50b083194f962a776bdc6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator SceneChanger.FadeAndSwitchScene</definition>
+        <argsstring>(string sceneName)</argsstring>
+        <name>FadeAndSwitchScene</name>
+        <qualifiedname>SceneChanger.FadeAndSwitchScene</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>sceneName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/SceneChanger.cs" line="45" column="25" bodyfile="Assets/Scripts/UI/SceneChanger.cs" bodystart="45" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classSceneChanger_1a8e4b5ccadabdc1bf08d8217eecb92fed" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator SceneChanger.stillStand</definition>
+        <argsstring>()</argsstring>
+        <name>stillStand</name>
+        <qualifiedname>SceneChanger.stillStand</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/SceneChanger.cs" line="88" column="25" bodyfile="Assets/Scripts/UI/SceneChanger.cs" bodystart="88" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classSceneChanger_1a414c25e36c5ac30a44e6af6238466b6c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator SceneChanger.BackToTheHome</definition>
+        <argsstring>(bool isDefeated)</argsstring>
+        <name>BackToTheHome</name>
+        <qualifiedname>SceneChanger.BackToTheHome</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>isDefeated</declname>
+        </param>
+        <briefdescription>
+<para>모선으로 복귀하라 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>isDefeated</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/SceneChanger.cs" line="127" column="25" bodyfile="Assets/Scripts/UI/SceneChanger.cs" bodystart="127" bodyend="172"/>
+        <references refid="classGameManager_1a85d5dc59fb89b6d024434f2bbbd33df2" compoundref="GameManager_8cs" startline="460" endline="490">GameManager.ChangeGameState</references>
+        <references refid="classSceneChanger_1a77f01b62ebf947ddd8022495d813b82d" compoundref="SceneChanger_8cs" startline="192" endline="207">Fade</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classRTSSelectionManager_1ac0db424ecf85d35f8a8106fa3bef1d64" compoundref="RTSSelectionManager_8cs" startline="94" endline="94">RTSSelectionManager.Instance</references>
+        <references refid="classGameManager_1af31b125ee50ee4ffee177b8357ef1f11" compoundref="GameManager_8cs" startline="19">GameManager.playerShip</references>
+        <references refid="classGameManager_1ad0e6a59004a4709bd6dc034be50e8a62" compoundref="GameManager_8cs" startline="591" endline="598">GameManager.SaveGameData</references>
+        <references refid="classSceneChanger_1a8c868c1087cc7f9fde81da0e86c9c59a" compoundref="SceneChanger_8cs" startline="177" endline="187">SetInputBlocking</references>
+        <referencedby refid="classSceneChanger_1aca38256f57d0002d035d5b97b1632f32" compoundref="SceneChanger_8cs" startline="110" endline="120">CombatDefeatedAndGoHome</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSceneChanger_1a8c868c1087cc7f9fde81da0e86c9c59a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SceneChanger.SetInputBlocking</definition>
+        <argsstring>(bool blockInput)</argsstring>
+        <name>SetInputBlocking</name>
+        <qualifiedname>SceneChanger.SetInputBlocking</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>blockInput</declname>
+        </param>
+        <briefdescription>
+<para>입력 차단/해제 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/SceneChanger.cs" line="177" column="18" bodyfile="Assets/Scripts/UI/SceneChanger.cs" bodystart="177" bodyend="187"/>
+        <referencedby refid="classSceneChanger_1a414c25e36c5ac30a44e6af6238466b6c" compoundref="SceneChanger_8cs" startline="127" endline="172">BackToTheHome</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSceneChanger_1a77f01b62ebf947ddd8022495d813b82d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator SceneChanger.Fade</definition>
+        <argsstring>(float targetAlpha)</argsstring>
+        <name>Fade</name>
+        <qualifiedname>SceneChanger.Fade</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>targetAlpha</declname>
+        </param>
+        <briefdescription>
+<para>알파값 0 → 1 또는 1 → 0 페이드 효과 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/SceneChanger.cs" line="192" column="25" bodyfile="Assets/Scripts/UI/SceneChanger.cs" bodystart="192" bodyend="207"/>
+        <referencedby refid="classSceneChanger_1a414c25e36c5ac30a44e6af6238466b6c" compoundref="SceneChanger_8cs" startline="127" endline="172">BackToTheHome</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSceneChanger_1a073fc80d7277cccf463fd2e3257f7a39" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SceneChanger.LoadScene</definition>
+        <argsstring>(string sceneName)</argsstring>
+        <name>LoadScene</name>
+        <qualifiedname>SceneChanger.LoadScene</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>sceneName</declname>
+        </param>
+        <briefdescription>
+<para>외부에서 호출하는 씬 전환 함수 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/SceneChanger.cs" line="35" column="17" bodyfile="Assets/Scripts/UI/SceneChanger.cs" bodystart="35" bodyend="43"/>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classGameManager_1ad0e6a59004a4709bd6dc034be50e8a62" compoundref="GameManager_8cs" startline="591" endline="598">GameManager.SaveGameData</references>
+        <referencedby refid="classGameManager_1a2ba50fa10e943f9d7f70ca36ab162742" compoundref="GameManager_8cs" startline="560" endline="586">GameManager.ContinueGame</referencedby>
+        <referencedby refid="classTradeUIController_1ab9a5418f54931badad1dd59176d7e6fb" compoundref="TradeUIController_8cs" startline="571" endline="574">TradeUIController.OnGoBackButtonClicked</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSceneChanger_1a0b6640821c18b362ff3e17c28788d7a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SceneChanger.JustStay</definition>
+        <argsstring>()</argsstring>
+        <name>JustStay</name>
+        <qualifiedname>SceneChanger.JustStay</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/SceneChanger.cs" line="78" column="17" bodyfile="Assets/Scripts/UI/SceneChanger.cs" bodystart="78" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classSceneChanger_1aca38256f57d0002d035d5b97b1632f32" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SceneChanger.CombatDefeatedAndGoHome</definition>
+        <argsstring>(bool isDefeated)</argsstring>
+        <name>CombatDefeatedAndGoHome</name>
+        <qualifiedname>SceneChanger.CombatDefeatedAndGoHome</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>isDefeated</declname>
+        </param>
+        <briefdescription>
+<para>전투 종료 후 집으로 가라 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>isDefeated</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/SceneChanger.cs" line="110" column="17" bodyfile="Assets/Scripts/UI/SceneChanger.cs" bodystart="110" bodyend="120"/>
+        <references refid="classSceneChanger_1a414c25e36c5ac30a44e6af6238466b6c" compoundref="SceneChanger_8cs" startline="127" endline="172">BackToTheHome</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>SceneChanger</label>
+        <link refid="classSceneChanger"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>SceneChanger</label>
+        <link refid="classSceneChanger"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>+Instance</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/UI/SceneChanger.cs" line="7" column="7" bodyfile="Assets/Scripts/UI/SceneChanger.cs" bodystart="8" bodyend="208"/>
+    <listofallmembers>
+      <member refid="classSceneChanger_1a6d4378b06526cdd4f97fc4d0a4e23c18" prot="private" virt="non-virtual"><scope>SceneChanger</scope><name>Awake</name></member>
+      <member refid="classSceneChanger_1a414c25e36c5ac30a44e6af6238466b6c" prot="private" virt="non-virtual"><scope>SceneChanger</scope><name>BackToTheHome</name></member>
+      <member refid="classSceneChanger_1aca38256f57d0002d035d5b97b1632f32" prot="public" virt="non-virtual"><scope>SceneChanger</scope><name>CombatDefeatedAndGoHome</name></member>
+      <member refid="classSceneChanger_1a77f01b62ebf947ddd8022495d813b82d" prot="private" virt="non-virtual"><scope>SceneChanger</scope><name>Fade</name></member>
+      <member refid="classSceneChanger_1ace900f4671e50b083194f962a776bdc6" prot="private" virt="non-virtual"><scope>SceneChanger</scope><name>FadeAndSwitchScene</name></member>
+      <member refid="classSceneChanger_1a2aa1215d2a63174eaf65cca259d9231b" prot="public" virt="non-virtual"><scope>SceneChanger</scope><name>fadeDuration</name></member>
+      <member refid="classSceneChanger_1a0b57433a2abfd796a1adc921ebac0faa" prot="public" virt="non-virtual"><scope>SceneChanger</scope><name>fadeImage</name></member>
+      <member refid="classSceneChanger_1a328079870231cd27a759591a57e22ede" prot="public" virt="non-virtual"><scope>SceneChanger</scope><name>Instance</name></member>
+      <member refid="classSceneChanger_1a9f5bcee1c267ffa1397310fccb9b2309" prot="public" virt="non-virtual"><scope>SceneChanger</scope><name>IsTransitioning</name></member>
+      <member refid="classSceneChanger_1a0b6640821c18b362ff3e17c28788d7a7" prot="public" virt="non-virtual"><scope>SceneChanger</scope><name>JustStay</name></member>
+      <member refid="classSceneChanger_1a073fc80d7277cccf463fd2e3257f7a39" prot="public" virt="non-virtual"><scope>SceneChanger</scope><name>LoadScene</name></member>
+      <member refid="classSceneChanger_1a8c868c1087cc7f9fde81da0e86c9c59a" prot="private" virt="non-virtual"><scope>SceneChanger</scope><name>SetInputBlocking</name></member>
+      <member refid="classSceneChanger_1a8e4b5ccadabdc1bf08d8217eecb92fed" prot="private" virt="non-virtual"><scope>SceneChanger</scope><name>stillStand</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

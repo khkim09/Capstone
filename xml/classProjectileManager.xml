@@ -1,0 +1,542 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classProjectileManager" kind="class" language="C#" prot="public">
+    <compoundname>ProjectileManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classProjectileManager_1a41a618a94d4b2adfb4fc530b047d0199" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="classProjectileManager" kindref="compound">ProjectileManager</ref></type>
+        <definition>ProjectileManager ProjectileManager.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>ProjectileManager.Instance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="12" column="37" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="12" bodyend="12"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classProjectileManager_1a43a0b4ed9189c0c568c6daed90a6f5ee" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="classProjectileData" kindref="compound">ProjectileData</ref> &gt;</type>
+        <definition>List&lt;ProjectileData&gt; ProjectileManager.projectileData</definition>
+        <argsstring></argsstring>
+        <name>projectileData</name>
+        <qualifiedname>ProjectileManager.projectileData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="14" column="20" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classProjectileManager_1a1bcbf4ac893f4e335411f5fdda0d98d7" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ProjectileManager.poolSize</definition>
+        <argsstring></argsstring>
+        <name>poolSize</name>
+        <qualifiedname>ProjectileManager.poolSize</qualifiedname>
+        <initializer>= 100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="16" column="19" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classProjectileManager_1abf8dd2c60fc88c0a080ac93d482cc99f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ProjectileManager.organizeIntoFolders</definition>
+        <argsstring></argsstring>
+        <name>organizeIntoFolders</name>
+        <qualifiedname>ProjectileManager.organizeIntoFolders</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="18" column="20" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classProjectileManager_1a7312a2d1c5745fcc661ace33f5bb7076" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; int, Queue&lt; <ref refid="classMyProjectile" kindref="compound">MyProjectile</ref> &gt; &gt;</type>
+        <definition>Dictionary&lt;int, Queue&lt;MyProjectile&gt; &gt; ProjectileManager.projectilePools</definition>
+        <argsstring></argsstring>
+        <name>projectilePools</name>
+        <qualifiedname>ProjectileManager.projectilePools</qualifiedname>
+        <briefdescription>
+<para>투사체 풀링 시스템 (ID 기반) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="23" column="24" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="23" bodyend="-1"/>
+        <referencedby refid="classProjectileManager_1a04870b19bc77509b05acb0d5676794b9" compoundref="ProjectileManager_8cs" startline="200" endline="230">CreateAdditionalProjectiles</referencedby>
+        <referencedby refid="classProjectileManager_1a87833f0fbdf9fbc4f67e2716e99304ef" compoundref="ProjectileManager_8cs" startline="185" endline="195">GetProjectileFromPool</referencedby>
+        <referencedby refid="classProjectileManager_1a1b0b48bf6b9e888c797c1f246e138914" compoundref="ProjectileManager_8cs" startline="94" endline="132">InitializePools</referencedby>
+        <referencedby refid="classProjectileManager_1a45642ad6cc9d0b8218ad1279d0112600" compoundref="ProjectileManager_8cs" startline="235" endline="262">ReturnProjectileToPool</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classProjectileManager_1a7ec9621031a219b62415c8c37acaabf6" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; int, <ref refid="classProjectileData" kindref="compound">ProjectileData</ref> &gt;</type>
+        <definition>Dictionary&lt;int, ProjectileData&gt; ProjectileManager.projectileDataCache</definition>
+        <argsstring></argsstring>
+        <name>projectileDataCache</name>
+        <qualifiedname>ProjectileManager.projectileDataCache</qualifiedname>
+        <briefdescription>
+<para>투사체 데이터 캐시 (ID로 빠른 접근) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="28" column="24" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="28" bodyend="-1"/>
+        <referencedby refid="classProjectileManager_1ae40a8262cabde92398a428aa82692c9f" compoundref="ProjectileManager_8cs" startline="173" endline="180">GetProjectileData</referencedby>
+        <referencedby refid="classProjectileManager_1a1b0b48bf6b9e888c797c1f246e138914" compoundref="ProjectileManager_8cs" startline="94" endline="132">InitializePools</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classProjectileManager_1ae657bb67be655f80d5b5f1d8e51366f5" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="classMyProjectile" kindref="compound">MyProjectile</ref> &gt;</type>
+        <definition>List&lt;MyProjectile&gt; ProjectileManager.activeProjectiles</definition>
+        <argsstring></argsstring>
+        <name>activeProjectiles</name>
+        <qualifiedname>ProjectileManager.activeProjectiles</qualifiedname>
+        <briefdescription>
+<para>활성화된 투사체 목록 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="33" column="18" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="33" bodyend="-1"/>
+        <referencedby refid="classProjectileManager_1aecd8f14423305c086f6ddba91dfb7c12" compoundref="ProjectileManager_8cs" startline="142" endline="166">FireProjectile</referencedby>
+        <referencedby refid="classProjectileManager_1a1b0b48bf6b9e888c797c1f246e138914" compoundref="ProjectileManager_8cs" startline="94" endline="132">InitializePools</referencedby>
+        <referencedby refid="classProjectileManager_1a45642ad6cc9d0b8218ad1279d0112600" compoundref="ProjectileManager_8cs" startline="235" endline="262">ReturnProjectileToPool</referencedby>
+        <referencedby refid="classProjectileManager_1aaeb5350608163490290e5d023bdbcf4c" compoundref="ProjectileManager_8cs" startline="267" endline="274">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classProjectileManager_1af2e782155b8909cb59687f394f456d1c" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform ProjectileManager.effectsParent</definition>
+        <argsstring></argsstring>
+        <name>effectsParent</name>
+        <qualifiedname>ProjectileManager.effectsParent</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="35" column="25" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classProjectileManager_1a4acb614be2ea348c7a95c22df484a662" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform ProjectileManager.projectilePoolsParent</definition>
+        <argsstring></argsstring>
+        <name>projectilePoolsParent</name>
+        <qualifiedname>ProjectileManager.projectilePoolsParent</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="38" column="23" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classProjectileManager_1a4d10a4fdb2c7669e528e02b10f6c614e" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform ProjectileManager.activeProjectilesParent</definition>
+        <argsstring></argsstring>
+        <name>activeProjectilesParent</name>
+        <qualifiedname>ProjectileManager.activeProjectilesParent</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="39" column="23" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classProjectileManager_1ad080b893c958efc58406c3e88b4d6e16" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProjectileManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>ProjectileManager.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="41" column="18" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="41" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classProjectileManager_1ac0d28d7dbaede30b8e38abe68fd0d253" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProjectileManager.InitializeOrganization</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeOrganization</name>
+        <qualifiedname>ProjectileManager.InitializeOrganization</qualifiedname>
+        <briefdescription>
+<para>하이어라키 조직화 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="59" column="18" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="59" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classProjectileManager_1a1b0b48bf6b9e888c797c1f246e138914" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProjectileManager.InitializePools</definition>
+        <argsstring>()</argsstring>
+        <name>InitializePools</name>
+        <qualifiedname>ProjectileManager.InitializePools</qualifiedname>
+        <briefdescription>
+<para>투사체 풀 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="94" column="18" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="94" bodyend="132"/>
+        <references refid="classProjectileManager_1ae657bb67be655f80d5b5f1d8e51366f5" compoundref="ProjectileManager_8cs" startline="33">activeProjectiles</references>
+        <references refid="classProjectileManager_1a7ec9621031a219b62415c8c37acaabf6" compoundref="ProjectileManager_8cs" startline="28">projectileDataCache</references>
+        <references refid="classProjectileManager_1a7312a2d1c5745fcc661ace33f5bb7076" compoundref="ProjectileManager_8cs" startline="23">projectilePools</references>
+      </memberdef>
+      <memberdef kind="function" id="classProjectileManager_1a87833f0fbdf9fbc4f67e2716e99304ef" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classMyProjectile" kindref="compound">MyProjectile</ref></type>
+        <definition>MyProjectile ProjectileManager.GetProjectileFromPool</definition>
+        <argsstring>(int projectileId)</argsstring>
+        <name>GetProjectileFromPool</name>
+        <qualifiedname>ProjectileManager.GetProjectileFromPool</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>projectileId</declname>
+        </param>
+        <briefdescription>
+<para>풀에서 투사체 가져오기 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="185" column="26" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="185" bodyend="195"/>
+        <references refid="classProjectileManager_1a04870b19bc77509b05acb0d5676794b9" compoundref="ProjectileManager_8cs" startline="200" endline="230">CreateAdditionalProjectiles</references>
+        <references refid="classProjectileManager_1a7312a2d1c5745fcc661ace33f5bb7076" compoundref="ProjectileManager_8cs" startline="23">projectilePools</references>
+        <referencedby refid="classProjectileManager_1aecd8f14423305c086f6ddba91dfb7c12" compoundref="ProjectileManager_8cs" startline="142" endline="166">FireProjectile</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classProjectileManager_1a04870b19bc77509b05acb0d5676794b9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProjectileManager.CreateAdditionalProjectiles</definition>
+        <argsstring>(int projectileId, int count)</argsstring>
+        <name>CreateAdditionalProjectiles</name>
+        <qualifiedname>ProjectileManager.CreateAdditionalProjectiles</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>projectileId</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+<para>풀이 부족할 때 추가 투사체 생성 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="200" column="18" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="200" bodyend="230"/>
+        <references refid="classProjectileManager_1ae40a8262cabde92398a428aa82692c9f" compoundref="ProjectileManager_8cs" startline="173" endline="180">GetProjectileData</references>
+        <references refid="classProjectileManager_1a7312a2d1c5745fcc661ace33f5bb7076" compoundref="ProjectileManager_8cs" startline="23">projectilePools</references>
+        <referencedby refid="classProjectileManager_1a87833f0fbdf9fbc4f67e2716e99304ef" compoundref="ProjectileManager_8cs" startline="185" endline="195">GetProjectileFromPool</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classProjectileManager_1aaeb5350608163490290e5d023bdbcf4c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProjectileManager.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>ProjectileManager.Update</qualifiedname>
+        <briefdescription>
+<para>모든 활성 투사체 업데이트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="267" column="18" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="267" bodyend="274"/>
+        <references refid="classProjectileManager_1ae657bb67be655f80d5b5f1d8e51366f5" compoundref="ProjectileManager_8cs" startline="33">activeProjectiles</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classProjectileManager_1aecd8f14423305c086f6ddba91dfb7c12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classMyProjectile" kindref="compound">MyProjectile</ref></type>
+        <definition>MyProjectile ProjectileManager.FireProjectile</definition>
+        <argsstring>(Vector3 startPos, Vector3 targetWorldPos, int projectileId, Action onHitCallback)</argsstring>
+        <name>FireProjectile</name>
+        <qualifiedname>ProjectileManager.FireProjectile</qualifiedname>
+        <param>
+          <type>Vector3</type>
+          <declname>startPos</declname>
+        </param>
+        <param>
+          <type>Vector3</type>
+          <declname>targetWorldPos</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>projectileId</declname>
+        </param>
+        <param>
+          <type>Action</type>
+          <declname>onHitCallback</declname>
+        </param>
+        <briefdescription>
+<para>투사체 발사 (단순화된 버전) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>startPos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>발사 위치</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>targetWorldPos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>목표 위치</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>projectileId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>투사체 ID</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>onHitCallback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>타격 시 호출될 콜백</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>발사된 투사체</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="142" column="25" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="142" bodyend="166"/>
+        <references refid="classProjectileManager_1ae657bb67be655f80d5b5f1d8e51366f5" compoundref="ProjectileManager_8cs" startline="33">activeProjectiles</references>
+        <references refid="classProjectileManager_1a87833f0fbdf9fbc4f67e2716e99304ef" compoundref="ProjectileManager_8cs" startline="185" endline="195">GetProjectileFromPool</references>
+        <referencedby refid="classShipWeapon_1a988ecbbbe6152ece7f3651236ed9b0d8" compoundref="ShipWeapon_8cs" startline="354" endline="390">ShipWeapon.Fire</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classProjectileManager_1ae40a8262cabde92398a428aa82692c9f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classProjectileData" kindref="compound">ProjectileData</ref></type>
+        <definition>ProjectileData ProjectileManager.GetProjectileData</definition>
+        <argsstring>(int projectileId)</argsstring>
+        <name>GetProjectileData</name>
+        <qualifiedname>ProjectileManager.GetProjectileData</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>projectileId</declname>
+        </param>
+        <briefdescription>
+<para>투사체 ID로 데이터 찾기 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>projectileId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>투사체 ID</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 ID의 투사체 데이터</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="173" column="27" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="173" bodyend="180"/>
+        <references refid="classProjectileManager_1a7ec9621031a219b62415c8c37acaabf6" compoundref="ProjectileManager_8cs" startline="28">projectileDataCache</references>
+        <referencedby refid="classProjectileManager_1a04870b19bc77509b05acb0d5676794b9" compoundref="ProjectileManager_8cs" startline="200" endline="230">CreateAdditionalProjectiles</referencedby>
+        <referencedby refid="classProjectileManager_1a45642ad6cc9d0b8218ad1279d0112600" compoundref="ProjectileManager_8cs" startline="235" endline="262">ReturnProjectileToPool</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classProjectileManager_1a45642ad6cc9d0b8218ad1279d0112600" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProjectileManager.ReturnProjectileToPool</definition>
+        <argsstring>(MyProjectile projectile)</argsstring>
+        <name>ReturnProjectileToPool</name>
+        <qualifiedname>ProjectileManager.ReturnProjectileToPool</qualifiedname>
+        <param>
+          <type><ref refid="classMyProjectile" kindref="compound">MyProjectile</ref></type>
+          <declname>projectile</declname>
+        </param>
+        <briefdescription>
+<para>투사체를 풀로 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="235" column="17" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="235" bodyend="262"/>
+        <references refid="classProjectileManager_1ae657bb67be655f80d5b5f1d8e51366f5" compoundref="ProjectileManager_8cs" startline="33">activeProjectiles</references>
+        <references refid="classProjectileManager_1ae40a8262cabde92398a428aa82692c9f" compoundref="ProjectileManager_8cs" startline="173" endline="180">GetProjectileData</references>
+        <references refid="classProjectileManager_1a7312a2d1c5745fcc661ace33f5bb7076" compoundref="ProjectileManager_8cs" startline="23">projectilePools</references>
+      </memberdef>
+      <memberdef kind="function" id="classProjectileManager_1af2bbfe5062f0ca0f37b6fc18aca20fbb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProjectileManager.CreateImpactEffect</definition>
+        <argsstring>(GameObject effectPrefab, Vector3 position, float duration)</argsstring>
+        <name>CreateImpactEffect</name>
+        <qualifiedname>ProjectileManager.CreateImpactEffect</qualifiedname>
+        <param>
+          <type>GameObject</type>
+          <declname>effectPrefab</declname>
+        </param>
+        <param>
+          <type>Vector3</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+<para>임팩트 이펙트 생성 (중앙 관리) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>effectPrefab</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이펙트 프리팹</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>생성 위치</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>지속 시간</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="282" column="17" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="282" bodyend="305"/>
+      </memberdef>
+      <memberdef kind="function" id="classProjectileManager_1ac8fc89ead3cfb1961d687e86f751a1bc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; int &gt;</type>
+        <definition>List&lt; int &gt; ProjectileManager.GetCompatibleProjectileIds</definition>
+        <argsstring>(ShipWeaponType weaponType)</argsstring>
+        <name>GetCompatibleProjectileIds</name>
+        <qualifiedname>ProjectileManager.GetCompatibleProjectileIds</qualifiedname>
+        <param>
+          <type>ShipWeaponType</type>
+          <declname>weaponType</declname>
+        </param>
+        <briefdescription>
+<para>무기 타입과 호환되는 투사체 ID 목록 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>weaponType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>무기 타입</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>호환되는 투사체 ID 목록</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="312" column="17" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="312" bodyend="318"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>투사체 관리 시스템 (ID 기반) 모든 투사체의 생성, 풀링, 추적, 효과를 중앙에서 관리합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ProjectileManager</label>
+        <link refid="classProjectileManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ProjectileManager</label>
+        <link refid="classProjectileManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Combat/ProjectileManager.cs" line="10" column="7" bodyfile="Assets/Scripts/Combat/ProjectileManager.cs" bodystart="11" bodyend="319"/>
+    <listofallmembers>
+      <member refid="classProjectileManager_1ae657bb67be655f80d5b5f1d8e51366f5" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>activeProjectiles</name></member>
+      <member refid="classProjectileManager_1a4d10a4fdb2c7669e528e02b10f6c614e" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>activeProjectilesParent</name></member>
+      <member refid="classProjectileManager_1ad080b893c958efc58406c3e88b4d6e16" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>Awake</name></member>
+      <member refid="classProjectileManager_1a04870b19bc77509b05acb0d5676794b9" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>CreateAdditionalProjectiles</name></member>
+      <member refid="classProjectileManager_1af2bbfe5062f0ca0f37b6fc18aca20fbb" prot="public" virt="non-virtual"><scope>ProjectileManager</scope><name>CreateImpactEffect</name></member>
+      <member refid="classProjectileManager_1af2e782155b8909cb59687f394f456d1c" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>effectsParent</name></member>
+      <member refid="classProjectileManager_1aecd8f14423305c086f6ddba91dfb7c12" prot="public" virt="non-virtual"><scope>ProjectileManager</scope><name>FireProjectile</name></member>
+      <member refid="classProjectileManager_1ac8fc89ead3cfb1961d687e86f751a1bc" prot="public" virt="non-virtual"><scope>ProjectileManager</scope><name>GetCompatibleProjectileIds</name></member>
+      <member refid="classProjectileManager_1ae40a8262cabde92398a428aa82692c9f" prot="public" virt="non-virtual"><scope>ProjectileManager</scope><name>GetProjectileData</name></member>
+      <member refid="classProjectileManager_1a87833f0fbdf9fbc4f67e2716e99304ef" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>GetProjectileFromPool</name></member>
+      <member refid="classProjectileManager_1ac0d28d7dbaede30b8e38abe68fd0d253" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>InitializeOrganization</name></member>
+      <member refid="classProjectileManager_1a1b0b48bf6b9e888c797c1f246e138914" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>InitializePools</name></member>
+      <member refid="classProjectileManager_1a41a618a94d4b2adfb4fc530b047d0199" prot="public" virt="non-virtual"><scope>ProjectileManager</scope><name>Instance</name></member>
+      <member refid="classProjectileManager_1abf8dd2c60fc88c0a080ac93d482cc99f" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>organizeIntoFolders</name></member>
+      <member refid="classProjectileManager_1a1bcbf4ac893f4e335411f5fdda0d98d7" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>poolSize</name></member>
+      <member refid="classProjectileManager_1a43a0b4ed9189c0c568c6daed90a6f5ee" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>projectileData</name></member>
+      <member refid="classProjectileManager_1a7ec9621031a219b62415c8c37acaabf6" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>projectileDataCache</name></member>
+      <member refid="classProjectileManager_1a7312a2d1c5745fcc661ace33f5bb7076" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>projectilePools</name></member>
+      <member refid="classProjectileManager_1a4acb614be2ea348c7a95c22df484a662" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>projectilePoolsParent</name></member>
+      <member refid="classProjectileManager_1a45642ad6cc9d0b8218ad1279d0112600" prot="public" virt="non-virtual"><scope>ProjectileManager</scope><name>ReturnProjectileToPool</name></member>
+      <member refid="classProjectileManager_1aaeb5350608163490290e5d023bdbcf4c" prot="private" virt="non-virtual"><scope>ProjectileManager</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

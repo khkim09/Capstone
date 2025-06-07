@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classTestStorageItemAdder" kind="class" language="C#" prot="public">
+    <compoundname>TestStorageItemAdder</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classTestStorageItemAdder_1acde1112a3a89cfb29537d7b4a85c952c" prot="private" static="no" mutable="no">
+        <type><ref refid="classTradingItemDataBase" kindref="compound">TradingItemDataBase</ref></type>
+        <definition>TradingItemDataBase TestStorageItemAdder.itemDatabase</definition>
+        <argsstring></argsstring>
+        <name>itemDatabase</name>
+        <qualifiedname>TestStorageItemAdder.itemDatabase</qualifiedname>
+        <briefdescription>
+<para>랜덤 아이템을 뽑을 TradingItemDataBase입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TestStorageItem.cs" line="11" column="34" bodyfile="Assets/Scripts/Trade/TestStorageItem.cs" bodystart="11" bodyend="-1"/>
+        <referencedby refid="classTestStorageItemAdder_1acf9231bc26add2d4187038cdc742ea81" compoundref="TestStorageItem_8cs" startline="21" endline="56">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTestStorageItemAdder_1a2d92fd9414a1e407b471335860817756" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int TestStorageItemAdder.randomItemCount</definition>
+        <argsstring></argsstring>
+        <name>randomItemCount</name>
+        <qualifiedname>TestStorageItemAdder.randomItemCount</qualifiedname>
+        <initializer>= 30</initializer>
+        <briefdescription>
+<para>추가할 아이템 종류 수입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TestStorageItem.cs" line="16" column="18" bodyfile="Assets/Scripts/Trade/TestStorageItem.cs" bodystart="16" bodyend="-1"/>
+        <referencedby refid="classTestStorageItemAdder_1acf9231bc26add2d4187038cdc742ea81" compoundref="TestStorageItem_8cs" startline="21" endline="56">Start</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classTestStorageItemAdder_1acf9231bc26add2d4187038cdc742ea81" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TestStorageItemAdder.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>TestStorageItemAdder.Start</qualifiedname>
+        <briefdescription>
+<para>시작 시 랜덤 아이템을 Storage에 추가하고 InventoryUI를 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TestStorageItem.cs" line="21" column="18" bodyfile="Assets/Scripts/Trade/TestStorageItem.cs" bodystart="21" bodyend="56"/>
+        <references refid="classStorage_1adea22f0151547f8b3c1e7618c1129cdd" compoundref="Storage_8cs" startline="67" endline="70">Storage.AddItem</references>
+        <references refid="classTestStorageItemAdder_1acde1112a3a89cfb29537d7b4a85c952c" compoundref="TestStorageItem_8cs" startline="11">itemDatabase</references>
+        <references refid="classInventoryUI_1a02cb5fa8b7ff46802da04cdb620227ff" compoundref="InventoryUI_8cs" startline="41" endline="66">InventoryUI.PopulateInventory</references>
+        <references refid="classTestStorageItemAdder_1a2d92fd9414a1e407b471335860817756" compoundref="TestStorageItem_8cs" startline="16">randomItemCount</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>테스트용: 게임 시작 시 TradingItemDataBase에서 랜덤 아이템 여러 개를 Storage에 추가합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>TestStorageItemAdder</label>
+        <link refid="classTestStorageItemAdder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="4">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>TestStorageItemAdder</label>
+        <link refid="classTestStorageItemAdder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-itemDatabase</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>TradingItemDataBase</label>
+        <link refid="classTradingItemDataBase"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Trade/TestStorageItem.cs" line="6" column="7" bodyfile="Assets/Scripts/Trade/TestStorageItem.cs" bodystart="7" bodyend="57"/>
+    <listofallmembers>
+      <member refid="classTestStorageItemAdder_1acde1112a3a89cfb29537d7b4a85c952c" prot="private" virt="non-virtual"><scope>TestStorageItemAdder</scope><name>itemDatabase</name></member>
+      <member refid="classTestStorageItemAdder_1a2d92fd9414a1e407b471335860817756" prot="private" virt="non-virtual"><scope>TestStorageItemAdder</scope><name>randomItemCount</name></member>
+      <member refid="classTestStorageItemAdder_1acf9231bc26add2d4187038cdc742ea81" prot="private" virt="non-virtual"><scope>TestStorageItemAdder</scope><name>Start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

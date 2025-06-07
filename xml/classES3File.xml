@@ -1,0 +1,1381 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classES3File" kind="class" language="C#" prot="public">
+    <compoundname>ES3File</compoundname>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classES3File_1a5df85dfaa886889b3b2ade9e1772dfdd" prot="public" static="yes" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="classES3File" kindref="compound">ES3File</ref> &gt;</type>
+        <definition>Dictionary&lt;string, ES3File&gt; ES3File.cachedFiles</definition>
+        <argsstring></argsstring>
+        <name>cachedFiles</name>
+        <qualifiedname>ES3File.cachedFiles</qualifiedname>
+        <initializer>= new Dictionary&lt;string, <ref refid="classES3File" kindref="compound">ES3File</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="14" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classES3File_1a7cfd7062efbdf26a32e4962dfced5df8" prot="public" static="no" mutable="no">
+        <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+        <definition>ES3Settings ES3File.settings</definition>
+        <argsstring></argsstring>
+        <name>settings</name>
+        <qualifiedname>ES3File.settings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="16" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classES3File_1ad6bdd8f30d16521020ab49dbf82ef388" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="structES3Internal_1_1ES3Data" kindref="compound">ES3Data</ref> &gt;</type>
+        <definition>Dictionary&lt;string, ES3Data&gt; ES3File.cache</definition>
+        <argsstring></argsstring>
+        <name>cache</name>
+        <qualifiedname>ES3File.cache</qualifiedname>
+        <initializer>= new Dictionary&lt;string, <ref refid="structES3Internal_1_1ES3Data" kindref="compound">ES3Data</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="17" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3File_1a82dae879175ba35f596473a376d39706" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ES3File.syncWithFile</definition>
+        <argsstring></argsstring>
+        <name>syncWithFile</name>
+        <qualifiedname>ES3File.syncWithFile</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="18" column="18" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3File_1ae3bf795eeb835ee55aab4f361b385179" prot="private" static="no" mutable="no">
+        <type>DateTime</type>
+        <definition>DateTime ES3File.timestamp</definition>
+        <argsstring></argsstring>
+        <name>timestamp</name>
+        <qualifiedname>ES3File.timestamp</qualifiedname>
+        <initializer>= DateTime.UtcNow</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="19" column="22" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3File_1abca8da700179e3f9f72685b748c3e6b1" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ES3File.dirty</definition>
+        <argsstring></argsstring>
+        <name>dirty</name>
+        <qualifiedname>ES3File.dirty</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="20" column="18" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classES3File_1a905c7ac012957daebeec0dad242cc1e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3File.ES3File</definition>
+        <argsstring>()</argsstring>
+        <name>ES3File</name>
+        <qualifiedname>ES3File.ES3File</qualifiedname>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3File" kindref="compound">ES3File</ref> and loads the default file into the <ref refid="classES3File" kindref="compound">ES3File</ref> if there is data to load. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="23" column="12" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="23" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1ac4120e6304d30f0c66ac876dd4b5c5bc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3File.ES3File</definition>
+        <argsstring>(string filePath)</argsstring>
+        <name>ES3File</name>
+        <qualifiedname>ES3File.ES3File</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3File" kindref="compound">ES3File</ref> and loads the specified file into the <ref refid="classES3File" kindref="compound">ES3File</ref> if there is data to load. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filepath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file in storage our <ref refid="classES3File" kindref="compound">ES3File</ref> is associated with.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="27" column="12" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1aa681f4813808451bd26cd20d26abcaef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3File.ES3File</definition>
+        <argsstring>(string filePath, ES3Settings settings)</argsstring>
+        <name>ES3File</name>
+        <qualifiedname>ES3File.ES3File</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3File" kindref="compound">ES3File</ref> and loads the specified file into the <ref refid="classES3File" kindref="compound">ES3File</ref> if there is data to load. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filepath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file in storage our <ref refid="classES3File" kindref="compound">ES3File</ref> is associated with.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="32" column="12" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a5a10419751013010d25804353f10a7c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3File.ES3File</definition>
+        <argsstring>(ES3Settings settings)</argsstring>
+        <name>ES3File</name>
+        <qualifiedname>ES3File.ES3File</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3File" kindref="compound">ES3File</ref> and loads the specified file into the <ref refid="classES3File" kindref="compound">ES3File</ref> if there is data to load. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="36" column="12" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a5dd452093b631855a2e2e1ea541f5e8f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3File.ES3File</definition>
+        <argsstring>(bool syncWithFile)</argsstring>
+        <name>ES3File</name>
+        <qualifiedname>ES3File.ES3File</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>syncWithFile</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3File" kindref="compound">ES3File</ref> and only loads the default file into it if syncWithFile is set to true. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>syncWithFile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether we should sync this <ref refid="classES3File" kindref="compound">ES3File</ref> with the one in storage immediately after creating it.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="40" column="12" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a8730efdc7f3005f09f79f4aed49b2425" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3File.ES3File</definition>
+        <argsstring>(string filePath, bool syncWithFile)</argsstring>
+        <name>ES3File</name>
+        <qualifiedname>ES3File.ES3File</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>syncWithFile</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3File" kindref="compound">ES3File</ref> and only loads the specified file into it if syncWithFile is set to true. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filepath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file in storage our <ref refid="classES3File" kindref="compound">ES3File</ref> is associated with.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>syncWithFile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether we should sync this <ref refid="classES3File" kindref="compound">ES3File</ref> with the one in storage immediately after creating it.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="44" column="12" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1afc41b26b99b95ff9054dcffd7c2f8083" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3File.ES3File</definition>
+        <argsstring>(string filePath, ES3Settings settings, bool syncWithFile)</argsstring>
+        <name>ES3File</name>
+        <qualifiedname>ES3File.ES3File</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>syncWithFile</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3File" kindref="compound">ES3File</ref> and only loads the specified file into it if syncWithFile is set to true. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filepath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file in storage our <ref refid="classES3File" kindref="compound">ES3File</ref> is associated with.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>syncWithFile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether we should sync this <ref refid="classES3File" kindref="compound">ES3File</ref> with the one in storage immediately after creating it.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="49" column="12" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a0f6e20d6b48b5855f342500cc2527073" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3File.ES3File</definition>
+        <argsstring>(ES3Settings settings, bool syncWithFile)</argsstring>
+        <name>ES3File</name>
+        <qualifiedname>ES3File.ES3File</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>syncWithFile</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3File" kindref="compound">ES3File</ref> and loads the specified file into the <ref refid="classES3File" kindref="compound">ES3File</ref> if there is data to load. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>syncWithFile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether we should sync this <ref refid="classES3File" kindref="compound">ES3File</ref> with the one in storage immediately after creating it.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="54" column="12" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="54" bodyend="74"/>
+        <references refid="classES3Reader_1aaaa29fbf59162a541245da765cefe48f" compoundref="ES3Reader_8cs" startline="337" endline="340">ES3Reader.Create</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1aa78cbd127b92bb38536956f2625cea71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3File.ES3File</definition>
+        <argsstring>(byte[] bytes, ES3Settings settings=null)</argsstring>
+        <name>ES3File</name>
+        <qualifiedname>ES3File.ES3File</qualifiedname>
+        <param>
+          <type>byte[]</type>
+          <declname>bytes</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3File" kindref="compound">ES3File</ref> and loads the bytes into the <ref refid="classES3File" kindref="compound">ES3File</ref>. Note the bytes must represent that of a file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bytes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bytes representing our file.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>syncWithFile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether we should sync this <ref refid="classES3File" kindref="compound">ES3File</ref> with the one in storage immediately after creating it.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="80" column="12" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="80" bodyend="90"/>
+        <references refid="classES3File_1a399f5818be437d20e813639d471d22de" compoundref="ES3File_8cs" startline="186" endline="204">SaveRaw</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a73e82bdc8fcfe3047910d938843c0c81" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3File.Sync</definition>
+        <argsstring>()</argsstring>
+        <name>Sync</name>
+        <qualifiedname>ES3File.Sync</qualifiedname>
+        <briefdescription>
+<para>Synchronises this <ref refid="classES3File" kindref="compound">ES3File</ref> with a file in storage. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="93" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="93" bodyend="96"/>
+        <references refid="classES3File_1a73e82bdc8fcfe3047910d938843c0c81" compoundref="ES3File_8cs" startline="93" endline="96">Sync</references>
+        <referencedby refid="classES3File_1a73e82bdc8fcfe3047910d938843c0c81" compoundref="ES3File_8cs" startline="93" endline="96">Sync</referencedby>
+        <referencedby refid="classES3File_1a18a19936f95e6fe18ce983431411f200" compoundref="ES3File_8cs" startline="101" endline="104">Sync</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a18a19936f95e6fe18ce983431411f200" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3File.Sync</definition>
+        <argsstring>(string filePath, ES3Settings settings=null)</argsstring>
+        <name>Sync</name>
+        <qualifiedname>ES3File.Sync</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Synchronises this <ref refid="classES3File" kindref="compound">ES3File</ref> with a file in storage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filepath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file in storage we want to synchronise with.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="101" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="101" bodyend="104"/>
+        <references refid="classES3File_1a73e82bdc8fcfe3047910d938843c0c81" compoundref="ES3File_8cs" startline="93" endline="96">Sync</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a01960acc16041c5e59b91f3c5b1139ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3File.Sync</definition>
+        <argsstring>(ES3Settings settings=null)</argsstring>
+        <name>Sync</name>
+        <qualifiedname>ES3File.Sync</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Synchronises this <ref refid="classES3File" kindref="compound">ES3File</ref> with a file in storage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="108" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="108" bodyend="140"/>
+        <references refid="classES3Writer_1a8495b421b8cac2ede59e236066b2cea5" compoundref="ES3Writer_8cs" startline="413" endline="416">ES3Writer.Create</references>
+        <references refid="classES3_1a250f0401b672b19068817a0eb48efb41" compoundref="ES3_8cs" startline="1018" endline="1021">ES3.DeleteFile</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a31cb4b5acadf6ca35e27bd7c71f1577b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3File.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>ES3File.Clear</qualifiedname>
+        <briefdescription>
+<para>Removes the data stored in this <ref refid="classES3File" kindref="compound">ES3File</ref>. The <ref refid="classES3File" kindref="compound">ES3File</ref> will be empty after calling this method. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="143" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="143" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1aca0bf566482af810d3cb9760656fc4b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string[]</type>
+        <definition>string[] ES3File.GetKeys</definition>
+        <argsstring>()</argsstring>
+        <name>GetKeys</name>
+        <qualifiedname>ES3File.GetKeys</qualifiedname>
+        <briefdescription>
+<para>Returns an array of all of the key names in this <ref refid="classES3File" kindref="compound">ES3File</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="150" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="150" bodyend="156"/>
+        <referencedby refid="classES3_1a5eaa2a6725e6a0b7bd96c35ac6fc16c9" compoundref="ES3_8cs" startline="1437" endline="1456">ES3.GetKeys</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a9c911591d60118aaae6a5a84bcf4f0b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3File.Save&lt; T &gt;</definition>
+        <argsstring>(string key, T value)</argsstring>
+        <name>Save&lt; T &gt;</name>
+        <qualifiedname>ES3File.Save&lt; T &gt;</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Saves a value to a key in this <ref refid="classES3File" kindref="compound">ES3File</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key we want to use to identify our value in the file.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value we want to save.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="163" column="12" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="163" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a399f5818be437d20e813639d471d22de" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3File.SaveRaw</definition>
+        <argsstring>(byte[] bytes, ES3Settings settings=null)</argsstring>
+        <name>SaveRaw</name>
+        <qualifiedname>ES3File.SaveRaw</qualifiedname>
+        <param>
+          <type>byte[]</type>
+          <declname>bytes</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Merges the data specified by the bytes parameter into this <ref refid="classES3File" kindref="compound">ES3File</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bytes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bytes we want to merge with this <ref refid="classES3File" kindref="compound">ES3File</ref>.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="186" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="186" bodyend="204"/>
+        <references refid="classES3Reader_1aaaa29fbf59162a541245da765cefe48f" compoundref="ES3Reader_8cs" startline="337" endline="340">ES3Reader.Create</references>
+        <referencedby refid="classES3File_1a73f8c630761708e5bc81ddffdd7ba78d" compoundref="ES3File_8cs" startline="209" endline="217">AppendRaw</referencedby>
+        <referencedby refid="classES3_1a52f7ef2d18ceafa678633143832638a9" compoundref="ES3_8cs" startline="253" endline="268">ES3.AppendRaw</referencedby>
+        <referencedby refid="classES3File_1aa78cbd127b92bb38536956f2625cea71" compoundref="ES3File_8cs" startline="80" endline="90">ES3File</referencedby>
+        <referencedby refid="classES3_1ae53e2139837201ad6ed55bf8e38b0611" compoundref="ES3_8cs" startline="143" endline="156">ES3.SaveRaw</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a73f8c630761708e5bc81ddffdd7ba78d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3File.AppendRaw</definition>
+        <argsstring>(byte[] bytes, ES3Settings settings=null)</argsstring>
+        <name>AppendRaw</name>
+        <qualifiedname>ES3File.AppendRaw</qualifiedname>
+        <param>
+          <type>byte[]</type>
+          <declname>bytes</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Merges the data specified by the bytes parameter into this <ref refid="classES3File" kindref="compound">ES3File</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bytes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bytes we want to merge with this <ref refid="classES3File" kindref="compound">ES3File</ref>.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="209" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="209" bodyend="217"/>
+        <references refid="classES3File_1a399f5818be437d20e813639d471d22de" compoundref="ES3File_8cs" startline="186" endline="204">SaveRaw</references>
+        <referencedby refid="classES3_1a48ac006692fe6086bed2ab7089e9196e" compoundref="ES3_8cs" startline="210" endline="224">ES3.AppendRaw</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1ab0955399b13818f53072d7f53044cad5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>object ES3File.Load</definition>
+        <argsstring>(string key)</argsstring>
+        <name>Load</name>
+        <qualifiedname>ES3File.Load</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Loads the value from this <ref refid="classES3File" kindref="compound">ES3File</ref> with the given key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key which identifies the value we want to load.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="227" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="227" bodyend="230"/>
+        <referencedby refid="classES3_1a2ca126385d0ead1e03e6f9e9639afba5" compoundref="ES3_8cs" startline="453" endline="474">ES3.Load&lt; T &gt;</referencedby>
+        <referencedby refid="classES3_1adeea8b58bb9c869179e90fb49aa72deb" compoundref="ES3_8cs" startline="511" endline="532">ES3.Load&lt; T &gt;</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a6128004912fb52656d04eaf7e997a39c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>object ES3File.Load</definition>
+        <argsstring>(string key, object defaultValue)</argsstring>
+        <name>Load</name>
+        <qualifiedname>ES3File.Load</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>defaultValue</declname>
+        </param>
+        <briefdescription>
+<para>Loads the value from this <ref refid="classES3File" kindref="compound">ES3File</ref> with the given key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key which identifies the value we want to load.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>defaultValue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value we want to return if the key does not exist in this <ref refid="classES3File" kindref="compound">ES3File</ref>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="235" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="235" bodyend="238"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a82fa776835d10287f434e8fd2668f4fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T ES3File.Load&lt; T &gt;</definition>
+        <argsstring>(string key)</argsstring>
+        <name>Load&lt; T &gt;</name>
+        <qualifiedname>ES3File.Load&lt; T &gt;</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Loads the value from this <ref refid="classES3File" kindref="compound">ES3File</ref> with the given key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key which identifies the value we want to load.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="242" column="12" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="242" bodyend="257"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a4a6c6728a9d2b01184ad8a749908b7bc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T ES3File.Load&lt; T &gt;</definition>
+        <argsstring>(string key, T defaultValue)</argsstring>
+        <name>Load&lt; T &gt;</name>
+        <qualifiedname>ES3File.Load&lt; T &gt;</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>defaultValue</declname>
+        </param>
+        <briefdescription>
+<para>Loads the value from this <ref refid="classES3File" kindref="compound">ES3File</ref> with the given key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key which identifies the value we want to load.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>defaultValue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value we want to return if the key does not exist in this <ref refid="classES3File" kindref="compound">ES3File</ref>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="262" column="12" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="262" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a9477bf096db7ec41fd1b084ff9b9e4a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3File.LoadInto&lt; T &gt;</definition>
+        <argsstring>(string key, T obj)</argsstring>
+        <name>LoadInto&lt; T &gt;</name>
+        <qualifiedname>ES3File.LoadInto&lt; T &gt;</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Loads the value from this <ref refid="classES3File" kindref="compound">ES3File</ref> with the given key into an existing object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key which identifies the value we want to load.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object we want to load the value into.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="281" column="12" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="281" bodyend="297"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a5ee7c5b91aca586fa7a12fcb6da59369" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>byte[]</type>
+        <definition>byte[] ES3File.LoadRawBytes</definition>
+        <argsstring>()</argsstring>
+        <name>LoadRawBytes</name>
+        <qualifiedname>ES3File.LoadRawBytes</qualifiedname>
+        <briefdescription>
+<para>Loads the <ref refid="classES3File" kindref="compound">ES3File</ref> as a raw, unencrypted, uncompressed byte array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="304" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="304" bodyend="313"/>
+        <referencedby refid="classES3_1abbc359ef4bb045756f28cc657f8676ea" compoundref="ES3_8cs" startline="683" endline="730">ES3.LoadRawBytes</referencedby>
+        <referencedby refid="classES3File_1aada859100f0c58c85ccde569b12bdfb1" compoundref="ES3File_8cs" startline="316" endline="321">LoadRawString</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1aada859100f0c58c85ccde569b12bdfb1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ES3File.LoadRawString</definition>
+        <argsstring>()</argsstring>
+        <name>LoadRawString</name>
+        <qualifiedname>ES3File.LoadRawString</qualifiedname>
+        <briefdescription>
+<para>Loads the <ref refid="classES3File" kindref="compound">ES3File</ref> as a raw, unencrypted, uncompressed string, using the encoding defined in the <ref refid="classES3File" kindref="compound">ES3File</ref>&apos;s settings variable. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="316" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="316" bodyend="321"/>
+        <references refid="classES3Settings_1a965bf4d3ac76b0037b3b9c31fde4420c" compoundref="ES3Settings_8cs" startline="121">ES3Settings.encoding</references>
+        <references refid="classES3File_1a5ee7c5b91aca586fa7a12fcb6da59369" compoundref="ES3File_8cs" startline="304" endline="313">LoadRawBytes</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a8d5731b0f43d409a43841ff8b4896b9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3File.DeleteKey</definition>
+        <argsstring>(string key)</argsstring>
+        <name>DeleteKey</name>
+        <qualifiedname>ES3File.DeleteKey</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Deletes a key from this <ref refid="classES3File" kindref="compound">ES3File</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key we want to delete.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="362" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="362" bodyend="366"/>
+        <referencedby refid="classES3_1a781732149c0277858b961a545f206ba7" compoundref="ES3_8cs" startline="1281" endline="1295">ES3.DeleteKey</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1aa6f9f7f546a97c63616adbf477464fe1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ES3File.KeyExists</definition>
+        <argsstring>(string key)</argsstring>
+        <name>KeyExists</name>
+        <qualifiedname>ES3File.KeyExists</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Checks whether a key exists in this <ref refid="classES3File" kindref="compound">ES3File</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key we want to check the existence of.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the key exists, otherwise False.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="371" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="371" bodyend="374"/>
+        <referencedby refid="classES3_1a770b880c09645903cf787887ba59f7d1" compoundref="ES3_8cs" startline="1328" endline="1339">ES3.KeyExists</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1af327ebeb129b906cec79b0bcedca794d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ES3File.Size</definition>
+        <argsstring>()</argsstring>
+        <name>Size</name>
+        <qualifiedname>ES3File.Size</qualifiedname>
+        <briefdescription>
+<para>Gets the size of the cached data in bytes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="377" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="377" bodyend="383"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a3e792c9d2c3d76895ac25080e55f84aa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Type</type>
+        <definition>Type ES3File.GetKeyType</definition>
+        <argsstring>(string key)</argsstring>
+        <name>GetKeyType</name>
+        <qualifiedname>ES3File.GetKeyType</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="385" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="385" bodyend="392"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="package-func">
+      <memberdef kind="function" id="classES3File_1af3eb7f6c50176c260ad96501c4ce21f2" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>byte[]</type>
+        <definition>byte[] ES3File.GetBytes</definition>
+        <argsstring>(ES3Settings settings=null)</argsstring>
+        <name>GetBytes</name>
+        <qualifiedname>ES3File.GetBytes</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="326" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="326" bodyend="354"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="classES3File_1a7b80138b959115649460cda5aea2c856" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3File" kindref="compound">ES3File</ref></type>
+        <definition>static ES3File ES3File.GetCachedFile</definition>
+        <argsstring>(ES3Settings settings)</argsstring>
+        <name>GetCachedFile</name>
+        <qualifiedname>ES3File.GetCachedFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="397" column="29" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="397" bodyend="408"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a59316b1c9fb6c0a3998cc9f279fd506a" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3File" kindref="compound">ES3File</ref></type>
+        <definition>static ES3File ES3File.GetOrCreateCachedFile</definition>
+        <argsstring>(ES3Settings settings)</argsstring>
+        <name>GetOrCreateCachedFile</name>
+        <qualifiedname>ES3File.GetOrCreateCachedFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="411" column="29" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="411" bodyend="423"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a73f544f5f9fad4e660e8a172a8d25eba" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3File" kindref="compound">ES3File</ref></type>
+        <definition>static ES3File ES3File.CacheFile</definition>
+        <argsstring>(ES3Settings settings)</argsstring>
+        <name>CacheFile</name>
+        <qualifiedname>ES3File.CacheFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="425" column="29" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="425" bodyend="448"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a39de6ecabdd14e880b6340645da26a2a" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3File.Store</definition>
+        <argsstring>(ES3Settings settings=null)</argsstring>
+        <name>Store</name>
+        <qualifiedname>ES3File.Store</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="451" column="26" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="451" bodyend="467"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a987cf1a4b7a52f27f8b5dde28753d521" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3File.StoreAll</definition>
+        <argsstring>()</argsstring>
+        <name>StoreAll</name>
+        <qualifiedname>ES3File.StoreAll</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="470" column="26" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="470" bodyend="475"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a2bd6406005c923e8be12e51b3fbd9520" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3File.RemoveCachedFile</definition>
+        <argsstring>(ES3Settings settings)</argsstring>
+        <name>RemoveCachedFile</name>
+        <qualifiedname>ES3File.RemoveCachedFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="478" column="26" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="478" bodyend="481"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a83934dcecb12b778abcf83f664771f81" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3File.CopyCachedFile</definition>
+        <argsstring>(ES3Settings oldSettings, ES3Settings newSettings)</argsstring>
+        <name>CopyCachedFile</name>
+        <qualifiedname>ES3File.CopyCachedFile</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>oldSettings</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>newSettings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="484" column="26" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="484" bodyend="493"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1af60144175f04db940fda6df66c21e652" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3File.DeleteKey</definition>
+        <argsstring>(string key, ES3Settings settings)</argsstring>
+        <name>DeleteKey</name>
+        <qualifiedname>ES3File.DeleteKey</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="496" column="26" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="496" bodyend="501"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a57bd882705d54a78fbbf42589288df5b" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3File.KeyExists</definition>
+        <argsstring>(string key, ES3Settings settings)</argsstring>
+        <name>KeyExists</name>
+        <qualifiedname>ES3File.KeyExists</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="504" column="26" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="504" bodyend="510"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a1a0bb059a11aab3f6d45e2bd21f6f630" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3File.FileExists</definition>
+        <argsstring>(ES3Settings settings)</argsstring>
+        <name>FileExists</name>
+        <qualifiedname>ES3File.FileExists</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="513" column="26" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="513" bodyend="516"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a393d6293600690f3d6d3e29c6d300b9f" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string[]</type>
+        <definition>static string[] ES3File.GetKeys</definition>
+        <argsstring>(ES3Settings settings)</argsstring>
+        <name>GetKeys</name>
+        <qualifiedname>ES3File.GetKeys</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="519" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="519" bodyend="525"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a2d911059ee2d43cf1c10b28f871452e9" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string[]</type>
+        <definition>static string[] ES3File.GetFiles</definition>
+        <argsstring>()</argsstring>
+        <name>GetFiles</name>
+        <qualifiedname>ES3File.GetFiles</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="528" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="528" bodyend="531"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3File_1a4fd09a1e7d1cf085727d648cb8ebec4a" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>static DateTime ES3File.GetTimestamp</definition>
+        <argsstring>(ES3Settings settings)</argsstring>
+        <name>GetTimestamp</name>
+        <qualifiedname>ES3File.GetTimestamp</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="533" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="533" bodyend="539"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents a cached file which can be saved to and loaded from, and commited to storage when necessary. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="7">
+        <label>ES3</label>
+        <link refid="classES3"/>
+      </node>
+      <node id="4">
+        <label>ES3Defaults</label>
+        <link refid="classES3Defaults"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+settings</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ES3File</label>
+        <link refid="classES3File"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>+settings</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ES3SerializableSettings</label>
+        <link refid="classES3SerializableSettings"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ES3Settings</label>
+        <link refid="classES3Settings"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>-_defaults</edgelabel>
+          <edgelabel>-_unencryptedUncompressedSettings</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-_defaultSettingsScriptableObject</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+compressionType</edgelabel>
+          <edgelabel>+directory</edgelabel>
+          <edgelabel>+encryptionType</edgelabel>
+          <edgelabel>+format</edgelabel>
+          <edgelabel>+memberReferenceMode</edgelabel>
+          <edgelabel>+referenceMode</edgelabel>
+          <edgelabel>-_location</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+encoding</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="8">
+        <label>System</label>
+      </node>
+      <node id="3">
+        <label>System::ICloneable</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" line="11" column="7" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3File.cs" bodystart="12" bodyend="540"/>
+    <listofallmembers>
+      <member refid="classES3File_1a73f8c630761708e5bc81ddffdd7ba78d" prot="public" virt="non-virtual"><scope>ES3File</scope><name>AppendRaw</name></member>
+      <member refid="classES3File_1ad6bdd8f30d16521020ab49dbf82ef388" prot="private" virt="non-virtual"><scope>ES3File</scope><name>cache</name></member>
+      <member refid="classES3File_1a5df85dfaa886889b3b2ade9e1772dfdd" prot="public" virt="non-virtual"><scope>ES3File</scope><name>cachedFiles</name></member>
+      <member refid="classES3File_1a73f544f5f9fad4e660e8a172a8d25eba" prot="package" virt="non-virtual"><scope>ES3File</scope><name>CacheFile</name></member>
+      <member refid="classES3File_1a31cb4b5acadf6ca35e27bd7c71f1577b" prot="public" virt="non-virtual"><scope>ES3File</scope><name>Clear</name></member>
+      <member refid="classES3File_1a83934dcecb12b778abcf83f664771f81" prot="package" virt="non-virtual"><scope>ES3File</scope><name>CopyCachedFile</name></member>
+      <member refid="classES3File_1a8d5731b0f43d409a43841ff8b4896b9b" prot="public" virt="non-virtual"><scope>ES3File</scope><name>DeleteKey</name></member>
+      <member refid="classES3File_1af60144175f04db940fda6df66c21e652" prot="package" virt="non-virtual"><scope>ES3File</scope><name>DeleteKey</name></member>
+      <member refid="classES3File_1abca8da700179e3f9f72685b748c3e6b1" prot="private" virt="non-virtual"><scope>ES3File</scope><name>dirty</name></member>
+      <member refid="classES3File_1a905c7ac012957daebeec0dad242cc1e5" prot="public" virt="non-virtual"><scope>ES3File</scope><name>ES3File</name></member>
+      <member refid="classES3File_1ac4120e6304d30f0c66ac876dd4b5c5bc" prot="public" virt="non-virtual"><scope>ES3File</scope><name>ES3File</name></member>
+      <member refid="classES3File_1aa681f4813808451bd26cd20d26abcaef" prot="public" virt="non-virtual"><scope>ES3File</scope><name>ES3File</name></member>
+      <member refid="classES3File_1a5a10419751013010d25804353f10a7c9" prot="public" virt="non-virtual"><scope>ES3File</scope><name>ES3File</name></member>
+      <member refid="classES3File_1a5dd452093b631855a2e2e1ea541f5e8f" prot="public" virt="non-virtual"><scope>ES3File</scope><name>ES3File</name></member>
+      <member refid="classES3File_1a8730efdc7f3005f09f79f4aed49b2425" prot="public" virt="non-virtual"><scope>ES3File</scope><name>ES3File</name></member>
+      <member refid="classES3File_1afc41b26b99b95ff9054dcffd7c2f8083" prot="public" virt="non-virtual"><scope>ES3File</scope><name>ES3File</name></member>
+      <member refid="classES3File_1a0f6e20d6b48b5855f342500cc2527073" prot="public" virt="non-virtual"><scope>ES3File</scope><name>ES3File</name></member>
+      <member refid="classES3File_1aa78cbd127b92bb38536956f2625cea71" prot="public" virt="non-virtual"><scope>ES3File</scope><name>ES3File</name></member>
+      <member refid="classES3File_1a1a0bb059a11aab3f6d45e2bd21f6f630" prot="package" virt="non-virtual"><scope>ES3File</scope><name>FileExists</name></member>
+      <member refid="classES3File_1af3eb7f6c50176c260ad96501c4ce21f2" prot="package" virt="non-virtual"><scope>ES3File</scope><name>GetBytes</name></member>
+      <member refid="classES3File_1a7b80138b959115649460cda5aea2c856" prot="package" virt="non-virtual"><scope>ES3File</scope><name>GetCachedFile</name></member>
+      <member refid="classES3File_1a2d911059ee2d43cf1c10b28f871452e9" prot="package" virt="non-virtual"><scope>ES3File</scope><name>GetFiles</name></member>
+      <member refid="classES3File_1aca0bf566482af810d3cb9760656fc4b1" prot="public" virt="non-virtual"><scope>ES3File</scope><name>GetKeys</name></member>
+      <member refid="classES3File_1a393d6293600690f3d6d3e29c6d300b9f" prot="package" virt="non-virtual"><scope>ES3File</scope><name>GetKeys</name></member>
+      <member refid="classES3File_1a3e792c9d2c3d76895ac25080e55f84aa" prot="public" virt="non-virtual"><scope>ES3File</scope><name>GetKeyType</name></member>
+      <member refid="classES3File_1a59316b1c9fb6c0a3998cc9f279fd506a" prot="package" virt="non-virtual"><scope>ES3File</scope><name>GetOrCreateCachedFile</name></member>
+      <member refid="classES3File_1a4fd09a1e7d1cf085727d648cb8ebec4a" prot="package" virt="non-virtual"><scope>ES3File</scope><name>GetTimestamp</name></member>
+      <member refid="classES3File_1aa6f9f7f546a97c63616adbf477464fe1" prot="public" virt="non-virtual"><scope>ES3File</scope><name>KeyExists</name></member>
+      <member refid="classES3File_1a57bd882705d54a78fbbf42589288df5b" prot="package" virt="non-virtual"><scope>ES3File</scope><name>KeyExists</name></member>
+      <member refid="classES3File_1ab0955399b13818f53072d7f53044cad5" prot="public" virt="non-virtual"><scope>ES3File</scope><name>Load</name></member>
+      <member refid="classES3File_1a6128004912fb52656d04eaf7e997a39c" prot="public" virt="non-virtual"><scope>ES3File</scope><name>Load</name></member>
+      <member refid="classES3File_1a82fa776835d10287f434e8fd2668f4fc" prot="public" virt="non-virtual"><scope>ES3File</scope><name>Load&lt; T &gt;</name></member>
+      <member refid="classES3File_1a4a6c6728a9d2b01184ad8a749908b7bc" prot="public" virt="non-virtual"><scope>ES3File</scope><name>Load&lt; T &gt;</name></member>
+      <member refid="classES3File_1a9477bf096db7ec41fd1b084ff9b9e4a5" prot="public" virt="non-virtual"><scope>ES3File</scope><name>LoadInto&lt; T &gt;</name></member>
+      <member refid="classES3File_1a5ee7c5b91aca586fa7a12fcb6da59369" prot="public" virt="non-virtual"><scope>ES3File</scope><name>LoadRawBytes</name></member>
+      <member refid="classES3File_1aada859100f0c58c85ccde569b12bdfb1" prot="public" virt="non-virtual"><scope>ES3File</scope><name>LoadRawString</name></member>
+      <member refid="classES3File_1a2bd6406005c923e8be12e51b3fbd9520" prot="package" virt="non-virtual"><scope>ES3File</scope><name>RemoveCachedFile</name></member>
+      <member refid="classES3File_1a9c911591d60118aaae6a5a84bcf4f0b7" prot="public" virt="non-virtual"><scope>ES3File</scope><name>Save&lt; T &gt;</name></member>
+      <member refid="classES3File_1a399f5818be437d20e813639d471d22de" prot="public" virt="non-virtual"><scope>ES3File</scope><name>SaveRaw</name></member>
+      <member refid="classES3File_1a7cfd7062efbdf26a32e4962dfced5df8" prot="public" virt="non-virtual"><scope>ES3File</scope><name>settings</name></member>
+      <member refid="classES3File_1af327ebeb129b906cec79b0bcedca794d" prot="public" virt="non-virtual"><scope>ES3File</scope><name>Size</name></member>
+      <member refid="classES3File_1a39de6ecabdd14e880b6340645da26a2a" prot="package" virt="non-virtual"><scope>ES3File</scope><name>Store</name></member>
+      <member refid="classES3File_1a987cf1a4b7a52f27f8b5dde28753d521" prot="package" virt="non-virtual"><scope>ES3File</scope><name>StoreAll</name></member>
+      <member refid="classES3File_1a73e82bdc8fcfe3047910d938843c0c81" prot="public" virt="non-virtual"><scope>ES3File</scope><name>Sync</name></member>
+      <member refid="classES3File_1a18a19936f95e6fe18ce983431411f200" prot="public" virt="non-virtual"><scope>ES3File</scope><name>Sync</name></member>
+      <member refid="classES3File_1a01960acc16041c5e59b91f3c5b1139ff" prot="public" virt="non-virtual"><scope>ES3File</scope><name>Sync</name></member>
+      <member refid="classES3File_1a82dae879175ba35f596473a376d39706" prot="private" virt="non-virtual"><scope>ES3File</scope><name>syncWithFile</name></member>
+      <member refid="classES3File_1ae3bf795eeb835ee55aab4f361b385179" prot="private" virt="non-virtual"><scope>ES3File</scope><name>timestamp</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1256 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classShipWeapon" kind="class" language="C#" prot="public">
+    <compoundname>ShipWeapon</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classShipWeapon_1a95b4c4f3e4f4170c67eaf2a5148fbed7" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShipWeapon.currentCooldown</definition>
+        <argsstring></argsstring>
+        <name>currentCooldown</name>
+        <qualifiedname>ShipWeapon.currentCooldown</qualifiedname>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+<para>현재 쿨타임. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="14" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="14" bodyend="-1"/>
+        <referencedby refid="classShipWeapon_1ae53e123c2fc95c94e5a4ef7b5c5366c0" compoundref="ShipWeapon_8cs" startline="506" endline="509">GetCooldownPercentage</referencedby>
+        <referencedby refid="classShipWeapon_1a72518cf9b3021beca098c19c438dbc5f" compoundref="ShipWeapon_8cs" startline="201" endline="204">IsReady</referencedby>
+        <referencedby refid="classShipWeapon_1a7e523885eee82be78af8cd03f5ff458a" compoundref="ShipWeapon_8cs" startline="209" endline="213">ResetCooldown</referencedby>
+        <referencedby refid="classShipWeapon_1a4adb1453d46510d91db1cfe5005dc33d" compoundref="ShipWeapon_8cs" startline="219" endline="222">ResetCooldown</referencedby>
+        <referencedby refid="classShipWeapon_1a1af36c3085a542d72b8b745f2a416f4a" compoundref="ShipWeapon_8cs" startline="179" endline="182">UpdateCooldown</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classShipWeapon_1a954f16c27c8f13d52291b5356818e031" prot="public" static="no" mutable="no">
+        <type><ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref></type>
+        <definition>ShipWeaponData ShipWeapon.weaponData</definition>
+        <argsstring></argsstring>
+        <name>weaponData</name>
+        <qualifiedname>ShipWeapon.weaponData</qualifiedname>
+        <briefdescription>
+<para>이 무기에 해당하는 무기 데이터입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="19" column="27" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="19" bodyend="-1"/>
+        <referencedby refid="classShipWeapon_1a381aff291620c120979e6da7852b8ae9" compoundref="ShipWeapon_8cs" startline="453" endline="477">ApplyRotationSprite</referencedby>
+        <referencedby refid="classShip_1a24e7b7011b778b4c8c4aab0a12e90a3d" compoundref="Ship_8cs" startline="546" endline="568">Ship.BackupCurrentShip</referencedby>
+        <referencedby refid="classShipWeapon_1a988ecbbbe6152ece7f3651236ed9b0d8" compoundref="ShipWeapon_8cs" startline="354" endline="390">Fire</referencedby>
+        <referencedby refid="classShipWeapon_1a5d0c8b9cb45cd7470fb3868d9feb826d" compoundref="ShipWeapon_8cs" startline="237" endline="240">GetDamage</referencedby>
+        <referencedby refid="classShip_1a5ba0f56dad890c458ca0a9d571254aae" compoundref="Ship_8cs" startline="499" endline="510">Ship.GetTotalShipValue</referencedby>
+        <referencedby refid="classShipWeapon_1ae7bc58dd55023002947b1f497a082e5a" compoundref="ShipWeapon_8cs" startline="228" endline="231">GetWeaponName</referencedby>
+        <referencedby refid="classShipWeapon_1af44d2f4e2b94ca1866ed1206d976cc79" compoundref="ShipWeapon_8cs" startline="251" endline="254">GetWeaponType</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classShipWeapon_1af82656450f6ab16854311cd7d6f1f466" prot="public" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int ShipWeapon.gridSize</definition>
+        <argsstring></argsstring>
+        <name>gridSize</name>
+        <qualifiedname>ShipWeapon.gridSize</qualifiedname>
+        <initializer>= new(2, 1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="31" column="23" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classShipWeapon_1a7b68dc20e172ed469e7bfa7f3bb02349" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform ShipWeapon.firePoint</definition>
+        <argsstring></argsstring>
+        <name>firePoint</name>
+        <qualifiedname>ShipWeapon.firePoint</qualifiedname>
+        <briefdescription>
+<para>무기의 발사 지점 Transform입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="24" column="24" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="24" bodyend="-1"/>
+        <referencedby refid="classShipWeapon_1a04c2b8fbc4f18aef0ef567562eff9434" compoundref="ShipWeapon_8cs" startline="260" endline="263">GetFirePosition</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classShipWeapon_1aa819b68fcd90c4d2301d452178325040" prot="private" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int ShipWeapon.gridPosition</definition>
+        <argsstring></argsstring>
+        <name>gridPosition</name>
+        <qualifiedname>ShipWeapon.gridPosition</qualifiedname>
+        <briefdescription>
+<para>무기의 그리드 상 좌표입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="29" column="25" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="29" bodyend="-1"/>
+        <referencedby refid="classShipWeapon_1a421526a38a8fbd32127d0063526c9c6a" compoundref="ShipWeapon_8cs" startline="269" endline="272">GetGridPosition</referencedby>
+        <referencedby refid="classShipWeapon_1a030da07209308a605177da3eaf791b38" compoundref="ShipWeapon_8cs" startline="278" endline="281">SetGridPosition</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classShipWeapon_1a197b2ff7d346cde7a72410f3e344797f" prot="private" static="no" mutable="no">
+        <type>ShipWeaponAttachedDirection</type>
+        <definition>ShipWeaponAttachedDirection ShipWeapon.attachedDirection</definition>
+        <argsstring></argsstring>
+        <name>attachedDirection</name>
+        <qualifiedname>ShipWeapon.attachedDirection</qualifiedname>
+        <initializer>= ShipWeaponAttachedDirection.North</initializer>
+        <briefdescription>
+<para>무기가 시설과 연결되어있는 방향(회전 상태)입니다. 회전 상태는 East → South → North → East 순으로 순환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="37" column="42" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="37" bodyend="-1"/>
+        <referencedby refid="classShipWeapon_1aeaa57cf7fa6e6a8543a0350f8e45ca9d" compoundref="ShipWeapon_8cs" startline="287" endline="290">GetAttachedDirection</referencedby>
+        <referencedby refid="classShipWeapon_1a356ec825648d51cd087614a031b03922" compoundref="ShipWeapon_8cs" startline="90" endline="99">GetDirectionIndex</referencedby>
+        <referencedby refid="classShipWeapon_1a06ab2e9a77af7957cbdcd3c35e06c45b" compoundref="ShipWeapon_8cs" startline="426" endline="446">RotateWeapon</referencedby>
+        <referencedby refid="classShipWeapon_1a3d363faa31a15866bbbed0ee8525c699" compoundref="ShipWeapon_8cs" startline="105" endline="108">SetAttachedDirection</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classShipWeapon_1ab051edfa4f01a4ff951adaed8a7e821a" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer ShipWeapon.spriteRenderer</definition>
+        <argsstring></argsstring>
+        <name>spriteRenderer</name>
+        <qualifiedname>ShipWeapon.spriteRenderer</qualifiedname>
+        <briefdescription>
+<para>SpriteRenderer 컴포넌트 참조 (회전 시 스프라이트 갱신용) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="42" column="28" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classShipWeapon_1a381aff291620c120979e6da7852b8ae9" compoundref="ShipWeapon_8cs" startline="453" endline="477">ApplyRotationSprite</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classShipWeapon_1a986dc0ab44304330569ab1f693629d7f" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ShipWeapon.hits</definition>
+        <argsstring></argsstring>
+        <name>hits</name>
+        <qualifiedname>ShipWeapon.hits</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>적중 횟수 (통계용) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="47" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="47" bodyend="-1"/>
+        <referencedby refid="classShipWeapon_1adaac4948dd076f6d0f181b092e085c7c" compoundref="ShipWeapon_8cs" startline="146" endline="149">AddHit</referencedby>
+        <referencedby refid="classShipWeapon_1ab4368e9319a0cb4892180ae9f8257331" compoundref="ShipWeapon_8cs" startline="130" endline="133">GetHits</referencedby>
+        <referencedby refid="classShipWeapon_1a7837bcc0c1dadad8a0a0e8d1f8abc9e4" compoundref="ShipWeapon_8cs" startline="138" endline="141">SetHits</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classShipWeapon_1a70b865f603693a2a485baa858049129a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShipWeapon.totalDamageDealt</definition>
+        <argsstring></argsstring>
+        <name>totalDamageDealt</name>
+        <qualifiedname>ShipWeapon.totalDamageDealt</qualifiedname>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+<para>입힌 총 피해량 (통계용) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="52" column="19" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="52" bodyend="-1"/>
+        <referencedby refid="classShipWeapon_1a69c0f3367f735d850fd91d8cd83fc4f6" compoundref="ShipWeapon_8cs" startline="170" endline="173">AddDamageDealt</referencedby>
+        <referencedby refid="classShipWeapon_1a489260f40afc42332343ef042d26be71" compoundref="ShipWeapon_8cs" startline="154" endline="157">GetTotalDamageDealt</referencedby>
+        <referencedby refid="classShipWeapon_1a0e3b641ba24b013310ae3051b72ba377" compoundref="ShipWeapon_8cs" startline="162" endline="165">SetTotalDamageDealt</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classShipWeapon_1aa851b687777329996f2f80a990e0d795" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ShipWeapon.isEnabled</definition>
+        <argsstring></argsstring>
+        <name>isEnabled</name>
+        <qualifiedname>ShipWeapon.isEnabled</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>무기 활성화 상태 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="57" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="57" bodyend="-1"/>
+        <referencedby refid="classShipWeapon_1adcc4bbde13b09e03903e416f46fc31f5" compoundref="ShipWeapon_8cs" startline="113" endline="116">IsEnabled</referencedby>
+        <referencedby refid="classShipWeapon_1a7a344445a3bcf89a7f322610eca0a536" compoundref="ShipWeapon_8cs" startline="121" endline="125">SetEnabled</referencedby>
+        <referencedby refid="classShipWeapon_1a5921a06b1952c0802dd2e06fdb7bc4dd" compoundref="ShipWeapon_8cs" startline="295" endline="308">TryAutoFire</referencedby>
+        <referencedby refid="classShipWeapon_1ae07871ba8eadcce6c4042e3f988980a6" compoundref="ShipWeapon_8cs" startline="314" endline="346">TryFire</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classShipWeapon_1aa0f10bedd301a8fcde466837dcc274c3" prot="private" static="no" mutable="no">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship ShipWeapon.ownerShip</definition>
+        <argsstring></argsstring>
+        <name>ownerShip</name>
+        <qualifiedname>ShipWeapon.ownerShip</qualifiedname>
+        <briefdescription>
+<para>이 무기를 소유한 함선 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="62" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="62" bodyend="-1"/>
+        <referencedby refid="classShipWeapon_1a988ecbbbe6152ece7f3651236ed9b0d8" compoundref="ShipWeapon_8cs" startline="354" endline="390">Fire</referencedby>
+        <referencedby refid="classShipWeapon_1a5e676192221221524e24e12aed41e447" compoundref="ShipWeapon_8cs" startline="412" endline="420">GetTargetShip</referencedby>
+        <referencedby refid="classShipWeapon_1a5921a06b1952c0802dd2e06fdb7bc4dd" compoundref="ShipWeapon_8cs" startline="295" endline="308">TryAutoFire</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="event">
+      <memberdef kind="event" id="classShipWeapon_1ae91155d287c51d3586181c0ff99d173d" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action</type>
+        <definition>Action ShipWeapon.updateWeaponPanel</definition>
+        <argsstring></argsstring>
+        <name>updateWeaponPanel</name>
+        <qualifiedname>ShipWeapon.updateWeaponPanel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="495" column="25" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="495" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classShipWeapon_1a11a9893e2be4a5300822674b04ebbb10" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>ShipWeapon.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="64" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="64" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a72915a7c1a1f7f34864ac888008a2e04" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>ShipWeapon.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="69" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="69" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a356ec825648d51cd087614a031b03922" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ShipWeapon.GetDirectionIndex</definition>
+        <argsstring>()</argsstring>
+        <name>GetDirectionIndex</name>
+        <qualifiedname>ShipWeapon.GetDirectionIndex</qualifiedname>
+        <briefdescription>
+<para>현재 부착 방향에 따른 인덱스 반환 (0: North, 1: East, 2: South) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="90" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="90" bodyend="99"/>
+        <references refid="classShipWeapon_1a197b2ff7d346cde7a72410f3e344797f" compoundref="ShipWeapon_8cs" startline="37">attachedDirection</references>
+        <referencedby refid="classShipWeapon_1a381aff291620c120979e6da7852b8ae9" compoundref="ShipWeapon_8cs" startline="453" endline="477">ApplyRotationSprite</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a5921a06b1952c0802dd2e06fdb7bc4dd" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.TryAutoFire</definition>
+        <argsstring>()</argsstring>
+        <name>TryAutoFire</name>
+        <qualifiedname>ShipWeapon.TryAutoFire</qualifiedname>
+        <briefdescription>
+<para>쿨다운 완료 시 자동 발사 시도 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="295" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="295" bodyend="308"/>
+        <references refid="classShipWeapon_1a5e676192221221524e24e12aed41e447" compoundref="ShipWeapon_8cs" startline="412" endline="420">GetTargetShip</references>
+        <references refid="classShipWeapon_1aa851b687777329996f2f80a990e0d795" compoundref="ShipWeapon_8cs" startline="57">isEnabled</references>
+        <references refid="classShipWeapon_1aa0f10bedd301a8fcde466837dcc274c3" compoundref="ShipWeapon_8cs" startline="62">ownerShip</references>
+        <references refid="classShipWeapon_1ae07871ba8eadcce6c4042e3f988980a6" compoundref="ShipWeapon_8cs" startline="314" endline="346">TryFire</references>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a988ecbbbe6152ece7f3651236ed9b0d8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ShipWeapon.Fire</definition>
+        <argsstring>(Ship targetShip)</argsstring>
+        <name>Fire</name>
+        <qualifiedname>ShipWeapon.Fire</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>targetShip</declname>
+        </param>
+        <briefdescription>
+<para>무기 발사 실행 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>targetShip</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>목표 함선</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>발사 성공 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="354" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="354" bodyend="390"/>
+        <references refid="classProjectileManager_1aecd8f14423305c086f6ddba91dfb7c12" compoundref="ProjectileManager_8cs" startline="142" endline="166">ProjectileManager.FireProjectile</references>
+        <references refid="classShip_1aaeb3c2fae57814b8bfd366f887e2c39f" compoundref="Ship_8cs" startline="1161" endline="1164">Ship.GetActualDamage</references>
+        <references refid="classShipWeapon_1a5d0c8b9cb45cd7470fb3868d9feb826d" compoundref="ShipWeapon_8cs" startline="237" endline="240">GetDamage</references>
+        <references refid="classShipWeapon_1a04c2b8fbc4f18aef0ef567562eff9434" compoundref="ShipWeapon_8cs" startline="260" endline="263">GetFirePosition</references>
+        <references refid="classShip_1a73217557e08511f1436830db223bfc4e" compoundref="Ship_8cs" startline="1209" endline="1219">Ship.GetRandomTargetPosition</references>
+        <references refid="classShip_1acc377098e3c61bbd4b8fc53595d09293" compoundref="Ship_8cs" startline="1456" endline="1459">Ship.GetWorldPositionFromGrid</references>
+        <references refid="classShipWeapon_1a5c800bb1a7dc07c7f60e36ff30acc817" compoundref="ShipWeapon_8cs" startline="396" endline="407">OnProjectileHit</references>
+        <references refid="classShipWeapon_1aa0f10bedd301a8fcde466837dcc274c3" compoundref="ShipWeapon_8cs" startline="62">ownerShip</references>
+        <references refid="classShipWeapon_1a7e523885eee82be78af8cd03f5ff458a" compoundref="ShipWeapon_8cs" startline="209" endline="213">ResetCooldown</references>
+        <references refid="classShipWeapon_1a954f16c27c8f13d52291b5356818e031" compoundref="ShipWeapon_8cs" startline="19">weaponData</references>
+        <referencedby refid="classShipWeapon_1ae07871ba8eadcce6c4042e3f988980a6" compoundref="ShipWeapon_8cs" startline="314" endline="346">TryFire</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a5c800bb1a7dc07c7f60e36ff30acc817" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.OnProjectileHit</definition>
+        <argsstring>(Ship target, Vector2Int hitPosition, float damage)</argsstring>
+        <name>OnProjectileHit</name>
+        <qualifiedname>ShipWeapon.OnProjectileHit</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>hitPosition</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>damage</declname>
+        </param>
+        <briefdescription>
+<para>투사체가 목표에 도달했을 때 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="396" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="396" bodyend="407"/>
+        <references refid="classShipWeapon_1a69c0f3367f735d850fd91d8cd83fc4f6" compoundref="ShipWeapon_8cs" startline="170" endline="173">AddDamageDealt</references>
+        <references refid="classShipWeapon_1adaac4948dd076f6d0f181b092e085c7c" compoundref="ShipWeapon_8cs" startline="146" endline="149">AddHit</references>
+        <references refid="classShipWeapon_1af44d2f4e2b94ca1866ed1206d976cc79" compoundref="ShipWeapon_8cs" startline="251" endline="254">GetWeaponType</references>
+        <references refid="classShip_1a8f64cf8910e4b5d5f08382a0128860ef" compoundref="Ship_8cs" startline="1242" endline="1283">Ship.TakeAttack</references>
+        <referencedby refid="classShipWeapon_1a988ecbbbe6152ece7f3651236ed9b0d8" compoundref="ShipWeapon_8cs" startline="354" endline="390">Fire</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a5e676192221221524e24e12aed41e447" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship ShipWeapon.GetTargetShip</definition>
+        <argsstring>()</argsstring>
+        <name>GetTargetShip</name>
+        <qualifiedname>ShipWeapon.GetTargetShip</qualifiedname>
+        <briefdescription>
+<para>타겟 함선 결정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="412" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="412" bodyend="420"/>
+        <references refid="classGameManager_1acb45f12416a7b021433ac7706ec5f95c" compoundref="GameManager_8cs" startline="443" endline="446">GameManager.GetCurrentEnemyShip</references>
+        <references refid="classGameManager_1a1f54b41e89308bda97cf48e599ec549d" compoundref="GameManager_8cs" startline="427" endline="430">GameManager.GetPlayerShip</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classShipWeapon_1aa0f10bedd301a8fcde466837dcc274c3" compoundref="ShipWeapon_8cs" startline="62">ownerShip</references>
+        <referencedby refid="classShipWeapon_1a5921a06b1952c0802dd2e06fdb7bc4dd" compoundref="ShipWeapon_8cs" startline="295" endline="308">TryAutoFire</referencedby>
+        <referencedby refid="classShipWeapon_1ae07871ba8eadcce6c4042e3f988980a6" compoundref="ShipWeapon_8cs" startline="314" endline="346">TryFire</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classShipWeapon_1ad1bc7dcd44db24b78956ab3c77626d57" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>ShipWeapon.Initialize</qualifiedname>
+        <briefdescription>
+<para>무기 초기화 (무기 생성 후 필요한 추가 설정) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="83" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="83" bodyend="85"/>
+        <referencedby refid="classShipWeaponFactory_1a4101dd150eadd0690cdb9c839b005c08" compoundref="ShipWeaponFactory_8cs" startline="50" endline="81">ShipWeaponFactory.CreateWeaponInstance</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a3d363faa31a15866bbbed0ee8525c699" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.SetAttachedDirection</definition>
+        <argsstring>(ShipWeaponAttachedDirection newDirection)</argsstring>
+        <name>SetAttachedDirection</name>
+        <qualifiedname>ShipWeapon.SetAttachedDirection</qualifiedname>
+        <param>
+          <type>ShipWeaponAttachedDirection</type>
+          <declname>newDirection</declname>
+        </param>
+        <briefdescription>
+<para>무기 방향 변경 시 스프라이트 업데이트 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>newDirection</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>새 방향</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="105" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="105" bodyend="108"/>
+        <references refid="classShipWeapon_1a197b2ff7d346cde7a72410f3e344797f" compoundref="ShipWeapon_8cs" startline="37">attachedDirection</references>
+        <referencedby refid="classWeaponSystem_1ab22fd7259a04cbb21178d961d6b31047" compoundref="WeaponSystem_8cs" startline="134" endline="156">WeaponSystem.AddWeapon</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1adcc4bbde13b09e03903e416f46fc31f5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ShipWeapon.IsEnabled</definition>
+        <argsstring>()</argsstring>
+        <name>IsEnabled</name>
+        <qualifiedname>ShipWeapon.IsEnabled</qualifiedname>
+        <briefdescription>
+<para>무기 활성화 상태 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="113" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="113" bodyend="116"/>
+        <references refid="classShipWeapon_1aa851b687777329996f2f80a990e0d795" compoundref="ShipWeapon_8cs" startline="57">isEnabled</references>
+        <referencedby refid="classWeaponSystem_1a1af41ebb69e5f5eb58996983e394a4e6" compoundref="WeaponSystem_8cs" startline="257" endline="263">WeaponSystem.IsEveryWeaponReady</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a7a344445a3bcf89a7f322610eca0a536" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.SetEnabled</definition>
+        <argsstring>(bool enabled)</argsstring>
+        <name>SetEnabled</name>
+        <qualifiedname>ShipWeapon.SetEnabled</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>enabled</declname>
+        </param>
+        <briefdescription>
+<para>무기 활성화/비활성화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="121" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="121" bodyend="125"/>
+        <references refid="classShipWeapon_1aa851b687777329996f2f80a990e0d795" compoundref="ShipWeapon_8cs" startline="57">isEnabled</references>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1ab4368e9319a0cb4892180ae9f8257331" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ShipWeapon.GetHits</definition>
+        <argsstring>()</argsstring>
+        <name>GetHits</name>
+        <qualifiedname>ShipWeapon.GetHits</qualifiedname>
+        <briefdescription>
+<para>적중 횟수 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="130" column="16" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="130" bodyend="133"/>
+        <references refid="classShipWeapon_1a986dc0ab44304330569ab1f693629d7f" compoundref="ShipWeapon_8cs" startline="47">hits</references>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a7837bcc0c1dadad8a0a0e8d1f8abc9e4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.SetHits</definition>
+        <argsstring>(int value)</argsstring>
+        <name>SetHits</name>
+        <qualifiedname>ShipWeapon.SetHits</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>적중 횟수 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="138" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="138" bodyend="141"/>
+        <references refid="classShipWeapon_1a986dc0ab44304330569ab1f693629d7f" compoundref="ShipWeapon_8cs" startline="47">hits</references>
+        <referencedby refid="classWeaponSystem_1acfe6f97f4c6ef23eaf2edc7098d635e4" compoundref="WeaponSystem_8cs" startline="289" endline="296">WeaponSystem.ResetAllWeaponStats</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1adaac4948dd076f6d0f181b092e085c7c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.AddHit</definition>
+        <argsstring>()</argsstring>
+        <name>AddHit</name>
+        <qualifiedname>ShipWeapon.AddHit</qualifiedname>
+        <briefdescription>
+<para>적중 추가 (적 타격 시 호출) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="146" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="146" bodyend="149"/>
+        <references refid="classShipWeapon_1a986dc0ab44304330569ab1f693629d7f" compoundref="ShipWeapon_8cs" startline="47">hits</references>
+        <referencedby refid="classShipWeapon_1a5c800bb1a7dc07c7f60e36ff30acc817" compoundref="ShipWeapon_8cs" startline="396" endline="407">OnProjectileHit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a489260f40afc42332343ef042d26be71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float ShipWeapon.GetTotalDamageDealt</definition>
+        <argsstring>()</argsstring>
+        <name>GetTotalDamageDealt</name>
+        <qualifiedname>ShipWeapon.GetTotalDamageDealt</qualifiedname>
+        <briefdescription>
+<para>입힌 총 피해량 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="154" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="154" bodyend="157"/>
+        <references refid="classShipWeapon_1a70b865f603693a2a485baa858049129a" compoundref="ShipWeapon_8cs" startline="52">totalDamageDealt</references>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a0e3b641ba24b013310ae3051b72ba377" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.SetTotalDamageDealt</definition>
+        <argsstring>(float value)</argsstring>
+        <name>SetTotalDamageDealt</name>
+        <qualifiedname>ShipWeapon.SetTotalDamageDealt</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>입힌 총 피해량 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="162" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="162" bodyend="165"/>
+        <references refid="classShipWeapon_1a70b865f603693a2a485baa858049129a" compoundref="ShipWeapon_8cs" startline="52">totalDamageDealt</references>
+        <referencedby refid="classWeaponSystem_1acfe6f97f4c6ef23eaf2edc7098d635e4" compoundref="WeaponSystem_8cs" startline="289" endline="296">WeaponSystem.ResetAllWeaponStats</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a69c0f3367f735d850fd91d8cd83fc4f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.AddDamageDealt</definition>
+        <argsstring>(float damage)</argsstring>
+        <name>AddDamageDealt</name>
+        <qualifiedname>ShipWeapon.AddDamageDealt</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>damage</declname>
+        </param>
+        <briefdescription>
+<para>피해량 추가 (적 타격 시 호출) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="170" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="170" bodyend="173"/>
+        <references refid="classShipWeapon_1a70b865f603693a2a485baa858049129a" compoundref="ShipWeapon_8cs" startline="52">totalDamageDealt</references>
+        <referencedby refid="classShipWeapon_1a5c800bb1a7dc07c7f60e36ff30acc817" compoundref="ShipWeapon_8cs" startline="396" endline="407">OnProjectileHit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a1af36c3085a542d72b8b745f2a416f4a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.UpdateCooldown</definition>
+        <argsstring>(float deltaTime)</argsstring>
+        <name>UpdateCooldown</name>
+        <qualifiedname>ShipWeapon.UpdateCooldown</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>deltaTime</declname>
+        </param>
+        <briefdescription>
+<para>매 프레임 호출되어 쿨다운 시간을 감소시킵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>deltaTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>경과 시간 (초).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="179" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="179" bodyend="182"/>
+        <references refid="classShipWeapon_1a95b4c4f3e4f4170c67eaf2a5148fbed7" compoundref="ShipWeapon_8cs" startline="14">currentCooldown</references>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1aee57fefa0cf9e23776223eb2ee83bc07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.UpdateCooldownWithBonus</definition>
+        <argsstring>(float deltaTime, float reloadBonus)</argsstring>
+        <name>UpdateCooldownWithBonus</name>
+        <qualifiedname>ShipWeapon.UpdateCooldownWithBonus</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>deltaTime</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>reloadBonus</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="184" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="184" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a72518cf9b3021beca098c19c438dbc5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ShipWeapon.IsReady</definition>
+        <argsstring>()</argsstring>
+        <name>IsReady</name>
+        <qualifiedname>ShipWeapon.IsReady</qualifiedname>
+        <briefdescription>
+<para>무기가 발사 가능한 상태인지 확인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>쿨다운이 완료되었으면 true.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="201" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="201" bodyend="204"/>
+        <references refid="classShipWeapon_1a95b4c4f3e4f4170c67eaf2a5148fbed7" compoundref="ShipWeapon_8cs" startline="14">currentCooldown</references>
+        <referencedby refid="classWeaponSystem_1a1af41ebb69e5f5eb58996983e394a4e6" compoundref="WeaponSystem_8cs" startline="257" endline="263">WeaponSystem.IsEveryWeaponReady</referencedby>
+        <referencedby refid="classWeaponFrameFunction_1ad8dbfe8bbcbc584fded650e8cafbb016" compoundref="WeaponFrameFunction_8cs" startline="103" endline="112">WeaponFrameFunction.SetFireButton</referencedby>
+        <referencedby refid="classShipWeapon_1ae07871ba8eadcce6c4042e3f988980a6" compoundref="ShipWeapon_8cs" startline="314" endline="346">TryFire</referencedby>
+        <referencedby refid="classWeaponSystem_1a4664bc232783de0d119664f701436a6b" compoundref="WeaponSystem_8cs" startline="20" endline="38">WeaponSystem.Update</referencedby>
+        <referencedby refid="classOuterShipCombatController_1a11ae7e43fcd5261ae159ccffb975dba9" compoundref="OuterShipCombatController_8cs" startline="16" endline="31">OuterShipCombatController.WeaponFire</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a7e523885eee82be78af8cd03f5ff458a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.ResetCooldown</definition>
+        <argsstring>()</argsstring>
+        <name>ResetCooldown</name>
+        <qualifiedname>ShipWeapon.ResetCooldown</qualifiedname>
+        <briefdescription>
+<para>무기의 쿨다운을 기본값으로 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="209" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="209" bodyend="213"/>
+        <references refid="classShipWeapon_1a95b4c4f3e4f4170c67eaf2a5148fbed7" compoundref="ShipWeapon_8cs" startline="14">currentCooldown</references>
+        <referencedby refid="classShipWeapon_1a988ecbbbe6152ece7f3651236ed9b0d8" compoundref="ShipWeapon_8cs" startline="354" endline="390">Fire</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a4adb1453d46510d91db1cfe5005dc33d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.ResetCooldown</definition>
+        <argsstring>(float cooldown)</argsstring>
+        <name>ResetCooldown</name>
+        <qualifiedname>ShipWeapon.ResetCooldown</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>cooldown</declname>
+        </param>
+        <briefdescription>
+<para>무기의 쿨다운을 지정한 값으로 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cooldown</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>설정할 쿨다운 시간.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="219" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="219" bodyend="222"/>
+        <references refid="classShipWeapon_1a95b4c4f3e4f4170c67eaf2a5148fbed7" compoundref="ShipWeapon_8cs" startline="14">currentCooldown</references>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1ae7bc58dd55023002947b1f497a082e5a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ShipWeapon.GetWeaponName</definition>
+        <argsstring>()</argsstring>
+        <name>GetWeaponName</name>
+        <qualifiedname>ShipWeapon.GetWeaponName</qualifiedname>
+        <briefdescription>
+<para>무기 이름을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>무기 이름 문자열.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="228" column="19" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="228" bodyend="231"/>
+        <references refid="classShipWeaponData_1a1baf2fc0621f73c6f67f2340706a5f7a" compoundref="ShipWeaponData_8cs" startline="90" endline="93">ShipWeaponData.GetWeaponName</references>
+        <references refid="classShipWeapon_1a954f16c27c8f13d52291b5356818e031" compoundref="ShipWeapon_8cs" startline="19">weaponData</references>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a5d0c8b9cb45cd7470fb3868d9feb826d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float ShipWeapon.GetDamage</definition>
+        <argsstring>()</argsstring>
+        <name>GetDamage</name>
+        <qualifiedname>ShipWeapon.GetDamage</qualifiedname>
+        <briefdescription>
+<para>무기의 피해량을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>피해량 값.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="237" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="237" bodyend="240"/>
+        <references refid="classShipWeaponData_1ae20f1d78d88a9f90560976fe90b09509" compoundref="ShipWeaponData_8cs" startline="99" endline="102">ShipWeaponData.GetDamage</references>
+        <references refid="classShipWeapon_1a954f16c27c8f13d52291b5356818e031" compoundref="ShipWeapon_8cs" startline="19">weaponData</references>
+        <referencedby refid="classShipWeapon_1a988ecbbbe6152ece7f3651236ed9b0d8" compoundref="ShipWeapon_8cs" startline="354" endline="390">Fire</referencedby>
+        <referencedby refid="classOuterShipCombatController_1a11ae7e43fcd5261ae159ccffb975dba9" compoundref="OuterShipCombatController_8cs" startline="16" endline="31">OuterShipCombatController.WeaponFire</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1ab500dd47c4a2cc5515cec6ff43569e54" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float ShipWeapon.GetCooldownPerSecond</definition>
+        <argsstring>()</argsstring>
+        <name>GetCooldownPerSecond</name>
+        <qualifiedname>ShipWeapon.GetCooldownPerSecond</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="242" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="242" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1af44d2f4e2b94ca1866ed1206d976cc79" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ShipWeaponType</type>
+        <definition>ShipWeaponType ShipWeapon.GetWeaponType</definition>
+        <argsstring>()</argsstring>
+        <name>GetWeaponType</name>
+        <qualifiedname>ShipWeapon.GetWeaponType</qualifiedname>
+        <briefdescription>
+<para>무기의 타입을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>무기 타입 enum 값.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="251" column="27" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="251" bodyend="254"/>
+        <references refid="classShipWeaponData_1ab7df606779417892c192358728fd1f80" compoundref="ShipWeaponData_8cs" startline="118" endline="121">ShipWeaponData.GetWeaponType</references>
+        <references refid="classShipWeapon_1a954f16c27c8f13d52291b5356818e031" compoundref="ShipWeapon_8cs" startline="19">weaponData</references>
+        <referencedby refid="classWeaponSystem_1a8bbbcfefb2cf3cacb7abc79900ab1cfd" compoundref="WeaponSystem_8cs" startline="117" endline="126">WeaponSystem.FireWeaponsByType</referencedby>
+        <referencedby refid="classShipWeapon_1a5c800bb1a7dc07c7f60e36ff30acc817" compoundref="ShipWeapon_8cs" startline="396" endline="407">OnProjectileHit</referencedby>
+        <referencedby refid="classShipWeapon_1ae07871ba8eadcce6c4042e3f988980a6" compoundref="ShipWeapon_8cs" startline="314" endline="346">TryFire</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a04c2b8fbc4f18aef0ef567562eff9434" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Transform</type>
+        <definition>Transform ShipWeapon.GetFirePosition</definition>
+        <argsstring>()</argsstring>
+        <name>GetFirePosition</name>
+        <qualifiedname>ShipWeapon.GetFirePosition</qualifiedname>
+        <briefdescription>
+<para>무기 투사체의 발사 위치를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>무기 투사체 발사 위치 Transform.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="260" column="22" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="260" bodyend="263"/>
+        <references refid="classShipWeapon_1a7b68dc20e172ed469e7bfa7f3bb02349" compoundref="ShipWeapon_8cs" startline="24">firePoint</references>
+        <referencedby refid="classShipWeapon_1a988ecbbbe6152ece7f3651236ed9b0d8" compoundref="ShipWeapon_8cs" startline="354" endline="390">Fire</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a421526a38a8fbd32127d0063526c9c6a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>Vector2Int ShipWeapon.GetGridPosition</definition>
+        <argsstring>()</argsstring>
+        <name>GetGridPosition</name>
+        <qualifiedname>ShipWeapon.GetGridPosition</qualifiedname>
+        <briefdescription>
+<para>무기의 그리드 상 위치를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>그리드 상의 좌표.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="269" column="23" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="269" bodyend="272"/>
+        <references refid="classShipWeapon_1aa819b68fcd90c4d2301d452178325040" compoundref="ShipWeapon_8cs" startline="29">gridPosition</references>
+        <referencedby refid="classShip_1a24e7b7011b778b4c8c4aab0a12e90a3d" compoundref="Ship_8cs" startline="546" endline="568">Ship.BackupCurrentShip</referencedby>
+        <referencedby refid="classShipValidationHelper_1a39d36df3f0a7878f35261c554c7b1574" compoundref="ShipValidatonHelper_8cs" startline="389" endline="471">ShipValidationHelper.CheckWeaponConnectivity</referencedby>
+        <referencedby refid="classCameraZoomController_1a167bc55b6e4d87ff914de3a838d63f80" compoundref="CameraZoomController_8cs" startline="158" endline="188">CameraZoomController.GetCameraStartPositionToOriginShip</referencedby>
+        <referencedby refid="classShipValidationHelper_1a9111fff29a3ed831923e35aa76ba14be" compoundref="ShipValidatonHelper_8cs" startline="130" endline="204">ShipValidationHelper.ValidateWeaponAttachmentDirection</referencedby>
+        <referencedby refid="classShipValidationHelper_1aae7e4b1ba35c545797689b1f7b4bc9c1" compoundref="ShipValidatonHelper_8cs" startline="338" endline="381">ShipValidationHelper.ValidateWeaponPlacement</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a030da07209308a605177da3eaf791b38" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.SetGridPosition</definition>
+        <argsstring>(Vector2Int position)</argsstring>
+        <name>SetGridPosition</name>
+        <qualifiedname>ShipWeapon.SetGridPosition</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>무기의 그리드 상 위치를 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>설정할 그리드 위치.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="278" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="278" bodyend="281"/>
+        <references refid="classShipWeapon_1aa819b68fcd90c4d2301d452178325040" compoundref="ShipWeapon_8cs" startline="29">gridPosition</references>
+        <referencedby refid="classWeaponSystem_1ab22fd7259a04cbb21178d961d6b31047" compoundref="WeaponSystem_8cs" startline="134" endline="156">WeaponSystem.AddWeapon</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1aeaa57cf7fa6e6a8543a0350f8e45ca9d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ShipWeaponAttachedDirection</type>
+        <definition>ShipWeaponAttachedDirection ShipWeapon.GetAttachedDirection</definition>
+        <argsstring>()</argsstring>
+        <name>GetAttachedDirection</name>
+        <qualifiedname>ShipWeapon.GetAttachedDirection</qualifiedname>
+        <briefdescription>
+<para>무기가 시설과 연결된 방향(회전 상태)을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>무기가 연결된 방향.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="287" column="40" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="287" bodyend="290"/>
+        <references refid="classShipWeapon_1a197b2ff7d346cde7a72410f3e344797f" compoundref="ShipWeapon_8cs" startline="37">attachedDirection</references>
+        <referencedby refid="classShip_1a24e7b7011b778b4c8c4aab0a12e90a3d" compoundref="Ship_8cs" startline="546" endline="568">Ship.BackupCurrentShip</referencedby>
+        <referencedby refid="classShipValidationHelper_1a9111fff29a3ed831923e35aa76ba14be" compoundref="ShipValidatonHelper_8cs" startline="130" endline="204">ShipValidationHelper.ValidateWeaponAttachmentDirection</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1ae07871ba8eadcce6c4042e3f988980a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ShipWeapon.TryFire</definition>
+        <argsstring>()</argsstring>
+        <name>TryFire</name>
+        <qualifiedname>ShipWeapon.TryFire</qualifiedname>
+        <briefdescription>
+<para>무기 발사 시도 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>발사 성공 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="314" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="314" bodyend="346"/>
+        <references refid="classShipWeapon_1a988ecbbbe6152ece7f3651236ed9b0d8" compoundref="ShipWeapon_8cs" startline="354" endline="390">Fire</references>
+        <references refid="classShipWeapon_1a5e676192221221524e24e12aed41e447" compoundref="ShipWeapon_8cs" startline="412" endline="420">GetTargetShip</references>
+        <references refid="classShipWeapon_1af44d2f4e2b94ca1866ed1206d976cc79" compoundref="ShipWeapon_8cs" startline="251" endline="254">GetWeaponType</references>
+        <references refid="classShipWeapon_1aa851b687777329996f2f80a990e0d795" compoundref="ShipWeapon_8cs" startline="57">isEnabled</references>
+        <references refid="classShipWeapon_1a72518cf9b3021beca098c19c438dbc5f" compoundref="ShipWeapon_8cs" startline="201" endline="204">IsReady</references>
+        <referencedby refid="classWeaponSystem_1a73e0b9a0da5d4c185a14d7e8e2410650" compoundref="WeaponSystem_8cs" startline="101" endline="110">WeaponSystem.FireAllReadyWeapons</referencedby>
+        <referencedby refid="classWeaponSystem_1a266a34e53065779bd5f92db175dcb5f3" compoundref="WeaponSystem_8cs" startline="77" endline="95">WeaponSystem.FireWeapon</referencedby>
+        <referencedby refid="classWeaponSystem_1a8bbbcfefb2cf3cacb7abc79900ab1cfd" compoundref="WeaponSystem_8cs" startline="117" endline="126">WeaponSystem.FireWeaponsByType</referencedby>
+        <referencedby refid="classShipWeapon_1a5921a06b1952c0802dd2e06fdb7bc4dd" compoundref="ShipWeapon_8cs" startline="295" endline="308">TryAutoFire</referencedby>
+        <referencedby refid="classWeaponSystem_1a4664bc232783de0d119664f701436a6b" compoundref="WeaponSystem_8cs" startline="20" endline="38">WeaponSystem.Update</referencedby>
+        <referencedby refid="classWeaponFrameFunction_1a380506c0cc2e11a7eb7de9a1495f1057" compoundref="WeaponFrameFunction_8cs" startline="66" endline="75">WeaponFrameFunction.UpdateWeaponPanel</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a06ab2e9a77af7957cbdcd3c35e06c45b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.RotateWeapon</definition>
+        <argsstring>()</argsstring>
+        <name>RotateWeapon</name>
+        <qualifiedname>ShipWeapon.RotateWeapon</qualifiedname>
+        <briefdescription>
+<para>우클릭 시 호출되어 무기의 회전(힌지 회전) 상태를 변경합니다. 회전 상태는 East → South → North → East 순으로 순환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="426" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="426" bodyend="446"/>
+        <references refid="classShipWeapon_1a381aff291620c120979e6da7852b8ae9" compoundref="ShipWeapon_8cs" startline="453" endline="477">ApplyRotationSprite</references>
+        <references refid="classShipWeapon_1a197b2ff7d346cde7a72410f3e344797f" compoundref="ShipWeapon_8cs" startline="37">attachedDirection</references>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a381aff291620c120979e6da7852b8ae9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.ApplyRotationSprite</definition>
+        <argsstring>(int hullLevel=0)</argsstring>
+        <name>ApplyRotationSprite</name>
+        <qualifiedname>ShipWeapon.ApplyRotationSprite</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>hullLevel</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>현재 attachedDirection에 맞는 스프라이트를 SpriteRenderer에 적용합니다. 인덱스 매핑: 0 - Up (North), 1 - Right (East), 2 - Down (South) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hullLevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>함선의 외갑판 레벨 (0: 레벨 1, 1: 레벨 2, 2: 레벨 3)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="453" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="453" bodyend="477"/>
+        <references refid="classShipWeaponData_1a5009269e1870870e046676ed08a2816f" compoundref="ShipWeaponData_8cs" startline="55">ShipWeaponData.flattenedSprites</references>
+        <references refid="classShipWeapon_1a356ec825648d51cd087614a031b03922" compoundref="ShipWeapon_8cs" startline="90" endline="99">GetDirectionIndex</references>
+        <references refid="classShipWeapon_1ab051edfa4f01a4ff951adaed8a7e821a" compoundref="ShipWeapon_8cs" startline="42">spriteRenderer</references>
+        <references refid="classShipWeapon_1a954f16c27c8f13d52291b5356818e031" compoundref="ShipWeapon_8cs" startline="19">weaponData</references>
+        <references refid="classShipWeaponData_1a56f63799379c96ba15619ddc6c46cc8a" compoundref="ShipWeaponData_8cs" startline="39">ShipWeaponData.weaponIcon</references>
+        <referencedby refid="classWeaponSystem_1ab22fd7259a04cbb21178d961d6b31047" compoundref="WeaponSystem_8cs" startline="134" endline="156">WeaponSystem.AddWeapon</referencedby>
+        <referencedby refid="classShip_1a23daf25351bed0b564d1059ebc999796" compoundref="Ship_8cs" startline="610" endline="663">Ship.ReplaceShipFromBlueprint</referencedby>
+        <referencedby refid="classShipWeapon_1a06ab2e9a77af7957cbdcd3c35e06c45b" compoundref="ShipWeapon_8cs" startline="426" endline="446">RotateWeapon</referencedby>
+        <referencedby refid="classOuterHullSystem_1aa21e355ccbc76283db70b65cff027675" compoundref="OuterHullSystem_8cs" startline="63" endline="86">OuterHullSystem.SetOuterHullLevel</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a3b14b3260559a8f89d70bd9133e1713d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.CopyFrom</definition>
+        <argsstring>(ShipWeapon other)</argsstring>
+        <name>CopyFrom</name>
+        <qualifiedname>ShipWeapon.CopyFrom</qualifiedname>
+        <param>
+          <type><ref refid="classShipWeapon" kindref="compound">ShipWeapon</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="479" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="479" bodyend="493"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1a0f6750039ac17008d129217939b43264" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeapon.DisconnectAction</definition>
+        <argsstring>()</argsstring>
+        <name>DisconnectAction</name>
+        <qualifiedname>ShipWeapon.DisconnectAction</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="497" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="497" bodyend="500"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeapon_1ae53e123c2fc95c94e5a4ef7b5c5366c0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float ShipWeapon.GetCooldownPercentage</definition>
+        <argsstring>()</argsstring>
+        <name>GetCooldownPercentage</name>
+        <qualifiedname>ShipWeapon.GetCooldownPercentage</qualifiedname>
+        <briefdescription>
+<para>현재 무기가 충전된 정도를 백분율로 반환 (0~1) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="506" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="506" bodyend="509"/>
+        <references refid="classShipWeapon_1a95b4c4f3e4f4170c67eaf2a5148fbed7" compoundref="ShipWeapon_8cs" startline="14">currentCooldown</references>
+        <referencedby refid="classWeaponFrameFunction_1a380506c0cc2e11a7eb7de9a1495f1057" compoundref="WeaponFrameFunction_8cs" startline="66" endline="75">WeaponFrameFunction.UpdateWeaponPanel</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>실제 무기 인스턴스를 나타내는 클래스. 무기 데이터와 쿨다운 상태를 포함하며, 발사 위치 및 각종 무기 정보를 제공합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ShipWeapon</label>
+        <link refid="classShipWeapon"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="15">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="17">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="20">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ShipWeapon</label>
+        <link refid="classShipWeapon"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+weaponData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-ownerShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ShipWeaponData</label>
+        <link refid="classShipWeaponData"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>+weaponType</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+effectData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+warheadType</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ShipWeaponTypeData</label>
+        <link refid="classShipWeaponTypeData"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>WarheadTypeData</label>
+        <link refid="classWarheadTypeData"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>WeaponEffectData</label>
+        <link refid="classWeaponEffectData"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" line="9" column="7" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeapon.cs" bodystart="10" bodyend="510"/>
+    <listofallmembers>
+      <member refid="classShipWeapon_1a69c0f3367f735d850fd91d8cd83fc4f6" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>AddDamageDealt</name></member>
+      <member refid="classShipWeapon_1adaac4948dd076f6d0f181b092e085c7c" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>AddHit</name></member>
+      <member refid="classShipWeapon_1a381aff291620c120979e6da7852b8ae9" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>ApplyRotationSprite</name></member>
+      <member refid="classShipWeapon_1a197b2ff7d346cde7a72410f3e344797f" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>attachedDirection</name></member>
+      <member refid="classShipWeapon_1a11a9893e2be4a5300822674b04ebbb10" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>Awake</name></member>
+      <member refid="classShipWeapon_1a3b14b3260559a8f89d70bd9133e1713d" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>CopyFrom</name></member>
+      <member refid="classShipWeapon_1a95b4c4f3e4f4170c67eaf2a5148fbed7" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>currentCooldown</name></member>
+      <member refid="classShipWeapon_1a0f6750039ac17008d129217939b43264" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>DisconnectAction</name></member>
+      <member refid="classShipWeapon_1a988ecbbbe6152ece7f3651236ed9b0d8" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>Fire</name></member>
+      <member refid="classShipWeapon_1a7b68dc20e172ed469e7bfa7f3bb02349" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>firePoint</name></member>
+      <member refid="classShipWeapon_1aeaa57cf7fa6e6a8543a0350f8e45ca9d" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>GetAttachedDirection</name></member>
+      <member refid="classShipWeapon_1ae53e123c2fc95c94e5a4ef7b5c5366c0" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>GetCooldownPercentage</name></member>
+      <member refid="classShipWeapon_1ab500dd47c4a2cc5515cec6ff43569e54" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>GetCooldownPerSecond</name></member>
+      <member refid="classShipWeapon_1a5d0c8b9cb45cd7470fb3868d9feb826d" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>GetDamage</name></member>
+      <member refid="classShipWeapon_1a356ec825648d51cd087614a031b03922" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>GetDirectionIndex</name></member>
+      <member refid="classShipWeapon_1a04c2b8fbc4f18aef0ef567562eff9434" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>GetFirePosition</name></member>
+      <member refid="classShipWeapon_1a421526a38a8fbd32127d0063526c9c6a" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>GetGridPosition</name></member>
+      <member refid="classShipWeapon_1ab4368e9319a0cb4892180ae9f8257331" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>GetHits</name></member>
+      <member refid="classShipWeapon_1a5e676192221221524e24e12aed41e447" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>GetTargetShip</name></member>
+      <member refid="classShipWeapon_1a489260f40afc42332343ef042d26be71" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>GetTotalDamageDealt</name></member>
+      <member refid="classShipWeapon_1ae7bc58dd55023002947b1f497a082e5a" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>GetWeaponName</name></member>
+      <member refid="classShipWeapon_1af44d2f4e2b94ca1866ed1206d976cc79" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>GetWeaponType</name></member>
+      <member refid="classShipWeapon_1aa819b68fcd90c4d2301d452178325040" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>gridPosition</name></member>
+      <member refid="classShipWeapon_1af82656450f6ab16854311cd7d6f1f466" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>gridSize</name></member>
+      <member refid="classShipWeapon_1a986dc0ab44304330569ab1f693629d7f" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>hits</name></member>
+      <member refid="classShipWeapon_1ad1bc7dcd44db24b78956ab3c77626d57" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>Initialize</name></member>
+      <member refid="classShipWeapon_1aa851b687777329996f2f80a990e0d795" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>isEnabled</name></member>
+      <member refid="classShipWeapon_1adcc4bbde13b09e03903e416f46fc31f5" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>IsEnabled</name></member>
+      <member refid="classShipWeapon_1a72518cf9b3021beca098c19c438dbc5f" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>IsReady</name></member>
+      <member refid="classShipWeapon_1a5c800bb1a7dc07c7f60e36ff30acc817" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>OnProjectileHit</name></member>
+      <member refid="classShipWeapon_1aa0f10bedd301a8fcde466837dcc274c3" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>ownerShip</name></member>
+      <member refid="classShipWeapon_1a7e523885eee82be78af8cd03f5ff458a" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>ResetCooldown</name></member>
+      <member refid="classShipWeapon_1a4adb1453d46510d91db1cfe5005dc33d" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>ResetCooldown</name></member>
+      <member refid="classShipWeapon_1a06ab2e9a77af7957cbdcd3c35e06c45b" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>RotateWeapon</name></member>
+      <member refid="classShipWeapon_1a3d363faa31a15866bbbed0ee8525c699" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>SetAttachedDirection</name></member>
+      <member refid="classShipWeapon_1a7a344445a3bcf89a7f322610eca0a536" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>SetEnabled</name></member>
+      <member refid="classShipWeapon_1a030da07209308a605177da3eaf791b38" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>SetGridPosition</name></member>
+      <member refid="classShipWeapon_1a7837bcc0c1dadad8a0a0e8d1f8abc9e4" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>SetHits</name></member>
+      <member refid="classShipWeapon_1a0e3b641ba24b013310ae3051b72ba377" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>SetTotalDamageDealt</name></member>
+      <member refid="classShipWeapon_1ab051edfa4f01a4ff951adaed8a7e821a" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>spriteRenderer</name></member>
+      <member refid="classShipWeapon_1a72915a7c1a1f7f34864ac888008a2e04" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>Start</name></member>
+      <member refid="classShipWeapon_1a70b865f603693a2a485baa858049129a" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>totalDamageDealt</name></member>
+      <member refid="classShipWeapon_1a5921a06b1952c0802dd2e06fdb7bc4dd" prot="private" virt="non-virtual"><scope>ShipWeapon</scope><name>TryAutoFire</name></member>
+      <member refid="classShipWeapon_1ae07871ba8eadcce6c4042e3f988980a6" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>TryFire</name></member>
+      <member refid="classShipWeapon_1a1af36c3085a542d72b8b745f2a416f4a" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>UpdateCooldown</name></member>
+      <member refid="classShipWeapon_1aee57fefa0cf9e23776223eb2ee83bc07" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>UpdateCooldownWithBonus</name></member>
+      <member refid="classShipWeapon_1ae91155d287c51d3586181c0ff99d173d" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>updateWeaponPanel</name></member>
+      <member refid="classShipWeapon_1a954f16c27c8f13d52291b5356818e031" prot="public" virt="non-virtual"><scope>ShipWeapon</scope><name>weaponData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1819 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classES3Writer" kind="class" language="C#" prot="public" abstract="yes">
+    <compoundname>ES3Writer</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">System.IDisposable</basecompoundref>
+    <derivedcompoundref refid="classES3Internal_1_1ES3CacheWriter" prot="public" virt="non-virtual">ES3Internal.ES3CacheWriter</derivedcompoundref>
+    <derivedcompoundref refid="classES3Internal_1_1ES3JSONWriter" prot="public" virt="non-virtual">ES3Internal.ES3JSONWriter</derivedcompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classES3Writer_1a56d9e89ebb6d8b979ac192ffe08443e4" prot="public" static="no" mutable="no">
+        <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+        <definition>ES3Settings ES3Writer.settings</definition>
+        <argsstring></argsstring>
+        <name>settings</name>
+        <qualifiedname>ES3Writer.settings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="11" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classES3Writer_1a3f2dc11280f1cc7cc17f0d40871586ba" prot="protected" static="no" mutable="no">
+        <type>HashSet&lt; string &gt;</type>
+        <definition>HashSet&lt;string&gt; ES3Writer.keysToDelete</definition>
+        <argsstring></argsstring>
+        <name>keysToDelete</name>
+        <qualifiedname>ES3Writer.keysToDelete</qualifiedname>
+        <initializer>= new HashSet&lt;string&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="12" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Writer_1a2bc54c619eb05822e2e2f9f1ebef008b" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ES3Writer.serializationDepth</definition>
+        <argsstring></argsstring>
+        <name>serializationDepth</name>
+        <qualifiedname>ES3Writer.serializationDepth</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="17" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="classES3Writer_1afec642929f7d96bf435899f4290f2407" prot="package" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ES3Writer.writeHeaderAndFooter</definition>
+        <argsstring></argsstring>
+        <name>writeHeaderAndFooter</name>
+        <qualifiedname>ES3Writer.writeHeaderAndFooter</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="14" column="15" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Writer_1a051307d281ddabc9b72757247e4f150f" prot="package" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ES3Writer.overwriteKeys</definition>
+        <argsstring></argsstring>
+        <name>overwriteKeys</name>
+        <qualifiedname>ES3Writer.overwriteKeys</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="15" column="15" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="package-func">
+      <memberdef kind="function" id="classES3Writer_1a8aded5204c176f1bc323cb91d544c92e" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WriteNull</definition>
+        <argsstring>()</argsstring>
+        <name>WriteNull</name>
+        <qualifiedname>ES3Writer.WriteNull</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="21" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a48b2ec9e3e70a208a10164c83b590ccc" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.StartWriteFile</definition>
+        <argsstring>()</argsstring>
+        <name>StartWriteFile</name>
+        <qualifiedname>ES3Writer.StartWriteFile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="23" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="23" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1adf35de9d2f37f6fd7bc43cc1f4c4995f" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.EndWriteFile</definition>
+        <argsstring>()</argsstring>
+        <name>EndWriteFile</name>
+        <qualifiedname>ES3Writer.EndWriteFile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="28" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="28" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a2c94387af0ac656263881dbab4eca764" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.StartWriteObject</definition>
+        <argsstring>(string name)</argsstring>
+        <name>StartWriteObject</name>
+        <qualifiedname>ES3Writer.StartWriteObject</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="33" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="33" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a0c336f5de2824174a88ae93f6d1ce845" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.EndWriteObject</definition>
+        <argsstring>(string name)</argsstring>
+        <name>EndWriteObject</name>
+        <qualifiedname>ES3Writer.EndWriteObject</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="38" column="23" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="38" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a2afe649a243185cd334e3cfb9ca06aee" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.StartWriteProperty</definition>
+        <argsstring>(string name)</argsstring>
+        <name>StartWriteProperty</name>
+        <qualifiedname>ES3Writer.StartWriteProperty</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="43" column="23" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="43" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a17b695d05d1048ef35bdc9bf197d097a" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.EndWriteProperty</definition>
+        <argsstring>(string name)</argsstring>
+        <name>EndWriteProperty</name>
+        <qualifiedname>ES3Writer.EndWriteProperty</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="50" column="23" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="50" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a26f82f5a29ccf34bef7f14b02ecbc63e" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.StartWriteCollection</definition>
+        <argsstring>()</argsstring>
+        <name>StartWriteCollection</name>
+        <qualifiedname>ES3Writer.StartWriteCollection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="54" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="54" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a3248dfd91c8fd15edb1a36b9050ec5e2" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.EndWriteCollection</definition>
+        <argsstring>()</argsstring>
+        <name>EndWriteCollection</name>
+        <qualifiedname>ES3Writer.EndWriteCollection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="59" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="59" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a5ce933a565a2c183df7525eb2a3d7579" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.StartWriteCollectionItem</definition>
+        <argsstring>(int index)</argsstring>
+        <name>StartWriteCollectionItem</name>
+        <qualifiedname>ES3Writer.StartWriteCollectionItem</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="64" column="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1af4d34a477ca9cc2777b2efa837dd5d55" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.EndWriteCollectionItem</definition>
+        <argsstring>(int index)</argsstring>
+        <name>EndWriteCollectionItem</name>
+        <qualifiedname>ES3Writer.EndWriteCollectionItem</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="65" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a588a54870ce124bdfa3ff530d379adff" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.StartWriteDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>StartWriteDictionary</name>
+        <qualifiedname>ES3Writer.StartWriteDictionary</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="67" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1ad71ac6b30d617a3f31ebc3194e0ed587" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.EndWriteDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>EndWriteDictionary</name>
+        <qualifiedname>ES3Writer.EndWriteDictionary</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="68" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a07dd894f381d7996ec440c6acd6cd769" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.StartWriteDictionaryKey</definition>
+        <argsstring>(int index)</argsstring>
+        <name>StartWriteDictionaryKey</name>
+        <qualifiedname>ES3Writer.StartWriteDictionaryKey</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="69" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a817f70cb123eacd1c12071b6cf63f0c8" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.EndWriteDictionaryKey</definition>
+        <argsstring>(int index)</argsstring>
+        <name>EndWriteDictionaryKey</name>
+        <qualifiedname>ES3Writer.EndWriteDictionaryKey</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="70" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a915e2bc85c460cefd9573df1330f8d42" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.StartWriteDictionaryValue</definition>
+        <argsstring>(int index)</argsstring>
+        <name>StartWriteDictionaryValue</name>
+        <qualifiedname>ES3Writer.StartWriteDictionaryValue</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="71" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1ae644b25723b370fba9efbf2ee0df55c5" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.EndWriteDictionaryValue</definition>
+        <argsstring>(int index)</argsstring>
+        <name>EndWriteDictionaryValue</name>
+        <qualifiedname>ES3Writer.EndWriteDictionaryValue</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="72" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1ae2b6d41877405a0345181ed8788f941a" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WriteRawProperty</definition>
+        <argsstring>(string name, byte[] bytes)</argsstring>
+        <name>WriteRawProperty</name>
+        <qualifiedname>ES3Writer.WriteRawProperty</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>byte[]</type>
+          <declname>bytes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="80" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1aea852bc33b6651c582eb534b57ac3358" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(int value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="82" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1acbf59c72f89661cf3bbb9182a2aaf650" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(float value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="83" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a94a69f750145515429ba8e8e4d1d670b" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(bool value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="84" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a48cf0963243ff74af7ec8892436b404c" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(decimal value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>decimal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="85" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a504bda874838cb30031884027adcabab" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(double value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="86" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a8138a80a1ebe5cc9f6954bb2545f899e" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(long value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>long</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="87" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a128400a129eca4b065ae2e145dfa1624" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(ulong value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>ulong</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="88" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1add6fa5762332a896dc5650867ec43a45" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(uint value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>uint</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="89" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1aac37d2d6bbb128eb17512d73f41e4403" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(byte value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>byte</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="90" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a468984d1785d6340bf72287f74dabb18" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(sbyte value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>sbyte</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="91" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1aaebfcb1a2eb3102cc47ea8753123aa09" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(short value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>short</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="92" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1ac4fe6d2b4cad255f9bb99ea917692ba9" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(ushort value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>ushort</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="93" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1aa125bea3cc215a17116065ce365bbe67" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(char value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>char</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="94" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a9554f8fbab1b6c6dec3bdf1d78fe81f3" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(string value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="95" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a1d9999a95eddaac88c010b795662254b" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrimitive</definition>
+        <argsstring>(byte[] value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Writer.WritePrimitive</qualifiedname>
+        <param>
+          <type>byte[]</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="96" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1af737f6c05423dc9a5526c26a4062db60" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.Write</definition>
+        <argsstring>(string key, Type type, byte[] value)</argsstring>
+        <name>Write</name>
+        <qualifiedname>ES3Writer.Write</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>byte[]</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="110" column="23" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="110" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a0850509aaadc3c110335568423ad4e8c" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.WriteRef</definition>
+        <argsstring>(UnityEngine.Object obj)</argsstring>
+        <name>WriteRef</name>
+        <qualifiedname>ES3Writer.WriteRef</qualifiedname>
+        <param>
+          <type>UnityEngine.Object</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="250" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="250" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1ab856698cdfccd8e208b5bbca02b4f879" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.WriteRef</definition>
+        <argsstring>(UnityEngine.Object obj, string propertyName)</argsstring>
+        <name>WriteRef</name>
+        <qualifiedname>ES3Writer.WriteRef</qualifiedname>
+        <param>
+          <type>UnityEngine.Object</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>propertyName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="255" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="255" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1aec6411deef1e9696b1ecdaea0c9b0999" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.WriteRef</definition>
+        <argsstring>(UnityEngine.Object obj, string propertyName, ES3ReferenceMgrBase refMgr)</argsstring>
+        <name>WriteRef</name>
+        <qualifiedname>ES3Writer.WriteRef</qualifiedname>
+        <param>
+          <type>UnityEngine.Object</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>propertyName</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Internal_1_1ES3ReferenceMgrBase" kindref="compound">ES3ReferenceMgrBase</ref></type>
+          <declname>refMgr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="260" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="260" bodyend="271"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classES3Writer_1a75847ae0ede5d33a8db735b93946bdac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.Dispose</definition>
+        <argsstring>()</argsstring>
+        <name>Dispose</name>
+        <qualifiedname>ES3Writer.Dispose</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="74" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1ab88a54f23c9771f87d71aafdfd4d4427" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.Write&lt; T &gt;</definition>
+        <argsstring>(string key, object value)</argsstring>
+        <name>Write&lt; T &gt;</name>
+        <qualifiedname>ES3Writer.Write&lt; T &gt;</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Writes a value to the writer with the given key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key which uniquely identifies this value.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value we want to write.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="124" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="124" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a12adb07ffa07b79a2d62dbb80b71eddf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.Write</definition>
+        <argsstring>(Type type, string key, object value)</argsstring>
+        <name>Write</name>
+        <qualifiedname>ES3Writer.Write</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Writes a value to the writer with the given key, using the given type rather than the generic parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key which uniquely identifies this value.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value we want to write.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type we want to use for the header, and to retrieve an ES3Type.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="142" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="142" bodyend="151"/>
+        <references refid="classES3Settings_1a70c02d24424048cc02cd5a47806f79d7" compoundref="ES3Settings_8cs" startline="150">ES3Settings.referenceMode</references>
+        <references refid="classES3Writer_1a2642a32d02eee5be1927b37008f2107d" compoundref="ES3Writer_8cs" startline="281" endline="284">WriteProperty</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a6e0a6f994a0c0d72a4ddcb6b1977ce34" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.Write</definition>
+        <argsstring>(object value, ES3.ReferenceMode memberReferenceMode=ES3.ReferenceMode.ByRef)</argsstring>
+        <name>Write</name>
+        <qualifiedname>ES3Writer.Write</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>ES3.ReferenceMode</type>
+          <declname>memberReferenceMode</declname>
+          <defval>ES3.ReferenceMode.ByRef</defval>
+        </param>
+        <briefdescription>
+<para>Writes a value to the writer. Note that this should only be called within an ES3Type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value we want to write.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>memberReferenceMode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether we want to write UnityEngine.Object fields and properties by reference, by value, or both.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="161" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="161" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a580ebcd68780ca183901d04c7148f4e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.Write</definition>
+        <argsstring>(object value, ES3Type type, ES3.ReferenceMode memberReferenceMode=ES3.ReferenceMode.ByRef)</argsstring>
+        <name>Write</name>
+        <qualifiedname>ES3Writer.Write</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Types_1_1ES3Type" kindref="compound">ES3Type</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>ES3.ReferenceMode</type>
+          <declname>memberReferenceMode</declname>
+          <defval>ES3.ReferenceMode.ByRef</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="170" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="170" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a2642a32d02eee5be1927b37008f2107d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.WriteProperty</definition>
+        <argsstring>(string name, object value)</argsstring>
+        <name>WriteProperty</name>
+        <qualifiedname>ES3Writer.WriteProperty</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Writes a field or property to the writer. Note that this should only be called within an ES3Type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the field or property.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value we want to write.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="281" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="281" bodyend="284"/>
+        <references refid="classES3Settings_1a84b08c5455d6be6671f2eb9398452eca" compoundref="ES3Settings_8cs" startline="147">ES3Settings.memberReferenceMode</references>
+        <references refid="classES3Writer_1a2642a32d02eee5be1927b37008f2107d" compoundref="ES3Writer_8cs" startline="281" endline="284">WriteProperty</references>
+        <referencedby refid="classES3Writer_1a12adb07ffa07b79a2d62dbb80b71eddf" compoundref="ES3Writer_8cs" startline="142" endline="151">Write</referencedby>
+        <referencedby refid="classES3Writer_1aa1cfa8edb72e88d8eb9226d0b0bbfc37" compoundref="ES3Writer_8cs" startline="356" endline="362">WritePrivateField</referencedby>
+        <referencedby refid="classES3Writer_1afd6772b6926bf6d1956f0a5b74af9533" compoundref="ES3Writer_8cs" startline="345" endline="351">WritePrivateProperty</referencedby>
+        <referencedby refid="classES3Writer_1a2642a32d02eee5be1927b37008f2107d" compoundref="ES3Writer_8cs" startline="281" endline="284">WriteProperty</referencedby>
+        <referencedby refid="classES3Writer_1a3d868309b30aff96ecd7ee35fb3639dc" compoundref="ES3Writer_8cs" startline="303" endline="306">WriteProperty&lt; T &gt;</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1ac769dc5ad51436de5de6944f6d02743a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.WriteProperty</definition>
+        <argsstring>(string name, object value, ES3.ReferenceMode memberReferenceMode)</argsstring>
+        <name>WriteProperty</name>
+        <qualifiedname>ES3Writer.WriteProperty</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>ES3.ReferenceMode</type>
+          <declname>memberReferenceMode</declname>
+        </param>
+        <briefdescription>
+<para>Writes a field or property to the writer. Note that this should only be called within an ES3Type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the field or property.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value we want to write.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>memberReferenceMode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether we want to write the property by reference, by value, or both.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="290" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="290" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a3d868309b30aff96ecd7ee35fb3639dc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.WriteProperty&lt; T &gt;</definition>
+        <argsstring>(string name, object value)</argsstring>
+        <name>WriteProperty&lt; T &gt;</name>
+        <qualifiedname>ES3Writer.WriteProperty&lt; T &gt;</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Writes a field or property to the writer. Note that this should only be called within an ES3Type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the field or property.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value we want to write.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="303" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="303" bodyend="306"/>
+        <references refid="classES3Settings_1a84b08c5455d6be6671f2eb9398452eca" compoundref="ES3Settings_8cs" startline="147">ES3Settings.memberReferenceMode</references>
+        <references refid="classES3Writer_1a2642a32d02eee5be1927b37008f2107d" compoundref="ES3Writer_8cs" startline="281" endline="284">WriteProperty</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a3be890a97dd3891c673261184e1dc42e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.WriteProperty</definition>
+        <argsstring>(string name, object value, ES3Type type)</argsstring>
+        <name>WriteProperty</name>
+        <qualifiedname>ES3Writer.WriteProperty</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Types_1_1ES3Type" kindref="compound">ES3Type</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="309" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="309" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1aeb220f632fdc6338cea348225d2f61f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.WriteProperty</definition>
+        <argsstring>(string name, object value, ES3Type type, ES3.ReferenceMode memberReferenceMode)</argsstring>
+        <name>WriteProperty</name>
+        <qualifiedname>ES3Writer.WriteProperty</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Types_1_1ES3Type" kindref="compound">ES3Type</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>ES3.ReferenceMode</type>
+          <declname>memberReferenceMode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="315" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="315" bodyend="323"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1ac86aab72a90f188dea81d74950ef8e86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.WritePropertyByRef</definition>
+        <argsstring>(string name, UnityEngine.Object value)</argsstring>
+        <name>WritePropertyByRef</name>
+        <qualifiedname>ES3Writer.WritePropertyByRef</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>UnityEngine.Object</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="326" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="326" bodyend="340"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1afd6772b6926bf6d1956f0a5b74af9533" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrivateProperty</definition>
+        <argsstring>(string name, object objectContainingProperty)</argsstring>
+        <name>WritePrivateProperty</name>
+        <qualifiedname>ES3Writer.WritePrivateProperty</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>objectContainingProperty</declname>
+        </param>
+        <briefdescription>
+<para>Writes a private property to the writer. Note that this should only be called within an ES3Type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the property.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>objectContainingProperty</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object containing the property we want to write.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="345" column="13" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="345" bodyend="351"/>
+        <references refid="classES3Writer_1a2642a32d02eee5be1927b37008f2107d" compoundref="ES3Writer_8cs" startline="281" endline="284">WriteProperty</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1aa1cfa8edb72e88d8eb9226d0b0bbfc37" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrivateField</definition>
+        <argsstring>(string name, object objectContainingField)</argsstring>
+        <name>WritePrivateField</name>
+        <qualifiedname>ES3Writer.WritePrivateField</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>objectContainingField</declname>
+        </param>
+        <briefdescription>
+<para>Writes a private field to the writer. Note that this should only be called within an ES3Type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the field.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>objectContainingField</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object containing the property we want to write.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="356" column="13" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="356" bodyend="362"/>
+        <references refid="classES3Writer_1a2642a32d02eee5be1927b37008f2107d" compoundref="ES3Writer_8cs" startline="281" endline="284">WriteProperty</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1ad91947299d219f73bada54e0b986ec46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrivateProperty</definition>
+        <argsstring>(string name, object objectContainingProperty, ES3Type type)</argsstring>
+        <name>WritePrivateProperty</name>
+        <qualifiedname>ES3Writer.WritePrivateProperty</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>objectContainingProperty</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Types_1_1ES3Type" kindref="compound">ES3Type</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="365" column="13" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="365" bodyend="371"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1aa769645c8bfddb9238ffdc85c271c1a0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrivateField</definition>
+        <argsstring>(string name, object objectContainingField, ES3Type type)</argsstring>
+        <name>WritePrivateField</name>
+        <qualifiedname>ES3Writer.WritePrivateField</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>objectContainingField</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Types_1_1ES3Type" kindref="compound">ES3Type</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="374" column="13" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="374" bodyend="380"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a24ecfcd38c3e68582d7d60d04252a107" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrivatePropertyByRef</definition>
+        <argsstring>(string name, object objectContainingProperty)</argsstring>
+        <name>WritePrivatePropertyByRef</name>
+        <qualifiedname>ES3Writer.WritePrivatePropertyByRef</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>objectContainingProperty</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="383" column="13" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="383" bodyend="389"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a98e67bb5e068d8723cf5e44fab652bb8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WritePrivateFieldByRef</definition>
+        <argsstring>(string name, object objectContainingField)</argsstring>
+        <name>WritePrivateFieldByRef</name>
+        <qualifiedname>ES3Writer.WritePrivateFieldByRef</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>objectContainingField</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="392" column="13" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="392" bodyend="398"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1aed026bbc24304e43da010ee4e8cd8f98" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.WriteType</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>WriteType</name>
+        <qualifiedname>ES3Writer.WriteType</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="401" column="13" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="401" bodyend="404"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a9af760c15f766969f6e180295ead9f6e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.MarkKeyForDeletion</definition>
+        <argsstring>(string key)</argsstring>
+        <name>MarkKeyForDeletion</name>
+        <qualifiedname>ES3Writer.MarkKeyForDeletion</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="472" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="472" bodyend="475"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1ac4ebaba1c4af4bcfc302b75fabb7e47d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.Save</definition>
+        <argsstring>()</argsstring>
+        <name>Save</name>
+        <qualifiedname>ES3Writer.Save</qualifiedname>
+        <briefdescription>
+<para>Stores the contents of the writer and overwrites any existing keys if overwriting is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="503" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="503" bodyend="506"/>
+        <references refid="classES3Writer_1ac4ebaba1c4af4bcfc302b75fabb7e47d" compoundref="ES3Writer_8cs" startline="503" endline="506">Save</references>
+        <referencedby refid="classES3Writer_1ac4ebaba1c4af4bcfc302b75fabb7e47d" compoundref="ES3Writer_8cs" startline="503" endline="506">Save</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a8bc13b2976f90b36fe525fa0ab518e9d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Writer.Save</definition>
+        <argsstring>(bool overwriteKeys)</argsstring>
+        <name>Save</name>
+        <qualifiedname>ES3Writer.Save</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>overwriteKeys</declname>
+        </param>
+        <briefdescription>
+<para>Stores the contents of the writer and overwrites any existing keys if overwriting is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>overwriteKeys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether we should overwrite existing keys.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="510" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="510" bodyend="521"/>
+        <references refid="classES3Settings_1a4d37bdd73f46cb53d997d8300c78451d" compoundref="ES3Settings_8cs" startline="94" endline="102">ES3Settings.location</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classES3Writer_1af9d56b925a3020e2d60e21779cb9cfb5" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3Writer.ES3Writer</definition>
+        <argsstring>(ES3Settings settings, bool writeHeaderAndFooter, bool overwriteKeys)</argsstring>
+        <name>ES3Writer</name>
+        <qualifiedname>ES3Writer.ES3Writer</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeHeaderAndFooter</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>overwriteKeys</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="100" column="11" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="100" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a98481a048582a3134c7f479de0841394" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ES3Writer.SerializationDepthLimitExceeded</definition>
+        <argsstring>()</argsstring>
+        <name>SerializationDepthLimitExceeded</name>
+        <qualifiedname>ES3Writer.SerializationDepthLimitExceeded</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="457" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="457" bodyend="465"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1ab0631cc87f95d2bcae1eaff0b001be7e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.Merge</definition>
+        <argsstring>()</argsstring>
+        <name>Merge</name>
+        <qualifiedname>ES3Writer.Merge</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="481" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="481" bodyend="489"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a69d2eaf9e4f93d792b56dd44b6bf2f51" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Writer.Merge</definition>
+        <argsstring>(ES3Reader reader)</argsstring>
+        <name>Merge</name>
+        <qualifiedname>ES3Writer.Merge</qualifiedname>
+        <param>
+          <type><ref refid="classES3Reader" kindref="compound">ES3Reader</ref></type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="495" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="495" bodyend="500"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="classES3Writer_1a47078b3e6b4dd6bf2bc66217c1f8ea07" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3Writer.TryOnBeforeSerialize</definition>
+        <argsstring>(object obj)</argsstring>
+        <name>TryOnBeforeSerialize</name>
+        <qualifiedname>ES3Writer.TryOnBeforeSerialize</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="244" column="22" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="244" bodyend="248"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a35384aa0bbde36b009013b851687c36c" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3Writer" kindref="compound">ES3Writer</ref></type>
+        <definition>static ES3Writer ES3Writer.Create</definition>
+        <argsstring>(ES3Settings settings, bool writeHeaderAndFooter, bool overwriteKeys, bool append)</argsstring>
+        <name>Create</name>
+        <qualifiedname>ES3Writer.Create</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeHeaderAndFooter</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>overwriteKeys</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>append</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="426" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="426" bodyend="432"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1a66bd3fbf8e6ed6d081e1f30606f230fe" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3Writer" kindref="compound">ES3Writer</ref></type>
+        <definition>static ES3Writer ES3Writer.Create</definition>
+        <argsstring>(Stream stream, ES3Settings settings, bool writeHeaderAndFooter, bool overwriteKeys)</argsstring>
+        <name>Create</name>
+        <qualifiedname>ES3Writer.Create</qualifiedname>
+        <param>
+          <type>Stream</type>
+          <declname>stream</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeHeaderAndFooter</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>overwriteKeys</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="436" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="436" bodyend="449"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classES3Writer_1a8495b421b8cac2ede59e236066b2cea5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3Writer" kindref="compound">ES3Writer</ref></type>
+        <definition>static ES3Writer ES3Writer.Create</definition>
+        <argsstring>(string filePath, ES3Settings settings)</argsstring>
+        <name>Create</name>
+        <qualifiedname>ES3Writer.Create</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3Writer" kindref="compound">ES3Writer</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to write to.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="413" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="413" bodyend="416"/>
+        <references refid="classES3Writer_1a8495b421b8cac2ede59e236066b2cea5" compoundref="ES3Writer_8cs" startline="413" endline="416">Create</references>
+        <referencedby refid="classES3Writer_1acfd7c4db3d1015041d10b59b8b351c95" compoundref="ES3Writer_8cs" startline="420" endline="423">Create</referencedby>
+        <referencedby refid="classES3Writer_1a8495b421b8cac2ede59e236066b2cea5" compoundref="ES3Writer_8cs" startline="413" endline="416">Create</referencedby>
+        <referencedby refid="classES3_1a781732149c0277858b961a545f206ba7" compoundref="ES3_8cs" startline="1281" endline="1295">ES3.DeleteKey</referencedby>
+        <referencedby refid="classES3_1ab2c102f86a0b83baff86aa2d0fe87953" compoundref="ES3_8cs" startline="101" endline="114">ES3.Save&lt; T &gt;</referencedby>
+        <referencedby refid="classES3File_1a01960acc16041c5e59b91f3c5b1139ff" compoundref="ES3File_8cs" startline="108" endline="140">ES3File.Sync</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3Writer_1acfd7c4db3d1015041d10b59b8b351c95" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3Writer" kindref="compound">ES3Writer</ref></type>
+        <definition>static ES3Writer ES3Writer.Create</definition>
+        <argsstring>(ES3Settings settings)</argsstring>
+        <name>Create</name>
+        <qualifiedname>ES3Writer.Create</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3Writer" kindref="compound">ES3Writer</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="420" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="420" bodyend="423"/>
+        <references refid="classES3Writer_1a8495b421b8cac2ede59e236066b2cea5" compoundref="ES3Writer_8cs" startline="413" endline="416">Create</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ES3Internal.ES3CacheWriter</label>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ES3Internal.ES3JSONWriter</label>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ES3Writer</label>
+        <link refid="classES3Writer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>IDisposable</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8">
+        <label>ES3</label>
+        <link refid="classES3"/>
+      </node>
+      <node id="5">
+        <label>ES3Defaults</label>
+        <link refid="classES3Defaults"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+settings</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>ES3SerializableSettings</label>
+        <link refid="classES3SerializableSettings"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ES3Settings</label>
+        <link refid="classES3Settings"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-_defaults</edgelabel>
+          <edgelabel>-_unencryptedUncompressedSettings</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-_defaultSettingsScriptableObject</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+compressionType</edgelabel>
+          <edgelabel>+directory</edgelabel>
+          <edgelabel>+encryptionType</edgelabel>
+          <edgelabel>+format</edgelabel>
+          <edgelabel>+memberReferenceMode</edgelabel>
+          <edgelabel>+referenceMode</edgelabel>
+          <edgelabel>-_location</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>+encoding</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ES3Writer</label>
+        <link refid="classES3Writer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+settings</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>IDisposable</label>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="9">
+        <label>System</label>
+      </node>
+      <node id="4">
+        <label>System::ICloneable</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" line="9" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Writer.cs" bodystart="10" bodyend="522"/>
+    <listofallmembers>
+      <member refid="classES3Writer_1a8495b421b8cac2ede59e236066b2cea5" prot="public" virt="non-virtual"><scope>ES3Writer</scope><name>Create</name></member>
+      <member refid="classES3Writer_1acfd7c4db3d1015041d10b59b8b351c95" prot="public" virt="non-virtual"><scope>ES3Writer</scope><name>Create</name></member>
+      <member refid="classES3Writer_1a35384aa0bbde36b009013b851687c36c" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>Create</name></member>
+      <member refid="classES3Writer_1a66bd3fbf8e6ed6d081e1f30606f230fe" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>Create</name></member>
+      <member refid="classES3Writer_1a75847ae0ede5d33a8db735b93946bdac" prot="public" virt="non-virtual"><scope>ES3Writer</scope><name>Dispose</name></member>
+      <member refid="classES3Writer_1a3248dfd91c8fd15edb1a36b9050ec5e2" prot="package" virt="virtual"><scope>ES3Writer</scope><name>EndWriteCollection</name></member>
+      <member refid="classES3Writer_1af4d34a477ca9cc2777b2efa837dd5d55" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>EndWriteCollectionItem</name></member>
+      <member refid="classES3Writer_1ad71ac6b30d617a3f31ebc3194e0ed587" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>EndWriteDictionary</name></member>
+      <member refid="classES3Writer_1a817f70cb123eacd1c12071b6cf63f0c8" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>EndWriteDictionaryKey</name></member>
+      <member refid="classES3Writer_1ae644b25723b370fba9efbf2ee0df55c5" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>EndWriteDictionaryValue</name></member>
+      <member refid="classES3Writer_1adf35de9d2f37f6fd7bc43cc1f4c4995f" prot="package" virt="virtual"><scope>ES3Writer</scope><name>EndWriteFile</name></member>
+      <member refid="classES3Writer_1a0c336f5de2824174a88ae93f6d1ce845" prot="package" virt="virtual"><scope>ES3Writer</scope><name>EndWriteObject</name></member>
+      <member refid="classES3Writer_1a17b695d05d1048ef35bdc9bf197d097a" prot="package" virt="virtual"><scope>ES3Writer</scope><name>EndWriteProperty</name></member>
+      <member refid="classES3Writer_1af9d56b925a3020e2d60e21779cb9cfb5" prot="protected" virt="non-virtual"><scope>ES3Writer</scope><name>ES3Writer</name></member>
+      <member refid="classES3Writer_1a3f2dc11280f1cc7cc17f0d40871586ba" prot="protected" virt="non-virtual"><scope>ES3Writer</scope><name>keysToDelete</name></member>
+      <member refid="classES3Writer_1a9af760c15f766969f6e180295ead9f6e" prot="public" virt="virtual"><scope>ES3Writer</scope><name>MarkKeyForDeletion</name></member>
+      <member refid="classES3Writer_1ab0631cc87f95d2bcae1eaff0b001be7e" prot="protected" virt="non-virtual"><scope>ES3Writer</scope><name>Merge</name></member>
+      <member refid="classES3Writer_1a69d2eaf9e4f93d792b56dd44b6bf2f51" prot="protected" virt="non-virtual"><scope>ES3Writer</scope><name>Merge</name></member>
+      <member refid="classES3Writer_1a051307d281ddabc9b72757247e4f150f" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>overwriteKeys</name></member>
+      <member refid="classES3Writer_1ac4ebaba1c4af4bcfc302b75fabb7e47d" prot="public" virt="virtual"><scope>ES3Writer</scope><name>Save</name></member>
+      <member refid="classES3Writer_1a8bc13b2976f90b36fe525fa0ab518e9d" prot="public" virt="virtual"><scope>ES3Writer</scope><name>Save</name></member>
+      <member refid="classES3Writer_1a2bc54c619eb05822e2e2f9f1ebef008b" prot="protected" virt="non-virtual"><scope>ES3Writer</scope><name>serializationDepth</name></member>
+      <member refid="classES3Writer_1a98481a048582a3134c7f479de0841394" prot="protected" virt="non-virtual"><scope>ES3Writer</scope><name>SerializationDepthLimitExceeded</name></member>
+      <member refid="classES3Writer_1a56d9e89ebb6d8b979ac192ffe08443e4" prot="public" virt="non-virtual"><scope>ES3Writer</scope><name>settings</name></member>
+      <member refid="classES3Writer_1a26f82f5a29ccf34bef7f14b02ecbc63e" prot="package" virt="virtual"><scope>ES3Writer</scope><name>StartWriteCollection</name></member>
+      <member refid="classES3Writer_1a5ce933a565a2c183df7525eb2a3d7579" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>StartWriteCollectionItem</name></member>
+      <member refid="classES3Writer_1a588a54870ce124bdfa3ff530d379adff" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>StartWriteDictionary</name></member>
+      <member refid="classES3Writer_1a07dd894f381d7996ec440c6acd6cd769" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>StartWriteDictionaryKey</name></member>
+      <member refid="classES3Writer_1a915e2bc85c460cefd9573df1330f8d42" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>StartWriteDictionaryValue</name></member>
+      <member refid="classES3Writer_1a48b2ec9e3e70a208a10164c83b590ccc" prot="package" virt="virtual"><scope>ES3Writer</scope><name>StartWriteFile</name></member>
+      <member refid="classES3Writer_1a2c94387af0ac656263881dbab4eca764" prot="package" virt="virtual"><scope>ES3Writer</scope><name>StartWriteObject</name></member>
+      <member refid="classES3Writer_1a2afe649a243185cd334e3cfb9ca06aee" prot="package" virt="virtual"><scope>ES3Writer</scope><name>StartWriteProperty</name></member>
+      <member refid="classES3Writer_1a47078b3e6b4dd6bf2bc66217c1f8ea07" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>TryOnBeforeSerialize</name></member>
+      <member refid="classES3Writer_1af737f6c05423dc9a5526c26a4062db60" prot="package" virt="virtual"><scope>ES3Writer</scope><name>Write</name></member>
+      <member refid="classES3Writer_1a12adb07ffa07b79a2d62dbb80b71eddf" prot="public" virt="virtual"><scope>ES3Writer</scope><name>Write</name></member>
+      <member refid="classES3Writer_1a6e0a6f994a0c0d72a4ddcb6b1977ce34" prot="public" virt="virtual"><scope>ES3Writer</scope><name>Write</name></member>
+      <member refid="classES3Writer_1a580ebcd68780ca183901d04c7148f4e0" prot="public" virt="virtual"><scope>ES3Writer</scope><name>Write</name></member>
+      <member refid="classES3Writer_1ab88a54f23c9771f87d71aafdfd4d4427" prot="public" virt="virtual"><scope>ES3Writer</scope><name>Write&lt; T &gt;</name></member>
+      <member refid="classES3Writer_1afec642929f7d96bf435899f4290f2407" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>writeHeaderAndFooter</name></member>
+      <member refid="classES3Writer_1a8aded5204c176f1bc323cb91d544c92e" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WriteNull</name></member>
+      <member refid="classES3Writer_1aea852bc33b6651c582eb534b57ac3358" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1acbf59c72f89661cf3bbb9182a2aaf650" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1a94a69f750145515429ba8e8e4d1d670b" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1a48cf0963243ff74af7ec8892436b404c" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1a504bda874838cb30031884027adcabab" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1a8138a80a1ebe5cc9f6954bb2545f899e" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1a128400a129eca4b065ae2e145dfa1624" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1add6fa5762332a896dc5650867ec43a45" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1aac37d2d6bbb128eb17512d73f41e4403" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1a468984d1785d6340bf72287f74dabb18" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1aaebfcb1a2eb3102cc47ea8753123aa09" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1ac4fe6d2b4cad255f9bb99ea917692ba9" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1aa125bea3cc215a17116065ce365bbe67" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1a9554f8fbab1b6c6dec3bdf1d78fe81f3" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1a1d9999a95eddaac88c010b795662254b" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1aa1cfa8edb72e88d8eb9226d0b0bbfc37" prot="public" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrivateField</name></member>
+      <member refid="classES3Writer_1aa769645c8bfddb9238ffdc85c271c1a0" prot="public" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrivateField</name></member>
+      <member refid="classES3Writer_1a98e67bb5e068d8723cf5e44fab652bb8" prot="public" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrivateFieldByRef</name></member>
+      <member refid="classES3Writer_1afd6772b6926bf6d1956f0a5b74af9533" prot="public" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrivateProperty</name></member>
+      <member refid="classES3Writer_1ad91947299d219f73bada54e0b986ec46" prot="public" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrivateProperty</name></member>
+      <member refid="classES3Writer_1a24ecfcd38c3e68582d7d60d04252a107" prot="public" virt="non-virtual"><scope>ES3Writer</scope><name>WritePrivatePropertyByRef</name></member>
+      <member refid="classES3Writer_1a2642a32d02eee5be1927b37008f2107d" prot="public" virt="virtual"><scope>ES3Writer</scope><name>WriteProperty</name></member>
+      <member refid="classES3Writer_1ac769dc5ad51436de5de6944f6d02743a" prot="public" virt="virtual"><scope>ES3Writer</scope><name>WriteProperty</name></member>
+      <member refid="classES3Writer_1a3be890a97dd3891c673261184e1dc42e" prot="public" virt="virtual"><scope>ES3Writer</scope><name>WriteProperty</name></member>
+      <member refid="classES3Writer_1aeb220f632fdc6338cea348225d2f61f6" prot="public" virt="virtual"><scope>ES3Writer</scope><name>WriteProperty</name></member>
+      <member refid="classES3Writer_1a3d868309b30aff96ecd7ee35fb3639dc" prot="public" virt="virtual"><scope>ES3Writer</scope><name>WriteProperty&lt; T &gt;</name></member>
+      <member refid="classES3Writer_1ac86aab72a90f188dea81d74950ef8e86" prot="public" virt="virtual"><scope>ES3Writer</scope><name>WritePropertyByRef</name></member>
+      <member refid="classES3Writer_1ae2b6d41877405a0345181ed8788f941a" prot="package" virt="non-virtual"><scope>ES3Writer</scope><name>WriteRawProperty</name></member>
+      <member refid="classES3Writer_1a0850509aaadc3c110335568423ad4e8c" prot="package" virt="virtual"><scope>ES3Writer</scope><name>WriteRef</name></member>
+      <member refid="classES3Writer_1ab856698cdfccd8e208b5bbca02b4f879" prot="package" virt="virtual"><scope>ES3Writer</scope><name>WriteRef</name></member>
+      <member refid="classES3Writer_1aec6411deef1e9696b1ecdaea0c9b0999" prot="package" virt="virtual"><scope>ES3Writer</scope><name>WriteRef</name></member>
+      <member refid="classES3Writer_1aed026bbc24304e43da010ee4e8cd8f98" prot="public" virt="non-virtual"><scope>ES3Writer</scope><name>WriteType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

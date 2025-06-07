@@ -1,0 +1,368 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCombatManager" kind="class" language="C#" prot="public">
+    <compoundname>CombatManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classCombatManager_1a12520bfc421cba50a878c3b8f38ae5f1" prot="public" static="no" mutable="no">
+        <type><ref refid="classEnemyCamInteraction" kindref="compound">EnemyCamInteraction</ref></type>
+        <definition>EnemyCamInteraction CombatManager.cam</definition>
+        <argsstring></argsstring>
+        <name>cam</name>
+        <qualifiedname>CombatManager.cam</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="13" column="32" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCombatManager_1a737da48c36c8b182f91e0511d9a852c8" prot="public" static="no" mutable="no">
+        <type><ref refid="classOuterShipCombatController" kindref="compound">OuterShipCombatController</ref></type>
+        <definition>OuterShipCombatController CombatManager.outerShipCombatController</definition>
+        <argsstring></argsstring>
+        <name>outerShipCombatController</name>
+        <qualifiedname>CombatManager.outerShipCombatController</qualifiedname>
+        <briefdescription>
+<para>외부 함선 전투 컨트롤러입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="23" column="38" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCombatManager_1a5fcb6882446925dac782c86aeafe763b" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject CombatManager.CCTV</definition>
+        <argsstring></argsstring>
+        <name>CCTV</name>
+        <qualifiedname>CombatManager.CCTV</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="87" column="23" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCombatManager_1a3c9df781c980c14ebda8ba5e45b45f0c" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject CombatManager.defeatUI</definition>
+        <argsstring></argsstring>
+        <name>defeatUI</name>
+        <qualifiedname>CombatManager.defeatUI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="107" column="23" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCombatManager_1ae29edef279af2291a1a5d43bbb494097" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject CombatManager.winUI</definition>
+        <argsstring></argsstring>
+        <name>winUI</name>
+        <qualifiedname>CombatManager.winUI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="108" column="23" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="108" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classCombatManager_1a12c274566758e606386ee25e7d0cc345" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="classCombatManager" kindref="compound">CombatManager</ref></type>
+        <definition>CombatManager CombatManager.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>CombatManager.Instance</qualifiedname>
+        <briefdescription>
+<para>CombatManager의 싱글톤 인스턴스입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="18" column="33" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="18" bodyend="18"/>
+        <referencedby refid="classCombatManager_1ae72a224a22b4a92056f79e2add99acb3" compoundref="CombatManager_8cs" startline="43" endline="56">Awake</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classCombatManager_1aa7c69f695596dd94a71d2464af303dec" prot="private" static="no" mutable="no">
+        <type>CombatPhase</type>
+        <definition>CombatPhase CombatManager.currentPhase</definition>
+        <argsstring></argsstring>
+        <name>currentPhase</name>
+        <qualifiedname>CombatManager.currentPhase</qualifiedname>
+        <briefdescription>
+<para>현재 상태입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="28" column="25" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="28" bodyend="-1"/>
+        <referencedby refid="classCombatManager_1abf07f5abfdb7c1d1f7215cd56c2392ca" compoundref="CombatManager_8cs" startline="62" endline="85">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCombatManager_1a0a7a9af1064abbe148d868a208ee2ae8" prot="private" static="no" mutable="no">
+        <type><ref refid="classCombatUIController" kindref="compound">CombatUIController</ref></type>
+        <definition>CombatUIController CombatManager.uiController</definition>
+        <argsstring></argsstring>
+        <name>uiController</name>
+        <qualifiedname>CombatManager.uiController</qualifiedname>
+        <briefdescription>
+<para>전투 UI 컨트롤러입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="33" column="32" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCombatManager_1a164ac638415d41b34f34b135d625139b" prot="private" static="no" mutable="no">
+        <type>GraphicRaycaster</type>
+        <definition>GraphicRaycaster CombatManager.combatUI</definition>
+        <argsstring></argsstring>
+        <name>combatUI</name>
+        <qualifiedname>CombatManager.combatUI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="35" column="31" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classCombatManager_1ae72a224a22b4a92056f79e2add99acb3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CombatManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>CombatManager.Awake</qualifiedname>
+        <briefdescription>
+<para>CombatManager가 초기화될 때 호출되며 싱글톤을 설정합니다. 씬 전환 시에도 파괴되지 않도록 처리됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="43" column="18" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="43" bodyend="56"/>
+        <references refid="classCombatManager_1a12c274566758e606386ee25e7d0cc345" compoundref="CombatManager_8cs" startline="18" endline="18">Instance</references>
+        <references refid="classRTSSelectionManager_1ac0db424ecf85d35f8a8106fa3bef1d64" compoundref="RTSSelectionManager_8cs" startline="94" endline="94">RTSSelectionManager.Instance</references>
+      </memberdef>
+      <memberdef kind="function" id="classCombatManager_1aee060c280528f8f8ffcbd2b5e94dc91e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator CombatManager.BackToTheHome</definition>
+        <argsstring>(bool isDefeated)</argsstring>
+        <name>BackToTheHome</name>
+        <qualifiedname>CombatManager.BackToTheHome</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>isDefeated</declname>
+        </param>
+        <briefdescription>
+<para>모선으로 복귀하라 (승리 : isDefeated = false, 패배 : isDefeated = true) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>isDefeated</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="130" column="25" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="130" bodyend="191"/>
+        <references refid="classShip_1a77e8600c112c136e294bf98d19625546" compoundref="Ship_8cs" startline="46">Ship.allCrews</references>
+        <references refid="classShip_1aa7ca40e2dae616881351d9a3e025bb79" compoundref="Ship_8cs" startline="49">Ship.allEnemies</references>
+        <references refid="classCrewMember_1ae80f1831860b8a260b6899410f48bc1d" compoundref="CrewMember_8cs" startline="865" endline="882">CrewMember.BackToThePeace</references>
+        <references refid="classCrewBase_1a916946f11b6a8e81f89c1f6daa526147" compoundref="CrewBase_8cs" startline="13">CrewBase.crewName</references>
+        <references refid="classGameManager_1a63db7104c139e5b4150bcaeca3cfd365" compoundref="GameManager_8cs" startline="24">GameManager.currentEnemyShip</references>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classCrewBase_1aa013b1f70d4f6d5737ce118baee45d69" compoundref="CrewBase_8cs" startline="34">CrewBase.needsOxygen</references>
+        <references refid="classGameManager_1af31b125ee50ee4ffee177b8357ef1f11" compoundref="GameManager_8cs" startline="19">GameManager.playerShip</references>
+        <references refid="classCrewBase_1a1025f6ffef015905221678bf57959773" compoundref="CrewBase_8cs" startline="91">CrewBase.position</references>
+        <references refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" compoundref="Room_8cs" startline="15">Room&lt; TData, TLevel &gt;.position</references>
+        <references refid="classCrewBase_1a5a53b04defdcf26f6be526e1dd7c4910" compoundref="CrewBase_8cs" startline="19">CrewBase.race</references>
+        <references refid="classCrewSystem_1ad3044664f70376b994206ccfed121df3" compoundref="CrewSystem_8cs" startline="232" endline="300">CrewSystem.RestoreCrewAfterBuild</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCombatManager_1abf07f5abfdb7c1d1f7215cd56c2392ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CombatManager.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>CombatManager.Start</qualifiedname>
+        <briefdescription>
+<para>전투 상태머신이 시작될 때 호출됩니다. 초기 상태로 설정됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="62" column="17" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="62" bodyend="85"/>
+        <references refid="classCombatManager_1aa7c69f695596dd94a71d2464af303dec" compoundref="CombatManager_8cs" startline="28">currentPhase</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classRTSSelectionManager_1ac0db424ecf85d35f8a8106fa3bef1d64" compoundref="RTSSelectionManager_8cs" startline="94" endline="94">RTSSelectionManager.Instance</references>
+        <references refid="classGameManager_1af31b125ee50ee4ffee177b8357ef1f11" compoundref="GameManager_8cs" startline="19">GameManager.playerShip</references>
+        <references refid="classRTSSelectionManager_1ad68211bed4c24acf467aa4dd2285d987" compoundref="RTSSelectionManager_8cs" startline="402" endline="416">RTSSelectionManager.RefreshMovementData</references>
+        <references refid="classWeaponSystem_1aae3d852dcad70c5d7a1f5dca7532fc8e" compoundref="WeaponSystem_8cs" startline="58" endline="61">WeaponSystem.SetAutoFireEnabled</references>
+        <references refid="classGameManager_1ad8e36e8b858dc340224cf68870a1b359" compoundref="GameManager_8cs" startline="451" endline="454">GameManager.SetCurrentEnemyShip</references>
+      </memberdef>
+      <memberdef kind="function" id="classCombatManager_1a1f6d46bf97dfc4b45db6573289c0d079" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CombatManager.CombatEnding</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>CombatEnding</name>
+        <qualifiedname>CombatManager.CombatEnding</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="89" column="17" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="89" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classCombatManager_1a9e7d1639e3132ce201166fd2bb9f531d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CombatManager.CombatDefeatedAndGoHome</definition>
+        <argsstring>(bool isDefeated)</argsstring>
+        <name>CombatDefeatedAndGoHome</name>
+        <qualifiedname>CombatManager.CombatDefeatedAndGoHome</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>isDefeated</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="111" column="17" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="111" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classCombatManager_1ac804fe4c0dc66eec7a0aa3d6099075ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CombatManager.Exit</definition>
+        <argsstring>()</argsstring>
+        <name>Exit</name>
+        <qualifiedname>CombatManager.Exit</qualifiedname>
+        <briefdescription>
+<para>매 프레임마다 호출되며 현재 전투 상태에 따라 로직을 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>전투 상태가 종료될 때 호출됩니다. (현재 구현 없음) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/CombatManager.cs" line="219" column="17" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="219" bodyend="221"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>전투 전체 흐름을 관리하는 매니저 클래스입니다. 전투 상태를 전환하고, 관련 컨트롤러를 초기화하거나 업데이트합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CombatManager</label>
+        <link refid="classCombatManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>CombatManager</label>
+        <link refid="classCombatManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+cam</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+outerShipCombatController</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-uiController</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>CombatUIController</label>
+        <link refid="classCombatUIController"/>
+      </node>
+      <node id="3">
+        <label>EnemyCamInteraction</label>
+        <link refid="classEnemyCamInteraction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-dragEndPos</edgelabel>
+          <edgelabel>-dragStartPos</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>IPointerDownHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerUpHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="7">
+        <label>OuterShipCombatController</label>
+        <link refid="classOuterShipCombatController"/>
+      </node>
+      <node id="6">
+        <label>UnityEngine</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Combat/CombatManager.cs" line="11" column="7" bodyfile="Assets/Scripts/Combat/CombatManager.cs" bodystart="12" bodyend="222"/>
+    <listofallmembers>
+      <member refid="classCombatManager_1ae72a224a22b4a92056f79e2add99acb3" prot="private" virt="non-virtual"><scope>CombatManager</scope><name>Awake</name></member>
+      <member refid="classCombatManager_1aee060c280528f8f8ffcbd2b5e94dc91e" prot="private" virt="non-virtual"><scope>CombatManager</scope><name>BackToTheHome</name></member>
+      <member refid="classCombatManager_1a12520bfc421cba50a878c3b8f38ae5f1" prot="public" virt="non-virtual"><scope>CombatManager</scope><name>cam</name></member>
+      <member refid="classCombatManager_1a5fcb6882446925dac782c86aeafe763b" prot="public" virt="non-virtual"><scope>CombatManager</scope><name>CCTV</name></member>
+      <member refid="classCombatManager_1a9e7d1639e3132ce201166fd2bb9f531d" prot="public" virt="non-virtual"><scope>CombatManager</scope><name>CombatDefeatedAndGoHome</name></member>
+      <member refid="classCombatManager_1a1f6d46bf97dfc4b45db6573289c0d079" prot="public" virt="non-virtual"><scope>CombatManager</scope><name>CombatEnding</name></member>
+      <member refid="classCombatManager_1a164ac638415d41b34f34b135d625139b" prot="private" virt="non-virtual"><scope>CombatManager</scope><name>combatUI</name></member>
+      <member refid="classCombatManager_1aa7c69f695596dd94a71d2464af303dec" prot="private" virt="non-virtual"><scope>CombatManager</scope><name>currentPhase</name></member>
+      <member refid="classCombatManager_1a3c9df781c980c14ebda8ba5e45b45f0c" prot="public" virt="non-virtual"><scope>CombatManager</scope><name>defeatUI</name></member>
+      <member refid="classCombatManager_1ac804fe4c0dc66eec7a0aa3d6099075ae" prot="public" virt="non-virtual"><scope>CombatManager</scope><name>Exit</name></member>
+      <member refid="classCombatManager_1a12c274566758e606386ee25e7d0cc345" prot="public" virt="non-virtual"><scope>CombatManager</scope><name>Instance</name></member>
+      <member refid="classCombatManager_1a737da48c36c8b182f91e0511d9a852c8" prot="public" virt="non-virtual"><scope>CombatManager</scope><name>outerShipCombatController</name></member>
+      <member refid="classCombatManager_1abf07f5abfdb7c1d1f7215cd56c2392ca" prot="public" virt="non-virtual"><scope>CombatManager</scope><name>Start</name></member>
+      <member refid="classCombatManager_1a0a7a9af1064abbe148d868a208ee2ae8" prot="private" virt="non-virtual"><scope>CombatManager</scope><name>uiController</name></member>
+      <member refid="classCombatManager_1ae29edef279af2291a1a5d43bbb494097" prot="public" virt="non-virtual"><scope>CombatManager</scope><name>winUI</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

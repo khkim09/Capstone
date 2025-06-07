@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classShipWeaponDatabase" kind="class" language="C#" prot="public">
+    <compoundname>ShipWeaponDatabase</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ScriptableObject</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classShipWeaponDatabase_1a3cb209cf74ed390ef0898535530372a7" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref> &gt;</type>
+        <definition>List&lt;ShipWeaponData&gt; ShipWeaponDatabase.allWeapons</definition>
+        <argsstring></argsstring>
+        <name>allWeapons</name>
+        <qualifiedname>ShipWeaponDatabase.allWeapons</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>모든 무기 데이터 목록 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" line="14" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" bodystart="14" bodyend="-1"/>
+        <referencedby refid="classShipWeaponFactory_1ac1b811cd676de0f28224d258184810f8" compoundref="ShipWeaponFactory_8cs" startline="102" endline="108">ShipWeaponFactory.GetAllWeaponData</referencedby>
+        <referencedby refid="classShipWeaponDatabase_1a0dfceb49d320f2fcbc052b554194b402" compoundref="ShipWeaponDatabase_8cs" startline="77" endline="87">GetWeaponsByEffectType</referencedby>
+        <referencedby refid="classShipWeaponDatabase_1ae556c612bef06ac424032706ae72e9ad" compoundref="ShipWeaponDatabase_8cs" startline="60" endline="69">GetWeaponsByType</referencedby>
+        <referencedby refid="classShipWeaponDatabase_1a4962b1ebf5d68ef3370ec6ae05209928" compoundref="ShipWeaponDatabase_8cs" startline="30" endline="36">InitializeWeaponDictionary</referencedby>
+        <referencedby refid="classBlueprintWeaponInventoryUI_1ab30acac82d2da8413c2826835b73ebcd" compoundref="BlueprintWeaponInventoryUI_8cs" startline="48" endline="81">BlueprintWeaponInventoryUI.LoadWeapons</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classShipWeaponDatabase_1a87ae49be2e9d29e7c8fab694ea563f3c" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; int, <ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref> &gt;</type>
+        <definition>Dictionary&lt;int, ShipWeaponData&gt; ShipWeaponDatabase.weaponDictionary</definition>
+        <argsstring></argsstring>
+        <name>weaponDictionary</name>
+        <qualifiedname>ShipWeaponDatabase.weaponDictionary</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" line="17" column="24" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classShipWeaponDatabase_1ac3ed57afc88e15e264b9886f16fab2d4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeaponDatabase.Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>ShipWeaponDatabase.Initialize</qualifiedname>
+        <briefdescription>
+<para>데이터베이스 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" line="22" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" bodystart="22" bodyend="25"/>
+        <references refid="classShipWeaponDatabase_1a4962b1ebf5d68ef3370ec6ae05209928" compoundref="ShipWeaponDatabase_8cs" startline="30" endline="36">InitializeWeaponDictionary</references>
+        <referencedby refid="classShipWeaponFactory_1ad4e81e130a5e262320c835547b4b4d82" compoundref="ShipWeaponFactory_8cs" startline="21" endline="27">ShipWeaponFactory.InitializeWeaponDatabase</referencedby>
+        <referencedby refid="classBlueprintCategoryButtonHandler_1a7a952ac2945481827bd5c04e55e0d951" compoundref="BlueprintCategoryButtonHandler_8cs" startline="210" endline="219">BlueprintCategoryButtonHandler.ShowWeapons</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeaponDatabase_1a44753cec6c02804586718ae52321f33a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref></type>
+        <definition>ShipWeaponData ShipWeaponDatabase.GetWeaponData</definition>
+        <argsstring>(int id)</argsstring>
+        <name>GetWeaponData</name>
+        <qualifiedname>ShipWeaponDatabase.GetWeaponData</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>ID로 무기 데이터 검색 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>무기 ID</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>무기 데이터 또는 null</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" line="44" column="27" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" bodystart="44" bodyend="53"/>
+        <references refid="classShipWeaponDatabase_1a4962b1ebf5d68ef3370ec6ae05209928" compoundref="ShipWeaponDatabase_8cs" startline="30" endline="36">InitializeWeaponDictionary</references>
+        <referencedby refid="classShipWeaponFactory_1a188118dbfa6dcc8e4bb34619e8de7964" compoundref="ShipWeaponFactory_8cs" startline="34" endline="43">ShipWeaponFactory.GetWeaponData</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeaponDatabase_1ae556c612bef06ac424032706ae72e9ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref> &gt;</type>
+        <definition>List&lt; ShipWeaponData &gt; ShipWeaponDatabase.GetWeaponsByType</definition>
+        <argsstring>(ShipWeaponType type)</argsstring>
+        <name>GetWeaponsByType</name>
+        <qualifiedname>ShipWeaponDatabase.GetWeaponsByType</qualifiedname>
+        <param>
+          <type>ShipWeaponType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>지정된 무기 타입의 무기 목록 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>무기 타입</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 타입의 무기 목록</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" line="60" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" bodystart="60" bodyend="69"/>
+        <references refid="classShipWeaponDatabase_1a3cb209cf74ed390ef0898535530372a7" compoundref="ShipWeaponDatabase_8cs" startline="14">allWeapons</references>
+        <references refid="classShipWeaponData_1a4cad508a237e921866f922e5b9218bb7" compoundref="ShipWeaponData_8cs" startline="60">ShipWeaponData.weaponType</references>
+        <references refid="classShipWeaponTypeData_1a445d05e3182d3441d8453f84743d8695" compoundref="ShipWeaponTypeData_8cs" startline="27">ShipWeaponTypeData.weaponType</references>
+        <referencedby refid="classShipWeaponFactory_1afd1e5e233e1f80da606d7e9d398edc3f" compoundref="ShipWeaponFactory_8cs" startline="115" endline="121">ShipWeaponFactory.GetWeaponsByType</referencedby>
+        <referencedby refid="classBlueprintWeaponInventoryUI_1ab30acac82d2da8413c2826835b73ebcd" compoundref="BlueprintWeaponInventoryUI_8cs" startline="48" endline="81">BlueprintWeaponInventoryUI.LoadWeapons</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipWeaponDatabase_1a0dfceb49d320f2fcbc052b554194b402" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref> &gt;</type>
+        <definition>List&lt; ShipWeaponData &gt; ShipWeaponDatabase.GetWeaponsByEffectType</definition>
+        <argsstring>(ShipWeaponEffectType effectType)</argsstring>
+        <name>GetWeaponsByEffectType</name>
+        <qualifiedname>ShipWeaponDatabase.GetWeaponsByEffectType</qualifiedname>
+        <param>
+          <type>ShipWeaponEffectType</type>
+          <declname>effectType</declname>
+        </param>
+        <briefdescription>
+<para>효과 유형별 무기 목록 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>effectType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>효과 유형</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 효과 유형을 가진 무기 목록</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" line="77" column="17" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" bodystart="77" bodyend="87"/>
+        <references refid="classShipWeaponDatabase_1a3cb209cf74ed390ef0898535530372a7" compoundref="ShipWeaponDatabase_8cs" startline="14">allWeapons</references>
+        <references refid="classShipWeaponData_1a96eddd70e517e0c8cc844a41e6d0ed6f" compoundref="ShipWeaponData_8cs" startline="65">ShipWeaponData.effectData</references>
+        <references refid="classWeaponEffectData_1a1f35cc227f24f346e77557d658cc61e7" compoundref="WeaponEffectData_8cs" startline="27">WeaponEffectData.effectType</references>
+        <referencedby refid="classShipWeaponFactory_1a8854ebcbcc9bfbc9c2e15cad6164d222" compoundref="ShipWeaponFactory_8cs" startline="128" endline="134">ShipWeaponFactory.GetWeaponsByEffectType</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classShipWeaponDatabase_1a4962b1ebf5d68ef3370ec6ae05209928" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipWeaponDatabase.InitializeWeaponDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeWeaponDictionary</name>
+        <qualifiedname>ShipWeaponDatabase.InitializeWeaponDictionary</qualifiedname>
+        <briefdescription>
+<para>무기 검색용 딕셔너리 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" line="30" column="18" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" bodystart="30" bodyend="36"/>
+        <references refid="classShipWeaponDatabase_1a3cb209cf74ed390ef0898535530372a7" compoundref="ShipWeaponDatabase_8cs" startline="14">allWeapons</references>
+        <references refid="classShipWeaponData_1a2cc99759e5c587c7f2beba9f46ed260a" compoundref="ShipWeaponData_8cs" startline="14">ShipWeaponData.id</references>
+        <referencedby refid="classShipWeaponDatabase_1a44753cec6c02804586718ae52321f33a" compoundref="ShipWeaponDatabase_8cs" startline="44" endline="53">GetWeaponData</referencedby>
+        <referencedby refid="classShipWeaponDatabase_1ac3ed57afc88e15e264b9886f16fab2d4" compoundref="ShipWeaponDatabase_8cs" startline="22" endline="25">Initialize</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선 무기 데이터베이스 모든 무기 데이터와 효과 데이터를 관리합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>ShipWeaponDatabase</label>
+        <link refid="classShipWeaponDatabase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>ShipWeaponDatabase</label>
+        <link refid="classShipWeaponDatabase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" line="9" column="7" bodyfile="Assets/Scripts/Ship/Weapons/ShipWeaponDatabase.cs" bodystart="10" bodyend="88"/>
+    <listofallmembers>
+      <member refid="classShipWeaponDatabase_1a3cb209cf74ed390ef0898535530372a7" prot="public" virt="non-virtual"><scope>ShipWeaponDatabase</scope><name>allWeapons</name></member>
+      <member refid="classShipWeaponDatabase_1a44753cec6c02804586718ae52321f33a" prot="public" virt="non-virtual"><scope>ShipWeaponDatabase</scope><name>GetWeaponData</name></member>
+      <member refid="classShipWeaponDatabase_1a0dfceb49d320f2fcbc052b554194b402" prot="public" virt="non-virtual"><scope>ShipWeaponDatabase</scope><name>GetWeaponsByEffectType</name></member>
+      <member refid="classShipWeaponDatabase_1ae556c612bef06ac424032706ae72e9ad" prot="public" virt="non-virtual"><scope>ShipWeaponDatabase</scope><name>GetWeaponsByType</name></member>
+      <member refid="classShipWeaponDatabase_1ac3ed57afc88e15e264b9886f16fab2d4" prot="public" virt="non-virtual"><scope>ShipWeaponDatabase</scope><name>Initialize</name></member>
+      <member refid="classShipWeaponDatabase_1a4962b1ebf5d68ef3370ec6ae05209928" prot="private" virt="non-virtual"><scope>ShipWeaponDatabase</scope><name>InitializeWeaponDictionary</name></member>
+      <member refid="classShipWeaponDatabase_1a87ae49be2e9d29e7c8fab694ea563f3c" prot="private" virt="non-virtual"><scope>ShipWeaponDatabase</scope><name>weaponDictionary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

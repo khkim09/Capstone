@@ -1,0 +1,394 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classShipSystem" kind="class" language="C#" prot="public" abstract="yes">
+    <compoundname>ShipSystem</compoundname>
+    <derivedcompoundref refid="classCrewSystem" prot="public" virt="non-virtual">CrewSystem</derivedcompoundref>
+    <derivedcompoundref refid="classHitPointSystem" prot="public" virt="non-virtual">HitPointSystem</derivedcompoundref>
+    <derivedcompoundref refid="classMoraleSystem" prot="public" virt="non-virtual">MoraleSystem</derivedcompoundref>
+    <derivedcompoundref refid="classOuterHullSystem" prot="public" virt="non-virtual">OuterHullSystem</derivedcompoundref>
+    <derivedcompoundref refid="classOxygenSystem" prot="public" virt="non-virtual">OxygenSystem</derivedcompoundref>
+    <derivedcompoundref refid="classPowerSystem" prot="public" virt="non-virtual">PowerSystem</derivedcompoundref>
+    <derivedcompoundref refid="classShieldSystem" prot="public" virt="non-virtual">ShieldSystem</derivedcompoundref>
+    <derivedcompoundref refid="classStorageSystem" prot="public" virt="non-virtual">StorageSystem</derivedcompoundref>
+    <derivedcompoundref refid="classWeaponSystem" prot="public" virt="non-virtual">WeaponSystem</derivedcompoundref>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" prot="protected" static="no" mutable="no">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship ShipSystem.parentShip</definition>
+        <argsstring></argsstring>
+        <name>parentShip</name>
+        <qualifiedname>ShipSystem.parentShip</qualifiedname>
+        <briefdescription>
+<para>이 시스템이 소속된 함선 객체입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShipSystem.cs" line="10" column="20" bodyfile="Assets/Scripts/Ship/ShipSystems/ShipSystem.cs" bodystart="10" bodyend="-1"/>
+        <referencedby refid="classCrewSystem_1a5b59e65fd0e697d23dcab8598f9a7516" compoundref="CrewSystem_8cs" startline="48" endline="101">CrewSystem.AddCrew</referencedby>
+        <referencedby refid="classWeaponSystem_1ab22fd7259a04cbb21178d961d6b31047" compoundref="WeaponSystem_8cs" startline="134" endline="156">WeaponSystem.AddWeapon</referencedby>
+        <referencedby refid="classMoraleSystem_1aa5e29aef57bec024e207404bb90894b3" compoundref="MoraleSystem_8cs" startline="32" endline="50">MoraleSystem.CalculateGlobalMorale</referencedby>
+        <referencedby refid="classOuterHullSystem_1a4d2a675600fb33c62982af21ec3334fd" compoundref="OuterHullSystem_8cs" startline="517" endline="528">OuterHullSystem.ClearExistingHulls</referencedby>
+        <referencedby refid="classOuterHullSystem_1a768514386deb2fb7dfb522f875f9bdd6" compoundref="OuterHullSystem_8cs" startline="438" endline="512">OuterHullSystem.CreateOuterHull</referencedby>
+        <referencedby refid="classWeaponSystem_1a73e0b9a0da5d4c185a14d7e8e2410650" compoundref="WeaponSystem_8cs" startline="101" endline="110">WeaponSystem.FireAllReadyWeapons</referencedby>
+        <referencedby refid="classWeaponSystem_1a266a34e53065779bd5f92db175dcb5f3" compoundref="WeaponSystem_8cs" startline="77" endline="95">WeaponSystem.FireWeapon</referencedby>
+        <referencedby refid="classWeaponSystem_1a8bbbcfefb2cf3cacb7abc79900ab1cfd" compoundref="WeaponSystem_8cs" startline="117" endline="126">WeaponSystem.FireWeaponsByType</referencedby>
+        <referencedby refid="classCrewSystem_1ae270e71cdbafb68eb26d6f031758b1f5" compoundref="CrewSystem_8cs" startline="139" endline="142">CrewSystem.GetCrewCount</referencedby>
+        <referencedby refid="classCrewSystem_1a211d4d37de0e70c08101ad8733367bd7" compoundref="CrewSystem_8cs" startline="148" endline="159">CrewSystem.GetCrews</referencedby>
+        <referencedby refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" compoundref="ShipSystem_8cs" startline="39" endline="42">GetShipStat</referencedby>
+        <referencedby refid="classWeaponSystem_1aaada7c137ebe65734ab4d1f45b9c8798" compoundref="WeaponSystem_8cs" startline="246" endline="251">WeaponSystem.GetWeaponByIndex</referencedby>
+        <referencedby refid="classWeaponSystem_1a759ffe81166835b38f3e2d161a6b56da" compoundref="WeaponSystem_8cs" startline="225" endline="228">WeaponSystem.GetWeaponCount</referencedby>
+        <referencedby refid="classWeaponSystem_1aa5e6758d3084f4cc090cdfc92a5aad2a" compoundref="WeaponSystem_8cs" startline="216" endline="219">WeaponSystem.GetWeapons</referencedby>
+        <referencedby refid="classWeaponSystem_1a222bde2d70f9a593f47557fa23a3c652" compoundref="WeaponSystem_8cs" startline="281" endline="284">WeaponSystem.GetWeaponsByType</referencedby>
+        <referencedby refid="classWeaponSystem_1a996a2bea0b0df975a78e870e73910829" compoundref="WeaponSystem_8cs" startline="303" endline="306">WeaponSystem.GetWeaponsByWarheadType</referencedby>
+        <referencedby refid="classShipSystem_1ab0e5623073f8bfb48c02955484cfcd4e" compoundref="ShipSystem_8cs" startline="17" endline="20">Initialize</referencedby>
+        <referencedby refid="classWeaponSystem_1a1af41ebb69e5f5eb58996983e394a4e6" compoundref="WeaponSystem_8cs" startline="257" endline="263">WeaponSystem.IsEveryWeaponReady</referencedby>
+        <referencedby refid="classOuterHullSystem_1ac51faf9f5119bfd9fb611af900c5aac5" compoundref="OuterHullSystem_8cs" startline="356" endline="361">OuterHullSystem.IsOutOfBounds</referencedby>
+        <referencedby refid="classOuterHullSystem_1a546cc38872f4b8e97bb31c84214e0d5d" compoundref="OuterHullSystem_8cs" startline="43" endline="48">OuterHullSystem.ReduceDamage</referencedby>
+        <referencedby refid="classCrewSystem_1abc0641c84a7671cd1b539fd3df5af3d7" compoundref="CrewSystem_8cs" startline="126" endline="133">CrewSystem.RemoveAllCrews</referencedby>
+        <referencedby refid="classWeaponSystem_1a5880eec43126d7d98923b46b2aa0257d" compoundref="WeaponSystem_8cs" startline="233" endline="239">WeaponSystem.RemoveAllWeapons</referencedby>
+        <referencedby refid="classCrewSystem_1ab12357b039ecb5394ab6d5155bdf3af6" compoundref="CrewSystem_8cs" startline="108" endline="121">CrewSystem.RemoveCrew</referencedby>
+        <referencedby refid="classPowerSystem_1af311ccf5242a2eba89ba389034c7e60e" compoundref="PowerSystem_8cs" startline="79" endline="108">PowerSystem.RequestPowerForRoom</referencedby>
+        <referencedby refid="classWeaponSystem_1acfe6f97f4c6ef23eaf2edc7098d635e4" compoundref="WeaponSystem_8cs" startline="289" endline="296">WeaponSystem.ResetAllWeaponStats</referencedby>
+        <referencedby refid="classCrewSystem_1ad3044664f70376b994206ccfed121df3" compoundref="CrewSystem_8cs" startline="232" endline="300">CrewSystem.RestoreCrewAfterBuild</referencedby>
+        <referencedby refid="classCrewSystem_1a8fa6c2c5bfdf4e92705a212bb4e2fe3c" compoundref="CrewSystem_8cs" startline="182" endline="226">CrewSystem.RevertOriginalCrews</referencedby>
+        <referencedby refid="classOuterHullSystem_1aa21e355ccbc76283db70b65cff027675" compoundref="OuterHullSystem_8cs" startline="63" endline="86">OuterHullSystem.SetOuterHullLevel</referencedby>
+        <referencedby refid="classOxygenSystem_1a82e6211ee26cf9357f35825709431420" compoundref="OxygenSystem_8cs" startline="48" endline="74">OxygenSystem.Update</referencedby>
+        <referencedby refid="classWeaponSystem_1a4664bc232783de0d119664f701436a6b" compoundref="WeaponSystem_8cs" startline="20" endline="38">WeaponSystem.Update</referencedby>
+        <referencedby refid="classOuterHullSystem_1adb5a5b7d00fda59c275bbd594504a5a3" compoundref="OuterHullSystem_8cs" startline="93" endline="351">OuterHullSystem.UpdateVisuals</referencedby>
+        <referencedby refid="classWeaponSystem_1a1bc7878b7289056221808d057ca26153" compoundref="WeaponSystem_8cs" startline="269" endline="274">WeaponSystem.UpdateWeaponCooldowns</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classShipSystem_1ab0e5623073f8bfb48c02955484cfcd4e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ShipSystem.Initialize</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>ShipSystem.Initialize</qualifiedname>
+        <reimplementedby refid="classCrewSystem_1ad9fa8a9d39ab44589b80012f3e80c642">Initialize</reimplementedby>
+        <reimplementedby refid="classHitPointSystem_1a1922a765f4716727a403ae198456c49a">Initialize</reimplementedby>
+        <reimplementedby refid="classMoraleSystem_1a45098df6e8f387de82d8462f32475430">Initialize</reimplementedby>
+        <reimplementedby refid="classOuterHullSystem_1ab38ff1caf61de2753630436958ff09e3">Initialize</reimplementedby>
+        <reimplementedby refid="classOxygenSystem_1ab132ddfc48df11f104012d52f52e55d5">Initialize</reimplementedby>
+        <reimplementedby refid="classPowerSystem_1a13897935fc2758d507fa29864c958f04">Initialize</reimplementedby>
+        <reimplementedby refid="classShieldSystem_1a76f58c76950f395e01789c54e35c00df">Initialize</reimplementedby>
+        <reimplementedby refid="classStorageSystem_1acdcb9f270b3edd0f9af709c298301fb6">Initialize</reimplementedby>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>시스템을 초기화합니다. 함선 참조를 저장하여 시스템 동작에 사용됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이 시스템이 속한 함선 객체.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShipSystem.cs" line="17" column="25" bodyfile="Assets/Scripts/Ship/ShipSystems/ShipSystem.cs" bodystart="17" bodyend="20"/>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">parentShip</references>
+        <referencedby refid="classShip_1a5246a04784a96576460f8494bce02887" compoundref="Ship_8cs" startline="715" endline="737">Ship.InitializeSystems</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipSystem_1ad94492134ef4577b127382af0877f6d6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ShipSystem.Refresh</definition>
+        <argsstring>()</argsstring>
+        <name>Refresh</name>
+        <qualifiedname>ShipSystem.Refresh</qualifiedname>
+        <reimplementedby refid="classCrewSystem_1a952aa3f7d506230aff1b73d4e6ea0253">Refresh</reimplementedby>
+        <reimplementedby refid="classHitPointSystem_1a95f56a183bb9402c5b1504a57abae7b6">Refresh</reimplementedby>
+        <reimplementedby refid="classOxygenSystem_1a4be1e0a7e21b4f57c69fb63c1cb85b6d">Refresh</reimplementedby>
+        <reimplementedby refid="classPowerSystem_1a31e49c103de8ed899cb6f07c000e217b">Refresh</reimplementedby>
+        <reimplementedby refid="classShieldSystem_1afc179b3207afaa1ccd125b552a52b8a6">Refresh</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShipSystem.cs" line="22" column="25" bodyfile="Assets/Scripts/Ship/ShipSystems/ShipSystem.cs" bodystart="22" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipSystem_1a6f1ebffcf06a9801e1d82cdb63f996af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipSystem.Update</definition>
+        <argsstring>(float deltaTime)</argsstring>
+        <name>Update</name>
+        <qualifiedname>ShipSystem.Update</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>deltaTime</declname>
+        </param>
+        <briefdescription>
+<para>매 프레임마다 호출되는 시스템 업데이트 함수입니다. 구체적인 동작은 각 서브 클래스에서 구현됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>deltaTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>경과 시간 (초).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShipSystem.cs" line="32" column="26"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float ShipSystem.GetShipStat</definition>
+        <argsstring>(ShipStat stat)</argsstring>
+        <name>GetShipStat</name>
+        <qualifiedname>ShipSystem.GetShipStat</qualifiedname>
+        <param>
+          <type>ShipStat</type>
+          <declname>stat</declname>
+        </param>
+        <briefdescription>
+<para>현재 함선의 특정 스탯 값을 가져옵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>조회할 스탯 종류.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 스탯의 현재 값.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShipSystem.cs" line="39" column="21" bodyfile="Assets/Scripts/Ship/ShipSystems/ShipSystem.cs" bodystart="39" bodyend="42"/>
+        <references refid="classShip_1a080a77bc4aa01fd3e5b2561cb5317eca" compoundref="Ship_8cs" startline="924" endline="930">Ship.GetStat</references>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">parentShip</references>
+        <referencedby refid="classCrewSystem_1a5b59e65fd0e697d23dcab8598f9a7516" compoundref="CrewSystem_8cs" startline="48" endline="101">CrewSystem.AddCrew</referencedby>
+        <referencedby refid="classOxygenSystem_1a9e7b971ccb3d4aedc8221e90bfd48a11" compoundref="OxygenSystem_8cs" startline="81" endline="87">OxygenSystem.CalculateOxygenChange</referencedby>
+        <referencedby refid="classHitPointSystem_1afc57249cf7099f1cc807759fe5d83f50" compoundref="HitPointSystem_8cs" startline="73" endline="79">HitPointSystem.ChangeHitPoint</referencedby>
+        <referencedby refid="classWeaponSystem_1a624ae04a45c9a1472b259d8b8ce4cfa0" compoundref="WeaponSystem_8cs" startline="194" endline="197">WeaponSystem.GetActualCooldown</referencedby>
+        <referencedby refid="classWeaponSystem_1a76fad11c0e7c6d587a635081322f4b4f" compoundref="WeaponSystem_8cs" startline="206" endline="209">WeaponSystem.GetActualDamage</referencedby>
+        <referencedby refid="classHitPointSystem_1abe2111690dc484e8a3e3a3d1ec129d52" compoundref="HitPointSystem_8cs" startline="62" endline="66">HitPointSystem.GetHitPointPercentage</referencedby>
+        <referencedby refid="classShieldSystem_1a190cc0fb594748a735b546c52038bfb9" compoundref="ShieldSystem_8cs" startline="91" endline="94">ShieldSystem.GetMaxShield</referencedby>
+        <referencedby refid="classShieldSystem_1ae63427dfc58e56e36378afee9f24cc82" compoundref="ShieldSystem_8cs" startline="71" endline="76">ShieldSystem.RegenerateShield</referencedby>
+        <referencedby refid="classPowerSystem_1af311ccf5242a2eba89ba389034c7e60e" compoundref="PowerSystem_8cs" startline="79" endline="108">PowerSystem.RequestPowerForRoom</referencedby>
+        <referencedby refid="classShieldSystem_1a6aabf8cddda8f2a7f24887dbdeeff692" compoundref="ShieldSystem_8cs" startline="104" endline="124">ShieldSystem.TakeDamage</referencedby>
+        <referencedby refid="classShieldSystem_1a46cd008a11318d1b3a30744f325c0cdf" compoundref="ShieldSystem_8cs" startline="45" endline="65">ShieldSystem.Update</referencedby>
+        <referencedby refid="classWeaponSystem_1a4664bc232783de0d119664f701436a6b" compoundref="WeaponSystem_8cs" startline="20" endline="38">WeaponSystem.Update</referencedby>
+        <referencedby refid="classWeaponSystem_1a1bc7878b7289056221808d057ca26153" compoundref="WeaponSystem_8cs" startline="269" endline="274">WeaponSystem.UpdateWeaponCooldowns</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>모든 함선 시스템의 추상 기반 클래스. 각 시스템은 함선 객체를 기반으로 동작하며, 공통적인 초기화 및 스탯 조회 기능을 제공합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+      </node>
+      <node id="9">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="10">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="12">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="15">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipSystems/ShipSystem.cs" line="5" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/ShipSystem.cs" bodystart="6" bodyend="43"/>
+    <listofallmembers>
+      <member refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" prot="protected" virt="non-virtual"><scope>ShipSystem</scope><name>GetShipStat</name></member>
+      <member refid="classShipSystem_1ab0e5623073f8bfb48c02955484cfcd4e" prot="public" virt="virtual"><scope>ShipSystem</scope><name>Initialize</name></member>
+      <member refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" prot="protected" virt="non-virtual"><scope>ShipSystem</scope><name>parentShip</name></member>
+      <member refid="classShipSystem_1ad94492134ef4577b127382af0877f6d6" prot="public" virt="virtual"><scope>ShipSystem</scope><name>Refresh</name></member>
+      <member refid="classShipSystem_1a6f1ebffcf06a9801e1d82cdb63f996af" prot="public" virt="non-virtual"><scope>ShipSystem</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

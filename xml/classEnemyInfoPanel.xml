@@ -1,0 +1,313 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEnemyInfoPanel" kind="class" language="C#" prot="public">
+    <compoundname>EnemyInfoPanel</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classEnemyInfoPanel_1a181d100c87780d172abb3b9a7885b555" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float EnemyInfoPanel.maxHealth</definition>
+        <argsstring></argsstring>
+        <name>maxHealth</name>
+        <qualifiedname>EnemyInfoPanel.maxHealth</qualifiedname>
+        <briefdescription>
+<para>표시 중인 적 함선의 최대 체력 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" line="9" column="18" bodyfile="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" bodystart="9" bodyend="-1"/>
+        <referencedby refid="classEnemyInfoPanel_1a762fadf2a859a224ce8b1840ee9d42a8" compoundref="EnemyInfoPanel_8cs" startline="58" endline="67">UpdateInfoPanel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyInfoPanel_1ac0398e451aef82b3c872fea68508f196" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float EnemyInfoPanel.maxShield</definition>
+        <argsstring></argsstring>
+        <name>maxShield</name>
+        <qualifiedname>EnemyInfoPanel.maxShield</qualifiedname>
+        <briefdescription>
+<para>표시 중인 적 함선의 최대 쉴드량 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" line="13" column="18" bodyfile="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" bodystart="13" bodyend="-1"/>
+        <referencedby refid="classEnemyInfoPanel_1a762fadf2a859a224ce8b1840ee9d42a8" compoundref="EnemyInfoPanel_8cs" startline="58" endline="67">UpdateInfoPanel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyInfoPanel_1a6b75146654f6523f6ab9e925a04a5512" prot="public" static="no" mutable="no">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship EnemyInfoPanel.enemyShip</definition>
+        <argsstring></argsstring>
+        <name>enemyShip</name>
+        <qualifiedname>EnemyInfoPanel.enemyShip</qualifiedname>
+        <briefdescription>
+<para>표시 중인 적 함선 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" line="17" column="17" bodyfile="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" bodystart="17" bodyend="-1"/>
+        <referencedby refid="classEnemyInfoPanel_1a762fadf2a859a224ce8b1840ee9d42a8" compoundref="EnemyInfoPanel_8cs" startline="58" endline="67">UpdateInfoPanel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyInfoPanel_1a362d49ddc193dff322359fcaaaef0aa3" prot="public" static="no" mutable="no">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship EnemyInfoPanel.playerShip</definition>
+        <argsstring></argsstring>
+        <name>playerShip</name>
+        <qualifiedname>EnemyInfoPanel.playerShip</qualifiedname>
+        <briefdescription>
+<para>현재 아군 함선 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" line="21" column="17" bodyfile="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classEnemyInfoPanel_1a45dc4bb4fe6ed57fd35506e4dfdccaf3" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image EnemyInfoPanel.hp</definition>
+        <argsstring></argsstring>
+        <name>hp</name>
+        <qualifiedname>EnemyInfoPanel.hp</qualifiedname>
+        <briefdescription>
+<para>표시된 체력바 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" line="25" column="19" bodyfile="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyInfoPanel_1ac28c00d009f3df8978949122076bcc8d" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image EnemyInfoPanel.shield</definition>
+        <argsstring></argsstring>
+        <name>shield</name>
+        <qualifiedname>EnemyInfoPanel.shield</qualifiedname>
+        <briefdescription>
+<para>표시된 쉴드량 바 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" line="29" column="19" bodyfile="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" bodystart="29" bodyend="-1"/>
+        <referencedby refid="classEnemyInfoPanel_1a762fadf2a859a224ce8b1840ee9d42a8" compoundref="EnemyInfoPanel_8cs" startline="58" endline="67">UpdateInfoPanel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyInfoPanel_1af948c338145aeb2868c68e45bec104c2" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject EnemyInfoPanel.display</definition>
+        <argsstring></argsstring>
+        <name>display</name>
+        <qualifiedname>EnemyInfoPanel.display</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" line="31" column="24" bodyfile="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEnemyInfoPanel_1acc5d9da25ed8c15dd9dcd5a030c99285" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnemyInfoPanel.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>EnemyInfoPanel.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" line="32" column="10" bodyfile="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" bodystart="32" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyInfoPanel_1a762fadf2a859a224ce8b1840ee9d42a8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnemyInfoPanel.UpdateInfoPanel</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateInfoPanel</name>
+        <qualifiedname>EnemyInfoPanel.UpdateInfoPanel</qualifiedname>
+        <briefdescription>
+<para>info panel에 필요한 정보를 갱신하여 다시 그린다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" line="58" column="10" bodyfile="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" bodystart="58" bodyend="67"/>
+        <references refid="classEnemyInfoPanel_1a6b75146654f6523f6ab9e925a04a5512" compoundref="EnemyInfoPanel_8cs" startline="17">enemyShip</references>
+        <references refid="classShip_1ae4377c57fedfa3f2af2c69d82986a344" compoundref="Ship_8cs" startline="1195" endline="1198">Ship.GetCurrentHitPoints</references>
+        <references refid="classShieldSystem_1a6303c67554723d4e3ff3aa7fc98ce9fc" compoundref="ShieldSystem_8cs" startline="82" endline="85">ShieldSystem.GetCurrentShield</references>
+        <references refid="classEnemyInfoPanel_1a181d100c87780d172abb3b9a7885b555" compoundref="EnemyInfoPanel_8cs" startline="9">maxHealth</references>
+        <references refid="classEnemyInfoPanel_1ac0398e451aef82b3c872fea68508f196" compoundref="EnemyInfoPanel_8cs" startline="13">maxShield</references>
+        <references refid="classEnemyInfoPanel_1ac28c00d009f3df8978949122076bcc8d" compoundref="EnemyInfoPanel_8cs" startline="29">shield</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EnemyInfoPanel</label>
+        <link refid="classEnemyInfoPanel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="11">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>EnemyInfoPanel</label>
+        <link refid="classEnemyInfoPanel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+enemyShip</edgelabel>
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="13">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="16">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" line="4" column="7" bodyfile="Assets/Scripts/UI/Combat/EnemyInfoPanel.cs" bodystart="5" bodyend="70"/>
+    <listofallmembers>
+      <member refid="classEnemyInfoPanel_1af948c338145aeb2868c68e45bec104c2" prot="private" virt="non-virtual"><scope>EnemyInfoPanel</scope><name>display</name></member>
+      <member refid="classEnemyInfoPanel_1a6b75146654f6523f6ab9e925a04a5512" prot="public" virt="non-virtual"><scope>EnemyInfoPanel</scope><name>enemyShip</name></member>
+      <member refid="classEnemyInfoPanel_1a45dc4bb4fe6ed57fd35506e4dfdccaf3" prot="private" virt="non-virtual"><scope>EnemyInfoPanel</scope><name>hp</name></member>
+      <member refid="classEnemyInfoPanel_1a181d100c87780d172abb3b9a7885b555" prot="public" virt="non-virtual"><scope>EnemyInfoPanel</scope><name>maxHealth</name></member>
+      <member refid="classEnemyInfoPanel_1ac0398e451aef82b3c872fea68508f196" prot="public" virt="non-virtual"><scope>EnemyInfoPanel</scope><name>maxShield</name></member>
+      <member refid="classEnemyInfoPanel_1a362d49ddc193dff322359fcaaaef0aa3" prot="public" virt="non-virtual"><scope>EnemyInfoPanel</scope><name>playerShip</name></member>
+      <member refid="classEnemyInfoPanel_1ac28c00d009f3df8978949122076bcc8d" prot="private" virt="non-virtual"><scope>EnemyInfoPanel</scope><name>shield</name></member>
+      <member refid="classEnemyInfoPanel_1acc5d9da25ed8c15dd9dcd5a030c99285" prot="private" virt="non-virtual"><scope>EnemyInfoPanel</scope><name>Start</name></member>
+      <member refid="classEnemyInfoPanel_1a762fadf2a859a224ce8b1840ee9d42a8" prot="private" virt="non-virtual"><scope>EnemyInfoPanel</scope><name>UpdateInfoPanel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

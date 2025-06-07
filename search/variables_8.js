@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['hasenoughpower_0',['hasEnoughPower',['../classStorageRoomTemperature.html#a7a5340e0d6609e64159c2c3222fed539',1,'StorageRoomTemperature']]],
+  ['hasenteredtproom_1',['hasEnteredTPRoom',['../classCrewMember.html#a9fa4ab26db0e51c215d6c71d21a7535e',1,'CrewMember']]],
+  ['hasminlimit_2',['HasMinLimit',['../classShipStatSettings_1_1StatLimit.html#af723398f7a52e164f2afa7a5753ae6f2',1,'ShipStatSettings::StatLimit']]],
+  ['healpersecond_3',['healPerSecond',['../classMedBayRoomData_1_1MedBayRoomLevel.html#a0c946a2bf67b27e4653457b4bb9b69be',1,'MedBayRoomData::MedBayRoomLevel']]],
+  ['health_4',['health',['../classCrewBase.html#a387a18a6fd0627064c66a5471d8fcee7',1,'CrewBase']]],
+  ['healthbarcontroller_5',['healthBarController',['../classCrewBase.html#adcfd5968f97ac9087b1034d913f6f819',1,'CrewBase']]],
+  ['highlightcolor_6',['highlightcolor',['../classInventoryItemUI.html#a443cbf12b8e530c7fce0a64d95165695',1,'InventoryItemUI.highlightColor'],['../classPlanetItemUI.html#a439df89739addc3a7bf26bb4de59fd59',1,'PlanetItemUI.highlightColor'],['../classTradingItemHighlighter.html#a8b30aa36146fecc8dcae43ebba16c9f5',1,'TradingItemHighlighter.highlightColor']]],
+  ['highlighter_7',['highlighter',['../classTradeUIManager.html#a72804b2675ac5b089da50d5ec435fb5c',1,'TradeUIManager']]],
+  ['hitpoint_8',['hitPoint',['../classRoomData_1_1RoomLevel.html#a84214e311c721cf8510d6340a253831d',1,'RoomData::RoomLevel']]],
+  ['hits_9',['hits',['../classShipWeapon.html#a986dc0ab44304330569ab1f693629d7f',1,'ShipWeapon']]],
+  ['hp_10',['hp',['../classEnemyInfoPanel.html#a45dc4bb4fe6ed57fd35506e4dfdccaf3',1,'EnemyInfoPanel']]],
+  ['hullinventoryuiobject_11',['hullInventoryUIObject',['../classBlueprintCategoryButtonHandler.html#ab24784cddb7af7b19e94a02fef8e435c',1,'BlueprintCategoryButtonHandler']]],
+  ['hulllevel_12',['hullLevel',['../classBlueprintWeapon.html#ac42b284fada4e4003ba51d8e0b2eb7cf',1,'BlueprintWeapon']]],
+  ['hullpreviewimage_13',['hullPreviewImage',['../classCustomize__2__Controller.html#ae7d8f433d0f7f078f4a7a56671c33b81',1,'Customize_2_Controller']]],
+  ['humanbutton_14',['humanButton',['../classCrewUIHandler.html#a196c4306195ad7aae0683ae25ebb85c0',1,'CrewUIHandler']]],
+  ['humanmorale_15',['humanMorale',['../classMoraleManager.html#abc1d0d6ec847d864357efc1e1345b9e4',1,'MoraleManager']]],
+  ['hypersonicbuybutton_16',['hypersonicBuyButton',['../classTradeUIController.html#ac8b0c274d85dbaa84e72a6d00c209737',1,'TradeUIController']]],
+  ['hypersonicchangetext_17',['hypersonicChangeText',['../classTradeUIController.html#ab54802a46289a443b51d8e7b97b50dde',1,'TradeUIController']]],
+  ['hypersonicprice_18',['hypersonicPrice',['../classTradeUIController.html#a192b1964451eb7bea7bc72dfe8c52faf',1,'TradeUIController']]],
+  ['hypersonictext_19',['hypersonicText',['../classTradeUIController.html#a4eeedd8e8a4280e429f4f2ca3eb9c18a',1,'TradeUIController']]]
+];

@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classES3Internal_1_1ES3Binary" kind="class" language="C#" prot="package">
+    <compoundname>ES3Internal::ES3Binary</compoundname>
+    <sectiondef kind="package-static-attrib">
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Binary_1ad4ad2572b885fff54eed6c9b13ff1276" prot="package" static="yes" mutable="no">
+        <type>const string</type>
+        <definition>const string ES3Internal.ES3Binary.ObjectTerminator</definition>
+        <argsstring></argsstring>
+        <name>ObjectTerminator</name>
+        <qualifiedname>ES3Internal.ES3Binary.ObjectTerminator</qualifiedname>
+        <initializer>= &quot;.&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" line="34" column="31" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Binary_1aa95a5e045e64b7af24dd846f89eae0df" prot="package" static="yes" mutable="no">
+        <type>readonly Dictionary&lt; ES3SpecialByte, Type &gt;</type>
+        <definition>readonly Dictionary&lt;ES3SpecialByte, Type&gt; ES3Internal.ES3Binary.IdToType</definition>
+        <argsstring></argsstring>
+        <name>IdToType</name>
+        <qualifiedname>ES3Internal.ES3Binary.IdToType</qualifiedname>
+        <initializer>= new Dictionary&lt;ES3SpecialByte, Type&gt;()
+        {
+            { ES3SpecialByte.Null,       null },
+            { ES3SpecialByte.Bool,       typeof(bool)},
+            { ES3SpecialByte.Byte,       typeof(byte)},
+            { ES3SpecialByte.Sbyte,      typeof(sbyte)},
+            { ES3SpecialByte.Char,       typeof(char)},
+            { ES3SpecialByte.Decimal,    typeof(decimal)},
+            { ES3SpecialByte.Double,     typeof(double)},
+            { ES3SpecialByte.Float,      typeof(float)},
+            { ES3SpecialByte.Int,        typeof(int)},
+            { ES3SpecialByte.Uint,       typeof(uint)},
+            { ES3SpecialByte.Long,       typeof(long)},
+            { ES3SpecialByte.Ulong,      typeof(ulong)},
+            { ES3SpecialByte.Short,      typeof(short)},
+            { ES3SpecialByte.Ushort,     typeof(ushort)},
+            { ES3SpecialByte.String,     typeof(string)},
+            { ES3SpecialByte.ByteArray,  typeof(byte[])}
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" line="36" column="45" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" bodystart="36" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Binary_1afe281d6a6c082a3062eb0769cea8dac4" prot="package" static="yes" mutable="no">
+        <type>readonly Dictionary&lt; Type, ES3SpecialByte &gt;</type>
+        <definition>readonly Dictionary&lt;Type, ES3SpecialByte&gt; ES3Internal.ES3Binary.TypeToId</definition>
+        <argsstring></argsstring>
+        <name>TypeToId</name>
+        <qualifiedname>ES3Internal.ES3Binary.TypeToId</qualifiedname>
+        <initializer>= new Dictionary&lt;Type, ES3SpecialByte&gt;()
+        {
+            { typeof(bool),     ES3SpecialByte.Bool},
+            { typeof(byte),     ES3SpecialByte.Byte},
+            { typeof(sbyte),    ES3SpecialByte.Sbyte},
+            { typeof(char),     ES3SpecialByte.Char},
+            { typeof(decimal),  ES3SpecialByte.Decimal},
+            { typeof(double),   ES3SpecialByte.Double},
+            { typeof(float),    ES3SpecialByte.Float},
+            { typeof(int),      ES3SpecialByte.Int},
+            { typeof(uint),     ES3SpecialByte.Uint},
+            { typeof(long),     ES3SpecialByte.Long},
+            { typeof(ulong),    ES3SpecialByte.Ulong},
+            { typeof(short),    ES3SpecialByte.Short},
+            { typeof(ushort),   ES3SpecialByte.Ushort},
+            { typeof(string),   ES3SpecialByte.String},
+            { typeof(byte[]),   ES3SpecialByte.ByteArray}
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" line="56" column="45" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" bodystart="56" bodyend="73"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3Binary_1aafedb263a8ba2f1e1b77713ee66a2a3a" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ES3SpecialByte</type>
+        <definition>static ES3SpecialByte ES3Internal.ES3Binary.TypeToByte</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>TypeToByte</name>
+        <qualifiedname>ES3Internal.ES3Binary.TypeToByte</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" line="75" column="40" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" bodystart="75" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Binary_1a5110b6eff7fca01b8bea7f00268cda74" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Type</type>
+        <definition>static Type ES3Internal.ES3Binary.ByteToType</definition>
+        <argsstring>(ES3SpecialByte b)</argsstring>
+        <name>ByteToType</name>
+        <qualifiedname>ES3Internal.ES3Binary.ByteToType</qualifiedname>
+        <param>
+          <type>ES3SpecialByte</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" line="83" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" bodystart="83" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Binary_1a5faa97a48b00fb7ad24da94af057e0da" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Type</type>
+        <definition>static Type ES3Internal.ES3Binary.ByteToType</definition>
+        <argsstring>(byte b)</argsstring>
+        <name>ByteToType</name>
+        <qualifiedname>ES3Internal.ES3Binary.ByteToType</qualifiedname>
+        <param>
+          <type>byte</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" line="88" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" bodystart="88" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Binary_1a286bd7500d81f5a92b1bc3b680d90de0" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3Binary.IsPrimitive</definition>
+        <argsstring>(ES3SpecialByte b)</argsstring>
+        <name>IsPrimitive</name>
+        <qualifiedname>ES3Internal.ES3Binary.IsPrimitive</qualifiedname>
+        <param>
+          <type>ES3SpecialByte</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" line="96" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" bodystart="96" bodyend="119"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>ES3Internal.ES3Binary</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" line="32" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3Binary.cs" bodystart="33" bodyend="120"/>
+    <listofallmembers>
+      <member refid="classES3Internal_1_1ES3Binary_1a5110b6eff7fca01b8bea7f00268cda74" prot="package" virt="non-virtual"><scope>ES3Internal::ES3Binary</scope><name>ByteToType</name></member>
+      <member refid="classES3Internal_1_1ES3Binary_1a5faa97a48b00fb7ad24da94af057e0da" prot="package" virt="non-virtual"><scope>ES3Internal::ES3Binary</scope><name>ByteToType</name></member>
+      <member refid="classES3Internal_1_1ES3Binary_1aa95a5e045e64b7af24dd846f89eae0df" prot="package" virt="non-virtual"><scope>ES3Internal::ES3Binary</scope><name>IdToType</name></member>
+      <member refid="classES3Internal_1_1ES3Binary_1a286bd7500d81f5a92b1bc3b680d90de0" prot="package" virt="non-virtual"><scope>ES3Internal::ES3Binary</scope><name>IsPrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3Binary_1ad4ad2572b885fff54eed6c9b13ff1276" prot="package" virt="non-virtual"><scope>ES3Internal::ES3Binary</scope><name>ObjectTerminator</name></member>
+      <member refid="classES3Internal_1_1ES3Binary_1aafedb263a8ba2f1e1b77713ee66a2a3a" prot="package" virt="non-virtual"><scope>ES3Internal::ES3Binary</scope><name>TypeToByte</name></member>
+      <member refid="classES3Internal_1_1ES3Binary_1afe281d6a6c082a3062eb0769cea8dac4" prot="package" virt="non-virtual"><scope>ES3Internal::ES3Binary</scope><name>TypeToId</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

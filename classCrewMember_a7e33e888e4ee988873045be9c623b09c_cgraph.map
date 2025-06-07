@@ -1,0 +1,57 @@
+<map id="CrewMember.CombatRoutine" name="CrewMember.CombatRoutine">
+<area shape="rect" id="Node000001" title="전투 진입 코루틴 (타겟 설정 후 전투 시작, 타겟이 없고 적 함선일 경우 방 부수기 돌입)" alt="" coords="5,93,268,121"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="85,95,75,85,82,75,102,69,137,67,181,71,193,76,198,81,194,85,190,80,180,76,137,72,103,74,85,79,80,84,89,91"/>
+<area shape="rect" id="Node000002" href="$classCrewMember.html#a41c7608e6555b803935adbc401e44bbe" title="현재 하던 행동을 모두 멈추고 애니메이션을 대기 상태로 전환시킨다." alt="" coords="356,41,548,69"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="222,91,353,69,353,74,223,96"/>
+<area shape="rect" id="Node000003" href="$classCrewMember.html#a536ad7d67b7d95eac17c63ac7449fbe1" title="animation 실행" alt="" coords="887,40,1149,68"/>
+<area shape="poly" id="edge29_Node000001_Node000003" title=" " alt="" coords="160,91,228,56,271,39,315,26,399,12,485,5,571,3,655,5,809,18,931,35,930,40,809,23,655,10,571,8,485,10,400,18,317,31,273,44,230,61,163,95"/>
+<area shape="rect" id="Node000024" href="$classCrewMember.html#af4b290dc38d44cde63972f5260377c43" title="현재 위치 반환 (가장 가까운 타일)" alt="" coords="316,93,588,121"/>
+<area shape="poly" id="edge26_Node000001_Node000024" title=" " alt="" coords="268,105,302,105,302,110,268,110"/>
+<area shape="rect" id="Node000025" href="$classRoom.html#aca10cd460fc622d1f4b968092676be31" title="이 방이 데미지를 받을 수 있는지 확인합니다." alt="" coords="341,145,563,173"/>
+<area shape="poly" id="edge27_Node000001_Node000025" title=" " alt="" coords="223,119,353,140,353,146,222,124"/>
+<area shape="rect" id="Node000026" href="$classCrewMember.html#a2a72214520c246d394664e2f4bf4a03c" title="현재 선원이 탑승해 있는 함선이 선원의 모선인지 확인 (상대 배에 타있으면 false)" alt="" coords="341,197,563,225"/>
+<area shape="poly" id="edge28_Node000001_Node000026" title=" " alt="" coords="167,119,234,151,317,182,353,192,351,197,315,187,232,156,165,124"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="548,52,873,52,873,57,548,58"/>
+<area shape="rect" id="Node000005" href="$classCrewMember.html#a5161a521053d829ee86ecae3de914b22" title="현재 하던 작업 행동을 멈추고 자신을 Room.workingCrew로 할당한 Room을 찾아 할당 해제시키고 함선 능력치를 재계산한다." alt="" coords="636,92,839,120"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="532,67,645,87,644,92,531,72"/>
+<area shape="rect" id="Node000004" href="$classCrewMember.html#a3c76b7a048169237b4038ee133aa1704" title="애니메이션 방향 설정" alt="" coords="1197,40,1540,68"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="1149,51,1184,51,1184,57,1149,57"/>
+<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="813,89,928,68,929,73,814,95"/>
+<area shape="rect" id="Node000006" href="$classShip.html#a8ced30f0d71c2a5cf333b3de23af48f2" title="모든 룸 정보를 반환합니다." alt="" coords="1643,96,1825,124"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="839,104,1629,107,1629,112,839,109"/>
+<area shape="rect" id="Node000007" href="$classShip.html#a8f3f2bdca106f32f2d4c2b3f892a139f" title="현재 함선의 모든 스탯을 다시 계산합니다. 방, 시스템, 선원의 기여도를 반영합니다." alt="" coords="887,395,1149,423"/>
+<area shape="poly" id="edge8_Node000005_Node000007" title=" " alt="" coords="754,118,996,383,992,386,750,122"/>
+<area shape="rect" id="Node000008" href="$classMoraleSystem.html#aa5e29aef57bec024e207404bb90894b3" title="현재 함선의 전체 사기 수치를 계산합니다. 생명유지실과 승무원 침실이 기여하며, 승무원 수가 수용 가능 인원을 초과할 경우 패널티가 적용됩니다." alt="" coords="1217,143,1520,189"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="1025,393,1049,353,1086,300,1136,245,1165,220,1196,198,1208,192,1210,197,1199,203,1168,224,1140,248,1091,303,1053,356,1029,396"/>
+<area shape="rect" id="Node000011" href="$classCrewSystem.html#a211d4d37de0e70c08101ad8733367bd7" title="현재 탑승 중인 아군, 적군 포함 모든 크루 객체의 목록을 반환합니다." alt="" coords="1263,213,1475,241"/>
+<area shape="poly" id="edge13_Node000007_Node000011" title=" " alt="" coords="1028,393,1055,362,1094,323,1142,283,1196,250,1248,233,1250,239,1198,255,1145,287,1097,327,1059,366,1032,396"/>
+<area shape="rect" id="Node000012" href="$classOuterHullData.html#a51ad6d062c547a1cad0fb2c08ff593eb" title="지정한 레벨에 해당하는 외갑판 데이터를 반환합니다." alt="" coords="1207,265,1530,293"/>
+<area shape="poly" id="edge14_Node000007_Node000012" title=" " alt="" coords="1037,392,1105,348,1150,323,1196,303,1229,294,1231,299,1198,308,1152,328,1108,352,1040,397"/>
+<area shape="rect" id="Node000013" href="$classShip.html#a61cb09945d19adc35f1c2aaf845c39ce" title="현재 함선의 외갑판 레벨을 반환합니다." alt="" coords="1247,317,1490,345"/>
+<area shape="poly" id="edge15_Node000007_Node000013" title=" " alt="" coords="1063,392,1197,355,1250,345,1251,350,1198,361,1064,397"/>
+<area shape="rect" id="Node000015" href="$classCrewBase.html#a0c35d7b81e7bbda6c1187cd56da46b19" title="선원이 함선 스탯에 기여하는 수치를 반환합니다. 예: 산소 소모량 등." alt="" coords="1213,369,1525,397"/>
+<area shape="poly" id="edge17_Node000007_Node000015" title=" " alt="" coords="1149,397,1199,393,1199,398,1150,402"/>
+<area shape="rect" id="Node000016" href="$classRoom.html#a8533094cb230185cce7735d640d950f1" title="방이 함선 스탯에 기여하는 값을 반환합니다." alt="" coords="1233,421,1505,449"/>
+<area shape="poly" id="edge18_Node000007_Node000016" title=" " alt="" coords="1150,416,1219,421,1218,427,1149,421"/>
+<area shape="rect" id="Node000019" href="$classShip.html#a7ce33b470844e7f8b04df7741582010a" title="함선의 기본 스탯을 초기화합니다. 모든 ShipStat 값을 0으로 설정하여 이후 계산의 기준을 만듭니다." alt="" coords="1237,473,1500,501"/>
+<area shape="poly" id="edge21_Node000007_Node000019" title=" " alt="" coords="1061,420,1125,440,1198,459,1244,468,1243,474,1197,465,1124,445,1059,425"/>
+<area shape="rect" id="Node000020" href="$classShip.html#a4ef99106ff3d8b5e7149f15ff9317769" title="주어진 ShipStat이 가산형(덧셈 방식) 스탯인지 여부를 반환합니다. 예: 쉴드 최대량, 산소 생성량 등은 단순 덧셈으로 누적됩니다." alt="" coords="1243,525,1495,553"/>
+<area shape="poly" id="edge22_Node000007_Node000020" title=" " alt="" coords="1039,421,1107,467,1151,491,1198,511,1230,521,1228,526,1196,516,1149,496,1104,471,1036,425"/>
+<area shape="rect" id="Node000021" href="$classShip.html#ae9a8351b5c780010ba90040c511976f6" title="주어진 ShipStat이 배율형(곱셈 방식) 스탯인지 여부를 반환합니다. 예: 회피율 보너스 %, 데미지 증폭 % 등이 해당됩니다. 현재는 정의된 곱셈 스탯이 없습니다." alt="" coords="1213,577,1525,605"/>
+<area shape="poly" id="edge23_Node000007_Node000021" title=" " alt="" coords="1032,421,1059,452,1097,491,1145,531,1199,564,1216,571,1214,575,1196,568,1142,536,1094,495,1055,456,1028,425"/>
+<area shape="rect" id="Node000022" href="$classShip.html#ad8f70687934e3a804bf86e704ca18150" title="현재 함선의 스탯과 룸별 스탯 기여도를 콘솔에 출력합니다. 디버깅 모드가 활성화된 경우에만 호출되며, 전체 스탯 상태를 확인할 수 있습니다." alt="" coords="1243,629,1495,657"/>
+<area shape="poly" id="edge24_Node000007_Node000022" title=" " alt="" coords="1029,422,1052,462,1089,515,1139,571,1168,595,1199,616,1230,629,1228,634,1196,620,1164,599,1135,575,1085,519,1048,464,1024,424"/>
+<area shape="rect" id="Node000023" href="$classMoraleManager.html#af1cb805b49d259cc84441559dd0bb1c6" title="전체 선원 사기 한 번에 할당" alt="" coords="1237,682,1500,727"/>
+<area shape="poly" id="edge25_Node000007_Node000023" title=" " alt="" coords="1027,422,1047,470,1083,537,1134,609,1164,641,1199,668,1225,682,1223,687,1196,672,1161,645,1130,612,1078,540,1043,472,1022,424"/>
+<area shape="poly" id="edge10_Node000008_Node000006" title=" " alt="" coords="1517,141,1628,123,1629,129,1517,146"/>
+<area shape="rect" id="Node000009" href="$classShip.html#a89be268214921c4585f6b70038b98c8e" title="현재 탑승 중인 크루 수를 반환합니다." alt="" coords="1638,152,1830,180"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="1520,163,1624,163,1624,169,1520,169"/>
+<area shape="rect" id="Node000010" href="$classCrewSystem.html#ae270e71cdbafb68eb26d6f031758b1f5" title="현재 탑승 중인 크루의 수를 반환합니다." alt="" coords="1928,152,2180,180"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="1830,163,1914,163,1914,169,1830,169"/>
+<area shape="rect" id="Node000014" href="$classOuterHullSystem.html#ab352abfc02989177392c3b60dd28ddc3" title="외부 선체 시스템의 현재 레벨을 반환합니다." alt="" coords="1603,309,1865,354"/>
+<area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="1490,329,1589,329,1589,334,1490,334"/>
+<area shape="rect" id="Node000017" href="$classRoomData.html#a93ada549c4d197d14917913e944f46c2" title="주어진 레벨에 해당하는 RoomLevel 데이터를 반환합니다. 각 파생 클래스에서 구현해야 합니다." alt="" coords="1588,400,1880,428"/>
+<area shape="poly" id="edge19_Node000016_Node000017" title=" " alt="" coords="1505,425,1574,421,1574,426,1505,430"/>
+<area shape="rect" id="Node000018" href="$classRoom.html#af15fefedd48a2009da56d461a9084ed8" title="방이 작동 가능한 상태인지 확인합니다." alt="" coords="1633,452,1835,480"/>
+<area shape="poly" id="edge20_Node000016_Node000018" title=" " alt="" coords="1505,444,1619,454,1619,459,1505,449"/>
+</map>

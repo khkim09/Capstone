@@ -1,0 +1,701 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEventTreeMap" kind="class" language="C#" prot="public">
+    <compoundname>EventTreeMap</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classEventTreeMap_1ad932c17821423236495d2399f1daccca" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>NodeType</name>
+        <qualifiedname>EventTreeMap.NodeType</qualifiedname>
+        <enumvalue id="classEventTreeMap_1ad932c17821423236495d2399f1dacccaaa6122a65eaa676f700ae68d393054a37" prot="public">
+          <name>Start</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classEventTreeMap_1ad932c17821423236495d2399f1dacccaa95aa99a5810a35a3659d5322fe4bad00" prot="public">
+          <name>Pirate</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classEventTreeMap_1ad932c17821423236495d2399f1dacccaa86565a14158792709ebe9a2c10ccbd63" prot="public">
+          <name>SpaceStation</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classEventTreeMap_1ad932c17821423236495d2399f1dacccaa1f4c6c08e2db1ff843461ea0c05eb59f" prot="public">
+          <name>RandomEvent</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classEventTreeMap_1ad932c17821423236495d2399f1dacccaa87557f11575c0ad78e4e28abedc13b6e" prot="public">
+          <name>End</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="200" column="11" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="201" bodyend="207"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classEventTreeMap_1a87dfb561893c2194251e42f20de1dfc0" prot="private" static="no" mutable="no">
+        <type>RectTransform</type>
+        <definition>RectTransform EventTreeMap.treeContainer</definition>
+        <argsstring></argsstring>
+        <name>treeContainer</name>
+        <qualifiedname>EventTreeMap.treeContainer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="17" column="27" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1a9a5c59e59b4ebbcf57cb3c0e5999a6f7" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject EventTreeMap.eventNodePrefab</definition>
+        <argsstring></argsstring>
+        <name>eventNodePrefab</name>
+        <qualifiedname>EventTreeMap.eventNodePrefab</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="19" column="25" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1af2dc9798d48adfd544a45d416bcbf0fd" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject EventTreeMap.connectionLinePrefab</definition>
+        <argsstring></argsstring>
+        <name>connectionLinePrefab</name>
+        <qualifiedname>EventTreeMap.connectionLinePrefab</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="20" column="25" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1afc3d298004842d2e0ddf9894e57ff4fa" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float EventTreeMap.minNodeDistance</definition>
+        <argsstring></argsstring>
+        <name>minNodeDistance</name>
+        <qualifiedname>EventTreeMap.minNodeDistance</qualifiedname>
+        <initializer>= 80f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="23" column="19" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1aa9e3bc3ed1c2ffc0b8dd856e458a2eaa" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int EventTreeMap.minNodesPerLayer</definition>
+        <argsstring></argsstring>
+        <name>minNodesPerLayer</name>
+        <qualifiedname>EventTreeMap.minNodesPerLayer</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="25" column="18" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1a63096070c60f94e01eeaea2a5f661327" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int EventTreeMap.maxNodesPerLayer</definition>
+        <argsstring></argsstring>
+        <name>maxNodesPerLayer</name>
+        <qualifiedname>EventTreeMap.maxNodesPerLayer</qualifiedname>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="26" column="18" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1a90eb6938d2f9de95a6234b5d56aa6518" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color EventTreeMap.startNodeColor</definition>
+        <argsstring></argsstring>
+        <name>startNodeColor</name>
+        <qualifiedname>EventTreeMap.startNodeColor</qualifiedname>
+        <initializer>= Color.green</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="29" column="19" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1ac54db21626cb601bdbe41038df476cc0" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color EventTreeMap.endNodeColor</definition>
+        <argsstring></argsstring>
+        <name>endNodeColor</name>
+        <qualifiedname>EventTreeMap.endNodeColor</qualifiedname>
+        <initializer>= Color.red</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="31" column="20" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1aae4c336e0745a7f04dfc87deb23d8047" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color EventTreeMap.pirateNodeColor</definition>
+        <argsstring></argsstring>
+        <name>pirateNodeColor</name>
+        <qualifiedname>EventTreeMap.pirateNodeColor</qualifiedname>
+        <initializer>= new(0.8f, 0.2f, 0.2f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="32" column="20" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1a71e8335e9b46e0bec8da0634619b083f" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color EventTreeMap.spaceStationNodeColor</definition>
+        <argsstring></argsstring>
+        <name>spaceStationNodeColor</name>
+        <qualifiedname>EventTreeMap.spaceStationNodeColor</qualifiedname>
+        <initializer>= new(0.2f, 0.6f, 0.8f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="33" column="20" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1ab29062bf6ceee9d8c7df070fa6099b11" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color EventTreeMap.randomEventNodeColor</definition>
+        <argsstring></argsstring>
+        <name>randomEventNodeColor</name>
+        <qualifiedname>EventTreeMap.randomEventNodeColor</qualifiedname>
+        <initializer>= new(0.8f, 0.6f, 0.8f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="34" column="20" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1a1b811f45368edd5b36303f2047454a7c" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color EventTreeMap.dangerNodeColor</definition>
+        <argsstring></argsstring>
+        <name>dangerNodeColor</name>
+        <qualifiedname>EventTreeMap.dangerNodeColor</qualifiedname>
+        <initializer>= new(0.6f, 0.2f, 0.8f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="37" column="19" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1aa8ac080eaeb263679a90ea8f37693862" prot="private" static="no" mutable="no">
+        <type>readonly List&lt; <ref refid="classEventNode" kindref="compound">EventNode</ref> &gt;</type>
+        <definition>readonly List&lt;EventNode&gt; EventTreeMap.allNodes</definition>
+        <argsstring></argsstring>
+        <name>allNodes</name>
+        <qualifiedname>EventTreeMap.allNodes</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="44" column="27" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1a7e3376e721e3e47e398cd3a8df9a05cf" prot="private" static="no" mutable="no">
+        <type>readonly List&lt; GameObject &gt;</type>
+        <definition>readonly List&lt;GameObject&gt; EventTreeMap.connectionLines</definition>
+        <argsstring></argsstring>
+        <name>connectionLines</name>
+        <qualifiedname>EventTreeMap.connectionLines</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="45" column="27" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1aa918b09d13cbd1527309b10efc03aed4" prot="private" static="no" mutable="no">
+        <type>List&lt; List&lt; <ref refid="classEventNode" kindref="compound">EventNode</ref> &gt; &gt;</type>
+        <definition>List&lt;List&lt;EventNode&gt; &gt; EventTreeMap.layerNodes</definition>
+        <argsstring></argsstring>
+        <name>layerNodes</name>
+        <qualifiedname>EventTreeMap.layerNodes</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="46" column="18" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventTreeMap_1ad51e7a80ec10b5701a9bcc8dad5a9a6e" prot="private" static="no" mutable="no">
+        <type>List&lt; bool &gt;</type>
+        <definition>List&lt;bool&gt; EventTreeMap.layerDangerInfo</definition>
+        <argsstring></argsstring>
+        <name>layerDangerInfo</name>
+        <qualifiedname>EventTreeMap.layerDangerInfo</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="47" column="18" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="event">
+      <memberdef kind="event" id="classEventTreeMap_1a795d4523a5e65cce3b6e9b6da5bb6c1d" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>NodeSelectedHandler</type>
+        <definition>NodeSelectedHandler EventTreeMap.OnNodeSelected</definition>
+        <argsstring></argsstring>
+        <name>OnNodeSelected</name>
+        <qualifiedname>EventTreeMap.OnNodeSelected</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="42" column="38" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEventTreeMap_1a6bf004ffc1171d945d4d5dee509ab82b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void EventTreeMap.NodeSelectedHandler</definition>
+        <argsstring>(EventNode node)</argsstring>
+        <name>NodeSelectedHandler</name>
+        <qualifiedname>EventTreeMap.NodeSelectedHandler</qualifiedname>
+        <param>
+          <type><ref refid="classEventNode" kindref="compound">EventNode</ref></type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="40" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classEventTreeMap_1a6e4cb33d1abe12963e2eb41b10c102c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventTreeMap.Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>EventTreeMap.Initialize</qualifiedname>
+        <briefdescription>
+<para>트리 맵 초기화. 기존 노드와 연결을 모두 제거합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="56" column="17" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="56" bodyend="60"/>
+        <references refid="classEventTreeMap_1a404b232e2257cccc8830e8a9e06ea8b8" compoundref="EventTreeMap_8cs" startline="710" endline="728">ClearCurrentTree</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventTreeMap_1a3c6fc3a948970f0edf3406d87968fc65" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventTreeMap.GenerateTreeFromPath</definition>
+        <argsstring>(List&lt; Vector2 &gt; pathNodes, List&lt; bool &gt; dangerInfo=null)</argsstring>
+        <name>GenerateTreeFromPath</name>
+        <qualifiedname>EventTreeMap.GenerateTreeFromPath</qualifiedname>
+        <param>
+          <type>List&lt; Vector2 &gt;</type>
+          <declname>pathNodes</declname>
+        </param>
+        <param>
+          <type>List&lt; bool &gt;</type>
+          <declname>dangerInfo</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>외부 경로 정보(pathNodes)와 위험 정보(dangerInfo)를 받아 트리를 생성합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="65" column="17" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="65" bodyend="90"/>
+        <references refid="classEventTreeMap_1a404b232e2257cccc8830e8a9e06ea8b8" compoundref="EventTreeMap_8cs" startline="710" endline="728">ClearCurrentTree</references>
+        <references refid="classEventTreeMap_1a262010668e473032b4b75e754a01525e" compoundref="EventTreeMap_8cs" startline="96" endline="193">GenerateImprovedTree</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventTreeMap_1a262010668e473032b4b75e754a01525e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventTreeMap.GenerateImprovedTree</definition>
+        <argsstring>(int layers)</argsstring>
+        <name>GenerateImprovedTree</name>
+        <qualifiedname>EventTreeMap.GenerateImprovedTree</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>layers</declname>
+        </param>
+        <briefdescription>
+<para>레이어 수(layers)를 기반으로 트리를 생성합니다. 각 레이어는 랜덤한 노드 개수를 갖고, 노드는 평면적으로 연결됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="96" column="17" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="96" bodyend="193"/>
+        <references refid="classEventTreeMap_1a404b232e2257cccc8830e8a9e06ea8b8" compoundref="EventTreeMap_8cs" startline="710" endline="728">ClearCurrentTree</references>
+        <references refid="classEventTreeMap_1aafe86f10a7e80955ff92a2f3e1d2ebe6" compoundref="EventTreeMap_8cs" startline="577" endline="607">CreateConnectionLines</references>
+        <references refid="classEventTreeMap_1a8f97f1e116e25ff9969cee4200edfa25" compoundref="EventTreeMap_8cs" startline="239" endline="266">CreateNode</references>
+        <references refid="classEventTreeMap_1a736851a06ab66a005235214026c0d9a8" compoundref="EventTreeMap_8cs" startline="316" endline="515">CreateStrictlyPlanarConnections</references>
+        <references refid="classEventTreeMap_1a652d4fdb6a4fa9b3cd8836a37c4c0b7a" compoundref="EventTreeMap_8cs" startline="212" endline="234">DetermineNodeType</references>
+        <referencedby refid="classEventTreeMap_1a3c6fc3a948970f0edf3406d87968fc65" compoundref="EventTreeMap_8cs" startline="65" endline="90">GenerateTreeFromPath</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEventTreeMap_1a652d4fdb6a4fa9b3cd8836a37c4c0b7a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>NodeType</type>
+        <definition>NodeType EventTreeMap.DetermineNodeType</definition>
+        <argsstring>(int layer, int totalLayers)</argsstring>
+        <name>DetermineNodeType</name>
+        <qualifiedname>EventTreeMap.DetermineNodeType</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>totalLayers</declname>
+        </param>
+        <briefdescription>
+<para>노드 타입을 결정합니다. 위치(layer)에 따라 우선순위를 다르게 적용합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="212" column="22" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="212" bodyend="234"/>
+        <referencedby refid="classEventTreeMap_1a262010668e473032b4b75e754a01525e" compoundref="EventTreeMap_8cs" startline="96" endline="193">GenerateImprovedTree</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventTreeMap_1a8f97f1e116e25ff9969cee4200edfa25" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classEventNode" kindref="compound">EventNode</ref></type>
+        <definition>EventNode EventTreeMap.CreateNode</definition>
+        <argsstring>(Vector2 position, int layer, int index, NodeType type, bool isDangerous)</argsstring>
+        <name>CreateNode</name>
+        <qualifiedname>EventTreeMap.CreateNode</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>NodeType</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>isDangerous</declname>
+        </param>
+        <briefdescription>
+<para>노드를 생성하고 위치, 색상, 클릭 이벤트 등을 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="239" column="23" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="239" bodyend="266"/>
+        <references refid="classEventTreeMap_1a0c6508467e80bb3ad5c99567d1281527" compoundref="EventTreeMap_8cs" startline="271" endline="306">ApplyNodeStyle</references>
+        <references refid="classEventTreeMap_1a6c6d22ebb5bdbc7ce3e837c16a91c4ca" compoundref="EventTreeMap_8cs" startline="734" endline="740">OnNodeClicked</references>
+        <references refid="classEventNode_1ab334c9e81c9f6fe314ebe8c4013b0471" compoundref="EventNode_8cs" startline="28" endline="33">EventNode.SetNodeData</references>
+        <referencedby refid="classEventTreeMap_1a262010668e473032b4b75e754a01525e" compoundref="EventTreeMap_8cs" startline="96" endline="193">GenerateImprovedTree</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventTreeMap_1a0c6508467e80bb3ad5c99567d1281527" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventTreeMap.ApplyNodeStyle</definition>
+        <argsstring>(GameObject nodeObj, NodeType type, bool isDangerous)</argsstring>
+        <name>ApplyNodeStyle</name>
+        <qualifiedname>EventTreeMap.ApplyNodeStyle</qualifiedname>
+        <param>
+          <type>GameObject</type>
+          <declname>nodeObj</declname>
+        </param>
+        <param>
+          <type>NodeType</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>isDangerous</declname>
+        </param>
+        <briefdescription>
+<para>노드의 색상과 스타일을 적용합니다. 위험 지역 여부에 따라 색상이 다릅니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="271" column="18" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="271" bodyend="306"/>
+        <referencedby refid="classEventTreeMap_1a8f97f1e116e25ff9969cee4200edfa25" compoundref="EventTreeMap_8cs" startline="239" endline="266">CreateNode</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventTreeMap_1a736851a06ab66a005235214026c0d9a8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventTreeMap.CreateStrictlyPlanarConnections</definition>
+        <argsstring>()</argsstring>
+        <name>CreateStrictlyPlanarConnections</name>
+        <qualifiedname>EventTreeMap.CreateStrictlyPlanarConnections</qualifiedname>
+        <briefdescription>
+<para>평면성을 유지하면서 노드들을 계층적으로 연결합니다. 연결 로직은 중복 방지, 균형 유지, 연결 누락 보정까지 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="316" column="18" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="316" bodyend="515"/>
+        <references refid="classEventNode_1a18d8a9563d447ac695d6542fffcb7087" compoundref="EventNode_8cs" startline="40" endline="43">EventNode.AddNextNode</references>
+        <references refid="classEventNode_1a25860729242a62725ff8bba13e2ffc5b" compoundref="EventNode_8cs" startline="48" endline="51">EventNode.ClearConnections</references>
+        <references refid="classEventTreeMap_1a89b1c0f9093f0a31f339c1a03f72729a" compoundref="EventTreeMap_8cs" startline="520" endline="569">VerifyAndFixConnections</references>
+        <referencedby refid="classEventTreeMap_1a262010668e473032b4b75e754a01525e" compoundref="EventTreeMap_8cs" startline="96" endline="193">GenerateImprovedTree</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventTreeMap_1a89b1c0f9093f0a31f339c1a03f72729a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventTreeMap.VerifyAndFixConnections</definition>
+        <argsstring>()</argsstring>
+        <name>VerifyAndFixConnections</name>
+        <qualifiedname>EventTreeMap.VerifyAndFixConnections</qualifiedname>
+        <briefdescription>
+<para>모든 연결 관계를 검사하고, 연결이 없는 노드를 보정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="520" column="18" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="520" bodyend="569"/>
+        <references refid="classEventNode_1a18d8a9563d447ac695d6542fffcb7087" compoundref="EventNode_8cs" startline="40" endline="43">EventNode.AddNextNode</references>
+        <referencedby refid="classEventTreeMap_1a736851a06ab66a005235214026c0d9a8" compoundref="EventTreeMap_8cs" startline="316" endline="515">CreateStrictlyPlanarConnections</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventTreeMap_1aafe86f10a7e80955ff92a2f3e1d2ebe6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventTreeMap.CreateConnectionLines</definition>
+        <argsstring>()</argsstring>
+        <name>CreateConnectionLines</name>
+        <qualifiedname>EventTreeMap.CreateConnectionLines</qualifiedname>
+        <briefdescription>
+<para>생성된 노드 간의 연결선을 시각적으로 생성합니다. 중복 연결은 방지됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="577" column="18" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="577" bodyend="607"/>
+        <references refid="classEventTreeMap_1a5b541285d63ffc77ee2b0e59ff76f460" compoundref="EventTreeMap_8cs" startline="612" endline="666">CreateConnectionLine</references>
+        <referencedby refid="classEventTreeMap_1a262010668e473032b4b75e754a01525e" compoundref="EventTreeMap_8cs" startline="96" endline="193">GenerateImprovedTree</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventTreeMap_1a5b541285d63ffc77ee2b0e59ff76f460" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>GameObject</type>
+        <definition>GameObject EventTreeMap.CreateConnectionLine</definition>
+        <argsstring>(RectTransform startNode, RectTransform endNode)</argsstring>
+        <name>CreateConnectionLine</name>
+        <qualifiedname>EventTreeMap.CreateConnectionLine</qualifiedname>
+        <param>
+          <type>RectTransform</type>
+          <declname>startNode</declname>
+        </param>
+        <param>
+          <type>RectTransform</type>
+          <declname>endNode</declname>
+        </param>
+        <briefdescription>
+<para>연결선 오브젝트를 생성하고, 위치/회전/길이를 자동으로 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="612" column="24" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="612" bodyend="666"/>
+        <references refid="classEventTreeMap_1aa6bc15afc0f0d5c1ab24d79073835e9b" compoundref="EventTreeMap_8cs" startline="671" endline="705">CalculateNodeEdgePosition</references>
+        <referencedby refid="classEventTreeMap_1aafe86f10a7e80955ff92a2f3e1d2ebe6" compoundref="EventTreeMap_8cs" startline="577" endline="607">CreateConnectionLines</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventTreeMap_1aa6bc15afc0f0d5c1ab24d79073835e9b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2</type>
+        <definition>Vector2 EventTreeMap.CalculateNodeEdgePosition</definition>
+        <argsstring>(Vector2 nodeCenter, Vector2 direction, float halfWidth, float halfHeight)</argsstring>
+        <name>CalculateNodeEdgePosition</name>
+        <qualifiedname>EventTreeMap.CalculateNodeEdgePosition</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>nodeCenter</declname>
+        </param>
+        <param>
+          <type>Vector2</type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>halfWidth</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>halfHeight</declname>
+        </param>
+        <briefdescription>
+<para>노드의 중심 위치에서 가장자리까지의 연결 지점을 계산합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="671" column="21" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="671" bodyend="705"/>
+        <referencedby refid="classEventTreeMap_1a5b541285d63ffc77ee2b0e59ff76f460" compoundref="EventTreeMap_8cs" startline="612" endline="666">CreateConnectionLine</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventTreeMap_1a404b232e2257cccc8830e8a9e06ea8b8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventTreeMap.ClearCurrentTree</definition>
+        <argsstring>()</argsstring>
+        <name>ClearCurrentTree</name>
+        <qualifiedname>EventTreeMap.ClearCurrentTree</qualifiedname>
+        <briefdescription>
+<para>트리 내부의 모든 노드와 연결선을 제거하고 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="710" column="18" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="710" bodyend="728"/>
+        <referencedby refid="classEventTreeMap_1a262010668e473032b4b75e754a01525e" compoundref="EventTreeMap_8cs" startline="96" endline="193">GenerateImprovedTree</referencedby>
+        <referencedby refid="classEventTreeMap_1a3c6fc3a948970f0edf3406d87968fc65" compoundref="EventTreeMap_8cs" startline="65" endline="90">GenerateTreeFromPath</referencedby>
+        <referencedby refid="classEventTreeMap_1a6e4cb33d1abe12963e2eb41b10c102c1" compoundref="EventTreeMap_8cs" startline="56" endline="60">Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventTreeMap_1a6c6d22ebb5bdbc7ce3e837c16a91c4ca" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventTreeMap.OnNodeClicked</definition>
+        <argsstring>(EventNode node)</argsstring>
+        <name>OnNodeClicked</name>
+        <qualifiedname>EventTreeMap.OnNodeClicked</qualifiedname>
+        <param>
+          <type><ref refid="classEventNode" kindref="compound">EventNode</ref></type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>노드 클릭 시 발생하는 내부 메서드입니다. OnNodeSelected 이벤트를 트리거합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="734" column="18" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="734" bodyend="740"/>
+        <referencedby refid="classEventTreeMap_1a8f97f1e116e25ff9969cee4200edfa25" compoundref="EventTreeMap_8cs" startline="239" endline="266">CreateNode</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>이벤트 트리 맵을 생성하고 시각화하는 매니저. 노드를 자동으로 배치하고, 위험 여부를 표시하며, 연결선까지 구성합니다. 노드 클릭 시 선택 이벤트를 발생시킵니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EventTreeMap</label>
+        <link refid="classEventTreeMap"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>EventTreeMap</label>
+        <link refid="classEventTreeMap"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Warp/Map/EventTreeMap.cs" line="12" column="7" bodyfile="Assets/Scripts/Warp/Map/EventTreeMap.cs" bodystart="13" bodyend="741"/>
+    <listofallmembers>
+      <member refid="classEventTreeMap_1aa8ac080eaeb263679a90ea8f37693862" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>allNodes</name></member>
+      <member refid="classEventTreeMap_1a0c6508467e80bb3ad5c99567d1281527" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>ApplyNodeStyle</name></member>
+      <member refid="classEventTreeMap_1aa6bc15afc0f0d5c1ab24d79073835e9b" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>CalculateNodeEdgePosition</name></member>
+      <member refid="classEventTreeMap_1a404b232e2257cccc8830e8a9e06ea8b8" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>ClearCurrentTree</name></member>
+      <member refid="classEventTreeMap_1af2dc9798d48adfd544a45d416bcbf0fd" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>connectionLinePrefab</name></member>
+      <member refid="classEventTreeMap_1a7e3376e721e3e47e398cd3a8df9a05cf" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>connectionLines</name></member>
+      <member refid="classEventTreeMap_1a5b541285d63ffc77ee2b0e59ff76f460" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>CreateConnectionLine</name></member>
+      <member refid="classEventTreeMap_1aafe86f10a7e80955ff92a2f3e1d2ebe6" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>CreateConnectionLines</name></member>
+      <member refid="classEventTreeMap_1a8f97f1e116e25ff9969cee4200edfa25" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>CreateNode</name></member>
+      <member refid="classEventTreeMap_1a736851a06ab66a005235214026c0d9a8" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>CreateStrictlyPlanarConnections</name></member>
+      <member refid="classEventTreeMap_1a1b811f45368edd5b36303f2047454a7c" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>dangerNodeColor</name></member>
+      <member refid="classEventTreeMap_1a652d4fdb6a4fa9b3cd8836a37c4c0b7a" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>DetermineNodeType</name></member>
+      <member refid="classEventTreeMap_1ac54db21626cb601bdbe41038df476cc0" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>endNodeColor</name></member>
+      <member refid="classEventTreeMap_1a9a5c59e59b4ebbcf57cb3c0e5999a6f7" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>eventNodePrefab</name></member>
+      <member refid="classEventTreeMap_1a262010668e473032b4b75e754a01525e" prot="public" virt="non-virtual"><scope>EventTreeMap</scope><name>GenerateImprovedTree</name></member>
+      <member refid="classEventTreeMap_1a3c6fc3a948970f0edf3406d87968fc65" prot="public" virt="non-virtual"><scope>EventTreeMap</scope><name>GenerateTreeFromPath</name></member>
+      <member refid="classEventTreeMap_1a6e4cb33d1abe12963e2eb41b10c102c1" prot="public" virt="non-virtual"><scope>EventTreeMap</scope><name>Initialize</name></member>
+      <member refid="classEventTreeMap_1ad51e7a80ec10b5701a9bcc8dad5a9a6e" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>layerDangerInfo</name></member>
+      <member refid="classEventTreeMap_1aa918b09d13cbd1527309b10efc03aed4" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>layerNodes</name></member>
+      <member refid="classEventTreeMap_1a63096070c60f94e01eeaea2a5f661327" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>maxNodesPerLayer</name></member>
+      <member refid="classEventTreeMap_1afc3d298004842d2e0ddf9894e57ff4fa" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>minNodeDistance</name></member>
+      <member refid="classEventTreeMap_1aa9e3bc3ed1c2ffc0b8dd856e458a2eaa" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>minNodesPerLayer</name></member>
+      <member refid="classEventTreeMap_1a6bf004ffc1171d945d4d5dee509ab82b" prot="public" virt="non-virtual"><scope>EventTreeMap</scope><name>NodeSelectedHandler</name></member>
+      <member refid="classEventTreeMap_1ad932c17821423236495d2399f1daccca" prot="public" virt="non-virtual"><scope>EventTreeMap</scope><name>NodeType</name></member>
+      <member refid="classEventTreeMap_1a6c6d22ebb5bdbc7ce3e837c16a91c4ca" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>OnNodeClicked</name></member>
+      <member refid="classEventTreeMap_1a795d4523a5e65cce3b6e9b6da5bb6c1d" prot="public" virt="non-virtual"><scope>EventTreeMap</scope><name>OnNodeSelected</name></member>
+      <member refid="classEventTreeMap_1aae4c336e0745a7f04dfc87deb23d8047" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>pirateNodeColor</name></member>
+      <member refid="classEventTreeMap_1ab29062bf6ceee9d8c7df070fa6099b11" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>randomEventNodeColor</name></member>
+      <member refid="classEventTreeMap_1a71e8335e9b46e0bec8da0634619b083f" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>spaceStationNodeColor</name></member>
+      <member refid="classEventTreeMap_1a90eb6938d2f9de95a6234b5d56aa6518" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>startNodeColor</name></member>
+      <member refid="classEventTreeMap_1a87dfb561893c2194251e42f20de1dfc0" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>treeContainer</name></member>
+      <member refid="classEventTreeMap_1a89b1c0f9093f0a31f339c1a03f72729a" prot="private" virt="non-virtual"><scope>EventTreeMap</scope><name>VerifyAndFixConnections</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

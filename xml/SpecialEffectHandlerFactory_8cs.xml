@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="SpecialEffectHandlerFactory_8cs" kind="file" language="C#">
+    <compoundname>SpecialEffectHandlerFactory.cs</compoundname>
+    <innerclass refid="classSpecialEffectHandlerFactory" prot="public">SpecialEffectHandlerFactory</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using<sp/></highlight><highlight class="normal">System.Collections.Generic;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="classSpecialEffectHandlerFactory" refkind="compound"><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classSpecialEffectHandlerFactory" kindref="compound">SpecialEffectHandlerFactory</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>readonly<sp/>Dictionary&lt;SpecialEffectType,<sp/>ISpecialEffectHandler&gt;<sp/>handlers<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal">();</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="classSpecialEffectHandlerFactory_1a3dd2d5dff4f43b4959632d32e6ba0bc6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classSpecialEffectHandlerFactory_1a3dd2d5dff4f43b4959632d32e6ba0bc6" kindref="member">SpecialEffectHandlerFactory</ref>()</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSpecialEffectHandlerFactory_1a70d5a161097c08051f6ec5b36f04a6c4" kindref="member">RegisterAllDefaultHandlers</ref>();</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="classSpecialEffectHandlerFactory_1a70d5a161097c08051f6ec5b36f04a6c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classSpecialEffectHandlerFactory_1a70d5a161097c08051f6ec5b36f04a6c4" kindref="member">RegisterAllDefaultHandlers</ref>()</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSpecialEffectHandlerFactory_1a5b24a4b9da7256a2db5fbdf10fcbb526" kindref="member">RegisterHandler</ref>(SpecialEffectType.None,<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSpecialEffectHandlerFactory_1a5b24a4b9da7256a2db5fbdf10fcbb526" kindref="member">RegisterHandler</ref>(SpecialEffectType.TriggerNextEvent,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classEventNextEventEffectHandler" kindref="compound">EventNextEventEffectHandler</ref>());</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSpecialEffectHandlerFactory_1a5b24a4b9da7256a2db5fbdf10fcbb526" kindref="member">RegisterHandler</ref>(SpecialEffectType.AddQuest,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classAddQuestEffectHandler" kindref="compound">AddQuestEffectHandler</ref>());</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSpecialEffectHandlerFactory_1a5b24a4b9da7256a2db5fbdf10fcbb526" kindref="member">RegisterHandler</ref>(SpecialEffectType.RoomDamage,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classRoomDamageEffectHandler" kindref="compound">RoomDamageEffectHandler</ref>());</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSpecialEffectHandlerFactory_1a5b24a4b9da7256a2db5fbdf10fcbb526" kindref="member">RegisterHandler</ref>(SpecialEffectType.Battle,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classBattleEffectHandler" kindref="compound">BattleEffectHandler</ref>());</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSpecialEffectHandlerFactory_1a5b24a4b9da7256a2db5fbdf10fcbb526" kindref="member">RegisterHandler</ref>(SpecialEffectType.TeleportToRandomPlanet,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classTeleportEffectHandler" kindref="compound">TeleportEffectHandler</ref>());</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="classSpecialEffectHandlerFactory_1a5b24a4b9da7256a2db5fbdf10fcbb526" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classSpecialEffectHandlerFactory_1a5b24a4b9da7256a2db5fbdf10fcbb526" kindref="member">RegisterHandler</ref>(SpecialEffectType<sp/>type,<sp/><ref refid="interfaceISpecialEffectHandler" kindref="compound">ISpecialEffectHandler</ref><sp/>handler)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(handlers.ContainsKey(type))</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogWarning($</highlight><highlight class="stringliteral">&quot;[SpecialEffectHandlerFactory]<sp/>이미<sp/>등록된<sp/>핸들러가<sp/>존재합니다:<sp/>{type}&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>handlers[type]<sp/>=<sp/>handler;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="classSpecialEffectHandlerFactory_1a1c91b7986d36fdc014ff293073f89a96" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="interfaceISpecialEffectHandler" kindref="compound">ISpecialEffectHandler</ref><sp/><ref refid="classSpecialEffectHandlerFactory_1a1c91b7986d36fdc014ff293073f89a96" kindref="member">GetHandler</ref>(SpecialEffectType<sp/>type)</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!handlers.ContainsKey(type))</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogWarning($</highlight><highlight class="stringliteral">&quot;[SpecialEffectHandlerFactory]<sp/>등록되지<sp/>않은<sp/>핸들러<sp/>요청:<sp/>{type}&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>handlers[type];</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Assets/Scripts/Events/EventHandlers/SpecialEffectHandlerFactory.cs"/>
+  </compounddef>
+</doxygen>

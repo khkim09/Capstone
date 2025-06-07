@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="LifeSupportRoom_8cs" kind="file" language="C#">
+    <compoundname>LifeSupportRoom.cs</compoundname>
+    <innerclass refid="classLifeSupportRoom" prot="public">LifeSupportRoom</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using<sp/></highlight><highlight class="normal">System.Collections.Generic;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="classLifeSupportRoom" refkind="compound"><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classLifeSupportRoom" kindref="compound">LifeSupportRoom</ref><sp/>:<sp/><ref refid="classRoom" kindref="compound">Room</ref>&lt;LifeSupportRoomData,<sp/>LifeSupportRoomData.LifeSupportRoomLevel&gt;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="13" refid="classLifeSupportRoom_1a63bab8f49d7ea84d8865f3ca73fc05c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classLifeSupportRoom_1a63bab8f49d7ea84d8865f3ca73fc05c5" kindref="member">Start</ref>()</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base.Start();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>방<sp/>타입<sp/>설정</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoom_1af4b97c8e2306beda35f26f8803734eb5" kindref="member">roomType</ref><sp/>=<sp/>RoomType.LifeSupport;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoom_1a08bfe2fcb01f8857b0aa420d3eb08629" kindref="member">workDirection</ref><sp/>=<sp/>Vector2Int.zero;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="classLifeSupportRoom_1a69349638c35e9882650c5df3c699a9bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/>Dictionary&lt;ShipStat,<sp/>float&gt;<sp/><ref refid="classLifeSupportRoom_1a69349638c35e9882650c5df3c699a9bc" kindref="member">GetStatContributions</ref>()</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>기본<sp/>기여도<sp/>가져오기<sp/>(작동<sp/>상태<sp/>체크<sp/>등)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Dictionary&lt;ShipStat,<sp/>float&gt;<sp/>contributions<sp/>=<sp/>base.GetStatContributions();</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>작동<sp/>상태가<sp/>아니면<sp/>기여도<sp/>없음</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classRoom_1af15fefedd48a2009da56d461a9084ed8" kindref="member">IsOperational</ref>()<sp/>||<sp/><ref refid="classRoom_1aef1c93f94f164ed3151ec3d3301a1988" kindref="member">currentRoomLevelData</ref><sp/>==<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>contributions;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>contributions[ShipStat.PowerUsing]<sp/>=<sp/><ref refid="classRoom_1aef1c93f94f164ed3151ec3d3301a1988" kindref="member">currentRoomLevelData</ref>.powerRequirement;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>contributions[ShipStat.CrewMoraleBonus]<sp/>=<sp/><ref refid="classRoom_1aef1c93f94f164ed3151ec3d3301a1988" kindref="member">currentRoomLevelData</ref>.crewMoraleBonus;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>contributions;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Assets/Scripts/Ship/Rooms/LifeSupportRoom/LifeSupportRoom.cs"/>
+  </compounddef>
+</doxygen>

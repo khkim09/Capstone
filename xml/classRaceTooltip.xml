@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classRaceTooltip" kind="class" language="C#" prot="public">
+    <compoundname>RaceTooltip</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classRaceTooltip_1a80793d632c3ad04a7d30315508f677cb" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI RaceTooltip.raceNameText</definition>
+        <argsstring></argsstring>
+        <name>raceNameText</name>
+        <qualifiedname>RaceTooltip.raceNameText</qualifiedname>
+        <briefdescription>
+<para>종족 이름을 표시하는 TextMeshPro UI 텍스트입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceTooltip.cs" line="14" column="30" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceTooltip.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classRaceTooltip_1ae6eca1510649888405f0f3dddfb63fda" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI RaceTooltip.raceInfoText</definition>
+        <argsstring></argsstring>
+        <name>raceInfoText</name>
+        <qualifiedname>RaceTooltip.raceInfoText</qualifiedname>
+        <briefdescription>
+<para>종족 능력치 상세 정보를 표시하는 TextMeshPro UI 텍스트입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceTooltip.cs" line="19" column="30" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceTooltip.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classRaceTooltip_1afac678c03fa6b8716419856df409d06f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RaceTooltip.SetupTooltip</definition>
+        <argsstring>(CrewRaceStat raceStat, CrewRace race)</argsstring>
+        <name>SetupTooltip</name>
+        <qualifiedname>RaceTooltip.SetupTooltip</qualifiedname>
+        <param>
+          <type><ref refid="classCrewRaceStat" kindref="compound">CrewRaceStat</ref></type>
+          <declname>raceStat</declname>
+        </param>
+        <param>
+          <type>CrewRace</type>
+          <declname>race</declname>
+        </param>
+        <briefdescription>
+<para>전달된 종족 능력치 데이터를 기반으로 툴팁 UI를 구성합니다. 능력치 정보는 텍스트로 출력되며, maxSkillValueArray는 제외됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>raceStat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>종족별 능력치 정보를 포함하는 데이터 객체.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>race</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>표시할 대상 종족.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceTooltip.cs" line="27" column="17" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceTooltip.cs" bodystart="27" bodyend="49"/>
+        <referencedby refid="classRaceButtonController_1a34434fbd0c054ab7af53364da11e9608" compoundref="RaceButtonController_8cs" startline="93" endline="110">RaceButtonController.ShowTooltip</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>종족 별 설명에 나올 details 정보 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>RaceTooltip</label>
+        <link refid="classRaceTooltip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>RaceTooltip</label>
+        <link refid="classRaceTooltip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Crew/RaceSelect/RaceTooltip.cs" line="9" column="7" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceTooltip.cs" bodystart="10" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classRaceTooltip_1ae6eca1510649888405f0f3dddfb63fda" prot="private" virt="non-virtual"><scope>RaceTooltip</scope><name>raceInfoText</name></member>
+      <member refid="classRaceTooltip_1a80793d632c3ad04a7d30315508f677cb" prot="private" virt="non-virtual"><scope>RaceTooltip</scope><name>raceNameText</name></member>
+      <member refid="classRaceTooltip_1afac678c03fa6b8716419856df409d06f" prot="public" virt="non-virtual"><scope>RaceTooltip</scope><name>SetupTooltip</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

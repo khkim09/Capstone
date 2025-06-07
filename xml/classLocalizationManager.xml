@@ -1,0 +1,348 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classLocalizationManager" kind="class" language="C#" prot="public">
+    <compoundname>LocalizationManager</compoundname>
+    <innerclass refid="classLocalizationManager_1_1LocalizationEntry" prot="private">LocalizationManager::LocalizationEntry</innerclass>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classLocalizationManager_1a1d2ab12ab3da5a0f233c1ba4fce4f027" prot="private" static="yes" mutable="no">
+        <type>SystemLanguage</type>
+        <definition>SystemLanguage LocalizationManager._currentLanguage</definition>
+        <argsstring></argsstring>
+        <name>_currentLanguage</name>
+        <qualifiedname>LocalizationManager._currentLanguage</qualifiedname>
+        <initializer>= SystemLanguage.Korean</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="14" column="35" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classLocalizationManager_1a7e4eaa36bdf496817b3f3cfd623c49d7" prot="private" static="yes" mutable="no">
+        <type>Dictionary&lt; string, Dictionary&lt; string, string &gt; &gt;</type>
+        <definition>Dictionary&lt;string, Dictionary&lt;string, string&gt; &gt; LocalizationManager.localizedTexts</definition>
+        <argsstring></argsstring>
+        <name>localizedTexts</name>
+        <qualifiedname>LocalizationManager.localizedTexts</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="37" column="31" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classLocalizationManager_1aca9e3159529ef6b7f32c959805b3acb1" prot="private" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool LocalizationManager.isInitialized</definition>
+        <argsstring></argsstring>
+        <name>isInitialized</name>
+        <qualifiedname>LocalizationManager.isInitialized</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="40" column="25" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classLocalizationManager_1aeea9e5153128c850ffe7ee0bde4198e8" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>SystemLanguage</type>
+        <definition>SystemLanguage LocalizationManager.CurrentLanguage</definition>
+        <argsstring></argsstring>
+        <name>CurrentLanguage</name>
+        <qualifiedname>LocalizationManager.CurrentLanguage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="16" column="34" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="17" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="property" id="classLocalizationManager_1aef93268a9219b4995f5b15e06a5b0ee4" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool LocalizationManager.IsInitialized</definition>
+        <argsstring></argsstring>
+        <name>IsInitialized</name>
+        <qualifiedname>LocalizationManager.IsInitialized</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="42" column="24" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classLocalizationManager_1a093cd72f0fdbb65bf210fb0d293e98bc" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>List&lt; SystemLanguage &gt;</type>
+        <definition>List&lt;SystemLanguage&gt; LocalizationManager.SupportedLanguages</definition>
+        <argsstring></argsstring>
+        <name>SupportedLanguages</name>
+        <qualifiedname>LocalizationManager.SupportedLanguages</qualifiedname>
+        <initializer>= new()
+    {
+        SystemLanguage.English, SystemLanguage.Korean
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="45" column="24" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="45" bodyend="48"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="event">
+      <memberdef kind="event" id="classLocalizationManager_1ae7681ff583ee74ee696c1b4bc401b15b" prot="public" static="yes" add="no" remove="no" raise="no">
+        <type>LanguageChangedHandler</type>
+        <definition>LanguageChangedHandler LocalizationManager.OnLanguageChanged</definition>
+        <argsstring></argsstring>
+        <name>OnLanguageChanged</name>
+        <qualifiedname>LocalizationManager.OnLanguageChanged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="32" column="48" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="classLocalizationManager_1a06cc823f56d1611b118311ab3c5a3298" prot="public" static="yes" add="no" remove="no" raise="no">
+        <type>Action</type>
+        <definition>Action LocalizationManager.OnInitialized</definition>
+        <argsstring></argsstring>
+        <name>OnInitialized</name>
+        <qualifiedname>LocalizationManager.OnInitialized</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="33" column="32" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classLocalizationManager_1a7e6fb201aa2703d024d8ba2f3ad4d678" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void LocalizationManager.LanguageChangedHandler</definition>
+        <argsstring>(SystemLanguage newLanguage)</argsstring>
+        <name>LanguageChangedHandler</name>
+        <qualifiedname>LocalizationManager.LanguageChangedHandler</qualifiedname>
+        <param>
+          <type>SystemLanguage</type>
+          <declname>newLanguage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="30" column="26"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classLocalizationManager_1aef9499671fbd8cbf34b5b647d518159c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LocalizationManager.Initialize</definition>
+        <argsstring>(MonoBehaviour coroutineRunner)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>LocalizationManager.Initialize</qualifiedname>
+        <param>
+          <type>MonoBehaviour</type>
+          <declname>coroutineRunner</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="51" column="24" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="51" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classLocalizationManager_1a10b716d26ee53c53de223fda65022884" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string LocalizationManager.GetLocalizedText</definition>
+        <argsstring>(string key)</argsstring>
+        <name>GetLocalizedText</name>
+        <qualifiedname>LocalizationManager.GetLocalizedText</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="185" column="26" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="185" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="classLocalizationManager_1a8bf5d78b674b4ca8290a469dcb253464" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string LocalizationManager.GetLocalizedText</definition>
+        <argsstring>(string key, params object[] args)</argsstring>
+        <name>GetLocalizedText</name>
+        <qualifiedname>LocalizationManager.GetLocalizedText</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>params object[]</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="212" column="26" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="212" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="function" id="classLocalizationManager_1abf4b6990c7ac797cbbb6c626b1ce9657" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LocalizationManager.ChangeLanguage</definition>
+        <argsstring>(SystemLanguage language)</argsstring>
+        <name>ChangeLanguage</name>
+        <qualifiedname>LocalizationManager.ChangeLanguage</qualifiedname>
+        <param>
+          <type>SystemLanguage</type>
+          <declname>language</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="231" column="24" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="231" bodyend="243"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classLocalizationManager_1ad0b5ceb3ae5326c40cd6590f8545e037" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LocalizationManager.DetectLanguage</definition>
+        <argsstring>()</argsstring>
+        <name>DetectLanguage</name>
+        <qualifiedname>LocalizationManager.DetectLanguage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="74" column="25" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="74" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classLocalizationManager_1a33249367efb20425a4184c86abecef14" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LocalizationManager.LoadLocalizedText</definition>
+        <argsstring>(string filePath)</argsstring>
+        <name>LoadLocalizedText</name>
+        <qualifiedname>LocalizationManager.LoadLocalizedText</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="103" column="25" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="103" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="classLocalizationManager_1abf51eeaa6fe9226cfdf25a1baf775ceb" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LocalizationManager.ProcessJsonData</definition>
+        <argsstring>(string jsonText)</argsstring>
+        <name>ProcessJsonData</name>
+        <qualifiedname>LocalizationManager.ProcessJsonData</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>jsonText</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="117" column="25" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="117" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="classLocalizationManager_1a8a0fc9225eee38db334a65538c07c37d" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>static IEnumerator LocalizationManager.LoadLocalizedTextWebGL</definition>
+        <argsstring>(string filePath)</argsstring>
+        <name>LoadLocalizedTextWebGL</name>
+        <qualifiedname>LocalizationManager.LoadLocalizedTextWebGL</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="154" column="32" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="154" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="classLocalizationManager_1a53fba0f4ca4bb5e65e651f1e265acc12" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string LocalizationManager.GetLanguageCode</definition>
+        <argsstring>(SystemLanguage language)</argsstring>
+        <name>GetLanguageCode</name>
+        <qualifiedname>LocalizationManager.GetLanguageCode</qualifiedname>
+        <param>
+          <type>SystemLanguage</type>
+          <declname>language</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="171" column="27" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="171" bodyend="182"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>LocalizationManager</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Localization/LocalizationManager.cs" line="11" column="15" bodyfile="Assets/Scripts/Localization/LocalizationManager.cs" bodystart="12" bodyend="253"/>
+    <listofallmembers>
+      <member refid="classLocalizationManager_1a1d2ab12ab3da5a0f233c1ba4fce4f027" prot="private" virt="non-virtual"><scope>LocalizationManager</scope><name>_currentLanguage</name></member>
+      <member refid="classLocalizationManager_1abf4b6990c7ac797cbbb6c626b1ce9657" prot="public" virt="non-virtual"><scope>LocalizationManager</scope><name>ChangeLanguage</name></member>
+      <member refid="classLocalizationManager_1aeea9e5153128c850ffe7ee0bde4198e8" prot="public" virt="non-virtual"><scope>LocalizationManager</scope><name>CurrentLanguage</name></member>
+      <member refid="classLocalizationManager_1ad0b5ceb3ae5326c40cd6590f8545e037" prot="private" virt="non-virtual"><scope>LocalizationManager</scope><name>DetectLanguage</name></member>
+      <member refid="classLocalizationManager_1a53fba0f4ca4bb5e65e651f1e265acc12" prot="private" virt="non-virtual"><scope>LocalizationManager</scope><name>GetLanguageCode</name></member>
+      <member refid="classLocalizationManager_1a10b716d26ee53c53de223fda65022884" prot="public" virt="non-virtual"><scope>LocalizationManager</scope><name>GetLocalizedText</name></member>
+      <member refid="classLocalizationManager_1a8bf5d78b674b4ca8290a469dcb253464" prot="public" virt="non-virtual"><scope>LocalizationManager</scope><name>GetLocalizedText</name></member>
+      <member refid="classLocalizationManager_1aef9499671fbd8cbf34b5b647d518159c" prot="public" virt="non-virtual"><scope>LocalizationManager</scope><name>Initialize</name></member>
+      <member refid="classLocalizationManager_1aca9e3159529ef6b7f32c959805b3acb1" prot="private" virt="non-virtual"><scope>LocalizationManager</scope><name>isInitialized</name></member>
+      <member refid="classLocalizationManager_1aef93268a9219b4995f5b15e06a5b0ee4" prot="public" virt="non-virtual"><scope>LocalizationManager</scope><name>IsInitialized</name></member>
+      <member refid="classLocalizationManager_1a7e6fb201aa2703d024d8ba2f3ad4d678" prot="public" virt="non-virtual"><scope>LocalizationManager</scope><name>LanguageChangedHandler</name></member>
+      <member refid="classLocalizationManager_1a33249367efb20425a4184c86abecef14" prot="private" virt="non-virtual"><scope>LocalizationManager</scope><name>LoadLocalizedText</name></member>
+      <member refid="classLocalizationManager_1a8a0fc9225eee38db334a65538c07c37d" prot="private" virt="non-virtual"><scope>LocalizationManager</scope><name>LoadLocalizedTextWebGL</name></member>
+      <member refid="classLocalizationManager_1a7e4eaa36bdf496817b3f3cfd623c49d7" prot="private" virt="non-virtual"><scope>LocalizationManager</scope><name>localizedTexts</name></member>
+      <member refid="classLocalizationManager_1a06cc823f56d1611b118311ab3c5a3298" prot="public" virt="non-virtual"><scope>LocalizationManager</scope><name>OnInitialized</name></member>
+      <member refid="classLocalizationManager_1ae7681ff583ee74ee696c1b4bc401b15b" prot="public" virt="non-virtual"><scope>LocalizationManager</scope><name>OnLanguageChanged</name></member>
+      <member refid="classLocalizationManager_1abf51eeaa6fe9226cfdf25a1baf775ceb" prot="private" virt="non-virtual"><scope>LocalizationManager</scope><name>ProcessJsonData</name></member>
+      <member refid="classLocalizationManager_1a093cd72f0fdbb65bf210fb0d293e98bc" prot="public" virt="non-virtual"><scope>LocalizationManager</scope><name>SupportedLanguages</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

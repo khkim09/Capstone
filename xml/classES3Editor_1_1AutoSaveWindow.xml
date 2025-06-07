@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classES3Editor_1_1AutoSaveWindow" kind="class" language="C#" prot="public">
+    <compoundname>ES3Editor::AutoSaveWindow</compoundname>
+    <basecompoundref refid="classES3Editor_1_1SubWindow" prot="public" virt="non-virtual">ES3Editor.SubWindow</basecompoundref>
+    <innerclass refid="classES3Editor_1_1AutoSaveWindow_1_1HierarchyItem" prot="public">ES3Editor::AutoSaveWindow::HierarchyItem</innerclass>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classES3Editor_1_1AutoSaveWindow_1a45b2c6ecee987fe46d5b990740e22aee" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ES3Editor.AutoSaveWindow.showAdvancedSettings</definition>
+        <argsstring></argsstring>
+        <name>showAdvancedSettings</name>
+        <qualifiedname>ES3Editor.AutoSaveWindow.showAdvancedSettings</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" line="12" column="13" bodyfile="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1AutoSaveWindow_1aa4661242f6317b7fcee67b32346a61b2" prot="public" static="no" mutable="no">
+        <type><ref refid="classES3AutoSaveMgr" kindref="compound">ES3AutoSaveMgr</ref></type>
+        <definition>ES3AutoSaveMgr ES3Editor.AutoSaveWindow.mgr</definition>
+        <argsstring></argsstring>
+        <name>mgr</name>
+        <qualifiedname>ES3Editor.AutoSaveWindow.mgr</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" line="14" column="23" bodyfile="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1AutoSaveWindow_1a39d171d4261945d751e5b20d81aba109" prot="public" static="no" mutable="no">
+        <type><ref refid="classES3Editor_1_1AutoSaveWindow_1_1HierarchyItem" kindref="compound">HierarchyItem</ref></type>
+        <definition>HierarchyItem ES3Editor.AutoSaveWindow.selected</definition>
+        <argsstring></argsstring>
+        <name>selected</name>
+        <qualifiedname>ES3Editor.AutoSaveWindow.selected</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" line="17" column="30" bodyfile="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classES3Editor_1_1AutoSaveWindow_1a7fbea17b9e5b7ce3ec8894a0030f59d8" prot="private" static="no" mutable="no">
+        <type><ref refid="classES3Editor_1_1AutoSaveWindow_1_1HierarchyItem" kindref="compound">HierarchyItem</ref>[]</type>
+        <definition>HierarchyItem [] ES3Editor.AutoSaveWindow.hierarchy</definition>
+        <argsstring></argsstring>
+        <name>hierarchy</name>
+        <qualifiedname>ES3Editor.AutoSaveWindow.hierarchy</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" line="16" column="31" bodyfile="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1AutoSaveWindow_1ac74dc55040f1f6aee9f73a8407f58648" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 ES3Editor.AutoSaveWindow.hierarchyScrollPosition</definition>
+        <argsstring></argsstring>
+        <name>hierarchyScrollPosition</name>
+        <qualifiedname>ES3Editor.AutoSaveWindow.hierarchyScrollPosition</qualifiedname>
+        <initializer>= Vector2.zero</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" line="19" column="25" bodyfile="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1AutoSaveWindow_1a6cd13c8e32689d232af76e546239038c" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ES3Editor.AutoSaveWindow.sceneOpen</definition>
+        <argsstring></argsstring>
+        <name>sceneOpen</name>
+        <qualifiedname>ES3Editor.AutoSaveWindow.sceneOpen</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" line="21" column="22" bodyfile="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1AutoSaveWindow_1a29fcae84b59e4363304da694f44918fc" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ES3Editor.AutoSaveWindow.searchTerm</definition>
+        <argsstring></argsstring>
+        <name>searchTerm</name>
+        <qualifiedname>ES3Editor.AutoSaveWindow.searchTerm</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" line="23" column="24" bodyfile="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classES3Editor_1_1AutoSaveWindow_1a01c2efbabadeb7b74e67563aefd2c9c7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3Editor.AutoSaveWindow.AutoSaveWindow</definition>
+        <argsstring>(EditorWindow window)</argsstring>
+        <name>AutoSaveWindow</name>
+        <qualifiedname>ES3Editor.AutoSaveWindow.AutoSaveWindow</qualifiedname>
+        <param>
+          <type>EditorWindow</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" line="25" column="16" bodyfile="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" bodystart="25" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1AutoSaveWindow_1a244dd940a51ae5c7e209ae463b851eec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Editor.AutoSaveWindow.OnGUI</definition>
+        <argsstring>()</argsstring>
+        <name>OnGUI</name>
+        <qualifiedname>ES3Editor.AutoSaveWindow.OnGUI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" line="36" column="30" bodyfile="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" bodystart="36" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1AutoSaveWindow_1a95976d6ad3a1e66a3e4701b05e1adaab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.AutoSaveWindow.Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <qualifiedname>ES3Editor.AutoSaveWindow.Init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" line="131" column="13" bodyfile="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" bodystart="131" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1AutoSaveWindow_1adc3957e0832e7ccc83b512eee71d5b3f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ES3Editor.AutoSaveWindow.OnFocus</definition>
+        <argsstring>()</argsstring>
+        <name>OnFocus</name>
+        <qualifiedname>ES3Editor.AutoSaveWindow.OnFocus</qualifiedname>
+        <reimplements refid="classES3Editor_1_1SubWindow_1a3b1fa104c31c4fb4e6c7b83e7cb778f4">OnFocus</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" line="142" column="30" bodyfile="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" bodystart="142" bodyend="167"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classES3Editor_1_1AutoSaveWindow_1a4441ba76dc3bf84ea79ac20ea6e0bf24" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.AutoSaveWindow.ChangedActiveScene</definition>
+        <argsstring>(Scene current, Scene next)</argsstring>
+        <name>ChangedActiveScene</name>
+        <qualifiedname>ES3Editor.AutoSaveWindow.ChangedActiveScene</qualifiedname>
+        <param>
+          <type>Scene</type>
+          <declname>current</declname>
+        </param>
+        <param>
+          <type>Scene</type>
+          <declname>next</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" line="30" column="22" bodyfile="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" bodystart="30" bodyend="34"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ES3Editor.AutoSaveWindow</label>
+        <link refid="classES3Editor_1_1AutoSaveWindow"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SubWindow</label>
+        <link refid="classES3Editor_1_1SubWindow"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="10">
+        <label>ES3</label>
+        <link refid="classES3"/>
+      </node>
+      <node id="13">
+        <label>ES3AutoSave</label>
+        <link refid="classES3AutoSave"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ES3AutoSaveMgr</label>
+        <link refid="classES3AutoSaveMgr"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+_current</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>+settings</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ES3Defaults</label>
+        <link refid="classES3Defaults"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>+settings</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ES3Editor.AutoSaveWindow</label>
+        <link refid="classES3Editor_1_1AutoSaveWindow"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+mgr</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>+selected</edgelabel>
+          <edgelabel>-hierarchy</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-hierarchyScrollPosition</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>ES3Editor.AutoSaveWindow.HierarchyItem</label>
+        <link refid="classES3Editor_1_1AutoSaveWindow_1_1HierarchyItem"/>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-autoSave</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-children</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ES3SerializableSettings</label>
+        <link refid="classES3SerializableSettings"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ES3Settings</label>
+        <link refid="classES3Settings"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-_defaults</edgelabel>
+          <edgelabel>-_unencryptedUncompressedSettings</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-_defaultSettingsScriptableObject</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+compressionType</edgelabel>
+          <edgelabel>+directory</edgelabel>
+          <edgelabel>+encryptionType</edgelabel>
+          <edgelabel>+format</edgelabel>
+          <edgelabel>+memberReferenceMode</edgelabel>
+          <edgelabel>+referenceMode</edgelabel>
+          <edgelabel>-_location</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+encoding</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>ISerializationCallbackReceiver</label>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="9">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="2">
+        <label>SubWindow</label>
+        <link refid="classES3Editor_1_1SubWindow"/>
+      </node>
+      <node id="11">
+        <label>System</label>
+      </node>
+      <node id="7">
+        <label>System::ICloneable</label>
+      </node>
+      <node id="15">
+        <label>UnityEngine</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" line="10" column="7" bodyfile="Assets/Plugins/Easy Save 3/Editor/AutoSaveWindow.cs" bodystart="11" bodyend="373"/>
+    <listofallmembers>
+      <member refid="classES3Editor_1_1AutoSaveWindow_1a01c2efbabadeb7b74e67563aefd2c9c7" prot="public" virt="non-virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>AutoSaveWindow</name></member>
+      <member refid="classES3Editor_1_1AutoSaveWindow_1a4441ba76dc3bf84ea79ac20ea6e0bf24" prot="private" virt="non-virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>ChangedActiveScene</name></member>
+      <member refid="classES3Editor_1_1AutoSaveWindow_1a7fbea17b9e5b7ce3ec8894a0030f59d8" prot="private" virt="non-virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>hierarchy</name></member>
+      <member refid="classES3Editor_1_1AutoSaveWindow_1ac74dc55040f1f6aee9f73a8407f58648" prot="private" virt="non-virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>hierarchyScrollPosition</name></member>
+      <member refid="classES3Editor_1_1AutoSaveWindow_1a95976d6ad3a1e66a3e4701b05e1adaab" prot="public" virt="non-virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>Init</name></member>
+      <member refid="classES3Editor_1_1AutoSaveWindow_1aa4661242f6317b7fcee67b32346a61b2" prot="public" virt="non-virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>mgr</name></member>
+      <member refid="classES3Editor_1_1SubWindow_1aba3ab3b1e7e81b2b89ff5c66bd2ee6e2" prot="public" virt="non-virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>name</name></member>
+      <member refid="classES3Editor_1_1SubWindow_1af01eedd3fe9dea4a3d7e22dc868aa874" prot="public" virt="virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>OnDestroy</name></member>
+      <member refid="classES3Editor_1_1AutoSaveWindow_1adc3957e0832e7ccc83b512eee71d5b3f" prot="public" virt="virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>OnFocus</name></member>
+      <member refid="classES3Editor_1_1AutoSaveWindow_1a244dd940a51ae5c7e209ae463b851eec" prot="public" virt="non-virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>OnGUI</name></member>
+      <member refid="classES3Editor_1_1SubWindow_1af6ac275c4016d941af13b01c732a3f9d" prot="public" virt="virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>OnHierarchyChange</name></member>
+      <member refid="classES3Editor_1_1SubWindow_1a01f9a28473762eafb6fcec7d4ddabe3d" prot="public" virt="virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>OnLostFocus</name></member>
+      <member refid="classES3Editor_1_1SubWindow_1aaac516e2bfb4ac42a9f30f725a3d2a44" prot="public" virt="non-virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>parent</name></member>
+      <member refid="classES3Editor_1_1AutoSaveWindow_1a6cd13c8e32689d232af76e546239038c" prot="private" virt="non-virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>sceneOpen</name></member>
+      <member refid="classES3Editor_1_1AutoSaveWindow_1a29fcae84b59e4363304da694f44918fc" prot="private" virt="non-virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>searchTerm</name></member>
+      <member refid="classES3Editor_1_1AutoSaveWindow_1a39d171d4261945d751e5b20d81aba109" prot="public" virt="non-virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>selected</name></member>
+      <member refid="classES3Editor_1_1AutoSaveWindow_1a45b2c6ecee987fe46d5b990740e22aee" prot="public" virt="non-virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>showAdvancedSettings</name></member>
+      <member refid="classES3Editor_1_1SubWindow_1abc22c03037d80ea3fc40f92ba1817118" prot="public" virt="non-virtual"><scope>ES3Editor::AutoSaveWindow</scope><name>SubWindow</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

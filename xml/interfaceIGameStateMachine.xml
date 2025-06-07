@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="interfaceIGameStateMachine" kind="interface" language="C#" prot="public">
+    <compoundname>IGameStateMachine</compoundname>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="interfaceIGameStateMachine_1a79c9bc3bd4793b46e9b270695bea4373" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IGameStateMachine.Enter</definition>
+        <argsstring>()</argsstring>
+        <name>Enter</name>
+        <qualifiedname>IGameStateMachine.Enter</qualifiedname>
+        <briefdescription>
+<para>상태에 진입할 때 호출됩니다. 상태를 초기화하거나 필요한 컴포넌트를 설정하는 등의 작업을 수행합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Core/Interfaces/IGameStateMachine.cs" line="11" column="10"/>
+        <referencedby refid="classGameStateManager_1a594e8bcac8ce79b389b82a41a9e6f3dc" compoundref="GameStateManager_8cs" startline="55" endline="65">GameStateManager.ChangeState</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="interfaceIGameStateMachine_1a45f4ed009db9a9c2c4f3d9f6adcde190" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IGameStateMachine.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>IGameStateMachine.Update</qualifiedname>
+        <briefdescription>
+<para>매 프레임 호출됩니다. 상태에 따른 업데이트 로직을 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Core/Interfaces/IGameStateMachine.cs" line="18" column="10"/>
+        <referencedby refid="classGameStateManager_1aafd65d08a33dcd5cf32adf580991cef3" compoundref="GameStateManager_8cs" startline="45" endline="49">GameStateManager.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="interfaceIGameStateMachine_1a8f9fcc92f077661aff680f682bb19b56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IGameStateMachine.Exit</definition>
+        <argsstring>()</argsstring>
+        <name>Exit</name>
+        <qualifiedname>IGameStateMachine.Exit</qualifiedname>
+        <briefdescription>
+<para>상태가 종료될 때 호출됩니다. 상태 종료 시 정리 작업이나 이벤트 구독 해제 등을 수행합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Core/Interfaces/IGameStateMachine.cs" line="25" column="10"/>
+        <referencedby refid="classGameStateManager_1a594e8bcac8ce79b389b82a41a9e6f3dc" compoundref="GameStateManager_8cs" startline="55" endline="65">GameStateManager.ChangeState</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>게임 상태 머신을 구현하는 인터페이스입니다. 각 상태에서 진입, 업데이트, 종료 시 호출되는 메서드를 정의합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>IGameStateMachine</label>
+        <link refid="interfaceIGameStateMachine"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Core/Interfaces/IGameStateMachine.cs" line="5" column="18" bodyfile="Assets/Scripts/Core/Interfaces/IGameStateMachine.cs" bodystart="6" bodyend="26"/>
+    <listofallmembers>
+      <member refid="interfaceIGameStateMachine_1a79c9bc3bd4793b46e9b270695bea4373" prot="public" virt="non-virtual"><scope>IGameStateMachine</scope><name>Enter</name></member>
+      <member refid="interfaceIGameStateMachine_1a8f9fcc92f077661aff680f682bb19b56" prot="public" virt="non-virtual"><scope>IGameStateMachine</scope><name>Exit</name></member>
+      <member refid="interfaceIGameStateMachine_1a45f4ed009db9a9c2c4f3d9f6adcde190" prot="public" virt="non-virtual"><scope>IGameStateMachine</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

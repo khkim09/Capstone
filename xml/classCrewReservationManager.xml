@@ -1,0 +1,257 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCrewReservationManager" kind="class" language="C#" prot="public">
+    <compoundname>CrewReservationManager</compoundname>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classCrewReservationManager_1aeb04d5ea370f400fd0456be90e33bee3" prot="private" static="yes" mutable="no">
+        <type>Dictionary&lt; <ref refid="classShip" kindref="compound">Ship</ref>, Dictionary&lt; Vector2Int, <ref refid="classCrewMember" kindref="compound">CrewMember</ref> &gt; &gt;</type>
+        <definition>Dictionary&lt;Ship, Dictionary&lt;Vector2Int, CrewMember&gt; &gt; CrewReservationManager.tileOccupancy</definition>
+        <argsstring></argsstring>
+        <name>tileOccupancy</name>
+        <qualifiedname>CrewReservationManager.tileOccupancy</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>타일 예약제를 위한 매니저 - 싱글톤 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>함선별 타일 예약 정보 관리용 딕셔너리 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewReservationManager.cs" line="17" column="31" bodyfile="Assets/Scripts/RTS/CrewReservationManager.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classCrewReservationManager_1a115d4d7adc196b5f601a279f065870ed" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool CrewReservationManager.IsTileOccupied</definition>
+        <argsstring>(Ship ship, Vector2Int tile)</argsstring>
+        <name>IsTileOccupied</name>
+        <qualifiedname>CrewReservationManager.IsTileOccupied</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>tile</declname>
+        </param>
+        <briefdescription>
+<para>함선의 검사 타일이 선원에 의한 점유 여부 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewReservationManager.cs" line="38" column="24" bodyfile="Assets/Scripts/RTS/CrewReservationManager.cs" bodystart="38" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewReservationManager_1a1a00f18d3fa64d4e38e97b46d738ca0a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+        <definition>static CrewMember CrewReservationManager.GetOccupyingCrew</definition>
+        <argsstring>(Ship ship, Vector2Int tile)</argsstring>
+        <name>GetOccupyingCrew</name>
+        <qualifiedname>CrewReservationManager.GetOccupyingCrew</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>tile</declname>
+        </param>
+        <briefdescription>
+<para>함선의 검사 타일을 점유 중인 선원 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewReservationManager.cs" line="49" column="30" bodyfile="Assets/Scripts/RTS/CrewReservationManager.cs" bodystart="49" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewReservationManager_1ad833617357784ac675827200662aa8d5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CrewReservationManager.ExitTile</definition>
+        <argsstring>(Ship ship, Room room, Vector2Int tile, CrewMember crew)</argsstring>
+        <name>ExitTile</name>
+        <qualifiedname>CrewReservationManager.ExitTile</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <param>
+          <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+          <declname>room</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>tile</declname>
+        </param>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crew</declname>
+        </param>
+        <briefdescription>
+<para>현재 타일에서 선원 제거 (정지 상태에서 이동 명령 수신 시) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewReservationManager.cs" line="59" column="24" bodyfile="Assets/Scripts/RTS/CrewReservationManager.cs" bodystart="59" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewReservationManager_1a5bab690e5b9190090e2a732d4d134387" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CrewReservationManager.ReserveTile</definition>
+        <argsstring>(Ship ship, Room room, Vector2Int tile, CrewMember crew)</argsstring>
+        <name>ReserveTile</name>
+        <qualifiedname>CrewReservationManager.ReserveTile</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <param>
+          <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+          <declname>room</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>tile</declname>
+        </param>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crew</declname>
+        </param>
+        <briefdescription>
+<para>타일 예약 (AssignPathAndMove(), CancelAndRedirect()에서 호출) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>crew</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewReservationManager.cs" line="77" column="24" bodyfile="Assets/Scripts/RTS/CrewReservationManager.cs" bodystart="77" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewReservationManager_1a8bbf7ae7e2e386efde435bf290344000" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CrewReservationManager.ClearAllReservations</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>ClearAllReservations</name>
+        <qualifiedname>CrewReservationManager.ClearAllReservations</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>특정 함선 전체 타일 점유 정보 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewReservationManager.cs" line="93" column="24" bodyfile="Assets/Scripts/RTS/CrewReservationManager.cs" bodystart="93" bodyend="97"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>모든 선원의 타일 점유를 전역에서 통합 관리하는 매니저 - 싱글톤 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>CrewReservationManager</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/RTS/CrewReservationManager.cs" line="7" column="15" bodyfile="Assets/Scripts/RTS/CrewReservationManager.cs" bodystart="8" bodyend="98"/>
+    <listofallmembers>
+      <member refid="classCrewReservationManager_1a8bbf7ae7e2e386efde435bf290344000" prot="public" virt="non-virtual"><scope>CrewReservationManager</scope><name>ClearAllReservations</name></member>
+      <member refid="classCrewReservationManager_1ad833617357784ac675827200662aa8d5" prot="public" virt="non-virtual"><scope>CrewReservationManager</scope><name>ExitTile</name></member>
+      <member refid="classCrewReservationManager_1a1a00f18d3fa64d4e38e97b46d738ca0a" prot="public" virt="non-virtual"><scope>CrewReservationManager</scope><name>GetOccupyingCrew</name></member>
+      <member refid="classCrewReservationManager_1a115d4d7adc196b5f601a279f065870ed" prot="public" virt="non-virtual"><scope>CrewReservationManager</scope><name>IsTileOccupied</name></member>
+      <member refid="classCrewReservationManager_1a5bab690e5b9190090e2a732d4d134387" prot="public" virt="non-virtual"><scope>CrewReservationManager</scope><name>ReserveTile</name></member>
+      <member refid="classCrewReservationManager_1aeb04d5ea370f400fd0456be90e33bee3" prot="private" virt="non-virtual"><scope>CrewReservationManager</scope><name>tileOccupancy</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,904 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classES3Internal_1_1ES3JSONWriter" kind="class" language="C#" prot="package">
+    <compoundname>ES3Internal::ES3JSONWriter</compoundname>
+    <basecompoundref refid="classES3Writer" prot="public" virt="non-virtual">ES3Writer</basecompoundref>
+    <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="classES3Internal_1_1ES3JSONWriter_1aaea00607a582e191ff17a1392b7bca29" prot="package" static="no" mutable="no">
+        <type>StreamWriter</type>
+        <definition>StreamWriter ES3Internal.ES3JSONWriter.baseWriter</definition>
+        <argsstring></argsstring>
+        <name>baseWriter</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.baseWriter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="13" column="23" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classES3Internal_1_1ES3JSONWriter_1ad9f627a2cb9fca7697d2083c16d389e6" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ES3Internal.ES3JSONWriter.isFirstProperty</definition>
+        <argsstring></argsstring>
+        <name>isFirstProperty</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.isFirstProperty</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="15" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a147fcd6b33068cfb60eed06b39537efd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3Internal.ES3JSONWriter.ES3JSONWriter</definition>
+        <argsstring>(Stream stream, ES3Settings settings)</argsstring>
+        <name>ES3JSONWriter</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.ES3JSONWriter</qualifiedname>
+        <param>
+          <type>Stream</type>
+          <declname>stream</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="17" column="8" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1aaef4b53c62f156a339456cfe92a53620" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.Dispose</definition>
+        <argsstring>()</argsstring>
+        <name>Dispose</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.Dispose</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="218" column="22" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="218" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a8a38a5f720a9dd31e5ebdaa76cdb7cf5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Internal.ES3JSONWriter.WriteNewlineAndTabs</definition>
+        <argsstring>()</argsstring>
+        <name>WriteNewlineAndTabs</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WriteNewlineAndTabs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="223" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="223" bodyend="231"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="package-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a5a28ba1048d97f084b1917f002fb156f" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3Internal.ES3JSONWriter.ES3JSONWriter</definition>
+        <argsstring>(Stream stream, ES3Settings settings, bool writeHeaderAndFooter, bool mergeKeys)</argsstring>
+        <name>ES3JSONWriter</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.ES3JSONWriter</qualifiedname>
+        <param>
+          <type>Stream</type>
+          <declname>stream</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeHeaderAndFooter</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>mergeKeys</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="19" column="10" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="19" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a16fe7c5d0461b700c5f5d5b5f533e0dc" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(int value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="27" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a42981ea9546b35a80bc88465e9fed85b" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(float value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="28" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a3d706c21bd04a26c6fece083edc580ef" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(bool value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="29" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a79a424d3fa20510e2f96171e6a1659a9" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(decimal value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>decimal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="30" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a1e8003f5b5064e83a35991f48c89f88e" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(double value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="31" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1ae46722f25cc3bd7115b4baa6237c619c" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(long value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>long</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="32" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a5643e49119ffffdf56fcb33e6fb5a33a" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(ulong value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>ulong</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="33" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a78d26ec8305a84e8b7762e1a172a4c56" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(uint value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>uint</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="34" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1afc14ffc1fbe0b9ca880747636d8e3388" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(byte value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>byte</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="35" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1aff0217fe6337b065f884b78bb3867af1" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(sbyte value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>sbyte</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="36" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1af0ac49e2d082277a739c871ccc5515fe" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(short value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>short</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="37" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1aba73814b234435fa19fd8d834cb1b5cc" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(ushort value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>ushort</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="38" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a94531cfb81da31f3c762896ae17217d9" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(char value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>char</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="39" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a9d904df1bc20bf033928cfe4783e5832" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(byte[] value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>byte[]</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="40" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a594995b73c32029e17f80a35b7619486" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WritePrimitive</definition>
+        <argsstring>(string value)</argsstring>
+        <name>WritePrimitive</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WritePrimitive</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="43" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="43" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1adb5de96d9882bd5ba6b0d49b793708a0" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WriteNull</definition>
+        <argsstring>()</argsstring>
+        <name>WriteNull</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WriteNull</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="84" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="84" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a7969631215db91e95023f00334d1dddb" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.WriteRawProperty</definition>
+        <argsstring>(string name, byte[] value)</argsstring>
+        <name>WriteRawProperty</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WriteRawProperty</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>byte[]</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="107" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="107" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1ad8a2b10801235714ed03c577cdd58db7" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.StartWriteFile</definition>
+        <argsstring>()</argsstring>
+        <name>StartWriteFile</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.StartWriteFile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="112" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="112" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a544c027705e5186f45cf13a35aba17a7" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.EndWriteFile</definition>
+        <argsstring>()</argsstring>
+        <name>EndWriteFile</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.EndWriteFile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="119" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="119" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a7a6e00d48826425ff978f5c1a4fbdf99" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.StartWriteProperty</definition>
+        <argsstring>(string name)</argsstring>
+        <name>StartWriteProperty</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.StartWriteProperty</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="127" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="127" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1aa94c2fdfabdc3ff8215f099033ad30cb" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.EndWriteProperty</definition>
+        <argsstring>(string name)</argsstring>
+        <name>EndWriteProperty</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.EndWriteProperty</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="140" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="140" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a1e21e70e922b689187033bfba96c4199" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.StartWriteObject</definition>
+        <argsstring>(string name)</argsstring>
+        <name>StartWriteObject</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.StartWriteObject</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="146" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="146" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a7245a98bc382e8e13e7a6075d7778531" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.EndWriteObject</definition>
+        <argsstring>(string name)</argsstring>
+        <name>EndWriteObject</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.EndWriteObject</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="153" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="153" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1ab5a270fc253f2d412289a89343c60bd2" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.StartWriteCollection</definition>
+        <argsstring>()</argsstring>
+        <name>StartWriteCollection</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.StartWriteCollection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="163" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="163" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a4aae7a577bd574a06d17827a49a0861d" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.EndWriteCollection</definition>
+        <argsstring>()</argsstring>
+        <name>EndWriteCollection</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.EndWriteCollection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="170" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="170" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a2798c5354ca0105be51a5c5f3c2584e3" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.StartWriteCollectionItem</definition>
+        <argsstring>(int index)</argsstring>
+        <name>StartWriteCollectionItem</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.StartWriteCollectionItem</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="177" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="177" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1adc30e754855dfc218058182258824f4f" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.EndWriteCollectionItem</definition>
+        <argsstring>(int index)</argsstring>
+        <name>EndWriteCollectionItem</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.EndWriteCollectionItem</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="183" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="183" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1ac6586417b897dd768659016a1cb83e23" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.StartWriteDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>StartWriteDictionary</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.StartWriteDictionary</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="187" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="187" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a9f8c9270eb8fb7ce462f8595c96d7655" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.EndWriteDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>EndWriteDictionary</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.EndWriteDictionary</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="192" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="192" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a5225d88d2a7cf24302ecdd270cca97fd" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.StartWriteDictionaryKey</definition>
+        <argsstring>(int index)</argsstring>
+        <name>StartWriteDictionaryKey</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.StartWriteDictionaryKey</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="197" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="197" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a9222eefe88d9c18e948d14be8482a5a7" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.EndWriteDictionaryKey</definition>
+        <argsstring>(int index)</argsstring>
+        <name>EndWriteDictionaryKey</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.EndWriteDictionaryKey</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="203" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="203" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a3e768d78e174a0382280aab5bcc0f49c" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.StartWriteDictionaryValue</definition>
+        <argsstring>(int index)</argsstring>
+        <name>StartWriteDictionaryValue</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.StartWriteDictionaryValue</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="208" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="208" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a2b6d8aed5cfa354db67eda845ec791cf" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONWriter.EndWriteDictionaryValue</definition>
+        <argsstring>(int index)</argsstring>
+        <name>EndWriteDictionaryValue</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.EndWriteDictionaryValue</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="212" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="212" bodyend="214"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1ad26cf7cde30518f9cff487a90c4e8d50" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3JSONWriter.CharacterRequiresEscaping</definition>
+        <argsstring>(char c)</argsstring>
+        <name>CharacterRequiresEscaping</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.CharacterRequiresEscaping</qualifiedname>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="93" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="93" bodyend="96"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONWriter_1a1aaaf3e7e55a01cd0bcdaf97d74df22e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Internal.ES3JSONWriter.WriteCommaIfRequired</definition>
+        <argsstring>()</argsstring>
+        <name>WriteCommaIfRequired</name>
+        <qualifiedname>ES3Internal.ES3JSONWriter.WriteCommaIfRequired</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="98" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="98" bodyend="105"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ES3Internal.ES3JSONWriter</label>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ES3Writer</label>
+        <link refid="classES3Writer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IDisposable</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="9">
+        <label>ES3</label>
+        <link refid="classES3"/>
+      </node>
+      <node id="6">
+        <label>ES3Defaults</label>
+        <link refid="classES3Defaults"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+settings</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ES3Internal.ES3JSONWriter</label>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ES3SerializableSettings</label>
+        <link refid="classES3SerializableSettings"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ES3Settings</label>
+        <link refid="classES3Settings"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-_defaults</edgelabel>
+          <edgelabel>-_unencryptedUncompressedSettings</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-_defaultSettingsScriptableObject</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>+compressionType</edgelabel>
+          <edgelabel>+directory</edgelabel>
+          <edgelabel>+encryptionType</edgelabel>
+          <edgelabel>+format</edgelabel>
+          <edgelabel>+memberReferenceMode</edgelabel>
+          <edgelabel>+referenceMode</edgelabel>
+          <edgelabel>-_location</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+encoding</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ES3Writer</label>
+        <link refid="classES3Writer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+settings</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IDisposable</label>
+      </node>
+      <node id="7">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="10">
+        <label>System</label>
+      </node>
+      <node id="5">
+        <label>System::ICloneable</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" line="11" column="9" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Writers/ES3JSONWriter.cs" bodystart="12" bodyend="232"/>
+    <listofallmembers>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1aaea00607a582e191ff17a1392b7bca29" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>baseWriter</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1ad26cf7cde30518f9cff487a90c4e8d50" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>CharacterRequiresEscaping</name></member>
+      <member refid="classES3Writer_1a8495b421b8cac2ede59e236066b2cea5" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>Create</name></member>
+      <member refid="classES3Writer_1acfd7c4db3d1015041d10b59b8b351c95" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>Create</name></member>
+      <member refid="classES3Writer_1a35384aa0bbde36b009013b851687c36c" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>Create</name></member>
+      <member refid="classES3Writer_1a66bd3fbf8e6ed6d081e1f30606f230fe" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>Create</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1aaef4b53c62f156a339456cfe92a53620" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>Dispose</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a4aae7a577bd574a06d17827a49a0861d" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>EndWriteCollection</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1adc30e754855dfc218058182258824f4f" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>EndWriteCollectionItem</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a9f8c9270eb8fb7ce462f8595c96d7655" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>EndWriteDictionary</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a9222eefe88d9c18e948d14be8482a5a7" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>EndWriteDictionaryKey</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a2b6d8aed5cfa354db67eda845ec791cf" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>EndWriteDictionaryValue</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a544c027705e5186f45cf13a35aba17a7" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>EndWriteFile</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a7245a98bc382e8e13e7a6075d7778531" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>EndWriteObject</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1aa94c2fdfabdc3ff8215f099033ad30cb" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>EndWriteProperty</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a147fcd6b33068cfb60eed06b39537efd" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>ES3JSONWriter</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a5a28ba1048d97f084b1917f002fb156f" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>ES3JSONWriter</name></member>
+      <member refid="classES3Writer_1af9d56b925a3020e2d60e21779cb9cfb5" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>ES3Writer</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1ad9f627a2cb9fca7697d2083c16d389e6" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>isFirstProperty</name></member>
+      <member refid="classES3Writer_1a3f2dc11280f1cc7cc17f0d40871586ba" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>keysToDelete</name></member>
+      <member refid="classES3Writer_1a9af760c15f766969f6e180295ead9f6e" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>MarkKeyForDeletion</name></member>
+      <member refid="classES3Writer_1ab0631cc87f95d2bcae1eaff0b001be7e" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>Merge</name></member>
+      <member refid="classES3Writer_1a69d2eaf9e4f93d792b56dd44b6bf2f51" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>Merge</name></member>
+      <member refid="classES3Writer_1a051307d281ddabc9b72757247e4f150f" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>overwriteKeys</name></member>
+      <member refid="classES3Writer_1ac4ebaba1c4af4bcfc302b75fabb7e47d" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>Save</name></member>
+      <member refid="classES3Writer_1a8bc13b2976f90b36fe525fa0ab518e9d" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>Save</name></member>
+      <member refid="classES3Writer_1a2bc54c619eb05822e2e2f9f1ebef008b" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>serializationDepth</name></member>
+      <member refid="classES3Writer_1a98481a048582a3134c7f479de0841394" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>SerializationDepthLimitExceeded</name></member>
+      <member refid="classES3Writer_1a56d9e89ebb6d8b979ac192ffe08443e4" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>settings</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1ab5a270fc253f2d412289a89343c60bd2" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>StartWriteCollection</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a2798c5354ca0105be51a5c5f3c2584e3" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>StartWriteCollectionItem</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1ac6586417b897dd768659016a1cb83e23" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>StartWriteDictionary</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a5225d88d2a7cf24302ecdd270cca97fd" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>StartWriteDictionaryKey</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a3e768d78e174a0382280aab5bcc0f49c" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>StartWriteDictionaryValue</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1ad8a2b10801235714ed03c577cdd58db7" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>StartWriteFile</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a1e21e70e922b689187033bfba96c4199" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>StartWriteObject</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a7a6e00d48826425ff978f5c1a4fbdf99" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>StartWriteProperty</name></member>
+      <member refid="classES3Writer_1a47078b3e6b4dd6bf2bc66217c1f8ea07" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>TryOnBeforeSerialize</name></member>
+      <member refid="classES3Writer_1af737f6c05423dc9a5526c26a4062db60" prot="package" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>Write</name></member>
+      <member refid="classES3Writer_1a12adb07ffa07b79a2d62dbb80b71eddf" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>Write</name></member>
+      <member refid="classES3Writer_1a6e0a6f994a0c0d72a4ddcb6b1977ce34" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>Write</name></member>
+      <member refid="classES3Writer_1a580ebcd68780ca183901d04c7148f4e0" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>Write</name></member>
+      <member refid="classES3Writer_1ab88a54f23c9771f87d71aafdfd4d4427" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>Write&lt; T &gt;</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a1aaaf3e7e55a01cd0bcdaf97d74df22e" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WriteCommaIfRequired</name></member>
+      <member refid="classES3Writer_1afec642929f7d96bf435899f4290f2407" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>writeHeaderAndFooter</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a8a38a5f720a9dd31e5ebdaa76cdb7cf5" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WriteNewlineAndTabs</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1adb5de96d9882bd5ba6b0d49b793708a0" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WriteNull</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a16fe7c5d0461b700c5f5d5b5f533e0dc" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a42981ea9546b35a80bc88465e9fed85b" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a3d706c21bd04a26c6fece083edc580ef" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a79a424d3fa20510e2f96171e6a1659a9" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a1e8003f5b5064e83a35991f48c89f88e" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1ae46722f25cc3bd7115b4baa6237c619c" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a5643e49119ffffdf56fcb33e6fb5a33a" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a78d26ec8305a84e8b7762e1a172a4c56" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1afc14ffc1fbe0b9ca880747636d8e3388" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1aff0217fe6337b065f884b78bb3867af1" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1af0ac49e2d082277a739c871ccc5515fe" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1aba73814b234435fa19fd8d834cb1b5cc" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a94531cfb81da31f3c762896ae17217d9" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a9d904df1bc20bf033928cfe4783e5832" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a594995b73c32029e17f80a35b7619486" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrimitive</name></member>
+      <member refid="classES3Writer_1aa1cfa8edb72e88d8eb9226d0b0bbfc37" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrivateField</name></member>
+      <member refid="classES3Writer_1aa769645c8bfddb9238ffdc85c271c1a0" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrivateField</name></member>
+      <member refid="classES3Writer_1a98e67bb5e068d8723cf5e44fab652bb8" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrivateFieldByRef</name></member>
+      <member refid="classES3Writer_1afd6772b6926bf6d1956f0a5b74af9533" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrivateProperty</name></member>
+      <member refid="classES3Writer_1ad91947299d219f73bada54e0b986ec46" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrivateProperty</name></member>
+      <member refid="classES3Writer_1a24ecfcd38c3e68582d7d60d04252a107" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePrivatePropertyByRef</name></member>
+      <member refid="classES3Writer_1a2642a32d02eee5be1927b37008f2107d" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WriteProperty</name></member>
+      <member refid="classES3Writer_1ac769dc5ad51436de5de6944f6d02743a" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WriteProperty</name></member>
+      <member refid="classES3Writer_1a3be890a97dd3891c673261184e1dc42e" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WriteProperty</name></member>
+      <member refid="classES3Writer_1aeb220f632fdc6338cea348225d2f61f6" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WriteProperty</name></member>
+      <member refid="classES3Writer_1a3d868309b30aff96ecd7ee35fb3639dc" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WriteProperty&lt; T &gt;</name></member>
+      <member refid="classES3Writer_1ac86aab72a90f188dea81d74950ef8e86" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WritePropertyByRef</name></member>
+      <member refid="classES3Internal_1_1ES3JSONWriter_1a7969631215db91e95023f00334d1dddb" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WriteRawProperty</name></member>
+      <member refid="classES3Writer_1a0850509aaadc3c110335568423ad4e8c" prot="package" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WriteRef</name></member>
+      <member refid="classES3Writer_1ab856698cdfccd8e208b5bbca02b4f879" prot="package" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WriteRef</name></member>
+      <member refid="classES3Writer_1aec6411deef1e9696b1ecdaea0c9b0999" prot="package" virt="virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WriteRef</name></member>
+      <member refid="classES3Writer_1aed026bbc24304e43da010ee4e8cd8f98" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONWriter</scope><name>WriteType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

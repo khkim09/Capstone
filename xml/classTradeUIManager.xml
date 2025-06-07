@@ -1,0 +1,1052 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classTradeUIManager" kind="class" language="C#" prot="public">
+    <compoundname>TradeUIManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classTradeUIManager_1aa6b4004e57cbac3fa398eb2deee600e7" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform TradeUIManager.inventoryPanelContent</definition>
+        <argsstring></argsstring>
+        <name>inventoryPanelContent</name>
+        <qualifiedname>TradeUIManager.inventoryPanelContent</qualifiedname>
+        <briefdescription>
+<para>TradeSellPanel 안의 InventoryPanel Content Transform입니다. Sell 시에만 상호작용을 허용합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="17" column="24" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="17" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a1e5055021de5b89ee4ac9e760986ce23" compoundref="TradeUIManager_8cs" startline="303" endline="331">CloseOverlayPanels</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1ab0a193d4a9452cc852273c7499181097" prot="private" static="no" mutable="no">
+        <type><ref refid="classInventoryUI" kindref="compound">InventoryUI</ref></type>
+        <definition>InventoryUI TradeUIManager.sellInventoryUI</definition>
+        <argsstring></argsstring>
+        <name>sellInventoryUI</name>
+        <qualifiedname>TradeUIManager.sellInventoryUI</qualifiedname>
+        <briefdescription>
+<para>인벤토리 슬롯을 동적으로 생성/갱신해 주는 스크립트 참조입니다. Inspector에서 <ref refid="classInventoryUI" kindref="compound">InventoryUI</ref> 컴포넌트를 드래그&amp;드롭하세요. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="24" column="26" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="24" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a742412bbb3aa546667abb3d745245d63" compoundref="TradeUIManager_8cs" startline="213" endline="260">OpenSellPanel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1a72804b2675ac5b089da50d5ec435fb5c" prot="private" static="no" mutable="no">
+        <type><ref refid="classStorageHighlightManager" kindref="compound">StorageHighlightManager</ref></type>
+        <definition>StorageHighlightManager TradeUIManager.highlighter</definition>
+        <argsstring></argsstring>
+        <name>highlighter</name>
+        <qualifiedname>TradeUIManager.highlighter</qualifiedname>
+        <briefdescription>
+<para><ref refid="classStorageHighlightManager" kindref="compound">StorageHighlightManager</ref> 컴포넌트 참조입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="29" column="38" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="29" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a6d1a8e136bd1d571b288892231626035" compoundref="TradeUIManager_8cs" startline="192" endline="207">OnBackPressed</referencedby>
+        <referencedby refid="classTradeUIManager_1a93f1aab4674dca59610b349bc4e7f3c9" compoundref="TradeUIManager_8cs" startline="178" endline="186">OnSellItemSelected</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1a451b52d6a70c14229f92f0f39ba27c64" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 TradeUIManager.sellPanelHiddenPosition</definition>
+        <argsstring></argsstring>
+        <name>sellPanelHiddenPosition</name>
+        <qualifiedname>TradeUIManager.sellPanelHiddenPosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="63" column="21" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1a5507125d1d9fdfc455298058d9c9174a" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 TradeUIManager.sellPanelVisiblePosition</definition>
+        <argsstring></argsstring>
+        <name>sellPanelVisiblePosition</name>
+        <qualifiedname>TradeUIManager.sellPanelVisiblePosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="64" column="21" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1aa9d6d1f8f4723063aa816677f3a3dcbe" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 TradeUIManager.buyPanelHiddenPosition</definition>
+        <argsstring></argsstring>
+        <name>buyPanelHiddenPosition</name>
+        <qualifiedname>TradeUIManager.buyPanelHiddenPosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="65" column="21" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1ad0f48e4a8cded41b1c2299be91e7a7de" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 TradeUIManager.buyPanelVisiblePosition</definition>
+        <argsstring></argsstring>
+        <name>buyPanelVisiblePosition</name>
+        <qualifiedname>TradeUIManager.buyPanelVisiblePosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="66" column="21" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1af6b16b3894f7ad14ebb09274a03cc27a" prot="private" static="no" mutable="no">
+        <type>Coroutine</type>
+        <definition>Coroutine TradeUIManager.sellSlideCoroutine</definition>
+        <argsstring></argsstring>
+        <name>sellSlideCoroutine</name>
+        <qualifiedname>TradeUIManager.sellSlideCoroutine</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="67" column="23" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1a6fae2253b61c4eb16f0116875c37f397" prot="private" static="no" mutable="no">
+        <type>Coroutine</type>
+        <definition>Coroutine TradeUIManager.buySlideCoroutine</definition>
+        <argsstring></argsstring>
+        <name>buySlideCoroutine</name>
+        <qualifiedname>TradeUIManager.buySlideCoroutine</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="68" column="23" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="68" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classTradeUIManager_1a189f39515023010a605a391e346d4288" prot="public" static="no" mutable="no">
+        <type>RectTransform</type>
+        <definition>RectTransform TradeUIManager.tradeTestPanel</definition>
+        <argsstring></argsstring>
+        <name>tradeTestPanel</name>
+        <qualifiedname>TradeUIManager.tradeTestPanel</qualifiedname>
+        <briefdescription>
+<para>메인 화면 패널. 모든 오버레이 창이 닫힐 때 다시 활성화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="35" column="26" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="35" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a22cb6d24d5c5d2f7ee7b0bac504594f8" compoundref="TradeUIManager_8cs" startline="336" endline="341">ReenableMainPanelAfterClosing</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1ac2467172f0d95b7974cb41c366b562d6" prot="public" static="no" mutable="no">
+        <type>RectTransform</type>
+        <definition>RectTransform TradeUIManager.tradeSellPanel</definition>
+        <argsstring></argsstring>
+        <name>tradeSellPanel</name>
+        <qualifiedname>TradeUIManager.tradeSellPanel</qualifiedname>
+        <briefdescription>
+<para>판매창(TradeSellPanel)의 RectTransform 참조입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="39" column="26" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="39" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a1e5055021de5b89ee4ac9e760986ce23" compoundref="TradeUIManager_8cs" startline="303" endline="331">CloseOverlayPanels</referencedby>
+        <referencedby refid="classTradeUIManager_1a8b5ed20451966d24e4e8973606383e34" compoundref="TradeUIManager_8cs" startline="266" endline="297">OpenBuyPanel</referencedby>
+        <referencedby refid="classTradeUIManager_1a742412bbb3aa546667abb3d745245d63" compoundref="TradeUIManager_8cs" startline="213" endline="260">OpenSellPanel</referencedby>
+        <referencedby refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" compoundref="TradeUIManager_8cs" startline="120" endline="160">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1ad2805b8a14c0bb507c24ff7e54147899" prot="public" static="no" mutable="no">
+        <type>RectTransform</type>
+        <definition>RectTransform TradeUIManager.tradeBuyPanel</definition>
+        <argsstring></argsstring>
+        <name>tradeBuyPanel</name>
+        <qualifiedname>TradeUIManager.tradeBuyPanel</qualifiedname>
+        <briefdescription>
+<para>구매창(TradeBuyPanel)의 RectTransform 참조입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="43" column="26" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="43" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a1e5055021de5b89ee4ac9e760986ce23" compoundref="TradeUIManager_8cs" startline="303" endline="331">CloseOverlayPanels</referencedby>
+        <referencedby refid="classTradeUIManager_1a8b5ed20451966d24e4e8973606383e34" compoundref="TradeUIManager_8cs" startline="266" endline="297">OpenBuyPanel</referencedby>
+        <referencedby refid="classTradeUIManager_1a742412bbb3aa546667abb3d745245d63" compoundref="TradeUIManager_8cs" startline="213" endline="260">OpenSellPanel</referencedby>
+        <referencedby refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" compoundref="TradeUIManager_8cs" startline="120" endline="160">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1ae63489c0c63b3b5de18c608bb5160ced" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button TradeUIManager.sellButton</definition>
+        <argsstring></argsstring>
+        <name>sellButton</name>
+        <qualifiedname>TradeUIManager.sellButton</qualifiedname>
+        <briefdescription>
+<para>메인 화면의 &quot;Sell&quot; 버튼. 클릭 시 판매창을 엽니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="49" column="19" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="49" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a1e5055021de5b89ee4ac9e760986ce23" compoundref="TradeUIManager_8cs" startline="303" endline="331">CloseOverlayPanels</referencedby>
+        <referencedby refid="classTradeUIManager_1a8b5ed20451966d24e4e8973606383e34" compoundref="TradeUIManager_8cs" startline="266" endline="297">OpenBuyPanel</referencedby>
+        <referencedby refid="classTradeUIManager_1a742412bbb3aa546667abb3d745245d63" compoundref="TradeUIManager_8cs" startline="213" endline="260">OpenSellPanel</referencedby>
+        <referencedby refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" compoundref="TradeUIManager_8cs" startline="120" endline="160">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1a66bfa41e2c37cbda60dac5e6377d0257" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button TradeUIManager.buyButton</definition>
+        <argsstring></argsstring>
+        <name>buyButton</name>
+        <qualifiedname>TradeUIManager.buyButton</qualifiedname>
+        <briefdescription>
+<para>메인 화면의 &quot;Buy&quot; 버튼. 클릭 시 구매창을 엽니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="53" column="19" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="53" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a1e5055021de5b89ee4ac9e760986ce23" compoundref="TradeUIManager_8cs" startline="303" endline="331">CloseOverlayPanels</referencedby>
+        <referencedby refid="classTradeUIManager_1a8b5ed20451966d24e4e8973606383e34" compoundref="TradeUIManager_8cs" startline="266" endline="297">OpenBuyPanel</referencedby>
+        <referencedby refid="classTradeUIManager_1a742412bbb3aa546667abb3d745245d63" compoundref="TradeUIManager_8cs" startline="213" endline="260">OpenSellPanel</referencedby>
+        <referencedby refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" compoundref="TradeUIManager_8cs" startline="120" endline="160">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1a15f44a143cc060576214df81eab6d6c2" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float TradeUIManager.slideSpeed</definition>
+        <argsstring></argsstring>
+        <name>slideSpeed</name>
+        <qualifiedname>TradeUIManager.slideSpeed</qualifiedname>
+        <initializer>= 0.3f</initializer>
+        <briefdescription>
+<para>오버레이 패널 슬라이드 애니메이션 시간(초)입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="59" column="18" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="59" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a22cb6d24d5c5d2f7ee7b0bac504594f8" compoundref="TradeUIManager_8cs" startline="336" endline="341">ReenableMainPanelAfterClosing</referencedby>
+        <referencedby refid="classTradeUIManager_1a2c1f362e9ce0170de8836f56d0802068" compoundref="TradeUIManager_8cs" startline="350" endline="360">SlidePanel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1af27cd2e7be6a10ecb10b3685d5dd5a99" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject TradeUIManager.planetItemPanel</definition>
+        <argsstring></argsstring>
+        <name>planetItemPanel</name>
+        <qualifiedname>TradeUIManager.planetItemPanel</qualifiedname>
+        <briefdescription>
+<para>구매창 내 행성 아이템 목록 패널입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="74" column="23" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="74" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" compoundref="TradeUIManager_8cs" startline="120" endline="160">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1a1679f5c25f9c4bf11787aaff006498b7" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject TradeUIManager.buyMiddlePanel</definition>
+        <argsstring></argsstring>
+        <name>buyMiddlePanel</name>
+        <qualifiedname>TradeUIManager.buyMiddlePanel</qualifiedname>
+        <briefdescription>
+<para>구매창 내 상세 정보(MiddlePanel) 패널입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="78" column="23" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="78" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a6d1a8e136bd1d571b288892231626035" compoundref="TradeUIManager_8cs" startline="192" endline="207">OnBackPressed</referencedby>
+        <referencedby refid="classTradeUIManager_1a9c735caa5912908da3ae108fdadacbd1" compoundref="TradeUIManager_8cs" startline="167" endline="171">OnBuyItemSelected</referencedby>
+        <referencedby refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" compoundref="TradeUIManager_8cs" startline="120" endline="160">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1aa4946fc05a3bab9b88333eeb95581cec" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject TradeUIManager.storagePanel</definition>
+        <argsstring></argsstring>
+        <name>storagePanel</name>
+        <qualifiedname>TradeUIManager.storagePanel</qualifiedname>
+        <briefdescription>
+<para>구매창 내 StoragePanel(플레이어 인벤토리) 패널입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="82" column="23" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="82" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a6d1a8e136bd1d571b288892231626035" compoundref="TradeUIManager_8cs" startline="192" endline="207">OnBackPressed</referencedby>
+        <referencedby refid="classTradeUIManager_1a9c735caa5912908da3ae108fdadacbd1" compoundref="TradeUIManager_8cs" startline="167" endline="171">OnBuyItemSelected</referencedby>
+        <referencedby refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" compoundref="TradeUIManager_8cs" startline="120" endline="160">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1a3bb164f4d1e741c05d4622d2caf47f80" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button TradeUIManager.buyBackButton</definition>
+        <argsstring></argsstring>
+        <name>buyBackButton</name>
+        <qualifiedname>TradeUIManager.buyBackButton</qualifiedname>
+        <briefdescription>
+<para>구매창 상세/Storage에서 뒤로 돌아갈 때 누르는 버튼입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="86" column="19" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="86" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" compoundref="TradeUIManager_8cs" startline="120" endline="160">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1a4125b8e3efd030dbe1d5714843ed4e94" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject TradeUIManager.inventoryPanel</definition>
+        <argsstring></argsstring>
+        <name>inventoryPanel</name>
+        <qualifiedname>TradeUIManager.inventoryPanel</qualifiedname>
+        <briefdescription>
+<para>판매창 내 플레이어 인벤토리 목록 패널입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="92" column="23" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="92" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" compoundref="TradeUIManager_8cs" startline="120" endline="160">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1a38462e44734a3d02485fcedf8c6d45bc" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject TradeUIManager.sellMiddlePanel</definition>
+        <argsstring></argsstring>
+        <name>sellMiddlePanel</name>
+        <qualifiedname>TradeUIManager.sellMiddlePanel</qualifiedname>
+        <briefdescription>
+<para>판매창 내 상세 정보(MidSellPanel) 패널입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="96" column="23" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="96" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a6d1a8e136bd1d571b288892231626035" compoundref="TradeUIManager_8cs" startline="192" endline="207">OnBackPressed</referencedby>
+        <referencedby refid="classTradeUIManager_1a93f1aab4674dca59610b349bc4e7f3c9" compoundref="TradeUIManager_8cs" startline="178" endline="186">OnSellItemSelected</referencedby>
+        <referencedby refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" compoundref="TradeUIManager_8cs" startline="120" endline="160">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradeUIManager_1a538bd5fea39565d213c6b10f12998678" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button TradeUIManager.sellBackButton</definition>
+        <argsstring></argsstring>
+        <name>sellBackButton</name>
+        <qualifiedname>TradeUIManager.sellBackButton</qualifiedname>
+        <briefdescription>
+<para>판매창 상세에서 뒤로 돌아갈 때 누르는 버튼입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="100" column="19" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="100" bodyend="-1"/>
+        <referencedby refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" compoundref="TradeUIManager_8cs" startline="120" endline="160">Start</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classTradeUIManager_1a298c8e71eda7d6410024c00604ba8a9f" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="classTradeUIManager" kindref="compound">TradeUIManager</ref></type>
+        <definition>TradeUIManager TradeUIManager.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>TradeUIManager.Instance</qualifiedname>
+        <briefdescription>
+<para>이 클래스의 싱글톤 인스턴스입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="105" column="34" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="105" bodyend="105"/>
+        <referencedby refid="classTradeUIManager_1a74871fe3ce6591b806194e13ed9f53f6" compoundref="TradeUIManager_8cs" startline="110" endline="114">Awake</referencedby>
+        <referencedby refid="classInventoryItemUI_1a1bb0b78417bfa62ed33e337121659f59" compoundref="InventoryItemUI_8cs" startline="174" endline="211">InventoryItemUI.OnPointerClick</referencedby>
+        <referencedby refid="classPlanetItemUI_1a5ef7492a24a25de8eaa03aca819012ca" compoundref="PlanetItemUI_8cs" startline="144" endline="170">PlanetItemUI.OnPointerClick</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classTradeUIManager_1a74871fe3ce6591b806194e13ed9f53f6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradeUIManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>TradeUIManager.Awake</qualifiedname>
+        <briefdescription>
+<para>싱글톤 패턴을 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="110" column="10" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="110" bodyend="114"/>
+        <references refid="classTradeUIManager_1a298c8e71eda7d6410024c00604ba8a9f" compoundref="TradeUIManager_8cs" startline="105" endline="105">Instance</references>
+      </memberdef>
+      <memberdef kind="function" id="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradeUIManager.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>TradeUIManager.Start</qualifiedname>
+        <briefdescription>
+<para>초기화: 메인 버튼, 슬라이드 위치, 서브 패널/뒤로가기 버튼 리스너를 연결하고, 구매/판매창의 서브 패널 초기 상태를 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="120" column="10" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="120" bodyend="160"/>
+        <references refid="classTradeUIManager_1a3bb164f4d1e741c05d4622d2caf47f80" compoundref="TradeUIManager_8cs" startline="86">buyBackButton</references>
+        <references refid="classTradeUIManager_1a66bfa41e2c37cbda60dac5e6377d0257" compoundref="TradeUIManager_8cs" startline="53">buyButton</references>
+        <references refid="classTradeUIManager_1a1679f5c25f9c4bf11787aaff006498b7" compoundref="TradeUIManager_8cs" startline="78">buyMiddlePanel</references>
+        <references refid="classTradeUIManager_1a4125b8e3efd030dbe1d5714843ed4e94" compoundref="TradeUIManager_8cs" startline="92">inventoryPanel</references>
+        <references refid="classTradeUIManager_1a6d1a8e136bd1d571b288892231626035" compoundref="TradeUIManager_8cs" startline="192" endline="207">OnBackPressed</references>
+        <references refid="classTradeUIManager_1a8b5ed20451966d24e4e8973606383e34" compoundref="TradeUIManager_8cs" startline="266" endline="297">OpenBuyPanel</references>
+        <references refid="classTradeUIManager_1a742412bbb3aa546667abb3d745245d63" compoundref="TradeUIManager_8cs" startline="213" endline="260">OpenSellPanel</references>
+        <references refid="classTradeUIManager_1af27cd2e7be6a10ecb10b3685d5dd5a99" compoundref="TradeUIManager_8cs" startline="74">planetItemPanel</references>
+        <references refid="classTradeUIManager_1a538bd5fea39565d213c6b10f12998678" compoundref="TradeUIManager_8cs" startline="100">sellBackButton</references>
+        <references refid="classTradeUIManager_1ae63489c0c63b3b5de18c608bb5160ced" compoundref="TradeUIManager_8cs" startline="49">sellButton</references>
+        <references refid="classTradeUIManager_1a38462e44734a3d02485fcedf8c6d45bc" compoundref="TradeUIManager_8cs" startline="96">sellMiddlePanel</references>
+        <references refid="classTradeUIManager_1aa4946fc05a3bab9b88333eeb95581cec" compoundref="TradeUIManager_8cs" startline="82">storagePanel</references>
+        <references refid="classTradeUIManager_1ad2805b8a14c0bb507c24ff7e54147899" compoundref="TradeUIManager_8cs" startline="43">tradeBuyPanel</references>
+        <references refid="classTradeUIManager_1ac2467172f0d95b7974cb41c366b562d6" compoundref="TradeUIManager_8cs" startline="39">tradeSellPanel</references>
+      </memberdef>
+      <memberdef kind="function" id="classTradeUIManager_1a6d1a8e136bd1d571b288892231626035" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradeUIManager.OnBackPressed</definition>
+        <argsstring>()</argsstring>
+        <name>OnBackPressed</name>
+        <qualifiedname>TradeUIManager.OnBackPressed</qualifiedname>
+        <briefdescription>
+<para>씬에 배치된 Back 버튼을 클릭했을 때 호출됩니다. 열려 있는 상세 패널을 닫고, 원래 목록 패널로 복귀시킵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="192" column="18" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="192" bodyend="207"/>
+        <references refid="classTradeUIManager_1a1679f5c25f9c4bf11787aaff006498b7" compoundref="TradeUIManager_8cs" startline="78">buyMiddlePanel</references>
+        <references refid="classStorageHighlightManager_1a2c554a464060c3d053eff0b800695582" compoundref="StorageHighlightManager_8cs" startline="37" endline="41">StorageHighlightManager.ClearHighlights</references>
+        <references refid="classTradeUIManager_1a72804b2675ac5b089da50d5ec435fb5c" compoundref="TradeUIManager_8cs" startline="29">highlighter</references>
+        <references refid="classTradeUIManager_1a38462e44734a3d02485fcedf8c6d45bc" compoundref="TradeUIManager_8cs" startline="96">sellMiddlePanel</references>
+        <references refid="classTradeUIManager_1aa4946fc05a3bab9b88333eeb95581cec" compoundref="TradeUIManager_8cs" startline="82">storagePanel</references>
+        <referencedby refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" compoundref="TradeUIManager_8cs" startline="120" endline="160">Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradeUIManager_1a22cb6d24d5c5d2f7ee7b0bac504594f8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator TradeUIManager.ReenableMainPanelAfterClosing</definition>
+        <argsstring>()</argsstring>
+        <name>ReenableMainPanelAfterClosing</name>
+        <qualifiedname>TradeUIManager.ReenableMainPanelAfterClosing</qualifiedname>
+        <briefdescription>
+<para>슬라이드 애니메이션이 완료된 후, 메인 화면 패널(tradeTestPanel)을 활성화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="336" column="25" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="336" bodyend="341"/>
+        <references refid="classTradeUIManager_1a15f44a143cc060576214df81eab6d6c2" compoundref="TradeUIManager_8cs" startline="59">slideSpeed</references>
+        <references refid="classTradeUIManager_1a189f39515023010a605a391e346d4288" compoundref="TradeUIManager_8cs" startline="35">tradeTestPanel</references>
+        <referencedby refid="classTradeUIManager_1a1e5055021de5b89ee4ac9e760986ce23" compoundref="TradeUIManager_8cs" startline="303" endline="331">CloseOverlayPanels</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradeUIManager_1a2c1f362e9ce0170de8836f56d0802068" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator TradeUIManager.SlidePanel</definition>
+        <argsstring>(RectTransform panel, Vector2 fromPos, Vector2 toPos)</argsstring>
+        <name>SlidePanel</name>
+        <qualifiedname>TradeUIManager.SlidePanel</qualifiedname>
+        <param>
+          <type>RectTransform</type>
+          <declname>panel</declname>
+        </param>
+        <param>
+          <type>Vector2</type>
+          <declname>fromPos</declname>
+        </param>
+        <param>
+          <type>Vector2</type>
+          <declname>toPos</declname>
+        </param>
+        <briefdescription>
+<para>지정된 RectTransform 패널을 fromPos 위치에서 toPos 위치로 slideSpeed 시간에 걸쳐 선형 보간(Lerp)하여 이동시킵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>panel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>슬라이드할 RectTransform 패널</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fromPos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>시작 앵커드 위치</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>toPos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>목표 앵커드 위치</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="350" column="25" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="350" bodyend="360"/>
+        <references refid="classTradeUIManager_1a15f44a143cc060576214df81eab6d6c2" compoundref="TradeUIManager_8cs" startline="59">slideSpeed</references>
+        <referencedby refid="classTradeUIManager_1a1e5055021de5b89ee4ac9e760986ce23" compoundref="TradeUIManager_8cs" startline="303" endline="331">CloseOverlayPanels</referencedby>
+        <referencedby refid="classTradeUIManager_1a8b5ed20451966d24e4e8973606383e34" compoundref="TradeUIManager_8cs" startline="266" endline="297">OpenBuyPanel</referencedby>
+        <referencedby refid="classTradeUIManager_1a742412bbb3aa546667abb3d745245d63" compoundref="TradeUIManager_8cs" startline="213" endline="260">OpenSellPanel</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classTradeUIManager_1a9c735caa5912908da3ae108fdadacbd1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradeUIManager.OnBuyItemSelected</definition>
+        <argsstring>()</argsstring>
+        <name>OnBuyItemSelected</name>
+        <qualifiedname>TradeUIManager.OnBuyItemSelected</qualifiedname>
+        <briefdescription>
+<para>행성 아이템 목록에서 아이템을 선택했을 때 호출합니다. 구매창의 상세 정보와 StoragePanel을 활성화합니다. Inspector에서 PlanetItemPanel 내 각 아이템 버튼의 OnClick에 연결하세요. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="167" column="17" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="167" bodyend="171"/>
+        <references refid="classTradeUIManager_1a1679f5c25f9c4bf11787aaff006498b7" compoundref="TradeUIManager_8cs" startline="78">buyMiddlePanel</references>
+        <references refid="classTradeUIManager_1aa4946fc05a3bab9b88333eeb95581cec" compoundref="TradeUIManager_8cs" startline="82">storagePanel</references>
+        <referencedby refid="classPlanetItemUI_1a5ef7492a24a25de8eaa03aca819012ca" compoundref="PlanetItemUI_8cs" startline="144" endline="170">PlanetItemUI.OnPointerClick</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradeUIManager_1a93f1aab4674dca59610b349bc4e7f3c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradeUIManager.OnSellItemSelected</definition>
+        <argsstring>()</argsstring>
+        <name>OnSellItemSelected</name>
+        <qualifiedname>TradeUIManager.OnSellItemSelected</qualifiedname>
+        <briefdescription>
+<para>인벤토리 목록에서 아이템을 선택했을 때 호출합니다. 판매창의 상세 정보 패널(MidSellPanel)을 활성화합니다. Inspector에서 InventoryPanel 내 각 아이템 버튼의 OnClick에 연결하세요. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="178" column="17" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="178" bodyend="186"/>
+        <references refid="classInventoryItemUI_1a924b56ba121d3954cd5699859bdbca70" compoundref="InventoryItemUI_8cs" startline="55">InventoryItemUI.currentlySelectedItemName</references>
+        <references refid="classTradeUIManager_1a72804b2675ac5b089da50d5ec435fb5c" compoundref="TradeUIManager_8cs" startline="29">highlighter</references>
+        <references refid="classStorageHighlightManager_1a6db160775ca800d74bdf92a796a0b737" compoundref="StorageHighlightManager_8cs" startline="24" endline="32">StorageHighlightManager.HighlightItem</references>
+        <references refid="classTradeUIManager_1a38462e44734a3d02485fcedf8c6d45bc" compoundref="TradeUIManager_8cs" startline="96">sellMiddlePanel</references>
+        <referencedby refid="classInventoryItemUI_1a1bb0b78417bfa62ed33e337121659f59" compoundref="InventoryItemUI_8cs" startline="174" endline="211">InventoryItemUI.OnPointerClick</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradeUIManager_1a742412bbb3aa546667abb3d745245d63" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradeUIManager.OpenSellPanel</definition>
+        <argsstring>()</argsstring>
+        <name>OpenSellPanel</name>
+        <qualifiedname>TradeUIManager.OpenSellPanel</qualifiedname>
+        <briefdescription>
+<para>메인 화면의 &quot;Sell&quot; 버튼 클릭 시 호출됩니다. 기존에 열려 있던 구매창이 있으면 닫고, 판매창을 슬라이드 인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="213" column="17" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="213" bodyend="260"/>
+        <references refid="classTradeUIManager_1a66bfa41e2c37cbda60dac5e6377d0257" compoundref="TradeUIManager_8cs" startline="53">buyButton</references>
+        <references refid="classInventoryItemUI_1a924b56ba121d3954cd5699859bdbca70" compoundref="InventoryItemUI_8cs" startline="55">InventoryItemUI.currentlySelectedItemName</references>
+        <references refid="classInventoryItemUI_1afb94e5e9c907477c99ee0c6631f85a11" compoundref="InventoryItemUI_8cs" startline="221" endline="224">InventoryItemUI.GetCurrentSelectedItem</references>
+        <references refid="classInventoryUI_1a02cb5fa8b7ff46802da04cdb620227ff" compoundref="InventoryUI_8cs" startline="41" endline="66">InventoryUI.PopulateInventory</references>
+        <references refid="classTradeUIManager_1ae63489c0c63b3b5de18c608bb5160ced" compoundref="TradeUIManager_8cs" startline="49">sellButton</references>
+        <references refid="classTradeUIManager_1ab0a193d4a9452cc852273c7499181097" compoundref="TradeUIManager_8cs" startline="24">sellInventoryUI</references>
+        <references refid="classMiddlePanelUI_1ae3536e2b3e7184a4e0ab728ed1eacdd5" compoundref="MiddlePanelUI_8cs" startline="103" endline="135">MiddlePanelUI.SetSelectedItem</references>
+        <references refid="classTradeUIManager_1a2c1f362e9ce0170de8836f56d0802068" compoundref="TradeUIManager_8cs" startline="350" endline="360">SlidePanel</references>
+        <references refid="classTradeUIManager_1ad2805b8a14c0bb507c24ff7e54147899" compoundref="TradeUIManager_8cs" startline="43">tradeBuyPanel</references>
+        <references refid="classTradeUIManager_1ac2467172f0d95b7974cb41c366b562d6" compoundref="TradeUIManager_8cs" startline="39">tradeSellPanel</references>
+        <references refid="classMiddlePanelUI_1ae90d302987b61efa4a72c9a138cb140f" compoundref="MiddlePanelUI_8cs" startline="184" endline="190">MiddlePanelUI.UpdatePlayerComa</references>
+        <referencedby refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" compoundref="TradeUIManager_8cs" startline="120" endline="160">Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradeUIManager_1a8b5ed20451966d24e4e8973606383e34" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradeUIManager.OpenBuyPanel</definition>
+        <argsstring>()</argsstring>
+        <name>OpenBuyPanel</name>
+        <qualifiedname>TradeUIManager.OpenBuyPanel</qualifiedname>
+        <briefdescription>
+<para>메인 화면의 &quot;Buy&quot; 버튼 클릭 시 호출됩니다. 기존에 열려 있던 판매창이 있으면 닫고, 구매창을 슬라이드 인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="266" column="17" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="266" bodyend="297"/>
+        <references refid="classTradeUIManager_1a66bfa41e2c37cbda60dac5e6377d0257" compoundref="TradeUIManager_8cs" startline="53">buyButton</references>
+        <references refid="classTradeUIManager_1ae63489c0c63b3b5de18c608bb5160ced" compoundref="TradeUIManager_8cs" startline="49">sellButton</references>
+        <references refid="classTradeUIManager_1a2c1f362e9ce0170de8836f56d0802068" compoundref="TradeUIManager_8cs" startline="350" endline="360">SlidePanel</references>
+        <references refid="classTradeUIManager_1ad2805b8a14c0bb507c24ff7e54147899" compoundref="TradeUIManager_8cs" startline="43">tradeBuyPanel</references>
+        <references refid="classTradeUIManager_1ac2467172f0d95b7974cb41c366b562d6" compoundref="TradeUIManager_8cs" startline="39">tradeSellPanel</references>
+        <references refid="classMiddlePanelUI_1ae90d302987b61efa4a72c9a138cb140f" compoundref="MiddlePanelUI_8cs" startline="184" endline="190">MiddlePanelUI.UpdatePlayerComa</references>
+        <referencedby refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" compoundref="TradeUIManager_8cs" startline="120" endline="160">Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradeUIManager_1a1e5055021de5b89ee4ac9e760986ce23" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradeUIManager.CloseOverlayPanels</definition>
+        <argsstring>()</argsstring>
+        <name>CloseOverlayPanels</name>
+        <qualifiedname>TradeUIManager.CloseOverlayPanels</qualifiedname>
+        <briefdescription>
+<para>현재 열려 있는 모든 오버레이 패널(구매/판매)을 순차적으로 닫습니다. 슬라이드 아웃 애니메이션 후 메인 패널을 다시 활성화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="303" column="17" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="303" bodyend="331"/>
+        <references refid="classTradeUIManager_1a66bfa41e2c37cbda60dac5e6377d0257" compoundref="TradeUIManager_8cs" startline="53">buyButton</references>
+        <references refid="classTradeUIManager_1aa6b4004e57cbac3fa398eb2deee600e7" compoundref="TradeUIManager_8cs" startline="17">inventoryPanelContent</references>
+        <references refid="classTradeUIManager_1a22cb6d24d5c5d2f7ee7b0bac504594f8" compoundref="TradeUIManager_8cs" startline="336" endline="341">ReenableMainPanelAfterClosing</references>
+        <references refid="classTradeUIManager_1ae63489c0c63b3b5de18c608bb5160ced" compoundref="TradeUIManager_8cs" startline="49">sellButton</references>
+        <references refid="classTradeUIManager_1a2c1f362e9ce0170de8836f56d0802068" compoundref="TradeUIManager_8cs" startline="350" endline="360">SlidePanel</references>
+        <references refid="classTradeUIManager_1ad2805b8a14c0bb507c24ff7e54147899" compoundref="TradeUIManager_8cs" startline="43">tradeBuyPanel</references>
+        <references refid="classTradeUIManager_1ac2467172f0d95b7974cb41c366b562d6" compoundref="TradeUIManager_8cs" startline="39">tradeSellPanel</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>무역 UI를 관리하는 매니저입니다. 메인 패널(TradeTestPanel)과 구매/판매 오버레이 패널을 슬라이드 애니메이션으로 제어하며, 각창의 서브 패널 전환(아이템 선택, 뒤로가기) 기능을 포함합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>TradeUIManager</label>
+        <link refid="classTradeUIManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="16">
+        <label>Constants</label>
+      </node>
+      <node id="35">
+        <label>CrewBase</label>
+        <link refid="classCrewBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+        <childnode refid="36" relation="usage">
+          <edgelabel>+equippedAssistant</edgelabel>
+          <edgelabel>+equippedShield</edgelabel>
+          <edgelabel>+equippedWeapon</edgelabel>
+        </childnode>
+        <childnode refid="37" relation="usage">
+          <edgelabel>+currentRoom</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>+currentShip</edgelabel>
+        </childnode>
+        <childnode refid="38" relation="usage">
+          <edgelabel>+healthBarController</edgelabel>
+        </childnode>
+      </node>
+      <node id="38">
+        <label>CrewHealthBar</label>
+        <link refid="classCrewHealthBar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="39" relation="usage">
+          <edgelabel>-offset</edgelabel>
+        </childnode>
+        <childnode refid="35" relation="usage">
+          <edgelabel>-crewBase</edgelabel>
+        </childnode>
+      </node>
+      <node id="34">
+        <label>CrewMember</label>
+        <link refid="classCrewMember"/>
+        <childnode refid="35" relation="public-inheritance">
+        </childnode>
+        <childnode refid="39" relation="usage">
+          <edgelabel>-movementDirection</edgelabel>
+        </childnode>
+        <childnode refid="37" relation="usage">
+          <edgelabel>+madRoom</edgelabel>
+          <edgelabel>+oldReservedRoom</edgelabel>
+          <edgelabel>+reservedRoom</edgelabel>
+        </childnode>
+      </node>
+      <node id="28">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>EquipmentItem</label>
+        <link refid="classEquipmentItem"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>IBeginDragHandler</label>
+      </node>
+      <node id="12">
+        <label>IDragHandler</label>
+      </node>
+      <node id="13">
+        <label>IEndDragHandler</label>
+      </node>
+      <node id="14">
+        <label>IGridPlaceable</label>
+        <link refid="interfaceIGridPlaceable"/>
+      </node>
+      <node id="10">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="19">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="3">
+        <label>InventoryUI</label>
+        <link refid="classInventoryUI"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-storage</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="30">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+        <childnode refid="37" relation="template-instance">
+          <edgelabel>&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="33">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="25">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="21" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Storage</label>
+        <link refid="classStorage"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-itemDatabase</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>StorageHighlightManager</label>
+        <link refid="classStorageHighlightManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-allHighlighters</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>StorageRoomBase</label>
+        <link refid="classStorageRoomBase"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>#selectedItem</edgelabel>
+          <edgelabel>-itemGrid</edgelabel>
+        </childnode>
+      </node>
+      <node id="32">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>TradeUIManager</label>
+        <link refid="classTradeUIManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-sellInventoryUI</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-highlighter</edgelabel>
+        </childnode>
+        <childnode refid="39" relation="usage">
+          <edgelabel>+buyBackButton</edgelabel>
+          <edgelabel>+buyButton</edgelabel>
+          <edgelabel>+sellBackButton</edgelabel>
+          <edgelabel>+sellButton</edgelabel>
+          <edgelabel>-buyPanelHiddenPosition</edgelabel>
+          <edgelabel>-buyPanelVisiblePosition</edgelabel>
+          <edgelabel>-sellPanelHiddenPosition</edgelabel>
+          <edgelabel>-sellPanelVisiblePosition</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>TradingItem</label>
+        <link refid="classTradingItem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-itemData</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>+rotation</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>+parentStorage</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TradingItemData</label>
+        <link refid="classTradingItemData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>TradingItemDataBase</label>
+        <link refid="classTradingItemDataBase"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>TradingItemHighlighter</label>
+        <link refid="classTradingItemHighlighter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-tradingItem</edgelabel>
+        </childnode>
+      </node>
+      <node id="39">
+        <label>UnityEngine</label>
+      </node>
+      <node id="26">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Trade/TradeUIManager.cs" line="10" column="7" bodyfile="Assets/Scripts/Trade/TradeUIManager.cs" bodystart="11" bodyend="361"/>
+    <listofallmembers>
+      <member refid="classTradeUIManager_1a74871fe3ce6591b806194e13ed9f53f6" prot="private" virt="non-virtual"><scope>TradeUIManager</scope><name>Awake</name></member>
+      <member refid="classTradeUIManager_1a3bb164f4d1e741c05d4622d2caf47f80" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>buyBackButton</name></member>
+      <member refid="classTradeUIManager_1a66bfa41e2c37cbda60dac5e6377d0257" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>buyButton</name></member>
+      <member refid="classTradeUIManager_1a1679f5c25f9c4bf11787aaff006498b7" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>buyMiddlePanel</name></member>
+      <member refid="classTradeUIManager_1aa9d6d1f8f4723063aa816677f3a3dcbe" prot="private" virt="non-virtual"><scope>TradeUIManager</scope><name>buyPanelHiddenPosition</name></member>
+      <member refid="classTradeUIManager_1ad0f48e4a8cded41b1c2299be91e7a7de" prot="private" virt="non-virtual"><scope>TradeUIManager</scope><name>buyPanelVisiblePosition</name></member>
+      <member refid="classTradeUIManager_1a6fae2253b61c4eb16f0116875c37f397" prot="private" virt="non-virtual"><scope>TradeUIManager</scope><name>buySlideCoroutine</name></member>
+      <member refid="classTradeUIManager_1a1e5055021de5b89ee4ac9e760986ce23" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>CloseOverlayPanels</name></member>
+      <member refid="classTradeUIManager_1a72804b2675ac5b089da50d5ec435fb5c" prot="private" virt="non-virtual"><scope>TradeUIManager</scope><name>highlighter</name></member>
+      <member refid="classTradeUIManager_1a298c8e71eda7d6410024c00604ba8a9f" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>Instance</name></member>
+      <member refid="classTradeUIManager_1a4125b8e3efd030dbe1d5714843ed4e94" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>inventoryPanel</name></member>
+      <member refid="classTradeUIManager_1aa6b4004e57cbac3fa398eb2deee600e7" prot="private" virt="non-virtual"><scope>TradeUIManager</scope><name>inventoryPanelContent</name></member>
+      <member refid="classTradeUIManager_1a6d1a8e136bd1d571b288892231626035" prot="private" virt="non-virtual"><scope>TradeUIManager</scope><name>OnBackPressed</name></member>
+      <member refid="classTradeUIManager_1a9c735caa5912908da3ae108fdadacbd1" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>OnBuyItemSelected</name></member>
+      <member refid="classTradeUIManager_1a93f1aab4674dca59610b349bc4e7f3c9" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>OnSellItemSelected</name></member>
+      <member refid="classTradeUIManager_1a8b5ed20451966d24e4e8973606383e34" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>OpenBuyPanel</name></member>
+      <member refid="classTradeUIManager_1a742412bbb3aa546667abb3d745245d63" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>OpenSellPanel</name></member>
+      <member refid="classTradeUIManager_1af27cd2e7be6a10ecb10b3685d5dd5a99" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>planetItemPanel</name></member>
+      <member refid="classTradeUIManager_1a22cb6d24d5c5d2f7ee7b0bac504594f8" prot="private" virt="non-virtual"><scope>TradeUIManager</scope><name>ReenableMainPanelAfterClosing</name></member>
+      <member refid="classTradeUIManager_1a538bd5fea39565d213c6b10f12998678" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>sellBackButton</name></member>
+      <member refid="classTradeUIManager_1ae63489c0c63b3b5de18c608bb5160ced" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>sellButton</name></member>
+      <member refid="classTradeUIManager_1ab0a193d4a9452cc852273c7499181097" prot="private" virt="non-virtual"><scope>TradeUIManager</scope><name>sellInventoryUI</name></member>
+      <member refid="classTradeUIManager_1a38462e44734a3d02485fcedf8c6d45bc" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>sellMiddlePanel</name></member>
+      <member refid="classTradeUIManager_1a451b52d6a70c14229f92f0f39ba27c64" prot="private" virt="non-virtual"><scope>TradeUIManager</scope><name>sellPanelHiddenPosition</name></member>
+      <member refid="classTradeUIManager_1a5507125d1d9fdfc455298058d9c9174a" prot="private" virt="non-virtual"><scope>TradeUIManager</scope><name>sellPanelVisiblePosition</name></member>
+      <member refid="classTradeUIManager_1af6b16b3894f7ad14ebb09274a03cc27a" prot="private" virt="non-virtual"><scope>TradeUIManager</scope><name>sellSlideCoroutine</name></member>
+      <member refid="classTradeUIManager_1a2c1f362e9ce0170de8836f56d0802068" prot="private" virt="non-virtual"><scope>TradeUIManager</scope><name>SlidePanel</name></member>
+      <member refid="classTradeUIManager_1a15f44a143cc060576214df81eab6d6c2" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>slideSpeed</name></member>
+      <member refid="classTradeUIManager_1a4ede46667d02fa57fabbee0dcebb817b" prot="private" virt="non-virtual"><scope>TradeUIManager</scope><name>Start</name></member>
+      <member refid="classTradeUIManager_1aa4946fc05a3bab9b88333eeb95581cec" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>storagePanel</name></member>
+      <member refid="classTradeUIManager_1ad2805b8a14c0bb507c24ff7e54147899" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>tradeBuyPanel</name></member>
+      <member refid="classTradeUIManager_1ac2467172f0d95b7974cb41c366b562d6" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>tradeSellPanel</name></member>
+      <member refid="classTradeUIManager_1a189f39515023010a605a391e346d4288" prot="public" virt="non-virtual"><scope>TradeUIManager</scope><name>tradeTestPanel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

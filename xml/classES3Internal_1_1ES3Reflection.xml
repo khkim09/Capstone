@@ -1,0 +1,1128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classES3Internal_1_1ES3Reflection" kind="class" language="C#" prot="public">
+    <compoundname>ES3Internal::ES3Reflection</compoundname>
+    <innerclass refid="structES3Internal_1_1ES3Reflection_1_1ES3ReflectedMember" prot="public">ES3Internal::ES3Reflection::ES3ReflectedMember</innerclass>
+    <innerclass refid="classES3Internal_1_1ES3Reflection_1_1ES3ReflectedMethod" prot="public">ES3Internal::ES3Reflection::ES3ReflectedMethod</innerclass>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Reflection_1a2524980585da9fa4ba3370bf95b4dc2b" prot="public" static="yes" mutable="no">
+        <type>const string</type>
+        <definition>const string ES3Internal.ES3Reflection.memberFieldPrefix</definition>
+        <argsstring></argsstring>
+        <name>memberFieldPrefix</name>
+        <qualifiedname>ES3Internal.ES3Reflection.memberFieldPrefix</qualifiedname>
+        <initializer>= &quot;m_&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="14" column="29" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Reflection_1aa983d9373fe8ac4ddd3c97ce98b575f3" prot="public" static="yes" mutable="no">
+        <type>const string</type>
+        <definition>const string ES3Internal.ES3Reflection.componentTagFieldName</definition>
+        <argsstring></argsstring>
+        <name>componentTagFieldName</name>
+        <qualifiedname>ES3Internal.ES3Reflection.componentTagFieldName</qualifiedname>
+        <initializer>= &quot;tag&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="15" column="29" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Reflection_1ac68ec92a6113083c058606dc45d2736f" prot="public" static="yes" mutable="no">
+        <type>const string</type>
+        <definition>const string ES3Internal.ES3Reflection.componentNameFieldName</definition>
+        <argsstring></argsstring>
+        <name>componentNameFieldName</name>
+        <qualifiedname>ES3Internal.ES3Reflection.componentNameFieldName</qualifiedname>
+        <initializer>= &quot;name&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="16" column="29" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Reflection_1ab6dbb9bd4176313105ed8537766e0da0" prot="public" static="yes" mutable="no">
+        <type>readonly string[]</type>
+        <definition>readonly string [] ES3Internal.ES3Reflection.excludedPropertyNames</definition>
+        <argsstring></argsstring>
+        <name>excludedPropertyNames</name>
+        <qualifiedname>ES3Internal.ES3Reflection.excludedPropertyNames</qualifiedname>
+        <initializer>= new string[] { &quot;runInEditMode&quot;, &quot;useGUILayout&quot;, &quot;hideFlags&quot; }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="17" column="39" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Reflection_1aa07ad781ae390e3a2585b009658b50df" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type ES3Internal.ES3Reflection.serializableAttributeType</definition>
+        <argsstring></argsstring>
+        <name>serializableAttributeType</name>
+        <qualifiedname>ES3Internal.ES3Reflection.serializableAttributeType</qualifiedname>
+        <initializer>= typeof(System.SerializableAttribute)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="19" column="37" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Reflection_1a59f5008c7fbeb1f7078081ec2d28eb9b" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type ES3Internal.ES3Reflection.serializeFieldAttributeType</definition>
+        <argsstring></argsstring>
+        <name>serializeFieldAttributeType</name>
+        <qualifiedname>ES3Internal.ES3Reflection.serializeFieldAttributeType</qualifiedname>
+        <initializer>= typeof(SerializeField)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="20" column="37" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Reflection_1a83bd7d66555b219cef189ee69fa2f361" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type ES3Internal.ES3Reflection.obsoleteAttributeType</definition>
+        <argsstring></argsstring>
+        <name>obsoleteAttributeType</name>
+        <qualifiedname>ES3Internal.ES3Reflection.obsoleteAttributeType</qualifiedname>
+        <initializer>= typeof(System.ObsoleteAttribute)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="21" column="37" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Reflection_1a6b77e6518c7d144502f2d85c355974ec" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type ES3Internal.ES3Reflection.nonSerializedAttributeType</definition>
+        <argsstring></argsstring>
+        <name>nonSerializedAttributeType</name>
+        <qualifiedname>ES3Internal.ES3Reflection.nonSerializedAttributeType</qualifiedname>
+        <initializer>= typeof(System.NonSerializedAttribute)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="22" column="37" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Reflection_1aac4e7d9992619117d12a80b66398df8b" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type ES3Internal.ES3Reflection.es3SerializableAttributeType</definition>
+        <argsstring></argsstring>
+        <name>es3SerializableAttributeType</name>
+        <qualifiedname>ES3Internal.ES3Reflection.es3SerializableAttributeType</qualifiedname>
+        <initializer>= typeof(<ref refid="classES3Serializable" kindref="compound">ES3Serializable</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="23" column="37" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Reflection_1a481eb51dd8cff7611dd38ada9a1470e3" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type ES3Internal.ES3Reflection.es3NonSerializableAttributeType</definition>
+        <argsstring></argsstring>
+        <name>es3NonSerializableAttributeType</name>
+        <qualifiedname>ES3Internal.ES3Reflection.es3NonSerializableAttributeType</qualifiedname>
+        <initializer>= typeof(<ref refid="classES3NonSerializable" kindref="compound">ES3NonSerializable</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="24" column="37" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Reflection_1a584eccd1e71dbd4718a7dabd0c9f1c75" prot="public" static="yes" mutable="no">
+        <type>Type[]</type>
+        <definition>Type [] ES3Internal.ES3Reflection.EmptyTypes</definition>
+        <argsstring></argsstring>
+        <name>EmptyTypes</name>
+        <qualifiedname>ES3Internal.ES3Reflection.EmptyTypes</qualifiedname>
+        <initializer>= new Type[0]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="26" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classES3Internal_1_1ES3Reflection_1ad21e811665fcb6bdb63478060dbfdae0" prot="private" static="yes" mutable="no">
+        <type>Assembly[]</type>
+        <definition>Assembly [] ES3Internal.ES3Reflection._assemblies</definition>
+        <argsstring></argsstring>
+        <name>_assemblies</name>
+        <qualifiedname>ES3Internal.ES3Reflection._assemblies</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="28" column="33" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classES3Internal_1_1ES3Reflection_1a8c5a03c7e9794037a27c27eef6589f64" prot="private" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Assembly[]</type>
+        <definition>Assembly [] ES3Internal.ES3Reflection.Assemblies</definition>
+        <argsstring></argsstring>
+        <name>Assemblies</name>
+        <qualifiedname>ES3Internal.ES3Reflection.Assemblies</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="29" column="33" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="30" bodyend="72"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a200231ee1ce566a1e11af4cd823fbc6c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ConstructorInfo</type>
+        <definition>static ConstructorInfo ES3Internal.ES3Reflection.GetConstructor</definition>
+        <argsstring>(Type type, Type[] parameters)</argsstring>
+        <name>GetConstructor</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetConstructor</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>Type[]</type>
+          <declname>parameters</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="74" column="39" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="74" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a2c7c379fcd191239557686f5700102fa" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Type[]</type>
+        <definition>static Type[] ES3Internal.ES3Reflection.GetElementTypes</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>GetElementTypes</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetElementTypes</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="83" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="83" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1aa70464a535458cfef7a3543199fc5641" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; FieldInfo &gt;</type>
+        <definition>static List&lt; FieldInfo &gt; ES3Internal.ES3Reflection.GetSerializableFields</definition>
+        <argsstring>(Type type, List&lt; FieldInfo &gt; serializableFields=null, bool safe=true, string[] memberNames=null, BindingFlags bindings=BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance|BindingFlags.Static|BindingFlags.DeclaredOnly)</argsstring>
+        <name>GetSerializableFields</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetSerializableFields</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>List&lt; FieldInfo &gt;</type>
+          <declname>serializableFields</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>safe</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>memberNames</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>BindingFlags</type>
+          <declname>bindings</declname>
+          <defval>BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance|BindingFlags.Static|BindingFlags.DeclaredOnly</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="93" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="93" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a1c270d8e96740a7169a4beb65e750694" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; PropertyInfo &gt;</type>
+        <definition>static List&lt; PropertyInfo &gt; ES3Internal.ES3Reflection.GetSerializableProperties</definition>
+        <argsstring>(Type type, List&lt; PropertyInfo &gt; serializableProperties=null, bool safe=true, string[] memberNames=null, BindingFlags bindings=BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance|BindingFlags.Static|BindingFlags.DeclaredOnly)</argsstring>
+        <name>GetSerializableProperties</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetSerializableProperties</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>List&lt; PropertyInfo &gt;</type>
+          <declname>serializableProperties</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>safe</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>memberNames</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>BindingFlags</type>
+          <declname>bindings</declname>
+          <defval>BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance|BindingFlags.Static|BindingFlags.DeclaredOnly</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="159" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="159" bodyend="238"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a3cd3a9861cd293152501b8a1e141a730" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3Reflection.TypeIsSerializable</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>TypeIsSerializable</name>
+        <qualifiedname>ES3Internal.ES3Reflection.TypeIsSerializable</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="240" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="240" bodyend="271"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a8feae10676176cd7b95a6c5b49911cc6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>System.Object</type>
+        <definition>static System.Object ES3Internal.ES3Reflection.CreateInstance</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CreateInstance</name>
+        <qualifiedname>ES3Internal.ES3Reflection.CreateInstance</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="273" column="36" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="273" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1aeb0f2326daa8e22858f3ee44d0703e1a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>System.Object</type>
+        <definition>static System.Object ES3Internal.ES3Reflection.CreateInstance</definition>
+        <argsstring>(Type type, params object[] args)</argsstring>
+        <name>CreateInstance</name>
+        <qualifiedname>ES3Internal.ES3Reflection.CreateInstance</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>params object[]</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="291" column="36" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="291" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1aa8ccb159d339259d0c63904d376c2b49" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Array</type>
+        <definition>static Array ES3Internal.ES3Reflection.ArrayCreateInstance</definition>
+        <argsstring>(Type type, int length)</argsstring>
+        <name>ArrayCreateInstance</name>
+        <qualifiedname>ES3Internal.ES3Reflection.ArrayCreateInstance</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="300" column="29" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="300" bodyend="303"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a52fb57e7d7fdc0affad97757b9fa172f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Array</type>
+        <definition>static Array ES3Internal.ES3Reflection.ArrayCreateInstance</definition>
+        <argsstring>(Type type, int[] dimensions)</argsstring>
+        <name>ArrayCreateInstance</name>
+        <qualifiedname>ES3Internal.ES3Reflection.ArrayCreateInstance</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>int[]</type>
+          <declname>dimensions</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="305" column="29" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="305" bodyend="308"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1afc1a511bfd466cbea5afe08d3fe37794" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Type</type>
+        <definition>static Type ES3Internal.ES3Reflection.MakeGenericType</definition>
+        <argsstring>(Type type, Type genericParam)</argsstring>
+        <name>MakeGenericType</name>
+        <qualifiedname>ES3Internal.ES3Reflection.MakeGenericType</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>genericParam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="310" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="310" bodyend="313"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a8fc1268fea11341e77da64a615d34bcd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structES3Internal_1_1ES3Reflection_1_1ES3ReflectedMember" kindref="compound">ES3ReflectedMember</ref>[]</type>
+        <definition>static ES3ReflectedMember[] ES3Internal.ES3Reflection.GetSerializableMembers</definition>
+        <argsstring>(Type type, bool safe=true, string[] memberNames=null)</argsstring>
+        <name>GetSerializableMembers</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetSerializableMembers</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>safe</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>memberNames</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="315" column="42" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="315" bodyend="330"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a960bf6fdc1bef82f3a702653d0f078f1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structES3Internal_1_1ES3Reflection_1_1ES3ReflectedMember" kindref="compound">ES3ReflectedMember</ref></type>
+        <definition>static ES3ReflectedMember ES3Internal.ES3Reflection.GetES3ReflectedProperty</definition>
+        <argsstring>(Type type, string propertyName)</argsstring>
+        <name>GetES3ReflectedProperty</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetES3ReflectedProperty</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>propertyName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="332" column="42" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="332" bodyend="336"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a1cf0bb6889b88fcf8a9c992f87438572" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structES3Internal_1_1ES3Reflection_1_1ES3ReflectedMember" kindref="compound">ES3ReflectedMember</ref></type>
+        <definition>static ES3ReflectedMember ES3Internal.ES3Reflection.GetES3ReflectedMember</definition>
+        <argsstring>(Type type, string fieldName)</argsstring>
+        <name>GetES3ReflectedMember</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetES3ReflectedMember</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>fieldName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="338" column="42" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="338" bodyend="342"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1ae9c011a5057ad04aaf3b9360680fcc15" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IList&lt; T &gt;</type>
+        <definition>static IList&lt; T &gt; ES3Internal.ES3Reflection.GetInstances&lt; T &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>GetInstances&lt; T &gt;</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetInstances&lt; T &gt;</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="348" column="9" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="348" bodyend="356"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a3ae6e2ebeda0c07dd4601e534eeab2d0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IList&lt; Type &gt;</type>
+        <definition>static IList&lt; Type &gt; ES3Internal.ES3Reflection.GetDerivedTypes</definition>
+        <argsstring>(Type derivedType)</argsstring>
+        <name>GetDerivedTypes</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetDerivedTypes</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>derivedType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="358" column="29" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="358" bodyend="367"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a56baea5506f74c60b92b1a0209ef0aca" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3Reflection.IsAssignableFrom</definition>
+        <argsstring>(Type a, Type b)</argsstring>
+        <name>IsAssignableFrom</name>
+        <qualifiedname>ES3Internal.ES3Reflection.IsAssignableFrom</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="369" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="369" bodyend="372"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a24e1a9729e9a1d0928a5ab8963498730" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Type</type>
+        <definition>static Type ES3Internal.ES3Reflection.GetGenericTypeDefinition</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>GetGenericTypeDefinition</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetGenericTypeDefinition</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="374" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="374" bodyend="377"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1ad43363cf4757f404ce9c04d38558234d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Type[]</type>
+        <definition>static Type[] ES3Internal.ES3Reflection.GetGenericArguments</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>GetGenericArguments</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetGenericArguments</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="379" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="379" bodyend="382"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a7ab2eb0c48a1102a37525ddd93285fef" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int ES3Internal.ES3Reflection.GetArrayRank</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>GetArrayRank</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetArrayRank</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="384" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="384" bodyend="387"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a99d157ae2011c192708e3afea5ecf675" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ES3Internal.ES3Reflection.GetAssemblyQualifiedName</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>GetAssemblyQualifiedName</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetAssemblyQualifiedName</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="389" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="389" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a788ea5b7b2ee6d6385a7f5fbf2fe2ed5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3Internal_1_1ES3Reflection_1_1ES3ReflectedMethod" kindref="compound">ES3ReflectedMethod</ref></type>
+        <definition>static ES3ReflectedMethod ES3Internal.ES3Reflection.GetMethod</definition>
+        <argsstring>(Type type, string methodName, Type[] genericParameters, Type[] parameterTypes)</argsstring>
+        <name>GetMethod</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetMethod</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>methodName</declname>
+        </param>
+        <param>
+          <type>Type[]</type>
+          <declname>genericParameters</declname>
+        </param>
+        <param>
+          <type>Type[]</type>
+          <declname>parameterTypes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="394" column="42" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="394" bodyend="397"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a92ccfcd896e3ccfdaaa23ebc1eb0826f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3Reflection.TypeIsArray</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>TypeIsArray</name>
+        <qualifiedname>ES3Internal.ES3Reflection.TypeIsArray</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="399" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="399" bodyend="402"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1ac2ee6bcdfcd0e80e03768bed821cd838" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Type</type>
+        <definition>static Type ES3Internal.ES3Reflection.GetElementType</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>GetElementType</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetElementType</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="404" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="404" bodyend="407"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a25da4a9f6dfabb99cfa330ba8602ba44" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3Reflection.IsAbstract</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>IsAbstract</name>
+        <qualifiedname>ES3Internal.ES3Reflection.IsAbstract</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="504" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="504" bodyend="507"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1ac8713e7c1ce8bc5153fc457b6ff3f4d7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3Reflection.IsInterface</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>IsInterface</name>
+        <qualifiedname>ES3Internal.ES3Reflection.IsInterface</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="509" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="509" bodyend="512"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a3c381ddb7c65a70db99aa66f40082986" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3Reflection.IsGenericType</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>IsGenericType</name>
+        <qualifiedname>ES3Internal.ES3Reflection.IsGenericType</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="514" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="514" bodyend="517"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1ad7356351f4ce26c8cab7d8eae235d013" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3Reflection.IsValueType</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>IsValueType</name>
+        <qualifiedname>ES3Internal.ES3Reflection.IsValueType</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="519" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="519" bodyend="522"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1ac736a5e74facc82e53162e8215c83cb5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3Reflection.IsEnum</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>IsEnum</name>
+        <qualifiedname>ES3Internal.ES3Reflection.IsEnum</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="524" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="524" bodyend="527"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1aecff1f4c2a312c22b6416f39098fe070" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3Reflection.HasParameterlessConstructor</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>HasParameterlessConstructor</name>
+        <qualifiedname>ES3Internal.ES3Reflection.HasParameterlessConstructor</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="529" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="529" bodyend="534"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1ad60fbba954bb3293ae34704da652ae6c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ConstructorInfo</type>
+        <definition>static ConstructorInfo ES3Internal.ES3Reflection.GetParameterlessConstructor</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>GetParameterlessConstructor</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetParameterlessConstructor</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="536" column="39" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="536" bodyend="544"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a50679afddc8864d6b26174015821b070" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ES3Internal.ES3Reflection.GetShortAssemblyQualifiedName</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>GetShortAssemblyQualifiedName</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetShortAssemblyQualifiedName</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="546" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="546" bodyend="551"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1ab10dbb74110b070321bec3a2e648f061" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>PropertyInfo</type>
+        <definition>static PropertyInfo ES3Internal.ES3Reflection.GetProperty</definition>
+        <argsstring>(Type type, string propertyName)</argsstring>
+        <name>GetProperty</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetProperty</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>propertyName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="553" column="36" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="553" bodyend="559"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a08c76f351e1d2d29a4f3e7ac9a1c9a62" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>FieldInfo</type>
+        <definition>static FieldInfo ES3Internal.ES3Reflection.GetField</definition>
+        <argsstring>(Type type, string fieldName)</argsstring>
+        <name>GetField</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetField</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>fieldName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="561" column="33" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="561" bodyend="567"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a2fa37b84839f003beb5cbbf2b74d29b9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>MethodInfo[]</type>
+        <definition>static MethodInfo[] ES3Internal.ES3Reflection.GetMethods</definition>
+        <argsstring>(Type type, string methodName)</argsstring>
+        <name>GetMethods</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetMethods</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>methodName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="569" column="34" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="569" bodyend="572"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a3c859e6107e5cdc74fdf08f8e48dddcf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3Reflection.IsPrimitive</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>IsPrimitive</name>
+        <qualifiedname>ES3Internal.ES3Reflection.IsPrimitive</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="574" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="574" bodyend="577"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1af75d9f48fe33d13824b46deeef6ba861" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3Reflection.AttributeIsDefined</definition>
+        <argsstring>(MemberInfo info, Type attributeType)</argsstring>
+        <name>AttributeIsDefined</name>
+        <qualifiedname>ES3Internal.ES3Reflection.AttributeIsDefined</qualifiedname>
+        <param>
+          <type>MemberInfo</type>
+          <declname>info</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>attributeType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="579" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="579" bodyend="582"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a1fbb49ce6b468863d697daf9ea7f217a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3Reflection.AttributeIsDefined</definition>
+        <argsstring>(Type type, Type attributeType)</argsstring>
+        <name>AttributeIsDefined</name>
+        <qualifiedname>ES3Internal.ES3Reflection.AttributeIsDefined</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>attributeType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="584" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="584" bodyend="587"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a577c00d121e369e7e1e58700d8a1cd3a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3Reflection.ImplementsInterface</definition>
+        <argsstring>(Type type, Type interfaceType)</argsstring>
+        <name>ImplementsInterface</name>
+        <qualifiedname>ES3Internal.ES3Reflection.ImplementsInterface</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>interfaceType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="589" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="589" bodyend="592"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1a2b01c6104bdec34ae095b524ce1b4ce6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Type</type>
+        <definition>static Type ES3Internal.ES3Reflection.BaseType</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>BaseType</name>
+        <qualifiedname>ES3Internal.ES3Reflection.BaseType</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="594" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="594" bodyend="597"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1aeaa3f5fd8ee45e1a9260b0dddb182473" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Type</type>
+        <definition>static Type ES3Internal.ES3Reflection.GetType</definition>
+        <argsstring>(string typeString)</argsstring>
+        <name>GetType</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetType</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>typeString</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="599" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="599" bodyend="658"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3Reflection_1aea85046acadf4a9edd01ee4d18b55eba" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ES3Internal.ES3Reflection.GetTypeString</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>GetTypeString</name>
+        <qualifiedname>ES3Internal.ES3Reflection.GetTypeString</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="660" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="660" bodyend="716"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>ES3Internal.ES3Reflection</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" line="12" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3Reflection.cs" bodystart="13" bodyend="798"/>
+    <listofallmembers>
+      <member refid="classES3Internal_1_1ES3Reflection_1ad21e811665fcb6bdb63478060dbfdae0" prot="private" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>_assemblies</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1aa8ccb159d339259d0c63904d376c2b49" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>ArrayCreateInstance</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a52fb57e7d7fdc0affad97757b9fa172f" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>ArrayCreateInstance</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a8c5a03c7e9794037a27c27eef6589f64" prot="private" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>Assemblies</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1af75d9f48fe33d13824b46deeef6ba861" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>AttributeIsDefined</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a1fbb49ce6b468863d697daf9ea7f217a" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>AttributeIsDefined</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a2b01c6104bdec34ae095b524ce1b4ce6" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>BaseType</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1ac68ec92a6113083c058606dc45d2736f" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>componentNameFieldName</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1aa983d9373fe8ac4ddd3c97ce98b575f3" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>componentTagFieldName</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a8feae10676176cd7b95a6c5b49911cc6" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>CreateInstance</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1aeb0f2326daa8e22858f3ee44d0703e1a" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>CreateInstance</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a584eccd1e71dbd4718a7dabd0c9f1c75" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>EmptyTypes</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a481eb51dd8cff7611dd38ada9a1470e3" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>es3NonSerializableAttributeType</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1aac4e7d9992619117d12a80b66398df8b" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>es3SerializableAttributeType</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1ab6dbb9bd4176313105ed8537766e0da0" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>excludedPropertyNames</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a7ab2eb0c48a1102a37525ddd93285fef" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetArrayRank</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a99d157ae2011c192708e3afea5ecf675" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetAssemblyQualifiedName</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a200231ee1ce566a1e11af4cd823fbc6c" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetConstructor</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a3ae6e2ebeda0c07dd4601e534eeab2d0" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetDerivedTypes</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1ac2ee6bcdfcd0e80e03768bed821cd838" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetElementType</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a2c7c379fcd191239557686f5700102fa" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetElementTypes</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a1cf0bb6889b88fcf8a9c992f87438572" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetES3ReflectedMember</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a960bf6fdc1bef82f3a702653d0f078f1" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetES3ReflectedProperty</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a08c76f351e1d2d29a4f3e7ac9a1c9a62" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetField</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1ad43363cf4757f404ce9c04d38558234d" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetGenericArguments</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a24e1a9729e9a1d0928a5ab8963498730" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetGenericTypeDefinition</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1ae9c011a5057ad04aaf3b9360680fcc15" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetInstances&lt; T &gt;</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a788ea5b7b2ee6d6385a7f5fbf2fe2ed5" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetMethod</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a2fa37b84839f003beb5cbbf2b74d29b9" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetMethods</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1ad60fbba954bb3293ae34704da652ae6c" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetParameterlessConstructor</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1ab10dbb74110b070321bec3a2e648f061" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetProperty</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1aa70464a535458cfef7a3543199fc5641" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetSerializableFields</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a8fc1268fea11341e77da64a615d34bcd" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetSerializableMembers</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a1c270d8e96740a7169a4beb65e750694" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetSerializableProperties</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a50679afddc8864d6b26174015821b070" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetShortAssemblyQualifiedName</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1aeaa3f5fd8ee45e1a9260b0dddb182473" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetType</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1aea85046acadf4a9edd01ee4d18b55eba" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>GetTypeString</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1aecff1f4c2a312c22b6416f39098fe070" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>HasParameterlessConstructor</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a577c00d121e369e7e1e58700d8a1cd3a" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>ImplementsInterface</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a25da4a9f6dfabb99cfa330ba8602ba44" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>IsAbstract</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a56baea5506f74c60b92b1a0209ef0aca" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>IsAssignableFrom</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1ac736a5e74facc82e53162e8215c83cb5" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>IsEnum</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a3c381ddb7c65a70db99aa66f40082986" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>IsGenericType</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1ac8713e7c1ce8bc5153fc457b6ff3f4d7" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>IsInterface</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a3c859e6107e5cdc74fdf08f8e48dddcf" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>IsPrimitive</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1ad7356351f4ce26c8cab7d8eae235d013" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>IsValueType</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1afc1a511bfd466cbea5afe08d3fe37794" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>MakeGenericType</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a2524980585da9fa4ba3370bf95b4dc2b" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>memberFieldPrefix</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a6b77e6518c7d144502f2d85c355974ec" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>nonSerializedAttributeType</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a83bd7d66555b219cef189ee69fa2f361" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>obsoleteAttributeType</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1aa07ad781ae390e3a2585b009658b50df" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>serializableAttributeType</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a59f5008c7fbeb1f7078081ec2d28eb9b" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>serializeFieldAttributeType</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a92ccfcd896e3ccfdaaa23ebc1eb0826f" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>TypeIsArray</name></member>
+      <member refid="classES3Internal_1_1ES3Reflection_1a3cd3a9861cd293152501b8a1e141a730" prot="public" virt="non-virtual"><scope>ES3Internal::ES3Reflection</scope><name>TypeIsSerializable</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

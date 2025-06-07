@@ -1,0 +1,2289 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classRoom" kind="class" language="C#" prot="public" abstract="yes">
+    <compoundname>Room</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref refid="interfaceIShipStatContributor" prot="public" virt="non-virtual">IShipStatContributor</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>TData</type>
+      </param>
+      <param>
+        <type>TLevel</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" prot="protected" static="no" mutable="no">
+        <type><ref refid="classRoomData" kindref="compound">RoomData</ref></type>
+        <definition>RoomData Room&lt; TData, TLevel &gt;.roomData</definition>
+        <argsstring></argsstring>
+        <name>roomData</name>
+        <qualifiedname>Room.roomData</qualifiedname>
+        <briefdescription>
+<para>방의 데이터 ScriptableObject 참조. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="12" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="12" bodyend="-1"/>
+        <referencedby refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" compoundref="Room_8cs" startline="168" endline="180">Room&lt; TData, TLevel &gt;.CopyFrom</referencedby>
+        <referencedby refid="classRoom_1a01e20c3f739d0ca0ba9fc8a9e21c1e7e" compoundref="Room_8cs" startline="361" endline="365">Room&lt; TData, TLevel &gt;.GetHealthPercentage</referencedby>
+        <referencedby refid="classRoom_1a1972222cfff89e533a64d4a3cb7a23a2" compoundref="Room_8cs" startline="470" endline="473">Room&lt; TData, TLevel &gt;.GetMaxHitPoints</referencedby>
+        <referencedby refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" compoundref="Room_8cs" startline="482" endline="488">Room&lt; TData, TLevel &gt;.GetOccupiedTiles</referencedby>
+        <referencedby refid="classRoom_1abe64553abf13aa2fe9d0d9c902c64383" compoundref="Room_8cs" startline="458" endline="461">Room&lt; TData, TLevel &gt;.GetPowerConsumption</referencedby>
+        <referencedby refid="classRoom_1a08dfe5c5a797aacad22c29926b3482e4" compoundref="Room_8cs" startline="123" endline="154">Room&lt; TData, TLevel &gt;.GetRotatedCrewEntryGridPriority</referencedby>
+        <referencedby refid="classRoom_1a20cd0655c331d88c7e1825abc51e9941" compoundref="Room_8cs" startline="464" endline="467">Room&lt; TData, TLevel &gt;.GetSize</referencedby>
+        <referencedby refid="classRoom_1a8533094cb230185cce7735d640d950f1" compoundref="Room_8cs" startline="370" endline="386">Room&lt; TData, TLevel &gt;.GetStatContributions</referencedby>
+        <referencedby refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" compoundref="Room_8cs" startline="285" endline="307">Room&lt; TData, TLevel &gt;.Initialize</referencedby>
+        <referencedby refid="classRoom_1ab0d240e0649b42fe9bec652095f91c35" compoundref="Room_8cs" startline="630" endline="651">Room&lt; TData, TLevel &gt;.Repair</referencedby>
+        <referencedby refid="classRoom_1a80feb09415e3acd9fc94d370f4b00efd" compoundref="Room_8cs" startline="70" endline="80">Room&lt; TData, TLevel &gt;.Start</referencedby>
+        <referencedby refid="classRoom_1a6a7d8be84106267b1036aa51645819a4" compoundref="Room_8cs" startline="597" endline="615">Room&lt; TData, TLevel &gt;.TakeDamage</referencedby>
+        <referencedby refid="classRoom_1a991f10d83518af889058b13763fd3e25" compoundref="Room_8cs" startline="748" endline="758">Room&lt; TData, TLevel &gt;.UpdateRoomLevelData</referencedby>
+        <referencedby refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" compoundref="Room_8cs" startline="523" endline="573">Room&lt; TData, TLevel &gt;.UpdateRoomVisual</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Room&lt; TData, TLevel &gt;.currentLevel</definition>
+        <argsstring></argsstring>
+        <name>currentLevel</name>
+        <qualifiedname>Room.currentLevel</qualifiedname>
+        <briefdescription>
+<para>현재 방의 업그레이드 레벨. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="18" column="19" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="18" bodyend="-1"/>
+        <referencedby refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" compoundref="Room_8cs" startline="168" endline="180">Room&lt; TData, TLevel &gt;.CopyFrom</referencedby>
+        <referencedby refid="classRoom_1ae14b08f3ba19cce81b077d6fefcb1fd5" compoundref="Room_8cs" startline="441" endline="444">Room&lt; TData, TLevel &gt;.GetCurrentLevel</referencedby>
+        <referencedby refid="classRoom_1a01e20c3f739d0ca0ba9fc8a9e21c1e7e" compoundref="Room_8cs" startline="361" endline="365">Room&lt; TData, TLevel &gt;.GetHealthPercentage</referencedby>
+        <referencedby refid="classRoom_1a1972222cfff89e533a64d4a3cb7a23a2" compoundref="Room_8cs" startline="470" endline="473">Room&lt; TData, TLevel &gt;.GetMaxHitPoints</referencedby>
+        <referencedby refid="classRoom_1a40ae5083a93abef5597e9a3f6fca5cce" compoundref="Room_8cs" startline="389" endline="406">Room&lt; TData, TLevel &gt;.GetNextLevelStatContributions</referencedby>
+        <referencedby refid="classRoom_1abe64553abf13aa2fe9d0d9c902c64383" compoundref="Room_8cs" startline="458" endline="461">Room&lt; TData, TLevel &gt;.GetPowerConsumption</referencedby>
+        <referencedby refid="classRoom_1a08dfe5c5a797aacad22c29926b3482e4" compoundref="Room_8cs" startline="123" endline="154">Room&lt; TData, TLevel &gt;.GetRotatedCrewEntryGridPriority</referencedby>
+        <referencedby refid="classRoom_1a20cd0655c331d88c7e1825abc51e9941" compoundref="Room_8cs" startline="464" endline="467">Room&lt; TData, TLevel &gt;.GetSize</referencedby>
+        <referencedby refid="classRoom_1a8533094cb230185cce7735d640d950f1" compoundref="Room_8cs" startline="370" endline="386">Room&lt; TData, TLevel &gt;.GetStatContributions</referencedby>
+        <referencedby refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" compoundref="Room_8cs" startline="285" endline="307">Room&lt; TData, TLevel &gt;.Initialize</referencedby>
+        <referencedby refid="classRoom_1ab0d240e0649b42fe9bec652095f91c35" compoundref="Room_8cs" startline="630" endline="651">Room&lt; TData, TLevel &gt;.Repair</referencedby>
+        <referencedby refid="classRoom_1a80feb09415e3acd9fc94d370f4b00efd" compoundref="Room_8cs" startline="70" endline="80">Room&lt; TData, TLevel &gt;.Start</referencedby>
+        <referencedby refid="classRoom_1a6a7d8be84106267b1036aa51645819a4" compoundref="Room_8cs" startline="597" endline="615">Room&lt; TData, TLevel &gt;.TakeDamage</referencedby>
+        <referencedby refid="classRoom_1a2114f1e3c7ce8957cb3ed170958ef84a" compoundref="Room_8cs" startline="246" endline="275">Room&lt; TData, TLevel &gt;.UpdateEffects</referencedby>
+        <referencedby refid="classRoom_1a991f10d83518af889058b13763fd3e25" compoundref="Room_8cs" startline="748" endline="758">Room&lt; TData, TLevel &gt;.UpdateRoomLevelData</referencedby>
+        <referencedby refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" compoundref="Room_8cs" startline="523" endline="573">Room&lt; TData, TLevel &gt;.UpdateRoomVisual</referencedby>
+        <referencedby refid="classRoom_1a6c701615ce6310e02a88483adf30c269" compoundref="Room_8cs" startline="409" endline="426">Room&lt; TData, TLevel &gt;.Upgrade</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1af01fdaf835b16d6b14c7fe6826e1229d" prot="protected" static="no" mutable="no">
+        <type>List&lt; <ref refid="classRoom" kindref="compound">Room</ref> &gt;</type>
+        <definition>List&lt;Room&gt; Room&lt; TData, TLevel &gt;.adjacentRooms</definition>
+        <argsstring></argsstring>
+        <name>adjacentRooms</name>
+        <qualifiedname>Room.adjacentRooms</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>인접한 방 리스트. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="30" column="21" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1a37ebb8fcc2b7d3c4188806c8c0391c4f" prot="protected" static="no" mutable="no">
+        <type>List&lt; <ref refid="classDoor" kindref="compound">Door</ref> &gt;</type>
+        <definition>List&lt;Door&gt; Room&lt; TData, TLevel &gt;.connectedDoors</definition>
+        <argsstring></argsstring>
+        <name>connectedDoors</name>
+        <qualifiedname>Room.connectedDoors</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>이 방에 연결된 문들 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="33" column="21" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1ace360cd5c592e435e52fcd081852376a" prot="protected" static="no" mutable="no">
+        <type>ParticleSystem</type>
+        <definition>ParticleSystem Room&lt; TData, TLevel &gt;.roomParticles</definition>
+        <argsstring></argsstring>
+        <name>roomParticles</name>
+        <qualifiedname>Room.roomParticles</qualifiedname>
+        <briefdescription>
+<para>방 작동 시 시각 효과 파티클. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="39" column="31" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="39" bodyend="-1"/>
+        <referencedby refid="classRoom_1a2114f1e3c7ce8957cb3ed170958ef84a" compoundref="Room_8cs" startline="246" endline="275">Room&lt; TData, TLevel &gt;.UpdateEffects</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1a4ebc536d98852ea45bd0d79b4bec8c58" prot="protected" static="no" mutable="no">
+        <type>AudioSource</type>
+        <definition>AudioSource Room&lt; TData, TLevel &gt;.roomSound</definition>
+        <argsstring></argsstring>
+        <name>roomSound</name>
+        <qualifiedname>Room.roomSound</qualifiedname>
+        <briefdescription>
+<para>방 작동 시 사운드 효과. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="42" column="28" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classRoom_1a2114f1e3c7ce8957cb3ed170958ef84a" compoundref="Room_8cs" startline="246" endline="275">Room&lt; TData, TLevel &gt;.UpdateEffects</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1aa79afbfb056fceca372b60e7b244805e" prot="protected" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer Room&lt; TData, TLevel &gt;.roomRenderer</definition>
+        <argsstring></argsstring>
+        <name>roomRenderer</name>
+        <qualifiedname>Room.roomRenderer</qualifiedname>
+        <briefdescription>
+<para>방의 시각적 렌더러. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="60" column="30" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="60" bodyend="-1"/>
+        <referencedby refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" compoundref="Room_8cs" startline="285" endline="307">Room&lt; TData, TLevel &gt;.Initialize</referencedby>
+        <referencedby refid="classRoom_1a2114f1e3c7ce8957cb3ed170958ef84a" compoundref="Room_8cs" startline="246" endline="275">Room&lt; TData, TLevel &gt;.UpdateEffects</referencedby>
+        <referencedby refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" compoundref="Room_8cs" startline="810" endline="816">Room&lt; TData, TLevel &gt;.UpdateRoomVisual</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1aef1c93f94f164ed3151ec3d3301a1988" prot="protected" static="no" mutable="no">
+        <type>TLevel</type>
+        <definition>TLevel Room&lt; TData, TLevel &gt;.currentRoomLevelData</definition>
+        <argsstring></argsstring>
+        <name>currentRoomLevelData</name>
+        <qualifiedname>Room.currentRoomLevelData</qualifiedname>
+        <briefdescription>
+<para>현재 방 레벨에 해당하는 데이터 캐시. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="732" column="22" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="732" bodyend="-1"/>
+        <referencedby refid="classRoom_1a1726ecaf3cf53bd576215060616ddc4f" compoundref="Room_8cs" startline="739" endline="742">Room&lt; TData, TLevel &gt;.GetCurrentLevelData</referencedby>
+        <referencedby refid="classRoom_1a991f10d83518af889058b13763fd3e25" compoundref="Room_8cs" startline="748" endline="758">Room&lt; TData, TLevel &gt;.UpdateRoomLevelData</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" prot="public" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int Room&lt; TData, TLevel &gt;.position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <qualifiedname>Room.position</qualifiedname>
+        <briefdescription>
+<para>격자상의 방 위치 (좌측 상단 기준). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="15" column="23" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="15" bodyend="-1"/>
+        <referencedby refid="classShip_1aab4fe1be95cb3831baab78a991022a64" compoundref="Ship_8cs" startline="290" endline="350">Ship.AddRoom</referencedby>
+        <referencedby refid="classShip_1a3f6de7ce410b83aac7286cef55a44b89" compoundref="Ship_8cs" startline="355" endline="362">Ship.AddRoomToGrid</referencedby>
+        <referencedby refid="classCrewMovementValidator_1a22d0bc7e909e7090b18c4956d997da22" compoundref="CrewMovementValidator_8cs" startline="110" endline="134">CrewMovementValidator.AreRoomsConnectedThroughDoors</referencedby>
+        <referencedby refid="classCombatManager_1aee060c280528f8f8ffcbd2b5e94dc91e" compoundref="CombatManager_8cs" startline="130" endline="191">CombatManager.BackToTheHome</referencedby>
+        <referencedby refid="classShip_1a31c7b02cf633306b7eca5136f1cd6cf8" compoundref="Ship_8cs" startline="527" endline="541">Ship.BackupAllCrews</referencedby>
+        <referencedby refid="classShip_1a24e7b7011b778b4c8c4aab0a12e90a3d" compoundref="Ship_8cs" startline="546" endline="568">Ship.BackupCurrentShip</referencedby>
+        <referencedby refid="classShipValidationHelper_1a11fc072a1eafd79fadee661b4af713a6" compoundref="ShipValidatonHelper_8cs" startline="212" endline="330">ShipValidationHelper.CheckAllRoomsPathConnectedByDoors</referencedby>
+        <referencedby refid="classShipValidationHelper_1a39d36df3f0a7878f35261c554c7b1574" compoundref="ShipValidatonHelper_8cs" startline="389" endline="471">ShipValidationHelper.CheckWeaponConnectivity</referencedby>
+        <referencedby refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" compoundref="Room_8cs" startline="168" endline="180">Room&lt; TData, TLevel &gt;.CopyFrom</referencedby>
+        <referencedby refid="classCrewMovementValidator_1a5f57c030a16c4ecb73d0ceb9e31a82e6" compoundref="CrewMovementValidator_8cs" startline="85" endline="104">CrewMovementValidator.CorridorRoomConnectionValid</referencedby>
+        <referencedby refid="classShipFactory_1a3c26f8bde8633e87fe1d7eaf140bc253" compoundref="ShipFactory_8cs" startline="40" endline="76">ShipFactory.CreateShipFromTemplate</referencedby>
+        <referencedby refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" compoundref="Room_8cs" startline="482" endline="488">Room&lt; TData, TLevel &gt;.GetOccupiedTiles</referencedby>
+        <referencedby refid="classRoom_1a08dfe5c5a797aacad22c29926b3482e4" compoundref="Room_8cs" startline="123" endline="154">Room&lt; TData, TLevel &gt;.GetRotatedCrewEntryGridPriority</referencedby>
+        <referencedby refid="classShip_1a47489ad4c41ad43fd449360be8475362" compoundref="Ship_8cs" startline="1568" endline="1597">Ship.MoveShipToFacingTargetShip</referencedby>
+        <referencedby refid="classShipCustomizationManager_1ad55b979e1fa9b5a0e4da27352c39523d" compoundref="ShipCustomizationManager_8cs" startline="140" endline="151">ShipCustomizationManager.PlaceSavedRoom</referencedby>
+        <referencedby refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" compoundref="Room_8cs" startline="523" endline="573">Room&lt; TData, TLevel &gt;.UpdateRoomVisual</referencedby>
+        <referencedby refid="classOuterHullSystem_1adb5a5b7d00fda59c275bbd594504a5a3" compoundref="OuterHullSystem_8cs" startline="93" endline="351">OuterHullSystem.UpdateVisuals</referencedby>
+        <referencedby refid="classShipValidationHelper_1a9111fff29a3ed831923e35aa76ba14be" compoundref="ShipValidatonHelper_8cs" startline="130" endline="204">ShipValidationHelper.ValidateWeaponAttachmentDirection</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1a3eda5d2a24f5e68c7cd376d50096cb4c" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Room&lt; TData, TLevel &gt;.currentHitPoints</definition>
+        <argsstring></argsstring>
+        <name>currentHitPoints</name>
+        <qualifiedname>Room.currentHitPoints</qualifiedname>
+        <briefdescription>
+<para>현재 체력. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="21" column="19" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="21" bodyend="-1"/>
+        <referencedby refid="classShip_1aa81d7cb291b541eb413c886ef5c2122d" compoundref="Ship_8cs" startline="202" endline="281">Ship.AddRoom</referencedby>
+        <referencedby refid="classCrewMember_1a1980132bc97845dc890766dadd559e00" compoundref="CrewMember_8cs" startline="613" endline="644">CrewMember.Attack</referencedby>
+        <referencedby refid="classShip_1a24e7b7011b778b4c8c4aab0a12e90a3d" compoundref="Ship_8cs" startline="546" endline="568">Ship.BackupCurrentShip</referencedby>
+        <referencedby refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CrewMember.CombatRoutine</referencedby>
+        <referencedby refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" compoundref="Room_8cs" startline="168" endline="180">Room&lt; TData, TLevel &gt;.CopyFrom</referencedby>
+        <referencedby refid="classRoom_1ae5954789763526a0437023ef85ff64c0" compoundref="Room_8cs" startline="657" endline="662">Room&lt; TData, TLevel &gt;.FullRepair</referencedby>
+        <referencedby refid="classRoom_1a01e20c3f739d0ca0ba9fc8a9e21c1e7e" compoundref="Room_8cs" startline="361" endline="365">Room&lt; TData, TLevel &gt;.GetHealthPercentage</referencedby>
+        <referencedby refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" compoundref="Room_8cs" startline="285" endline="307">Room&lt; TData, TLevel &gt;.Initialize</referencedby>
+        <referencedby refid="classShip_1a0296985d38306b6659dcdb12925f810c" compoundref="Ship_8cs" startline="516" endline="522">Ship.IsFullHitPoint</referencedby>
+        <referencedby refid="classRoom_1ab0d240e0649b42fe9bec652095f91c35" compoundref="Room_8cs" startline="630" endline="651">Room&lt; TData, TLevel &gt;.Repair</referencedby>
+        <referencedby refid="classRoom_1a6a7d8be84106267b1036aa51645819a4" compoundref="Room_8cs" startline="597" endline="615">Room&lt; TData, TLevel &gt;.TakeDamage</referencedby>
+        <referencedby refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" compoundref="EnemyController_8cs" startline="23" endline="122">EnemyController.Update</referencedby>
+        <referencedby refid="classEnemyController_1a6bc58726a9f2578687ec2385d3773271" compoundref="EnemyController_8cs" startline="128" endline="171">EnemyController.WhereToGo</referencedby>
+        <referencedby refid="classEnemyController_1a9bdea1a4318709cb950e066c8e4879c0" compoundref="EnemyController_8cs" startline="178" endline="197">EnemyController.WhereToGo</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1af4b97c8e2306beda35f26f8803734eb5" prot="public" static="no" mutable="no">
+        <type>RoomType</type>
+        <definition>RoomType Room&lt; TData, TLevel &gt;.roomType</definition>
+        <argsstring></argsstring>
+        <name>roomType</name>
+        <qualifiedname>Room.roomType</qualifiedname>
+        <briefdescription>
+<para>방의 타입. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="24" column="21" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="24" bodyend="-1"/>
+        <referencedby refid="classCrewSystem_1a5b59e65fd0e697d23dcab8598f9a7516" compoundref="CrewSystem_8cs" startline="48" endline="101">CrewSystem.AddCrew</referencedby>
+        <referencedby refid="classCrewMovementValidator_1a2601f8804be2724ebbc26651d3ee8de3" compoundref="CrewMovementValidator_8cs" startline="42" endline="64">CrewMovementValidator.AreTilesConnected</referencedby>
+        <referencedby refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" compoundref="Room_8cs" startline="168" endline="180">Room&lt; TData, TLevel &gt;.CopyFrom</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">CrewMember.FollowPathCoroutine</referencedby>
+        <referencedby refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" compoundref="Room_8cs" startline="285" endline="307">Room&lt; TData, TLevel &gt;.Initialize</referencedby>
+        <referencedby refid="classRoom_1a33bb9ff12585bbc75833a118ffab2eb0" compoundref="Room_8cs" startline="185" endline="210">Room&lt; TData, TLevel &gt;.InitializeIsDamageable</referencedby>
+        <referencedby refid="classShipCustomizationManager_1ad55b979e1fa9b5a0e4da27352c39523d" compoundref="ShipCustomizationManager_8cs" startline="140" endline="151">ShipCustomizationManager.PlaceSavedRoom</referencedby>
+        <referencedby refid="classShip_1ae75b7654ffda7bb8096c0054cdacc8b0" compoundref="Ship_8cs" startline="438" endline="469">Ship.RemoveRoom</referencedby>
+        <referencedby refid="classCrewSystem_1ad3044664f70376b994206ccfed121df3" compoundref="CrewSystem_8cs" startline="232" endline="300">CrewSystem.RestoreCrewAfterBuild</referencedby>
+        <referencedby refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" compoundref="EnemyController_8cs" startline="23" endline="122">EnemyController.Update</referencedby>
+        <referencedby refid="classEnemyController_1a9bdea1a4318709cb950e066c8e4879c0" compoundref="EnemyController_8cs" startline="178" endline="197">EnemyController.WhereToGo</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1ae1f89a83229215231d726691043898c6" prot="public" static="no" mutable="no">
+        <type>Constants.Rotations.Rotation</type>
+        <definition>Constants.Rotations.Rotation Room&lt; TData, TLevel &gt;.currentRotation</definition>
+        <argsstring></argsstring>
+        <name>currentRotation</name>
+        <qualifiedname>Room.currentRotation</qualifiedname>
+        <briefdescription>
+<para>방의 현재 회전 값 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="36" column="40" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="36" bodyend="-1"/>
+        <referencedby refid="classShip_1aab4fe1be95cb3831baab78a991022a64" compoundref="Ship_8cs" startline="290" endline="350">Ship.AddRoom</referencedby>
+        <referencedby refid="classShip_1a3f6de7ce410b83aac7286cef55a44b89" compoundref="Ship_8cs" startline="355" endline="362">Ship.AddRoomToGrid</referencedby>
+        <referencedby refid="classCrewMovementValidator_1a22d0bc7e909e7090b18c4956d997da22" compoundref="CrewMovementValidator_8cs" startline="110" endline="134">CrewMovementValidator.AreRoomsConnectedThroughDoors</referencedby>
+        <referencedby refid="classShip_1a24e7b7011b778b4c8c4aab0a12e90a3d" compoundref="Ship_8cs" startline="546" endline="568">Ship.BackupCurrentShip</referencedby>
+        <referencedby refid="classShipValidationHelper_1a11fc072a1eafd79fadee661b4af713a6" compoundref="ShipValidatonHelper_8cs" startline="212" endline="330">ShipValidationHelper.CheckAllRoomsPathConnectedByDoors</referencedby>
+        <referencedby refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" compoundref="Room_8cs" startline="168" endline="180">Room&lt; TData, TLevel &gt;.CopyFrom</referencedby>
+        <referencedby refid="classCrewMovementValidator_1a5f57c030a16c4ecb73d0ceb9e31a82e6" compoundref="CrewMovementValidator_8cs" startline="85" endline="104">CrewMovementValidator.CorridorRoomConnectionValid</referencedby>
+        <referencedby refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" compoundref="Room_8cs" startline="482" endline="488">Room&lt; TData, TLevel &gt;.GetOccupiedTiles</referencedby>
+        <referencedby refid="classRoom_1a08dfe5c5a797aacad22c29926b3482e4" compoundref="Room_8cs" startline="123" endline="154">Room&lt; TData, TLevel &gt;.GetRotatedCrewEntryGridPriority</referencedby>
+        <referencedby refid="classTradingItem_1adfd8fadad54e04959bd664292f2eebcb" compoundref="TradingItem_8cs" startline="183" endline="213">TradingItem.Rotate</referencedby>
+        <referencedby refid="classCrewMember_1a4786d3c0560290a9558f6420dc3304b3" compoundref="CrewMember_8cs" startline="1010" endline="1038">CrewMember.TryWork</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a24df3d8f7b20e55db8da65dd18bfa309" compoundref="TradingItemDragHandler_8cs" startline="281" endline="300">TradingItemDragHandler.UpdatePreviewBoxSprite</referencedby>
+        <referencedby refid="classOuterHullSystem_1adb5a5b7d00fda59c275bbd594504a5a3" compoundref="OuterHullSystem_8cs" startline="93" endline="351">OuterHullSystem.UpdateVisuals</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1affffb06a79e9b46c4f77067bf8854e91" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="classCrewMember" kindref="compound">CrewMember</ref> &gt;</type>
+        <definition>List&lt;CrewMember&gt; Room&lt; TData, TLevel &gt;.crewInRoom</definition>
+        <argsstring></argsstring>
+        <name>crewInRoom</name>
+        <qualifiedname>Room.crewInRoom</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>현재 방에 존재하는 선원 목록. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="48" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classRoom_1ad765678a93134a51ff5fb6006ea24ba4" compoundref="Room_8cs" startline="310" endline="313">Room&lt; TData, TLevel &gt;.GetCrewCount</referencedby>
+        <referencedby refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" compoundref="Room_8cs" startline="285" endline="307">Room&lt; TData, TLevel &gt;.Initialize</referencedby>
+        <referencedby refid="classRoom_1a577bbc93f6479096f0d4bedd6cefc26e" compoundref="Room_8cs" startline="104" endline="108">Room&lt; TData, TLevel &gt;.OnCrewEnter</referencedby>
+        <referencedby refid="classRoom_1a406fb69e32ccf550c344f0d335eac2e9" compoundref="Room_8cs" startline="113" endline="117">Room&lt; TData, TLevel &gt;.OnCrewExit</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1a060d1169bcb74a2884762dcade03711b" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Room&lt; TData, TLevel &gt;.isActive</definition>
+        <argsstring></argsstring>
+        <name>isActive</name>
+        <qualifiedname>Room.isActive</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>방이 활성화되어 있는지 여부. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="51" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="51" bodyend="-1"/>
+        <referencedby refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" compoundref="Room_8cs" startline="168" endline="180">Room&lt; TData, TLevel &gt;.CopyFrom</referencedby>
+        <referencedby refid="classRoom_1af15fefedd48a2009da56d461a9084ed8" compoundref="Room_8cs" startline="324" endline="336">Room&lt; TData, TLevel &gt;.IsOperational</referencedby>
+        <referencedby refid="classRoom_1a1e5e6fe3b3c473bd0a08582f9017681d" compoundref="Room_8cs" startline="666" endline="673">Room&lt; TData, TLevel &gt;.OnDisabled</referencedby>
+        <referencedby refid="classCrewMember_1a4786d3c0560290a9558f6420dc3304b3" compoundref="CrewMember_8cs" startline="1010" endline="1038">CrewMember.TryWork</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1a9809153e49cfcdcf4f82841e9646fbb5" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Room&lt; TData, TLevel &gt;.isPowered</definition>
+        <argsstring></argsstring>
+        <name>isPowered</name>
+        <qualifiedname>Room.isPowered</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>전력이 공급되고 있는지 여부. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="54" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="54" bodyend="-1"/>
+        <referencedby refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" compoundref="Room_8cs" startline="168" endline="180">Room&lt; TData, TLevel &gt;.CopyFrom</referencedby>
+        <referencedby refid="classRoom_1aa7705fc23f6da23ba58ede843bf53b69" compoundref="Room_8cs" startline="228" endline="231">Room&lt; TData, TLevel &gt;.GetIsPowered</referencedby>
+        <referencedby refid="classRoom_1af15fefedd48a2009da56d461a9084ed8" compoundref="Room_8cs" startline="324" endline="336">Room&lt; TData, TLevel &gt;.IsOperational</referencedby>
+        <referencedby refid="classRoom_1a380de06eaf2c762679b65903782b173e" compoundref="Room_8cs" startline="342" endline="348">Room&lt; TData, TLevel &gt;.SetPowerStatus</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1aa05e3822e244ed8eb13561735a142fae" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Room&lt; TData, TLevel &gt;.isPowerRequested</definition>
+        <argsstring></argsstring>
+        <name>isPowerRequested</name>
+        <qualifiedname>Room.isPowerRequested</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>전력 공급이 요청되었는지 여부. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="57" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="57" bodyend="-1"/>
+        <referencedby refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" compoundref="Room_8cs" startline="168" endline="180">Room&lt; TData, TLevel &gt;.CopyFrom</referencedby>
+        <referencedby refid="classRoom_1a8d86301d093a96f051430de0c474be64" compoundref="Room_8cs" startline="234" endline="237">Room&lt; TData, TLevel &gt;.GetIsPowerRequested</referencedby>
+        <referencedby refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" compoundref="Room_8cs" startline="285" endline="307">Room&lt; TData, TLevel &gt;.Initialize</referencedby>
+        <referencedby refid="classRoom_1af15fefedd48a2009da56d461a9084ed8" compoundref="Room_8cs" startline="324" endline="336">Room&lt; TData, TLevel &gt;.IsOperational</referencedby>
+        <referencedby refid="classRoom_1a380de06eaf2c762679b65903782b173e" compoundref="Room_8cs" startline="342" endline="348">Room&lt; TData, TLevel &gt;.SetPowerStatus</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1a1aee33b995a9498a806590785f5edd37" prot="public" static="no" mutable="no">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship Room&lt; TData, TLevel &gt;.parentShip</definition>
+        <argsstring></argsstring>
+        <name>parentShip</name>
+        <qualifiedname>Room.parentShip</qualifiedname>
+        <briefdescription>
+<para>소속된 <ref refid="classShip" kindref="compound">Ship</ref> 참조. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="63" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="63" bodyend="-1"/>
+        <referencedby refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" compoundref="Room_8cs" startline="285" endline="307">Room&lt; TData, TLevel &gt;.Initialize</referencedby>
+        <referencedby refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" compoundref="Room_8cs" startline="523" endline="573">Room&lt; TData, TLevel &gt;.UpdateRoomVisual</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1a7cc8f566f2f7b8810472e4f682a34776" prot="public" static="no" mutable="no">
+        <type>DamageLevel</type>
+        <definition>DamageLevel Room&lt; TData, TLevel &gt;.damageCondition</definition>
+        <argsstring></argsstring>
+        <name>damageCondition</name>
+        <qualifiedname>Room.damageCondition</qualifiedname>
+        <initializer>= DamageLevel.good</initializer>
+        <briefdescription>
+<para>데미지 입은 정도 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>summary&gt; 수리가 필요한 상태인지 확인합니다. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="580" column="24" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="580" bodyend="-1"/>
+        <referencedby refid="classRoom_1ae5954789763526a0437023ef85ff64c0" compoundref="Room_8cs" startline="657" endline="662">Room&lt; TData, TLevel &gt;.FullRepair</referencedby>
+        <referencedby refid="classRoom_1af15fefedd48a2009da56d461a9084ed8" compoundref="Room_8cs" startline="324" endline="336">Room&lt; TData, TLevel &gt;.IsOperational</referencedby>
+        <referencedby refid="classRoom_1ab0d240e0649b42fe9bec652095f91c35" compoundref="Room_8cs" startline="630" endline="651">Room&lt; TData, TLevel &gt;.Repair</referencedby>
+        <referencedby refid="classRoom_1a6a7d8be84106267b1036aa51645819a4" compoundref="Room_8cs" startline="597" endline="615">Room&lt; TData, TLevel &gt;.TakeDamage</referencedby>
+        <referencedby refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" compoundref="Room_8cs" startline="523" endline="573">Room&lt; TData, TLevel &gt;.UpdateRoomVisual</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1a08bfe2fcb01f8857b0aa420d3eb08629" prot="public" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int Room&lt; TData, TLevel &gt;.workDirection</definition>
+        <argsstring></argsstring>
+        <name>workDirection</name>
+        <qualifiedname>Room.workDirection</qualifiedname>
+        <briefdescription>
+<para>작업 방향 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="680" column="23" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="680" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1a4786d3c0560290a9558f6420dc3304b3" compoundref="CrewMember_8cs" startline="1010" endline="1038">CrewMember.TryWork</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classRoom_1a24960b1e2c71b53be23ae7869efc13ed" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Room&lt; TData, TLevel &gt;.isDamageable</definition>
+        <argsstring></argsstring>
+        <name>isDamageable</name>
+        <qualifiedname>Room.isDamageable</qualifiedname>
+        <briefdescription>
+<para>이 방이 데미지를 받을 수 있는지 여부. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="27" column="18" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="27" bodyend="-1"/>
+        <referencedby refid="classRoom_1aca10cd460fc622d1f4b968092676be31" compoundref="Room_8cs" startline="240" endline="243">Room&lt; TData, TLevel &gt;.GetIsDamageable</referencedby>
+        <referencedby refid="classRoom_1a33bb9ff12585bbc75833a118ffab2eb0" compoundref="Room_8cs" startline="185" endline="210">Room&lt; TData, TLevel &gt;.InitializeIsDamageable</referencedby>
+        <referencedby refid="classRoom_1a6a7d8be84106267b1036aa51645819a4" compoundref="Room_8cs" startline="597" endline="615">Room&lt; TData, TLevel &gt;.TakeDamage</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1a6929cc191f3db9e3a91dd63471d16b52" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer Room&lt; TData, TLevel &gt;.icon</definition>
+        <argsstring></argsstring>
+        <name>icon</name>
+        <qualifiedname>Room.icon</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="65" column="29" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1a72e1611197e04fa7551053bd7ccfc03f" prot="private" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int Room&lt; TData, TLevel &gt;.gridSize</definition>
+        <argsstring></argsstring>
+        <name>gridSize</name>
+        <qualifiedname>Room.gridSize</qualifiedname>
+        <initializer>= new(2, 2)</initializer>
+        <briefdescription>
+<para>방의 그리드 크기 (에디터 전용). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="476" column="24" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="476" bodyend="-1"/>
+        <referencedby refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" compoundref="Room_8cs" startline="285" endline="307">Room&lt; TData, TLevel &gt;.Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoom_1aec241c5a07916a9111693829049be457" prot="private" static="no" mutable="no">
+        <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+        <definition>CrewMember Room&lt; TData, TLevel &gt;._workingCrew</definition>
+        <argsstring></argsstring>
+        <name>_workingCrew</name>
+        <qualifiedname>Room._workingCrew</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="682" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="682" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="event">
+      <memberdef kind="event" id="classRoom_1ae35a0c0556a10493e8e52a5f8cd325b9" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action&lt; <ref refid="classRoom" kindref="compound">Room</ref> &gt;</type>
+        <definition>Action&lt;Room&gt; Room&lt; TData, TLevel &gt;.OnRoomStateChanged</definition>
+        <argsstring></argsstring>
+        <name>OnRoomStateChanged</name>
+        <qualifiedname>Room.OnRoomStateChanged</qualifiedname>
+        <briefdescription>
+<para>방의 상태가 변경되었을 때 호출되는 이벤트. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="45" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classRoom_1a24a2b295f97d7b3d6efbe51b8f865415" compoundref="Room_8cs" startline="429" endline="438">Room&lt; TData, TLevel &gt;.NotifyStateChanged</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classRoom_1a1696a3012c809991479cef579c82c8d3" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+        <definition>CrewMember Room&lt; TData, TLevel &gt;.workingCrew</definition>
+        <argsstring></argsstring>
+        <name>workingCrew</name>
+        <qualifiedname>Room.workingCrew</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="684" column="23" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="685" bodyend="693"/>
+      </memberdef>
+      <memberdef kind="property" id="classRoom_1a2ceb9fa0e776c6956db8ad2fc1001f8d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>new TData</type>
+        <definition>new TData Room&lt; TData, TLevel &gt;.roomData</definition>
+        <argsstring></argsstring>
+        <name>roomData</name>
+        <qualifiedname>Room.roomData</qualifiedname>
+        <briefdescription>
+<para>방의 RoomData를 명확한 제네릭 타입으로 재정의한 프로퍼티. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="723" column="22" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="724" bodyend="727"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classRoom_1a80feb09415e3acd9fc94d370f4b00efd" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Room&lt; TData, TLevel &gt;.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>Room.Start</qualifiedname>
+        <reimplementedby refid="classAmmunitionRoom_1a1f9cf474eb3af117a372572ce7d742a9">Start</reimplementedby>
+        <reimplementedby refid="classCockpitRoom_1ac6ea0f6d29c83c0c8a6dcec04ef7c3c0">Start</reimplementedby>
+        <reimplementedby refid="classCorridorRoom_1acd357df24644faf39fd65d46308cb33e">Start</reimplementedby>
+        <reimplementedby refid="classCrewQuartersRoom_1ad24a0ea1cb715e1fa66ce84395574f1d">Start</reimplementedby>
+        <reimplementedby refid="classEngineRoom_1aeea9268c8d5f11727bcbb2eb49fb7d5e">Start</reimplementedby>
+        <reimplementedby refid="classLifeSupportRoom_1a63bab8f49d7ea84d8865f3ca73fc05c5">Start</reimplementedby>
+        <reimplementedby refid="classMedBayRoom_1a1a5326a5d7607d4f2597dabe26430274">Start</reimplementedby>
+        <reimplementedby refid="classOxygenRoom_1a3aa974d0a6c0236ce9b00e0483026523">Start</reimplementedby>
+        <reimplementedby refid="classPowerRoom_1a3a03666f08696597476f0b9d0a7ad9c4">Start</reimplementedby>
+        <reimplementedby refid="classShieldRoom_1aaef34ee535d24795ccd9a6368e6cca4f">Start</reimplementedby>
+        <reimplementedby refid="classStorageRoomAnimal_1a5ec7bc5242606bef11d6d89bb788481a">Start</reimplementedby>
+        <reimplementedby refid="classStorageRoomBase_1a63e5e32e885160725acef465d584a722">Start</reimplementedby>
+        <reimplementedby refid="classStorageRoomRegular_1a23335cf90c1e7785db49a6a97b63cce1">Start</reimplementedby>
+        <reimplementedby refid="classStorageRoomTemperature_1a7330e304e88f963e1b8e43a82b71b9bb">Start</reimplementedby>
+        <reimplementedby refid="classTeleportRoom_1af13ea2a84a5ca7a9c92da15a50e9af30">Start</reimplementedby>
+        <reimplementedby refid="classWeaponControlRoom_1ab702117801a74c197a253d1b50114bfe">Start</reimplementedby>
+        <briefdescription>
+<para>각 방에 collider 추가, isTrigger = true 설정을 통해 선원 충돌 방해 제거 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="70" column="28" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="70" bodyend="80"/>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a8294d108ea218dff21d0d30a87c8c8af" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Room&lt; TData, TLevel &gt;.UpdateRoom</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateRoom</name>
+        <qualifiedname>Room.UpdateRoom</qualifiedname>
+        <reimplementedby refid="classStorageRoomTemperature_1a7e7cced7542f8bcc596b96547e4bcc71">UpdateRoom</reimplementedby>
+        <briefdescription>
+<para>방의 상태를 매 프레임 업데이트합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="159" column="28" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="159" bodyend="162"/>
+        <referencedby refid="classRoom_1a6e79c14d19329e74985711e03caaa1fa" compoundref="Room_8cs" startline="85" endline="88">Room&lt; TData, TLevel &gt;.Update</referencedby>
+        <referencedby refid="classRoom_1a6c701615ce6310e02a88483adf30c269" compoundref="Room_8cs" startline="409" endline="426">Room&lt; TData, TLevel &gt;.Upgrade</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a2114f1e3c7ce8957cb3ed170958ef84a" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Room&lt; TData, TLevel &gt;.UpdateEffects</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateEffects</name>
+        <qualifiedname>Room.UpdateEffects</qualifiedname>
+        <briefdescription>
+<para>방의 이펙트(색상, 파티클 등)를 업데이트합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="246" column="28" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="246" bodyend="275"/>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoom_1af15fefedd48a2009da56d461a9084ed8" compoundref="Room_8cs" startline="324" endline="336">Room&lt; TData, TLevel &gt;.IsOperational</references>
+        <references refid="classRoom_1ace360cd5c592e435e52fcd081852376a" compoundref="Room_8cs" startline="39">Room&lt; TData, TLevel &gt;.roomParticles</references>
+        <references refid="classRoom_1aa79afbfb056fceca372b60e7b244805e" compoundref="Room_8cs" startline="60">Room&lt; TData, TLevel &gt;.roomRenderer</references>
+        <references refid="classRoom_1a4ebc536d98852ea45bd0d79b4bec8c58" compoundref="Room_8cs" startline="42">Room&lt; TData, TLevel &gt;.roomSound</references>
+        <referencedby refid="classRoom_1a380de06eaf2c762679b65903782b173e" compoundref="Room_8cs" startline="342" endline="348">Room&lt; TData, TLevel &gt;.SetPowerStatus</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a1e5e6fe3b3c473bd0a08582f9017681d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Room&lt; TData, TLevel &gt;.OnDisabled</definition>
+        <argsstring>()</argsstring>
+        <name>OnDisabled</name>
+        <qualifiedname>Room.OnDisabled</qualifiedname>
+        <briefdescription>
+<para>방이 작동 불능 상태가 되었을 때 호출됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="666" column="28" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="666" bodyend="673"/>
+        <references refid="classRoom_1a060d1169bcb74a2884762dcade03711b" compoundref="Room_8cs" startline="51">Room&lt; TData, TLevel &gt;.isActive</references>
+        <references refid="classRoom_1a24a2b295f97d7b3d6efbe51b8f865415" compoundref="Room_8cs" startline="429" endline="438">Room&lt; TData, TLevel &gt;.NotifyStateChanged</references>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a991f10d83518af889058b13763fd3e25" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Room&lt; TData, TLevel &gt;.UpdateRoomLevelData</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateRoomLevelData</name>
+        <qualifiedname>Room.UpdateRoomLevelData</qualifiedname>
+        <briefdescription>
+<para>레벨 데이터 캐시를 갱신합니다. roomData에서 현재 레벨에 맞는 데이터를 가져오고, 시각적 요소도 함께 갱신됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="748" column="28" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="748" bodyend="758"/>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoom_1aef1c93f94f164ed3151ec3d3301a1988" compoundref="Room_8cs" startline="732">Room&lt; TData, TLevel &gt;.currentRoomLevelData</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <references refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" compoundref="Room_8cs" startline="523" endline="573">Room&lt; TData, TLevel &gt;.UpdateRoomVisual</references>
+        <referencedby refid="classRoom_1a94cfcdc89bdf504daf55290d1437d1ad" compoundref="Room_8cs" startline="789" endline="805">Room&lt; TData, TLevel &gt;.Initialize</referencedby>
+        <referencedby refid="classRoom_1a48e9fcd083d5f11c6dfca873960fd3c5" compoundref="Room_8cs" startline="763" endline="773">Room&lt; TData, TLevel &gt;.Start</referencedby>
+        <referencedby refid="classRoom_1a2f0a2ecde33aaee53ca649d85a5b8e8b" compoundref="Room_8cs" startline="779" endline="784">Room&lt; TData, TLevel &gt;.Upgrade</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a48e9fcd083d5f11c6dfca873960fd3c5" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void Room&lt; TData, TLevel &gt;.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>Room.Start</qualifiedname>
+        <briefdescription>
+<para>Start 시 roomData가 유효하다면 초기화 및 레벨 데이터 갱신을 수행합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="763" column="29" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="763" bodyend="773"/>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <references refid="classRoom_1a991f10d83518af889058b13763fd3e25" compoundref="Room_8cs" startline="748" endline="758">Room&lt; TData, TLevel &gt;.UpdateRoomLevelData</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classRoom_1a6e79c14d19329e74985711e03caaa1fa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Room&lt; TData, TLevel &gt;.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>Room.Update</qualifiedname>
+        <reimplementedby refid="classMedBayRoom_1abbbb914b1e061f0d720012883375a24d">Update</reimplementedby>
+        <briefdescription>
+<para>매 프레임마다 방의 상태를 업데이트합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="85" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="85" bodyend="88"/>
+        <references refid="classRoom_1a8294d108ea218dff21d0d30a87c8c8af" compoundref="Room_8cs" startline="159" endline="162">Room&lt; TData, TLevel &gt;.UpdateRoom</references>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a2f522cbb9b82a376036ece6c852ed93c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Room&lt; TData, TLevel &gt;.CanBePlaced</definition>
+        <argsstring>(Vector2Int newPosition, Ship ship)</argsstring>
+        <name>CanBePlaced</name>
+        <qualifiedname>Room.CanBePlaced</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>newPosition</declname>
+        </param>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>방이 배치 가능한 위치인지 검사합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>newPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>새 위치.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>함선 참조.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="95" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="95" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a577bbc93f6479096f0d4bedd6cefc26e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Room&lt; TData, TLevel &gt;.OnCrewEnter</definition>
+        <argsstring>(CrewMember crew)</argsstring>
+        <name>OnCrewEnter</name>
+        <qualifiedname>Room.OnCrewEnter</qualifiedname>
+        <reimplementedby refid="classTeleportRoom_1a5a020e507d95397b1978b4d0484afb4b">OnCrewEnter</reimplementedby>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crew</declname>
+        </param>
+        <briefdescription>
+<para>선원이 방에 진입할 때 호출됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="104" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="104" bodyend="108"/>
+        <references refid="classRoom_1affffb06a79e9b46c4f77067bf8854e91" compoundref="Room_8cs" startline="48">Room&lt; TData, TLevel &gt;.crewInRoom</references>
+        <referencedby refid="classCrewSystem_1a5b59e65fd0e697d23dcab8598f9a7516" compoundref="CrewSystem_8cs" startline="48" endline="101">CrewSystem.AddCrew</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">CrewMember.FollowPathCoroutine</referencedby>
+        <referencedby refid="classCrewSystem_1ad3044664f70376b994206ccfed121df3" compoundref="CrewSystem_8cs" startline="232" endline="300">CrewSystem.RestoreCrewAfterBuild</referencedby>
+        <referencedby refid="classCrewMember_1a508cdfced903ba8a7c2f9a5ebfe9927e" compoundref="CrewMember_8cs" startline="1137" endline="1277">CrewMember.TeleportAfterDelay</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a406fb69e32ccf550c344f0d335eac2e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Room&lt; TData, TLevel &gt;.OnCrewExit</definition>
+        <argsstring>(CrewMember crew)</argsstring>
+        <name>OnCrewExit</name>
+        <qualifiedname>Room.OnCrewExit</qualifiedname>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crew</declname>
+        </param>
+        <briefdescription>
+<para>선원이 방에서 나갈 때 호출됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="113" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="113" bodyend="117"/>
+        <references refid="classRoom_1affffb06a79e9b46c4f77067bf8854e91" compoundref="Room_8cs" startline="48">Room&lt; TData, TLevel &gt;.crewInRoom</references>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a08dfe5c5a797aacad22c29926b3482e4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>List&lt; Vector2Int &gt; Room&lt; TData, TLevel &gt;.GetRotatedCrewEntryGridPriority</definition>
+        <argsstring>()</argsstring>
+        <name>GetRotatedCrewEntryGridPriority</name>
+        <qualifiedname>Room.GetRotatedCrewEntryGridPriority</qualifiedname>
+        <briefdescription>
+<para>방의 우선순위 타일에 따른 그리드에서의 위치 반환 (회전각 적용) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="123" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="123" bodyend="154"/>
+        <references refid="classRoomData_1_1RoomLevel_1acc34e5ad62947c93d015c06f8fc23b16" compoundref="RoomData_8cs" startline="102">RoomData&lt; T &gt;.RoomLevel.crewEntryGridPriority</references>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoom_1ae1f89a83229215231d726691043898c6" compoundref="Room_8cs" startline="36">Room&lt; TData, TLevel &gt;.currentRotation</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" compoundref="Room_8cs" startline="15">Room&lt; TData, TLevel &gt;.position</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <referencedby refid="classCrewSystem_1a5b59e65fd0e697d23dcab8598f9a7516" compoundref="CrewSystem_8cs" startline="48" endline="101">CrewSystem.AddCrew</referencedby>
+        <referencedby refid="classCrewMember_1adf2ef6b08d0e224b1b592ee7f68a1d39" compoundref="CrewMember_8cs" startline="229" endline="236">CrewMember.GetCurrentTilePriorityIndex</referencedby>
+        <referencedby refid="classCrewSystem_1ad3044664f70376b994206ccfed121df3" compoundref="CrewSystem_8cs" startline="232" endline="300">CrewSystem.RestoreCrewAfterBuild</referencedby>
+        <referencedby refid="classCrewMember_1a508cdfced903ba8a7c2f9a5ebfe9927e" compoundref="CrewMember_8cs" startline="1137" endline="1277">CrewMember.TeleportAfterDelay</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Room&lt; TData, TLevel &gt;.CopyFrom</definition>
+        <argsstring>(Room other)</argsstring>
+        <name>CopyFrom</name>
+        <qualifiedname>Room.CopyFrom</qualifiedname>
+        <param>
+          <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>다른 방의 속성을 복사합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>복사할 소스 방</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="168" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="168" bodyend="180"/>
+        <references refid="classRoom_1a3eda5d2a24f5e68c7cd376d50096cb4c" compoundref="Room_8cs" startline="21">Room&lt; TData, TLevel &gt;.currentHitPoints</references>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoom_1ae1f89a83229215231d726691043898c6" compoundref="Room_8cs" startline="36">Room&lt; TData, TLevel &gt;.currentRotation</references>
+        <references refid="classRoom_1ae14b08f3ba19cce81b077d6fefcb1fd5" compoundref="Room_8cs" startline="441" endline="444">Room&lt; TData, TLevel &gt;.GetCurrentLevel</references>
+        <references refid="classRoom_1aa7705fc23f6da23ba58ede843bf53b69" compoundref="Room_8cs" startline="228" endline="231">Room&lt; TData, TLevel &gt;.GetIsPowered</references>
+        <references refid="classRoom_1a8d86301d093a96f051430de0c474be64" compoundref="Room_8cs" startline="234" endline="237">Room&lt; TData, TLevel &gt;.GetIsPowerRequested</references>
+        <references refid="classRoom_1a060d1169bcb74a2884762dcade03711b" compoundref="Room_8cs" startline="51">Room&lt; TData, TLevel &gt;.isActive</references>
+        <references refid="classRoom_1a9809153e49cfcdcf4f82841e9646fbb5" compoundref="Room_8cs" startline="54">Room&lt; TData, TLevel &gt;.isPowered</references>
+        <references refid="classRoom_1aa05e3822e244ed8eb13561735a142fae" compoundref="Room_8cs" startline="57">Room&lt; TData, TLevel &gt;.isPowerRequested</references>
+        <references refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" compoundref="Room_8cs" startline="15">Room&lt; TData, TLevel &gt;.position</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <references refid="classRoom_1af4b97c8e2306beda35f26f8803734eb5" compoundref="Room_8cs" startline="24">Room&lt; TData, TLevel &gt;.roomType</references>
+        <referencedby refid="classRoomFactory_1acf6b68350a4e777e8373beddcc2cae99" compoundref="RoomFactory_8cs" startline="204" endline="251">RoomFactory.CreateRoomObject</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a33bb9ff12585bbc75833a118ffab2eb0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Room&lt; TData, TLevel &gt;.InitializeIsDamageable</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeIsDamageable</name>
+        <qualifiedname>Room.InitializeIsDamageable</qualifiedname>
+        <briefdescription>
+<para>이 방이 데미지를 받을 수 있는지 여부를 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="185" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="185" bodyend="210"/>
+        <references refid="classRoom_1a24960b1e2c71b53be23ae7869efc13ed" compoundref="Room_8cs" startline="27">Room&lt; TData, TLevel &gt;.isDamageable</references>
+        <references refid="classRoom_1af4b97c8e2306beda35f26f8803734eb5" compoundref="Room_8cs" startline="24">Room&lt; TData, TLevel &gt;.roomType</references>
+        <referencedby refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" compoundref="Room_8cs" startline="285" endline="307">Room&lt; TData, TLevel &gt;.Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a21652f6cd674125034555b2cd6dfe38a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classRoomData" kindref="compound">RoomData</ref></type>
+        <definition>RoomData Room&lt; TData, TLevel &gt;.GetRoomData</definition>
+        <argsstring>()</argsstring>
+        <name>GetRoomData</name>
+        <qualifiedname>Room.GetRoomData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="212" column="21" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="212" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a2365d0e5208435874084d5640a221b0c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>RoomType</type>
+        <definition>RoomType Room&lt; TData, TLevel &gt;.GetRoomType</definition>
+        <argsstring>()</argsstring>
+        <name>GetRoomType</name>
+        <qualifiedname>Room.GetRoomType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="217" column="21" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="217" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a7032b43f7ff95af276153f31b7e0fb40" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Room&lt; TData, TLevel &gt;.SetRoomData</definition>
+        <argsstring>(RoomData roomData)</argsstring>
+        <name>SetRoomData</name>
+        <qualifiedname>Room.SetRoomData</qualifiedname>
+        <param>
+          <type><ref refid="classRoomData" kindref="compound">RoomData</ref></type>
+          <declname>roomData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="222" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="222" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1aa7705fc23f6da23ba58ede843bf53b69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Room&lt; TData, TLevel &gt;.GetIsPowered</definition>
+        <argsstring>()</argsstring>
+        <name>GetIsPowered</name>
+        <qualifiedname>Room.GetIsPowered</qualifiedname>
+        <briefdescription>
+<para>이 방이 전력 공급 중인지 확인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="228" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="228" bodyend="231"/>
+        <references refid="classRoom_1a9809153e49cfcdcf4f82841e9646fbb5" compoundref="Room_8cs" startline="54">Room&lt; TData, TLevel &gt;.isPowered</references>
+        <referencedby refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" compoundref="Room_8cs" startline="168" endline="180">Room&lt; TData, TLevel &gt;.CopyFrom</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a8d86301d093a96f051430de0c474be64" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Room&lt; TData, TLevel &gt;.GetIsPowerRequested</definition>
+        <argsstring>()</argsstring>
+        <name>GetIsPowerRequested</name>
+        <qualifiedname>Room.GetIsPowerRequested</qualifiedname>
+        <briefdescription>
+<para>전력 공급 요청 여부를 확인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="234" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="234" bodyend="237"/>
+        <references refid="classRoom_1aa05e3822e244ed8eb13561735a142fae" compoundref="Room_8cs" startline="57">Room&lt; TData, TLevel &gt;.isPowerRequested</references>
+        <referencedby refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" compoundref="Room_8cs" startline="168" endline="180">Room&lt; TData, TLevel &gt;.CopyFrom</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1aca10cd460fc622d1f4b968092676be31" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Room&lt; TData, TLevel &gt;.GetIsDamageable</definition>
+        <argsstring>()</argsstring>
+        <name>GetIsDamageable</name>
+        <qualifiedname>Room.GetIsDamageable</qualifiedname>
+        <briefdescription>
+<para>이 방이 데미지를 받을 수 있는지 확인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="240" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="240" bodyend="243"/>
+        <references refid="classRoom_1a24960b1e2c71b53be23ae7869efc13ed" compoundref="Room_8cs" startline="27">Room&lt; TData, TLevel &gt;.isDamageable</references>
+        <referencedby refid="classShip_1aa81d7cb291b541eb413c886ef5c2122d" compoundref="Ship_8cs" startline="202" endline="281">Ship.AddRoom</referencedby>
+        <referencedby refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CrewMember.CombatRoutine</referencedby>
+        <referencedby refid="classShip_1acd5bac56e07c6fc3171cb9131d55c23d" compoundref="Ship_8cs" startline="1226" endline="1234">Ship.GetRandomTargettableRoom</referencedby>
+        <referencedby refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" compoundref="EnemyController_8cs" startline="23" endline="122">EnemyController.Update</referencedby>
+        <referencedby refid="classEnemyController_1a6bc58726a9f2578687ec2385d3773271" compoundref="EnemyController_8cs" startline="128" endline="171">EnemyController.WhereToGo</referencedby>
+        <referencedby refid="classEnemyController_1a9bdea1a4318709cb950e066c8e4879c0" compoundref="EnemyController_8cs" startline="178" endline="197">EnemyController.WhereToGo</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a3bdba4c8c48690061dcdac4bd6f08b5e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Room&lt; TData, TLevel &gt;.isActionConnected</definition>
+        <argsstring>()</argsstring>
+        <name>isActionConnected</name>
+        <qualifiedname>Room.isActionConnected</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="277" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="277" bodyend="282"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Room&lt; TData, TLevel &gt;.Initialize</definition>
+        <argsstring>(int level)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>Room.Initialize</qualifiedname>
+        <reimplementedby refid="classPowerRoom_1a01ed9224d51871d04d6db64194d09f81">Initialize</reimplementedby>
+        <reimplementedby refid="classStorageRoomBase_1ad434cfbd52fdf361866908f89e1a5cd9">Initialize</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+<para>방을 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="285" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="285" bodyend="307"/>
+        <references refid="classRoom_1affffb06a79e9b46c4f77067bf8854e91" compoundref="Room_8cs" startline="48">Room&lt; TData, TLevel &gt;.crewInRoom</references>
+        <references refid="classRoom_1a3eda5d2a24f5e68c7cd376d50096cb4c" compoundref="Room_8cs" startline="21">Room&lt; TData, TLevel &gt;.currentHitPoints</references>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoom_1abe64553abf13aa2fe9d0d9c902c64383" compoundref="Room_8cs" startline="458" endline="461">Room&lt; TData, TLevel &gt;.GetPowerConsumption</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classRoom_1a72e1611197e04fa7551053bd7ccfc03f" compoundref="Room_8cs" startline="476">Room&lt; TData, TLevel &gt;.gridSize</references>
+        <references refid="classRoomData_1_1RoomLevel_1a84214e311c721cf8510d6340a253831d" compoundref="RoomData_8cs" startline="66">RoomData&lt; T &gt;.RoomLevel.hitPoint</references>
+        <references refid="classRoom_1a33bb9ff12585bbc75833a118ffab2eb0" compoundref="Room_8cs" startline="185" endline="210">Room&lt; TData, TLevel &gt;.InitializeIsDamageable</references>
+        <references refid="classRoom_1aa05e3822e244ed8eb13561735a142fae" compoundref="Room_8cs" startline="57">Room&lt; TData, TLevel &gt;.isPowerRequested</references>
+        <references refid="classRoom_1a1aee33b995a9498a806590785f5edd37" compoundref="Room_8cs" startline="63">Room&lt; TData, TLevel &gt;.parentShip</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <references refid="classRoom_1aa79afbfb056fceca372b60e7b244805e" compoundref="Room_8cs" startline="60">Room&lt; TData, TLevel &gt;.roomRenderer</references>
+        <references refid="classRoom_1af4b97c8e2306beda35f26f8803734eb5" compoundref="Room_8cs" startline="24">Room&lt; TData, TLevel &gt;.roomType</references>
+        <references refid="classRoomData_1_1RoomLevel_1a1038e7c8647b924aed778b2c211dc049" compoundref="RoomData_8cs" startline="69">RoomData&lt; T &gt;.RoomLevel.size</references>
+        <referencedby refid="classShip_1aa81d7cb291b541eb413c886ef5c2122d" compoundref="Ship_8cs" startline="202" endline="281">Ship.AddRoom</referencedby>
+        <referencedby refid="classRoomFactory_1ade948fb094ac8db96a6fc3d71bd67cee" compoundref="RoomFactory_8cs" startline="161" endline="178">RoomFactory.CreateLifeSupportRoomInstance</referencedby>
+        <referencedby refid="classRoomFactory_1a1edd492986abad0c85593be2fd572234" compoundref="RoomFactory_8cs" startline="95" endline="119">RoomFactory.CreateRoomInstance</referencedby>
+        <referencedby refid="classRoomFactory_1acf6b68350a4e777e8373beddcc2cae99" compoundref="RoomFactory_8cs" startline="204" endline="251">RoomFactory.CreateRoomObject</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1ad765678a93134a51ff5fb6006ea24ba4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Room&lt; TData, TLevel &gt;.GetCrewCount</definition>
+        <argsstring>()</argsstring>
+        <name>GetCrewCount</name>
+        <qualifiedname>Room.GetCrewCount</qualifiedname>
+        <briefdescription>
+<para>현재 방에 있는 선원 수를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="310" column="16" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="310" bodyend="313"/>
+        <references refid="classRoom_1affffb06a79e9b46c4f77067bf8854e91" compoundref="Room_8cs" startline="48">Room&lt; TData, TLevel &gt;.crewInRoom</references>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a2d183b76de173f69d65595f779de8af7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Room&lt; TData, TLevel &gt;.HasEnoughCrew</definition>
+        <argsstring>()</argsstring>
+        <name>HasEnoughCrew</name>
+        <qualifiedname>Room.HasEnoughCrew</qualifiedname>
+        <briefdescription>
+<para>필요한 선원이 충분한지 확인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="316" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="316" bodyend="321"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1af15fefedd48a2009da56d461a9084ed8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Room&lt; TData, TLevel &gt;.IsOperational</definition>
+        <argsstring>()</argsstring>
+        <name>IsOperational</name>
+        <qualifiedname>Room.IsOperational</qualifiedname>
+        <briefdescription>
+<para>방이 작동 가능한 상태인지 확인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="324" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="324" bodyend="336"/>
+        <references refid="classRoom_1a7cc8f566f2f7b8810472e4f682a34776" compoundref="Room_8cs" startline="580">Room&lt; TData, TLevel &gt;.damageCondition</references>
+        <references refid="classRoom_1a060d1169bcb74a2884762dcade03711b" compoundref="Room_8cs" startline="51">Room&lt; TData, TLevel &gt;.isActive</references>
+        <references refid="classRoom_1a9809153e49cfcdcf4f82841e9646fbb5" compoundref="Room_8cs" startline="54">Room&lt; TData, TLevel &gt;.isPowered</references>
+        <references refid="classRoom_1aa05e3822e244ed8eb13561735a142fae" compoundref="Room_8cs" startline="57">Room&lt; TData, TLevel &gt;.isPowerRequested</references>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">CrewMember.FollowPathCoroutine</referencedby>
+        <referencedby refid="classRoom_1a8533094cb230185cce7735d640d950f1" compoundref="Room_8cs" startline="370" endline="386">Room&lt; TData, TLevel &gt;.GetStatContributions</referencedby>
+        <referencedby refid="classRoom_1a2114f1e3c7ce8957cb3ed170958ef84a" compoundref="Room_8cs" startline="246" endline="275">Room&lt; TData, TLevel &gt;.UpdateEffects</referencedby>
+        <referencedby refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" compoundref="Room_8cs" startline="523" endline="573">Room&lt; TData, TLevel &gt;.UpdateRoomVisual</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a380de06eaf2c762679b65903782b173e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Room&lt; TData, TLevel &gt;.SetPowerStatus</definition>
+        <argsstring>(bool powered, bool requested)</argsstring>
+        <name>SetPowerStatus</name>
+        <qualifiedname>Room.SetPowerStatus</qualifiedname>
+        <reimplementedby refid="classStorageRoomTemperature_1a7c9c2aaa5176be404c18b6825da070f8">SetPowerStatus</reimplementedby>
+        <param>
+          <type>bool</type>
+          <declname>powered</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>requested</declname>
+        </param>
+        <briefdescription>
+<para>전력 공급 상태를 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="342" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="342" bodyend="348"/>
+        <references refid="classRoom_1a9809153e49cfcdcf4f82841e9646fbb5" compoundref="Room_8cs" startline="54">Room&lt; TData, TLevel &gt;.isPowered</references>
+        <references refid="classRoom_1aa05e3822e244ed8eb13561735a142fae" compoundref="Room_8cs" startline="57">Room&lt; TData, TLevel &gt;.isPowerRequested</references>
+        <references refid="classRoom_1a24a2b295f97d7b3d6efbe51b8f865415" compoundref="Room_8cs" startline="429" endline="438">Room&lt; TData, TLevel &gt;.NotifyStateChanged</references>
+        <references refid="classRoom_1a2114f1e3c7ce8957cb3ed170958ef84a" compoundref="Room_8cs" startline="246" endline="275">Room&lt; TData, TLevel &gt;.UpdateEffects</references>
+        <referencedby refid="classPowerSystem_1af311ccf5242a2eba89ba389034c7e60e" compoundref="PowerSystem_8cs" startline="79" endline="108">PowerSystem.RequestPowerForRoom</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a88c5979811e45ad8f1f07d3138dcefdb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Room&lt; TData, TLevel &gt;.BlackOut</definition>
+        <argsstring>()</argsstring>
+        <name>BlackOut</name>
+        <qualifiedname>Room.BlackOut</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="350" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="350" bodyend="358"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a01e20c3f739d0ca0ba9fc8a9e21c1e7e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float Room&lt; TData, TLevel &gt;.GetHealthPercentage</definition>
+        <argsstring>()</argsstring>
+        <name>GetHealthPercentage</name>
+        <qualifiedname>Room.GetHealthPercentage</qualifiedname>
+        <briefdescription>
+<para>체력 퍼센티지를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="361" column="18" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="361" bodyend="365"/>
+        <references refid="classRoom_1a3eda5d2a24f5e68c7cd376d50096cb4c" compoundref="Room_8cs" startline="21">Room&lt; TData, TLevel &gt;.currentHitPoints</references>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classRoomData_1_1RoomLevel_1a84214e311c721cf8510d6340a253831d" compoundref="RoomData_8cs" startline="66">RoomData&lt; T &gt;.RoomLevel.hitPoint</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <referencedby refid="classShip_1acd5bac56e07c6fc3171cb9131d55c23d" compoundref="Ship_8cs" startline="1226" endline="1234">Ship.GetRandomTargettableRoom</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a8533094cb230185cce7735d640d950f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Dictionary&lt; ShipStat, float &gt;</type>
+        <definition>virtual Dictionary&lt; ShipStat, float &gt; Room&lt; TData, TLevel &gt;.GetStatContributions</definition>
+        <argsstring>()</argsstring>
+        <name>GetStatContributions</name>
+        <qualifiedname>Room.GetStatContributions</qualifiedname>
+        <reimplements refid="interfaceIShipStatContributor_1a8937611705cc586ef7284314966b2a33">GetStatContributions</reimplements>
+        <reimplementedby refid="classAmmunitionRoom_1a012c56f5c2f19743ed9cf120aefb8309">GetStatContributions</reimplementedby>
+        <reimplementedby refid="classCockpitRoom_1af833aa863276c6bc42615c39a355c313">GetStatContributions</reimplementedby>
+        <reimplementedby refid="classCorridorRoom_1a9939c42d897412f8482966d0bce5c07e">GetStatContributions</reimplementedby>
+        <reimplementedby refid="classCrewQuartersRoom_1aae7e91ce32018b33e56be132e905ffb0">GetStatContributions</reimplementedby>
+        <reimplementedby refid="classEngineRoom_1a9fc4568124314c8f33d8a34835f94839">GetStatContributions</reimplementedby>
+        <reimplementedby refid="classLifeSupportRoom_1a69349638c35e9882650c5df3c699a9bc">GetStatContributions</reimplementedby>
+        <reimplementedby refid="classMedBayRoom_1a75a59c7fa045fb29df402c27871a8757">GetStatContributions</reimplementedby>
+        <reimplementedby refid="classOxygenRoom_1a103b113ef388bb74136d5e69602ea653">GetStatContributions</reimplementedby>
+        <reimplementedby refid="classPowerRoom_1ad9c7015d49b585675a4da437c37d413d">GetStatContributions</reimplementedby>
+        <reimplementedby refid="classShieldRoom_1a0e069dba29de8d01cf788925860bd76c">GetStatContributions</reimplementedby>
+        <reimplementedby refid="classStorageRoomBase_1a63b742f6c0350014bcb9c44134354261">GetStatContributions</reimplementedby>
+        <reimplementedby refid="classTeleportRoom_1a8e8196e6aa87b8c720c3b8b413cbcfda">GetStatContributions</reimplementedby>
+        <reimplementedby refid="classWeaponControlRoom_1afc42aa6a0418c1e6276ea271414baf17">GetStatContributions</reimplementedby>
+        <briefdescription>
+<para>방이 함선 스탯에 기여하는 값을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="370" column="31" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="370" bodyend="386"/>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classRoomData_1_1RoomLevel_1a84214e311c721cf8510d6340a253831d" compoundref="RoomData_8cs" startline="66">RoomData&lt; T &gt;.RoomLevel.hitPoint</references>
+        <references refid="classRoom_1af15fefedd48a2009da56d461a9084ed8" compoundref="Room_8cs" startline="324" endline="336">Room&lt; TData, TLevel &gt;.IsOperational</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <referencedby refid="classRoom_1a40ae5083a93abef5597e9a3f6fca5cce" compoundref="Room_8cs" startline="389" endline="406">Room&lt; TData, TLevel &gt;.GetNextLevelStatContributions</referencedby>
+        <referencedby refid="classShip_1a8f3f2bdca106f32f2d4c2b3f892a139f" compoundref="Ship_8cs" startline="774" endline="828">Ship.RecalculateAllStats</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a40ae5083a93abef5597e9a3f6fca5cce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Dictionary&lt; ShipStat, float &gt;</type>
+        <definition>virtual Dictionary&lt; ShipStat, float &gt; Room&lt; TData, TLevel &gt;.GetNextLevelStatContributions</definition>
+        <argsstring>()</argsstring>
+        <name>GetNextLevelStatContributions</name>
+        <qualifiedname>Room.GetNextLevelStatContributions</qualifiedname>
+        <briefdescription>
+<para>다음 레벨에서의 스탯 기여도를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="389" column="31" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="389" bodyend="406"/>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoom_1a8533094cb230185cce7735d640d950f1" compoundref="Room_8cs" startline="370" endline="386">Room&lt; TData, TLevel &gt;.GetStatContributions</references>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a6c701615ce6310e02a88483adf30c269" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Room&lt; TData, TLevel &gt;.Upgrade</definition>
+        <argsstring>()</argsstring>
+        <name>Upgrade</name>
+        <qualifiedname>Room.Upgrade</qualifiedname>
+        <briefdescription>
+<para>방을 업그레이드합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="409" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="409" bodyend="426"/>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoom_1a24a2b295f97d7b3d6efbe51b8f865415" compoundref="Room_8cs" startline="429" endline="438">Room&lt; TData, TLevel &gt;.NotifyStateChanged</references>
+        <references refid="classRoom_1a8294d108ea218dff21d0d30a87c8c8af" compoundref="Room_8cs" startline="159" endline="162">Room&lt; TData, TLevel &gt;.UpdateRoom</references>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a24a2b295f97d7b3d6efbe51b8f865415" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Room&lt; TData, TLevel &gt;.NotifyStateChanged</definition>
+        <argsstring>()</argsstring>
+        <name>NotifyStateChanged</name>
+        <qualifiedname>Room.NotifyStateChanged</qualifiedname>
+        <briefdescription>
+<para>상태 변경을 알립니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="429" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="429" bodyend="438"/>
+        <references refid="classCrewMember_1ae80f1831860b8a260b6899410f48bc1d" compoundref="CrewMember_8cs" startline="865" endline="882">CrewMember.BackToThePeace</references>
+        <references refid="classRoom_1ae35a0c0556a10493e8e52a5f8cd325b9" compoundref="Room_8cs" startline="45">Room&lt; TData, TLevel &gt;.OnRoomStateChanged</references>
+        <references refid="classCrewMember_1a5161a521053d829ee86ecae3de914b22" compoundref="CrewMember_8cs" startline="1098" endline="1113">CrewMember.WalkOut</references>
+        <referencedby refid="classShip_1aa81d7cb291b541eb413c886ef5c2122d" compoundref="Ship_8cs" startline="202" endline="281">Ship.AddRoom</referencedby>
+        <referencedby refid="classRoom_1a1e5e6fe3b3c473bd0a08582f9017681d" compoundref="Room_8cs" startline="666" endline="673">Room&lt; TData, TLevel &gt;.OnDisabled</referencedby>
+        <referencedby refid="classRoom_1ab0d240e0649b42fe9bec652095f91c35" compoundref="Room_8cs" startline="630" endline="651">Room&lt; TData, TLevel &gt;.Repair</referencedby>
+        <referencedby refid="classRoom_1a380de06eaf2c762679b65903782b173e" compoundref="Room_8cs" startline="342" endline="348">Room&lt; TData, TLevel &gt;.SetPowerStatus</referencedby>
+        <referencedby refid="classRoom_1a6a7d8be84106267b1036aa51645819a4" compoundref="Room_8cs" startline="597" endline="615">Room&lt; TData, TLevel &gt;.TakeDamage</referencedby>
+        <referencedby refid="classRoom_1a6c701615ce6310e02a88483adf30c269" compoundref="Room_8cs" startline="409" endline="426">Room&lt; TData, TLevel &gt;.Upgrade</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1ae14b08f3ba19cce81b077d6fefcb1fd5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Room&lt; TData, TLevel &gt;.GetCurrentLevel</definition>
+        <argsstring>()</argsstring>
+        <name>GetCurrentLevel</name>
+        <qualifiedname>Room.GetCurrentLevel</qualifiedname>
+        <briefdescription>
+<para>현재 업그레이드 레벨을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="441" column="16" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="441" bodyend="444"/>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <referencedby refid="classShip_1aab4fe1be95cb3831baab78a991022a64" compoundref="Ship_8cs" startline="290" endline="350">Ship.AddRoom</referencedby>
+        <referencedby refid="classCrewMovementValidator_1a22d0bc7e909e7090b18c4956d997da22" compoundref="CrewMovementValidator_8cs" startline="110" endline="134">CrewMovementValidator.AreRoomsConnectedThroughDoors</referencedby>
+        <referencedby refid="classShip_1a24e7b7011b778b4c8c4aab0a12e90a3d" compoundref="Ship_8cs" startline="546" endline="568">Ship.BackupCurrentShip</referencedby>
+        <referencedby refid="classShipValidationHelper_1a11fc072a1eafd79fadee661b4af713a6" compoundref="ShipValidatonHelper_8cs" startline="212" endline="330">ShipValidationHelper.CheckAllRoomsPathConnectedByDoors</referencedby>
+        <referencedby refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" compoundref="Room_8cs" startline="168" endline="180">Room&lt; TData, TLevel &gt;.CopyFrom</referencedby>
+        <referencedby refid="classCrewMovementValidator_1a5f57c030a16c4ecb73d0ceb9e31a82e6" compoundref="CrewMovementValidator_8cs" startline="85" endline="104">CrewMovementValidator.CorridorRoomConnectionValid</referencedby>
+        <referencedby refid="classRoomFactory_1acf6b68350a4e777e8373beddcc2cae99" compoundref="RoomFactory_8cs" startline="204" endline="251">RoomFactory.CreateRoomObject</referencedby>
+        <referencedby refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" compoundref="Room_8cs" startline="482" endline="488">Room&lt; TData, TLevel &gt;.GetOccupiedTiles</referencedby>
+        <referencedby refid="classShip_1a5ba0f56dad890c458ca0a9d571254aae" compoundref="Ship_8cs" startline="499" endline="510">Ship.GetTotalShipValue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a054dfcf2fb05105186e1535b501f792c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Room&lt; TData, TLevel &gt;.SetCurrentLevel</definition>
+        <argsstring>(int level)</argsstring>
+        <name>SetCurrentLevel</name>
+        <qualifiedname>Room.SetCurrentLevel</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="446" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="446" bodyend="449"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1abe64553abf13aa2fe9d0d9c902c64383" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float Room&lt; TData, TLevel &gt;.GetPowerConsumption</definition>
+        <argsstring>()</argsstring>
+        <name>GetPowerConsumption</name>
+        <qualifiedname>Room.GetPowerConsumption</qualifiedname>
+        <briefdescription>
+<para>최대 업그레이드 레벨을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>현재 전력 요구량을 반환합니다. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="458" column="18" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="458" bodyend="461"/>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classRoomData_1_1RoomLevel_1aa627ba8805cba1a8439e6ed898121ed3" compoundref="RoomData_8cs" startline="78">RoomData&lt; T &gt;.RoomLevel.powerRequirement</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <referencedby refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" compoundref="Room_8cs" startline="285" endline="307">Room&lt; TData, TLevel &gt;.Initialize</referencedby>
+        <referencedby refid="classPowerSystem_1af311ccf5242a2eba89ba389034c7e60e" compoundref="PowerSystem_8cs" startline="79" endline="108">PowerSystem.RequestPowerForRoom</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a20cd0655c331d88c7e1825abc51e9941" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>Vector2Int Room&lt; TData, TLevel &gt;.GetSize</definition>
+        <argsstring>()</argsstring>
+        <name>GetSize</name>
+        <qualifiedname>Room.GetSize</qualifiedname>
+        <briefdescription>
+<para>방의 크기를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="464" column="23" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="464" bodyend="467"/>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <references refid="classRoomData_1_1RoomLevel_1a1038e7c8647b924aed778b2c211dc049" compoundref="RoomData_8cs" startline="69">RoomData&lt; T &gt;.RoomLevel.size</references>
+        <referencedby refid="classShipValidationHelper_1a39d36df3f0a7878f35261c554c7b1574" compoundref="ShipValidatonHelper_8cs" startline="389" endline="471">ShipValidationHelper.CheckWeaponConnectivity</referencedby>
+        <referencedby refid="classShip_1ae75b7654ffda7bb8096c0054cdacc8b0" compoundref="Ship_8cs" startline="438" endline="469">Ship.RemoveRoom</referencedby>
+        <referencedby refid="classOuterHullSystem_1adb5a5b7d00fda59c275bbd594504a5a3" compoundref="OuterHullSystem_8cs" startline="93" endline="351">OuterHullSystem.UpdateVisuals</referencedby>
+        <referencedby refid="classShipValidationHelper_1a9111fff29a3ed831923e35aa76ba14be" compoundref="ShipValidatonHelper_8cs" startline="130" endline="204">ShipValidationHelper.ValidateWeaponAttachmentDirection</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a1972222cfff89e533a64d4a3cb7a23a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float Room&lt; TData, TLevel &gt;.GetMaxHitPoints</definition>
+        <argsstring>()</argsstring>
+        <name>GetMaxHitPoints</name>
+        <qualifiedname>Room.GetMaxHitPoints</qualifiedname>
+        <briefdescription>
+<para>최대 체력을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="470" column="18" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="470" bodyend="473"/>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classRoomData_1_1RoomLevel_1a84214e311c721cf8510d6340a253831d" compoundref="RoomData_8cs" startline="66">RoomData&lt; T &gt;.RoomLevel.hitPoint</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <referencedby refid="classShip_1a0296985d38306b6659dcdb12925f810c" compoundref="Ship_8cs" startline="516" endline="522">Ship.IsFullHitPoint</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>List&lt; Vector2Int &gt; Room&lt; TData, TLevel &gt;.GetOccupiedTiles</definition>
+        <argsstring>()</argsstring>
+        <name>GetOccupiedTiles</name>
+        <qualifiedname>Room.GetOccupiedTiles</qualifiedname>
+        <briefdescription>
+<para>회전각을 고려하여 방의 점유 타일 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="482" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="482" bodyend="488"/>
+        <references refid="classRoom_1ae1f89a83229215231d726691043898c6" compoundref="Room_8cs" startline="36">Room&lt; TData, TLevel &gt;.currentRotation</references>
+        <references refid="classRoom_1ae14b08f3ba19cce81b077d6fefcb1fd5" compoundref="Room_8cs" startline="441" endline="444">Room&lt; TData, TLevel &gt;.GetCurrentLevel</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" compoundref="Room_8cs" startline="15">Room&lt; TData, TLevel &gt;.position</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <references refid="classRoomData_1_1RoomLevel_1a1038e7c8647b924aed778b2c211dc049" compoundref="RoomData_8cs" startline="69">RoomData&lt; T &gt;.RoomLevel.size</references>
+        <referencedby refid="classShipValidationHelper_1a39d36df3f0a7878f35261c554c7b1574" compoundref="ShipValidatonHelper_8cs" startline="389" endline="471">ShipValidationHelper.CheckWeaponConnectivity</referencedby>
+        <referencedby refid="classCameraZoomController_1a167bc55b6e4d87ff914de3a838d63f80" compoundref="CameraZoomController_8cs" startline="158" endline="188">CameraZoomController.GetCameraStartPositionToOriginShip</referencedby>
+        <referencedby refid="classShip_1a73217557e08511f1436830db223bfc4e" compoundref="Ship_8cs" startline="1209" endline="1219">Ship.GetRandomTargetPosition</referencedby>
+        <referencedby refid="classCrewMovementValidator_1ac4de44ee83f4831bc6f536c5f120f974" compoundref="CrewMovementValidator_8cs" startline="69" endline="75">CrewMovementValidator.GetRoomAtTile</referencedby>
+        <referencedby refid="classShipGridHelper_1a770d14a63bea8f67dd5f98afeaf99ee4" compoundref="ShipGridHelper_8cs" startline="56" endline="89">ShipGridHelper.GetShipRotationOffset</referencedby>
+        <referencedby refid="classCrewMovementValidator_1a81f36c4d99a75149fc7c0e5db33b7101" compoundref="CrewMovementValidator_8cs" startline="19" endline="29">CrewMovementValidator.Initialize</referencedby>
+        <referencedby refid="classRoom_1af41633a85c88ae9e207f5a2589e752c2" compoundref="Room_8cs" startline="495" endline="498">Room&lt; TData, TLevel &gt;.OccupiesTile</referencedby>
+        <referencedby refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" compoundref="Room_8cs" startline="523" endline="573">Room&lt; TData, TLevel &gt;.UpdateRoomVisual</referencedby>
+        <referencedby refid="classShipValidationHelper_1a9111fff29a3ed831923e35aa76ba14be" compoundref="ShipValidatonHelper_8cs" startline="130" endline="204">ShipValidationHelper.ValidateWeaponAttachmentDirection</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1af41633a85c88ae9e207f5a2589e752c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Room&lt; TData, TLevel &gt;.OccupiesTile</definition>
+        <argsstring>(Vector2Int tile)</argsstring>
+        <name>OccupiesTile</name>
+        <qualifiedname>Room.OccupiesTile</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>tile</declname>
+        </param>
+        <briefdescription>
+<para>인자 타일이 방의 일부인지 여부 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tile</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="495" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="495" bodyend="498"/>
+        <references refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" compoundref="Room_8cs" startline="482" endline="488">Room&lt; TData, TLevel &gt;.GetOccupiedTiles</references>
+        <referencedby refid="classShipValidationHelper_1aae7e4b1ba35c545797689b1f7b4bc9c1" compoundref="ShipValidatonHelper_8cs" startline="338" endline="381">ShipValidationHelper.ValidateWeaponPlacement</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1aadaed0165d27e94c487122c7940150f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classDoor" kindref="compound">Door</ref> &gt;</type>
+        <definition>List&lt; Door &gt; Room&lt; TData, TLevel &gt;.GetConnectedDoors</definition>
+        <argsstring>()</argsstring>
+        <name>GetConnectedDoors</name>
+        <qualifiedname>Room.GetConnectedDoors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="500" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="500" bodyend="503"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a1e00c1972c53a50675c83b0b9fdb27d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classCrewMember" kindref="compound">CrewMember</ref> &gt;</type>
+        <definition>List&lt; CrewMember &gt; Room&lt; TData, TLevel &gt;.GetTotalCrewsInRoom</definition>
+        <argsstring>()</argsstring>
+        <name>GetTotalCrewsInRoom</name>
+        <qualifiedname>Room.GetTotalCrewsInRoom</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="505" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="505" bodyend="518"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Room&lt; TData, TLevel &gt;.UpdateRoomVisual</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateRoomVisual</name>
+        <qualifiedname>Room.UpdateRoomVisual</qualifiedname>
+        <briefdescription>
+<para>현재 레벨의 시각적 요소 (스프라이트 등)를 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="523" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="523" bodyend="573"/>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoom_1a7cc8f566f2f7b8810472e4f682a34776" compoundref="Room_8cs" startline="580">Room&lt; TData, TLevel &gt;.damageCondition</references>
+        <references refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" compoundref="Room_8cs" startline="482" endline="488">Room&lt; TData, TLevel &gt;.GetOccupiedTiles</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classShip_1acc377098e3c61bbd4b8fc53595d09293" compoundref="Ship_8cs" startline="1456" endline="1459">Ship.GetWorldPositionFromGrid</references>
+        <references refid="classRoom_1af15fefedd48a2009da56d461a9084ed8" compoundref="Room_8cs" startline="324" endline="336">Room&lt; TData, TLevel &gt;.IsOperational</references>
+        <references refid="classRoom_1a1aee33b995a9498a806590785f5edd37" compoundref="Room_8cs" startline="63">Room&lt; TData, TLevel &gt;.parentShip</references>
+        <references refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" compoundref="Room_8cs" startline="15">Room&lt; TData, TLevel &gt;.position</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <references refid="classRoomData_1_1RoomLevel_1ad933a23315b82b801ed870b5b6ddea8b" compoundref="RoomData_8cs" startline="89">RoomData&lt; T &gt;.RoomLevel.roomIconPrefab</references>
+        <referencedby refid="classShip_1aa81d7cb291b541eb413c886ef5c2122d" compoundref="Ship_8cs" startline="202" endline="281">Ship.AddRoom</referencedby>
+        <referencedby refid="classShip_1aab4fe1be95cb3831baab78a991022a64" compoundref="Ship_8cs" startline="290" endline="350">Ship.AddRoom</referencedby>
+        <referencedby refid="classRoom_1ae5954789763526a0437023ef85ff64c0" compoundref="Room_8cs" startline="657" endline="662">Room&lt; TData, TLevel &gt;.FullRepair</referencedby>
+        <referencedby refid="classRoom_1ab0d240e0649b42fe9bec652095f91c35" compoundref="Room_8cs" startline="630" endline="651">Room&lt; TData, TLevel &gt;.Repair</referencedby>
+        <referencedby refid="classRoom_1a6a7d8be84106267b1036aa51645819a4" compoundref="Room_8cs" startline="597" endline="615">Room&lt; TData, TLevel &gt;.TakeDamage</referencedby>
+        <referencedby refid="classRoom_1a991f10d83518af889058b13763fd3e25" compoundref="Room_8cs" startline="748" endline="758">Room&lt; TData, TLevel &gt;.UpdateRoomLevelData</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a6e33736f8c1e258399cba50374a83670" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Room&lt; TData, TLevel &gt;.NeedsRepair</definition>
+        <argsstring>()</argsstring>
+        <name>NeedsRepair</name>
+        <qualifiedname>Room.NeedsRepair</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="585" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="585" bodyend="592"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a6a7d8be84106267b1036aa51645819a4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Room&lt; TData, TLevel &gt;.TakeDamage</definition>
+        <argsstring>(float damage)</argsstring>
+        <name>TakeDamage</name>
+        <qualifiedname>Room.TakeDamage</qualifiedname>
+        <reimplementedby refid="classAmmunitionRoom_1a91a186937b59c8a69153c39f2e599c3a">TakeDamage</reimplementedby>
+        <reimplementedby refid="classCockpitRoom_1a880a1fede814a820a18d9e7748eb1c7d">TakeDamage</reimplementedby>
+        <reimplementedby refid="classEngineRoom_1ac1882c34210ca198c26f240e79b683b8">TakeDamage</reimplementedby>
+        <reimplementedby refid="classMedBayRoom_1a1e49d6c973c964fae7fbe2edfcbef65f">TakeDamage</reimplementedby>
+        <reimplementedby refid="classOxygenRoom_1a2dc3b22e85ad44f277942613498a80cd">TakeDamage</reimplementedby>
+        <reimplementedby refid="classPowerRoom_1a246105c449141ac2f30f6ecee6dd85b9">TakeDamage</reimplementedby>
+        <reimplementedby refid="classShieldRoom_1afa7e239bc2838e85d5a15809223c1167">TakeDamage</reimplementedby>
+        <reimplementedby refid="classTeleportRoom_1a49c52dabbd74e1b01f921003f2434c51">TakeDamage</reimplementedby>
+        <reimplementedby refid="classWeaponControlRoom_1a37753586dd9d667cbefeaecbe7f2c44b">TakeDamage</reimplementedby>
+        <param>
+          <type>float</type>
+          <declname>damage</declname>
+        </param>
+        <briefdescription>
+<para>지정된 피해만큼 체력을 감소시킵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="597" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="597" bodyend="615"/>
+        <references refid="classRoom_1a3eda5d2a24f5e68c7cd376d50096cb4c" compoundref="Room_8cs" startline="21">Room&lt; TData, TLevel &gt;.currentHitPoints</references>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoom_1a7cc8f566f2f7b8810472e4f682a34776" compoundref="Room_8cs" startline="580">Room&lt; TData, TLevel &gt;.damageCondition</references>
+        <references refid="classRoomData_1_1RoomLevel_1a276de77c4a9648eee5fbc1f5d9cb66c2" compoundref="RoomData_8cs" startline="81">RoomData&lt; T &gt;.RoomLevel.damageHitPointRate</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classRoom_1a24960b1e2c71b53be23ae7869efc13ed" compoundref="Room_8cs" startline="27">Room&lt; TData, TLevel &gt;.isDamageable</references>
+        <references refid="classRoom_1a24a2b295f97d7b3d6efbe51b8f865415" compoundref="Room_8cs" startline="429" endline="438">Room&lt; TData, TLevel &gt;.NotifyStateChanged</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <references refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" compoundref="Room_8cs" startline="523" endline="573">Room&lt; TData, TLevel &gt;.UpdateRoomVisual</references>
+        <referencedby refid="classCrewMember_1a1980132bc97845dc890766dadd559e00" compoundref="CrewMember_8cs" startline="613" endline="644">CrewMember.Attack</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1ac0999d1153572a5f5d16ced52ad09e28" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Room&lt; TData, TLevel &gt;.DownDamageCondition</definition>
+        <argsstring>()</argsstring>
+        <name>DownDamageCondition</name>
+        <qualifiedname>Room.DownDamageCondition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="617" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="617" bodyend="627"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1ab0d240e0649b42fe9bec652095f91c35" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Room&lt; TData, TLevel &gt;.Repair</definition>
+        <argsstring>(float amount)</argsstring>
+        <name>Repair</name>
+        <qualifiedname>Room.Repair</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>amount</declname>
+        </param>
+        <briefdescription>
+<para>지정된 양만큼 체력을 회복시킵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="630" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="630" bodyend="651"/>
+        <references refid="classRoom_1a3eda5d2a24f5e68c7cd376d50096cb4c" compoundref="Room_8cs" startline="21">Room&lt; TData, TLevel &gt;.currentHitPoints</references>
+        <references refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" compoundref="Room_8cs" startline="18">Room&lt; TData, TLevel &gt;.currentLevel</references>
+        <references refid="classRoom_1a7cc8f566f2f7b8810472e4f682a34776" compoundref="Room_8cs" startline="580">Room&lt; TData, TLevel &gt;.damageCondition</references>
+        <references refid="classRoomData_1_1RoomLevel_1a276de77c4a9648eee5fbc1f5d9cb66c2" compoundref="RoomData_8cs" startline="81">RoomData&lt; T &gt;.RoomLevel.damageHitPointRate</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classRoomData_1_1RoomLevel_1a84214e311c721cf8510d6340a253831d" compoundref="RoomData_8cs" startline="66">RoomData&lt; T &gt;.RoomLevel.hitPoint</references>
+        <references refid="classRoom_1a24a2b295f97d7b3d6efbe51b8f865415" compoundref="Room_8cs" startline="429" endline="438">Room&lt; TData, TLevel &gt;.NotifyStateChanged</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <references refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" compoundref="Room_8cs" startline="523" endline="573">Room&lt; TData, TLevel &gt;.UpdateRoomVisual</references>
+        <referencedby refid="classCrewMember_1a6d2b12f78fe2bb8cae67fa23d5878e4d" compoundref="CrewMember_8cs" startline="982" endline="994">CrewMember.RepairFacility</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1ae5954789763526a0437023ef85ff64c0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Room&lt; TData, TLevel &gt;.FullRepair</definition>
+        <argsstring>(float amount)</argsstring>
+        <name>FullRepair</name>
+        <qualifiedname>Room.FullRepair</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>amount</declname>
+        </param>
+        <briefdescription>
+<para>100% 수리 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>amount</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="657" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="657" bodyend="662"/>
+        <references refid="classRoom_1a3eda5d2a24f5e68c7cd376d50096cb4c" compoundref="Room_8cs" startline="21">Room&lt; TData, TLevel &gt;.currentHitPoints</references>
+        <references refid="classRoom_1a7cc8f566f2f7b8810472e4f682a34776" compoundref="Room_8cs" startline="580">Room&lt; TData, TLevel &gt;.damageCondition</references>
+        <references refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" compoundref="Room_8cs" startline="523" endline="573">Room&lt; TData, TLevel &gt;.UpdateRoomVisual</references>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1ad62d80f55bb300b0e5b9c6e51b9e61f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Room&lt; TData, TLevel &gt;.CanITouch</definition>
+        <argsstring>(CrewMember crew)</argsstring>
+        <name>CanITouch</name>
+        <qualifiedname>Room.CanITouch</qualifiedname>
+        <reimplementedby refid="classAmmunitionRoom_1a0004f22eee794e77d7456a06b6e1f4f6">CanITouch</reimplementedby>
+        <reimplementedby refid="classCockpitRoom_1adb55e600c703d61b88522127f8ab69fd">CanITouch</reimplementedby>
+        <reimplementedby refid="classEngineRoom_1accf6fbfbf65570e5c72fd428fdbfab94">CanITouch</reimplementedby>
+        <reimplementedby refid="classMedBayRoom_1a91d9189733afdd2f3fcb739ce47c6912">CanITouch</reimplementedby>
+        <reimplementedby refid="classPowerRoom_1ad56c8a1c749143e7cb4fcbe499f67117">CanITouch</reimplementedby>
+        <reimplementedby refid="classShieldRoom_1ad44542c6ec5f21aaa3b10ee12b486c5d">CanITouch</reimplementedby>
+        <reimplementedby refid="classWeaponControlRoom_1aa5891f5f353d934a17034e534d490830">CanITouch</reimplementedby>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crew</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="695" column="25" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="695" bodyend="698"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a384f65346bcd4a08a7cf2e4c1e2c915a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Room&lt; TData, TLevel &gt;.SetIsActive</definition>
+        <argsstring>(bool activate)</argsstring>
+        <name>SetIsActive</name>
+        <qualifiedname>Room.SetIsActive</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>activate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="702" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="702" bodyend="707"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a1726ecaf3cf53bd576215060616ddc4f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>TLevel</type>
+        <definition>TLevel Room&lt; TData, TLevel &gt;.GetCurrentLevelData</definition>
+        <argsstring>()</argsstring>
+        <name>GetCurrentLevelData</name>
+        <qualifiedname>Room.GetCurrentLevelData</qualifiedname>
+        <briefdescription>
+<para>현재 방의 레벨에 해당하는 TLevel 데이터를 반환합니다. 내부적으로 필요 시 데이터를 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>현재 레벨의 방 데이터.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="739" column="19" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="739" bodyend="742"/>
+        <references refid="classRoom_1aef1c93f94f164ed3151ec3d3301a1988" compoundref="Room_8cs" startline="732">Room&lt; TData, TLevel &gt;.currentRoomLevelData</references>
+        <referencedby refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" compoundref="Room_8cs" startline="810" endline="816">Room&lt; TData, TLevel &gt;.UpdateRoomVisual</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a2f0a2ecde33aaee53ca649d85a5b8e8b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override bool</type>
+        <definition>override bool Room&lt; TData, TLevel &gt;.Upgrade</definition>
+        <argsstring>()</argsstring>
+        <name>Upgrade</name>
+        <qualifiedname>Room.Upgrade</qualifiedname>
+        <briefdescription>
+<para>방을 업그레이드한 후 레벨 데이터도 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>업그레이드 성공 여부.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="779" column="26" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="779" bodyend="784"/>
+        <references refid="classRoom_1a991f10d83518af889058b13763fd3e25" compoundref="Room_8cs" startline="748" endline="758">Room&lt; TData, TLevel &gt;.UpdateRoomLevelData</references>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1a94cfcdc89bdf504daf55290d1437d1ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void Room&lt; TData, TLevel &gt;.Initialize</definition>
+        <argsstring>(int level)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>Room.Initialize</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+<para>방 초기화 시 기본 초기화 이후 레벨 데이터도 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="789" column="26" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="789" bodyend="805"/>
+        <references refid="classRoom_1affffb06a79e9b46c4f77067bf8854e91" compoundref="Room_8cs" startline="48">Room&lt; TData, TLevel &gt;.crewInRoom</references>
+        <references refid="classRoom_1a33bb9ff12585bbc75833a118ffab2eb0" compoundref="Room_8cs" startline="185" endline="210">Room&lt; TData, TLevel &gt;.InitializeIsDamageable</references>
+        <references refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" compoundref="Room_8cs" startline="12">Room&lt; TData, TLevel &gt;.roomData</references>
+        <references refid="classRoom_1a991f10d83518af889058b13763fd3e25" compoundref="Room_8cs" startline="748" endline="758">Room&lt; TData, TLevel &gt;.UpdateRoomLevelData</references>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Room&lt; TData, TLevel &gt;.UpdateRoomVisual</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateRoomVisual</name>
+        <qualifiedname>Room.UpdateRoomVisual</qualifiedname>
+        <briefdescription>
+<para>현재 레벨의 시각적 요소 (스프라이트 등)를 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="810" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="810" bodyend="816"/>
+        <references refid="classRoom_1a1726ecaf3cf53bd576215060616ddc4f" compoundref="Room_8cs" startline="739" endline="742">Room&lt; TData, TLevel &gt;.GetCurrentLevelData</references>
+        <references refid="classRoom_1aa79afbfb056fceca372b60e7b244805e" compoundref="Room_8cs" startline="60">Room&lt; TData, TLevel &gt;.roomRenderer</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classRoom_1a5f156328639bfa2aa5a48cd4b85458f3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Room&lt; TData, TLevel &gt;.InitializeDoor</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeDoor</name>
+        <qualifiedname>Room.InitializeDoor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="818" column="18" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="818" bodyend="837"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoom_1ae6a1f78f8f519e13f08b655d042eb8bd" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Room&lt; TData, TLevel &gt;.OnDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>OnDestroy</name>
+        <qualifiedname>Room.OnDestroy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="839" column="18" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="839" bodyend="842"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선 내의 모든 방의 기본 클래스. 방의 상태, 작동 여부, 산소 레벨, 데미지 처리 등을 관리합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>함선 내의 특화된 방 타입을 위한 제네릭 기본 클래스. <ref refid="classRoomData" kindref="compound">RoomData</ref> 및 RoomLevel 타입에 따라 세부 동작과 데이터를 확장할 수 있도록 설계되었습니다.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>TData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>특정 방 타입에 대한 <ref refid="classRoomData" kindref="compound">RoomData</ref> 타입.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>TLevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>RoomData에 포함된 레벨별 데이터 타입.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>AmmunitionRoom</label>
+        <link refid="classAmmunitionRoom"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>CockpitRoom</label>
+        <link refid="classCockpitRoom"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>CorridorRoom</label>
+        <link refid="classCorridorRoom"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>CrewQuartersRoom</label>
+        <link refid="classCrewQuartersRoom"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>EngineRoom</label>
+        <link refid="classEngineRoom"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="15">
+        <label>LifeSupportRoom</label>
+        <link refid="classLifeSupportRoom"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>MedBayRoom</label>
+        <link refid="classMedBayRoom"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="19">
+        <label>OxygenRoom</label>
+        <link refid="classOxygenRoom"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>PowerRoom</label>
+        <link refid="classPowerRoom"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Room&lt; AmmunitionRoomData, AmmunitionRoomData.AmmunitionRoomLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; AmmunitionRoomData, AmmunitionRoomData.AmmunitionRoomLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Room&lt; CockpitRoomData, CockpitRoomData.CockpitRoomLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; CockpitRoomData, CockpitRoomData.CockpitRoomLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Room&lt; CorridorRoomData, CorridorRoomData.CorridorRoomLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; CorridorRoomData, CorridorRoomData.CorridorRoomLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Room&lt; CrewQuartersRoomData, CrewQuartersRoomData.CrewQuartersRoomLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; CrewQuartersRoomData, CrewQuartersRoomData.CrewQuartersRoomLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Room&lt; EngineRoomData, EngineRoomData.EngineRoomLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; EngineRoomData, EngineRoomData.EngineRoomLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>Room&lt; LifeSupportRoomData, LifeSupportRoomData.LifeSupportRoomLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; LifeSupportRoomData, LifeSupportRoomData.LifeSupportRoomLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Room&lt; MedBayRoomData, MedBayRoomData.MedBayRoomLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; MedBayRoomData, MedBayRoomData.MedBayRoomLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Room&lt; OxygenRoomData, OxygenRoomData.OxygenLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; OxygenRoomData, OxygenRoomData.OxygenLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>Room&lt; PowerRoomData, PowerRoomData.PowerRoomLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; PowerRoomData, PowerRoomData.PowerRoomLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>Room&lt; ShieldRoomData, ShieldRoomData.ShieldRoomLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; ShieldRoomData, ShieldRoomData.ShieldRoomLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>Room&lt; TeleportRoomData, TeleportRoomData.TeleportRoomLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; TeleportRoomData, TeleportRoomData.TeleportRoomLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="31">
+        <label>Room&lt; WeaponControlRoomData, WeaponControlRoomData.WeaponControlRoomLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; WeaponControlRoomData, WeaponControlRoomData.WeaponControlRoomLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>ShieldRoom</label>
+        <link refid="classShieldRoom"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>StorageRoomAnimal</label>
+        <link refid="classStorageRoomAnimal"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>StorageRoomBase</label>
+        <link refid="classStorageRoomBase"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>StorageRoomRegular</label>
+        <link refid="classStorageRoomRegular"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>StorageRoomTemperature</label>
+        <link refid="classStorageRoomTemperature"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>TeleportRoom</label>
+        <link refid="classTeleportRoom"/>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>WeaponControlRoom</label>
+        <link refid="classWeaponControlRoom"/>
+        <childnode refid="31" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="6">
+        <label>Constants</label>
+      </node>
+      <node id="21">
+        <label>CrewBase</label>
+        <link refid="classCrewBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>+equippedAssistant</edgelabel>
+          <edgelabel>+equippedShield</edgelabel>
+          <edgelabel>+equippedWeapon</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>+currentRoom</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+currentShip</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>+healthBarController</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>CrewHealthBar</label>
+        <link refid="classCrewHealthBar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-offset</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-crewBase</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>CrewMember</label>
+        <link refid="classCrewMember"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-movementDirection</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>+madRoom</edgelabel>
+          <edgelabel>+oldReservedRoom</edgelabel>
+          <edgelabel>+reservedRoom</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>EquipmentItem</label>
+        <link refid="classEquipmentItem"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="16">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="19">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>UnityEngine</label>
+      </node>
+      <node id="12">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" line="9" column="17" bodyfile="Assets/Scripts/Ship/Rooms/DefaultRoom/Room.cs" bodystart="719" bodyend="843"/>
+    <listofallmembers>
+      <member refid="classRoom_1aec241c5a07916a9111693829049be457" prot="private" virt="non-virtual"><scope>Room</scope><name>_workingCrew</name></member>
+      <member refid="classRoom_1af01fdaf835b16d6b14c7fe6826e1229d" prot="protected" virt="non-virtual"><scope>Room</scope><name>adjacentRooms</name></member>
+      <member refid="classRoom_1a88c5979811e45ad8f1f07d3138dcefdb" prot="public" virt="non-virtual"><scope>Room</scope><name>BlackOut</name></member>
+      <member refid="classRoom_1a2f522cbb9b82a376036ece6c852ed93c" prot="public" virt="virtual"><scope>Room</scope><name>CanBePlaced</name></member>
+      <member refid="classRoom_1ad62d80f55bb300b0e5b9c6e51b9e61f2" prot="public" virt="virtual"><scope>Room</scope><name>CanITouch</name></member>
+      <member refid="classRoom_1a37ebb8fcc2b7d3c4188806c8c0391c4f" prot="protected" virt="non-virtual"><scope>Room</scope><name>connectedDoors</name></member>
+      <member refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" prot="public" virt="virtual"><scope>Room</scope><name>CopyFrom</name></member>
+      <member refid="classRoom_1affffb06a79e9b46c4f77067bf8854e91" prot="public" virt="non-virtual"><scope>Room</scope><name>crewInRoom</name></member>
+      <member refid="classRoom_1a3eda5d2a24f5e68c7cd376d50096cb4c" prot="public" virt="non-virtual"><scope>Room</scope><name>currentHitPoints</name></member>
+      <member refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" prot="protected" virt="non-virtual"><scope>Room</scope><name>currentLevel</name></member>
+      <member refid="classRoom_1aef1c93f94f164ed3151ec3d3301a1988" prot="protected" virt="non-virtual"><scope>Room</scope><name>currentRoomLevelData</name></member>
+      <member refid="classRoom_1ae1f89a83229215231d726691043898c6" prot="public" virt="non-virtual"><scope>Room</scope><name>currentRotation</name></member>
+      <member refid="classRoom_1a7cc8f566f2f7b8810472e4f682a34776" prot="public" virt="non-virtual"><scope>Room</scope><name>damageCondition</name></member>
+      <member refid="classRoom_1ac0999d1153572a5f5d16ced52ad09e28" prot="public" virt="virtual"><scope>Room</scope><name>DownDamageCondition</name></member>
+      <member refid="classRoom_1ae5954789763526a0437023ef85ff64c0" prot="public" virt="non-virtual"><scope>Room</scope><name>FullRepair</name></member>
+      <member refid="classRoom_1aadaed0165d27e94c487122c7940150f1" prot="public" virt="non-virtual"><scope>Room</scope><name>GetConnectedDoors</name></member>
+      <member refid="classRoom_1ad765678a93134a51ff5fb6006ea24ba4" prot="public" virt="non-virtual"><scope>Room</scope><name>GetCrewCount</name></member>
+      <member refid="classRoom_1ae14b08f3ba19cce81b077d6fefcb1fd5" prot="public" virt="non-virtual"><scope>Room</scope><name>GetCurrentLevel</name></member>
+      <member refid="classRoom_1a1726ecaf3cf53bd576215060616ddc4f" prot="public" virt="non-virtual"><scope>Room</scope><name>GetCurrentLevelData</name></member>
+      <member refid="classRoom_1a01e20c3f739d0ca0ba9fc8a9e21c1e7e" prot="public" virt="non-virtual"><scope>Room</scope><name>GetHealthPercentage</name></member>
+      <member refid="classRoom_1aca10cd460fc622d1f4b968092676be31" prot="public" virt="non-virtual"><scope>Room</scope><name>GetIsDamageable</name></member>
+      <member refid="classRoom_1aa7705fc23f6da23ba58ede843bf53b69" prot="public" virt="non-virtual"><scope>Room</scope><name>GetIsPowered</name></member>
+      <member refid="classRoom_1a8d86301d093a96f051430de0c474be64" prot="public" virt="non-virtual"><scope>Room</scope><name>GetIsPowerRequested</name></member>
+      <member refid="classRoom_1a1972222cfff89e533a64d4a3cb7a23a2" prot="public" virt="non-virtual"><scope>Room</scope><name>GetMaxHitPoints</name></member>
+      <member refid="classRoom_1a40ae5083a93abef5597e9a3f6fca5cce" prot="public" virt="virtual"><scope>Room</scope><name>GetNextLevelStatContributions</name></member>
+      <member refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" prot="public" virt="non-virtual"><scope>Room</scope><name>GetOccupiedTiles</name></member>
+      <member refid="classRoom_1abe64553abf13aa2fe9d0d9c902c64383" prot="public" virt="non-virtual"><scope>Room</scope><name>GetPowerConsumption</name></member>
+      <member refid="classRoom_1a21652f6cd674125034555b2cd6dfe38a" prot="public" virt="non-virtual"><scope>Room</scope><name>GetRoomData</name></member>
+      <member refid="classRoom_1a2365d0e5208435874084d5640a221b0c" prot="public" virt="non-virtual"><scope>Room</scope><name>GetRoomType</name></member>
+      <member refid="classRoom_1a08dfe5c5a797aacad22c29926b3482e4" prot="public" virt="non-virtual"><scope>Room</scope><name>GetRotatedCrewEntryGridPriority</name></member>
+      <member refid="classRoom_1a20cd0655c331d88c7e1825abc51e9941" prot="public" virt="non-virtual"><scope>Room</scope><name>GetSize</name></member>
+      <member refid="classRoom_1a8533094cb230185cce7735d640d950f1" prot="public" virt="virtual"><scope>Room</scope><name>GetStatContributions</name></member>
+      <member refid="classRoom_1a1e00c1972c53a50675c83b0b9fdb27d3" prot="public" virt="non-virtual"><scope>Room</scope><name>GetTotalCrewsInRoom</name></member>
+      <member refid="classRoom_1a72e1611197e04fa7551053bd7ccfc03f" prot="private" virt="non-virtual"><scope>Room</scope><name>gridSize</name></member>
+      <member refid="classRoom_1a2d183b76de173f69d65595f779de8af7" prot="public" virt="non-virtual"><scope>Room</scope><name>HasEnoughCrew</name></member>
+      <member refid="classRoom_1a6929cc191f3db9e3a91dd63471d16b52" prot="private" virt="non-virtual"><scope>Room</scope><name>icon</name></member>
+      <member refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" prot="public" virt="virtual"><scope>Room</scope><name>Initialize</name></member>
+      <member refid="classRoom_1a94cfcdc89bdf504daf55290d1437d1ad" prot="public" virt="non-virtual"><scope>Room</scope><name>Initialize</name></member>
+      <member refid="classRoom_1a5f156328639bfa2aa5a48cd4b85458f3" prot="private" virt="non-virtual"><scope>Room</scope><name>InitializeDoor</name></member>
+      <member refid="classRoom_1a33bb9ff12585bbc75833a118ffab2eb0" prot="public" virt="non-virtual"><scope>Room</scope><name>InitializeIsDamageable</name></member>
+      <member refid="classRoom_1a3bdba4c8c48690061dcdac4bd6f08b5e" prot="public" virt="non-virtual"><scope>Room</scope><name>isActionConnected</name></member>
+      <member refid="classRoom_1a060d1169bcb74a2884762dcade03711b" prot="public" virt="non-virtual"><scope>Room</scope><name>isActive</name></member>
+      <member refid="classRoom_1a24960b1e2c71b53be23ae7869efc13ed" prot="private" virt="non-virtual"><scope>Room</scope><name>isDamageable</name></member>
+      <member refid="classRoom_1af15fefedd48a2009da56d461a9084ed8" prot="public" virt="non-virtual"><scope>Room</scope><name>IsOperational</name></member>
+      <member refid="classRoom_1a9809153e49cfcdcf4f82841e9646fbb5" prot="public" virt="non-virtual"><scope>Room</scope><name>isPowered</name></member>
+      <member refid="classRoom_1aa05e3822e244ed8eb13561735a142fae" prot="public" virt="non-virtual"><scope>Room</scope><name>isPowerRequested</name></member>
+      <member refid="classRoom_1a6e33736f8c1e258399cba50374a83670" prot="public" virt="non-virtual"><scope>Room</scope><name>NeedsRepair</name></member>
+      <member refid="classRoom_1a24a2b295f97d7b3d6efbe51b8f865415" prot="public" virt="virtual"><scope>Room</scope><name>NotifyStateChanged</name></member>
+      <member refid="classRoom_1af41633a85c88ae9e207f5a2589e752c2" prot="public" virt="non-virtual"><scope>Room</scope><name>OccupiesTile</name></member>
+      <member refid="classRoom_1a577bbc93f6479096f0d4bedd6cefc26e" prot="public" virt="virtual"><scope>Room</scope><name>OnCrewEnter</name></member>
+      <member refid="classRoom_1a406fb69e32ccf550c344f0d335eac2e9" prot="public" virt="virtual"><scope>Room</scope><name>OnCrewExit</name></member>
+      <member refid="classRoom_1ae6a1f78f8f519e13f08b655d042eb8bd" prot="private" virt="non-virtual"><scope>Room</scope><name>OnDestroy</name></member>
+      <member refid="classRoom_1a1e5e6fe3b3c473bd0a08582f9017681d" prot="protected" virt="virtual"><scope>Room</scope><name>OnDisabled</name></member>
+      <member refid="classRoom_1ae35a0c0556a10493e8e52a5f8cd325b9" prot="public" virt="non-virtual"><scope>Room</scope><name>OnRoomStateChanged</name></member>
+      <member refid="classRoom_1a1aee33b995a9498a806590785f5edd37" prot="public" virt="non-virtual"><scope>Room</scope><name>parentShip</name></member>
+      <member refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" prot="public" virt="non-virtual"><scope>Room</scope><name>position</name></member>
+      <member refid="classRoom_1ab0d240e0649b42fe9bec652095f91c35" prot="public" virt="non-virtual"><scope>Room</scope><name>Repair</name></member>
+      <member refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" prot="protected" virt="non-virtual"><scope>Room</scope><name>roomData</name></member>
+      <member refid="classRoom_1a2ceb9fa0e776c6956db8ad2fc1001f8d" prot="public" virt="non-virtual"><scope>Room</scope><name>roomData</name></member>
+      <member refid="classRoom_1ace360cd5c592e435e52fcd081852376a" prot="protected" virt="non-virtual"><scope>Room</scope><name>roomParticles</name></member>
+      <member refid="classRoom_1aa79afbfb056fceca372b60e7b244805e" prot="protected" virt="non-virtual"><scope>Room</scope><name>roomRenderer</name></member>
+      <member refid="classRoom_1a4ebc536d98852ea45bd0d79b4bec8c58" prot="protected" virt="non-virtual"><scope>Room</scope><name>roomSound</name></member>
+      <member refid="classRoom_1af4b97c8e2306beda35f26f8803734eb5" prot="public" virt="non-virtual"><scope>Room</scope><name>roomType</name></member>
+      <member refid="classRoom_1a054dfcf2fb05105186e1535b501f792c" prot="public" virt="non-virtual"><scope>Room</scope><name>SetCurrentLevel</name></member>
+      <member refid="classRoom_1a384f65346bcd4a08a7cf2e4c1e2c915a" prot="public" virt="non-virtual"><scope>Room</scope><name>SetIsActive</name></member>
+      <member refid="classRoom_1a380de06eaf2c762679b65903782b173e" prot="public" virt="virtual"><scope>Room</scope><name>SetPowerStatus</name></member>
+      <member refid="classRoom_1a7032b43f7ff95af276153f31b7e0fb40" prot="public" virt="non-virtual"><scope>Room</scope><name>SetRoomData</name></member>
+      <member refid="classRoom_1a80feb09415e3acd9fc94d370f4b00efd" prot="protected" virt="virtual"><scope>Room</scope><name>Start</name></member>
+      <member refid="classRoom_1a48e9fcd083d5f11c6dfca873960fd3c5" prot="protected" virt="non-virtual"><scope>Room</scope><name>Start</name></member>
+      <member refid="classRoom_1a6a7d8be84106267b1036aa51645819a4" prot="public" virt="virtual"><scope>Room</scope><name>TakeDamage</name></member>
+      <member refid="classRoom_1a6e79c14d19329e74985711e03caaa1fa" prot="public" virt="virtual"><scope>Room</scope><name>Update</name></member>
+      <member refid="classRoom_1a2114f1e3c7ce8957cb3ed170958ef84a" prot="protected" virt="virtual"><scope>Room</scope><name>UpdateEffects</name></member>
+      <member refid="classRoom_1a8294d108ea218dff21d0d30a87c8c8af" prot="protected" virt="virtual"><scope>Room</scope><name>UpdateRoom</name></member>
+      <member refid="classRoom_1a991f10d83518af889058b13763fd3e25" prot="protected" virt="virtual"><scope>Room</scope><name>UpdateRoomLevelData</name></member>
+      <member refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" prot="public" virt="non-virtual"><scope>Room</scope><name>UpdateRoomVisual</name></member>
+      <member refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" prot="public" virt="non-virtual"><scope>Room</scope><name>UpdateRoomVisual</name></member>
+      <member refid="classRoom_1a6c701615ce6310e02a88483adf30c269" prot="public" virt="virtual"><scope>Room</scope><name>Upgrade</name></member>
+      <member refid="classRoom_1a2f0a2ecde33aaee53ca649d85a5b8e8b" prot="public" virt="non-virtual"><scope>Room</scope><name>Upgrade</name></member>
+      <member refid="classRoom_1a08bfe2fcb01f8857b0aa420d3eb08629" prot="public" virt="non-virtual"><scope>Room</scope><name>workDirection</name></member>
+      <member refid="classRoom_1a1696a3012c809991479cef579c82c8d3" prot="public" virt="non-virtual"><scope>Room</scope><name>workingCrew</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

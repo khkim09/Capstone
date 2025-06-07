@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classInventoryUI" kind="class" language="C#" prot="public">
+    <compoundname>InventoryUI</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classInventoryUI_1aeaac3be0faab4fce4c242e8493611267" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform InventoryUI.contentPanel</definition>
+        <argsstring></argsstring>
+        <name>contentPanel</name>
+        <qualifiedname>InventoryUI.contentPanel</qualifiedname>
+        <briefdescription>
+<para>ScrollView의 Content 패널을 참조합니다. (Hierarchy에서 Drag &amp; Drop) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryUI.cs" line="13" column="24" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryUI.cs" bodystart="13" bodyend="-1"/>
+        <referencedby refid="classInventoryUI_1a02cb5fa8b7ff46802da04cdb620227ff" compoundref="InventoryUI_8cs" startline="41" endline="66">PopulateInventory</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryUI_1a148e5c10f254374d926fd89d0ed901fb" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject InventoryUI.inventoryItemPrefab</definition>
+        <argsstring></argsstring>
+        <name>inventoryItemPrefab</name>
+        <qualifiedname>InventoryUI.inventoryItemPrefab</qualifiedname>
+        <briefdescription>
+<para>인벤토리 아이템 프리팹을 참조합니다. (Project에서 Drag &amp; Drop) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryUI.cs" line="18" column="25" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryUI.cs" bodystart="18" bodyend="-1"/>
+        <referencedby refid="classInventoryUI_1a02cb5fa8b7ff46802da04cdb620227ff" compoundref="InventoryUI_8cs" startline="41" endline="66">PopulateInventory</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classInventoryUI_1a69f2490da88b887144cca783e0b8dcec" prot="private" static="no" mutable="no">
+        <type><ref refid="classStorage" kindref="compound">Storage</ref></type>
+        <definition>Storage InventoryUI.storage</definition>
+        <argsstring></argsstring>
+        <name>storage</name>
+        <qualifiedname>InventoryUI.storage</qualifiedname>
+        <briefdescription>
+<para>플레이어의 창고를 관리하는 <ref refid="classStorage" kindref="compound">Storage</ref> 컴포넌트를 참조합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryUI.cs" line="23" column="22" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryUI.cs" bodystart="23" bodyend="-1"/>
+        <referencedby refid="classInventoryUI_1a02cb5fa8b7ff46802da04cdb620227ff" compoundref="InventoryUI_8cs" startline="41" endline="66">PopulateInventory</referencedby>
+        <referencedby refid="classInventoryUI_1a3860766b4516c00d581323d0bb55bb63" compoundref="InventoryUI_8cs" startline="28" endline="34">Start</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classInventoryUI_1a3860766b4516c00d581323d0bb55bb63" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InventoryUI.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>InventoryUI.Start</qualifiedname>
+        <briefdescription>
+<para>MonoBehaviour의 Start 메서드로, 초기화 작업을 수행하고 인벤토리 UI를 생성합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryUI.cs" line="28" column="18" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryUI.cs" bodystart="28" bodyend="34"/>
+        <references refid="classInventoryUI_1a02cb5fa8b7ff46802da04cdb620227ff" compoundref="InventoryUI_8cs" startline="41" endline="66">PopulateInventory</references>
+        <references refid="classInventoryUI_1a69f2490da88b887144cca783e0b8dcec" compoundref="InventoryUI_8cs" startline="23">storage</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classInventoryUI_1a02cb5fa8b7ff46802da04cdb620227ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InventoryUI.PopulateInventory</definition>
+        <argsstring>(bool makeInteractable=true)</argsstring>
+        <name>PopulateInventory</name>
+        <qualifiedname>InventoryUI.PopulateInventory</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>makeInteractable</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Storage에 저장된 모든 아이템을 기반으로 UI를 동적으로 생성합니다. 기존의 아이템 UI를 제거한 후 새롭게 생성하여 중복 생성을 방지합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>makeInteractable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>생성된 슬롯의 클릭 가능 여부 설정</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryUI.cs" line="41" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryUI.cs" bodystart="41" bodyend="66"/>
+        <references refid="classInventoryUI_1aeaac3be0faab4fce4c242e8493611267" compoundref="InventoryUI_8cs" startline="13">contentPanel</references>
+        <references refid="classStorage_1a97dfaceb6c6f0d3f1fc3387cc7c79400" compoundref="Storage_8cs" startline="181" endline="191">Storage.GetAllItems</references>
+        <references refid="classInventoryUI_1a148e5c10f254374d926fd89d0ed901fb" compoundref="InventoryUI_8cs" startline="18">inventoryItemPrefab</references>
+        <references refid="classInventoryItemUI_1a12790122e12779e871c01211d723fd8e" compoundref="InventoryItemUI_8cs" startline="91" endline="151">InventoryItemUI.Setup</references>
+        <references refid="classInventoryUI_1a69f2490da88b887144cca783e0b8dcec" compoundref="InventoryUI_8cs" startline="23">storage</references>
+        <referencedby refid="classMiddlePanelUI_1a9295791df36e66545387bf2a5e7fa241" compoundref="MiddlePanelUI_8cs" startline="141" endline="157">MiddlePanelUI.OnBuyClicked</referencedby>
+        <referencedby refid="classMiddlePanelUI_1aae6978b594bb4300522a9335b208d413" compoundref="MiddlePanelUI_8cs" startline="163" endline="179">MiddlePanelUI.OnSellClicked</referencedby>
+        <referencedby refid="classTradeUIManager_1a742412bbb3aa546667abb3d745245d63" compoundref="TradeUIManager_8cs" startline="213" endline="260">TradeUIManager.OpenSellPanel</referencedby>
+        <referencedby refid="classInventoryUI_1a3860766b4516c00d581323d0bb55bb63" compoundref="InventoryUI_8cs" startline="28" endline="34">Start</referencedby>
+        <referencedby refid="classTestStorageItemAdder_1acf9231bc26add2d4187038cdc742ea81" compoundref="TestStorageItem_8cs" startline="21" endline="56">TestStorageItemAdder.Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classInventoryUI_1a1bc21e00fc99ce99baed1bdabd9b91b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InventoryUI.CloseSelfPanel</definition>
+        <argsstring>()</argsstring>
+        <name>CloseSelfPanel</name>
+        <qualifiedname>InventoryUI.CloseSelfPanel</qualifiedname>
+        <briefdescription>
+<para>인벤토리 패널을 비활성화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryUI.cs" line="71" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryUI.cs" bodystart="71" bodyend="74"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>InventoryUI는 스크롤 뷰의 콘텐츠 패널에 인벤토리 아이템 UI를 동적으로 생성하고 관리하는 클래스입니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>InventoryUI</label>
+        <link refid="classInventoryUI"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>InventoryUI</label>
+        <link refid="classInventoryUI"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-storage</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="5">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="3">
+        <label>Storage</label>
+        <link refid="classStorage"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-itemDatabase</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>TradingItemDataBase</label>
+        <link refid="classTradingItemDataBase"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Trade/PlanetTradeBuy/InventoryUI.cs" line="8" column="7" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/InventoryUI.cs" bodystart="9" bodyend="75"/>
+    <listofallmembers>
+      <member refid="classInventoryUI_1a1bc21e00fc99ce99baed1bdabd9b91b2" prot="public" virt="non-virtual"><scope>InventoryUI</scope><name>CloseSelfPanel</name></member>
+      <member refid="classInventoryUI_1aeaac3be0faab4fce4c242e8493611267" prot="private" virt="non-virtual"><scope>InventoryUI</scope><name>contentPanel</name></member>
+      <member refid="classInventoryUI_1a148e5c10f254374d926fd89d0ed901fb" prot="private" virt="non-virtual"><scope>InventoryUI</scope><name>inventoryItemPrefab</name></member>
+      <member refid="classInventoryUI_1a02cb5fa8b7ff46802da04cdb620227ff" prot="public" virt="non-virtual"><scope>InventoryUI</scope><name>PopulateInventory</name></member>
+      <member refid="classInventoryUI_1a3860766b4516c00d581323d0bb55bb63" prot="private" virt="non-virtual"><scope>InventoryUI</scope><name>Start</name></member>
+      <member refid="classInventoryUI_1a69f2490da88b887144cca783e0b8dcec" prot="private" virt="non-virtual"><scope>InventoryUI</scope><name>storage</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

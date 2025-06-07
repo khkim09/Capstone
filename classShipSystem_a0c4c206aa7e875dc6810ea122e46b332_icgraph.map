@@ -1,0 +1,81 @@
+<map id="ShipSystem.GetShipStat" name="ShipSystem.GetShipStat">
+<area shape="rect" id="Node000001" title="현재 함선의 특정 스탯 값을 가져옵니다." alt="" coords="2719,489,2961,517"/>
+<area shape="rect" id="Node000002" href="$classCrewSystem.html#a5b59e65fd0e697d23dcab8598f9a7516" title="새로운 크루 멤버를 추가합니다." alt="" coords="2408,140,2611,168"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2830,477,2813,415,2781,336,2760,294,2734,254,2704,218,2669,187,2641,171,2610,162,2611,157,2643,166,2672,182,2708,214,2739,251,2765,292,2786,334,2818,414,2835,475"/>
+<area shape="rect" id="Node000010" href="$classOxygenSystem.html#a9e7b971ccb3d4aedc8221e90bfd48a11" title="현재 산소 변화량을 계산합니다. 산소 생성량에서 소비량을 뺀 값을 반환합니다." alt="" coords="2358,197,2661,242"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="2826,477,2804,429,2771,368,2726,307,2699,280,2669,256,2648,244,2651,240,2672,252,2702,276,2730,304,2775,366,2809,427,2831,475"/>
+<area shape="rect" id="Node000013" href="$classHitPointSystem.html#afc57249cf7099f1cc807759fe5d83f50" title="체력을 변경합니다. 양수이면 회복, 음수이면 피해를 의미합니다. 최대 체력을 초과하지 않으며, 0 아래로 내려가지 않습니다." alt="" coords="2378,421,2641,466"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="2748,489,2635,469,2636,463,2749,484"/>
+<area shape="rect" id="Node000024" href="$classWeaponSystem.html#a4664bc232783de0d119664f701436a6b" title="매 프레임마다 호출되어 각 무기의 쿨다운 상태를 업데이트합니다." alt="" coords="341,369,553,397"/>
+<area shape="poly" id="edge42_Node000001_Node000024" title=" " alt="" coords="2808,484,2747,444,2709,426,2670,411,2597,393,2535,381,2479,376,2426,376,2316,381,2175,386,1066,386,553,386,553,381,1066,381,2175,381,2316,376,2426,370,2479,371,2535,376,2598,387,2671,406,2711,421,2749,440,2811,479"/>
+<area shape="rect" id="Node000026" href="$classWeaponSystem.html#a624ae04a45c9a1472b259d8b8ce4cfa0" title="실제 적용될 쿨다운 시간을 계산합니다. 쿨다운 보너스를 고려하여 기본 쿨타임을 감소시킵니다." alt="" coords="2348,593,2671,621"/>
+<area shape="poly" id="edge28_Node000001_Node000026" title=" " alt="" coords="2803,527,2743,557,2671,585,2625,596,2624,591,2670,579,2741,552,2801,522"/>
+<area shape="rect" id="Node000027" href="$classWeaponSystem.html#a76fad11c0e7c6d587a635081322f4b4f" title="실제 적용될 데미지를 계산합니다. 데미지 보너스를 적용하여 최종 데미지를 산출합니다." alt="" coords="2358,541,2661,569"/>
+<area shape="poly" id="edge29_Node000001_Node000027" title=" " alt="" coords="2737,522,2600,544,2599,539,2736,517"/>
+<area shape="rect" id="Node000030" href="$classHitPointSystem.html#abe2111690dc484e8a3e3a3d1ec129d52" title="현재 체력의 퍼센트 값을 반환합니다. (0 ~ 100)" alt="" coords="2368,646,2651,691"/>
+<area shape="poly" id="edge33_Node000001_Node000030" title=" " alt="" coords="2817,529,2755,584,2715,612,2672,636,2641,648,2639,643,2670,632,2712,608,2752,580,2813,525"/>
+<area shape="rect" id="Node000031" href="$classShieldSystem.html#a190cc0fb594748a735b546c52038bfb9" title="쉴드의 최대 수치를 반환합니다." alt="" coords="2373,716,2645,744"/>
+<area shape="poly" id="edge34_Node000001_Node000031" title=" " alt="" coords="2827,531,2803,571,2768,619,2724,667,2672,706,2644,718,2641,713,2669,701,2721,663,2764,615,2799,568,2823,528"/>
+<area shape="rect" id="Node000032" href="$classShieldSystem.html#ae63427dfc58e56e36378afee9f24cc82" title="쉴드를 재생성합니다. 초당 재생 속도에 따라 현재 쉴드를 회복합니다." alt="" coords="2353,267,2665,295"/>
+<area shape="poly" id="edge35_Node000001_Node000032" title=" " alt="" coords="2821,479,2797,442,2762,397,2719,353,2669,316,2623,297,2625,292,2672,312,2723,349,2766,394,2801,439,2826,476"/>
+<area shape="rect" id="Node000033" href="$classShieldSystem.html#a46cd008a11318d1b3a30744f325c0cdf" title="매 프레임마다 호출되어 쉴드 상태를 갱신합니다. 파괴 상태일 경우 재활성화 타이머를 감소시키고, 파괴되지 않은 상태에서는 자동으로 쉴드를 재생성합니다." alt="" coords="2068,317,2280,345"/>
+<area shape="poly" id="edge41_Node000001_Node000033" title=" " alt="" coords="2816,481,2755,421,2714,391,2670,367,2621,351,2570,338,2466,324,2367,320,2281,323,2280,318,2367,315,2467,318,2571,333,2622,345,2672,362,2717,386,2759,417,2820,477"/>
+<area shape="rect" id="Node000034" href="$classPowerSystem.html#af311ccf5242a2eba89ba389034c7e60e" title="특정 방에 전원을 공급하거나 차단합니다. 전원을 끄는 요청은 항상 성공하며, 전원을 켜는 경우엔 남은 전력을 확인합니다." alt="" coords="2378,769,2641,814"/>
+<area shape="poly" id="edge38_Node000001_Node000034" title=" " alt="" coords="2831,531,2810,581,2776,643,2730,706,2703,734,2672,759,2642,775,2640,770,2669,754,2699,731,2726,703,2771,640,2805,579,2826,529"/>
+<area shape="rect" id="Node000035" href="$classShieldSystem.html#a6aabf8cddda8f2a7f24887dbdeeff692" title="쉴드에 피해를 입히고, 남은 피해량을 반환합니다. 쉴드가 모두 소모되면 파괴 상태로 전환되며, 재활성화 타이머가 시작됩니다. 특정 무기 타입은 피해량 보정이 적용됩니다." alt="" coords="2048,485,2300,513"/>
+<area shape="poly" id="edge39_Node000001_Node000035" title=" " alt="" coords="2705,505,2300,503,2300,497,2705,500"/>
+<area shape="rect" id="Node000036" href="$classWeaponSystem.html#a1bc7878b7289056221808d057ca26153" title="모든 무기의 쿨다운을 업데이트합니다." alt="" coords="2373,838,2645,883"/>
+<area shape="poly" id="edge43_Node000001_Node000036" title=" " alt="" coords="2835,531,2818,593,2786,674,2765,717,2739,758,2708,796,2672,828,2647,843,2644,839,2669,824,2704,792,2734,755,2760,714,2782,672,2813,592,2830,530"/>
+<area shape="rect" id="Node000003" href="$classShip.html#ada608dfe1708f8859e0a1c202c8ab121" title="새로운 승무원을 함선에 추가합니다." alt="" coords="2103,136,2245,164"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="2394,155,2246,154,2246,148,2394,150"/>
+<area shape="rect" id="Node000004" href="$classShipFactory.html#a3c26f8bde8633e87fe1d7eaf140bc253" title="템플릿을 기반으로 함선 생성" alt="" coords="1707,127,1990,173"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="2089,153,1990,153,1990,147,2089,147"/>
+<area shape="rect" id="Node000005" href="$classEnemyShipFactory.html#ac2dece8b7383ba255abb0d67fb29fcb8" title="템플릿 설정을 기반으로 해적선에 대한 무작위 선원을 생성합니다" alt="" coords="1713,197,1985,242"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="2095,169,1956,199,1955,194,2094,164"/>
+<area shape="rect" id="Node000008" href="$classEmployController.html#aae8334ca67a3e43c06aaadef71c74313" title="선원 고용 확정" alt="" coords="1703,5,1995,33"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="2142,130,2078,88,2039,66,1999,49,1956,36,1958,31,2001,43,2042,62,2081,83,2145,125"/>
+<area shape="rect" id="Node000009" href="$classCrewUIHandler.html#a22bad1caab3c0a3183de081a6257d08b" title="선원 정보 입력 후 실제 생성하는 버튼 클릭 시 호출" alt="" coords="1697,58,2000,103"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="2094,136,1955,106,1956,101,2095,131"/>
+<area shape="rect" id="Node000006" href="$classEnemyShipFactory.html#af2143f183e56385b0a94b5ad9d6bf1b7" title="기본 배를 수동으로 생성합니다" alt="" coords="1287,211,1649,239"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1699,224,1650,225,1650,219,1699,219"/>
+<area shape="rect" id="Node000007" href="$classEnemyShipFactory.html#adf438c0292d675acffceb7b7bd4ac129" title="제공된 템플릿 이름을 기반으로 해적선을 생성합니다" alt="" coords="896,209,1239,237"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="1699,204,1649,201,1468,194,1287,201,1169,212,1168,207,1286,195,1468,189,1649,195,1699,199"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1273,227,1239,227,1239,221,1273,221"/>
+<area shape="rect" id="Node000011" href="$classOxygenSystem.html#a82e6211ee26cf9357f35825709431420" title="매 프레임마다 호출되어 산소 수치를 갱신합니다. 산소 생성량과 소비량을 계산하여 변화량을 적용합니다." alt="" coords="636,265,848,293"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="2344,245,2111,270,1980,279,1850,282,1467,282,848,282,848,277,1467,277,1850,277,1980,273,2110,265,2344,240"/>
+<area shape="rect" id="Node000012" href="$classShip.html#a6ab0aaf28782b38d9c80bf19e652f46c" title="게임 시작 시 호출되며, 테스트 룸 배치 및 시스템 초기화를 수행합니다." alt="" coords="65,317,197,345"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="622,290,306,315,198,327,197,321,305,310,622,285"/>
+<area shape="rect" id="Node000014" href="$classShip.html#ac61b02cdac21a64fd326753ccb8ae96a" title="함선에 직접 피해를 적용합니다. 체력을 감소시키고, 파괴되었는지 확인합니다." alt="" coords="2088,429,2260,457"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="2364,446,2260,446,2260,441,2364,441"/>
+<area shape="rect" id="Node000015" href="$classCrewMember.html#a1980132bc97845dc890766dadd559e00" title="전투 메서드: 1 hit 당 피해량 계산 후 체력 차감, 체력이 0 이하이면 죽음 처리" alt="" coords="1753,428,1945,456"/>
+<area shape="poly" id="edge15_Node000014_Node000015" title=" " alt="" coords="2074,446,1945,445,1945,440,2074,440"/>
+<area shape="rect" id="Node000016" href="$classShip.html#a8f64cf8910e4b5d5f08382a0128860ef" title="무기 및 외부 방어 시스템을 포함한 실제 피해 계산 및 적용을 수행합니다." alt="" coords="1763,480,1935,508"/>
+<area shape="poly" id="edge16_Node000014_Node000016" title=" " alt="" coords="2075,461,1935,483,1934,478,2074,456"/>
+<area shape="rect" id="Node000017" href="$classShipWeapon.html#a5c800bb1a7dc07c7f60e36ff30acc817" title="투사체가 목표에 도달했을 때 호출" alt="" coords="1327,500,1609,528"/>
+<area shape="poly" id="edge17_Node000016_Node000017" title=" " alt="" coords="1749,502,1610,509,1609,504,1749,497"/>
+<area shape="rect" id="Node000018" href="$classShipWeapon.html#a988ecbbbe6152ece7f3651236ed9b0d8" title="무기 발사 실행" alt="" coords="981,521,1153,549"/>
+<area shape="poly" id="edge18_Node000017_Node000018" title=" " alt="" coords="1313,525,1154,533,1153,528,1313,520"/>
+<area shape="rect" id="Node000019" href="$classShipWeapon.html#ae07871ba8eadcce6c4042e3f988980a6" title="무기 발사 시도" alt="" coords="641,521,843,549"/>
+<area shape="poly" id="edge19_Node000018_Node000019" title=" " alt="" coords="968,538,844,538,844,533,968,533"/>
+<area shape="rect" id="Node000020" href="$classWeaponSystem.html#a73e0b9a0da5d4c185a14d7e8e2410650" title="준비된 모든 무기를 발사합니다." alt="" coords="311,665,583,710"/>
+<area shape="poly" id="edge20_Node000019_Node000020" title=" " alt="" coords="718,561,662,609,627,634,589,655,559,667,557,662,587,650,624,629,659,605,715,557"/>
+<area shape="rect" id="Node000021" href="$classWeaponSystem.html#a266a34e53065779bd5f92db175dcb5f3" title="준비된 무기가 있는지 확인하고 발사를 시도합니다." alt="" coords="5,581,257,609"/>
+<area shape="poly" id="edge22_Node000019_Node000021" title=" " alt="" coords="627,525,554,520,473,519,389,522,306,533,266,542,226,556,162,584,159,579,224,551,264,537,305,527,388,517,473,513,555,515,627,519"/>
+<area shape="rect" id="Node000022" href="$classWeaponSystem.html#a8bbbcfefb2cf3cacb7abc79900ab1cfd" title="특정 타입의 무기만 발사합니다." alt="" coords="315,542,578,587"/>
+<area shape="poly" id="edge23_Node000019_Node000022" title=" " alt="" coords="627,549,578,554,578,549,627,544"/>
+<area shape="rect" id="Node000023" href="$classShipWeapon.html#a5921a06b1952c0802dd2e06fdb7bc4dd" title="쿨다운 완료 시 자동 발사 시도" alt="" coords="325,612,568,640"/>
+<area shape="poly" id="edge24_Node000019_Node000023" title=" " alt="" coords="701,558,648,581,589,602,537,615,536,609,587,597,646,576,699,553"/>
+<area shape="poly" id="edge25_Node000019_Node000024" title=" " alt="" coords="717,513,661,461,625,434,587,412,552,400,554,395,589,408,628,430,664,457,720,509"/>
+<area shape="rect" id="Node000025" href="$classWeaponFrameFunction.html#a380506c0cc2e11a7eb7de9a1495f1057" title="weapon panel frame에 정보를 갱신하여 다시 그린다. 만약 전원 상태가 Auto라면 게이지가 꽉 찼을 때 자동발사한다." alt="" coords="305,422,588,467"/>
+<area shape="poly" id="edge27_Node000019_Node000025" title=" " alt="" coords="684,520,587,489,525,470,527,465,589,483,686,515"/>
+<area shape="poly" id="edge21_Node000020_Node000021" title=" " alt="" coords="335,664,305,655,171,612,173,607,306,650,337,659"/>
+<area shape="poly" id="edge26_Node000024_Node000012" title=" " alt="" coords="347,370,197,345,198,340,348,364"/>
+<area shape="rect" id="Node000028" href="$classShip.html#aaeb3c2fae57814b8bfd366f887e2c39f" title="무기 시스템 수정자를 적용한 후의 실제 피해량을 계산합니다." alt="" coords="2063,541,2285,569"/>
+<area shape="poly" id="edge30_Node000027_Node000028" title=" " alt="" coords="2344,558,2286,558,2286,553,2344,553"/>
+<area shape="poly" id="edge31_Node000028_Node000018" title=" " alt="" coords="2104,575,2000,593,1881,601,1760,603,1639,600,1521,593,1311,573,1153,552,1154,547,1312,568,1522,588,1639,595,1760,598,1881,595,2000,587,2104,570"/>
+<area shape="rect" id="Node000029" href="$classOuterShipCombatController.html#a11ae7e43fcd5261ae159ccffb975dba9" title="지정된 함선이 무기를 발사하도록 시도합니다. 무기가 준비되지 않았거나 대상이 없으면 실패합니다." alt="" coords="1707,533,1990,578"/>
+<area shape="poly" id="edge32_Node000028_Node000029" title=" " alt="" coords="2049,558,1990,558,1990,553,2049,553"/>
+<area shape="poly" id="edge36_Node000032_Node000033" title=" " alt="" coords="2403,299,2268,320,2267,315,2402,294"/>
+<area shape="poly" id="edge37_Node000033_Node000012" title=" " alt="" coords="2054,334,1469,334,741,334,197,334,197,329,741,329,1469,329,2054,329"/>
+<area shape="poly" id="edge40_Node000035_Node000016" title=" " alt="" coords="2034,500,1935,498,1935,493,2035,494"/>
+</map>

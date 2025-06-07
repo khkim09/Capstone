@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCrewPathfinder" kind="class" language="C#" prot="public">
+    <compoundname>CrewPathfinder</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classCrewPathfinder_1a8f03bbc2394316d5c77d8e6169864f04" prot="private" static="no" mutable="no">
+        <type><ref refid="classCrewMovementValidator" kindref="compound">CrewMovementValidator</ref></type>
+        <definition>CrewMovementValidator CrewPathfinder.movementValidator</definition>
+        <argsstring></argsstring>
+        <name>movementValidator</name>
+        <qualifiedname>CrewPathfinder.movementValidator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewPathFinder.cs" line="6" column="35" bodyfile="Assets/Scripts/RTS/CrewPathFinder.cs" bodystart="6" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCrewPathfinder_1a2f51ec8576f7e2c2ff9b31eb9e9b4a5a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewPathfinder.Initialize</definition>
+        <argsstring>(CrewMovementValidator validator)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>CrewPathfinder.Initialize</qualifiedname>
+        <param>
+          <type><ref refid="classCrewMovementValidator" kindref="compound">CrewMovementValidator</ref></type>
+          <declname>validator</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewPathFinder.cs" line="8" column="17" bodyfile="Assets/Scripts/RTS/CrewPathFinder.cs" bodystart="8" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewPathfinder_1a5511dc3dd1f1dd7fefda36d5c9e044c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>List&lt; Vector2Int &gt; CrewPathfinder.FindPathToTile</definition>
+        <argsstring>(CrewMember crew, Vector2Int tile)</argsstring>
+        <name>FindPathToTile</name>
+        <qualifiedname>CrewPathfinder.FindPathToTile</qualifiedname>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crew</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>tile</declname>
+        </param>
+        <briefdescription>
+<para>인자로 들어온 위치의 타일까지 최단 경로 검색 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>crew</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewPathFinder.cs" line="19" column="17" bodyfile="Assets/Scripts/RTS/CrewPathFinder.cs" bodystart="19" bodyend="23"/>
+        <references refid="classCrewMember_1af4b290dc38d44cde63972f5260377c43" compoundref="CrewMember_8cs" startline="145" endline="148">CrewMember.GetCurrentTile</references>
+        <referencedby refid="classRTSSelectionManager_1a0002c5992875339db3028007c2472b6d" compoundref="RTSSelectionManager_8cs" startline="443" endline="666">RTSSelectionManager.IssueMoveCommand</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" compoundref="RTSSelectionManager_8cs" startline="672" endline="800">RTSSelectionManager.MoveForCombat</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CrewPathfinder</label>
+        <link refid="classCrewPathfinder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>CrewMovementValidator</label>
+        <link refid="classCrewMovementValidator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>CrewPathfinder</label>
+        <link refid="classCrewPathfinder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-movementValidator</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/RTS/CrewPathFinder.cs" line="4" column="7" bodyfile="Assets/Scripts/RTS/CrewPathFinder.cs" bodystart="5" bodyend="24"/>
+    <listofallmembers>
+      <member refid="classCrewPathfinder_1a5511dc3dd1f1dd7fefda36d5c9e044c2" prot="public" virt="non-virtual"><scope>CrewPathfinder</scope><name>FindPathToTile</name></member>
+      <member refid="classCrewPathfinder_1a2f51ec8576f7e2c2ff9b31eb9e9b4a5a" prot="public" virt="non-virtual"><scope>CrewPathfinder</scope><name>Initialize</name></member>
+      <member refid="classCrewPathfinder_1a8f03bbc2394316d5c77d8e6169864f04" prot="private" virt="non-virtual"><scope>CrewPathfinder</scope><name>movementValidator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

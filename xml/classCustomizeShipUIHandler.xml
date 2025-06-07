@@ -1,0 +1,822 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCustomizeShipUIHandler" kind="class" language="C#" prot="public">
+    <compoundname>CustomizeShipUIHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1af43ef092ca4b45a5b239bf8879ef0612" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject CustomizeShipUIHandler.customizeUI</definition>
+        <argsstring></argsstring>
+        <name>customizeUI</name>
+        <qualifiedname>CustomizeShipUIHandler.customizeUI</qualifiedname>
+        <briefdescription>
+<para>커스터마이즈 UI 화면입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="16" column="23" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="16" bodyend="-1"/>
+        <referencedby refid="classCustomizeShipUIHandler_1adde307bcbd691ffa7aef84998ef3f69a" compoundref="CustomizeShipUIHandler_8cs" startline="94" endline="136">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1a8223fd57ef82cf69b8f70cf7737ecbe0" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject CustomizeShipUIHandler.gridTiles</definition>
+        <argsstring></argsstring>
+        <name>gridTiles</name>
+        <qualifiedname>CustomizeShipUIHandler.gridTiles</qualifiedname>
+        <briefdescription>
+<para>그리드 타일이 배치되는 부모 오브젝트입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="21" column="24" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="21" bodyend="-1"/>
+        <referencedby refid="classCustomizeShipUIHandler_1a8e6c0d938789d432de979473f3b43ced" compoundref="CustomizeShipUIHandler_8cs" startline="169" endline="185">OnDisable</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a8009ced414a77455de66da8173e46388" compoundref="CustomizeShipUIHandler_8cs" startline="144" endline="162">OnEnable</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1a8536fe415dcfd817375c3c70436da965" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button CustomizeShipUIHandler.buildButton</definition>
+        <argsstring></argsstring>
+        <name>buildButton</name>
+        <qualifiedname>CustomizeShipUIHandler.buildButton</qualifiedname>
+        <briefdescription>
+<para>설계도 -&gt; 실제 함선으로 교체 (bpRoom -&gt; room) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="26" column="19" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="26" bodyend="-1"/>
+        <referencedby refid="classCustomizeShipUIHandler_1add0b6b2790d473313442b78fc8d5d098" compoundref="CustomizeShipUIHandler_8cs" startline="389" endline="406">FlashBuildButtonColor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1a06d435a57a87496adff9023a6bbd2e31" prot="public" static="no" mutable="no">
+        <type>TMP_Text</type>
+        <definition>TMP_Text CustomizeShipUIHandler.feedbackText</definition>
+        <argsstring></argsstring>
+        <name>feedbackText</name>
+        <qualifiedname>CustomizeShipUIHandler.feedbackText</qualifiedname>
+        <briefdescription>
+<para>저장 또는 유효성 검사 결과를 표시할 텍스트입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="31" column="21" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1ac4db424059bbad52384bdef415f7b9ad" prot="public" static="no" mutable="no">
+        <type>TMP_Text</type>
+        <definition>TMP_Text CustomizeShipUIHandler.currency</definition>
+        <argsstring></argsstring>
+        <name>currency</name>
+        <qualifiedname>CustomizeShipUIHandler.currency</qualifiedname>
+        <briefdescription>
+<para>현재 보유 재화량 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="36" column="21" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1a20225aa0fc0fd7615e7b4d5e38cc6c67" prot="public" static="no" mutable="no">
+        <type>TMP_Text</type>
+        <definition>TMP_Text CustomizeShipUIHandler.originShipCost</definition>
+        <argsstring></argsstring>
+        <name>originShipCost</name>
+        <qualifiedname>CustomizeShipUIHandler.originShipCost</qualifiedname>
+        <briefdescription>
+<para>기존 함선 가격 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="41" column="21" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1aa40b5ff8b10cfd9cef28a2347f25b3f0" prot="public" static="no" mutable="no">
+        <type>TMP_Text</type>
+        <definition>TMP_Text CustomizeShipUIHandler.totalCostText</definition>
+        <argsstring></argsstring>
+        <name>totalCostText</name>
+        <qualifiedname>CustomizeShipUIHandler.totalCostText</qualifiedname>
+        <briefdescription>
+<para>총 설계도 가격을 표시할 텍스트 UI. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="46" column="21" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1adfe144aca9116cbfe25ccb876ce6cbde" prot="public" static="no" mutable="no">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship CustomizeShipUIHandler.playerShip</definition>
+        <argsstring></argsstring>
+        <name>playerShip</name>
+        <qualifiedname>CustomizeShipUIHandler.playerShip</qualifiedname>
+        <briefdescription>
+<para>현재 커스터마이징 중인 플레이어 함선입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="51" column="18" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="51" bodyend="-1"/>
+        <referencedby refid="classCustomizeShipUIHandler_1abbab9873da783b4b8291de69396ff36d" compoundref="CustomizeShipUIHandler_8cs" startline="190" endline="200">DisableCrews</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a1d36784aba862015ecf5cd784b8c83e7" compoundref="CustomizeShipUIHandler_8cs" startline="205" endline="215">EnableCrews</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a0a87df1bbf10a142bcfb73c4634a7bd4" compoundref="CustomizeShipUIHandler_8cs" startline="307" endline="372">OnClickBuild</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a8e6c0d938789d432de979473f3b43ced" compoundref="CustomizeShipUIHandler_8cs" startline="169" endline="185">OnDisable</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a8009ced414a77455de66da8173e46388" compoundref="CustomizeShipUIHandler_8cs" startline="144" endline="162">OnEnable</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a2657f68b1ebaa697885b07754bdc6ebb" compoundref="CustomizeShipUIHandler_8cs" startline="289" endline="300">SetPlayerShipCollidersActive</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1adde307bcbd691ffa7aef84998ef3f69a" compoundref="CustomizeShipUIHandler_8cs" startline="94" endline="136">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1a5c7c6d619be268d1ff96f107093d6ab8" prot="public" static="no" mutable="no">
+        <type><ref refid="classGridPlacer" kindref="compound">GridPlacer</ref></type>
+        <definition>GridPlacer CustomizeShipUIHandler.gridPlacer</definition>
+        <argsstring></argsstring>
+        <name>gridPlacer</name>
+        <qualifiedname>CustomizeShipUIHandler.gridPlacer</qualifiedname>
+        <briefdescription>
+<para>그리드 타일 배치 작업을 위한 오브젝트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="56" column="23" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="56" bodyend="-1"/>
+        <referencedby refid="classCustomizeShipUIHandler_1a5b4e6936bd278afd768d73911b716bee" compoundref="CustomizeShipUIHandler_8cs" startline="220" endline="227">CenterCameraToBP</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a0e012f81eef06ab83ffc84e3b5bee0e1" compoundref="CustomizeShipUIHandler_8cs" startline="242" endline="248">GetSavedBPRooms</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1adfa80c7837c984b5a7e8b9af9a1d181a" compoundref="CustomizeShipUIHandler_8cs" startline="253" endline="262">GetSavedWeaponRooms</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a879fbb6d240f6283df43ef8bb2f7378b" compoundref="CustomizeShipUIHandler_8cs" startline="232" endline="237">ResetCameraToOriginShip</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1afc082ee036892b4eeb6a0589b37e48ed" prot="public" static="no" mutable="no">
+        <type><ref refid="classBlueprintShip" kindref="compound">BlueprintShip</ref></type>
+        <definition>BlueprintShip CustomizeShipUIHandler.targetBlueprintShip</definition>
+        <argsstring></argsstring>
+        <name>targetBlueprintShip</name>
+        <qualifiedname>CustomizeShipUIHandler.targetBlueprintShip</qualifiedname>
+        <briefdescription>
+<para>제작한 설계도 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="61" column="26" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="61" bodyend="-1"/>
+        <referencedby refid="classCustomizeShipUIHandler_1a0a87df1bbf10a142bcfb73c4634a7bd4" compoundref="CustomizeShipUIHandler_8cs" startline="307" endline="372">OnClickBuild</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1ab3507370ace4541d5366637598723eac" compoundref="CustomizeShipUIHandler_8cs" startline="377" endline="381">OnClickClear</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1ae5cc3065b385dfe6c56409c2b0da302d" compoundref="CustomizeShipUIHandler_8cs" startline="267" endline="283">SaveBPRoomsandDestroy</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1adde307bcbd691ffa7aef84998ef3f69a" compoundref="CustomizeShipUIHandler_8cs" startline="94" endline="136">Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1ac9240cf35e11bab3409561973666e0d0" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CustomizeShipUIHandler.originalShipCost</definition>
+        <argsstring></argsstring>
+        <name>originalShipCost</name>
+        <qualifiedname>CustomizeShipUIHandler.originalShipCost</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>기존 사용 중인 함선 가격 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="66" column="17" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="66" bodyend="-1"/>
+        <referencedby refid="classCustomizeShipUIHandler_1a0a87df1bbf10a142bcfb73c4634a7bd4" compoundref="CustomizeShipUIHandler_8cs" startline="307" endline="372">OnClickBuild</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1adde307bcbd691ffa7aef84998ef3f69a" compoundref="CustomizeShipUIHandler_8cs" startline="94" endline="136">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1ab94769610c8f8c85e7e05db229ca0e2c" prot="private" static="no" mutable="no">
+        <type><ref refid="classValidationResult" kindref="compound">ValidationResult</ref></type>
+        <definition>ValidationResult CustomizeShipUIHandler.validationResult</definition>
+        <argsstring></argsstring>
+        <name>validationResult</name>
+        <qualifiedname>CustomizeShipUIHandler.validationResult</qualifiedname>
+        <briefdescription>
+<para>유효성 검사 결과 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="71" column="30" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="71" bodyend="-1"/>
+        <referencedby refid="classCustomizeShipUIHandler_1a0a87df1bbf10a142bcfb73c4634a7bd4" compoundref="CustomizeShipUIHandler_8cs" startline="307" endline="372">OnClickBuild</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1adde307bcbd691ffa7aef84998ef3f69a" compoundref="CustomizeShipUIHandler_8cs" startline="94" endline="136">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1a32dcc9c9beca4e801723c0758a61d014" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CustomizeShipUIHandler.totalBPCost</definition>
+        <argsstring></argsstring>
+        <name>totalBPCost</name>
+        <qualifiedname>CustomizeShipUIHandler.totalBPCost</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>설계도 함선 가격 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="76" column="17" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="76" bodyend="-1"/>
+        <referencedby refid="classCustomizeShipUIHandler_1adde307bcbd691ffa7aef84998ef3f69a" compoundref="CustomizeShipUIHandler_8cs" startline="94" endline="136">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1a79cc3583b413e5aee0b65274664df80a" prot="private" static="no" mutable="no">
+        <type>Coroutine</type>
+        <definition>Coroutine CustomizeShipUIHandler.flashCoroutine</definition>
+        <argsstring></argsstring>
+        <name>flashCoroutine</name>
+        <qualifiedname>CustomizeShipUIHandler.flashCoroutine</qualifiedname>
+        <briefdescription>
+<para>build 빨간색 처리 코루틴 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="81" column="23" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="81" bodyend="-1"/>
+        <referencedby refid="classCustomizeShipUIHandler_1add0b6b2790d473313442b78fc8d5d098" compoundref="CustomizeShipUIHandler_8cs" startline="389" endline="406">FlashBuildButtonColor</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a0a87df1bbf10a142bcfb73c4634a7bd4" compoundref="CustomizeShipUIHandler_8cs" startline="307" endline="372">OnClickBuild</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCustomizeShipUIHandler_1a1249d27eec2d2d626a8a555a41a877a3" prot="private" static="no" mutable="no">
+        <type>Color?</type>
+        <definition>Color? CustomizeShipUIHandler.originButtonColor</definition>
+        <argsstring></argsstring>
+        <name>originButtonColor</name>
+        <qualifiedname>CustomizeShipUIHandler.originButtonColor</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>버튼 기본 색상 저장 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="86" column="19" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="86" bodyend="-1"/>
+        <referencedby refid="classCustomizeShipUIHandler_1add0b6b2790d473313442b78fc8d5d098" compoundref="CustomizeShipUIHandler_8cs" startline="389" endline="406">FlashBuildButtonColor</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classCustomizeShipUIHandler_1adde307bcbd691ffa7aef84998ef3f69a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomizeShipUIHandler.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>CustomizeShipUIHandler.Update</qualifiedname>
+        <briefdescription>
+<para>현재 설계도의 가격 지속 갱신 설계도로 함선 교체 가능 조건 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><orderedlist>
+<listitem><para>(설계도 가격 - 기존 함선 가격) &lt;= 보유 재화량</para>
+</listitem><listitem><para>기존 함선 모든 방 내구도 100% </para>
+</listitem></orderedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="94" column="18" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="94" bodyend="136"/>
+        <references refid="classCustomizeShipUIHandler_1af43ef092ca4b45a5b239bf8879ef0612" compoundref="CustomizeShipUIHandler_8cs" startline="16">customizeUI</references>
+        <references refid="classCustomizeShipUIHandler_1abbab9873da783b4b8291de69396ff36d" compoundref="CustomizeShipUIHandler_8cs" startline="190" endline="200">DisableCrews</references>
+        <references refid="classCustomizeShipUIHandler_1a1d36784aba862015ecf5cd784b8c83e7" compoundref="CustomizeShipUIHandler_8cs" startline="205" endline="215">EnableCrews</references>
+        <references refid="classBlueprintShip_1a4d0bb68f1e596c3a4f8799c565b6faf2" compoundref="BlueprintShip_8cs" startline="54" endline="62">BlueprintShip.GetTotalBPCost</references>
+        <references refid="classShip_1a5ba0f56dad890c458ca0a9d571254aae" compoundref="Ship_8cs" startline="499" endline="510">Ship.GetTotalShipValue</references>
+        <references refid="classShip_1a0296985d38306b6659dcdb12925f810c" compoundref="Ship_8cs" startline="516" endline="522">Ship.IsFullHitPoint</references>
+        <references refid="classCustomizeShipUIHandler_1ac9240cf35e11bab3409561973666e0d0" compoundref="CustomizeShipUIHandler_8cs" startline="66">originalShipCost</references>
+        <references refid="classCustomizeShipUIHandler_1adfe144aca9116cbfe25ccb876ce6cbde" compoundref="CustomizeShipUIHandler_8cs" startline="51">playerShip</references>
+        <references refid="classCustomizeShipUIHandler_1a2657f68b1ebaa697885b07754bdc6ebb" compoundref="CustomizeShipUIHandler_8cs" startline="289" endline="300">SetPlayerShipCollidersActive</references>
+        <references refid="classCustomizeShipUIHandler_1afc082ee036892b4eeb6a0589b37e48ed" compoundref="CustomizeShipUIHandler_8cs" startline="61">targetBlueprintShip</references>
+        <references refid="classCustomizeShipUIHandler_1a32dcc9c9beca4e801723c0758a61d014" compoundref="CustomizeShipUIHandler_8cs" startline="76">totalBPCost</references>
+        <references refid="classCustomizeShipUIHandler_1ab94769610c8f8c85e7e05db229ca0e2c" compoundref="CustomizeShipUIHandler_8cs" startline="71">validationResult</references>
+      </memberdef>
+      <memberdef kind="function" id="classCustomizeShipUIHandler_1a8009ced414a77455de66da8173e46388" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomizeShipUIHandler.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <qualifiedname>CustomizeShipUIHandler.OnEnable</qualifiedname>
+        <briefdescription>
+<para>CustomizeShipUI 활성화 시 아래 작업 수행 : 그리드 생성 및 그리드 저장 오브젝트 활성화 작업하던 설계도 방 호출, 배치 카메라 중앙값 세팅 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="144" column="18" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="144" bodyend="162"/>
+        <references refid="classCustomizeShipUIHandler_1a5b4e6936bd278afd768d73911b716bee" compoundref="CustomizeShipUIHandler_8cs" startline="220" endline="227">CenterCameraToBP</references>
+        <references refid="classShip_1a73ec8ac22bbbea3c5fac7db636bfc6ff" compoundref="Ship_8cs" startline="1553" endline="1556">Ship.ClearExistingHulls</references>
+        <references refid="classCustomizeShipUIHandler_1a0e012f81eef06ab83ffc84e3b5bee0e1" compoundref="CustomizeShipUIHandler_8cs" startline="242" endline="248">GetSavedBPRooms</references>
+        <references refid="classCustomizeShipUIHandler_1adfa80c7837c984b5a7e8b9af9a1d181a" compoundref="CustomizeShipUIHandler_8cs" startline="253" endline="262">GetSavedWeaponRooms</references>
+        <references refid="classCustomizeShipUIHandler_1a8223fd57ef82cf69b8f70cf7737ecbe0" compoundref="CustomizeShipUIHandler_8cs" startline="21">gridTiles</references>
+        <references refid="classCustomizeShipUIHandler_1adfe144aca9116cbfe25ccb876ce6cbde" compoundref="CustomizeShipUIHandler_8cs" startline="51">playerShip</references>
+        <references refid="classCustomizeShipUIHandler_1a2657f68b1ebaa697885b07754bdc6ebb" compoundref="CustomizeShipUIHandler_8cs" startline="289" endline="300">SetPlayerShipCollidersActive</references>
+      </memberdef>
+      <memberdef kind="function" id="classCustomizeShipUIHandler_1a8e6c0d938789d432de979473f3b43ced" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomizeShipUIHandler.OnDisable</definition>
+        <argsstring>()</argsstring>
+        <name>OnDisable</name>
+        <qualifiedname>CustomizeShipUIHandler.OnDisable</qualifiedname>
+        <briefdescription>
+<para>CustomizeShipUI 비활성화 시 아래 작업 수행 : 그리드 저장 오브젝트 비활성화 설계도 설치한 방 데이터 모두 저장 후 제거 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="169" column="18" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="169" bodyend="185"/>
+        <references refid="classCustomizeShipUIHandler_1a8223fd57ef82cf69b8f70cf7737ecbe0" compoundref="CustomizeShipUIHandler_8cs" startline="21">gridTiles</references>
+        <references refid="classCustomizeShipUIHandler_1adfe144aca9116cbfe25ccb876ce6cbde" compoundref="CustomizeShipUIHandler_8cs" startline="51">playerShip</references>
+        <references refid="classCustomizeShipUIHandler_1a879fbb6d240f6283df43ef8bb2f7378b" compoundref="CustomizeShipUIHandler_8cs" startline="232" endline="237">ResetCameraToOriginShip</references>
+        <references refid="classCustomizeShipUIHandler_1ae5cc3065b385dfe6c56409c2b0da302d" compoundref="CustomizeShipUIHandler_8cs" startline="267" endline="283">SaveBPRoomsandDestroy</references>
+        <references refid="classCustomizeShipUIHandler_1a2657f68b1ebaa697885b07754bdc6ebb" compoundref="CustomizeShipUIHandler_8cs" startline="289" endline="300">SetPlayerShipCollidersActive</references>
+        <references refid="classShip_1a1a2cb507900750750740527414721aa3" compoundref="Ship_8cs" startline="1538" endline="1546">Ship.UpdateOuterHullVisuals</references>
+      </memberdef>
+      <memberdef kind="function" id="classCustomizeShipUIHandler_1abbab9873da783b4b8291de69396ff36d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomizeShipUIHandler.DisableCrews</definition>
+        <argsstring>()</argsstring>
+        <name>DisableCrews</name>
+        <qualifiedname>CustomizeShipUIHandler.DisableCrews</qualifiedname>
+        <briefdescription>
+<para>커스터마이징 UI 진입 시 선원 임시 비활성화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="190" column="18" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="190" bodyend="200"/>
+        <references refid="classShip_1a77e8600c112c136e294bf98d19625546" compoundref="Ship_8cs" startline="46">Ship.allCrews</references>
+        <references refid="classCrewMember_1a41c7608e6555b803935adbc401e44bbe" compoundref="CrewMember_8cs" startline="1074" endline="1093">CrewMember.Freeze</references>
+        <references refid="classCustomizeShipUIHandler_1adfe144aca9116cbfe25ccb876ce6cbde" compoundref="CustomizeShipUIHandler_8cs" startline="51">playerShip</references>
+        <referencedby refid="classCustomizeShipUIHandler_1adde307bcbd691ffa7aef84998ef3f69a" compoundref="CustomizeShipUIHandler_8cs" startline="94" endline="136">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCustomizeShipUIHandler_1a1d36784aba862015ecf5cd784b8c83e7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomizeShipUIHandler.EnableCrews</definition>
+        <argsstring>()</argsstring>
+        <name>EnableCrews</name>
+        <qualifiedname>CustomizeShipUIHandler.EnableCrews</qualifiedname>
+        <briefdescription>
+<para>커스터마이징 UI 탈출 시 선원 재활성화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="205" column="18" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="205" bodyend="215"/>
+        <references refid="classShip_1a77e8600c112c136e294bf98d19625546" compoundref="Ship_8cs" startline="46">Ship.allCrews</references>
+        <references refid="classCrewMember_1ae80f1831860b8a260b6899410f48bc1d" compoundref="CrewMember_8cs" startline="865" endline="882">CrewMember.BackToThePeace</references>
+        <references refid="classCustomizeShipUIHandler_1adfe144aca9116cbfe25ccb876ce6cbde" compoundref="CustomizeShipUIHandler_8cs" startline="51">playerShip</references>
+        <referencedby refid="classCustomizeShipUIHandler_1adde307bcbd691ffa7aef84998ef3f69a" compoundref="CustomizeShipUIHandler_8cs" startline="94" endline="136">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCustomizeShipUIHandler_1a5b4e6936bd278afd768d73911b716bee" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomizeShipUIHandler.CenterCameraToBP</definition>
+        <argsstring>()</argsstring>
+        <name>CenterCameraToBP</name>
+        <qualifiedname>CustomizeShipUIHandler.CenterCameraToBP</qualifiedname>
+        <briefdescription>
+<para>설계도 UI 호출 시 카메라 중앙값 보정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="220" column="18" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="220" bodyend="227"/>
+        <references refid="classGridPlacer_1a256d47f047aeee7f201c3375ab82f131" compoundref="GridPlacer_8cs" startline="115" endline="146">GridPlacer.GetCameraStartPositionToBP</references>
+        <references refid="classCustomizeShipUIHandler_1a5c7c6d619be268d1ff96f107093d6ab8" compoundref="CustomizeShipUIHandler_8cs" startline="56">gridPlacer</references>
+        <references refid="classCameraZoomController_1ae7bc6b4b0cdfb8f1ddcabbb61e74bcf9" compoundref="CameraZoomController_8cs" startline="37">CameraZoomController.lastZoomSize</references>
+        <referencedby refid="classCustomizeShipUIHandler_1a8009ced414a77455de66da8173e46388" compoundref="CustomizeShipUIHandler_8cs" startline="144" endline="162">OnEnable</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCustomizeShipUIHandler_1a879fbb6d240f6283df43ef8bb2f7378b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomizeShipUIHandler.ResetCameraToOriginShip</definition>
+        <argsstring>()</argsstring>
+        <name>ResetCameraToOriginShip</name>
+        <qualifiedname>CustomizeShipUIHandler.ResetCameraToOriginShip</qualifiedname>
+        <briefdescription>
+<para>카메라 기본 세팅으로 복구 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="232" column="18" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="232" bodyend="237"/>
+        <references refid="classGridPlacer_1ab8195ca82a446385a2c7defcf3467d24" compoundref="GridPlacer_8cs" startline="152" endline="182">GridPlacer.GetCameraStartPositionToOriginShip</references>
+        <references refid="classCustomizeShipUIHandler_1a5c7c6d619be268d1ff96f107093d6ab8" compoundref="CustomizeShipUIHandler_8cs" startline="56">gridPlacer</references>
+        <referencedby refid="classCustomizeShipUIHandler_1a8e6c0d938789d432de979473f3b43ced" compoundref="CustomizeShipUIHandler_8cs" startline="169" endline="185">OnDisable</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCustomizeShipUIHandler_1a0e012f81eef06ab83ffc84e3b5bee0e1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomizeShipUIHandler.GetSavedBPRooms</definition>
+        <argsstring>()</argsstring>
+        <name>GetSavedBPRooms</name>
+        <qualifiedname>CustomizeShipUIHandler.GetSavedBPRooms</qualifiedname>
+        <briefdescription>
+<para>기존에 작업중이던 설계도의 모든 방 데이터 호출 및 배치 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="242" column="18" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="242" bodyend="248"/>
+        <references refid="classCustomizeShipUIHandler_1a5c7c6d619be268d1ff96f107093d6ab8" compoundref="CustomizeShipUIHandler_8cs" startline="56">gridPlacer</references>
+        <references refid="classGridPlacer_1a2392673a4205e76f004e252a493286b5" compoundref="GridPlacer_8cs" startline="382" endline="400">GridPlacer.PlaceRoom</references>
+        <referencedby refid="classCustomizeShipUIHandler_1a8009ced414a77455de66da8173e46388" compoundref="CustomizeShipUIHandler_8cs" startline="144" endline="162">OnEnable</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCustomizeShipUIHandler_1adfa80c7837c984b5a7e8b9af9a1d181a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomizeShipUIHandler.GetSavedWeaponRooms</definition>
+        <argsstring>()</argsstring>
+        <name>GetSavedWeaponRooms</name>
+        <qualifiedname>CustomizeShipUIHandler.GetSavedWeaponRooms</qualifiedname>
+        <briefdescription>
+<para>기존에 작업 중이던 설계도의 모든 함선 무기 데이터 호출 및 배치 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="253" column="18" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="253" bodyend="262"/>
+        <references refid="classBlueprintWeapon_1a60094977796de28499b592ef408f5a5b" compoundref="BlueprintWeapon_8cs" startline="405" endline="447">BlueprintWeapon.ApplyAttachedDirectionSprite</references>
+        <references refid="classCustomizeShipUIHandler_1a5c7c6d619be268d1ff96f107093d6ab8" compoundref="CustomizeShipUIHandler_8cs" startline="56">gridPlacer</references>
+        <references refid="classGridPlacer_1a60364dec18d1d693cef75d517e768de6" compoundref="GridPlacer_8cs" startline="406" endline="433">GridPlacer.PlaceWeapon</references>
+        <referencedby refid="classCustomizeShipUIHandler_1a8009ced414a77455de66da8173e46388" compoundref="CustomizeShipUIHandler_8cs" startline="144" endline="162">OnEnable</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCustomizeShipUIHandler_1ae5cc3065b385dfe6c56409c2b0da302d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomizeShipUIHandler.SaveBPRoomsandDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>SaveBPRoomsandDestroy</name>
+        <qualifiedname>CustomizeShipUIHandler.SaveBPRoomsandDestroy</qualifiedname>
+        <briefdescription>
+<para>작업중이던 설계도 저장 및 방 제거 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="267" column="18" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="267" bodyend="283"/>
+        <references refid="classBlueprintShip_1a0b1c462bd0416b30a0c2af3095eee278" compoundref="BlueprintShip_8cs" startline="161" endline="167">BlueprintShip.ClearRooms</references>
+        <references refid="classCustomizeShipUIHandler_1afc082ee036892b4eeb6a0589b37e48ed" compoundref="CustomizeShipUIHandler_8cs" startline="61">targetBlueprintShip</references>
+        <referencedby refid="classCustomizeShipUIHandler_1a8e6c0d938789d432de979473f3b43ced" compoundref="CustomizeShipUIHandler_8cs" startline="169" endline="185">OnDisable</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCustomizeShipUIHandler_1a2657f68b1ebaa697885b07754bdc6ebb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomizeShipUIHandler.SetPlayerShipCollidersActive</definition>
+        <argsstring>(bool active)</argsstring>
+        <name>SetPlayerShipCollidersActive</name>
+        <qualifiedname>CustomizeShipUIHandler.SetPlayerShipCollidersActive</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>active</declname>
+        </param>
+        <briefdescription>
+<para>함선의 모든 방에 대해 collider 활성화/비활성화 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>active</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="289" column="18" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="289" bodyend="300"/>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classCustomizeShipUIHandler_1adfe144aca9116cbfe25ccb876ce6cbde" compoundref="CustomizeShipUIHandler_8cs" startline="51">playerShip</references>
+        <referencedby refid="classCustomizeShipUIHandler_1a8e6c0d938789d432de979473f3b43ced" compoundref="CustomizeShipUIHandler_8cs" startline="169" endline="185">OnDisable</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a8009ced414a77455de66da8173e46388" compoundref="CustomizeShipUIHandler_8cs" startline="144" endline="162">OnEnable</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1adde307bcbd691ffa7aef84998ef3f69a" compoundref="CustomizeShipUIHandler_8cs" startline="94" endline="136">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCustomizeShipUIHandler_1add0b6b2790d473313442b78fc8d5d098" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator CustomizeShipUIHandler.FlashBuildButtonColor</definition>
+        <argsstring>(Color flashColor, float duration)</argsstring>
+        <name>FlashBuildButtonColor</name>
+        <qualifiedname>CustomizeShipUIHandler.FlashBuildButtonColor</qualifiedname>
+        <param>
+          <type>Color</type>
+          <declname>flashColor</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+<para>유효성 검사 실패 시 build button 일시적 빨간색 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>flashColor</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>duration</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="389" column="25" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="389" bodyend="406"/>
+        <references refid="classCustomizeShipUIHandler_1a8536fe415dcfd817375c3c70436da965" compoundref="CustomizeShipUIHandler_8cs" startline="26">buildButton</references>
+        <references refid="classCustomizeShipUIHandler_1a79cc3583b413e5aee0b65274664df80a" compoundref="CustomizeShipUIHandler_8cs" startline="81">flashCoroutine</references>
+        <references refid="classCustomizeShipUIHandler_1a1249d27eec2d2d626a8a555a41a877a3" compoundref="CustomizeShipUIHandler_8cs" startline="86">originButtonColor</references>
+        <referencedby refid="classCustomizeShipUIHandler_1a0a87df1bbf10a142bcfb73c4634a7bd4" compoundref="CustomizeShipUIHandler_8cs" startline="307" endline="372">OnClickBuild</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCustomizeShipUIHandler_1a0a87df1bbf10a142bcfb73c4634a7bd4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomizeShipUIHandler.OnClickBuild</definition>
+        <argsstring>()</argsstring>
+        <name>OnClickBuild</name>
+        <qualifiedname>CustomizeShipUIHandler.OnClickBuild</qualifiedname>
+        <briefdescription>
+<para>&apos;함선 제작&apos; 버튼 클릭 시 호출. 조건 만족 시 기존 함선을 설계도의 함선으로 교체합니다. 이후 방, 문의 연결 유효성 검사 수행 후 만족 여부에 따라 실제 함선으로 교체, 다시 설계도로 복구를 수행 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="307" column="17" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="307" bodyend="372"/>
+        <references refid="classShip_1a31c7b02cf633306b7eca5136f1cd6cf8" compoundref="Ship_8cs" startline="527" endline="541">Ship.BackupAllCrews</references>
+        <references refid="classShip_1a4564f5164e97e4c582442cffe8302c54" compoundref="Ship_8cs" startline="493">Ship.backupCrewDatas</references>
+        <references refid="classShip_1a24e7b7011b778b4c8c4aab0a12e90a3d" compoundref="Ship_8cs" startline="546" endline="568">Ship.BackupCurrentShip</references>
+        <references refid="classCustomizeShipUIHandler_1add0b6b2790d473313442b78fc8d5d098" compoundref="CustomizeShipUIHandler_8cs" startline="389" endline="406">FlashBuildButtonColor</references>
+        <references refid="classCustomizeShipUIHandler_1a79cc3583b413e5aee0b65274664df80a" compoundref="CustomizeShipUIHandler_8cs" startline="81">flashCoroutine</references>
+        <references refid="classBlueprintShip_1a4d0bb68f1e596c3a4f8799c565b6faf2" compoundref="BlueprintShip_8cs" startline="54" endline="62">BlueprintShip.GetTotalBPCost</references>
+        <references refid="classShip_1a5ba0f56dad890c458ca0a9d571254aae" compoundref="Ship_8cs" startline="499" endline="510">Ship.GetTotalShipValue</references>
+        <references refid="classRTSSelectionManager_1ac0db424ecf85d35f8a8106fa3bef1d64" compoundref="RTSSelectionManager_8cs" startline="94" endline="94">RTSSelectionManager.Instance</references>
+        <references refid="classValidationResult_1a0f2b55478f1835b03ff10d719356d3c9" compoundref="ShipValidationResult_8cs" startline="13">ValidationResult.IsValid</references>
+        <references refid="classCustomizeShipUIHandler_1ac9240cf35e11bab3409561973666e0d0" compoundref="CustomizeShipUIHandler_8cs" startline="66">originalShipCost</references>
+        <references refid="classCustomizeShipUIHandler_1adfe144aca9116cbfe25ccb876ce6cbde" compoundref="CustomizeShipUIHandler_8cs" startline="51">playerShip</references>
+        <references refid="classShip_1a8f3f2bdca106f32f2d4c2b3f892a139f" compoundref="Ship_8cs" startline="774" endline="828">Ship.RecalculateAllStats</references>
+        <references refid="classRTSSelectionManager_1ad68211bed4c24acf467aa4dd2285d987" compoundref="RTSSelectionManager_8cs" startline="402" endline="416">RTSSelectionManager.RefreshMovementData</references>
+        <references refid="classShip_1a23daf25351bed0b564d1059ebc999796" compoundref="Ship_8cs" startline="610" endline="663">Ship.ReplaceShipFromBlueprint</references>
+        <references refid="classCrewSystem_1ad3044664f70376b994206ccfed121df3" compoundref="CrewSystem_8cs" startline="232" endline="300">CrewSystem.RestoreCrewAfterBuild</references>
+        <references refid="classCrewSystem_1a8fa6c2c5bfdf4e92705a212bb4e2fe3c" compoundref="CrewSystem_8cs" startline="182" endline="226">CrewSystem.RevertOriginalCrews</references>
+        <references refid="classShip_1a57ac87a91e3ad87d79901d282f415844" compoundref="Ship_8cs" startline="573" endline="603">Ship.RevertToOriginalShip</references>
+        <references refid="classCustomizeShipUIHandler_1afc082ee036892b4eeb6a0589b37e48ed" compoundref="CustomizeShipUIHandler_8cs" startline="61">targetBlueprintShip</references>
+        <references refid="classShipValidationHelper_1afe90d1e14396951e3079f4a426ead02d" compoundref="ShipValidatonHelper_8cs" startline="17" endline="58">ShipValidationHelper.ValidateShipLayout</references>
+        <references refid="classCustomizeShipUIHandler_1ab94769610c8f8c85e7e05db229ca0e2c" compoundref="CustomizeShipUIHandler_8cs" startline="71">validationResult</references>
+      </memberdef>
+      <memberdef kind="function" id="classCustomizeShipUIHandler_1ab3507370ace4541d5366637598723eac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomizeShipUIHandler.OnClickClear</definition>
+        <argsstring>()</argsstring>
+        <name>OnClickClear</name>
+        <qualifiedname>CustomizeShipUIHandler.OnClickClear</qualifiedname>
+        <briefdescription>
+<para>설계도 초기화 및 점유 타일 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="377" column="17" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="377" bodyend="381"/>
+        <references refid="classBlueprintShip_1a0b1c462bd0416b30a0c2af3095eee278" compoundref="BlueprintShip_8cs" startline="161" endline="167">BlueprintShip.ClearRooms</references>
+        <references refid="classCustomizeShipUIHandler_1afc082ee036892b4eeb6a0589b37e48ed" compoundref="CustomizeShipUIHandler_8cs" startline="61">targetBlueprintShip</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선 커스터마이징 UI를 제어하는 핸들러. UI 전환, 모듈 배치, 저장 및 취소 기능을 관리합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CustomizeShipUIHandler</label>
+        <link refid="classCustomizeShipUIHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="19">
+        <label>BlueprintShip</label>
+        <link refid="classBlueprintShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>CustomizeShipUIHandler</label>
+        <link refid="classCustomizeShipUIHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+buildButton</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>+gridPlacer</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>+targetBlueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-validationResult</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>GridPlacer</label>
+        <link refid="classGridPlacer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>+targetBlueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-gridOrigin</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="14">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="17">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>UnityEngine</label>
+      </node>
+      <node id="20">
+        <label>ValidationResult</label>
+        <link refid="classValidationResult"/>
+      </node>
+      <node id="10">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" line="11" column="7" bodyfile="Assets/Scripts/CustomizeShip/CustomizeShipUIHandler.cs" bodystart="12" bodyend="407"/>
+    <listofallmembers>
+      <member refid="classCustomizeShipUIHandler_1a8536fe415dcfd817375c3c70436da965" prot="public" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>buildButton</name></member>
+      <member refid="classCustomizeShipUIHandler_1a5b4e6936bd278afd768d73911b716bee" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>CenterCameraToBP</name></member>
+      <member refid="classCustomizeShipUIHandler_1ac4db424059bbad52384bdef415f7b9ad" prot="public" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>currency</name></member>
+      <member refid="classCustomizeShipUIHandler_1af43ef092ca4b45a5b239bf8879ef0612" prot="public" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>customizeUI</name></member>
+      <member refid="classCustomizeShipUIHandler_1abbab9873da783b4b8291de69396ff36d" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>DisableCrews</name></member>
+      <member refid="classCustomizeShipUIHandler_1a1d36784aba862015ecf5cd784b8c83e7" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>EnableCrews</name></member>
+      <member refid="classCustomizeShipUIHandler_1a06d435a57a87496adff9023a6bbd2e31" prot="public" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>feedbackText</name></member>
+      <member refid="classCustomizeShipUIHandler_1add0b6b2790d473313442b78fc8d5d098" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>FlashBuildButtonColor</name></member>
+      <member refid="classCustomizeShipUIHandler_1a79cc3583b413e5aee0b65274664df80a" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>flashCoroutine</name></member>
+      <member refid="classCustomizeShipUIHandler_1a0e012f81eef06ab83ffc84e3b5bee0e1" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>GetSavedBPRooms</name></member>
+      <member refid="classCustomizeShipUIHandler_1adfa80c7837c984b5a7e8b9af9a1d181a" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>GetSavedWeaponRooms</name></member>
+      <member refid="classCustomizeShipUIHandler_1a5c7c6d619be268d1ff96f107093d6ab8" prot="public" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>gridPlacer</name></member>
+      <member refid="classCustomizeShipUIHandler_1a8223fd57ef82cf69b8f70cf7737ecbe0" prot="public" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>gridTiles</name></member>
+      <member refid="classCustomizeShipUIHandler_1a0a87df1bbf10a142bcfb73c4634a7bd4" prot="public" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>OnClickBuild</name></member>
+      <member refid="classCustomizeShipUIHandler_1ab3507370ace4541d5366637598723eac" prot="public" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>OnClickClear</name></member>
+      <member refid="classCustomizeShipUIHandler_1a8e6c0d938789d432de979473f3b43ced" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>OnDisable</name></member>
+      <member refid="classCustomizeShipUIHandler_1a8009ced414a77455de66da8173e46388" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>OnEnable</name></member>
+      <member refid="classCustomizeShipUIHandler_1ac9240cf35e11bab3409561973666e0d0" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>originalShipCost</name></member>
+      <member refid="classCustomizeShipUIHandler_1a1249d27eec2d2d626a8a555a41a877a3" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>originButtonColor</name></member>
+      <member refid="classCustomizeShipUIHandler_1a20225aa0fc0fd7615e7b4d5e38cc6c67" prot="public" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>originShipCost</name></member>
+      <member refid="classCustomizeShipUIHandler_1adfe144aca9116cbfe25ccb876ce6cbde" prot="public" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>playerShip</name></member>
+      <member refid="classCustomizeShipUIHandler_1a879fbb6d240f6283df43ef8bb2f7378b" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>ResetCameraToOriginShip</name></member>
+      <member refid="classCustomizeShipUIHandler_1ae5cc3065b385dfe6c56409c2b0da302d" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>SaveBPRoomsandDestroy</name></member>
+      <member refid="classCustomizeShipUIHandler_1a2657f68b1ebaa697885b07754bdc6ebb" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>SetPlayerShipCollidersActive</name></member>
+      <member refid="classCustomizeShipUIHandler_1afc082ee036892b4eeb6a0589b37e48ed" prot="public" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>targetBlueprintShip</name></member>
+      <member refid="classCustomizeShipUIHandler_1a32dcc9c9beca4e801723c0758a61d014" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>totalBPCost</name></member>
+      <member refid="classCustomizeShipUIHandler_1aa40b5ff8b10cfd9cef28a2347f25b3f0" prot="public" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>totalCostText</name></member>
+      <member refid="classCustomizeShipUIHandler_1adde307bcbd691ffa7aef84998ef3f69a" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>Update</name></member>
+      <member refid="classCustomizeShipUIHandler_1ab94769610c8f8c85e7e05db229ca0e2c" prot="private" virt="non-virtual"><scope>CustomizeShipUIHandler</scope><name>validationResult</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

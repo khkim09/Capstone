@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="RoomSelectionHandler_8cs" kind="file" language="C#">
+    <compoundname>RoomSelectionHandler.cs</compoundname>
+    <innerclass refid="classRoomSelectionHandler" prot="public">RoomSelectionHandler</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine.UI;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="classRoomSelectionHandler" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classRoomSelectionHandler" kindref="compound">RoomSelectionHandler</ref><sp/>:<sp/>MonoBehaviour</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9" refid="classRoomSelectionHandler_1ac734bdf7cf316d4de6c8e82de589df1d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classRoomSelectionHandler" kindref="compound">RoomSelectionHandler</ref><sp/><ref refid="classRoomSelectionHandler_1ac734bdf7cf316d4de6c8e82de589df1d" kindref="member">Instance</ref>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="classRoomSelectionHandler_1ad47fcdd65c51e8358c9eff5f75beb63c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>GameObject<sp/><ref refid="classRoomSelectionHandler_1ad47fcdd65c51e8358c9eff5f75beb63c" kindref="member">selectionUI</ref>;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="classRoomSelectionHandler_1ab6fb076dd93a695b309af7f25bfba27e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Button<sp/><ref refid="classRoomSelectionHandler_1ab6fb076dd93a695b309af7f25bfba27e" kindref="member">confirmButton</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="classRoomSelectionHandler_1a8f431257149799c2a6677c66a8710a6e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Button<sp/><ref refid="classRoomSelectionHandler_1a8f431257149799c2a6677c66a8710a6e" kindref="member">cancelButton</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="classRoomSelectionHandler_1a475a5794f1ef65ba794dea768e362700" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classGridPlacer" kindref="compound">GridPlacer</ref><sp/><ref refid="classRoomSelectionHandler_1a475a5794f1ef65ba794dea768e362700" kindref="member">gridPlacer</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/><ref refid="interfaceIBlueprintPlaceable" kindref="compound">IBlueprintPlaceable</ref><sp/><ref refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" kindref="member">selectedPlaceable</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Awake()</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoomSelectionHandler_1ac734bdf7cf316d4de6c8e82de589df1d" kindref="member">Instance</ref><sp/>=<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoomSelectionHandler_1ad47fcdd65c51e8358c9eff5f75beb63c" kindref="member">selectionUI</ref>.SetActive(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="classRoomSelectionHandler_1a25af6afcf09cdd4d4ab2cfacbd96a52d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classRoomSelectionHandler_1a25af6afcf09cdd4d4ab2cfacbd96a52d" kindref="member">SelectRoom</ref>(<ref refid="classBlueprintRoom" kindref="compound">BlueprintRoom</ref><sp/>room)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoomSelectionHandler_1a455235ae853359d6e6ab683f828acfef" kindref="member">SelectPlaceable</ref>(room);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="classRoomSelectionHandler_1a455235ae853359d6e6ab683f828acfef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classRoomSelectionHandler_1a455235ae853359d6e6ab683f828acfef" kindref="member">SelectPlaceable</ref>(<ref refid="interfaceIBlueprintPlaceable" kindref="compound">IBlueprintPlaceable</ref><sp/>placeable)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" kindref="member">selectedPlaceable</ref><sp/>==<sp/>placeable)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoomSelectionHandler_1a443092f408ad81ffc678141bc047c0b5" kindref="member">Deselect</ref>();</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" kindref="member">selectedPlaceable</ref><sp/>=<sp/>placeable;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoomSelectionHandler_1ad47fcdd65c51e8358c9eff5f75beb63c" kindref="member">selectionUI</ref>.SetActive(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>선택된<sp/>오브젝트의<sp/>위치에<sp/>따라<sp/>선택<sp/>UI<sp/>위치<sp/>조정</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MonoBehaviour<sp/>placeableObj<sp/>=<sp/>(MonoBehaviour)placeable;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>오브젝트<sp/>위치<sp/>+<sp/>높이에<sp/>따른<sp/>오프셋</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector3<sp/>position<sp/>=<sp/>placeableObj.transform.position;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector2Int<sp/>size<sp/>=<sp/>Vector2Int.zero;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(placeable<sp/>is<sp/><ref refid="classBlueprintRoom" kindref="compound">BlueprintRoom</ref><sp/>room)</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size<sp/>=<sp/>room.bpRoomSize;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(placeable<sp/>is<sp/><ref refid="classBlueprintWeapon" kindref="compound">BlueprintWeapon</ref>)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector2Int(2,<sp/>1);<sp/></highlight><highlight class="comment">//<sp/>무기<sp/>기본<sp/>크기</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>position<sp/>+=<sp/>Vector3.up<sp/>*<sp/>(size.y<sp/>*<sp/>0.5f<sp/>+<sp/>0.5f);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>selectionUI.transform.position<sp/>=<sp/>position;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>색상<sp/>변경</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpriteRenderer<sp/>sr<sp/>=<sp/>placeableObj.GetComponent&lt;SpriteRenderer&gt;();</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sr<sp/>!=<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sr.color<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Color(0.5f,<sp/>0.5f,<sp/>0.5f,<sp/>0.7f);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="classRoomSelectionHandler_1a443092f408ad81ffc678141bc047c0b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classRoomSelectionHandler_1a443092f408ad81ffc678141bc047c0b5" kindref="member">Deselect</ref>()</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" kindref="member">selectedPlaceable</ref><sp/>!=<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpriteRenderer<sp/>sr<sp/>=<sp/>((MonoBehaviour)<ref refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" kindref="member">selectedPlaceable</ref>).GetComponent&lt;SpriteRenderer&gt;();</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sr<sp/>!=<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sr.color<sp/>=<sp/>Color.white;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" kindref="member">selectedPlaceable</ref><sp/>=<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoomSelectionHandler_1ad47fcdd65c51e8358c9eff5f75beb63c" kindref="member">selectionUI</ref>.SetActive(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="classRoomSelectionHandler_1a146498f3749b2c31f48ad72228898c5b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classRoomSelectionHandler_1a146498f3749b2c31f48ad72228898c5b" kindref="member">ConfirmDelete</ref>()</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" kindref="member">selectedPlaceable</ref><sp/>!=<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoomSelectionHandler_1a475a5794f1ef65ba794dea768e362700" kindref="member">gridPlacer</ref>.<ref refid="classGridPlacer_1abd95a28be8d9284dff882e48cb5d75c3" kindref="member">UnMarkObjectOccupied</ref>(<ref refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" kindref="member">selectedPlaceable</ref>);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" kindref="member">selectedPlaceable</ref>.<ref refid="interfaceIBlueprintPlaceable_1a2b9dbc880ea7e060d6d00ec2ec576a32" kindref="member">GetBlueprintShip</ref>().<ref refid="classBlueprintShip_1a0b5ffa5700ce8e93ecc7458f45b1efdc" kindref="member">RemovePlaceable</ref>(<ref refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" kindref="member">selectedPlaceable</ref>);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Destroy(((MonoBehaviour)<ref refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" kindref="member">selectedPlaceable</ref>).gameObject);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoomSelectionHandler_1a443092f408ad81ffc678141bc047c0b5" kindref="member">Deselect</ref>();</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1313 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classTradingItem" kind="class" language="C#" prot="public">
+    <compoundname>TradingItem</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerClickHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IBeginDragHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IDragHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IEndDragHandler</basecompoundref>
+    <basecompoundref refid="interfaceIGridPlaceable" prot="public" virt="non-virtual">IGridPlaceable</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classTradingItem_1a45ac040ad282189cb2518f4a6426b8a8" prot="private" static="no" mutable="no">
+        <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+        <definition>TradingItemData TradingItem.itemData</definition>
+        <argsstring></argsstring>
+        <name>itemData</name>
+        <qualifiedname>TradingItem.itemData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="15" column="30" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItem_1ab600ad2e079e606174cefcdb01359579" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer TradingItem.boxRenderer</definition>
+        <argsstring></argsstring>
+        <name>boxRenderer</name>
+        <qualifiedname>TradingItem.boxRenderer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="17" column="29" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItem_1adc51ce37cda4f83cf21f34cbdb32077d" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer TradingItem.itemRenderer</definition>
+        <argsstring></argsstring>
+        <name>itemRenderer</name>
+        <qualifiedname>TradingItem.itemRenderer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="18" column="29" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItem_1a4d11c7b29c595abe478e2fae0bfa905e" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer TradingItem.frameRenderer</definition>
+        <argsstring></argsstring>
+        <name>frameRenderer</name>
+        <qualifiedname>TradingItem.frameRenderer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="19" column="29" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItem_1ab08c1a73bb232ef56073c51f53d5dabc" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float TradingItem.frameOffsetY</definition>
+        <argsstring></argsstring>
+        <name>frameOffsetY</name>
+        <qualifiedname>TradingItem.frameOffsetY</qualifiedname>
+        <initializer>= 0.11f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="21" column="19" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItem_1aeb09d6d32efc5e5dcdd3af7ce0d37b19" prot="private" static="no" mutable="no">
+        <type>Sprite[]</type>
+        <definition>Sprite [] TradingItem.boxSprites</definition>
+        <argsstring></argsstring>
+        <name>boxSprites</name>
+        <qualifiedname>TradingItem.boxSprites</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="25" column="20" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItem_1a2befe4e58450c5a1d3899de46dd1a75a" prot="private" static="no" mutable="no">
+        <type>float?</type>
+        <definition>float? TradingItem.cachedPrice</definition>
+        <argsstring></argsstring>
+        <name>cachedPrice</name>
+        <qualifiedname>TradingItem.cachedPrice</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="34" column="19" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItem_1a915412d705115b54aa168fa762b71c8f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool TradingItem.priceInitialized</definition>
+        <argsstring></argsstring>
+        <name>priceInitialized</name>
+        <qualifiedname>TradingItem.priceInitialized</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="37" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classTradingItem_1a0bac0d1ee37068fa097de90498ccbeb2" prot="public" static="no" mutable="no">
+        <type>Constants.Rotations.Rotation</type>
+        <definition>Constants.Rotations.Rotation TradingItem.rotation</definition>
+        <argsstring></argsstring>
+        <name>rotation</name>
+        <qualifiedname>TradingItem.rotation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="23" column="39" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItem_1adc8c7f59a24bb5383610997761f3060f" prot="public" static="no" mutable="no">
+        <type>bool[][]</type>
+        <definition>bool [][] TradingItem.boxGrid</definition>
+        <argsstring></argsstring>
+        <name>boxGrid</name>
+        <qualifiedname>TradingItem.boxGrid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="27" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItem_1af26c751616d2e68264846c294aed4c29" prot="public" static="no" mutable="no">
+        <type><ref refid="classStorageRoomBase" kindref="compound">StorageRoomBase</ref></type>
+        <definition>StorageRoomBase TradingItem.parentStorage</definition>
+        <argsstring></argsstring>
+        <name>parentStorage</name>
+        <qualifiedname>TradingItem.parentStorage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="29" column="28" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItem_1ada0df43e9f080460dc74313ec51a9a14" prot="public" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int TradingItem.gridPosition</definition>
+        <argsstring></argsstring>
+        <name>gridPosition</name>
+        <qualifiedname>TradingItem.gridPosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="31" column="23" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItem_1a249d07cb79c3bb4e3b5ddc4c4d225e7a" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool TradingItem.isDragging</definition>
+        <argsstring></argsstring>
+        <name>isDragging</name>
+        <qualifiedname>TradingItem.isDragging</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="40" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItem_1a0083bfe25ef5862ebf4b6b089e735784" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool TradingItem.isDragMode</definition>
+        <argsstring></argsstring>
+        <name>isDragMode</name>
+        <qualifiedname>TradingItem.isDragMode</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="41" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classTradingItem_1ad19a2a868030780e3a169071e3e3febb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>TradingItem.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="43" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="43" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a05bdbe1cbb867c30fcf0af0f72bbe010" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.UpdateColliderSize</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateColliderSize</name>
+        <qualifiedname>TradingItem.UpdateColliderSize</qualifiedname>
+        <briefdescription>
+<para>boxGrid 정보를 기반으로 아이템 모양에 맞게 BoxCollider2D를 생성합니다. 창고의 회전도 고려하여 실제 표시되는 모양에 맞게 콜라이더를 생성합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="354" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="354" bodyend="439"/>
+        <referencedby refid="classTradingItem_1adfd8fadad54e04959bd664292f2eebcb" compoundref="TradingItem_8cs" startline="183" endline="213">Rotate</referencedby>
+        <referencedby refid="classTradingItem_1a98456cd164dc0ccafe1ae0f3d75bcd17" compoundref="TradingItem_8cs" startline="309" endline="347">SetDragMode</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classTradingItem_1a60aacc58fe4c3e514bd54151eb8a5ecb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.Initialize</definition>
+        <argsstring>(TradingItemData data, int quantity, ItemState state=ItemState.Normal)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>TradingItem.Initialize</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>quantity</declname>
+        </param>
+        <param>
+          <type>ItemState</type>
+          <declname>state</declname>
+          <defval>ItemState.Normal</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="47" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="47" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1ae6e2708b028856f402fd45912b73374d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.CopyFrom</definition>
+        <argsstring>(TradingItem other)</argsstring>
+        <name>CopyFrom</name>
+        <qualifiedname>TradingItem.CopyFrom</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="70" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="70" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a4118c5005efe9c3a7336bf269e40387c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float TradingItem.GetCurrentPrice</definition>
+        <argsstring>()</argsstring>
+        <name>GetCurrentPrice</name>
+        <qualifiedname>TradingItem.GetCurrentPrice</qualifiedname>
+        <briefdescription>
+<para>현재 가격을 반환합니다. 아직 초기화되지 않았다면 <ref refid="classTradingItem_1a181c79cc95a0be7d3e7eff9bc88cfe30" kindref="member">RecalculatePrice()</ref>를 호출하여 basePrice ± fluctuation 범위에서 랜덤으로 결정한 후, 동일한 값을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>현재 계산된 가격</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="114" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="114" bodyend="124"/>
+        <references refid="classTradingItem_1a181c79cc95a0be7d3e7eff9bc88cfe30" compoundref="TradingItem_8cs" startline="131" endline="141">RecalculatePrice</references>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a181c79cc95a0be7d3e7eff9bc88cfe30" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.RecalculatePrice</definition>
+        <argsstring>()</argsstring>
+        <name>RecalculatePrice</name>
+        <qualifiedname>TradingItem.RecalculatePrice</qualifiedname>
+        <briefdescription>
+<para>외부에서 가격을 갱신할 필요가 있을 때 호출합니다. basePrice ± fluctuation 범위 내에서 새로 랜덤으로 가격을 계산합니다. 음수가 되지 않도록 보정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="131" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="131" bodyend="141"/>
+        <references refid="classTradingItem_1acd2212595f3004010e388d2fa6a40e22" compoundref="TradingItem_8cs" startline="149" endline="152">GetBasePrice</references>
+        <referencedby refid="classTradingItem_1a4118c5005efe9c3a7336bf269e40387c" compoundref="TradingItem_8cs" startline="114" endline="124">GetCurrentPrice</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1acd2212595f3004010e388d2fa6a40e22" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float TradingItem.GetBasePrice</definition>
+        <argsstring>()</argsstring>
+        <name>GetBasePrice</name>
+        <qualifiedname>TradingItem.GetBasePrice</qualifiedname>
+        <briefdescription>
+<para>원본 가격(BasePrice)을 반환합니다. 변동폭이나 기타 가격 계산 로직과 무관하게, JSON에 정의된 기본 가격을 그대로 반환합니다. 인벤토리 아이템의 가격을 나타낼 때 사용됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>아이템의 기본 가격(basePrice)</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="149" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="149" bodyend="152"/>
+        <referencedby refid="classTradingItem_1a181c79cc95a0be7d3e7eff9bc88cfe30" compoundref="TradingItem_8cs" startline="131" endline="141">RecalculatePrice</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a212eaa65547a504207e7d4cb3410eac8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+        <definition>TradingItemData TradingItem.GetItemData</definition>
+        <argsstring>()</argsstring>
+        <name>GetItemData</name>
+        <qualifiedname>TradingItem.GetItemData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="154" column="28" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="154" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a39b891d6fcaf6bfd4392c0933ca39a87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.ShowItemFrame</definition>
+        <argsstring>()</argsstring>
+        <name>ShowItemFrame</name>
+        <qualifiedname>TradingItem.ShowItemFrame</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="159" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="159" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a4fea9fcc354cc50dd518b6601efff435" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.HideItemFrame</definition>
+        <argsstring>()</argsstring>
+        <name>HideItemFrame</name>
+        <qualifiedname>TradingItem.HideItemFrame</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="165" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="165" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a8dc6df06cc9ede4d959800dfb13968eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Sprite</type>
+        <definition>Sprite TradingItem.GetItemSprite</definition>
+        <argsstring>()</argsstring>
+        <name>GetItemSprite</name>
+        <qualifiedname>TradingItem.GetItemSprite</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="170" column="19" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="170" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a1375c3ecdbf418372dc2472d506f5499" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2</type>
+        <definition>Vector2 TradingItem.GetWorldPosition</definition>
+        <argsstring>()</argsstring>
+        <name>GetWorldPosition</name>
+        <qualifiedname>TradingItem.GetWorldPosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="175" column="20" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="175" bodyend="180"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1adfd8fadad54e04959bd664292f2eebcb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.Rotate</definition>
+        <argsstring>(Constants.Rotations.Rotation newRotation)</argsstring>
+        <name>Rotate</name>
+        <qualifiedname>TradingItem.Rotate</qualifiedname>
+        <reimplements refid="interfaceIGridPlaceable_1a131707c6d5416059fdd88fa628fbc384">Rotate</reimplements>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>오브젝트 회전 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>새 회전 상태</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="183" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="183" bodyend="213"/>
+        <references refid="classRoom_1ae1f89a83229215231d726691043898c6" compoundref="Room_8cs" startline="36">Room&lt; TData, TLevel &gt;.currentRotation</references>
+        <references refid="classTradingItem_1a05bdbe1cbb867c30fcf0af0f72bbe010" compoundref="TradingItem_8cs" startline="354" endline="439">UpdateColliderSize</references>
+        <referencedby refid="classTradingItemDragHandler_1a2a76e5b61bea8056e3a0e3668eb75b4e" compoundref="TradingItemDragHandler_8cs" startline="465" endline="533">TradingItemDragHandler.CancelDragging</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a04f8a663a67d340a4ee45d9c377dfc27" compoundref="TradingItemDragHandler_8cs" startline="331" endline="460">TradingItemDragHandler.EndDragging</referencedby>
+        <referencedby refid="classStorageRoomBase_1a70d74b6982440d1799e3ffaa8d5a0089" compoundref="StorageRoomBase_8cs" startline="492" endline="529">StorageRoomBase.RotateItem</referencedby>
+        <referencedby refid="classTradingItem_1af554ccba5758fcec57611018777772ca" compoundref="TradingItem_8cs" startline="234" endline="240">SetParentStorage</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1afa2266774ed30ca472c91141deadf228" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>object TradingItem.GetRotation</definition>
+        <argsstring>()</argsstring>
+        <name>GetRotation</name>
+        <qualifiedname>TradingItem.GetRotation</qualifiedname>
+        <reimplements refid="interfaceIGridPlaceable_1a8616174c5fba12e7534b78a8987f15b8">GetRotation</reimplements>
+        <briefdescription>
+<para>현재 회전 상태 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="216" column="19" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="216" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1ae7561ac7f06d38e8cf2c2ea3de151702" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>Vector2Int TradingItem.GetGridPosition</definition>
+        <argsstring>()</argsstring>
+        <name>GetGridPosition</name>
+        <qualifiedname>TradingItem.GetGridPosition</qualifiedname>
+        <reimplements refid="interfaceIGridPlaceable_1a6b93762c3faa6f2278d8146ba388e26a">GetGridPosition</reimplements>
+        <briefdescription>
+<para>그리드 위치 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="221" column="23" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="221" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a4e588c30f7a70b9ef72b7b796418bdc3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.SetGridPosition</definition>
+        <argsstring>(Vector2Int position)</argsstring>
+        <name>SetGridPosition</name>
+        <qualifiedname>TradingItem.SetGridPosition</qualifiedname>
+        <reimplements refid="interfaceIGridPlaceable_1ad1e272334fde5ecebb2b5253ca5a5de7">SetGridPosition</reimplements>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>그리드 위치 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>새 그리드 위치</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="226" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="226" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1af554ccba5758fcec57611018777772ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.SetParentStorage</definition>
+        <argsstring>(StorageRoomBase storage)</argsstring>
+        <name>SetParentStorage</name>
+        <qualifiedname>TradingItem.SetParentStorage</qualifiedname>
+        <param>
+          <type><ref refid="classStorageRoomBase" kindref="compound">StorageRoomBase</ref></type>
+          <declname>storage</declname>
+        </param>
+        <briefdescription>
+<para>부모 창고 설정 시 회전도 함께 적용 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="234" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="234" bodyend="240"/>
+        <references refid="classTradingItem_1adfd8fadad54e04959bd664292f2eebcb" compoundref="TradingItem_8cs" startline="183" endline="213">Rotate</references>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1ae9b02ccca69422ffb299f91e9aa01af5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.OnPointerClick</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerClick</name>
+        <qualifiedname>TradingItem.OnPointerClick</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="243" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="243" bodyend="263"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1aecb7cb46a06d46a6e697b189e181e29c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.OnBeginDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnBeginDrag</name>
+        <qualifiedname>TradingItem.OnBeginDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="266" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="266" bodyend="292"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a7a32bba8b7f922075a176b1b2897836f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.OnDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnDrag</name>
+        <qualifiedname>TradingItem.OnDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="295" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="295" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1ad0aeb4d02c3650a7c3d1fac15ba4161e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.OnEndDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnEndDrag</name>
+        <qualifiedname>TradingItem.OnEndDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="301" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="301" bodyend="304"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a98456cd164dc0ccafe1ae0f3d75bcd17" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.SetDragMode</definition>
+        <argsstring>(bool isDragging)</argsstring>
+        <name>SetDragMode</name>
+        <qualifiedname>TradingItem.SetDragMode</qualifiedname>
+        <reimplements refid="interfaceIGridPlaceable_1a1e4a3fb060167efce150b6498f4159c6">SetDragMode</reimplements>
+        <param>
+          <type>bool</type>
+          <declname>isDragging</declname>
+        </param>
+        <briefdescription>
+<para>드래그 모드 설정 (프리뷰 사용 중일 때 원본 아이템의 가시성 설정) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="309" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="309" bodyend="347"/>
+        <references refid="classTradingItem_1a05bdbe1cbb867c30fcf0af0f72bbe010" compoundref="TradingItem_8cs" startline="354" endline="439">UpdateColliderSize</references>
+        <referencedby refid="classStorageRoomBase_1a9f43c0a8cd26219e2b6a88c22925bb40" compoundref="StorageRoomBase_8cs" startline="144" endline="242">StorageRoomBase.AddItem</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a2a76e5b61bea8056e3a0e3668eb75b4e" compoundref="TradingItemDragHandler_8cs" startline="465" endline="533">TradingItemDragHandler.CancelDragging</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a04f8a663a67d340a4ee45d9c377dfc27" compoundref="TradingItemDragHandler_8cs" startline="331" endline="460">TradingItemDragHandler.EndDragging</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a572679f873602e89680807180eaa2da3" compoundref="TradingItemDragHandler_8cs" startline="538" endline="561">TradingItemDragHandler.ResetAllItemsInteractivity</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a09c1e0490008c25ea72f2be604a991eb" compoundref="TradingItemDragHandler_8cs" startline="64" endline="112">TradingItemDragHandler.StartDragging</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a009d8d7f0959def9020c663dfdedf544" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer TradingItem.GetBoxRenderer</definition>
+        <argsstring>()</argsstring>
+        <name>GetBoxRenderer</name>
+        <qualifiedname>TradingItem.GetBoxRenderer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="441" column="27" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="441" bodyend="444"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1ac60bea7718d625820ea0d2a35af6bf66" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.PositionFrameAtGridCenter</definition>
+        <argsstring>()</argsstring>
+        <name>PositionFrameAtGridCenter</name>
+        <qualifiedname>TradingItem.PositionFrameAtGridCenter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="446" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="446" bodyend="526"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a789408cc2dbed3bf80fe0995e071fcbd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TradingItem.GetIsDragMode</definition>
+        <argsstring>()</argsstring>
+        <name>GetIsDragMode</name>
+        <qualifiedname>TradingItem.GetIsDragMode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="528" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="528" bodyend="531"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a9d60d78c52859607ff9f17ad50204563" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int TradingItem.GetItemId</definition>
+        <argsstring>()</argsstring>
+        <name>GetItemId</name>
+        <qualifiedname>TradingItem.GetItemId</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="533" column="16" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="533" bodyend="536"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a7e72e9ecb026d8f5bc1868b247140199" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ItemState</type>
+        <definition>ItemState TradingItem.GetItemState</definition>
+        <argsstring>()</argsstring>
+        <name>GetItemState</name>
+        <qualifiedname>TradingItem.GetItemState</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="538" column="22" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="538" bodyend="541"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a24100de73ba8ab9ba9a173f4836e3a80" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItem.SetItemState</definition>
+        <argsstring>(ItemState state)</argsstring>
+        <name>SetItemState</name>
+        <qualifiedname>TradingItem.SetItemState</qualifiedname>
+        <param>
+          <type>ItemState</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="543" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="543" bodyend="546"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a7be3cd6d81206de10eded4b1d2708428" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ItemPlanet</type>
+        <definition>ItemPlanet TradingItem.GetItemPlanet</definition>
+        <argsstring>()</argsstring>
+        <name>GetItemPlanet</name>
+        <qualifiedname>TradingItem.GetItemPlanet</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="548" column="23" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="548" bodyend="551"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a3b028bb2202e97bb6426ae997b43caa7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ItemTierLevel</type>
+        <definition>ItemTierLevel TradingItem.GetItemTierLevel</definition>
+        <argsstring>()</argsstring>
+        <name>GetItemTierLevel</name>
+        <qualifiedname>TradingItem.GetItemTierLevel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="553" column="26" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="553" bodyend="556"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1afd5948ca602d3ac858886bfd7f670a65" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string TradingItem.GetItemName</definition>
+        <argsstring>()</argsstring>
+        <name>GetItemName</name>
+        <qualifiedname>TradingItem.GetItemName</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="558" column="19" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="558" bodyend="561"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a4de7354ca8facf88208b28fbcca1c9dc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ItemCategory</type>
+        <definition>ItemCategory TradingItem.GetItemCategory</definition>
+        <argsstring>()</argsstring>
+        <name>GetItemCategory</name>
+        <qualifiedname>TradingItem.GetItemCategory</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="563" column="25" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="563" bodyend="566"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a639b950ba69052a243d524b0b2d012f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int TradingItem.GetItemShape</definition>
+        <argsstring>()</argsstring>
+        <name>GetItemShape</name>
+        <qualifiedname>TradingItem.GetItemShape</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="568" column="16" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="568" bodyend="571"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a26989595610faf6345377bc7773a04da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float TradingItem.GetTemperaturMin</definition>
+        <argsstring>()</argsstring>
+        <name>GetTemperaturMin</name>
+        <qualifiedname>TradingItem.GetTemperaturMin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="573" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="573" bodyend="576"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a30ab977681762b4f1d30ee5ea025e826" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float TradingItem.GetTemperaturMax</definition>
+        <argsstring>()</argsstring>
+        <name>GetTemperaturMax</name>
+        <qualifiedname>TradingItem.GetTemperaturMax</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="578" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="578" bodyend="581"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a87500aad82c6aa8d68893e7f6bd8bfe7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int TradingItem.GetCapacity</definition>
+        <argsstring>()</argsstring>
+        <name>GetCapacity</name>
+        <qualifiedname>TradingItem.GetCapacity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="583" column="16" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="583" bodyend="586"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1afc3152cf434905990b8d48bedeae4dae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int TradingItem.GetCostMin</definition>
+        <argsstring>()</argsstring>
+        <name>GetCostMin</name>
+        <qualifiedname>TradingItem.GetCostMin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="588" column="16" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="588" bodyend="591"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a0f2a3583621234cacd48c4d53dedcb75" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int TradingItem.GetCostMax</definition>
+        <argsstring>()</argsstring>
+        <name>GetCostMax</name>
+        <qualifiedname>TradingItem.GetCostMax</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="593" column="16" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="593" bodyend="596"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a5ad725aec6b927cd26be08969a66b2f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string TradingItem.GetDescription</definition>
+        <argsstring>()</argsstring>
+        <name>GetDescription</name>
+        <qualifiedname>TradingItem.GetDescription</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="598" column="19" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="598" bodyend="601"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a648eacb4fb5279e265533157c6ac2315" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float TradingItem.GetCostChangeRate</definition>
+        <argsstring>()</argsstring>
+        <name>GetCostChangeRate</name>
+        <qualifiedname>TradingItem.GetCostChangeRate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="603" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="603" bodyend="606"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1af281beb245edc9caf450b93f0e1c3c01" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int TradingItem.GetRandomCost</definition>
+        <argsstring>()</argsstring>
+        <name>GetRandomCost</name>
+        <qualifiedname>TradingItem.GetRandomCost</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="608" column="16" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="608" bodyend="613"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItem_1a34d65b62ff2253a75d96f9b581cc6669" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classStorageRoomBase" kindref="compound">StorageRoomBase</ref></type>
+        <definition>StorageRoomBase TradingItem.GetParentStorage</definition>
+        <argsstring>()</argsstring>
+        <name>GetParentStorage</name>
+        <qualifiedname>TradingItem.GetParentStorage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="615" column="28" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="615" bodyend="618"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classTradingItem" kindref="compound">TradingItem</ref> 클래스는 거래 가능한 아이템의 데이터를 담고 있으며, 아이템의 속성(행성 코드, 티어, 이름, 상태, 분류 등)과 가격 관련 기능을 제공합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>IBeginDragHandler</label>
+      </node>
+      <node id="5">
+        <label>IDragHandler</label>
+      </node>
+      <node id="6">
+        <label>IEndDragHandler</label>
+      </node>
+      <node id="7">
+        <label>IGridPlaceable</label>
+        <link refid="interfaceIGridPlaceable"/>
+      </node>
+      <node id="3">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>TradingItem</label>
+        <link refid="classTradingItem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="10">
+        <label>Constants</label>
+      </node>
+      <node id="29">
+        <label>CrewBase</label>
+        <link refid="classCrewBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>+equippedAssistant</edgelabel>
+          <edgelabel>+equippedShield</edgelabel>
+          <edgelabel>+equippedWeapon</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>+currentRoom</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>+currentShip</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>+healthBarController</edgelabel>
+        </childnode>
+      </node>
+      <node id="32">
+        <label>CrewHealthBar</label>
+        <link refid="classCrewHealthBar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>-offset</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>-crewBase</edgelabel>
+        </childnode>
+      </node>
+      <node id="28">
+        <label>CrewMember</label>
+        <link refid="classCrewMember"/>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>-movementDirection</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>+madRoom</edgelabel>
+          <edgelabel>+oldReservedRoom</edgelabel>
+          <edgelabel>+reservedRoom</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>EquipmentItem</label>
+        <link refid="classEquipmentItem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>IBeginDragHandler</label>
+      </node>
+      <node id="5">
+        <label>IDragHandler</label>
+      </node>
+      <node id="6">
+        <label>IEndDragHandler</label>
+      </node>
+      <node id="7">
+        <label>IGridPlaceable</label>
+        <link refid="interfaceIGridPlaceable"/>
+      </node>
+      <node id="3">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="13">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="24">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="template-instance">
+          <edgelabel>&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="27">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="15" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>StorageRoomBase</label>
+        <link refid="classStorageRoomBase"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>#selectedItem</edgelabel>
+          <edgelabel>-itemGrid</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>TradingItem</label>
+        <link refid="classTradingItem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-itemData</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+rotation</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+parentStorage</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>TradingItemData</label>
+        <link refid="classTradingItemData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>UnityEngine</label>
+      </node>
+      <node id="20">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Trade/Item/TradingItem.cs" line="12" column="7" bodyfile="Assets/Scripts/Trade/Item/TradingItem.cs" bodystart="14" bodyend="619"/>
+    <listofallmembers>
+      <member refid="classTradingItem_1adc8c7f59a24bb5383610997761f3060f" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>boxGrid</name></member>
+      <member refid="classTradingItem_1ab600ad2e079e606174cefcdb01359579" prot="private" virt="non-virtual"><scope>TradingItem</scope><name>boxRenderer</name></member>
+      <member refid="classTradingItem_1aeb09d6d32efc5e5dcdd3af7ce0d37b19" prot="private" virt="non-virtual"><scope>TradingItem</scope><name>boxSprites</name></member>
+      <member refid="classTradingItem_1a2befe4e58450c5a1d3899de46dd1a75a" prot="private" virt="non-virtual"><scope>TradingItem</scope><name>cachedPrice</name></member>
+      <member refid="classTradingItem_1ae6e2708b028856f402fd45912b73374d" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>CopyFrom</name></member>
+      <member refid="classTradingItem_1ab08c1a73bb232ef56073c51f53d5dabc" prot="private" virt="non-virtual"><scope>TradingItem</scope><name>frameOffsetY</name></member>
+      <member refid="classTradingItem_1a4d11c7b29c595abe478e2fae0bfa905e" prot="private" virt="non-virtual"><scope>TradingItem</scope><name>frameRenderer</name></member>
+      <member refid="classTradingItem_1acd2212595f3004010e388d2fa6a40e22" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetBasePrice</name></member>
+      <member refid="classTradingItem_1a009d8d7f0959def9020c663dfdedf544" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetBoxRenderer</name></member>
+      <member refid="classTradingItem_1a87500aad82c6aa8d68893e7f6bd8bfe7" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetCapacity</name></member>
+      <member refid="classTradingItem_1a648eacb4fb5279e265533157c6ac2315" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetCostChangeRate</name></member>
+      <member refid="classTradingItem_1a0f2a3583621234cacd48c4d53dedcb75" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetCostMax</name></member>
+      <member refid="classTradingItem_1afc3152cf434905990b8d48bedeae4dae" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetCostMin</name></member>
+      <member refid="classTradingItem_1a4118c5005efe9c3a7336bf269e40387c" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetCurrentPrice</name></member>
+      <member refid="classTradingItem_1a5ad725aec6b927cd26be08969a66b2f1" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetDescription</name></member>
+      <member refid="classTradingItem_1ae7561ac7f06d38e8cf2c2ea3de151702" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetGridPosition</name></member>
+      <member refid="classTradingItem_1a789408cc2dbed3bf80fe0995e071fcbd" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetIsDragMode</name></member>
+      <member refid="classTradingItem_1a4de7354ca8facf88208b28fbcca1c9dc" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetItemCategory</name></member>
+      <member refid="classTradingItem_1a212eaa65547a504207e7d4cb3410eac8" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetItemData</name></member>
+      <member refid="classTradingItem_1a9d60d78c52859607ff9f17ad50204563" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetItemId</name></member>
+      <member refid="classTradingItem_1afd5948ca602d3ac858886bfd7f670a65" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetItemName</name></member>
+      <member refid="classTradingItem_1a7be3cd6d81206de10eded4b1d2708428" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetItemPlanet</name></member>
+      <member refid="classTradingItem_1a639b950ba69052a243d524b0b2d012f6" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetItemShape</name></member>
+      <member refid="classTradingItem_1a8dc6df06cc9ede4d959800dfb13968eb" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetItemSprite</name></member>
+      <member refid="classTradingItem_1a7e72e9ecb026d8f5bc1868b247140199" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetItemState</name></member>
+      <member refid="classTradingItem_1a3b028bb2202e97bb6426ae997b43caa7" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetItemTierLevel</name></member>
+      <member refid="classTradingItem_1a34d65b62ff2253a75d96f9b581cc6669" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetParentStorage</name></member>
+      <member refid="classTradingItem_1af281beb245edc9caf450b93f0e1c3c01" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetRandomCost</name></member>
+      <member refid="classTradingItem_1afa2266774ed30ca472c91141deadf228" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetRotation</name></member>
+      <member refid="classTradingItem_1a30ab977681762b4f1d30ee5ea025e826" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetTemperaturMax</name></member>
+      <member refid="classTradingItem_1a26989595610faf6345377bc7773a04da" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetTemperaturMin</name></member>
+      <member refid="classTradingItem_1a1375c3ecdbf418372dc2472d506f5499" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>GetWorldPosition</name></member>
+      <member refid="classTradingItem_1ada0df43e9f080460dc74313ec51a9a14" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>gridPosition</name></member>
+      <member refid="classTradingItem_1a4fea9fcc354cc50dd518b6601efff435" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>HideItemFrame</name></member>
+      <member refid="classTradingItem_1a60aacc58fe4c3e514bd54151eb8a5ecb" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>Initialize</name></member>
+      <member refid="classTradingItem_1a249d07cb79c3bb4e3b5ddc4c4d225e7a" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>isDragging</name></member>
+      <member refid="classTradingItem_1a0083bfe25ef5862ebf4b6b089e735784" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>isDragMode</name></member>
+      <member refid="classTradingItem_1a45ac040ad282189cb2518f4a6426b8a8" prot="private" virt="non-virtual"><scope>TradingItem</scope><name>itemData</name></member>
+      <member refid="classTradingItem_1adc51ce37cda4f83cf21f34cbdb32077d" prot="private" virt="non-virtual"><scope>TradingItem</scope><name>itemRenderer</name></member>
+      <member refid="classTradingItem_1aecb7cb46a06d46a6e697b189e181e29c" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>OnBeginDrag</name></member>
+      <member refid="classTradingItem_1a7a32bba8b7f922075a176b1b2897836f" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>OnDrag</name></member>
+      <member refid="classTradingItem_1ad0aeb4d02c3650a7c3d1fac15ba4161e" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>OnEndDrag</name></member>
+      <member refid="classTradingItem_1ae9b02ccca69422ffb299f91e9aa01af5" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>OnPointerClick</name></member>
+      <member refid="classTradingItem_1af26c751616d2e68264846c294aed4c29" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>parentStorage</name></member>
+      <member refid="classTradingItem_1ac60bea7718d625820ea0d2a35af6bf66" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>PositionFrameAtGridCenter</name></member>
+      <member refid="classTradingItem_1a915412d705115b54aa168fa762b71c8f" prot="private" virt="non-virtual"><scope>TradingItem</scope><name>priceInitialized</name></member>
+      <member refid="classTradingItem_1a181c79cc95a0be7d3e7eff9bc88cfe30" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>RecalculatePrice</name></member>
+      <member refid="classTradingItem_1adfd8fadad54e04959bd664292f2eebcb" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>Rotate</name></member>
+      <member refid="classTradingItem_1a0bac0d1ee37068fa097de90498ccbeb2" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>rotation</name></member>
+      <member refid="classTradingItem_1a98456cd164dc0ccafe1ae0f3d75bcd17" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>SetDragMode</name></member>
+      <member refid="classTradingItem_1a4e588c30f7a70b9ef72b7b796418bdc3" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>SetGridPosition</name></member>
+      <member refid="classTradingItem_1a24100de73ba8ab9ba9a173f4836e3a80" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>SetItemState</name></member>
+      <member refid="classTradingItem_1af554ccba5758fcec57611018777772ca" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>SetParentStorage</name></member>
+      <member refid="classTradingItem_1a39b891d6fcaf6bfd4392c0933ca39a87" prot="public" virt="non-virtual"><scope>TradingItem</scope><name>ShowItemFrame</name></member>
+      <member refid="classTradingItem_1ad19a2a868030780e3a169071e3e3febb" prot="private" virt="non-virtual"><scope>TradingItem</scope><name>Start</name></member>
+      <member refid="classTradingItem_1a05bdbe1cbb867c30fcf0af0f72bbe010" prot="private" virt="non-virtual"><scope>TradingItem</scope><name>UpdateColliderSize</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

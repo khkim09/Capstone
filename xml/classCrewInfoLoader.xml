@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCrewInfoLoader" kind="class" language="C#" prot="public">
+    <compoundname>CrewInfoLoader</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classCrewInfoLoader_1ad9f519767adec6e1a425b90424777432" prot="public" static="yes" mutable="no">
+        <type><ref refid="classCrewInfoWrapper" kindref="compound">CrewInfoWrapper</ref></type>
+        <definition>CrewInfoWrapper CrewInfoLoader.crewInfo</definition>
+        <argsstring></argsstring>
+        <name>crewInfo</name>
+        <qualifiedname>CrewInfoLoader.crewInfo</qualifiedname>
+        <briefdescription>
+<para>로드된 크루 정보 데이터입니다. CrewInfoWrapper는 다양한 크루 유형별 데이터를 포함합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewData/CrewInfoLoader.cs" line="14" column="35" bodyfile="Assets/Scripts/Crew/CrewData/CrewInfoLoader.cs" bodystart="14" bodyend="-1"/>
+        <referencedby refid="classCrewInfoLoader_1a1b5aab0ac7b807cfc25c26ef84b18ad8" compoundref="CrewInfoLoader_8cs" startline="20" endline="51">Awake</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classCrewInfoLoader_1a1b5aab0ac7b807cfc25c26ef84b18ad8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewInfoLoader.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>CrewInfoLoader.Awake</qualifiedname>
+        <briefdescription>
+<para>게임 오브젝트가 생성될 때 호출됩니다. CrewInfo.json 파일을 로드하고 공백 키를 제거한 후 파싱합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewData/CrewInfoLoader.cs" line="20" column="10" bodyfile="Assets/Scripts/Crew/CrewData/CrewInfoLoader.cs" bodystart="20" bodyend="51"/>
+        <references refid="classCrewInfoLoader_1ad9f519767adec6e1a425b90424777432" compoundref="CrewInfoLoader_8cs" startline="14">crewInfo</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>크루원 정보(CrewInfo)를 JSON 파일에서 불러와 정적 변수에 저장하는 로더. JsonUtility를 사용하며, JSON 키의 공백을 제거해 필드명과 매칭시킵니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CrewInfoLoader</label>
+        <link refid="classCrewInfoLoader"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>CrewData</label>
+        <link refid="classCrewData"/>
+      </node>
+      <node id="1">
+        <label>CrewInfoLoader</label>
+        <link refid="classCrewInfoLoader"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+crewInfo</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>CrewInfoWrapper</label>
+        <link refid="classCrewInfoWrapper"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+곤충형</edgelabel>
+          <edgelabel>+돌격기계형</edgelabel>
+          <edgelabel>+부정형</edgelabel>
+          <edgelabel>+인간형</edgelabel>
+          <edgelabel>+지원기계형</edgelabel>
+          <edgelabel>+짐승형</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Crew/CrewData/CrewInfoLoader.cs" line="8" column="7" bodyfile="Assets/Scripts/Crew/CrewData/CrewInfoLoader.cs" bodystart="9" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classCrewInfoLoader_1a1b5aab0ac7b807cfc25c26ef84b18ad8" prot="private" virt="non-virtual"><scope>CrewInfoLoader</scope><name>Awake</name></member>
+      <member refid="classCrewInfoLoader_1ad9f519767adec6e1a425b90424777432" prot="public" virt="non-virtual"><scope>CrewInfoLoader</scope><name>crewInfo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

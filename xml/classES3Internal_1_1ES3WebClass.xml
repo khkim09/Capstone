@@ -1,0 +1,383 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classES3Internal_1_1ES3WebClass" kind="class" language="C#" prot="public">
+    <compoundname>ES3Internal::ES3WebClass</compoundname>
+    <derivedcompoundref refid="classES3Cloud" prot="public" virt="non-virtual">ES3Cloud</derivedcompoundref>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classES3Internal_1_1ES3WebClass_1ae1f772d8c7afb70bb1b06e110bb84a0a" prot="protected" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ES3Internal.ES3WebClass.url</definition>
+        <argsstring></argsstring>
+        <name>url</name>
+        <qualifiedname>ES3Internal.ES3WebClass.url</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="10" column="18" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3WebClass_1adeb2b99df39fcb92c8ca265c749743fc" prot="protected" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ES3Internal.ES3WebClass.apiKey</definition>
+        <argsstring></argsstring>
+        <name>apiKey</name>
+        <qualifiedname>ES3Internal.ES3WebClass.apiKey</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="11" column="18" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3WebClass_1ae9a4594770a17dbe843009c4115c830a" prot="protected" static="no" mutable="no">
+        <type>List&lt; KeyValuePair&lt; string, string &gt; &gt;</type>
+        <definition>List&lt;KeyValuePair&lt;string,string&gt; &gt; ES3Internal.ES3WebClass.formData</definition>
+        <argsstring></argsstring>
+        <name>formData</name>
+        <qualifiedname>ES3Internal.ES3WebClass.formData</qualifiedname>
+        <initializer>= new List&lt;KeyValuePair&lt;string, string&gt;&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="13" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3WebClass_1a50cc2681c2da6e9080fda5a502045a01" prot="protected" static="no" mutable="no">
+        <type>UnityWebRequest</type>
+        <definition>UnityWebRequest ES3Internal.ES3WebClass._webRequest</definition>
+        <argsstring></argsstring>
+        <name>_webRequest</name>
+        <qualifiedname>ES3Internal.ES3WebClass._webRequest</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="14" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classES3Internal_1_1ES3WebClass_1a9057d6c4ab87aec4217397a573fef15d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ES3Internal.ES3WebClass.isDone</definition>
+        <argsstring></argsstring>
+        <name>isDone</name>
+        <qualifiedname>ES3Internal.ES3WebClass.isDone</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="17" column="13" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3WebClass_1a59d8b6a710a0b66952edf92ad12bfb82" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ES3Internal.ES3WebClass.error</definition>
+        <argsstring></argsstring>
+        <name>error</name>
+        <qualifiedname>ES3Internal.ES3WebClass.error</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>An error message, if an error occurred. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="43" column="15" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3WebClass_1a50d7fe0e38d9f472da5aa212a8c75bab" prot="public" static="no" mutable="no">
+        <type>long</type>
+        <definition>long ES3Internal.ES3WebClass.errorCode</definition>
+        <argsstring></argsstring>
+        <name>errorCode</name>
+        <qualifiedname>ES3Internal.ES3WebClass.errorCode</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>The error code relating to the error, if one occurred. If it&apos;s a server error, this will return the HTTP error code. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="47" column="13" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="47" bodyend="-1"/>
+        <referencedby refid="classES3Cloud_1a360045cc94dce619e926fee9fd7a78f5" compoundref="ES3Cloud_8cs" startline="149" endline="166">ES3Cloud.Sync</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classES3Internal_1_1ES3WebClass_1ae09407822d5bd0740c81dd13b75f329e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float ES3Internal.ES3WebClass.uploadProgress</definition>
+        <argsstring></argsstring>
+        <name>uploadProgress</name>
+        <qualifiedname>ES3Internal.ES3WebClass.uploadProgress</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="18" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="19" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="property" id="classES3Internal_1_1ES3WebClass_1a9a720d15a01fbaf26c269ee055ac0232" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float ES3Internal.ES3WebClass.downloadProgress</definition>
+        <argsstring></argsstring>
+        <name>downloadProgress</name>
+        <qualifiedname>ES3Internal.ES3WebClass.downloadProgress</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="29" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="30" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="property" id="classES3Internal_1_1ES3WebClass_1a081f40fabdc04520fae215bc71f25509" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool ES3Internal.ES3WebClass.isError</definition>
+        <argsstring></argsstring>
+        <name>isError</name>
+        <qualifiedname>ES3Internal.ES3WebClass.isError</qualifiedname>
+        <briefdescription>
+<para>This is set to true if an error occurred while performing an operation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="45" column="13" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="45" bodyend="45"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3WebClass_1ac7d9d6ce2c25ac4352c573c6c68b83a3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3WebClass.IsNetworkError</definition>
+        <argsstring>(UnityWebRequest www)</argsstring>
+        <name>IsNetworkError</name>
+        <qualifiedname>ES3Internal.ES3WebClass.IsNetworkError</qualifiedname>
+        <param>
+          <type>UnityWebRequest</type>
+          <declname>www</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="49" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="49" bodyend="56"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3WebClass_1a0cce9dca81cf51276509c7ef66a38612" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3Internal.ES3WebClass.ES3WebClass</definition>
+        <argsstring>(string url, string apiKey)</argsstring>
+        <name>ES3WebClass</name>
+        <qualifiedname>ES3Internal.ES3WebClass.ES3WebClass</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>apiKey</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="60" column="11" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="60" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3WebClass_1a9fd07d57fac1be9f48970aecae5e80dc" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ES3Internal.ES3WebClass.GetUser</definition>
+        <argsstring>(string user, string password)</argsstring>
+        <name>GetUser</name>
+        <qualifiedname>ES3Internal.ES3WebClass.GetUser</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>user</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="80" column="18" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="80" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3WebClass_1ab4d813f68d4459eb0912af035e7d989a" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>WWWForm</type>
+        <definition>WWWForm ES3Internal.ES3WebClass.CreateWWWForm</definition>
+        <argsstring>()</argsstring>
+        <name>CreateWWWForm</name>
+        <qualifiedname>ES3Internal.ES3WebClass.CreateWWWForm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="94" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="94" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3WebClass_1a7453d1100c442a5a606baa70fe9c56d2" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ES3Internal.ES3WebClass.HandleError</definition>
+        <argsstring>(UnityWebRequest webRequest, bool errorIfDataIsDownloaded)</argsstring>
+        <name>HandleError</name>
+        <qualifiedname>ES3Internal.ES3WebClass.HandleError</qualifiedname>
+        <param>
+          <type>UnityWebRequest</type>
+          <declname>webRequest</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>errorIfDataIsDownloaded</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="103" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="103" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3WebClass_1acf2a72d4f2dfdedc2458ff3132af37d0" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ES3Internal.ES3WebClass.SendWebRequest</definition>
+        <argsstring>(UnityWebRequest webRequest)</argsstring>
+        <name>SendWebRequest</name>
+        <qualifiedname>ES3Internal.ES3WebClass.SendWebRequest</qualifiedname>
+        <param>
+          <type>UnityWebRequest</type>
+          <declname>webRequest</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="128" column="23" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="128" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3WebClass_1a6dd83d5f047075b050e68c28aa4ec09f" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Internal.ES3WebClass.Reset</definition>
+        <argsstring>()</argsstring>
+        <name>Reset</name>
+        <qualifiedname>ES3Internal.ES3WebClass.Reset</qualifiedname>
+        <reimplementedby refid="classES3Cloud_1afda8d92443dc08489633a3bc60c6008c">Reset</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="138" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="138" bodyend="143"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3WebClass_1ac84e26e34a46b653d9c20be48a8dcd2a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Internal.ES3WebClass.AddPOSTField</definition>
+        <argsstring>(string fieldName, string value)</argsstring>
+        <name>AddPOSTField</name>
+        <qualifiedname>ES3Internal.ES3WebClass.AddPOSTField</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>fieldName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Adds POST data to any requests sent by this <ref refid="classES3Cloud" kindref="compound">ES3Cloud</ref> object. Use this if you are sending data to a custom script on your server. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fieldName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the POST field we want to add.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string value of the POST field we want to add.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="71" column="13" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="71" bodyend="74"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ES3Cloud</label>
+        <link refid="classES3Cloud"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ES3Internal.ES3WebClass</label>
+        <link refid="classES3Internal_1_1ES3WebClass"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ES3Internal.ES3WebClass</label>
+        <link refid="classES3Internal_1_1ES3WebClass"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" line="8" column="7" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Web/ES3WebClass.cs" bodystart="9" bodyend="147"/>
+    <listofallmembers>
+      <member refid="classES3Internal_1_1ES3WebClass_1a50cc2681c2da6e9080fda5a502045a01" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>_webRequest</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1ac84e26e34a46b653d9c20be48a8dcd2a" prot="public" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>AddPOSTField</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1adeb2b99df39fcb92c8ca265c749743fc" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>apiKey</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1ab4d813f68d4459eb0912af035e7d989a" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>CreateWWWForm</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a9a720d15a01fbaf26c269ee055ac0232" prot="public" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>downloadProgress</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a59d8b6a710a0b66952edf92ad12bfb82" prot="public" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>error</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a50d7fe0e38d9f472da5aa212a8c75bab" prot="public" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>errorCode</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a0cce9dca81cf51276509c7ef66a38612" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>ES3WebClass</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1ae9a4594770a17dbe843009c4115c830a" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>formData</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a9fd07d57fac1be9f48970aecae5e80dc" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>GetUser</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a7453d1100c442a5a606baa70fe9c56d2" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>HandleError</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a9057d6c4ab87aec4217397a573fef15d" prot="public" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>isDone</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a081f40fabdc04520fae215bc71f25509" prot="public" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>isError</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1ac7d9d6ce2c25ac4352c573c6c68b83a3" prot="public" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>IsNetworkError</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1a6dd83d5f047075b050e68c28aa4ec09f" prot="protected" virt="virtual"><scope>ES3Internal::ES3WebClass</scope><name>Reset</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1acf2a72d4f2dfdedc2458ff3132af37d0" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>SendWebRequest</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1ae09407822d5bd0740c81dd13b75f329e" prot="public" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>uploadProgress</name></member>
+      <member refid="classES3Internal_1_1ES3WebClass_1ae1f772d8c7afb70bb1b06e110bb84a0a" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3WebClass</scope><name>url</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

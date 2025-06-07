@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEventResourceEffectHandler" kind="class" language="C#" prot="public">
+    <compoundname>EventResourceEffectHandler</compoundname>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEventResourceEffectHandler_1a147e4c33b31539ccdc52379c033bcd6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventResourceEffectHandler.Handle</definition>
+        <argsstring>(ResourceEffect effect)</argsstring>
+        <name>Handle</name>
+        <qualifiedname>EventResourceEffectHandler.Handle</qualifiedname>
+        <param>
+          <type><ref refid="classResourceEffect" kindref="compound">ResourceEffect</ref></type>
+          <declname>effect</declname>
+        </param>
+        <briefdescription>
+<para>단일 자원 효과를 리스트로 감싸서 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>effect</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>적용할 단일 자원 효과</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventHandlers/EventResourceEffectHandler.cs" line="14" column="17" bodyfile="Assets/Scripts/Events/EventHandlers/EventResourceEffectHandler.cs" bodystart="14" bodyend="23"/>
+        <references refid="classEventResourceEffectHandler_1ac809005f30301ed5aa0dae5954c76ab7" compoundref="EventResourceEffectHandler_8cs" startline="28" endline="40">ApplyEffects</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventResourceEffectHandler_1ac809005f30301ed5aa0dae5954c76ab7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventResourceEffectHandler.ApplyEffects</definition>
+        <argsstring>(List&lt; ResourceEffect &gt; resourceEffects)</argsstring>
+        <name>ApplyEffects</name>
+        <qualifiedname>EventResourceEffectHandler.ApplyEffects</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="classResourceEffect" kindref="compound">ResourceEffect</ref> &gt;</type>
+          <declname>resourceEffects</declname>
+        </param>
+        <briefdescription>
+<para>자원 효과 리스트를 받아 해당 자원을 증감시킵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>resourceEffects</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>적용할 자원 효과 리스트</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventHandlers/EventResourceEffectHandler.cs" line="28" column="17" bodyfile="Assets/Scripts/Events/EventHandlers/EventResourceEffectHandler.cs" bodystart="28" bodyend="40"/>
+        <referencedby refid="classEventManager_1a355c69c40c2d9bb101476692466ac9ac" compoundref="EventManager_8cs" startline="258" endline="295">EventManager.ApplyOutcomeEffects</referencedby>
+        <referencedby refid="classEventResourceEffectHandler_1a147e4c33b31539ccdc52379c033bcd6c" compoundref="EventResourceEffectHandler_8cs" startline="14" endline="23">Handle</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classResourceEffect" kindref="compound">ResourceEffect</ref> 리스트를 받아 해당 자원을 증감시키는 유틸리티 핸들러입니다. SpecialEffectType 처리와는 무관하게 EventOutcome의 resourceEffects에 직접 대응합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>EventResourceEffectHandler</label>
+        <link refid="classEventResourceEffectHandler"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Events/EventHandlers/EventResourceEffectHandler.cs" line="8" column="7" bodyfile="Assets/Scripts/Events/EventHandlers/EventResourceEffectHandler.cs" bodystart="9" bodyend="41"/>
+    <listofallmembers>
+      <member refid="classEventResourceEffectHandler_1ac809005f30301ed5aa0dae5954c76ab7" prot="public" virt="non-virtual"><scope>EventResourceEffectHandler</scope><name>ApplyEffects</name></member>
+      <member refid="classEventResourceEffectHandler_1a147e4c33b31539ccdc52379c033bcd6c" prot="public" virt="non-virtual"><scope>EventResourceEffectHandler</scope><name>Handle</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,334 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classStorageSystem" kind="class" language="C#" prot="public">
+    <compoundname>StorageSystem</compoundname>
+    <basecompoundref refid="classShipSystem" prot="public" virt="non-virtual">ShipSystem</basecompoundref>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classStorageSystem_1acdcb9f270b3edd0f9af709c298301fb6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void StorageSystem.Initialize</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>StorageSystem.Initialize</qualifiedname>
+        <reimplements refid="classShipSystem_1ab0e5623073f8bfb48c02955484cfcd4e">Initialize</reimplements>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>초기화 대상 함선 객체.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" line="11" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" bodystart="11" bodyend="14"/>
+        <referencedby refid="classShip_1a5246a04784a96576460f8494bce02887" compoundref="Ship_8cs" startline="715" endline="737">Ship.InitializeSystems</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorageSystem_1af33987b9764883031df78bb341509326" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void StorageSystem.Update</definition>
+        <argsstring>(float deltaTime)</argsstring>
+        <name>Update</name>
+        <qualifiedname>StorageSystem.Update</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>deltaTime</declname>
+        </param>
+        <briefdescription>
+<para>매 프레임마다 호출되어 시스템 상태를 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>deltaTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>경과 시간 (초).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" line="20" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" bodystart="20" bodyend="22"/>
+        <referencedby refid="classShip_1a6ab0aaf28782b38d9c80bf19e652f46c" compoundref="Ship_8cs" startline="161" endline="172">Ship.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorageSystem_1ac296314af513d0904717a5d9e89eb632" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classTradingItem" kindref="compound">TradingItem</ref> &gt;</type>
+        <definition>List&lt; TradingItem &gt; StorageSystem.GetAllItems</definition>
+        <argsstring>()</argsstring>
+        <name>GetAllItems</name>
+        <qualifiedname>StorageSystem.GetAllItems</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" line="24" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" bodystart="24" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classStorageSystem_1a263ebcb9ba2bf098fb24cd9b80c37c79" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classTradingItem" kindref="compound">TradingItem</ref> &gt;</type>
+        <definition>List&lt; TradingItem &gt; StorageSystem.GetAllItemsByCategory</definition>
+        <argsstring>(ItemCategory category)</argsstring>
+        <name>GetAllItemsByCategory</name>
+        <qualifiedname>StorageSystem.GetAllItemsByCategory</qualifiedname>
+        <param>
+          <type>ItemCategory</type>
+          <declname>category</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" line="34" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" bodystart="34" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classStorageSystem_1a5ada99a985770a754c2df93d3d6468cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classTradingItem" kindref="compound">TradingItem</ref> &gt;</type>
+        <definition>List&lt; TradingItem &gt; StorageSystem.GetAllItemsById</definition>
+        <argsstring>(int id)</argsstring>
+        <name>GetAllItemsById</name>
+        <qualifiedname>StorageSystem.GetAllItemsById</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" line="44" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" bodystart="44" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classStorageSystem_1a9d2d30e7eafe739a91b7059b214c8401" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classTradingItem" kindref="compound">TradingItem</ref> &gt;</type>
+        <definition>List&lt; TradingItem &gt; StorageSystem.GetAllItemsByName</definition>
+        <argsstring>(string name)</argsstring>
+        <name>GetAllItemsByName</name>
+        <qualifiedname>StorageSystem.GetAllItemsByName</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" line="54" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" bodystart="54" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classStorageSystem_1a292450f1e94f315e1eda375b66277df7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void StorageSystem.RemoveAllItems</definition>
+        <argsstring>()</argsstring>
+        <name>RemoveAllItems</name>
+        <qualifiedname>StorageSystem.RemoveAllItems</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" line="64" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" bodystart="64" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classStorageSystem_1abb820a667e6fc0fa721b55c72acfa071" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void StorageSystem.RemoveItem</definition>
+        <argsstring>(TradingItem item)</argsstring>
+        <name>RemoveItem</name>
+        <qualifiedname>StorageSystem.RemoveItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" line="71" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" bodystart="71" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classStorageSystem_1a1a6f5d5b40896b35890e6a8040a1bed7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void StorageSystem.SetOtherRoomsGray</definition>
+        <argsstring>()</argsstring>
+        <name>SetOtherRoomsGray</name>
+        <qualifiedname>StorageSystem.SetOtherRoomsGray</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" line="80" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" bodystart="80" bodyend="88"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+      </node>
+      <node id="1">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="11">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="13">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="15">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" line="6" column="7" bodyfile="Assets/Scripts/Ship/ShipSystems/StorageSystem.cs" bodystart="7" bodyend="89"/>
+    <listofallmembers>
+      <member refid="classStorageSystem_1ac296314af513d0904717a5d9e89eb632" prot="public" virt="non-virtual"><scope>StorageSystem</scope><name>GetAllItems</name></member>
+      <member refid="classStorageSystem_1a263ebcb9ba2bf098fb24cd9b80c37c79" prot="public" virt="non-virtual"><scope>StorageSystem</scope><name>GetAllItemsByCategory</name></member>
+      <member refid="classStorageSystem_1a5ada99a985770a754c2df93d3d6468cc" prot="public" virt="non-virtual"><scope>StorageSystem</scope><name>GetAllItemsById</name></member>
+      <member refid="classStorageSystem_1a9d2d30e7eafe739a91b7059b214c8401" prot="public" virt="non-virtual"><scope>StorageSystem</scope><name>GetAllItemsByName</name></member>
+      <member refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" prot="protected" virt="non-virtual"><scope>StorageSystem</scope><name>GetShipStat</name></member>
+      <member refid="classStorageSystem_1acdcb9f270b3edd0f9af709c298301fb6" prot="public" virt="virtual"><scope>StorageSystem</scope><name>Initialize</name></member>
+      <member refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" prot="protected" virt="non-virtual"><scope>StorageSystem</scope><name>parentShip</name></member>
+      <member refid="classShipSystem_1ad94492134ef4577b127382af0877f6d6" prot="public" virt="virtual"><scope>StorageSystem</scope><name>Refresh</name></member>
+      <member refid="classStorageSystem_1a292450f1e94f315e1eda375b66277df7" prot="public" virt="non-virtual"><scope>StorageSystem</scope><name>RemoveAllItems</name></member>
+      <member refid="classStorageSystem_1abb820a667e6fc0fa721b55c72acfa071" prot="public" virt="non-virtual"><scope>StorageSystem</scope><name>RemoveItem</name></member>
+      <member refid="classStorageSystem_1a1a6f5d5b40896b35890e6a8040a1bed7" prot="public" virt="non-virtual"><scope>StorageSystem</scope><name>SetOtherRoomsGray</name></member>
+      <member refid="classStorageSystem_1af33987b9764883031df78bb341509326" prot="public" virt="non-virtual"><scope>StorageSystem</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

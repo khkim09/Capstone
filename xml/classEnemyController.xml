@@ -1,0 +1,442 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEnemyController" kind="class" language="C#" prot="public">
+    <compoundname>EnemyController</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classEnemyController_1a12d4b38ef5132747a0e11f50cc7d1a65" prot="private" static="no" mutable="no">
+        <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+        <definition>CrewMember EnemyController.cm</definition>
+        <argsstring></argsstring>
+        <name>cm</name>
+        <qualifiedname>EnemyController.cm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/EnemyController.cs" line="6" column="24" bodyfile="Assets/Scripts/RTS/EnemyController.cs" bodystart="6" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classEnemyController_1a7c2e017ab9485870079bd6bf5fb8bbd3" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool EnemyController.isIdle</definition>
+        <argsstring></argsstring>
+        <name>isIdle</name>
+        <qualifiedname>EnemyController.isIdle</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>아무것도 안하고 있음 (새로운 명령 수신 대기 = true) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/EnemyController.cs" line="11" column="17" bodyfile="Assets/Scripts/RTS/EnemyController.cs" bodystart="11" bodyend="-1"/>
+        <referencedby refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" compoundref="EnemyController_8cs" startline="23" endline="122">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyController_1aa4ecf337f03448dba0d73781d6c2c9b8" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool EnemyController.isEnd</definition>
+        <argsstring></argsstring>
+        <name>isEnd</name>
+        <qualifiedname>EnemyController.isEnd</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>유저 졌다 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/EnemyController.cs" line="16" column="17" bodyfile="Assets/Scripts/RTS/EnemyController.cs" bodystart="16" bodyend="-1"/>
+        <referencedby refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" compoundref="EnemyController_8cs" startline="23" endline="122">Update</referencedby>
+        <referencedby refid="classEnemyController_1a6bc58726a9f2578687ec2385d3773271" compoundref="EnemyController_8cs" startline="128" endline="171">WhereToGo</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEnemyController_1aef5af22782327b22749e5632ad7467fb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnemyController.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>EnemyController.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/EnemyController.cs" line="18" column="10" bodyfile="Assets/Scripts/RTS/EnemyController.cs" bodystart="18" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnemyController.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>EnemyController.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>처음에 작업 진행할 해적 빼고 나머지는 다 텔포로 아군 함선으로 넘어올거라서 애초에 작업을 하는 애들은 작업 타일 위에 있어서 BackToThePeace()에서 작업상태로 전환될거야 그렇지 않으면 텔포방으로 이동하도록 찍으면 돼</para>
+<para>보니까 텔포방에 들어가면 바로 이동 시작하게 해놨더라고 IssueMoveCommand에서 텔포방으로 이동하도록 좌표찍어서 인자 넣어주면 될거야 EnemyController는 update에서 계속 도는 애라 어태치 하는 순간 바로 작동될거야 아, isPlayerControlled는 끄고 어태치 해야 제대로 작동돼</para>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/EnemyController.cs" line="23" column="10" bodyfile="Assets/Scripts/RTS/EnemyController.cs" bodystart="23" bodyend="122"/>
+        <references refid="classCrewMember_1ae80f1831860b8a260b6899410f48bc1d" compoundref="CrewMember_8cs" startline="865" endline="882">CrewMember.BackToThePeace</references>
+        <references refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CrewMember.CombatRoutine</references>
+        <references refid="classRoom_1a3eda5d2a24f5e68c7cd376d50096cb4c" compoundref="Room_8cs" startline="21">Room&lt; TData, TLevel &gt;.currentHitPoints</references>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classCrewBase_1ab5bc82e72ae13e47df0d37bd92fdd417" compoundref="CrewBase_8cs" startline="115">CrewBase.currentShip</references>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classRoom_1aca10cd460fc622d1f4b968092676be31" compoundref="Room_8cs" startline="240" endline="243">Room&lt; TData, TLevel &gt;.GetIsDamageable</references>
+        <references refid="classRTSSelectionManager_1ac0db424ecf85d35f8a8106fa3bef1d64" compoundref="RTSSelectionManager_8cs" startline="94" endline="94">RTSSelectionManager.Instance</references>
+        <references refid="classCrewBase_1a234dad1a8fd8847879f0922fb0b17996" compoundref="CrewBase_8cs" startline="103">CrewBase.isAlive</references>
+        <references refid="classEnemyController_1af954337c88f0e402b6a80a3b6fa3176b" compoundref="EnemyController_8cs" startline="203" endline="214">IsDoingSomething</references>
+        <references refid="classEnemyController_1aa4ecf337f03448dba0d73781d6c2c9b8" compoundref="EnemyController_8cs" startline="16">isEnd</references>
+        <references refid="classEnemyController_1a7c2e017ab9485870079bd6bf5fb8bbd3" compoundref="EnemyController_8cs" startline="11">isIdle</references>
+        <references refid="classCrewMember_1a2a72214520c246d394664e2f4bf4a03c" compoundref="CrewMember_8cs" startline="1121" endline="1125">CrewMember.IsOwnShip</references>
+        <references refid="classRTSSelectionManager_1a0002c5992875339db3028007c2472b6d" compoundref="RTSSelectionManager_8cs" startline="443" endline="666">RTSSelectionManager.IssueMoveCommand</references>
+        <references refid="classCrewMember_1a11bff82217c9aa131dd188028cffd5d2" compoundref="CrewMember_8cs" startline="888" endline="900">CrewMember.isWithEnemy</references>
+        <references refid="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" compoundref="RTSSelectionManager_8cs" startline="672" endline="800">RTSSelectionManager.MoveForCombat</references>
+        <references refid="classRoom_1af4b97c8e2306beda35f26f8803734eb5" compoundref="Room_8cs" startline="24">Room&lt; TData, TLevel &gt;.roomType</references>
+        <references refid="classEnemyController_1a6bc58726a9f2578687ec2385d3773271" compoundref="EnemyController_8cs" startline="128" endline="171">WhereToGo</references>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyController_1a6bc58726a9f2578687ec2385d3773271" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+        <definition>Room EnemyController.WhereToGo</definition>
+        <argsstring>()</argsstring>
+        <name>WhereToGo</name>
+        <qualifiedname>EnemyController.WhereToGo</qualifiedname>
+        <briefdescription>
+<para>모든 방으로 가라 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/EnemyController.cs" line="128" column="10" bodyfile="Assets/Scripts/RTS/EnemyController.cs" bodystart="128" bodyend="171"/>
+        <references refid="classRoom_1a3eda5d2a24f5e68c7cd376d50096cb4c" compoundref="Room_8cs" startline="21">Room&lt; TData, TLevel &gt;.currentHitPoints</references>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classCrewBase_1ab5bc82e72ae13e47df0d37bd92fdd417" compoundref="CrewBase_8cs" startline="115">CrewBase.currentShip</references>
+        <references refid="classShip_1ad420fae7a6eed955adb71ba76673d55e" compoundref="Ship_8cs" startline="1051" endline="1054">Ship.GetAllCrew</references>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classRoom_1aca10cd460fc622d1f4b968092676be31" compoundref="Room_8cs" startline="240" endline="243">Room&lt; TData, TLevel &gt;.GetIsDamageable</references>
+        <references refid="classEnemyController_1aa4ecf337f03448dba0d73781d6c2c9b8" compoundref="EnemyController_8cs" startline="16">isEnd</references>
+        <references refid="classCrewBase_1a24c27571ccbe1263b7bcc0b1edf78010" compoundref="CrewBase_8cs" startline="16">CrewBase.isPlayerControlled</references>
+        <referencedby refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" compoundref="EnemyController_8cs" startline="23" endline="122">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyController_1a9bdea1a4318709cb950e066c8e4879c0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+        <definition>Room EnemyController.WhereToGo</definition>
+        <argsstring>(RoomType type)</argsstring>
+        <name>WhereToGo</name>
+        <qualifiedname>EnemyController.WhereToGo</qualifiedname>
+        <param>
+          <type>RoomType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>조종실로 가라 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/EnemyController.cs" line="178" column="10" bodyfile="Assets/Scripts/RTS/EnemyController.cs" bodystart="178" bodyend="197"/>
+        <references refid="classRoom_1a3eda5d2a24f5e68c7cd376d50096cb4c" compoundref="Room_8cs" startline="21">Room&lt; TData, TLevel &gt;.currentHitPoints</references>
+        <references refid="classCrewBase_1ab5bc82e72ae13e47df0d37bd92fdd417" compoundref="CrewBase_8cs" startline="115">CrewBase.currentShip</references>
+        <references refid="classCrewMember_1a41c7608e6555b803935adbc401e44bbe" compoundref="CrewMember_8cs" startline="1074" endline="1093">CrewMember.Freeze</references>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classRoom_1aca10cd460fc622d1f4b968092676be31" compoundref="Room_8cs" startline="240" endline="243">Room&lt; TData, TLevel &gt;.GetIsDamageable</references>
+        <references refid="classRoom_1af4b97c8e2306beda35f26f8803734eb5" compoundref="Room_8cs" startline="24">Room&lt; TData, TLevel &gt;.roomType</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEnemyController_1af954337c88f0e402b6a80a3b6fa3176b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool EnemyController.IsDoingSomething</definition>
+        <argsstring>()</argsstring>
+        <name>IsDoingSomething</name>
+        <qualifiedname>EnemyController.IsDoingSomething</qualifiedname>
+        <briefdescription>
+<para>무언가 하는중 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/EnemyController.cs" line="203" column="17" bodyfile="Assets/Scripts/RTS/EnemyController.cs" bodystart="203" bodyend="214"/>
+        <references refid="classCrewMember_1ab9457e53edac9eb82e9b4995f83e03e3" compoundref="CrewMember_8cs" startline="485">CrewMember.inCombat</references>
+        <references refid="classCrewBase_1ab78b5a4de7a4515d545bf97fa28b6cc9" compoundref="CrewBase_8cs" startline="106">CrewBase.isMoving</references>
+        <references refid="classCrewMember_1ae056f833ac8368fd774c7755f3865716" compoundref="CrewMember_8cs" startline="1004">CrewMember.isWorking</references>
+        <referencedby refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" compoundref="EnemyController_8cs" startline="23" endline="122">Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EnemyController</label>
+        <link refid="classEnemyController"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="10">
+        <label>Constants</label>
+      </node>
+      <node id="4">
+        <label>CrewBase</label>
+        <link refid="classCrewBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+equippedAssistant</edgelabel>
+          <edgelabel>+equippedShield</edgelabel>
+          <edgelabel>+equippedWeapon</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+currentRoom</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+currentShip</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>+healthBarController</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>CrewHealthBar</label>
+        <link refid="classCrewHealthBar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-offset</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-crewBase</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>CrewMember</label>
+        <link refid="classCrewMember"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-movementDirection</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+madRoom</edgelabel>
+          <edgelabel>+oldReservedRoom</edgelabel>
+          <edgelabel>+reservedRoom</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>EnemyController</label>
+        <link refid="classEnemyController"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-cm</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>EquipmentItem</label>
+        <link refid="classEquipmentItem"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="20">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="23">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="11" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>UnityEngine</label>
+      </node>
+      <node id="16">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/RTS/EnemyController.cs" line="4" column="7" bodyfile="Assets/Scripts/RTS/EnemyController.cs" bodystart="5" bodyend="215"/>
+    <listofallmembers>
+      <member refid="classEnemyController_1a12d4b38ef5132747a0e11f50cc7d1a65" prot="private" virt="non-virtual"><scope>EnemyController</scope><name>cm</name></member>
+      <member refid="classEnemyController_1af954337c88f0e402b6a80a3b6fa3176b" prot="public" virt="non-virtual"><scope>EnemyController</scope><name>IsDoingSomething</name></member>
+      <member refid="classEnemyController_1aa4ecf337f03448dba0d73781d6c2c9b8" prot="public" virt="non-virtual"><scope>EnemyController</scope><name>isEnd</name></member>
+      <member refid="classEnemyController_1a7c2e017ab9485870079bd6bf5fb8bbd3" prot="public" virt="non-virtual"><scope>EnemyController</scope><name>isIdle</name></member>
+      <member refid="classEnemyController_1aef5af22782327b22749e5632ad7467fb" prot="private" virt="non-virtual"><scope>EnemyController</scope><name>Start</name></member>
+      <member refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" prot="private" virt="non-virtual"><scope>EnemyController</scope><name>Update</name></member>
+      <member refid="classEnemyController_1a6bc58726a9f2578687ec2385d3773271" prot="private" virt="non-virtual"><scope>EnemyController</scope><name>WhereToGo</name></member>
+      <member refid="classEnemyController_1a9bdea1a4318709cb950e066c8e4879c0" prot="private" virt="non-virtual"><scope>EnemyController</scope><name>WhereToGo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

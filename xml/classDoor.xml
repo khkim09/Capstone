@@ -1,0 +1,586 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classDoor" kind="class" language="C#" prot="public">
+    <compoundname>Door</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classDoor_1ae3c9d88704accfd16441fb6d7edb1878" prot="private" static="no" mutable="no">
+        <type><ref refid="classDoorData" kindref="compound">DoorData</ref></type>
+        <definition>DoorData Door.doorData</definition>
+        <argsstring></argsstring>
+        <name>doorData</name>
+        <qualifiedname>Door.doorData</qualifiedname>
+        <briefdescription>
+<para>문의 데이터 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="9" column="23" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="9" bodyend="-1"/>
+        <referencedby refid="classDoor_1a15a8cb2255fa488c84910354c75899e4" compoundref="Door_8cs" startline="230" endline="237">CheckPowerRequirement</referencedby>
+        <referencedby refid="classDoor_1a453a0e9eaae9f70f5405347b14f1a559" compoundref="Door_8cs" startline="208" endline="225">CloseDoor</referencedby>
+        <referencedby refid="classDoor_1ad3d3eccaafa53e3e6a7662f36e5c522a" compoundref="Door_8cs" startline="78" endline="87">Initialize</referencedby>
+        <referencedby refid="classDoor_1a0f7421b0fbdc060496d388afdd330c25" compoundref="Door_8cs" startline="92" endline="102">InitializeDoor</referencedby>
+        <referencedby refid="classDoor_1ae3ceccc23f33b0219a3ea9a9dc0f7dac" compoundref="Door_8cs" startline="172" endline="203">TryOpenDoor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDoor_1aef084507b3f4d124188d9c862fe03a45" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Door.currentLevel</definition>
+        <argsstring></argsstring>
+        <name>currentLevel</name>
+        <qualifiedname>Door.currentLevel</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>현재 문 레벨 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="12" column="18" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="12" bodyend="-1"/>
+        <referencedby refid="classDoor_1a15a8cb2255fa488c84910354c75899e4" compoundref="Door_8cs" startline="230" endline="237">CheckPowerRequirement</referencedby>
+        <referencedby refid="classDoor_1a453a0e9eaae9f70f5405347b14f1a559" compoundref="Door_8cs" startline="208" endline="225">CloseDoor</referencedby>
+        <referencedby refid="classDoor_1ad3d3eccaafa53e3e6a7662f36e5c522a" compoundref="Door_8cs" startline="78" endline="87">Initialize</referencedby>
+        <referencedby refid="classDoor_1a0f7421b0fbdc060496d388afdd330c25" compoundref="Door_8cs" startline="92" endline="102">InitializeDoor</referencedby>
+        <referencedby refid="classDoor_1ae3ceccc23f33b0219a3ea9a9dc0f7dac" compoundref="Door_8cs" startline="172" endline="203">TryOpenDoor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDoor_1a36efbfa46bbc63369d80e8c56ef8b84a" prot="private" static="no" mutable="no">
+        <type>DoorDirection</type>
+        <definition>DoorDirection Door.direction</definition>
+        <argsstring></argsstring>
+        <name>direction</name>
+        <qualifiedname>Door.direction</qualifiedname>
+        <briefdescription>
+<para>문의 방향 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="15" column="28" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="15" bodyend="-1"/>
+        <referencedby refid="classDoor_1ad3d3eccaafa53e3e6a7662f36e5c522a" compoundref="Door_8cs" startline="78" endline="87">Initialize</referencedby>
+        <referencedby refid="classDoor_1a3142afcc9390636311c33985e53dcc05" compoundref="Door_8cs" startline="116" endline="135">RotateDirectionClockwise</referencedby>
+        <referencedby refid="classDoor_1ad72913358152384b7778775422b6d69c" compoundref="Door_8cs" startline="107" endline="111">SetDirection</referencedby>
+        <referencedby refid="classDoor_1a5e73b7f1239cee2b9ec2ec7537e0ff92" compoundref="Door_8cs" startline="150" endline="167">SetDoorRotation</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDoor_1aa2d909dad9369d6e557357db882bf33a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Door.isOpen</definition>
+        <argsstring></argsstring>
+        <name>isOpen</name>
+        <qualifiedname>Door.isOpen</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>현재 문이 열려있는지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="21" column="19" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="21" bodyend="-1"/>
+        <referencedby refid="classDoor_1a15a8cb2255fa488c84910354c75899e4" compoundref="Door_8cs" startline="230" endline="237">CheckPowerRequirement</referencedby>
+        <referencedby refid="classDoor_1a453a0e9eaae9f70f5405347b14f1a559" compoundref="Door_8cs" startline="208" endline="225">CloseDoor</referencedby>
+        <referencedby refid="classDoor_1ae3ceccc23f33b0219a3ea9a9dc0f7dac" compoundref="Door_8cs" startline="172" endline="203">TryOpenDoor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDoor_1abde00fcec39b8766abd3200bbaca2cbd" prot="private" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int Door.originalGridPosition</definition>
+        <argsstring></argsstring>
+        <name>originalGridPosition</name>
+        <qualifiedname>Door.originalGridPosition</qualifiedname>
+        <briefdescription>
+<para>문의 원래 그리드 위치 (방 회전 전) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="24" column="25" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="24" bodyend="-1"/>
+        <referencedby refid="classDoor_1a8b4d13a0f62574ed25758130f956f44b" compoundref="Door_8cs" startline="141" endline="145">SetGridPosition</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDoor_1a05045399c7241cc7ab352db1ea21d52a" prot="private" static="no" mutable="no">
+        <type>DoorDirection</type>
+        <definition>DoorDirection Door.originalDirection</definition>
+        <argsstring></argsstring>
+        <name>originalDirection</name>
+        <qualifiedname>Door.originalDirection</qualifiedname>
+        <briefdescription>
+<para>문의 원래 방향 (방 회전 전) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="34" column="28" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="34" bodyend="-1"/>
+        <referencedby refid="classDoor_1ad3d3eccaafa53e3e6a7662f36e5c522a" compoundref="Door_8cs" startline="78" endline="87">Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDoor_1a2d152db53c143c4e8318ff92d57afd9a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Door.passTimer</definition>
+        <argsstring></argsstring>
+        <name>passTimer</name>
+        <qualifiedname>Door.passTimer</qualifiedname>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+<para>문 통과 쿨다운 타이머 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="44" column="19" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="44" bodyend="-1"/>
+        <referencedby refid="classDoor_1ae3ceccc23f33b0219a3ea9a9dc0f7dac" compoundref="Door_8cs" startline="172" endline="203">TryOpenDoor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDoor_1a4f5d4b24bdf7149f2977d338b7d3f9ce" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Door.currentHitPoint</definition>
+        <argsstring></argsstring>
+        <name>currentHitPoint</name>
+        <qualifiedname>Door.currentHitPoint</qualifiedname>
+        <briefdescription>
+<para>문의 현재 내구도 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="47" column="17" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDoor_1a0e15249011da5cb777aa49235edba8db" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer Door.spriteRenderer</definition>
+        <argsstring></argsstring>
+        <name>spriteRenderer</name>
+        <qualifiedname>Door.spriteRenderer</qualifiedname>
+        <briefdescription>
+<para>문 스프라이트 렌더러 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="50" column="28" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDoor_1a62fff5ae7552edfedbe8dba9f19fba4c" prot="private" static="no" mutable="no">
+        <type>Animator</type>
+        <definition>Animator Door.animator</definition>
+        <argsstring></argsstring>
+        <name>animator</name>
+        <qualifiedname>Door.animator</qualifiedname>
+        <briefdescription>
+<para>문 애니메이터 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="53" column="22" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="53" bodyend="-1"/>
+        <referencedby refid="classDoor_1a453a0e9eaae9f70f5405347b14f1a559" compoundref="Door_8cs" startline="208" endline="225">CloseDoor</referencedby>
+        <referencedby refid="classDoor_1ae3ceccc23f33b0219a3ea9a9dc0f7dac" compoundref="Door_8cs" startline="172" endline="203">TryOpenDoor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDoor_1a44635076a8b9e6fde94b4831b85197ea" prot="private" static="no" mutable="no">
+        <type>AudioSource</type>
+        <definition>AudioSource Door.audioSource</definition>
+        <argsstring></argsstring>
+        <name>audioSource</name>
+        <qualifiedname>Door.audioSource</qualifiedname>
+        <briefdescription>
+<para>문 오디오 소스 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="56" column="25" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="56" bodyend="-1"/>
+        <referencedby refid="classDoor_1a453a0e9eaae9f70f5405347b14f1a559" compoundref="Door_8cs" startline="208" endline="225">CloseDoor</referencedby>
+        <referencedby refid="classDoor_1ae3ceccc23f33b0219a3ea9a9dc0f7dac" compoundref="Door_8cs" startline="172" endline="203">TryOpenDoor</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classDoor_1a820512e94d13273b126ecd2b41cc0d26" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>DoorDirection</type>
+        <definition>DoorDirection Door.Direction</definition>
+        <argsstring></argsstring>
+        <name>Direction</name>
+        <qualifiedname>Door.Direction</qualifiedname>
+        <briefdescription>
+<para>문의 방향 프로퍼티 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="18" column="26" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classDoor_1aea9b35dae480b3c8e6d36f8470fe90e1" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int Door.OriginalGridPosition</definition>
+        <argsstring></argsstring>
+        <name>OriginalGridPosition</name>
+        <qualifiedname>Door.OriginalGridPosition</qualifiedname>
+        <briefdescription>
+<para>원래 그리드 위치 프로퍼티 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="27" column="23" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="28" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="property" id="classDoor_1a9ee4863cc9a04e17dd562bda1a8b3b86" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>DoorDirection</type>
+        <definition>DoorDirection Door.OriginalDirection</definition>
+        <argsstring></argsstring>
+        <name>OriginalDirection</name>
+        <qualifiedname>Door.OriginalDirection</qualifiedname>
+        <briefdescription>
+<para>원래 방향 프로퍼티 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="37" column="26" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="38" bodyend="41"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classDoor_1a516f170e7be1fccf24a8286cdda4f8cf" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Door.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>Door.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="58" column="18" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="58" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classDoor_1a67f37254b23f6f8770549a7e5a51f15b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Door.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>Door.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="65" column="18" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="65" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classDoor_1ac518336e578c8c5f447da92d427716fc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Door.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>Door.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="69" column="18" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="69" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classDoor_1a0f7421b0fbdc060496d388afdd330c25" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Door.InitializeDoor</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeDoor</name>
+        <qualifiedname>Door.InitializeDoor</qualifiedname>
+        <briefdescription>
+<para>문의 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="92" column="18" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="92" bodyend="102"/>
+        <references refid="classDoor_1aef084507b3f4d124188d9c862fe03a45" compoundref="Door_8cs" startline="12">currentLevel</references>
+        <references refid="classDoor_1ae3c9d88704accfd16441fb6d7edb1878" compoundref="Door_8cs" startline="9">doorData</references>
+        <references refid="classDoorData_1_1DoorLevel_1aa5f4e8c5837e21d7d43461178c044f12" compoundref="DoorData_8cs" startline="31">DoorData.DoorLevel.doorSprite</references>
+        <references refid="classDoorData_1af8221a6dc6f04d864b6f97d2f6f76e72" compoundref="DoorData_8cs" startline="80" endline="86">DoorData.GetDoorData</references>
+        <references refid="classDoor_1a5e73b7f1239cee2b9ec2ec7537e0ff92" compoundref="Door_8cs" startline="150" endline="167">SetDoorRotation</references>
+        <referencedby refid="classDoor_1ad3d3eccaafa53e3e6a7662f36e5c522a" compoundref="Door_8cs" startline="78" endline="87">Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDoor_1a5e73b7f1239cee2b9ec2ec7537e0ff92" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Door.SetDoorRotation</definition>
+        <argsstring>()</argsstring>
+        <name>SetDoorRotation</name>
+        <qualifiedname>Door.SetDoorRotation</qualifiedname>
+        <briefdescription>
+<para>문의 방향에 따라 회전 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="150" column="18" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="150" bodyend="167"/>
+        <references refid="classDoor_1a36efbfa46bbc63369d80e8c56ef8b84a" compoundref="Door_8cs" startline="15">direction</references>
+        <referencedby refid="classDoor_1a0f7421b0fbdc060496d388afdd330c25" compoundref="Door_8cs" startline="92" endline="102">InitializeDoor</referencedby>
+        <referencedby refid="classDoor_1ad72913358152384b7778775422b6d69c" compoundref="Door_8cs" startline="107" endline="111">SetDirection</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDoor_1a15a8cb2255fa488c84910354c75899e4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Door.CheckPowerRequirement</definition>
+        <argsstring>()</argsstring>
+        <name>CheckPowerRequirement</name>
+        <qualifiedname>Door.CheckPowerRequirement</qualifiedname>
+        <briefdescription>
+<para>전력 요구사항 체크 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="230" column="18" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="230" bodyend="237"/>
+        <references refid="classDoor_1a453a0e9eaae9f70f5405347b14f1a559" compoundref="Door_8cs" startline="208" endline="225">CloseDoor</references>
+        <references refid="classDoor_1aef084507b3f4d124188d9c862fe03a45" compoundref="Door_8cs" startline="12">currentLevel</references>
+        <references refid="classDoor_1ae3c9d88704accfd16441fb6d7edb1878" compoundref="Door_8cs" startline="9">doorData</references>
+        <references refid="classDoorData_1af8221a6dc6f04d864b6f97d2f6f76e72" compoundref="DoorData_8cs" startline="80" endline="86">DoorData.GetDoorData</references>
+        <references refid="classDoor_1acdc80ffed945c33f250149909e0ce5ea" compoundref="Door_8cs" startline="242" endline="247">HasEnoughPower</references>
+        <references refid="classDoor_1aa2d909dad9369d6e557357db882bf33a" compoundref="Door_8cs" startline="21">isOpen</references>
+        <references refid="classDoorData_1_1DoorLevel_1ac84f9106d7400484d25f566197fefebc" compoundref="DoorData_8cs" startline="28">DoorData.DoorLevel.powerRequirement</references>
+      </memberdef>
+      <memberdef kind="function" id="classDoor_1acdc80ffed945c33f250149909e0ce5ea" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Door.HasEnoughPower</definition>
+        <argsstring>()</argsstring>
+        <name>HasEnoughPower</name>
+        <qualifiedname>Door.HasEnoughPower</qualifiedname>
+        <briefdescription>
+<para>전력이 충분한지 체크 (함선의 전력 시스템과 연동 필요) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="242" column="18" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="242" bodyend="247"/>
+        <referencedby refid="classDoor_1a15a8cb2255fa488c84910354c75899e4" compoundref="Door_8cs" startline="230" endline="237">CheckPowerRequirement</referencedby>
+        <referencedby refid="classDoor_1ae3ceccc23f33b0219a3ea9a9dc0f7dac" compoundref="Door_8cs" startline="172" endline="203">TryOpenDoor</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classDoor_1ad3d3eccaafa53e3e6a7662f36e5c522a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Door.Initialize</definition>
+        <argsstring>(DoorData doorData, int level, DoorDirection dir)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>Door.Initialize</qualifiedname>
+        <param>
+          <type><ref refid="classDoorData" kindref="compound">DoorData</ref></type>
+          <declname>doorData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>DoorDirection</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>외부에서 문 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="78" column="17" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="78" bodyend="87"/>
+        <references refid="classDoor_1aef084507b3f4d124188d9c862fe03a45" compoundref="Door_8cs" startline="12">currentLevel</references>
+        <references refid="classDoor_1a36efbfa46bbc63369d80e8c56ef8b84a" compoundref="Door_8cs" startline="15">direction</references>
+        <references refid="classDoor_1ae3c9d88704accfd16441fb6d7edb1878" compoundref="Door_8cs" startline="9">doorData</references>
+        <references refid="classDoor_1a0f7421b0fbdc060496d388afdd330c25" compoundref="Door_8cs" startline="92" endline="102">InitializeDoor</references>
+        <references refid="classDoor_1a05045399c7241cc7ab352db1ea21d52a" compoundref="Door_8cs" startline="34">originalDirection</references>
+      </memberdef>
+      <memberdef kind="function" id="classDoor_1ad72913358152384b7778775422b6d69c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Door.SetDirection</definition>
+        <argsstring>(DoorDirection newDirection)</argsstring>
+        <name>SetDirection</name>
+        <qualifiedname>Door.SetDirection</qualifiedname>
+        <param>
+          <type>DoorDirection</type>
+          <declname>newDirection</declname>
+        </param>
+        <briefdescription>
+<para>문의 방향 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="107" column="17" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="107" bodyend="111"/>
+        <references refid="classDoor_1a36efbfa46bbc63369d80e8c56ef8b84a" compoundref="Door_8cs" startline="15">direction</references>
+        <references refid="classDoor_1a5e73b7f1239cee2b9ec2ec7537e0ff92" compoundref="Door_8cs" startline="150" endline="167">SetDoorRotation</references>
+        <referencedby refid="classDoor_1a3142afcc9390636311c33985e53dcc05" compoundref="Door_8cs" startline="116" endline="135">RotateDirectionClockwise</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDoor_1a3142afcc9390636311c33985e53dcc05" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Door.RotateDirectionClockwise</definition>
+        <argsstring>()</argsstring>
+        <name>RotateDirectionClockwise</name>
+        <qualifiedname>Door.RotateDirectionClockwise</qualifiedname>
+        <briefdescription>
+<para>방향을 반시계 방향으로 90도 회전 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="116" column="17" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="116" bodyend="135"/>
+        <references refid="classDoor_1a36efbfa46bbc63369d80e8c56ef8b84a" compoundref="Door_8cs" startline="15">direction</references>
+        <references refid="classDoor_1ad72913358152384b7778775422b6d69c" compoundref="Door_8cs" startline="107" endline="111">SetDirection</references>
+      </memberdef>
+      <memberdef kind="function" id="classDoor_1a8b4d13a0f62574ed25758130f956f44b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Door.SetGridPosition</definition>
+        <argsstring>(Vector2Int newPosition)</argsstring>
+        <name>SetGridPosition</name>
+        <qualifiedname>Door.SetGridPosition</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>newPosition</declname>
+        </param>
+        <briefdescription>
+<para>문의 위치 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="141" column="17" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="141" bodyend="145"/>
+        <references refid="classDoor_1abde00fcec39b8766abd3200bbaca2cbd" compoundref="Door_8cs" startline="24">originalGridPosition</references>
+      </memberdef>
+      <memberdef kind="function" id="classDoor_1ae3ceccc23f33b0219a3ea9a9dc0f7dac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Door.TryOpenDoor</definition>
+        <argsstring>(bool bypassCooldown=false)</argsstring>
+        <name>TryOpenDoor</name>
+        <qualifiedname>Door.TryOpenDoor</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>bypassCooldown</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>문 열기 시도 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="172" column="17" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="172" bodyend="203"/>
+        <references refid="classDoor_1a62fff5ae7552edfedbe8dba9f19fba4c" compoundref="Door_8cs" startline="53">animator</references>
+        <references refid="classDoor_1a44635076a8b9e6fde94b4831b85197ea" compoundref="Door_8cs" startline="56">audioSource</references>
+        <references refid="classDoor_1aef084507b3f4d124188d9c862fe03a45" compoundref="Door_8cs" startline="12">currentLevel</references>
+        <references refid="classDoor_1ae3c9d88704accfd16441fb6d7edb1878" compoundref="Door_8cs" startline="9">doorData</references>
+        <references refid="classDoorData_1af8221a6dc6f04d864b6f97d2f6f76e72" compoundref="DoorData_8cs" startline="80" endline="86">DoorData.GetDoorData</references>
+        <references refid="classDoor_1acdc80ffed945c33f250149909e0ce5ea" compoundref="Door_8cs" startline="242" endline="247">HasEnoughPower</references>
+        <references refid="classDoor_1aa2d909dad9369d6e557357db882bf33a" compoundref="Door_8cs" startline="21">isOpen</references>
+        <references refid="classDoorData_1_1DoorLevel_1a1c4a1c1454c6e9d6720ccb452d18c1d7" compoundref="DoorData_8cs" startline="34">DoorData.DoorLevel.openSound</references>
+        <references refid="classDoorData_1_1DoorLevel_1ad8deab05ce4bcd96d41b1eed221debc6" compoundref="DoorData_8cs" startline="22">DoorData.DoorLevel.passThroughDelay</references>
+        <references refid="classDoor_1a2d152db53c143c4e8318ff92d57afd9a" compoundref="Door_8cs" startline="44">passTimer</references>
+        <references refid="classDoorData_1_1DoorLevel_1ac84f9106d7400484d25f566197fefebc" compoundref="DoorData_8cs" startline="28">DoorData.DoorLevel.powerRequirement</references>
+      </memberdef>
+      <memberdef kind="function" id="classDoor_1a453a0e9eaae9f70f5405347b14f1a559" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Door.CloseDoor</definition>
+        <argsstring>()</argsstring>
+        <name>CloseDoor</name>
+        <qualifiedname>Door.CloseDoor</qualifiedname>
+        <briefdescription>
+<para>문 닫기 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/Door.cs" line="208" column="17" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="208" bodyend="225"/>
+        <references refid="classDoor_1a62fff5ae7552edfedbe8dba9f19fba4c" compoundref="Door_8cs" startline="53">animator</references>
+        <references refid="classDoor_1a44635076a8b9e6fde94b4831b85197ea" compoundref="Door_8cs" startline="56">audioSource</references>
+        <references refid="classDoorData_1_1DoorLevel_1a799e8b8e9a141c45195ad6d3a8e93362" compoundref="DoorData_8cs" startline="37">DoorData.DoorLevel.closeSound</references>
+        <references refid="classDoor_1aef084507b3f4d124188d9c862fe03a45" compoundref="Door_8cs" startline="12">currentLevel</references>
+        <references refid="classDoor_1ae3c9d88704accfd16441fb6d7edb1878" compoundref="Door_8cs" startline="9">doorData</references>
+        <references refid="classDoorData_1af8221a6dc6f04d864b6f97d2f6f76e72" compoundref="DoorData_8cs" startline="80" endline="86">DoorData.GetDoorData</references>
+        <references refid="classDoor_1aa2d909dad9369d6e557357db882bf33a" compoundref="Door_8cs" startline="21">isOpen</references>
+        <referencedby refid="classDoor_1a15a8cb2255fa488c84910354c75899e4" compoundref="Door_8cs" startline="230" endline="237">CheckPowerRequirement</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>방에 부착되어 있는 문 객체입니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Door</label>
+        <link refid="classDoor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Door</label>
+        <link refid="classDoor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="4">
+        <label>ScriptableObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/Doors/Door.cs" line="6" column="7" bodyfile="Assets/Scripts/Ship/Doors/Door.cs" bodystart="7" bodyend="248"/>
+    <listofallmembers>
+      <member refid="classDoor_1a62fff5ae7552edfedbe8dba9f19fba4c" prot="private" virt="non-virtual"><scope>Door</scope><name>animator</name></member>
+      <member refid="classDoor_1a44635076a8b9e6fde94b4831b85197ea" prot="private" virt="non-virtual"><scope>Door</scope><name>audioSource</name></member>
+      <member refid="classDoor_1a516f170e7be1fccf24a8286cdda4f8cf" prot="private" virt="non-virtual"><scope>Door</scope><name>Awake</name></member>
+      <member refid="classDoor_1a15a8cb2255fa488c84910354c75899e4" prot="private" virt="non-virtual"><scope>Door</scope><name>CheckPowerRequirement</name></member>
+      <member refid="classDoor_1a453a0e9eaae9f70f5405347b14f1a559" prot="public" virt="non-virtual"><scope>Door</scope><name>CloseDoor</name></member>
+      <member refid="classDoor_1a4f5d4b24bdf7149f2977d338b7d3f9ce" prot="private" virt="non-virtual"><scope>Door</scope><name>currentHitPoint</name></member>
+      <member refid="classDoor_1aef084507b3f4d124188d9c862fe03a45" prot="private" virt="non-virtual"><scope>Door</scope><name>currentLevel</name></member>
+      <member refid="classDoor_1a36efbfa46bbc63369d80e8c56ef8b84a" prot="private" virt="non-virtual"><scope>Door</scope><name>direction</name></member>
+      <member refid="classDoor_1a820512e94d13273b126ecd2b41cc0d26" prot="public" virt="non-virtual"><scope>Door</scope><name>Direction</name></member>
+      <member refid="classDoor_1ae3c9d88704accfd16441fb6d7edb1878" prot="private" virt="non-virtual"><scope>Door</scope><name>doorData</name></member>
+      <member refid="classDoor_1acdc80ffed945c33f250149909e0ce5ea" prot="private" virt="non-virtual"><scope>Door</scope><name>HasEnoughPower</name></member>
+      <member refid="classDoor_1ad3d3eccaafa53e3e6a7662f36e5c522a" prot="public" virt="non-virtual"><scope>Door</scope><name>Initialize</name></member>
+      <member refid="classDoor_1a0f7421b0fbdc060496d388afdd330c25" prot="private" virt="non-virtual"><scope>Door</scope><name>InitializeDoor</name></member>
+      <member refid="classDoor_1aa2d909dad9369d6e557357db882bf33a" prot="private" virt="non-virtual"><scope>Door</scope><name>isOpen</name></member>
+      <member refid="classDoor_1a05045399c7241cc7ab352db1ea21d52a" prot="private" virt="non-virtual"><scope>Door</scope><name>originalDirection</name></member>
+      <member refid="classDoor_1a9ee4863cc9a04e17dd562bda1a8b3b86" prot="public" virt="non-virtual"><scope>Door</scope><name>OriginalDirection</name></member>
+      <member refid="classDoor_1abde00fcec39b8766abd3200bbaca2cbd" prot="private" virt="non-virtual"><scope>Door</scope><name>originalGridPosition</name></member>
+      <member refid="classDoor_1aea9b35dae480b3c8e6d36f8470fe90e1" prot="public" virt="non-virtual"><scope>Door</scope><name>OriginalGridPosition</name></member>
+      <member refid="classDoor_1a2d152db53c143c4e8318ff92d57afd9a" prot="private" virt="non-virtual"><scope>Door</scope><name>passTimer</name></member>
+      <member refid="classDoor_1a3142afcc9390636311c33985e53dcc05" prot="public" virt="non-virtual"><scope>Door</scope><name>RotateDirectionClockwise</name></member>
+      <member refid="classDoor_1ad72913358152384b7778775422b6d69c" prot="public" virt="non-virtual"><scope>Door</scope><name>SetDirection</name></member>
+      <member refid="classDoor_1a5e73b7f1239cee2b9ec2ec7537e0ff92" prot="private" virt="non-virtual"><scope>Door</scope><name>SetDoorRotation</name></member>
+      <member refid="classDoor_1a8b4d13a0f62574ed25758130f956f44b" prot="public" virt="non-virtual"><scope>Door</scope><name>SetGridPosition</name></member>
+      <member refid="classDoor_1a0e15249011da5cb777aa49235edba8db" prot="private" virt="non-virtual"><scope>Door</scope><name>spriteRenderer</name></member>
+      <member refid="classDoor_1a67f37254b23f6f8770549a7e5a51f15b" prot="private" virt="non-virtual"><scope>Door</scope><name>Start</name></member>
+      <member refid="classDoor_1ae3ceccc23f33b0219a3ea9a9dc0f7dac" prot="public" virt="non-virtual"><scope>Door</scope><name>TryOpenDoor</name></member>
+      <member refid="classDoor_1ac518336e578c8c5f447da92d427716fc" prot="private" virt="non-virtual"><scope>Door</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="WeaponFrameFunction_8cs" kind="file" language="C#">
+    <compoundname>WeaponFrameFunction.cs</compoundname>
+    <innerclass refid="classWeaponFrameFunction" prot="public">WeaponFrameFunction</innerclass>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="WeaponFrameFunction_8cs_1a1b5b49319a06f94c73841479dde03f5d" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Power</name>
+        <enumvalue id="WeaponFrameFunction_8cs_1a1b5b49319a06f94c73841479dde03f5daed2b5c0139cec8ad2873829dc1117d50" prot="public">
+          <name>on</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="WeaponFrameFunction_8cs_1a1b5b49319a06f94c73841479dde03f5da3262d48df5d75e3452f0f16b313b7808" prot="public">
+          <name>off</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="WeaponFrameFunction_8cs_1a1b5b49319a06f94c73841479dde03f5da9df22f196a33acd0b372fe502de51211" prot="public">
+          <name>auto</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="141" column="1" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="142" bodyend="146"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using<sp/></highlight><highlight class="normal">TMPro;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine.UI;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="classWeaponFrameFunction" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classWeaponFrameFunction" kindref="compound">WeaponFrameFunction</ref><sp/>:<sp/>MonoBehaviour</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10" refid="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classShipWeapon" kindref="compound">ShipWeapon</ref><sp/><ref refid="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" kindref="member">weapon</ref>;</highlight></codeline>
+<codeline lineno="14" refid="classWeaponFrameFunction_1ac6df8c98d37f891a71a3acafd63d92f7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Power<sp/><ref refid="classWeaponFrameFunction_1ac6df8c98d37f891a71a3acafd63d92f7" kindref="member">powerState</ref>;</highlight></codeline>
+<codeline lineno="18" refid="classWeaponFrameFunction_1a911e13ae9024e939d063dbb4cd13f9ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Image<sp/><ref refid="classWeaponFrameFunction_1a911e13ae9024e939d063dbb4cd13f9ae" kindref="member">energyBar</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="classWeaponFrameFunction_1abb4655e156cfb58fbd9a4e5d6f5d5a10" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>GameObject<sp/><ref refid="classWeaponFrameFunction_1abb4655e156cfb58fbd9a4e5d6f5d5a10" kindref="member">on</ref>;</highlight></codeline>
+<codeline lineno="27" refid="classWeaponFrameFunction_1a798064f23cd6cbdcc09d603e8aa48efa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>GameObject<sp/><ref refid="classWeaponFrameFunction_1a798064f23cd6cbdcc09d603e8aa48efa" kindref="member">off</ref>;</highlight></codeline>
+<codeline lineno="31" refid="classWeaponFrameFunction_1af0bfebcedebdbec3cda0a31cc6d2f214" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>GameObject<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35" refid="classWeaponFrameFunction_1a4aa05b1f2da34b7cd413f7596e2a1969" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>GameObject<sp/><ref refid="classWeaponFrameFunction_1a4aa05b1f2da34b7cd413f7596e2a1969" kindref="member">ready</ref>;</highlight></codeline>
+<codeline lineno="39" refid="classWeaponFrameFunction_1a71d930ef5a8446863bc7aa941a531749" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>GameObject<sp/><ref refid="classWeaponFrameFunction_1a71d930ef5a8446863bc7aa941a531749" kindref="member">charging</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Start()</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" kindref="member">weapon</ref>.<ref refid="classShipWeapon_1adcc4bbde13b09e03903e416f46fc31f5" kindref="member">IsEnabled</ref>())</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1ac6df8c98d37f891a71a3acafd63d92f7" kindref="member">powerState</ref><sp/>=<sp/>Power.on;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1ac6df8c98d37f891a71a3acafd63d92f7" kindref="member">powerState</ref><sp/>=<sp/>Power.off;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>weapon.updateWeaponPanel<sp/>+=<sp/><ref refid="classWeaponFrameFunction_1a380506c0cc2e11a7eb7de9a1495f1057" kindref="member">UpdateWeaponPanel</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GetComponentInChildren&lt;TextMeshProUGUI&gt;().text<sp/>=<sp/><ref refid="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" kindref="member">weapon</ref>.<ref refid="classShipWeapon_1ae7bc58dd55023002947b1f497a082e5a" kindref="member">GetWeaponName</ref>();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a911e13ae9024e939d063dbb4cd13f9ae" kindref="member">energyBar</ref><sp/>=<sp/>transform.Find(</highlight><highlight class="stringliteral">&quot;EnergyBar&quot;</highlight><highlight class="normal">).GetComponent&lt;Image&gt;();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1abb4655e156cfb58fbd9a4e5d6f5d5a10" kindref="member">on</ref><sp/>=<sp/>transform.Find(</highlight><highlight class="stringliteral">&quot;Power&quot;</highlight><highlight class="normal">).Find(</highlight><highlight class="stringliteral">&quot;On&quot;</highlight><highlight class="normal">).gameObject;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a798064f23cd6cbdcc09d603e8aa48efa" kindref="member">off</ref><sp/>=<sp/>transform.Find(</highlight><highlight class="stringliteral">&quot;Power&quot;</highlight><highlight class="normal">).Find(</highlight><highlight class="stringliteral">&quot;Off&quot;</highlight><highlight class="normal">).gameObject;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>=<sp/>transform.Find(</highlight><highlight class="stringliteral">&quot;Power&quot;</highlight><highlight class="normal">).Find(</highlight><highlight class="stringliteral">&quot;Auto&quot;</highlight><highlight class="normal">).gameObject;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a4aa05b1f2da34b7cd413f7596e2a1969" kindref="member">ready</ref><sp/>=<sp/>transform.Find(</highlight><highlight class="stringliteral">&quot;FireButton&quot;</highlight><highlight class="normal">).Find(</highlight><highlight class="stringliteral">&quot;Ready&quot;</highlight><highlight class="normal">).gameObject;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a71d930ef5a8446863bc7aa941a531749" kindref="member">charging</ref><sp/>=<sp/>transform.Find(</highlight><highlight class="stringliteral">&quot;FireButton&quot;</highlight><highlight class="normal">).Find(</highlight><highlight class="stringliteral">&quot;Charging&quot;</highlight><highlight class="normal">).gameObject;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a380506c0cc2e11a7eb7de9a1495f1057" kindref="member">UpdateWeaponPanel</ref>();</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="classWeaponFrameFunction_1a380506c0cc2e11a7eb7de9a1495f1057" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classWeaponFrameFunction_1a380506c0cc2e11a7eb7de9a1495f1057" kindref="member">UpdateWeaponPanel</ref>()</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a4ebc1bb4ad3ed2737855e6e203c07ee0" kindref="member">SetPowerButton</ref>(<ref refid="classWeaponFrameFunction_1ac6df8c98d37f891a71a3acafd63d92f7" kindref="member">powerState</ref>);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1ad8dbfe8bbcbc584fded650e8cafbb016" kindref="member">SetFireButton</ref>();</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>percentage<sp/>=<sp/><ref refid="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" kindref="member">weapon</ref>.<ref refid="classShipWeapon_1ae53e123c2fc95c94e5a4ef7b5c5366c0" kindref="member">GetCooldownPercentage</ref>();</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>energyBar.fillAmount<sp/>=<sp/>percentage;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classWeaponFrameFunction_1ac6df8c98d37f891a71a3acafd63d92f7" kindref="member">powerState</ref><sp/>==<sp/>Power.auto<sp/>&amp;&amp;<sp/>percentage<sp/>&gt;=<sp/>1)</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" kindref="member">weapon</ref>.<ref refid="classShipWeapon_1ae07871ba8eadcce6c4042e3f988980a6" kindref="member">TryFire</ref>();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="classWeaponFrameFunction_1a4ebc1bb4ad3ed2737855e6e203c07ee0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classWeaponFrameFunction_1a4ebc1bb4ad3ed2737855e6e203c07ee0" kindref="member">SetPowerButton</ref>(Power<sp/>power)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1abb4655e156cfb58fbd9a4e5d6f5d5a10" kindref="member">on</ref>.SetActive(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a798064f23cd6cbdcc09d603e8aa48efa" kindref="member">off</ref>.SetActive(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">.SetActive(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(power)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>Power.on:</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1abb4655e156cfb58fbd9a4e5d6f5d5a10" kindref="member">on</ref>.SetActive(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>Power.off:</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a798064f23cd6cbdcc09d603e8aa48efa" kindref="member">off</ref>.SetActive(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>Power.auto:</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">.SetActive(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103" refid="classWeaponFrameFunction_1ad8dbfe8bbcbc584fded650e8cafbb016" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classWeaponFrameFunction_1ad8dbfe8bbcbc584fded650e8cafbb016" kindref="member">SetFireButton</ref>()</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a4aa05b1f2da34b7cd413f7596e2a1969" kindref="member">ready</ref>.SetActive(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a71d930ef5a8446863bc7aa941a531749" kindref="member">charging</ref>.SetActive(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" kindref="member">weapon</ref>.<ref refid="classShipWeapon_1a72518cf9b3021beca098c19c438dbc5f" kindref="member">IsReady</ref>())</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a4aa05b1f2da34b7cd413f7596e2a1969" kindref="member">ready</ref>.SetActive(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a71d930ef5a8446863bc7aa941a531749" kindref="member">charging</ref>.SetActive(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>PowerButtonClicked()</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="classWeaponFrameFunction_1ac6df8c98d37f891a71a3acafd63d92f7" kindref="member">powerState</ref>)</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>Power.on:</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1ac6df8c98d37f891a71a3acafd63d92f7" kindref="member">powerState</ref><sp/>=<sp/>Power.auto;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a4ebc1bb4ad3ed2737855e6e203c07ee0" kindref="member">SetPowerButton</ref>(<ref refid="classWeaponFrameFunction_1ac6df8c98d37f891a71a3acafd63d92f7" kindref="member">powerState</ref>);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" kindref="member">weapon</ref>.<ref refid="classShipWeapon_1ae07871ba8eadcce6c4042e3f988980a6" kindref="member">TryFire</ref>();</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>Power.off:</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1ac6df8c98d37f891a71a3acafd63d92f7" kindref="member">powerState</ref><sp/>=<sp/>Power.on;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" kindref="member">weapon</ref>.<ref refid="classShipWeapon_1a7a344445a3bcf89a7f322610eca0a536" kindref="member">SetEnabled</ref>(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>Power.auto:</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1ac6df8c98d37f891a71a3acafd63d92f7" kindref="member">powerState</ref><sp/>=<sp/>Power.off;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" kindref="member">weapon</ref>.<ref refid="classShipWeapon_1a7a344445a3bcf89a7f322610eca0a536" kindref="member">SetEnabled</ref>(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FireButtonClicked()</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.Log(</highlight><highlight class="stringliteral">&quot;발사&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" kindref="member">weapon</ref>.<ref refid="classShipWeapon_1ae07871ba8eadcce6c4042e3f988980a6" kindref="member">TryFire</ref>();</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>Power</highlight></codeline>
+<codeline lineno="142"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>on,</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>off,</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs"/>
+  </compounddef>
+</doxygen>

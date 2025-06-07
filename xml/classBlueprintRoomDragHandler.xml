@@ -1,0 +1,450 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classBlueprintRoomDragHandler" kind="class" language="C#" prot="public">
+    <compoundname>BlueprintRoomDragHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classBlueprintRoomDragHandler_1a3cad372ea710635a63d543e862a18d84" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject BlueprintRoomDragHandler.previewPrefab</definition>
+        <argsstring></argsstring>
+        <name>previewPrefab</name>
+        <qualifiedname>BlueprintRoomDragHandler.previewPrefab</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="9" column="24" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoomDragHandler_1aa8a8015fed9598d31eddc02c7ea0d50b" prot="public" static="no" mutable="no">
+        <type><ref refid="classGridPlacer" kindref="compound">GridPlacer</ref></type>
+        <definition>GridPlacer BlueprintRoomDragHandler.gridPlacer</definition>
+        <argsstring></argsstring>
+        <name>gridPlacer</name>
+        <qualifiedname>BlueprintRoomDragHandler.gridPlacer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="10" column="23" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoomDragHandler_1aa4672f822e38e8a61d5198d78fc267a0" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color BlueprintRoomDragHandler.validColor</definition>
+        <argsstring></argsstring>
+        <name>validColor</name>
+        <qualifiedname>BlueprintRoomDragHandler.validColor</qualifiedname>
+        <initializer>= new(0, 1, 0, 0.5f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="12" column="19" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoomDragHandler_1a7dd491a4db3032eea165592062bb87e1" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color BlueprintRoomDragHandler.invalidColor</definition>
+        <argsstring></argsstring>
+        <name>invalidColor</name>
+        <qualifiedname>BlueprintRoomDragHandler.invalidColor</qualifiedname>
+        <initializer>= new(1, 0, 0, 0.5f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="13" column="18" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classBlueprintRoomDragHandler_1aa0cf7478136cc2778b969a22b27cd5fc" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject BlueprintRoomDragHandler.previewGO</definition>
+        <argsstring></argsstring>
+        <name>previewGO</name>
+        <qualifiedname>BlueprintRoomDragHandler.previewGO</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="15" column="24" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoomDragHandler_1a46009a929f6d5a783c6c6e1d034b9e7f" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer BlueprintRoomDragHandler.previewRenderer</definition>
+        <argsstring></argsstring>
+        <name>previewRenderer</name>
+        <qualifiedname>BlueprintRoomDragHandler.previewRenderer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="16" column="28" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoomDragHandler_1abf88bbdec5d9dc3dff2100776e41eef4" prot="private" static="no" mutable="no">
+        <type><ref refid="classRoomData" kindref="compound">RoomData</ref></type>
+        <definition>RoomData BlueprintRoomDragHandler.draggingRoomData</definition>
+        <argsstring></argsstring>
+        <name>draggingRoomData</name>
+        <qualifiedname>BlueprintRoomDragHandler.draggingRoomData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="18" column="22" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoomDragHandler_1a56f2d2801f128cb390c29b75b627e572" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int BlueprintRoomDragHandler.draggingLevel</definition>
+        <argsstring></argsstring>
+        <name>draggingLevel</name>
+        <qualifiedname>BlueprintRoomDragHandler.draggingLevel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="19" column="17" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoomDragHandler_1aecf65d223b5afd358b0648497f1ef8e4" prot="private" static="no" mutable="no">
+        <type>Constants.Rotations.Rotation</type>
+        <definition>Constants.Rotations.Rotation BlueprintRoomDragHandler.draggingRotation</definition>
+        <argsstring></argsstring>
+        <name>draggingRotation</name>
+        <qualifiedname>BlueprintRoomDragHandler.draggingRotation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="20" column="40" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoomDragHandler_1ae2c6aae3f6e689ca51774655f1e8a935" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool BlueprintRoomDragHandler.isDragging</definition>
+        <argsstring></argsstring>
+        <name>isDragging</name>
+        <qualifiedname>BlueprintRoomDragHandler.isDragging</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="22" column="18" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoomDragHandler_1a40474aac4fc5e5c0cbe88976660687e4" prot="private" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int BlueprintRoomDragHandler.roomSize</definition>
+        <argsstring></argsstring>
+        <name>roomSize</name>
+        <qualifiedname>BlueprintRoomDragHandler.roomSize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="23" column="24" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classBlueprintRoomDragHandler_1afb9825edd13a4e443490c853221e4488" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool BlueprintRoomDragHandler.IsRoomBeingDragged</definition>
+        <argsstring></argsstring>
+        <name>IsRoomBeingDragged</name>
+        <qualifiedname>BlueprintRoomDragHandler.IsRoomBeingDragged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="26" column="24" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classBlueprintRoomDragHandler_1acab88240f6dc197cf08fc6842585cb44" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintRoomDragHandler.StartDragging</definition>
+        <argsstring>(RoomData data, int level)</argsstring>
+        <name>StartDragging</name>
+        <qualifiedname>BlueprintRoomDragHandler.StartDragging</qualifiedname>
+        <param>
+          <type><ref refid="classRoomData" kindref="compound">RoomData</ref></type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+<para>드래그 시작 시 호출됨. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="32" column="17" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="32" bodyend="59"/>
+        <references refid="classRoomSelectionHandler_1a443092f408ad81ffc678141bc047c0b5" compoundref="RoomSelectionHandler_8cs" startline="89" endline="100">RoomSelectionHandler.Deselect</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classRoomSelectionHandler_1ac734bdf7cf316d4de6c8e82de589df1d" compoundref="RoomSelectionHandler_8cs" startline="9">RoomSelectionHandler.Instance</references>
+        <references refid="classRoomData_1_1RoomLevel_1afdaddcced4c7361d03bfdcb97d0cfa55" compoundref="RoomData_8cs" startline="84">RoomData&lt; T &gt;.RoomLevel.roomSprite</references>
+        <references refid="classRoomData_1_1RoomLevel_1a1038e7c8647b924aed778b2c211dc049" compoundref="RoomData_8cs" startline="69">RoomData&lt; T &gt;.RoomLevel.size</references>
+        <references refid="classBlueprintDragManager_1ad8f8bec2564b1eb1e535b006897e3779" compoundref="BlueprintDragManager_8cs" startline="52" endline="59">BlueprintDragManager.StartRoomDrag</references>
+        <referencedby refid="classRoomInventoryButton_1aa6093a1d936511467ea555b5b7dfa848" compoundref="RoomInventoryButton_8cs" startline="135" endline="141">RoomInventoryButton.OnBeginDrag</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoomDragHandler_1a1ba95e5ce735e70c57c489a25f6fd32c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintRoomDragHandler.StopDragging</definition>
+        <argsstring>()</argsstring>
+        <name>StopDragging</name>
+        <qualifiedname>BlueprintRoomDragHandler.StopDragging</qualifiedname>
+        <briefdescription>
+<para>드래그 중단 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="64" column="17" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="64" bodyend="75"/>
+        <references refid="classBlueprintDragManager_1a55630795df2d164e7d56fe57510fbe98" compoundref="BlueprintDragManager_8cs" startline="77" endline="80">BlueprintDragManager.StopDrag</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classBlueprintRoomDragHandler_1ac38b539976582509430d17e474ec2870" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintRoomDragHandler.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>BlueprintRoomDragHandler.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="77" column="18" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="77" bodyend="114"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>방 인벤토리 항목을 드래그하여 설계도에 배치할 수 있게 하는 시스템. 프리뷰 표시 및 설치 타이밍 조정 포함. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>BlueprintRoomDragHandler</label>
+        <link refid="classBlueprintRoomDragHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>BlueprintRoomDragHandler</label>
+        <link refid="classBlueprintRoomDragHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+gridPlacer</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-draggingRoomData</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-draggingRotation</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>BlueprintShip</label>
+        <link refid="classBlueprintShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>Constants</label>
+      </node>
+      <node id="13">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GridPlacer</label>
+        <link refid="classGridPlacer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+targetBlueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-gridOrigin</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="15">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="18">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>UnityEngine</label>
+      </node>
+      <node id="11">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" line="7" column="7" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoomDragHandler.cs" bodystart="8" bodyend="115"/>
+    <listofallmembers>
+      <member refid="classBlueprintRoomDragHandler_1a56f2d2801f128cb390c29b75b627e572" prot="private" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>draggingLevel</name></member>
+      <member refid="classBlueprintRoomDragHandler_1abf88bbdec5d9dc3dff2100776e41eef4" prot="private" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>draggingRoomData</name></member>
+      <member refid="classBlueprintRoomDragHandler_1aecf65d223b5afd358b0648497f1ef8e4" prot="private" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>draggingRotation</name></member>
+      <member refid="classBlueprintRoomDragHandler_1aa8a8015fed9598d31eddc02c7ea0d50b" prot="public" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>gridPlacer</name></member>
+      <member refid="classBlueprintRoomDragHandler_1a7dd491a4db3032eea165592062bb87e1" prot="public" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>invalidColor</name></member>
+      <member refid="classBlueprintRoomDragHandler_1ae2c6aae3f6e689ca51774655f1e8a935" prot="private" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>isDragging</name></member>
+      <member refid="classBlueprintRoomDragHandler_1afb9825edd13a4e443490c853221e4488" prot="public" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>IsRoomBeingDragged</name></member>
+      <member refid="classBlueprintRoomDragHandler_1aa0cf7478136cc2778b969a22b27cd5fc" prot="private" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>previewGO</name></member>
+      <member refid="classBlueprintRoomDragHandler_1a3cad372ea710635a63d543e862a18d84" prot="public" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>previewPrefab</name></member>
+      <member refid="classBlueprintRoomDragHandler_1a46009a929f6d5a783c6c6e1d034b9e7f" prot="private" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>previewRenderer</name></member>
+      <member refid="classBlueprintRoomDragHandler_1a40474aac4fc5e5c0cbe88976660687e4" prot="private" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>roomSize</name></member>
+      <member refid="classBlueprintRoomDragHandler_1acab88240f6dc197cf08fc6842585cb44" prot="public" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>StartDragging</name></member>
+      <member refid="classBlueprintRoomDragHandler_1a1ba95e5ce735e70c57c489a25f6fd32c" prot="public" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>StopDragging</name></member>
+      <member refid="classBlueprintRoomDragHandler_1ac38b539976582509430d17e474ec2870" prot="private" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>Update</name></member>
+      <member refid="classBlueprintRoomDragHandler_1aa4672f822e38e8a61d5198d78fc267a0" prot="public" virt="non-virtual"><scope>BlueprintRoomDragHandler</scope><name>validColor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

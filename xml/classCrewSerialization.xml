@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCrewSerialization" kind="class" language="C#" prot="public">
+    <compoundname>CrewSerialization</compoundname>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classCrewSerialization_1a90cfda92487320e4c6d56d547a7cc97c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CrewSerialization.SaveAllCrews</definition>
+        <argsstring>(List&lt; CrewMember &gt; crews, string filename)</argsstring>
+        <name>SaveAllCrews</name>
+        <qualifiedname>CrewSerialization.SaveAllCrews</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="classCrewMember" kindref="compound">CrewMember</ref> &gt;</type>
+          <declname>crews</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>모든 선원을 저장합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>crews</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장할 선원 목록</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장 파일명</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewSerialization.cs" line="15" column="24" bodyfile="Assets/Scripts/Crew/CrewSerialization.cs" bodystart="15" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewSerialization_1a8de28781020e9cfde7be8e50a0b3ddcd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CrewSerialization.SaveShipCrews</definition>
+        <argsstring>(Ship ship, string filename)</argsstring>
+        <name>SaveShipCrews</name>
+        <qualifiedname>CrewSerialization.SaveShipCrews</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>함선에 탑승 중인 모든 선원을 저장합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>선원이 탑승 중인 함선</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장 파일명</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewSerialization.cs" line="32" column="24" bodyfile="Assets/Scripts/Crew/CrewSerialization.cs" bodystart="32" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewSerialization_1a42ad6734b28d6867218649a0cd6aeeac" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classCrewBase" kindref="compound">CrewBase</ref> &gt;</type>
+        <definition>static List&lt; CrewBase &gt; CrewSerialization.LoadAllCrews</definition>
+        <argsstring>(string filename)</argsstring>
+        <name>LoadAllCrews</name>
+        <qualifiedname>CrewSerialization.LoadAllCrews</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>저장된 모든 선원을 불러옵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>불러올 파일명</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>불러온 선원 목록</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewSerialization.cs" line="45" column="24" bodyfile="Assets/Scripts/Crew/CrewSerialization.cs" bodystart="45" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewSerialization_1a69d81193e763aaaf86a017740d5f8954" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int CrewSerialization.RestoreAllCrewsToShip</definition>
+        <argsstring>(string filename, Ship ship)</argsstring>
+        <name>RestoreAllCrewsToShip</name>
+        <qualifiedname>CrewSerialization.RestoreAllCrewsToShip</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>함선에 모든 선원을 복원합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>불러올 파일명</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>대상 함선</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>복원된 선원 수</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewSerialization.cs" line="73" column="23" bodyfile="Assets/Scripts/Crew/CrewSerialization.cs" bodystart="73" bodyend="89"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Easy Save 3를 사용하여 선원(CrewMember) 객체의 직렬화 및 역직렬화를 담당하는 유틸리티 클래스 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>CrewSerialization</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Crew/CrewSerialization.cs" line="8" column="15" bodyfile="Assets/Scripts/Crew/CrewSerialization.cs" bodystart="9" bodyend="90"/>
+    <listofallmembers>
+      <member refid="classCrewSerialization_1a42ad6734b28d6867218649a0cd6aeeac" prot="public" virt="non-virtual"><scope>CrewSerialization</scope><name>LoadAllCrews</name></member>
+      <member refid="classCrewSerialization_1a69d81193e763aaaf86a017740d5f8954" prot="public" virt="non-virtual"><scope>CrewSerialization</scope><name>RestoreAllCrewsToShip</name></member>
+      <member refid="classCrewSerialization_1a90cfda92487320e4c6d56d547a7cc97c" prot="public" virt="non-virtual"><scope>CrewSerialization</scope><name>SaveAllCrews</name></member>
+      <member refid="classCrewSerialization_1a8de28781020e9cfde7be8e50a0b3ddcd" prot="public" virt="non-virtual"><scope>CrewSerialization</scope><name>SaveShipCrews</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,462 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classWeaponFrameFunction" kind="class" language="C#" prot="public">
+    <compoundname>WeaponFrameFunction</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" prot="public" static="no" mutable="no">
+        <type><ref refid="classShipWeapon" kindref="compound">ShipWeapon</ref></type>
+        <definition>ShipWeapon WeaponFrameFunction.weapon</definition>
+        <argsstring></argsstring>
+        <name>weapon</name>
+        <qualifiedname>WeaponFrameFunction.weapon</qualifiedname>
+        <briefdescription>
+<para>연결된 <ref refid="classShipWeapon" kindref="compound">ShipWeapon</ref> </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="10" column="23" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="10" bodyend="-1"/>
+        <referencedby refid="classWeaponFrameFunction_1ad8dbfe8bbcbc584fded650e8cafbb016" compoundref="WeaponFrameFunction_8cs" startline="103" endline="112">SetFireButton</referencedby>
+        <referencedby refid="classWeaponFrameFunction_1a380506c0cc2e11a7eb7de9a1495f1057" compoundref="WeaponFrameFunction_8cs" startline="66" endline="75">UpdateWeaponPanel</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classWeaponFrameFunction_1ac6df8c98d37f891a71a3acafd63d92f7" prot="private" static="no" mutable="no">
+        <type>Power</type>
+        <definition>Power WeaponFrameFunction.powerState</definition>
+        <argsstring></argsstring>
+        <name>powerState</name>
+        <qualifiedname>WeaponFrameFunction.powerState</qualifiedname>
+        <briefdescription>
+<para>PowerButton에 표시되고 있는 현재 전원 상태 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="14" column="19" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="14" bodyend="-1"/>
+        <referencedby refid="classWeaponFrameFunction_1a380506c0cc2e11a7eb7de9a1495f1057" compoundref="WeaponFrameFunction_8cs" startline="66" endline="75">UpdateWeaponPanel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classWeaponFrameFunction_1a911e13ae9024e939d063dbb4cd13f9ae" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image WeaponFrameFunction.energyBar</definition>
+        <argsstring></argsstring>
+        <name>energyBar</name>
+        <qualifiedname>WeaponFrameFunction.energyBar</qualifiedname>
+        <briefdescription>
+<para>충전량 게이지 이미지 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="18" column="19" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classWeaponFrameFunction_1abb4655e156cfb58fbd9a4e5d6f5d5a10" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject WeaponFrameFunction.on</definition>
+        <argsstring></argsstring>
+        <name>on</name>
+        <qualifiedname>WeaponFrameFunction.on</qualifiedname>
+        <briefdescription>
+<para>PowerButton\On. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="23" column="24" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="23" bodyend="-1"/>
+        <referencedby refid="classWeaponFrameFunction_1a4ebc1bb4ad3ed2737855e6e203c07ee0" compoundref="WeaponFrameFunction_8cs" startline="81" endline="99">SetPowerButton</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classWeaponFrameFunction_1a798064f23cd6cbdcc09d603e8aa48efa" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject WeaponFrameFunction.off</definition>
+        <argsstring></argsstring>
+        <name>off</name>
+        <qualifiedname>WeaponFrameFunction.off</qualifiedname>
+        <briefdescription>
+<para>PowerButton\Off. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="27" column="24" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="27" bodyend="-1"/>
+        <referencedby refid="classWeaponFrameFunction_1a4ebc1bb4ad3ed2737855e6e203c07ee0" compoundref="WeaponFrameFunction_8cs" startline="81" endline="99">SetPowerButton</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classWeaponFrameFunction_1af0bfebcedebdbec3cda0a31cc6d2f214" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject WeaponFrameFunction.auto</definition>
+        <argsstring></argsstring>
+        <name>auto</name>
+        <qualifiedname>WeaponFrameFunction.auto</qualifiedname>
+        <briefdescription>
+<para>PowerButton\Auto. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="31" column="24" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classWeaponFrameFunction_1a4aa05b1f2da34b7cd413f7596e2a1969" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject WeaponFrameFunction.ready</definition>
+        <argsstring></argsstring>
+        <name>ready</name>
+        <qualifiedname>WeaponFrameFunction.ready</qualifiedname>
+        <briefdescription>
+<para>FireButton\Ready. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="35" column="24" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="35" bodyend="-1"/>
+        <referencedby refid="classWeaponFrameFunction_1ad8dbfe8bbcbc584fded650e8cafbb016" compoundref="WeaponFrameFunction_8cs" startline="103" endline="112">SetFireButton</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classWeaponFrameFunction_1a71d930ef5a8446863bc7aa941a531749" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject WeaponFrameFunction.charging</definition>
+        <argsstring></argsstring>
+        <name>charging</name>
+        <qualifiedname>WeaponFrameFunction.charging</qualifiedname>
+        <briefdescription>
+<para>FireButton\Charging. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="39" column="24" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="39" bodyend="-1"/>
+        <referencedby refid="classWeaponFrameFunction_1ad8dbfe8bbcbc584fded650e8cafbb016" compoundref="WeaponFrameFunction_8cs" startline="103" endline="112">SetFireButton</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classWeaponFrameFunction_1af80fb1ad89eed597572bc26a8904b5d7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WeaponFrameFunction.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>WeaponFrameFunction.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="41" column="10" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="41" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classWeaponFrameFunction_1a4ebc1bb4ad3ed2737855e6e203c07ee0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WeaponFrameFunction.SetPowerButton</definition>
+        <argsstring>(Power power)</argsstring>
+        <name>SetPowerButton</name>
+        <qualifiedname>WeaponFrameFunction.SetPowerButton</qualifiedname>
+        <param>
+          <type>Power</type>
+          <declname>power</declname>
+        </param>
+        <briefdescription>
+<para>인자로 받은 Power로 powerState를 변경하고 상태에 맞는 버튼만 활성화시킴 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>power</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="81" column="18" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="81" bodyend="99"/>
+        <references refid="classWeaponFrameFunction_1a798064f23cd6cbdcc09d603e8aa48efa" compoundref="WeaponFrameFunction_8cs" startline="27">off</references>
+        <references refid="classWeaponFrameFunction_1abb4655e156cfb58fbd9a4e5d6f5d5a10" compoundref="WeaponFrameFunction_8cs" startline="23">on</references>
+        <referencedby refid="classWeaponFrameFunction_1a380506c0cc2e11a7eb7de9a1495f1057" compoundref="WeaponFrameFunction_8cs" startline="66" endline="75">UpdateWeaponPanel</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classWeaponFrameFunction_1ad8dbfe8bbcbc584fded650e8cafbb016" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WeaponFrameFunction.SetFireButton</definition>
+        <argsstring>()</argsstring>
+        <name>SetFireButton</name>
+        <qualifiedname>WeaponFrameFunction.SetFireButton</qualifiedname>
+        <briefdescription>
+<para>FireButton을 현재 충전 상태에 따라 갱신한다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="103" column="18" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="103" bodyend="112"/>
+        <references refid="classWeaponFrameFunction_1a71d930ef5a8446863bc7aa941a531749" compoundref="WeaponFrameFunction_8cs" startline="39">charging</references>
+        <references refid="classShipWeapon_1a72518cf9b3021beca098c19c438dbc5f" compoundref="ShipWeapon_8cs" startline="201" endline="204">ShipWeapon.IsReady</references>
+        <references refid="classWeaponFrameFunction_1a4aa05b1f2da34b7cd413f7596e2a1969" compoundref="WeaponFrameFunction_8cs" startline="35">ready</references>
+        <references refid="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" compoundref="WeaponFrameFunction_8cs" startline="10">weapon</references>
+        <referencedby refid="classWeaponFrameFunction_1a380506c0cc2e11a7eb7de9a1495f1057" compoundref="WeaponFrameFunction_8cs" startline="66" endline="75">UpdateWeaponPanel</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classWeaponFrameFunction_1a380506c0cc2e11a7eb7de9a1495f1057" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WeaponFrameFunction.UpdateWeaponPanel</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateWeaponPanel</name>
+        <qualifiedname>WeaponFrameFunction.UpdateWeaponPanel</qualifiedname>
+        <briefdescription>
+<para>weapon panel frame에 정보를 갱신하여 다시 그린다. 만약 전원 상태가 Auto라면 게이지가 꽉 찼을 때 자동발사한다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="66" column="17" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="66" bodyend="75"/>
+        <references refid="classShipWeapon_1ae53e123c2fc95c94e5a4ef7b5c5366c0" compoundref="ShipWeapon_8cs" startline="506" endline="509">ShipWeapon.GetCooldownPercentage</references>
+        <references refid="classWeaponFrameFunction_1ac6df8c98d37f891a71a3acafd63d92f7" compoundref="WeaponFrameFunction_8cs" startline="14">powerState</references>
+        <references refid="classWeaponFrameFunction_1ad8dbfe8bbcbc584fded650e8cafbb016" compoundref="WeaponFrameFunction_8cs" startline="103" endline="112">SetFireButton</references>
+        <references refid="classWeaponFrameFunction_1a4ebc1bb4ad3ed2737855e6e203c07ee0" compoundref="WeaponFrameFunction_8cs" startline="81" endline="99">SetPowerButton</references>
+        <references refid="classShipWeapon_1ae07871ba8eadcce6c4042e3f988980a6" compoundref="ShipWeapon_8cs" startline="314" endline="346">ShipWeapon.TryFire</references>
+        <references refid="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" compoundref="WeaponFrameFunction_8cs" startline="10">weapon</references>
+      </memberdef>
+      <memberdef kind="function" id="classWeaponFrameFunction_1a821ef38cff8011930f8ae303ffec0285" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WeaponFrameFunction.PowerButtonClicked</definition>
+        <argsstring>()</argsstring>
+        <name>PowerButtonClicked</name>
+        <qualifiedname>WeaponFrameFunction.PowerButtonClicked</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="114" column="17" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="114" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classWeaponFrameFunction_1a7fa5c8d17110b98c37bd5b3de392224e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WeaponFrameFunction.FireButtonClicked</definition>
+        <argsstring>()</argsstring>
+        <name>FireButtonClicked</name>
+        <qualifiedname>WeaponFrameFunction.FireButtonClicked</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="134" column="17" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="134" bodyend="138"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>WeaponFrameFunction</label>
+        <link refid="classWeaponFrameFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="16">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="18">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="21">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ShipWeapon</label>
+        <link refid="classShipWeapon"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+weaponData</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-ownerShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ShipWeaponData</label>
+        <link refid="classShipWeaponData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+weaponType</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+effectData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+warheadType</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ShipWeaponTypeData</label>
+        <link refid="classShipWeaponTypeData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>WarheadTypeData</label>
+        <link refid="classWarheadTypeData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>WeaponEffectData</label>
+        <link refid="classWeaponEffectData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>WeaponFrameFunction</label>
+        <link refid="classWeaponFrameFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+weapon</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" line="5" column="7" bodyfile="Assets/Scripts/UI/Combat/WeaponFrameFunction.cs" bodystart="6" bodyend="139"/>
+    <listofallmembers>
+      <member refid="classWeaponFrameFunction_1af0bfebcedebdbec3cda0a31cc6d2f214" prot="private" virt="non-virtual"><scope>WeaponFrameFunction</scope><name>auto</name></member>
+      <member refid="classWeaponFrameFunction_1a71d930ef5a8446863bc7aa941a531749" prot="private" virt="non-virtual"><scope>WeaponFrameFunction</scope><name>charging</name></member>
+      <member refid="classWeaponFrameFunction_1a911e13ae9024e939d063dbb4cd13f9ae" prot="private" virt="non-virtual"><scope>WeaponFrameFunction</scope><name>energyBar</name></member>
+      <member refid="classWeaponFrameFunction_1a7fa5c8d17110b98c37bd5b3de392224e" prot="public" virt="non-virtual"><scope>WeaponFrameFunction</scope><name>FireButtonClicked</name></member>
+      <member refid="classWeaponFrameFunction_1a798064f23cd6cbdcc09d603e8aa48efa" prot="private" virt="non-virtual"><scope>WeaponFrameFunction</scope><name>off</name></member>
+      <member refid="classWeaponFrameFunction_1abb4655e156cfb58fbd9a4e5d6f5d5a10" prot="private" virt="non-virtual"><scope>WeaponFrameFunction</scope><name>on</name></member>
+      <member refid="classWeaponFrameFunction_1a821ef38cff8011930f8ae303ffec0285" prot="public" virt="non-virtual"><scope>WeaponFrameFunction</scope><name>PowerButtonClicked</name></member>
+      <member refid="classWeaponFrameFunction_1ac6df8c98d37f891a71a3acafd63d92f7" prot="private" virt="non-virtual"><scope>WeaponFrameFunction</scope><name>powerState</name></member>
+      <member refid="classWeaponFrameFunction_1a4aa05b1f2da34b7cd413f7596e2a1969" prot="private" virt="non-virtual"><scope>WeaponFrameFunction</scope><name>ready</name></member>
+      <member refid="classWeaponFrameFunction_1ad8dbfe8bbcbc584fded650e8cafbb016" prot="private" virt="non-virtual"><scope>WeaponFrameFunction</scope><name>SetFireButton</name></member>
+      <member refid="classWeaponFrameFunction_1a4ebc1bb4ad3ed2737855e6e203c07ee0" prot="private" virt="non-virtual"><scope>WeaponFrameFunction</scope><name>SetPowerButton</name></member>
+      <member refid="classWeaponFrameFunction_1af80fb1ad89eed597572bc26a8904b5d7" prot="private" virt="non-virtual"><scope>WeaponFrameFunction</scope><name>Start</name></member>
+      <member refid="classWeaponFrameFunction_1a380506c0cc2e11a7eb7de9a1495f1057" prot="public" virt="non-virtual"><scope>WeaponFrameFunction</scope><name>UpdateWeaponPanel</name></member>
+      <member refid="classWeaponFrameFunction_1a0a20ab264a8fd2b74974df3b9c9f9295" prot="public" virt="non-virtual"><scope>WeaponFrameFunction</scope><name>weapon</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

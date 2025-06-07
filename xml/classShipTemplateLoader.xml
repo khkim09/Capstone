@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classShipTemplateLoader" kind="class" language="C#" prot="public">
+    <compoundname>ShipTemplateLoader</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classShipTemplateLoader_1ae629d83eb69e1510d02d3999c5d3d12f" prot="public" static="no" mutable="no">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship ShipTemplateLoader.enemyShip</definition>
+        <argsstring></argsstring>
+        <name>enemyShip</name>
+        <qualifiedname>ShipTemplateLoader.enemyShip</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/ShipTemplateLoader.cs" line="7" column="17" bodyfile="Assets/Scripts/CustomizeShip/ShipTemplateLoader.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classShipTemplateLoader_1a170f78bc8352cc6038113c7e5be4d5c3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipTemplateLoader.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>ShipTemplateLoader.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/ShipTemplateLoader.cs" line="9" column="18" bodyfile="Assets/Scripts/CustomizeShip/ShipTemplateLoader.cs" bodystart="9" bodyend="17"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classShipTemplateLoader_1a16a7ed7cfb0dec7569ca474de7d1ca49" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ShipTemplateLoader.LoadShipFromResources</definition>
+        <argsstring>(string resourcePath)</argsstring>
+        <name>LoadShipFromResources</name>
+        <qualifiedname>ShipTemplateLoader.LoadShipFromResources</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>resourcePath</declname>
+        </param>
+        <briefdescription>
+<para>Resources 폴더에서 함선 템플릿을 로드하여 새 인스턴스를 생성합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>resourcePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Resources 폴더 내 경로 (확장자 제외)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>생성된 함선 객체, 실패 시 null</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/ShipTemplateLoader.cs" line="24" column="24" bodyfile="Assets/Scripts/CustomizeShip/ShipTemplateLoader.cs" bodystart="24" bodyend="52"/>
+        <referencedby refid="classEnemyShipFactory_1adf438c0292d675acffceb7b7bd4ac129" compoundref="EnemyShipFactory_8cs" startline="19" endline="99">EnemyShipFactory.SpawnPirateShip</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipTemplateLoader_1ae5d380166adf5853052cf5ea500c6788" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ShipTemplateLoader.RestoreShipFromResources</definition>
+        <argsstring>(string resourcePath, Ship targetShip)</argsstring>
+        <name>RestoreShipFromResources</name>
+        <qualifiedname>ShipTemplateLoader.RestoreShipFromResources</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>resourcePath</declname>
+        </param>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>targetShip</declname>
+        </param>
+        <briefdescription>
+<para>Resources 폴더에서 함선 템플릿을 로드하여 기존 함선에 복원합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>resourcePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Resources 폴더 내 경로 (확장자 제외)</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>targetShip</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>복원할 대상 함선</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>복원 성공 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/ShipTemplateLoader.cs" line="60" column="24" bodyfile="Assets/Scripts/CustomizeShip/ShipTemplateLoader.cs" bodystart="60" bodyend="94"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ShipTemplateLoader</label>
+        <link refid="classShipTemplateLoader"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="11">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="13">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="16">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ShipTemplateLoader</label>
+        <link refid="classShipTemplateLoader"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+enemyShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/ShipTemplateLoader.cs" line="5" column="7" bodyfile="Assets/Scripts/CustomizeShip/ShipTemplateLoader.cs" bodystart="6" bodyend="95"/>
+    <listofallmembers>
+      <member refid="classShipTemplateLoader_1ae629d83eb69e1510d02d3999c5d3d12f" prot="public" virt="non-virtual"><scope>ShipTemplateLoader</scope><name>enemyShip</name></member>
+      <member refid="classShipTemplateLoader_1a16a7ed7cfb0dec7569ca474de7d1ca49" prot="public" virt="non-virtual"><scope>ShipTemplateLoader</scope><name>LoadShipFromResources</name></member>
+      <member refid="classShipTemplateLoader_1ae5d380166adf5853052cf5ea500c6788" prot="public" virt="non-virtual"><scope>ShipTemplateLoader</scope><name>RestoreShipFromResources</name></member>
+      <member refid="classShipTemplateLoader_1a170f78bc8352cc6038113c7e5be4d5c3" prot="private" virt="non-virtual"><scope>ShipTemplateLoader</scope><name>Start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

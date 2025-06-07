@@ -1,0 +1,294 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEnemyShipFactory" kind="class" language="C#" prot="public">
+    <compoundname>EnemyShipFactory</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classEnemyShipFactory_1abe3d071dc187c777fea0448d3fb67e5f" prot="private" static="no" mutable="no">
+        <type><ref refid="classEnemyShipDatabase" kindref="compound">EnemyShipDatabase</ref></type>
+        <definition>EnemyShipDatabase EnemyShipFactory.shipDatabase</definition>
+        <argsstring></argsstring>
+        <name>shipDatabase</name>
+        <qualifiedname>EnemyShipFactory.shipDatabase</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" line="11" column="32" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEnemyShipFactory_1adf438c0292d675acffceb7b7bd4ac129" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship EnemyShipFactory.SpawnPirateShip</definition>
+        <argsstring>(string templateName, Vector2Int position=new())</argsstring>
+        <name>SpawnPirateShip</name>
+        <qualifiedname>EnemyShipFactory.SpawnPirateShip</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>templateName</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+          <defval>new()</defval>
+        </param>
+        <briefdescription>
+<para>제공된 템플릿 이름을 기반으로 해적선을 생성합니다 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>templateName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>사용할 해적선 템플릿 이름</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>배를 생성할 월드 위치</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>생성된 배 인스턴스</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" line="19" column="17" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" bodystart="19" bodyend="99"/>
+        <references refid="classEnemyShipFactory_1af2143f183e56385b0a94b5ad9d6bf1b7" compoundref="EnemyShipFactory_8cs" startline="120" endline="140">CreateDefaultShip</references>
+        <references refid="classEnemyShipFactory_1a16b43770762daa36e0d7c36c6e9e0481" compoundref="EnemyShipFactory_8cs" startline="104" endline="115">FindShipByName</references>
+        <references refid="classEnemyShipFactory_1ac2dece8b7383ba255abb0d67fb29fcb8" compoundref="EnemyShipFactory_8cs" startline="155" endline="201">GeneratePirateCrew</references>
+        <references refid="classGameManager_1a1f54b41e89308bda97cf48e599ec549d" compoundref="GameManager_8cs" startline="427" endline="430">GameManager.GetPlayerShip</references>
+        <references refid="classEnemyShipTemplate_1ad99b2c34fb03d983ba2c5dd50d9007fe" compoundref="EnemyShipTemplate_8cs" startline="29" endline="32">EnemyShipTemplate.GetTemplatePath</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classShipTemplateLoader_1a16a7ed7cfb0dec7569ca474de7d1ca49" compoundref="ShipTemplateLoader_8cs" startline="24" endline="52">ShipTemplateLoader.LoadShipFromResources</references>
+        <references refid="classShip_1a47489ad4c41ad43fd449360be8475362" compoundref="Ship_8cs" startline="1568" endline="1597">Ship.MoveShipToFacingTargetShip</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEnemyShipFactory_1a16b43770762daa36e0d7c36c6e9e0481" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship EnemyShipFactory.FindShipByName</definition>
+        <argsstring>(string shipName)</argsstring>
+        <name>FindShipByName</name>
+        <qualifiedname>EnemyShipFactory.FindShipByName</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>shipName</declname>
+        </param>
+        <briefdescription>
+<para>이름으로 <ref refid="classShip" kindref="compound">Ship</ref> 컴포넌트가 있는 게임오브젝트를 찾습니다 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" line="104" column="18" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" bodystart="104" bodyend="115"/>
+        <referencedby refid="classEnemyShipFactory_1adf438c0292d675acffceb7b7bd4ac129" compoundref="EnemyShipFactory_8cs" startline="19" endline="99">SpawnPirateShip</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyShipFactory_1af2143f183e56385b0a94b5ad9d6bf1b7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship EnemyShipFactory.CreateDefaultShip</definition>
+        <argsstring>(EnemyShipTemplate template, Vector2Int position)</argsstring>
+        <name>CreateDefaultShip</name>
+        <qualifiedname>EnemyShipFactory.CreateDefaultShip</qualifiedname>
+        <param>
+          <type><ref refid="classEnemyShipTemplate" kindref="compound">EnemyShipTemplate</ref></type>
+          <declname>template</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>기본 배를 수동으로 생성합니다 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" line="120" column="18" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" bodystart="120" bodyend="140"/>
+        <references refid="classEnemyShipFactory_1a3ad6ea675d2c07448c75d23655988edc" compoundref="EnemyShipFactory_8cs" startline="145" endline="150">ApplyDefaultShipSettings</references>
+        <references refid="classEnemyShipFactory_1ac2dece8b7383ba255abb0d67fb29fcb8" compoundref="EnemyShipFactory_8cs" startline="155" endline="201">GeneratePirateCrew</references>
+        <references refid="classShip_1acc377098e3c61bbd4b8fc53595d09293" compoundref="Ship_8cs" startline="1456" endline="1459">Ship.GetWorldPositionFromGrid</references>
+        <referencedby refid="classEnemyShipFactory_1adf438c0292d675acffceb7b7bd4ac129" compoundref="EnemyShipFactory_8cs" startline="19" endline="99">SpawnPirateShip</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyShipFactory_1a3ad6ea675d2c07448c75d23655988edc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnemyShipFactory.ApplyDefaultShipSettings</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>ApplyDefaultShipSettings</name>
+        <qualifiedname>EnemyShipFactory.ApplyDefaultShipSettings</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>기본 배 설정을 적용합니다 (템플릿 로드 실패 시) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" line="145" column="18" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" bodystart="145" bodyend="150"/>
+        <referencedby refid="classEnemyShipFactory_1af2143f183e56385b0a94b5ad9d6bf1b7" compoundref="EnemyShipFactory_8cs" startline="120" endline="140">CreateDefaultShip</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classEnemyShipFactory_1ac2dece8b7383ba255abb0d67fb29fcb8" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void EnemyShipFactory.GeneratePirateCrew</definition>
+        <argsstring>(Ship ship, EnemyShipTemplate template)</argsstring>
+        <name>GeneratePirateCrew</name>
+        <qualifiedname>EnemyShipFactory.GeneratePirateCrew</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <param>
+          <type><ref refid="classEnemyShipTemplate" kindref="compound">EnemyShipTemplate</ref></type>
+          <declname>template</declname>
+        </param>
+        <briefdescription>
+<para>템플릿 설정을 기반으로 해적선에 대한 무작위 선원을 생성합니다 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" line="155" column="25" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" bodystart="155" bodyend="201"/>
+        <references refid="classShip_1ada608dfe1708f8859e0a1c202c8ab121" compoundref="Ship_8cs" startline="1072" endline="1075">Ship.AddCrew</references>
+        <references refid="classEnemyShipFactory_1adf8697484b2d54d264ff20c619ac4dbf" compoundref="EnemyShipFactory_8cs" startline="243" endline="287">GeneratePirateName</references>
+        <references refid="classShip_1a89be268214921c4585f6b70038b98c8e" compoundref="Ship_8cs" startline="1034" endline="1037">Ship.GetCrewCount</references>
+        <references refid="classShip_1aca592f0f628091689784e9b796f665db" compoundref="Ship_8cs" startline="1089" endline="1102">Ship.RemoveAllCrews</references>
+        <references refid="classEnemyShipFactory_1afe8c4c765fb057e8313f5d9120f0db9f" compoundref="EnemyShipFactory_8cs" startline="206" endline="218">SelectRace</references>
+        <referencedby refid="classEnemyShipFactory_1af2143f183e56385b0a94b5ad9d6bf1b7" compoundref="EnemyShipFactory_8cs" startline="120" endline="140">CreateDefaultShip</referencedby>
+        <referencedby refid="classEnemyShipFactory_1adf438c0292d675acffceb7b7bd4ac129" compoundref="EnemyShipFactory_8cs" startline="19" endline="99">SpawnPirateShip</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyShipFactory_1afe8c4c765fb057e8313f5d9120f0db9f" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>CrewRace</type>
+        <definition>static CrewRace EnemyShipFactory.SelectRace</definition>
+        <argsstring>(List&lt; CrewRaceOption &gt; options, List&lt; CrewRace &gt; usedRaces)</argsstring>
+        <name>SelectRace</name>
+        <qualifiedname>EnemyShipFactory.SelectRace</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="classCrewRaceOption" kindref="compound">CrewRaceOption</ref> &gt;</type>
+          <declname>options</declname>
+        </param>
+        <param>
+          <type>List&lt; CrewRace &gt;</type>
+          <declname>usedRaces</declname>
+        </param>
+        <briefdescription>
+<para>가중치 및 다양성 설정에 따라 선원 종족 선택 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" line="206" column="29" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" bodystart="206" bodyend="218"/>
+        <references refid="classEnemyShipFactory_1a1e46eac69d96d4f6423e0bc7695e922f" compoundref="EnemyShipFactory_8cs" startline="223" endline="238">WeightedRandomRace</references>
+        <referencedby refid="classEnemyShipFactory_1ac2dece8b7383ba255abb0d67fb29fcb8" compoundref="EnemyShipFactory_8cs" startline="155" endline="201">GeneratePirateCrew</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyShipFactory_1a1e46eac69d96d4f6423e0bc7695e922f" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>CrewRace</type>
+        <definition>static CrewRace EnemyShipFactory.WeightedRandomRace</definition>
+        <argsstring>(List&lt; CrewRaceOption &gt; options)</argsstring>
+        <name>WeightedRandomRace</name>
+        <qualifiedname>EnemyShipFactory.WeightedRandomRace</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="classCrewRaceOption" kindref="compound">CrewRaceOption</ref> &gt;</type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+<para>가중치에 따라 무작위 종족 선택 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" line="223" column="29" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" bodystart="223" bodyend="238"/>
+        <referencedby refid="classEnemyShipFactory_1afe8c4c765fb057e8313f5d9120f0db9f" compoundref="EnemyShipFactory_8cs" startline="206" endline="218">SelectRace</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEnemyShipFactory_1adf8697484b2d54d264ff20c619ac4dbf" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string EnemyShipFactory.GeneratePirateName</definition>
+        <argsstring>(CrewRace race)</argsstring>
+        <name>GeneratePirateName</name>
+        <qualifiedname>EnemyShipFactory.GeneratePirateName</qualifiedname>
+        <param>
+          <type>CrewRace</type>
+          <declname>race</declname>
+        </param>
+        <briefdescription>
+<para>종족에 따른 해적 이름 생성 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" line="243" column="27" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" bodystart="243" bodyend="287"/>
+        <referencedby refid="classEnemyShipFactory_1ac2dece8b7383ba255abb0d67fb29fcb8" compoundref="EnemyShipFactory_8cs" startline="155" endline="201">GeneratePirateCrew</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>템플릿을 기반으로 해적선을 생성하는 유틸리티 클래스 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EnemyShipFactory</label>
+        <link refid="classEnemyShipFactory"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>EnemyShipDatabase</label>
+        <link refid="classEnemyShipDatabase"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>EnemyShipFactory</label>
+        <link refid="classEnemyShipFactory"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-shipDatabase</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="4">
+        <label>ScriptableObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" line="9" column="7" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipFactory.cs" bodystart="10" bodyend="288"/>
+    <listofallmembers>
+      <member refid="classEnemyShipFactory_1a3ad6ea675d2c07448c75d23655988edc" prot="private" virt="non-virtual"><scope>EnemyShipFactory</scope><name>ApplyDefaultShipSettings</name></member>
+      <member refid="classEnemyShipFactory_1af2143f183e56385b0a94b5ad9d6bf1b7" prot="private" virt="non-virtual"><scope>EnemyShipFactory</scope><name>CreateDefaultShip</name></member>
+      <member refid="classEnemyShipFactory_1a16b43770762daa36e0d7c36c6e9e0481" prot="private" virt="non-virtual"><scope>EnemyShipFactory</scope><name>FindShipByName</name></member>
+      <member refid="classEnemyShipFactory_1ac2dece8b7383ba255abb0d67fb29fcb8" prot="private" virt="non-virtual"><scope>EnemyShipFactory</scope><name>GeneratePirateCrew</name></member>
+      <member refid="classEnemyShipFactory_1adf8697484b2d54d264ff20c619ac4dbf" prot="private" virt="non-virtual"><scope>EnemyShipFactory</scope><name>GeneratePirateName</name></member>
+      <member refid="classEnemyShipFactory_1afe8c4c765fb057e8313f5d9120f0db9f" prot="private" virt="non-virtual"><scope>EnemyShipFactory</scope><name>SelectRace</name></member>
+      <member refid="classEnemyShipFactory_1abe3d071dc187c777fea0448d3fb67e5f" prot="private" virt="non-virtual"><scope>EnemyShipFactory</scope><name>shipDatabase</name></member>
+      <member refid="classEnemyShipFactory_1adf438c0292d675acffceb7b7bd4ac129" prot="public" virt="non-virtual"><scope>EnemyShipFactory</scope><name>SpawnPirateShip</name></member>
+      <member refid="classEnemyShipFactory_1a1e46eac69d96d4f6423e0bc7695e922f" prot="private" virt="non-virtual"><scope>EnemyShipFactory</scope><name>WeightedRandomRace</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

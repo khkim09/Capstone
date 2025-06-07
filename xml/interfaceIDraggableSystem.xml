@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="interfaceIDraggableSystem" kind="interface" language="C#" prot="public">
+    <compoundname>IDraggableSystem</compoundname>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="interfaceIDraggableSystem_1a2cf1df0ab87854f46207767c395968b4" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool IDraggableSystem.IsDragging</definition>
+        <argsstring></argsstring>
+        <name>IsDragging</name>
+        <qualifiedname>IDraggableSystem.IsDragging</qualifiedname>
+        <briefdescription>
+<para>드래그 중인지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Core/Interfaces/IDraggableSystem.cs" line="44" column="10" bodyfile="Assets/Scripts/Core/Interfaces/IDraggableSystem.cs" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="property" id="interfaceIDraggableSystem_1a005c87e2af914019e1e147b812f2e294" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int IDraggableSystem.CurrentRotation</definition>
+        <argsstring></argsstring>
+        <name>CurrentRotation</name>
+        <qualifiedname>IDraggableSystem.CurrentRotation</qualifiedname>
+        <briefdescription>
+<para>현재 회전 상태 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Core/Interfaces/IDraggableSystem.cs" line="49" column="9" bodyfile="Assets/Scripts/Core/Interfaces/IDraggableSystem.cs" bodystart="49" bodyend="49"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="interfaceIDraggableSystem_1a39716e5f44b8d2ffe67ae6c9440b567a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IDraggableSystem.StartDragging</definition>
+        <argsstring>(Vector2 mousePosition)</argsstring>
+        <name>StartDragging</name>
+        <qualifiedname>IDraggableSystem.StartDragging</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>mousePosition</declname>
+        </param>
+        <briefdescription>
+<para>드래그 시작 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mousePosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>마우스 위치</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Core/Interfaces/IDraggableSystem.cs" line="13" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="interfaceIDraggableSystem_1a8ca2d6d314dda28bd14afb5a62e91b2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IDraggableSystem.CanPlace</definition>
+        <argsstring>(Vector2Int position, int rotation)</argsstring>
+        <name>CanPlace</name>
+        <qualifiedname>IDraggableSystem.CanPlace</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>지정된 위치에 오브젝트 배치 가능 여부 확인 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>그리드 위치</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>회전 상태</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>배치 가능 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Core/Interfaces/IDraggableSystem.cs" line="21" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="interfaceIDraggableSystem_1ac1051864964dd26eaf919c318f30b286" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IDraggableSystem.PlaceObject</definition>
+        <argsstring>(Vector2Int position, int rotation)</argsstring>
+        <name>PlaceObject</name>
+        <qualifiedname>IDraggableSystem.PlaceObject</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>지정된 위치에 오브젝트 배치 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>그리드 위치</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>회전 상태</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>배치 성공 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Core/Interfaces/IDraggableSystem.cs" line="29" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="interfaceIDraggableSystem_1a493909e1a912bb8239ef3d736ab1d233" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IDraggableSystem.CancelDragging</definition>
+        <argsstring>()</argsstring>
+        <name>CancelDragging</name>
+        <qualifiedname>IDraggableSystem.CancelDragging</qualifiedname>
+        <briefdescription>
+<para>드래그 취소 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Core/Interfaces/IDraggableSystem.cs" line="34" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="interfaceIDraggableSystem_1abe3afa3bb484d1645b0bcb24cf0061b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IDraggableSystem.RotatePreview</definition>
+        <argsstring>()</argsstring>
+        <name>RotatePreview</name>
+        <qualifiedname>IDraggableSystem.RotatePreview</qualifiedname>
+        <briefdescription>
+<para>프리뷰 회전 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Core/Interfaces/IDraggableSystem.cs" line="39" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>드래그 가능한 요소 관리를 위한 공통 인터페이스 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>IDraggableSystem</label>
+        <link refid="interfaceIDraggableSystem"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Core/Interfaces/IDraggableSystem.cs" line="7" column="18" bodyfile="Assets/Scripts/Core/Interfaces/IDraggableSystem.cs" bodystart="8" bodyend="50"/>
+    <listofallmembers>
+      <member refid="interfaceIDraggableSystem_1a493909e1a912bb8239ef3d736ab1d233" prot="public" virt="non-virtual"><scope>IDraggableSystem</scope><name>CancelDragging</name></member>
+      <member refid="interfaceIDraggableSystem_1a8ca2d6d314dda28bd14afb5a62e91b2f" prot="public" virt="non-virtual"><scope>IDraggableSystem</scope><name>CanPlace</name></member>
+      <member refid="interfaceIDraggableSystem_1a005c87e2af914019e1e147b812f2e294" prot="public" virt="non-virtual"><scope>IDraggableSystem</scope><name>CurrentRotation</name></member>
+      <member refid="interfaceIDraggableSystem_1a2cf1df0ab87854f46207767c395968b4" prot="public" virt="non-virtual"><scope>IDraggableSystem</scope><name>IsDragging</name></member>
+      <member refid="interfaceIDraggableSystem_1ac1051864964dd26eaf919c318f30b286" prot="public" virt="non-virtual"><scope>IDraggableSystem</scope><name>PlaceObject</name></member>
+      <member refid="interfaceIDraggableSystem_1abe3afa3bb484d1645b0bcb24cf0061b8" prot="public" virt="non-virtual"><scope>IDraggableSystem</scope><name>RotatePreview</name></member>
+      <member refid="interfaceIDraggableSystem_1a39716e5f44b8d2ffe67ae6c9440b567a" prot="public" virt="non-virtual"><scope>IDraggableSystem</scope><name>StartDragging</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

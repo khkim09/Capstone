@@ -1,0 +1,441 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classTradingItemHighlighter" kind="class" language="C#" prot="public">
+    <compoundname>TradingItemHighlighter</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classTradingItemHighlighter_1a8b30aa36146fecc8dcae43ebba16c9f5" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color TradingItemHighlighter.highlightColor</definition>
+        <argsstring></argsstring>
+        <name>highlightColor</name>
+        <qualifiedname>TradingItemHighlighter.highlightColor</qualifiedname>
+        <initializer>= Color.red</initializer>
+        <briefdescription>
+<para>강조 시 사용할 색상입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/TradingItemHighlighter.cs" line="11" column="20" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/TradingItemHighlighter.cs" bodystart="11" bodyend="-1"/>
+        <referencedby refid="classTradingItemHighlighter_1ad789c20fb51b2dcd87f02430c67f126f" compoundref="TradingItemHighlighter_8cs" startline="32" endline="36">SetHighlight</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemHighlighter_1a6101fd9e0515d5aad240f2392696b672" prot="private" static="no" mutable="no">
+        <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+        <definition>TradingItem TradingItemHighlighter.tradingItem</definition>
+        <argsstring></argsstring>
+        <name>tradingItem</name>
+        <qualifiedname>TradingItemHighlighter.tradingItem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/TradingItemHighlighter.cs" line="13" column="25" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/TradingItemHighlighter.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemHighlighter_1a6cfd6b1a8437bb5b88b91bb41a6d782d" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer TradingItemHighlighter.boxRenderer</definition>
+        <argsstring></argsstring>
+        <name>boxRenderer</name>
+        <qualifiedname>TradingItemHighlighter.boxRenderer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/TradingItemHighlighter.cs" line="14" column="28" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/TradingItemHighlighter.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemHighlighter_1a1b51becf523e0c65dcecdb4147d16da0" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color TradingItemHighlighter.originalColor</definition>
+        <argsstring></argsstring>
+        <name>originalColor</name>
+        <qualifiedname>TradingItemHighlighter.originalColor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/TradingItemHighlighter.cs" line="15" column="19" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/TradingItemHighlighter.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classTradingItemHighlighter_1acf03e4f5a720377cc38ae04cb851b15a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItemHighlighter.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>TradingItemHighlighter.Awake</qualifiedname>
+        <briefdescription>
+<para>Awake에서 <ref refid="classTradingItem" kindref="compound">TradingItem</ref>, SpriteRenderer, 원래 색상을 캐싱합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/TradingItemHighlighter.cs" line="20" column="18" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/TradingItemHighlighter.cs" bodystart="20" bodyend="26"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classTradingItemHighlighter_1ad789c20fb51b2dcd87f02430c67f126f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItemHighlighter.SetHighlight</definition>
+        <argsstring>(bool on)</argsstring>
+        <name>SetHighlight</name>
+        <qualifiedname>TradingItemHighlighter.SetHighlight</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>on</declname>
+        </param>
+        <briefdescription>
+<para>강조(on/off) 상태를 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>on</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>true면 highlightColor, false면 원래 색상으로 복원</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/TradingItemHighlighter.cs" line="32" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/TradingItemHighlighter.cs" bodystart="32" bodyend="36"/>
+        <references refid="classTradingItemHighlighter_1a8b30aa36146fecc8dcae43ebba16c9f5" compoundref="TradingItemHighlighter_8cs" startline="11">highlightColor</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classTradingItem" kindref="compound">TradingItem</ref> GameObject에 부착하여, 선택된 아이템만 강조색으로 표시하도록 하는 컴포넌트입니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>TradingItemHighlighter</label>
+        <link refid="classTradingItemHighlighter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="11">
+        <label>Constants</label>
+      </node>
+      <node id="30">
+        <label>CrewBase</label>
+        <link refid="classCrewBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>+equippedAssistant</edgelabel>
+          <edgelabel>+equippedShield</edgelabel>
+          <edgelabel>+equippedWeapon</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>+currentRoom</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>+currentShip</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>+healthBarController</edgelabel>
+        </childnode>
+      </node>
+      <node id="33">
+        <label>CrewHealthBar</label>
+        <link refid="classCrewHealthBar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>-offset</edgelabel>
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>-crewBase</edgelabel>
+        </childnode>
+      </node>
+      <node id="29">
+        <label>CrewMember</label>
+        <link refid="classCrewMember"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>-movementDirection</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>+madRoom</edgelabel>
+          <edgelabel>+oldReservedRoom</edgelabel>
+          <edgelabel>+reservedRoom</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>EquipmentItem</label>
+        <link refid="classEquipmentItem"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>IBeginDragHandler</label>
+      </node>
+      <node id="6">
+        <label>IDragHandler</label>
+      </node>
+      <node id="7">
+        <label>IEndDragHandler</label>
+      </node>
+      <node id="8">
+        <label>IGridPlaceable</label>
+        <link refid="interfaceIGridPlaceable"/>
+      </node>
+      <node id="4">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="14">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="25">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="template-instance">
+          <edgelabel>&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="28">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="16" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>StorageRoomBase</label>
+        <link refid="classStorageRoomBase"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#selectedItem</edgelabel>
+          <edgelabel>-itemGrid</edgelabel>
+        </childnode>
+      </node>
+      <node id="27">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>TradingItem</label>
+        <link refid="classTradingItem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-itemData</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+rotation</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>+parentStorage</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>TradingItemData</label>
+        <link refid="classTradingItemData"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>TradingItemHighlighter</label>
+        <link refid="classTradingItemHighlighter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-tradingItem</edgelabel>
+        </childnode>
+      </node>
+      <node id="34">
+        <label>UnityEngine</label>
+      </node>
+      <node id="21">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Trade/PlanetTradeBuy/TradingItemHighlighter.cs" line="8" column="7" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/TradingItemHighlighter.cs" bodystart="9" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classTradingItemHighlighter_1acf03e4f5a720377cc38ae04cb851b15a" prot="private" virt="non-virtual"><scope>TradingItemHighlighter</scope><name>Awake</name></member>
+      <member refid="classTradingItemHighlighter_1a6cfd6b1a8437bb5b88b91bb41a6d782d" prot="private" virt="non-virtual"><scope>TradingItemHighlighter</scope><name>boxRenderer</name></member>
+      <member refid="classTradingItemHighlighter_1a8b30aa36146fecc8dcae43ebba16c9f5" prot="private" virt="non-virtual"><scope>TradingItemHighlighter</scope><name>highlightColor</name></member>
+      <member refid="classTradingItemHighlighter_1a1b51becf523e0c65dcecdb4147d16da0" prot="private" virt="non-virtual"><scope>TradingItemHighlighter</scope><name>originalColor</name></member>
+      <member refid="classTradingItemHighlighter_1ad789c20fb51b2dcd87f02430c67f126f" prot="public" virt="non-virtual"><scope>TradingItemHighlighter</scope><name>SetHighlight</name></member>
+      <member refid="classTradingItemHighlighter_1a6101fd9e0515d5aad240f2392696b672" prot="private" virt="non-virtual"><scope>TradingItemHighlighter</scope><name>tradingItem</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

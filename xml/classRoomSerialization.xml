@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classRoomSerialization" kind="class" language="C#" prot="public">
+    <compoundname>RoomSerialization</compoundname>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classRoomSerialization_1a121400f601c64839074ee817497f2cb5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void RoomSerialization.SaveAllRooms</definition>
+        <argsstring>(List&lt; Room &gt; rooms, string filename)</argsstring>
+        <name>SaveAllRooms</name>
+        <qualifiedname>RoomSerialization.SaveAllRooms</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="classRoom" kindref="compound">Room</ref> &gt;</type>
+          <declname>rooms</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>모든 방을 저장합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rooms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장할 방 목록</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장 파일명</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomSerialization.cs" line="15" column="24" bodyfile="Assets/Scripts/Ship/Rooms/RoomSerialization.cs" bodystart="15" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomSerialization_1ad9a01f717a24d1118fd0f4d98f29e6a2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void RoomSerialization.SaveShipRooms</definition>
+        <argsstring>(Ship ship, string filename)</argsstring>
+        <name>SaveShipRooms</name>
+        <qualifiedname>RoomSerialization.SaveShipRooms</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>함선에 설치된 모든 방을 저장합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>방이 설치된 함선</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장 파일명</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomSerialization.cs" line="34" column="24" bodyfile="Assets/Scripts/Ship/Rooms/RoomSerialization.cs" bodystart="34" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomSerialization_1a151293eff5510800853ca5f85d346ae3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classRoom" kindref="compound">Room</ref> &gt;</type>
+        <definition>static List&lt; Room &gt; RoomSerialization.LoadAllRoomsData</definition>
+        <argsstring>(string filename)</argsstring>
+        <name>LoadAllRoomsData</name>
+        <qualifiedname>RoomSerialization.LoadAllRoomsData</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>저장된 모든 방을 불러옵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>불러올 파일명</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>불러온 방 목록</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomSerialization.cs" line="47" column="24" bodyfile="Assets/Scripts/Ship/Rooms/RoomSerialization.cs" bodystart="47" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomSerialization_1afee6c2cdc6c95ff3c01d0549752d3743" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int RoomSerialization.RestoreAllRoomsToShip</definition>
+        <argsstring>(string filename, Ship ship)</argsstring>
+        <name>RestoreAllRoomsToShip</name>
+        <qualifiedname>RoomSerialization.RestoreAllRoomsToShip</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>함선에 모든 방을 복원합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>불러올 파일명</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>대상 함선</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>복원된 방 수</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomSerialization.cs" line="75" column="23" bodyfile="Assets/Scripts/Ship/Rooms/RoomSerialization.cs" bodystart="75" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomSerialization_1ae6cc2a71b27a05036241ee841e1caa50" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void RoomSerialization.SaveRoomsByType</definition>
+        <argsstring>(Ship ship, RoomType roomType, string filename)</argsstring>
+        <name>SaveRoomsByType</name>
+        <qualifiedname>RoomSerialization.SaveRoomsByType</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <param>
+          <type>RoomType</type>
+          <declname>roomType</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>특정 타입의 방만 저장합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>방이 설치된 함선</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>roomType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장할 방 타입</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장 파일명</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomSerialization.cs" line="105" column="24" bodyfile="Assets/Scripts/Ship/Rooms/RoomSerialization.cs" bodystart="105" bodyend="112"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Easy Save 3를 사용하여 방(Room) 객체의 직렬화 및 역직렬화를 담당하는 유틸리티 클래스 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>RoomSerialization</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/Rooms/RoomSerialization.cs" line="8" column="15" bodyfile="Assets/Scripts/Ship/Rooms/RoomSerialization.cs" bodystart="9" bodyend="113"/>
+    <listofallmembers>
+      <member refid="classRoomSerialization_1a151293eff5510800853ca5f85d346ae3" prot="public" virt="non-virtual"><scope>RoomSerialization</scope><name>LoadAllRoomsData</name></member>
+      <member refid="classRoomSerialization_1afee6c2cdc6c95ff3c01d0549752d3743" prot="public" virt="non-virtual"><scope>RoomSerialization</scope><name>RestoreAllRoomsToShip</name></member>
+      <member refid="classRoomSerialization_1a121400f601c64839074ee817497f2cb5" prot="public" virt="non-virtual"><scope>RoomSerialization</scope><name>SaveAllRooms</name></member>
+      <member refid="classRoomSerialization_1ae6cc2a71b27a05036241ee841e1caa50" prot="public" virt="non-virtual"><scope>RoomSerialization</scope><name>SaveRoomsByType</name></member>
+      <member refid="classRoomSerialization_1ad9a01f717a24d1118fd0f4d98f29e6a2" prot="public" virt="non-virtual"><scope>RoomSerialization</scope><name>SaveShipRooms</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['handle_0',['handle',['../classEventPlanetEffectHandler.html#aeca4b82198b088572ac4dffabc13e5ce',1,'EventPlanetEffectHandler.Handle()'],['../classEventResourceEffectHandler.html#a147e4c33b31539ccdc52379c033bcd6c',1,'EventResourceEffectHandler.Handle()'],['../classEventCrewEffectHandler.html#a7b4b7f5adb731fdbc71f399da0512001',1,'EventCrewEffectHandler.Handle()']]],
+  ['handleeffect_1',['handleeffect',['../classAddQuestEffectHandler.html#a9ff4a6a74a331f951021b1fd147bcd67',1,'AddQuestEffectHandler.HandleEffect()'],['../classEventNextEventEffectHandler.html#a59234ff1c4bf8e5d64844139e9c764b1',1,'EventNextEventEffectHandler.HandleEffect()']]],
+  ['handlegameover_2',['HandleGameOver',['../classGameManager.html#adaed5a79b89e21922f5c889c52cf9b7e',1,'GameManager']]],
+  ['handleshipdestroyed_3',['HandleShipDestroyed',['../classOuterShipCombatController.html#ae2e7263ef8f430ceeb5591225c4b9036',1,'OuterShipCombatController']]],
+  ['handlezoom_4',['HandleZoom',['../classCameraZoomController.html#a781cfbae9b3ee713fc2e71f71b759e2a',1,'CameraZoomController']]],
+  ['hasenoughcrew_5',['HasEnoughCrew',['../classRoom.html#a2d183b76de173f69d65595f779de8af7',1,'Room']]],
+  ['hasenoughpower_6',['HasEnoughPower',['../classDoor.html#acdc80ffed945c33f250149909e0ce5ea',1,'Door']]],
+  ['hasitem_7',['HasItem',['../classStorage.html#ac706f358d9cc81795d1199c9801323e3',1,'Storage']]],
+  ['hasminlimit_8',['HasMinLimit',['../classShipStatSettings.html#a612329c3de4b8e204561183cb2e7fd06',1,'ShipStatSettings']]],
+  ['heal_9',['Heal',['../classCrewMember.html#ab1b5a739bfeb532e0f29eaee1765a2a7',1,'CrewMember']]],
+  ['hide_10',['Hide',['../interfaceIUIController.html#af6e961e9884d770d7d48ca1073732218',1,'IUIController']]],
+  ['hidechangetext_11',['HideChangeText',['../classTradeUIController.html#a61435fe7faa2509879de38f413e72743',1,'TradeUIController']]],
+  ['hideitemmap_12',['HideItemMap',['../classTradeUIController.html#a71bb186464f1bc6efbf3b3caec8c6177',1,'TradeUIController']]],
+  ['hidetemplatelist_13',['HideTemplateList',['../classShipTemplateSaver.html#a547fe300a63c6d41f67a53004a658eea',1,'ShipTemplateSaver']]],
+  ['hidetooltip_14',['HideTooltip',['../classRaceButtonController.html#a2e502cb65e9bd4645a1b62e2dcac2a67',1,'RaceButtonController']]],
+  ['highlightitem_15',['HighlightItem',['../classStorageHighlightManager.html#a6db160775ca800d74bdf92a796a0b737',1,'StorageHighlightManager']]]
+];

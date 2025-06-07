@@ -1,0 +1,25 @@
+var classES3Settings =
+[
+    [ "ES3Settings", "classES3Settings.html#aae1d96d033e9589a6c8ea624f23ae9a6", null ],
+    [ "ES3Settings", "classES3Settings.html#a744cb6bad0374cdb8cad9511e261777c", null ],
+    [ "ES3Settings", "classES3Settings.html#ae2ecc04a69fa65fd1019e7c6f8efeb03", null ],
+    [ "ES3Settings", "classES3Settings.html#ab411a39efd0f98a0a3cf306881e672f9", null ],
+    [ "ES3Settings", "classES3Settings.html#a7bbd1bc0727a5bcce2ca40838f70ad4e", null ],
+    [ "assemblyNames", "classES3Settings.html#a07b8ad39025bc95e856fa806078b64a6", null ],
+    [ "bufferSize", "classES3Settings.html#a3ec87f468fa3663f3f5dc2a5de4144a3", null ],
+    [ "compressionType", "classES3Settings.html#a1110312b585103580b104da06cd93ea9", null ],
+    [ "directory", "classES3Settings.html#a3fce86eacf990cd795ce996458fd8d99", null ],
+    [ "encoding", "classES3Settings.html#a965bf4d3ac76b0037b3b9c31fde4420c", null ],
+    [ "encryptionPassword", "classES3Settings.html#a4170c8f7c9b57759c259b3785b45a344", null ],
+    [ "encryptionType", "classES3Settings.html#a3e52116aa5da6b89c1b16d5a50276b26", null ],
+    [ "format", "classES3Settings.html#ae356976f8a7c66fb686123e32ac4e7d6", null ],
+    [ "memberReferenceMode", "classES3Settings.html#a84b08c5455d6be6671f2eb9398452eca", null ],
+    [ "path", "classES3Settings.html#aec222d18f62c320ffbc1648c05514731", null ],
+    [ "prettyPrint", "classES3Settings.html#a1e7fc0631b10eeceb4a8f68cd8a34eb0", null ],
+    [ "referenceMode", "classES3Settings.html#a70c02d24424048cc02cd5a47806f79d7", null ],
+    [ "safeReflection", "classES3Settings.html#abbd91cc190d8a33849f88c926d74cd40", null ],
+    [ "serializationDepthLimit", "classES3Settings.html#a44ca0b96872e62f5c2943fbf30730098", null ],
+    [ "typeChecking", "classES3Settings.html#a8102aacae794e0012fd74d77edb4be5d", null ],
+    [ "FullPath", "classES3Settings.html#a3213eb287400d8d12776529fb9f70dd8", null ],
+    [ "location", "classES3Settings.html#a4d37bdd73f46cb53d997d8300c78451d", null ]
+];

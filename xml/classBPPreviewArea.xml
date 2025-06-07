@@ -1,0 +1,371 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classBPPreviewArea" kind="class" language="C#" prot="public">
+    <compoundname>BPPreviewArea</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classBPPreviewArea_1a7c34b15d44849afb3c311b989799e451" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform BPPreviewArea.previewRoot</definition>
+        <argsstring></argsstring>
+        <name>previewRoot</name>
+        <qualifiedname>BPPreviewArea.previewRoot</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" line="10" column="24" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBPPreviewArea_1a4b0eb3b0c9e86075aba5c555ac03f71a" prot="private" static="no" mutable="no">
+        <type><ref refid="classBPPreviewCamera" kindref="compound">BPPreviewCamera</ref></type>
+        <definition>BPPreviewCamera BPPreviewArea.previewCamera</definition>
+        <argsstring></argsstring>
+        <name>previewCamera</name>
+        <qualifiedname>BPPreviewArea.previewCamera</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" line="11" column="30" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBPPreviewArea_1a33095e6257cb697bba1c0cb879d424b3" prot="private" static="no" mutable="no">
+        <type><ref refid="classGridPlacer" kindref="compound">GridPlacer</ref></type>
+        <definition>GridPlacer BPPreviewArea.gridPlacer</definition>
+        <argsstring></argsstring>
+        <name>gridPlacer</name>
+        <qualifiedname>BPPreviewArea.gridPlacer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" line="12" column="25" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBPPreviewArea_1ae10b3c94713d0c9cd5c2397e29a92a48" prot="private" static="no" mutable="no">
+        <type>List&lt; GameObject &gt;</type>
+        <definition>List&lt;GameObject&gt; BPPreviewArea.spawnedPreviews</definition>
+        <argsstring></argsstring>
+        <name>spawnedPreviews</name>
+        <qualifiedname>BPPreviewArea.spawnedPreviews</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" line="14" column="18" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classBPPreviewArea_1a6b5d2cb5df9097c71feb974ab80c5eb3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BPPreviewArea.UpdateAndShow</definition>
+        <argsstring>(BlueprintSaveData data)</argsstring>
+        <name>UpdateAndShow</name>
+        <qualifiedname>BPPreviewArea.UpdateAndShow</qualifiedname>
+        <param>
+          <type><ref refid="classBlueprintSaveData" kindref="compound">BlueprintSaveData</ref></type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>도안 preview Area에 띄우기 (미리보기) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" line="20" column="17" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" bodystart="20" bodyend="57"/>
+        <references refid="classBPPreviewArea_1ac863f492bb7ae9bfb9a672d0d806e03b" compoundref="BPPreviewArea_8cs" startline="62" endline="67">Clear</references>
+        <references refid="classBPPreviewCamera_1a4eec30394a989b12fd4809a932630882" compoundref="BPPreviewCamera_8cs" startline="27" endline="52">BPPreviewCamera.FitToBlueprint</references>
+        <references refid="classGridPlacer_1a11cf51c13e2c8c9261444a8e1687218a" compoundref="GridPlacer_8cs" startline="440" endline="460">GridPlacer.PlacePreviewRoom</references>
+        <references refid="classGridPlacer_1a38cc9ea2fbdde83a506c75b7cad9010c" compoundref="GridPlacer_8cs" startline="466" endline="489">GridPlacer.PlacePreviewWeapon</references>
+        <referencedby refid="classCustomize__2__Controller_1a4f017401dbc31501a4109324ccec2bd7" compoundref="Customize__2__Controller_8cs" startline="227" endline="294">Customize_2_Controller.OnClickBuy</referencedby>
+        <referencedby refid="classCustomize__0__Controller_1a574259bae338d10309582b4ec5c4120f" compoundref="Customize__0__Controller_8cs" startline="180" endline="222">Customize_0_Controller.OnClickSlot</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBPPreviewArea_1ac863f492bb7ae9bfb9a672d0d806e03b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BPPreviewArea.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>BPPreviewArea.Clear</qualifiedname>
+        <briefdescription>
+<para>생성된 preview 게임 오브젝트 모두 삭제 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" line="62" column="17" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" bodystart="62" bodyend="67"/>
+        <referencedby refid="classCustomize__0__Controller_1a574259bae338d10309582b4ec5c4120f" compoundref="Customize__0__Controller_8cs" startline="180" endline="222">Customize_0_Controller.OnClickSlot</referencedby>
+        <referencedby refid="classBPPreviewArea_1a6b5d2cb5df9097c71feb974ab80c5eb3" compoundref="BPPreviewArea_8cs" startline="20" endline="57">UpdateAndShow</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBPPreviewArea_1a6814b80c4d4c9a8b1c850c41fcfa6f3c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector3</type>
+        <definition>Vector3 BPPreviewArea.GridToWorldPosition</definition>
+        <argsstring>(Vector2Int gridPos)</argsstring>
+        <name>GridToWorldPosition</name>
+        <qualifiedname>BPPreviewArea.GridToWorldPosition</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>gridPos</declname>
+        </param>
+        <briefdescription>
+<para>그리드 좌표를 월드 좌표로 변환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gridPos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>변환할 그리드 좌표.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 위치의 월드 좌표.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" line="74" column="20" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" bodystart="74" bodyend="78"/>
+        <referencedby refid="classBPPreviewArea_1acd7e1e6dd374172df840af98756f5aeb" compoundref="BPPreviewArea_8cs" startline="85" endline="88">GetWorldPositionFromGrid</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBPPreviewArea_1acd7e1e6dd374172df840af98756f5aeb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector3</type>
+        <definition>Vector3 BPPreviewArea.GetWorldPositionFromGrid</definition>
+        <argsstring>(Vector2Int gridPos)</argsstring>
+        <name>GetWorldPositionFromGrid</name>
+        <qualifiedname>BPPreviewArea.GetWorldPositionFromGrid</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>gridPos</declname>
+        </param>
+        <briefdescription>
+<para>실제 월드 위치 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gridPos</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" line="85" column="20" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" bodystart="85" bodyend="88"/>
+        <references refid="classBPPreviewArea_1a6814b80c4d4c9a8b1c850c41fcfa6f3c" compoundref="BPPreviewArea_8cs" startline="74" endline="78">GridToWorldPosition</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>저장된 설계도를 미리보기 형태로 표시하는 컴포넌트 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>BPPreviewArea</label>
+        <link refid="classBPPreviewArea"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>BPPreviewArea</label>
+        <link refid="classBPPreviewArea"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-previewCamera</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-gridPlacer</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>BPPreviewCamera</label>
+        <link refid="classBPPreviewCamera"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>BlueprintShip</label>
+        <link refid="classBlueprintShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GridPlacer</label>
+        <link refid="classGridPlacer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>+targetBlueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-gridOrigin</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="16">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="19">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>UnityEngine</label>
+      </node>
+      <node id="12">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" line="8" column="7" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewArea.cs" bodystart="9" bodyend="89"/>
+    <listofallmembers>
+      <member refid="classBPPreviewArea_1ac863f492bb7ae9bfb9a672d0d806e03b" prot="public" virt="non-virtual"><scope>BPPreviewArea</scope><name>Clear</name></member>
+      <member refid="classBPPreviewArea_1acd7e1e6dd374172df840af98756f5aeb" prot="public" virt="non-virtual"><scope>BPPreviewArea</scope><name>GetWorldPositionFromGrid</name></member>
+      <member refid="classBPPreviewArea_1a33095e6257cb697bba1c0cb879d424b3" prot="private" virt="non-virtual"><scope>BPPreviewArea</scope><name>gridPlacer</name></member>
+      <member refid="classBPPreviewArea_1a6814b80c4d4c9a8b1c850c41fcfa6f3c" prot="public" virt="non-virtual"><scope>BPPreviewArea</scope><name>GridToWorldPosition</name></member>
+      <member refid="classBPPreviewArea_1a4b0eb3b0c9e86075aba5c555ac03f71a" prot="private" virt="non-virtual"><scope>BPPreviewArea</scope><name>previewCamera</name></member>
+      <member refid="classBPPreviewArea_1a7c34b15d44849afb3c311b989799e451" prot="private" virt="non-virtual"><scope>BPPreviewArea</scope><name>previewRoot</name></member>
+      <member refid="classBPPreviewArea_1ae10b3c94713d0c9cd5c2397e29a92a48" prot="private" virt="non-virtual"><scope>BPPreviewArea</scope><name>spawnedPreviews</name></member>
+      <member refid="classBPPreviewArea_1a6b5d2cb5df9097c71feb974ab80c5eb3" prot="public" virt="non-virtual"><scope>BPPreviewArea</scope><name>UpdateAndShow</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

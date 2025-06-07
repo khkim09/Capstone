@@ -1,0 +1,499 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classES3Internal_1_1ES3IO" kind="class" language="C#" prot="public">
+    <compoundname>ES3Internal::ES3IO</compoundname>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classES3Internal_1_1ES3IO_1abfbd4767d20f1d32c1aec0763e1d65d8" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>ES3FileMode</name>
+        <qualifiedname>ES3Internal.ES3IO.ES3FileMode</qualifiedname>
+        <enumvalue id="classES3Internal_1_1ES3IO_1abfbd4767d20f1d32c1aec0763e1d65d8a7a1a5f3e79fdc91edf2f5ead9d66abb4" prot="public">
+          <name>Read</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classES3Internal_1_1ES3IO_1abfbd4767d20f1d32c1aec0763e1d65d8a1129c0e4d43f2d121652a7302712cff6" prot="public">
+          <name>Write</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classES3Internal_1_1ES3IO_1abfbd4767d20f1d32c1aec0763e1d65d8a3ac4692f3935a49a0b243eecf529faa9" prot="public">
+          <name>Append</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="20" column="15" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="20" bodyend="20"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="package-static-attrib">
+      <memberdef kind="variable" id="classES3Internal_1_1ES3IO_1abd14e1550f34e9d30b252c289967b04a" prot="package" static="yes" mutable="no">
+        <type>readonly string</type>
+        <definition>readonly string ES3Internal.ES3IO.persistentDataPath</definition>
+        <argsstring></argsstring>
+        <name>persistentDataPath</name>
+        <qualifiedname>ES3Internal.ES3IO.persistentDataPath</qualifiedname>
+        <initializer>= Application.persistentDataPath</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="13" column="41" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3IO_1ae2752572fc3c78cea7b4d5b94f2ee1e2" prot="package" static="yes" mutable="no">
+        <type>readonly string</type>
+        <definition>readonly string ES3Internal.ES3IO.dataPath</definition>
+        <argsstring></argsstring>
+        <name>dataPath</name>
+        <qualifiedname>ES3Internal.ES3IO.dataPath</qualifiedname>
+        <initializer>= Application.dataPath</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="14" column="41" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3IO_1ae7998d7663748ce780363467b63f6204" prot="package" static="yes" mutable="no">
+        <type>const string</type>
+        <definition>const string ES3Internal.ES3IO.backupFileSuffix</definition>
+        <argsstring></argsstring>
+        <name>backupFileSuffix</name>
+        <qualifiedname>ES3Internal.ES3IO.backupFileSuffix</qualifiedname>
+        <initializer>= &quot;.bac&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="17" column="31" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3IO_1aa5a6f708c6036f4f5025b9c20a8749f0" prot="package" static="yes" mutable="no">
+        <type>const string</type>
+        <definition>const string ES3Internal.ES3IO.temporaryFileSuffix</definition>
+        <argsstring></argsstring>
+        <name>temporaryFileSuffix</name>
+        <qualifiedname>ES3Internal.ES3IO.temporaryFileSuffix</qualifiedname>
+        <initializer>= &quot;.tmp&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="18" column="31" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1ac9e55b4894a1f0780670a1c5ebafac27" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>static DateTime ES3Internal.ES3IO.GetTimestamp</definition>
+        <argsstring>(string filePath)</argsstring>
+        <name>GetTimestamp</name>
+        <qualifiedname>ES3Internal.ES3IO.GetTimestamp</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="22" column="32" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="22" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1a6e9fcf30b31dd294c0f18b413e354e69" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ES3Internal.ES3IO.GetExtension</definition>
+        <argsstring>(string path)</argsstring>
+        <name>GetExtension</name>
+        <qualifiedname>ES3Internal.ES3IO.GetExtension</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="29" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="29" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1a4719019624271963f694ed81583e39a0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3Internal.ES3IO.DeleteFile</definition>
+        <argsstring>(string filePath)</argsstring>
+        <name>DeleteFile</name>
+        <qualifiedname>ES3Internal.ES3IO.DeleteFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="34" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="34" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1aaeb549a9df6d4967e2c252efd2538a9c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3IO.FileExists</definition>
+        <argsstring>(string filePath)</argsstring>
+        <name>FileExists</name>
+        <qualifiedname>ES3Internal.ES3IO.FileExists</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="40" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1a5e4ca268f92de46547dd20325c592aa1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3Internal.ES3IO.MoveFile</definition>
+        <argsstring>(string sourcePath, string destPath)</argsstring>
+        <name>MoveFile</name>
+        <qualifiedname>ES3Internal.ES3IO.MoveFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>sourcePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>destPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="41" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1a6eb68a6e034cff8b129e06da3eab5bc8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3Internal.ES3IO.CopyFile</definition>
+        <argsstring>(string sourcePath, string destPath)</argsstring>
+        <name>CopyFile</name>
+        <qualifiedname>ES3Internal.ES3IO.CopyFile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>sourcePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>destPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="42" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1ab32d06f8443b606b6e6a6c9012fa2c03" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3Internal.ES3IO.MoveDirectory</definition>
+        <argsstring>(string sourcePath, string destPath)</argsstring>
+        <name>MoveDirectory</name>
+        <qualifiedname>ES3Internal.ES3IO.MoveDirectory</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>sourcePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>destPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="44" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1a8fc596db32acf466217fd30d115f00e2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3Internal.ES3IO.CreateDirectory</definition>
+        <argsstring>(string directoryPath)</argsstring>
+        <name>CreateDirectory</name>
+        <qualifiedname>ES3Internal.ES3IO.CreateDirectory</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>directoryPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="45" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1a8e9c7ac8ae22bd0199c0c8396411bfc4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3IO.DirectoryExists</definition>
+        <argsstring>(string directoryPath)</argsstring>
+        <name>DirectoryExists</name>
+        <qualifiedname>ES3Internal.ES3IO.DirectoryExists</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>directoryPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="46" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1a159870c8638c779606a47e7dccc1fd3c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ES3Internal.ES3IO.GetDirectoryPath</definition>
+        <argsstring>(string path, char seperator=&apos;/&apos;)</argsstring>
+        <name>GetDirectoryPath</name>
+        <qualifiedname>ES3Internal.ES3IO.GetDirectoryPath</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>seperator</declname>
+          <defval>&apos;/&apos;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="52" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="52" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1a63f1bc3dd8aecf6b5814c4bb6b093d7b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3IO.UsesForwardSlash</definition>
+        <argsstring>(string path)</argsstring>
+        <name>UsesForwardSlash</name>
+        <qualifiedname>ES3Internal.ES3IO.UsesForwardSlash</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="73" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="73" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1a5f571c84fc388964acc1f4bd032bbbdf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ES3Internal.ES3IO.CombinePathAndFilename</definition>
+        <argsstring>(string directoryPath, string fileOrDirectoryName)</argsstring>
+        <name>CombinePathAndFilename</name>
+        <qualifiedname>ES3Internal.ES3IO.CombinePathAndFilename</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>directoryPath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>fileOrDirectoryName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="81" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="81" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1ab86909bffdd035f30e24020fa16f0944" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string[]</type>
+        <definition>static string[] ES3Internal.ES3IO.GetDirectories</definition>
+        <argsstring>(string path, bool getFullPaths=true)</argsstring>
+        <name>GetDirectories</name>
+        <qualifiedname>ES3Internal.ES3IO.GetDirectories</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>getFullPaths</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="88" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="88" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1a390a3f7eed7193afaf1aeec4c1e3fba0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3Internal.ES3IO.DeleteDirectory</definition>
+        <argsstring>(string directoryPath)</argsstring>
+        <name>DeleteDirectory</name>
+        <qualifiedname>ES3Internal.ES3IO.DeleteDirectory</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>directoryPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="102" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="102" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1a089b4464ecc06184bdff25a7bc524eae" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string[]</type>
+        <definition>static string[] ES3Internal.ES3IO.GetFiles</definition>
+        <argsstring>(string path, bool getFullPaths=true)</argsstring>
+        <name>GetFiles</name>
+        <qualifiedname>ES3Internal.ES3IO.GetFiles</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>getFullPaths</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="110" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="110" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1aa97a0d9e3b440c01b16c22d797ecdc53" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>byte[]</type>
+        <definition>static byte[] ES3Internal.ES3IO.ReadAllBytes</definition>
+        <argsstring>(string path)</argsstring>
+        <name>ReadAllBytes</name>
+        <qualifiedname>ES3Internal.ES3IO.ReadAllBytes</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="124" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="124" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1adbaa721ce052059271f5f7ea18d327c7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3Internal.ES3IO.WriteAllBytes</definition>
+        <argsstring>(string path, byte[] bytes)</argsstring>
+        <name>WriteAllBytes</name>
+        <qualifiedname>ES3Internal.ES3IO.WriteAllBytes</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>byte[]</type>
+          <declname>bytes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="129" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="129" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3IO_1a3c25f6d9eb20d6d61910ec7fda1ec627" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3Internal.ES3IO.CommitBackup</definition>
+        <argsstring>(ES3Settings settings)</argsstring>
+        <name>CommitBackup</name>
+        <qualifiedname>ES3Internal.ES3IO.CommitBackup</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="134" column="28" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="134" bodyend="179"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>ES3Internal.ES3IO</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" line="7" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/ES3IO.cs" bodystart="8" bodyend="180"/>
+    <listofallmembers>
+      <member refid="classES3Internal_1_1ES3IO_1ae7998d7663748ce780363467b63f6204" prot="package" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>backupFileSuffix</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1a5f571c84fc388964acc1f4bd032bbbdf" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>CombinePathAndFilename</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1a3c25f6d9eb20d6d61910ec7fda1ec627" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>CommitBackup</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1a6eb68a6e034cff8b129e06da3eab5bc8" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>CopyFile</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1a8fc596db32acf466217fd30d115f00e2" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>CreateDirectory</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1ae2752572fc3c78cea7b4d5b94f2ee1e2" prot="package" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>dataPath</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1a390a3f7eed7193afaf1aeec4c1e3fba0" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>DeleteDirectory</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1a4719019624271963f694ed81583e39a0" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>DeleteFile</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1a8e9c7ac8ae22bd0199c0c8396411bfc4" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>DirectoryExists</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1abfbd4767d20f1d32c1aec0763e1d65d8" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>ES3FileMode</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1aaeb549a9df6d4967e2c252efd2538a9c" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>FileExists</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1ab86909bffdd035f30e24020fa16f0944" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>GetDirectories</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1a159870c8638c779606a47e7dccc1fd3c" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>GetDirectoryPath</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1a6e9fcf30b31dd294c0f18b413e354e69" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>GetExtension</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1a089b4464ecc06184bdff25a7bc524eae" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>GetFiles</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1ac9e55b4894a1f0780670a1c5ebafac27" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>GetTimestamp</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1ab32d06f8443b606b6e6a6c9012fa2c03" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>MoveDirectory</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1a5e4ca268f92de46547dd20325c592aa1" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>MoveFile</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1abd14e1550f34e9d30b252c289967b04a" prot="package" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>persistentDataPath</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1aa97a0d9e3b440c01b16c22d797ecdc53" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>ReadAllBytes</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1aa5a6f708c6036f4f5025b9c20a8749f0" prot="package" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>temporaryFileSuffix</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1a63f1bc3dd8aecf6b5814c4bb6b093d7b" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>UsesForwardSlash</name></member>
+      <member refid="classES3Internal_1_1ES3IO_1adbaa721ce052059271f5f7ea18d327c7" prot="public" virt="non-virtual"><scope>ES3Internal::ES3IO</scope><name>WriteAllBytes</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

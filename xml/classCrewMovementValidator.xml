@@ -1,0 +1,384 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCrewMovementValidator" kind="class" language="C#" prot="public">
+    <compoundname>CrewMovementValidator</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classCrewMovementValidator_1a6bc0106de6cc06697e9106a36e4f672e" prot="public" static="no" mutable="no">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>List&lt;Vector2Int&gt; CrewMovementValidator.inspectorWalkable</definition>
+        <argsstring></argsstring>
+        <name>inspectorWalkable</name>
+        <qualifiedname>CrewMovementValidator.inspectorWalkable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewMovementValidator.cs" line="11" column="17" bodyfile="Assets/Scripts/RTS/CrewMovementValidator.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classCrewMovementValidator_1ae7c2d7fbcbefe691ce8338b15bbee1ba" prot="private" static="no" mutable="no">
+        <type>HashSet&lt; Vector2Int &gt;</type>
+        <definition>HashSet&lt;Vector2Int&gt; CrewMovementValidator.walkableTiles</definition>
+        <argsstring></argsstring>
+        <name>walkableTiles</name>
+        <qualifiedname>CrewMovementValidator.walkableTiles</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewMovementValidator.cs" line="13" column="21" bodyfile="Assets/Scripts/RTS/CrewMovementValidator.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMovementValidator_1a2d946668dc15b2c0ef923ec92da14991" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="classRoom" kindref="compound">Room</ref> &gt;</type>
+        <definition>List&lt;Room&gt; CrewMovementValidator.rooms</definition>
+        <argsstring></argsstring>
+        <name>rooms</name>
+        <qualifiedname>CrewMovementValidator.rooms</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewMovementValidator.cs" line="14" column="18" bodyfile="Assets/Scripts/RTS/CrewMovementValidator.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCrewMovementValidator_1a81f36c4d99a75149fc7c0e5db33b7101" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMovementValidator.Initialize</definition>
+        <argsstring>(List&lt; Room &gt; allRooms)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>CrewMovementValidator.Initialize</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="classRoom" kindref="compound">Room</ref> &gt;</type>
+          <declname>allRooms</declname>
+        </param>
+        <briefdescription>
+<para>초기화 - 방 리스트 등록 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewMovementValidator.cs" line="19" column="17" bodyfile="Assets/Scripts/RTS/CrewMovementValidator.cs" bodystart="19" bodyend="29"/>
+        <references refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" compoundref="Room_8cs" startline="482" endline="488">Room&lt; TData, TLevel &gt;.GetOccupiedTiles</references>
+        <referencedby refid="classRTSSelectionManager_1ad68211bed4c24acf467aa4dd2285d987" compoundref="RTSSelectionManager_8cs" startline="402" endline="416">RTSSelectionManager.RefreshMovementData</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMovementValidator_1a5d4caf53367c1f0d9ac691bfd9c553cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CrewMovementValidator.IsTileWalkable</definition>
+        <argsstring>(Vector2Int tile)</argsstring>
+        <name>IsTileWalkable</name>
+        <qualifiedname>CrewMovementValidator.IsTileWalkable</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>tile</declname>
+        </param>
+        <briefdescription>
+<para>타일이 이동 가능한 영역인가 (방/복도에 속하는가) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewMovementValidator.cs" line="34" column="17" bodyfile="Assets/Scripts/RTS/CrewMovementValidator.cs" bodystart="34" bodyend="37"/>
+        <referencedby refid="classRTSSelectionManager_1a0002c5992875339db3028007c2472b6d" compoundref="RTSSelectionManager_8cs" startline="443" endline="666">RTSSelectionManager.IssueMoveCommand</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" compoundref="RTSSelectionManager_8cs" startline="672" endline="800">RTSSelectionManager.MoveForCombat</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMovementValidator_1a2601f8804be2724ebbc26651d3ee8de3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CrewMovementValidator.AreTilesConnected</definition>
+        <argsstring>(Vector2Int from, Vector2Int to)</argsstring>
+        <name>AreTilesConnected</name>
+        <qualifiedname>CrewMovementValidator.AreTilesConnected</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>to</declname>
+        </param>
+        <briefdescription>
+<para>두 타일이 이동 가능한가 (같은 방 or 문을 통한 이동) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewMovementValidator.cs" line="42" column="17" bodyfile="Assets/Scripts/RTS/CrewMovementValidator.cs" bodystart="42" bodyend="64"/>
+        <references refid="classCrewMovementValidator_1a22d0bc7e909e7090b18c4956d997da22" compoundref="CrewMovementValidator_8cs" startline="110" endline="134">AreRoomsConnectedThroughDoors</references>
+        <references refid="classCrewMovementValidator_1a5f57c030a16c4ecb73d0ceb9e31a82e6" compoundref="CrewMovementValidator_8cs" startline="85" endline="104">CorridorRoomConnectionValid</references>
+        <references refid="classCrewMovementValidator_1ac4de44ee83f4831bc6f536c5f120f974" compoundref="CrewMovementValidator_8cs" startline="69" endline="75">GetRoomAtTile</references>
+        <references refid="classRoom_1af4b97c8e2306beda35f26f8803734eb5" compoundref="Room_8cs" startline="24">Room&lt; TData, TLevel &gt;.roomType</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classCrewMovementValidator_1ac4de44ee83f4831bc6f536c5f120f974" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+        <definition>Room CrewMovementValidator.GetRoomAtTile</definition>
+        <argsstring>(Vector2Int tile)</argsstring>
+        <name>GetRoomAtTile</name>
+        <qualifiedname>CrewMovementValidator.GetRoomAtTile</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>tile</declname>
+        </param>
+        <briefdescription>
+<para>특정 타일을 점유하고 있는 방 찾기 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewMovementValidator.cs" line="69" column="18" bodyfile="Assets/Scripts/RTS/CrewMovementValidator.cs" bodystart="69" bodyend="75"/>
+        <references refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" compoundref="Room_8cs" startline="482" endline="488">Room&lt; TData, TLevel &gt;.GetOccupiedTiles</references>
+        <referencedby refid="classCrewMovementValidator_1a2601f8804be2724ebbc26651d3ee8de3" compoundref="CrewMovementValidator_8cs" startline="42" endline="64">AreTilesConnected</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMovementValidator_1a5f57c030a16c4ecb73d0ceb9e31a82e6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CrewMovementValidator.CorridorRoomConnectionValid</definition>
+        <argsstring>(Room roomA, Room roomB, Vector2Int from, Vector2Int to)</argsstring>
+        <name>CorridorRoomConnectionValid</name>
+        <qualifiedname>CrewMovementValidator.CorridorRoomConnectionValid</qualifiedname>
+        <param>
+          <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+          <declname>roomA</declname>
+        </param>
+        <param>
+          <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+          <declname>roomB</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>to</declname>
+        </param>
+        <briefdescription>
+<para>복도 &lt;-&gt; 방 이동 시 문 연결성 검사 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>roomA</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>roomB</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>from</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>to</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewMovementValidator.cs" line="85" column="18" bodyfile="Assets/Scripts/RTS/CrewMovementValidator.cs" bodystart="85" bodyend="104"/>
+        <references refid="classRoom_1ae1f89a83229215231d726691043898c6" compoundref="Room_8cs" startline="36">Room&lt; TData, TLevel &gt;.currentRotation</references>
+        <references refid="structDoorPosition_1a57a3b25d1cc64716f7ffb23cd1ac8752" compoundref="DoorPosition_8cs" startline="14">DoorPosition.direction</references>
+        <references refid="classRoom_1ae14b08f3ba19cce81b077d6fefcb1fd5" compoundref="Room_8cs" startline="441" endline="444">Room&lt; TData, TLevel &gt;.GetCurrentLevel</references>
+        <references refid="classCrewMovementValidator_1a5530033ef41c14b2ab1a219cb8070e56" compoundref="CrewMovementValidator_8cs" startline="152" endline="162">GetDirectionOffset</references>
+        <references refid="classRoomData_1a32d344538a3e29e053bad7a953f6d088" compoundref="RoomData_8cs" startline="153" endline="177">RoomData&lt; T &gt;.GetDoorPositionsWithDirection</references>
+        <references refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" compoundref="Room_8cs" startline="15">Room&lt; TData, TLevel &gt;.position</references>
+        <referencedby refid="classCrewMovementValidator_1a2601f8804be2724ebbc26651d3ee8de3" compoundref="CrewMovementValidator_8cs" startline="42" endline="64">AreTilesConnected</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMovementValidator_1a22d0bc7e909e7090b18c4956d997da22" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CrewMovementValidator.AreRoomsConnectedThroughDoors</definition>
+        <argsstring>(Room roomA, Room roomB, Vector2Int from, Vector2Int to)</argsstring>
+        <name>AreRoomsConnectedThroughDoors</name>
+        <qualifiedname>CrewMovementValidator.AreRoomsConnectedThroughDoors</qualifiedname>
+        <param>
+          <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+          <declname>roomA</declname>
+        </param>
+        <param>
+          <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+          <declname>roomB</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>to</declname>
+        </param>
+        <briefdescription>
+<para>방과 방 사이가 문으로 연결돼 있는지 검사 ShipValidationHelper.cs의 CheckAllRoomsPathConnectedByDoors 방식 반영 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewMovementValidator.cs" line="110" column="18" bodyfile="Assets/Scripts/RTS/CrewMovementValidator.cs" bodystart="110" bodyend="134"/>
+        <references refid="classRoom_1ae1f89a83229215231d726691043898c6" compoundref="Room_8cs" startline="36">Room&lt; TData, TLevel &gt;.currentRotation</references>
+        <references refid="structDoorPosition_1a57a3b25d1cc64716f7ffb23cd1ac8752" compoundref="DoorPosition_8cs" startline="14">DoorPosition.direction</references>
+        <references refid="classCrewMovementValidator_1ad560faa51070588da01ffa0d87d70d87" compoundref="CrewMovementValidator_8cs" startline="139" endline="145">DoorPositionMatch</references>
+        <references refid="classRoom_1ae14b08f3ba19cce81b077d6fefcb1fd5" compoundref="Room_8cs" startline="441" endline="444">Room&lt; TData, TLevel &gt;.GetCurrentLevel</references>
+        <references refid="classRoomData_1a32d344538a3e29e053bad7a953f6d088" compoundref="RoomData_8cs" startline="153" endline="177">RoomData&lt; T &gt;.GetDoorPositionsWithDirection</references>
+        <references refid="classCrewMovementValidator_1af4ce471bbcca45fef94ec82d9ac8de11" compoundref="CrewMovementValidator_8cs" startline="167" endline="177">GetOppositeDoorDirection</references>
+        <references refid="structDoorPosition_1aa9b01dac11a0393895589472bb644d60" compoundref="DoorPosition_8cs" startline="11">DoorPosition.position</references>
+        <references refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" compoundref="Room_8cs" startline="15">Room&lt; TData, TLevel &gt;.position</references>
+        <referencedby refid="classCrewMovementValidator_1a2601f8804be2724ebbc26651d3ee8de3" compoundref="CrewMovementValidator_8cs" startline="42" endline="64">AreTilesConnected</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMovementValidator_1ad560faa51070588da01ffa0d87d70d87" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CrewMovementValidator.DoorPositionMatch</definition>
+        <argsstring>(Vector2Int doorPosA, DoorDirection dirA, Vector2Int doorPosB, DoorDirection dirB)</argsstring>
+        <name>DoorPositionMatch</name>
+        <qualifiedname>CrewMovementValidator.DoorPositionMatch</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>doorPosA</declname>
+        </param>
+        <param>
+          <type>DoorDirection</type>
+          <declname>dirA</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>doorPosB</declname>
+        </param>
+        <param>
+          <type>DoorDirection</type>
+          <declname>dirB</declname>
+        </param>
+        <briefdescription>
+<para>두 문의 위치가 인접한지 검사 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewMovementValidator.cs" line="139" column="18" bodyfile="Assets/Scripts/RTS/CrewMovementValidator.cs" bodystart="139" bodyend="145"/>
+        <references refid="classCrewMovementValidator_1a5530033ef41c14b2ab1a219cb8070e56" compoundref="CrewMovementValidator_8cs" startline="152" endline="162">GetDirectionOffset</references>
+        <referencedby refid="classCrewMovementValidator_1a22d0bc7e909e7090b18c4956d997da22" compoundref="CrewMovementValidator_8cs" startline="110" endline="134">AreRoomsConnectedThroughDoors</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMovementValidator_1a5530033ef41c14b2ab1a219cb8070e56" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>Vector2Int CrewMovementValidator.GetDirectionOffset</definition>
+        <argsstring>(DoorDirection dir)</argsstring>
+        <name>GetDirectionOffset</name>
+        <qualifiedname>CrewMovementValidator.GetDirectionOffset</qualifiedname>
+        <param>
+          <type>DoorDirection</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>문 방향에 따른 그리드 타일 위치 offset 세팅 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewMovementValidator.cs" line="152" column="24" bodyfile="Assets/Scripts/RTS/CrewMovementValidator.cs" bodystart="152" bodyend="162"/>
+        <referencedby refid="classCrewMovementValidator_1a5f57c030a16c4ecb73d0ceb9e31a82e6" compoundref="CrewMovementValidator_8cs" startline="85" endline="104">CorridorRoomConnectionValid</referencedby>
+        <referencedby refid="classCrewMovementValidator_1ad560faa51070588da01ffa0d87d70d87" compoundref="CrewMovementValidator_8cs" startline="139" endline="145">DoorPositionMatch</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMovementValidator_1af4ce471bbcca45fef94ec82d9ac8de11" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DoorDirection</type>
+        <definition>DoorDirection CrewMovementValidator.GetOppositeDoorDirection</definition>
+        <argsstring>(DoorDirection dir)</argsstring>
+        <name>GetOppositeDoorDirection</name>
+        <qualifiedname>CrewMovementValidator.GetOppositeDoorDirection</qualifiedname>
+        <param>
+          <type>DoorDirection</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>현재 문의 반대 방향 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/CrewMovementValidator.cs" line="167" column="27" bodyfile="Assets/Scripts/RTS/CrewMovementValidator.cs" bodystart="167" bodyend="177"/>
+        <referencedby refid="classCrewMovementValidator_1a22d0bc7e909e7090b18c4956d997da22" compoundref="CrewMovementValidator_8cs" startline="110" endline="134">AreRoomsConnectedThroughDoors</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>선원 이동 시 경로 유효성 검사 담당 방/복도 타일 이동 허용, 방-방 이동 시 문 방향, 위치 검사 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CrewMovementValidator</label>
+        <link refid="classCrewMovementValidator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>CrewMovementValidator</label>
+        <link refid="classCrewMovementValidator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/RTS/CrewMovementValidator.cs" line="9" column="7" bodyfile="Assets/Scripts/RTS/CrewMovementValidator.cs" bodystart="10" bodyend="178"/>
+    <listofallmembers>
+      <member refid="classCrewMovementValidator_1a22d0bc7e909e7090b18c4956d997da22" prot="private" virt="non-virtual"><scope>CrewMovementValidator</scope><name>AreRoomsConnectedThroughDoors</name></member>
+      <member refid="classCrewMovementValidator_1a2601f8804be2724ebbc26651d3ee8de3" prot="public" virt="non-virtual"><scope>CrewMovementValidator</scope><name>AreTilesConnected</name></member>
+      <member refid="classCrewMovementValidator_1a5f57c030a16c4ecb73d0ceb9e31a82e6" prot="private" virt="non-virtual"><scope>CrewMovementValidator</scope><name>CorridorRoomConnectionValid</name></member>
+      <member refid="classCrewMovementValidator_1ad560faa51070588da01ffa0d87d70d87" prot="private" virt="non-virtual"><scope>CrewMovementValidator</scope><name>DoorPositionMatch</name></member>
+      <member refid="classCrewMovementValidator_1a5530033ef41c14b2ab1a219cb8070e56" prot="private" virt="non-virtual"><scope>CrewMovementValidator</scope><name>GetDirectionOffset</name></member>
+      <member refid="classCrewMovementValidator_1af4ce471bbcca45fef94ec82d9ac8de11" prot="private" virt="non-virtual"><scope>CrewMovementValidator</scope><name>GetOppositeDoorDirection</name></member>
+      <member refid="classCrewMovementValidator_1ac4de44ee83f4831bc6f536c5f120f974" prot="private" virt="non-virtual"><scope>CrewMovementValidator</scope><name>GetRoomAtTile</name></member>
+      <member refid="classCrewMovementValidator_1a81f36c4d99a75149fc7c0e5db33b7101" prot="public" virt="non-virtual"><scope>CrewMovementValidator</scope><name>Initialize</name></member>
+      <member refid="classCrewMovementValidator_1a6bc0106de6cc06697e9106a36e4f672e" prot="public" virt="non-virtual"><scope>CrewMovementValidator</scope><name>inspectorWalkable</name></member>
+      <member refid="classCrewMovementValidator_1a5d4caf53367c1f0d9ac691bfd9c553cc" prot="public" virt="non-virtual"><scope>CrewMovementValidator</scope><name>IsTileWalkable</name></member>
+      <member refid="classCrewMovementValidator_1a2d946668dc15b2c0ef923ec92da14991" prot="private" virt="non-virtual"><scope>CrewMovementValidator</scope><name>rooms</name></member>
+      <member refid="classCrewMovementValidator_1ae7c2d7fbcbefe691ce8338b15bbee1ba" prot="private" virt="non-virtual"><scope>CrewMovementValidator</scope><name>walkableTiles</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

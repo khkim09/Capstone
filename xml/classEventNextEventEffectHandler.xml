@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEventNextEventEffectHandler" kind="class" language="C#" prot="public">
+    <compoundname>EventNextEventEffectHandler</compoundname>
+    <basecompoundref refid="interfaceISpecialEffectHandler" prot="public" virt="non-virtual">ISpecialEffectHandler</basecompoundref>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEventNextEventEffectHandler_1a59234ff1c4bf8e5d64844139e9c764b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventNextEventEffectHandler.HandleEffect</definition>
+        <argsstring>(EventOutcome outcome)</argsstring>
+        <name>HandleEffect</name>
+        <qualifiedname>EventNextEventEffectHandler.HandleEffect</qualifiedname>
+        <reimplements refid="interfaceISpecialEffectHandler_1a2130b602cf4fb5426536b91c79dabbff">HandleEffect</reimplements>
+        <param>
+          <type><ref refid="classEventOutcome" kindref="compound">EventOutcome</ref></type>
+          <declname>outcome</declname>
+        </param>
+        <briefdescription>
+<para>outcome에 연결된 nextEvent가 존재하면 즉시 실행합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>outcome</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이벤트 결과 정보</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventHandlers/EventNextEventEffectHandler.cs" line="12" column="17" bodyfile="Assets/Scripts/Events/EventHandlers/EventNextEventEffectHandler.cs" bodystart="12" bodyend="28"/>
+        <references refid="classEventOutcome_1aa4f58edd07549ff0bd300549f55471eb" compoundref="EventOutcome_8cs" startline="34">EventOutcome.nextEvent</references>
+        <references refid="classEventManager_1a17513adf1ec99ebc11f951688629d826" compoundref="EventManager_8cs" startline="158" endline="172">EventManager.TriggerEvent</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>다음 이벤트를 트리거하는 특수 효과 핸들러입니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EventNextEventEffectHandler</label>
+        <link refid="classEventNextEventEffectHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ISpecialEffectHandler</label>
+        <link refid="interfaceISpecialEffectHandler"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>EventNextEventEffectHandler</label>
+        <link refid="classEventNextEventEffectHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ISpecialEffectHandler</label>
+        <link refid="interfaceISpecialEffectHandler"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Events/EventHandlers/EventNextEventEffectHandler.cs" line="6" column="7" bodyfile="Assets/Scripts/Events/EventHandlers/EventNextEventEffectHandler.cs" bodystart="7" bodyend="29"/>
+    <listofallmembers>
+      <member refid="classEventNextEventEffectHandler_1a59234ff1c4bf8e5d64844139e9c764b1" prot="public" virt="non-virtual"><scope>EventNextEventEffectHandler</scope><name>HandleEffect</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEnemyShipTemplate" kind="class" language="C#" prot="public">
+    <compoundname>EnemyShipTemplate</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ScriptableObject</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classEnemyShipTemplate_1aff4b8b37cae5e2996444f5ffc880bfa0" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string EnemyShipTemplate.templateName</definition>
+        <argsstring></argsstring>
+        <name>templateName</name>
+        <qualifiedname>EnemyShipTemplate.templateName</qualifiedname>
+        <initializer>= &quot;pirate_default&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipTemplate.cs" line="12" column="19" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipTemplate.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyShipTemplate_1af4ba0b26f0c5577e429f725bfb2b9c88" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string EnemyShipTemplate.templatePath</definition>
+        <argsstring></argsstring>
+        <name>templatePath</name>
+        <qualifiedname>EnemyShipTemplate.templatePath</qualifiedname>
+        <initializer>= &quot;ShipTemplates&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipTemplate.cs" line="15" column="19" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipTemplate.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyShipTemplate_1a00936cba41dad2c02eb2d48d24bd815c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int EnemyShipTemplate.minCrewCount</definition>
+        <argsstring></argsstring>
+        <name>minCrewCount</name>
+        <qualifiedname>EnemyShipTemplate.minCrewCount</qualifiedname>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipTemplate.cs" line="18" column="16" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipTemplate.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyShipTemplate_1a97f3f8f30e079f60124b016496f24a46" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int EnemyShipTemplate.maxCrewCount</definition>
+        <argsstring></argsstring>
+        <name>maxCrewCount</name>
+        <qualifiedname>EnemyShipTemplate.maxCrewCount</qualifiedname>
+        <initializer>= 5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipTemplate.cs" line="21" column="16" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipTemplate.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEnemyShipTemplate_1a6fbd7bfccc9af9445f9e30ce2b87b5f7" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="classCrewRaceOption" kindref="compound">CrewRaceOption</ref> &gt;</type>
+        <definition>List&lt;CrewRaceOption&gt; EnemyShipTemplate.possibleRaces</definition>
+        <argsstring></argsstring>
+        <name>possibleRaces</name>
+        <qualifiedname>EnemyShipTemplate.possibleRaces</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipTemplate.cs" line="24" column="17" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipTemplate.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEnemyShipTemplate_1ad99b2c34fb03d983ba2c5dd50d9007fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string EnemyShipTemplate.GetTemplatePath</definition>
+        <argsstring>()</argsstring>
+        <name>GetTemplatePath</name>
+        <qualifiedname>EnemyShipTemplate.GetTemplatePath</qualifiedname>
+        <briefdescription>
+<para>Get the full path to the template file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/Enemy/EnemyShipTemplate.cs" line="29" column="19" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipTemplate.cs" bodystart="29" bodyend="32"/>
+        <referencedby refid="classEnemyShipFactory_1adf438c0292d675acffceb7b7bd4ac129" compoundref="EnemyShipFactory_8cs" startline="19" endline="99">EnemyShipFactory.SpawnPirateShip</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Defines a template for pirate ships that can be spawned as enemies. References saved ship templates and controls crew generation parameters. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EnemyShipTemplate</label>
+        <link refid="classEnemyShipTemplate"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>EnemyShipTemplate</label>
+        <link refid="classEnemyShipTemplate"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Combat/Enemy/EnemyShipTemplate.cs" line="9" column="7" bodyfile="Assets/Scripts/Combat/Enemy/EnemyShipTemplate.cs" bodystart="10" bodyend="33"/>
+    <listofallmembers>
+      <member refid="classEnemyShipTemplate_1ad99b2c34fb03d983ba2c5dd50d9007fe" prot="public" virt="non-virtual"><scope>EnemyShipTemplate</scope><name>GetTemplatePath</name></member>
+      <member refid="classEnemyShipTemplate_1a97f3f8f30e079f60124b016496f24a46" prot="public" virt="non-virtual"><scope>EnemyShipTemplate</scope><name>maxCrewCount</name></member>
+      <member refid="classEnemyShipTemplate_1a00936cba41dad2c02eb2d48d24bd815c" prot="public" virt="non-virtual"><scope>EnemyShipTemplate</scope><name>minCrewCount</name></member>
+      <member refid="classEnemyShipTemplate_1a6fbd7bfccc9af9445f9e30ce2b87b5f7" prot="public" virt="non-virtual"><scope>EnemyShipTemplate</scope><name>possibleRaces</name></member>
+      <member refid="classEnemyShipTemplate_1aff4b8b37cae5e2996444f5ffc880bfa0" prot="public" virt="non-virtual"><scope>EnemyShipTemplate</scope><name>templateName</name></member>
+      <member refid="classEnemyShipTemplate_1af4ba0b26f0c5577e429f725bfb2b9c88" prot="public" virt="non-virtual"><scope>EnemyShipTemplate</scope><name>templatePath</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

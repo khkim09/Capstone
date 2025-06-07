@@ -1,0 +1,594 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classPlanetItemUI" kind="class" language="C#" prot="public">
+    <compoundname>PlanetItemUI</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerClickHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerEnterHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerExitHandler</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classPlanetItemUI_1a01a4db1fe1c362bb685fc16692aacd17" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image PlanetItemUI.iconImage</definition>
+        <argsstring></argsstring>
+        <name>iconImage</name>
+        <qualifiedname>PlanetItemUI.iconImage</qualifiedname>
+        <briefdescription>
+<para>아이템 아이콘을 표시하는 Image 컴포넌트입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="19" column="20" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="19" bodyend="-1"/>
+        <referencedby refid="classPlanetItemUI_1a45dea1e75d9632c4219322841854c530" compoundref="PlanetItemUI_8cs" startline="89" endline="137">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPlanetItemUI_1ac39f9bcea865bd339560bb5073a0ddd1" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image PlanetItemUI.itemShapeImage</definition>
+        <argsstring></argsstring>
+        <name>itemShapeImage</name>
+        <qualifiedname>PlanetItemUI.itemShapeImage</qualifiedname>
+        <briefdescription>
+<para>아이템 모양을 시각적으로 표시할 Image 컴포넌트입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="24" column="20" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="24" bodyend="-1"/>
+        <referencedby refid="classPlanetItemUI_1a45dea1e75d9632c4219322841854c530" compoundref="PlanetItemUI_8cs" startline="89" endline="137">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPlanetItemUI_1a401761f9d1811a00f3466bbaf671acac" prot="private" static="no" mutable="no">
+        <type>List&lt; Sprite &gt;</type>
+        <definition>List&lt;Sprite&gt; PlanetItemUI.itemShapeSprites</definition>
+        <argsstring></argsstring>
+        <name>itemShapeSprites</name>
+        <qualifiedname>PlanetItemUI.itemShapeSprites</qualifiedname>
+        <briefdescription>
+<para>아이템 모양 관련 List 컴포넌트입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="29" column="19" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="29" bodyend="-1"/>
+        <referencedby refid="classPlanetItemUI_1a45dea1e75d9632c4219322841854c530" compoundref="PlanetItemUI_8cs" startline="89" endline="137">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPlanetItemUI_1a6f7b0c93c7d20efad972d8ded4769828" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI PlanetItemUI.itemNameText</definition>
+        <argsstring></argsstring>
+        <name>itemNameText</name>
+        <qualifiedname>PlanetItemUI.itemNameText</qualifiedname>
+        <briefdescription>
+<para>아이템 이름을 표시하는 TextMeshProUGUI 컴포넌트입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="34" column="30" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="34" bodyend="-1"/>
+        <referencedby refid="classPlanetItemUI_1a1b2f80cf91a69a14fce71e6181fb5e89" compoundref="PlanetItemUI_8cs" startline="210" endline="220">ApplyColor</referencedby>
+        <referencedby refid="classPlanetItemUI_1a10c0540dde2cd3d14f82bb688d9a48ce" compoundref="PlanetItemUI_8cs" startline="225" endline="235">ApplyOriginalColor</referencedby>
+        <referencedby refid="classPlanetItemUI_1a45dea1e75d9632c4219322841854c530" compoundref="PlanetItemUI_8cs" startline="89" endline="137">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPlanetItemUI_1a849b0bec38c6798b06ab297655b9cb32" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI PlanetItemUI.categoryText</definition>
+        <argsstring></argsstring>
+        <name>categoryText</name>
+        <qualifiedname>PlanetItemUI.categoryText</qualifiedname>
+        <briefdescription>
+<para>아이템 종류를 표시하는 TextMeshProUGUI 컴포넌트입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="39" column="30" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="39" bodyend="-1"/>
+        <referencedby refid="classPlanetItemUI_1a1b2f80cf91a69a14fce71e6181fb5e89" compoundref="PlanetItemUI_8cs" startline="210" endline="220">ApplyColor</referencedby>
+        <referencedby refid="classPlanetItemUI_1a10c0540dde2cd3d14f82bb688d9a48ce" compoundref="PlanetItemUI_8cs" startline="225" endline="235">ApplyOriginalColor</referencedby>
+        <referencedby refid="classPlanetItemUI_1a45dea1e75d9632c4219322841854c530" compoundref="PlanetItemUI_8cs" startline="89" endline="137">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPlanetItemUI_1ab99abdf1a660a8032af3e27eb3ba854a" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI PlanetItemUI.capacityText</definition>
+        <argsstring></argsstring>
+        <name>capacityText</name>
+        <qualifiedname>PlanetItemUI.capacityText</qualifiedname>
+        <briefdescription>
+<para>아이템 최대 적재량을 표시하는 TextMeshProUGUI 컴포넌트입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="44" column="30" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="44" bodyend="-1"/>
+        <referencedby refid="classPlanetItemUI_1a1b2f80cf91a69a14fce71e6181fb5e89" compoundref="PlanetItemUI_8cs" startline="210" endline="220">ApplyColor</referencedby>
+        <referencedby refid="classPlanetItemUI_1a10c0540dde2cd3d14f82bb688d9a48ce" compoundref="PlanetItemUI_8cs" startline="225" endline="235">ApplyOriginalColor</referencedby>
+        <referencedby refid="classPlanetItemUI_1a45dea1e75d9632c4219322841854c530" compoundref="PlanetItemUI_8cs" startline="89" endline="137">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPlanetItemUI_1ab5ecf483c1ce6ea4d9ae3a0fc9477e81" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI PlanetItemUI.priceText</definition>
+        <argsstring></argsstring>
+        <name>priceText</name>
+        <qualifiedname>PlanetItemUI.priceText</qualifiedname>
+        <briefdescription>
+<para>아이템 가격을 표시하는 TextMeshProUGUI 컴포넌트입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="49" column="30" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="49" bodyend="-1"/>
+        <referencedby refid="classPlanetItemUI_1a1b2f80cf91a69a14fce71e6181fb5e89" compoundref="PlanetItemUI_8cs" startline="210" endline="220">ApplyColor</referencedby>
+        <referencedby refid="classPlanetItemUI_1a10c0540dde2cd3d14f82bb688d9a48ce" compoundref="PlanetItemUI_8cs" startline="225" endline="235">ApplyOriginalColor</referencedby>
+        <referencedby refid="classPlanetItemUI_1a45dea1e75d9632c4219322841854c530" compoundref="PlanetItemUI_8cs" startline="89" endline="137">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPlanetItemUI_1ab9bbaf5ccfca194c4c11a4dd58c4ac82" prot="private" static="no" mutable="no">
+        <type><ref refid="classMiddlePanelUI" kindref="compound">MiddlePanelUI</ref></type>
+        <definition>MiddlePanelUI PlanetItemUI.middlePanel</definition>
+        <argsstring></argsstring>
+        <name>middlePanel</name>
+        <qualifiedname>PlanetItemUI.middlePanel</qualifiedname>
+        <briefdescription>
+<para>행성 물품과 연동된 Panel 컴포넌트 입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="54" column="28" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="54" bodyend="-1"/>
+        <referencedby refid="classPlanetItemUI_1a5ef7492a24a25de8eaa03aca819012ca" compoundref="PlanetItemUI_8cs" startline="144" endline="170">OnPointerClick</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPlanetItemUI_1a062fa61b93ce019a0d117a36dcbe4776" prot="private" static="no" mutable="no">
+        <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+        <definition>TradingItemData PlanetItemUI.itemData</definition>
+        <argsstring></argsstring>
+        <name>itemData</name>
+        <qualifiedname>PlanetItemUI.itemData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="60" column="29" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPlanetItemUI_1a7042409bf271d9f031fbe88a2aae1112" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PlanetItemUI.isSelected</definition>
+        <argsstring></argsstring>
+        <name>isSelected</name>
+        <qualifiedname>PlanetItemUI.isSelected</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="63" column="18" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPlanetItemUI_1a439df89739addc3a7bf26bb4de59fd59" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color PlanetItemUI.highlightColor</definition>
+        <argsstring></argsstring>
+        <name>highlightColor</name>
+        <qualifiedname>PlanetItemUI.highlightColor</qualifiedname>
+        <initializer>= Color.yellow</initializer>
+        <briefdescription>
+<para>마우스 오버 시 적용할 강조 색상입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="72" column="20" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="72" bodyend="-1"/>
+        <referencedby refid="classPlanetItemUI_1a0abaca8dc5065f17d2dd052bd894266f" compoundref="PlanetItemUI_8cs" startline="176" endline="180">OnPointerEnter</referencedby>
+        <referencedby refid="classPlanetItemUI_1aa532b9e1bce7c35c3ecb57b372d26934" compoundref="PlanetItemUI_8cs" startline="196" endline="204">SetSelected</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPlanetItemUI_1a45ba4096f7472b4dd381c1124ff39090" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color PlanetItemUI.itemNameOriginalColor</definition>
+        <argsstring></argsstring>
+        <name>itemNameOriginalColor</name>
+        <qualifiedname>PlanetItemUI.itemNameOriginalColor</qualifiedname>
+        <briefdescription>
+<para>아이템 이름 텍스트의 원래 색상입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="77" column="19" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="77" bodyend="-1"/>
+        <referencedby refid="classPlanetItemUI_1a10c0540dde2cd3d14f82bb688d9a48ce" compoundref="PlanetItemUI_8cs" startline="225" endline="235">ApplyOriginalColor</referencedby>
+        <referencedby refid="classPlanetItemUI_1a45dea1e75d9632c4219322841854c530" compoundref="PlanetItemUI_8cs" startline="89" endline="137">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPlanetItemUI_1a2fd857ad591dbe19a2a20ec926744607" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color PlanetItemUI.priceOriginalColor</definition>
+        <argsstring></argsstring>
+        <name>priceOriginalColor</name>
+        <qualifiedname>PlanetItemUI.priceOriginalColor</qualifiedname>
+        <briefdescription>
+<para>아이템 가격 텍스트의 원래 색상입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="82" column="19" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="82" bodyend="-1"/>
+        <referencedby refid="classPlanetItemUI_1a10c0540dde2cd3d14f82bb688d9a48ce" compoundref="PlanetItemUI_8cs" startline="225" endline="235">ApplyOriginalColor</referencedby>
+        <referencedby refid="classPlanetItemUI_1a45dea1e75d9632c4219322841854c530" compoundref="PlanetItemUI_8cs" startline="89" endline="137">Setup</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classPlanetItemUI_1adb74e2a7d9af390f07cc27d62d052078" prot="private" static="yes" mutable="no">
+        <type><ref refid="classPlanetItemUI" kindref="compound">PlanetItemUI</ref></type>
+        <definition>PlanetItemUI PlanetItemUI._currentSelectedItem</definition>
+        <argsstring></argsstring>
+        <name>_currentSelectedItem</name>
+        <qualifiedname>PlanetItemUI._currentSelectedItem</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="61" column="33" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPlanetItemUI_1a98a629bc1fa0b54c68fec8b43011946e" prot="private" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string PlanetItemUI._currentlySelectedItemName</definition>
+        <argsstring></argsstring>
+        <name>_currentlySelectedItemName</name>
+        <qualifiedname>PlanetItemUI._currentlySelectedItemName</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="62" column="27" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="62" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPlanetItemUI_1a45dea1e75d9632c4219322841854c530" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PlanetItemUI.Setup</definition>
+        <argsstring>(TradingItemData data)</argsstring>
+        <name>Setup</name>
+        <qualifiedname>PlanetItemUI.Setup</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>PlanetItemUI를 초기화하고 텍스트 표시와 색상 초기 상태를 저장합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="89" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="89" bodyend="137"/>
+        <references refid="classPlanetItemUI_1ab99abdf1a660a8032af3e27eb3ba854a" compoundref="PlanetItemUI_8cs" startline="44">capacityText</references>
+        <references refid="classPlanetItemUI_1a849b0bec38c6798b06ab297655b9cb32" compoundref="PlanetItemUI_8cs" startline="39">categoryText</references>
+        <references refid="classPlanetItemUI_1a01a4db1fe1c362bb685fc16692aacd17" compoundref="PlanetItemUI_8cs" startline="19">iconImage</references>
+        <references refid="classPlanetItemUI_1a45ba4096f7472b4dd381c1124ff39090" compoundref="PlanetItemUI_8cs" startline="77">itemNameOriginalColor</references>
+        <references refid="classPlanetItemUI_1a6f7b0c93c7d20efad972d8ded4769828" compoundref="PlanetItemUI_8cs" startline="34">itemNameText</references>
+        <references refid="classPlanetItemUI_1ac39f9bcea865bd339560bb5073a0ddd1" compoundref="PlanetItemUI_8cs" startline="24">itemShapeImage</references>
+        <references refid="classPlanetItemUI_1a401761f9d1811a00f3466bbaf671acac" compoundref="PlanetItemUI_8cs" startline="29">itemShapeSprites</references>
+        <references refid="classPlanetItemUI_1a2fd857ad591dbe19a2a20ec926744607" compoundref="PlanetItemUI_8cs" startline="82">priceOriginalColor</references>
+        <references refid="classPlanetItemUI_1ab5ecf483c1ce6ea4d9ae3a0fc9477e81" compoundref="PlanetItemUI_8cs" startline="49">priceText</references>
+        <references refid="classPlanetItemUI_1aa532b9e1bce7c35c3ecb57b372d26934" compoundref="PlanetItemUI_8cs" startline="196" endline="204">SetSelected</references>
+      </memberdef>
+      <memberdef kind="function" id="classPlanetItemUI_1a5ef7492a24a25de8eaa03aca819012ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PlanetItemUI.OnPointerClick</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerClick</name>
+        <qualifiedname>PlanetItemUI.OnPointerClick</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>사용자가 이 슬롯을 클릭했을 때 호출됩니다. MiddlePanelUI에 상세 정보를 전달하고, 구매창 서브 패널을 활성화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="144" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="144" bodyend="170"/>
+        <references refid="classTradeUIManager_1a298c8e71eda7d6410024c00604ba8a9f" compoundref="TradeUIManager_8cs" startline="105" endline="105">TradeUIManager.Instance</references>
+        <references refid="classPlanetItemUI_1ab9bbaf5ccfca194c4c11a4dd58c4ac82" compoundref="PlanetItemUI_8cs" startline="54">middlePanel</references>
+        <references refid="classTradeUIManager_1a9c735caa5912908da3ae108fdadacbd1" compoundref="TradeUIManager_8cs" startline="167" endline="171">TradeUIManager.OnBuyItemSelected</references>
+        <references refid="classPlanetItemUI_1aa532b9e1bce7c35c3ecb57b372d26934" compoundref="PlanetItemUI_8cs" startline="196" endline="204">SetSelected</references>
+        <references refid="classMiddlePanelUI_1ae3536e2b3e7184a4e0ab728ed1eacdd5" compoundref="MiddlePanelUI_8cs" startline="103" endline="135">MiddlePanelUI.SetSelectedItem</references>
+      </memberdef>
+      <memberdef kind="function" id="classPlanetItemUI_1a0abaca8dc5065f17d2dd052bd894266f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PlanetItemUI.OnPointerEnter</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerEnter</name>
+        <qualifiedname>PlanetItemUI.OnPointerEnter</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>마우스가 이 슬롯 위에 들어왔을 때 호출되며, 아이템 이름과 가격 텍스트의 색상을 강조 색상으로 변경합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>포인터 이벤트 데이터</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="176" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="176" bodyend="180"/>
+        <references refid="classPlanetItemUI_1a1b2f80cf91a69a14fce71e6181fb5e89" compoundref="PlanetItemUI_8cs" startline="210" endline="220">ApplyColor</references>
+        <references refid="classPlanetItemUI_1a439df89739addc3a7bf26bb4de59fd59" compoundref="PlanetItemUI_8cs" startline="72">highlightColor</references>
+      </memberdef>
+      <memberdef kind="function" id="classPlanetItemUI_1a78f23cc4165980e4f99cb7ccfeec8d07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PlanetItemUI.OnPointerExit</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerExit</name>
+        <qualifiedname>PlanetItemUI.OnPointerExit</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>마우스가 이 슬롯을 벗어났을 때 호출되며, 아이템 이름과 가격 텍스트의 색상을 원래 색상으로 복구합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>포인터 이벤트 데이터</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="186" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="186" bodyend="190"/>
+        <references refid="classPlanetItemUI_1a10c0540dde2cd3d14f82bb688d9a48ce" compoundref="PlanetItemUI_8cs" startline="225" endline="235">ApplyOriginalColor</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classPlanetItemUI_1aa532b9e1bce7c35c3ecb57b372d26934" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PlanetItemUI.SetSelected</definition>
+        <argsstring>(bool selected)</argsstring>
+        <name>SetSelected</name>
+        <qualifiedname>PlanetItemUI.SetSelected</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>selected</declname>
+        </param>
+        <briefdescription>
+<para>선택된 물품의 색상을 변경하는 함수입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>selected</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="196" column="18" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="196" bodyend="204"/>
+        <references refid="classPlanetItemUI_1a1b2f80cf91a69a14fce71e6181fb5e89" compoundref="PlanetItemUI_8cs" startline="210" endline="220">ApplyColor</references>
+        <references refid="classPlanetItemUI_1a10c0540dde2cd3d14f82bb688d9a48ce" compoundref="PlanetItemUI_8cs" startline="225" endline="235">ApplyOriginalColor</references>
+        <references refid="classPlanetItemUI_1a439df89739addc3a7bf26bb4de59fd59" compoundref="PlanetItemUI_8cs" startline="72">highlightColor</references>
+        <referencedby refid="classPlanetItemUI_1a5ef7492a24a25de8eaa03aca819012ca" compoundref="PlanetItemUI_8cs" startline="144" endline="170">OnPointerClick</referencedby>
+        <referencedby refid="classPlanetItemUI_1a45dea1e75d9632c4219322841854c530" compoundref="PlanetItemUI_8cs" startline="89" endline="137">Setup</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classPlanetItemUI_1a1b2f80cf91a69a14fce71e6181fb5e89" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PlanetItemUI.ApplyColor</definition>
+        <argsstring>(Color color)</argsstring>
+        <name>ApplyColor</name>
+        <qualifiedname>PlanetItemUI.ApplyColor</qualifiedname>
+        <param>
+          <type>Color</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>색상 변경을 적용하는 함수입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>color</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="210" column="18" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="210" bodyend="220"/>
+        <references refid="classPlanetItemUI_1ab99abdf1a660a8032af3e27eb3ba854a" compoundref="PlanetItemUI_8cs" startline="44">capacityText</references>
+        <references refid="classPlanetItemUI_1a849b0bec38c6798b06ab297655b9cb32" compoundref="PlanetItemUI_8cs" startline="39">categoryText</references>
+        <references refid="classPlanetItemUI_1a6f7b0c93c7d20efad972d8ded4769828" compoundref="PlanetItemUI_8cs" startline="34">itemNameText</references>
+        <references refid="classPlanetItemUI_1ab5ecf483c1ce6ea4d9ae3a0fc9477e81" compoundref="PlanetItemUI_8cs" startline="49">priceText</references>
+        <referencedby refid="classPlanetItemUI_1a0abaca8dc5065f17d2dd052bd894266f" compoundref="PlanetItemUI_8cs" startline="176" endline="180">OnPointerEnter</referencedby>
+        <referencedby refid="classPlanetItemUI_1aa532b9e1bce7c35c3ecb57b372d26934" compoundref="PlanetItemUI_8cs" startline="196" endline="204">SetSelected</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classPlanetItemUI_1a10c0540dde2cd3d14f82bb688d9a48ce" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PlanetItemUI.ApplyOriginalColor</definition>
+        <argsstring>()</argsstring>
+        <name>ApplyOriginalColor</name>
+        <qualifiedname>PlanetItemUI.ApplyOriginalColor</qualifiedname>
+        <briefdescription>
+<para>원래의 텍스트 색상으로 되돌리는 함수입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="225" column="18" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="225" bodyend="235"/>
+        <references refid="classPlanetItemUI_1ab99abdf1a660a8032af3e27eb3ba854a" compoundref="PlanetItemUI_8cs" startline="44">capacityText</references>
+        <references refid="classPlanetItemUI_1a849b0bec38c6798b06ab297655b9cb32" compoundref="PlanetItemUI_8cs" startline="39">categoryText</references>
+        <references refid="classPlanetItemUI_1a45ba4096f7472b4dd381c1124ff39090" compoundref="PlanetItemUI_8cs" startline="77">itemNameOriginalColor</references>
+        <references refid="classPlanetItemUI_1a6f7b0c93c7d20efad972d8ded4769828" compoundref="PlanetItemUI_8cs" startline="34">itemNameText</references>
+        <references refid="classPlanetItemUI_1a2fd857ad591dbe19a2a20ec926744607" compoundref="PlanetItemUI_8cs" startline="82">priceOriginalColor</references>
+        <references refid="classPlanetItemUI_1ab5ecf483c1ce6ea4d9ae3a0fc9477e81" compoundref="PlanetItemUI_8cs" startline="49">priceText</references>
+        <referencedby refid="classPlanetItemUI_1a78f23cc4165980e4f99cb7ccfeec8d07" compoundref="PlanetItemUI_8cs" startline="186" endline="190">OnPointerExit</referencedby>
+        <referencedby refid="classPlanetItemUI_1aa532b9e1bce7c35c3ecb57b372d26934" compoundref="PlanetItemUI_8cs" startline="196" endline="204">SetSelected</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>PlanetItemUI는 행성 상점(왼쪽 패널)에서 판매되는 각 아이템 슬롯을 관리합니다. <ref refid="classTradingItemData" kindref="compound">TradingItemData</ref> 데이터를 받아 이름, 가격을 UI에 표시하고, 클릭 시 MiddlePanelUI로 상세 정보를 전달합니다. 선택/비선택 상태에 따라 색상을 동적으로 변경합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>PlanetItemUI</label>
+        <link refid="classPlanetItemUI"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="6">
+        <label>MiddlePanelUI</label>
+        <link refid="classMiddlePanelUI"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-buyButton</edgelabel>
+          <edgelabel>-sellButton</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-selectedItemData</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-tradeManager</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>PlanetItemUI</label>
+        <link refid="classPlanetItemUI"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-middlePanel</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-itemData</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>-_currentSelectedItem</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="10">
+        <label>TradeManager</label>
+        <link refid="classTradeManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>TradingItemData</label>
+        <link refid="classTradingItemData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>UnityEngine</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" line="12" column="7" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/PlanetItemUI.cs" bodystart="13" bodyend="236"/>
+    <listofallmembers>
+      <member refid="classPlanetItemUI_1a98a629bc1fa0b54c68fec8b43011946e" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>_currentlySelectedItemName</name></member>
+      <member refid="classPlanetItemUI_1adb74e2a7d9af390f07cc27d62d052078" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>_currentSelectedItem</name></member>
+      <member refid="classPlanetItemUI_1a1b2f80cf91a69a14fce71e6181fb5e89" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>ApplyColor</name></member>
+      <member refid="classPlanetItemUI_1a10c0540dde2cd3d14f82bb688d9a48ce" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>ApplyOriginalColor</name></member>
+      <member refid="classPlanetItemUI_1ab99abdf1a660a8032af3e27eb3ba854a" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>capacityText</name></member>
+      <member refid="classPlanetItemUI_1a849b0bec38c6798b06ab297655b9cb32" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>categoryText</name></member>
+      <member refid="classPlanetItemUI_1a439df89739addc3a7bf26bb4de59fd59" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>highlightColor</name></member>
+      <member refid="classPlanetItemUI_1a01a4db1fe1c362bb685fc16692aacd17" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>iconImage</name></member>
+      <member refid="classPlanetItemUI_1a7042409bf271d9f031fbe88a2aae1112" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>isSelected</name></member>
+      <member refid="classPlanetItemUI_1a062fa61b93ce019a0d117a36dcbe4776" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>itemData</name></member>
+      <member refid="classPlanetItemUI_1a45ba4096f7472b4dd381c1124ff39090" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>itemNameOriginalColor</name></member>
+      <member refid="classPlanetItemUI_1a6f7b0c93c7d20efad972d8ded4769828" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>itemNameText</name></member>
+      <member refid="classPlanetItemUI_1ac39f9bcea865bd339560bb5073a0ddd1" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>itemShapeImage</name></member>
+      <member refid="classPlanetItemUI_1a401761f9d1811a00f3466bbaf671acac" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>itemShapeSprites</name></member>
+      <member refid="classPlanetItemUI_1ab9bbaf5ccfca194c4c11a4dd58c4ac82" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>middlePanel</name></member>
+      <member refid="classPlanetItemUI_1a5ef7492a24a25de8eaa03aca819012ca" prot="public" virt="non-virtual"><scope>PlanetItemUI</scope><name>OnPointerClick</name></member>
+      <member refid="classPlanetItemUI_1a0abaca8dc5065f17d2dd052bd894266f" prot="public" virt="non-virtual"><scope>PlanetItemUI</scope><name>OnPointerEnter</name></member>
+      <member refid="classPlanetItemUI_1a78f23cc4165980e4f99cb7ccfeec8d07" prot="public" virt="non-virtual"><scope>PlanetItemUI</scope><name>OnPointerExit</name></member>
+      <member refid="classPlanetItemUI_1a2fd857ad591dbe19a2a20ec926744607" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>priceOriginalColor</name></member>
+      <member refid="classPlanetItemUI_1ab5ecf483c1ce6ea4d9ae3a0fc9477e81" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>priceText</name></member>
+      <member refid="classPlanetItemUI_1aa532b9e1bce7c35c3ecb57b372d26934" prot="private" virt="non-virtual"><scope>PlanetItemUI</scope><name>SetSelected</name></member>
+      <member refid="classPlanetItemUI_1a45dea1e75d9632c4219322841854c530" prot="public" virt="non-virtual"><scope>PlanetItemUI</scope><name>Setup</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

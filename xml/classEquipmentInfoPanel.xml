@@ -1,0 +1,825 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEquipmentInfoPanel" kind="class" language="C#" prot="public">
+    <compoundname>EquipmentInfoPanel</compoundname>
+    <basecompoundref refid="classTooltipPanelBase" prot="public" virt="non-virtual">TooltipPanelBase</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classEquipmentInfoPanel_1a61d9739f9358cae683ec7e6b0dae56eb" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI EquipmentInfoPanel.equipmentNameText</definition>
+        <argsstring></argsstring>
+        <name>equipmentNameText</name>
+        <qualifiedname>EquipmentInfoPanel.equipmentNameText</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="11" column="29" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentInfoPanel_1a1217ec69f5340465e19f737853310446" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image EquipmentInfoPanel.iconImage</definition>
+        <argsstring></argsstring>
+        <name>iconImage</name>
+        <qualifiedname>EquipmentInfoPanel.iconImage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="15" column="20" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentInfoPanel_1aad88813a8e3d490d2a4b3643a7b8411d" prot="private" static="no" mutable="no">
+        <type>List&lt; Image &gt;</type>
+        <definition>List&lt;Image&gt; EquipmentInfoPanel.skillIconImages</definition>
+        <argsstring></argsstring>
+        <name>skillIconImages</name>
+        <qualifiedname>EquipmentInfoPanel.skillIconImages</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="17" column="19" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentInfoPanel_1ab0eb3da65558ed0ee74079c2c48457e1" prot="private" static="no" mutable="no">
+        <type>List&lt; TextMeshProUGUI &gt;</type>
+        <definition>List&lt;TextMeshProUGUI&gt; EquipmentInfoPanel.skillEffectTexts</definition>
+        <argsstring></argsstring>
+        <name>skillEffectTexts</name>
+        <qualifiedname>EquipmentInfoPanel.skillEffectTexts</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="18" column="19" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentInfoPanel_1aff4da7889135a96b3f1618fec0b1121d" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="classSkillSpritePair" kindref="compound">SkillSpritePair</ref> &gt;</type>
+        <definition>List&lt;SkillSpritePair&gt; EquipmentInfoPanel.skillIconSprites</definition>
+        <argsstring></argsstring>
+        <name>skillIconSprites</name>
+        <qualifiedname>EquipmentInfoPanel.skillIconSprites</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="20" column="19" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentInfoPanel_1affd89db1225b7b29725b2bfe35989ded" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; SkillType, Sprite &gt;</type>
+        <definition>Dictionary&lt;SkillType, Sprite&gt; EquipmentInfoPanel.dict</definition>
+        <argsstring></argsstring>
+        <name>dict</name>
+        <qualifiedname>EquipmentInfoPanel.dict</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="21" column="24" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentInfoPanel_1a723ca8bda340153d1ea4361a510281b1" prot="private" static="no" mutable="no">
+        <type>Sprite</type>
+        <definition>Sprite EquipmentInfoPanel.attackSprite</definition>
+        <argsstring></argsstring>
+        <name>attackSprite</name>
+        <qualifiedname>EquipmentInfoPanel.attackSprite</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="23" column="21" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentInfoPanel_1ae3e544e56641af8443703e4b0e0ad3bd" prot="private" static="no" mutable="no">
+        <type>Sprite</type>
+        <definition>Sprite EquipmentInfoPanel.defenseSprite</definition>
+        <argsstring></argsstring>
+        <name>defenseSprite</name>
+        <qualifiedname>EquipmentInfoPanel.defenseSprite</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="24" column="21" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentInfoPanel_1adaba0a378ecb844035306270d861b55a" prot="private" static="no" mutable="no">
+        <type>Sprite</type>
+        <definition>Sprite EquipmentInfoPanel.hitpointSprite</definition>
+        <argsstring></argsstring>
+        <name>hitpointSprite</name>
+        <qualifiedname>EquipmentInfoPanel.hitpointSprite</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="25" column="21" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentInfoPanel_1a32320bd7159e25a67b591a5d6759b2f0" prot="private" static="no" mutable="no">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentInfoPanel.currentEquipmentItem</definition>
+        <argsstring></argsstring>
+        <name>currentEquipmentItem</name>
+        <qualifiedname>EquipmentInfoPanel.currentEquipmentItem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="27" column="27" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentInfoPanel_1a5d1ddf3fd5a2bd9e1638ff903a4ca287" prot="private" static="no" mutable="no">
+        <type><ref refid="classTradeUIController" kindref="compound">TradeUIController</ref></type>
+        <definition>TradeUIController EquipmentInfoPanel.tradeUIController</definition>
+        <argsstring></argsstring>
+        <name>tradeUIController</name>
+        <qualifiedname>EquipmentInfoPanel.tradeUIController</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="35" column="31" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classEquipmentInfoPanel_1a412d5a05aee64475634e46c814470f79" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button EquipmentInfoPanel.panelButton</definition>
+        <argsstring></argsstring>
+        <name>panelButton</name>
+        <qualifiedname>EquipmentInfoPanel.panelButton</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="13" column="20" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classEquipmentInfoPanel_1a737a1f639d4c95c5f8567e7b3b9a289c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentInfoPanel.CurrentEquipmentItem</definition>
+        <argsstring></argsstring>
+        <name>CurrentEquipmentItem</name>
+        <qualifiedname>EquipmentInfoPanel.CurrentEquipmentItem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="29" column="26" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="30" bodyend="33"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEquipmentInfoPanel_1a8b054808feaecdea78ac3225fd889d4d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentInfoPanel.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>EquipmentInfoPanel.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="37" column="18" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="37" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentInfoPanel_1aa0df2563a80d8247b2fbdc1e163c3837" prot="private" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void EquipmentInfoPanel.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>EquipmentInfoPanel.Start</qualifiedname>
+        <reimplements refid="classTooltipPanelBase_1a83eccfb4ba756898898c78d6f66da5a0">Start</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="43" column="18" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="43" bodyend="48"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEquipmentInfoPanel_1a1552178a8c492a0ff7f8650f81e84e71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentInfoPanel.Initialize</definition>
+        <argsstring>(EquipmentItem equipmentItem)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>EquipmentInfoPanel.Initialize</qualifiedname>
+        <param>
+          <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+          <declname>equipmentItem</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="50" column="17" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="50" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentInfoPanel_1a76e7b05b918abdccd67ce97302503293" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Sprite</type>
+        <definition>Sprite EquipmentInfoPanel.GetSkillSprite</definition>
+        <argsstring>(SkillType skill)</argsstring>
+        <name>GetSkillSprite</name>
+        <qualifiedname>EquipmentInfoPanel.GetSkillSprite</qualifiedname>
+        <param>
+          <type>SkillType</type>
+          <declname>skill</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="176" column="19" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="176" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentInfoPanel_1ad957d350ec691b737eee14336098d756" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentInfoPanel.HideTooltip</definition>
+        <argsstring>()</argsstring>
+        <name>HideTooltip</name>
+        <qualifiedname>EquipmentInfoPanel.HideTooltip</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="190" column="17" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="190" bodyend="193"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classEquipmentInfoPanel_1a56a786eaef151c75fb55f47dfd50427f" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void EquipmentInfoPanel.SetToolTipText</definition>
+        <argsstring>()</argsstring>
+        <name>SetToolTipText</name>
+        <qualifiedname>EquipmentInfoPanel.SetToolTipText</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="181" column="29" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="181" bodyend="188"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EquipmentInfoPanel</label>
+        <link refid="classEquipmentInfoPanel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="2">
+        <label>TooltipPanelBase</label>
+        <link refid="classTooltipPanelBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="24">
+        <label>BuyCheckPanel</label>
+        <link refid="classBuyCheckPanel"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-buyButton</edgelabel>
+          <edgelabel>-closeButton</edgelabel>
+          <edgelabel>-leftButton</edgelabel>
+          <edgelabel>-leftLeftButton</edgelabel>
+          <edgelabel>-rightButton</edgelabel>
+          <edgelabel>-rightRightButton</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-tradeUIController</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-currentItem</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>BuyItemInfoPanel</label>
+        <link refid="classBuyItemInfoPanel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="27" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-panelButton</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-currentItem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-tradeUIController</edgelabel>
+        </childnode>
+      </node>
+      <node id="32">
+        <label>Constants</label>
+      </node>
+      <node id="34">
+        <label>CrewBase</label>
+        <link refid="classCrewBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+equippedAssistant</edgelabel>
+          <edgelabel>+equippedShield</edgelabel>
+          <edgelabel>+equippedWeapon</edgelabel>
+        </childnode>
+        <childnode refid="35" relation="usage">
+          <edgelabel>+currentRoom</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+currentShip</edgelabel>
+        </childnode>
+        <childnode refid="36" relation="usage">
+          <edgelabel>+healthBarController</edgelabel>
+        </childnode>
+      </node>
+      <node id="36">
+        <label>CrewHealthBar</label>
+        <link refid="classCrewHealthBar"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-offset</edgelabel>
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>-crewBase</edgelabel>
+        </childnode>
+      </node>
+      <node id="33">
+        <label>CrewMember</label>
+        <link refid="classCrewMember"/>
+        <childnode refid="34" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-movementDirection</edgelabel>
+        </childnode>
+        <childnode refid="35" relation="usage">
+          <edgelabel>+madRoom</edgelabel>
+          <edgelabel>+oldReservedRoom</edgelabel>
+          <edgelabel>+reservedRoom</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>EquipmentDatabase</label>
+        <link refid="classEquipmentDatabase"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>EquipmentInfoPanel</label>
+        <link refid="classEquipmentInfoPanel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+panelButton</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-currentEquipmentItem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-tradeUIController</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>EquipmentItem</label>
+        <link refid="classEquipmentItem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>IBeginDragHandler</label>
+      </node>
+      <node id="39">
+        <label>IDragHandler</label>
+      </node>
+      <node id="40">
+        <label>IEndDragHandler</label>
+      </node>
+      <node id="41">
+        <label>IGridPlaceable</label>
+        <link refid="interfaceIGridPlaceable"/>
+      </node>
+      <node id="27">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="30">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="44">
+        <label>ItemMapController</label>
+        <link refid="classItemMapController"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-currentItem</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="20">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="29">
+        <label>Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+        <childnode refid="35" relation="template-instance">
+          <edgelabel>&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="31">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="42">
+        <label>SellItemInfoPanel</label>
+        <link refid="classSellItemInfoPanel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="27" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-panelButton</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-currentItem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-tradeUIController</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>ShipFollowCamera</label>
+        <link refid="classShipFollowCamera"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+targetShip</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-shipCenter</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="11" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="28">
+        <label>StorageRoomBase</label>
+        <link refid="classStorageRoomBase"/>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+        <childnode refid="37" relation="usage">
+          <edgelabel>#selectedItem</edgelabel>
+          <edgelabel>-itemGrid</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>TooltipPanelBase</label>
+        <link refid="classTooltipPanelBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>#lastMousePosition</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>TradeUIController</label>
+        <link refid="classTradeUIController"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-shipFollowCamera</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-buttonBuy</edgelabel>
+          <edgelabel>-buttonSell</edgelabel>
+          <edgelabel>-buyCancelButton</edgelabel>
+          <edgelabel>-buyConfirmButton</edgelabel>
+          <edgelabel>-buyPanelClosedPosition</edgelabel>
+          <edgelabel>-buyPanelOpenedShipPosition</edgelabel>
+          <edgelabel>-exitButton</edgelabel>
+          <edgelabel>-fuelBuyButton</edgelabel>
+          <edgelabel>-hypersonicBuyButton</edgelabel>
+          <edgelabel>-missileBuyButton</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>-buyCheckPanel</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-tradeShip</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>-selectedBuyItemInfoPanel</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>-tradeStorage</edgelabel>
+        </childnode>
+        <childnode refid="37" relation="usage">
+          <edgelabel>-itemInstance</edgelabel>
+        </childnode>
+        <childnode refid="42" relation="usage">
+          <edgelabel>-selectedSellItemInfoPanel</edgelabel>
+        </childnode>
+        <childnode refid="43" relation="usage">
+          <edgelabel>-equipmentDatabase</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>-equipmentLeftInstance</edgelabel>
+          <edgelabel>-equipmentMiddleInstance</edgelabel>
+          <edgelabel>-equipmentRightInstance</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-recentBoughtEquipment</edgelabel>
+        </childnode>
+        <childnode refid="44" relation="usage">
+          <edgelabel>-itemMapPanel</edgelabel>
+        </childnode>
+      </node>
+      <node id="37">
+        <label>TradingItem</label>
+        <link refid="classTradingItem"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="27" relation="public-inheritance">
+        </childnode>
+        <childnode refid="38" relation="public-inheritance">
+        </childnode>
+        <childnode refid="39" relation="public-inheritance">
+        </childnode>
+        <childnode refid="40" relation="public-inheritance">
+        </childnode>
+        <childnode refid="41" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-itemData</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>+rotation</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>+parentStorage</edgelabel>
+        </childnode>
+      </node>
+      <node id="25">
+        <label>TradingItemData</label>
+        <link refid="classTradingItemData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>UnityEngine</label>
+      </node>
+      <node id="16">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" line="8" column="7" bodyfile="Assets/Scripts/UI/Trade/EquipmentInfoPanel.cs" bodystart="9" bodyend="194"/>
+    <listofallmembers>
+      <member refid="classEquipmentInfoPanel_1a723ca8bda340153d1ea4361a510281b1" prot="private" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>attackSprite</name></member>
+      <member refid="classEquipmentInfoPanel_1a8b054808feaecdea78ac3225fd889d4d" prot="private" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>Awake</name></member>
+      <member refid="classTooltipPanelBase_1a97ec8e3cc2519887b0ae3cfb4e3626b4" prot="protected" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>canvasComponent</name></member>
+      <member refid="classTooltipPanelBase_1a62dfbacb2b95ff327a1faa517134f4ab" prot="protected" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>canvasRectTransform</name></member>
+      <member refid="classTooltipPanelBase_1a5f6a931d088acf15cb43fa990de25e1d" prot="protected" virt="virtual"><scope>EquipmentInfoPanel</scope><name>CreateTooltip</name></member>
+      <member refid="classEquipmentInfoPanel_1a737a1f639d4c95c5f8567e7b3b9a289c" prot="public" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>CurrentEquipmentItem</name></member>
+      <member refid="classEquipmentInfoPanel_1a32320bd7159e25a67b591a5d6759b2f0" prot="private" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>currentEquipmentItem</name></member>
+      <member refid="classTooltipPanelBase_1a789a2a1d18c7265d8ca055b83a8c38ce" prot="protected" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>currentToolTip</name></member>
+      <member refid="classEquipmentInfoPanel_1ae3e544e56641af8443703e4b0e0ad3bd" prot="private" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>defenseSprite</name></member>
+      <member refid="classEquipmentInfoPanel_1affd89db1225b7b29725b2bfe35989ded" prot="private" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>dict</name></member>
+      <member refid="classEquipmentInfoPanel_1a61d9739f9358cae683ec7e6b0dae56eb" prot="private" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>equipmentNameText</name></member>
+      <member refid="classEquipmentInfoPanel_1a76e7b05b918abdccd67ce97302503293" prot="public" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>GetSkillSprite</name></member>
+      <member refid="classEquipmentInfoPanel_1ad957d350ec691b737eee14336098d756" prot="public" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>HideTooltip</name></member>
+      <member refid="classEquipmentInfoPanel_1adaba0a378ecb844035306270d861b55a" prot="private" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>hitpointSprite</name></member>
+      <member refid="classEquipmentInfoPanel_1a1217ec69f5340465e19f737853310446" prot="private" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>iconImage</name></member>
+      <member refid="classEquipmentInfoPanel_1a1552178a8c492a0ff7f8650f81e84e71" prot="public" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>Initialize</name></member>
+      <member refid="classTooltipPanelBase_1afa2d7137da9fb9b726a7a8ff8e00a1db" prot="protected" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>isMouseOver</name></member>
+      <member refid="classTooltipPanelBase_1ae706f75ad68d5e73e3c2f06c6327ebdb" prot="protected" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>lastMousePosition</name></member>
+      <member refid="classTooltipPanelBase_1af2116b5eb2423885f440148dab1a07ea" prot="protected" virt="virtual"><scope>EquipmentInfoPanel</scope><name>OnDestroy</name></member>
+      <member refid="classTooltipPanelBase_1a961a740b6b6d26b6951d7b556463e00e" prot="protected" virt="virtual"><scope>EquipmentInfoPanel</scope><name>OnMouseEnter</name></member>
+      <member refid="classTooltipPanelBase_1af63cf646954832d7ed41828b63f89342" prot="protected" virt="virtual"><scope>EquipmentInfoPanel</scope><name>OnMouseExit</name></member>
+      <member refid="classTooltipPanelBase_1a78c48fdbc37013f86449658b65023581" prot="public" virt="virtual"><scope>EquipmentInfoPanel</scope><name>OnPointerEnter</name></member>
+      <member refid="classTooltipPanelBase_1a5e453ad8bdc556be9d3d5aba631ac352" prot="public" virt="virtual"><scope>EquipmentInfoPanel</scope><name>OnPointerExit</name></member>
+      <member refid="classEquipmentInfoPanel_1a412d5a05aee64475634e46c814470f79" prot="public" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>panelButton</name></member>
+      <member refid="classEquipmentInfoPanel_1a56a786eaef151c75fb55f47dfd50427f" prot="protected" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>SetToolTipText</name></member>
+      <member refid="classTooltipPanelBase_1a5245ded07eac1229cf96cae6e8e444a6" prot="protected" virt="virtual"><scope>EquipmentInfoPanel</scope><name>ShowToolTipWithDelay</name></member>
+      <member refid="classEquipmentInfoPanel_1ab0eb3da65558ed0ee74079c2c48457e1" prot="private" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>skillEffectTexts</name></member>
+      <member refid="classEquipmentInfoPanel_1aad88813a8e3d490d2a4b3643a7b8411d" prot="private" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>skillIconImages</name></member>
+      <member refid="classEquipmentInfoPanel_1aff4da7889135a96b3f1618fec0b1121d" prot="private" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>skillIconSprites</name></member>
+      <member refid="classEquipmentInfoPanel_1aa0df2563a80d8247b2fbdc1e163c3837" prot="private" virt="virtual"><scope>EquipmentInfoPanel</scope><name>Start</name></member>
+      <member refid="classTooltipPanelBase_1aff2cd6b976fa069a09d0aa35f5c3b29e" prot="protected" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>toolTipCoroutine</name></member>
+      <member refid="classTooltipPanelBase_1a5c08f793ca364546be496216592d1eac" prot="protected" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>tooltipParent</name></member>
+      <member refid="classTooltipPanelBase_1a07452868d9fdf00c540a3811b2cf35c3" prot="protected" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>tooltipPrefab</name></member>
+      <member refid="classEquipmentInfoPanel_1a5d1ddf3fd5a2bd9e1638ff903a4ca287" prot="private" virt="non-virtual"><scope>EquipmentInfoPanel</scope><name>tradeUIController</name></member>
+      <member refid="classTooltipPanelBase_1a62c471dc692a616b0d34cb714d3ced8f" prot="protected" virt="virtual"><scope>EquipmentInfoPanel</scope><name>Update</name></member>
+      <member refid="classTooltipPanelBase_1ad579941725f5d24a110e99e5c5055506" prot="protected" virt="virtual"><scope>EquipmentInfoPanel</scope><name>UpdateToolTipPosition</name></member>
+      <member refid="classTooltipPanelBase_1af48e40c000aa7da2ccd0b651c45c57e7" prot="protected" virt="virtual"><scope>EquipmentInfoPanel</scope><name>UpdateToolTipPositionFromMouse</name></member>
+      <member refid="classTooltipPanelBase_1a74ddd2cded31a5df8d08612a2535218f" prot="protected" virt="virtual"><scope>EquipmentInfoPanel</scope><name>UpdateToolTipPositionInternal</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

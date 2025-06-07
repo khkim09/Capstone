@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="CrewQuartersRoomData_8cs" kind="file" language="C#">
+    <compoundname>CrewQuartersRoomData.cs</compoundname>
+    <innerclass refid="classCrewQuartersRoomData" prot="public">CrewQuartersRoomData</innerclass>
+    <innerclass refid="classCrewQuartersRoomData_1_1CrewQuartersRoomLevel" prot="public">CrewQuartersRoomData::CrewQuartersRoomLevel</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using<sp/></highlight><highlight class="normal">System.Collections;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">System.Collections.Generic;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine.Serialization;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>NOTE:<sp/>선원<sp/>선실<sp/>Data는<sp/>다른<sp/>시설과<sp/>다르게<sp/>Initialize<sp/>에<sp/>모든<sp/>정보가<sp/>쓰여있지<sp/>않다.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>선실은<sp/>레벨로<sp/>분류되는<sp/>것이<sp/>아니라<sp/>종류가<sp/>다르기<sp/>때문에<sp/>그렇다.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>즉,<sp/>이<sp/>클래스를<sp/>수정할<sp/>경우<sp/>무조건<sp/>무조건<sp/>생성된<sp/>Scriptable<sp/>Object<sp/>에<sp/>값을<sp/>할당할<sp/>것!!!!</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>값이<sp/>날라갔을<sp/>때를<sp/>대비하여<sp/>기본값을<sp/>하단에<sp/>명기함.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>생활관<sp/>:<sp/>roomName<sp/>=<sp/>&quot;room.crewquarters.basic&quot;,<sp/>hitPoint<sp/>=<sp/>100,<sp/>maxCrewCapacity<sp/>=<sp/>6,<sp/>size<sp/>=<sp/>(4,<sp/>2),<sp/>cost<sp/>=<sp/>1200</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/>큰<sp/>생활관<sp/>:<sp/>roomName<sp/>=<sp/>&quot;room.crewquarters.big&quot;,<sp/>hitPoint<sp/>=<sp/>160,<sp/>maxCrewCapacity<sp/>=<sp/>10,<sp/>size<sp/>=<sp/>(4,<sp/>3),<sp/>cost<sp/>=<sp/>2000</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/>숙소들의<sp/>피해<sp/>단계는<sp/>1단계는<sp/>존재하지<sp/>않고<sp/>2단계만<sp/>존재한다<sp/>(25%)</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">[CreateAssetMenu(fileName<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;CrewQuartersRoomData&quot;</highlight><highlight class="normal">,<sp/>menuName<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;RoomData/CrewQuartersRoom<sp/>Data&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="23" refid="classCrewQuartersRoomData" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classCrewQuartersRoomData" kindref="compound">CrewQuartersRoomData</ref><sp/>:<sp/><ref refid="classRoomData" kindref="compound">RoomData</ref>&lt;CrewQuartersRoomData.CrewQuartersRoomLevel&gt;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>[System.Serializable]</highlight></codeline>
+<codeline lineno="31" refid="classCrewQuartersRoomData_1_1CrewQuartersRoomLevel" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classCrewQuartersRoomData_1_1CrewQuartersRoomLevel" kindref="compound">CrewQuartersRoomLevel</ref><sp/>:<sp/>RoomLevel</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="34" refid="classCrewQuartersRoomData_1_1CrewQuartersRoomLevel_1a6fca758f2e119e888af8f0c81f765f06" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCrewQuartersRoomData_1_1CrewQuartersRoomLevel_1a6fca758f2e119e888af8f0c81f765f06" kindref="member">maxCrewCapacity</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="classCrewQuartersRoomData_1_1CrewQuartersRoomLevel_1ad3d39e3eca6c1128c28acd527ee5c829" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCrewQuartersRoomData_1_1CrewQuartersRoomLevel_1ad3d39e3eca6c1128c28acd527ee5c829" kindref="member">crewMoraleBonus</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="classCrewQuartersRoomData_1a0c8b062fd9e11209e619408e67181d91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCrewQuartersRoomData_1a0c8b062fd9e11209e619408e67181d91" kindref="member">InitializeDefaultLevels</ref>()</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRoomData_1a9144ad59a48334cb742b0ac7af31cc93" kindref="member">RoomLevels</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>List&lt;CrewQuartersRoomLevel&gt;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal">()</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>roomType<sp/>=<sp/>RoomType.CrewQuarters,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>category<sp/>=<sp/>RoomCategory.Essential,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>level<sp/>=<sp/>1</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Assets/Scripts/Ship/Rooms/CrewQuartersRoom/CrewQuartersRoomData.cs"/>
+  </compounddef>
+</doxygen>

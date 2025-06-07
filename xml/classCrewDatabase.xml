@@ -1,0 +1,466 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCrewDatabase" kind="class" language="C#" prot="public">
+    <compoundname>CrewDatabase</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ScriptableObject</basecompoundref>
+    <innerclass refid="classCrewDatabase_1_1RaceStat" prot="public">CrewDatabase::RaceStat</innerclass>
+    <innerclass refid="classCrewDatabase_1_1RaceStatData" prot="private">CrewDatabase::RaceStatData</innerclass>
+    <innerclass refid="classCrewDatabase_1_1SerializableRaceStatData" prot="private">CrewDatabase::SerializableRaceStatData</innerclass>
+    <innerclass refid="classCrewDatabase_1_1SkillValue" prot="public">CrewDatabase::SkillValue</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classCrewDatabase_1a97ba89dbc8f4e6319eff7fcc3fcafc93" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="classCrewDatabase_1_1RaceStat" kindref="compound">RaceStat</ref> &gt;</type>
+        <definition>List&lt;RaceStat&gt; CrewDatabase.raceStats</definition>
+        <argsstring></argsstring>
+        <name>raceStats</name>
+        <qualifiedname>CrewDatabase.raceStats</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>종족별 기본 스탯 데이터 목록 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="16" column="19" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="16" bodyend="-1"/>
+        <referencedby refid="classCrewDatabase_1af59d43d8f9a17d0556de2035ca355852" compoundref="CrewDatabase_8cs" startline="492" endline="613">DeserializeFromJson</referencedby>
+        <referencedby refid="classCrewDatabase_1afd640ce1995cc9c3315c9dba1d093633" compoundref="CrewDatabase_8cs" startline="127" endline="335">InitializeDefaultStats</referencedby>
+        <referencedby refid="classCrewDatabase_1a86ca289b3e8d21ba57d41c8c77f6578c" compoundref="CrewDatabase_8cs" startline="101" endline="105">InitializeDictionary</referencedby>
+        <referencedby refid="classCrewDatabase_1a78243e90c926daa6cb744a724be48b49" compoundref="CrewDatabase_8cs" startline="118" endline="122">OnEnable</referencedby>
+        <referencedby refid="classCrewDatabase_1a9cd0f2feb9764eaa7917942dff4e044f" compoundref="CrewDatabase_8cs" startline="110" endline="113">OnValidate</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewDatabase_1a0af80f02d5f70aeed1f0494bd2a82729" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; CrewRace, <ref refid="classCrewDatabase_1_1RaceStat" kindref="compound">RaceStat</ref> &gt;</type>
+        <definition>Dictionary&lt;CrewRace, RaceStat&gt; CrewDatabase.raceStatsByType</definition>
+        <argsstring></argsstring>
+        <name>raceStatsByType</name>
+        <qualifiedname>CrewDatabase.raceStatsByType</qualifiedname>
+        <briefdescription>
+<para>런타임용 종족별 스탯 딕셔너리 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="21" column="24" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="21" bodyend="-1"/>
+        <referencedby refid="classCrewDatabase_1af59d43d8f9a17d0556de2035ca355852" compoundref="CrewDatabase_8cs" startline="492" endline="613">DeserializeFromJson</referencedby>
+        <referencedby refid="classCrewDatabase_1a5977ca98a864dc053c9e832ac30e23a7" compoundref="CrewDatabase_8cs" startline="356" endline="361">GetAllRaceStats</referencedby>
+        <referencedby refid="classCrewDatabase_1a58573aedfbc3736438540c6f941d4b37" compoundref="CrewDatabase_8cs" startline="342" endline="350">GetRaceStat</referencedby>
+        <referencedby refid="classCrewDatabase_1afd640ce1995cc9c3315c9dba1d093633" compoundref="CrewDatabase_8cs" startline="127" endline="335">InitializeDefaultStats</referencedby>
+        <referencedby refid="classCrewDatabase_1a86ca289b3e8d21ba57d41c8c77f6578c" compoundref="CrewDatabase_8cs" startline="101" endline="105">InitializeDictionary</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classCrewDatabase_1a2e6b6f2b0b63cfead0fa02987ee8ad3c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Dictionary&lt; CrewRace, <ref refid="classCrewDatabase_1_1RaceStat" kindref="compound">RaceStat</ref> &gt;</type>
+        <definition>Dictionary&lt;CrewRace, RaceStat&gt; CrewDatabase.ByRace</definition>
+        <argsstring></argsstring>
+        <name>ByRace</name>
+        <qualifiedname>CrewDatabase.ByRace</qualifiedname>
+        <briefdescription>
+<para>종족별 스탯 dictionary 제공 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="89" column="23" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="90" bodyend="96"/>
+        <referencedby refid="classCrewDatabase_1af59d43d8f9a17d0556de2035ca355852" compoundref="CrewDatabase_8cs" startline="492" endline="613">DeserializeFromJson</referencedby>
+        <referencedby refid="classCrewDatabase_1a9b462f2488261d147795df6a84622246" compoundref="CrewDatabase_8cs" startline="443" endline="485">SerializeToJson</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCrewDatabase_1a86ca289b3e8d21ba57d41c8c77f6578c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewDatabase.InitializeDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeDictionary</name>
+        <qualifiedname>CrewDatabase.InitializeDictionary</qualifiedname>
+        <briefdescription>
+<para>데이터베이스 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="101" column="17" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="101" bodyend="105"/>
+        <references refid="classCrewDatabase_1a97ba89dbc8f4e6319eff7fcc3fcafc93" compoundref="CrewDatabase_8cs" startline="16">raceStats</references>
+        <references refid="classCrewDatabase_1a0af80f02d5f70aeed1f0494bd2a82729" compoundref="CrewDatabase_8cs" startline="21">raceStatsByType</references>
+        <referencedby refid="classCrewDatabase_1a5977ca98a864dc053c9e832ac30e23a7" compoundref="CrewDatabase_8cs" startline="356" endline="361">GetAllRaceStats</referencedby>
+        <referencedby refid="classCrewDatabase_1a58573aedfbc3736438540c6f941d4b37" compoundref="CrewDatabase_8cs" startline="342" endline="350">GetRaceStat</referencedby>
+        <referencedby refid="classCrewDatabase_1a78243e90c926daa6cb744a724be48b49" compoundref="CrewDatabase_8cs" startline="118" endline="122">OnEnable</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewDatabase_1afd640ce1995cc9c3315c9dba1d093633" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewDatabase.InitializeDefaultStats</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeDefaultStats</name>
+        <qualifiedname>CrewDatabase.InitializeDefaultStats</qualifiedname>
+        <briefdescription>
+<para>종족 별 기본값 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="127" column="17" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="127" bodyend="335"/>
+        <references refid="classCrewDatabase_1a97ba89dbc8f4e6319eff7fcc3fcafc93" compoundref="CrewDatabase_8cs" startline="16">raceStats</references>
+        <references refid="classCrewDatabase_1a0af80f02d5f70aeed1f0494bd2a82729" compoundref="CrewDatabase_8cs" startline="21">raceStatsByType</references>
+        <references refid="classCrewDatabase_1_1RaceStat_1ad22395d9d8a7c077ce9f7231b4bd2c82" compoundref="CrewDatabase_8cs" startline="78" endline="83">CrewDatabase.RaceStat.SetMaxSkillValuesFromDictionary</references>
+        <referencedby refid="classCrewDatabase_1a78243e90c926daa6cb744a724be48b49" compoundref="CrewDatabase_8cs" startline="118" endline="122">OnEnable</referencedby>
+        <referencedby refid="classCrewDatabase_1a9cd0f2feb9764eaa7917942dff4e044f" compoundref="CrewDatabase_8cs" startline="110" endline="113">OnValidate</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewDatabase_1a58573aedfbc3736438540c6f941d4b37" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classCrewDatabase_1_1RaceStat" kindref="compound">RaceStat</ref></type>
+        <definition>RaceStat CrewDatabase.GetRaceStat</definition>
+        <argsstring>(CrewRace race)</argsstring>
+        <name>GetRaceStat</name>
+        <qualifiedname>CrewDatabase.GetRaceStat</qualifiedname>
+        <param>
+          <type>CrewRace</type>
+          <declname>race</declname>
+        </param>
+        <briefdescription>
+<para>특정 종족의 스탯 정보 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>race</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>종족 타입</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>종족 스탯 정보</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="342" column="21" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="342" bodyend="350"/>
+        <references refid="classCrewDatabase_1a86ca289b3e8d21ba57d41c8c77f6578c" compoundref="CrewDatabase_8cs" startline="101" endline="105">InitializeDictionary</references>
+        <references refid="classCrewDatabase_1a0af80f02d5f70aeed1f0494bd2a82729" compoundref="CrewDatabase_8cs" startline="21">raceStatsByType</references>
+        <referencedby refid="classCrewDatabase_1a6b0f5bf833d3136fe31728351184d4f2" compoundref="CrewDatabase_8cs" startline="422" endline="426">DoesRaceNeedOxygen</referencedby>
+        <referencedby refid="classCrewDatabase_1a9ccb3c940536a73f173ce5d4e362975b" compoundref="CrewDatabase_8cs" startline="388" endline="415">GetInitialSkillValue</referencedby>
+        <referencedby refid="classCrewDatabase_1ae5f44589d341383c195cbe3ec5c65c47" compoundref="CrewDatabase_8cs" startline="369" endline="380">GetMaxSkillValue</referencedby>
+        <referencedby refid="classCrewDatabase_1a1766a43c41d949d226c861631bd17ac9" compoundref="CrewDatabase_8cs" startline="433" endline="437">GetRaceLearningSpeed</referencedby>
+        <referencedby refid="classCrewFactory_1ac684dc42464a48b2c011ce00c5d48ad9" compoundref="CrewFactory_8cs" startline="35" endline="38">CrewFactory.GetRaceStat</referencedby>
+        <referencedby refid="classCrewFactory_1aca193ba6438f6936d36301bb3a436e6c" compoundref="CrewFactory_8cs" startline="103" endline="179">CrewFactory.InitializeCrewStats</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewDatabase_1a5977ca98a864dc053c9e832ac30e23a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Dictionary&lt; CrewRace, <ref refid="classCrewDatabase_1_1RaceStat" kindref="compound">RaceStat</ref> &gt;</type>
+        <definition>Dictionary&lt; CrewRace, RaceStat &gt; CrewDatabase.GetAllRaceStats</definition>
+        <argsstring>()</argsstring>
+        <name>GetAllRaceStats</name>
+        <qualifiedname>CrewDatabase.GetAllRaceStats</qualifiedname>
+        <briefdescription>
+<para>모든 종족 스탯 정보 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>종족별 스탯 정보 딕셔너리</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="356" column="23" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="356" bodyend="361"/>
+        <references refid="classCrewDatabase_1a86ca289b3e8d21ba57d41c8c77f6578c" compoundref="CrewDatabase_8cs" startline="101" endline="105">InitializeDictionary</references>
+        <references refid="classCrewDatabase_1a0af80f02d5f70aeed1f0494bd2a82729" compoundref="CrewDatabase_8cs" startline="21">raceStatsByType</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewDatabase_1ae5f44589d341383c195cbe3ec5c65c47" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float CrewDatabase.GetMaxSkillValue</definition>
+        <argsstring>(CrewRace race, SkillType skillType)</argsstring>
+        <name>GetMaxSkillValue</name>
+        <qualifiedname>CrewDatabase.GetMaxSkillValue</qualifiedname>
+        <param>
+          <type>CrewRace</type>
+          <declname>race</declname>
+        </param>
+        <param>
+          <type>SkillType</type>
+          <declname>skillType</declname>
+        </param>
+        <briefdescription>
+<para>특정 스킬의 최대값 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>race</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>종족 타입</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>skillType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>스킬 타입</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>최대 스킬값 (종족 정보가 없으면 0 반환)</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="369" column="18" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="369" bodyend="380"/>
+        <references refid="classCrewDatabase_1_1RaceStat_1ac871cd4710cf7eabdbc608959eb34a95" compoundref="CrewDatabase_8cs" startline="68" endline="73">CrewDatabase.RaceStat.GetMaxSkillValueDictionary</references>
+        <references refid="classCrewDatabase_1a58573aedfbc3736438540c6f941d4b37" compoundref="CrewDatabase_8cs" startline="342" endline="350">GetRaceStat</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewDatabase_1a9ccb3c940536a73f173ce5d4e362975b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float CrewDatabase.GetInitialSkillValue</definition>
+        <argsstring>(CrewRace race, SkillType skillType)</argsstring>
+        <name>GetInitialSkillValue</name>
+        <qualifiedname>CrewDatabase.GetInitialSkillValue</qualifiedname>
+        <param>
+          <type>CrewRace</type>
+          <declname>race</declname>
+        </param>
+        <param>
+          <type>SkillType</type>
+          <declname>skillType</declname>
+        </param>
+        <briefdescription>
+<para>특정 종족의 초기 스킬값 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>race</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>종족 타입</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>skillType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>스킬 타입</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>초기 스킬값</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="388" column="18" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="388" bodyend="415"/>
+        <references refid="classCrewDatabase_1a58573aedfbc3736438540c6f941d4b37" compoundref="CrewDatabase_8cs" startline="342" endline="350">GetRaceStat</references>
+        <references refid="classCrewDatabase_1_1RaceStat_1a5bfb7275c17ccdfef84bb6346bff970a" compoundref="CrewDatabase_8cs" startline="55">CrewDatabase.RaceStat.initialPilotSkill</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewDatabase_1a6b0f5bf833d3136fe31728351184d4f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CrewDatabase.DoesRaceNeedOxygen</definition>
+        <argsstring>(CrewRace race)</argsstring>
+        <name>DoesRaceNeedOxygen</name>
+        <qualifiedname>CrewDatabase.DoesRaceNeedOxygen</qualifiedname>
+        <param>
+          <type>CrewRace</type>
+          <declname>race</declname>
+        </param>
+        <briefdescription>
+<para>특정 종족이 산소가 필요한지 여부 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>race</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>종족 타입</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>산소 필요 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="422" column="17" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="422" bodyend="426"/>
+        <references refid="classCrewDatabase_1a58573aedfbc3736438540c6f941d4b37" compoundref="CrewDatabase_8cs" startline="342" endline="350">GetRaceStat</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewDatabase_1a1766a43c41d949d226c861631bd17ac9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float CrewDatabase.GetRaceLearningSpeed</definition>
+        <argsstring>(CrewRace race)</argsstring>
+        <name>GetRaceLearningSpeed</name>
+        <qualifiedname>CrewDatabase.GetRaceLearningSpeed</qualifiedname>
+        <param>
+          <type>CrewRace</type>
+          <declname>race</declname>
+        </param>
+        <briefdescription>
+<para>특정 종족의 학습 속도 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>race</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>종족 타입</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>학습 속도</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="433" column="18" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="433" bodyend="437"/>
+        <references refid="classCrewDatabase_1a58573aedfbc3736438540c6f941d4b37" compoundref="CrewDatabase_8cs" startline="342" endline="350">GetRaceStat</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewDatabase_1a9b462f2488261d147795df6a84622246" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string CrewDatabase.SerializeToJson</definition>
+        <argsstring>()</argsstring>
+        <name>SerializeToJson</name>
+        <qualifiedname>CrewDatabase.SerializeToJson</qualifiedname>
+        <briefdescription>
+<para>데이터베이스 전체 데이터를 JSON 형태로 직렬화 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>JSON 문자열</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="443" column="19" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="443" bodyend="485"/>
+        <references refid="classCrewDatabase_1a2e6b6f2b0b63cfead0fa02987ee8ad3c" compoundref="CrewDatabase_8cs" startline="90" endline="96">ByRace</references>
+        <references refid="classCrewDatabase_1_1RaceStat_1ac871cd4710cf7eabdbc608959eb34a95" compoundref="CrewDatabase_8cs" startline="68" endline="73">CrewDatabase.RaceStat.GetMaxSkillValueDictionary</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewDatabase_1af59d43d8f9a17d0556de2035ca355852" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CrewDatabase.DeserializeFromJson</definition>
+        <argsstring>(string json)</argsstring>
+        <name>DeserializeFromJson</name>
+        <qualifiedname>CrewDatabase.DeserializeFromJson</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+<para>JSON 문자열에서 데이터베이스 데이터 복원 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>json</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>JSON 문자열</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>성공 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="492" column="17" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="492" bodyend="613"/>
+        <references refid="classCrewDatabase_1a2e6b6f2b0b63cfead0fa02987ee8ad3c" compoundref="CrewDatabase_8cs" startline="90" endline="96">ByRace</references>
+        <references refid="classCrewDatabase_1_1RaceStat_1a5bfb7275c17ccdfef84bb6346bff970a" compoundref="CrewDatabase_8cs" startline="55">CrewDatabase.RaceStat.initialPilotSkill</references>
+        <references refid="classCrewDatabase_1a97ba89dbc8f4e6319eff7fcc3fcafc93" compoundref="CrewDatabase_8cs" startline="16">raceStats</references>
+        <references refid="classCrewDatabase_1a0af80f02d5f70aeed1f0494bd2a82729" compoundref="CrewDatabase_8cs" startline="21">raceStatsByType</references>
+        <references refid="classCrewDatabase_1_1RaceStat_1ad22395d9d8a7c077ce9f7231b4bd2c82" compoundref="CrewDatabase_8cs" startline="78" endline="83">CrewDatabase.RaceStat.SetMaxSkillValuesFromDictionary</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classCrewDatabase_1a9cd0f2feb9764eaa7917942dff4e044f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewDatabase.OnValidate</definition>
+        <argsstring>()</argsstring>
+        <name>OnValidate</name>
+        <qualifiedname>CrewDatabase.OnValidate</qualifiedname>
+        <briefdescription>
+<para>Unity 이벤트: 값이 변경될 때마다 호출됨 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="110" column="18" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="110" bodyend="113"/>
+        <references refid="classCrewDatabase_1afd640ce1995cc9c3315c9dba1d093633" compoundref="CrewDatabase_8cs" startline="127" endline="335">InitializeDefaultStats</references>
+        <references refid="classCrewDatabase_1a97ba89dbc8f4e6319eff7fcc3fcafc93" compoundref="CrewDatabase_8cs" startline="16">raceStats</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewDatabase_1a78243e90c926daa6cb744a724be48b49" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewDatabase.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <qualifiedname>CrewDatabase.OnEnable</qualifiedname>
+        <briefdescription>
+<para>Unity 이벤트: ScriptableObject가 로드될 때 호출됨 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="118" column="18" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="118" bodyend="122"/>
+        <references refid="classCrewDatabase_1afd640ce1995cc9c3315c9dba1d093633" compoundref="CrewDatabase_8cs" startline="127" endline="335">InitializeDefaultStats</references>
+        <references refid="classCrewDatabase_1a86ca289b3e8d21ba57d41c8c77f6578c" compoundref="CrewDatabase_8cs" startline="101" endline="105">InitializeDictionary</references>
+        <references refid="classCrewDatabase_1a97ba89dbc8f4e6319eff7fcc3fcafc93" compoundref="CrewDatabase_8cs" startline="16">raceStats</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>모든 선원 관련 데이터를 관리하는 중앙 데이터베이스 CrewRaceStat의 기능을 통합하여 데이터베이스 패턴을 일관성 있게 유지 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CrewDatabase</label>
+        <link refid="classCrewDatabase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>CrewDatabase</label>
+        <link refid="classCrewDatabase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Crew/CrewDatabase.cs" line="11" column="7" bodyfile="Assets/Scripts/Crew/CrewDatabase.cs" bodystart="12" bodyend="637"/>
+    <listofallmembers>
+      <member refid="classCrewDatabase_1a2e6b6f2b0b63cfead0fa02987ee8ad3c" prot="public" virt="non-virtual"><scope>CrewDatabase</scope><name>ByRace</name></member>
+      <member refid="classCrewDatabase_1af59d43d8f9a17d0556de2035ca355852" prot="public" virt="non-virtual"><scope>CrewDatabase</scope><name>DeserializeFromJson</name></member>
+      <member refid="classCrewDatabase_1a6b0f5bf833d3136fe31728351184d4f2" prot="public" virt="non-virtual"><scope>CrewDatabase</scope><name>DoesRaceNeedOxygen</name></member>
+      <member refid="classCrewDatabase_1a5977ca98a864dc053c9e832ac30e23a7" prot="public" virt="non-virtual"><scope>CrewDatabase</scope><name>GetAllRaceStats</name></member>
+      <member refid="classCrewDatabase_1a9ccb3c940536a73f173ce5d4e362975b" prot="public" virt="non-virtual"><scope>CrewDatabase</scope><name>GetInitialSkillValue</name></member>
+      <member refid="classCrewDatabase_1ae5f44589d341383c195cbe3ec5c65c47" prot="public" virt="non-virtual"><scope>CrewDatabase</scope><name>GetMaxSkillValue</name></member>
+      <member refid="classCrewDatabase_1a1766a43c41d949d226c861631bd17ac9" prot="public" virt="non-virtual"><scope>CrewDatabase</scope><name>GetRaceLearningSpeed</name></member>
+      <member refid="classCrewDatabase_1a58573aedfbc3736438540c6f941d4b37" prot="public" virt="non-virtual"><scope>CrewDatabase</scope><name>GetRaceStat</name></member>
+      <member refid="classCrewDatabase_1afd640ce1995cc9c3315c9dba1d093633" prot="public" virt="non-virtual"><scope>CrewDatabase</scope><name>InitializeDefaultStats</name></member>
+      <member refid="classCrewDatabase_1a86ca289b3e8d21ba57d41c8c77f6578c" prot="public" virt="non-virtual"><scope>CrewDatabase</scope><name>InitializeDictionary</name></member>
+      <member refid="classCrewDatabase_1a78243e90c926daa6cb744a724be48b49" prot="private" virt="non-virtual"><scope>CrewDatabase</scope><name>OnEnable</name></member>
+      <member refid="classCrewDatabase_1a9cd0f2feb9764eaa7917942dff4e044f" prot="private" virt="non-virtual"><scope>CrewDatabase</scope><name>OnValidate</name></member>
+      <member refid="classCrewDatabase_1a97ba89dbc8f4e6319eff7fcc3fcafc93" prot="private" virt="non-virtual"><scope>CrewDatabase</scope><name>raceStats</name></member>
+      <member refid="classCrewDatabase_1a0af80f02d5f70aeed1f0494bd2a82729" prot="private" virt="non-virtual"><scope>CrewDatabase</scope><name>raceStatsByType</name></member>
+      <member refid="classCrewDatabase_1a9b462f2488261d147795df6a84622246" prot="public" virt="non-virtual"><scope>CrewDatabase</scope><name>SerializeToJson</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

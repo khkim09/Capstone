@@ -1,0 +1,962 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classTradingItemDragHandler" kind="class" language="C#" prot="public">
+    <compoundname>TradingItemDragHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classTradingItemDragHandler_1a5644265e24e2ed9fab55fe101c615e1f" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="classTradingItemDragHandler" kindref="compound">TradingItemDragHandler</ref></type>
+        <definition>TradingItemDragHandler TradingItemDragHandler.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>TradingItemDragHandler.Instance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="14" column="42" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="property" id="classTradingItemDragHandler_1af87aa9235c8533eccef78561b0a907c0" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool TradingItemDragHandler.IsItemRepositioningAllowed</definition>
+        <argsstring></argsstring>
+        <name>IsItemRepositioningAllowed</name>
+        <qualifiedname>TradingItemDragHandler.IsItemRepositioningAllowed</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="50" column="24" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="50" bodyend="50"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classTradingItemDragHandler_1a7cead0e0d01c7f3e9e7d6c1d92ef4dbf" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color TradingItemDragHandler.validPlacementColor</definition>
+        <argsstring></argsstring>
+        <name>validPlacementColor</name>
+        <qualifiedname>TradingItemDragHandler.validPlacementColor</qualifiedname>
+        <initializer>= new(0, 1, 0, 0.5f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="17" column="19" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1a641a983a95784bd7cca5e1cf0e94dce5" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color TradingItemDragHandler.invalidPlacementColor</definition>
+        <argsstring></argsstring>
+        <name>invalidPlacementColor</name>
+        <qualifiedname>TradingItemDragHandler.invalidPlacementColor</qualifiedname>
+        <initializer>= new(1, 0, 0, 0.5f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="19" column="20" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1ad9d89ace1fd9e278cf7d1404dadfd822" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color TradingItemDragHandler.normalPreviewColor</definition>
+        <argsstring></argsstring>
+        <name>normalPreviewColor</name>
+        <qualifiedname>TradingItemDragHandler.normalPreviewColor</qualifiedname>
+        <initializer>= new(1, 1, 1, 0.7f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="20" column="20" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1a1de2fdcb9ace71c18a64c4f7d209cd4c" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject TradingItemDragHandler.previewObject</definition>
+        <argsstring></argsstring>
+        <name>previewObject</name>
+        <qualifiedname>TradingItemDragHandler.previewObject</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="23" column="24" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1a32a8cce834ad2f23773a27f86b0f7ad7" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer TradingItemDragHandler.previewBoxRenderer</definition>
+        <argsstring></argsstring>
+        <name>previewBoxRenderer</name>
+        <qualifiedname>TradingItemDragHandler.previewBoxRenderer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="24" column="28" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1ae686393cee8571ff37a26535ccf952ff" prot="private" static="no" mutable="no">
+        <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+        <definition>TradingItem TradingItemDragHandler.originalItem</definition>
+        <argsstring></argsstring>
+        <name>originalItem</name>
+        <qualifiedname>TradingItemDragHandler.originalItem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="27" column="25" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1a204c28151687819dfd8915d8185f8c53" prot="private" static="no" mutable="no">
+        <type><ref refid="classStorageRoomBase" kindref="compound">StorageRoomBase</ref></type>
+        <definition>StorageRoomBase TradingItemDragHandler.sourceStorage</definition>
+        <argsstring></argsstring>
+        <name>sourceStorage</name>
+        <qualifiedname>TradingItemDragHandler.sourceStorage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="28" column="29" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1ab243bd59314f5753c72ce68d492e7595" prot="private" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int TradingItemDragHandler.originalPosition</definition>
+        <argsstring></argsstring>
+        <name>originalPosition</name>
+        <qualifiedname>TradingItemDragHandler.originalPosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="29" column="24" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1a097ff204fba5d04e5b483776f94f6b8a" prot="private" static="no" mutable="no">
+        <type>Constants.Rotations.Rotation</type>
+        <definition>Constants.Rotations.Rotation TradingItemDragHandler.originalRotation</definition>
+        <argsstring></argsstring>
+        <name>originalRotation</name>
+        <qualifiedname>TradingItemDragHandler.originalRotation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="30" column="40" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1af862742ec834122f87d9a84f66d2fdb2" prot="private" static="no" mutable="no">
+        <type>Constants.Rotations.Rotation</type>
+        <definition>Constants.Rotations.Rotation TradingItemDragHandler.currentRotation</definition>
+        <argsstring></argsstring>
+        <name>currentRotation</name>
+        <qualifiedname>TradingItemDragHandler.currentRotation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="31" column="40" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1affbcf13bade7f4821fe5aab573639516" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool TradingItemDragHandler.lastLoggedDraggingState</definition>
+        <argsstring></argsstring>
+        <name>lastLoggedDraggingState</name>
+        <qualifiedname>TradingItemDragHandler.lastLoggedDraggingState</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="33" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1a7e861bba9c3dcaae22b4ce7a227bdff5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool TradingItemDragHandler.isDragging</definition>
+        <argsstring></argsstring>
+        <name>isDragging</name>
+        <qualifiedname>TradingItemDragHandler.isDragging</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="36" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1af5e4d9a6891362aa5a729cf23e223810" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 TradingItemDragHandler.dragOffset</definition>
+        <argsstring></argsstring>
+        <name>dragOffset</name>
+        <qualifiedname>TradingItemDragHandler.dragOffset</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="37" column="21" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1ab00b677914b56b30576bd2ac2ae4c95b" prot="private" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int TradingItemDragHandler.currentGridPosition</definition>
+        <argsstring></argsstring>
+        <name>currentGridPosition</name>
+        <qualifiedname>TradingItemDragHandler.currentGridPosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="40" column="24" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1a6860510dd9a5e85f413ab078cb58fc2b" prot="private" static="no" mutable="no">
+        <type><ref refid="classStorageRoomBase" kindref="compound">StorageRoomBase</ref></type>
+        <definition>StorageRoomBase TradingItemDragHandler.currentTargetStorage</definition>
+        <argsstring></argsstring>
+        <name>currentTargetStorage</name>
+        <qualifiedname>TradingItemDragHandler.currentTargetStorage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="41" column="29" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1aa2fbde09ee47c552f66e035ba6877823" prot="private" static="no" mutable="no">
+        <type><ref refid="classStorageRoomBase" kindref="compound">StorageRoomBase</ref></type>
+        <definition>StorageRoomBase TradingItemDragHandler.previousTargetStorage</definition>
+        <argsstring></argsstring>
+        <name>previousTargetStorage</name>
+        <qualifiedname>TradingItemDragHandler.previousTargetStorage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="42" column="29" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1a0dd224ea163dfeff88d8d29c65f76c5d" prot="private" static="no" mutable="no">
+        <type>Coroutine</type>
+        <definition>Coroutine TradingItemDragHandler.flashCoroutine</definition>
+        <argsstring></argsstring>
+        <name>flashCoroutine</name>
+        <qualifiedname>TradingItemDragHandler.flashCoroutine</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="46" column="23" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTradingItemDragHandler_1a6f012524b14b8147c85140994147b769" prot="private" static="no" mutable="no">
+        <type>Coroutine</type>
+        <definition>Coroutine TradingItemDragHandler.resetCoroutine</definition>
+        <argsstring></argsstring>
+        <name>resetCoroutine</name>
+        <qualifiedname>TradingItemDragHandler.resetCoroutine</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="47" column="23" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classTradingItemDragHandler_1a702058a2f3368b452f4ddc8e70e8b48a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItemDragHandler.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>TradingItemDragHandler.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="52" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="52" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDragHandler_1a9999521c55108d0e65c26b099ffe2d36" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItemDragHandler.CreatePreview</definition>
+        <argsstring>(TradingItem item)</argsstring>
+        <name>CreatePreview</name>
+        <qualifiedname>TradingItemDragHandler.CreatePreview</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+<para>프리뷰 오브젝트 생성 - 프리팹 사용 없이 직접 생성 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="118" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="118" bodyend="142"/>
+        <referencedby refid="classTradingItemDragHandler_1a09c1e0490008c25ea72f2be604a991eb" compoundref="TradingItemDragHandler_8cs" startline="64" endline="112">StartDragging</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDragHandler_1a63f5627fac6c69158216256ac653c932" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItemDragHandler.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>TradingItemDragHandler.Update</qualifiedname>
+        <briefdescription>
+<para>매 프레임 마우스 위치에 따라 프리뷰 업데이트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="148" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="148" bodyend="200"/>
+        <references refid="classStorageRoomBase_1a1628efb587b9fb33b65afddbbf7b92b1" compoundref="StorageRoomBase_8cs" startline="111" endline="139">StorageRoomBase.CanPlaceItem</references>
+        <references refid="classTradingItemDragHandler_1a04f8a663a67d340a4ee45d9c377dfc27" compoundref="TradingItemDragHandler_8cs" startline="331" endline="460">EndDragging</references>
+        <references refid="classTradingItemDragHandler_1abd8e3063b1764c95a3498065d48225b5" compoundref="TradingItemDragHandler_8cs" startline="262" endline="276">RotatePreview</references>
+        <references refid="classTradingItemDragHandler_1a24df3d8f7b20e55db8da65dd18bfa309" compoundref="TradingItemDragHandler_8cs" startline="281" endline="300">UpdatePreviewBoxSprite</references>
+        <references refid="classTradingItemDragHandler_1a630ddf4d8a2eb577b92968739e5b22d0" compoundref="TradingItemDragHandler_8cs" startline="305" endline="326">UpdatePreviewPosition</references>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDragHandler_1afe5a3574b515ffeefc67232daa8a8e29" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItemDragHandler.UpdatePreviewToGridPosition</definition>
+        <argsstring>(StorageRoomBase storage, Vector2Int gridPos)</argsstring>
+        <name>UpdatePreviewToGridPosition</name>
+        <qualifiedname>TradingItemDragHandler.UpdatePreviewToGridPosition</qualifiedname>
+        <param>
+          <type><ref refid="classStorageRoomBase" kindref="compound">StorageRoomBase</ref></type>
+          <declname>storage</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>gridPos</declname>
+        </param>
+        <briefdescription>
+<para>그리드 위치에 맞게 프리뷰 위치를 정확하게 업데이트합니다. 실제 배치와 동일한 로직을 사용합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="206" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="206" bodyend="257"/>
+        <references refid="classStorageRoomBase_1a78a41d13a6537c2cfc67792e513d587a" compoundref="StorageRoomBase_8cs" startline="396" endline="419">StorageRoomBase.GetOccupiedTiles</references>
+        <referencedby refid="classTradingItemDragHandler_1abd8e3063b1764c95a3498065d48225b5" compoundref="TradingItemDragHandler_8cs" startline="262" endline="276">RotatePreview</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a630ddf4d8a2eb577b92968739e5b22d0" compoundref="TradingItemDragHandler_8cs" startline="305" endline="326">UpdatePreviewPosition</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDragHandler_1abd8e3063b1764c95a3498065d48225b5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItemDragHandler.RotatePreview</definition>
+        <argsstring>()</argsstring>
+        <name>RotatePreview</name>
+        <qualifiedname>TradingItemDragHandler.RotatePreview</qualifiedname>
+        <briefdescription>
+<para>프리뷰 회전 처리 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="262" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="262" bodyend="276"/>
+        <references refid="classTradingItemDragHandler_1a24df3d8f7b20e55db8da65dd18bfa309" compoundref="TradingItemDragHandler_8cs" startline="281" endline="300">UpdatePreviewBoxSprite</references>
+        <references refid="classTradingItemDragHandler_1afe5a3574b515ffeefc67232daa8a8e29" compoundref="TradingItemDragHandler_8cs" startline="206" endline="257">UpdatePreviewToGridPosition</references>
+        <referencedby refid="classTradingItemDragHandler_1a63f5627fac6c69158216256ac653c932" compoundref="TradingItemDragHandler_8cs" startline="148" endline="200">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDragHandler_1a24df3d8f7b20e55db8da65dd18bfa309" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItemDragHandler.UpdatePreviewBoxSprite</definition>
+        <argsstring>()</argsstring>
+        <name>UpdatePreviewBoxSprite</name>
+        <qualifiedname>TradingItemDragHandler.UpdatePreviewBoxSprite</qualifiedname>
+        <briefdescription>
+<para>현재 회전 상태에 맞는 박스 스프라이트로 업데이트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="281" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="281" bodyend="300"/>
+        <references refid="classRoom_1ae1f89a83229215231d726691043898c6" compoundref="Room_8cs" startline="36">Room&lt; TData, TLevel &gt;.currentRotation</references>
+        <referencedby refid="classTradingItemDragHandler_1abd8e3063b1764c95a3498065d48225b5" compoundref="TradingItemDragHandler_8cs" startline="262" endline="276">RotatePreview</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a09c1e0490008c25ea72f2be604a991eb" compoundref="TradingItemDragHandler_8cs" startline="64" endline="112">StartDragging</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a63f5627fac6c69158216256ac653c932" compoundref="TradingItemDragHandler_8cs" startline="148" endline="200">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDragHandler_1a630ddf4d8a2eb577b92968739e5b22d0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItemDragHandler.UpdatePreviewPosition</definition>
+        <argsstring>(Vector2 mouseWorldPos)</argsstring>
+        <name>UpdatePreviewPosition</name>
+        <qualifiedname>TradingItemDragHandler.UpdatePreviewPosition</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>mouseWorldPos</declname>
+        </param>
+        <briefdescription>
+<para>프리뷰 위치 업데이트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="305" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="305" bodyend="326"/>
+        <references refid="classTradingItemDragHandler_1a405c164c9771f1b2bf1985bc379bd83c" compoundref="TradingItemDragHandler_8cs" startline="594" endline="610">GetStorageUnderMouse</references>
+        <references refid="classTradingItemDragHandler_1afe5a3574b515ffeefc67232daa8a8e29" compoundref="TradingItemDragHandler_8cs" startline="206" endline="257">UpdatePreviewToGridPosition</references>
+        <references refid="classStorageRoomBase_1ad999a51ba228461cae0ff898913fa00e" compoundref="StorageRoomBase_8cs" startline="424" endline="448">StorageRoomBase.WorldToGridPosition</references>
+        <referencedby refid="classTradingItemDragHandler_1a09c1e0490008c25ea72f2be604a991eb" compoundref="TradingItemDragHandler_8cs" startline="64" endline="112">StartDragging</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a63f5627fac6c69158216256ac653c932" compoundref="TradingItemDragHandler_8cs" startline="148" endline="200">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDragHandler_1a04f8a663a67d340a4ee45d9c377dfc27" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItemDragHandler.EndDragging</definition>
+        <argsstring>(Vector2 mouseWorldPos)</argsstring>
+        <name>EndDragging</name>
+        <qualifiedname>TradingItemDragHandler.EndDragging</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>mouseWorldPos</declname>
+        </param>
+        <briefdescription>
+<para>드래그 종료 처리 - 다른 창고로 이동하는 개선된 로직 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="331" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="331" bodyend="460"/>
+        <references refid="classStorageRoomBase_1a9f43c0a8cd26219e2b6a88c22925bb40" compoundref="StorageRoomBase_8cs" startline="144" endline="242">StorageRoomBase.AddItem</references>
+        <references refid="classStorageRoomBase_1a1628efb587b9fb33b65afddbbf7b92b1" compoundref="StorageRoomBase_8cs" startline="111" endline="139">StorageRoomBase.CanPlaceItem</references>
+        <references refid="classTradingItemDragHandler_1a27bd2743042a6f435c726ab1b6c1d807" compoundref="TradingItemDragHandler_8cs" startline="566" endline="589">CleanupDrag</references>
+        <references refid="classTradingItemDragHandler_1a13771295a00b4679f11ffbe410a6e8b2" compoundref="TradingItemDragHandler_8cs" startline="615" endline="633">FlashInvalidPlacement</references>
+        <references refid="classStorageRoomBase_1a479f3459cd4d0708852e4475ae8eed87" compoundref="StorageRoomBase_8cs" startline="453" endline="479">StorageRoomBase.GridToWorldPosition</references>
+        <references refid="classStorageRoomBase_1aeb01a9c393850d9ad7b613a3b4d20a62" compoundref="StorageRoomBase_8cs" startline="247" endline="295">StorageRoomBase.RemoveItem</references>
+        <references refid="classTradingItemDragHandler_1a572679f873602e89680807180eaa2da3" compoundref="TradingItemDragHandler_8cs" startline="538" endline="561">ResetAllItemsInteractivity</references>
+        <references refid="classTradingItem_1adfd8fadad54e04959bd664292f2eebcb" compoundref="TradingItem_8cs" startline="183" endline="213">TradingItem.Rotate</references>
+        <references refid="classTradingItem_1a98456cd164dc0ccafe1ae0f3d75bcd17" compoundref="TradingItem_8cs" startline="309" endline="347">TradingItem.SetDragMode</references>
+        <references refid="classStorageRoomBase_1a01307e2f716fd400d0e29e0587568704" compoundref="StorageRoomBase_8cs" startline="12">StorageRoomBase.storedItems</references>
+        <references refid="classStorageRoomBase_1ad999a51ba228461cae0ff898913fa00e" compoundref="StorageRoomBase_8cs" startline="424" endline="448">StorageRoomBase.WorldToGridPosition</references>
+        <referencedby refid="classTradingItemDragHandler_1a63f5627fac6c69158216256ac653c932" compoundref="TradingItemDragHandler_8cs" startline="148" endline="200">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDragHandler_1a572679f873602e89680807180eaa2da3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator TradingItemDragHandler.ResetAllItemsInteractivity</definition>
+        <argsstring>()</argsstring>
+        <name>ResetAllItemsInteractivity</name>
+        <qualifiedname>TradingItemDragHandler.ResetAllItemsInteractivity</qualifiedname>
+        <briefdescription>
+<para>모든 아이템의 상호작용을 재활성화하는 코루틴 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="538" column="25" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="538" bodyend="561"/>
+        <references refid="classTradingItem_1a98456cd164dc0ccafe1ae0f3d75bcd17" compoundref="TradingItem_8cs" startline="309" endline="347">TradingItem.SetDragMode</references>
+        <references refid="classStorageRoomBase_1a01307e2f716fd400d0e29e0587568704" compoundref="StorageRoomBase_8cs" startline="12">StorageRoomBase.storedItems</references>
+        <referencedby refid="classTradingItemDragHandler_1a2a76e5b61bea8056e3a0e3668eb75b4e" compoundref="TradingItemDragHandler_8cs" startline="465" endline="533">CancelDragging</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a04f8a663a67d340a4ee45d9c377dfc27" compoundref="TradingItemDragHandler_8cs" startline="331" endline="460">EndDragging</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDragHandler_1a27bd2743042a6f435c726ab1b6c1d807" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItemDragHandler.CleanupDrag</definition>
+        <argsstring>()</argsstring>
+        <name>CleanupDrag</name>
+        <qualifiedname>TradingItemDragHandler.CleanupDrag</qualifiedname>
+        <briefdescription>
+<para>드래그 관련 리소스 정리 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="566" column="18" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="566" bodyend="589"/>
+        <referencedby refid="classTradingItemDragHandler_1a2a76e5b61bea8056e3a0e3668eb75b4e" compoundref="TradingItemDragHandler_8cs" startline="465" endline="533">CancelDragging</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a04f8a663a67d340a4ee45d9c377dfc27" compoundref="TradingItemDragHandler_8cs" startline="331" endline="460">EndDragging</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDragHandler_1a405c164c9771f1b2bf1985bc379bd83c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classStorageRoomBase" kindref="compound">StorageRoomBase</ref></type>
+        <definition>StorageRoomBase TradingItemDragHandler.GetStorageUnderMouse</definition>
+        <argsstring>()</argsstring>
+        <name>GetStorageUnderMouse</name>
+        <qualifiedname>TradingItemDragHandler.GetStorageUnderMouse</qualifiedname>
+        <briefdescription>
+<para>마우스 아래에 있는 스토리지 컴포넌트 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="594" column="29" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="594" bodyend="610"/>
+        <referencedby refid="classTradingItemDragHandler_1a630ddf4d8a2eb577b92968739e5b22d0" compoundref="TradingItemDragHandler_8cs" startline="305" endline="326">UpdatePreviewPosition</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDragHandler_1a13771295a00b4679f11ffbe410a6e8b2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator TradingItemDragHandler.FlashInvalidPlacement</definition>
+        <argsstring>()</argsstring>
+        <name>FlashInvalidPlacement</name>
+        <qualifiedname>TradingItemDragHandler.FlashInvalidPlacement</qualifiedname>
+        <briefdescription>
+<para>배치 불가능 상태 시각적 피드백 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="615" column="25" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="615" bodyend="633"/>
+        <referencedby refid="classTradingItemDragHandler_1a04f8a663a67d340a4ee45d9c377dfc27" compoundref="TradingItemDragHandler_8cs" startline="331" endline="460">EndDragging</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classTradingItemDragHandler_1a09c1e0490008c25ea72f2be604a991eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItemDragHandler.StartDragging</definition>
+        <argsstring>(TradingItem item, StorageRoomBase storage, Vector2 mousePosition)</argsstring>
+        <name>StartDragging</name>
+        <qualifiedname>TradingItemDragHandler.StartDragging</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <param>
+          <type><ref refid="classStorageRoomBase" kindref="compound">StorageRoomBase</ref></type>
+          <declname>storage</declname>
+        </param>
+        <param>
+          <type>Vector2</type>
+          <declname>mousePosition</declname>
+        </param>
+        <briefdescription>
+<para>아이템 드래그 시작 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="64" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="64" bodyend="112"/>
+        <references refid="classTradingItemDragHandler_1a2a76e5b61bea8056e3a0e3668eb75b4e" compoundref="TradingItemDragHandler_8cs" startline="465" endline="533">CancelDragging</references>
+        <references refid="classTradingItemDragHandler_1a9999521c55108d0e65c26b099ffe2d36" compoundref="TradingItemDragHandler_8cs" startline="118" endline="142">CreatePreview</references>
+        <references refid="classTradingItem_1a98456cd164dc0ccafe1ae0f3d75bcd17" compoundref="TradingItem_8cs" startline="309" endline="347">TradingItem.SetDragMode</references>
+        <references refid="classTradingItemDragHandler_1a24df3d8f7b20e55db8da65dd18bfa309" compoundref="TradingItemDragHandler_8cs" startline="281" endline="300">UpdatePreviewBoxSprite</references>
+        <references refid="classTradingItemDragHandler_1a630ddf4d8a2eb577b92968739e5b22d0" compoundref="TradingItemDragHandler_8cs" startline="305" endline="326">UpdatePreviewPosition</references>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDragHandler_1a2a76e5b61bea8056e3a0e3668eb75b4e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItemDragHandler.CancelDragging</definition>
+        <argsstring>()</argsstring>
+        <name>CancelDragging</name>
+        <qualifiedname>TradingItemDragHandler.CancelDragging</qualifiedname>
+        <briefdescription>
+<para>드래그 취소 (ESC 키 등으로 취소하는 경우) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="465" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="465" bodyend="533"/>
+        <references refid="classStorageRoomBase_1a9f43c0a8cd26219e2b6a88c22925bb40" compoundref="StorageRoomBase_8cs" startline="144" endline="242">StorageRoomBase.AddItem</references>
+        <references refid="classTradingItemDragHandler_1a27bd2743042a6f435c726ab1b6c1d807" compoundref="TradingItemDragHandler_8cs" startline="566" endline="589">CleanupDrag</references>
+        <references refid="classStorageRoomBase_1a479f3459cd4d0708852e4475ae8eed87" compoundref="StorageRoomBase_8cs" startline="453" endline="479">StorageRoomBase.GridToWorldPosition</references>
+        <references refid="classTradingItemDragHandler_1a572679f873602e89680807180eaa2da3" compoundref="TradingItemDragHandler_8cs" startline="538" endline="561">ResetAllItemsInteractivity</references>
+        <references refid="classTradingItem_1adfd8fadad54e04959bd664292f2eebcb" compoundref="TradingItem_8cs" startline="183" endline="213">TradingItem.Rotate</references>
+        <references refid="classTradingItem_1a98456cd164dc0ccafe1ae0f3d75bcd17" compoundref="TradingItem_8cs" startline="309" endline="347">TradingItem.SetDragMode</references>
+        <references refid="classStorageRoomBase_1a01307e2f716fd400d0e29e0587568704" compoundref="StorageRoomBase_8cs" startline="12">StorageRoomBase.storedItems</references>
+        <referencedby refid="classTradingItemDragHandler_1a09c1e0490008c25ea72f2be604a991eb" compoundref="TradingItemDragHandler_8cs" startline="64" endline="112">StartDragging</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>개선된 무역 아이템 드래그 앤 드롭 핸들러. 실제 아이템을 드래그하는 대신 임시 프리뷰를 사용합니다. 프리팹 없이 직접 프리뷰 오브젝트를 생성합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>TradingItemDragHandler</label>
+        <link refid="classTradingItemDragHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="11">
+        <label>Constants</label>
+      </node>
+      <node id="30">
+        <label>CrewBase</label>
+        <link refid="classCrewBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>+equippedAssistant</edgelabel>
+          <edgelabel>+equippedShield</edgelabel>
+          <edgelabel>+equippedWeapon</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>+currentRoom</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>+currentShip</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>+healthBarController</edgelabel>
+        </childnode>
+      </node>
+      <node id="33">
+        <label>CrewHealthBar</label>
+        <link refid="classCrewHealthBar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>-offset</edgelabel>
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>-crewBase</edgelabel>
+        </childnode>
+      </node>
+      <node id="29">
+        <label>CrewMember</label>
+        <link refid="classCrewMember"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>-movementDirection</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>+madRoom</edgelabel>
+          <edgelabel>+oldReservedRoom</edgelabel>
+          <edgelabel>+reservedRoom</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>EquipmentItem</label>
+        <link refid="classEquipmentItem"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>IBeginDragHandler</label>
+      </node>
+      <node id="6">
+        <label>IDragHandler</label>
+      </node>
+      <node id="7">
+        <label>IEndDragHandler</label>
+      </node>
+      <node id="8">
+        <label>IGridPlaceable</label>
+        <link refid="interfaceIGridPlaceable"/>
+      </node>
+      <node id="4">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="14">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="25">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="template-instance">
+          <edgelabel>&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="28">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="16" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>StorageRoomBase</label>
+        <link refid="classStorageRoomBase"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#selectedItem</edgelabel>
+          <edgelabel>-itemGrid</edgelabel>
+        </childnode>
+      </node>
+      <node id="27">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>TradingItem</label>
+        <link refid="classTradingItem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-itemData</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+rotation</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>+parentStorage</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>TradingItemData</label>
+        <link refid="classTradingItemData"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>TradingItemDragHandler</label>
+        <link refid="classTradingItemDragHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-originalItem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-currentTargetStorage</edgelabel>
+          <edgelabel>-previousTargetStorage</edgelabel>
+          <edgelabel>-sourceStorage</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-currentRotation</edgelabel>
+          <edgelabel>-originalRotation</edgelabel>
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>-dragOffset</edgelabel>
+        </childnode>
+      </node>
+      <node id="34">
+        <label>UnityEngine</label>
+      </node>
+      <node id="21">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" line="11" column="7" bodyfile="Assets/Scripts/Trade/Item/TradingItemDragHandler.cs" bodystart="12" bodyend="634"/>
+    <listofallmembers>
+      <member refid="classTradingItemDragHandler_1a702058a2f3368b452f4ddc8e70e8b48a" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>Awake</name></member>
+      <member refid="classTradingItemDragHandler_1a2a76e5b61bea8056e3a0e3668eb75b4e" prot="public" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>CancelDragging</name></member>
+      <member refid="classTradingItemDragHandler_1a27bd2743042a6f435c726ab1b6c1d807" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>CleanupDrag</name></member>
+      <member refid="classTradingItemDragHandler_1a9999521c55108d0e65c26b099ffe2d36" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>CreatePreview</name></member>
+      <member refid="classTradingItemDragHandler_1ab00b677914b56b30576bd2ac2ae4c95b" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>currentGridPosition</name></member>
+      <member refid="classTradingItemDragHandler_1af862742ec834122f87d9a84f66d2fdb2" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>currentRotation</name></member>
+      <member refid="classTradingItemDragHandler_1a6860510dd9a5e85f413ab078cb58fc2b" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>currentTargetStorage</name></member>
+      <member refid="classTradingItemDragHandler_1af5e4d9a6891362aa5a729cf23e223810" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>dragOffset</name></member>
+      <member refid="classTradingItemDragHandler_1a04f8a663a67d340a4ee45d9c377dfc27" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>EndDragging</name></member>
+      <member refid="classTradingItemDragHandler_1a0dd224ea163dfeff88d8d29c65f76c5d" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>flashCoroutine</name></member>
+      <member refid="classTradingItemDragHandler_1a13771295a00b4679f11ffbe410a6e8b2" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>FlashInvalidPlacement</name></member>
+      <member refid="classTradingItemDragHandler_1a405c164c9771f1b2bf1985bc379bd83c" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>GetStorageUnderMouse</name></member>
+      <member refid="classTradingItemDragHandler_1a5644265e24e2ed9fab55fe101c615e1f" prot="public" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>Instance</name></member>
+      <member refid="classTradingItemDragHandler_1a641a983a95784bd7cca5e1cf0e94dce5" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>invalidPlacementColor</name></member>
+      <member refid="classTradingItemDragHandler_1a7e861bba9c3dcaae22b4ce7a227bdff5" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>isDragging</name></member>
+      <member refid="classTradingItemDragHandler_1af87aa9235c8533eccef78561b0a907c0" prot="public" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>IsItemRepositioningAllowed</name></member>
+      <member refid="classTradingItemDragHandler_1affbcf13bade7f4821fe5aab573639516" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>lastLoggedDraggingState</name></member>
+      <member refid="classTradingItemDragHandler_1ad9d89ace1fd9e278cf7d1404dadfd822" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>normalPreviewColor</name></member>
+      <member refid="classTradingItemDragHandler_1ae686393cee8571ff37a26535ccf952ff" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>originalItem</name></member>
+      <member refid="classTradingItemDragHandler_1ab243bd59314f5753c72ce68d492e7595" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>originalPosition</name></member>
+      <member refid="classTradingItemDragHandler_1a097ff204fba5d04e5b483776f94f6b8a" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>originalRotation</name></member>
+      <member refid="classTradingItemDragHandler_1a32a8cce834ad2f23773a27f86b0f7ad7" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>previewBoxRenderer</name></member>
+      <member refid="classTradingItemDragHandler_1a1de2fdcb9ace71c18a64c4f7d209cd4c" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>previewObject</name></member>
+      <member refid="classTradingItemDragHandler_1aa2fbde09ee47c552f66e035ba6877823" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>previousTargetStorage</name></member>
+      <member refid="classTradingItemDragHandler_1a572679f873602e89680807180eaa2da3" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>ResetAllItemsInteractivity</name></member>
+      <member refid="classTradingItemDragHandler_1a6f012524b14b8147c85140994147b769" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>resetCoroutine</name></member>
+      <member refid="classTradingItemDragHandler_1abd8e3063b1764c95a3498065d48225b5" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>RotatePreview</name></member>
+      <member refid="classTradingItemDragHandler_1a204c28151687819dfd8915d8185f8c53" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>sourceStorage</name></member>
+      <member refid="classTradingItemDragHandler_1a09c1e0490008c25ea72f2be604a991eb" prot="public" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>StartDragging</name></member>
+      <member refid="classTradingItemDragHandler_1a63f5627fac6c69158216256ac653c932" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>Update</name></member>
+      <member refid="classTradingItemDragHandler_1a24df3d8f7b20e55db8da65dd18bfa309" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>UpdatePreviewBoxSprite</name></member>
+      <member refid="classTradingItemDragHandler_1a630ddf4d8a2eb577b92968739e5b22d0" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>UpdatePreviewPosition</name></member>
+      <member refid="classTradingItemDragHandler_1afe5a3574b515ffeefc67232daa8a8e29" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>UpdatePreviewToGridPosition</name></member>
+      <member refid="classTradingItemDragHandler_1a7cead0e0d01c7f3e9e7d6c1d92ef4dbf" prot="private" virt="non-virtual"><scope>TradingItemDragHandler</scope><name>validPlacementColor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

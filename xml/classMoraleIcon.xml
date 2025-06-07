@@ -1,0 +1,359 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classMoraleIcon" kind="class" language="C#" prot="public">
+    <compoundname>MoraleIcon</compoundname>
+    <basecompoundref refid="classTooltipPanelBase" prot="public" virt="non-virtual">TooltipPanelBase</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classMoraleIcon_1af2ae292c5be60e109ef69edc57eccf3b" prot="public" static="no" mutable="no">
+        <type>CrewRace</type>
+        <definition>CrewRace MoraleIcon.race</definition>
+        <argsstring></argsstring>
+        <name>race</name>
+        <qualifiedname>MoraleIcon.race</qualifiedname>
+        <briefdescription>
+<para>종족 유형 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleIcon.cs" line="11" column="21" bodyfile="Assets/Scripts/Morale/MoraleIcon.cs" bodystart="11" bodyend="-1"/>
+        <referencedby refid="classMoraleIcon_1aaeced56dbad37de4cc88315ec05b41e1" compoundref="MoraleIcon_8cs" startline="49" endline="70">Initialize</referencedby>
+        <referencedby refid="classMoraleIcon_1a0a6e94842bfa2df085b951e1e154da51" compoundref="MoraleIcon_8cs" startline="170" endline="203">SetToolTipText</referencedby>
+        <referencedby refid="classMoraleIcon_1a77c3e4c7a512b851d263de3d0a18f620" compoundref="MoraleIcon_8cs" startline="114" endline="165">UpdateSprite</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classMoraleIcon_1a51ae3ece0615f2bc55925b79761cd811" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int MoraleIcon.totalValue</definition>
+        <argsstring></argsstring>
+        <name>totalValue</name>
+        <qualifiedname>MoraleIcon.totalValue</qualifiedname>
+        <briefdescription>
+<para>아이콘에 표시되는 총 사기 변화량 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleIcon.cs" line="16" column="16" bodyfile="Assets/Scripts/Morale/MoraleIcon.cs" bodystart="16" bodyend="-1"/>
+        <referencedby refid="classMoraleIcon_1ae72cf74829f289c3f433b5cd82f1f7df" compoundref="MoraleIcon_8cs" startline="95" endline="100">ClearEffectData</referencedby>
+        <referencedby refid="classMoraleIcon_1aaeced56dbad37de4cc88315ec05b41e1" compoundref="MoraleIcon_8cs" startline="49" endline="70">Initialize</referencedby>
+        <referencedby refid="classMoraleIcon_1a212a449e362114592500fc8dd94ae429" compoundref="MoraleIcon_8cs" startline="105" endline="109">RecalculateTotalValue</referencedby>
+        <referencedby refid="classMoraleIcon_1a0a6e94842bfa2df085b951e1e154da51" compoundref="MoraleIcon_8cs" startline="170" endline="203">SetToolTipText</referencedby>
+        <referencedby refid="classMoraleIcon_1a77c3e4c7a512b851d263de3d0a18f620" compoundref="MoraleIcon_8cs" startline="114" endline="165">UpdateSprite</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classMoraleIcon_1a6c814e061a86161989044471fb2d35d4" prot="public" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image MoraleIcon.iconImage</definition>
+        <argsstring></argsstring>
+        <name>iconImage</name>
+        <qualifiedname>MoraleIcon.iconImage</qualifiedname>
+        <briefdescription>
+<para>이미지 컴포넌트 (UI) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleIcon.cs" line="21" column="18" bodyfile="Assets/Scripts/Morale/MoraleIcon.cs" bodystart="21" bodyend="-1"/>
+        <referencedby refid="classMoraleIcon_1aaeced56dbad37de4cc88315ec05b41e1" compoundref="MoraleIcon_8cs" startline="49" endline="70">Initialize</referencedby>
+        <referencedby refid="classMoraleIcon_1a77c3e4c7a512b851d263de3d0a18f620" compoundref="MoraleIcon_8cs" startline="114" endline="165">UpdateSprite</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classMoraleIcon_1a8e567bf7194f250f7e07aebb546cfde3" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="classMoraleEffectData" kindref="compound">MoraleEffectData</ref> &gt;</type>
+        <definition>List&lt;MoraleEffectData&gt; MoraleIcon.effectDataList</definition>
+        <argsstring></argsstring>
+        <name>effectDataList</name>
+        <qualifiedname>MoraleIcon.effectDataList</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>이 아이콘을 통해 표시되는 개별 사기 효과들의 목록 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleIcon.cs" line="26" column="18" bodyfile="Assets/Scripts/Morale/MoraleIcon.cs" bodystart="26" bodyend="-1"/>
+        <referencedby refid="classMoraleIcon_1ab03a78ada70f89f0d19721cf6de9d406" compoundref="MoraleIcon_8cs" startline="75" endline="80">AddEffectData</referencedby>
+        <referencedby refid="classMoraleIcon_1ae72cf74829f289c3f433b5cd82f1f7df" compoundref="MoraleIcon_8cs" startline="95" endline="100">ClearEffectData</referencedby>
+        <referencedby refid="classMoraleIcon_1a212a449e362114592500fc8dd94ae429" compoundref="MoraleIcon_8cs" startline="105" endline="109">RecalculateTotalValue</referencedby>
+        <referencedby refid="classMoraleIcon_1af9e61352691115166f0c2b8474cd68e2" compoundref="MoraleIcon_8cs" startline="85" endline="90">RemoveEffectData</referencedby>
+        <referencedby refid="classMoraleIcon_1a0a6e94842bfa2df085b951e1e154da51" compoundref="MoraleIcon_8cs" startline="170" endline="203">SetToolTipText</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classMoraleIcon_1a2b8a4a0c9fba920d34ca81a7b2f5b52d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void MoraleIcon.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>MoraleIcon.Start</qualifiedname>
+        <reimplements refid="classTooltipPanelBase_1a83eccfb4ba756898898c78d6f66da5a0">Start</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleIcon.cs" line="28" column="29" bodyfile="Assets/Scripts/Morale/MoraleIcon.cs" bodystart="28" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleIcon_1a0a6e94842bfa2df085b951e1e154da51" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void MoraleIcon.SetToolTipText</definition>
+        <argsstring>()</argsstring>
+        <name>SetToolTipText</name>
+        <qualifiedname>MoraleIcon.SetToolTipText</qualifiedname>
+        <briefdescription>
+<para>툴팁 텍스트 업데이트 (TooltipPanelBase에서 상속) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleIcon.cs" line="170" column="29" bodyfile="Assets/Scripts/Morale/MoraleIcon.cs" bodystart="170" bodyend="203"/>
+        <references refid="classTooltipPanelBase_1a789a2a1d18c7265d8ca055b83a8c38ce" compoundref="TooltipPanelBase_8cs" startline="17">TooltipPanelBase.currentToolTip</references>
+        <references refid="classGameManager_1a0a5c70718a18bd796bdcf70f7411a539" compoundref="GameManager_8cs" startline="85">GameManager.CurrentYear</references>
+        <references refid="classMoraleIcon_1a8e567bf7194f250f7e07aebb546cfde3" compoundref="MoraleIcon_8cs" startline="26">effectDataList</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classMoraleIcon_1af2ae292c5be60e109ef69edc57eccf3b" compoundref="MoraleIcon_8cs" startline="11">race</references>
+        <references refid="classMoraleIcon_1a51ae3ece0615f2bc55925b79761cd811" compoundref="MoraleIcon_8cs" startline="16">totalValue</references>
+        <references refid="classMoraleEffectData_1acbd6595c08558c3601ee5f0d0f30b8a4" compoundref="MoraleEffectData_8cs" startline="15">MoraleEffectData.value</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classMoraleIcon_1aaeced56dbad37de4cc88315ec05b41e1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleIcon.Initialize</definition>
+        <argsstring>(CrewRace race)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>MoraleIcon.Initialize</qualifiedname>
+        <param>
+          <type>CrewRace</type>
+          <declname>race</declname>
+        </param>
+        <briefdescription>
+<para>아이콘 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleIcon.cs" line="49" column="17" bodyfile="Assets/Scripts/Morale/MoraleIcon.cs" bodystart="49" bodyend="70"/>
+        <references refid="classTooltipPanelBase_1a789a2a1d18c7265d8ca055b83a8c38ce" compoundref="TooltipPanelBase_8cs" startline="17">TooltipPanelBase.currentToolTip</references>
+        <references refid="classMoraleIcon_1a6c814e061a86161989044471fb2d35d4" compoundref="MoraleIcon_8cs" startline="21">iconImage</references>
+        <references refid="classMoraleIcon_1af2ae292c5be60e109ef69edc57eccf3b" compoundref="MoraleIcon_8cs" startline="11">race</references>
+        <references refid="classMoraleIcon_1a51ae3ece0615f2bc55925b79761cd811" compoundref="MoraleIcon_8cs" startline="16">totalValue</references>
+        <references refid="classMoraleIcon_1a77c3e4c7a512b851d263de3d0a18f620" compoundref="MoraleIcon_8cs" startline="114" endline="165">UpdateSprite</references>
+        <referencedby refid="classMoraleManager_1ac3928d89e453c7631964438043bb1ed5" compoundref="MoraleManager_8cs" startline="106" endline="145">MoraleManager.CreateRaceIcons</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleIcon_1ab03a78ada70f89f0d19721cf6de9d406" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleIcon.AddEffectData</definition>
+        <argsstring>(MoraleEffectData data)</argsstring>
+        <name>AddEffectData</name>
+        <qualifiedname>MoraleIcon.AddEffectData</qualifiedname>
+        <param>
+          <type><ref refid="classMoraleEffectData" kindref="compound">MoraleEffectData</ref></type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>사기 효과 데이터 추가 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleIcon.cs" line="75" column="17" bodyfile="Assets/Scripts/Morale/MoraleIcon.cs" bodystart="75" bodyend="80"/>
+        <references refid="classMoraleIcon_1a8e567bf7194f250f7e07aebb546cfde3" compoundref="MoraleIcon_8cs" startline="26">effectDataList</references>
+        <references refid="classMoraleIcon_1a212a449e362114592500fc8dd94ae429" compoundref="MoraleIcon_8cs" startline="105" endline="109">RecalculateTotalValue</references>
+        <references refid="classMoraleIcon_1a77c3e4c7a512b851d263de3d0a18f620" compoundref="MoraleIcon_8cs" startline="114" endline="165">UpdateSprite</references>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleIcon_1af9e61352691115166f0c2b8474cd68e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleIcon.RemoveEffectData</definition>
+        <argsstring>(MoraleEffectData data)</argsstring>
+        <name>RemoveEffectData</name>
+        <qualifiedname>MoraleIcon.RemoveEffectData</qualifiedname>
+        <param>
+          <type><ref refid="classMoraleEffectData" kindref="compound">MoraleEffectData</ref></type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>사기 효과 데이터 제거 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleIcon.cs" line="85" column="17" bodyfile="Assets/Scripts/Morale/MoraleIcon.cs" bodystart="85" bodyend="90"/>
+        <references refid="classMoraleIcon_1a8e567bf7194f250f7e07aebb546cfde3" compoundref="MoraleIcon_8cs" startline="26">effectDataList</references>
+        <references refid="classMoraleIcon_1a212a449e362114592500fc8dd94ae429" compoundref="MoraleIcon_8cs" startline="105" endline="109">RecalculateTotalValue</references>
+        <references refid="classMoraleIcon_1a77c3e4c7a512b851d263de3d0a18f620" compoundref="MoraleIcon_8cs" startline="114" endline="165">UpdateSprite</references>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleIcon_1ae72cf74829f289c3f433b5cd82f1f7df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleIcon.ClearEffectData</definition>
+        <argsstring>()</argsstring>
+        <name>ClearEffectData</name>
+        <qualifiedname>MoraleIcon.ClearEffectData</qualifiedname>
+        <briefdescription>
+<para>모든 데이터 제거 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleIcon.cs" line="95" column="17" bodyfile="Assets/Scripts/Morale/MoraleIcon.cs" bodystart="95" bodyend="100"/>
+        <references refid="classMoraleIcon_1a8e567bf7194f250f7e07aebb546cfde3" compoundref="MoraleIcon_8cs" startline="26">effectDataList</references>
+        <references refid="classMoraleIcon_1a51ae3ece0615f2bc55925b79761cd811" compoundref="MoraleIcon_8cs" startline="16">totalValue</references>
+        <references refid="classMoraleIcon_1a77c3e4c7a512b851d263de3d0a18f620" compoundref="MoraleIcon_8cs" startline="114" endline="165">UpdateSprite</references>
+        <referencedby refid="classMoraleManager_1a5c7deba883078410f81eadfba8caca65" compoundref="MoraleManager_8cs" startline="333" endline="363">MoraleManager.ReapplyLoadedEffects</referencedby>
+        <referencedby refid="classMoraleManager_1ad3e72b7842ce25a7fed6ad5abab235d1" compoundref="MoraleManager_8cs" startline="200" endline="220">MoraleManager.ResetAllMorale</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classMoraleIcon_1a212a449e362114592500fc8dd94ae429" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleIcon.RecalculateTotalValue</definition>
+        <argsstring>()</argsstring>
+        <name>RecalculateTotalValue</name>
+        <qualifiedname>MoraleIcon.RecalculateTotalValue</qualifiedname>
+        <briefdescription>
+<para>전체 사기 값 재계산 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleIcon.cs" line="105" column="18" bodyfile="Assets/Scripts/Morale/MoraleIcon.cs" bodystart="105" bodyend="109"/>
+        <references refid="classMoraleIcon_1a8e567bf7194f250f7e07aebb546cfde3" compoundref="MoraleIcon_8cs" startline="26">effectDataList</references>
+        <references refid="classMoraleIcon_1a51ae3ece0615f2bc55925b79761cd811" compoundref="MoraleIcon_8cs" startline="16">totalValue</references>
+        <references refid="classMoraleEffectData_1acbd6595c08558c3601ee5f0d0f30b8a4" compoundref="MoraleEffectData_8cs" startline="15">MoraleEffectData.value</references>
+        <referencedby refid="classMoraleIcon_1ab03a78ada70f89f0d19721cf6de9d406" compoundref="MoraleIcon_8cs" startline="75" endline="80">AddEffectData</referencedby>
+        <referencedby refid="classMoraleIcon_1af9e61352691115166f0c2b8474cd68e2" compoundref="MoraleIcon_8cs" startline="85" endline="90">RemoveEffectData</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleIcon_1a77c3e4c7a512b851d263de3d0a18f620" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleIcon.UpdateSprite</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateSprite</name>
+        <qualifiedname>MoraleIcon.UpdateSprite</qualifiedname>
+        <briefdescription>
+<para>스프라이트 업데이트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleIcon.cs" line="114" column="18" bodyfile="Assets/Scripts/Morale/MoraleIcon.cs" bodystart="114" bodyend="165"/>
+        <references refid="classMoraleIcon_1a6c814e061a86161989044471fb2d35d4" compoundref="MoraleIcon_8cs" startline="21">iconImage</references>
+        <references refid="classMoraleIcon_1af2ae292c5be60e109ef69edc57eccf3b" compoundref="MoraleIcon_8cs" startline="11">race</references>
+        <references refid="classMoraleIcon_1a51ae3ece0615f2bc55925b79761cd811" compoundref="MoraleIcon_8cs" startline="16">totalValue</references>
+        <referencedby refid="classMoraleIcon_1ab03a78ada70f89f0d19721cf6de9d406" compoundref="MoraleIcon_8cs" startline="75" endline="80">AddEffectData</referencedby>
+        <referencedby refid="classMoraleIcon_1ae72cf74829f289c3f433b5cd82f1f7df" compoundref="MoraleIcon_8cs" startline="95" endline="100">ClearEffectData</referencedby>
+        <referencedby refid="classMoraleIcon_1aaeced56dbad37de4cc88315ec05b41e1" compoundref="MoraleIcon_8cs" startline="49" endline="70">Initialize</referencedby>
+        <referencedby refid="classMoraleIcon_1af9e61352691115166f0c2b8474cd68e2" compoundref="MoraleIcon_8cs" startline="85" endline="90">RemoveEffectData</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>MoraleIcon</label>
+        <link refid="classMoraleIcon"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>TooltipPanelBase</label>
+        <link refid="classTooltipPanelBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>MoraleIcon</label>
+        <link refid="classMoraleIcon"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>TooltipPanelBase</label>
+        <link refid="classTooltipPanelBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>#lastMousePosition</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>UnityEngine</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Morale/MoraleIcon.cs" line="6" column="7" bodyfile="Assets/Scripts/Morale/MoraleIcon.cs" bodystart="7" bodyend="204"/>
+    <listofallmembers>
+      <member refid="classMoraleIcon_1ab03a78ada70f89f0d19721cf6de9d406" prot="public" virt="non-virtual"><scope>MoraleIcon</scope><name>AddEffectData</name></member>
+      <member refid="classTooltipPanelBase_1a97ec8e3cc2519887b0ae3cfb4e3626b4" prot="protected" virt="non-virtual"><scope>MoraleIcon</scope><name>canvasComponent</name></member>
+      <member refid="classTooltipPanelBase_1a62dfbacb2b95ff327a1faa517134f4ab" prot="protected" virt="non-virtual"><scope>MoraleIcon</scope><name>canvasRectTransform</name></member>
+      <member refid="classMoraleIcon_1ae72cf74829f289c3f433b5cd82f1f7df" prot="public" virt="non-virtual"><scope>MoraleIcon</scope><name>ClearEffectData</name></member>
+      <member refid="classTooltipPanelBase_1a5f6a931d088acf15cb43fa990de25e1d" prot="protected" virt="virtual"><scope>MoraleIcon</scope><name>CreateTooltip</name></member>
+      <member refid="classTooltipPanelBase_1a789a2a1d18c7265d8ca055b83a8c38ce" prot="protected" virt="non-virtual"><scope>MoraleIcon</scope><name>currentToolTip</name></member>
+      <member refid="classMoraleIcon_1a8e567bf7194f250f7e07aebb546cfde3" prot="private" virt="non-virtual"><scope>MoraleIcon</scope><name>effectDataList</name></member>
+      <member refid="classMoraleIcon_1a6c814e061a86161989044471fb2d35d4" prot="public" virt="non-virtual"><scope>MoraleIcon</scope><name>iconImage</name></member>
+      <member refid="classMoraleIcon_1aaeced56dbad37de4cc88315ec05b41e1" prot="public" virt="non-virtual"><scope>MoraleIcon</scope><name>Initialize</name></member>
+      <member refid="classTooltipPanelBase_1afa2d7137da9fb9b726a7a8ff8e00a1db" prot="protected" virt="non-virtual"><scope>MoraleIcon</scope><name>isMouseOver</name></member>
+      <member refid="classTooltipPanelBase_1ae706f75ad68d5e73e3c2f06c6327ebdb" prot="protected" virt="non-virtual"><scope>MoraleIcon</scope><name>lastMousePosition</name></member>
+      <member refid="classTooltipPanelBase_1af2116b5eb2423885f440148dab1a07ea" prot="protected" virt="virtual"><scope>MoraleIcon</scope><name>OnDestroy</name></member>
+      <member refid="classTooltipPanelBase_1a961a740b6b6d26b6951d7b556463e00e" prot="protected" virt="virtual"><scope>MoraleIcon</scope><name>OnMouseEnter</name></member>
+      <member refid="classTooltipPanelBase_1af63cf646954832d7ed41828b63f89342" prot="protected" virt="virtual"><scope>MoraleIcon</scope><name>OnMouseExit</name></member>
+      <member refid="classTooltipPanelBase_1a78c48fdbc37013f86449658b65023581" prot="public" virt="virtual"><scope>MoraleIcon</scope><name>OnPointerEnter</name></member>
+      <member refid="classTooltipPanelBase_1a5e453ad8bdc556be9d3d5aba631ac352" prot="public" virt="virtual"><scope>MoraleIcon</scope><name>OnPointerExit</name></member>
+      <member refid="classMoraleIcon_1af2ae292c5be60e109ef69edc57eccf3b" prot="public" virt="non-virtual"><scope>MoraleIcon</scope><name>race</name></member>
+      <member refid="classMoraleIcon_1a212a449e362114592500fc8dd94ae429" prot="private" virt="non-virtual"><scope>MoraleIcon</scope><name>RecalculateTotalValue</name></member>
+      <member refid="classMoraleIcon_1af9e61352691115166f0c2b8474cd68e2" prot="public" virt="non-virtual"><scope>MoraleIcon</scope><name>RemoveEffectData</name></member>
+      <member refid="classMoraleIcon_1a0a6e94842bfa2df085b951e1e154da51" prot="protected" virt="non-virtual"><scope>MoraleIcon</scope><name>SetToolTipText</name></member>
+      <member refid="classTooltipPanelBase_1a5245ded07eac1229cf96cae6e8e444a6" prot="protected" virt="virtual"><scope>MoraleIcon</scope><name>ShowToolTipWithDelay</name></member>
+      <member refid="classMoraleIcon_1a2b8a4a0c9fba920d34ca81a7b2f5b52d" prot="protected" virt="virtual"><scope>MoraleIcon</scope><name>Start</name></member>
+      <member refid="classTooltipPanelBase_1aff2cd6b976fa069a09d0aa35f5c3b29e" prot="protected" virt="non-virtual"><scope>MoraleIcon</scope><name>toolTipCoroutine</name></member>
+      <member refid="classTooltipPanelBase_1a5c08f793ca364546be496216592d1eac" prot="protected" virt="non-virtual"><scope>MoraleIcon</scope><name>tooltipParent</name></member>
+      <member refid="classTooltipPanelBase_1a07452868d9fdf00c540a3811b2cf35c3" prot="protected" virt="non-virtual"><scope>MoraleIcon</scope><name>tooltipPrefab</name></member>
+      <member refid="classMoraleIcon_1a51ae3ece0615f2bc55925b79761cd811" prot="public" virt="non-virtual"><scope>MoraleIcon</scope><name>totalValue</name></member>
+      <member refid="classTooltipPanelBase_1a62c471dc692a616b0d34cb714d3ced8f" prot="protected" virt="virtual"><scope>MoraleIcon</scope><name>Update</name></member>
+      <member refid="classMoraleIcon_1a77c3e4c7a512b851d263de3d0a18f620" prot="private" virt="non-virtual"><scope>MoraleIcon</scope><name>UpdateSprite</name></member>
+      <member refid="classTooltipPanelBase_1ad579941725f5d24a110e99e5c5055506" prot="protected" virt="virtual"><scope>MoraleIcon</scope><name>UpdateToolTipPosition</name></member>
+      <member refid="classTooltipPanelBase_1af48e40c000aa7da2ccd0b651c45c57e7" prot="protected" virt="virtual"><scope>MoraleIcon</scope><name>UpdateToolTipPositionFromMouse</name></member>
+      <member refid="classTooltipPanelBase_1a74ddd2cded31a5df8d08612a2535218f" prot="protected" virt="virtual"><scope>MoraleIcon</scope><name>UpdateToolTipPositionInternal</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

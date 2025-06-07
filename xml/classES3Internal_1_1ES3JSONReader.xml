@@ -1,0 +1,1030 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classES3Internal_1_1ES3JSONReader" kind="class" language="C#" prot="public">
+    <compoundname>ES3Internal::ES3JSONReader</compoundname>
+    <basecompoundref refid="classES3Reader" prot="public" virt="non-virtual">ES3Reader</basecompoundref>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classES3Internal_1_1ES3JSONReader_1a37976c52e93385a762ba3305ed703897" prot="private" static="yes" mutable="no">
+        <type>const char</type>
+        <definition>const char ES3Internal.ES3JSONReader.endOfStreamChar</definition>
+        <argsstring></argsstring>
+        <name>endOfStreamChar</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.endOfStreamChar</qualifiedname>
+        <initializer>= (char)65535</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="21" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classES3Internal_1_1ES3JSONReader_1aa74c545998e839e3d1395977d3d34390" prot="public" static="no" mutable="no">
+        <type>StreamReader</type>
+        <definition>StreamReader ES3Internal.ES3JSONReader.baseReader</definition>
+        <argsstring></argsstring>
+        <name>baseReader</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.baseReader</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="23" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="package-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a9651cacb9f1cf681292b637e8d7aeb5d" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3Internal.ES3JSONReader.ES3JSONReader</definition>
+        <argsstring>(Stream stream, ES3Settings settings, bool readHeaderAndFooter=true)</argsstring>
+        <name>ES3JSONReader</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.ES3JSONReader</qualifiedname>
+        <param>
+          <type>Stream</type>
+          <declname>stream</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>readHeaderAndFooter</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="25" column="10" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="25" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a00c5d0160b64b7453b6e40d6ed30b781" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override bool</type>
+        <definition>override bool ES3Internal.ES3JSONReader.StartReadObject</definition>
+        <argsstring>()</argsstring>
+        <name>StartReadObject</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.StartReadObject</qualifiedname>
+        <reimplements refid="classES3Reader_1a7a70dddf5ec861ee6834e2a272130b4d">StartReadObject</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="108" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="108" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a784f5a86c5c9cadaef696350c6d929d6" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONReader.EndReadObject</definition>
+        <argsstring>()</argsstring>
+        <name>EndReadObject</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.EndReadObject</qualifiedname>
+        <reimplements refid="classES3Reader_1a2969d7a9dc70dbca37b275fc27a5e237">EndReadObject</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="114" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="114" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a40429d80b27a52e5479c6a3904a25b9e" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override bool</type>
+        <definition>override bool ES3Internal.ES3JSONReader.StartReadDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>StartReadDictionary</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.StartReadDictionary</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="121" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="121" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a707599c73593509a9719254227b8d7a8" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONReader.EndReadDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>EndReadDictionary</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.EndReadDictionary</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="126" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="126" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a6d932d309fd4e5aa5b1f090022b49818" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override bool</type>
+        <definition>override bool ES3Internal.ES3JSONReader.StartReadDictionaryKey</definition>
+        <argsstring>()</argsstring>
+        <name>StartReadDictionaryKey</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.StartReadDictionaryKey</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="128" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="128" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a1a4c22be68cae5f36051a3704ad7c6d0" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONReader.EndReadDictionaryKey</definition>
+        <argsstring>()</argsstring>
+        <name>EndReadDictionaryKey</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.EndReadDictionaryKey</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="139" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="139" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a95d5c3969483a781d4ce51eb61e6f794" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONReader.StartReadDictionaryValue</definition>
+        <argsstring>()</argsstring>
+        <name>StartReadDictionaryValue</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.StartReadDictionaryValue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="144" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="144" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a13af6dad830f2df5b6454eba3e950fbb" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override bool</type>
+        <definition>override bool ES3Internal.ES3JSONReader.EndReadDictionaryValue</definition>
+        <argsstring>()</argsstring>
+        <name>EndReadDictionaryValue</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.EndReadDictionaryValue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="146" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="146" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a998aa67b4b1799822638f55dd2057b8d" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override bool</type>
+        <definition>override bool ES3Internal.ES3JSONReader.StartReadCollection</definition>
+        <argsstring>()</argsstring>
+        <name>StartReadCollection</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.StartReadCollection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="159" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="159" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1aedda3f5c435224a20b841a993645a8b8" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONReader.EndReadCollection</definition>
+        <argsstring>()</argsstring>
+        <name>EndReadCollection</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.EndReadCollection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="164" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="164" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1af4377920d054620378b48e354e5973a0" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override bool</type>
+        <definition>override bool ES3Internal.ES3JSONReader.StartReadCollectionItem</definition>
+        <argsstring>()</argsstring>
+        <name>StartReadCollectionItem</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.StartReadCollectionItem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="166" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="166" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a55e6454cbcb45725dc592ee2a0dc5abc" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override bool</type>
+        <definition>override bool ES3Internal.ES3JSONReader.EndReadCollectionItem</definition>
+        <argsstring>()</argsstring>
+        <name>EndReadCollectionItem</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.EndReadCollectionItem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="177" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="177" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a18839263c5089b2feee66b58db1bbb06" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override byte[]</type>
+        <definition>override byte[] ES3Internal.ES3JSONReader.ReadElement</definition>
+        <argsstring>(bool skip=false)</argsstring>
+        <name>ReadElement</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.ReadElement</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>skip</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="227" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="227" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a93e128c1efc94fb577f61aba41cd4a98" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string ES3Internal.ES3JSONReader.Read_string</definition>
+        <argsstring>()</argsstring>
+        <name>Read_string</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_string</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="495" column="26" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="495" bodyend="536"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a2def0c61365f93d8866315887ebcfe31" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override long</type>
+        <definition>override long ES3Internal.ES3JSONReader.Read_ref</definition>
+        <argsstring>()</argsstring>
+        <name>Read_ref</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_ref</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="538" column="32" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="538" bodyend="545"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a675f779cedcd3e33cc42175a53934af5" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override char</type>
+        <definition>override char ES3Internal.ES3JSONReader.Read_char</definition>
+        <argsstring>()</argsstring>
+        <name>Read_char</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_char</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="547" column="31" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="547" bodyend="547"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a7ff6db0d55648566b382fe8980890b7e" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override float</type>
+        <definition>override float ES3Internal.ES3JSONReader.Read_float</definition>
+        <argsstring>()</argsstring>
+        <name>Read_float</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_float</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="548" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="548" bodyend="548"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a4e1ea0d6fd260f5411fb2f53b4d1bac2" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override int</type>
+        <definition>override int ES3Internal.ES3JSONReader.Read_int</definition>
+        <argsstring>()</argsstring>
+        <name>Read_int</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_int</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="549" column="23" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="549" bodyend="549"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a0c91b36c14643c07265403541328355f" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override bool</type>
+        <definition>override bool ES3Internal.ES3JSONReader.Read_bool</definition>
+        <argsstring>()</argsstring>
+        <name>Read_bool</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_bool</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="550" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="550" bodyend="550"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a68e5897decd7fa7450662eb477f7e30a" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override decimal</type>
+        <definition>override decimal ES3Internal.ES3JSONReader.Read_decimal</definition>
+        <argsstring>()</argsstring>
+        <name>Read_decimal</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_decimal</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="551" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="551" bodyend="551"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1ad04ec61211f5aea683766bfd519a36c9" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override double</type>
+        <definition>override double ES3Internal.ES3JSONReader.Read_double</definition>
+        <argsstring>()</argsstring>
+        <name>Read_double</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_double</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="552" column="26" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="552" bodyend="552"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a7df34d19d963d99160bd2aa081533a9a" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override long</type>
+        <definition>override long ES3Internal.ES3JSONReader.Read_long</definition>
+        <argsstring>()</argsstring>
+        <name>Read_long</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_long</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="553" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="553" bodyend="553"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a7e240ae0058259d05272399a86f17a05" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override ulong</type>
+        <definition>override ulong ES3Internal.ES3JSONReader.Read_ulong</definition>
+        <argsstring>()</argsstring>
+        <name>Read_ulong</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_ulong</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="554" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="554" bodyend="554"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a3dc797aa54e0216391f6034318f1a67f" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override uint</type>
+        <definition>override uint ES3Internal.ES3JSONReader.Read_uint</definition>
+        <argsstring>()</argsstring>
+        <name>Read_uint</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_uint</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="555" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="555" bodyend="555"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a686189ae7dcd824fbb0c4c2aedf48ff1" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override byte</type>
+        <definition>override byte ES3Internal.ES3JSONReader.Read_byte</definition>
+        <argsstring>()</argsstring>
+        <name>Read_byte</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_byte</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="556" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="556" bodyend="556"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a6b65fac03cdfb2a468591f58645b599e" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override sbyte</type>
+        <definition>override sbyte ES3Internal.ES3JSONReader.Read_sbyte</definition>
+        <argsstring>()</argsstring>
+        <name>Read_sbyte</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_sbyte</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="557" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="557" bodyend="557"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a003213e01620fd1d0ea0a607de06ef27" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override short</type>
+        <definition>override short ES3Internal.ES3JSONReader.Read_short</definition>
+        <argsstring>()</argsstring>
+        <name>Read_short</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_short</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="558" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="558" bodyend="558"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a33d259f5584ff112476ae79fbbd6d7d4" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override ushort</type>
+        <definition>override ushort ES3Internal.ES3JSONReader.Read_ushort</definition>
+        <argsstring>()</argsstring>
+        <name>Read_ushort</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_ushort</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="559" column="26" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="559" bodyend="559"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1add7eb8709ce732dfdebd0aca879054fd" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override byte[]</type>
+        <definition>override byte[] ES3Internal.ES3JSONReader.Read_byteArray</definition>
+        <argsstring>()</argsstring>
+        <name>Read_byteArray</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Read_byteArray</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="561" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="561" bodyend="561"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a8a8bc4c15dd1b9cd07a512ac8fe2813a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string ES3Internal.ES3JSONReader.ReadPropertyName</definition>
+        <argsstring>()</argsstring>
+        <name>ReadPropertyName</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.ReadPropertyName</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="53" column="24" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="53" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a6a3887e0a6b8ba61006577fbc5ddf936" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONReader.Dispose</definition>
+        <argsstring>()</argsstring>
+        <name>Dispose</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.Dispose</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="566" column="22" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="566" bodyend="569"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a34d0880c5eac3da736614f6444d2ee2e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override Type</type>
+        <definition>override Type ES3Internal.ES3JSONReader.ReadKeyPrefix</definition>
+        <argsstring>(bool ignoreType=false)</argsstring>
+        <name>ReadKeyPrefix</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.ReadKeyPrefix</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>ignoreType</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="82" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="82" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a7750917bd51ba2e17bd51dd70a94233f" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3JSONReader.ReadKeySuffix</definition>
+        <argsstring>()</argsstring>
+        <name>ReadKeySuffix</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.ReadKeySuffix</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="102" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="102" bodyend="105"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a3340edc00cd04ab3e4490d25539e62c5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Internal.ES3JSONReader.ReadString</definition>
+        <argsstring>(StreamWriter writer, bool skip=false)</argsstring>
+        <name>ReadString</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.ReadString</qualifiedname>
+        <param>
+          <type>StreamWriter</type>
+          <declname>writer</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>skip</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="199" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="199" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1ad28facd18346b948f27268db2d8a57bc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>char</type>
+        <definition>char ES3Internal.ES3JSONReader.ReadOrSkipChar</definition>
+        <argsstring>(StreamWriter writer, bool skip)</argsstring>
+        <name>ReadOrSkipChar</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.ReadOrSkipChar</qualifiedname>
+        <param>
+          <type>StreamWriter</type>
+          <declname>writer</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>skip</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="306" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="306" bodyend="311"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a8dfcefaaf88e1b7802cf9cf1eda89472" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>char</type>
+        <definition>char ES3Internal.ES3JSONReader.ReadCharIgnoreWhitespace</definition>
+        <argsstring>(bool ignoreTrailingWhitespace=true)</argsstring>
+        <name>ReadCharIgnoreWhitespace</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.ReadCharIgnoreWhitespace</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>ignoreTrailingWhitespace</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="320" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="320" bodyend="333"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1ac9c749e948ee524e12864ca3f1204a56" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ES3Internal.ES3JSONReader.ReadNullOrCharIgnoreWhitespace</definition>
+        <argsstring>(char expectedChar)</argsstring>
+        <name>ReadNullOrCharIgnoreWhitespace</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.ReadNullOrCharIgnoreWhitespace</qualifiedname>
+        <param>
+          <type>char</type>
+          <declname>expectedChar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="339" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="339" bodyend="360"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1ac3666fe0183ac42a6c2ae58b290ec985" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>char</type>
+        <definition>char ES3Internal.ES3JSONReader.ReadCharIgnoreWhitespace</definition>
+        <argsstring>(char expectedChar)</argsstring>
+        <name>ReadCharIgnoreWhitespace</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.ReadCharIgnoreWhitespace</qualifiedname>
+        <param>
+          <type>char</type>
+          <declname>expectedChar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="366" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="366" bodyend="377"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a1ada3f1777ea9f5f95deaa2125aa5084" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ES3Internal.ES3JSONReader.ReadQuotationMarkOrNullIgnoreWhitespace</definition>
+        <argsstring>()</argsstring>
+        <name>ReadQuotationMarkOrNullIgnoreWhitespace</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.ReadQuotationMarkOrNullIgnoreWhitespace</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="379" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="379" bodyend="398"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a52f12efb791e16b9c9693b70c2c579f6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>char</type>
+        <definition>char ES3Internal.ES3JSONReader.PeekCharIgnoreWhitespace</definition>
+        <argsstring>(char expectedChar)</argsstring>
+        <name>PeekCharIgnoreWhitespace</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.PeekCharIgnoreWhitespace</qualifiedname>
+        <param>
+          <type>char</type>
+          <declname>expectedChar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="403" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="403" bodyend="414"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a0e5c4df894477a2fdbd6bee84f86dab9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>char</type>
+        <definition>char ES3Internal.ES3JSONReader.PeekCharIgnoreWhitespace</definition>
+        <argsstring>()</argsstring>
+        <name>PeekCharIgnoreWhitespace</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.PeekCharIgnoreWhitespace</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="420" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="420" bodyend="427"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a9e5fbd7eedc32f52f1ec0bb7264ebaab" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Internal.ES3JSONReader.SkipWhiteSpace</definition>
+        <argsstring>()</argsstring>
+        <name>SkipWhiteSpace</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.SkipWhiteSpace</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="430" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="430" bodyend="434"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1afc173d95054e976f2daf2119938e225e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Internal.ES3JSONReader.SkipOpeningBraceOfFile</definition>
+        <argsstring>()</argsstring>
+        <name>SkipOpeningBraceOfFile</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.SkipOpeningBraceOfFile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="436" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="436" bodyend="442"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1aefc46e95d4268fc4aab188e7dc00dedd" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ES3Internal.ES3JSONReader.GetValueString</definition>
+        <argsstring>()</argsstring>
+        <name>GetValueString</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.GetValueString</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="478" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="478" bodyend="489"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1ade98e0abc597a22eb39955f47a4c6b31" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3JSONReader.IsWhiteSpace</definition>
+        <argsstring>(char c)</argsstring>
+        <name>IsWhiteSpace</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.IsWhiteSpace</qualifiedname>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="444" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="444" bodyend="447"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1aab9bdad35eeae26fbeb188b28c014c3e" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3JSONReader.IsOpeningBrace</definition>
+        <argsstring>(char c)</argsstring>
+        <name>IsOpeningBrace</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.IsOpeningBrace</qualifiedname>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="449" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="449" bodyend="452"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a47a05b656b94939a155299c5c90793f6" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3JSONReader.IsEndOfValue</definition>
+        <argsstring>(char c)</argsstring>
+        <name>IsEndOfValue</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.IsEndOfValue</qualifiedname>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="454" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="454" bodyend="457"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a98b4f206ae045759940c3bd486ccec8e" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3JSONReader.IsTerminator</definition>
+        <argsstring>(char c)</argsstring>
+        <name>IsTerminator</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.IsTerminator</qualifiedname>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="459" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="459" bodyend="462"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a114140c0859db64755be3071e3159baf" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3JSONReader.IsQuotationMark</definition>
+        <argsstring>(char c)</argsstring>
+        <name>IsQuotationMark</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.IsQuotationMark</qualifiedname>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="464" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="464" bodyend="467"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3JSONReader_1a06eeee2d1605fc5cb4c779e134971ac8" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Internal.ES3JSONReader.IsEndOfStream</definition>
+        <argsstring>(char c)</argsstring>
+        <name>IsEndOfStream</name>
+        <qualifiedname>ES3Internal.ES3JSONReader.IsEndOfStream</qualifiedname>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="469" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="469" bodyend="472"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ES3Internal.ES3JSONReader</label>
+        <link refid="classES3Internal_1_1ES3JSONReader"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ES3Reader</label>
+        <link refid="classES3Reader"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>System::IDisposable</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="9">
+        <label>ES3</label>
+        <link refid="classES3"/>
+      </node>
+      <node id="6">
+        <label>ES3Defaults</label>
+        <link refid="classES3Defaults"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+settings</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ES3Internal.ES3JSONReader</label>
+        <link refid="classES3Internal_1_1ES3JSONReader"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ES3Reader</label>
+        <link refid="classES3Reader"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+settings</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ES3SerializableSettings</label>
+        <link refid="classES3SerializableSettings"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ES3Settings</label>
+        <link refid="classES3Settings"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-_defaults</edgelabel>
+          <edgelabel>-_unencryptedUncompressedSettings</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-_defaultSettingsScriptableObject</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>+compressionType</edgelabel>
+          <edgelabel>+directory</edgelabel>
+          <edgelabel>+encryptionType</edgelabel>
+          <edgelabel>+format</edgelabel>
+          <edgelabel>+memberReferenceMode</edgelabel>
+          <edgelabel>+referenceMode</edgelabel>
+          <edgelabel>-_location</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+encoding</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="10">
+        <label>System</label>
+      </node>
+      <node id="5">
+        <label>System::ICloneable</label>
+      </node>
+      <node id="3">
+        <label>System::IDisposable</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" line="19" column="7" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3JSONReader.cs" bodystart="20" bodyend="570"/>
+    <listofallmembers>
+      <member refid="classES3Internal_1_1ES3JSONReader_1aa74c545998e839e3d1395977d3d34390" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>baseReader</name></member>
+      <member refid="classES3Reader_1aaaa29fbf59162a541245da765cefe48f" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1a2ab56d97b8966ec6aa0d70d5be64e72e" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1a1d8ad1622b67f64157348b9935fa7ee9" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1a3fe50ad09c5b6156562fa34b1c162534" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1a7b5d385b9983f0153220e56c4d181abe" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1a2dab6175d91f66b88adf644dbedc314e" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1ac944e33838d25f091edc35a4e6a863e8" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1a4413a870ee8ee10d4b16a871495b927a" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Create</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a6a3887e0a6b8ba61006577fbc5ddf936" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Dispose</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a37976c52e93385a762ba3305ed703897" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>endOfStreamChar</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1aedda3f5c435224a20b841a993645a8b8" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>EndReadCollection</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a55e6454cbcb45725dc592ee2a0dc5abc" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>EndReadCollectionItem</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a707599c73593509a9719254227b8d7a8" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>EndReadDictionary</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a1a4c22be68cae5f36051a3704ad7c6d0" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>EndReadDictionaryKey</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a13af6dad830f2df5b6454eba3e950fbb" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>EndReadDictionaryValue</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a784f5a86c5c9cadaef696350c6d929d6" prot="package" virt="virtual"><scope>ES3Internal::ES3JSONReader</scope><name>EndReadObject</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a9651cacb9f1cf681292b637e8d7aeb5d" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ES3JSONReader</name></member>
+      <member refid="classES3Reader_1ac23c293088687fe1ec21f1cbbbc21b77" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ES3Reader</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1aefc46e95d4268fc4aab188e7dc00dedd" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>GetValueString</name></member>
+      <member refid="classES3Reader_1a0fd5272f34b9ade681630e52b205e0e4" prot="package" virt="virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Goto</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a06eeee2d1605fc5cb4c779e134971ac8" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>IsEndOfStream</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a47a05b656b94939a155299c5c90793f6" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>IsEndOfValue</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1aab9bdad35eeae26fbeb188b28c014c3e" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>IsOpeningBrace</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a114140c0859db64755be3071e3159baf" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>IsQuotationMark</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a98b4f206ae045759940c3bd486ccec8e" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>IsTerminator</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1ade98e0abc597a22eb39955f47a4c6b31" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>IsWhiteSpace</name></member>
+      <member refid="classES3Reader_1a2fd14eb38537c7361126b88d99625175" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>overridePropertiesName</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a52f12efb791e16b9c9693b70c2c579f6" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>PeekCharIgnoreWhitespace</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a0e5c4df894477a2fdbd6bee84f86dab9" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>PeekCharIgnoreWhitespace</name></member>
+      <member refid="classES3Reader_1a0c93138b15a0cb7731fdbe3415b3636c" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Properties</name></member>
+      <member refid="classES3Reader_1ae4385a42e9efbd7936211cd04b835c31" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>RawEnumerator</name></member>
+      <member refid="classES3Reader_1ac1ce30dc04efc0e3288e70205d38afff" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1ab8944d2ab8278ce2eee59c99e09417cf" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1a966ece25534c57951a89abb71ed62619" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1a4bfa981965998cf19a5404dfef270e9f" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read&lt; T &gt;</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a0c91b36c14643c07265403541328355f" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_bool</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a686189ae7dcd824fbb0c4c2aedf48ff1" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_byte</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1add7eb8709ce732dfdebd0aca879054fd" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_byteArray</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a675f779cedcd3e33cc42175a53934af5" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_char</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a68e5897decd7fa7450662eb477f7e30a" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_decimal</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1ad04ec61211f5aea683766bfd519a36c9" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_double</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a7ff6db0d55648566b382fe8980890b7e" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_float</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a4e1ea0d6fd260f5411fb2f53b4d1bac2" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_int</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a7df34d19d963d99160bd2aa081533a9a" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_long</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a2def0c61365f93d8866315887ebcfe31" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_ref</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a6b65fac03cdfb2a468591f58645b599e" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_sbyte</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a003213e01620fd1d0ea0a607de06ef27" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_short</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a93e128c1efc94fb577f61aba41cd4a98" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_string</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a3dc797aa54e0216391f6034318f1a67f" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_uint</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a7e240ae0058259d05272399a86f17a05" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_ulong</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a33d259f5584ff112476ae79fbbd6d7d4" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Read_ushort</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a8dfcefaaf88e1b7802cf9cf1eda89472" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadCharIgnoreWhitespace</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1ac3666fe0183ac42a6c2ae58b290ec985" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadCharIgnoreWhitespace</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a18839263c5089b2feee66b58db1bbb06" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadElement</name></member>
+      <member refid="classES3Reader_1a365721ffd29981bc9ede16cd612138f9" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadInto&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1a1e16fa46ad694596ddbe4bafca816cd8" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadInto&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1a0016afa46b6c48048376b7d213f12f7f" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadInto&lt; T &gt;</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a34d0880c5eac3da736614f6444d2ee2e" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadKeyPrefix</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a7750917bd51ba2e17bd51dd70a94233f" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadKeySuffix</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1ac9c749e948ee524e12864ca3f1204a56" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadNullOrCharIgnoreWhitespace</name></member>
+      <member refid="classES3Reader_1a528a876b40edfd31250343ee3c4a8001" prot="protected" virt="virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadObject&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1aa60a4602c023bd6ace1ef80bd371eca3" prot="protected" virt="virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadObject&lt; T &gt;</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1ad28facd18346b948f27268db2d8a57bc" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadOrSkipChar</name></member>
+      <member refid="classES3Reader_1a0a25c91eef53db6fae806b718f0e24da" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadProperty&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1a4ec3b600e8eef689d469632221546622" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadProperty&lt; T &gt;</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a8a8bc4c15dd1b9cd07a512ac8fe2813a" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadPropertyName</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a1ada3f1777ea9f5f95deaa2125aa5084" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadQuotationMarkOrNullIgnoreWhitespace</name></member>
+      <member refid="classES3Reader_1a76857f3ac5cac673c82e18ac75741d0f" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadRefProperty</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a3340edc00cd04ab3e4490d25539e62c5" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadString</name></member>
+      <member refid="classES3Reader_1a69147b058db09f9f966cccd8eb09cc70" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadType</name></member>
+      <member refid="classES3Reader_1a5ecfbadfcab2025dd7b7467a20d578c1" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>ReadTypeFromHeader&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1afc66d2e29f1c31b431808890492a4712" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>serializationDepth</name></member>
+      <member refid="classES3Reader_1a75a9be91e35c6dda4c082d2fc19d4d09" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>SetPrivateField</name></member>
+      <member refid="classES3Reader_1a81d370551fb0b07dfc798082b675ae37" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>SetPrivateProperty</name></member>
+      <member refid="classES3Reader_1a7d7c413278eb3d790d1ae8b58d02ff22" prot="public" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>settings</name></member>
+      <member refid="classES3Reader_1a630d660bde984243c424babdb2496631" prot="public" virt="virtual"><scope>ES3Internal::ES3JSONReader</scope><name>Skip</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1afc173d95054e976f2daf2119938e225e" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>SkipOpeningBraceOfFile</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a9e5fbd7eedc32f52f1ec0bb7264ebaab" prot="private" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>SkipWhiteSpace</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a998aa67b4b1799822638f55dd2057b8d" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>StartReadCollection</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1af4377920d054620378b48e354e5973a0" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>StartReadCollectionItem</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a40429d80b27a52e5479c6a3904a25b9e" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>StartReadDictionary</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a6d932d309fd4e5aa5b1f090022b49818" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>StartReadDictionaryKey</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a95d5c3969483a781d4ce51eb61e6f794" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>StartReadDictionaryValue</name></member>
+      <member refid="classES3Internal_1_1ES3JSONReader_1a00c5d0160b64b7453b6e40d6ed30b781" prot="package" virt="virtual"><scope>ES3Internal::ES3JSONReader</scope><name>StartReadObject</name></member>
+      <member refid="classES3Reader_1acf3b67ba91ca3518b478cf0bab78522c" prot="package" virt="non-virtual"><scope>ES3Internal::ES3JSONReader</scope><name>TryOnAfterDeserialize</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,437 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classRoomSelectionHandler" kind="class" language="C#" prot="public">
+    <compoundname>RoomSelectionHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classRoomSelectionHandler_1ac734bdf7cf316d4de6c8e82de589df1d" prot="public" static="yes" mutable="no">
+        <type><ref refid="classRoomSelectionHandler" kindref="compound">RoomSelectionHandler</ref></type>
+        <definition>RoomSelectionHandler RoomSelectionHandler.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>RoomSelectionHandler.Instance</qualifiedname>
+        <briefdescription>
+<para>싱글톤 인스턴스, 방/무기 삭제 담당 handler </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" line="9" column="40" bodyfile="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" bodystart="9" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoomDragHandler_1acab88240f6dc197cf08fc6842585cb44" compoundref="BlueprintRoomDragHandler_8cs" startline="32" endline="59">BlueprintRoomDragHandler.StartDragging</referencedby>
+        <referencedby refid="classBlueprintWeaponDragHandler_1a5834a6e49dd8a0724bb81e6e36ee9642" compoundref="BlueprintWeaponDragHandler_8cs" startline="43" endline="85">BlueprintWeaponDragHandler.StartDragging</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">BlueprintRoom.Update</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">BlueprintWeapon.Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classRoomSelectionHandler_1ad47fcdd65c51e8358c9eff5f75beb63c" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject RoomSelectionHandler.selectionUI</definition>
+        <argsstring></argsstring>
+        <name>selectionUI</name>
+        <qualifiedname>RoomSelectionHandler.selectionUI</qualifiedname>
+        <briefdescription>
+<para>해당 위치에 오브젝트 확정, 삭제 물어보는 UI </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" line="14" column="23" bodyfile="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" bodystart="14" bodyend="-1"/>
+        <referencedby refid="classRoomSelectionHandler_1a443092f408ad81ffc678141bc047c0b5" compoundref="RoomSelectionHandler_8cs" startline="89" endline="100">Deselect</referencedby>
+        <referencedby refid="classRoomSelectionHandler_1a455235ae853359d6e6ab683f828acfef" compoundref="RoomSelectionHandler_8cs" startline="55" endline="84">SelectPlaceable</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">BlueprintRoom.Update</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">BlueprintWeapon.Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoomSelectionHandler_1ab6fb076dd93a695b309af7f25bfba27e" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button RoomSelectionHandler.confirmButton</definition>
+        <argsstring></argsstring>
+        <name>confirmButton</name>
+        <qualifiedname>RoomSelectionHandler.confirmButton</qualifiedname>
+        <briefdescription>
+<para>확정 버튼 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" line="19" column="19" bodyfile="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classRoomSelectionHandler_1a8f431257149799c2a6677c66a8710a6e" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button RoomSelectionHandler.cancelButton</definition>
+        <argsstring></argsstring>
+        <name>cancelButton</name>
+        <qualifiedname>RoomSelectionHandler.cancelButton</qualifiedname>
+        <briefdescription>
+<para>삭제 버튼 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" line="24" column="19" bodyfile="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classRoomSelectionHandler_1a475a5794f1ef65ba794dea768e362700" prot="public" static="no" mutable="no">
+        <type><ref refid="classGridPlacer" kindref="compound">GridPlacer</ref></type>
+        <definition>GridPlacer RoomSelectionHandler.gridPlacer</definition>
+        <argsstring></argsstring>
+        <name>gridPlacer</name>
+        <qualifiedname>RoomSelectionHandler.gridPlacer</qualifiedname>
+        <briefdescription>
+<para>그리드 타일 배치 작업을 위한 오브젝트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" line="29" column="23" bodyfile="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" bodystart="29" bodyend="-1"/>
+        <referencedby refid="classRoomSelectionHandler_1a146498f3749b2c31f48ad72228898c5b" compoundref="RoomSelectionHandler_8cs" startline="105" endline="115">ConfirmDelete</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" prot="private" static="no" mutable="no">
+        <type><ref refid="interfaceIBlueprintPlaceable" kindref="compound">IBlueprintPlaceable</ref></type>
+        <definition>IBlueprintPlaceable RoomSelectionHandler.selectedPlaceable</definition>
+        <argsstring></argsstring>
+        <name>selectedPlaceable</name>
+        <qualifiedname>RoomSelectionHandler.selectedPlaceable</qualifiedname>
+        <briefdescription>
+<para>선택된 배치 가능 오브젝트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" line="34" column="33" bodyfile="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" bodystart="34" bodyend="-1"/>
+        <referencedby refid="classRoomSelectionHandler_1a146498f3749b2c31f48ad72228898c5b" compoundref="RoomSelectionHandler_8cs" startline="105" endline="115">ConfirmDelete</referencedby>
+        <referencedby refid="classRoomSelectionHandler_1a443092f408ad81ffc678141bc047c0b5" compoundref="RoomSelectionHandler_8cs" startline="89" endline="100">Deselect</referencedby>
+        <referencedby refid="classRoomSelectionHandler_1a455235ae853359d6e6ab683f828acfef" compoundref="RoomSelectionHandler_8cs" startline="55" endline="84">SelectPlaceable</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classRoomSelectionHandler_1affb351def014152575fdf2b409d1bf44" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomSelectionHandler.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>RoomSelectionHandler.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" line="36" column="18" bodyfile="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" bodystart="36" bodyend="40"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classRoomSelectionHandler_1a25af6afcf09cdd4d4ab2cfacbd96a52d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomSelectionHandler.SelectRoom</definition>
+        <argsstring>(BlueprintRoom room)</argsstring>
+        <name>SelectRoom</name>
+        <qualifiedname>RoomSelectionHandler.SelectRoom</qualifiedname>
+        <param>
+          <type><ref refid="classBlueprintRoom" kindref="compound">BlueprintRoom</ref></type>
+          <declname>room</declname>
+        </param>
+        <briefdescription>
+<para>선택된 방에 대해 확정, 삭제할 UI 활성화, 색상 변경 (이전 버전과의 호환성 유지) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>room</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" line="46" column="17" bodyfile="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" bodystart="46" bodyend="49"/>
+        <references refid="classRoomSelectionHandler_1a455235ae853359d6e6ab683f828acfef" compoundref="RoomSelectionHandler_8cs" startline="55" endline="84">SelectPlaceable</references>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">BlueprintRoom.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoomSelectionHandler_1a455235ae853359d6e6ab683f828acfef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomSelectionHandler.SelectPlaceable</definition>
+        <argsstring>(IBlueprintPlaceable placeable)</argsstring>
+        <name>SelectPlaceable</name>
+        <qualifiedname>RoomSelectionHandler.SelectPlaceable</qualifiedname>
+        <param>
+          <type><ref refid="interfaceIBlueprintPlaceable" kindref="compound">IBlueprintPlaceable</ref></type>
+          <declname>placeable</declname>
+        </param>
+        <briefdescription>
+<para>선택된 배치 가능 오브젝트에 대해 확정, 삭제할 UI 활성화, 색상 변경 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>placeable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>배치 가능 오브젝트</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" line="55" column="17" bodyfile="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" bodystart="55" bodyend="84"/>
+        <references refid="classRoomSelectionHandler_1a443092f408ad81ffc678141bc047c0b5" compoundref="RoomSelectionHandler_8cs" startline="89" endline="100">Deselect</references>
+        <references refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" compoundref="RoomSelectionHandler_8cs" startline="34">selectedPlaceable</references>
+        <references refid="classRoomSelectionHandler_1ad47fcdd65c51e8358c9eff5f75beb63c" compoundref="RoomSelectionHandler_8cs" startline="14">selectionUI</references>
+        <referencedby refid="classRoomSelectionHandler_1a25af6afcf09cdd4d4ab2cfacbd96a52d" compoundref="RoomSelectionHandler_8cs" startline="46" endline="49">SelectRoom</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">BlueprintWeapon.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoomSelectionHandler_1a443092f408ad81ffc678141bc047c0b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomSelectionHandler.Deselect</definition>
+        <argsstring>()</argsstring>
+        <name>Deselect</name>
+        <qualifiedname>RoomSelectionHandler.Deselect</qualifiedname>
+        <briefdescription>
+<para>선택 해제 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" line="89" column="17" bodyfile="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" bodystart="89" bodyend="100"/>
+        <references refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" compoundref="RoomSelectionHandler_8cs" startline="34">selectedPlaceable</references>
+        <references refid="classRoomSelectionHandler_1ad47fcdd65c51e8358c9eff5f75beb63c" compoundref="RoomSelectionHandler_8cs" startline="14">selectionUI</references>
+        <referencedby refid="classRoomSelectionHandler_1a146498f3749b2c31f48ad72228898c5b" compoundref="RoomSelectionHandler_8cs" startline="105" endline="115">ConfirmDelete</referencedby>
+        <referencedby refid="classRoomSelectionHandler_1a455235ae853359d6e6ab683f828acfef" compoundref="RoomSelectionHandler_8cs" startline="55" endline="84">SelectPlaceable</referencedby>
+        <referencedby refid="classBlueprintRoomDragHandler_1acab88240f6dc197cf08fc6842585cb44" compoundref="BlueprintRoomDragHandler_8cs" startline="32" endline="59">BlueprintRoomDragHandler.StartDragging</referencedby>
+        <referencedby refid="classBlueprintWeaponDragHandler_1a5834a6e49dd8a0724bb81e6e36ee9642" compoundref="BlueprintWeaponDragHandler_8cs" startline="43" endline="85">BlueprintWeaponDragHandler.StartDragging</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">BlueprintRoom.Update</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">BlueprintWeapon.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoomSelectionHandler_1a146498f3749b2c31f48ad72228898c5b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomSelectionHandler.ConfirmDelete</definition>
+        <argsstring>()</argsstring>
+        <name>ConfirmDelete</name>
+        <qualifiedname>RoomSelectionHandler.ConfirmDelete</qualifiedname>
+        <briefdescription>
+<para>설계도 오브젝트 삭제 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" line="105" column="17" bodyfile="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" bodystart="105" bodyend="115"/>
+        <references refid="classRoomSelectionHandler_1a443092f408ad81ffc678141bc047c0b5" compoundref="RoomSelectionHandler_8cs" startline="89" endline="100">Deselect</references>
+        <references refid="interfaceIBlueprintPlaceable_1a2b9dbc880ea7e060d6d00ec2ec576a32">IBlueprintPlaceable.GetBlueprintShip</references>
+        <references refid="classRoomSelectionHandler_1a475a5794f1ef65ba794dea768e362700" compoundref="RoomSelectionHandler_8cs" startline="29">gridPlacer</references>
+        <references refid="classBlueprintShip_1a0b5ffa5700ce8e93ecc7458f45b1efdc" compoundref="BlueprintShip_8cs" startline="153" endline="156">BlueprintShip.RemovePlaceable</references>
+        <references refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" compoundref="RoomSelectionHandler_8cs" startline="34">selectedPlaceable</references>
+        <references refid="classGridPlacer_1abd95a28be8d9284dff882e48cb5d75c3" compoundref="GridPlacer_8cs" startline="220" endline="224">GridPlacer.UnMarkObjectOccupied</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>RoomSelectionHandler</label>
+        <link refid="classRoomSelectionHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>BlueprintShip</label>
+        <link refid="classBlueprintShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GridPlacer</label>
+        <link refid="classGridPlacer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>+targetBlueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-gridOrigin</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>IBlueprintPlaceable</label>
+        <link refid="interfaceIBlueprintPlaceable"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="16">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>RoomSelectionHandler</label>
+        <link refid="classRoomSelectionHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>+Instance</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+cancelButton</edgelabel>
+          <edgelabel>+confirmButton</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+gridPlacer</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-selectedPlaceable</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="19">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>UnityEngine</label>
+      </node>
+      <node id="12">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" line="4" column="7" bodyfile="Assets/Scripts/CustomizeShip/RoomSelectionHandler.cs" bodystart="5" bodyend="116"/>
+    <listofallmembers>
+      <member refid="classRoomSelectionHandler_1affb351def014152575fdf2b409d1bf44" prot="private" virt="non-virtual"><scope>RoomSelectionHandler</scope><name>Awake</name></member>
+      <member refid="classRoomSelectionHandler_1a8f431257149799c2a6677c66a8710a6e" prot="public" virt="non-virtual"><scope>RoomSelectionHandler</scope><name>cancelButton</name></member>
+      <member refid="classRoomSelectionHandler_1ab6fb076dd93a695b309af7f25bfba27e" prot="public" virt="non-virtual"><scope>RoomSelectionHandler</scope><name>confirmButton</name></member>
+      <member refid="classRoomSelectionHandler_1a146498f3749b2c31f48ad72228898c5b" prot="public" virt="non-virtual"><scope>RoomSelectionHandler</scope><name>ConfirmDelete</name></member>
+      <member refid="classRoomSelectionHandler_1a443092f408ad81ffc678141bc047c0b5" prot="public" virt="non-virtual"><scope>RoomSelectionHandler</scope><name>Deselect</name></member>
+      <member refid="classRoomSelectionHandler_1a475a5794f1ef65ba794dea768e362700" prot="public" virt="non-virtual"><scope>RoomSelectionHandler</scope><name>gridPlacer</name></member>
+      <member refid="classRoomSelectionHandler_1ac734bdf7cf316d4de6c8e82de589df1d" prot="public" virt="non-virtual"><scope>RoomSelectionHandler</scope><name>Instance</name></member>
+      <member refid="classRoomSelectionHandler_1afe7b6157b6303459cae6e6cb119b5f22" prot="private" virt="non-virtual"><scope>RoomSelectionHandler</scope><name>selectedPlaceable</name></member>
+      <member refid="classRoomSelectionHandler_1ad47fcdd65c51e8358c9eff5f75beb63c" prot="public" virt="non-virtual"><scope>RoomSelectionHandler</scope><name>selectionUI</name></member>
+      <member refid="classRoomSelectionHandler_1a455235ae853359d6e6ab683f828acfef" prot="public" virt="non-virtual"><scope>RoomSelectionHandler</scope><name>SelectPlaceable</name></member>
+      <member refid="classRoomSelectionHandler_1a25af6afcf09cdd4d4ab2cfacbd96a52d" prot="public" virt="non-virtual"><scope>RoomSelectionHandler</scope><name>SelectRoom</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

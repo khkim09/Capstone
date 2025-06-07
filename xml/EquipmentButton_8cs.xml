@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="EquipmentButton_8cs" kind="file" language="C#">
+    <compoundname>EquipmentButton.cs</compoundname>
+    <innerclass refid="classEquipmentButton" prot="public">EquipmentButton</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine.UI;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">TMPro;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">System;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="classEquipmentButton" refkind="compound"><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classEquipmentButton" kindref="compound">EquipmentButton</ref><sp/>:<sp/>MonoBehaviour</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15" refid="classEquipmentButton_1ab99cdba534435cb29c8b02f094d30cb4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[Header(</highlight><highlight class="stringliteral">&quot;UI<sp/>Elements&quot;</highlight><highlight class="normal">)]<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Image<sp/><ref refid="classEquipmentButton_1ab99cdba534435cb29c8b02f094d30cb4" kindref="member">iconImage</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="classEquipmentButton_1ad589d752ab56ffcd8ca989a836cda00a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>TextMeshProUGUI<sp/><ref refid="classEquipmentButton_1ad589d752ab56ffcd8ca989a836cda00a" kindref="member">nameText</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="classEquipmentButton_1a63996bedfc8645c47144cb4b9e5aaf9d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>TextMeshProUGUI<sp/><ref refid="classEquipmentButton_1a63996bedfc8645c47144cb4b9e5aaf9d" kindref="member">priceText</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="classEquipmentButton_1a7e9fc84e83d6229b698f77883f16b0f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Button<sp/><ref refid="classEquipmentButton_1a7e9fc84e83d6229b698f77883f16b0f2" kindref="member">myButton</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>[Header(</highlight><highlight class="stringliteral">&quot;Equipment<sp/>Data&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="36" refid="classEquipmentButton_1a7e0fd64b0dd25a6381ca202a6726973b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref><sp/><ref refid="classEquipmentButton_1a7e0fd64b0dd25a6381ca202a6726973b" kindref="member">linkedItem</ref>;<sp/></highlight><highlight class="comment">//<sp/>ScriptableObject(장비<sp/>데이터)<sp/>연결</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>[Header(</highlight><highlight class="stringliteral">&quot;UI<sp/>Handler&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="42" refid="classEquipmentButton_1a2c87d3f04f8171dcd612e11fa32c2463" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classEquipmentUIHandler" kindref="compound">EquipmentUIHandler</ref><sp/><ref refid="classEquipmentButton_1a2c87d3f04f8171dcd612e11fa32c2463" kindref="member">uiHandler</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="classEquipmentButton_1aa2b424c9adabcf6bfd9391e021b85ddb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEquipmentButton_1aa2b424c9adabcf6bfd9391e021b85ddb" kindref="member">Awake</ref>()</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classEquipmentButton_1a7e0fd64b0dd25a6381ca202a6726973b" kindref="member">linkedItem</ref>)</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classEquipmentButton_1ad697d3bd1a8a61cf90a5a4cc1ef902ab" kindref="member">UpdateUI</ref>();</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="classEquipmentButton_1a3261a2c3b67a483d216c593755841865" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEquipmentButton_1a3261a2c3b67a483d216c593755841865" kindref="member">OnValidate</ref>()</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>에디터에서<sp/>변경<sp/>사항이<sp/>있을<sp/>때<sp/>자동<sp/>업데이트</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classEquipmentButton_1a7e0fd64b0dd25a6381ca202a6726973b" kindref="member">linkedItem</ref>)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classEquipmentButton_1ad697d3bd1a8a61cf90a5a4cc1ef902ab" kindref="member">UpdateUI</ref>();</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="classEquipmentButton_1ad697d3bd1a8a61cf90a5a4cc1ef902ab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEquipmentButton_1ad697d3bd1a8a61cf90a5a4cc1ef902ab" kindref="member">UpdateUI</ref>()</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classEquipmentButton_1a7e0fd64b0dd25a6381ca202a6726973b" kindref="member">linkedItem</ref><sp/>==<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ScriptableObject의<sp/>데이터를<sp/>UI에<sp/>반영</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iconImage.sprite<sp/>=<sp/><ref refid="classEquipmentButton_1a7e0fd64b0dd25a6381ca202a6726973b" kindref="member">linkedItem</ref>.eqIcon;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nameText.text<sp/>=<sp/><ref refid="classEquipmentButton_1a7e0fd64b0dd25a6381ca202a6726973b" kindref="member">linkedItem</ref>.eqName;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>priceText.text<sp/>=<sp/><ref refid="classEquipmentButton_1a7e0fd64b0dd25a6381ca202a6726973b" kindref="member">linkedItem</ref>.eqPrice.ToString();</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="classEquipmentButton_1ab71acba9fd29cb9147062c6cfa3bd6a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEquipmentButton_1ab71acba9fd29cb9147062c6cfa3bd6a0" kindref="member">OnClickItem</ref>()</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classEquipmentButton_1a2c87d3f04f8171dcd612e11fa32c2463" kindref="member">uiHandler</ref>.<ref refid="classEquipmentUIHandler_1af76a35490750a6aa407ce6877b022a02" kindref="member">ShowItemTip</ref>(<ref refid="classEquipmentButton_1a7e0fd64b0dd25a6381ca202a6726973b" kindref="member">linkedItem</ref>,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="classEquipmentButton_1addd33ae44c37065d95375479d1db8062" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEquipmentButton_1addd33ae44c37065d95375479d1db8062" kindref="member">MarkAsDefault</ref>(Color<sp/>defaultColor)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ColorBlock<sp/>cb<sp/>=<sp/><ref refid="classEquipmentButton_1a7e9fc84e83d6229b698f77883f16b0f2" kindref="member">myButton</ref>.colors;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb.normalColor<sp/>=<sp/>defaultColor;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb.highlightedColor<sp/>=<sp/>defaultColor;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb.pressedColor<sp/>=<sp/>defaultColor<sp/>*<sp/>0.9f;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb.selectedColor<sp/>=<sp/>defaultColor;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>myButton.colors<sp/>=<sp/>cb;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="classEquipmentButton_1a41ce65c26d73fcf408138d98799ecaf5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref><sp/><ref refid="classEquipmentButton_1a41ce65c26d73fcf408138d98799ecaf5" kindref="member">GetLinkedItem</ref>()</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classEquipmentButton_1a7e0fd64b0dd25a6381ca202a6726973b" kindref="member">linkedItem</ref>;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Assets/Scripts/Equipment/EquipmentButton.cs"/>
+  </compounddef>
+</doxygen>

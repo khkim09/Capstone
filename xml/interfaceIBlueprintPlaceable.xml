@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="interfaceIBlueprintPlaceable" kind="interface" language="C#" prot="public">
+    <compoundname>IBlueprintPlaceable</compoundname>
+    <derivedcompoundref refid="classBlueprintRoom" prot="public" virt="non-virtual">BlueprintRoom</derivedcompoundref>
+    <derivedcompoundref refid="classBlueprintWeapon" prot="public" virt="non-virtual">BlueprintWeapon</derivedcompoundref>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="interfaceIBlueprintPlaceable_1ab0239f32856108832ca9ff02fab66fe6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>object</type>
+        <definition>object IBlueprintPlaceable.GetRotation</definition>
+        <argsstring>()</argsstring>
+        <name>GetRotation</name>
+        <qualifiedname>IBlueprintPlaceable.GetRotation</qualifiedname>
+        <reimplementedby refid="classBlueprintRoom_1a7710c72fe4d997c6b66b007d7a26bd60">GetRotation</reimplementedby>
+        <reimplementedby refid="classBlueprintWeapon_1a2ec6c613738ecf3ddb977723d5a15713">GetRotation</reimplementedby>
+        <briefdescription>
+<para>현재 회전 상태 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/IBlueprintPlaceable.cs" line="13" column="12"/>
+        <referencedby refid="classGridPlacer_1a7952bea4a05cd391da94778ec2e5f3b9" compoundref="GridPlacer_8cs" startline="238" endline="333">GridPlacer.CanPlaceObject</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="interfaceIBlueprintPlaceable_1ae74f4fe02223313619f2809a6caa72c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>Vector2Int IBlueprintPlaceable.GetGridPosition</definition>
+        <argsstring>()</argsstring>
+        <name>GetGridPosition</name>
+        <qualifiedname>IBlueprintPlaceable.GetGridPosition</qualifiedname>
+        <reimplementedby refid="classBlueprintRoom_1a72302abb083027c88d5a8253503f49dc">GetGridPosition</reimplementedby>
+        <reimplementedby refid="classBlueprintWeapon_1a85d791c56437b9f6c2f8abc6209808eb">GetGridPosition</reimplementedby>
+        <briefdescription>
+<para>현재 그리드 위치 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/IBlueprintPlaceable.cs" line="18" column="16"/>
+        <referencedby refid="classGridPlacer_1a7952bea4a05cd391da94778ec2e5f3b9" compoundref="GridPlacer_8cs" startline="238" endline="333">GridPlacer.CanPlaceObject</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="interfaceIBlueprintPlaceable_1ac30756929c602873e3b2471dc9d63584" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IBlueprintPlaceable.SetGridPosition</definition>
+        <argsstring>(Vector2Int position)</argsstring>
+        <name>SetGridPosition</name>
+        <qualifiedname>IBlueprintPlaceable.SetGridPosition</qualifiedname>
+        <reimplementedby refid="classBlueprintRoom_1a6663cc0bf0a8908d7b8c34d881efd9d7">SetGridPosition</reimplementedby>
+        <reimplementedby refid="classBlueprintWeapon_1a2d509e6b43b7bbdaa6ed7a85673f1cc1">SetGridPosition</reimplementedby>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>그리드 위치 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/IBlueprintPlaceable.cs" line="23" column="10"/>
+        <referencedby refid="classGridPlacer_1a7952bea4a05cd391da94778ec2e5f3b9" compoundref="GridPlacer_8cs" startline="238" endline="333">GridPlacer.CanPlaceObject</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="interfaceIBlueprintPlaceable_1a018a87125833cd2bc8f09d7b0433bc33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>List&lt; Vector2Int &gt; IBlueprintPlaceable.GetOccupiedTiles</definition>
+        <argsstring>()</argsstring>
+        <name>GetOccupiedTiles</name>
+        <qualifiedname>IBlueprintPlaceable.GetOccupiedTiles</qualifiedname>
+        <reimplementedby refid="classBlueprintRoom_1a7e0e187aee44308f619d702050ee3679">GetOccupiedTiles</reimplementedby>
+        <reimplementedby refid="classBlueprintWeapon_1a1abd2016ca769a8578917355f30c5ac0">GetOccupiedTiles</reimplementedby>
+        <briefdescription>
+<para>점유하고 있는 타일 목록 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/IBlueprintPlaceable.cs" line="28" column="10"/>
+        <referencedby refid="classGridPlacer_1a7952bea4a05cd391da94778ec2e5f3b9" compoundref="GridPlacer_8cs" startline="238" endline="333">GridPlacer.CanPlaceObject</referencedby>
+        <referencedby refid="classGridPlacer_1a256d47f047aeee7f201c3375ab82f131" compoundref="GridPlacer_8cs" startline="115" endline="146">GridPlacer.GetCameraStartPositionToBP</referencedby>
+        <referencedby refid="classBlueprintShip_1a07b30426ab59f1fdc876c4e560d322c4" compoundref="BlueprintShip_8cs" startline="128" endline="134">BlueprintShip.GetObjectAt</referencedby>
+        <referencedby refid="classGridPlacer_1a922df24240435582d5d98a30d0f56ccc" compoundref="GridPlacer_8cs" startline="210" endline="214">GridPlacer.MarkObjectOccupied</referencedby>
+        <referencedby refid="classGridPlacer_1abd95a28be8d9284dff882e48cb5d75c3" compoundref="GridPlacer_8cs" startline="220" endline="224">GridPlacer.UnMarkObjectOccupied</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="interfaceIBlueprintPlaceable_1a2a74bdceed811297aad91a1528eb6ae8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IBlueprintPlaceable.SetGridPlacer</definition>
+        <argsstring>(GridPlacer placer)</argsstring>
+        <name>SetGridPlacer</name>
+        <qualifiedname>IBlueprintPlaceable.SetGridPlacer</qualifiedname>
+        <reimplementedby refid="classBlueprintRoom_1a5a8b6723ac5f7a9e099dee6c0c795540">SetGridPlacer</reimplementedby>
+        <reimplementedby refid="classBlueprintWeapon_1aea22c0e321f64c39c6f6a56d020af717">SetGridPlacer</reimplementedby>
+        <param>
+          <type><ref refid="classGridPlacer" kindref="compound">GridPlacer</ref></type>
+          <declname>placer</declname>
+        </param>
+        <briefdescription>
+<para>그리드 배치 담당 오브젝트 세팅 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/IBlueprintPlaceable.cs" line="33" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="interfaceIBlueprintPlaceable_1ad0280442b91c18de2f8b010c827c80f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IBlueprintPlaceable.SetBlueprint</definition>
+        <argsstring>(BlueprintShip bpShip)</argsstring>
+        <name>SetBlueprint</name>
+        <qualifiedname>IBlueprintPlaceable.SetBlueprint</qualifiedname>
+        <reimplementedby refid="classBlueprintRoom_1a206cee30827d88a027ef567ac9963929">SetBlueprint</reimplementedby>
+        <reimplementedby refid="classBlueprintWeapon_1a484e24eaf4ebb1994f8c9817dcbb2f6f">SetBlueprint</reimplementedby>
+        <param>
+          <type><ref refid="classBlueprintShip" kindref="compound">BlueprintShip</ref></type>
+          <declname>bpShip</declname>
+        </param>
+        <briefdescription>
+<para>설계도 함선 할당 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/IBlueprintPlaceable.cs" line="38" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="interfaceIBlueprintPlaceable_1a2b9dbc880ea7e060d6d00ec2ec576a32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classBlueprintShip" kindref="compound">BlueprintShip</ref></type>
+        <definition>BlueprintShip IBlueprintPlaceable.GetBlueprintShip</definition>
+        <argsstring>()</argsstring>
+        <name>GetBlueprintShip</name>
+        <qualifiedname>IBlueprintPlaceable.GetBlueprintShip</qualifiedname>
+        <reimplementedby refid="classBlueprintRoom_1a48cd7a2d7140cc421d7d19e608c66349">GetBlueprintShip</reimplementedby>
+        <reimplementedby refid="classBlueprintWeapon_1ae2c23182c91e59854adf22b4aaac2876">GetBlueprintShip</reimplementedby>
+        <briefdescription>
+<para>설계도 함선 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/IBlueprintPlaceable.cs" line="43" column="19"/>
+        <referencedby refid="classRoomSelectionHandler_1a146498f3749b2c31f48ad72228898c5b" compoundref="RoomSelectionHandler_8cs" startline="105" endline="115">RoomSelectionHandler.ConfirmDelete</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="interfaceIBlueprintPlaceable_1ae9ea0c6d296c89ec5569152b697996a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int IBlueprintPlaceable.GetCost</definition>
+        <argsstring>()</argsstring>
+        <name>GetCost</name>
+        <qualifiedname>IBlueprintPlaceable.GetCost</qualifiedname>
+        <reimplementedby refid="classBlueprintRoom_1a995e662b2955c84c1f598f4a81aa4892">GetCost</reimplementedby>
+        <reimplementedby refid="classBlueprintWeapon_1a2f288f9d2f0a36dbdd27831aa7832aaf">GetCost</reimplementedby>
+        <briefdescription>
+<para>설치 비용 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/IBlueprintPlaceable.cs" line="48" column="9"/>
+        <referencedby refid="classBlueprintShip_1a4d0bb68f1e596c3a4f8799c565b6faf2" compoundref="BlueprintShip_8cs" startline="54" endline="62">BlueprintShip.GetTotalBPCost</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="interfaceIBlueprintPlaceable_1a044b1a9b1129c55be1a3d04cb1412581" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IBlueprintPlaceable.SetDragMode</definition>
+        <argsstring>(bool isDragging)</argsstring>
+        <name>SetDragMode</name>
+        <qualifiedname>IBlueprintPlaceable.SetDragMode</qualifiedname>
+        <reimplementedby refid="classBlueprintRoom_1ad914f1339a8244753a810e356d3a8055">SetDragMode</reimplementedby>
+        <reimplementedby refid="classBlueprintWeapon_1a30548e9a4721eee59c3772dc9c5e541b">SetDragMode</reimplementedby>
+        <param>
+          <type>bool</type>
+          <declname>isDragging</declname>
+        </param>
+        <briefdescription>
+<para>드래그 모드 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/IBlueprintPlaceable.cs" line="53" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선 설계도에 배치 가능한 모든 오브젝트가 구현해야 하는 인터페이스. 방, 무기 등 모든 배치 가능 오브젝트의 공통 기능을 정의합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>BlueprintRoom</label>
+        <link refid="classBlueprintRoom"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>BlueprintWeapon</label>
+        <link refid="classBlueprintWeapon"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>IBlueprintPlaceable</label>
+        <link refid="interfaceIBlueprintPlaceable"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>IBlueprintPlaceable</label>
+        <link refid="interfaceIBlueprintPlaceable"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/IBlueprintPlaceable.cs" line="8" column="18" bodyfile="Assets/Scripts/CustomizeShip/IBlueprintPlaceable.cs" bodystart="9" bodyend="54"/>
+    <listofallmembers>
+      <member refid="interfaceIBlueprintPlaceable_1a2b9dbc880ea7e060d6d00ec2ec576a32" prot="public" virt="non-virtual"><scope>IBlueprintPlaceable</scope><name>GetBlueprintShip</name></member>
+      <member refid="interfaceIBlueprintPlaceable_1ae9ea0c6d296c89ec5569152b697996a0" prot="public" virt="non-virtual"><scope>IBlueprintPlaceable</scope><name>GetCost</name></member>
+      <member refid="interfaceIBlueprintPlaceable_1ae74f4fe02223313619f2809a6caa72c6" prot="public" virt="non-virtual"><scope>IBlueprintPlaceable</scope><name>GetGridPosition</name></member>
+      <member refid="interfaceIBlueprintPlaceable_1a018a87125833cd2bc8f09d7b0433bc33" prot="public" virt="non-virtual"><scope>IBlueprintPlaceable</scope><name>GetOccupiedTiles</name></member>
+      <member refid="interfaceIBlueprintPlaceable_1ab0239f32856108832ca9ff02fab66fe6" prot="public" virt="non-virtual"><scope>IBlueprintPlaceable</scope><name>GetRotation</name></member>
+      <member refid="interfaceIBlueprintPlaceable_1ad0280442b91c18de2f8b010c827c80f5" prot="public" virt="non-virtual"><scope>IBlueprintPlaceable</scope><name>SetBlueprint</name></member>
+      <member refid="interfaceIBlueprintPlaceable_1a044b1a9b1129c55be1a3d04cb1412581" prot="public" virt="non-virtual"><scope>IBlueprintPlaceable</scope><name>SetDragMode</name></member>
+      <member refid="interfaceIBlueprintPlaceable_1a2a74bdceed811297aad91a1528eb6ae8" prot="public" virt="non-virtual"><scope>IBlueprintPlaceable</scope><name>SetGridPlacer</name></member>
+      <member refid="interfaceIBlueprintPlaceable_1ac30756929c602873e3b2471dc9d63584" prot="public" virt="non-virtual"><scope>IBlueprintPlaceable</scope><name>SetGridPosition</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

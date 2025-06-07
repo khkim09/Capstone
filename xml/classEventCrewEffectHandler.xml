@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEventCrewEffectHandler" kind="class" language="C#" prot="public">
+    <compoundname>EventCrewEffectHandler</compoundname>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEventCrewEffectHandler_1a7b4b7f5adb731fdbc71f399da0512001" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventCrewEffectHandler.Handle</definition>
+        <argsstring>(CrewEffect effect)</argsstring>
+        <name>Handle</name>
+        <qualifiedname>EventCrewEffectHandler.Handle</qualifiedname>
+        <param>
+          <type><ref refid="classCrewEffect" kindref="compound">CrewEffect</ref></type>
+          <declname>effect</declname>
+        </param>
+        <briefdescription>
+<para>단일 승무원 효과를 리스트로 감싸서 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>effect</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>적용할 단일 승무원 효과</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventHandlers/EventCrewEffectHandler.cs" line="15" column="17" bodyfile="Assets/Scripts/Events/EventHandlers/EventCrewEffectHandler.cs" bodystart="15" bodyend="24"/>
+        <references refid="classEventCrewEffectHandler_1a1c6a865eb331d25525e8ff555a722e75" compoundref="EventCrewEffectHandler_8cs" startline="30" endline="73">ApplyEffects</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventCrewEffectHandler_1a1c6a865eb331d25525e8ff555a722e75" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventCrewEffectHandler.ApplyEffects</definition>
+        <argsstring>(List&lt; CrewEffect &gt; crewEffects)</argsstring>
+        <name>ApplyEffects</name>
+        <qualifiedname>EventCrewEffectHandler.ApplyEffects</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="classCrewEffect" kindref="compound">CrewEffect</ref> &gt;</type>
+          <declname>crewEffects</declname>
+        </param>
+        <briefdescription>
+<para>이벤트로 전달된 <ref refid="classCrewEffect" kindref="compound">CrewEffect</ref> 리스트를 전체 선원에게 적용합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>crewEffects</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>적용할 효과 목록</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventHandlers/EventCrewEffectHandler.cs" line="30" column="17" bodyfile="Assets/Scripts/Events/EventHandlers/EventCrewEffectHandler.cs" bodystart="30" bodyend="73"/>
+        <references refid="classCrewEffect_1abb323c8018396a4fcb2691d81b9c696c" compoundref="CrewEffect_8cs" startline="25">CrewEffect.changeAmount</references>
+        <references refid="classCrewEffect_1a57bb7da755bbedcd4ff405eda8b50f30" compoundref="CrewEffect_8cs" startline="15">CrewEffect.effectType</references>
+        <references refid="classShip_1ad420fae7a6eed955adb71ba76673d55e" compoundref="Ship_8cs" startline="1051" endline="1054">Ship.GetAllCrew</references>
+        <references refid="classGameManager_1a1f54b41e89308bda97cf48e599ec549d" compoundref="GameManager_8cs" startline="427" endline="430">GameManager.GetPlayerShip</references>
+        <references refid="classCrewMember_1ab1b5a739bfeb532e0f29eaee1765a2a7" compoundref="CrewMember_8cs" startline="1048" endline="1055">CrewMember.Heal</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classCrewBase_1a5a53b04defdcf26f6be526e1dd7c4910" compoundref="CrewBase_8cs" startline="19">CrewBase.race</references>
+        <references refid="classCrewEffect_1ad94d96f4c323b163d6252b58e219071b" compoundref="CrewEffect_8cs" startline="20">CrewEffect.raceType</references>
+        <references refid="classMoraleManager_1ab2d7325d4af338a08a7998024fbcf9fb" compoundref="MoraleManager_8cs" startline="225" endline="235">MoraleManager.RegisterMoraleEffect</references>
+        <references refid="classCrewMember_1ab2132618bc1788d25a42db80dd3bd70f" compoundref="CrewMember_8cs" startline="650" endline="660">CrewMember.TakeDamage</references>
+        <referencedby refid="classEventManager_1a355c69c40c2d9bb101476692466ac9ac" compoundref="EventManager_8cs" startline="258" endline="295">EventManager.ApplyOutcomeEffects</referencedby>
+        <referencedby refid="classEventCrewEffectHandler_1a7b4b7f5adb731fdbc71f399da0512001" compoundref="EventCrewEffectHandler_8cs" startline="15" endline="24">Handle</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>이벤트 결과로 승무원 효과를 적용하는 유틸성 클래스입니다. SpecialEffectType 시스템과는 무관하게 EventOutcome의 crewEffects를 직접 처리합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>EventCrewEffectHandler</label>
+        <link refid="classEventCrewEffectHandler"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Events/EventHandlers/EventCrewEffectHandler.cs" line="9" column="7" bodyfile="Assets/Scripts/Events/EventHandlers/EventCrewEffectHandler.cs" bodystart="10" bodyend="74"/>
+    <listofallmembers>
+      <member refid="classEventCrewEffectHandler_1a1c6a865eb331d25525e8ff555a722e75" prot="public" virt="non-virtual"><scope>EventCrewEffectHandler</scope><name>ApplyEffects</name></member>
+      <member refid="classEventCrewEffectHandler_1a7b4b7f5adb731fdbc71f399da0512001" prot="public" virt="non-virtual"><scope>EventCrewEffectHandler</scope><name>Handle</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

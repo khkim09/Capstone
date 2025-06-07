@@ -1,0 +1,410 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classRaceButtonController" kind="class" language="C#" prot="public">
+    <compoundname>RaceButtonController</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerEnterHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerExitHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerClickHandler</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classRaceButtonController_1a1cc980b827e839f07add87c0b5b338a8" prot="public" static="no" mutable="no">
+        <type>CrewRace</type>
+        <definition>CrewRace RaceButtonController.raceType</definition>
+        <argsstring></argsstring>
+        <name>raceType</name>
+        <qualifiedname>RaceButtonController.raceType</qualifiedname>
+        <briefdescription>
+<para>종족 타입 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="15" column="22" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="15" bodyend="-1"/>
+        <referencedby refid="classCrewUIHandler_1a836663b4d3ffe30f66baaeac349a35cc" compoundref="CrewUIHandler_8cs" startline="217" endline="226">CrewUIHandler.OnRaceButtonClicked</referencedby>
+        <referencedby refid="classRaceButtonController_1a34434fbd0c054ab7af53364da11e9608" compoundref="RaceButtonController_8cs" startline="93" endline="110">ShowTooltip</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRaceButtonController_1ad9bff7ac75a4eafb2779f257e7943d13" prot="public" static="no" mutable="no">
+        <type><ref refid="classCrewRaceStat" kindref="compound">CrewRaceStat</ref></type>
+        <definition>CrewRaceStat RaceButtonController.crewRaceStat</definition>
+        <argsstring></argsstring>
+        <name>crewRaceStat</name>
+        <qualifiedname>RaceButtonController.crewRaceStat</qualifiedname>
+        <briefdescription>
+<para>종족 별 기본 스텟 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="21" column="25" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="21" bodyend="-1"/>
+        <referencedby refid="classRaceButtonController_1a34434fbd0c054ab7af53364da11e9608" compoundref="RaceButtonController_8cs" startline="93" endline="110">ShowTooltip</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRaceButtonController_1a89cd27a5bbf1198e5e57594bc4fd2757" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject RaceButtonController.raceTooltipPrefab</definition>
+        <argsstring></argsstring>
+        <name>raceTooltipPrefab</name>
+        <qualifiedname>RaceButtonController.raceTooltipPrefab</qualifiedname>
+        <briefdescription>
+<para>종족 선택 시 호출될 tooltip </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="26" column="23" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="26" bodyend="-1"/>
+        <referencedby refid="classRaceButtonController_1a34434fbd0c054ab7af53364da11e9608" compoundref="RaceButtonController_8cs" startline="93" endline="110">ShowTooltip</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRaceButtonController_1a42b9a41176d50854879e66e445796f3a" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color RaceButtonController.highlightColor</definition>
+        <argsstring></argsstring>
+        <name>highlightColor</name>
+        <qualifiedname>RaceButtonController.highlightColor</qualifiedname>
+        <initializer>= Color.yellow</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="43" column="18" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="43" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classRaceButtonController_1a4700de45013f3f8b4254489b524b9eb4" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject RaceButtonController.activeTooltip</definition>
+        <argsstring></argsstring>
+        <name>activeTooltip</name>
+        <qualifiedname>RaceButtonController.activeTooltip</qualifiedname>
+        <briefdescription>
+<para>활성화 된 race tooltip </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="31" column="24" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="31" bodyend="-1"/>
+        <referencedby refid="classRaceButtonController_1a2e502cb65e9bd4645a1b62e2dcac2a67" compoundref="RaceButtonController_8cs" startline="115" endline="122">HideTooltip</referencedby>
+        <referencedby refid="classRaceButtonController_1a34434fbd0c054ab7af53364da11e9608" compoundref="RaceButtonController_8cs" startline="93" endline="110">ShowTooltip</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRaceButtonController_1a57895bfe39c06aa24d522a98c17a18fb" prot="private" static="no" mutable="no">
+        <type>Canvas</type>
+        <definition>Canvas RaceButtonController.mainCanvas</definition>
+        <argsstring></argsstring>
+        <name>mainCanvas</name>
+        <qualifiedname>RaceButtonController.mainCanvas</qualifiedname>
+        <briefdescription>
+<para>작업에 필요한 mainCanvas </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="36" column="13" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="36" bodyend="-1"/>
+        <referencedby refid="classRaceButtonController_1a34434fbd0c054ab7af53364da11e9608" compoundref="RaceButtonController_8cs" startline="93" endline="110">ShowTooltip</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRaceButtonController_1af42c0352ae20b34fc85ee717bccd971c" prot="private" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button RaceButtonController.button</definition>
+        <argsstring></argsstring>
+        <name>button</name>
+        <qualifiedname>RaceButtonController.button</qualifiedname>
+        <briefdescription>
+<para>버튼 highlight를 위한 참조 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="41" column="20" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="41" bodyend="-1"/>
+        <referencedby refid="classRaceButtonController_1accdf9f43b1ab621a795a98af3ad97ba7" compoundref="RaceButtonController_8cs" startline="84" endline="88">SetHighlighted</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRaceButtonController_1ae5dc90e6a4673583f3fe53b391114315" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color RaceButtonController.normalColor</definition>
+        <argsstring></argsstring>
+        <name>normalColor</name>
+        <qualifiedname>RaceButtonController.normalColor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="42" column="19" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classRaceButtonController_1a9e72894620f09a81637fdd40b7d21011" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RaceButtonController.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>RaceButtonController.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="45" column="18" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="45" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classRaceButtonController_1a34434fbd0c054ab7af53364da11e9608" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RaceButtonController.ShowTooltip</definition>
+        <argsstring>()</argsstring>
+        <name>ShowTooltip</name>
+        <qualifiedname>RaceButtonController.ShowTooltip</qualifiedname>
+        <briefdescription>
+<para>실제 tooltip 게임 화면에 띄우기 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="93" column="18" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="93" bodyend="110"/>
+        <references refid="classRaceButtonController_1a4700de45013f3f8b4254489b524b9eb4" compoundref="RaceButtonController_8cs" startline="31">activeTooltip</references>
+        <references refid="classRaceButtonController_1ad9bff7ac75a4eafb2779f257e7943d13" compoundref="RaceButtonController_8cs" startline="21">crewRaceStat</references>
+        <references refid="classRaceButtonController_1a57895bfe39c06aa24d522a98c17a18fb" compoundref="RaceButtonController_8cs" startline="36">mainCanvas</references>
+        <references refid="classRaceButtonController_1a89cd27a5bbf1198e5e57594bc4fd2757" compoundref="RaceButtonController_8cs" startline="26">raceTooltipPrefab</references>
+        <references refid="classRaceButtonController_1a1cc980b827e839f07add87c0b5b338a8" compoundref="RaceButtonController_8cs" startline="15">raceType</references>
+        <references refid="classRaceTooltip_1afac678c03fa6b8716419856df409d06f" compoundref="RaceTooltip_8cs" startline="27" endline="49">RaceTooltip.SetupTooltip</references>
+        <referencedby refid="classRaceButtonController_1aa4f1237ce3fff46c1866839d3dddd136" compoundref="RaceButtonController_8cs" startline="56" endline="59">OnPointerEnter</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRaceButtonController_1a2e502cb65e9bd4645a1b62e2dcac2a67" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RaceButtonController.HideTooltip</definition>
+        <argsstring>()</argsstring>
+        <name>HideTooltip</name>
+        <qualifiedname>RaceButtonController.HideTooltip</qualifiedname>
+        <briefdescription>
+<para>tooltip 가리기 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="115" column="18" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="115" bodyend="122"/>
+        <references refid="classRaceButtonController_1a4700de45013f3f8b4254489b524b9eb4" compoundref="RaceButtonController_8cs" startline="31">activeTooltip</references>
+        <referencedby refid="classRaceButtonController_1a9638516e012871eb0d77d4884cd48e64" compoundref="RaceButtonController_8cs" startline="65" endline="68">OnPointerExit</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classRaceButtonController_1aa4f1237ce3fff46c1866839d3dddd136" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RaceButtonController.OnPointerEnter</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerEnter</name>
+        <qualifiedname>RaceButtonController.OnPointerEnter</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>마우스가 버튼에 들어왔을 때(hover) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="56" column="17" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="56" bodyend="59"/>
+        <references refid="classRaceButtonController_1a34434fbd0c054ab7af53364da11e9608" compoundref="RaceButtonController_8cs" startline="93" endline="110">ShowTooltip</references>
+      </memberdef>
+      <memberdef kind="function" id="classRaceButtonController_1a9638516e012871eb0d77d4884cd48e64" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RaceButtonController.OnPointerExit</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerExit</name>
+        <qualifiedname>RaceButtonController.OnPointerExit</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>마우스가 버튼에서 나갔을 때 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="65" column="17" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="65" bodyend="68"/>
+        <references refid="classRaceButtonController_1a2e502cb65e9bd4645a1b62e2dcac2a67" compoundref="RaceButtonController_8cs" startline="115" endline="122">HideTooltip</references>
+      </memberdef>
+      <memberdef kind="function" id="classRaceButtonController_1ac5a97be35fbb20a2f0e12e6ca9f4c283" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RaceButtonController.OnPointerClick</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerClick</name>
+        <qualifiedname>RaceButtonController.OnPointerClick</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>버튼 클릭 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="74" column="17" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="74" bodyend="78"/>
+        <references refid="classCrewUIHandler_1ab4bbd7a8a2c512abef285644a6e75627" compoundref="CrewUIHandler_8cs" startline="15">CrewUIHandler.Instance</references>
+        <references refid="classCrewUIHandler_1a836663b4d3ffe30f66baaeac349a35cc" compoundref="CrewUIHandler_8cs" startline="217" endline="226">CrewUIHandler.OnRaceButtonClicked</references>
+      </memberdef>
+      <memberdef kind="function" id="classRaceButtonController_1accdf9f43b1ab621a795a98af3ad97ba7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RaceButtonController.SetHighlighted</definition>
+        <argsstring>(bool highlighted)</argsstring>
+        <name>SetHighlighted</name>
+        <qualifiedname>RaceButtonController.SetHighlighted</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>highlighted</declname>
+        </param>
+        <briefdescription>
+<para>현재 버튼이 선택되었을 때(하이라이트) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>highlighted</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="84" column="17" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="84" bodyend="88"/>
+        <references refid="classRaceButtonController_1af42c0352ae20b34fc85ee717bccd971c" compoundref="RaceButtonController_8cs" startline="41">button</references>
+        <referencedby refid="classCrewUIHandler_1a836663b4d3ffe30f66baaeac349a35cc" compoundref="CrewUIHandler_8cs" startline="217" endline="226">CrewUIHandler.OnRaceButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1ae1dc75523a6a216baa0f0705209d3b31" compoundref="CrewUIHandler_8cs" startline="241" endline="247">CrewUIHandler.ResetCrewCreateUI</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>선원 생성 시, UI를 통한 종족 선택 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="3">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>RaceButtonController</label>
+        <link refid="classRaceButtonController"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="6">
+        <label>CrewRaceStat</label>
+        <link refid="classCrewRaceStat"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="3">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>RaceButtonController</label>
+        <link refid="classRaceButtonController"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+crewRaceStat</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-button</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="8">
+        <label>UnityEngine</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" line="10" column="7" bodyfile="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs" bodystart="11" bodyend="123"/>
+    <listofallmembers>
+      <member refid="classRaceButtonController_1a4700de45013f3f8b4254489b524b9eb4" prot="private" virt="non-virtual"><scope>RaceButtonController</scope><name>activeTooltip</name></member>
+      <member refid="classRaceButtonController_1a9e72894620f09a81637fdd40b7d21011" prot="private" virt="non-virtual"><scope>RaceButtonController</scope><name>Awake</name></member>
+      <member refid="classRaceButtonController_1af42c0352ae20b34fc85ee717bccd971c" prot="private" virt="non-virtual"><scope>RaceButtonController</scope><name>button</name></member>
+      <member refid="classRaceButtonController_1ad9bff7ac75a4eafb2779f257e7943d13" prot="public" virt="non-virtual"><scope>RaceButtonController</scope><name>crewRaceStat</name></member>
+      <member refid="classRaceButtonController_1a2e502cb65e9bd4645a1b62e2dcac2a67" prot="private" virt="non-virtual"><scope>RaceButtonController</scope><name>HideTooltip</name></member>
+      <member refid="classRaceButtonController_1a42b9a41176d50854879e66e445796f3a" prot="public" virt="non-virtual"><scope>RaceButtonController</scope><name>highlightColor</name></member>
+      <member refid="classRaceButtonController_1a57895bfe39c06aa24d522a98c17a18fb" prot="private" virt="non-virtual"><scope>RaceButtonController</scope><name>mainCanvas</name></member>
+      <member refid="classRaceButtonController_1ae5dc90e6a4673583f3fe53b391114315" prot="private" virt="non-virtual"><scope>RaceButtonController</scope><name>normalColor</name></member>
+      <member refid="classRaceButtonController_1ac5a97be35fbb20a2f0e12e6ca9f4c283" prot="public" virt="non-virtual"><scope>RaceButtonController</scope><name>OnPointerClick</name></member>
+      <member refid="classRaceButtonController_1aa4f1237ce3fff46c1866839d3dddd136" prot="public" virt="non-virtual"><scope>RaceButtonController</scope><name>OnPointerEnter</name></member>
+      <member refid="classRaceButtonController_1a9638516e012871eb0d77d4884cd48e64" prot="public" virt="non-virtual"><scope>RaceButtonController</scope><name>OnPointerExit</name></member>
+      <member refid="classRaceButtonController_1a89cd27a5bbf1198e5e57594bc4fd2757" prot="public" virt="non-virtual"><scope>RaceButtonController</scope><name>raceTooltipPrefab</name></member>
+      <member refid="classRaceButtonController_1a1cc980b827e839f07add87c0b5b338a8" prot="public" virt="non-virtual"><scope>RaceButtonController</scope><name>raceType</name></member>
+      <member refid="classRaceButtonController_1accdf9f43b1ab621a795a98af3ad97ba7" prot="public" virt="non-virtual"><scope>RaceButtonController</scope><name>SetHighlighted</name></member>
+      <member refid="classRaceButtonController_1a34434fbd0c054ab7af53364da11e9608" prot="private" virt="non-virtual"><scope>RaceButtonController</scope><name>ShowTooltip</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

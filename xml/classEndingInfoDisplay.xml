@@ -1,0 +1,343 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEndingInfoDisplay" kind="class" language="C#" prot="public">
+    <compoundname>EndingInfoDisplay</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classEndingInfoDisplay_1a5947a350c1754e703b389dfe76a332a2" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject EndingInfoDisplay.firstEndingCanvas</definition>
+        <argsstring></argsstring>
+        <name>firstEndingCanvas</name>
+        <qualifiedname>EndingInfoDisplay.firstEndingCanvas</qualifiedname>
+        <briefdescription>
+<para>1번 캔버스 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="13" column="25" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="13" bodyend="-1"/>
+        <referencedby refid="classEndingInfoDisplay_1a652d9786a5736810643d278f2e23f34b" compoundref="EndingInfoDisplay_8cs" startline="133" endline="146">SwitchCanvas</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEndingInfoDisplay_1a1a3e6b915d88ef64816fd26b74335403" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject EndingInfoDisplay.secondEndingCanvas</definition>
+        <argsstring></argsstring>
+        <name>secondEndingCanvas</name>
+        <qualifiedname>EndingInfoDisplay.secondEndingCanvas</qualifiedname>
+        <briefdescription>
+<para>2번 캔버스 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="18" column="25" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="18" bodyend="-1"/>
+        <referencedby refid="classEndingInfoDisplay_1a652d9786a5736810643d278f2e23f34b" compoundref="EndingInfoDisplay_8cs" startline="133" endline="146">SwitchCanvas</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEndingInfoDisplay_1a060d658183bdd48b67e9bb56b95ed4ab" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI EndingInfoDisplay.endingText</definition>
+        <argsstring></argsstring>
+        <name>endingText</name>
+        <qualifiedname>EndingInfoDisplay.endingText</qualifiedname>
+        <briefdescription>
+<para>출력할 TextMeshProUGUI 컴포넌트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="23" column="30" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEndingInfoDisplay_1a95e844e9ba36b164ace8bf3c7574d80a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float EndingInfoDisplay.lineDelay</definition>
+        <argsstring></argsstring>
+        <name>lineDelay</name>
+        <qualifiedname>EndingInfoDisplay.lineDelay</qualifiedname>
+        <initializer>= 0.5f</initializer>
+        <briefdescription>
+<para>한 줄씩 출력되는 간격 (초) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="28" column="20" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="28" bodyend="-1"/>
+        <referencedby refid="classEndingInfoDisplay_1af8a6c9310b772db5a2902c1f74348bbb" compoundref="EndingInfoDisplay_8cs" startline="76" endline="112">ShowPlayerSummary</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEndingInfoDisplay_1a3a6048dd1e90f9adb7d365d35b5585ba" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float EndingInfoDisplay.charDelay</definition>
+        <argsstring></argsstring>
+        <name>charDelay</name>
+        <qualifiedname>EndingInfoDisplay.charDelay</qualifiedname>
+        <initializer>= 0.05f</initializer>
+        <briefdescription>
+<para>글자당 출력 속도 (초) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="33" column="20" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="33" bodyend="-1"/>
+        <referencedby refid="classEndingInfoDisplay_1a91235553e1cdbdf288d16f9eef5f20a2" compoundref="EndingInfoDisplay_8cs" startline="117" endline="124">TypeLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEndingInfoDisplay_1acb58861b675e36ccf89e783cf4e4e2aa" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject EndingInfoDisplay.noTouchPanel</definition>
+        <argsstring></argsstring>
+        <name>noTouchPanel</name>
+        <qualifiedname>EndingInfoDisplay.noTouchPanel</qualifiedname>
+        <briefdescription>
+<para>노 터치 패널 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="38" column="25" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="38" bodyend="-1"/>
+        <referencedby refid="classEndingInfoDisplay_1af8a6c9310b772db5a2902c1f74348bbb" compoundref="EndingInfoDisplay_8cs" startline="76" endline="112">ShowPlayerSummary</referencedby>
+        <referencedby refid="classEndingInfoDisplay_1a652d9786a5736810643d278f2e23f34b" compoundref="EndingInfoDisplay_8cs" startline="133" endline="146">SwitchCanvas</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEndingInfoDisplay_1a928e6f5aeb52edcd73bd3d0abca4251e" prot="private" static="no" mutable="no">
+        <type><ref refid="classEndingResultDisplay" kindref="compound">EndingResultDisplay</ref></type>
+        <definition>EndingResultDisplay EndingInfoDisplay.endingResultDisplay</definition>
+        <argsstring></argsstring>
+        <name>endingResultDisplay</name>
+        <qualifiedname>EndingInfoDisplay.endingResultDisplay</qualifiedname>
+        <briefdescription>
+<para>다음 캔버스 관련 코드 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="43" column="34" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="43" bodyend="-1"/>
+        <referencedby refid="classEndingInfoDisplay_1a652d9786a5736810643d278f2e23f34b" compoundref="EndingInfoDisplay_8cs" startline="133" endline="146">SwitchCanvas</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEndingInfoDisplay_1a8239931b8ecbc39f473695e35e6c82d9" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool EndingInfoDisplay.isFinished</definition>
+        <argsstring></argsstring>
+        <name>isFinished</name>
+        <qualifiedname>EndingInfoDisplay.isFinished</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="45" column="18" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEndingInfoDisplay_1a81f05c9d855881f929bd4c5907893a74" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool EndingInfoDisplay.hasSceneSwitched</definition>
+        <argsstring></argsstring>
+        <name>hasSceneSwitched</name>
+        <qualifiedname>EndingInfoDisplay.hasSceneSwitched</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="46" column="18" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEndingInfoDisplay_1aa6f068bce5aedc321dfd40b327a3142a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float EndingInfoDisplay.lastClickTime</definition>
+        <argsstring></argsstring>
+        <name>lastClickTime</name>
+        <qualifiedname>EndingInfoDisplay.lastClickTime</qualifiedname>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="47" column="19" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEndingInfoDisplay_1a0c9ffa5a8e98b60d92cea266dbd303b5" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float EndingInfoDisplay.doubleClickThreshold</definition>
+        <argsstring></argsstring>
+        <name>doubleClickThreshold</name>
+        <qualifiedname>EndingInfoDisplay.doubleClickThreshold</qualifiedname>
+        <initializer>= 0.3f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="48" column="19" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="48" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEndingInfoDisplay_1a7a385a6d2900b4c6804dcaf32af51266" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EndingInfoDisplay.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>EndingInfoDisplay.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="50" column="18" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="50" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classEndingInfoDisplay_1a7d79d305ab92bb5e007186e6b37749f9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EndingInfoDisplay.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>EndingInfoDisplay.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="55" column="18" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="55" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classEndingInfoDisplay_1af8a6c9310b772db5a2902c1f74348bbb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator EndingInfoDisplay.ShowPlayerSummary</definition>
+        <argsstring>()</argsstring>
+        <name>ShowPlayerSummary</name>
+        <qualifiedname>EndingInfoDisplay.ShowPlayerSummary</qualifiedname>
+        <briefdescription>
+<para>GameManager로부터 플레이어 데이터를 받아와 UI에 출력 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="76" column="25" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="76" bodyend="112"/>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classEndingInfoDisplay_1a95e844e9ba36b164ace8bf3c7574d80a" compoundref="EndingInfoDisplay_8cs" startline="28">lineDelay</references>
+        <references refid="classEndingInfoDisplay_1acb58861b675e36ccf89e783cf4e4e2aa" compoundref="EndingInfoDisplay_8cs" startline="38">noTouchPanel</references>
+        <references refid="classGameManager_1a785ef423e566e2f91ef54a85044e25a3" compoundref="GameManager_8cs" startline="29">GameManager.playerData</references>
+        <references refid="classEndingInfoDisplay_1a91235553e1cdbdf288d16f9eef5f20a2" compoundref="EndingInfoDisplay_8cs" startline="117" endline="124">TypeLine</references>
+      </memberdef>
+      <memberdef kind="function" id="classEndingInfoDisplay_1a91235553e1cdbdf288d16f9eef5f20a2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator EndingInfoDisplay.TypeLine</definition>
+        <argsstring>(string line)</argsstring>
+        <name>TypeLine</name>
+        <qualifiedname>EndingInfoDisplay.TypeLine</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+<para>한 줄의 텍스트를 한 글자씩 출력하는 코루틴 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="117" column="25" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="117" bodyend="124"/>
+        <references refid="classEndingInfoDisplay_1a3a6048dd1e90f9adb7d365d35b5585ba" compoundref="EndingInfoDisplay_8cs" startline="33">charDelay</references>
+        <referencedby refid="classEndingInfoDisplay_1af8a6c9310b772db5a2902c1f74348bbb" compoundref="EndingInfoDisplay_8cs" startline="76" endline="112">ShowPlayerSummary</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEndingInfoDisplay_1a1f64de606936b8bc399993b16cc59c71" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EndingInfoDisplay.GoToNextScene</definition>
+        <argsstring>()</argsstring>
+        <name>GoToNextScene</name>
+        <qualifiedname>EndingInfoDisplay.GoToNextScene</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="126" column="18" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="126" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classEndingInfoDisplay_1a652d9786a5736810643d278f2e23f34b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EndingInfoDisplay.SwitchCanvas</definition>
+        <argsstring>()</argsstring>
+        <name>SwitchCanvas</name>
+        <qualifiedname>EndingInfoDisplay.SwitchCanvas</qualifiedname>
+        <briefdescription>
+<para>현재 캔버스를 끄고 다음 캔버스를 켭니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="133" column="18" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="133" bodyend="146"/>
+        <references refid="classEndingInfoDisplay_1a928e6f5aeb52edcd73bd3d0abca4251e" compoundref="EndingInfoDisplay_8cs" startline="43">endingResultDisplay</references>
+        <references refid="classEndingInfoDisplay_1a5947a350c1754e703b389dfe76a332a2" compoundref="EndingInfoDisplay_8cs" startline="13">firstEndingCanvas</references>
+        <references refid="classEndingInfoDisplay_1acb58861b675e36ccf89e783cf4e4e2aa" compoundref="EndingInfoDisplay_8cs" startline="38">noTouchPanel</references>
+        <references refid="classEndingInfoDisplay_1a1a3e6b915d88ef64816fd26b74335403" compoundref="EndingInfoDisplay_8cs" startline="18">secondEndingCanvas</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>엔딩 씬에서 플레이 정보를 화면에 출력하는 클래스. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EndingInfoDisplay</label>
+        <link refid="classEndingInfoDisplay"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>EndingInfoDisplay</label>
+        <link refid="classEndingInfoDisplay"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-endingResultDisplay</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>EndingResultDisplay</label>
+        <link refid="classEndingResultDisplay"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ending/EndingInfoDisplay.cs" line="8" column="7" bodyfile="Assets/Scripts/Ending/EndingInfoDisplay.cs" bodystart="9" bodyend="147"/>
+    <listofallmembers>
+      <member refid="classEndingInfoDisplay_1a3a6048dd1e90f9adb7d365d35b5585ba" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>charDelay</name></member>
+      <member refid="classEndingInfoDisplay_1a0c9ffa5a8e98b60d92cea266dbd303b5" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>doubleClickThreshold</name></member>
+      <member refid="classEndingInfoDisplay_1a928e6f5aeb52edcd73bd3d0abca4251e" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>endingResultDisplay</name></member>
+      <member refid="classEndingInfoDisplay_1a060d658183bdd48b67e9bb56b95ed4ab" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>endingText</name></member>
+      <member refid="classEndingInfoDisplay_1a5947a350c1754e703b389dfe76a332a2" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>firstEndingCanvas</name></member>
+      <member refid="classEndingInfoDisplay_1a1f64de606936b8bc399993b16cc59c71" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>GoToNextScene</name></member>
+      <member refid="classEndingInfoDisplay_1a81f05c9d855881f929bd4c5907893a74" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>hasSceneSwitched</name></member>
+      <member refid="classEndingInfoDisplay_1a8239931b8ecbc39f473695e35e6c82d9" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>isFinished</name></member>
+      <member refid="classEndingInfoDisplay_1aa6f068bce5aedc321dfd40b327a3142a" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>lastClickTime</name></member>
+      <member refid="classEndingInfoDisplay_1a95e844e9ba36b164ace8bf3c7574d80a" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>lineDelay</name></member>
+      <member refid="classEndingInfoDisplay_1acb58861b675e36ccf89e783cf4e4e2aa" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>noTouchPanel</name></member>
+      <member refid="classEndingInfoDisplay_1a1a3e6b915d88ef64816fd26b74335403" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>secondEndingCanvas</name></member>
+      <member refid="classEndingInfoDisplay_1af8a6c9310b772db5a2902c1f74348bbb" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>ShowPlayerSummary</name></member>
+      <member refid="classEndingInfoDisplay_1a7a385a6d2900b4c6804dcaf32af51266" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>Start</name></member>
+      <member refid="classEndingInfoDisplay_1a652d9786a5736810643d278f2e23f34b" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>SwitchCanvas</name></member>
+      <member refid="classEndingInfoDisplay_1a91235553e1cdbdf288d16f9eef5f20a2" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>TypeLine</name></member>
+      <member refid="classEndingInfoDisplay_1a7d79d305ab92bb5e007186e6b37749f9" prot="private" virt="non-virtual"><scope>EndingInfoDisplay</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

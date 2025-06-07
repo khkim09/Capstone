@@ -1,0 +1,388 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classAudioManager" kind="class" language="C#" prot="public">
+    <compoundname>AudioManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classAudioManager_1af96f8bc4f9a0ad3f1a63a028bb31f790" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="classAudioManager" kindref="compound">AudioManager</ref></type>
+        <definition>AudioManager AudioManager.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>AudioManager.Instance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="8" column="32" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="8" bodyend="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classAudioManager_1a1081038ce7267a4cace96e1a50ab1470" prot="private" static="no" mutable="no">
+        <type>AudioMixer</type>
+        <definition>AudioMixer AudioManager.audioMixer</definition>
+        <argsstring></argsstring>
+        <name>audioMixer</name>
+        <qualifiedname>AudioManager.audioMixer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="11" column="24" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classAudioManager_1a3c1311114630c5e8fc3a052501ed0363" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string AudioManager.bgmVolumeParameter</definition>
+        <argsstring></argsstring>
+        <name>bgmVolumeParameter</name>
+        <qualifiedname>AudioManager.bgmVolumeParameter</qualifiedname>
+        <initializer>= &quot;BGMVolume&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="13" column="21" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classAudioManager_1a48268ab23a4ffb0350afe49f3f64c4d5" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string AudioManager.sfxVolumeParameter</definition>
+        <argsstring></argsstring>
+        <name>sfxVolumeParameter</name>
+        <qualifiedname>AudioManager.sfxVolumeParameter</qualifiedname>
+        <initializer>= &quot;SFXVolume&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="14" column="21" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classAudioManager_1a1140ac0be9bf728804b08a0c03b43768" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float AudioManager.fadeDuration</definition>
+        <argsstring></argsstring>
+        <name>fadeDuration</name>
+        <qualifiedname>AudioManager.fadeDuration</qualifiedname>
+        <initializer>=0.5f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="23" column="20" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classAudioManager_1a11b5b28d4c49e49134c5c31b2981681f" prot="public" static="no" mutable="no">
+        <type>AudioClip</type>
+        <definition>AudioClip AudioManager.idleBGM</definition>
+        <argsstring></argsstring>
+        <name>idleBGM</name>
+        <qualifiedname>AudioManager.idleBGM</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="16" column="22" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classAudioManager_1aaf4b680178dfa5f4047d088f1eebc4b5" prot="public" static="no" mutable="no">
+        <type>AudioClip</type>
+        <definition>AudioClip AudioManager.mainmenuBGM</definition>
+        <argsstring></argsstring>
+        <name>mainmenuBGM</name>
+        <qualifiedname>AudioManager.mainmenuBGM</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="17" column="22" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classAudioManager_1a34f4239ad86a7355460df37212729434" prot="public" static="no" mutable="no">
+        <type>AudioClip</type>
+        <definition>AudioClip AudioManager.combatBGM</definition>
+        <argsstring></argsstring>
+        <name>combatBGM</name>
+        <qualifiedname>AudioManager.combatBGM</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="18" column="22" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classAudioManager_1a2551c23585a9f4aaf78df2f05d1138e7" prot="public" static="no" mutable="no">
+        <type>AudioClip</type>
+        <definition>AudioClip AudioManager.planetBGM</definition>
+        <argsstring></argsstring>
+        <name>planetBGM</name>
+        <qualifiedname>AudioManager.planetBGM</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="19" column="22" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classAudioManager_1a0c2aea6ea779d69228564aca9476ea80" prot="public" static="no" mutable="no">
+        <type>AudioSource</type>
+        <definition>AudioSource AudioManager.audioSource</definition>
+        <argsstring></argsstring>
+        <name>audioSource</name>
+        <qualifiedname>AudioManager.audioSource</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="21" column="24" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classAudioManager_1a631d7d42b921bcbd82bd1baec2ec3ea7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AudioManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>AudioManager.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="25" column="18" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="25" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classAudioManager_1ab333270dca5bf5c039de3d70ca111ba9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AudioManager.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>AudioManager.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="44" column="18" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="44" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classAudioManager_1a6036d9cb0bd475e2f23e476f931ab82b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AudioManager.LoadVolumes</definition>
+        <argsstring>()</argsstring>
+        <name>LoadVolumes</name>
+        <qualifiedname>AudioManager.LoadVolumes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="73" column="18" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="73" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classAudioManager_1aa1d86c99976fa4246a4499f67de66925" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator AudioManager.SwitchBGM</definition>
+        <argsstring>(AudioClip newClip)</argsstring>
+        <name>SwitchBGM</name>
+        <qualifiedname>AudioManager.SwitchBGM</qualifiedname>
+        <param>
+          <type>AudioClip</type>
+          <declname>newClip</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="158" column="25" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="158" bodyend="186"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classAudioManager_1aea92b1ba8640be429e622ea2e9adf108" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AudioManager.ChangeBGM</definition>
+        <argsstring>(string bgm)</argsstring>
+        <name>ChangeBGM</name>
+        <qualifiedname>AudioManager.ChangeBGM</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>bgm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="51" column="17" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="51" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classAudioManager_1adaa3aabf2101abcef0c0f2ac2a42a4ac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AudioManager.SetBGMVolume</definition>
+        <argsstring>(float volume)</argsstring>
+        <name>SetBGMVolume</name>
+        <qualifiedname>AudioManager.SetBGMVolume</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>volume</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="85" column="17" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="85" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classAudioManager_1a86119c029ac5638fd4931b465a1970bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AudioManager.SetSFXVolume</definition>
+        <argsstring>(float volume)</argsstring>
+        <name>SetSFXVolume</name>
+        <qualifiedname>AudioManager.SetSFXVolume</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>volume</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="95" column="17" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="95" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classAudioManager_1a64ebd08979b7a94ec66858448ca6ddb0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AudioManager.SaveVolumeSettings</definition>
+        <argsstring>(float bgmVolume, float sfxVolume)</argsstring>
+        <name>SaveVolumeSettings</name>
+        <qualifiedname>AudioManager.SaveVolumeSettings</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>bgmVolume</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>sfxVolume</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="105" column="17" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="105" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classAudioManager_1a7d597711b25dde6febae1980a56bba6a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float AudioManager.GetBGMVolume</definition>
+        <argsstring>()</argsstring>
+        <name>GetBGMVolume</name>
+        <qualifiedname>AudioManager.GetBGMVolume</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="119" column="18" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="119" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classAudioManager_1a2f589a4cf5c57bc82e831b5cb18c6be2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float AudioManager.GetSFXVolume</definition>
+        <argsstring>()</argsstring>
+        <name>GetSFXVolume</name>
+        <qualifiedname>AudioManager.GetSFXVolume</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="126" column="18" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="126" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="classAudioManager_1ac3066a6b9b4f24143a0d9fe1acb6c7f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AudioManager.PlayBGM</definition>
+        <argsstring>()</argsstring>
+        <name>PlayBGM</name>
+        <qualifiedname>AudioManager.PlayBGM</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Audio/AudioManager.cs" line="132" column="17" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="132" bodyend="156"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>AudioManager</label>
+        <link refid="classAudioManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>AudioManager</label>
+        <link refid="classAudioManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Audio/AudioManager.cs" line="6" column="7" bodyfile="Assets/Scripts/Audio/AudioManager.cs" bodystart="7" bodyend="187"/>
+    <listofallmembers>
+      <member refid="classAudioManager_1a1081038ce7267a4cace96e1a50ab1470" prot="private" virt="non-virtual"><scope>AudioManager</scope><name>audioMixer</name></member>
+      <member refid="classAudioManager_1a0c2aea6ea779d69228564aca9476ea80" prot="public" virt="non-virtual"><scope>AudioManager</scope><name>audioSource</name></member>
+      <member refid="classAudioManager_1a631d7d42b921bcbd82bd1baec2ec3ea7" prot="private" virt="non-virtual"><scope>AudioManager</scope><name>Awake</name></member>
+      <member refid="classAudioManager_1a3c1311114630c5e8fc3a052501ed0363" prot="private" virt="non-virtual"><scope>AudioManager</scope><name>bgmVolumeParameter</name></member>
+      <member refid="classAudioManager_1aea92b1ba8640be429e622ea2e9adf108" prot="public" virt="non-virtual"><scope>AudioManager</scope><name>ChangeBGM</name></member>
+      <member refid="classAudioManager_1a34f4239ad86a7355460df37212729434" prot="public" virt="non-virtual"><scope>AudioManager</scope><name>combatBGM</name></member>
+      <member refid="classAudioManager_1a1140ac0be9bf728804b08a0c03b43768" prot="private" virt="non-virtual"><scope>AudioManager</scope><name>fadeDuration</name></member>
+      <member refid="classAudioManager_1a7d597711b25dde6febae1980a56bba6a" prot="public" virt="non-virtual"><scope>AudioManager</scope><name>GetBGMVolume</name></member>
+      <member refid="classAudioManager_1a2f589a4cf5c57bc82e831b5cb18c6be2" prot="public" virt="non-virtual"><scope>AudioManager</scope><name>GetSFXVolume</name></member>
+      <member refid="classAudioManager_1a11b5b28d4c49e49134c5c31b2981681f" prot="public" virt="non-virtual"><scope>AudioManager</scope><name>idleBGM</name></member>
+      <member refid="classAudioManager_1af96f8bc4f9a0ad3f1a63a028bb31f790" prot="public" virt="non-virtual"><scope>AudioManager</scope><name>Instance</name></member>
+      <member refid="classAudioManager_1a6036d9cb0bd475e2f23e476f931ab82b" prot="private" virt="non-virtual"><scope>AudioManager</scope><name>LoadVolumes</name></member>
+      <member refid="classAudioManager_1aaf4b680178dfa5f4047d088f1eebc4b5" prot="public" virt="non-virtual"><scope>AudioManager</scope><name>mainmenuBGM</name></member>
+      <member refid="classAudioManager_1a2551c23585a9f4aaf78df2f05d1138e7" prot="public" virt="non-virtual"><scope>AudioManager</scope><name>planetBGM</name></member>
+      <member refid="classAudioManager_1ac3066a6b9b4f24143a0d9fe1acb6c7f9" prot="public" virt="non-virtual"><scope>AudioManager</scope><name>PlayBGM</name></member>
+      <member refid="classAudioManager_1a64ebd08979b7a94ec66858448ca6ddb0" prot="public" virt="non-virtual"><scope>AudioManager</scope><name>SaveVolumeSettings</name></member>
+      <member refid="classAudioManager_1adaa3aabf2101abcef0c0f2ac2a42a4ac" prot="public" virt="non-virtual"><scope>AudioManager</scope><name>SetBGMVolume</name></member>
+      <member refid="classAudioManager_1a86119c029ac5638fd4931b465a1970bf" prot="public" virt="non-virtual"><scope>AudioManager</scope><name>SetSFXVolume</name></member>
+      <member refid="classAudioManager_1a48268ab23a4ffb0350afe49f3f64c4d5" prot="private" virt="non-virtual"><scope>AudioManager</scope><name>sfxVolumeParameter</name></member>
+      <member refid="classAudioManager_1ab333270dca5bf5c039de3d70ca111ba9" prot="private" virt="non-virtual"><scope>AudioManager</scope><name>Start</name></member>
+      <member refid="classAudioManager_1aa1d86c99976fa4246a4499f67de66925" prot="private" virt="non-virtual"><scope>AudioManager</scope><name>SwitchBGM</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

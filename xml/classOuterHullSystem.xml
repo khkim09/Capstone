@@ -1,0 +1,613 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classOuterHullSystem" kind="class" language="C#" prot="public">
+    <compoundname>OuterHullSystem</compoundname>
+    <basecompoundref refid="classShipSystem" prot="public" virt="non-virtual">ShipSystem</basecompoundref>
+    <innerclass refid="classOuterHullSystem_1_1HullPlacementInfo" prot="public">OuterHullSystem::HullPlacementInfo</innerclass>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classOuterHullSystem_1afbdd66498c2e772751342e20721366c9" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>HullType</name>
+        <qualifiedname>OuterHullSystem.HullType</qualifiedname>
+        <enumvalue id="classOuterHullSystem_1afbdd66498c2e772751342e20721366c9ab6bd418b8879851e86bcaccd553b74db" prot="public">
+          <name>Straight</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classOuterHullSystem_1afbdd66498c2e772751342e20721366c9aade1838e081a50d061ac4b03230c3fd0" prot="public">
+          <name>OuterCorner</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classOuterHullSystem_1afbdd66498c2e772751342e20721366c9a2a2b9675bf6929ced6b77bc99f8c691a" prot="public">
+          <name>InnerCorner</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>외갑판 유형 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="404" column="11" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="405" bodyend="409"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classOuterHullSystem_1a7337394f53d2563eed40839b1667a63c" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="classOuterHull" kindref="compound">OuterHull</ref> &gt;</type>
+        <definition>List&lt;OuterHull&gt; OuterHullSystem.currentOuterHulls</definition>
+        <argsstring></argsstring>
+        <name>currentOuterHulls</name>
+        <qualifiedname>OuterHullSystem.currentOuterHulls</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="13" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classOuterHullSystem_1a64269c24188185b8a71f36031d0abe81" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int OuterHullSystem.currentOuterHullLevel</definition>
+        <argsstring></argsstring>
+        <name>currentOuterHullLevel</name>
+        <qualifiedname>OuterHullSystem.currentOuterHullLevel</qualifiedname>
+        <briefdescription>
+<para>외부 선체 시스템의 현재 레벨을 나타냅니다. 이 레벨은 들어오는 공격에 대해 적용되는 피해 감소량에 영향을 줄 수 있습니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="19" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="19" bodyend="-1"/>
+        <referencedby refid="classOuterHullSystem_1ab352abfc02989177392c3b60dd28ddc3" compoundref="OuterHullSystem_8cs" startline="54" endline="57">GetOuterHullLevel</referencedby>
+        <referencedby refid="classOuterHullSystem_1aa21e355ccbc76283db70b65cff027675" compoundref="OuterHullSystem_8cs" startline="63" endline="86">SetOuterHullLevel</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classOuterHullSystem_1ab38ff1caf61de2753630436958ff09e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void OuterHullSystem.Initialize</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>OuterHullSystem.Initialize</qualifiedname>
+        <reimplements refid="classShipSystem_1ab0e5623073f8bfb48c02955484cfcd4e">Initialize</reimplements>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>시스템 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>소유 함선</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="25" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="25" bodyend="28"/>
+        <referencedby refid="classShip_1a5246a04784a96576460f8494bce02887" compoundref="Ship_8cs" startline="715" endline="737">Ship.InitializeSystems</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOuterHullSystem_1a753bc0167e077ab9d8c27fd020bb4ea8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void OuterHullSystem.Update</definition>
+        <argsstring>(float deltaTime)</argsstring>
+        <name>Update</name>
+        <qualifiedname>OuterHullSystem.Update</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>deltaTime</declname>
+        </param>
+        <briefdescription>
+<para>매 프레임마다 호출되어 시스템 상태를 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>deltaTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>경과 시간 (초).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="34" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="34" bodyend="36"/>
+        <referencedby refid="classShip_1a6ab0aaf28782b38d9c80bf19e652f46c" compoundref="Ship_8cs" startline="161" endline="172">Ship.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOuterHullSystem_1a546cc38872f4b8e97bb31c84214e0d5d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float OuterHullSystem.ReduceDamage</definition>
+        <argsstring>(float damage)</argsstring>
+        <name>ReduceDamage</name>
+        <qualifiedname>OuterHullSystem.ReduceDamage</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>damage</declname>
+        </param>
+        <briefdescription>
+<para>외부 선체의 피해 감소율을 적용하여 실질적인 피해량을 계산합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>damage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>입력된 원래 피해량.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>피해 감소가 적용된 최종 피해량.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="43" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="43" bodyend="48"/>
+        <references refid="classShip_1a080a77bc4aa01fd3e5b2561cb5317eca" compoundref="Ship_8cs" startline="924" endline="930">Ship.GetStat</references>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <referencedby refid="classShip_1a8f64cf8910e4b5d5f08382a0128860ef" compoundref="Ship_8cs" startline="1242" endline="1283">Ship.TakeAttack</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOuterHullSystem_1ab352abfc02989177392c3b60dd28ddc3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int OuterHullSystem.GetOuterHullLevel</definition>
+        <argsstring>()</argsstring>
+        <name>GetOuterHullLevel</name>
+        <qualifiedname>OuterHullSystem.GetOuterHullLevel</qualifiedname>
+        <briefdescription>
+<para>외부 선체 시스템의 현재 레벨을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>외부 선체 시스템의 현재 레벨.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="54" column="16" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="54" bodyend="57"/>
+        <references refid="classOuterHullSystem_1a64269c24188185b8a71f36031d0abe81" compoundref="OuterHullSystem_8cs" startline="19">currentOuterHullLevel</references>
+        <referencedby refid="classShip_1a61cb09945d19adc35f1c2aaf845c39ce" compoundref="Ship_8cs" startline="1521" endline="1524">Ship.GetOuterHullLevel</referencedby>
+        <referencedby refid="classShip_1a1a2cb507900750750740527414721aa3" compoundref="Ship_8cs" startline="1538" endline="1546">Ship.UpdateOuterHullVisuals</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOuterHullSystem_1aa21e355ccbc76283db70b65cff027675" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void OuterHullSystem.SetOuterHullLevel</definition>
+        <argsstring>(int level)</argsstring>
+        <name>SetOuterHullLevel</name>
+        <qualifiedname>OuterHullSystem.SetOuterHullLevel</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+<para>함선의 외갑판 레벨을 설정합니다. 모든 무기의 외형도 함께 업데이트합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>설정할 외갑판 레벨 (0-2)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="63" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="63" bodyend="86"/>
+        <references refid="classShipWeapon_1a381aff291620c120979e6da7852b8ae9" compoundref="ShipWeapon_8cs" startline="453" endline="477">ShipWeapon.ApplyRotationSprite</references>
+        <references refid="classOuterHullSystem_1a64269c24188185b8a71f36031d0abe81" compoundref="OuterHullSystem_8cs" startline="19">currentOuterHullLevel</references>
+        <references refid="classShip_1a058800cd1cdc9601aeb176ac45fd91d4" compoundref="Ship_8cs" startline="1143" endline="1146">Ship.GetAllWeapons</references>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <references refid="classOuterHull_1a89ddf863b6047d85dfc38b4080ab68bf" compoundref="OuterHull_8cs" startline="198" endline="214">OuterHull.SetLevel</references>
+        <referencedby refid="classShip_1a50e268691a28944bb1d65185242bc5c5" compoundref="Ship_8cs" startline="1530" endline="1533">Ship.SetOuterHullLevel</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOuterHullSystem_1adb5a5b7d00fda59c275bbd594504a5a3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void OuterHullSystem.UpdateVisuals</definition>
+        <argsstring>(int level)</argsstring>
+        <name>UpdateVisuals</name>
+        <qualifiedname>OuterHullSystem.UpdateVisuals</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+<para>외갑판의 시각적 표현을 업데이트합니다. 방 주변에 외갑판을 생성하고, 필요한 위치에 내부 모서리 외갑판도 생성합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>적용할 외갑판 레벨 (0-2)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="93" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="93" bodyend="351"/>
+        <references refid="classOuterHullSystem_1a31579965143bfbedc6ef93beac82a269" compoundref="OuterHullSystem_8cs" startline="366" endline="375">AddPlacementIfNotDuplicate</references>
+        <references refid="classOuterHullSystem_1a38dc92c844c963fd97e1c433798c2401" compoundref="OuterHullSystem_8cs" startline="380" endline="399">CalculateSpriteIndex</references>
+        <references refid="classOuterHullSystem_1a4d2a675600fb33c62982af21ec3334fd" compoundref="OuterHullSystem_8cs" startline="517" endline="528">ClearExistingHulls</references>
+        <references refid="classOuterHullSystem_1a768514386deb2fb7dfb522f875f9bdd6" compoundref="OuterHullSystem_8cs" startline="438" endline="512">CreateOuterHull</references>
+        <references refid="classRoom_1ae1f89a83229215231d726691043898c6" compoundref="Room_8cs" startline="36">Room&lt; TData, TLevel &gt;.currentRotation</references>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classShip_1a39b29ba4f04a1cbff8071e1795861186" compoundref="Ship_8cs" startline="1503" endline="1506">Ship.GetOuterHullData</references>
+        <references refid="classShip_1a3f6bad4fec2f95af8343da44a2d7cc46" compoundref="Ship_8cs" startline="1512" endline="1515">Ship.GetOuterHullPrefab</references>
+        <references refid="classRoom_1a20cd0655c331d88c7e1825abc51e9941" compoundref="Room_8cs" startline="464" endline="467">Room&lt; TData, TLevel &gt;.GetSize</references>
+        <references refid="classOuterHullSystem_1ac51faf9f5119bfd9fb611af900c5aac5" compoundref="OuterHullSystem_8cs" startline="356" endline="361">IsOutOfBounds</references>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <references refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" compoundref="Room_8cs" startline="15">Room&lt; TData, TLevel &gt;.position</references>
+        <referencedby refid="classShip_1a1a2cb507900750750740527414721aa3" compoundref="Ship_8cs" startline="1538" endline="1546">Ship.UpdateOuterHullVisuals</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOuterHullSystem_1a4d2a675600fb33c62982af21ec3334fd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void OuterHullSystem.ClearExistingHulls</definition>
+        <argsstring>()</argsstring>
+        <name>ClearExistingHulls</name>
+        <qualifiedname>OuterHullSystem.ClearExistingHulls</qualifiedname>
+        <briefdescription>
+<para>기존 외갑판 객체들을 모두 제거합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="517" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="517" bodyend="528"/>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <referencedby refid="classShip_1a73ec8ac22bbbea3c5fac7db636bfc6ff" compoundref="Ship_8cs" startline="1553" endline="1556">Ship.ClearExistingHulls</referencedby>
+        <referencedby refid="classCustomize__2__Controller_1a4f017401dbc31501a4109324ccec2bd7" compoundref="Customize__2__Controller_8cs" startline="227" endline="294">Customize_2_Controller.OnClickBuy</referencedby>
+        <referencedby refid="classOuterHullSystem_1adb5a5b7d00fda59c275bbd594504a5a3" compoundref="OuterHullSystem_8cs" startline="93" endline="351">UpdateVisuals</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classOuterHullSystem_1ac51faf9f5119bfd9fb611af900c5aac5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool OuterHullSystem.IsOutOfBounds</definition>
+        <argsstring>(Vector2Int pos)</argsstring>
+        <name>IsOutOfBounds</name>
+        <qualifiedname>OuterHullSystem.IsOutOfBounds</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+<para>그리드 범위를 벗어났는지 확인 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="356" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="356" bodyend="361"/>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <referencedby refid="classOuterHullSystem_1adb5a5b7d00fda59c275bbd594504a5a3" compoundref="OuterHullSystem_8cs" startline="93" endline="351">UpdateVisuals</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOuterHullSystem_1a31579965143bfbedc6ef93beac82a269" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void OuterHullSystem.AddPlacementIfNotDuplicate</definition>
+        <argsstring>(List&lt; HullPlacementInfo &gt; placements, HullPlacementInfo newInfo)</argsstring>
+        <name>AddPlacementIfNotDuplicate</name>
+        <qualifiedname>OuterHullSystem.AddPlacementIfNotDuplicate</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="classOuterHullSystem_1_1HullPlacementInfo" kindref="compound">HullPlacementInfo</ref> &gt;</type>
+          <declname>placements</declname>
+        </param>
+        <param>
+          <type><ref refid="classOuterHullSystem_1_1HullPlacementInfo" kindref="compound">HullPlacementInfo</ref></type>
+          <declname>newInfo</declname>
+        </param>
+        <briefdescription>
+<para>중복 검사 후 배치 정보 추가 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="366" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="366" bodyend="375"/>
+        <referencedby refid="classOuterHullSystem_1adb5a5b7d00fda59c275bbd594504a5a3" compoundref="OuterHullSystem_8cs" startline="93" endline="351">UpdateVisuals</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOuterHullSystem_1a38dc92c844c963fd97e1c433798c2401" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int OuterHullSystem.CalculateSpriteIndex</definition>
+        <argsstring>(HullPlacementInfo info)</argsstring>
+        <name>CalculateSpriteIndex</name>
+        <qualifiedname>OuterHullSystem.CalculateSpriteIndex</qualifiedname>
+        <param>
+          <type><ref refid="classOuterHullSystem_1_1HullPlacementInfo" kindref="compound">HullPlacementInfo</ref></type>
+          <declname>info</declname>
+        </param>
+        <briefdescription>
+<para>외갑판 배치 정보에 따른 스프라이트 인덱스 계산 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="380" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="380" bodyend="399"/>
+        <referencedby refid="classOuterHullSystem_1adb5a5b7d00fda59c275bbd594504a5a3" compoundref="OuterHullSystem_8cs" startline="93" endline="351">UpdateVisuals</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOuterHullSystem_1a768514386deb2fb7dfb522f875f9bdd6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void OuterHullSystem.CreateOuterHull</definition>
+        <argsstring>(Vector2Int hullPosition, int spriteIndex, int level, OuterHullData hullData, GameObject hullPrefab, HullType hullType)</argsstring>
+        <name>CreateOuterHull</name>
+        <qualifiedname>OuterHullSystem.CreateOuterHull</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>hullPosition</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>spriteIndex</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type><ref refid="classOuterHullData" kindref="compound">OuterHullData</ref></type>
+          <declname>hullData</declname>
+        </param>
+        <param>
+          <type>GameObject</type>
+          <declname>hullPrefab</declname>
+        </param>
+        <param>
+          <type><ref refid="classOuterHullSystem_1afbdd66498c2e772751342e20721366c9" kindref="member">HullType</ref></type>
+          <declname>hullType</declname>
+        </param>
+        <briefdescription>
+<para>지정된 위치에 외갑판을 생성합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hullPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>외갑판 위치</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spriteIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>스프라이트 인덱스 (0-3: 하좌상우 기본, 4-7: 하좌상우 변형, 8-11: 외부 모서리, 12-15: 내부 모서리)</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>외갑판 레벨 (0-2)</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hullData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>외갑판 데이터</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hullPrefab</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>외갑판 프리팹</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hullType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>외갑판 유형</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="438" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="438" bodyend="512"/>
+        <references refid="classOuterHullData_1a96a23b3ef4a7ccdd9770367243248111" compoundref="OuterHullData_8cs" startline="99" endline="107">OuterHullData.GetSpecificHullSprite</references>
+        <references refid="classShip_1acc377098e3c61bbd4b8fc53595d09293" compoundref="Ship_8cs" startline="1456" endline="1459">Ship.GetWorldPositionFromGrid</references>
+        <references refid="classOuterHull_1a31a9be70325554c4230263b1f808e497" compoundref="OuterHull_8cs" startline="59" endline="70">OuterHull.Initialize</references>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <references refid="classOuterHull_1ae4b2a6f2d09357be7618e9aacfefc543" compoundref="OuterHull_8cs" startline="98" endline="104">OuterHull.SetOuterHullData</references>
+        <referencedby refid="classOuterHullSystem_1adb5a5b7d00fda59c275bbd594504a5a3" compoundref="OuterHullSystem_8cs" startline="93" endline="351">UpdateVisuals</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>외갑판 시스템. 공격에 대한 피해를 감소시키는 기능을 담당합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="10">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="12">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="15">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" line="8" column="7" bodyfile="Assets/Scripts/Ship/ShipSystems/OuterHullSystem.cs" bodystart="9" bodyend="529"/>
+    <listofallmembers>
+      <member refid="classOuterHullSystem_1a31579965143bfbedc6ef93beac82a269" prot="private" virt="non-virtual"><scope>OuterHullSystem</scope><name>AddPlacementIfNotDuplicate</name></member>
+      <member refid="classOuterHullSystem_1a38dc92c844c963fd97e1c433798c2401" prot="private" virt="non-virtual"><scope>OuterHullSystem</scope><name>CalculateSpriteIndex</name></member>
+      <member refid="classOuterHullSystem_1a4d2a675600fb33c62982af21ec3334fd" prot="public" virt="non-virtual"><scope>OuterHullSystem</scope><name>ClearExistingHulls</name></member>
+      <member refid="classOuterHullSystem_1a768514386deb2fb7dfb522f875f9bdd6" prot="private" virt="non-virtual"><scope>OuterHullSystem</scope><name>CreateOuterHull</name></member>
+      <member refid="classOuterHullSystem_1a64269c24188185b8a71f36031d0abe81" prot="private" virt="non-virtual"><scope>OuterHullSystem</scope><name>currentOuterHullLevel</name></member>
+      <member refid="classOuterHullSystem_1a7337394f53d2563eed40839b1667a63c" prot="public" virt="non-virtual"><scope>OuterHullSystem</scope><name>currentOuterHulls</name></member>
+      <member refid="classOuterHullSystem_1ab352abfc02989177392c3b60dd28ddc3" prot="public" virt="non-virtual"><scope>OuterHullSystem</scope><name>GetOuterHullLevel</name></member>
+      <member refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" prot="protected" virt="non-virtual"><scope>OuterHullSystem</scope><name>GetShipStat</name></member>
+      <member refid="classOuterHullSystem_1afbdd66498c2e772751342e20721366c9" prot="public" virt="non-virtual"><scope>OuterHullSystem</scope><name>HullType</name></member>
+      <member refid="classOuterHullSystem_1ab38ff1caf61de2753630436958ff09e3" prot="public" virt="virtual"><scope>OuterHullSystem</scope><name>Initialize</name></member>
+      <member refid="classOuterHullSystem_1ac51faf9f5119bfd9fb611af900c5aac5" prot="private" virt="non-virtual"><scope>OuterHullSystem</scope><name>IsOutOfBounds</name></member>
+      <member refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" prot="protected" virt="non-virtual"><scope>OuterHullSystem</scope><name>parentShip</name></member>
+      <member refid="classOuterHullSystem_1a546cc38872f4b8e97bb31c84214e0d5d" prot="public" virt="non-virtual"><scope>OuterHullSystem</scope><name>ReduceDamage</name></member>
+      <member refid="classShipSystem_1ad94492134ef4577b127382af0877f6d6" prot="public" virt="virtual"><scope>OuterHullSystem</scope><name>Refresh</name></member>
+      <member refid="classOuterHullSystem_1aa21e355ccbc76283db70b65cff027675" prot="public" virt="non-virtual"><scope>OuterHullSystem</scope><name>SetOuterHullLevel</name></member>
+      <member refid="classOuterHullSystem_1a753bc0167e077ab9d8c27fd020bb4ea8" prot="public" virt="non-virtual"><scope>OuterHullSystem</scope><name>Update</name></member>
+      <member refid="classOuterHullSystem_1adb5a5b7d00fda59c275bbd594504a5a3" prot="public" virt="non-virtual"><scope>OuterHullSystem</scope><name>UpdateVisuals</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

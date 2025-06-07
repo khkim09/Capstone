@@ -1,0 +1,631 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEventDatabase" kind="class" language="C#" prot="public">
+    <compoundname>EventDatabase</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ScriptableObject</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classEventDatabase_1aafc9e939a86d20c493e8aacbc350e8ae" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt;</type>
+        <definition>List&lt;RandomEvent&gt; EventDatabase.allEvents</definition>
+        <argsstring></argsstring>
+        <name>allEvents</name>
+        <qualifiedname>EventDatabase.allEvents</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>모든 이벤트 데이터 목록 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="14" column="19" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="14" bodyend="-1"/>
+        <referencedby refid="classEventDatabase_1a3b918149c7b233ca5519409973c3c59c" compoundref="EventDatabase_8cs" startline="99" endline="102">GetAllEvents</referencedby>
+        <referencedby refid="classEventDatabase_1a00b928186fb56718e0350c85a7837eb9" compoundref="EventDatabase_8cs" startline="126" endline="137">GetEventByDebugName</referencedby>
+        <referencedby refid="classEventDatabase_1a568d630ffaa2538f19abd48f0ebfaba5" compoundref="EventDatabase_8cs" startline="186" endline="189">GetEventsForCOMA</referencedby>
+        <referencedby refid="classEventDatabase_1ab4fddc1d640811b190770997dd5ff806" compoundref="EventDatabase_8cs" startline="176" endline="179">GetEventsForYear</referencedby>
+        <referencedby refid="classEventDatabase_1af759cdcd66a201f596c8898adfdb3410" compoundref="EventDatabase_8cs" startline="196" endline="199">GetEventsRequiringRace</referencedby>
+        <referencedby refid="classEventDatabase_1a24f82a21ad1da76ca98f73f0f3d4ef30" compoundref="EventDatabase_8cs" startline="209" endline="230">GetFilteredEvents</referencedby>
+        <referencedby refid="classEventDatabase_1a58bddc2d05739d0be281c28dafb89f47" compoundref="EventDatabase_8cs" startline="38" endline="52">InitializeEventDictionary</referencedby>
+        <referencedby refid="classEventDatabase_1a21e1b9ef9fe4f79101721d749f153219" compoundref="EventDatabase_8cs" startline="74" endline="86">InitializeEventsByOutcomeType</referencedby>
+        <referencedby refid="classEventDatabase_1abb40e101396951c3a9638e7f8422c468" compoundref="EventDatabase_8cs" startline="57" endline="69">InitializeEventsByType</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEventDatabase_1a8a20d9d7a2ff0063d7270026fe3063f2" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; int, <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt;</type>
+        <definition>Dictionary&lt;int, RandomEvent&gt; EventDatabase.eventDictionary</definition>
+        <argsstring></argsstring>
+        <name>eventDictionary</name>
+        <qualifiedname>EventDatabase.eventDictionary</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="17" column="24" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventDatabase_1ad401aab4aac71b448ff0628d87f5fc0d" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; EventType, List&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt; &gt;</type>
+        <definition>Dictionary&lt;EventType, List&lt;RandomEvent&gt; &gt; EventDatabase.eventsByType</definition>
+        <argsstring></argsstring>
+        <name>eventsByType</name>
+        <qualifiedname>EventDatabase.eventsByType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="20" column="24" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventDatabase_1a169a45a7c826c126f0b695f8299feaa3" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; EventOutcomeType, List&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt; &gt;</type>
+        <definition>Dictionary&lt;EventOutcomeType, List&lt;RandomEvent&gt; &gt; EventDatabase.eventsByOutcomeType</definition>
+        <argsstring></argsstring>
+        <name>eventsByOutcomeType</name>
+        <qualifiedname>EventDatabase.eventsByOutcomeType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="23" column="24" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEventDatabase_1a6a25f9ced39cd40779d77589c6a5d5e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventDatabase.Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>EventDatabase.Initialize</qualifiedname>
+        <briefdescription>
+<para>데이터베이스를 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="28" column="17" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="28" bodyend="33"/>
+        <references refid="classEventDatabase_1a58bddc2d05739d0be281c28dafb89f47" compoundref="EventDatabase_8cs" startline="38" endline="52">InitializeEventDictionary</references>
+        <references refid="classEventDatabase_1a21e1b9ef9fe4f79101721d749f153219" compoundref="EventDatabase_8cs" startline="74" endline="86">InitializeEventsByOutcomeType</references>
+        <references refid="classEventDatabase_1abb40e101396951c3a9638e7f8422c468" compoundref="EventDatabase_8cs" startline="57" endline="69">InitializeEventsByType</references>
+        <referencedby refid="classEventDatabase_1af69ac3e0dc68fa3e3ec9bfb14a5d7e70" compoundref="EventDatabase_8cs" startline="109" endline="119">GetEvent</referencedby>
+        <referencedby refid="classEventDatabase_1ad891255d06cf316e9c5d2c237c4f5e7a" compoundref="EventDatabase_8cs" startline="160" endline="169">GetEventsByOutcomeType</referencedby>
+        <referencedby refid="classEventDatabase_1a1e4eb8402607c4189a9f4ea5a8d1ac59" compoundref="EventDatabase_8cs" startline="144" endline="153">GetEventsByType</referencedby>
+        <referencedby refid="classEventDatabase_1acc5048ba7242486b04bcb294833dc30a" compoundref="EventDatabase_8cs" startline="91" endline="94">OnEnable</referencedby>
+        <referencedby refid="classEventDatabase_1ad1bf6f5d720e077a4b8d72809878bc0f" compoundref="EventDatabase_8cs" startline="256" endline="259">ReloadEvents</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventDatabase_1a3b918149c7b233ca5519409973c3c59c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt;</type>
+        <definition>List&lt; RandomEvent &gt; EventDatabase.GetAllEvents</definition>
+        <argsstring>()</argsstring>
+        <name>GetAllEvents</name>
+        <qualifiedname>EventDatabase.GetAllEvents</qualifiedname>
+        <briefdescription>
+<para>모든 이벤트 목록을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="99" column="17" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="99" bodyend="102"/>
+        <references refid="classEventDatabase_1aafc9e939a86d20c493e8aacbc350e8ae" compoundref="EventDatabase_8cs" startline="14">allEvents</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventDatabase_1af69ac3e0dc68fa3e3ec9bfb14a5d7e70" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classRandomEvent" kindref="compound">RandomEvent</ref></type>
+        <definition>RandomEvent EventDatabase.GetEvent</definition>
+        <argsstring>(int id)</argsstring>
+        <name>GetEvent</name>
+        <qualifiedname>EventDatabase.GetEvent</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>ID로 이벤트를 검색합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이벤트 ID</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>이벤트 또는 null</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="109" column="24" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="109" bodyend="119"/>
+        <references refid="classEventDatabase_1a6a25f9ced39cd40779d77589c6a5d5e3" compoundref="EventDatabase_8cs" startline="28" endline="33">Initialize</references>
+        <referencedby refid="classEventManager_1a0e5a2581efb7172f6efeed00907b00ac" compoundref="EventManager_8cs" startline="93" endline="96">EventManager.GetEventById</referencedby>
+        <referencedby refid="classEventManager_1aae84388e618a8f8b18efd9f0b4b0761d" compoundref="EventManager_8cs" startline="200" endline="207">EventManager.TriggerEventById</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventDatabase_1a00b928186fb56718e0350c85a7837eb9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classRandomEvent" kindref="compound">RandomEvent</ref></type>
+        <definition>RandomEvent EventDatabase.GetEventByDebugName</definition>
+        <argsstring>(string debugName)</argsstring>
+        <name>GetEventByDebugName</name>
+        <qualifiedname>EventDatabase.GetEventByDebugName</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>debugName</declname>
+        </param>
+        <briefdescription>
+<para>디버그 이름으로 이벤트를 검색합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>debugName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이벤트 디버그 이름</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>이벤트 또는 null</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="126" column="24" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="126" bodyend="137"/>
+        <references refid="classEventDatabase_1aafc9e939a86d20c493e8aacbc350e8ae" compoundref="EventDatabase_8cs" startline="14">allEvents</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventDatabase_1a1e4eb8402607c4189a9f4ea5a8d1ac59" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt;</type>
+        <definition>List&lt; RandomEvent &gt; EventDatabase.GetEventsByType</definition>
+        <argsstring>(EventType type)</argsstring>
+        <name>GetEventsByType</name>
+        <qualifiedname>EventDatabase.GetEventsByType</qualifiedname>
+        <param>
+          <type>EventType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>특정 이벤트 타입의 모든 이벤트를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이벤트 타입</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 타입의 이벤트 목록</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="144" column="17" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="144" bodyend="153"/>
+        <references refid="classEventDatabase_1a6a25f9ced39cd40779d77589c6a5d5e3" compoundref="EventDatabase_8cs" startline="28" endline="33">Initialize</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventDatabase_1ad891255d06cf316e9c5d2c237c4f5e7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt;</type>
+        <definition>List&lt; RandomEvent &gt; EventDatabase.GetEventsByOutcomeType</definition>
+        <argsstring>(EventOutcomeType outcomeType)</argsstring>
+        <name>GetEventsByOutcomeType</name>
+        <qualifiedname>EventDatabase.GetEventsByOutcomeType</qualifiedname>
+        <param>
+          <type>EventOutcomeType</type>
+          <declname>outcomeType</declname>
+        </param>
+        <briefdescription>
+<para>특정 결과 타입의 모든 이벤트를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>outcomeType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이벤트 결과 타입</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 결과 타입의 이벤트 목록</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="160" column="17" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="160" bodyend="169"/>
+        <references refid="classEventDatabase_1a6a25f9ced39cd40779d77589c6a5d5e3" compoundref="EventDatabase_8cs" startline="28" endline="33">Initialize</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventDatabase_1ab4fddc1d640811b190770997dd5ff806" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt;</type>
+        <definition>List&lt; RandomEvent &gt; EventDatabase.GetEventsForYear</definition>
+        <argsstring>(int year)</argsstring>
+        <name>GetEventsForYear</name>
+        <qualifiedname>EventDatabase.GetEventsForYear</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>year</declname>
+        </param>
+        <briefdescription>
+<para>최소 발생 년도 이상의 이벤트를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>year</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>현재 게임 년도</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>발생 가능한 이벤트 목록</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="176" column="17" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="176" bodyend="179"/>
+        <references refid="classEventDatabase_1aafc9e939a86d20c493e8aacbc350e8ae" compoundref="EventDatabase_8cs" startline="14">allEvents</references>
+        <references refid="classRandomEvent_1ae20f9363eb67063ae55cd66d1f4a89e5" compoundref="RandomEvent_8cs" startline="43">RandomEvent.minimumYear</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventDatabase_1a568d630ffaa2538f19abd48f0ebfaba5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt;</type>
+        <definition>List&lt; RandomEvent &gt; EventDatabase.GetEventsForCOMA</definition>
+        <argsstring>(int coma)</argsstring>
+        <name>GetEventsForCOMA</name>
+        <qualifiedname>EventDatabase.GetEventsForCOMA</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>coma</declname>
+        </param>
+        <briefdescription>
+<para>최소 COMA 이상의 이벤트를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>coma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>현재 COMA 값</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>발생 가능한 이벤트 목록</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="186" column="17" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="186" bodyend="189"/>
+        <references refid="classEventDatabase_1aafc9e939a86d20c493e8aacbc350e8ae" compoundref="EventDatabase_8cs" startline="14">allEvents</references>
+        <references refid="classRandomEvent_1a802959ae740e7155456aa253b33edba7" compoundref="RandomEvent_8cs" startline="53">RandomEvent.minimumCOMA</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventDatabase_1af759cdcd66a201f596c8898adfdb3410" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt;</type>
+        <definition>List&lt; RandomEvent &gt; EventDatabase.GetEventsRequiringRace</definition>
+        <argsstring>(CrewRace race)</argsstring>
+        <name>GetEventsRequiringRace</name>
+        <qualifiedname>EventDatabase.GetEventsRequiringRace</qualifiedname>
+        <param>
+          <type>CrewRace</type>
+          <declname>race</declname>
+        </param>
+        <briefdescription>
+<para>특정 선원 종족이 필요한 이벤트를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>race</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>선원 종족</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 종족이 필요한 이벤트 목록</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="196" column="17" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="196" bodyend="199"/>
+        <references refid="classEventDatabase_1aafc9e939a86d20c493e8aacbc350e8ae" compoundref="EventDatabase_8cs" startline="14">allEvents</references>
+        <references refid="classRandomEvent_1ae79048532baf6af4f110192fbdee5d99" compoundref="RandomEvent_8cs" startline="48">RandomEvent.requiredCrewRace</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventDatabase_1a24f82a21ad1da76ca98f73f0f3d4ef30" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt;</type>
+        <definition>List&lt; RandomEvent &gt; EventDatabase.GetFilteredEvents</definition>
+        <argsstring>(EventType type, int year, int coma, float fuel, List&lt; CrewRace &gt; availableRaces)</argsstring>
+        <name>GetFilteredEvents</name>
+        <qualifiedname>EventDatabase.GetFilteredEvents</qualifiedname>
+        <param>
+          <type>EventType</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>year</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>coma</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>fuel</declname>
+        </param>
+        <param>
+          <type>List&lt; CrewRace &gt;</type>
+          <declname>availableRaces</declname>
+        </param>
+        <briefdescription>
+<para>특정 조건에 맞는 이벤트를 필터링하여 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이벤트 타입</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>year</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>현재 년도</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>현재 COMA</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>availableRaces</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>보유 중인 선원 종족 목록</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>조건에 맞는 이벤트 목록</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="209" column="17" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="209" bodyend="230"/>
+        <references refid="classEventDatabase_1aafc9e939a86d20c493e8aacbc350e8ae" compoundref="EventDatabase_8cs" startline="14">allEvents</references>
+        <references refid="classRandomEvent_1a802959ae740e7155456aa253b33edba7" compoundref="RandomEvent_8cs" startline="53">RandomEvent.minimumCOMA</references>
+        <references refid="classRandomEvent_1a96f5039d571bd66dbb2d71f6feda735f" compoundref="RandomEvent_8cs" startline="58">RandomEvent.minimumFuel</references>
+        <references refid="classRandomEvent_1ae20f9363eb67063ae55cd66d1f4a89e5" compoundref="RandomEvent_8cs" startline="43">RandomEvent.minimumYear</references>
+        <references refid="classRandomEvent_1ae79048532baf6af4f110192fbdee5d99" compoundref="RandomEvent_8cs" startline="48">RandomEvent.requiredCrewRace</references>
+        <referencedby refid="classEventDatabase_1a90f24cdbc307486122f7fa092c5041cb" compoundref="EventDatabase_8cs" startline="240" endline="250">GetRandomEvent</referencedby>
+        <referencedby refid="classEventManager_1ad79051eea6480da5f430711585c1baae" compoundref="EventManager_8cs" startline="324" endline="381">EventManager.SelectAppropriateEvent</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventDatabase_1a90f24cdbc307486122f7fa092c5041cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classRandomEvent" kindref="compound">RandomEvent</ref></type>
+        <definition>RandomEvent EventDatabase.GetRandomEvent</definition>
+        <argsstring>(EventType type, int year, int coma, float fuel, List&lt; CrewRace &gt; availableRaces)</argsstring>
+        <name>GetRandomEvent</name>
+        <qualifiedname>EventDatabase.GetRandomEvent</qualifiedname>
+        <param>
+          <type>EventType</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>year</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>coma</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>fuel</declname>
+        </param>
+        <param>
+          <type>List&lt; CrewRace &gt;</type>
+          <declname>availableRaces</declname>
+        </param>
+        <briefdescription>
+<para>주어진 조건에서 발생 가능한 랜덤 이벤트를 선택합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이벤트 타입</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>year</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>현재 년도</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>현재 COMA</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>availableRaces</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>보유 중인 선원 종족 목록</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>선택된 랜덤 이벤트 또는 null</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="240" column="24" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="240" bodyend="250"/>
+        <references refid="classEventDatabase_1a24f82a21ad1da76ca98f73f0f3d4ef30" compoundref="EventDatabase_8cs" startline="209" endline="230">GetFilteredEvents</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventDatabase_1ad1bf6f5d720e077a4b8d72809878bc0f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventDatabase.ReloadEvents</definition>
+        <argsstring>()</argsstring>
+        <name>ReloadEvents</name>
+        <qualifiedname>EventDatabase.ReloadEvents</qualifiedname>
+        <briefdescription>
+<para>데이터베이스를 초기화하고 모든 이벤트를 다시 로드합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="256" column="17" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="256" bodyend="259"/>
+        <references refid="classEventDatabase_1a6a25f9ced39cd40779d77589c6a5d5e3" compoundref="EventDatabase_8cs" startline="28" endline="33">Initialize</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEventDatabase_1a58bddc2d05739d0be281c28dafb89f47" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventDatabase.InitializeEventDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeEventDictionary</name>
+        <qualifiedname>EventDatabase.InitializeEventDictionary</qualifiedname>
+        <briefdescription>
+<para>이벤트 ID 기반 딕셔너리를 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="38" column="18" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="38" bodyend="52"/>
+        <references refid="classEventDatabase_1aafc9e939a86d20c493e8aacbc350e8ae" compoundref="EventDatabase_8cs" startline="14">allEvents</references>
+        <referencedby refid="classEventDatabase_1a6a25f9ced39cd40779d77589c6a5d5e3" compoundref="EventDatabase_8cs" startline="28" endline="33">Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventDatabase_1abb40e101396951c3a9638e7f8422c468" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventDatabase.InitializeEventsByType</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeEventsByType</name>
+        <qualifiedname>EventDatabase.InitializeEventsByType</qualifiedname>
+        <briefdescription>
+<para>이벤트 타입별 목록을 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="57" column="18" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="57" bodyend="69"/>
+        <references refid="classEventDatabase_1aafc9e939a86d20c493e8aacbc350e8ae" compoundref="EventDatabase_8cs" startline="14">allEvents</references>
+        <referencedby refid="classEventDatabase_1a6a25f9ced39cd40779d77589c6a5d5e3" compoundref="EventDatabase_8cs" startline="28" endline="33">Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventDatabase_1a21e1b9ef9fe4f79101721d749f153219" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventDatabase.InitializeEventsByOutcomeType</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeEventsByOutcomeType</name>
+        <qualifiedname>EventDatabase.InitializeEventsByOutcomeType</qualifiedname>
+        <briefdescription>
+<para>이벤트 결과 타입별 목록을 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="74" column="18" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="74" bodyend="86"/>
+        <references refid="classEventDatabase_1aafc9e939a86d20c493e8aacbc350e8ae" compoundref="EventDatabase_8cs" startline="14">allEvents</references>
+        <referencedby refid="classEventDatabase_1a6a25f9ced39cd40779d77589c6a5d5e3" compoundref="EventDatabase_8cs" startline="28" endline="33">Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventDatabase_1acc5048ba7242486b04bcb294833dc30a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventDatabase.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <qualifiedname>EventDatabase.OnEnable</qualifiedname>
+        <briefdescription>
+<para>Unity 이벤트: ScriptableObject가 로드될 때 호출됨 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventDatabase.cs" line="91" column="18" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="91" bodyend="94"/>
+        <references refid="classEventDatabase_1a6a25f9ced39cd40779d77589c6a5d5e3" compoundref="EventDatabase_8cs" startline="28" endline="33">Initialize</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>모든 이벤트 데이터를 관리하는 중앙 데이터베이스 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EventDatabase</label>
+        <link refid="classEventDatabase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>EventDatabase</label>
+        <link refid="classEventDatabase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Events/EventDatabase.cs" line="9" column="7" bodyfile="Assets/Scripts/Events/EventDatabase.cs" bodystart="10" bodyend="260"/>
+    <listofallmembers>
+      <member refid="classEventDatabase_1aafc9e939a86d20c493e8aacbc350e8ae" prot="private" virt="non-virtual"><scope>EventDatabase</scope><name>allEvents</name></member>
+      <member refid="classEventDatabase_1a8a20d9d7a2ff0063d7270026fe3063f2" prot="private" virt="non-virtual"><scope>EventDatabase</scope><name>eventDictionary</name></member>
+      <member refid="classEventDatabase_1a169a45a7c826c126f0b695f8299feaa3" prot="private" virt="non-virtual"><scope>EventDatabase</scope><name>eventsByOutcomeType</name></member>
+      <member refid="classEventDatabase_1ad401aab4aac71b448ff0628d87f5fc0d" prot="private" virt="non-virtual"><scope>EventDatabase</scope><name>eventsByType</name></member>
+      <member refid="classEventDatabase_1a3b918149c7b233ca5519409973c3c59c" prot="public" virt="non-virtual"><scope>EventDatabase</scope><name>GetAllEvents</name></member>
+      <member refid="classEventDatabase_1af69ac3e0dc68fa3e3ec9bfb14a5d7e70" prot="public" virt="non-virtual"><scope>EventDatabase</scope><name>GetEvent</name></member>
+      <member refid="classEventDatabase_1a00b928186fb56718e0350c85a7837eb9" prot="public" virt="non-virtual"><scope>EventDatabase</scope><name>GetEventByDebugName</name></member>
+      <member refid="classEventDatabase_1ad891255d06cf316e9c5d2c237c4f5e7a" prot="public" virt="non-virtual"><scope>EventDatabase</scope><name>GetEventsByOutcomeType</name></member>
+      <member refid="classEventDatabase_1a1e4eb8402607c4189a9f4ea5a8d1ac59" prot="public" virt="non-virtual"><scope>EventDatabase</scope><name>GetEventsByType</name></member>
+      <member refid="classEventDatabase_1a568d630ffaa2538f19abd48f0ebfaba5" prot="public" virt="non-virtual"><scope>EventDatabase</scope><name>GetEventsForCOMA</name></member>
+      <member refid="classEventDatabase_1ab4fddc1d640811b190770997dd5ff806" prot="public" virt="non-virtual"><scope>EventDatabase</scope><name>GetEventsForYear</name></member>
+      <member refid="classEventDatabase_1af759cdcd66a201f596c8898adfdb3410" prot="public" virt="non-virtual"><scope>EventDatabase</scope><name>GetEventsRequiringRace</name></member>
+      <member refid="classEventDatabase_1a24f82a21ad1da76ca98f73f0f3d4ef30" prot="public" virt="non-virtual"><scope>EventDatabase</scope><name>GetFilteredEvents</name></member>
+      <member refid="classEventDatabase_1a90f24cdbc307486122f7fa092c5041cb" prot="public" virt="non-virtual"><scope>EventDatabase</scope><name>GetRandomEvent</name></member>
+      <member refid="classEventDatabase_1a6a25f9ced39cd40779d77589c6a5d5e3" prot="public" virt="non-virtual"><scope>EventDatabase</scope><name>Initialize</name></member>
+      <member refid="classEventDatabase_1a58bddc2d05739d0be281c28dafb89f47" prot="private" virt="non-virtual"><scope>EventDatabase</scope><name>InitializeEventDictionary</name></member>
+      <member refid="classEventDatabase_1a21e1b9ef9fe4f79101721d749f153219" prot="private" virt="non-virtual"><scope>EventDatabase</scope><name>InitializeEventsByOutcomeType</name></member>
+      <member refid="classEventDatabase_1abb40e101396951c3a9638e7f8422c468" prot="private" virt="non-virtual"><scope>EventDatabase</scope><name>InitializeEventsByType</name></member>
+      <member refid="classEventDatabase_1acc5048ba7242486b04bcb294833dc30a" prot="private" virt="non-virtual"><scope>EventDatabase</scope><name>OnEnable</name></member>
+      <member refid="classEventDatabase_1ad1bf6f5d720e077a4b8d72809878bc0f" prot="public" virt="non-virtual"><scope>EventDatabase</scope><name>ReloadEvents</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

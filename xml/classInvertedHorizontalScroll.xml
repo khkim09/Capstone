@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classInvertedHorizontalScroll" kind="class" language="C#" prot="public">
+    <compoundname>InvertedHorizontalScroll</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ScrollRect</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classInvertedHorizontalScroll_1adde14298a8210701149eaaef52976b75" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float InvertedHorizontalScroll.scrollSpeed</definition>
+        <argsstring></argsstring>
+        <name>scrollSpeed</name>
+        <qualifiedname>InvertedHorizontalScroll.scrollSpeed</qualifiedname>
+        <initializer>= 0.01f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/InvertedHorizontalScroll.cs" line="12" column="20" bodyfile="Assets/Scripts/CustomizeShip/InvertedHorizontalScroll.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classInvertedHorizontalScroll_1a195edfe348585406fc7095bae1672997" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool InvertedHorizontalScroll.IsOnScrollbarHandle</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>IsOnScrollbarHandle</name>
+        <qualifiedname>InvertedHorizontalScroll.IsOnScrollbarHandle</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>현재 포인터가 스크롤바 핸들 위에 있는지 여부를 판단 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/InvertedHorizontalScroll.cs" line="17" column="18" bodyfile="Assets/Scripts/CustomizeShip/InvertedHorizontalScroll.cs" bodystart="17" bodyend="30"/>
+        <referencedby refid="classInvertedHorizontalScroll_1a9571f560f334e3ceaed59b3895dedecd" compoundref="InvertedHorizontalScroll_8cs" startline="46" endline="50">OnBeginDrag</referencedby>
+        <referencedby refid="classInvertedHorizontalScroll_1ab7359352efac97b09a18b3653c52d0d7" compoundref="InvertedHorizontalScroll_8cs" startline="55" endline="59">OnDrag</referencedby>
+        <referencedby refid="classInvertedHorizontalScroll_1a78b7ce8fd654492f71f8f3c825711265" compoundref="InvertedHorizontalScroll_8cs" startline="64" endline="68">OnEndDrag</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classInvertedHorizontalScroll_1a613b7a9cbb364b0c0cae8882b2e69ba9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void InvertedHorizontalScroll.OnScroll</definition>
+        <argsstring>(PointerEventData data)</argsstring>
+        <name>OnScroll</name>
+        <qualifiedname>InvertedHorizontalScroll.OnScroll</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>휠 스크롤 반전 및 감도 적용 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/InvertedHorizontalScroll.cs" line="35" column="26" bodyfile="Assets/Scripts/CustomizeShip/InvertedHorizontalScroll.cs" bodystart="35" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classInvertedHorizontalScroll_1a9571f560f334e3ceaed59b3895dedecd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void InvertedHorizontalScroll.OnBeginDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnBeginDrag</name>
+        <qualifiedname>InvertedHorizontalScroll.OnBeginDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>핸들 위일 때만 드래그 시작 허용 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/InvertedHorizontalScroll.cs" line="46" column="26" bodyfile="Assets/Scripts/CustomizeShip/InvertedHorizontalScroll.cs" bodystart="46" bodyend="50"/>
+        <references refid="classInvertedHorizontalScroll_1a195edfe348585406fc7095bae1672997" compoundref="InvertedHorizontalScroll_8cs" startline="17" endline="30">IsOnScrollbarHandle</references>
+      </memberdef>
+      <memberdef kind="function" id="classInvertedHorizontalScroll_1ab7359352efac97b09a18b3653c52d0d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void InvertedHorizontalScroll.OnDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnDrag</name>
+        <qualifiedname>InvertedHorizontalScroll.OnDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>핸들 위일 때만 드래그 허용 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/InvertedHorizontalScroll.cs" line="55" column="26" bodyfile="Assets/Scripts/CustomizeShip/InvertedHorizontalScroll.cs" bodystart="55" bodyend="59"/>
+        <references refid="classInvertedHorizontalScroll_1a195edfe348585406fc7095bae1672997" compoundref="InvertedHorizontalScroll_8cs" startline="17" endline="30">IsOnScrollbarHandle</references>
+      </memberdef>
+      <memberdef kind="function" id="classInvertedHorizontalScroll_1a78b7ce8fd654492f71f8f3c825711265" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void InvertedHorizontalScroll.OnEndDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnEndDrag</name>
+        <qualifiedname>InvertedHorizontalScroll.OnEndDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>핸들 위일 때만 드래그 종료 허용 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/InvertedHorizontalScroll.cs" line="64" column="26" bodyfile="Assets/Scripts/CustomizeShip/InvertedHorizontalScroll.cs" bodystart="64" bodyend="68"/>
+        <references refid="classInvertedHorizontalScroll_1a195edfe348585406fc7095bae1672997" compoundref="InvertedHorizontalScroll_8cs" startline="17" endline="30">IsOnScrollbarHandle</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>휠 스크롤은 수평으로 반전 및 감도 조절하여 허용, 스크롤바 핸들 위에서만 마우스 드래그를 허용하는 ScrollRect 확장. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>InvertedHorizontalScroll</label>
+        <link refid="classInvertedHorizontalScroll"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScrollRect</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>InvertedHorizontalScroll</label>
+        <link refid="classInvertedHorizontalScroll"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScrollRect</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/InvertedHorizontalScroll.cs" line="9" column="7" bodyfile="Assets/Scripts/CustomizeShip/InvertedHorizontalScroll.cs" bodystart="10" bodyend="69"/>
+    <listofallmembers>
+      <member refid="classInvertedHorizontalScroll_1a195edfe348585406fc7095bae1672997" prot="private" virt="non-virtual"><scope>InvertedHorizontalScroll</scope><name>IsOnScrollbarHandle</name></member>
+      <member refid="classInvertedHorizontalScroll_1a9571f560f334e3ceaed59b3895dedecd" prot="public" virt="non-virtual"><scope>InvertedHorizontalScroll</scope><name>OnBeginDrag</name></member>
+      <member refid="classInvertedHorizontalScroll_1ab7359352efac97b09a18b3653c52d0d7" prot="public" virt="non-virtual"><scope>InvertedHorizontalScroll</scope><name>OnDrag</name></member>
+      <member refid="classInvertedHorizontalScroll_1a78b7ce8fd654492f71f8f3c825711265" prot="public" virt="non-virtual"><scope>InvertedHorizontalScroll</scope><name>OnEndDrag</name></member>
+      <member refid="classInvertedHorizontalScroll_1a613b7a9cbb364b0c0cae8882b2e69ba9" prot="public" virt="non-virtual"><scope>InvertedHorizontalScroll</scope><name>OnScroll</name></member>
+      <member refid="classInvertedHorizontalScroll_1adde14298a8210701149eaaef52976b75" prot="private" virt="non-virtual"><scope>InvertedHorizontalScroll</scope><name>scrollSpeed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

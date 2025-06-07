@@ -1,0 +1,809 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEventManager" kind="class" language="C#" prot="public">
+    <compoundname>EventManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classEventManager_1ade1d61c949289cca4cb3ece11e65242e" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="classEventManager" kindref="compound">EventManager</ref></type>
+        <definition>EventManager EventManager.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>EventManager.Instance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="12" column="32" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="12" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="property" id="classEventManager_1a2e8863664a51eb1ba066e70376f5050c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classEventPanelController" kindref="compound">EventPanelController</ref></type>
+        <definition>EventPanelController EventManager.EventPanelController</definition>
+        <argsstring></argsstring>
+        <name>EventPanelController</name>
+        <qualifiedname>EventManager.EventPanelController</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="16" column="33" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="property" id="classEventManager_1a38a6073934e8074327b83ea94d7794de" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>List&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt;</type>
+        <definition>List&lt;RandomEvent&gt; EventManager.AllEvents</definition>
+        <argsstring></argsstring>
+        <name>AllEvents</name>
+        <qualifiedname>EventManager.AllEvents</qualifiedname>
+        <briefdescription>
+<para>모든 이벤트 목록을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="73" column="17" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="73" bodyend="-1"/>
+        <referencedby refid="classEventTestTrigger_1ae4ed10246d94ce4bb7eeeb761adc4c06" compoundref="EventTestTrigger_8cs" startline="285" endline="328">EventTestTrigger.ExportAllEventTexts</referencedby>
+        <referencedby refid="classEventTestTrigger_1a34fab0b7bfcb5fa3e3708a1fc1b2aefe" compoundref="EventTestTrigger_8cs" startline="434" endline="488">EventTestTrigger.FindEventsByTextKeyPrefix</referencedby>
+        <referencedby refid="classEventTestTrigger_1a43cdec968d88b4d10a21a68b93d507bf" compoundref="EventTestTrigger_8cs" startline="251" endline="257">EventTestTrigger.PrintAllEvents</referencedby>
+        <referencedby refid="classEventTestTrigger_1a1818211f7f91b89b7ba04ce6ed9d95b5" compoundref="EventTestTrigger_8cs" startline="262" endline="280">EventTestTrigger.PrintAvailableEvents</referencedby>
+        <referencedby refid="classEventTestTrigger_1a316d3c416c3de2473fe78fb1ae48bb03" compoundref="EventTestTrigger_8cs" startline="493" endline="558">EventTestTrigger.ValidateAllEventTextKeys</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="classEventManager_1a629544480494e6c4e0e942e8e3075fc4" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>List&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt;</type>
+        <definition>List&lt;RandomEvent&gt; EventManager.ShipEvents</definition>
+        <argsstring></argsstring>
+        <name>ShipEvents</name>
+        <qualifiedname>EventManager.ShipEvents</qualifiedname>
+        <briefdescription>
+<para>함선 이벤트 목록을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="78" column="17" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classEventManager_1acdcfba870df4ec10662d02d4a9fb580b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>List&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt;</type>
+        <definition>List&lt;RandomEvent&gt; EventManager.PlanetEvents</definition>
+        <argsstring></argsstring>
+        <name>PlanetEvents</name>
+        <qualifiedname>EventManager.PlanetEvents</qualifiedname>
+        <briefdescription>
+<para>행성 이벤트 목록을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="83" column="17" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="83" bodyend="-1"/>
+        <referencedby refid="classEventTestTrigger_1a502b35fcfe1d6860a3284fd340e4ddc5" compoundref="EventTestTrigger_8cs" startline="187" endline="221">EventTestTrigger.SelectTestEvent</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="classEventManager_1ab14937caaed91fa7bbe57fe375641675" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>List&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt;</type>
+        <definition>List&lt;RandomEvent&gt; EventManager.MysteryEvents</definition>
+        <argsstring></argsstring>
+        <name>MysteryEvents</name>
+        <qualifiedname>EventManager.MysteryEvents</qualifiedname>
+        <briefdescription>
+<para>미스터리 이벤트 목록을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="88" column="17" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="88" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classEventManager_1a1a4b5a8ffd16a611d652399d615ab09d" prot="private" static="no" mutable="no">
+        <type><ref refid="classEventDatabase" kindref="compound">EventDatabase</ref></type>
+        <definition>EventDatabase EventManager.eventDatabase</definition>
+        <argsstring></argsstring>
+        <name>eventDatabase</name>
+        <qualifiedname>EventManager.eventDatabase</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="14" column="29" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventManager_1aa9a1f3a1d2b298a36b09bc7c14a7db74" prot="private" static="no" mutable="no">
+        <type><ref refid="classRandomEvent" kindref="compound">RandomEvent</ref></type>
+        <definition>RandomEvent EventManager.currentEvent</definition>
+        <argsstring></argsstring>
+        <name>currentEvent</name>
+        <qualifiedname>EventManager.currentEvent</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="20" column="25" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventManager_1af9f1279fc5c2bba94c7d2e3de96a94f8" prot="private" static="no" mutable="no">
+        <type><ref refid="classEventResourceEffectHandler" kindref="compound">EventResourceEffectHandler</ref></type>
+        <definition>EventResourceEffectHandler EventManager.resourceEffectHandler</definition>
+        <argsstring></argsstring>
+        <name>resourceEffectHandler</name>
+        <qualifiedname>EventManager.resourceEffectHandler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="23" column="40" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventManager_1a4c89774bc3e014554769f55974bc5187" prot="private" static="no" mutable="no">
+        <type><ref refid="classEventCrewEffectHandler" kindref="compound">EventCrewEffectHandler</ref></type>
+        <definition>EventCrewEffectHandler EventManager.crewEffectHandler</definition>
+        <argsstring></argsstring>
+        <name>crewEffectHandler</name>
+        <qualifiedname>EventManager.crewEffectHandler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="24" column="36" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventManager_1a9988a361a5ce33fdf4ea593b086cc1da" prot="private" static="no" mutable="no">
+        <type><ref refid="classEventPlanetEffectHandler" kindref="compound">EventPlanetEffectHandler</ref></type>
+        <definition>EventPlanetEffectHandler EventManager.planetEffectHandler</definition>
+        <argsstring></argsstring>
+        <name>planetEffectHandler</name>
+        <qualifiedname>EventManager.planetEffectHandler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="25" column="38" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventManager_1a3428b8982165f61b275f669b2dc66066" prot="private" static="no" mutable="no">
+        <type><ref refid="classSpecialEffectHandlerFactory" kindref="compound">SpecialEffectHandlerFactory</ref></type>
+        <definition>SpecialEffectHandlerFactory EventManager.specialEffectHandlerFactory</definition>
+        <argsstring></argsstring>
+        <name>specialEffectHandlerFactory</name>
+        <qualifiedname>EventManager.specialEffectHandlerFactory</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="26" column="41" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventManager_1a1fe0a5fa85020574e32cb5a3c36c9b83" prot="private" static="no" mutable="no">
+        <type>List&lt; int &gt;</type>
+        <definition>List&lt;int&gt; EventManager.recentEventIds</definition>
+        <argsstring></argsstring>
+        <name>recentEventIds</name>
+        <qualifiedname>EventManager.recentEventIds</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="29" column="18" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventManager_1a2f17290b1635c8908ce8d40358ea5000" prot="private" static="no" mutable="no">
+        <type>Queue&lt; <ref refid="classRandomEvent" kindref="compound">RandomEvent</ref> &gt;</type>
+        <definition>Queue&lt;RandomEvent&gt; EventManager.pendingEvents</definition>
+        <argsstring></argsstring>
+        <name>pendingEvents</name>
+        <qualifiedname>EventManager.pendingEvents</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="31" column="19" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEventManager_1aa8c9f4ff420241e63b7d3a2c616063ad" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool EventManager.isProcessingEvent</definition>
+        <argsstring></argsstring>
+        <name>isProcessingEvent</name>
+        <qualifiedname>EventManager.isProcessingEvent</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="32" column="18" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="32" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classEventManager_1a2bf2bdf889a329374e34b8fdbec1fe72" prot="public" static="no" mutable="no">
+        <type><ref refid="classWarpNode" kindref="compound">WarpNode</ref></type>
+        <definition>WarpNode EventManager.CurrentWarpNode</definition>
+        <argsstring></argsstring>
+        <name>CurrentWarpNode</name>
+        <qualifiedname>EventManager.CurrentWarpNode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="146" column="21" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="146" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEventManager_1a6943e52113a464061a34276ac83e648c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>EventManager.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="34" column="18" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="34" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1a9d40382790adbf9470e360cd6c3506e9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventManager.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>EventManager.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="59" column="18" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="59" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1a45ddfe688538aca7b7fc97589c710eda" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator EventManager.TryTriggerShipEventCoroutine</definition>
+        <argsstring>()</argsstring>
+        <name>TryTriggerShipEventCoroutine</name>
+        <qualifiedname>EventManager.TryTriggerShipEventCoroutine</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="103" column="25" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="103" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1ad3e7c3b452135dde4270d5521b70c985" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator EventManager.TryTriggerPlanetEventCoroutine</definition>
+        <argsstring>()</argsstring>
+        <name>TryTriggerPlanetEventCoroutine</name>
+        <qualifiedname>EventManager.TryTriggerPlanetEventCoroutine</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="131" column="25" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="131" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1abf444ded5ae99dfeeaf9d80294f9395e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventManager.ProcessNextEvent</definition>
+        <argsstring>()</argsstring>
+        <name>ProcessNextEvent</name>
+        <qualifiedname>EventManager.ProcessNextEvent</qualifiedname>
+        <briefdescription>
+<para>큐에서 다음 이벤트를 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="177" column="18" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="177" bodyend="193"/>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classEventPanelController_1a8049a10f186fafea43108f3da5c48d64" compoundref="EventPanelController_8cs" startline="48" endline="89">EventPanelController.ShowEvent</references>
+        <referencedby refid="classEventManager_1ace430478ab6a938b8d572fc109da95ae" compoundref="EventManager_8cs" startline="300" endline="307">EndEvent</referencedby>
+        <referencedby refid="classEventManager_1a17513adf1ec99ebc11f951688629d826" compoundref="EventManager_8cs" startline="158" endline="172">TriggerEvent</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1a355c69c40c2d9bb101476692466ac9ac" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventManager.ApplyOutcomeEffects</definition>
+        <argsstring>(EventOutcome outcome)</argsstring>
+        <name>ApplyOutcomeEffects</name>
+        <qualifiedname>EventManager.ApplyOutcomeEffects</qualifiedname>
+        <param>
+          <type><ref refid="classEventOutcome" kindref="compound">EventOutcome</ref></type>
+          <declname>outcome</declname>
+        </param>
+        <briefdescription>
+<para>결과 효과를 적용합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>outcome</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>적용할 결과</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="258" column="18" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="258" bodyend="295"/>
+        <references refid="classEventCrewEffectHandler_1a1c6a865eb331d25525e8ff555a722e75" compoundref="EventCrewEffectHandler_8cs" startline="30" endline="73">EventCrewEffectHandler.ApplyEffects</references>
+        <references refid="classEventPlanetEffectHandler_1acb9d8896a00d4e0a242b1da619dcf733" compoundref="EventPlanetEffectHandler_8cs" startline="32" endline="53">EventPlanetEffectHandler.ApplyEffects</references>
+        <references refid="classEventResourceEffectHandler_1ac809005f30301ed5aa0dae5954c76ab7" compoundref="EventResourceEffectHandler_8cs" startline="28" endline="40">EventResourceEffectHandler.ApplyEffects</references>
+        <references refid="classSpecialEffectHandlerFactory_1a1c91b7986d36fdc014ff293073f89a96" compoundref="SpecialEffectHandlerFactory_8cs" startline="49" endline="58">SpecialEffectHandlerFactory.GetHandler</references>
+        <referencedby refid="classEventManager_1a3350e756672d0a7b9b4d035df7e55867" compoundref="EventManager_8cs" startline="214" endline="252">ProcessChoice</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1ad79051eea6480da5f430711585c1baae" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classRandomEvent" kindref="compound">RandomEvent</ref></type>
+        <definition>RandomEvent EventManager.SelectAppropriateEvent</definition>
+        <argsstring>(EventType type)</argsstring>
+        <name>SelectAppropriateEvent</name>
+        <qualifiedname>EventManager.SelectAppropriateEvent</qualifiedname>
+        <param>
+          <type>EventType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>현재 게임 상태에 적합한 이벤트를 선택합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이벤트 타입</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>선택된 이벤트 또는 null</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="324" column="25" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="324" bodyend="381"/>
+        <references refid="classGameManager_1a300fce3b9c3151c75af6dd609f9563b2" compoundref="GameManager_8cs" startline="113">GameManager.CompletedMysteryEventIds</references>
+        <references refid="classGameManager_1a0a5c70718a18bd796bdcf70f7411a539" compoundref="GameManager_8cs" startline="85">GameManager.CurrentYear</references>
+        <references refid="classEventManager_1adf518cb4f0e15d1da51dcfdbcf1fc3ac" compoundref="EventManager_8cs" startline="387" endline="399">GetAvailableCrewRaces</references>
+        <references refid="classEventDatabase_1a24f82a21ad1da76ca98f73f0f3d4ef30" compoundref="EventDatabase_8cs" startline="209" endline="230">EventDatabase.GetFilteredEvents</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1adf518cb4f0e15d1da51dcfdbcf1fc3ac" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; CrewRace &gt;</type>
+        <definition>List&lt; CrewRace &gt; EventManager.GetAvailableCrewRaces</definition>
+        <argsstring>()</argsstring>
+        <name>GetAvailableCrewRaces</name>
+        <qualifiedname>EventManager.GetAvailableCrewRaces</qualifiedname>
+        <briefdescription>
+<para>현재 보유 중인 선원 종족 목록을 가져옵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>보유 중인 선원 종족 목록</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="387" column="18" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="387" bodyend="399"/>
+        <references refid="classShip_1ad420fae7a6eed955adb71ba76673d55e" compoundref="Ship_8cs" startline="1051" endline="1054">Ship.GetAllCrew</references>
+        <references refid="classGameManager_1a1f54b41e89308bda97cf48e599ec549d" compoundref="GameManager_8cs" startline="427" endline="430">GameManager.GetPlayerShip</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classCrewBase_1a5a53b04defdcf26f6be526e1dd7c4910" compoundref="CrewBase_8cs" startline="19">CrewBase.race</references>
+        <referencedby refid="classEventManager_1ad79051eea6480da5f430711585c1baae" compoundref="EventManager_8cs" startline="324" endline="381">SelectAppropriateEvent</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1a610720c91173ed6023e4925eb2f42260" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventManager.AddToRecentEvents</definition>
+        <argsstring>(int eventId)</argsstring>
+        <name>AddToRecentEvents</name>
+        <qualifiedname>EventManager.AddToRecentEvents</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>eventId</declname>
+        </param>
+        <briefdescription>
+<para>최근 발생한 이벤트 목록에 이벤트를 추가합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>추가할 이벤트 ID</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="405" column="18" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="405" bodyend="416"/>
+        <referencedby refid="classEventManager_1a17513adf1ec99ebc11f951688629d826" compoundref="EventManager_8cs" startline="158" endline="172">TriggerEvent</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEventManager_1a0e5a2581efb7172f6efeed00907b00ac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classRandomEvent" kindref="compound">RandomEvent</ref></type>
+        <definition>RandomEvent EventManager.GetEventById</definition>
+        <argsstring>(int id)</argsstring>
+        <name>GetEventById</name>
+        <qualifiedname>EventManager.GetEventById</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>이벤트 ID로 이벤트를 검색합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="93" column="24" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="93" bodyend="96"/>
+        <references refid="classEventDatabase_1af69ac3e0dc68fa3e3ec9bfb14a5d7e70" compoundref="EventDatabase_8cs" startline="109" endline="119">EventDatabase.GetEvent</references>
+        <referencedby refid="classEventTestTrigger_1a662dfee544e3da94174b981952a7b36f" compoundref="EventTestTrigger_8cs" startline="113" endline="143">EventTestTrigger.TriggerCosmicEvent</referencedby>
+        <referencedby refid="classEventTestTrigger_1ac191c74d0af20292899091252f7177dc" compoundref="EventTestTrigger_8cs" startline="78" endline="108">EventTestTrigger.TriggerPlanetEvent</referencedby>
+        <referencedby refid="classEventTestTrigger_1ae75c9fd44bc364c4929905f46ac22364" compoundref="EventTestTrigger_8cs" startline="148" endline="182">EventTestTrigger.TriggerRandomEvent</referencedby>
+        <referencedby refid="classEventTestTrigger_1a630e4878fa514c8e08fe06fec55da366" compoundref="EventTestTrigger_8cs" startline="43" endline="73">EventTestTrigger.TriggerShipEvent</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1a8a52e2dfaf33ec04ca66856deb14d202" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventManager.TryTriggerShipEvent</definition>
+        <argsstring>(int year)</argsstring>
+        <name>TryTriggerShipEvent</name>
+        <qualifiedname>EventManager.TryTriggerShipEvent</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>year</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="98" column="17" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="98" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1a8436f9ff540dc6120c821e0c2072406b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventManager.TryTriggerPlanetEvent</definition>
+        <argsstring>(int year)</argsstring>
+        <name>TryTriggerPlanetEvent</name>
+        <qualifiedname>EventManager.TryTriggerPlanetEvent</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>year</declname>
+        </param>
+        <briefdescription>
+<para>워프 시 이벤트 발생 여부를 체크하고 이벤트를 실행합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>이벤트가 발생했는지 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="126" column="17" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="126" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1a78e04f5f2049e956ad77b763762a591e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventManager.CombatOccur</definition>
+        <argsstring>()</argsstring>
+        <name>CombatOccur</name>
+        <qualifiedname>EventManager.CombatOccur</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="148" column="17" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="148" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1a17513adf1ec99ebc11f951688629d826" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventManager.TriggerEvent</definition>
+        <argsstring>(RandomEvent randomEvent)</argsstring>
+        <name>TriggerEvent</name>
+        <qualifiedname>EventManager.TriggerEvent</qualifiedname>
+        <param>
+          <type><ref refid="classRandomEvent" kindref="compound">RandomEvent</ref></type>
+          <declname>randomEvent</declname>
+        </param>
+        <briefdescription>
+<para>이벤트를 트리거합니다. 이미 진행 중인 이벤트가 있다면 큐에 추가합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="158" column="17" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="158" bodyend="172"/>
+        <references refid="classEventManager_1a610720c91173ed6023e4925eb2f42260" compoundref="EventManager_8cs" startline="405" endline="416">AddToRecentEvents</references>
+        <references refid="classEventManager_1abf444ded5ae99dfeeaf9d80294f9395e" compoundref="EventManager_8cs" startline="177" endline="193">ProcessNextEvent</references>
+        <referencedby refid="classEventNextEventEffectHandler_1a59234ff1c4bf8e5d64844139e9c764b1" compoundref="EventNextEventEffectHandler_8cs" startline="12" endline="28">EventNextEventEffectHandler.HandleEffect</referencedby>
+        <referencedby refid="classEventTestTrigger_1a662dfee544e3da94174b981952a7b36f" compoundref="EventTestTrigger_8cs" startline="113" endline="143">EventTestTrigger.TriggerCosmicEvent</referencedby>
+        <referencedby refid="classEventManager_1aae84388e618a8f8b18efd9f0b4b0761d" compoundref="EventManager_8cs" startline="200" endline="207">TriggerEventById</referencedby>
+        <referencedby refid="classEventTestTrigger_1ac191c74d0af20292899091252f7177dc" compoundref="EventTestTrigger_8cs" startline="78" endline="108">EventTestTrigger.TriggerPlanetEvent</referencedby>
+        <referencedby refid="classEventTestTrigger_1ae75c9fd44bc364c4929905f46ac22364" compoundref="EventTestTrigger_8cs" startline="148" endline="182">EventTestTrigger.TriggerRandomEvent</referencedby>
+        <referencedby refid="classEventTestTrigger_1a630e4878fa514c8e08fe06fec55da366" compoundref="EventTestTrigger_8cs" startline="43" endline="73">EventTestTrigger.TriggerShipEvent</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1aae84388e618a8f8b18efd9f0b4b0761d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventManager.TriggerEventById</definition>
+        <argsstring>(int eventId)</argsstring>
+        <name>TriggerEventById</name>
+        <qualifiedname>EventManager.TriggerEventById</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>eventId</declname>
+        </param>
+        <briefdescription>
+<para>특정 ID의 이벤트를 강제로 실행합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>실행할 이벤트 ID</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="200" column="17" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="200" bodyend="207"/>
+        <references refid="classEventDatabase_1af69ac3e0dc68fa3e3ec9bfb14a5d7e70" compoundref="EventDatabase_8cs" startline="109" endline="119">EventDatabase.GetEvent</references>
+        <references refid="classEventManager_1a17513adf1ec99ebc11f951688629d826" compoundref="EventManager_8cs" startline="158" endline="172">TriggerEvent</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1a3350e756672d0a7b9b4d035df7e55867" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventManager.ProcessChoice</definition>
+        <argsstring>(RandomEvent randomEvent, int choiceIndex)</argsstring>
+        <name>ProcessChoice</name>
+        <qualifiedname>EventManager.ProcessChoice</qualifiedname>
+        <param>
+          <type><ref refid="classRandomEvent" kindref="compound">RandomEvent</ref></type>
+          <declname>randomEvent</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>choiceIndex</declname>
+        </param>
+        <briefdescription>
+<para>선택지 선택 시 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>randomEvent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>현재 이벤트</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>choiceIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>선택한 선택지 인덱스</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="214" column="17" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="214" bodyend="252"/>
+        <references refid="classGameManager_1a0104e4c6dfffbe7dcc731b750c9d6ab3" compoundref="GameManager_8cs" startline="1168" endline="1176">GameManager.AddCompletedMysteryEvent</references>
+        <references refid="classEventManager_1a355c69c40c2d9bb101476692466ac9ac" compoundref="EventManager_8cs" startline="258" endline="295">ApplyOutcomeEffects</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classEventPanelController_1ae9ff3cde9d130b9e1a1e7c188bb777f3" compoundref="EventPanelController_8cs" startline="153" endline="162">EventPanelController.ShowOutcome</references>
+        <referencedby refid="classEventPanelController_1a271c99a2e6e6fc874fc06f14222ec7a4" compoundref="EventPanelController_8cs" startline="134" endline="148">EventPanelController.OnChoiceSelected</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1ace430478ab6a938b8d572fc109da95ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventManager.EndEvent</definition>
+        <argsstring>()</argsstring>
+        <name>EndEvent</name>
+        <qualifiedname>EventManager.EndEvent</qualifiedname>
+        <briefdescription>
+<para>이벤트 종료 처리를 수행합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="300" column="17" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="300" bodyend="307"/>
+        <references refid="classEventManager_1abf444ded5ae99dfeeaf9d80294f9395e" compoundref="EventManager_8cs" startline="177" endline="193">ProcessNextEvent</references>
+        <referencedby refid="classEventPanelController_1a5f3beaeae04628621757ee3c484a02d8" compoundref="EventPanelController_8cs" startline="197" endline="210">EventPanelController.CloseEventPanel</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1abea986df43edaf7a9f641ff487c6dfee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventManager.ClearPendingEvents</definition>
+        <argsstring>()</argsstring>
+        <name>ClearPendingEvents</name>
+        <qualifiedname>EventManager.ClearPendingEvents</qualifiedname>
+        <briefdescription>
+<para>대기 중인 모든 이벤트를 취소합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="312" column="17" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="312" bodyend="317"/>
+      </memberdef>
+      <memberdef kind="function" id="classEventManager_1a029108597478155d266605ba28f4b4ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventManager.ClearRecentEvents</definition>
+        <argsstring>()</argsstring>
+        <name>ClearRecentEvents</name>
+        <qualifiedname>EventManager.ClearRecentEvents</qualifiedname>
+        <briefdescription>
+<para>최근 발생한 이벤트 목록을 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventManager.cs" line="421" column="17" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="421" bodyend="424"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>게임 내 이벤트 시스템을 관리하는 매니저 클래스 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EventManager</label>
+        <link refid="classEventManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="7">
+        <label>EventCrewEffectHandler</label>
+        <link refid="classEventCrewEffectHandler"/>
+      </node>
+      <node id="3">
+        <label>EventDatabase</label>
+        <link refid="classEventDatabase"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>EventManager</label>
+        <link refid="classEventManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-eventDatabase</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-currentEvent</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-resourceEffectHandler</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-crewEffectHandler</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-planetEffectHandler</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-specialEffectHandlerFactory</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+CurrentWarpNode</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>EventPlanetEffectHandler</label>
+        <link refid="classEventPlanetEffectHandler"/>
+      </node>
+      <node id="6">
+        <label>EventResourceEffectHandler</label>
+        <link refid="classEventResourceEffectHandler"/>
+      </node>
+      <node id="11">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="5">
+        <label>RandomEvent</label>
+        <link refid="classRandomEvent"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="9">
+        <label>SpecialEffectHandlerFactory</label>
+        <link refid="classSpecialEffectHandlerFactory"/>
+      </node>
+      <node id="10">
+        <label>WarpNode</label>
+        <link refid="classWarpNode"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Events/EventManager.cs" line="10" column="7" bodyfile="Assets/Scripts/Events/EventManager.cs" bodystart="11" bodyend="425"/>
+    <listofallmembers>
+      <member refid="classEventManager_1a610720c91173ed6023e4925eb2f42260" prot="private" virt="non-virtual"><scope>EventManager</scope><name>AddToRecentEvents</name></member>
+      <member refid="classEventManager_1a38a6073934e8074327b83ea94d7794de" prot="public" virt="non-virtual"><scope>EventManager</scope><name>AllEvents</name></member>
+      <member refid="classEventManager_1a355c69c40c2d9bb101476692466ac9ac" prot="private" virt="non-virtual"><scope>EventManager</scope><name>ApplyOutcomeEffects</name></member>
+      <member refid="classEventManager_1a6943e52113a464061a34276ac83e648c" prot="private" virt="non-virtual"><scope>EventManager</scope><name>Awake</name></member>
+      <member refid="classEventManager_1abea986df43edaf7a9f641ff487c6dfee" prot="public" virt="non-virtual"><scope>EventManager</scope><name>ClearPendingEvents</name></member>
+      <member refid="classEventManager_1a029108597478155d266605ba28f4b4ff" prot="public" virt="non-virtual"><scope>EventManager</scope><name>ClearRecentEvents</name></member>
+      <member refid="classEventManager_1a78e04f5f2049e956ad77b763762a591e" prot="public" virt="non-virtual"><scope>EventManager</scope><name>CombatOccur</name></member>
+      <member refid="classEventManager_1a4c89774bc3e014554769f55974bc5187" prot="private" virt="non-virtual"><scope>EventManager</scope><name>crewEffectHandler</name></member>
+      <member refid="classEventManager_1aa9a1f3a1d2b298a36b09bc7c14a7db74" prot="private" virt="non-virtual"><scope>EventManager</scope><name>currentEvent</name></member>
+      <member refid="classEventManager_1a2bf2bdf889a329374e34b8fdbec1fe72" prot="public" virt="non-virtual"><scope>EventManager</scope><name>CurrentWarpNode</name></member>
+      <member refid="classEventManager_1ace430478ab6a938b8d572fc109da95ae" prot="public" virt="non-virtual"><scope>EventManager</scope><name>EndEvent</name></member>
+      <member refid="classEventManager_1a1a4b5a8ffd16a611d652399d615ab09d" prot="private" virt="non-virtual"><scope>EventManager</scope><name>eventDatabase</name></member>
+      <member refid="classEventManager_1a2e8863664a51eb1ba066e70376f5050c" prot="public" virt="non-virtual"><scope>EventManager</scope><name>EventPanelController</name></member>
+      <member refid="classEventManager_1adf518cb4f0e15d1da51dcfdbcf1fc3ac" prot="private" virt="non-virtual"><scope>EventManager</scope><name>GetAvailableCrewRaces</name></member>
+      <member refid="classEventManager_1a0e5a2581efb7172f6efeed00907b00ac" prot="public" virt="non-virtual"><scope>EventManager</scope><name>GetEventById</name></member>
+      <member refid="classEventManager_1ade1d61c949289cca4cb3ece11e65242e" prot="public" virt="non-virtual"><scope>EventManager</scope><name>Instance</name></member>
+      <member refid="classEventManager_1aa8c9f4ff420241e63b7d3a2c616063ad" prot="private" virt="non-virtual"><scope>EventManager</scope><name>isProcessingEvent</name></member>
+      <member refid="classEventManager_1ab14937caaed91fa7bbe57fe375641675" prot="public" virt="non-virtual"><scope>EventManager</scope><name>MysteryEvents</name></member>
+      <member refid="classEventManager_1a2f17290b1635c8908ce8d40358ea5000" prot="private" virt="non-virtual"><scope>EventManager</scope><name>pendingEvents</name></member>
+      <member refid="classEventManager_1a9988a361a5ce33fdf4ea593b086cc1da" prot="private" virt="non-virtual"><scope>EventManager</scope><name>planetEffectHandler</name></member>
+      <member refid="classEventManager_1acdcfba870df4ec10662d02d4a9fb580b" prot="public" virt="non-virtual"><scope>EventManager</scope><name>PlanetEvents</name></member>
+      <member refid="classEventManager_1a3350e756672d0a7b9b4d035df7e55867" prot="public" virt="non-virtual"><scope>EventManager</scope><name>ProcessChoice</name></member>
+      <member refid="classEventManager_1abf444ded5ae99dfeeaf9d80294f9395e" prot="private" virt="non-virtual"><scope>EventManager</scope><name>ProcessNextEvent</name></member>
+      <member refid="classEventManager_1a1fe0a5fa85020574e32cb5a3c36c9b83" prot="private" virt="non-virtual"><scope>EventManager</scope><name>recentEventIds</name></member>
+      <member refid="classEventManager_1af9f1279fc5c2bba94c7d2e3de96a94f8" prot="private" virt="non-virtual"><scope>EventManager</scope><name>resourceEffectHandler</name></member>
+      <member refid="classEventManager_1ad79051eea6480da5f430711585c1baae" prot="private" virt="non-virtual"><scope>EventManager</scope><name>SelectAppropriateEvent</name></member>
+      <member refid="classEventManager_1a629544480494e6c4e0e942e8e3075fc4" prot="public" virt="non-virtual"><scope>EventManager</scope><name>ShipEvents</name></member>
+      <member refid="classEventManager_1a3428b8982165f61b275f669b2dc66066" prot="private" virt="non-virtual"><scope>EventManager</scope><name>specialEffectHandlerFactory</name></member>
+      <member refid="classEventManager_1a9d40382790adbf9470e360cd6c3506e9" prot="private" virt="non-virtual"><scope>EventManager</scope><name>Start</name></member>
+      <member refid="classEventManager_1a17513adf1ec99ebc11f951688629d826" prot="public" virt="non-virtual"><scope>EventManager</scope><name>TriggerEvent</name></member>
+      <member refid="classEventManager_1aae84388e618a8f8b18efd9f0b4b0761d" prot="public" virt="non-virtual"><scope>EventManager</scope><name>TriggerEventById</name></member>
+      <member refid="classEventManager_1a8436f9ff540dc6120c821e0c2072406b" prot="public" virt="non-virtual"><scope>EventManager</scope><name>TryTriggerPlanetEvent</name></member>
+      <member refid="classEventManager_1ad3e7c3b452135dde4270d5521b70c985" prot="private" virt="non-virtual"><scope>EventManager</scope><name>TryTriggerPlanetEventCoroutine</name></member>
+      <member refid="classEventManager_1a8a52e2dfaf33ec04ca66856deb14d202" prot="public" virt="non-virtual"><scope>EventManager</scope><name>TryTriggerShipEvent</name></member>
+      <member refid="classEventManager_1a45ddfe688538aca7b7fc97589c710eda" prot="private" virt="non-virtual"><scope>EventManager</scope><name>TryTriggerShipEventCoroutine</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

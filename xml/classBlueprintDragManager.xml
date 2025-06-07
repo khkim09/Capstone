@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classBlueprintDragManager" kind="class" language="C#" prot="public">
+    <compoundname>BlueprintDragManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classBlueprintDragManager_1a23f13ac66c65223c833bf61efb87de24" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>DragType</name>
+        <qualifiedname>BlueprintDragManager.DragType</qualifiedname>
+        <enumvalue id="classBlueprintDragManager_1a23f13ac66c65223c833bf61efb87de24a6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classBlueprintDragManager_1a23f13ac66c65223c833bf61efb87de24acc3abcf4426bff80257d22999d0eda8f" prot="public">
+          <name>Room</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classBlueprintDragManager_1a23f13ac66c65223c833bf61efb87de24a18c83669920215a818638ad0e5421e4b" prot="public">
+          <name>Weapon</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>현재 드래그 중인 오브젝트 타입 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" line="14" column="11" bodyfile="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" bodystart="15" bodyend="19"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classBlueprintDragManager_1aa29594ea02c1776a41680e2e446ec0a6" prot="public" static="yes" mutable="no">
+        <type><ref refid="classBlueprintDragManager" kindref="compound">BlueprintDragManager</ref></type>
+        <definition>BlueprintDragManager BlueprintDragManager.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>BlueprintDragManager.Instance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" line="9" column="40" bodyfile="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classBlueprintDragManager_1afd5e2587f32fa93a40540c9ab3591943" prot="private" static="no" mutable="no">
+        <type><ref refid="classBlueprintDragManager_1a23f13ac66c65223c833bf61efb87de24" kindref="member">DragType</ref></type>
+        <definition>DragType BlueprintDragManager.currentDragType</definition>
+        <argsstring></argsstring>
+        <name>currentDragType</name>
+        <qualifiedname>BlueprintDragManager.currentDragType</qualifiedname>
+        <initializer>= DragType.None</initializer>
+        <briefdescription>
+<para>현재 드래그 중인 오브젝트 타입 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" line="24" column="22" bodyfile="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" bodystart="24" bodyend="-1"/>
+        <referencedby refid="classBlueprintDragManager_1ad8f8bec2564b1eb1e535b006897e3779" compoundref="BlueprintDragManager_8cs" startline="52" endline="59">StartRoomDrag</referencedby>
+        <referencedby refid="classBlueprintDragManager_1ac1d35cd76d846adcbf13bab7b19e241b" compoundref="BlueprintDragManager_8cs" startline="65" endline="72">StartWeaponDrag</referencedby>
+        <referencedby refid="classBlueprintDragManager_1a55630795df2d164e7d56fe57510fbe98" compoundref="BlueprintDragManager_8cs" startline="77" endline="80">StopDrag</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classBlueprintDragManager_1a6e8f6ae0137bd0ecaa9cf61842b2e5cb" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool BlueprintDragManager.IsDragging</definition>
+        <argsstring></argsstring>
+        <name>IsDragging</name>
+        <qualifiedname>BlueprintDragManager.IsDragging</qualifiedname>
+        <briefdescription>
+<para>현재 드래그 중인지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" line="29" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" bodystart="29" bodyend="-1"/>
+        <referencedby refid="classBlueprintDragManager_1ad8f8bec2564b1eb1e535b006897e3779" compoundref="BlueprintDragManager_8cs" startline="52" endline="59">StartRoomDrag</referencedby>
+        <referencedby refid="classBlueprintDragManager_1ac1d35cd76d846adcbf13bab7b19e241b" compoundref="BlueprintDragManager_8cs" startline="65" endline="72">StartWeaponDrag</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="classBlueprintDragManager_1a49a18606cca578346902e6488c01195b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool BlueprintDragManager.IsRoomBeingDragged</definition>
+        <argsstring></argsstring>
+        <name>IsRoomBeingDragged</name>
+        <qualifiedname>BlueprintDragManager.IsRoomBeingDragged</qualifiedname>
+        <briefdescription>
+<para>방 드래그 중인지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" line="34" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classBlueprintDragManager_1a1f2437f16efe608323a36d5d72327d75" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool BlueprintDragManager.IsWeaponBeingDragged</definition>
+        <argsstring></argsstring>
+        <name>IsWeaponBeingDragged</name>
+        <qualifiedname>BlueprintDragManager.IsWeaponBeingDragged</qualifiedname>
+        <briefdescription>
+<para>무기 드래그 중인지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" line="39" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classBlueprintDragManager_1af7c63e8c9c425a2d6a91857174c42dec" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintDragManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>BlueprintDragManager.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" line="41" column="18" bodyfile="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" bodystart="41" bodyend="46"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classBlueprintDragManager_1ad8f8bec2564b1eb1e535b006897e3779" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool BlueprintDragManager.StartRoomDrag</definition>
+        <argsstring>()</argsstring>
+        <name>StartRoomDrag</name>
+        <qualifiedname>BlueprintDragManager.StartRoomDrag</qualifiedname>
+        <briefdescription>
+<para>방 드래그 시작 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>드래그 시작 가능 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" line="52" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" bodystart="52" bodyend="59"/>
+        <references refid="classBlueprintDragManager_1afd5e2587f32fa93a40540c9ab3591943" compoundref="BlueprintDragManager_8cs" startline="24">currentDragType</references>
+        <references refid="classBlueprintDragManager_1a6e8f6ae0137bd0ecaa9cf61842b2e5cb" compoundref="BlueprintDragManager_8cs" startline="29">IsDragging</references>
+        <referencedby refid="classBlueprintRoomDragHandler_1acab88240f6dc197cf08fc6842585cb44" compoundref="BlueprintRoomDragHandler_8cs" startline="32" endline="59">BlueprintRoomDragHandler.StartDragging</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintDragManager_1ac1d35cd76d846adcbf13bab7b19e241b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool BlueprintDragManager.StartWeaponDrag</definition>
+        <argsstring>()</argsstring>
+        <name>StartWeaponDrag</name>
+        <qualifiedname>BlueprintDragManager.StartWeaponDrag</qualifiedname>
+        <briefdescription>
+<para>무기 드래그 시작 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>드래그 시작 가능 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" line="65" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" bodystart="65" bodyend="72"/>
+        <references refid="classBlueprintDragManager_1afd5e2587f32fa93a40540c9ab3591943" compoundref="BlueprintDragManager_8cs" startline="24">currentDragType</references>
+        <references refid="classBlueprintDragManager_1a6e8f6ae0137bd0ecaa9cf61842b2e5cb" compoundref="BlueprintDragManager_8cs" startline="29">IsDragging</references>
+        <referencedby refid="classBlueprintWeaponDragHandler_1a5834a6e49dd8a0724bb81e6e36ee9642" compoundref="BlueprintWeaponDragHandler_8cs" startline="43" endline="85">BlueprintWeaponDragHandler.StartDragging</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintDragManager_1a55630795df2d164e7d56fe57510fbe98" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintDragManager.StopDrag</definition>
+        <argsstring>()</argsstring>
+        <name>StopDrag</name>
+        <qualifiedname>BlueprintDragManager.StopDrag</qualifiedname>
+        <briefdescription>
+<para>드래그 종료 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" line="77" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" bodystart="77" bodyend="80"/>
+        <references refid="classBlueprintDragManager_1afd5e2587f32fa93a40540c9ab3591943" compoundref="BlueprintDragManager_8cs" startline="24">currentDragType</references>
+        <referencedby refid="classBlueprintRoomDragHandler_1a1ba95e5ce735e70c57c489a25f6fd32c" compoundref="BlueprintRoomDragHandler_8cs" startline="64" endline="75">BlueprintRoomDragHandler.StopDragging</referencedby>
+        <referencedby refid="classBlueprintWeaponDragHandler_1a9d957cb8aef11da30a9a30c63187405e" compoundref="BlueprintWeaponDragHandler_8cs" startline="90" endline="101">BlueprintWeaponDragHandler.StopDragging</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선 설계도에서 모든 드래그 작업을 통합 관리하는 싱글톤 클래스. 방과 무기의 동시 드래그를 방지합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>BlueprintDragManager</label>
+        <link refid="classBlueprintDragManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>BlueprintDragManager</label>
+        <link refid="classBlueprintDragManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>+Instance</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" line="7" column="7" bodyfile="Assets/Scripts/CustomizeShip/BlueprintDragManager.cs" bodystart="8" bodyend="81"/>
+    <listofallmembers>
+      <member refid="classBlueprintDragManager_1af7c63e8c9c425a2d6a91857174c42dec" prot="private" virt="non-virtual"><scope>BlueprintDragManager</scope><name>Awake</name></member>
+      <member refid="classBlueprintDragManager_1afd5e2587f32fa93a40540c9ab3591943" prot="private" virt="non-virtual"><scope>BlueprintDragManager</scope><name>currentDragType</name></member>
+      <member refid="classBlueprintDragManager_1a23f13ac66c65223c833bf61efb87de24" prot="public" virt="non-virtual"><scope>BlueprintDragManager</scope><name>DragType</name></member>
+      <member refid="classBlueprintDragManager_1aa29594ea02c1776a41680e2e446ec0a6" prot="public" virt="non-virtual"><scope>BlueprintDragManager</scope><name>Instance</name></member>
+      <member refid="classBlueprintDragManager_1a6e8f6ae0137bd0ecaa9cf61842b2e5cb" prot="public" virt="non-virtual"><scope>BlueprintDragManager</scope><name>IsDragging</name></member>
+      <member refid="classBlueprintDragManager_1a49a18606cca578346902e6488c01195b" prot="public" virt="non-virtual"><scope>BlueprintDragManager</scope><name>IsRoomBeingDragged</name></member>
+      <member refid="classBlueprintDragManager_1a1f2437f16efe608323a36d5d72327d75" prot="public" virt="non-virtual"><scope>BlueprintDragManager</scope><name>IsWeaponBeingDragged</name></member>
+      <member refid="classBlueprintDragManager_1ad8f8bec2564b1eb1e535b006897e3779" prot="public" virt="non-virtual"><scope>BlueprintDragManager</scope><name>StartRoomDrag</name></member>
+      <member refid="classBlueprintDragManager_1ac1d35cd76d846adcbf13bab7b19e241b" prot="public" virt="non-virtual"><scope>BlueprintDragManager</scope><name>StartWeaponDrag</name></member>
+      <member refid="classBlueprintDragManager_1a55630795df2d164e7d56fe57510fbe98" prot="public" virt="non-virtual"><scope>BlueprintDragManager</scope><name>StopDrag</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

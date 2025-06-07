@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classRoomDamageRates" kind="class" language="C#" prot="public">
+    <compoundname>RoomDamageRates</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ISerializationCallbackReceiver</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classRoomDamageRates_1a8e383152b1fc6e7fdb4a4f7a7a1054b5" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RoomDamageRates.damageLevelOne</definition>
+        <argsstring></argsstring>
+        <name>damageLevelOne</name>
+        <qualifiedname>RoomDamageRates.damageLevelOne</qualifiedname>
+        <initializer>= 50f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" line="9" column="19" bodyfile="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classRoomDamageRates_1a65984da6c3a6c8e6d3209d342354d951" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RoomDamageRates.damageLevelTwo</definition>
+        <argsstring></argsstring>
+        <name>damageLevelTwo</name>
+        <qualifiedname>RoomDamageRates.damageLevelTwo</qualifiedname>
+        <initializer>= 10f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" line="10" column="19" bodyfile="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classRoomDamageRates_1a93d33234126194b5e117d8b7287a7f67" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="classDamageHitPointPair" kindref="compound">DamageHitPointPair</ref> &gt;</type>
+        <definition>List&lt;DamageHitPointPair&gt; RoomDamageRates.pairs</definition>
+        <argsstring></argsstring>
+        <name>pairs</name>
+        <qualifiedname>RoomDamageRates.pairs</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" line="13" column="19" bodyfile="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classRoomDamageRates_1a507ee6b5c5c58c4d9d0fffcb1c03bd89" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float RoomDamageRates.this[RoomDamageLevel level]</definition>
+        <argsstring></argsstring>
+        <name>this[RoomDamageLevel level]</name>
+        <qualifiedname>RoomDamageRates.this[RoomDamageLevel level]</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" line="16" column="18" bodyfile="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" bodystart="17" bodyend="42"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classRoomDamageRates_1a6ac158730663060759763ea8fda6b583" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float RoomDamageRates.GetFromList</definition>
+        <argsstring>(RoomDamageLevel level)</argsstring>
+        <name>GetFromList</name>
+        <qualifiedname>RoomDamageRates.GetFromList</qualifiedname>
+        <param>
+          <type>RoomDamageLevel</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" line="45" column="19" bodyfile="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" bodystart="45" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomDamageRates_1a17a4d47c996ca424715e523cef3aea70" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomDamageRates.SetToList</definition>
+        <argsstring>(RoomDamageLevel level, float value)</argsstring>
+        <name>SetToList</name>
+        <qualifiedname>RoomDamageRates.SetToList</qualifiedname>
+        <param>
+          <type>RoomDamageLevel</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" line="54" column="18" bodyfile="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" bodystart="54" bodyend="64"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classRoomDamageRates_1a29be90593562b4612f1b1a769dd5f1ba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomDamageRates.OnBeforeSerialize</definition>
+        <argsstring>()</argsstring>
+        <name>OnBeforeSerialize</name>
+        <qualifiedname>RoomDamageRates.OnBeforeSerialize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" line="67" column="17" bodyfile="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" bodystart="67" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomDamageRates_1a47743b99f78671bd01775be6454bbbfd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomDamageRates.OnAfterDeserialize</definition>
+        <argsstring>()</argsstring>
+        <name>OnAfterDeserialize</name>
+        <qualifiedname>RoomDamageRates.OnAfterDeserialize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" line="74" column="17" bodyfile="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" bodystart="74" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomDamageRates_1a663cf31ec609465c930ca2529a7f0c68" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Dictionary&lt; RoomDamageLevel, float &gt;</type>
+        <definition>Dictionary&lt; RoomDamageLevel, float &gt; RoomDamageRates.ToDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>ToDictionary</name>
+        <qualifiedname>RoomDamageRates.ToDictionary</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" line="81" column="23" bodyfile="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" bodystart="81" bodyend="90"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classRoomDamageRates_1a9e0b666d929530b7600331960a133993" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classRoomDamageRates" kindref="compound">RoomDamageRates</ref></type>
+        <definition>static RoomDamageRates RoomDamageRates.Create</definition>
+        <argsstring>(float level1Rate, float level2Rate)</argsstring>
+        <name>Create</name>
+        <qualifiedname>RoomDamageRates.Create</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>level1Rate</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>level2Rate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" line="92" column="35" bodyfile="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" bodystart="92" bodyend="98"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ISerializationCallbackReceiver</label>
+      </node>
+      <node id="1">
+        <label>RoomDamageRates</label>
+        <link refid="classRoomDamageRates"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ISerializationCallbackReceiver</label>
+      </node>
+      <node id="1">
+        <label>RoomDamageRates</label>
+        <link refid="classRoomDamageRates"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" line="6" column="7" bodyfile="Assets/Scripts/Ship/Rooms/RoomDamageRates.cs" bodystart="7" bodyend="99"/>
+    <listofallmembers>
+      <member refid="classRoomDamageRates_1a9e0b666d929530b7600331960a133993" prot="public" virt="non-virtual"><scope>RoomDamageRates</scope><name>Create</name></member>
+      <member refid="classRoomDamageRates_1a8e383152b1fc6e7fdb4a4f7a7a1054b5" prot="public" virt="non-virtual"><scope>RoomDamageRates</scope><name>damageLevelOne</name></member>
+      <member refid="classRoomDamageRates_1a65984da6c3a6c8e6d3209d342354d951" prot="public" virt="non-virtual"><scope>RoomDamageRates</scope><name>damageLevelTwo</name></member>
+      <member refid="classRoomDamageRates_1a6ac158730663060759763ea8fda6b583" prot="private" virt="non-virtual"><scope>RoomDamageRates</scope><name>GetFromList</name></member>
+      <member refid="classRoomDamageRates_1a47743b99f78671bd01775be6454bbbfd" prot="public" virt="non-virtual"><scope>RoomDamageRates</scope><name>OnAfterDeserialize</name></member>
+      <member refid="classRoomDamageRates_1a29be90593562b4612f1b1a769dd5f1ba" prot="public" virt="non-virtual"><scope>RoomDamageRates</scope><name>OnBeforeSerialize</name></member>
+      <member refid="classRoomDamageRates_1a93d33234126194b5e117d8b7287a7f67" prot="private" virt="non-virtual"><scope>RoomDamageRates</scope><name>pairs</name></member>
+      <member refid="classRoomDamageRates_1a17a4d47c996ca424715e523cef3aea70" prot="private" virt="non-virtual"><scope>RoomDamageRates</scope><name>SetToList</name></member>
+      <member refid="classRoomDamageRates_1a507ee6b5c5c58c4d9d0fffcb1c03bd89" prot="public" virt="non-virtual"><scope>RoomDamageRates</scope><name>this[RoomDamageLevel level]</name></member>
+      <member refid="classRoomDamageRates_1a663cf31ec609465c930ca2529a7f0c68" prot="public" virt="non-virtual"><scope>RoomDamageRates</scope><name>ToDictionary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

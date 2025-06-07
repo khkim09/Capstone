@@ -1,0 +1,1093 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classBlueprintWeapon" kind="class" language="C#" prot="public">
+    <compoundname>BlueprintWeapon</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref refid="interfaceIBlueprintPlaceable" prot="public" virt="non-virtual">IBlueprintPlaceable</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classBlueprintWeapon_1a2dee6763755f0d5d9bcd6c5ade434c94" prot="public" static="no" mutable="no">
+        <type><ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref></type>
+        <definition>ShipWeaponData BlueprintWeapon.bpWeaponData</definition>
+        <argsstring></argsstring>
+        <name>bpWeaponData</name>
+        <qualifiedname>BlueprintWeapon.bpWeaponData</qualifiedname>
+        <briefdescription>
+<para><ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref> 참조 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="11" column="27" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="11" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a60094977796de28499b592ef408f5a5b" compoundref="BlueprintWeapon_8cs" startline="405" endline="447">ApplyAttachedDirectionSprite</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a56914dbc72da61c2e31524b9fdabe257" compoundref="BlueprintWeapon_8cs" startline="267" endline="283">Initialize</referencedby>
+        <referencedby refid="classShip_1a23daf25351bed0b564d1059ebc999796" compoundref="Ship_8cs" startline="610" endline="663">Ship.ReplaceShipFromBlueprint</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1afe07715ece4a612fcd94bf51ff59f465" prot="public" static="no" mutable="no">
+        <type>ShipWeaponAttachedDirection</type>
+        <definition>ShipWeaponAttachedDirection BlueprintWeapon.bpAttachedDirection</definition>
+        <argsstring></argsstring>
+        <name>bpAttachedDirection</name>
+        <qualifiedname>BlueprintWeapon.bpAttachedDirection</qualifiedname>
+        <initializer>= ShipWeaponAttachedDirection.North</initializer>
+        <briefdescription>
+<para>무기 부착 방향 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="14" column="40" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="14" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a60094977796de28499b592ef408f5a5b" compoundref="BlueprintWeapon_8cs" startline="405" endline="447">ApplyAttachedDirectionSprite</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a2ec6c613738ecf3ddb977723d5a15713" compoundref="BlueprintWeapon_8cs" startline="328" endline="331">GetRotation</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a56914dbc72da61c2e31524b9fdabe257" compoundref="BlueprintWeapon_8cs" startline="267" endline="283">Initialize</referencedby>
+        <referencedby refid="classShip_1a23daf25351bed0b564d1059ebc999796" compoundref="Ship_8cs" startline="610" endline="663">Ship.ReplaceShipFromBlueprint</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a3411b4fe11d1cd7ece3801a10fb7f9ff" compoundref="BlueprintWeapon_8cs" startline="305" endline="323">RotateAttachedDirection</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1a8cfe28579eabea19cdb49d89b8e73078" prot="public" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int BlueprintWeapon.bpPosition</definition>
+        <argsstring></argsstring>
+        <name>bpPosition</name>
+        <qualifiedname>BlueprintWeapon.bpPosition</qualifiedname>
+        <briefdescription>
+<para>배치 위치 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="17" column="23" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="17" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a85d791c56437b9f6c2f8abc6209808eb" compoundref="BlueprintWeapon_8cs" startline="336" endline="339">GetGridPosition</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a56914dbc72da61c2e31524b9fdabe257" compoundref="BlueprintWeapon_8cs" startline="267" endline="283">Initialize</referencedby>
+        <referencedby refid="classGridPlacer_1a38cc9ea2fbdde83a506c75b7cad9010c" compoundref="GridPlacer_8cs" startline="466" endline="489">GridPlacer.PlacePreviewWeapon</referencedby>
+        <referencedby refid="classShip_1a23daf25351bed0b564d1059ebc999796" compoundref="Ship_8cs" startline="610" endline="663">Ship.ReplaceShipFromBlueprint</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a2d509e6b43b7bbdaa6ed7a85673f1cc1" compoundref="BlueprintWeapon_8cs" startline="344" endline="347">SetGridPosition</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a53e6bca1a103cb6165948a33139b2e18" compoundref="BlueprintWeapon_8cs" startline="497" endline="500">UpdateOccupiedTiles</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1acd72aa52fcd9dd565dd057553d89b957" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int BlueprintWeapon.bpWeaponCost</definition>
+        <argsstring></argsstring>
+        <name>bpWeaponCost</name>
+        <qualifiedname>BlueprintWeapon.bpWeaponCost</qualifiedname>
+        <briefdescription>
+<para>해당 무기의 설치 비용 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="30" column="16" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="30" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a2f288f9d2f0a36dbdd27831aa7832aaf" compoundref="BlueprintWeapon_8cs" startline="452" endline="455">GetCost</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a56914dbc72da61c2e31524b9fdabe257" compoundref="BlueprintWeapon_8cs" startline="267" endline="283">Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1ae4245eac459a4b280550041043626b82" prot="public" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int BlueprintWeapon.bpWeaponSize</definition>
+        <argsstring></argsstring>
+        <name>bpWeaponSize</name>
+        <qualifiedname>BlueprintWeapon.bpWeaponSize</qualifiedname>
+        <initializer>= new(2, 1)</initializer>
+        <briefdescription>
+<para>무기 크기 (고정: 2x1) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="33" column="23" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="33" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a56914dbc72da61c2e31524b9fdabe257" compoundref="BlueprintWeapon_8cs" startline="267" endline="283">Initialize</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a53e6bca1a103cb6165948a33139b2e18" compoundref="BlueprintWeapon_8cs" startline="497" endline="500">UpdateOccupiedTiles</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1a3878895909218f0660a1c55bf8fdfab3" prot="public" static="no" mutable="no">
+        <type>Constants.Rotations.Rotation</type>
+        <definition>Constants.Rotations.Rotation BlueprintWeapon.bpRotation</definition>
+        <argsstring></argsstring>
+        <name>bpRotation</name>
+        <qualifiedname>BlueprintWeapon.bpRotation</qualifiedname>
+        <initializer>= Constants.Rotations.Rotation.Rotation0</initializer>
+        <briefdescription>
+<para>회전각 고정 (0) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="38" column="39" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="38" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a56914dbc72da61c2e31524b9fdabe257" compoundref="BlueprintWeapon_8cs" startline="267" endline="283">Initialize</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a53e6bca1a103cb6165948a33139b2e18" compoundref="BlueprintWeapon_8cs" startline="497" endline="500">UpdateOccupiedTiles</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1a8b0d312915a96910a0e00ad82c3e30cd" prot="public" static="no" mutable="no">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>List&lt;Vector2Int&gt; BlueprintWeapon.occupiedTiles</definition>
+        <argsstring></argsstring>
+        <name>occupiedTiles</name>
+        <qualifiedname>BlueprintWeapon.occupiedTiles</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>실제 점유 타일 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="43" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="43" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a1abd2016ca769a8578917355f30c5ac0" compoundref="BlueprintWeapon_8cs" startline="489" endline="492">GetOccupiedTiles</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a56914dbc72da61c2e31524b9fdabe257" compoundref="BlueprintWeapon_8cs" startline="267" endline="283">Initialize</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a53e6bca1a103cb6165948a33139b2e18" compoundref="BlueprintWeapon_8cs" startline="497" endline="500">UpdateOccupiedTiles</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classBlueprintWeapon_1a2c3134c209281c7977474732ccfb4b04" prot="private" static="no" mutable="no">
+        <type><ref refid="classBlueprintShip" kindref="compound">BlueprintShip</ref></type>
+        <definition>BlueprintShip BlueprintWeapon.blueprintShip</definition>
+        <argsstring></argsstring>
+        <name>blueprintShip</name>
+        <qualifiedname>BlueprintWeapon.blueprintShip</qualifiedname>
+        <briefdescription>
+<para>설계도 함선 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="22" column="27" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="22" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1ae2c23182c91e59854adf22b4aaac2876" compoundref="BlueprintWeapon_8cs" startline="369" endline="372">GetBlueprintShip</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a0712ed25bae75789be7da28745378fc7" compoundref="BlueprintWeapon_8cs" startline="481" endline="484">GetHullLevel</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a484e24eaf4ebb1994f8c9817dcbb2f6f" compoundref="BlueprintWeapon_8cs" startline="353" endline="363">SetBlueprint</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a02428af6837f9cd492ccfd830eaec4e7" compoundref="BlueprintWeapon_8cs" startline="89" endline="105">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1aa5da61958579835c1eab2d67726b4fa5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool BlueprintWeapon.isDragging</definition>
+        <argsstring></argsstring>
+        <name>isDragging</name>
+        <qualifiedname>BlueprintWeapon.isDragging</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>드래그 중인지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="27" column="18" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="27" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a30548e9a4721eee59c3772dc9c5e541b" compoundref="BlueprintWeapon_8cs" startline="288" endline="300">SetDragMode</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1a9d1cc5ecfde71ff968ddf7b739ba17eb" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer BlueprintWeapon.sr</definition>
+        <argsstring></argsstring>
+        <name>sr</name>
+        <qualifiedname>BlueprintWeapon.sr</qualifiedname>
+        <briefdescription>
+<para>설계도 무기의 Sprite Renderer </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="48" column="28" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a60094977796de28499b592ef408f5a5b" compoundref="BlueprintWeapon_8cs" startline="405" endline="447">ApplyAttachedDirectionSprite</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a56914dbc72da61c2e31524b9fdabe257" compoundref="BlueprintWeapon_8cs" startline="267" endline="283">Initialize</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a30548e9a4721eee59c3772dc9c5e541b" compoundref="BlueprintWeapon_8cs" startline="288" endline="300">SetDragMode</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a02428af6837f9cd492ccfd830eaec4e7" compoundref="BlueprintWeapon_8cs" startline="89" endline="105">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1a1f2289a6be0d9d91f2a87eb63286e9c5" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color BlueprintWeapon.validColor</definition>
+        <argsstring></argsstring>
+        <name>validColor</name>
+        <qualifiedname>BlueprintWeapon.validColor</qualifiedname>
+        <initializer>= new(0f, 1f, 0f, 0.5f)</initializer>
+        <briefdescription>
+<para>배치 가능을 나타내는 초록색 (alpha = 0.5) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="53" column="19" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="53" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1a3a9ffd20756c6bf122dba503c6a54dc2" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color BlueprintWeapon.invalidColor</definition>
+        <argsstring></argsstring>
+        <name>invalidColor</name>
+        <qualifiedname>BlueprintWeapon.invalidColor</qualifiedname>
+        <initializer>= new(1f, 0f, 0f, 0.5f)</initializer>
+        <briefdescription>
+<para>배치 불가능을 나타내는 빨간색 (alpha = 0.5) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="58" column="19" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="58" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1ae5e60ab39e50639e1588ee19ab5299b0" prot="private" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int BlueprintWeapon.originalPos</definition>
+        <argsstring></argsstring>
+        <name>originalPos</name>
+        <qualifiedname>BlueprintWeapon.originalPos</qualifiedname>
+        <briefdescription>
+<para>이동 전 무기 위치 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="63" column="24" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="63" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1afd684539328d797a7ec2c182d5d6aa29" prot="private" static="no" mutable="no">
+        <type>ShipWeaponAttachedDirection</type>
+        <definition>ShipWeaponAttachedDirection BlueprintWeapon.originalDirection</definition>
+        <argsstring></argsstring>
+        <name>originalDirection</name>
+        <qualifiedname>BlueprintWeapon.originalDirection</qualifiedname>
+        <briefdescription>
+<para>이동 전 무기 부착 방향 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="68" column="41" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="68" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1adb571b9e022ecd976895bb2ec01a332c" prot="private" static="no" mutable="no">
+        <type><ref refid="classGridPlacer" kindref="compound">GridPlacer</ref></type>
+        <definition>GridPlacer BlueprintWeapon.gridPlacer</definition>
+        <argsstring></argsstring>
+        <name>gridPlacer</name>
+        <qualifiedname>BlueprintWeapon.gridPlacer</qualifiedname>
+        <briefdescription>
+<para>그리드 타일 배치 작업을 위한 오브젝트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="73" column="24" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="73" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1aea22c0e321f64c39c6f6a56d020af717" compoundref="BlueprintWeapon_8cs" startline="378" endline="381">SetGridPlacer</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1af527d7be9cd3300ecf1d4636e7258fca" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject BlueprintWeapon.mouseDownTarget</definition>
+        <argsstring></argsstring>
+        <name>mouseDownTarget</name>
+        <qualifiedname>BlueprintWeapon.mouseDownTarget</qualifiedname>
+        <briefdescription>
+<para>마우스로 클릭한 오브젝트 (무기 삭제 여부 활성화 조건을 위한 변수) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="78" column="24" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="78" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintWeapon_1ac42b284fada4e4003ba51d8e0b2eb7cf" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int BlueprintWeapon.hullLevel</definition>
+        <argsstring></argsstring>
+        <name>hullLevel</name>
+        <qualifiedname>BlueprintWeapon.hullLevel</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>함선 외갑판 레벨 (0: 레벨 1, 1: 레벨 2, 2: 레벨 3) 이 변수는 단지 캐싱 용도로만 사용됨. 실제 레벨은 blueprintShip.GetHullLevel()에서 가져와야 함 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="84" column="18" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="84" bodyend="-1"/>
+        <referencedby refid="classBlueprintWeapon_1a60094977796de28499b592ef408f5a5b" compoundref="BlueprintWeapon_8cs" startline="405" endline="447">ApplyAttachedDirectionSprite</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a0712ed25bae75789be7da28745378fc7" compoundref="BlueprintWeapon_8cs" startline="481" endline="484">GetHullLevel</referencedby>
+        <referencedby refid="classBlueprintWeapon_1ab44eb8d7287bbcaa5504a8629a4bbf4f" compoundref="BlueprintWeapon_8cs" startline="461" endline="473">SetHullLevel</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classBlueprintWeapon_1a02428af6837f9cd492ccfd830eaec4e7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintWeapon.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>BlueprintWeapon.Start</qualifiedname>
+        <briefdescription>
+<para>collider size 맞춤, 외갑판 레벨로 무기 디자인 업데이트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="89" column="18" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="89" bodyend="105"/>
+        <references refid="classBlueprintWeapon_1a60094977796de28499b592ef408f5a5b" compoundref="BlueprintWeapon_8cs" startline="405" endline="447">ApplyAttachedDirectionSprite</references>
+        <references refid="classBlueprintWeapon_1a2c3134c209281c7977474732ccfb4b04" compoundref="BlueprintWeapon_8cs" startline="22">blueprintShip</references>
+        <references refid="classBlueprintShip_1af261ef03f43fb9025372b1ff117489e1" compoundref="BlueprintShip_8cs" startline="94" endline="97">BlueprintShip.GetHullLevel</references>
+        <references refid="classBlueprintWeapon_1ab44eb8d7287bbcaa5504a8629a4bbf4f" compoundref="BlueprintWeapon_8cs" startline="461" endline="473">SetHullLevel</references>
+        <references refid="classBlueprintWeapon_1a9d1cc5ecfde71ff968ddf7b739ba17eb" compoundref="BlueprintWeapon_8cs" startline="48">sr</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintWeapon.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>BlueprintWeapon.Update</qualifiedname>
+        <briefdescription>
+<para>무기 배치와 관련된 모든 작업을 매 프레임 검사 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="110" column="18" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="110" bodyend="230"/>
+        <references refid="classBlueprintWeapon_1a60094977796de28499b592ef408f5a5b" compoundref="BlueprintWeapon_8cs" startline="405" endline="447">ApplyAttachedDirectionSprite</references>
+        <references refid="classBlueprintWeapon_1afe07715ece4a612fcd94bf51ff59f465" compoundref="BlueprintWeapon_8cs" startline="14">bpAttachedDirection</references>
+        <references refid="classBlueprintWeapon_1a8cfe28579eabea19cdb49d89b8e73078" compoundref="BlueprintWeapon_8cs" startline="17">bpPosition</references>
+        <references refid="classBlueprintWeapon_1a3878895909218f0660a1c55bf8fdfab3" compoundref="BlueprintWeapon_8cs" startline="38">bpRotation</references>
+        <references refid="classBlueprintWeapon_1a2dee6763755f0d5d9bcd6c5ade434c94" compoundref="BlueprintWeapon_8cs" startline="11">bpWeaponData</references>
+        <references refid="classBlueprintWeapon_1ae4245eac459a4b280550041043626b82" compoundref="BlueprintWeapon_8cs" startline="33">bpWeaponSize</references>
+        <references refid="classGridPlacer_1aca24a07e1070703d190a127a89613d64" compoundref="GridPlacer_8cs" startline="361" endline="377">GridPlacer.CanPlaceWeapon</references>
+        <references refid="classRoomSelectionHandler_1a443092f408ad81ffc678141bc047c0b5" compoundref="RoomSelectionHandler_8cs" startline="89" endline="100">RoomSelectionHandler.Deselect</references>
+        <references refid="classGridPlacer_1a67a8b7577950ee0bbbed35781a1e984b" compoundref="GridPlacer_8cs" startline="92" endline="95">GridPlacer.GetWorldPositionFromGrid</references>
+        <references refid="classBlueprintWeapon_1adb571b9e022ecd976895bb2ec01a332c" compoundref="BlueprintWeapon_8cs" startline="73">gridPlacer</references>
+        <references refid="classRoomSelectionHandler_1ac734bdf7cf316d4de6c8e82de589df1d" compoundref="RoomSelectionHandler_8cs" startline="9">RoomSelectionHandler.Instance</references>
+        <references refid="classBlueprintWeapon_1a3a9ffd20756c6bf122dba503c6a54dc2" compoundref="BlueprintWeapon_8cs" startline="58">invalidColor</references>
+        <references refid="classBlueprintWeapon_1aa5da61958579835c1eab2d67726b4fa5" compoundref="BlueprintWeapon_8cs" startline="27">isDragging</references>
+        <references refid="classBlueprintWeapon_1afea0ffe19c13e71f45b6a434d5c050a3" compoundref="BlueprintWeapon_8cs" startline="388" endline="400">IsPointerOverUIObject</references>
+        <references refid="classGridPlacer_1a922df24240435582d5d98a30d0f56ccc" compoundref="GridPlacer_8cs" startline="210" endline="214">GridPlacer.MarkObjectOccupied</references>
+        <references refid="classBlueprintWeapon_1af527d7be9cd3300ecf1d4636e7258fca" compoundref="BlueprintWeapon_8cs" startline="78">mouseDownTarget</references>
+        <references refid="classBlueprintWeapon_1a8b0d312915a96910a0e00ad82c3e30cd" compoundref="BlueprintWeapon_8cs" startline="43">occupiedTiles</references>
+        <references refid="classBlueprintWeapon_1afd684539328d797a7ec2c182d5d6aa29" compoundref="BlueprintWeapon_8cs" startline="68">originalDirection</references>
+        <references refid="classBlueprintWeapon_1ae5e60ab39e50639e1588ee19ab5299b0" compoundref="BlueprintWeapon_8cs" startline="63">originalPos</references>
+        <references refid="classBlueprintWeapon_1a3411b4fe11d1cd7ece3801a10fb7f9ff" compoundref="BlueprintWeapon_8cs" startline="305" endline="323">RotateAttachedDirection</references>
+        <references refid="classRoomSelectionHandler_1ad47fcdd65c51e8358c9eff5f75beb63c" compoundref="RoomSelectionHandler_8cs" startline="14">RoomSelectionHandler.selectionUI</references>
+        <references refid="classRoomSelectionHandler_1a455235ae853359d6e6ab683f828acfef" compoundref="RoomSelectionHandler_8cs" startline="55" endline="84">RoomSelectionHandler.SelectPlaceable</references>
+        <references refid="classGridPlacer_1abd95a28be8d9284dff882e48cb5d75c3" compoundref="GridPlacer_8cs" startline="220" endline="224">GridPlacer.UnMarkObjectOccupied</references>
+        <references refid="classBlueprintWeapon_1a53e6bca1a103cb6165948a33139b2e18" compoundref="BlueprintWeapon_8cs" startline="497" endline="500">UpdateOccupiedTiles</references>
+        <references refid="classBlueprintWeapon_1a1f2289a6be0d9d91f2a87eb63286e9c5" compoundref="BlueprintWeapon_8cs" startline="53">validColor</references>
+        <references refid="classGridPlacer_1a170904c40cdc0b03cde40e50b3f23d50" compoundref="GridPlacer_8cs" startline="102" endline="107">GridPlacer.WorldToGridPosition</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a4f1fdcac3d86fca7a67c91b9e0dc4b4b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintWeapon.LateUpdate</definition>
+        <argsstring>()</argsstring>
+        <name>LateUpdate</name>
+        <qualifiedname>BlueprintWeapon.LateUpdate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="232" column="18" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="232" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a2b7247cad783ba2c6549403960cf7b8f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool BlueprintWeapon.BlockBPMovement</definition>
+        <argsstring>()</argsstring>
+        <name>BlockBPMovement</name>
+        <qualifiedname>BlueprintWeapon.BlockBPMovement</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="237" column="18" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="237" bodyend="244"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a5c1ce4ac332d5f76d7a16d19a606b5c4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool BlueprintWeapon.IsPointerOverBlockingUI</definition>
+        <argsstring>()</argsstring>
+        <name>IsPointerOverBlockingUI</name>
+        <qualifiedname>BlueprintWeapon.IsPointerOverBlockingUI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="246" column="18" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="246" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1afea0ffe19c13e71f45b6a434d5c050a3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool BlueprintWeapon.IsPointerOverUIObject</definition>
+        <argsstring>(GameObject rootUI)</argsstring>
+        <name>IsPointerOverUIObject</name>
+        <qualifiedname>BlueprintWeapon.IsPointerOverUIObject</qualifiedname>
+        <param>
+          <type>GameObject</type>
+          <declname>rootUI</declname>
+        </param>
+        <briefdescription>
+<para>마우스가 selectionUI 위에 있는지 확인 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rootUI</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="388" column="18" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="388" bodyend="400"/>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classBlueprintWeapon_1a56914dbc72da61c2e31524b9fdabe257" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintWeapon.Initialize</definition>
+        <argsstring>(ShipWeaponData data, Vector2Int pos, ShipWeaponAttachedDirection direction)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>BlueprintWeapon.Initialize</qualifiedname>
+        <param>
+          <type><ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref></type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>ShipWeaponAttachedDirection</type>
+          <declname>direction</declname>
+        </param>
+        <briefdescription>
+<para>설치 시 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="267" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="267" bodyend="283"/>
+        <references refid="classBlueprintWeapon_1a60094977796de28499b592ef408f5a5b" compoundref="BlueprintWeapon_8cs" startline="405" endline="447">ApplyAttachedDirectionSprite</references>
+        <references refid="classBlueprintWeapon_1afe07715ece4a612fcd94bf51ff59f465" compoundref="BlueprintWeapon_8cs" startline="14">bpAttachedDirection</references>
+        <references refid="classBlueprintWeapon_1a8cfe28579eabea19cdb49d89b8e73078" compoundref="BlueprintWeapon_8cs" startline="17">bpPosition</references>
+        <references refid="classBlueprintWeapon_1a3878895909218f0660a1c55bf8fdfab3" compoundref="BlueprintWeapon_8cs" startline="38">bpRotation</references>
+        <references refid="classBlueprintWeapon_1acd72aa52fcd9dd565dd057553d89b957" compoundref="BlueprintWeapon_8cs" startline="30">bpWeaponCost</references>
+        <references refid="classBlueprintWeapon_1a2dee6763755f0d5d9bcd6c5ade434c94" compoundref="BlueprintWeapon_8cs" startline="11">bpWeaponData</references>
+        <references refid="classBlueprintWeapon_1ae4245eac459a4b280550041043626b82" compoundref="BlueprintWeapon_8cs" startline="33">bpWeaponSize</references>
+        <references refid="classShipWeaponData_1a727fc0357337090258667b2ee1f02d52" compoundref="ShipWeaponData_8cs" startline="76">ShipWeaponData.cost</references>
+        <references refid="classBlueprintWeapon_1a8b0d312915a96910a0e00ad82c3e30cd" compoundref="BlueprintWeapon_8cs" startline="43">occupiedTiles</references>
+        <references refid="classBlueprintWeapon_1a9d1cc5ecfde71ff968ddf7b739ba17eb" compoundref="BlueprintWeapon_8cs" startline="48">sr</references>
+        <referencedby refid="classGridPlacer_1a38cc9ea2fbdde83a506c75b7cad9010c" compoundref="GridPlacer_8cs" startline="466" endline="489">GridPlacer.PlacePreviewWeapon</referencedby>
+        <referencedby refid="classGridPlacer_1a60364dec18d1d693cef75d517e768de6" compoundref="GridPlacer_8cs" startline="406" endline="433">GridPlacer.PlaceWeapon</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a30548e9a4721eee59c3772dc9c5e541b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintWeapon.SetDragMode</definition>
+        <argsstring>(bool isDragging)</argsstring>
+        <name>SetDragMode</name>
+        <qualifiedname>BlueprintWeapon.SetDragMode</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1a044b1a9b1129c55be1a3d04cb1412581">SetDragMode</reimplements>
+        <param>
+          <type>bool</type>
+          <declname>isDragging</declname>
+        </param>
+        <briefdescription>
+<para>드래그 모드 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="288" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="288" bodyend="300"/>
+        <references refid="classBlueprintWeapon_1aa5da61958579835c1eab2d67726b4fa5" compoundref="BlueprintWeapon_8cs" startline="27">isDragging</references>
+        <references refid="classBlueprintWeapon_1a9d1cc5ecfde71ff968ddf7b739ba17eb" compoundref="BlueprintWeapon_8cs" startline="48">sr</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a3411b4fe11d1cd7ece3801a10fb7f9ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintWeapon.RotateAttachedDirection</definition>
+        <argsstring>()</argsstring>
+        <name>RotateAttachedDirection</name>
+        <qualifiedname>BlueprintWeapon.RotateAttachedDirection</qualifiedname>
+        <briefdescription>
+<para>무기 부착 방향 회전 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="305" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="305" bodyend="323"/>
+        <references refid="classBlueprintWeapon_1a60094977796de28499b592ef408f5a5b" compoundref="BlueprintWeapon_8cs" startline="405" endline="447">ApplyAttachedDirectionSprite</references>
+        <references refid="classBlueprintWeapon_1afe07715ece4a612fcd94bf51ff59f465" compoundref="BlueprintWeapon_8cs" startline="14">bpAttachedDirection</references>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a2ec6c613738ecf3ddb977723d5a15713" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>object BlueprintWeapon.GetRotation</definition>
+        <argsstring>()</argsstring>
+        <name>GetRotation</name>
+        <qualifiedname>BlueprintWeapon.GetRotation</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1ab0239f32856108832ca9ff02fab66fe6">GetRotation</reimplements>
+        <briefdescription>
+<para>현재 회전 상태 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="328" column="19" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="328" bodyend="331"/>
+        <references refid="classBlueprintWeapon_1afe07715ece4a612fcd94bf51ff59f465" compoundref="BlueprintWeapon_8cs" startline="14">bpAttachedDirection</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a85d791c56437b9f6c2f8abc6209808eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>Vector2Int BlueprintWeapon.GetGridPosition</definition>
+        <argsstring>()</argsstring>
+        <name>GetGridPosition</name>
+        <qualifiedname>BlueprintWeapon.GetGridPosition</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1ae74f4fe02223313619f2809a6caa72c6">GetGridPosition</reimplements>
+        <briefdescription>
+<para>현재 그리드 위치 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="336" column="23" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="336" bodyend="339"/>
+        <references refid="classBlueprintWeapon_1a8cfe28579eabea19cdb49d89b8e73078" compoundref="BlueprintWeapon_8cs" startline="17">bpPosition</references>
+        <referencedby refid="classGridPlacer_1ab8195ca82a446385a2c7defcf3467d24" compoundref="GridPlacer_8cs" startline="152" endline="182">GridPlacer.GetCameraStartPositionToOriginShip</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a2d509e6b43b7bbdaa6ed7a85673f1cc1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintWeapon.SetGridPosition</definition>
+        <argsstring>(Vector2Int position)</argsstring>
+        <name>SetGridPosition</name>
+        <qualifiedname>BlueprintWeapon.SetGridPosition</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1ac30756929c602873e3b2471dc9d63584">SetGridPosition</reimplements>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>그리드 위치 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="344" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="344" bodyend="347"/>
+        <references refid="classBlueprintWeapon_1a8cfe28579eabea19cdb49d89b8e73078" compoundref="BlueprintWeapon_8cs" startline="17">bpPosition</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a484e24eaf4ebb1994f8c9817dcbb2f6f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintWeapon.SetBlueprint</definition>
+        <argsstring>(BlueprintShip bpShip)</argsstring>
+        <name>SetBlueprint</name>
+        <qualifiedname>BlueprintWeapon.SetBlueprint</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1ad0280442b91c18de2f8b010c827c80f5">SetBlueprint</reimplements>
+        <param>
+          <type><ref refid="classBlueprintShip" kindref="compound">BlueprintShip</ref></type>
+          <declname>bpShip</declname>
+        </param>
+        <briefdescription>
+<para>설계도 함선 할당 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bpShip</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="353" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="353" bodyend="363"/>
+        <references refid="classBlueprintWeapon_1a60094977796de28499b592ef408f5a5b" compoundref="BlueprintWeapon_8cs" startline="405" endline="447">ApplyAttachedDirectionSprite</references>
+        <references refid="classBlueprintWeapon_1a2c3134c209281c7977474732ccfb4b04" compoundref="BlueprintWeapon_8cs" startline="22">blueprintShip</references>
+        <references refid="classBlueprintShip_1af261ef03f43fb9025372b1ff117489e1" compoundref="BlueprintShip_8cs" startline="94" endline="97">BlueprintShip.GetHullLevel</references>
+        <references refid="classBlueprintWeapon_1ab44eb8d7287bbcaa5504a8629a4bbf4f" compoundref="BlueprintWeapon_8cs" startline="461" endline="473">SetHullLevel</references>
+        <referencedby refid="classGridPlacer_1a60364dec18d1d693cef75d517e768de6" compoundref="GridPlacer_8cs" startline="406" endline="433">GridPlacer.PlaceWeapon</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1ae2c23182c91e59854adf22b4aaac2876" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classBlueprintShip" kindref="compound">BlueprintShip</ref></type>
+        <definition>BlueprintShip BlueprintWeapon.GetBlueprintShip</definition>
+        <argsstring>()</argsstring>
+        <name>GetBlueprintShip</name>
+        <qualifiedname>BlueprintWeapon.GetBlueprintShip</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1a2b9dbc880ea7e060d6d00ec2ec576a32">GetBlueprintShip</reimplements>
+        <briefdescription>
+<para>설계도 함선 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="369" column="26" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="369" bodyend="372"/>
+        <references refid="classBlueprintWeapon_1a2c3134c209281c7977474732ccfb4b04" compoundref="BlueprintWeapon_8cs" startline="22">blueprintShip</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1aea22c0e321f64c39c6f6a56d020af717" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintWeapon.SetGridPlacer</definition>
+        <argsstring>(GridPlacer placer)</argsstring>
+        <name>SetGridPlacer</name>
+        <qualifiedname>BlueprintWeapon.SetGridPlacer</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1a2a74bdceed811297aad91a1528eb6ae8">SetGridPlacer</reimplements>
+        <param>
+          <type><ref refid="classGridPlacer" kindref="compound">GridPlacer</ref></type>
+          <declname>placer</declname>
+        </param>
+        <briefdescription>
+<para>그리드 배치 담당 오브젝트 세팅 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>placer</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="378" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="378" bodyend="381"/>
+        <references refid="classBlueprintWeapon_1adb571b9e022ecd976895bb2ec01a332c" compoundref="BlueprintWeapon_8cs" startline="73">gridPlacer</references>
+        <referencedby refid="classGridPlacer_1a60364dec18d1d693cef75d517e768de6" compoundref="GridPlacer_8cs" startline="406" endline="433">GridPlacer.PlaceWeapon</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a60094977796de28499b592ef408f5a5b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintWeapon.ApplyAttachedDirectionSprite</definition>
+        <argsstring>()</argsstring>
+        <name>ApplyAttachedDirectionSprite</name>
+        <qualifiedname>BlueprintWeapon.ApplyAttachedDirectionSprite</qualifiedname>
+        <briefdescription>
+<para>현재 부착 방향과 외갑판 레벨에 맞는 스프라이트 적용 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="405" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="405" bodyend="447"/>
+        <references refid="classBlueprintWeapon_1afe07715ece4a612fcd94bf51ff59f465" compoundref="BlueprintWeapon_8cs" startline="14">bpAttachedDirection</references>
+        <references refid="classBlueprintWeapon_1a2dee6763755f0d5d9bcd6c5ade434c94" compoundref="BlueprintWeapon_8cs" startline="11">bpWeaponData</references>
+        <references refid="classShipWeaponData_1a5009269e1870870e046676ed08a2816f" compoundref="ShipWeaponData_8cs" startline="55">ShipWeaponData.flattenedSprites</references>
+        <references refid="classBlueprintWeapon_1ac42b284fada4e4003ba51d8e0b2eb7cf" compoundref="BlueprintWeapon_8cs" startline="84">hullLevel</references>
+        <references refid="classBlueprintWeapon_1a9d1cc5ecfde71ff968ddf7b739ba17eb" compoundref="BlueprintWeapon_8cs" startline="48">sr</references>
+        <references refid="classShipWeaponData_1a56f63799379c96ba15619ddc6c46cc8a" compoundref="ShipWeaponData_8cs" startline="39">ShipWeaponData.weaponIcon</references>
+        <referencedby refid="classCustomizeShipUIHandler_1adfa80c7837c984b5a7e8b9af9a1d181a" compoundref="CustomizeShipUIHandler_8cs" startline="253" endline="262">CustomizeShipUIHandler.GetSavedWeaponRooms</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a56914dbc72da61c2e31524b9fdabe257" compoundref="BlueprintWeapon_8cs" startline="267" endline="283">Initialize</referencedby>
+        <referencedby refid="classCustomize__2__Controller_1af70f75f637519d654732d526e3bcdcdd" compoundref="Customize__2__Controller_8cs" startline="168" endline="220">Customize_2_Controller.MakeBPShipWithSaveData</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a3411b4fe11d1cd7ece3801a10fb7f9ff" compoundref="BlueprintWeapon_8cs" startline="305" endline="323">RotateAttachedDirection</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a484e24eaf4ebb1994f8c9817dcbb2f6f" compoundref="BlueprintWeapon_8cs" startline="353" endline="363">SetBlueprint</referencedby>
+        <referencedby refid="classBlueprintWeapon_1ab44eb8d7287bbcaa5504a8629a4bbf4f" compoundref="BlueprintWeapon_8cs" startline="461" endline="473">SetHullLevel</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a02428af6837f9cd492ccfd830eaec4e7" compoundref="BlueprintWeapon_8cs" startline="89" endline="105">Start</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a2f288f9d2f0a36dbdd27831aa7832aaf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int BlueprintWeapon.GetCost</definition>
+        <argsstring>()</argsstring>
+        <name>GetCost</name>
+        <qualifiedname>BlueprintWeapon.GetCost</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1ae9ea0c6d296c89ec5569152b697996a0">GetCost</reimplements>
+        <briefdescription>
+<para>설치 비용 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="452" column="16" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="452" bodyend="455"/>
+        <references refid="classBlueprintWeapon_1acd72aa52fcd9dd565dd057553d89b957" compoundref="BlueprintWeapon_8cs" startline="30">bpWeaponCost</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1ab44eb8d7287bbcaa5504a8629a4bbf4f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintWeapon.SetHullLevel</definition>
+        <argsstring>(int level)</argsstring>
+        <name>SetHullLevel</name>
+        <qualifiedname>BlueprintWeapon.SetHullLevel</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+<para>함선 외갑판 레벨 설정 (내부적으로만 캐싱) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>외갑판 레벨 (0-2)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="461" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="461" bodyend="473"/>
+        <references refid="classBlueprintWeapon_1a60094977796de28499b592ef408f5a5b" compoundref="BlueprintWeapon_8cs" startline="405" endline="447">ApplyAttachedDirectionSprite</references>
+        <references refid="classBlueprintWeapon_1ac42b284fada4e4003ba51d8e0b2eb7cf" compoundref="BlueprintWeapon_8cs" startline="84">hullLevel</references>
+        <referencedby refid="classCustomize__2__Controller_1af70f75f637519d654732d526e3bcdcdd" compoundref="Customize__2__Controller_8cs" startline="168" endline="220">Customize_2_Controller.MakeBPShipWithSaveData</referencedby>
+        <referencedby refid="classGridPlacer_1a38cc9ea2fbdde83a506c75b7cad9010c" compoundref="GridPlacer_8cs" startline="466" endline="489">GridPlacer.PlacePreviewWeapon</referencedby>
+        <referencedby refid="classGridPlacer_1a60364dec18d1d693cef75d517e768de6" compoundref="GridPlacer_8cs" startline="406" endline="433">GridPlacer.PlaceWeapon</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1a765b5d6af2c3ccd94e113c0d3bc1a6fa" compoundref="Customize__1__Controller_8cs" startline="204" endline="230">Customize_1_Controller.ReloadBlueprintFromSlot</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a484e24eaf4ebb1994f8c9817dcbb2f6f" compoundref="BlueprintWeapon_8cs" startline="353" endline="363">SetBlueprint</referencedby>
+        <referencedby refid="classBlueprintShip_1a1c492e0713444916c84c37894b82c71d" compoundref="BlueprintShip_8cs" startline="178" endline="437">BlueprintShip.SetBPHullLevel</referencedby>
+        <referencedby refid="classBlueprintShip_1a41ae0821d0cb0ee7a80425161e129732" compoundref="BlueprintShip_8cs" startline="76" endline="88">BlueprintShip.SetHullLevel</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a02428af6837f9cd492ccfd830eaec4e7" compoundref="BlueprintWeapon_8cs" startline="89" endline="105">Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a0712ed25bae75789be7da28745378fc7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int BlueprintWeapon.GetHullLevel</definition>
+        <argsstring>()</argsstring>
+        <name>GetHullLevel</name>
+        <qualifiedname>BlueprintWeapon.GetHullLevel</qualifiedname>
+        <briefdescription>
+<para>함선 외갑판 레벨 가져오기 실제로는 blueprintShip.GetHullLevel()을 우선적으로 사용해야 하며, 이 메서드는 blueprintShip이 null일 때의 레벨 값만 반환함 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>외갑판 레벨 (0-2)</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="481" column="16" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="481" bodyend="484"/>
+        <references refid="classBlueprintWeapon_1a2c3134c209281c7977474732ccfb4b04" compoundref="BlueprintWeapon_8cs" startline="22">blueprintShip</references>
+        <references refid="classBlueprintShip_1af261ef03f43fb9025372b1ff117489e1" compoundref="BlueprintShip_8cs" startline="94" endline="97">BlueprintShip.GetHullLevel</references>
+        <references refid="classBlueprintWeapon_1ac42b284fada4e4003ba51d8e0b2eb7cf" compoundref="BlueprintWeapon_8cs" startline="84">hullLevel</references>
+        <referencedby refid="classCustomize__2__Controller_1af70f75f637519d654732d526e3bcdcdd" compoundref="Customize__2__Controller_8cs" startline="168" endline="220">Customize_2_Controller.MakeBPShipWithSaveData</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a1abd2016ca769a8578917355f30c5ac0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>List&lt; Vector2Int &gt; BlueprintWeapon.GetOccupiedTiles</definition>
+        <argsstring>()</argsstring>
+        <name>GetOccupiedTiles</name>
+        <qualifiedname>BlueprintWeapon.GetOccupiedTiles</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1a018a87125833cd2bc8f09d7b0433bc33">GetOccupiedTiles</reimplements>
+        <briefdescription>
+<para>점유 타일 목록 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="489" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="489" bodyend="492"/>
+        <references refid="classBlueprintWeapon_1a8b0d312915a96910a0e00ad82c3e30cd" compoundref="BlueprintWeapon_8cs" startline="43">occupiedTiles</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintWeapon_1a53e6bca1a103cb6165948a33139b2e18" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintWeapon.UpdateOccupiedTiles</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateOccupiedTiles</name>
+        <qualifiedname>BlueprintWeapon.UpdateOccupiedTiles</qualifiedname>
+        <briefdescription>
+<para>점유 타일 목록 업데이트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="497" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="497" bodyend="500"/>
+        <references refid="classBlueprintWeapon_1a8cfe28579eabea19cdb49d89b8e73078" compoundref="BlueprintWeapon_8cs" startline="17">bpPosition</references>
+        <references refid="classBlueprintWeapon_1a3878895909218f0660a1c55bf8fdfab3" compoundref="BlueprintWeapon_8cs" startline="38">bpRotation</references>
+        <references refid="classBlueprintWeapon_1ae4245eac459a4b280550041043626b82" compoundref="BlueprintWeapon_8cs" startline="33">bpWeaponSize</references>
+        <references refid="classBlueprintWeapon_1a8b0d312915a96910a0e00ad82c3e30cd" compoundref="BlueprintWeapon_8cs" startline="43">occupiedTiles</references>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>설계도에 배치된 무기 정보. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>BlueprintWeapon</label>
+        <link refid="classBlueprintWeapon"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IBlueprintPlaceable</label>
+        <link refid="interfaceIBlueprintPlaceable"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="9">
+        <label>BlueprintShip</label>
+        <link refid="classBlueprintShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>BlueprintWeapon</label>
+        <link refid="classBlueprintWeapon"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+bpWeaponData</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-blueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+bpRotation</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-gridPlacer</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Constants</label>
+      </node>
+      <node id="19">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>GridPlacer</label>
+        <link refid="classGridPlacer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>+targetBlueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-gridOrigin</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IBlueprintPlaceable</label>
+        <link refid="interfaceIBlueprintPlaceable"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="21">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="24">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="12" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ShipWeaponData</label>
+        <link refid="classShipWeaponData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+weaponType</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+effectData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+warheadType</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ShipWeaponTypeData</label>
+        <link refid="classShipWeaponTypeData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>UnityEngine</label>
+      </node>
+      <node id="8">
+        <label>WarheadTypeData</label>
+        <link refid="classWarheadTypeData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>WeaponEffectData</label>
+        <link refid="classWeaponEffectData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" line="8" column="7" bodyfile="Assets/Scripts/CustomizeShip/Weapon/BlueprintWeapon.cs" bodystart="9" bodyend="501"/>
+    <listofallmembers>
+      <member refid="classBlueprintWeapon_1a60094977796de28499b592ef408f5a5b" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>ApplyAttachedDirectionSprite</name></member>
+      <member refid="classBlueprintWeapon_1a2b7247cad783ba2c6549403960cf7b8f" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>BlockBPMovement</name></member>
+      <member refid="classBlueprintWeapon_1a2c3134c209281c7977474732ccfb4b04" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>blueprintShip</name></member>
+      <member refid="classBlueprintWeapon_1afe07715ece4a612fcd94bf51ff59f465" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>bpAttachedDirection</name></member>
+      <member refid="classBlueprintWeapon_1a8cfe28579eabea19cdb49d89b8e73078" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>bpPosition</name></member>
+      <member refid="classBlueprintWeapon_1a3878895909218f0660a1c55bf8fdfab3" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>bpRotation</name></member>
+      <member refid="classBlueprintWeapon_1acd72aa52fcd9dd565dd057553d89b957" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>bpWeaponCost</name></member>
+      <member refid="classBlueprintWeapon_1a2dee6763755f0d5d9bcd6c5ade434c94" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>bpWeaponData</name></member>
+      <member refid="classBlueprintWeapon_1ae4245eac459a4b280550041043626b82" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>bpWeaponSize</name></member>
+      <member refid="classBlueprintWeapon_1ae2c23182c91e59854adf22b4aaac2876" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>GetBlueprintShip</name></member>
+      <member refid="classBlueprintWeapon_1a2f288f9d2f0a36dbdd27831aa7832aaf" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>GetCost</name></member>
+      <member refid="classBlueprintWeapon_1a85d791c56437b9f6c2f8abc6209808eb" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>GetGridPosition</name></member>
+      <member refid="classBlueprintWeapon_1a0712ed25bae75789be7da28745378fc7" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>GetHullLevel</name></member>
+      <member refid="classBlueprintWeapon_1a1abd2016ca769a8578917355f30c5ac0" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>GetOccupiedTiles</name></member>
+      <member refid="classBlueprintWeapon_1a2ec6c613738ecf3ddb977723d5a15713" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>GetRotation</name></member>
+      <member refid="classBlueprintWeapon_1adb571b9e022ecd976895bb2ec01a332c" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>gridPlacer</name></member>
+      <member refid="classBlueprintWeapon_1ac42b284fada4e4003ba51d8e0b2eb7cf" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>hullLevel</name></member>
+      <member refid="classBlueprintWeapon_1a56914dbc72da61c2e31524b9fdabe257" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>Initialize</name></member>
+      <member refid="classBlueprintWeapon_1a3a9ffd20756c6bf122dba503c6a54dc2" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>invalidColor</name></member>
+      <member refid="classBlueprintWeapon_1aa5da61958579835c1eab2d67726b4fa5" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>isDragging</name></member>
+      <member refid="classBlueprintWeapon_1a5c1ce4ac332d5f76d7a16d19a606b5c4" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>IsPointerOverBlockingUI</name></member>
+      <member refid="classBlueprintWeapon_1afea0ffe19c13e71f45b6a434d5c050a3" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>IsPointerOverUIObject</name></member>
+      <member refid="classBlueprintWeapon_1a4f1fdcac3d86fca7a67c91b9e0dc4b4b" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>LateUpdate</name></member>
+      <member refid="classBlueprintWeapon_1af527d7be9cd3300ecf1d4636e7258fca" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>mouseDownTarget</name></member>
+      <member refid="classBlueprintWeapon_1a8b0d312915a96910a0e00ad82c3e30cd" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>occupiedTiles</name></member>
+      <member refid="classBlueprintWeapon_1afd684539328d797a7ec2c182d5d6aa29" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>originalDirection</name></member>
+      <member refid="classBlueprintWeapon_1ae5e60ab39e50639e1588ee19ab5299b0" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>originalPos</name></member>
+      <member refid="classBlueprintWeapon_1a3411b4fe11d1cd7ece3801a10fb7f9ff" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>RotateAttachedDirection</name></member>
+      <member refid="classBlueprintWeapon_1a484e24eaf4ebb1994f8c9817dcbb2f6f" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>SetBlueprint</name></member>
+      <member refid="classBlueprintWeapon_1a30548e9a4721eee59c3772dc9c5e541b" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>SetDragMode</name></member>
+      <member refid="classBlueprintWeapon_1aea22c0e321f64c39c6f6a56d020af717" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>SetGridPlacer</name></member>
+      <member refid="classBlueprintWeapon_1a2d509e6b43b7bbdaa6ed7a85673f1cc1" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>SetGridPosition</name></member>
+      <member refid="classBlueprintWeapon_1ab44eb8d7287bbcaa5504a8629a4bbf4f" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>SetHullLevel</name></member>
+      <member refid="classBlueprintWeapon_1a9d1cc5ecfde71ff968ddf7b739ba17eb" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>sr</name></member>
+      <member refid="classBlueprintWeapon_1a02428af6837f9cd492ccfd830eaec4e7" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>Start</name></member>
+      <member refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>Update</name></member>
+      <member refid="classBlueprintWeapon_1a53e6bca1a103cb6165948a33139b2e18" prot="public" virt="non-virtual"><scope>BlueprintWeapon</scope><name>UpdateOccupiedTiles</name></member>
+      <member refid="classBlueprintWeapon_1a1f2289a6be0d9d91f2a87eb63286e9c5" prot="private" virt="non-virtual"><scope>BlueprintWeapon</scope><name>validColor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classAddQuestEffectHandler" kind="class" language="C#" prot="public">
+    <compoundname>AddQuestEffectHandler</compoundname>
+    <basecompoundref refid="interfaceISpecialEffectHandler" prot="public" virt="non-virtual">ISpecialEffectHandler</basecompoundref>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classAddQuestEffectHandler_1a9ff4a6a74a331f951021b1fd147bcd67" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AddQuestEffectHandler.HandleEffect</definition>
+        <argsstring>(EventOutcome outcome)</argsstring>
+        <name>HandleEffect</name>
+        <qualifiedname>AddQuestEffectHandler.HandleEffect</qualifiedname>
+        <reimplements refid="interfaceISpecialEffectHandler_1a2130b602cf4fb5426536b91c79dabbff">HandleEffect</reimplements>
+        <param>
+          <type><ref refid="classEventOutcome" kindref="compound">EventOutcome</ref></type>
+          <declname>outcome</declname>
+        </param>
+        <briefdescription>
+<para>EventOutcome에서 지정된 퀘스트를 퀘스트 매니저에 등록합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>outcome</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이벤트 결과</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventHandlers/AddQuestEffectHandler.cs" line="12" column="17" bodyfile="Assets/Scripts/Events/EventHandlers/AddQuestEffectHandler.cs" bodystart="12" bodyend="34"/>
+        <references refid="classQuestManager_1a9111108be651a726ac547887956de24f" compoundref="QuestManager_8cs" startline="75" endline="82">QuestManager.AddQuest</references>
+        <references refid="classQuestManager_1a3150cba9fdc0fa8ffa721eb2516e358f" compoundref="QuestManager_8cs" startline="223" endline="226">QuestManager.GetActiveQuests</references>
+        <references refid="classQuestManager_1a8e1cd09cf2af8f04d6854f0b54d8b0bf" compoundref="QuestManager_8cs" startline="26" endline="26">QuestManager.Instance</references>
+        <references refid="classRandomQuest_1a3e5b6c037594df66ce196d2f562d0c54" compoundref="RandomQuest_8cs" startline="12">RandomQuest.questId</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>이벤트 결과로 퀘스트를 추가하는 특수 효과 핸들러입니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>AddQuestEffectHandler</label>
+        <link refid="classAddQuestEffectHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ISpecialEffectHandler</label>
+        <link refid="interfaceISpecialEffectHandler"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>AddQuestEffectHandler</label>
+        <link refid="classAddQuestEffectHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ISpecialEffectHandler</label>
+        <link refid="interfaceISpecialEffectHandler"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Events/EventHandlers/AddQuestEffectHandler.cs" line="6" column="7" bodyfile="Assets/Scripts/Events/EventHandlers/AddQuestEffectHandler.cs" bodystart="7" bodyend="35"/>
+    <listofallmembers>
+      <member refid="classAddQuestEffectHandler_1a9ff4a6a74a331f951021b1fd147bcd67" prot="public" virt="non-virtual"><scope>AddQuestEffectHandler</scope><name>HandleEffect</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="RaceButtonController_8cs" kind="file" language="C#">
+    <compoundname>RaceButtonController.cs</compoundname>
+    <innerclass refid="classRaceButtonController" prot="public">RaceButtonController</innerclass>
+    <innernamespace refid="namespaceUnityEngine_1_1Serialization">UnityEngine::Serialization</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine.EventSystems;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine.UI;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">TMPro;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine.Serialization;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="classRaceButtonController" refkind="compound"><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classRaceButtonController" kindref="compound">RaceButtonController</ref><sp/>:<sp/>MonoBehaviour,<sp/>IPointerEnterHandler,<sp/>IPointerExitHandler,<sp/>IPointerClickHandler</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15" refid="classRaceButtonController_1a1cc980b827e839f07add87c0b5b338a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[Header(</highlight><highlight class="stringliteral">&quot;Race<sp/>Data&quot;</highlight><highlight class="normal">)]<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>CrewRace<sp/><ref refid="classRaceButtonController_1a1cc980b827e839f07add87c0b5b338a8" kindref="member">raceType</ref>;<sp/></highlight><highlight class="comment">//<sp/>버튼<sp/>종족</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>[FormerlySerializedAs(</highlight><highlight class="stringliteral">&quot;crewRaceSettings&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="21" refid="classRaceButtonController_1ad9bff7ac75a4eafb2779f257e7943d13" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classCrewRaceStat" kindref="compound">CrewRaceStat</ref><sp/><ref refid="classRaceButtonController_1ad9bff7ac75a4eafb2779f257e7943d13" kindref="member">crewRaceStat</ref>;<sp/></highlight><highlight class="comment">//<sp/>scriptable<sp/>object<sp/>할당</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="classRaceButtonController_1a89cd27a5bbf1198e5e57594bc4fd2757" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>GameObject<sp/><ref refid="classRaceButtonController_1a89cd27a5bbf1198e5e57594bc4fd2757" kindref="member">raceTooltipPrefab</ref>;<sp/></highlight><highlight class="comment">//<sp/>RaceTooltip<sp/>프리팹<sp/>할당</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="classRaceButtonController_1a4700de45013f3f8b4254489b524b9eb4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>GameObject<sp/><ref refid="classRaceButtonController_1a4700de45013f3f8b4254489b524b9eb4" kindref="member">activeTooltip</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="classRaceButtonController_1a57895bfe39c06aa24d522a98c17a18fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]<sp/>Canvas<sp/><ref refid="classRaceButtonController_1a57895bfe39c06aa24d522a98c17a18fb" kindref="member">mainCanvas</ref>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="classRaceButtonController_1af42c0352ae20b34fc85ee717bccd971c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Button<sp/><ref refid="classRaceButtonController_1af42c0352ae20b34fc85ee717bccd971c" kindref="member">button</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Color<sp/>normalColor;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Color<sp/>highlightColor<sp/>=<sp/>Color.yellow;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Awake()</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRaceButtonController_1af42c0352ae20b34fc85ee717bccd971c" kindref="member">button</ref><sp/>=<sp/>GetComponent&lt;Button&gt;();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classRaceButtonController_1af42c0352ae20b34fc85ee717bccd971c" kindref="member">button</ref><sp/>!=<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>normalColor<sp/>=<sp/><ref refid="classRaceButtonController_1af42c0352ae20b34fc85ee717bccd971c" kindref="member">button</ref>.image.color;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="classRaceButtonController_1aa4f1237ce3fff46c1866839d3dddd136" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classRaceButtonController_1aa4f1237ce3fff46c1866839d3dddd136" kindref="member">OnPointerEnter</ref>(PointerEventData<sp/>eventData)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRaceButtonController_1a34434fbd0c054ab7af53364da11e9608" kindref="member">ShowTooltip</ref>();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="classRaceButtonController_1a9638516e012871eb0d77d4884cd48e64" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classRaceButtonController_1a9638516e012871eb0d77d4884cd48e64" kindref="member">OnPointerExit</ref>(PointerEventData<sp/>eventData)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRaceButtonController_1a2e502cb65e9bd4645a1b62e2dcac2a67" kindref="member">HideTooltip</ref>();</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="classRaceButtonController_1ac5a97be35fbb20a2f0e12e6ca9f4c283" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classRaceButtonController_1ac5a97be35fbb20a2f0e12e6ca9f4c283" kindref="member">OnPointerClick</ref>(PointerEventData<sp/>eventData)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>UIHandler<sp/>통해<sp/>현재<sp/>종족<sp/>선택<sp/>로직<sp/>실행</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCrewUIHandler" kindref="compound">CrewUIHandler</ref>.<ref refid="classCrewUIHandler_1ab4bbd7a8a2c512abef285644a6e75627" kindref="member">Instance</ref>.<ref refid="classCrewUIHandler_1a836663b4d3ffe30f66baaeac349a35cc" kindref="member">OnRaceButtonClicked</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="classRaceButtonController_1accdf9f43b1ab621a795a98af3ad97ba7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classRaceButtonController_1accdf9f43b1ab621a795a98af3ad97ba7" kindref="member">SetHighlighted</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>highlighted)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classRaceButtonController_1af42c0352ae20b34fc85ee717bccd971c" kindref="member">button</ref><sp/>!=<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>button.image.color<sp/>=<sp/>highlighted<sp/>?<sp/>highlightColor<sp/>:<sp/>normalColor;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="classRaceButtonController_1a34434fbd0c054ab7af53364da11e9608" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classRaceButtonController_1a34434fbd0c054ab7af53364da11e9608" kindref="member">ShowTooltip</ref>()</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classRaceButtonController_1a89cd27a5bbf1198e5e57594bc4fd2757" kindref="member">raceTooltipPrefab</ref><sp/>==<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>RaceTooltip<sp/>프리팹<sp/>생성</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRaceButtonController_1a4700de45013f3f8b4254489b524b9eb4" kindref="member">activeTooltip</ref><sp/>=<sp/>Instantiate(<ref refid="classRaceButtonController_1a89cd27a5bbf1198e5e57594bc4fd2757" kindref="member">raceTooltipPrefab</ref>,<sp/><ref refid="classRaceButtonController_1a57895bfe39c06aa24d522a98c17a18fb" kindref="member">mainCanvas</ref>.transform);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>RaceTooltip<sp/>설정</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRaceTooltip" kindref="compound">RaceTooltip</ref><sp/>tooltip<sp/>=<sp/><ref refid="classRaceButtonController_1a4700de45013f3f8b4254489b524b9eb4" kindref="member">activeTooltip</ref>.GetComponent&lt;<ref refid="classRaceTooltip" kindref="compound">RaceTooltip</ref>&gt;();</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tooltip.<ref refid="classRaceTooltip_1afac678c03fa6b8716419856df409d06f" kindref="member">SetupTooltip</ref>(<ref refid="classRaceButtonController_1ad9bff7ac75a4eafb2779f257e7943d13" kindref="member">crewRaceStat</ref>,<sp/><ref refid="classRaceButtonController_1a1cc980b827e839f07add87c0b5b338a8" kindref="member">raceType</ref>);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>스크린<sp/>→<sp/>월드<sp/>좌표로<sp/>변환</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RectTransform<sp/>tooltipRect<sp/>=<sp/><ref refid="classRaceButtonController_1a4700de45013f3f8b4254489b524b9eb4" kindref="member">activeTooltip</ref>.GetComponent&lt;RectTransform&gt;();</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>월드<sp/>좌표<sp/>→<sp/>UI<sp/>좌표로<sp/>변환</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tooltipRect.anchoredPosition<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector2(1500f,<sp/>-270f);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="classRaceButtonController_1a2e502cb65e9bd4645a1b62e2dcac2a67" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classRaceButtonController_1a2e502cb65e9bd4645a1b62e2dcac2a67" kindref="member">HideTooltip</ref>()</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classRaceButtonController_1a4700de45013f3f8b4254489b524b9eb4" kindref="member">activeTooltip</ref><sp/>!=<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Destroy(<ref refid="classRaceButtonController_1a4700de45013f3f8b4254489b524b9eb4" kindref="member">activeTooltip</ref>);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRaceButtonController_1a4700de45013f3f8b4254489b524b9eb4" kindref="member">activeTooltip</ref><sp/>=<sp/></highlight><highlight class="keyword">null</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Assets/Scripts/Crew/RaceSelect/RaceButtonController.cs"/>
+  </compounddef>
+</doxygen>

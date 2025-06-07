@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classAStar" kind="class" language="C#" prot="public">
+    <compoundname>AStar</compoundname>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classAStar_1af337c531aba6253e20404620099dbe72" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>static List&lt; Vector2Int &gt; AStar.FindPath</definition>
+        <argsstring>(Vector2Int start, Vector2Int goal, CrewMovementValidator validator)</argsstring>
+        <name>FindPath</name>
+        <qualifiedname>AStar.FindPath</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>goal</declname>
+        </param>
+        <param>
+          <type><ref refid="classCrewMovementValidator" kindref="compound">CrewMovementValidator</ref></type>
+          <declname>validator</declname>
+        </param>
+        <briefdescription>
+<para>최단 경로 탐색 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>start</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>goal</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>validator</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/AStar.cs" line="13" column="24" bodyfile="Assets/Scripts/RTS/AStar.cs" bodystart="13" bodyend="49"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classAStar_1ab6fe2cd9f2814c167dc672d7ba14700b" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>static List&lt; Vector2Int &gt; AStar.GetNeighbors</definition>
+        <argsstring>(Vector2Int pos)</argsstring>
+        <name>GetNeighbors</name>
+        <qualifiedname>AStar.GetNeighbors</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/AStar.cs" line="51" column="25" bodyfile="Assets/Scripts/RTS/AStar.cs" bodystart="51" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classAStar_1a4831d832242118a0b2238ebeb0da57e2" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int AStar.Heuristic</definition>
+        <argsstring>(Vector2Int a, Vector2Int b)</argsstring>
+        <name>Heuristic</name>
+        <qualifiedname>AStar.Heuristic</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/AStar.cs" line="62" column="24" bodyfile="Assets/Scripts/RTS/AStar.cs" bodystart="62" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classAStar_1a3af7373ffb00eb4a8589aa47f7d7613a" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>static List&lt; Vector2Int &gt; AStar.ReconstructPath</definition>
+        <argsstring>(Dictionary&lt; Vector2Int, Vector2Int &gt; cameFrom, Vector2Int current)</argsstring>
+        <name>ReconstructPath</name>
+        <qualifiedname>AStar.ReconstructPath</qualifiedname>
+        <param>
+          <type>Dictionary&lt; Vector2Int, Vector2Int &gt;</type>
+          <declname>cameFrom</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>current</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/AStar.cs" line="67" column="25" bodyfile="Assets/Scripts/RTS/AStar.cs" bodystart="67" bodyend="76"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>AStar</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/RTS/AStar.cs" line="4" column="15" bodyfile="Assets/Scripts/RTS/AStar.cs" bodystart="5" bodyend="77"/>
+    <listofallmembers>
+      <member refid="classAStar_1af337c531aba6253e20404620099dbe72" prot="public" virt="non-virtual"><scope>AStar</scope><name>FindPath</name></member>
+      <member refid="classAStar_1ab6fe2cd9f2814c167dc672d7ba14700b" prot="private" virt="non-virtual"><scope>AStar</scope><name>GetNeighbors</name></member>
+      <member refid="classAStar_1a4831d832242118a0b2238ebeb0da57e2" prot="private" virt="non-virtual"><scope>AStar</scope><name>Heuristic</name></member>
+      <member refid="classAStar_1a3af7373ffb00eb4a8589aa47f7d7613a" prot="private" virt="non-virtual"><scope>AStar</scope><name>ReconstructPath</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

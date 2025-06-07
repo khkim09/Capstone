@@ -1,0 +1,427 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classBlueprintSlotManager" kind="class" language="C#" prot="public">
+    <compoundname>BlueprintSlotManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classBlueprintSlotManager_1abf1efba9ff94ea29447cb5a3eb7f7693" prot="public" static="yes" mutable="no">
+        <type><ref refid="classBlueprintSlotManager" kindref="compound">BlueprintSlotManager</ref></type>
+        <definition>BlueprintSlotManager BlueprintSlotManager.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>BlueprintSlotManager.Instance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>summary&gt; 현재 선택된 슬롯 index (0~3) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="23" column="40" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="23" bodyend="-1"/>
+        <referencedby refid="classCustomize__0__Controller_1ad52a24fe2b76254f1ebf2e23ed93c1cb" compoundref="Customize__0__Controller_8cs" startline="227" endline="238">Customize_0_Controller.CheckApplyAvailable</referencedby>
+        <referencedby refid="classGameManager_1a95dc9c3b75c3018b6f3a177459ffd699" compoundref="GameManager_8cs" startline="1121" endline="1160">GameManager.DeleteBlueprintData</referencedby>
+        <referencedby refid="classGameManager_1a39fca2cb7c34bf10d0f440ec29393f22" compoundref="GameManager_8cs" startline="1063" endline="1116">GameManager.LoadBlueprintData</referencedby>
+        <referencedby refid="classCustomize__2__Controller_1af70f75f637519d654732d526e3bcdcdd" compoundref="Customize__2__Controller_8cs" startline="168" endline="220">Customize_2_Controller.MakeBPShipWithSaveData</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1a6efbdf30cb4fc11fa3f6b1bfbf6eb061" compoundref="Customize__1__Controller_8cs" startline="305" endline="340">Customize_1_Controller.OnClickBack</referencedby>
+        <referencedby refid="classCustomize__2__Controller_1a4f017401dbc31501a4109324ccec2bd7" compoundref="Customize__2__Controller_8cs" startline="227" endline="294">Customize_2_Controller.OnClickBuy</referencedby>
+        <referencedby refid="classCustomize__0__Controller_1aa717dd688aeccaaa6ea9db66d5b85cda" compoundref="Customize__0__Controller_8cs" startline="142" endline="150">Customize_0_Controller.OnClickEdit</referencedby>
+        <referencedby refid="classCustomize__0__Controller_1a2294748cb08dacbc43bf243c146e258f" compoundref="Customize__0__Controller_8cs" startline="92" endline="108">Customize_0_Controller.OnClickExit</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1ac71022868de14f02fffd845270ffb42b" compoundref="Customize__1__Controller_8cs" startline="237" endline="298">Customize_1_Controller.OnClickSave</referencedby>
+        <referencedby refid="classCustomize__0__Controller_1a574259bae338d10309582b4ec5c4120f" compoundref="Customize__0__Controller_8cs" startline="180" endline="222">Customize_0_Controller.OnClickSlot</referencedby>
+        <referencedby refid="classCustomize__0__Controller_1aa308ba0cf5f4f32b79d0470e4bb73221" compoundref="Customize__0__Controller_8cs" startline="60" endline="87">Customize_0_Controller.OnEnable</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1aa35f4f305d8242a209520c05d6c3a2d9" compoundref="Customize__1__Controller_8cs" startline="136" endline="156">Customize_1_Controller.OnEnable</referencedby>
+        <referencedby refid="classCustomize__2__Controller_1ad190ea208317fc26a5c88d844be8922a" compoundref="Customize__2__Controller_8cs" startline="104" endline="163">Customize_2_Controller.OnEnable</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1a765b5d6af2c3ccd94e113c0d3bc1a6fa" compoundref="Customize__1__Controller_8cs" startline="204" endline="230">Customize_1_Controller.ReloadBlueprintFromSlot</referencedby>
+        <referencedby refid="classGameManager_1a533d6a089300edb4fb1d0197db895fc1" compoundref="GameManager_8cs" startline="1025" endline="1058">GameManager.SaveBlueprintData</referencedby>
+        <referencedby refid="classCustomize__0__Controller_1a9a5c64825556b732c13268f61d9893db" compoundref="Customize__0__Controller_8cs" startline="35" endline="55">Customize_0_Controller.Start</referencedby>
+        <referencedby refid="classCustomize__0__Controller_1ab52d0466f33a37c08ce1f96dc7c17aad" compoundref="Customize__0__Controller_8cs" startline="157" endline="174">Customize_0_Controller.UpdateSlotButtonColor</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classBlueprintSlotManager_1acd7f11970c938adcb4f2d27f38e75dc6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int BlueprintSlotManager.currentSlotIndex</definition>
+        <argsstring></argsstring>
+        <name>currentSlotIndex</name>
+        <qualifiedname>BlueprintSlotManager.currentSlotIndex</qualifiedname>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="28" column="16" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintSlotManager_1a790b7c129b9eb05b31d6cf60c984c26b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int BlueprintSlotManager.appliedSlotIndex</definition>
+        <argsstring></argsstring>
+        <name>appliedSlotIndex</name>
+        <qualifiedname>BlueprintSlotManager.appliedSlotIndex</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>현재 유저 함선으로 적용 중인 슬롯 index (0번에 기본 함선 주어질 것이기 때문) </para>
+        </briefdescription>
+        <detaileddescription>
+<para>summary&gt; 슬롯별 저장된 설계도 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="33" column="16" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="33" bodyend="-1"/>
+        <referencedby refid="classCustomize__2__Controller_1a4f017401dbc31501a4109324ccec2bd7" compoundref="Customize__2__Controller_8cs" startline="227" endline="294">Customize_2_Controller.OnClickBuy</referencedby>
+        <referencedby refid="classCustomize__0__Controller_1aa308ba0cf5f4f32b79d0470e4bb73221" compoundref="Customize__0__Controller_8cs" startline="60" endline="87">Customize_0_Controller.OnEnable</referencedby>
+        <referencedby refid="classGameManager_1a533d6a089300edb4fb1d0197db895fc1" compoundref="GameManager_8cs" startline="1025" endline="1058">GameManager.SaveBlueprintData</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintSlotManager_1a30578dc4c98bcccce338d216bfeeb798" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="classBlueprintSaveData" kindref="compound">BlueprintSaveData</ref> &gt;</type>
+        <definition>List&lt;BlueprintSaveData&gt; BlueprintSlotManager.blueprintSlots</definition>
+        <argsstring></argsstring>
+        <name>blueprintSlots</name>
+        <qualifiedname>BlueprintSlotManager.blueprintSlots</qualifiedname>
+        <initializer>= new(4)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="38" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintSlotManager_1a71c3462566250ebb5c6112cab8303e72" prot="public" static="no" mutable="no">
+        <type>List&lt; HashSet&lt; Vector2Int &gt; &gt;</type>
+        <definition>List&lt;HashSet&lt;Vector2Int&gt; &gt; BlueprintSlotManager.occupiedTilesPerSlot</definition>
+        <argsstring></argsstring>
+        <name>occupiedTilesPerSlot</name>
+        <qualifiedname>BlueprintSlotManager.occupiedTilesPerSlot</qualifiedname>
+        <initializer>= new(4)</initializer>
+        <briefdescription>
+<para>슬롯 별 그리드 관리 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="43" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="43" bodyend="-1"/>
+        <referencedby refid="classGameManager_1a95dc9c3b75c3018b6f3a177459ffd699" compoundref="GameManager_8cs" startline="1121" endline="1160">GameManager.DeleteBlueprintData</referencedby>
+        <referencedby refid="classBlueprintSlotManager_1aae39bb566bdc961647cdc31a0e9ae4bf" compoundref="BlueprintSlotManager_8cs" startline="150" endline="156">GetOccupiedTiles</referencedby>
+        <referencedby refid="classGameManager_1a39fca2cb7c34bf10d0f440ec29393f22" compoundref="GameManager_8cs" startline="1063" endline="1116">GameManager.LoadBlueprintData</referencedby>
+        <referencedby refid="classGameManager_1a533d6a089300edb4fb1d0197db895fc1" compoundref="GameManager_8cs" startline="1025" endline="1058">GameManager.SaveBlueprintData</referencedby>
+        <referencedby refid="classBlueprintSlotManager_1ad3dc30e67538f5f96a04488f88ead839" compoundref="BlueprintSlotManager_8cs" startline="137" endline="143">SaveOccupiedTilesToCurrentSlot</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintSlotManager_1abbece121930532f0b0cc51fb1092249b" prot="public" static="no" mutable="no">
+        <type>List&lt; bool &gt;</type>
+        <definition>List&lt;bool&gt; BlueprintSlotManager.isValidBP</definition>
+        <argsstring></argsstring>
+        <name>isValidBP</name>
+        <qualifiedname>BlueprintSlotManager.isValidBP</qualifiedname>
+        <initializer>= new(4)</initializer>
+        <briefdescription>
+<para>유효한 도안인지 (즉시 함선 변경 가능) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="48" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classCustomize__0__Controller_1ad52a24fe2b76254f1ebf2e23ed93c1cb" compoundref="Customize__0__Controller_8cs" startline="227" endline="238">Customize_0_Controller.CheckApplyAvailable</referencedby>
+        <referencedby refid="classGameManager_1a95dc9c3b75c3018b6f3a177459ffd699" compoundref="GameManager_8cs" startline="1121" endline="1160">GameManager.DeleteBlueprintData</referencedby>
+        <referencedby refid="classBlueprintSlotManager_1ae09fb22788408063fc8a9f37f9175dea" compoundref="BlueprintSlotManager_8cs" startline="93" endline="99">InitializeSlotButtonColor</referencedby>
+        <referencedby refid="classGameManager_1a39fca2cb7c34bf10d0f440ec29393f22" compoundref="GameManager_8cs" startline="1063" endline="1116">GameManager.LoadBlueprintData</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1ac71022868de14f02fffd845270ffb42b" compoundref="Customize__1__Controller_8cs" startline="237" endline="298">Customize_1_Controller.OnClickSave</referencedby>
+        <referencedby refid="classGameManager_1a533d6a089300edb4fb1d0197db895fc1" compoundref="GameManager_8cs" startline="1025" endline="1058">GameManager.SaveBlueprintData</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classBlueprintSlotManager_1af26eeb33e6d522689b1d3027cef24df5" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject BlueprintSlotManager.customize0Panel</definition>
+        <argsstring></argsstring>
+        <name>customize0Panel</name>
+        <qualifiedname>BlueprintSlotManager.customize0Panel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="50" column="25" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="50" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classBlueprintSlotManager_1a02a878c79ad4b2cf6fda5d2ed97e5119" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintSlotManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>BlueprintSlotManager.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="52" column="18" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="52" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintSlotManager_1a23f1b635cbf0f4ac85fab3fb26c9208e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintSlotManager.OnDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>OnDestroy</name>
+        <qualifiedname>BlueprintSlotManager.OnDestroy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="77" column="18" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="77" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintSlotManager_1a7380cc592e4735799f6f069f5df893f7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintSlotManager.OnSceneLoaded</definition>
+        <argsstring>(Scene scene, LoadSceneMode mode)</argsstring>
+        <name>OnSceneLoaded</name>
+        <qualifiedname>BlueprintSlotManager.OnSceneLoaded</qualifiedname>
+        <param>
+          <type>Scene</type>
+          <declname>scene</declname>
+        </param>
+        <param>
+          <type>LoadSceneMode</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="83" column="18" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="83" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintSlotManager_1ae09fb22788408063fc8a9f37f9175dea" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintSlotManager.InitializeSlotButtonColor</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeSlotButtonColor</name>
+        <qualifiedname>BlueprintSlotManager.InitializeSlotButtonColor</qualifiedname>
+        <briefdescription>
+<para>모두 회색으로 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="93" column="18" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="93" bodyend="99"/>
+        <references refid="classBlueprintSlotManager_1abbece121930532f0b0cc51fb1092249b" compoundref="BlueprintSlotManager_8cs" startline="48">isValidBP</references>
+        <references refid="classCustomize__0__Controller_1ab52d0466f33a37c08ce1f96dc7c17aad" compoundref="Customize__0__Controller_8cs" startline="157" endline="174">Customize_0_Controller.UpdateSlotButtonColor</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classBlueprintSlotManager_1a9f41f98bfcb58438ba43102a3df62f6e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintSlotManager.RegisterCustomizePanel</definition>
+        <argsstring>(GameObject panel)</argsstring>
+        <name>RegisterCustomizePanel</name>
+        <qualifiedname>BlueprintSlotManager.RegisterCustomizePanel</qualifiedname>
+        <param>
+          <type>GameObject</type>
+          <declname>panel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="101" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="101" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintSlotManager_1a6f56b1987b1cee2f0dbd983c76b4bdb8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintSlotManager.SaveBlueprintToCurrentSlot</definition>
+        <argsstring>(BlueprintSaveData data)</argsstring>
+        <name>SaveBlueprintToCurrentSlot</name>
+        <qualifiedname>BlueprintSlotManager.SaveBlueprintToCurrentSlot</qualifiedname>
+        <param>
+          <type><ref refid="classBlueprintSaveData" kindref="compound">BlueprintSaveData</ref></type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>현재 도안을 저장 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="110" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="110" bodyend="116"/>
+        <referencedby refid="classCustomize__1__Controller_1ac71022868de14f02fffd845270ffb42b" compoundref="Customize__1__Controller_8cs" startline="237" endline="298">Customize_1_Controller.OnClickSave</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintSlotManager_1a8f95d39b4fc489c0612da7ab97c782f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classBlueprintSaveData" kindref="compound">BlueprintSaveData</ref></type>
+        <definition>BlueprintSaveData BlueprintSlotManager.GetBlueprintAt</definition>
+        <argsstring>(int index)</argsstring>
+        <name>GetBlueprintAt</name>
+        <qualifiedname>BlueprintSlotManager.GetBlueprintAt</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>해당 슬롯의 도안을 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="121" column="30" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="121" bodyend="131"/>
+        <referencedby refid="classCustomize__2__Controller_1af70f75f637519d654732d526e3bcdcdd" compoundref="Customize__2__Controller_8cs" startline="168" endline="220">Customize_2_Controller.MakeBPShipWithSaveData</referencedby>
+        <referencedby refid="classCustomize__2__Controller_1a4f017401dbc31501a4109324ccec2bd7" compoundref="Customize__2__Controller_8cs" startline="227" endline="294">Customize_2_Controller.OnClickBuy</referencedby>
+        <referencedby refid="classCustomize__0__Controller_1a574259bae338d10309582b4ec5c4120f" compoundref="Customize__0__Controller_8cs" startline="180" endline="222">Customize_0_Controller.OnClickSlot</referencedby>
+        <referencedby refid="classCustomize__2__Controller_1ad190ea208317fc26a5c88d844be8922a" compoundref="Customize__2__Controller_8cs" startline="104" endline="163">Customize_2_Controller.OnEnable</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1a765b5d6af2c3ccd94e113c0d3bc1a6fa" compoundref="Customize__1__Controller_8cs" startline="204" endline="230">Customize_1_Controller.ReloadBlueprintFromSlot</referencedby>
+        <referencedby refid="classCustomize__0__Controller_1ab52d0466f33a37c08ce1f96dc7c17aad" compoundref="Customize__0__Controller_8cs" startline="157" endline="174">Customize_0_Controller.UpdateSlotButtonColor</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintSlotManager_1ad3dc30e67538f5f96a04488f88ead839" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintSlotManager.SaveOccupiedTilesToCurrentSlot</definition>
+        <argsstring>(HashSet&lt; Vector2Int &gt; occupied)</argsstring>
+        <name>SaveOccupiedTilesToCurrentSlot</name>
+        <qualifiedname>BlueprintSlotManager.SaveOccupiedTilesToCurrentSlot</qualifiedname>
+        <param>
+          <type>HashSet&lt; Vector2Int &gt;</type>
+          <declname>occupied</declname>
+        </param>
+        <briefdescription>
+<para>방의 점유 타일을 선택된 슬롯 도안에 저장 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>occupied</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="137" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="137" bodyend="143"/>
+        <references refid="classBlueprintSlotManager_1a71c3462566250ebb5c6112cab8303e72" compoundref="BlueprintSlotManager_8cs" startline="43">occupiedTilesPerSlot</references>
+        <referencedby refid="classCustomize__1__Controller_1ac71022868de14f02fffd845270ffb42b" compoundref="Customize__1__Controller_8cs" startline="237" endline="298">Customize_1_Controller.OnClickSave</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintSlotManager_1aae39bb566bdc961647cdc31a0e9ae4bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>HashSet&lt; Vector2Int &gt;</type>
+        <definition>HashSet&lt; Vector2Int &gt; BlueprintSlotManager.GetOccupiedTiles</definition>
+        <argsstring>(int index)</argsstring>
+        <name>GetOccupiedTiles</name>
+        <qualifiedname>BlueprintSlotManager.GetOccupiedTiles</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>도안의 점유 타일 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="150" column="20" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="150" bodyend="156"/>
+        <references refid="classBlueprintSlotManager_1a71c3462566250ebb5c6112cab8303e72" compoundref="BlueprintSlotManager_8cs" startline="43">occupiedTilesPerSlot</references>
+        <referencedby refid="classCustomize__1__Controller_1a765b5d6af2c3ccd94e113c0d3bc1a6fa" compoundref="Customize__1__Controller_8cs" startline="204" endline="230">Customize_1_Controller.ReloadBlueprintFromSlot</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintSlotManager_1a853b213cc7647131bd65306f9824a242" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintSlotManager.SaveAllBlueprints</definition>
+        <argsstring>()</argsstring>
+        <name>SaveAllBlueprints</name>
+        <qualifiedname>BlueprintSlotManager.SaveAllBlueprints</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="158" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="158" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintSlotManager_1a17b4765aedcf9b83eebaaa899609258a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintSlotManager.LoadAllBlueprints</definition>
+        <argsstring>()</argsstring>
+        <name>LoadAllBlueprints</name>
+        <qualifiedname>BlueprintSlotManager.LoadAllBlueprints</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="176" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="176" bodyend="194"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>도안 슬롯 저장소 (최대 4개). Scene 전역에서 접근 가능 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>BlueprintSlotManager</label>
+        <link refid="classBlueprintSlotManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>BlueprintSlotManager</label>
+        <link refid="classBlueprintSlotManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>+Instance</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" line="21" column="7" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSlotManager.cs" bodystart="22" bodyend="195"/>
+    <listofallmembers>
+      <member refid="classBlueprintSlotManager_1a790b7c129b9eb05b31d6cf60c984c26b" prot="public" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>appliedSlotIndex</name></member>
+      <member refid="classBlueprintSlotManager_1a02a878c79ad4b2cf6fda5d2ed97e5119" prot="private" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>Awake</name></member>
+      <member refid="classBlueprintSlotManager_1a30578dc4c98bcccce338d216bfeeb798" prot="public" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>blueprintSlots</name></member>
+      <member refid="classBlueprintSlotManager_1acd7f11970c938adcb4f2d27f38e75dc6" prot="public" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>currentSlotIndex</name></member>
+      <member refid="classBlueprintSlotManager_1af26eeb33e6d522689b1d3027cef24df5" prot="private" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>customize0Panel</name></member>
+      <member refid="classBlueprintSlotManager_1a8f95d39b4fc489c0612da7ab97c782f4" prot="public" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>GetBlueprintAt</name></member>
+      <member refid="classBlueprintSlotManager_1aae39bb566bdc961647cdc31a0e9ae4bf" prot="public" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>GetOccupiedTiles</name></member>
+      <member refid="classBlueprintSlotManager_1ae09fb22788408063fc8a9f37f9175dea" prot="private" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>InitializeSlotButtonColor</name></member>
+      <member refid="classBlueprintSlotManager_1abf1efba9ff94ea29447cb5a3eb7f7693" prot="public" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>Instance</name></member>
+      <member refid="classBlueprintSlotManager_1abbece121930532f0b0cc51fb1092249b" prot="public" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>isValidBP</name></member>
+      <member refid="classBlueprintSlotManager_1a17b4765aedcf9b83eebaaa899609258a" prot="public" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>LoadAllBlueprints</name></member>
+      <member refid="classBlueprintSlotManager_1a71c3462566250ebb5c6112cab8303e72" prot="public" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>occupiedTilesPerSlot</name></member>
+      <member refid="classBlueprintSlotManager_1a23f1b635cbf0f4ac85fab3fb26c9208e" prot="private" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>OnDestroy</name></member>
+      <member refid="classBlueprintSlotManager_1a7380cc592e4735799f6f069f5df893f7" prot="private" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>OnSceneLoaded</name></member>
+      <member refid="classBlueprintSlotManager_1a9f41f98bfcb58438ba43102a3df62f6e" prot="public" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>RegisterCustomizePanel</name></member>
+      <member refid="classBlueprintSlotManager_1a853b213cc7647131bd65306f9824a242" prot="public" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>SaveAllBlueprints</name></member>
+      <member refid="classBlueprintSlotManager_1a6f56b1987b1cee2f0dbd983c76b4bdb8" prot="public" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>SaveBlueprintToCurrentSlot</name></member>
+      <member refid="classBlueprintSlotManager_1ad3dc30e67538f5f96a04488f88ead839" prot="public" virt="non-virtual"><scope>BlueprintSlotManager</scope><name>SaveOccupiedTilesToCurrentSlot</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

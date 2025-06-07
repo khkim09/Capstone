@@ -1,0 +1,948 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classSellItemInfoPanel" kind="class" language="C#" prot="public">
+    <compoundname>SellItemInfoPanel</compoundname>
+    <basecompoundref refid="classTooltipPanelBase" prot="public" virt="non-virtual">TooltipPanelBase</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerClickHandler</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classSellItemInfoPanel_1a9e020253505a3b4bbc4259c3d07f651a" prot="private" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button SellItemInfoPanel.panelButton</definition>
+        <argsstring></argsstring>
+        <name>panelButton</name>
+        <qualifiedname>SellItemInfoPanel.panelButton</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="9" column="21" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1a0790d84c0ce15b6bc0fdeabf5df9fc0c" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image SellItemInfoPanel.panelBackground</definition>
+        <argsstring></argsstring>
+        <name>panelBackground</name>
+        <qualifiedname>SellItemInfoPanel.panelBackground</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="10" column="20" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1a5f6c757c4d301ff9a539d6d997e61b5b" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image SellItemInfoPanel.itemShape</definition>
+        <argsstring></argsstring>
+        <name>itemShape</name>
+        <qualifiedname>SellItemInfoPanel.itemShape</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="12" column="20" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1a6266a6825b2d45fd614ec1bdcb6fdc23" prot="private" static="no" mutable="no">
+        <type>List&lt; Sprite &gt;</type>
+        <definition>List&lt;Sprite&gt; SellItemInfoPanel.itemShapeSprites</definition>
+        <argsstring></argsstring>
+        <name>itemShapeSprites</name>
+        <qualifiedname>SellItemInfoPanel.itemShapeSprites</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="13" column="19" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1a512e385ee97ce225682ac76c8852d2b4" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image SellItemInfoPanel.itemImage</definition>
+        <argsstring></argsstring>
+        <name>itemImage</name>
+        <qualifiedname>SellItemInfoPanel.itemImage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="15" column="20" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1ad9558d437505985b83e45e1028aa0e16" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI SellItemInfoPanel.itemName</definition>
+        <argsstring></argsstring>
+        <name>itemName</name>
+        <qualifiedname>SellItemInfoPanel.itemName</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="16" column="30" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1a0dabe5705fc5777f3c9ceb027321217b" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI SellItemInfoPanel.itemCategory</definition>
+        <argsstring></argsstring>
+        <name>itemCategory</name>
+        <qualifiedname>SellItemInfoPanel.itemCategory</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="17" column="30" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1a6970df05662849e6a181d61726e43a35" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI SellItemInfoPanel.itemAmount</definition>
+        <argsstring></argsstring>
+        <name>itemAmount</name>
+        <qualifiedname>SellItemInfoPanel.itemAmount</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="18" column="30" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1a9cfda52bda8c43d8ebdef83cd0524da1" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI SellItemInfoPanel.itemPrice</definition>
+        <argsstring></argsstring>
+        <name>itemPrice</name>
+        <qualifiedname>SellItemInfoPanel.itemPrice</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="19" column="30" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1a27c158a9b40f882469b778e7f5419041" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color SellItemInfoPanel.normalColor</definition>
+        <argsstring></argsstring>
+        <name>normalColor</name>
+        <qualifiedname>SellItemInfoPanel.normalColor</qualifiedname>
+        <initializer>= Color.white</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="22" column="20" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1a573e9b36d43e8e8fe84ded0eed6026e4" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color SellItemInfoPanel.slightlyDamagedColor</definition>
+        <argsstring></argsstring>
+        <name>slightlyDamagedColor</name>
+        <qualifiedname>SellItemInfoPanel.slightlyDamagedColor</qualifiedname>
+        <initializer>= Color.Lerp(Color.white, Color.red, 0.33f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="23" column="20" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1a80eab09de032145f50fc83e1f825bb28" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color SellItemInfoPanel.damagedColor</definition>
+        <argsstring></argsstring>
+        <name>damagedColor</name>
+        <qualifiedname>SellItemInfoPanel.damagedColor</qualifiedname>
+        <initializer>= Color.Lerp(Color.white, Color.red, 0.66f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="24" column="20" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1a9af4fef7f0850d3975d189a37aa9ae2d" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color SellItemInfoPanel.unsellableColor</definition>
+        <argsstring></argsstring>
+        <name>unsellableColor</name>
+        <qualifiedname>SellItemInfoPanel.unsellableColor</qualifiedname>
+        <initializer>= Color.red</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="25" column="20" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1a79bf1f4f173d6862c8c738febdfc2c1d" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color SellItemInfoPanel.originalColor</definition>
+        <argsstring></argsstring>
+        <name>originalColor</name>
+        <qualifiedname>SellItemInfoPanel.originalColor</qualifiedname>
+        <initializer>= Color.white</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="27" column="19" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1ac081ba02e7a3c85352a60e754d690534" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SellItemInfoPanel.hightlightAlpha</definition>
+        <argsstring></argsstring>
+        <name>hightlightAlpha</name>
+        <qualifiedname>SellItemInfoPanel.hightlightAlpha</qualifiedname>
+        <initializer>= 180f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="28" column="20" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1acf2104695c6c3d3b3b581eb166aa20c3" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color SellItemInfoPanel.selectedBackgroundColor</definition>
+        <argsstring></argsstring>
+        <name>selectedBackgroundColor</name>
+        <qualifiedname>SellItemInfoPanel.selectedBackgroundColor</qualifiedname>
+        <initializer>= new(0.2f, 0.4f, 0.8f, 0.3f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="31" column="19" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1ac6430f3df3ed913d365a7cf13fe6c3b3" prot="private" static="no" mutable="no">
+        <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+        <definition>TradingItemData SellItemInfoPanel.currentItem</definition>
+        <argsstring></argsstring>
+        <name>currentItem</name>
+        <qualifiedname>SellItemInfoPanel.currentItem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="33" column="29" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1ac2814bb9bbeff49939cf2a80adbbc6c2" prot="private" static="no" mutable="no">
+        <type><ref refid="classTradeUIController" kindref="compound">TradeUIController</ref></type>
+        <definition>TradeUIController SellItemInfoPanel.tradeUIController</definition>
+        <argsstring></argsstring>
+        <name>tradeUIController</name>
+        <qualifiedname>SellItemInfoPanel.tradeUIController</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="35" column="31" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSellItemInfoPanel_1a0a5e8edcd605f07c3de935b4b2552175" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SellItemInfoPanel.isSelected</definition>
+        <argsstring></argsstring>
+        <name>isSelected</name>
+        <qualifiedname>SellItemInfoPanel.isSelected</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="36" column="18" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classSellItemInfoPanel_1a7ef8ded4ca7b4c7923c322bcac7a94a0" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+        <definition>TradingItemData SellItemInfoPanel.CurrentItem</definition>
+        <argsstring></argsstring>
+        <name>CurrentItem</name>
+        <qualifiedname>SellItemInfoPanel.CurrentItem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="34" column="28" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classSellItemInfoPanel_1a349841c9a4130528faa34d02dc2b82e6" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void SellItemInfoPanel.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>SellItemInfoPanel.Start</qualifiedname>
+        <reimplements refid="classTooltipPanelBase_1a83eccfb4ba756898898c78d6f66da5a0">Start</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="38" column="29" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="38" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classSellItemInfoPanel_1a22878a70ff3f3ba0b63ce482da79eabd" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void SellItemInfoPanel.OnMouseEnter</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnMouseEnter</name>
+        <qualifiedname>SellItemInfoPanel.OnMouseEnter</qualifiedname>
+        <reimplements refid="classTooltipPanelBase_1a961a740b6b6d26b6951d7b556463e00e">OnMouseEnter</reimplements>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="86" column="29" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="86" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classSellItemInfoPanel_1a1a7d77a6053ba99d53c70965f81cdc14" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void SellItemInfoPanel.OnMouseExit</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnMouseExit</name>
+        <qualifiedname>SellItemInfoPanel.OnMouseExit</qualifiedname>
+        <reimplements refid="classTooltipPanelBase_1af63cf646954832d7ed41828b63f89342">OnMouseExit</reimplements>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="103" column="29" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="103" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="classSellItemInfoPanel_1aa961f5d4b23f3757ed83a7d8e56509c6" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void SellItemInfoPanel.SetToolTipText</definition>
+        <argsstring>()</argsstring>
+        <name>SetToolTipText</name>
+        <qualifiedname>SellItemInfoPanel.SetToolTipText</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="129" column="29" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="129" bodyend="132"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSellItemInfoPanel_1a784f641ff521ae3d2b6dd87cf96e8b72" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SellItemInfoPanel.Initialize</definition>
+        <argsstring>(TradingItem item)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>SellItemInfoPanel.Initialize</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="57" column="17" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="57" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classSellItemInfoPanel_1afe0a7a925449aa2976ffc450a4c08dfc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SellItemInfoPanel.OnPointerClick</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerClick</name>
+        <qualifiedname>SellItemInfoPanel.OnPointerClick</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="120" column="17" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="120" bodyend="127"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>SellItemInfoPanel</label>
+        <link refid="classSellItemInfoPanel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>TooltipPanelBase</label>
+        <link refid="classTooltipPanelBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="25">
+        <label>BuyCheckPanel</label>
+        <link refid="classBuyCheckPanel"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-buyButton</edgelabel>
+          <edgelabel>-closeButton</edgelabel>
+          <edgelabel>-leftButton</edgelabel>
+          <edgelabel>-leftLeftButton</edgelabel>
+          <edgelabel>-rightButton</edgelabel>
+          <edgelabel>-rightRightButton</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-tradeUIController</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-currentItem</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>BuyItemInfoPanel</label>
+        <link refid="classBuyItemInfoPanel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-panelButton</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-currentItem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-tradeUIController</edgelabel>
+        </childnode>
+      </node>
+      <node id="31">
+        <label>Constants</label>
+      </node>
+      <node id="33">
+        <label>CrewBase</label>
+        <link refid="classCrewBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>+equippedAssistant</edgelabel>
+          <edgelabel>+equippedShield</edgelabel>
+          <edgelabel>+equippedWeapon</edgelabel>
+        </childnode>
+        <childnode refid="35" relation="usage">
+          <edgelabel>+currentRoom</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>+currentShip</edgelabel>
+        </childnode>
+        <childnode refid="36" relation="usage">
+          <edgelabel>+healthBarController</edgelabel>
+        </childnode>
+      </node>
+      <node id="36">
+        <label>CrewHealthBar</label>
+        <link refid="classCrewHealthBar"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-offset</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>-crewBase</edgelabel>
+        </childnode>
+      </node>
+      <node id="32">
+        <label>CrewMember</label>
+        <link refid="classCrewMember"/>
+        <childnode refid="33" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-movementDirection</edgelabel>
+        </childnode>
+        <childnode refid="35" relation="usage">
+          <edgelabel>+madRoom</edgelabel>
+          <edgelabel>+oldReservedRoom</edgelabel>
+          <edgelabel>+reservedRoom</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>EquipmentDatabase</label>
+        <link refid="classEquipmentDatabase"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>EquipmentInfoPanel</label>
+        <link refid="classEquipmentInfoPanel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+panelButton</edgelabel>
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>-currentEquipmentItem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-tradeUIController</edgelabel>
+        </childnode>
+      </node>
+      <node id="34">
+        <label>EquipmentItem</label>
+        <link refid="classEquipmentItem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>IBeginDragHandler</label>
+      </node>
+      <node id="39">
+        <label>IDragHandler</label>
+      </node>
+      <node id="40">
+        <label>IEndDragHandler</label>
+      </node>
+      <node id="41">
+        <label>IGridPlaceable</label>
+        <link refid="interfaceIGridPlaceable"/>
+      </node>
+      <node id="7">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="29">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="44">
+        <label>ItemMapController</label>
+        <link refid="classItemMapController"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-currentItem</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="21">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="28">
+        <label>Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+        <childnode refid="35" relation="template-instance">
+          <edgelabel>&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="30">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>SellItemInfoPanel</label>
+        <link refid="classSellItemInfoPanel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-panelButton</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-currentItem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-tradeUIController</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>ShipFollowCamera</label>
+        <link refid="classShipFollowCamera"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>+targetShip</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-shipCenter</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="12" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="27">
+        <label>StorageRoomBase</label>
+        <link refid="classStorageRoomBase"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+        <childnode refid="37" relation="usage">
+          <edgelabel>#selectedItem</edgelabel>
+          <edgelabel>-itemGrid</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>TooltipPanelBase</label>
+        <link refid="classTooltipPanelBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>#lastMousePosition</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>TradeUIController</label>
+        <link refid="classTradeUIController"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-shipFollowCamera</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-buttonBuy</edgelabel>
+          <edgelabel>-buttonSell</edgelabel>
+          <edgelabel>-buyCancelButton</edgelabel>
+          <edgelabel>-buyConfirmButton</edgelabel>
+          <edgelabel>-buyPanelClosedPosition</edgelabel>
+          <edgelabel>-buyPanelOpenedShipPosition</edgelabel>
+          <edgelabel>-exitButton</edgelabel>
+          <edgelabel>-fuelBuyButton</edgelabel>
+          <edgelabel>-hypersonicBuyButton</edgelabel>
+          <edgelabel>-missileBuyButton</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-buyCheckPanel</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-tradeShip</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>-selectedBuyItemInfoPanel</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>-tradeStorage</edgelabel>
+        </childnode>
+        <childnode refid="37" relation="usage">
+          <edgelabel>-itemInstance</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>-selectedSellItemInfoPanel</edgelabel>
+        </childnode>
+        <childnode refid="42" relation="usage">
+          <edgelabel>-equipmentDatabase</edgelabel>
+        </childnode>
+        <childnode refid="43" relation="usage">
+          <edgelabel>-equipmentLeftInstance</edgelabel>
+          <edgelabel>-equipmentMiddleInstance</edgelabel>
+          <edgelabel>-equipmentRightInstance</edgelabel>
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>-recentBoughtEquipment</edgelabel>
+        </childnode>
+        <childnode refid="44" relation="usage">
+          <edgelabel>-itemMapPanel</edgelabel>
+        </childnode>
+      </node>
+      <node id="37">
+        <label>TradingItem</label>
+        <link refid="classTradingItem"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="38" relation="public-inheritance">
+        </childnode>
+        <childnode refid="39" relation="public-inheritance">
+        </childnode>
+        <childnode refid="40" relation="public-inheritance">
+        </childnode>
+        <childnode refid="41" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-itemData</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>+rotation</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>+parentStorage</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>TradingItemData</label>
+        <link refid="classTradingItemData"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>UnityEngine</label>
+      </node>
+      <node id="17">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" line="7" column="7" bodyfile="Assets/Scripts/UI/Trade/SellItemInfoPanel.cs" bodystart="8" bodyend="133"/>
+    <listofallmembers>
+      <member refid="classTooltipPanelBase_1a97ec8e3cc2519887b0ae3cfb4e3626b4" prot="protected" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>canvasComponent</name></member>
+      <member refid="classTooltipPanelBase_1a62dfbacb2b95ff327a1faa517134f4ab" prot="protected" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>canvasRectTransform</name></member>
+      <member refid="classTooltipPanelBase_1a5f6a931d088acf15cb43fa990de25e1d" prot="protected" virt="virtual"><scope>SellItemInfoPanel</scope><name>CreateTooltip</name></member>
+      <member refid="classSellItemInfoPanel_1a7ef8ded4ca7b4c7923c322bcac7a94a0" prot="public" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>CurrentItem</name></member>
+      <member refid="classSellItemInfoPanel_1ac6430f3df3ed913d365a7cf13fe6c3b3" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>currentItem</name></member>
+      <member refid="classTooltipPanelBase_1a789a2a1d18c7265d8ca055b83a8c38ce" prot="protected" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>currentToolTip</name></member>
+      <member refid="classSellItemInfoPanel_1a80eab09de032145f50fc83e1f825bb28" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>damagedColor</name></member>
+      <member refid="classSellItemInfoPanel_1ac081ba02e7a3c85352a60e754d690534" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>hightlightAlpha</name></member>
+      <member refid="classSellItemInfoPanel_1a784f641ff521ae3d2b6dd87cf96e8b72" prot="public" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>Initialize</name></member>
+      <member refid="classTooltipPanelBase_1afa2d7137da9fb9b726a7a8ff8e00a1db" prot="protected" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>isMouseOver</name></member>
+      <member refid="classSellItemInfoPanel_1a0a5e8edcd605f07c3de935b4b2552175" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>isSelected</name></member>
+      <member refid="classSellItemInfoPanel_1a6970df05662849e6a181d61726e43a35" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>itemAmount</name></member>
+      <member refid="classSellItemInfoPanel_1a0dabe5705fc5777f3c9ceb027321217b" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>itemCategory</name></member>
+      <member refid="classSellItemInfoPanel_1a512e385ee97ce225682ac76c8852d2b4" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>itemImage</name></member>
+      <member refid="classSellItemInfoPanel_1ad9558d437505985b83e45e1028aa0e16" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>itemName</name></member>
+      <member refid="classSellItemInfoPanel_1a9cfda52bda8c43d8ebdef83cd0524da1" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>itemPrice</name></member>
+      <member refid="classSellItemInfoPanel_1a5f6c757c4d301ff9a539d6d997e61b5b" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>itemShape</name></member>
+      <member refid="classSellItemInfoPanel_1a6266a6825b2d45fd614ec1bdcb6fdc23" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>itemShapeSprites</name></member>
+      <member refid="classTooltipPanelBase_1ae706f75ad68d5e73e3c2f06c6327ebdb" prot="protected" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>lastMousePosition</name></member>
+      <member refid="classSellItemInfoPanel_1a27c158a9b40f882469b778e7f5419041" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>normalColor</name></member>
+      <member refid="classTooltipPanelBase_1af2116b5eb2423885f440148dab1a07ea" prot="protected" virt="virtual"><scope>SellItemInfoPanel</scope><name>OnDestroy</name></member>
+      <member refid="classSellItemInfoPanel_1a22878a70ff3f3ba0b63ce482da79eabd" prot="protected" virt="virtual"><scope>SellItemInfoPanel</scope><name>OnMouseEnter</name></member>
+      <member refid="classSellItemInfoPanel_1a1a7d77a6053ba99d53c70965f81cdc14" prot="protected" virt="virtual"><scope>SellItemInfoPanel</scope><name>OnMouseExit</name></member>
+      <member refid="classSellItemInfoPanel_1afe0a7a925449aa2976ffc450a4c08dfc" prot="public" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>OnPointerClick</name></member>
+      <member refid="classTooltipPanelBase_1a78c48fdbc37013f86449658b65023581" prot="public" virt="virtual"><scope>SellItemInfoPanel</scope><name>OnPointerEnter</name></member>
+      <member refid="classTooltipPanelBase_1a5e453ad8bdc556be9d3d5aba631ac352" prot="public" virt="virtual"><scope>SellItemInfoPanel</scope><name>OnPointerExit</name></member>
+      <member refid="classSellItemInfoPanel_1a79bf1f4f173d6862c8c738febdfc2c1d" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>originalColor</name></member>
+      <member refid="classSellItemInfoPanel_1a0790d84c0ce15b6bc0fdeabf5df9fc0c" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>panelBackground</name></member>
+      <member refid="classSellItemInfoPanel_1a9e020253505a3b4bbc4259c3d07f651a" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>panelButton</name></member>
+      <member refid="classSellItemInfoPanel_1acf2104695c6c3d3b3b581eb166aa20c3" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>selectedBackgroundColor</name></member>
+      <member refid="classSellItemInfoPanel_1aa961f5d4b23f3757ed83a7d8e56509c6" prot="protected" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>SetToolTipText</name></member>
+      <member refid="classTooltipPanelBase_1a5245ded07eac1229cf96cae6e8e444a6" prot="protected" virt="virtual"><scope>SellItemInfoPanel</scope><name>ShowToolTipWithDelay</name></member>
+      <member refid="classSellItemInfoPanel_1a573e9b36d43e8e8fe84ded0eed6026e4" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>slightlyDamagedColor</name></member>
+      <member refid="classSellItemInfoPanel_1a349841c9a4130528faa34d02dc2b82e6" prot="protected" virt="virtual"><scope>SellItemInfoPanel</scope><name>Start</name></member>
+      <member refid="classTooltipPanelBase_1aff2cd6b976fa069a09d0aa35f5c3b29e" prot="protected" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>toolTipCoroutine</name></member>
+      <member refid="classTooltipPanelBase_1a5c08f793ca364546be496216592d1eac" prot="protected" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>tooltipParent</name></member>
+      <member refid="classTooltipPanelBase_1a07452868d9fdf00c540a3811b2cf35c3" prot="protected" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>tooltipPrefab</name></member>
+      <member refid="classSellItemInfoPanel_1ac2814bb9bbeff49939cf2a80adbbc6c2" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>tradeUIController</name></member>
+      <member refid="classSellItemInfoPanel_1a9af4fef7f0850d3975d189a37aa9ae2d" prot="private" virt="non-virtual"><scope>SellItemInfoPanel</scope><name>unsellableColor</name></member>
+      <member refid="classTooltipPanelBase_1a62c471dc692a616b0d34cb714d3ced8f" prot="protected" virt="virtual"><scope>SellItemInfoPanel</scope><name>Update</name></member>
+      <member refid="classTooltipPanelBase_1ad579941725f5d24a110e99e5c5055506" prot="protected" virt="virtual"><scope>SellItemInfoPanel</scope><name>UpdateToolTipPosition</name></member>
+      <member refid="classTooltipPanelBase_1af48e40c000aa7da2ccd0b651c45c57e7" prot="protected" virt="virtual"><scope>SellItemInfoPanel</scope><name>UpdateToolTipPositionFromMouse</name></member>
+      <member refid="classTooltipPanelBase_1a74ddd2cded31a5df8d08612a2535218f" prot="protected" virt="virtual"><scope>SellItemInfoPanel</scope><name>UpdateToolTipPositionInternal</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

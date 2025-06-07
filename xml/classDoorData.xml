@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classDoorData" kind="class" language="C#" prot="public">
+    <compoundname>DoorData</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ScriptableObject</basecompoundref>
+    <innerclass refid="classDoorData_1_1DoorLevel" prot="public">DoorData::DoorLevel</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classDoorData_1a5153c0d930d1c273a81cbc8189837ab3" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="classDoorData_1_1DoorLevel" kindref="compound">DoorLevel</ref> &gt;</type>
+        <definition>List&lt;DoorLevel&gt; DoorData.doorLevels</definition>
+        <argsstring></argsstring>
+        <name>doorLevels</name>
+        <qualifiedname>DoorData.doorLevels</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>문의 레벨별 데이터 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/DoorData.cs" line="41" column="19" bodyfile="Assets/Scripts/Ship/Doors/DoorData.cs" bodystart="41" bodyend="-1"/>
+        <referencedby refid="classDoorData_1af8221a6dc6f04d864b6f97d2f6f76e72" compoundref="DoorData_8cs" startline="80" endline="86">GetDoorData</referencedby>
+        <referencedby refid="classDoorData_1adfb8d87e97013de09112547e4a026122" compoundref="DoorData_8cs" startline="54" endline="75">InitializeDefaultLevels</referencedby>
+        <referencedby refid="classDoorData_1a59c996d94afa134c40ee54a47d50596e" compoundref="DoorData_8cs" startline="46" endline="49">OnEnable</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classDoorData_1a59c996d94afa134c40ee54a47d50596e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DoorData.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <qualifiedname>DoorData.OnEnable</qualifiedname>
+        <briefdescription>
+<para>ScriptableObject가 활성화될 때 호출되며, 필요한 경우 기본 데이터를 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/DoorData.cs" line="46" column="18" bodyfile="Assets/Scripts/Ship/Doors/DoorData.cs" bodystart="46" bodyend="49"/>
+        <references refid="classDoorData_1a5153c0d930d1c273a81cbc8189837ab3" compoundref="DoorData_8cs" startline="41">doorLevels</references>
+        <references refid="classDoorData_1adfb8d87e97013de09112547e4a026122" compoundref="DoorData_8cs" startline="54" endline="75">InitializeDefaultLevels</references>
+      </memberdef>
+      <memberdef kind="function" id="classDoorData_1adfb8d87e97013de09112547e4a026122" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DoorData.InitializeDefaultLevels</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeDefaultLevels</name>
+        <qualifiedname>DoorData.InitializeDefaultLevels</qualifiedname>
+        <briefdescription>
+<para>기본 문 레벨 데이터 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/DoorData.cs" line="54" column="18" bodyfile="Assets/Scripts/Ship/Doors/DoorData.cs" bodystart="54" bodyend="75"/>
+        <references refid="classDoorData_1a5153c0d930d1c273a81cbc8189837ab3" compoundref="DoorData_8cs" startline="41">doorLevels</references>
+        <referencedby refid="classDoorData_1a59c996d94afa134c40ee54a47d50596e" compoundref="DoorData_8cs" startline="46" endline="49">OnEnable</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classDoorData_1af8221a6dc6f04d864b6f97d2f6f76e72" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classDoorData_1_1DoorLevel" kindref="compound">DoorLevel</ref></type>
+        <definition>DoorLevel DoorData.GetDoorData</definition>
+        <argsstring>(int level)</argsstring>
+        <name>GetDoorData</name>
+        <qualifiedname>DoorData.GetDoorData</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+<para>지정된 레벨의 문 데이터 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Doors/DoorData.cs" line="80" column="22" bodyfile="Assets/Scripts/Ship/Doors/DoorData.cs" bodystart="80" bodyend="86"/>
+        <references refid="classDoorData_1a5153c0d930d1c273a81cbc8189837ab3" compoundref="DoorData_8cs" startline="41">doorLevels</references>
+        <referencedby refid="classDoor_1a15a8cb2255fa488c84910354c75899e4" compoundref="Door_8cs" startline="230" endline="237">Door.CheckPowerRequirement</referencedby>
+        <referencedby refid="classDoor_1a453a0e9eaae9f70f5405347b14f1a559" compoundref="Door_8cs" startline="208" endline="225">Door.CloseDoor</referencedby>
+        <referencedby refid="classDoor_1a0f7421b0fbdc060496d388afdd330c25" compoundref="Door_8cs" startline="92" endline="102">Door.InitializeDoor</referencedby>
+        <referencedby refid="classDoor_1ae3ceccc23f33b0219a3ea9a9dc0f7dac" compoundref="Door_8cs" startline="172" endline="203">Door.TryOpenDoor</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>문의 기본 데이터를 정의하는 ScriptableObject </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/Doors/DoorData.cs" line="10" column="7" bodyfile="Assets/Scripts/Ship/Doors/DoorData.cs" bodystart="11" bodyend="87"/>
+    <listofallmembers>
+      <member refid="classDoorData_1a5153c0d930d1c273a81cbc8189837ab3" prot="private" virt="non-virtual"><scope>DoorData</scope><name>doorLevels</name></member>
+      <member refid="classDoorData_1af8221a6dc6f04d864b6f97d2f6f76e72" prot="public" virt="non-virtual"><scope>DoorData</scope><name>GetDoorData</name></member>
+      <member refid="classDoorData_1adfb8d87e97013de09112547e4a026122" prot="private" virt="non-virtual"><scope>DoorData</scope><name>InitializeDefaultLevels</name></member>
+      <member refid="classDoorData_1a59c996d94afa134c40ee54a47d50596e" prot="private" virt="non-virtual"><scope>DoorData</scope><name>OnEnable</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

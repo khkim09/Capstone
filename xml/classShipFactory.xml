@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classShipFactory" kind="class" language="C#" prot="public">
+    <compoundname>ShipFactory</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classShipFactory_1abbcfd8b25cce2d3550a058a8ef101366" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject ShipFactory.shipPrefab</definition>
+        <argsstring></argsstring>
+        <name>shipPrefab</name>
+        <qualifiedname>ShipFactory.shipPrefab</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFactory.cs" line="10" column="25" bodyfile="Assets/Scripts/Ship/ShipFactory.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classShipFactory_1a41e5ca72b7402c955225e733b6229e0d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipFactory.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>ShipFactory.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFactory.cs" line="12" column="18" bodyfile="Assets/Scripts/Ship/ShipFactory.cs" bodystart="12" bodyend="14"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classShipFactory_1a3ce1d79dfae4f94918e9b9e7dd133d36" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship ShipFactory.CreateEmptyShipInstance</definition>
+        <argsstring>(string shipName=&quot;Ship&quot;)</argsstring>
+        <name>CreateEmptyShipInstance</name>
+        <qualifiedname>ShipFactory.CreateEmptyShipInstance</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>shipName</declname>
+          <defval>&quot;Ship&quot;</defval>
+        </param>
+        <briefdescription>
+<para>빈 함선 인스턴스 생성 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shipName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>함선 이름 (옵션)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>생성된 함선 객체</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFactory.cs" line="22" column="17" bodyfile="Assets/Scripts/Ship/ShipFactory.cs" bodystart="22" bodyend="33"/>
+        <referencedby refid="classShipFactory_1a4d0d4bf2882b83a2ab97df63c38695e5" compoundref="ShipFactory_8cs" startline="83" endline="117">CloneShip</referencedby>
+        <referencedby refid="classShipFactory_1a3c26f8bde8633e87fe1d7eaf140bc253" compoundref="ShipFactory_8cs" startline="40" endline="76">CreateShipFromTemplate</referencedby>
+        <referencedby refid="classShipFactory_1a6309b885baeace7184e54cf447f6ce88" compoundref="ShipFactory_8cs" startline="124" endline="137">LoadShipFromSave</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipFactory_1a3c26f8bde8633e87fe1d7eaf140bc253" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship ShipFactory.CreateShipFromTemplate</definition>
+        <argsstring>(ShipTemplate template)</argsstring>
+        <name>CreateShipFromTemplate</name>
+        <qualifiedname>ShipFactory.CreateShipFromTemplate</qualifiedname>
+        <param>
+          <type><ref refid="classShipTemplate" kindref="compound">ShipTemplate</ref></type>
+          <declname>template</declname>
+        </param>
+        <briefdescription>
+<para>템플릿을 기반으로 함선 생성 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>template</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>함선 템플릿</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>생성된 함선 객체</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFactory.cs" line="40" column="17" bodyfile="Assets/Scripts/Ship/ShipFactory.cs" bodystart="40" bodyend="76"/>
+        <references refid="classShip_1ada608dfe1708f8859e0a1c202c8ab121" compoundref="Ship_8cs" startline="1072" endline="1075">Ship.AddCrew</references>
+        <references refid="classShip_1aa81d7cb291b541eb413c886ef5c2122d" compoundref="Ship_8cs" startline="202" endline="281">Ship.AddRoom</references>
+        <references refid="classCrewFactory_1aec5572d50c5f18479de10fc97839e5d5" compoundref="CrewFactory_8cs" startline="47" endline="81">CrewFactory.CreateCrewInstance</references>
+        <references refid="classShipFactory_1a3ce1d79dfae4f94918e9b9e7dd133d36" compoundref="ShipFactory_8cs" startline="22" endline="33">CreateEmptyShipInstance</references>
+        <references refid="classRoomFactory_1a1edd492986abad0c85593be2fd572234" compoundref="RoomFactory_8cs" startline="95" endline="119">RoomFactory.CreateRoomInstance</references>
+        <references refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" compoundref="Room_8cs" startline="15">Room&lt; TData, TLevel &gt;.position</references>
+      </memberdef>
+      <memberdef kind="function" id="classShipFactory_1a4d0d4bf2882b83a2ab97df63c38695e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship ShipFactory.CloneShip</definition>
+        <argsstring>(Ship originalShip)</argsstring>
+        <name>CloneShip</name>
+        <qualifiedname>ShipFactory.CloneShip</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>originalShip</declname>
+        </param>
+        <briefdescription>
+<para>기존 함선을 복제하여 새 인스턴스 생성 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>originalShip</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>복제할 원본 함선</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>복제된 함선 인스턴스</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFactory.cs" line="83" column="17" bodyfile="Assets/Scripts/Ship/ShipFactory.cs" bodystart="83" bodyend="117"/>
+        <references refid="classCrewFactory_1aec5572d50c5f18479de10fc97839e5d5" compoundref="CrewFactory_8cs" startline="47" endline="81">CrewFactory.CreateCrewInstance</references>
+        <references refid="classShipFactory_1a3ce1d79dfae4f94918e9b9e7dd133d36" compoundref="ShipFactory_8cs" startline="22" endline="33">CreateEmptyShipInstance</references>
+        <references refid="classRoomFactory_1acf6b68350a4e777e8373beddcc2cae99" compoundref="RoomFactory_8cs" startline="204" endline="251">RoomFactory.CreateRoomObject</references>
+      </memberdef>
+      <memberdef kind="function" id="classShipFactory_1a6309b885baeace7184e54cf447f6ce88" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship ShipFactory.LoadShipFromSave</definition>
+        <argsstring>(string savePath)</argsstring>
+        <name>LoadShipFromSave</name>
+        <qualifiedname>ShipFactory.LoadShipFromSave</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>savePath</declname>
+        </param>
+        <briefdescription>
+<para>저장된 함선 데이터에서 함선 복원 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>savePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장 파일 경로</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>복원된 함선 또는 null</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFactory.cs" line="124" column="17" bodyfile="Assets/Scripts/Ship/ShipFactory.cs" bodystart="124" bodyend="137"/>
+        <references refid="classShipFactory_1a3ce1d79dfae4f94918e9b9e7dd133d36" compoundref="ShipFactory_8cs" startline="22" endline="33">CreateEmptyShipInstance</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선 생성 및 관리를 담당하는 팩토리 클래스 함선 인스턴스 생성 및 템플릿 관리 기능을 제공합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ShipFactory</label>
+        <link refid="classShipFactory"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ShipFactory</label>
+        <link refid="classShipFactory"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipFactory.cs" line="8" column="7" bodyfile="Assets/Scripts/Ship/ShipFactory.cs" bodystart="9" bodyend="138"/>
+    <listofallmembers>
+      <member refid="classShipFactory_1a41e5ca72b7402c955225e733b6229e0d" prot="private" virt="non-virtual"><scope>ShipFactory</scope><name>Awake</name></member>
+      <member refid="classShipFactory_1a4d0d4bf2882b83a2ab97df63c38695e5" prot="public" virt="non-virtual"><scope>ShipFactory</scope><name>CloneShip</name></member>
+      <member refid="classShipFactory_1a3ce1d79dfae4f94918e9b9e7dd133d36" prot="public" virt="non-virtual"><scope>ShipFactory</scope><name>CreateEmptyShipInstance</name></member>
+      <member refid="classShipFactory_1a3c26f8bde8633e87fe1d7eaf140bc253" prot="public" virt="non-virtual"><scope>ShipFactory</scope><name>CreateShipFromTemplate</name></member>
+      <member refid="classShipFactory_1a6309b885baeace7184e54cf447f6ce88" prot="public" virt="non-virtual"><scope>ShipFactory</scope><name>LoadShipFromSave</name></member>
+      <member refid="classShipFactory_1abbcfd8b25cce2d3550a058a8ef101366" prot="private" virt="non-virtual"><scope>ShipFactory</scope><name>shipPrefab</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

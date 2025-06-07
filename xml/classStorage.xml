@@ -1,0 +1,433 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classStorage" kind="class" language="C#" prot="public">
+    <compoundname>Storage</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <innerclass refid="classStorage_1_1StoredItem" prot="private">Storage::StoredItem</innerclass>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classStorage_1ab31740fd5648534a013321cd4a9c6096" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="classStorage" kindref="compound">Storage</ref></type>
+        <definition>Storage Storage.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>Storage.Instance</qualifiedname>
+        <briefdescription>
+<para>싱글톤 인스턴스입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" line="12" column="27" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" bodystart="12" bodyend="12"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classStorage_1a45ae67a56770bd6029a48d4875deefe5" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; int, <ref refid="classStorage_1_1StoredItem" kindref="compound">StoredItem</ref> &gt;</type>
+        <definition>Dictionary&lt;int, StoredItem&gt; Storage.storedItems</definition>
+        <argsstring></argsstring>
+        <name>storedItems</name>
+        <qualifiedname>Storage.storedItems</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>창고에 저장된 아이템 목록입니다. Key는 itemData.id이며, Value는 저장된 아이템 정보(수량 + 구매가)입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" line="33" column="24" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" bodystart="33" bodyend="-1"/>
+        <referencedby refid="classStorage_1ab21050d6c336378cf5dc82b35b032401" compoundref="Storage_8cs" startline="78" endline="103">AddItem</referencedby>
+        <referencedby refid="classStorage_1a1557debebb5ee1ef46f0d1216f69003b" compoundref="Storage_8cs" startline="56" endline="60">CanAddItem</referencedby>
+        <referencedby refid="classStorage_1a97dfaceb6c6f0d3f1fc3387cc7c79400" compoundref="Storage_8cs" startline="181" endline="191">GetAllItems</referencedby>
+        <referencedby refid="classStorage_1a7374c67c615e7f67b77d4e767b1bd1e4" compoundref="Storage_8cs" startline="145" endline="148">GetItemQuantity</referencedby>
+        <referencedby refid="classStorage_1ac706f358d9cc81795d1199c9801323e3" compoundref="Storage_8cs" startline="137" endline="140">HasItem</referencedby>
+        <referencedby refid="classStorage_1a418c4660a8f4770d696587d5370077ab" compoundref="Storage_8cs" startline="110" endline="132">RemoveItem</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classStorage_1abff82eaccdbe3475e7e46406cb9da145" prot="private" static="no" mutable="no">
+        <type><ref refid="classTradingItemDataBase" kindref="compound">TradingItemDataBase</ref></type>
+        <definition>TradingItemDataBase Storage.itemDatabase</definition>
+        <argsstring></argsstring>
+        <name>itemDatabase</name>
+        <qualifiedname>Storage.itemDatabase</qualifiedname>
+        <briefdescription>
+<para>퀘스트 연동용 TradingItemDataBase입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" line="40" column="34" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" bodystart="40" bodyend="-1"/>
+        <referencedby refid="classStorage_1afa7e57198d7a7e63ec40fc3e4a259198" compoundref="Storage_8cs" startline="153" endline="175">GetItemQuantityById</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="event">
+      <memberdef kind="event" id="classStorage_1abeb7ec2077c86775711f1b20f9f6beb2" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action&lt; <ref refid="classTradingItemData" kindref="compound">TradingItemData</ref> &gt;</type>
+        <definition>Action&lt;TradingItemData&gt; Storage.OnStorageChanged</definition>
+        <argsstring></argsstring>
+        <name>OnStorageChanged</name>
+        <qualifiedname>Storage.OnStorageChanged</qualifiedname>
+        <briefdescription>
+<para>아이템 수량 변동 시 발생하는 이벤트입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" line="36" column="25" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" bodystart="36" bodyend="-1"/>
+        <referencedby refid="classStorage_1ab21050d6c336378cf5dc82b35b032401" compoundref="Storage_8cs" startline="78" endline="103">AddItem</referencedby>
+        <referencedby refid="classStorage_1a418c4660a8f4770d696587d5370077ab" compoundref="Storage_8cs" startline="110" endline="132">RemoveItem</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classStorage_1a54f1c8059aa8c5111e9e6fa3b6ed211a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Storage.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>Storage.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" line="42" column="18" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" bodystart="42" bodyend="49"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classStorage_1a1557debebb5ee1ef46f0d1216f69003b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Storage.CanAddItem</definition>
+        <argsstring>(TradingItemData itemData, int quantity)</argsstring>
+        <name>CanAddItem</name>
+        <qualifiedname>Storage.CanAddItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+          <declname>itemData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>quantity</declname>
+        </param>
+        <briefdescription>
+<para>해당 아이템을 추가할 수 있는지 검사합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itemData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>아이템 데이터</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>quantity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>추가할 수량</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" line="56" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" bodystart="56" bodyend="60"/>
+        <references refid="classStorage_1a45ae67a56770bd6029a48d4875deefe5" compoundref="Storage_8cs" startline="33">storedItems</references>
+        <referencedby refid="classStorage_1ab21050d6c336378cf5dc82b35b032401" compoundref="Storage_8cs" startline="78" endline="103">AddItem</referencedby>
+        <referencedby refid="classTradeManager_1a22c669e983d33b0d39551c21c77837d8" compoundref="TradeManager_8cs" startline="45" endline="80">TradeManager.BuyItem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorage_1adea22f0151547f8b3c1e7618c1129cdd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Storage.AddItem</definition>
+        <argsstring>(TradingItemData itemData, int quantity)</argsstring>
+        <name>AddItem</name>
+        <qualifiedname>Storage.AddItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+          <declname>itemData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>quantity</declname>
+        </param>
+        <briefdescription>
+<para>아이템을 창고에 추가합니다. (기본 구매가 사용) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itemData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>아이템 데이터</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>quantity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>수량</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" line="67" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" bodystart="67" bodyend="70"/>
+        <references refid="classStorage_1adea22f0151547f8b3c1e7618c1129cdd" compoundref="Storage_8cs" startline="67" endline="70">AddItem</references>
+        <referencedby refid="classStorage_1adea22f0151547f8b3c1e7618c1129cdd" compoundref="Storage_8cs" startline="67" endline="70">AddItem</referencedby>
+        <referencedby refid="classTradeManager_1a22c669e983d33b0d39551c21c77837d8" compoundref="TradeManager_8cs" startline="45" endline="80">TradeManager.BuyItem</referencedby>
+        <referencedby refid="classTestStorageItemAdder_1acf9231bc26add2d4187038cdc742ea81" compoundref="TestStorageItem_8cs" startline="21" endline="56">TestStorageItemAdder.Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorage_1ab21050d6c336378cf5dc82b35b032401" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Storage.AddItem</definition>
+        <argsstring>(TradingItemData itemData, int quantity, float purchasePrice)</argsstring>
+        <name>AddItem</name>
+        <qualifiedname>Storage.AddItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+          <declname>itemData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>quantity</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>purchasePrice</declname>
+        </param>
+        <briefdescription>
+<para>아이템을 창고에 추가합니다. (구매 당시 가격 포함) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itemData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>아이템 데이터</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>quantity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>수량</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>purchasePrice</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>구매 당시 가격 (kg당)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" line="78" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" bodystart="78" bodyend="103"/>
+        <references refid="classStorage_1a1557debebb5ee1ef46f0d1216f69003b" compoundref="Storage_8cs" startline="56" endline="60">CanAddItem</references>
+        <references refid="classStorage_1abeb7ec2077c86775711f1b20f9f6beb2" compoundref="Storage_8cs" startline="36">OnStorageChanged</references>
+        <references refid="classStorage_1a45ae67a56770bd6029a48d4875deefe5" compoundref="Storage_8cs" startline="33">storedItems</references>
+      </memberdef>
+      <memberdef kind="function" id="classStorage_1a418c4660a8f4770d696587d5370077ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Storage.RemoveItem</definition>
+        <argsstring>(TradingItemData itemData, int quantity)</argsstring>
+        <name>RemoveItem</name>
+        <qualifiedname>Storage.RemoveItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+          <declname>itemData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>quantity</declname>
+        </param>
+        <briefdescription>
+<para>아이템을 창고에서 제거합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itemData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>아이템 데이터</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>quantity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>제거할 수량</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" line="110" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" bodystart="110" bodyend="132"/>
+        <references refid="classStorage_1abeb7ec2077c86775711f1b20f9f6beb2" compoundref="Storage_8cs" startline="36">OnStorageChanged</references>
+        <references refid="classStorage_1a45ae67a56770bd6029a48d4875deefe5" compoundref="Storage_8cs" startline="33">storedItems</references>
+        <referencedby refid="classTradeManager_1a727469f6d17d2aa2216066c4d54a957b" compoundref="TradeManager_8cs" startline="89" endline="117">TradeManager.SellItem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorage_1ac706f358d9cc81795d1199c9801323e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Storage.HasItem</definition>
+        <argsstring>(TradingItemData itemData, int quantity)</argsstring>
+        <name>HasItem</name>
+        <qualifiedname>Storage.HasItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+          <declname>itemData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>quantity</declname>
+        </param>
+        <briefdescription>
+<para>아이템 보유 여부를 검사합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" line="137" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" bodystart="137" bodyend="140"/>
+        <references refid="classStorage_1a45ae67a56770bd6029a48d4875deefe5" compoundref="Storage_8cs" startline="33">storedItems</references>
+        <referencedby refid="classTradeManager_1a727469f6d17d2aa2216066c4d54a957b" compoundref="TradeManager_8cs" startline="89" endline="117">TradeManager.SellItem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorage_1a7374c67c615e7f67b77d4e767b1bd1e4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Storage.GetItemQuantity</definition>
+        <argsstring>(TradingItemData itemData)</argsstring>
+        <name>GetItemQuantity</name>
+        <qualifiedname>Storage.GetItemQuantity</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+          <declname>itemData</declname>
+        </param>
+        <briefdescription>
+<para>특정 아이템의 현재 보유 수량을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" line="145" column="16" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" bodystart="145" bodyend="148"/>
+        <references refid="classStorage_1a45ae67a56770bd6029a48d4875deefe5" compoundref="Storage_8cs" startline="33">storedItems</references>
+        <referencedby refid="classStorage_1afa7e57198d7a7e63ec40fc3e4a259198" compoundref="Storage_8cs" startline="153" endline="175">GetItemQuantityById</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorage_1afa7e57198d7a7e63ec40fc3e4a259198" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Storage.GetItemQuantityById</definition>
+        <argsstring>(string targetId)</argsstring>
+        <name>GetItemQuantityById</name>
+        <qualifiedname>Storage.GetItemQuantityById</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>targetId</declname>
+        </param>
+        <briefdescription>
+<para>퀘스트 UI용 ID 기반 수량 조회 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" line="153" column="16" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" bodystart="153" bodyend="175"/>
+        <references refid="classStorage_1a7374c67c615e7f67b77d4e767b1bd1e4" compoundref="Storage_8cs" startline="145" endline="148">GetItemQuantity</references>
+        <references refid="classStorage_1abff82eaccdbe3475e7e46406cb9da145" compoundref="Storage_8cs" startline="40">itemDatabase</references>
+      </memberdef>
+      <memberdef kind="function" id="classStorage_1a97dfaceb6c6f0d3f1fc3387cc7c79400" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt;(<ref refid="classTradingItemData" kindref="compound">TradingItemData</ref> itemData, int quantity, float purchasePrice)&gt;</type>
+        <definition>List&lt;(TradingItemData itemData, int quantity, float purchasePrice)&gt; Storage.GetAllItems</definition>
+        <argsstring>()</argsstring>
+        <name>GetAllItems</name>
+        <qualifiedname>Storage.GetAllItems</qualifiedname>
+        <briefdescription>
+<para>저장된 모든 아이템 목록을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(아이템 데이터, 수량, 구매 당시 가격) 튜플 리스트</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" line="181" column="17" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" bodystart="181" bodyend="191"/>
+        <references refid="classStorage_1a45ae67a56770bd6029a48d4875deefe5" compoundref="Storage_8cs" startline="33">storedItems</references>
+        <referencedby refid="classInventoryUI_1a02cb5fa8b7ff46802da04cdb620227ff" compoundref="InventoryUI_8cs" startline="41" endline="66">InventoryUI.PopulateInventory</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Storage는 플레이어가 보유한 무역 아이템을 관리하는 클래스입니다. 아이템은 itemId(int)를 키로 사용하여 <ref refid="classTradingItemData" kindref="compound">TradingItemData</ref>, 수량, 구매 당시 가격을 저장합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>Storage</label>
+        <link refid="classStorage"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="4">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>Storage</label>
+        <link refid="classStorage"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-itemDatabase</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>TradingItemDataBase</label>
+        <link refid="classTradingItemDataBase"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" line="9" column="7" bodyfile="Assets/Scripts/Trade/PlanetTradeBuy/Storage.cs" bodystart="10" bodyend="192"/>
+    <listofallmembers>
+      <member refid="classStorage_1adea22f0151547f8b3c1e7618c1129cdd" prot="public" virt="non-virtual"><scope>Storage</scope><name>AddItem</name></member>
+      <member refid="classStorage_1ab21050d6c336378cf5dc82b35b032401" prot="public" virt="non-virtual"><scope>Storage</scope><name>AddItem</name></member>
+      <member refid="classStorage_1a54f1c8059aa8c5111e9e6fa3b6ed211a" prot="private" virt="non-virtual"><scope>Storage</scope><name>Awake</name></member>
+      <member refid="classStorage_1a1557debebb5ee1ef46f0d1216f69003b" prot="public" virt="non-virtual"><scope>Storage</scope><name>CanAddItem</name></member>
+      <member refid="classStorage_1a97dfaceb6c6f0d3f1fc3387cc7c79400" prot="public" virt="non-virtual"><scope>Storage</scope><name>GetAllItems</name></member>
+      <member refid="classStorage_1a7374c67c615e7f67b77d4e767b1bd1e4" prot="public" virt="non-virtual"><scope>Storage</scope><name>GetItemQuantity</name></member>
+      <member refid="classStorage_1afa7e57198d7a7e63ec40fc3e4a259198" prot="public" virt="non-virtual"><scope>Storage</scope><name>GetItemQuantityById</name></member>
+      <member refid="classStorage_1ac706f358d9cc81795d1199c9801323e3" prot="public" virt="non-virtual"><scope>Storage</scope><name>HasItem</name></member>
+      <member refid="classStorage_1ab31740fd5648534a013321cd4a9c6096" prot="public" virt="non-virtual"><scope>Storage</scope><name>Instance</name></member>
+      <member refid="classStorage_1abff82eaccdbe3475e7e46406cb9da145" prot="private" virt="non-virtual"><scope>Storage</scope><name>itemDatabase</name></member>
+      <member refid="classStorage_1abeb7ec2077c86775711f1b20f9f6beb2" prot="public" virt="non-virtual"><scope>Storage</scope><name>OnStorageChanged</name></member>
+      <member refid="classStorage_1a418c4660a8f4770d696587d5370077ab" prot="public" virt="non-virtual"><scope>Storage</scope><name>RemoveItem</name></member>
+      <member refid="classStorage_1a45ae67a56770bd6029a48d4875deefe5" prot="private" virt="non-virtual"><scope>Storage</scope><name>storedItems</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

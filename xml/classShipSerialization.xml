@@ -1,0 +1,360 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classShipSerialization" kind="class" language="C#" prot="public">
+    <compoundname>ShipSerialization</compoundname>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classShipSerialization_1a46b87332ce21375cb8583fde9850cb1c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ShipSerialization.SaveShip</definition>
+        <argsstring>(Ship ship, string filename)</argsstring>
+        <name>SaveShip</name>
+        <qualifiedname>ShipSerialization.SaveShip</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>함선 전체를 저장합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장할 함선</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장 파일명</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSerialization.cs" line="16" column="24" bodyfile="Assets/Scripts/Ship/ShipSerialization.cs" bodystart="16" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipSerialization_1af0b436e650944d19063bbdcda83ca1fb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>static Ship ShipSerialization.LoadShip</definition>
+        <argsstring>(string filename)</argsstring>
+        <name>LoadShip</name>
+        <qualifiedname>ShipSerialization.LoadShip</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>저장된 함선을 불러와 새 인스턴스를 생성합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>불러올 파일명</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>불러온 함선 객체, 실패 시 null 반환</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSerialization.cs" line="40" column="24" bodyfile="Assets/Scripts/Ship/ShipSerialization.cs" bodystart="40" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipSerialization_1ae4e92e3704827a4516998696e7e7d650" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ShipSerialization.RestoreShip</definition>
+        <argsstring>(string filename, Ship targetShip)</argsstring>
+        <name>RestoreShip</name>
+        <qualifiedname>ShipSerialization.RestoreShip</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>targetShip</declname>
+        </param>
+        <briefdescription>
+<para>저장된 함선 데이터를 기존 함선 객체에 복원합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>불러올 파일명</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>targetShip</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>대상 함선 객체</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>복원 성공 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSerialization.cs" line="67" column="24" bodyfile="Assets/Scripts/Ship/ShipSerialization.cs" bodystart="67" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipSerialization_1a5147976e84ee6bd25acf9e65a9e54674" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ShipSerialization.QuickSave</definition>
+        <argsstring>(Ship ship, int slotIndex=0)</argsstring>
+        <name>QuickSave</name>
+        <qualifiedname>ShipSerialization.QuickSave</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>slotIndex</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>빠른 저장 기능 - 기본 경로에 함선을 저장합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장할 함선</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>slotIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장 슬롯 번호 (선택 사항, 기본값은 0)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>저장 성공 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSerialization.cs" line="130" column="24" bodyfile="Assets/Scripts/Ship/ShipSerialization.cs" bodystart="130" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipSerialization_1a08276f67b20de6777fef448cb57d5e62" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>static Ship ShipSerialization.QuickLoad</definition>
+        <argsstring>(int slotIndex=0)</argsstring>
+        <name>QuickLoad</name>
+        <qualifiedname>ShipSerialization.QuickLoad</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>slotIndex</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>빠른 불러오기 기능 - 기본 경로에서 함선을 새로 생성하여 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>slotIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장 슬롯 번호 (선택 사항, 기본값은 0)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>생성된 함선 객체, 실패 시 null</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSerialization.cs" line="145" column="24" bodyfile="Assets/Scripts/Ship/ShipSerialization.cs" bodystart="145" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipSerialization_1ab53499298d5b5063166f258782151ed1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ShipSerialization.QuickRestore</definition>
+        <argsstring>(Ship targetShip, int slotIndex=0)</argsstring>
+        <name>QuickRestore</name>
+        <qualifiedname>ShipSerialization.QuickRestore</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>targetShip</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>slotIndex</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>빠른 불러오기 기능 - 기본 경로에서 함선을 불러와 기존 함선에 복원합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>targetShip</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>복원할 대상 함선</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>slotIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장 슬롯 번호 (선택 사항, 기본값은 0)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>불러오기 성공 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSerialization.cs" line="157" column="24" bodyfile="Assets/Scripts/Ship/ShipSerialization.cs" bodystart="157" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipSerialization_1af95e2beee74eac1619df80af4ff2fc73" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ShipSerialization.SaveExists</definition>
+        <argsstring>(int slotIndex=0)</argsstring>
+        <name>SaveExists</name>
+        <qualifiedname>ShipSerialization.SaveExists</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>slotIndex</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>저장된 함선이 존재하는지 확인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>slotIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장 슬롯 번호 (선택 사항, 기본값은 0)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>저장된 함선이 있으면 true, 없으면 false</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSerialization.cs" line="171" column="24" bodyfile="Assets/Scripts/Ship/ShipSerialization.cs" bodystart="171" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipSerialization_1af715c8b804f55cf2978fea01dbd9d421" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classShipSaveInfo" kindref="compound">ShipSaveInfo</ref></type>
+        <definition>static ShipSaveInfo ShipSerialization.GetSaveInfo</definition>
+        <argsstring>(int slotIndex)</argsstring>
+        <name>GetSaveInfo</name>
+        <qualifiedname>ShipSerialization.GetSaveInfo</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>slotIndex</declname>
+        </param>
+        <briefdescription>
+<para>저장 슬롯 관련 정보를 가져옵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>slotIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장 슬롯 번호</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>저장 정보</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSerialization.cs" line="182" column="32" bodyfile="Assets/Scripts/Ship/ShipSerialization.cs" bodystart="182" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipSerialization_1a935ecadb4d1102e5efac4f2c1ae137e9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classShipSaveInfo" kindref="compound">ShipSaveInfo</ref> &gt;</type>
+        <definition>static List&lt; ShipSaveInfo &gt; ShipSerialization.GetAllSaveInfos</definition>
+        <argsstring>(int maxSlots=10)</argsstring>
+        <name>GetAllSaveInfos</name>
+        <qualifiedname>ShipSerialization.GetAllSaveInfos</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>maxSlots</declname>
+          <defval>10</defval>
+        </param>
+        <briefdescription>
+<para>모든 저장된 함선 슬롯의 정보를 가져옵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>maxSlots</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>확인할 최대 슬롯 수</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>저장 정보 목록</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSerialization.cs" line="213" column="24" bodyfile="Assets/Scripts/Ship/ShipSerialization.cs" bodystart="213" bodyend="225"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Easy Save 3를 사용하여 함선(Ship) 객체의 직렬화 및 역직렬화를 담당하는 유틸리티 클래스 ShipFactory를 활용하여 객체 생성 및 복원을 처리합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>ShipSerialization</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipSerialization.cs" line="9" column="15" bodyfile="Assets/Scripts/Ship/ShipSerialization.cs" bodystart="10" bodyend="226"/>
+    <listofallmembers>
+      <member refid="classShipSerialization_1a935ecadb4d1102e5efac4f2c1ae137e9" prot="public" virt="non-virtual"><scope>ShipSerialization</scope><name>GetAllSaveInfos</name></member>
+      <member refid="classShipSerialization_1af715c8b804f55cf2978fea01dbd9d421" prot="public" virt="non-virtual"><scope>ShipSerialization</scope><name>GetSaveInfo</name></member>
+      <member refid="classShipSerialization_1af0b436e650944d19063bbdcda83ca1fb" prot="public" virt="non-virtual"><scope>ShipSerialization</scope><name>LoadShip</name></member>
+      <member refid="classShipSerialization_1a08276f67b20de6777fef448cb57d5e62" prot="public" virt="non-virtual"><scope>ShipSerialization</scope><name>QuickLoad</name></member>
+      <member refid="classShipSerialization_1ab53499298d5b5063166f258782151ed1" prot="public" virt="non-virtual"><scope>ShipSerialization</scope><name>QuickRestore</name></member>
+      <member refid="classShipSerialization_1a5147976e84ee6bd25acf9e65a9e54674" prot="public" virt="non-virtual"><scope>ShipSerialization</scope><name>QuickSave</name></member>
+      <member refid="classShipSerialization_1ae4e92e3704827a4516998696e7e7d650" prot="public" virt="non-virtual"><scope>ShipSerialization</scope><name>RestoreShip</name></member>
+      <member refid="classShipSerialization_1af95e2beee74eac1619df80af4ff2fc73" prot="public" virt="non-virtual"><scope>ShipSerialization</scope><name>SaveExists</name></member>
+      <member refid="classShipSerialization_1a46b87332ce21375cb8583fde9850cb1c" prot="public" virt="non-virtual"><scope>ShipSerialization</scope><name>SaveShip</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

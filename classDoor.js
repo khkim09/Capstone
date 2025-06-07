@@ -1,0 +1,27 @@
+var classDoor =
+[
+    [ "CheckPowerRequirement", "classDoor.html#a15a8cb2255fa488c84910354c75899e4", null ],
+    [ "CloseDoor", "classDoor.html#a453a0e9eaae9f70f5405347b14f1a559", null ],
+    [ "HasEnoughPower", "classDoor.html#acdc80ffed945c33f250149909e0ce5ea", null ],
+    [ "Initialize", "classDoor.html#ad3d3eccaafa53e3e6a7662f36e5c522a", null ],
+    [ "InitializeDoor", "classDoor.html#a0f7421b0fbdc060496d388afdd330c25", null ],
+    [ "RotateDirectionClockwise", "classDoor.html#a3142afcc9390636311c33985e53dcc05", null ],
+    [ "SetDirection", "classDoor.html#ad72913358152384b7778775422b6d69c", null ],
+    [ "SetDoorRotation", "classDoor.html#a5e73b7f1239cee2b9ec2ec7537e0ff92", null ],
+    [ "SetGridPosition", "classDoor.html#a8b4d13a0f62574ed25758130f956f44b", null ],
+    [ "TryOpenDoor", "classDoor.html#ae3ceccc23f33b0219a3ea9a9dc0f7dac", null ],
+    [ "animator", "classDoor.html#a62fff5ae7552edfedbe8dba9f19fba4c", null ],
+    [ "audioSource", "classDoor.html#a44635076a8b9e6fde94b4831b85197ea", null ],
+    [ "currentHitPoint", "classDoor.html#a4f5d4b24bdf7149f2977d338b7d3f9ce", null ],
+    [ "currentLevel", "classDoor.html#aef084507b3f4d124188d9c862fe03a45", null ],
+    [ "direction", "classDoor.html#a36efbfa46bbc63369d80e8c56ef8b84a", null ],
+    [ "doorData", "classDoor.html#ae3c9d88704accfd16441fb6d7edb1878", null ],
+    [ "isOpen", "classDoor.html#aa2d909dad9369d6e557357db882bf33a", null ],
+    [ "originalDirection", "classDoor.html#a05045399c7241cc7ab352db1ea21d52a", null ],
+    [ "originalGridPosition", "classDoor.html#abde00fcec39b8766abd3200bbaca2cbd", null ],
+    [ "passTimer", "classDoor.html#a2d152db53c143c4e8318ff92d57afd9a", null ],
+    [ "spriteRenderer", "classDoor.html#a0e15249011da5cb777aa49235edba8db", null ],
+    [ "Direction", "classDoor.html#a820512e94d13273b126ecd2b41cc0d26", null ],
+    [ "OriginalDirection", "classDoor.html#a9ee4863cc9a04e17dd562bda1a8b3b86", null ],
+    [ "OriginalGridPosition", "classDoor.html#aea9b35dae480b3c8e6d36f8470fe90e1", null ]
+];

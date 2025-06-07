@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classHullPlacementInfo" kind="class" language="C#" prot="public">
+    <compoundname>HullPlacementInfo</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classHullPlacementInfo_1a0dbafef3adc25ee47029400a64240145" prot="public" static="no" mutable="no">
+        <type><ref refid="classOuterHullSystem_1afbdd66498c2e772751342e20721366c9" kindref="member">OuterHullSystem.HullType</ref></type>
+        <definition>OuterHullSystem.HullType HullPlacementInfo.type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <qualifiedname>HullPlacementInfo.type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="7" column="36" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classHullPlacementInfo_1a8ac9401ff17fc73026ff1f1d08b36962" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int HullPlacementInfo.directionIndex</definition>
+        <argsstring></argsstring>
+        <name>directionIndex</name>
+        <qualifiedname>HullPlacementInfo.directionIndex</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="8" column="16" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classHullPlacementInfo_1a56df05c1af7c2548f6537a513f22c9eb" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool HullPlacementInfo.useVariation</definition>
+        <argsstring></argsstring>
+        <name>useVariation</name>
+        <qualifiedname>HullPlacementInfo.useVariation</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="9" column="17" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="11">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>HullPlacementInfo</label>
+        <link refid="classHullPlacementInfo"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>+type</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="13">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="16">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/BlueprintShip.cs" line="5" column="7" bodyfile="Assets/Scripts/CustomizeShip/BlueprintShip.cs" bodystart="6" bodyend="10"/>
+    <listofallmembers>
+      <member refid="classHullPlacementInfo_1a8ac9401ff17fc73026ff1f1d08b36962" prot="public" virt="non-virtual"><scope>HullPlacementInfo</scope><name>directionIndex</name></member>
+      <member refid="classHullPlacementInfo_1a0dbafef3adc25ee47029400a64240145" prot="public" virt="non-virtual"><scope>HullPlacementInfo</scope><name>type</name></member>
+      <member refid="classHullPlacementInfo_1a56df05c1af7c2548f6537a513f22c9eb" prot="public" virt="non-virtual"><scope>HullPlacementInfo</scope><name>useVariation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

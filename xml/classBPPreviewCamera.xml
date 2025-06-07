@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classBPPreviewCamera" kind="class" language="C#" prot="public">
+    <compoundname>BPPreviewCamera</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classBPPreviewCamera_1a3af31c0810c2e0a2fe95b12ff5b0b948" prot="private" static="no" mutable="no">
+        <type>Camera</type>
+        <definition>Camera BPPreviewCamera.previewCamera</definition>
+        <argsstring></argsstring>
+        <name>previewCamera</name>
+        <qualifiedname>BPPreviewCamera.previewCamera</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" line="7" column="21" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBPPreviewCamera_1a7f07e0c2c685f61b4f6ede99f9a723fd" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float BPPreviewCamera.padding</definition>
+        <argsstring></argsstring>
+        <name>padding</name>
+        <qualifiedname>BPPreviewCamera.padding</qualifiedname>
+        <initializer>= 1f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" line="8" column="19" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classBPPreviewCamera_1afeb15ea5c045157cdfb6e4b487fdbcfe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BPPreviewCamera.RenderOnce</definition>
+        <argsstring>()</argsstring>
+        <name>RenderOnce</name>
+        <qualifiedname>BPPreviewCamera.RenderOnce</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" line="10" column="17" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" bodystart="10" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classBPPreviewCamera_1a4eec30394a989b12fd4809a932630882" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BPPreviewCamera.FitToBlueprint</definition>
+        <argsstring>(List&lt; Vector2Int &gt; tilePositions)</argsstring>
+        <name>FitToBlueprint</name>
+        <qualifiedname>BPPreviewCamera.FitToBlueprint</qualifiedname>
+        <param>
+          <type>List&lt; Vector2Int &gt;</type>
+          <declname>tilePositions</declname>
+        </param>
+        <briefdescription>
+<para>preview Area 사이즈에 맞게 도안 띄우기 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tilePositions</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" line="27" column="17" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" bodystart="27" bodyend="52"/>
+        <references refid="classBPPreviewCamera_1ac80a50d0256398bba9b02300537e9d2a" compoundref="BPPreviewCamera_8cs" startline="59" endline="63">GridToWorldPosition</references>
+        <referencedby refid="classBPPreviewArea_1a6b5d2cb5df9097c71feb974ab80c5eb3" compoundref="BPPreviewArea_8cs" startline="20" endline="57">BPPreviewArea.UpdateAndShow</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBPPreviewCamera_1ac80a50d0256398bba9b02300537e9d2a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector3</type>
+        <definition>Vector3 BPPreviewCamera.GridToWorldPosition</definition>
+        <argsstring>(Vector2 gridPos)</argsstring>
+        <name>GridToWorldPosition</name>
+        <qualifiedname>BPPreviewCamera.GridToWorldPosition</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>gridPos</declname>
+        </param>
+        <briefdescription>
+<para>그리드 좌표를 월드 좌표로 변환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gridPos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>변환할 그리드 좌표.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 위치의 월드 좌표.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" line="59" column="20" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" bodystart="59" bodyend="63"/>
+        <referencedby refid="classBPPreviewCamera_1a4eec30394a989b12fd4809a932630882" compoundref="BPPreviewCamera_8cs" startline="27" endline="52">FitToBlueprint</referencedby>
+        <referencedby refid="classBPPreviewCamera_1ae204cc6711c488318d88ece708cfc447" compoundref="BPPreviewCamera_8cs" startline="70" endline="73">GetWorldPositionFromGrid</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBPPreviewCamera_1ae204cc6711c488318d88ece708cfc447" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector3</type>
+        <definition>Vector3 BPPreviewCamera.GetWorldPositionFromGrid</definition>
+        <argsstring>(Vector2 gridPos)</argsstring>
+        <name>GetWorldPositionFromGrid</name>
+        <qualifiedname>BPPreviewCamera.GetWorldPositionFromGrid</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>gridPos</declname>
+        </param>
+        <briefdescription>
+<para>실제 월드 위치 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gridPos</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" line="70" column="20" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" bodystart="70" bodyend="73"/>
+        <references refid="classBPPreviewCamera_1ac80a50d0256398bba9b02300537e9d2a" compoundref="BPPreviewCamera_8cs" startline="59" endline="63">GridToWorldPosition</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classBPPreviewCamera_1ab7a77145ec51a0acabd5717af37bf7d8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator BPPreviewCamera.RenderAtEndOfFrame</definition>
+        <argsstring>()</argsstring>
+        <name>RenderAtEndOfFrame</name>
+        <qualifiedname>BPPreviewCamera.RenderAtEndOfFrame</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" line="15" column="25" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" bodystart="15" bodyend="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>BPPreviewCamera</label>
+        <link refid="classBPPreviewCamera"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>BPPreviewCamera</label>
+        <link refid="classBPPreviewCamera"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" line="5" column="7" bodyfile="Assets/Scripts/CustomizeShip/BPPreviewCamera.cs" bodystart="6" bodyend="74"/>
+    <listofallmembers>
+      <member refid="classBPPreviewCamera_1a4eec30394a989b12fd4809a932630882" prot="public" virt="non-virtual"><scope>BPPreviewCamera</scope><name>FitToBlueprint</name></member>
+      <member refid="classBPPreviewCamera_1ae204cc6711c488318d88ece708cfc447" prot="public" virt="non-virtual"><scope>BPPreviewCamera</scope><name>GetWorldPositionFromGrid</name></member>
+      <member refid="classBPPreviewCamera_1ac80a50d0256398bba9b02300537e9d2a" prot="public" virt="non-virtual"><scope>BPPreviewCamera</scope><name>GridToWorldPosition</name></member>
+      <member refid="classBPPreviewCamera_1a7f07e0c2c685f61b4f6ede99f9a723fd" prot="private" virt="non-virtual"><scope>BPPreviewCamera</scope><name>padding</name></member>
+      <member refid="classBPPreviewCamera_1a3af31c0810c2e0a2fe95b12ff5b0b948" prot="private" virt="non-virtual"><scope>BPPreviewCamera</scope><name>previewCamera</name></member>
+      <member refid="classBPPreviewCamera_1ab7a77145ec51a0acabd5717af37bf7d8" prot="private" virt="non-virtual"><scope>BPPreviewCamera</scope><name>RenderAtEndOfFrame</name></member>
+      <member refid="classBPPreviewCamera_1afeb15ea5c045157cdfb6e4b487fdbcfe" prot="public" virt="non-virtual"><scope>BPPreviewCamera</scope><name>RenderOnce</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

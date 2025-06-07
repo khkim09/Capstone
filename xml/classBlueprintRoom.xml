@@ -1,0 +1,964 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classBlueprintRoom" kind="class" language="C#" prot="public">
+    <compoundname>BlueprintRoom</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref refid="interfaceIBlueprintPlaceable" prot="public" virt="non-virtual">IBlueprintPlaceable</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classBlueprintRoom_1af0266eb4ade96baa01af05c4ee797bde" prot="public" static="no" mutable="no">
+        <type><ref refid="classRoomData" kindref="compound">RoomData</ref></type>
+        <definition>RoomData BlueprintRoom.bpRoomData</definition>
+        <argsstring></argsstring>
+        <name>bpRoomData</name>
+        <qualifiedname>BlueprintRoom.bpRoomData</qualifiedname>
+        <briefdescription>
+<para><ref refid="classRoomData" kindref="compound">RoomData</ref> 참조 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="12" column="21" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="12" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1ae76607d6bcaeffa74b78b54acc1b0128" compoundref="BlueprintRoom_8cs" startline="259" endline="279">Initialize</referencedby>
+        <referencedby refid="classShip_1a23daf25351bed0b564d1059ebc999796" compoundref="Ship_8cs" startline="610" endline="663">Ship.ReplaceShipFromBlueprint</referencedby>
+        <referencedby refid="classBlueprintShip_1a1c492e0713444916c84c37894b82c71d" compoundref="BlueprintShip_8cs" startline="178" endline="437">BlueprintShip.SetBPHullLevel</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1a3cb43036fb9af681986b6cea42d3ba73" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int BlueprintRoom.bpLevelIndex</definition>
+        <argsstring></argsstring>
+        <name>bpLevelIndex</name>
+        <qualifiedname>BlueprintRoom.bpLevelIndex</qualifiedname>
+        <briefdescription>
+<para>선택된 레벨 인덱스 (0~2) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="15" column="16" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="15" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1ae76607d6bcaeffa74b78b54acc1b0128" compoundref="BlueprintRoom_8cs" startline="259" endline="279">Initialize</referencedby>
+        <referencedby refid="classShip_1a23daf25351bed0b564d1059ebc999796" compoundref="Ship_8cs" startline="610" endline="663">Ship.ReplaceShipFromBlueprint</referencedby>
+        <referencedby refid="classBlueprintShip_1a1c492e0713444916c84c37894b82c71d" compoundref="BlueprintShip_8cs" startline="178" endline="437">BlueprintShip.SetBPHullLevel</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1a3094262bc3e6432e1b2ee2244c97e88e" prot="public" static="no" mutable="no">
+        <type>Constants.Rotations.Rotation</type>
+        <definition>Constants.Rotations.Rotation BlueprintRoom.bpRotation</definition>
+        <argsstring></argsstring>
+        <name>bpRotation</name>
+        <qualifiedname>BlueprintRoom.bpRotation</qualifiedname>
+        <briefdescription>
+<para>회전 각 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="18" column="39" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="18" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1a7710c72fe4d997c6b66b007d7a26bd60" compoundref="BlueprintRoom_8cs" startline="312" endline="315">GetRotation</referencedby>
+        <referencedby refid="classBlueprintRoom_1ae76607d6bcaeffa74b78b54acc1b0128" compoundref="BlueprintRoom_8cs" startline="259" endline="279">Initialize</referencedby>
+        <referencedby refid="classShip_1a23daf25351bed0b564d1059ebc999796" compoundref="Ship_8cs" startline="610" endline="663">Ship.ReplaceShipFromBlueprint</referencedby>
+        <referencedby refid="classBlueprintRoom_1a3a914e9ad1aa6a5dc570a8d639c1da48" compoundref="BlueprintRoom_8cs" startline="302" endline="307">Rotate</referencedby>
+        <referencedby refid="classBlueprintShip_1a1c492e0713444916c84c37894b82c71d" compoundref="BlueprintShip_8cs" startline="178" endline="437">BlueprintShip.SetBPHullLevel</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+        <referencedby refid="classBlueprintRoom_1a1a2b179b39c57c37cd36f1e2c4fae866" compoundref="BlueprintRoom_8cs" startline="396" endline="399">UpdateOccupiedTiles</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1a6deed6b26e20e780c04054ab8e0bba38" prot="public" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int BlueprintRoom.bpPosition</definition>
+        <argsstring></argsstring>
+        <name>bpPosition</name>
+        <qualifiedname>BlueprintRoom.bpPosition</qualifiedname>
+        <briefdescription>
+<para>배치 위치 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="21" column="23" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="21" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1a72302abb083027c88d5a8253503f49dc" compoundref="BlueprintRoom_8cs" startline="320" endline="323">GetGridPosition</referencedby>
+        <referencedby refid="classBlueprintRoom_1ae76607d6bcaeffa74b78b54acc1b0128" compoundref="BlueprintRoom_8cs" startline="259" endline="279">Initialize</referencedby>
+        <referencedby refid="classShip_1a23daf25351bed0b564d1059ebc999796" compoundref="Ship_8cs" startline="610" endline="663">Ship.ReplaceShipFromBlueprint</referencedby>
+        <referencedby refid="classBlueprintShip_1a1c492e0713444916c84c37894b82c71d" compoundref="BlueprintShip_8cs" startline="178" endline="437">BlueprintShip.SetBPHullLevel</referencedby>
+        <referencedby refid="classBlueprintRoom_1a6663cc0bf0a8908d7b8c34d881efd9d7" compoundref="BlueprintRoom_8cs" startline="328" endline="331">SetGridPosition</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+        <referencedby refid="classBlueprintRoom_1a1a2b179b39c57c37cd36f1e2c4fae866" compoundref="BlueprintRoom_8cs" startline="396" endline="399">UpdateOccupiedTiles</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1a9e5e54f4f77a6f05288b43f0a31d5e52" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int BlueprintRoom.bpRoomCost</definition>
+        <argsstring></argsstring>
+        <name>bpRoomCost</name>
+        <qualifiedname>BlueprintRoom.bpRoomCost</qualifiedname>
+        <briefdescription>
+<para>해당 레벨의 설치 비용 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="34" column="16" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="34" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1a995e662b2955c84c1f598f4a81aa4892" compoundref="BlueprintRoom_8cs" startline="379" endline="382">GetCost</referencedby>
+        <referencedby refid="classBlueprintRoom_1ae76607d6bcaeffa74b78b54acc1b0128" compoundref="BlueprintRoom_8cs" startline="259" endline="279">Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1a1f01db83b6c0800571a7e9edf0bf3cf6" prot="public" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int BlueprintRoom.bpRoomSize</definition>
+        <argsstring></argsstring>
+        <name>bpRoomSize</name>
+        <qualifiedname>BlueprintRoom.bpRoomSize</qualifiedname>
+        <briefdescription>
+<para>해당 레벨의 크기 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="37" column="23" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="37" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1ae76607d6bcaeffa74b78b54acc1b0128" compoundref="BlueprintRoom_8cs" startline="259" endline="279">Initialize</referencedby>
+        <referencedby refid="classBlueprintRoom_1a3a914e9ad1aa6a5dc570a8d639c1da48" compoundref="BlueprintRoom_8cs" startline="302" endline="307">Rotate</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+        <referencedby refid="classBlueprintRoom_1a1a2b179b39c57c37cd36f1e2c4fae866" compoundref="BlueprintRoom_8cs" startline="396" endline="399">UpdateOccupiedTiles</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1a96f5d60f8c76e5080e91f8aab5333b18" prot="public" static="no" mutable="no">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>List&lt;Vector2Int&gt; BlueprintRoom.occupiedTiles</definition>
+        <argsstring></argsstring>
+        <name>occupiedTiles</name>
+        <qualifiedname>BlueprintRoom.occupiedTiles</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>실제 점유 타일 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="42" column="17" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1a7e0e187aee44308f619d702050ee3679" compoundref="BlueprintRoom_8cs" startline="388" endline="391">GetOccupiedTiles</referencedby>
+        <referencedby refid="classBlueprintRoom_1ae76607d6bcaeffa74b78b54acc1b0128" compoundref="BlueprintRoom_8cs" startline="259" endline="279">Initialize</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+        <referencedby refid="classBlueprintRoom_1a1a2b179b39c57c37cd36f1e2c4fae866" compoundref="BlueprintRoom_8cs" startline="396" endline="399">UpdateOccupiedTiles</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classBlueprintRoom_1a8835f8643ed1699acf80c8ac4ab9a5ba" prot="private" static="no" mutable="no">
+        <type><ref refid="classBlueprintShip" kindref="compound">BlueprintShip</ref></type>
+        <definition>BlueprintShip BlueprintRoom.blueprintShip</definition>
+        <argsstring></argsstring>
+        <name>blueprintShip</name>
+        <qualifiedname>BlueprintRoom.blueprintShip</qualifiedname>
+        <briefdescription>
+<para>설계도 함선 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="26" column="27" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="26" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1a48cd7a2d7140cc421d7d19e608c66349" compoundref="BlueprintRoom_8cs" startline="346" endline="349">GetBlueprintShip</referencedby>
+        <referencedby refid="classBlueprintRoom_1a206cee30827d88a027ef567ac9963929" compoundref="BlueprintRoom_8cs" startline="337" endline="340">SetBlueprint</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1a110e83a57251b0a1444f02855e3bd72d" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool BlueprintRoom.isDragging</definition>
+        <argsstring></argsstring>
+        <name>isDragging</name>
+        <qualifiedname>BlueprintRoom.isDragging</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>드래그 중인지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="31" column="18" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="31" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1ad914f1339a8244753a810e356d3a8055" compoundref="BlueprintRoom_8cs" startline="285" endline="297">SetDragMode</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1ab50dd4c636496e9363223c17bf8f5667" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer BlueprintRoom.sr</definition>
+        <argsstring></argsstring>
+        <name>sr</name>
+        <qualifiedname>BlueprintRoom.sr</qualifiedname>
+        <briefdescription>
+<para>설계도 방의 Sprite Renderer </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="47" column="28" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="47" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1ae76607d6bcaeffa74b78b54acc1b0128" compoundref="BlueprintRoom_8cs" startline="259" endline="279">Initialize</referencedby>
+        <referencedby refid="classBlueprintRoom_1ad914f1339a8244753a810e356d3a8055" compoundref="BlueprintRoom_8cs" startline="285" endline="297">SetDragMode</referencedby>
+        <referencedby refid="classBlueprintRoom_1aa265af3ebbb238a57923240f001f2c13" compoundref="BlueprintRoom_8cs" startline="87" endline="96">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1a37861bf46b4a2b7927b8b89c5ef223dd" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color BlueprintRoom.validColor</definition>
+        <argsstring></argsstring>
+        <name>validColor</name>
+        <qualifiedname>BlueprintRoom.validColor</qualifiedname>
+        <initializer>= new(0f, 1f, 0f, 0.5f)</initializer>
+        <briefdescription>
+<para>배치 가능을 나타내는 초록색 (alpha = 0.5) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="52" column="19" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="52" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1a2c9012dfafd046402538d4e94fb76d1f" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color BlueprintRoom.invalidColor</definition>
+        <argsstring></argsstring>
+        <name>invalidColor</name>
+        <qualifiedname>BlueprintRoom.invalidColor</qualifiedname>
+        <initializer>= new(1f, 0f, 0f, 0.5f)</initializer>
+        <briefdescription>
+<para>배치 불가능을 나타내는 빨간색 (alpha = 0.5) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="57" column="19" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="57" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1a4e16af7321dd0fa36c07badda4f5c628" prot="private" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int BlueprintRoom.originalPos</definition>
+        <argsstring></argsstring>
+        <name>originalPos</name>
+        <qualifiedname>BlueprintRoom.originalPos</qualifiedname>
+        <briefdescription>
+<para>이동 전 방 위치 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="62" column="24" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="62" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1a887aac1196ed56cfb5f53072fe7ef1cc" prot="private" static="no" mutable="no">
+        <type>Constants.Rotations.Rotation</type>
+        <definition>Constants.Rotations.Rotation BlueprintRoom.originalRot</definition>
+        <argsstring></argsstring>
+        <name>originalRot</name>
+        <qualifiedname>BlueprintRoom.originalRot</qualifiedname>
+        <briefdescription>
+<para>이동 전 방 회전각 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="67" column="40" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="67" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1a9ab356fbba2f0708f71b0b49b0320621" prot="private" static="no" mutable="no">
+        <type><ref refid="classGridPlacer" kindref="compound">GridPlacer</ref></type>
+        <definition>GridPlacer BlueprintRoom.gridPlacer</definition>
+        <argsstring></argsstring>
+        <name>gridPlacer</name>
+        <qualifiedname>BlueprintRoom.gridPlacer</qualifiedname>
+        <briefdescription>
+<para>그리드 타일 배치 작업을 위한 오브젝트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="72" column="24" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="72" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1a5a8b6723ac5f7a9e099dee6c0c795540" compoundref="BlueprintRoom_8cs" startline="355" endline="358">SetGridPlacer</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1a4ccbb58c03c528598bbdc218e62f8817" prot="private" static="no" mutable="no">
+        <type><ref refid="classRoomData_1_1RoomLevel" kindref="compound">RoomData.RoomLevel</ref></type>
+        <definition>RoomData.RoomLevel BlueprintRoom.levelData</definition>
+        <argsstring></argsstring>
+        <name>levelData</name>
+        <qualifiedname>BlueprintRoom.levelData</qualifiedname>
+        <briefdescription>
+<para>방 레벨 데이터 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="77" column="31" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="77" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1ae76607d6bcaeffa74b78b54acc1b0128" compoundref="BlueprintRoom_8cs" startline="259" endline="279">Initialize</referencedby>
+        <referencedby refid="classBlueprintRoom_1a3a914e9ad1aa6a5dc570a8d639c1da48" compoundref="BlueprintRoom_8cs" startline="302" endline="307">Rotate</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintRoom_1ac4c8577af9c8342caff627a850cac31c" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject BlueprintRoom.mouseDownTarget</definition>
+        <argsstring></argsstring>
+        <name>mouseDownTarget</name>
+        <qualifiedname>BlueprintRoom.mouseDownTarget</qualifiedname>
+        <briefdescription>
+<para>마우스로 클릭한 오브젝트 (방 삭제 여부 활성화 조건을 위한 변수) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="82" column="24" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="82" bodyend="-1"/>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classBlueprintRoom_1aa265af3ebbb238a57923240f001f2c13" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintRoom.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>BlueprintRoom.Start</qualifiedname>
+        <briefdescription>
+<para>collider size 맞춤 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="87" column="18" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="87" bodyend="96"/>
+        <references refid="classBlueprintRoom_1ab50dd4c636496e9363223c17bf8f5667" compoundref="BlueprintRoom_8cs" startline="47">sr</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintRoom.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>BlueprintRoom.Update</qualifiedname>
+        <briefdescription>
+<para>방 배치와 관련된 모든 작업을 매 프레임 검사 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="101" column="18" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="101" bodyend="218"/>
+        <references refid="classBlueprintRoom_1a3cb43036fb9af681986b6cea42d3ba73" compoundref="BlueprintRoom_8cs" startline="15">bpLevelIndex</references>
+        <references refid="classBlueprintRoom_1a6deed6b26e20e780c04054ab8e0bba38" compoundref="BlueprintRoom_8cs" startline="21">bpPosition</references>
+        <references refid="classBlueprintRoom_1af0266eb4ade96baa01af05c4ee797bde" compoundref="BlueprintRoom_8cs" startline="12">bpRoomData</references>
+        <references refid="classBlueprintRoom_1a1f01db83b6c0800571a7e9edf0bf3cf6" compoundref="BlueprintRoom_8cs" startline="37">bpRoomSize</references>
+        <references refid="classBlueprintRoom_1a3094262bc3e6432e1b2ee2244c97e88e" compoundref="BlueprintRoom_8cs" startline="18">bpRotation</references>
+        <references refid="classGridPlacer_1a329304b7ca9ec3e50e8e4bf5cd360b8f" compoundref="GridPlacer_8cs" startline="338" endline="356">GridPlacer.CanPlaceRoom</references>
+        <references refid="classRoomSelectionHandler_1a443092f408ad81ffc678141bc047c0b5" compoundref="RoomSelectionHandler_8cs" startline="89" endline="100">RoomSelectionHandler.Deselect</references>
+        <references refid="classGridPlacer_1a67a8b7577950ee0bbbed35781a1e984b" compoundref="GridPlacer_8cs" startline="92" endline="95">GridPlacer.GetWorldPositionFromGrid</references>
+        <references refid="classBlueprintRoom_1a9ab356fbba2f0708f71b0b49b0320621" compoundref="BlueprintRoom_8cs" startline="72">gridPlacer</references>
+        <references refid="classRoomSelectionHandler_1ac734bdf7cf316d4de6c8e82de589df1d" compoundref="RoomSelectionHandler_8cs" startline="9">RoomSelectionHandler.Instance</references>
+        <references refid="classBlueprintRoom_1a2c9012dfafd046402538d4e94fb76d1f" compoundref="BlueprintRoom_8cs" startline="57">invalidColor</references>
+        <references refid="classBlueprintRoom_1a110e83a57251b0a1444f02855e3bd72d" compoundref="BlueprintRoom_8cs" startline="31">isDragging</references>
+        <references refid="classBlueprintRoom_1a9cf612bf2c48f4a444bed549df9c3c77" compoundref="BlueprintRoom_8cs" startline="233" endline="254">IsPointerOverBlockingUI</references>
+        <references refid="classBlueprintRoom_1acb4c11a6c4712a0516a0059e59886d1b" compoundref="BlueprintRoom_8cs" startline="365" endline="377">IsPointerOverUIObject</references>
+        <references refid="classBlueprintRoom_1a4ccbb58c03c528598bbdc218e62f8817" compoundref="BlueprintRoom_8cs" startline="77">levelData</references>
+        <references refid="classGridPlacer_1a922df24240435582d5d98a30d0f56ccc" compoundref="GridPlacer_8cs" startline="210" endline="214">GridPlacer.MarkObjectOccupied</references>
+        <references refid="classBlueprintRoom_1ac4c8577af9c8342caff627a850cac31c" compoundref="BlueprintRoom_8cs" startline="82">mouseDownTarget</references>
+        <references refid="classBlueprintRoom_1a96f5d60f8c76e5080e91f8aab5333b18" compoundref="BlueprintRoom_8cs" startline="42">occupiedTiles</references>
+        <references refid="classBlueprintRoom_1a4e16af7321dd0fa36c07badda4f5c628" compoundref="BlueprintRoom_8cs" startline="62">originalPos</references>
+        <references refid="classBlueprintRoom_1a887aac1196ed56cfb5f53072fe7ef1cc" compoundref="BlueprintRoom_8cs" startline="67">originalRot</references>
+        <references refid="classBlueprintRoom_1a3a914e9ad1aa6a5dc570a8d639c1da48" compoundref="BlueprintRoom_8cs" startline="302" endline="307">Rotate</references>
+        <references refid="classRoomSelectionHandler_1ad47fcdd65c51e8358c9eff5f75beb63c" compoundref="RoomSelectionHandler_8cs" startline="14">RoomSelectionHandler.selectionUI</references>
+        <references refid="classRoomSelectionHandler_1a25af6afcf09cdd4d4ab2cfacbd96a52d" compoundref="RoomSelectionHandler_8cs" startline="46" endline="49">RoomSelectionHandler.SelectRoom</references>
+        <references refid="classGridPlacer_1abd95a28be8d9284dff882e48cb5d75c3" compoundref="GridPlacer_8cs" startline="220" endline="224">GridPlacer.UnMarkObjectOccupied</references>
+        <references refid="classBlueprintRoom_1a1a2b179b39c57c37cd36f1e2c4fae866" compoundref="BlueprintRoom_8cs" startline="396" endline="399">UpdateOccupiedTiles</references>
+        <references refid="classBlueprintRoom_1a37861bf46b4a2b7927b8b89c5ef223dd" compoundref="BlueprintRoom_8cs" startline="52">validColor</references>
+        <references refid="classGridPlacer_1a170904c40cdc0b03cde40e50b3f23d50" compoundref="GridPlacer_8cs" startline="102" endline="107">GridPlacer.WorldToGridPosition</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1a36db0986a8929cff71f0f3cc0313c0ec" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool BlueprintRoom.BlockBPMovement</definition>
+        <argsstring>()</argsstring>
+        <name>BlockBPMovement</name>
+        <qualifiedname>BlueprintRoom.BlockBPMovement</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="220" column="18" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="220" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1a9cf612bf2c48f4a444bed549df9c3c77" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool BlueprintRoom.IsPointerOverBlockingUI</definition>
+        <argsstring>()</argsstring>
+        <name>IsPointerOverBlockingUI</name>
+        <qualifiedname>BlueprintRoom.IsPointerOverBlockingUI</qualifiedname>
+        <briefdescription>
+<para>특정 UI 요소들 위에 마우스가 있는지 확인 특히 인벤토리 UI와 같은 방해가 되는 UI만 체크 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="233" column="18" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="233" bodyend="254"/>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1acb4c11a6c4712a0516a0059e59886d1b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool BlueprintRoom.IsPointerOverUIObject</definition>
+        <argsstring>(GameObject rootUI)</argsstring>
+        <name>IsPointerOverUIObject</name>
+        <qualifiedname>BlueprintRoom.IsPointerOverUIObject</qualifiedname>
+        <param>
+          <type>GameObject</type>
+          <declname>rootUI</declname>
+        </param>
+        <briefdescription>
+<para>마우스가 selectionUI 위에 있는지 확인 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rootUI</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="365" column="18" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="365" bodyend="377"/>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classBlueprintRoom_1ae76607d6bcaeffa74b78b54acc1b0128" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintRoom.Initialize</definition>
+        <argsstring>(RoomData data, int level, Vector2Int pos, Constants.Rotations.Rotation rot)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>BlueprintRoom.Initialize</qualifiedname>
+        <param>
+          <type><ref refid="classRoomData" kindref="compound">RoomData</ref></type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rot</declname>
+        </param>
+        <briefdescription>
+<para>설치 시 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="259" column="17" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="259" bodyend="279"/>
+        <references refid="classBlueprintRoom_1a3cb43036fb9af681986b6cea42d3ba73" compoundref="BlueprintRoom_8cs" startline="15">bpLevelIndex</references>
+        <references refid="classBlueprintRoom_1a6deed6b26e20e780c04054ab8e0bba38" compoundref="BlueprintRoom_8cs" startline="21">bpPosition</references>
+        <references refid="classBlueprintRoom_1a9e5e54f4f77a6f05288b43f0a31d5e52" compoundref="BlueprintRoom_8cs" startline="34">bpRoomCost</references>
+        <references refid="classBlueprintRoom_1af0266eb4ade96baa01af05c4ee797bde" compoundref="BlueprintRoom_8cs" startline="12">bpRoomData</references>
+        <references refid="classBlueprintRoom_1a1f01db83b6c0800571a7e9edf0bf3cf6" compoundref="BlueprintRoom_8cs" startline="37">bpRoomSize</references>
+        <references refid="classBlueprintRoom_1a3094262bc3e6432e1b2ee2244c97e88e" compoundref="BlueprintRoom_8cs" startline="18">bpRotation</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classBlueprintRoom_1a4ccbb58c03c528598bbdc218e62f8817" compoundref="BlueprintRoom_8cs" startline="77">levelData</references>
+        <references refid="classBlueprintRoom_1a96f5d60f8c76e5080e91f8aab5333b18" compoundref="BlueprintRoom_8cs" startline="42">occupiedTiles</references>
+        <references refid="classBlueprintRoom_1ab50dd4c636496e9363223c17bf8f5667" compoundref="BlueprintRoom_8cs" startline="47">sr</references>
+        <referencedby refid="classGridPlacer_1a11cf51c13e2c8c9261444a8e1687218a" compoundref="GridPlacer_8cs" startline="440" endline="460">GridPlacer.PlacePreviewRoom</referencedby>
+        <referencedby refid="classGridPlacer_1a2392673a4205e76f004e252a493286b5" compoundref="GridPlacer_8cs" startline="382" endline="400">GridPlacer.PlaceRoom</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1ad914f1339a8244753a810e356d3a8055" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintRoom.SetDragMode</definition>
+        <argsstring>(bool isDragging)</argsstring>
+        <name>SetDragMode</name>
+        <qualifiedname>BlueprintRoom.SetDragMode</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1a044b1a9b1129c55be1a3d04cb1412581">SetDragMode</reimplements>
+        <param>
+          <type>bool</type>
+          <declname>isDragging</declname>
+        </param>
+        <briefdescription>
+<para>드래그 모드 설정 (BlueprintRoom은 드래그 모드에서 시각적 변경만 적용) IDraggableItem 인터페이스 구현 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="285" column="17" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="285" bodyend="297"/>
+        <references refid="classBlueprintRoom_1a110e83a57251b0a1444f02855e3bd72d" compoundref="BlueprintRoom_8cs" startline="31">isDragging</references>
+        <references refid="classBlueprintRoom_1ab50dd4c636496e9363223c17bf8f5667" compoundref="BlueprintRoom_8cs" startline="47">sr</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1a3a914e9ad1aa6a5dc570a8d639c1da48" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintRoom.Rotate</definition>
+        <argsstring>(Constants.Rotations.Rotation rotation)</argsstring>
+        <name>Rotate</name>
+        <qualifiedname>BlueprintRoom.Rotate</qualifiedname>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>오브젝트 회전 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="302" column="17" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="302" bodyend="307"/>
+        <references refid="classBlueprintRoom_1a1f01db83b6c0800571a7e9edf0bf3cf6" compoundref="BlueprintRoom_8cs" startline="37">bpRoomSize</references>
+        <references refid="classBlueprintRoom_1a3094262bc3e6432e1b2ee2244c97e88e" compoundref="BlueprintRoom_8cs" startline="18">bpRotation</references>
+        <references refid="classBlueprintRoom_1a4ccbb58c03c528598bbdc218e62f8817" compoundref="BlueprintRoom_8cs" startline="77">levelData</references>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1a7710c72fe4d997c6b66b007d7a26bd60" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>object BlueprintRoom.GetRotation</definition>
+        <argsstring>()</argsstring>
+        <name>GetRotation</name>
+        <qualifiedname>BlueprintRoom.GetRotation</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1ab0239f32856108832ca9ff02fab66fe6">GetRotation</reimplements>
+        <briefdescription>
+<para>현재 회전 상태 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="312" column="19" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="312" bodyend="315"/>
+        <references refid="classBlueprintRoom_1a3094262bc3e6432e1b2ee2244c97e88e" compoundref="BlueprintRoom_8cs" startline="18">bpRotation</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1a72302abb083027c88d5a8253503f49dc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>Vector2Int BlueprintRoom.GetGridPosition</definition>
+        <argsstring>()</argsstring>
+        <name>GetGridPosition</name>
+        <qualifiedname>BlueprintRoom.GetGridPosition</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1ae74f4fe02223313619f2809a6caa72c6">GetGridPosition</reimplements>
+        <briefdescription>
+<para>현재 그리드 위치 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="320" column="23" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="320" bodyend="323"/>
+        <references refid="classBlueprintRoom_1a6deed6b26e20e780c04054ab8e0bba38" compoundref="BlueprintRoom_8cs" startline="21">bpPosition</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1a6663cc0bf0a8908d7b8c34d881efd9d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintRoom.SetGridPosition</definition>
+        <argsstring>(Vector2Int position)</argsstring>
+        <name>SetGridPosition</name>
+        <qualifiedname>BlueprintRoom.SetGridPosition</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1ac30756929c602873e3b2471dc9d63584">SetGridPosition</reimplements>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>그리드 위치 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="328" column="17" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="328" bodyend="331"/>
+        <references refid="classBlueprintRoom_1a6deed6b26e20e780c04054ab8e0bba38" compoundref="BlueprintRoom_8cs" startline="21">bpPosition</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1a206cee30827d88a027ef567ac9963929" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintRoom.SetBlueprint</definition>
+        <argsstring>(BlueprintShip bpShip)</argsstring>
+        <name>SetBlueprint</name>
+        <qualifiedname>BlueprintRoom.SetBlueprint</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1ad0280442b91c18de2f8b010c827c80f5">SetBlueprint</reimplements>
+        <param>
+          <type><ref refid="classBlueprintShip" kindref="compound">BlueprintShip</ref></type>
+          <declname>bpShip</declname>
+        </param>
+        <briefdescription>
+<para>설계도 함선 할당 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bpShip</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="337" column="17" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="337" bodyend="340"/>
+        <references refid="classBlueprintRoom_1a8835f8643ed1699acf80c8ac4ab9a5ba" compoundref="BlueprintRoom_8cs" startline="26">blueprintShip</references>
+        <referencedby refid="classGridPlacer_1a2392673a4205e76f004e252a493286b5" compoundref="GridPlacer_8cs" startline="382" endline="400">GridPlacer.PlaceRoom</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1a48cd7a2d7140cc421d7d19e608c66349" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classBlueprintShip" kindref="compound">BlueprintShip</ref></type>
+        <definition>BlueprintShip BlueprintRoom.GetBlueprintShip</definition>
+        <argsstring>()</argsstring>
+        <name>GetBlueprintShip</name>
+        <qualifiedname>BlueprintRoom.GetBlueprintShip</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1a2b9dbc880ea7e060d6d00ec2ec576a32">GetBlueprintShip</reimplements>
+        <briefdescription>
+<para>설계도 함선 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="346" column="26" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="346" bodyend="349"/>
+        <references refid="classBlueprintRoom_1a8835f8643ed1699acf80c8ac4ab9a5ba" compoundref="BlueprintRoom_8cs" startline="26">blueprintShip</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1a5a8b6723ac5f7a9e099dee6c0c795540" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintRoom.SetGridPlacer</definition>
+        <argsstring>(GridPlacer placer)</argsstring>
+        <name>SetGridPlacer</name>
+        <qualifiedname>BlueprintRoom.SetGridPlacer</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1a2a74bdceed811297aad91a1528eb6ae8">SetGridPlacer</reimplements>
+        <param>
+          <type><ref refid="classGridPlacer" kindref="compound">GridPlacer</ref></type>
+          <declname>placer</declname>
+        </param>
+        <briefdescription>
+<para>그리드 배치 담당 오브젝트 세팅 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>placer</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="355" column="17" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="355" bodyend="358"/>
+        <references refid="classBlueprintRoom_1a9ab356fbba2f0708f71b0b49b0320621" compoundref="BlueprintRoom_8cs" startline="72">gridPlacer</references>
+        <referencedby refid="classGridPlacer_1a2392673a4205e76f004e252a493286b5" compoundref="GridPlacer_8cs" startline="382" endline="400">GridPlacer.PlaceRoom</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1a995e662b2955c84c1f598f4a81aa4892" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int BlueprintRoom.GetCost</definition>
+        <argsstring>()</argsstring>
+        <name>GetCost</name>
+        <qualifiedname>BlueprintRoom.GetCost</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1ae9ea0c6d296c89ec5569152b697996a0">GetCost</reimplements>
+        <briefdescription>
+<para>설치 비용 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="379" column="16" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="379" bodyend="382"/>
+        <references refid="classBlueprintRoom_1a9e5e54f4f77a6f05288b43f0a31d5e52" compoundref="BlueprintRoom_8cs" startline="34">bpRoomCost</references>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1a7e0e187aee44308f619d702050ee3679" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>List&lt; Vector2Int &gt; BlueprintRoom.GetOccupiedTiles</definition>
+        <argsstring>()</argsstring>
+        <name>GetOccupiedTiles</name>
+        <qualifiedname>BlueprintRoom.GetOccupiedTiles</qualifiedname>
+        <reimplements refid="interfaceIBlueprintPlaceable_1a018a87125833cd2bc8f09d7b0433bc33">GetOccupiedTiles</reimplements>
+        <briefdescription>
+<para>Blueprint Room이 점유하고 있는 타일 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="388" column="17" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="388" bodyend="391"/>
+        <references refid="classBlueprintRoom_1a96f5d60f8c76e5080e91f8aab5333b18" compoundref="BlueprintRoom_8cs" startline="42">occupiedTiles</references>
+        <referencedby refid="classGridPlacer_1ab8195ca82a446385a2c7defcf3467d24" compoundref="GridPlacer_8cs" startline="152" endline="182">GridPlacer.GetCameraStartPositionToOriginShip</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintRoom_1a1a2b179b39c57c37cd36f1e2c4fae866" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BlueprintRoom.UpdateOccupiedTiles</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateOccupiedTiles</name>
+        <qualifiedname>BlueprintRoom.UpdateOccupiedTiles</qualifiedname>
+        <briefdescription>
+<para>BPRoom의 점유 타일 업데이트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="396" column="17" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="396" bodyend="399"/>
+        <references refid="classBlueprintRoom_1a6deed6b26e20e780c04054ab8e0bba38" compoundref="BlueprintRoom_8cs" startline="21">bpPosition</references>
+        <references refid="classBlueprintRoom_1a1f01db83b6c0800571a7e9edf0bf3cf6" compoundref="BlueprintRoom_8cs" startline="37">bpRoomSize</references>
+        <references refid="classBlueprintRoom_1a3094262bc3e6432e1b2ee2244c97e88e" compoundref="BlueprintRoom_8cs" startline="18">bpRotation</references>
+        <references refid="classBlueprintRoom_1a96f5d60f8c76e5080e91f8aab5333b18" compoundref="BlueprintRoom_8cs" startline="42">occupiedTiles</references>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>설계도에 배치된 방 정보. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>BlueprintRoom</label>
+        <link refid="classBlueprintRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IBlueprintPlaceable</label>
+        <link refid="interfaceIBlueprintPlaceable"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>BlueprintRoom</label>
+        <link refid="classBlueprintRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+bpRoomData</edgelabel>
+          <edgelabel>-levelData</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+bpRotation</edgelabel>
+          <edgelabel>-originalRot</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-blueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-gridPlacer</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>BlueprintShip</label>
+        <link refid="classBlueprintShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Constants</label>
+      </node>
+      <node id="16">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>GridPlacer</label>
+        <link refid="classGridPlacer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+targetBlueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-gridOrigin</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IBlueprintPlaceable</label>
+        <link refid="interfaceIBlueprintPlaceable"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="18">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="21">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>UnityEngine</label>
+      </node>
+      <node id="14">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" line="9" column="7" bodyfile="Assets/Scripts/CustomizeShip/Room/BlueprintRoom.cs" bodystart="10" bodyend="400"/>
+    <listofallmembers>
+      <member refid="classBlueprintRoom_1a36db0986a8929cff71f0f3cc0313c0ec" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>BlockBPMovement</name></member>
+      <member refid="classBlueprintRoom_1a8835f8643ed1699acf80c8ac4ab9a5ba" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>blueprintShip</name></member>
+      <member refid="classBlueprintRoom_1a3cb43036fb9af681986b6cea42d3ba73" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>bpLevelIndex</name></member>
+      <member refid="classBlueprintRoom_1a6deed6b26e20e780c04054ab8e0bba38" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>bpPosition</name></member>
+      <member refid="classBlueprintRoom_1a9e5e54f4f77a6f05288b43f0a31d5e52" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>bpRoomCost</name></member>
+      <member refid="classBlueprintRoom_1af0266eb4ade96baa01af05c4ee797bde" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>bpRoomData</name></member>
+      <member refid="classBlueprintRoom_1a1f01db83b6c0800571a7e9edf0bf3cf6" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>bpRoomSize</name></member>
+      <member refid="classBlueprintRoom_1a3094262bc3e6432e1b2ee2244c97e88e" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>bpRotation</name></member>
+      <member refid="classBlueprintRoom_1a48cd7a2d7140cc421d7d19e608c66349" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>GetBlueprintShip</name></member>
+      <member refid="classBlueprintRoom_1a995e662b2955c84c1f598f4a81aa4892" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>GetCost</name></member>
+      <member refid="classBlueprintRoom_1a72302abb083027c88d5a8253503f49dc" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>GetGridPosition</name></member>
+      <member refid="classBlueprintRoom_1a7e0e187aee44308f619d702050ee3679" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>GetOccupiedTiles</name></member>
+      <member refid="classBlueprintRoom_1a7710c72fe4d997c6b66b007d7a26bd60" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>GetRotation</name></member>
+      <member refid="classBlueprintRoom_1a9ab356fbba2f0708f71b0b49b0320621" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>gridPlacer</name></member>
+      <member refid="classBlueprintRoom_1ae76607d6bcaeffa74b78b54acc1b0128" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>Initialize</name></member>
+      <member refid="classBlueprintRoom_1a2c9012dfafd046402538d4e94fb76d1f" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>invalidColor</name></member>
+      <member refid="classBlueprintRoom_1a110e83a57251b0a1444f02855e3bd72d" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>isDragging</name></member>
+      <member refid="classBlueprintRoom_1a9cf612bf2c48f4a444bed549df9c3c77" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>IsPointerOverBlockingUI</name></member>
+      <member refid="classBlueprintRoom_1acb4c11a6c4712a0516a0059e59886d1b" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>IsPointerOverUIObject</name></member>
+      <member refid="classBlueprintRoom_1a4ccbb58c03c528598bbdc218e62f8817" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>levelData</name></member>
+      <member refid="classBlueprintRoom_1ac4c8577af9c8342caff627a850cac31c" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>mouseDownTarget</name></member>
+      <member refid="classBlueprintRoom_1a96f5d60f8c76e5080e91f8aab5333b18" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>occupiedTiles</name></member>
+      <member refid="classBlueprintRoom_1a4e16af7321dd0fa36c07badda4f5c628" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>originalPos</name></member>
+      <member refid="classBlueprintRoom_1a887aac1196ed56cfb5f53072fe7ef1cc" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>originalRot</name></member>
+      <member refid="classBlueprintRoom_1a3a914e9ad1aa6a5dc570a8d639c1da48" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>Rotate</name></member>
+      <member refid="classBlueprintRoom_1a206cee30827d88a027ef567ac9963929" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>SetBlueprint</name></member>
+      <member refid="classBlueprintRoom_1ad914f1339a8244753a810e356d3a8055" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>SetDragMode</name></member>
+      <member refid="classBlueprintRoom_1a5a8b6723ac5f7a9e099dee6c0c795540" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>SetGridPlacer</name></member>
+      <member refid="classBlueprintRoom_1a6663cc0bf0a8908d7b8c34d881efd9d7" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>SetGridPosition</name></member>
+      <member refid="classBlueprintRoom_1ab50dd4c636496e9363223c17bf8f5667" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>sr</name></member>
+      <member refid="classBlueprintRoom_1aa265af3ebbb238a57923240f001f2c13" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>Start</name></member>
+      <member refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>Update</name></member>
+      <member refid="classBlueprintRoom_1a1a2b179b39c57c37cd36f1e2c4fae866" prot="public" virt="non-virtual"><scope>BlueprintRoom</scope><name>UpdateOccupiedTiles</name></member>
+      <member refid="classBlueprintRoom_1a37861bf46b4a2b7927b8b89c5ef223dd" prot="private" virt="non-virtual"><scope>BlueprintRoom</scope><name>validColor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

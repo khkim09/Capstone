@@ -1,0 +1,444 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classShieldSystem" kind="class" language="C#" prot="public">
+    <compoundname>ShieldSystem</compoundname>
+    <basecompoundref refid="classShipSystem" prot="public" virt="non-virtual">ShipSystem</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classShieldSystem_1afbe63da4fad6e94222d6cb9a9d4de28b" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShieldSystem.currentShield</definition>
+        <argsstring></argsstring>
+        <name>currentShield</name>
+        <qualifiedname>ShieldSystem.currentShield</qualifiedname>
+        <briefdescription>
+<para>현재 쉴드 수치입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" line="12" column="19" bodyfile="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" bodystart="12" bodyend="-1"/>
+        <referencedby refid="classShieldSystem_1a6303c67554723d4e3ff3aa7fc98ce9fc" compoundref="ShieldSystem_8cs" startline="82" endline="85">GetCurrentShield</referencedby>
+        <referencedby refid="classShieldSystem_1a63973bec7496fe95c79b57638c0b00fe" compoundref="ShieldSystem_8cs" startline="130" endline="133">IsShieldActive</referencedby>
+        <referencedby refid="classShieldSystem_1ae63427dfc58e56e36378afee9f24cc82" compoundref="ShieldSystem_8cs" startline="71" endline="76">RegenerateShield</referencedby>
+        <referencedby refid="classShieldSystem_1a6aabf8cddda8f2a7f24887dbdeeff692" compoundref="ShieldSystem_8cs" startline="104" endline="124">TakeDamage</referencedby>
+        <referencedby refid="classShieldSystem_1a46cd008a11318d1b3a30744f325c0cdf" compoundref="ShieldSystem_8cs" startline="45" endline="65">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classShieldSystem_1abcf7f80e08f58dd2dbc703a30160370c" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShieldSystem.shieldRespawnTimer</definition>
+        <argsstring></argsstring>
+        <name>shieldRespawnTimer</name>
+        <qualifiedname>ShieldSystem.shieldRespawnTimer</qualifiedname>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+<para>쉴드가 파괴된 후 재활성화까지 남은 시간입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" line="17" column="19" bodyfile="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" bodystart="17" bodyend="-1"/>
+        <referencedby refid="classShieldSystem_1a6aabf8cddda8f2a7f24887dbdeeff692" compoundref="ShieldSystem_8cs" startline="104" endline="124">TakeDamage</referencedby>
+        <referencedby refid="classShieldSystem_1a46cd008a11318d1b3a30744f325c0cdf" compoundref="ShieldSystem_8cs" startline="45" endline="65">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classShieldSystem_1a7aba694d0e01cf9ace29f3fbbcf087b0" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ShieldSystem.isShieldDestroyed</definition>
+        <argsstring></argsstring>
+        <name>isShieldDestroyed</name>
+        <qualifiedname>ShieldSystem.isShieldDestroyed</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>쉴드가 파괴된 상태인지 여부입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" line="22" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" bodystart="22" bodyend="-1"/>
+        <referencedby refid="classShieldSystem_1a63973bec7496fe95c79b57638c0b00fe" compoundref="ShieldSystem_8cs" startline="130" endline="133">IsShieldActive</referencedby>
+        <referencedby refid="classShieldSystem_1a6aabf8cddda8f2a7f24887dbdeeff692" compoundref="ShieldSystem_8cs" startline="104" endline="124">TakeDamage</referencedby>
+        <referencedby refid="classShieldSystem_1a46cd008a11318d1b3a30744f325c0cdf" compoundref="ShieldSystem_8cs" startline="45" endline="65">Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classShieldSystem_1a76f58c76950f395e01789c54e35c00df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ShieldSystem.Initialize</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>ShieldSystem.Initialize</qualifiedname>
+        <reimplements refid="classShipSystem_1ab0e5623073f8bfb48c02955484cfcd4e">Initialize</reimplements>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>시스템을 초기화하고 쉴드를 최대치로 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>초기화할 대상 함선 객체.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" line="28" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" bodystart="28" bodyend="32"/>
+        <referencedby refid="classShip_1a5246a04784a96576460f8494bce02887" compoundref="Ship_8cs" startline="715" endline="737">Ship.InitializeSystems</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShieldSystem_1afc179b3207afaa1ccd125b552a52b8a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ShieldSystem.Refresh</definition>
+        <argsstring>()</argsstring>
+        <name>Refresh</name>
+        <qualifiedname>ShieldSystem.Refresh</qualifiedname>
+        <reimplements refid="classShipSystem_1ad94492134ef4577b127382af0877f6d6">Refresh</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" line="34" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" bodystart="34" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classShieldSystem_1a46cd008a11318d1b3a30744f325c0cdf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ShieldSystem.Update</definition>
+        <argsstring>(float deltaTime)</argsstring>
+        <name>Update</name>
+        <qualifiedname>ShieldSystem.Update</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>deltaTime</declname>
+        </param>
+        <briefdescription>
+<para>매 프레임마다 호출되어 쉴드 상태를 갱신합니다. 파괴 상태일 경우 재활성화 타이머를 감소시키고, 파괴되지 않은 상태에서는 자동으로 쉴드를 재생성합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>deltaTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>경과 시간 (초).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" line="45" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" bodystart="45" bodyend="65"/>
+        <references refid="classShieldSystem_1afbe63da4fad6e94222d6cb9a9d4de28b" compoundref="ShieldSystem_8cs" startline="12">currentShield</references>
+        <references refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" compoundref="ShipSystem_8cs" startline="39" endline="42">ShipSystem.GetShipStat</references>
+        <references refid="classShieldSystem_1a7aba694d0e01cf9ace29f3fbbcf087b0" compoundref="ShieldSystem_8cs" startline="22">isShieldDestroyed</references>
+        <references refid="classShieldSystem_1ae63427dfc58e56e36378afee9f24cc82" compoundref="ShieldSystem_8cs" startline="71" endline="76">RegenerateShield</references>
+        <references refid="classShieldSystem_1abcf7f80e08f58dd2dbc703a30160370c" compoundref="ShieldSystem_8cs" startline="17">shieldRespawnTimer</references>
+        <referencedby refid="classShip_1a6ab0aaf28782b38d9c80bf19e652f46c" compoundref="Ship_8cs" startline="161" endline="172">Ship.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShieldSystem_1a6303c67554723d4e3ff3aa7fc98ce9fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float ShieldSystem.GetCurrentShield</definition>
+        <argsstring>()</argsstring>
+        <name>GetCurrentShield</name>
+        <qualifiedname>ShieldSystem.GetCurrentShield</qualifiedname>
+        <briefdescription>
+<para>현재 쉴드 수치를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>현재 쉴드 수치.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" line="82" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" bodystart="82" bodyend="85"/>
+        <references refid="classShieldSystem_1afbe63da4fad6e94222d6cb9a9d4de28b" compoundref="ShieldSystem_8cs" startline="12">currentShield</references>
+        <referencedby refid="classEnemyInfoPanel_1a762fadf2a859a224ce8b1840ee9d42a8" compoundref="EnemyInfoPanel_8cs" startline="58" endline="67">EnemyInfoPanel.UpdateInfoPanel</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShieldSystem_1a190cc0fb594748a735b546c52038bfb9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float ShieldSystem.GetMaxShield</definition>
+        <argsstring>()</argsstring>
+        <name>GetMaxShield</name>
+        <qualifiedname>ShieldSystem.GetMaxShield</qualifiedname>
+        <briefdescription>
+<para>쉴드의 최대 수치를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>최대 쉴드 수치.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" line="91" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" bodystart="91" bodyend="94"/>
+        <references refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" compoundref="ShipSystem_8cs" startline="39" endline="42">ShipSystem.GetShipStat</references>
+      </memberdef>
+      <memberdef kind="function" id="classShieldSystem_1a6aabf8cddda8f2a7f24887dbdeeff692" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float ShieldSystem.TakeDamage</definition>
+        <argsstring>(float damage, ShipWeaponType shipWeaponType)</argsstring>
+        <name>TakeDamage</name>
+        <qualifiedname>ShieldSystem.TakeDamage</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>damage</declname>
+        </param>
+        <param>
+          <type>ShipWeaponType</type>
+          <declname>shipWeaponType</declname>
+        </param>
+        <briefdescription>
+<para>쉴드에 피해를 입히고, 남은 피해량을 반환합니다. 쉴드가 모두 소모되면 파괴 상태로 전환되며, 재활성화 타이머가 시작됩니다. 특정 무기 타입은 피해량 보정이 적용됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>damage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>입힌 총 피해량.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shipWeaponType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>공격 무기 유형.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>쉴드를 뚫고 전달된 남은 피해량.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" line="104" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" bodystart="104" bodyend="124"/>
+        <references refid="classShieldSystem_1afbe63da4fad6e94222d6cb9a9d4de28b" compoundref="ShieldSystem_8cs" startline="12">currentShield</references>
+        <references refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" compoundref="ShipSystem_8cs" startline="39" endline="42">ShipSystem.GetShipStat</references>
+        <references refid="classShieldSystem_1a7aba694d0e01cf9ace29f3fbbcf087b0" compoundref="ShieldSystem_8cs" startline="22">isShieldDestroyed</references>
+        <references refid="classShieldSystem_1abcf7f80e08f58dd2dbc703a30160370c" compoundref="ShieldSystem_8cs" startline="17">shieldRespawnTimer</references>
+        <referencedby refid="classShip_1a8f64cf8910e4b5d5f08382a0128860ef" compoundref="Ship_8cs" startline="1242" endline="1283">Ship.TakeAttack</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShieldSystem_1a63973bec7496fe95c79b57638c0b00fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ShieldSystem.IsShieldActive</definition>
+        <argsstring>()</argsstring>
+        <name>IsShieldActive</name>
+        <qualifiedname>ShieldSystem.IsShieldActive</qualifiedname>
+        <briefdescription>
+<para>현재 쉴드가 활성화되어 있는지 여부를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>쉴드가 존재하고 파괴되지 않았으면 true.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" line="130" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" bodystart="130" bodyend="133"/>
+        <references refid="classShieldSystem_1afbe63da4fad6e94222d6cb9a9d4de28b" compoundref="ShieldSystem_8cs" startline="12">currentShield</references>
+        <references refid="classShieldSystem_1a7aba694d0e01cf9ace29f3fbbcf087b0" compoundref="ShieldSystem_8cs" startline="22">isShieldDestroyed</references>
+        <referencedby refid="classShip_1a8f64cf8910e4b5d5f08382a0128860ef" compoundref="Ship_8cs" startline="1242" endline="1283">Ship.TakeAttack</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classShieldSystem_1ae63427dfc58e56e36378afee9f24cc82" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShieldSystem.RegenerateShield</definition>
+        <argsstring>(float deltaTime)</argsstring>
+        <name>RegenerateShield</name>
+        <qualifiedname>ShieldSystem.RegenerateShield</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>deltaTime</declname>
+        </param>
+        <briefdescription>
+<para>쉴드를 재생성합니다. 초당 재생 속도에 따라 현재 쉴드를 회복합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>deltaTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>경과 시간 (초).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" line="71" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" bodystart="71" bodyend="76"/>
+        <references refid="classShieldSystem_1afbe63da4fad6e94222d6cb9a9d4de28b" compoundref="ShieldSystem_8cs" startline="12">currentShield</references>
+        <references refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" compoundref="ShipSystem_8cs" startline="39" endline="42">ShipSystem.GetShipStat</references>
+        <referencedby refid="classShieldSystem_1a46cd008a11318d1b3a30744f325c0cdf" compoundref="ShieldSystem_8cs" startline="45" endline="65">Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선의 방어막(쉴드)을 관리하는 시스템. 쉴드의 피해 처리, 재생, 파괴 및 재활성화 타이머를 다룹니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="11">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="13">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" line="7" column="7" bodyfile="Assets/Scripts/Ship/ShipSystems/ShieldSystem.cs" bodystart="8" bodyend="134"/>
+    <listofallmembers>
+      <member refid="classShieldSystem_1afbe63da4fad6e94222d6cb9a9d4de28b" prot="private" virt="non-virtual"><scope>ShieldSystem</scope><name>currentShield</name></member>
+      <member refid="classShieldSystem_1a6303c67554723d4e3ff3aa7fc98ce9fc" prot="public" virt="non-virtual"><scope>ShieldSystem</scope><name>GetCurrentShield</name></member>
+      <member refid="classShieldSystem_1a190cc0fb594748a735b546c52038bfb9" prot="public" virt="non-virtual"><scope>ShieldSystem</scope><name>GetMaxShield</name></member>
+      <member refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" prot="protected" virt="non-virtual"><scope>ShieldSystem</scope><name>GetShipStat</name></member>
+      <member refid="classShieldSystem_1a76f58c76950f395e01789c54e35c00df" prot="public" virt="virtual"><scope>ShieldSystem</scope><name>Initialize</name></member>
+      <member refid="classShieldSystem_1a63973bec7496fe95c79b57638c0b00fe" prot="public" virt="non-virtual"><scope>ShieldSystem</scope><name>IsShieldActive</name></member>
+      <member refid="classShieldSystem_1a7aba694d0e01cf9ace29f3fbbcf087b0" prot="private" virt="non-virtual"><scope>ShieldSystem</scope><name>isShieldDestroyed</name></member>
+      <member refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" prot="protected" virt="non-virtual"><scope>ShieldSystem</scope><name>parentShip</name></member>
+      <member refid="classShieldSystem_1afc179b3207afaa1ccd125b552a52b8a6" prot="public" virt="virtual"><scope>ShieldSystem</scope><name>Refresh</name></member>
+      <member refid="classShieldSystem_1ae63427dfc58e56e36378afee9f24cc82" prot="private" virt="non-virtual"><scope>ShieldSystem</scope><name>RegenerateShield</name></member>
+      <member refid="classShieldSystem_1abcf7f80e08f58dd2dbc703a30160370c" prot="private" virt="non-virtual"><scope>ShieldSystem</scope><name>shieldRespawnTimer</name></member>
+      <member refid="classShieldSystem_1a6aabf8cddda8f2a7f24887dbdeeff692" prot="public" virt="non-virtual"><scope>ShieldSystem</scope><name>TakeDamage</name></member>
+      <member refid="classShieldSystem_1a46cd008a11318d1b3a30744f325c0cdf" prot="public" virt="non-virtual"><scope>ShieldSystem</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

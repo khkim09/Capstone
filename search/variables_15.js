@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['warheadname_0',['warheadName',['../classWarheadTypeData.html#a24492200d56c81e4b658722d30e1bc0b',1,'WarheadTypeData']]],
+  ['warheadtype_1',['warheadtype',['../classShipWeaponData.html#a033091eea5b0a474e680a432f2d6ef4d',1,'ShipWeaponData.warheadType'],['../classWarheadTypeData.html#a5cd42bb12957c310527e42c8b6cdde64',1,'WarheadTypeData.warheadType']]],
+  ['warpnodedatalist_2',['warpNodeDataList',['../classGameManager.html#af0cab28f1443bed51f3412292017d522',1,'GameManager']]],
+  ['wasmoving_3',['wasMoving',['../classCrewMember.html#a61e3027a3593ebbdda8d63d518a6b397',1,'CrewMember']]],
+  ['weapon_4',['weapon',['../classWeaponFrameFunction.html#a0a20ab264a8fd2b74974df3b9c9f9295',1,'WeaponFrameFunction']]],
+  ['weaponbuttonprefab_5',['weaponButtonPrefab',['../classBlueprintWeaponInventoryUI.html#a4306db659e2046fd6e0c81df82345280',1,'BlueprintWeaponInventoryUI']]],
+  ['weapondata_6',['weapondata',['../classWeaponInventoryButton.html#adf41fd2766a235e80b1be78146e99ce6',1,'WeaponInventoryButton.weaponData'],['../classShipWeapon.html#a954f16c27c8f13d52291b5356818e031',1,'ShipWeapon.weaponData']]],
+  ['weapondatabase_7',['weaponDatabase',['../classBlueprintWeaponInventoryUI.html#afd66635e2520c1926b63fc43bed6061e',1,'BlueprintWeaponInventoryUI']]],
+  ['weaponicon_8',['weaponIcon',['../classShipWeaponData.html#a56f63799379c96ba15619ddc6c46cc8a',1,'ShipWeaponData']]],
+  ['weaponinventoryuiobject_9',['weaponInventoryUIObject',['../classBlueprintCategoryButtonHandler.html#a1239bf2961680c2bc373dd5fff71cdc5',1,'BlueprintCategoryButtonHandler']]],
+  ['weaponname_10',['weaponName',['../classShipWeaponData.html#a7928a3832b5b84cf9f916566902dc334',1,'ShipWeaponData']]],
+  ['weaponpaneloff_11',['WeaponPanelOff',['../classWeaponPanel.html#a5d4e0e08f6a222031df24bb84792ea70',1,'WeaponPanel']]],
+  ['weaponpanelon_12',['WeaponPanelOn',['../classWeaponPanel.html#a17d66e7224c7d0fd55c38aee10928e51',1,'WeaponPanel']]],
+  ['weaponprefab_13',['weaponPrefab',['../classGridPlacer.html#ad38a51961019b2d29d57e76dd7d13380',1,'GridPlacer']]],
+  ['weapontype_14',['weapontype',['../classShipWeaponData.html#a4cad508a237e921866f922e5b9218bb7',1,'ShipWeaponData.weaponType'],['../classShipWeaponTypeData.html#a445d05e3182d3441d8453f84743d8695',1,'ShipWeaponTypeData.weaponType']]],
+  ['weapontypefilter_15',['weaponTypeFilter',['../classBlueprintWeaponInventoryUI.html#a092e1f9818cb992fb16189b7900cce55',1,'BlueprintWeaponInventoryUI']]],
+  ['workdirection_16',['workDirection',['../classRoom.html#a08bfe2fcb01f8857b0aa420d3eb08629',1,'Room']]],
+  ['worldnodedatalist_17',['worldNodeDataList',['../classGameManager.html#a7f17f96e7fd1c90a1aa227433f719e80',1,'GameManager']]]
+];

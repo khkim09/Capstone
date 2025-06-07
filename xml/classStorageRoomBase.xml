@@ -1,0 +1,1095 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classStorageRoomBase" kind="class" language="C#" prot="public" abstract="yes">
+    <compoundname>StorageRoomBase</compoundname>
+    <basecompoundref refid="classRoom" prot="public" virt="non-virtual">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</basecompoundref>
+    <derivedcompoundref refid="classStorageRoomAnimal" prot="public" virt="non-virtual">StorageRoomAnimal</derivedcompoundref>
+    <derivedcompoundref refid="classStorageRoomRegular" prot="public" virt="non-virtual">StorageRoomRegular</derivedcompoundref>
+    <derivedcompoundref refid="classStorageRoomTemperature" prot="public" virt="non-virtual">StorageRoomTemperature</derivedcompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classStorageRoomBase_1a01307e2f716fd400d0e29e0587568704" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="classTradingItem" kindref="compound">TradingItem</ref> &gt;</type>
+        <definition>List&lt;TradingItem&gt; StorageRoomBase.storedItems</definition>
+        <argsstring></argsstring>
+        <name>storedItems</name>
+        <qualifiedname>StorageRoomBase.storedItems</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>저장된 아이템 목록. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="12" column="17" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="12" bodyend="-1"/>
+        <referencedby refid="classStorageRoomBase_1a9f43c0a8cd26219e2b6a88c22925bb40" compoundref="StorageRoomBase_8cs" startline="144" endline="242">AddItem</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a2a76e5b61bea8056e3a0e3668eb75b4e" compoundref="TradingItemDragHandler_8cs" startline="465" endline="533">TradingItemDragHandler.CancelDragging</referencedby>
+        <referencedby refid="classStorageRoomBase_1aec6670542e8f9a3a142d048f97ec0980" compoundref="StorageRoomBase_8cs" startline="352" endline="359">CheckItemsAfterWarp</referencedby>
+        <referencedby refid="classStorageRoomBase_1a4d42e6e6405c9e4f3a943bb31c279f8f" compoundref="StorageRoomBase_8cs" startline="344" endline="347">DestroyAllItems</referencedby>
+        <referencedby refid="classStorageRoomBase_1aa6e2d92aa9058d4a7aff15d3c78646a0" compoundref="StorageRoomBase_8cs" startline="323" endline="339">DestroyItem</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a04f8a663a67d340a4ee45d9c377dfc27" compoundref="TradingItemDragHandler_8cs" startline="331" endline="460">TradingItemDragHandler.EndDragging</referencedby>
+        <referencedby refid="classTradeUIController_1a573473d40671cea1da7805769e28f5f7" compoundref="TradeUIController_8cs" startline="835" endline="867">TradeUIController.OnBuyCancelButtonClicked</referencedby>
+        <referencedby refid="classTradeUIController_1ae701cac291f31c4a3ccbbf75edb6555b" compoundref="TradeUIController_8cs" startline="814" endline="830">TradeUIController.OnBuyConfirmButtonClicked</referencedby>
+        <referencedby refid="classStorageRoomBase_1aeb01a9c393850d9ad7b613a3b4d20a62" compoundref="StorageRoomBase_8cs" startline="247" endline="295">RemoveItem</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a572679f873602e89680807180eaa2da3" compoundref="TradingItemDragHandler_8cs" startline="538" endline="561">TradingItemDragHandler.ResetAllItemsInteractivity</referencedby>
+        <referencedby refid="classTradeUIController_1ab97ff0cf09220f781d17250535fc7843" compoundref="TradeUIController_8cs" startline="957" endline="978">TradeUIController.SellItem</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classStorageRoomBase_1a97b8e99abcd95245b115b31a7c150644" prot="private" static="no" mutable="no">
+        <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref>[,]</type>
+        <definition>TradingItem [,] StorageRoomBase.itemGrid</definition>
+        <argsstring></argsstring>
+        <name>itemGrid</name>
+        <qualifiedname>StorageRoomBase.itemGrid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="15" column="25" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classStorageRoomBase_1a02e93420fbc61c450d16d94e69e3dfc3" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+        <definition>TradingItem StorageRoomBase.selectedItem</definition>
+        <argsstring></argsstring>
+        <name>selectedItem</name>
+        <qualifiedname>StorageRoomBase.selectedItem</qualifiedname>
+        <briefdescription>
+<para>현재 선택된 아이템 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="18" column="27" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="18" bodyend="-1"/>
+        <referencedby refid="classStorageRoomBase_1a4b86f94e183776f7102946a4382b322c" compoundref="StorageRoomBase_8cs" startline="484" endline="487">SelectItem</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classStorageRoomBase_1ab9cf4585031b5340bb4c3ee93778a2fe" prot="protected" static="no" mutable="no">
+        <type>BoxCollider2D</type>
+        <definition>BoxCollider2D StorageRoomBase.storageCollider</definition>
+        <argsstring></argsstring>
+        <name>storageCollider</name>
+        <qualifiedname>StorageRoomBase.storageCollider</qualifiedname>
+        <briefdescription>
+<para>창고 콜라이더 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="21" column="30" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="21" bodyend="-1"/>
+        <referencedby refid="classStorageRoomBase_1abda411b0f2b8935e9d79f6bfa5761a68" compoundref="StorageRoomBase_8cs" startline="46" endline="60">InitializeCollider</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classStorageRoomBase_1a63e5e32e885160725acef465d584a722" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void StorageRoomBase.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>StorageRoomBase.Start</qualifiedname>
+        <reimplements refid="classRoom_1a80feb09415e3acd9fc94d370f4b00efd">Start</reimplements>
+        <reimplementedby refid="classStorageRoomRegular_1a23335cf90c1e7785db49a6a97b63cce1">Start</reimplementedby>
+        <reimplementedby refid="classStorageRoomTemperature_1a7330e304e88f963e1b8e43a82b71b9bb">Start</reimplementedby>
+        <briefdescription>
+<para>초기화 시 방 타입을 Storage로 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="26" column="29" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="26" bodyend="30"/>
+        <references refid="classRoom_1a08bfe2fcb01f8857b0aa420d3eb08629" compoundref="Room_8cs" startline="680">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::workDirection</references>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1abda411b0f2b8935e9d79f6bfa5761a68" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void StorageRoomBase.InitializeCollider</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeCollider</name>
+        <qualifiedname>StorageRoomBase.InitializeCollider</qualifiedname>
+        <briefdescription>
+<para>창고 영역을 위한 콜라이더 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="46" column="28" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="46" bodyend="60"/>
+        <references refid="classRoom_1a20cd0655c331d88c7e1825abc51e9941" compoundref="Room_8cs" startline="464" endline="467">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::GetSize</references>
+        <references refid="classStorageRoomBase_1ab9cf4585031b5340bb4c3ee93778a2fe" compoundref="StorageRoomBase_8cs" startline="21">storageCollider</references>
+        <referencedby refid="classStorageRoomBase_1ad434cfbd52fdf361866908f89e1a5cd9" compoundref="StorageRoomBase_8cs" startline="32" endline="41">Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a16c0d2694fbbbbfdbc3d6770e832fbc1" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool StorageRoomBase.IsValidStorageForItem</definition>
+        <argsstring>(TradingItem item)</argsstring>
+        <name>IsValidStorageForItem</name>
+        <qualifiedname>StorageRoomBase.IsValidStorageForItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+<para>현재 창고가 해당 아이템에 적합한지 확인합니다. 기본적으로는 항상 적합하며, 온도 조절 창고 등에서 오버라이드합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="365" column="28" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="365" bodyend="368"/>
+        <referencedby refid="classStorageRoomBase_1aec6670542e8f9a3a142d048f97ec0980" compoundref="StorageRoomBase_8cs" startline="352" endline="359">CheckItemsAfterWarp</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a9c1d8581281b672ae3f13fe4f4b15948" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void StorageRoomBase.DegradeItemState</definition>
+        <argsstring>(TradingItem item)</argsstring>
+        <name>DegradeItemState</name>
+        <qualifiedname>StorageRoomBase.DegradeItemState</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+<para>아이템의 상태를 저하시킵니다. 아이템은 점점 더 손상된 상태로 변경됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="374" column="28" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="374" bodyend="391"/>
+        <referencedby refid="classStorageRoomBase_1aec6670542e8f9a3a142d048f97ec0980" compoundref="StorageRoomBase_8cs" startline="352" endline="359">CheckItemsAfterWarp</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classStorageRoomBase_1ad434cfbd52fdf361866908f89e1a5cd9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void StorageRoomBase.Initialize</definition>
+        <argsstring>(int level)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>StorageRoomBase.Initialize</qualifiedname>
+        <reimplements refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c">Initialize</reimplements>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+<para>방을 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="32" column="26" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="32" bodyend="41"/>
+        <references refid="classRoom_1a20cd0655c331d88c7e1825abc51e9941" compoundref="Room_8cs" startline="464" endline="467">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::GetSize</references>
+        <references refid="classStorageRoomBase_1abda411b0f2b8935e9d79f6bfa5761a68" compoundref="StorageRoomBase_8cs" startline="46" endline="60">InitializeCollider</references>
+        <references refid="classRoom_1af4b97c8e2306beda35f26f8803734eb5" compoundref="Room_8cs" startline="24">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::roomType</references>
+        <referencedby refid="classRoomFactory_1a74acccb59860611971da7f27ec99d54f" compoundref="RoomFactory_8cs" startline="128" endline="153">RoomFactory.CreateStorageRoomInstance</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a63b742f6c0350014bcb9c44134354261" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override Dictionary&lt; ShipStat, float &gt;</type>
+        <definition>override Dictionary&lt; ShipStat, float &gt; StorageRoomBase.GetStatContributions</definition>
+        <argsstring>()</argsstring>
+        <name>GetStatContributions</name>
+        <qualifiedname>StorageRoomBase.GetStatContributions</qualifiedname>
+        <reimplements refid="classRoom_1a8533094cb230185cce7735d640d950f1">GetStatContributions</reimplements>
+        <briefdescription>
+<para>이 방이 함선 스탯에 기여하는 값을 계산합니다. 작동 여부에 따라 전력 사용량을 기여합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="66" column="32" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="66" bodyend="79"/>
+        <references refid="classRoom_1aef1c93f94f164ed3151ec3d3301a1988" compoundref="Room_8cs" startline="732">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::currentRoomLevelData</references>
+        <references refid="classRoom_1af15fefedd48a2009da56d461a9084ed8" compoundref="Room_8cs" startline="324" endline="336">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::IsOperational</references>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a7cb00abfdb353857d9d43fd882b4a4cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>StorageType</type>
+        <definition>StorageType StorageRoomBase.GetStorageType</definition>
+        <argsstring>()</argsstring>
+        <name>GetStorageType</name>
+        <qualifiedname>StorageRoomBase.GetStorageType</qualifiedname>
+        <briefdescription>
+<para>현재 창고의 저장 타입을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="84" column="24" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="84" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a01b258f3a7b3fda806636f97f62b0747" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void StorageRoomBase.SetStorageType</definition>
+        <argsstring>(StorageType storageType)</argsstring>
+        <name>SetStorageType</name>
+        <qualifiedname>StorageRoomBase.SetStorageType</qualifiedname>
+        <param>
+          <type>StorageType</type>
+          <declname>storageType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="96" column="17" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="96" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a75d62c4de6410e705bb949172116b22f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool StorageRoomBase.CanStoreItemType</definition>
+        <argsstring>(ItemCategory itemType)</argsstring>
+        <name>CanStoreItemType</name>
+        <qualifiedname>StorageRoomBase.CanStoreItemType</qualifiedname>
+        <param>
+          <type>ItemCategory</type>
+          <declname>itemType</declname>
+        </param>
+        <briefdescription>
+<para>해당 아이템을 저장할 수 있는지 여부를 반환합니다. 파생 클래스에서 구현합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="106" column="26"/>
+        <referencedby refid="classStorageRoomBase_1a1628efb587b9fb33b65afddbbf7b92b1" compoundref="StorageRoomBase_8cs" startline="111" endline="139">CanPlaceItem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a1628efb587b9fb33b65afddbbf7b92b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool StorageRoomBase.CanPlaceItem</definition>
+        <argsstring>(TradingItem item, Vector2Int position, Constants.Rotations.Rotation rotation)</argsstring>
+        <name>CanPlaceItem</name>
+        <qualifiedname>StorageRoomBase.CanPlaceItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>아이템을 지정된 위치에 배치할 수 있는지 확인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="111" column="17" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="111" bodyend="139"/>
+        <references refid="classStorageRoomBase_1a75d62c4de6410e705bb949172116b22f">CanStoreItemType</references>
+        <references refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" compoundref="Room_8cs" startline="482" endline="488">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::GetOccupiedTiles</references>
+        <references refid="classRoom_1a20cd0655c331d88c7e1825abc51e9941" compoundref="Room_8cs" startline="464" endline="467">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::GetSize</references>
+        <references refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" compoundref="Room_8cs" startline="15">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::position</references>
+        <referencedby refid="classStorageRoomBase_1a9f43c0a8cd26219e2b6a88c22925bb40" compoundref="StorageRoomBase_8cs" startline="144" endline="242">AddItem</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a04f8a663a67d340a4ee45d9c377dfc27" compoundref="TradingItemDragHandler_8cs" startline="331" endline="460">TradingItemDragHandler.EndDragging</referencedby>
+        <referencedby refid="classStorageRoomBase_1a70d74b6982440d1799e3ffaa8d5a0089" compoundref="StorageRoomBase_8cs" startline="492" endline="529">RotateItem</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a63f5627fac6c69158216256ac653c932" compoundref="TradingItemDragHandler_8cs" startline="148" endline="200">TradingItemDragHandler.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a9f43c0a8cd26219e2b6a88c22925bb40" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool StorageRoomBase.AddItem</definition>
+        <argsstring>(TradingItem item, Vector2Int position, Constants.Rotations.Rotation rotation)</argsstring>
+        <name>AddItem</name>
+        <qualifiedname>StorageRoomBase.AddItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>아이템을 창고에 추가합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="144" column="25" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="144" bodyend="242"/>
+        <references refid="classStorageRoomBase_1a1628efb587b9fb33b65afddbbf7b92b1" compoundref="StorageRoomBase_8cs" startline="111" endline="139">CanPlaceItem</references>
+        <references refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" compoundref="Room_8cs" startline="482" endline="488">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::GetOccupiedTiles</references>
+        <references refid="classRoom_1a20cd0655c331d88c7e1825abc51e9941" compoundref="Room_8cs" startline="464" endline="467">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::GetSize</references>
+        <references refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" compoundref="Room_8cs" startline="15">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::position</references>
+        <references refid="classStorageRoomBase_1aeb01a9c393850d9ad7b613a3b4d20a62" compoundref="StorageRoomBase_8cs" startline="247" endline="295">RemoveItem</references>
+        <references refid="classTradingItem_1a98456cd164dc0ccafe1ae0f3d75bcd17" compoundref="TradingItem_8cs" startline="309" endline="347">TradingItem.SetDragMode</references>
+        <references refid="classStorageRoomBase_1a01307e2f716fd400d0e29e0587568704" compoundref="StorageRoomBase_8cs" startline="12">storedItems</references>
+        <referencedby refid="classTradingItemDragHandler_1a2a76e5b61bea8056e3a0e3668eb75b4e" compoundref="TradingItemDragHandler_8cs" startline="465" endline="533">TradingItemDragHandler.CancelDragging</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a04f8a663a67d340a4ee45d9c377dfc27" compoundref="TradingItemDragHandler_8cs" startline="331" endline="460">TradingItemDragHandler.EndDragging</referencedby>
+        <referencedby refid="classTradeUIController_1a87352fc401e8224c0320aee60c258f7b" compoundref="TradeUIController_8cs" startline="754" endline="807">TradeUIController.OnBuyCheckBuyButtonClicked</referencedby>
+        <referencedby refid="classStorageRoomBase_1a70d74b6982440d1799e3ffaa8d5a0089" compoundref="StorageRoomBase_8cs" startline="492" endline="529">RotateItem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1aeb01a9c393850d9ad7b613a3b4d20a62" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool StorageRoomBase.RemoveItem</definition>
+        <argsstring>(TradingItem item)</argsstring>
+        <name>RemoveItem</name>
+        <qualifiedname>StorageRoomBase.RemoveItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+<para>아이템을 창고에서 제거합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="247" column="25" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="247" bodyend="295"/>
+        <references refid="classRoom_1a20cd0655c331d88c7e1825abc51e9941" compoundref="Room_8cs" startline="464" endline="467">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::GetSize</references>
+        <references refid="classStorageRoomBase_1a01307e2f716fd400d0e29e0587568704" compoundref="StorageRoomBase_8cs" startline="12">storedItems</references>
+        <referencedby refid="classStorageRoomBase_1a9f43c0a8cd26219e2b6a88c22925bb40" compoundref="StorageRoomBase_8cs" startline="144" endline="242">AddItem</referencedby>
+        <referencedby refid="classStorageRoomBase_1aa6e2d92aa9058d4a7aff15d3c78646a0" compoundref="StorageRoomBase_8cs" startline="323" endline="339">DestroyItem</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a04f8a663a67d340a4ee45d9c377dfc27" compoundref="TradingItemDragHandler_8cs" startline="331" endline="460">TradingItemDragHandler.EndDragging</referencedby>
+        <referencedby refid="classTradeUIController_1a573473d40671cea1da7805769e28f5f7" compoundref="TradeUIController_8cs" startline="835" endline="867">TradeUIController.OnBuyCancelButtonClicked</referencedby>
+        <referencedby refid="classStorageRoomBase_1a70d74b6982440d1799e3ffaa8d5a0089" compoundref="StorageRoomBase_8cs" startline="492" endline="529">RotateItem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a52d20628427d6d53997670fe3e1b0bc3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void StorageRoomBase.RemoveAllItems</definition>
+        <argsstring>()</argsstring>
+        <name>RemoveAllItems</name>
+        <qualifiedname>StorageRoomBase.RemoveAllItems</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="297" column="17" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="297" bodyend="300"/>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1aa6e2d92aa9058d4a7aff15d3c78646a0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool StorageRoomBase.DestroyItem</definition>
+        <argsstring>(TradingItem item)</argsstring>
+        <name>DestroyItem</name>
+        <qualifiedname>StorageRoomBase.DestroyItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+<para>아이템을 완전히 삭제합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="323" column="25" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="323" bodyend="339"/>
+        <references refid="classStorageRoomBase_1aeb01a9c393850d9ad7b613a3b4d20a62" compoundref="StorageRoomBase_8cs" startline="247" endline="295">RemoveItem</references>
+        <references refid="classStorageRoomBase_1a01307e2f716fd400d0e29e0587568704" compoundref="StorageRoomBase_8cs" startline="12">storedItems</references>
+        <referencedby refid="classStorageRoomBase_1a4d42e6e6405c9e4f3a943bb31c279f8f" compoundref="StorageRoomBase_8cs" startline="344" endline="347">DestroyAllItems</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a4d42e6e6405c9e4f3a943bb31c279f8f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void StorageRoomBase.DestroyAllItems</definition>
+        <argsstring>()</argsstring>
+        <name>DestroyAllItems</name>
+        <qualifiedname>StorageRoomBase.DestroyAllItems</qualifiedname>
+        <briefdescription>
+<para>창고의 모든 아이템을 완전히 삭제합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="344" column="17" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="344" bodyend="347"/>
+        <references refid="classStorageRoomBase_1aa6e2d92aa9058d4a7aff15d3c78646a0" compoundref="StorageRoomBase_8cs" startline="323" endline="339">DestroyItem</references>
+        <references refid="classStorageRoomBase_1a01307e2f716fd400d0e29e0587568704" compoundref="StorageRoomBase_8cs" startline="12">storedItems</references>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1aec6670542e8f9a3a142d048f97ec0980" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void StorageRoomBase.CheckItemsAfterWarp</definition>
+        <argsstring>()</argsstring>
+        <name>CheckItemsAfterWarp</name>
+        <qualifiedname>StorageRoomBase.CheckItemsAfterWarp</qualifiedname>
+        <briefdescription>
+<para>워프 후 아이템 상태를 확인 및 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="352" column="25" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="352" bodyend="359"/>
+        <references refid="classStorageRoomBase_1a9c1d8581281b672ae3f13fe4f4b15948" compoundref="StorageRoomBase_8cs" startline="374" endline="391">DegradeItemState</references>
+        <references refid="classStorageRoomBase_1a16c0d2694fbbbbfdbc3d6770e832fbc1" compoundref="StorageRoomBase_8cs" startline="365" endline="368">IsValidStorageForItem</references>
+        <references refid="classStorageRoomBase_1a01307e2f716fd400d0e29e0587568704" compoundref="StorageRoomBase_8cs" startline="12">storedItems</references>
+        <referencedby refid="classStorageRoomTemperature_1a7c9c2aaa5176be404c18b6825da070f8" compoundref="StorageRoomTemperature_8cs" startline="52" endline="62">StorageRoomTemperature.SetPowerStatus</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a78a41d13a6537c2cfc67792e513d587a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>List&lt; Vector2Int &gt; StorageRoomBase.GetOccupiedTiles</definition>
+        <argsstring>(TradingItem item, Vector2Int position, Constants.Rotations.Rotation rotation)</argsstring>
+        <name>GetOccupiedTiles</name>
+        <qualifiedname>StorageRoomBase.GetOccupiedTiles</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>아이템이 점유하는 모든 타일의 좌표를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="396" column="17" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="396" bodyend="419"/>
+        <referencedby refid="classTradingItemDragHandler_1afe5a3574b515ffeefc67232daa8a8e29" compoundref="TradingItemDragHandler_8cs" startline="206" endline="257">TradingItemDragHandler.UpdatePreviewToGridPosition</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1ad999a51ba228461cae0ff898913fa00e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>Vector2Int StorageRoomBase.WorldToGridPosition</definition>
+        <argsstring>(Vector2 worldPos)</argsstring>
+        <name>WorldToGridPosition</name>
+        <qualifiedname>StorageRoomBase.WorldToGridPosition</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>worldPos</declname>
+        </param>
+        <briefdescription>
+<para>월드 좌표를 그리드 좌표로 변환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="424" column="23" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="424" bodyend="448"/>
+        <references refid="classRoom_1a20cd0655c331d88c7e1825abc51e9941" compoundref="Room_8cs" startline="464" endline="467">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::GetSize</references>
+        <referencedby refid="classTradingItemDragHandler_1a04f8a663a67d340a4ee45d9c377dfc27" compoundref="TradingItemDragHandler_8cs" startline="331" endline="460">TradingItemDragHandler.EndDragging</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a630ddf4d8a2eb577b92968739e5b22d0" compoundref="TradingItemDragHandler_8cs" startline="305" endline="326">TradingItemDragHandler.UpdatePreviewPosition</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a479f3459cd4d0708852e4475ae8eed87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector3</type>
+        <definition>Vector3 StorageRoomBase.GridToWorldPosition</definition>
+        <argsstring>(Vector2Int gridPos)</argsstring>
+        <name>GridToWorldPosition</name>
+        <qualifiedname>StorageRoomBase.GridToWorldPosition</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>gridPos</declname>
+        </param>
+        <briefdescription>
+<para>그리드 좌표를 월드 좌표로 변환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="453" column="20" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="453" bodyend="479"/>
+        <references refid="classRoom_1a20cd0655c331d88c7e1825abc51e9941" compoundref="Room_8cs" startline="464" endline="467">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::GetSize</references>
+        <referencedby refid="classTradingItemDragHandler_1a2a76e5b61bea8056e3a0e3668eb75b4e" compoundref="TradingItemDragHandler_8cs" startline="465" endline="533">TradingItemDragHandler.CancelDragging</referencedby>
+        <referencedby refid="classTradingItemDragHandler_1a04f8a663a67d340a4ee45d9c377dfc27" compoundref="TradingItemDragHandler_8cs" startline="331" endline="460">TradingItemDragHandler.EndDragging</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a4b86f94e183776f7102946a4382b322c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void StorageRoomBase.SelectItem</definition>
+        <argsstring>(TradingItem item)</argsstring>
+        <name>SelectItem</name>
+        <qualifiedname>StorageRoomBase.SelectItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+<para>선택된 아이템 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="484" column="25" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="484" bodyend="487"/>
+        <references refid="classStorageRoomBase_1a02e93420fbc61c450d16d94e69e3dfc3" compoundref="StorageRoomBase_8cs" startline="18">selectedItem</references>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a70d74b6982440d1799e3ffaa8d5a0089" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool StorageRoomBase.RotateItem</definition>
+        <argsstring>(TradingItem item)</argsstring>
+        <name>RotateItem</name>
+        <qualifiedname>StorageRoomBase.RotateItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItem" kindref="compound">TradingItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+<para>아이템 회전 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="492" column="25" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="492" bodyend="529"/>
+        <references refid="classStorageRoomBase_1a9f43c0a8cd26219e2b6a88c22925bb40" compoundref="StorageRoomBase_8cs" startline="144" endline="242">AddItem</references>
+        <references refid="classStorageRoomBase_1a1628efb587b9fb33b65afddbbf7b92b1" compoundref="StorageRoomBase_8cs" startline="111" endline="139">CanPlaceItem</references>
+        <references refid="classRoom_1ae1f89a83229215231d726691043898c6" compoundref="Room_8cs" startline="36">Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;::currentRotation</references>
+        <references refid="classStorageRoomBase_1aeb01a9c393850d9ad7b613a3b4d20a62" compoundref="StorageRoomBase_8cs" startline="247" endline="295">RemoveItem</references>
+        <references refid="classTradingItem_1adfd8fadad54e04959bd664292f2eebcb" compoundref="TradingItem_8cs" startline="183" endline="213">TradingItem.Rotate</references>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a7721786ff1690c9411ee58d526d2ccd6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classTradingItem" kindref="compound">TradingItem</ref> &gt;</type>
+        <definition>List&lt; TradingItem &gt; StorageRoomBase.GetStoredItems</definition>
+        <argsstring>()</argsstring>
+        <name>GetStoredItems</name>
+        <qualifiedname>StorageRoomBase.GetStoredItems</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="531" column="17" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="531" bodyend="534"/>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1ad861656bfde1f793d34afdab101132d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classTradingItem" kindref="compound">TradingItem</ref> &gt;</type>
+        <definition>List&lt; TradingItem &gt; StorageRoomBase.GetStoredItemsById</definition>
+        <argsstring>(int id)</argsstring>
+        <name>GetStoredItemsById</name>
+        <qualifiedname>StorageRoomBase.GetStoredItemsById</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="536" column="17" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="536" bodyend="539"/>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a10c48d5d8f59625da628818a5d092fee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classTradingItem" kindref="compound">TradingItem</ref> &gt;</type>
+        <definition>List&lt; TradingItem &gt; StorageRoomBase.GetStoredItemsByName</definition>
+        <argsstring>(string name)</argsstring>
+        <name>GetStoredItemsByName</name>
+        <qualifiedname>StorageRoomBase.GetStoredItemsByName</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="541" column="17" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="541" bodyend="544"/>
+      </memberdef>
+      <memberdef kind="function" id="classStorageRoomBase_1a7c0cea94c0bc1653c5ed848103828ca2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classTradingItem" kindref="compound">TradingItem</ref> &gt;</type>
+        <definition>List&lt; TradingItem &gt; StorageRoomBase.GetStoredItemsByCategory</definition>
+        <argsstring>(ItemCategory category)</argsstring>
+        <name>GetStoredItemsByCategory</name>
+        <qualifiedname>StorageRoomBase.GetStoredItemsByCategory</qualifiedname>
+        <param>
+          <type>ItemCategory</type>
+          <declname>category</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="546" column="17" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="546" bodyend="549"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classStorageRoomBase_1a3e9d35d5bff87c9eb36d00d9ac950966" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>Vector2Int StorageRoomBase.FindBottomLeftTile</definition>
+        <argsstring>(List&lt; Vector2Int &gt; tiles)</argsstring>
+        <name>FindBottomLeftTile</name>
+        <qualifiedname>StorageRoomBase.FindBottomLeftTile</qualifiedname>
+        <param>
+          <type>List&lt; Vector2Int &gt;</type>
+          <declname>tiles</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="304" column="24" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="304" bodyend="317"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>모든 창고 타입의 기본 클래스. 저장 가능한 아이템의 타입, 보관/제거/저하 로직 등을 공통으로 정의합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="5">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="template-instance">
+          <edgelabel>&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>StorageRoomAnimal</label>
+        <link refid="classStorageRoomAnimal"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>StorageRoomBase</label>
+        <link refid="classStorageRoomBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>StorageRoomRegular</label>
+        <link refid="classStorageRoomRegular"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>StorageRoomTemperature</label>
+        <link refid="classStorageRoomTemperature"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="7">
+        <label>Constants</label>
+      </node>
+      <node id="22">
+        <label>CrewBase</label>
+        <link refid="classCrewBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>+equippedAssistant</edgelabel>
+          <edgelabel>+equippedShield</edgelabel>
+          <edgelabel>+equippedWeapon</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>+currentRoom</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+currentShip</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>+healthBarController</edgelabel>
+        </childnode>
+      </node>
+      <node id="25">
+        <label>CrewHealthBar</label>
+        <link refid="classCrewHealthBar"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>-offset</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-crewBase</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>CrewMember</label>
+        <link refid="classCrewMember"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>-movementDirection</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>+madRoom</edgelabel>
+          <edgelabel>+oldReservedRoom</edgelabel>
+          <edgelabel>+reservedRoom</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>EquipmentItem</label>
+        <link refid="classEquipmentItem"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>IBeginDragHandler</label>
+      </node>
+      <node id="30">
+        <label>IDragHandler</label>
+      </node>
+      <node id="31">
+        <label>IEndDragHandler</label>
+      </node>
+      <node id="32">
+        <label>IGridPlaceable</label>
+        <link refid="interfaceIGridPlaceable"/>
+      </node>
+      <node id="28">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="4">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="17">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="template-instance">
+          <edgelabel>&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="20">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>StorageRoomBase</label>
+        <link refid="classStorageRoomBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>#selectedItem</edgelabel>
+          <edgelabel>-itemGrid</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>TradingItem</label>
+        <link refid="classTradingItem"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+        <childnode refid="31" relation="public-inheritance">
+        </childnode>
+        <childnode refid="32" relation="public-inheritance">
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>-itemData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+rotation</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>+parentStorage</edgelabel>
+        </childnode>
+      </node>
+      <node id="33">
+        <label>TradingItemData</label>
+        <link refid="classTradingItemData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>UnityEngine</label>
+      </node>
+      <node id="13">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" line="9" column="17" bodyfile="Assets/Scripts/Ship/Rooms/StorageRoom/StorageRoomBase.cs" bodystart="10" bodyend="550"/>
+    <listofallmembers>
+      <member refid="classRoom_1aec241c5a07916a9111693829049be457" prot="private" virt="non-virtual"><scope>StorageRoomBase</scope><name>_workingCrew</name></member>
+      <member refid="classStorageRoomBase_1a9f43c0a8cd26219e2b6a88c22925bb40" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>AddItem</name></member>
+      <member refid="classRoom_1af01fdaf835b16d6b14c7fe6826e1229d" prot="protected" virt="non-virtual"><scope>StorageRoomBase</scope><name>adjacentRooms</name></member>
+      <member refid="classRoom_1a88c5979811e45ad8f1f07d3138dcefdb" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>BlackOut</name></member>
+      <member refid="classRoom_1a2f522cbb9b82a376036ece6c852ed93c" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>CanBePlaced</name></member>
+      <member refid="classRoom_1ad62d80f55bb300b0e5b9c6e51b9e61f2" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>CanITouch</name></member>
+      <member refid="classStorageRoomBase_1a1628efb587b9fb33b65afddbbf7b92b1" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>CanPlaceItem</name></member>
+      <member refid="classStorageRoomBase_1a75d62c4de6410e705bb949172116b22f" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>CanStoreItemType</name></member>
+      <member refid="classStorageRoomBase_1aec6670542e8f9a3a142d048f97ec0980" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>CheckItemsAfterWarp</name></member>
+      <member refid="classRoom_1a37ebb8fcc2b7d3c4188806c8c0391c4f" prot="protected" virt="non-virtual"><scope>StorageRoomBase</scope><name>connectedDoors</name></member>
+      <member refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>CopyFrom</name></member>
+      <member refid="classRoom_1affffb06a79e9b46c4f77067bf8854e91" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>crewInRoom</name></member>
+      <member refid="classRoom_1a3eda5d2a24f5e68c7cd376d50096cb4c" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>currentHitPoints</name></member>
+      <member refid="classRoom_1a9a5d42a4a0a97505ea8f6f42517265f3" prot="protected" virt="non-virtual"><scope>StorageRoomBase</scope><name>currentLevel</name></member>
+      <member refid="classRoom_1aef1c93f94f164ed3151ec3d3301a1988" prot="protected" virt="non-virtual"><scope>StorageRoomBase</scope><name>currentRoomLevelData</name></member>
+      <member refid="classRoom_1ae1f89a83229215231d726691043898c6" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>currentRotation</name></member>
+      <member refid="classRoom_1a7cc8f566f2f7b8810472e4f682a34776" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>damageCondition</name></member>
+      <member refid="classStorageRoomBase_1a9c1d8581281b672ae3f13fe4f4b15948" prot="protected" virt="virtual"><scope>StorageRoomBase</scope><name>DegradeItemState</name></member>
+      <member refid="classStorageRoomBase_1a4d42e6e6405c9e4f3a943bb31c279f8f" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>DestroyAllItems</name></member>
+      <member refid="classStorageRoomBase_1aa6e2d92aa9058d4a7aff15d3c78646a0" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>DestroyItem</name></member>
+      <member refid="classRoom_1ac0999d1153572a5f5d16ced52ad09e28" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>DownDamageCondition</name></member>
+      <member refid="classStorageRoomBase_1a3e9d35d5bff87c9eb36d00d9ac950966" prot="private" virt="non-virtual"><scope>StorageRoomBase</scope><name>FindBottomLeftTile</name></member>
+      <member refid="classRoom_1ae5954789763526a0437023ef85ff64c0" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>FullRepair</name></member>
+      <member refid="classRoom_1aadaed0165d27e94c487122c7940150f1" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetConnectedDoors</name></member>
+      <member refid="classRoom_1ad765678a93134a51ff5fb6006ea24ba4" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetCrewCount</name></member>
+      <member refid="classRoom_1ae14b08f3ba19cce81b077d6fefcb1fd5" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetCurrentLevel</name></member>
+      <member refid="classRoom_1a1726ecaf3cf53bd576215060616ddc4f" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetCurrentLevelData</name></member>
+      <member refid="classRoom_1a01e20c3f739d0ca0ba9fc8a9e21c1e7e" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetHealthPercentage</name></member>
+      <member refid="classRoom_1aca10cd460fc622d1f4b968092676be31" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetIsDamageable</name></member>
+      <member refid="classRoom_1aa7705fc23f6da23ba58ede843bf53b69" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetIsPowered</name></member>
+      <member refid="classRoom_1a8d86301d093a96f051430de0c474be64" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetIsPowerRequested</name></member>
+      <member refid="classRoom_1a1972222cfff89e533a64d4a3cb7a23a2" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetMaxHitPoints</name></member>
+      <member refid="classRoom_1a40ae5083a93abef5597e9a3f6fca5cce" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>GetNextLevelStatContributions</name></member>
+      <member refid="classStorageRoomBase_1a78a41d13a6537c2cfc67792e513d587a" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetOccupiedTiles</name></member>
+      <member refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" prot="public" virt="non-virtual" ambiguityscope="Room&lt; StorageRoomBaseData, StorageRoomBaseData.StorageRoomBaseLevel &gt;."><scope>StorageRoomBase</scope><name>GetOccupiedTiles</name></member>
+      <member refid="classRoom_1abe64553abf13aa2fe9d0d9c902c64383" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetPowerConsumption</name></member>
+      <member refid="classRoom_1a21652f6cd674125034555b2cd6dfe38a" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetRoomData</name></member>
+      <member refid="classRoom_1a2365d0e5208435874084d5640a221b0c" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetRoomType</name></member>
+      <member refid="classRoom_1a08dfe5c5a797aacad22c29926b3482e4" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetRotatedCrewEntryGridPriority</name></member>
+      <member refid="classRoom_1a20cd0655c331d88c7e1825abc51e9941" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetSize</name></member>
+      <member refid="classStorageRoomBase_1a63b742f6c0350014bcb9c44134354261" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>GetStatContributions</name></member>
+      <member refid="classStorageRoomBase_1a7cb00abfdb353857d9d43fd882b4a4cb" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetStorageType</name></member>
+      <member refid="classStorageRoomBase_1a7721786ff1690c9411ee58d526d2ccd6" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetStoredItems</name></member>
+      <member refid="classStorageRoomBase_1a7c0cea94c0bc1653c5ed848103828ca2" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetStoredItemsByCategory</name></member>
+      <member refid="classStorageRoomBase_1ad861656bfde1f793d34afdab101132d3" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetStoredItemsById</name></member>
+      <member refid="classStorageRoomBase_1a10c48d5d8f59625da628818a5d092fee" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetStoredItemsByName</name></member>
+      <member refid="classRoom_1a1e00c1972c53a50675c83b0b9fdb27d3" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GetTotalCrewsInRoom</name></member>
+      <member refid="classRoom_1a72e1611197e04fa7551053bd7ccfc03f" prot="private" virt="non-virtual"><scope>StorageRoomBase</scope><name>gridSize</name></member>
+      <member refid="classStorageRoomBase_1a479f3459cd4d0708852e4475ae8eed87" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>GridToWorldPosition</name></member>
+      <member refid="classRoom_1a2d183b76de173f69d65595f779de8af7" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>HasEnoughCrew</name></member>
+      <member refid="classRoom_1a6929cc191f3db9e3a91dd63471d16b52" prot="private" virt="non-virtual"><scope>StorageRoomBase</scope><name>icon</name></member>
+      <member refid="classStorageRoomBase_1ad434cfbd52fdf361866908f89e1a5cd9" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>Initialize</name></member>
+      <member refid="classStorageRoomBase_1abda411b0f2b8935e9d79f6bfa5761a68" prot="protected" virt="virtual"><scope>StorageRoomBase</scope><name>InitializeCollider</name></member>
+      <member refid="classRoom_1a5f156328639bfa2aa5a48cd4b85458f3" prot="private" virt="non-virtual"><scope>StorageRoomBase</scope><name>InitializeDoor</name></member>
+      <member refid="classRoom_1a33bb9ff12585bbc75833a118ffab2eb0" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>InitializeIsDamageable</name></member>
+      <member refid="classRoom_1a3bdba4c8c48690061dcdac4bd6f08b5e" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>isActionConnected</name></member>
+      <member refid="classRoom_1a060d1169bcb74a2884762dcade03711b" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>isActive</name></member>
+      <member refid="classRoom_1a24960b1e2c71b53be23ae7869efc13ed" prot="private" virt="non-virtual"><scope>StorageRoomBase</scope><name>isDamageable</name></member>
+      <member refid="classRoom_1af15fefedd48a2009da56d461a9084ed8" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>IsOperational</name></member>
+      <member refid="classRoom_1a9809153e49cfcdcf4f82841e9646fbb5" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>isPowered</name></member>
+      <member refid="classRoom_1aa05e3822e244ed8eb13561735a142fae" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>isPowerRequested</name></member>
+      <member refid="classStorageRoomBase_1a16c0d2694fbbbbfdbc3d6770e832fbc1" prot="protected" virt="virtual"><scope>StorageRoomBase</scope><name>IsValidStorageForItem</name></member>
+      <member refid="classStorageRoomBase_1a97b8e99abcd95245b115b31a7c150644" prot="private" virt="non-virtual"><scope>StorageRoomBase</scope><name>itemGrid</name></member>
+      <member refid="classRoom_1a6e33736f8c1e258399cba50374a83670" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>NeedsRepair</name></member>
+      <member refid="classRoom_1a24a2b295f97d7b3d6efbe51b8f865415" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>NotifyStateChanged</name></member>
+      <member refid="classRoom_1af41633a85c88ae9e207f5a2589e752c2" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>OccupiesTile</name></member>
+      <member refid="classRoom_1a577bbc93f6479096f0d4bedd6cefc26e" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>OnCrewEnter</name></member>
+      <member refid="classRoom_1a406fb69e32ccf550c344f0d335eac2e9" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>OnCrewExit</name></member>
+      <member refid="classRoom_1ae6a1f78f8f519e13f08b655d042eb8bd" prot="private" virt="non-virtual"><scope>StorageRoomBase</scope><name>OnDestroy</name></member>
+      <member refid="classRoom_1a1e5e6fe3b3c473bd0a08582f9017681d" prot="protected" virt="virtual"><scope>StorageRoomBase</scope><name>OnDisabled</name></member>
+      <member refid="classRoom_1ae35a0c0556a10493e8e52a5f8cd325b9" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>OnRoomStateChanged</name></member>
+      <member refid="classRoom_1a1aee33b995a9498a806590785f5edd37" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>parentShip</name></member>
+      <member refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>position</name></member>
+      <member refid="classStorageRoomBase_1a52d20628427d6d53997670fe3e1b0bc3" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>RemoveAllItems</name></member>
+      <member refid="classStorageRoomBase_1aeb01a9c393850d9ad7b613a3b4d20a62" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>RemoveItem</name></member>
+      <member refid="classRoom_1ab0d240e0649b42fe9bec652095f91c35" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>Repair</name></member>
+      <member refid="classRoom_1a0755b896fccae38e6b424dc81fd8cf29" prot="protected" virt="non-virtual"><scope>StorageRoomBase</scope><name>roomData</name></member>
+      <member refid="classRoom_1a2ceb9fa0e776c6956db8ad2fc1001f8d" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>roomData</name></member>
+      <member refid="classRoom_1ace360cd5c592e435e52fcd081852376a" prot="protected" virt="non-virtual"><scope>StorageRoomBase</scope><name>roomParticles</name></member>
+      <member refid="classRoom_1aa79afbfb056fceca372b60e7b244805e" prot="protected" virt="non-virtual"><scope>StorageRoomBase</scope><name>roomRenderer</name></member>
+      <member refid="classRoom_1a4ebc536d98852ea45bd0d79b4bec8c58" prot="protected" virt="non-virtual"><scope>StorageRoomBase</scope><name>roomSound</name></member>
+      <member refid="classRoom_1af4b97c8e2306beda35f26f8803734eb5" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>roomType</name></member>
+      <member refid="classStorageRoomBase_1a70d74b6982440d1799e3ffaa8d5a0089" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>RotateItem</name></member>
+      <member refid="classStorageRoomBase_1a02e93420fbc61c450d16d94e69e3dfc3" prot="protected" virt="non-virtual"><scope>StorageRoomBase</scope><name>selectedItem</name></member>
+      <member refid="classStorageRoomBase_1a4b86f94e183776f7102946a4382b322c" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>SelectItem</name></member>
+      <member refid="classRoom_1a054dfcf2fb05105186e1535b501f792c" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>SetCurrentLevel</name></member>
+      <member refid="classRoom_1a384f65346bcd4a08a7cf2e4c1e2c915a" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>SetIsActive</name></member>
+      <member refid="classRoom_1a380de06eaf2c762679b65903782b173e" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>SetPowerStatus</name></member>
+      <member refid="classRoom_1a7032b43f7ff95af276153f31b7e0fb40" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>SetRoomData</name></member>
+      <member refid="classStorageRoomBase_1a01b258f3a7b3fda806636f97f62b0747" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>SetStorageType</name></member>
+      <member refid="classStorageRoomBase_1a63e5e32e885160725acef465d584a722" prot="protected" virt="virtual"><scope>StorageRoomBase</scope><name>Start</name></member>
+      <member refid="classStorageRoomBase_1ab9cf4585031b5340bb4c3ee93778a2fe" prot="protected" virt="non-virtual"><scope>StorageRoomBase</scope><name>storageCollider</name></member>
+      <member refid="classStorageRoomBase_1a01307e2f716fd400d0e29e0587568704" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>storedItems</name></member>
+      <member refid="classRoom_1a6a7d8be84106267b1036aa51645819a4" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>TakeDamage</name></member>
+      <member refid="classRoom_1a6e79c14d19329e74985711e03caaa1fa" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>Update</name></member>
+      <member refid="classRoom_1a2114f1e3c7ce8957cb3ed170958ef84a" prot="protected" virt="virtual"><scope>StorageRoomBase</scope><name>UpdateEffects</name></member>
+      <member refid="classRoom_1a8294d108ea218dff21d0d30a87c8c8af" prot="protected" virt="virtual"><scope>StorageRoomBase</scope><name>UpdateRoom</name></member>
+      <member refid="classRoom_1a991f10d83518af889058b13763fd3e25" prot="protected" virt="virtual"><scope>StorageRoomBase</scope><name>UpdateRoomLevelData</name></member>
+      <member refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>UpdateRoomVisual</name></member>
+      <member refid="classRoom_1ae5b8e019f27766e7e2537bb65f0d5f2e" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>UpdateRoomVisual</name></member>
+      <member refid="classRoom_1a6c701615ce6310e02a88483adf30c269" prot="public" virt="virtual"><scope>StorageRoomBase</scope><name>Upgrade</name></member>
+      <member refid="classRoom_1a2f0a2ecde33aaee53ca649d85a5b8e8b" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>Upgrade</name></member>
+      <member refid="classRoom_1a08bfe2fcb01f8857b0aa420d3eb08629" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>workDirection</name></member>
+      <member refid="classRoom_1a1696a3012c809991479cef579c82c8d3" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>workingCrew</name></member>
+      <member refid="classStorageRoomBase_1ad999a51ba228461cae0ff898913fa00e" prot="public" virt="non-virtual"><scope>StorageRoomBase</scope><name>WorldToGridPosition</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

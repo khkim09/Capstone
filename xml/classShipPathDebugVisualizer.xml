@@ -1,0 +1,310 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classShipPathDebugVisualizer" kind="class" language="C#" prot="public">
+    <compoundname>ShipPathDebugVisualizer</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classShipPathDebugVisualizer_1a14625bc6809af55d22ca6875c8730bbd" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="classRoom" kindref="compound">Room</ref> &gt;</type>
+        <definition>List&lt;Room&gt; ShipPathDebugVisualizer.visitedRooms</definition>
+        <argsstring></argsstring>
+        <name>visitedRooms</name>
+        <qualifiedname>ShipPathDebugVisualizer.visitedRooms</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipPathDebugVisualizer.cs" line="6" column="17" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipPathDebugVisualizer.cs" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipPathDebugVisualizer_1a8b9a5022502faad59428657b572a2521" prot="public" static="no" mutable="no">
+        <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+        <definition>Room ShipPathDebugVisualizer.startRoom</definition>
+        <argsstring></argsstring>
+        <name>startRoom</name>
+        <qualifiedname>ShipPathDebugVisualizer.startRoom</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipPathDebugVisualizer.cs" line="7" column="17" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipPathDebugVisualizer.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipPathDebugVisualizer_1ab50bbc3b4b125e94c6060d012c5c18d9" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="classRoom" kindref="compound">Room</ref> &gt;</type>
+        <definition>List&lt;Room&gt; ShipPathDebugVisualizer.allRooms</definition>
+        <argsstring></argsstring>
+        <name>allRooms</name>
+        <qualifiedname>ShipPathDebugVisualizer.allRooms</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipPathDebugVisualizer.cs" line="8" column="17" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipPathDebugVisualizer.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classShipPathDebugVisualizer_1a8062c1da7cf149cbecb5b58efeefff24" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipPathDebugVisualizer.OnDrawGizmos</definition>
+        <argsstring>()</argsstring>
+        <name>OnDrawGizmos</name>
+        <qualifiedname>ShipPathDebugVisualizer.OnDrawGizmos</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipPathDebugVisualizer.cs" line="10" column="18" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipPathDebugVisualizer.cs" bodystart="10" bodyend="31"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ShipPathDebugVisualizer</label>
+        <link refid="classShipPathDebugVisualizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="7">
+        <label>Constants</label>
+      </node>
+      <node id="22">
+        <label>CrewBase</label>
+        <link refid="classCrewBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>+equippedAssistant</edgelabel>
+          <edgelabel>+equippedShield</edgelabel>
+          <edgelabel>+equippedWeapon</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+currentRoom</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+currentShip</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>+healthBarController</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>CrewHealthBar</label>
+        <link refid="classCrewHealthBar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-offset</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-crewBase</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>CrewMember</label>
+        <link refid="classCrewMember"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-movementDirection</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+madRoom</edgelabel>
+          <edgelabel>+oldReservedRoom</edgelabel>
+          <edgelabel>+reservedRoom</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>EquipmentItem</label>
+        <link refid="classEquipmentItem"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="17">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="20">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ShipPathDebugVisualizer</label>
+        <link refid="classShipPathDebugVisualizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+startRoom</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>UnityEngine</label>
+      </node>
+      <node id="13">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipPathDebugVisualizer.cs" line="4" column="7" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipPathDebugVisualizer.cs" bodystart="5" bodyend="32"/>
+    <listofallmembers>
+      <member refid="classShipPathDebugVisualizer_1ab50bbc3b4b125e94c6060d012c5c18d9" prot="public" virt="non-virtual"><scope>ShipPathDebugVisualizer</scope><name>allRooms</name></member>
+      <member refid="classShipPathDebugVisualizer_1a8062c1da7cf149cbecb5b58efeefff24" prot="private" virt="non-virtual"><scope>ShipPathDebugVisualizer</scope><name>OnDrawGizmos</name></member>
+      <member refid="classShipPathDebugVisualizer_1a8b9a5022502faad59428657b572a2521" prot="public" virt="non-virtual"><scope>ShipPathDebugVisualizer</scope><name>startRoom</name></member>
+      <member refid="classShipPathDebugVisualizer_1a14625bc6809af55d22ca6875c8730bbd" prot="public" virt="non-virtual"><scope>ShipPathDebugVisualizer</scope><name>visitedRooms</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

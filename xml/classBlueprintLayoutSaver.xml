@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classBlueprintLayoutSaver" kind="class" language="C#" prot="public">
+    <compoundname>BlueprintLayoutSaver</compoundname>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classBlueprintLayoutSaver_1a8bf49a5518b8486df637b2156239b464" prot="private" static="yes" mutable="no">
+        <type>List&lt; <ref refid="classBlueprintRoomSaveData" kindref="compound">BlueprintRoomSaveData</ref> &gt;</type>
+        <definition>List&lt;BlueprintRoomSaveData&gt; BlueprintLayoutSaver.savedRooms</definition>
+        <argsstring></argsstring>
+        <name>savedRooms</name>
+        <qualifiedname>BlueprintLayoutSaver.savedRooms</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" line="35" column="25" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintLayoutSaver_1a78f74376f5068116914ff4468dae00ec" prot="private" static="yes" mutable="no">
+        <type>List&lt; <ref refid="classBlueprintWeaponSaveData" kindref="compound">BlueprintWeaponSaveData</ref> &gt;</type>
+        <definition>List&lt;BlueprintWeaponSaveData&gt; BlueprintLayoutSaver.savedWeapons</definition>
+        <argsstring></argsstring>
+        <name>savedWeapons</name>
+        <qualifiedname>BlueprintLayoutSaver.savedWeapons</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" line="36" column="25" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classBlueprintLayoutSaver_1a6387604f7274b3b78c9a6740c873dbc2" prot="private" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int BlueprintLayoutSaver.savedHullLevel</definition>
+        <argsstring></argsstring>
+        <name>savedHullLevel</name>
+        <qualifiedname>BlueprintLayoutSaver.savedHullLevel</qualifiedname>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" line="37" column="24" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classBlueprintLayoutSaver_1abdd502955c2f579fa54dc6256cc9fdaf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void BlueprintLayoutSaver.SaveLayout</definition>
+        <argsstring>(BlueprintRoom[] rooms, BlueprintWeapon[] weapons, int hullLevel)</argsstring>
+        <name>SaveLayout</name>
+        <qualifiedname>BlueprintLayoutSaver.SaveLayout</qualifiedname>
+        <param>
+          <type><ref refid="classBlueprintRoom" kindref="compound">BlueprintRoom</ref>[]</type>
+          <declname>rooms</declname>
+        </param>
+        <param>
+          <type><ref refid="classBlueprintWeapon" kindref="compound">BlueprintWeapon</ref>[]</type>
+          <declname>weapons</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>hullLevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" line="39" column="24" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" bodystart="39" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintLayoutSaver_1ab7d42f49331902772945b1a79a8c49f9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void BlueprintLayoutSaver.SaveRoomLayout</definition>
+        <argsstring>(BlueprintRoom[] bpRooms)</argsstring>
+        <name>SaveRoomLayout</name>
+        <qualifiedname>BlueprintLayoutSaver.SaveRoomLayout</qualifiedname>
+        <param>
+          <type><ref refid="classBlueprintRoom" kindref="compound">BlueprintRoom</ref>[]</type>
+          <declname>bpRooms</declname>
+        </param>
+        <briefdescription>
+<para>현재 방 배치 상태를 저장합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bpRooms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장할 방 배열</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" line="50" column="24" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" bodystart="50" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintLayoutSaver_1a116f18fc4a15be2fd1215b1d63b16f6a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void BlueprintLayoutSaver.SaveWeaponLayout</definition>
+        <argsstring>(BlueprintWeapon[] bpWeapons)</argsstring>
+        <name>SaveWeaponLayout</name>
+        <qualifiedname>BlueprintLayoutSaver.SaveWeaponLayout</qualifiedname>
+        <param>
+          <type><ref refid="classBlueprintWeapon" kindref="compound">BlueprintWeapon</ref>[]</type>
+          <declname>bpWeapons</declname>
+        </param>
+        <briefdescription>
+<para>현재 무기 배치 상태를 저장합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bpWeapons</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>저장할 무기 배열</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" line="79" column="24" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" bodystart="79" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintLayoutSaver_1ab4cb2eda0c982f59e8c8962d63191591" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classBlueprintRoomSaveData" kindref="compound">BlueprintRoomSaveData</ref> &gt;</type>
+        <definition>static List&lt; BlueprintRoomSaveData &gt; BlueprintLayoutSaver.LoadRoomLayout</definition>
+        <argsstring>()</argsstring>
+        <name>LoadRoomLayout</name>
+        <qualifiedname>BlueprintLayoutSaver.LoadRoomLayout</qualifiedname>
+        <briefdescription>
+<para>저장된 방 배치 데이터를 로드합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>저장된 방 배치 리스트</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" line="108" column="24" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" bodystart="108" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintLayoutSaver_1a725e844bf359131a5062fafc0bffa690" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classBlueprintWeaponSaveData" kindref="compound">BlueprintWeaponSaveData</ref> &gt;</type>
+        <definition>static List&lt; BlueprintWeaponSaveData &gt; BlueprintLayoutSaver.LoadWeaponLayout</definition>
+        <argsstring>()</argsstring>
+        <name>LoadWeaponLayout</name>
+        <qualifiedname>BlueprintLayoutSaver.LoadWeaponLayout</qualifiedname>
+        <briefdescription>
+<para>저장된 무기 배치 데이터를 로드합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>저장된 무기 배치 리스트</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" line="117" column="24" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" bodystart="117" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintLayoutSaver_1a6764513dd2c6d1b7f0e0faaf5ede5648" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int BlueprintLayoutSaver.LoadHullLevel</definition>
+        <argsstring>()</argsstring>
+        <name>LoadHullLevel</name>
+        <qualifiedname>BlueprintLayoutSaver.LoadHullLevel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" line="122" column="23" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" bodystart="122" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classBlueprintLayoutSaver_1ae11ea98ba3b58ea3f4156a4c54ad5c45" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void BlueprintLayoutSaver.ClearAllData</definition>
+        <argsstring>()</argsstring>
+        <name>ClearAllData</name>
+        <qualifiedname>BlueprintLayoutSaver.ClearAllData</qualifiedname>
+        <briefdescription>
+<para>모든 저장 데이터를 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" line="130" column="24" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" bodystart="130" bodyend="136"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>플레이어의 함선 설계도 배치 상태를 게임 중에만 저장하는 클래스. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>BlueprintLayoutSaver</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" line="32" column="15" bodyfile="Assets/Scripts/CustomizeShip/BlueprintSave/BlueprintLayoutSaver.cs" bodystart="33" bodyend="137"/>
+    <listofallmembers>
+      <member refid="classBlueprintLayoutSaver_1ae11ea98ba3b58ea3f4156a4c54ad5c45" prot="public" virt="non-virtual"><scope>BlueprintLayoutSaver</scope><name>ClearAllData</name></member>
+      <member refid="classBlueprintLayoutSaver_1a6764513dd2c6d1b7f0e0faaf5ede5648" prot="public" virt="non-virtual"><scope>BlueprintLayoutSaver</scope><name>LoadHullLevel</name></member>
+      <member refid="classBlueprintLayoutSaver_1ab4cb2eda0c982f59e8c8962d63191591" prot="public" virt="non-virtual"><scope>BlueprintLayoutSaver</scope><name>LoadRoomLayout</name></member>
+      <member refid="classBlueprintLayoutSaver_1a725e844bf359131a5062fafc0bffa690" prot="public" virt="non-virtual"><scope>BlueprintLayoutSaver</scope><name>LoadWeaponLayout</name></member>
+      <member refid="classBlueprintLayoutSaver_1a6387604f7274b3b78c9a6740c873dbc2" prot="private" virt="non-virtual"><scope>BlueprintLayoutSaver</scope><name>savedHullLevel</name></member>
+      <member refid="classBlueprintLayoutSaver_1a8bf49a5518b8486df637b2156239b464" prot="private" virt="non-virtual"><scope>BlueprintLayoutSaver</scope><name>savedRooms</name></member>
+      <member refid="classBlueprintLayoutSaver_1a78f74376f5068116914ff4468dae00ec" prot="private" virt="non-virtual"><scope>BlueprintLayoutSaver</scope><name>savedWeapons</name></member>
+      <member refid="classBlueprintLayoutSaver_1abdd502955c2f579fa54dc6256cc9fdaf" prot="public" virt="non-virtual"><scope>BlueprintLayoutSaver</scope><name>SaveLayout</name></member>
+      <member refid="classBlueprintLayoutSaver_1ab7d42f49331902772945b1a79a8c49f9" prot="public" virt="non-virtual"><scope>BlueprintLayoutSaver</scope><name>SaveRoomLayout</name></member>
+      <member refid="classBlueprintLayoutSaver_1a116f18fc4a15be2fd1215b1d63b16f6a" prot="public" virt="non-virtual"><scope>BlueprintLayoutSaver</scope><name>SaveWeaponLayout</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classRoomRotationUtility" kind="class" language="C#" prot="public">
+    <compoundname>RoomRotationUtility</compoundname>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classRoomRotationUtility_1ae4803d6737eb743d7b1b1fce0f177ce0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>static Vector2Int RoomRotationUtility.GetRotatedSize</definition>
+        <argsstring>(Vector2Int originalSize, Constants.Rotations.Rotation rotation)</argsstring>
+        <name>GetRotatedSize</name>
+        <qualifiedname>RoomRotationUtility.GetRotatedSize</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>originalSize</declname>
+        </param>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>회전한 이후 방 사이즈 다시 계산 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>originalSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>기존 방 사이즈(roomData)</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>기존 방 회전 각</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomRotationUtility.cs" line="15" column="30" bodyfile="Assets/Scripts/CustomizeShip/RoomRotationUtility.cs" bodystart="15" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomRotationUtility_1a029bb890928b80b00ba67c146579f4ce" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2</type>
+        <definition>static Vector2 RoomRotationUtility.GetRotationOffset</definition>
+        <argsstring>(Vector2Int size, Constants.Rotations.Rotation rotation)</argsstring>
+        <name>GetRotationOffset</name>
+        <qualifiedname>RoomRotationUtility.GetRotationOffset</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>방의 좌하단 블록 좌표 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>방 사이즈</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>회전각</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomRotationUtility.cs" line="29" column="27" bodyfile="Assets/Scripts/CustomizeShip/RoomRotationUtility.cs" bodystart="29" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomRotationUtility_1ade14ed9f5ca7a62380d9615f9f9d51d9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>static List&lt; Vector2Int &gt; RoomRotationUtility.GetOccupiedGridPositions</definition>
+        <argsstring>(Vector2Int origin, Vector2Int size, Constants.Rotations.Rotation rot)</argsstring>
+        <name>GetOccupiedGridPositions</name>
+        <qualifiedname>RoomRotationUtility.GetOccupiedGridPositions</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>origin</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rot</declname>
+        </param>
+        <briefdescription>
+<para>회전된 타일 오프셋을 기준으로 기준점(origin)에 맞춘 점유 타일 좌표를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>origin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>좌하단 기준 좌표</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>회전각 적용된 방 사이즈</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>회전각</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomRotationUtility.cs" line="84" column="24" bodyfile="Assets/Scripts/CustomizeShip/RoomRotationUtility.cs" bodystart="84" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomRotationUtility_1a09d7d99fbfb02c1d8dc3a9d9d0e1d20e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>static Vector2Int RoomRotationUtility.RotateDoorPos</definition>
+        <argsstring>(Vector2Int localDoorPos, Constants.Rotations.Rotation rotation)</argsstring>
+        <name>RotateDoorPos</name>
+        <qualifiedname>RoomRotationUtility.RotateDoorPos</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>localDoorPos</declname>
+        </param>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>문 위치 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>localPos</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>roomSize</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomRotationUtility.cs" line="123" column="30" bodyfile="Assets/Scripts/CustomizeShip/RoomRotationUtility.cs" bodystart="123" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomRotationUtility_1af09f223b6534116b4ad3f119dc14891f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DoorDirection</type>
+        <definition>static DoorDirection RoomRotationUtility.RotateDoorDirection</definition>
+        <argsstring>(DoorDirection original, Constants.Rotations.Rotation rotation)</argsstring>
+        <name>RotateDoorDirection</name>
+        <qualifiedname>RoomRotationUtility.RotateDoorDirection</qualifiedname>
+        <param>
+          <type>DoorDirection</type>
+          <declname>original</declname>
+        </param>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>문 바라보는 방향 회전각 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>original</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rotation</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomRotationUtility.cs" line="141" column="33" bodyfile="Assets/Scripts/CustomizeShip/RoomRotationUtility.cs" bodystart="141" bodyend="146"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>회전된 사이즈와 좌하단 기준 보정 offset 계산 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>RoomRotationUtility</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/RoomRotationUtility.cs" line="7" column="15" bodyfile="Assets/Scripts/CustomizeShip/RoomRotationUtility.cs" bodystart="8" bodyend="147"/>
+    <listofallmembers>
+      <member refid="classRoomRotationUtility_1ade14ed9f5ca7a62380d9615f9f9d51d9" prot="public" virt="non-virtual"><scope>RoomRotationUtility</scope><name>GetOccupiedGridPositions</name></member>
+      <member refid="classRoomRotationUtility_1ae4803d6737eb743d7b1b1fce0f177ce0" prot="public" virt="non-virtual"><scope>RoomRotationUtility</scope><name>GetRotatedSize</name></member>
+      <member refid="classRoomRotationUtility_1a029bb890928b80b00ba67c146579f4ce" prot="public" virt="non-virtual"><scope>RoomRotationUtility</scope><name>GetRotationOffset</name></member>
+      <member refid="classRoomRotationUtility_1af09f223b6534116b4ad3f119dc14891f" prot="public" virt="non-virtual"><scope>RoomRotationUtility</scope><name>RotateDoorDirection</name></member>
+      <member refid="classRoomRotationUtility_1a09d7d99fbfb02c1d8dc3a9d9d0e1d20e" prot="public" virt="non-virtual"><scope>RoomRotationUtility</scope><name>RotateDoorPos</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

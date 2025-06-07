@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classTradeManager" kind="class" language="C#" prot="public">
+    <compoundname>TradeManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classTradeManager_1a15ade079b208c0fbe3ecd33406291d40" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float TradeManager.playerCOMA</definition>
+        <argsstring></argsstring>
+        <name>playerCOMA</name>
+        <qualifiedname>TradeManager.playerCOMA</qualifiedname>
+        <initializer>= 1000.00f</initializer>
+        <briefdescription>
+<para>플레이어의 현재 재화(COMA)입니다. 초기값은 1000입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeManager.cs" line="12" column="20" bodyfile="Assets/Scripts/Trade/TradeManager.cs" bodystart="12" bodyend="-1"/>
+        <referencedby refid="classTradeManager_1a22c669e983d33b0d39551c21c77837d8" compoundref="TradeManager_8cs" startline="45" endline="80">BuyItem</referencedby>
+        <referencedby refid="classTradeManager_1a727469f6d17d2aa2216066c4d54a957b" compoundref="TradeManager_8cs" startline="89" endline="117">SellItem</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classTradeManager_1a82f1361db9b7c45a1fe3f2d5a3b8378b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float TradeManager.GetTotalPrice</definition>
+        <argsstring>(TradingItemData itemData, int quantity)</argsstring>
+        <name>GetTotalPrice</name>
+        <qualifiedname>TradeManager.GetTotalPrice</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+          <declname>itemData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>quantity</declname>
+        </param>
+        <briefdescription>
+<para>지정된 아이템과 수량에 대한 총 가격을 계산합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itemData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>거래할 <ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>quantity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>수량</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>총 가격(COMAs)</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeManager.cs" line="21" column="18" bodyfile="Assets/Scripts/Trade/TradeManager.cs" bodystart="21" bodyend="25"/>
+        <references refid="classTradeManager_1a265f80b3160ce305f6201f70871ad149" compoundref="TradeManager_8cs" startline="33" endline="36">CalculatePrice</references>
+        <referencedby refid="classTradeManager_1a22c669e983d33b0d39551c21c77837d8" compoundref="TradeManager_8cs" startline="45" endline="80">BuyItem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradeManager_1a265f80b3160ce305f6201f70871ad149" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float TradeManager.CalculatePrice</definition>
+        <argsstring>(TradingItemData itemData)</argsstring>
+        <name>CalculatePrice</name>
+        <qualifiedname>TradeManager.CalculatePrice</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+          <declname>itemData</declname>
+        </param>
+        <briefdescription>
+<para>아이템의 현재 단가를 계산합니다. (기본은 basePrice 그대로 반환) 추후 이벤트 또는 행성 특성에 따라 가중치를 부여할 수 있습니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itemData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>가격 계산할 아이템</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>계산된 단가</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeManager.cs" line="33" column="18" bodyfile="Assets/Scripts/Trade/TradeManager.cs" bodystart="33" bodyend="36"/>
+        <referencedby refid="classTradeManager_1a82f1361db9b7c45a1fe3f2d5a3b8378b" compoundref="TradeManager_8cs" startline="21" endline="25">GetTotalPrice</referencedby>
+        <referencedby refid="classTradeManager_1a727469f6d17d2aa2216066c4d54a957b" compoundref="TradeManager_8cs" startline="89" endline="117">SellItem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradeManager_1a22c669e983d33b0d39551c21c77837d8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TradeManager.BuyItem</definition>
+        <argsstring>(TradingItemData itemData, int quantity)</argsstring>
+        <name>BuyItem</name>
+        <qualifiedname>TradeManager.BuyItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+          <declname>itemData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>quantity</declname>
+        </param>
+        <briefdescription>
+<para>지정한 아이템을 구매 시도합니다. 성공 시 COMA를 차감하고 아이템을 창고에 추가합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itemData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>구매할 아이템 데이터</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>quantity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>구매 수량</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>구매 성공 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeManager.cs" line="45" column="17" bodyfile="Assets/Scripts/Trade/TradeManager.cs" bodystart="45" bodyend="80"/>
+        <references refid="classStorage_1adea22f0151547f8b3c1e7618c1129cdd" compoundref="Storage_8cs" startline="67" endline="70">Storage.AddItem</references>
+        <references refid="classStorage_1a1557debebb5ee1ef46f0d1216f69003b" compoundref="Storage_8cs" startline="56" endline="60">Storage.CanAddItem</references>
+        <references refid="classTradeManager_1a82f1361db9b7c45a1fe3f2d5a3b8378b" compoundref="TradeManager_8cs" startline="21" endline="25">GetTotalPrice</references>
+        <references refid="classTradeManager_1a15ade079b208c0fbe3ecd33406291d40" compoundref="TradeManager_8cs" startline="12">playerCOMA</references>
+        <referencedby refid="classMiddlePanelUI_1a9295791df36e66545387bf2a5e7fa241" compoundref="MiddlePanelUI_8cs" startline="141" endline="157">MiddlePanelUI.OnBuyClicked</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTradeManager_1a727469f6d17d2aa2216066c4d54a957b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TradeManager.SellItem</definition>
+        <argsstring>(TradingItemData itemData, int quantity)</argsstring>
+        <name>SellItem</name>
+        <qualifiedname>TradeManager.SellItem</qualifiedname>
+        <param>
+          <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+          <declname>itemData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>quantity</declname>
+        </param>
+        <briefdescription>
+<para>지정한 아이템을 판매 시도합니다. 성공 시 아이템을 제거하고 COMA를 증가시킵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itemData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>판매할 아이템 데이터</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>quantity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>판매 수량</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>판매 성공 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/TradeManager.cs" line="89" column="17" bodyfile="Assets/Scripts/Trade/TradeManager.cs" bodystart="89" bodyend="117"/>
+        <references refid="classTradeManager_1a265f80b3160ce305f6201f70871ad149" compoundref="TradeManager_8cs" startline="33" endline="36">CalculatePrice</references>
+        <references refid="classStorage_1ac706f358d9cc81795d1199c9801323e3" compoundref="Storage_8cs" startline="137" endline="140">Storage.HasItem</references>
+        <references refid="classTradeManager_1a15ade079b208c0fbe3ecd33406291d40" compoundref="TradeManager_8cs" startline="12">playerCOMA</references>
+        <references refid="classStorage_1a418c4660a8f4770d696587d5370077ab" compoundref="Storage_8cs" startline="110" endline="132">Storage.RemoveItem</references>
+        <referencedby refid="classMiddlePanelUI_1aae6978b594bb4300522a9335b208d413" compoundref="MiddlePanelUI_8cs" startline="163" endline="179">MiddlePanelUI.OnSellClicked</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>TradeManager는 무역 거래를 관리하는 클래스입니다. 플레이어의 재화(COMA)를 관리하며, 아이템의 구매 및 판매 기능을 제공합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>TradeManager</label>
+        <link refid="classTradeManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>TradeManager</label>
+        <link refid="classTradeManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Trade/TradeManager.cs" line="7" column="7" bodyfile="Assets/Scripts/Trade/TradeManager.cs" bodystart="8" bodyend="118"/>
+    <listofallmembers>
+      <member refid="classTradeManager_1a22c669e983d33b0d39551c21c77837d8" prot="public" virt="non-virtual"><scope>TradeManager</scope><name>BuyItem</name></member>
+      <member refid="classTradeManager_1a265f80b3160ce305f6201f70871ad149" prot="public" virt="non-virtual"><scope>TradeManager</scope><name>CalculatePrice</name></member>
+      <member refid="classTradeManager_1a82f1361db9b7c45a1fe3f2d5a3b8378b" prot="public" virt="non-virtual"><scope>TradeManager</scope><name>GetTotalPrice</name></member>
+      <member refid="classTradeManager_1a15ade079b208c0fbe3ecd33406291d40" prot="private" virt="non-virtual"><scope>TradeManager</scope><name>playerCOMA</name></member>
+      <member refid="classTradeManager_1a727469f6d17d2aa2216066c4d54a957b" prot="public" virt="non-virtual"><scope>TradeManager</scope><name>SellItem</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,503 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classTooltipPanelBase" kind="class" language="C#" prot="public" abstract="yes">
+    <compoundname>TooltipPanelBase</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerEnterHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerExitHandler</basecompoundref>
+    <derivedcompoundref refid="classBuyItemInfoPanel" prot="public" virt="non-virtual">BuyItemInfoPanel</derivedcompoundref>
+    <derivedcompoundref refid="classCrewInfoPanel" prot="public" virt="non-virtual">CrewInfoPanel</derivedcompoundref>
+    <derivedcompoundref refid="classEquipmentInfoPanel" prot="public" virt="non-virtual">EquipmentInfoPanel</derivedcompoundref>
+    <derivedcompoundref refid="classIconInteraction" prot="public" virt="non-virtual">IconInteraction</derivedcompoundref>
+    <derivedcompoundref refid="classMoraleIcon" prot="public" virt="non-virtual">MoraleIcon</derivedcompoundref>
+    <derivedcompoundref refid="classQuestInfoPanel" prot="public" virt="non-virtual">QuestInfoPanel</derivedcompoundref>
+    <derivedcompoundref refid="classSellItemInfoPanel" prot="public" virt="non-virtual">SellItemInfoPanel</derivedcompoundref>
+    <derivedcompoundref refid="classShipInfoPanel" prot="public" virt="non-virtual">ShipInfoPanel</derivedcompoundref>
+    <derivedcompoundref refid="classStorageInfoPanel" prot="public" virt="non-virtual">StorageInfoPanel</derivedcompoundref>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classTooltipPanelBase_1a07452868d9fdf00c540a3811b2cf35c3" prot="protected" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject TooltipPanelBase.tooltipPrefab</definition>
+        <argsstring></argsstring>
+        <name>tooltipPrefab</name>
+        <qualifiedname>TooltipPanelBase.tooltipPrefab</qualifiedname>
+        <briefdescription>
+<para>표시할 툴팁 프리팹 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="12" column="27" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTooltipPanelBase_1a789a2a1d18c7265d8ca055b83a8c38ce" prot="protected" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject TooltipPanelBase.currentToolTip</definition>
+        <argsstring></argsstring>
+        <name>currentToolTip</name>
+        <qualifiedname>TooltipPanelBase.currentToolTip</qualifiedname>
+        <briefdescription>
+<para>툴팁 참조 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="17" column="26" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="17" bodyend="-1"/>
+        <referencedby refid="classMoraleIcon_1aaeced56dbad37de4cc88315ec05b41e1" compoundref="MoraleIcon_8cs" startline="49" endline="70">MoraleIcon.Initialize</referencedby>
+        <referencedby refid="classMoraleIcon_1a0a6e94842bfa2df085b951e1e154da51" compoundref="MoraleIcon_8cs" startline="170" endline="203">MoraleIcon.SetToolTipText</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classTooltipPanelBase_1a97ec8e3cc2519887b0ae3cfb4e3626b4" prot="protected" static="no" mutable="no">
+        <type>Canvas</type>
+        <definition>Canvas TooltipPanelBase.canvasComponent</definition>
+        <argsstring></argsstring>
+        <name>canvasComponent</name>
+        <qualifiedname>TooltipPanelBase.canvasComponent</qualifiedname>
+        <briefdescription>
+<para>캔버스 참조 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="22" column="22" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTooltipPanelBase_1a62dfbacb2b95ff327a1faa517134f4ab" prot="protected" static="no" mutable="no">
+        <type>RectTransform</type>
+        <definition>RectTransform TooltipPanelBase.canvasRectTransform</definition>
+        <argsstring></argsstring>
+        <name>canvasRectTransform</name>
+        <qualifiedname>TooltipPanelBase.canvasRectTransform</qualifiedname>
+        <briefdescription>
+<para>캔버스의 RectTransform 참조 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="27" column="29" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTooltipPanelBase_1afa2d7137da9fb9b726a7a8ff8e00a1db" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool TooltipPanelBase.isMouseOver</definition>
+        <argsstring></argsstring>
+        <name>isMouseOver</name>
+        <qualifiedname>TooltipPanelBase.isMouseOver</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>마우스가 오브젝트 위에 있는지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="32" column="20" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTooltipPanelBase_1aff2cd6b976fa069a09d0aa35f5c3b29e" prot="protected" static="no" mutable="no">
+        <type>Coroutine</type>
+        <definition>Coroutine TooltipPanelBase.toolTipCoroutine</definition>
+        <argsstring></argsstring>
+        <name>toolTipCoroutine</name>
+        <qualifiedname>TooltipPanelBase.toolTipCoroutine</qualifiedname>
+        <briefdescription>
+<para>툴팁 코루틴 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="37" column="25" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTooltipPanelBase_1a5c08f793ca364546be496216592d1eac" prot="protected" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject TooltipPanelBase.tooltipParent</definition>
+        <argsstring></argsstring>
+        <name>tooltipParent</name>
+        <qualifiedname>TooltipPanelBase.tooltipParent</qualifiedname>
+        <briefdescription>
+<para>툴팁 한 곳에 모아둘 부모 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="42" column="26" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTooltipPanelBase_1ae706f75ad68d5e73e3c2f06c6327ebdb" prot="protected" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 TooltipPanelBase.lastMousePosition</definition>
+        <argsstring></argsstring>
+        <name>lastMousePosition</name>
+        <qualifiedname>TooltipPanelBase.lastMousePosition</qualifiedname>
+        <briefdescription>
+<para>마지막 마우스 위치 저장 (위치 업데이트 최적화용) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="47" column="23" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classTooltipPanelBase_1a83eccfb4ba756898898c78d6f66da5a0" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void TooltipPanelBase.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>TooltipPanelBase.Start</qualifiedname>
+        <reimplementedby refid="classMoraleIcon_1a2b8a4a0c9fba920d34ca81a7b2f5b52d">Start</reimplementedby>
+        <reimplementedby refid="classIconInteraction_1a2bdf098ef94bb45e2917e080a0c0bf92">Start</reimplementedby>
+        <reimplementedby refid="classCrewInfoPanel_1acbc09022d3f7ebc717a0dbf4aa006c9a">Start</reimplementedby>
+        <reimplementedby refid="classQuestInfoPanel_1a0ef0d2561ae2c71569fac7cc4f8f03ed">Start</reimplementedby>
+        <reimplementedby refid="classShipInfoPanel_1ab9452b393fa96e97d8fdcfc6efab5d98">Start</reimplementedby>
+        <reimplementedby refid="classStorageInfoPanel_1a3025553495a891928dd87d03a844a364">Start</reimplementedby>
+        <reimplementedby refid="classBuyItemInfoPanel_1aefadcea759a22cf2ebe5e58a33e30f53">Start</reimplementedby>
+        <reimplementedby refid="classEquipmentInfoPanel_1aa0df2563a80d8247b2fbdc1e163c3837">Start</reimplementedby>
+        <reimplementedby refid="classSellItemInfoPanel_1a349841c9a4130528faa34d02dc2b82e6">Start</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="49" column="28" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="49" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classTooltipPanelBase_1a62c471dc692a616b0d34cb714d3ced8f" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void TooltipPanelBase.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>TooltipPanelBase.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="69" column="28" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="69" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classTooltipPanelBase_1a5f6a931d088acf15cb43fa990de25e1d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void TooltipPanelBase.CreateTooltip</definition>
+        <argsstring>()</argsstring>
+        <name>CreateTooltip</name>
+        <qualifiedname>TooltipPanelBase.CreateTooltip</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="83" column="28" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="83" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classTooltipPanelBase_1a961a740b6b6d26b6951d7b556463e00e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void TooltipPanelBase.OnMouseEnter</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnMouseEnter</name>
+        <qualifiedname>TooltipPanelBase.OnMouseEnter</qualifiedname>
+        <reimplementedby refid="classStorageInfoPanel_1a42c466f167999077d994b9f764e4470b">OnMouseEnter</reimplementedby>
+        <reimplementedby refid="classBuyItemInfoPanel_1a6133fe2cb4a9ebe8025ab3b8e01dc7a4">OnMouseEnter</reimplementedby>
+        <reimplementedby refid="classSellItemInfoPanel_1a22878a70ff3f3ba0b63ce482da79eabd">OnMouseEnter</reimplementedby>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="116" column="28" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="116" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="classTooltipPanelBase_1af63cf646954832d7ed41828b63f89342" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void TooltipPanelBase.OnMouseExit</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnMouseExit</name>
+        <qualifiedname>TooltipPanelBase.OnMouseExit</qualifiedname>
+        <reimplementedby refid="classStorageInfoPanel_1aae3c769b189cb00ede7863fa3ad710fc">OnMouseExit</reimplementedby>
+        <reimplementedby refid="classBuyItemInfoPanel_1a9a900ae0061b2eb63b190aad18356ca3">OnMouseExit</reimplementedby>
+        <reimplementedby refid="classSellItemInfoPanel_1a1a7d77a6053ba99d53c70965f81cdc14">OnMouseExit</reimplementedby>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="133" column="28" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="133" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="classTooltipPanelBase_1af48e40c000aa7da2ccd0b651c45c57e7" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void TooltipPanelBase.UpdateToolTipPositionFromMouse</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateToolTipPositionFromMouse</name>
+        <qualifiedname>TooltipPanelBase.UpdateToolTipPositionFromMouse</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="149" column="28" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="149" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classTooltipPanelBase_1ad579941725f5d24a110e99e5c5055506" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void TooltipPanelBase.UpdateToolTipPosition</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>UpdateToolTipPosition</name>
+        <qualifiedname>TooltipPanelBase.UpdateToolTipPosition</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="164" column="28" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="164" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="classTooltipPanelBase_1a74ddd2cded31a5df8d08612a2535218f" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void TooltipPanelBase.UpdateToolTipPositionInternal</definition>
+        <argsstring>(Vector2 mousePosition)</argsstring>
+        <name>UpdateToolTipPositionInternal</name>
+        <qualifiedname>TooltipPanelBase.UpdateToolTipPositionInternal</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>mousePosition</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="175" column="28" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="175" bodyend="237"/>
+      </memberdef>
+      <memberdef kind="function" id="classTooltipPanelBase_1a5245ded07eac1229cf96cae6e8e444a6" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>IEnumerator</type>
+        <definition>virtual IEnumerator TooltipPanelBase.ShowToolTipWithDelay</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>ShowToolTipWithDelay</name>
+        <qualifiedname>TooltipPanelBase.ShowToolTipWithDelay</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="239" column="35" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="239" bodyend="275"/>
+      </memberdef>
+      <memberdef kind="function" id="classTooltipPanelBase_1af2116b5eb2423885f440148dab1a07ea" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void TooltipPanelBase.OnDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>OnDestroy</name>
+        <qualifiedname>TooltipPanelBase.OnDestroy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="277" column="28" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="277" bodyend="292"/>
+      </memberdef>
+      <memberdef kind="function" id="classTooltipPanelBase_1aa70d0b12bff9e463ce2e8b2a28e40337" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TooltipPanelBase.SetToolTipText</definition>
+        <argsstring>()</argsstring>
+        <name>SetToolTipText</name>
+        <qualifiedname>TooltipPanelBase.SetToolTipText</qualifiedname>
+        <briefdescription>
+<para>툴팁에 표시할 텍스트를 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="298" column="29"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classTooltipPanelBase_1a78c48fdbc37013f86449658b65023581" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void TooltipPanelBase.OnPointerEnter</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerEnter</name>
+        <qualifiedname>TooltipPanelBase.OnPointerEnter</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="106" column="25" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="106" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classTooltipPanelBase_1a5e453ad8bdc556be9d3d5aba631ac352" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void TooltipPanelBase.OnPointerExit</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerExit</name>
+        <qualifiedname>TooltipPanelBase.OnPointerExit</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="111" column="25" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="111" bodyend="114"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>BuyItemInfoPanel</label>
+        <link refid="classBuyItemInfoPanel"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>CrewInfoPanel</label>
+        <link refid="classCrewInfoPanel"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>EquipmentInfoPanel</label>
+        <link refid="classEquipmentInfoPanel"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="8">
+        <label>IconInteraction</label>
+        <link refid="classIconInteraction"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="9">
+        <label>MoraleIcon</label>
+        <link refid="classMoraleIcon"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>QuestInfoPanel</label>
+        <link refid="classQuestInfoPanel"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>SellItemInfoPanel</label>
+        <link refid="classSellItemInfoPanel"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>ShipInfoPanel</label>
+        <link refid="classShipInfoPanel"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>StorageInfoPanel</label>
+        <link refid="classStorageInfoPanel"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>TooltipPanelBase</label>
+        <link refid="classTooltipPanelBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>TooltipPanelBase</label>
+        <link refid="classTooltipPanelBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>#lastMousePosition</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>UnityEngine</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/UI/TooltipPanelBase.cs" line="7" column="17" bodyfile="Assets/Scripts/UI/TooltipPanelBase.cs" bodystart="8" bodyend="299"/>
+    <listofallmembers>
+      <member refid="classTooltipPanelBase_1a97ec8e3cc2519887b0ae3cfb4e3626b4" prot="protected" virt="non-virtual"><scope>TooltipPanelBase</scope><name>canvasComponent</name></member>
+      <member refid="classTooltipPanelBase_1a62dfbacb2b95ff327a1faa517134f4ab" prot="protected" virt="non-virtual"><scope>TooltipPanelBase</scope><name>canvasRectTransform</name></member>
+      <member refid="classTooltipPanelBase_1a5f6a931d088acf15cb43fa990de25e1d" prot="protected" virt="virtual"><scope>TooltipPanelBase</scope><name>CreateTooltip</name></member>
+      <member refid="classTooltipPanelBase_1a789a2a1d18c7265d8ca055b83a8c38ce" prot="protected" virt="non-virtual"><scope>TooltipPanelBase</scope><name>currentToolTip</name></member>
+      <member refid="classTooltipPanelBase_1afa2d7137da9fb9b726a7a8ff8e00a1db" prot="protected" virt="non-virtual"><scope>TooltipPanelBase</scope><name>isMouseOver</name></member>
+      <member refid="classTooltipPanelBase_1ae706f75ad68d5e73e3c2f06c6327ebdb" prot="protected" virt="non-virtual"><scope>TooltipPanelBase</scope><name>lastMousePosition</name></member>
+      <member refid="classTooltipPanelBase_1af2116b5eb2423885f440148dab1a07ea" prot="protected" virt="virtual"><scope>TooltipPanelBase</scope><name>OnDestroy</name></member>
+      <member refid="classTooltipPanelBase_1a961a740b6b6d26b6951d7b556463e00e" prot="protected" virt="virtual"><scope>TooltipPanelBase</scope><name>OnMouseEnter</name></member>
+      <member refid="classTooltipPanelBase_1af63cf646954832d7ed41828b63f89342" prot="protected" virt="virtual"><scope>TooltipPanelBase</scope><name>OnMouseExit</name></member>
+      <member refid="classTooltipPanelBase_1a78c48fdbc37013f86449658b65023581" prot="public" virt="virtual"><scope>TooltipPanelBase</scope><name>OnPointerEnter</name></member>
+      <member refid="classTooltipPanelBase_1a5e453ad8bdc556be9d3d5aba631ac352" prot="public" virt="virtual"><scope>TooltipPanelBase</scope><name>OnPointerExit</name></member>
+      <member refid="classTooltipPanelBase_1aa70d0b12bff9e463ce2e8b2a28e40337" prot="protected" virt="non-virtual"><scope>TooltipPanelBase</scope><name>SetToolTipText</name></member>
+      <member refid="classTooltipPanelBase_1a5245ded07eac1229cf96cae6e8e444a6" prot="protected" virt="virtual"><scope>TooltipPanelBase</scope><name>ShowToolTipWithDelay</name></member>
+      <member refid="classTooltipPanelBase_1a83eccfb4ba756898898c78d6f66da5a0" prot="protected" virt="virtual"><scope>TooltipPanelBase</scope><name>Start</name></member>
+      <member refid="classTooltipPanelBase_1aff2cd6b976fa069a09d0aa35f5c3b29e" prot="protected" virt="non-virtual"><scope>TooltipPanelBase</scope><name>toolTipCoroutine</name></member>
+      <member refid="classTooltipPanelBase_1a5c08f793ca364546be496216592d1eac" prot="protected" virt="non-virtual"><scope>TooltipPanelBase</scope><name>tooltipParent</name></member>
+      <member refid="classTooltipPanelBase_1a07452868d9fdf00c540a3811b2cf35c3" prot="protected" virt="non-virtual"><scope>TooltipPanelBase</scope><name>tooltipPrefab</name></member>
+      <member refid="classTooltipPanelBase_1a62c471dc692a616b0d34cb714d3ced8f" prot="protected" virt="virtual"><scope>TooltipPanelBase</scope><name>Update</name></member>
+      <member refid="classTooltipPanelBase_1ad579941725f5d24a110e99e5c5055506" prot="protected" virt="virtual"><scope>TooltipPanelBase</scope><name>UpdateToolTipPosition</name></member>
+      <member refid="classTooltipPanelBase_1af48e40c000aa7da2ccd0b651c45c57e7" prot="protected" virt="virtual"><scope>TooltipPanelBase</scope><name>UpdateToolTipPositionFromMouse</name></member>
+      <member refid="classTooltipPanelBase_1a74ddd2cded31a5df8d08612a2535218f" prot="protected" virt="virtual"><scope>TooltipPanelBase</scope><name>UpdateToolTipPositionInternal</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

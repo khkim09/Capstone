@@ -1,0 +1,25 @@
+var classStorageRoomBase =
+[
+    [ "AddItem", "classStorageRoomBase.html#a9f43c0a8cd26219e2b6a88c22925bb40", null ],
+    [ "CanPlaceItem", "classStorageRoomBase.html#a1628efb587b9fb33b65afddbbf7b92b1", null ],
+    [ "CanStoreItemType", "classStorageRoomBase.html#a75d62c4de6410e705bb949172116b22f", null ],
+    [ "CheckItemsAfterWarp", "classStorageRoomBase.html#aec6670542e8f9a3a142d048f97ec0980", null ],
+    [ "DegradeItemState", "classStorageRoomBase.html#a9c1d8581281b672ae3f13fe4f4b15948", null ],
+    [ "DestroyAllItems", "classStorageRoomBase.html#a4d42e6e6405c9e4f3a943bb31c279f8f", null ],
+    [ "DestroyItem", "classStorageRoomBase.html#aa6e2d92aa9058d4a7aff15d3c78646a0", null ],
+    [ "GetOccupiedTiles", "classStorageRoomBase.html#a78a41d13a6537c2cfc67792e513d587a", null ],
+    [ "GetStatContributions", "classStorageRoomBase.html#a63b742f6c0350014bcb9c44134354261", null ],
+    [ "GetStorageType", "classStorageRoomBase.html#a7cb00abfdb353857d9d43fd882b4a4cb", null ],
+    [ "GridToWorldPosition", "classStorageRoomBase.html#a479f3459cd4d0708852e4475ae8eed87", null ],
+    [ "Initialize", "classStorageRoomBase.html#ad434cfbd52fdf361866908f89e1a5cd9", null ],
+    [ "InitializeCollider", "classStorageRoomBase.html#abda411b0f2b8935e9d79f6bfa5761a68", null ],
+    [ "IsValidStorageForItem", "classStorageRoomBase.html#a16c0d2694fbbbbfdbc3d6770e832fbc1", null ],
+    [ "RemoveItem", "classStorageRoomBase.html#aeb01a9c393850d9ad7b613a3b4d20a62", null ],
+    [ "RotateItem", "classStorageRoomBase.html#a70d74b6982440d1799e3ffaa8d5a0089", null ],
+    [ "SelectItem", "classStorageRoomBase.html#a4b86f94e183776f7102946a4382b322c", null ],
+    [ "Start", "classStorageRoomBase.html#a63e5e32e885160725acef465d584a722", null ],
+    [ "WorldToGridPosition", "classStorageRoomBase.html#ad999a51ba228461cae0ff898913fa00e", null ],
+    [ "selectedItem", "classStorageRoomBase.html#a02e93420fbc61c450d16d94e69e3dfc3", null ],
+    [ "storageCollider", "classStorageRoomBase.html#ab9cf4585031b5340bb4c3ee93778a2fe", null ],
+    [ "storedItems", "classStorageRoomBase.html#a01307e2f716fd400d0e29e0587568704", null ]
+];

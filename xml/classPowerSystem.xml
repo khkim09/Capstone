@@ -1,0 +1,315 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classPowerSystem" kind="class" language="C#" prot="public">
+    <compoundname>PowerSystem</compoundname>
+    <basecompoundref refid="classShipSystem" prot="public" virt="non-virtual">ShipSystem</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classPowerSystem_1a4ad176aa5ddecbfe18521efd54947e56" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="classRoom" kindref="compound">Room</ref> &gt;</type>
+        <definition>List&lt;Room&gt; PowerSystem.powerRequestedRooms</definition>
+        <argsstring></argsstring>
+        <name>powerRequestedRooms</name>
+        <qualifiedname>PowerSystem.powerRequestedRooms</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/PowerSystem.cs" line="10" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/PowerSystem.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPowerSystem_1aa7114484f0168810e8f1722512097a04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void PowerSystem.Update</definition>
+        <argsstring>(float deltaTime)</argsstring>
+        <name>Update</name>
+        <qualifiedname>PowerSystem.Update</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>deltaTime</declname>
+        </param>
+        <briefdescription>
+<para>매 프레임마다 호출되어 시스템 상태를 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>deltaTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>경과 시간 (초).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/PowerSystem.cs" line="15" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/PowerSystem.cs" bodystart="15" bodyend="18"/>
+        <referencedby refid="classShip_1a6ab0aaf28782b38d9c80bf19e652f46c" compoundref="Ship_8cs" startline="161" endline="172">Ship.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classPowerSystem_1a13897935fc2758d507fa29864c958f04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void PowerSystem.Initialize</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>PowerSystem.Initialize</qualifiedname>
+        <reimplements refid="classShipSystem_1ab0e5623073f8bfb48c02955484cfcd4e">Initialize</reimplements>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>시스템을 초기화합니다. 함선 참조를 저장하여 시스템 동작에 사용됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이 시스템이 속한 함선 객체.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/PowerSystem.cs" line="20" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/PowerSystem.cs" bodystart="20" bodyend="24"/>
+        <referencedby refid="classShip_1a5246a04784a96576460f8494bce02887" compoundref="Ship_8cs" startline="715" endline="737">Ship.InitializeSystems</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classPowerSystem_1a31e49c103de8ed899cb6f07c000e217b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void PowerSystem.Refresh</definition>
+        <argsstring>()</argsstring>
+        <name>Refresh</name>
+        <qualifiedname>PowerSystem.Refresh</qualifiedname>
+        <reimplements refid="classShipSystem_1ad94492134ef4577b127382af0877f6d6">Refresh</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/PowerSystem.cs" line="26" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/PowerSystem.cs" bodystart="26" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classPowerSystem_1aaaa52aa321094b3bf99a3985c54d159c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PowerSystem.NotEnoughPower</definition>
+        <argsstring>()</argsstring>
+        <name>NotEnoughPower</name>
+        <qualifiedname>PowerSystem.NotEnoughPower</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/PowerSystem.cs" line="44" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/PowerSystem.cs" bodystart="44" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classPowerSystem_1af311ccf5242a2eba89ba389034c7e60e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PowerSystem.RequestPowerForRoom</definition>
+        <argsstring>(Room room, bool powerOn)</argsstring>
+        <name>RequestPowerForRoom</name>
+        <qualifiedname>PowerSystem.RequestPowerForRoom</qualifiedname>
+        <param>
+          <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+          <declname>room</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>powerOn</declname>
+        </param>
+        <briefdescription>
+<para>특정 방에 전원을 공급하거나 차단합니다. 전원을 끄는 요청은 항상 성공하며, 전원을 켜는 경우엔 남은 전력을 확인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>room</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>전원을 제어할 대상 방.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>powerOn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>true면 전원 공급 요청, false면 차단 요청.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>요청 처리 결과.<itemizedlist>
+<listitem><para>전원 끄기 요청이면 항상 true</para>
+</listitem><listitem><para>전원 켜기 요청은 전력이 충분하면 true, 부족하면 false </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/PowerSystem.cs" line="79" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/PowerSystem.cs" bodystart="79" bodyend="108"/>
+        <references refid="classRoom_1abe64553abf13aa2fe9d0d9c902c64383" compoundref="Room_8cs" startline="458" endline="461">Room&lt; TData, TLevel &gt;.GetPowerConsumption</references>
+        <references refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" compoundref="ShipSystem_8cs" startline="39" endline="42">ShipSystem.GetShipStat</references>
+        <references refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" compoundref="ShipSystem_8cs" startline="10">ShipSystem.parentShip</references>
+        <references refid="classShip_1a8f3f2bdca106f32f2d4c2b3f892a139f" compoundref="Ship_8cs" startline="774" endline="828">Ship.RecalculateAllStats</references>
+        <references refid="classRoom_1a380de06eaf2c762679b65903782b173e" compoundref="Room_8cs" startline="342" endline="348">Room&lt; TData, TLevel &gt;.SetPowerStatus</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선의 전력 공급을 관리하는 시스템. 각 방에 전원을 요청하거나 차단하며, 전체 전력 사용량을 기반으로 제어합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="11">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="13">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="15">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipSystems/PowerSystem.cs" line="8" column="7" bodyfile="Assets/Scripts/Ship/ShipSystems/PowerSystem.cs" bodystart="9" bodyend="109"/>
+    <listofallmembers>
+      <member refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" prot="protected" virt="non-virtual"><scope>PowerSystem</scope><name>GetShipStat</name></member>
+      <member refid="classPowerSystem_1a13897935fc2758d507fa29864c958f04" prot="public" virt="virtual"><scope>PowerSystem</scope><name>Initialize</name></member>
+      <member refid="classPowerSystem_1aaaa52aa321094b3bf99a3985c54d159c" prot="public" virt="non-virtual"><scope>PowerSystem</scope><name>NotEnoughPower</name></member>
+      <member refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" prot="protected" virt="non-virtual"><scope>PowerSystem</scope><name>parentShip</name></member>
+      <member refid="classPowerSystem_1a4ad176aa5ddecbfe18521efd54947e56" prot="private" virt="non-virtual"><scope>PowerSystem</scope><name>powerRequestedRooms</name></member>
+      <member refid="classPowerSystem_1a31e49c103de8ed899cb6f07c000e217b" prot="public" virt="virtual"><scope>PowerSystem</scope><name>Refresh</name></member>
+      <member refid="classPowerSystem_1af311ccf5242a2eba89ba389034c7e60e" prot="public" virt="non-virtual"><scope>PowerSystem</scope><name>RequestPowerForRoom</name></member>
+      <member refid="classPowerSystem_1aa7114484f0168810e8f1722512097a04" prot="public" virt="non-virtual"><scope>PowerSystem</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

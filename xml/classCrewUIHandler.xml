@@ -1,0 +1,1096 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCrewUIHandler" kind="class" language="C#" prot="public">
+    <compoundname>CrewUIHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classCrewUIHandler_1ab4bbd7a8a2c512abef285644a6e75627" prot="public" static="yes" mutable="no">
+        <type><ref refid="classCrewUIHandler" kindref="compound">CrewUIHandler</ref></type>
+        <definition>CrewUIHandler CrewUIHandler.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>CrewUIHandler.Instance</qualifiedname>
+        <briefdescription>
+<para>싱글턴 인스턴스입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="15" column="33" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="15" bodyend="-1"/>
+        <referencedby refid="classCrewUIHandler_1a6ad5d8d9deb3180a6e7f562b63f7ee55" compoundref="CrewUIHandler_8cs" startline="125" endline="128">Awake</referencedby>
+        <referencedby refid="classRaceButtonController_1ac5a97be35fbb20a2f0e12e6ca9f4c283" compoundref="RaceButtonController_8cs" startline="74" endline="78">RaceButtonController.OnPointerClick</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classCrewUIHandler_1ae9069232231c9c4379af8f5664423adf" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject CrewUIHandler.mainUIScreen</definition>
+        <argsstring></argsstring>
+        <name>mainUIScreen</name>
+        <qualifiedname>CrewUIHandler.mainUIScreen</qualifiedname>
+        <briefdescription>
+<para>선원 생성 메인 화면입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="20" column="24" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="20" bodyend="-1"/>
+        <referencedby refid="classCrewUIHandler_1ab05248ba25a695ab86b68a0408403fea" compoundref="CrewUIHandler_8cs" startline="157" endline="169">GetCurrentActiveUI</referencedby>
+        <referencedby refid="classCrewUIHandler_1aa1f9892a6d408e42fde14d2cd0c4ad2b" compoundref="CrewUIHandler_8cs" startline="194" endline="211">OnBackButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1a22bad1caab3c0a3183de081a6257d08b" compoundref="CrewUIHandler_8cs" startline="324" endline="341">OnSubmitButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1ad6d30e28e6b12254a7284d840395058b" compoundref="CrewUIHandler_8cs" startline="175" endline="189">ShowUI</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1a6aaca8dffcefc4b3511b5e7f6e4eb326" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject CrewUIHandler.createUIScreen</definition>
+        <argsstring></argsstring>
+        <name>createUIScreen</name>
+        <qualifiedname>CrewUIHandler.createUIScreen</qualifiedname>
+        <briefdescription>
+<para>선원 생성 요청 화면입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="25" column="23" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="25" bodyend="-1"/>
+        <referencedby refid="classCrewUIHandler_1ab05248ba25a695ab86b68a0408403fea" compoundref="CrewUIHandler_8cs" startline="157" endline="169">GetCurrentActiveUI</referencedby>
+        <referencedby refid="classCrewUIHandler_1a25fe54aa5427f0bcdc856b95714bfd34" compoundref="CrewUIHandler_8cs" startline="300" endline="318">OnCreateButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1a22bad1caab3c0a3183de081a6257d08b" compoundref="CrewUIHandler_8cs" startline="324" endline="341">OnSubmitButtonClicked</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1a3e91e95085b4b0584f3ebe77684500cf" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject CrewUIHandler.customizeShipUIScreen</definition>
+        <argsstring></argsstring>
+        <name>customizeShipUIScreen</name>
+        <qualifiedname>CrewUIHandler.customizeShipUIScreen</qualifiedname>
+        <briefdescription>
+<para>함선 커스터마이즈 UI 화면입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="30" column="23" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="30" bodyend="-1"/>
+        <referencedby refid="classCrewUIHandler_1ab05248ba25a695ab86b68a0408403fea" compoundref="CrewUIHandler_8cs" startline="157" endline="169">GetCurrentActiveUI</referencedby>
+        <referencedby refid="classCrewUIHandler_1a45a753651a66f7896431a39f5d7f76ed" compoundref="CrewUIHandler_8cs" startline="231" endline="236">OnCustomizeButtonClicked</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1ac2ad6c0094368a8cdcb9549804898e8d" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject CrewUIHandler.addEquipmentUIScreen</definition>
+        <argsstring></argsstring>
+        <name>addEquipmentUIScreen</name>
+        <qualifiedname>CrewUIHandler.addEquipmentUIScreen</qualifiedname>
+        <briefdescription>
+<para>장비 구매 UI 화면입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="35" column="23" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="35" bodyend="-1"/>
+        <referencedby refid="classCrewUIHandler_1ab05248ba25a695ab86b68a0408403fea" compoundref="CrewUIHandler_8cs" startline="157" endline="169">GetCurrentActiveUI</referencedby>
+        <referencedby refid="classCrewUIHandler_1adc64cd9fb9c94d6cd30dfea9b8ef5c81" compoundref="CrewUIHandler_8cs" startline="355" endline="360">OnAddEquipmentButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1aa1f9892a6d408e42fde14d2cd0c4ad2b" compoundref="CrewUIHandler_8cs" startline="194" endline="211">OnBackButtonClicked</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1aa47cef1896f9f88f223854ab3dfa52c7" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject CrewUIHandler.fullCrewUIScreen</definition>
+        <argsstring></argsstring>
+        <name>fullCrewUIScreen</name>
+        <qualifiedname>CrewUIHandler.fullCrewUIScreen</qualifiedname>
+        <briefdescription>
+<para>선원 최대 수용 시 표시되는 UI 화면입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="40" column="23" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="40" bodyend="-1"/>
+        <referencedby refid="classCrewUIHandler_1ab1e7b0a011c773eb6f12ad21d3328abd" compoundref="CrewUIHandler_8cs" startline="252" endline="257">ActiveFullCrewUI</referencedby>
+        <referencedby refid="classCrewUIHandler_1a69ba91d098f39cb64a1e24a4db99c988" compoundref="CrewUIHandler_8cs" startline="262" endline="267">InActiveFullCrewUI</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1a40ec0e0e88d0afae15b2687d75a1f363" prot="public" static="no" mutable="no">
+        <type><ref refid="classEquipmentUIHandler" kindref="compound">EquipmentUIHandler</ref></type>
+        <definition>EquipmentUIHandler CrewUIHandler.equipmentUIHandler</definition>
+        <argsstring></argsstring>
+        <name>equipmentUIHandler</name>
+        <qualifiedname>CrewUIHandler.equipmentUIHandler</qualifiedname>
+        <briefdescription>
+<para>장비 UI 핸들러 참조입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="46" column="31" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="46" bodyend="-1"/>
+        <referencedby refid="classCrewUIHandler_1a6dec12d65f5889d38e0e89e318516979" compoundref="CrewUIHandler_8cs" startline="346" endline="350">ResetEquipmentUI</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1ad02a889997cbcbe60a8363fba886f6bc" prot="public" static="no" mutable="no">
+        <type><ref refid="classRaceButtonController" kindref="compound">RaceButtonController</ref>[]</type>
+        <definition>RaceButtonController [] CrewUIHandler.raceButtonControllers</definition>
+        <argsstring></argsstring>
+        <name>raceButtonControllers</name>
+        <qualifiedname>CrewUIHandler.raceButtonControllers</qualifiedname>
+        <briefdescription>
+<para>각 종족 선택 버튼 컨트롤러 배열입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="58" column="33" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1a75f0d2f5ce67afa6a631d83ee92b0078" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button CrewUIHandler.submitButton</definition>
+        <argsstring></argsstring>
+        <name>submitButton</name>
+        <qualifiedname>CrewUIHandler.submitButton</qualifiedname>
+        <briefdescription>
+<para>최종 제출 버튼입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="74" column="20" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1a196c4306195ad7aae0683ae25ebb85c0" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button CrewUIHandler.humanButton</definition>
+        <argsstring></argsstring>
+        <name>humanButton</name>
+        <qualifiedname>CrewUIHandler.humanButton</qualifiedname>
+        <briefdescription>
+<para>인간형 종족 선택 버튼입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="79" column="20" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1a4a766090dc8f4d4ece6bb5f050519524" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button CrewUIHandler.amorphousButton</definition>
+        <argsstring></argsstring>
+        <name>amorphousButton</name>
+        <qualifiedname>CrewUIHandler.amorphousButton</qualifiedname>
+        <briefdescription>
+<para>부정형(아모르프) 종족 선택 버튼입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="84" column="19" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1a1a409c59102a7784a4ab5df6731d32e2" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button CrewUIHandler.mechanicTankButton</definition>
+        <argsstring></argsstring>
+        <name>mechanicTankButton</name>
+        <qualifiedname>CrewUIHandler.mechanicTankButton</qualifiedname>
+        <briefdescription>
+<para>돌격 기계형 종족 선택 버튼입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="89" column="19" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1a5e2132fd6dfab06853acbd93b5a804c5" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button CrewUIHandler.mechanicSupButton</definition>
+        <argsstring></argsstring>
+        <name>mechanicSupButton</name>
+        <qualifiedname>CrewUIHandler.mechanicSupButton</qualifiedname>
+        <briefdescription>
+<para>지원 기계형 종족 선택 버튼입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="94" column="19" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1a157e0cef3cf36e0333e88f029169d007" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button CrewUIHandler.beastButton</definition>
+        <argsstring></argsstring>
+        <name>beastButton</name>
+        <qualifiedname>CrewUIHandler.beastButton</qualifiedname>
+        <briefdescription>
+<para>짐승형 종족 선택 버튼입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="99" column="19" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1ab8b572a5ade93cac5e312a4443581522" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button CrewUIHandler.insectButton</definition>
+        <argsstring></argsstring>
+        <name>insectButton</name>
+        <qualifiedname>CrewUIHandler.insectButton</qualifiedname>
+        <briefdescription>
+<para>곤충형 종족 선택 버튼입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="104" column="19" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1a4377b6220d91aebd8b18b1be659181e2" prot="public" static="no" mutable="no">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship CrewUIHandler.playerShip</definition>
+        <argsstring></argsstring>
+        <name>playerShip</name>
+        <qualifiedname>CrewUIHandler.playerShip</qualifiedname>
+        <briefdescription>
+<para>유저 함선 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="120" column="17" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="120" bodyend="-1"/>
+        <referencedby refid="classCrewUIHandler_1a4d32848eaf008a7e7a2c65155506f27e" compoundref="CrewUIHandler_8cs" startline="272" endline="281">DisableCrews</referencedby>
+        <referencedby refid="classCrewUIHandler_1a85e650af7a8cdbf7e948a4d10634646f" compoundref="CrewUIHandler_8cs" startline="286" endline="295">EnableCrews</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classCrewUIHandler_1aa2e25819e29ab940ad82662b6c69920c" prot="private" static="no" mutable="no">
+        <type>TMP_InputField</type>
+        <definition>TMP_InputField CrewUIHandler.nameInputField</definition>
+        <argsstring></argsstring>
+        <name>nameInputField</name>
+        <qualifiedname>CrewUIHandler.nameInputField</qualifiedname>
+        <briefdescription>
+<para>선원 이름 입력 필드입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="53" column="28" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="53" bodyend="-1"/>
+        <referencedby refid="classCrewUIHandler_1a25fe54aa5427f0bcdc856b95714bfd34" compoundref="CrewUIHandler_8cs" startline="300" endline="318">OnCreateButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1a22bad1caab3c0a3183de081a6257d08b" compoundref="CrewUIHandler_8cs" startline="324" endline="341">OnSubmitButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1a42da2714a3929f976646d77871bb6a14" compoundref="CrewUIHandler_8cs" startline="144" endline="151">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1a74688bc8f605ed720fa258bf0b978343" prot="private" static="no" mutable="no">
+        <type><ref refid="classRaceButtonController" kindref="compound">RaceButtonController</ref></type>
+        <definition>RaceButtonController CrewUIHandler.currentSelectedButton</definition>
+        <argsstring></argsstring>
+        <name>currentSelectedButton</name>
+        <qualifiedname>CrewUIHandler.currentSelectedButton</qualifiedname>
+        <briefdescription>
+<para>현재 선택된 종족 버튼입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="63" column="35" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="63" bodyend="-1"/>
+        <referencedby refid="classCrewUIHandler_1a25fe54aa5427f0bcdc856b95714bfd34" compoundref="CrewUIHandler_8cs" startline="300" endline="318">OnCreateButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1a836663b4d3ffe30f66baaeac349a35cc" compoundref="CrewUIHandler_8cs" startline="217" endline="226">OnRaceButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1ae1dc75523a6a216baa0f0705209d3b31" compoundref="CrewUIHandler_8cs" startline="241" endline="247">ResetCrewCreateUI</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1ab68577087c65d6f469e732f2781148ed" prot="private" static="no" mutable="no">
+        <type>CrewRace</type>
+        <definition>CrewRace CrewUIHandler.selectedRace</definition>
+        <argsstring></argsstring>
+        <name>selectedRace</name>
+        <qualifiedname>CrewUIHandler.selectedRace</qualifiedname>
+        <initializer>= CrewRace.None</initializer>
+        <briefdescription>
+<para>현재 선택된 종족 정보입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="68" column="23" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="68" bodyend="-1"/>
+        <referencedby refid="classCrewUIHandler_1a836663b4d3ffe30f66baaeac349a35cc" compoundref="CrewUIHandler_8cs" startline="217" endline="226">OnRaceButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1a22bad1caab3c0a3183de081a6257d08b" compoundref="CrewUIHandler_8cs" startline="324" endline="341">OnSubmitButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1ae1dc75523a6a216baa0f0705209d3b31" compoundref="CrewUIHandler_8cs" startline="241" endline="247">ResetCrewCreateUI</referencedby>
+        <referencedby refid="classCrewUIHandler_1a42da2714a3929f976646d77871bb6a14" compoundref="CrewUIHandler_8cs" startline="144" endline="151">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1aa4383d1996c515e95e57dee372834afc" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string CrewUIHandler.inputName</definition>
+        <argsstring></argsstring>
+        <name>inputName</name>
+        <qualifiedname>CrewUIHandler.inputName</qualifiedname>
+        <briefdescription>
+<para>선원 이름 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="109" column="20" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="109" bodyend="-1"/>
+        <referencedby refid="classCrewUIHandler_1a22bad1caab3c0a3183de081a6257d08b" compoundref="CrewUIHandler_8cs" startline="324" endline="341">OnSubmitButtonClicked</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewUIHandler_1a85b061f77ad36c26c7516d8acea12452" prot="private" static="no" mutable="no">
+        <type>Stack&lt; GameObject &gt;</type>
+        <definition>Stack&lt;GameObject&gt; CrewUIHandler.uiHistory</definition>
+        <argsstring></argsstring>
+        <name>uiHistory</name>
+        <qualifiedname>CrewUIHandler.uiHistory</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>UI 화면 이동 이력을 저장하는 스택 구조입니다. 뒤로 가기 기능에 사용됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="115" column="19" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="115" bodyend="-1"/>
+        <referencedby refid="classCrewUIHandler_1aa1f9892a6d408e42fde14d2cd0c4ad2b" compoundref="CrewUIHandler_8cs" startline="194" endline="211">OnBackButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1ad6d30e28e6b12254a7284d840395058b" compoundref="CrewUIHandler_8cs" startline="175" endline="189">ShowUI</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classCrewUIHandler_1a6ad5d8d9deb3180a6e7f562b63f7ee55" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>CrewUIHandler.Awake</qualifiedname>
+        <briefdescription>
+<para>싱글턴 인스턴스를 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="125" column="18" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="125" bodyend="128"/>
+        <references refid="classCrewUIHandler_1ab4bbd7a8a2c512abef285644a6e75627" compoundref="CrewUIHandler_8cs" startline="15">Instance</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1a25baacf893fcd4cc0870ea081c174d2b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>CrewUIHandler.Start</qualifiedname>
+        <briefdescription>
+<para>UI 초기 상태를 설정합니다. Submit 버튼을 비활성화하며, 버튼 이벤트 연결은 에디터에서 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="135" column="18" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="135" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1a42da2714a3929f976646d77871bb6a14" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>CrewUIHandler.Update</qualifiedname>
+        <briefdescription>
+<para>종족, 이름 모두 입력 시 submit 버튼 활성화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="144" column="18" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="144" bodyend="151"/>
+        <references refid="classCrewUIHandler_1aa2e25819e29ab940ad82662b6c69920c" compoundref="CrewUIHandler_8cs" startline="53">nameInputField</references>
+        <references refid="classCrewUIHandler_1ab68577087c65d6f469e732f2781148ed" compoundref="CrewUIHandler_8cs" startline="68">selectedRace</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1ae1dc75523a6a216baa0f0705209d3b31" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.ResetCrewCreateUI</definition>
+        <argsstring>()</argsstring>
+        <name>ResetCrewCreateUI</name>
+        <qualifiedname>CrewUIHandler.ResetCrewCreateUI</qualifiedname>
+        <briefdescription>
+<para>선원 생성 시 UI 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="241" column="18" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="241" bodyend="247"/>
+        <references refid="classCrewUIHandler_1a74688bc8f605ed720fa258bf0b978343" compoundref="CrewUIHandler_8cs" startline="63">currentSelectedButton</references>
+        <references refid="classCrewUIHandler_1ab68577087c65d6f469e732f2781148ed" compoundref="CrewUIHandler_8cs" startline="68">selectedRace</references>
+        <references refid="classRaceButtonController_1accdf9f43b1ab621a795a98af3ad97ba7" compoundref="RaceButtonController_8cs" startline="84" endline="88">RaceButtonController.SetHighlighted</references>
+        <referencedby refid="classCrewUIHandler_1a25fe54aa5427f0bcdc856b95714bfd34" compoundref="CrewUIHandler_8cs" startline="300" endline="318">OnCreateButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1a22bad1caab3c0a3183de081a6257d08b" compoundref="CrewUIHandler_8cs" startline="324" endline="341">OnSubmitButtonClicked</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1ab1e7b0a011c773eb6f12ad21d3328abd" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.ActiveFullCrewUI</definition>
+        <argsstring>()</argsstring>
+        <name>ActiveFullCrewUI</name>
+        <qualifiedname>CrewUIHandler.ActiveFullCrewUI</qualifiedname>
+        <briefdescription>
+<para>수용 가능 선원 꽉 참 UI 생성 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="252" column="18" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="252" bodyend="257"/>
+        <references refid="classCrewUIHandler_1a4d32848eaf008a7e7a2c65155506f27e" compoundref="CrewUIHandler_8cs" startline="272" endline="281">DisableCrews</references>
+        <references refid="classCrewUIHandler_1aa47cef1896f9f88f223854ab3dfa52c7" compoundref="CrewUIHandler_8cs" startline="40">fullCrewUIScreen</references>
+        <referencedby refid="classCrewUIHandler_1a25fe54aa5427f0bcdc856b95714bfd34" compoundref="CrewUIHandler_8cs" startline="300" endline="318">OnCreateButtonClicked</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1a69ba91d098f39cb64a1e24a4db99c988" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.InActiveFullCrewUI</definition>
+        <argsstring>()</argsstring>
+        <name>InActiveFullCrewUI</name>
+        <qualifiedname>CrewUIHandler.InActiveFullCrewUI</qualifiedname>
+        <briefdescription>
+<para>수용 가능 선원 꽉 참 UI 해제 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="262" column="18" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="262" bodyend="267"/>
+        <references refid="classCrewUIHandler_1a85e650af7a8cdbf7e948a4d10634646f" compoundref="CrewUIHandler_8cs" startline="286" endline="295">EnableCrews</references>
+        <references refid="classCrewUIHandler_1aa47cef1896f9f88f223854ab3dfa52c7" compoundref="CrewUIHandler_8cs" startline="40">fullCrewUIScreen</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1a4d32848eaf008a7e7a2c65155506f27e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.DisableCrews</definition>
+        <argsstring>()</argsstring>
+        <name>DisableCrews</name>
+        <qualifiedname>CrewUIHandler.DisableCrews</qualifiedname>
+        <briefdescription>
+<para>UI 진입 시 선원 임시 비활성화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="272" column="18" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="272" bodyend="281"/>
+        <references refid="classShip_1a77e8600c112c136e294bf98d19625546" compoundref="Ship_8cs" startline="46">Ship.allCrews</references>
+        <references refid="classCrewUIHandler_1a4377b6220d91aebd8b18b1be659181e2" compoundref="CrewUIHandler_8cs" startline="120">playerShip</references>
+        <referencedby refid="classCrewUIHandler_1ab1e7b0a011c773eb6f12ad21d3328abd" compoundref="CrewUIHandler_8cs" startline="252" endline="257">ActiveFullCrewUI</referencedby>
+        <referencedby refid="classCrewUIHandler_1adc64cd9fb9c94d6cd30dfea9b8ef5c81" compoundref="CrewUIHandler_8cs" startline="355" endline="360">OnAddEquipmentButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1a25fe54aa5427f0bcdc856b95714bfd34" compoundref="CrewUIHandler_8cs" startline="300" endline="318">OnCreateButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1a45a753651a66f7896431a39f5d7f76ed" compoundref="CrewUIHandler_8cs" startline="231" endline="236">OnCustomizeButtonClicked</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1a85e650af7a8cdbf7e948a4d10634646f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.EnableCrews</definition>
+        <argsstring>()</argsstring>
+        <name>EnableCrews</name>
+        <qualifiedname>CrewUIHandler.EnableCrews</qualifiedname>
+        <briefdescription>
+<para>UI 탈출 시 선원 재활성화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="286" column="18" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="286" bodyend="295"/>
+        <references refid="classShip_1a77e8600c112c136e294bf98d19625546" compoundref="Ship_8cs" startline="46">Ship.allCrews</references>
+        <references refid="classCrewUIHandler_1a4377b6220d91aebd8b18b1be659181e2" compoundref="CrewUIHandler_8cs" startline="120">playerShip</references>
+        <referencedby refid="classCrewUIHandler_1a69ba91d098f39cb64a1e24a4db99c988" compoundref="CrewUIHandler_8cs" startline="262" endline="267">InActiveFullCrewUI</referencedby>
+        <referencedby refid="classCrewUIHandler_1aa1f9892a6d408e42fde14d2cd0c4ad2b" compoundref="CrewUIHandler_8cs" startline="194" endline="211">OnBackButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1a22bad1caab3c0a3183de081a6257d08b" compoundref="CrewUIHandler_8cs" startline="324" endline="341">OnSubmitButtonClicked</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1a6dec12d65f5889d38e0e89e318516979" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.ResetEquipmentUI</definition>
+        <argsstring>()</argsstring>
+        <name>ResetEquipmentUI</name>
+        <qualifiedname>CrewUIHandler.ResetEquipmentUI</qualifiedname>
+        <briefdescription>
+<para>장비 구매 물어보는 UI 해제 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="346" column="18" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="346" bodyend="350"/>
+        <references refid="classCrewUIHandler_1a40ec0e0e88d0afae15b2687d75a1f363" compoundref="CrewUIHandler_8cs" startline="46">equipmentUIHandler</references>
+        <references refid="classEquipmentUIHandler_1a9c99d63bc44c54b221d45dec7a7e871e" compoundref="EquipmentUIHandler_8cs" startline="16">EquipmentUIHandler.itemBuyPanel</references>
+        <referencedby refid="classCrewUIHandler_1aa1f9892a6d408e42fde14d2cd0c4ad2b" compoundref="CrewUIHandler_8cs" startline="194" endline="211">OnBackButtonClicked</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCrewUIHandler_1ab05248ba25a695ab86b68a0408403fea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>GameObject</type>
+        <definition>GameObject CrewUIHandler.GetCurrentActiveUI</definition>
+        <argsstring>()</argsstring>
+        <name>GetCurrentActiveUI</name>
+        <qualifiedname>CrewUIHandler.GetCurrentActiveUI</qualifiedname>
+        <briefdescription>
+<para>현재 활성화 되어 있는 UI 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="157" column="23" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="157" bodyend="169"/>
+        <references refid="classCrewUIHandler_1ac2ad6c0094368a8cdcb9549804898e8d" compoundref="CrewUIHandler_8cs" startline="35">addEquipmentUIScreen</references>
+        <references refid="classCrewUIHandler_1a6aaca8dffcefc4b3511b5e7f6e4eb326" compoundref="CrewUIHandler_8cs" startline="25">createUIScreen</references>
+        <references refid="classCrewUIHandler_1a3e91e95085b4b0584f3ebe77684500cf" compoundref="CrewUIHandler_8cs" startline="30">customizeShipUIScreen</references>
+        <references refid="classCrewUIHandler_1ae9069232231c9c4379af8f5664423adf" compoundref="CrewUIHandler_8cs" startline="20">mainUIScreen</references>
+        <referencedby refid="classCrewUIHandler_1aa1f9892a6d408e42fde14d2cd0c4ad2b" compoundref="CrewUIHandler_8cs" startline="194" endline="211">OnBackButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1ad6d30e28e6b12254a7284d840395058b" compoundref="CrewUIHandler_8cs" startline="175" endline="189">ShowUI</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1ad6d30e28e6b12254a7284d840395058b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.ShowUI</definition>
+        <argsstring>(GameObject targetUI)</argsstring>
+        <name>ShowUI</name>
+        <qualifiedname>CrewUIHandler.ShowUI</qualifiedname>
+        <param>
+          <type>GameObject</type>
+          <declname>targetUI</declname>
+        </param>
+        <briefdescription>
+<para>인자로 받은 UI 활성화 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>targetUI</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="175" column="17" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="175" bodyend="189"/>
+        <references refid="classMenuUIManager_1affd2caca9dab596142221936b495824c" compoundref="MenuUIManager_8cs" startline="38" endline="48">MenuUIManager.ForceCloseMenu</references>
+        <references refid="classCrewUIHandler_1ab05248ba25a695ab86b68a0408403fea" compoundref="CrewUIHandler_8cs" startline="157" endline="169">GetCurrentActiveUI</references>
+        <references refid="classCrewUIHandler_1ae9069232231c9c4379af8f5664423adf" compoundref="CrewUIHandler_8cs" startline="20">mainUIScreen</references>
+        <references refid="classCrewUIHandler_1a85b061f77ad36c26c7516d8acea12452" compoundref="CrewUIHandler_8cs" startline="115">uiHistory</references>
+        <referencedby refid="classCrewUIHandler_1adc64cd9fb9c94d6cd30dfea9b8ef5c81" compoundref="CrewUIHandler_8cs" startline="355" endline="360">OnAddEquipmentButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1a25fe54aa5427f0bcdc856b95714bfd34" compoundref="CrewUIHandler_8cs" startline="300" endline="318">OnCreateButtonClicked</referencedby>
+        <referencedby refid="classCrewUIHandler_1a45a753651a66f7896431a39f5d7f76ed" compoundref="CrewUIHandler_8cs" startline="231" endline="236">OnCustomizeButtonClicked</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1aa1f9892a6d408e42fde14d2cd0c4ad2b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.OnBackButtonClicked</definition>
+        <argsstring>()</argsstring>
+        <name>OnBackButtonClicked</name>
+        <qualifiedname>CrewUIHandler.OnBackButtonClicked</qualifiedname>
+        <briefdescription>
+<para>UIHistory 개념으로 인터넷 뒤로 가기 버튼과 동일한 기능 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="194" column="17" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="194" bodyend="211"/>
+        <references refid="classCrewUIHandler_1ac2ad6c0094368a8cdcb9549804898e8d" compoundref="CrewUIHandler_8cs" startline="35">addEquipmentUIScreen</references>
+        <references refid="classCrewUIHandler_1a85e650af7a8cdbf7e948a4d10634646f" compoundref="CrewUIHandler_8cs" startline="286" endline="295">EnableCrews</references>
+        <references refid="classCrewUIHandler_1ab05248ba25a695ab86b68a0408403fea" compoundref="CrewUIHandler_8cs" startline="157" endline="169">GetCurrentActiveUI</references>
+        <references refid="classCrewUIHandler_1ae9069232231c9c4379af8f5664423adf" compoundref="CrewUIHandler_8cs" startline="20">mainUIScreen</references>
+        <references refid="classCrewUIHandler_1a6dec12d65f5889d38e0e89e318516979" compoundref="CrewUIHandler_8cs" startline="346" endline="350">ResetEquipmentUI</references>
+        <references refid="classCrewUIHandler_1a85b061f77ad36c26c7516d8acea12452" compoundref="CrewUIHandler_8cs" startline="115">uiHistory</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1a836663b4d3ffe30f66baaeac349a35cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.OnRaceButtonClicked</definition>
+        <argsstring>(RaceButtonController clickedButton)</argsstring>
+        <name>OnRaceButtonClicked</name>
+        <qualifiedname>CrewUIHandler.OnRaceButtonClicked</qualifiedname>
+        <param>
+          <type><ref refid="classRaceButtonController" kindref="compound">RaceButtonController</ref></type>
+          <declname>clickedButton</declname>
+        </param>
+        <briefdescription>
+<para>종족 선택하는 버튼 클릭 시 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>clickedButton</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="217" column="17" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="217" bodyend="226"/>
+        <references refid="classCrewUIHandler_1a74688bc8f605ed720fa258bf0b978343" compoundref="CrewUIHandler_8cs" startline="63">currentSelectedButton</references>
+        <references refid="classRaceButtonController_1a1cc980b827e839f07add87c0b5b338a8" compoundref="RaceButtonController_8cs" startline="15">RaceButtonController.raceType</references>
+        <references refid="classCrewUIHandler_1ab68577087c65d6f469e732f2781148ed" compoundref="CrewUIHandler_8cs" startline="68">selectedRace</references>
+        <references refid="classRaceButtonController_1accdf9f43b1ab621a795a98af3ad97ba7" compoundref="RaceButtonController_8cs" startline="84" endline="88">RaceButtonController.SetHighlighted</references>
+        <referencedby refid="classRaceButtonController_1ac5a97be35fbb20a2f0e12e6ca9f4c283" compoundref="RaceButtonController_8cs" startline="74" endline="78">RaceButtonController.OnPointerClick</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1a45a753651a66f7896431a39f5d7f76ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.OnCustomizeButtonClicked</definition>
+        <argsstring>()</argsstring>
+        <name>OnCustomizeButtonClicked</name>
+        <qualifiedname>CrewUIHandler.OnCustomizeButtonClicked</qualifiedname>
+        <briefdescription>
+<para>함선 커스터마이즈를 위한 버튼 클릭 시 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="231" column="17" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="231" bodyend="236"/>
+        <references refid="classCrewUIHandler_1a3e91e95085b4b0584f3ebe77684500cf" compoundref="CrewUIHandler_8cs" startline="30">customizeShipUIScreen</references>
+        <references refid="classCrewUIHandler_1a4d32848eaf008a7e7a2c65155506f27e" compoundref="CrewUIHandler_8cs" startline="272" endline="281">DisableCrews</references>
+        <references refid="classCrewUIHandler_1ad6d30e28e6b12254a7284d840395058b" compoundref="CrewUIHandler_8cs" startline="175" endline="189">ShowUI</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1a25fe54aa5427f0bcdc856b95714bfd34" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.OnCreateButtonClicked</definition>
+        <argsstring>()</argsstring>
+        <name>OnCreateButtonClicked</name>
+        <qualifiedname>CrewUIHandler.OnCreateButtonClicked</qualifiedname>
+        <briefdescription>
+<para>선원 추가를 위한 UI로 이동 버튼 클릭 시 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="300" column="17" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="300" bodyend="318"/>
+        <references refid="classCrewUIHandler_1ab1e7b0a011c773eb6f12ad21d3328abd" compoundref="CrewUIHandler_8cs" startline="252" endline="257">ActiveFullCrewUI</references>
+        <references refid="classCrewUIHandler_1a6aaca8dffcefc4b3511b5e7f6e4eb326" compoundref="CrewUIHandler_8cs" startline="25">createUIScreen</references>
+        <references refid="classCrewUIHandler_1a74688bc8f605ed720fa258bf0b978343" compoundref="CrewUIHandler_8cs" startline="63">currentSelectedButton</references>
+        <references refid="classCrewUIHandler_1a4d32848eaf008a7e7a2c65155506f27e" compoundref="CrewUIHandler_8cs" startline="272" endline="281">DisableCrews</references>
+        <references refid="classShip_1a89be268214921c4585f6b70038b98c8e" compoundref="Ship_8cs" startline="1034" endline="1037">Ship.GetCrewCount</references>
+        <references refid="classShip_1a4deb55bdb782e3f411387b68f55e1edb" compoundref="Ship_8cs" startline="1042" endline="1045">Ship.GetMaxCrew</references>
+        <references refid="classGameManager_1a1f54b41e89308bda97cf48e599ec549d" compoundref="GameManager_8cs" startline="427" endline="430">GameManager.GetPlayerShip</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classCrewUIHandler_1aa2e25819e29ab940ad82662b6c69920c" compoundref="CrewUIHandler_8cs" startline="53">nameInputField</references>
+        <references refid="classCrewUIHandler_1ae1dc75523a6a216baa0f0705209d3b31" compoundref="CrewUIHandler_8cs" startline="241" endline="247">ResetCrewCreateUI</references>
+        <references refid="classCrewUIHandler_1ad6d30e28e6b12254a7284d840395058b" compoundref="CrewUIHandler_8cs" startline="175" endline="189">ShowUI</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1a22bad1caab3c0a3183de081a6257d08b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.OnSubmitButtonClicked</definition>
+        <argsstring>()</argsstring>
+        <name>OnSubmitButtonClicked</name>
+        <qualifiedname>CrewUIHandler.OnSubmitButtonClicked</qualifiedname>
+        <briefdescription>
+<para>선원 정보 입력 후 실제 생성하는 버튼 클릭 시 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="324" column="17" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="324" bodyend="341"/>
+        <references refid="classShip_1ada608dfe1708f8859e0a1c202c8ab121" compoundref="Ship_8cs" startline="1072" endline="1075">Ship.AddCrew</references>
+        <references refid="classCrewUIHandler_1a6aaca8dffcefc4b3511b5e7f6e4eb326" compoundref="CrewUIHandler_8cs" startline="25">createUIScreen</references>
+        <references refid="classCrewUIHandler_1a85e650af7a8cdbf7e948a4d10634646f" compoundref="CrewUIHandler_8cs" startline="286" endline="295">EnableCrews</references>
+        <references refid="classGameManager_1a1f54b41e89308bda97cf48e599ec549d" compoundref="GameManager_8cs" startline="427" endline="430">GameManager.GetPlayerShip</references>
+        <references refid="classCrewUIHandler_1aa4383d1996c515e95e57dee372834afc" compoundref="CrewUIHandler_8cs" startline="109">inputName</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classCrewUIHandler_1ae9069232231c9c4379af8f5664423adf" compoundref="CrewUIHandler_8cs" startline="20">mainUIScreen</references>
+        <references refid="classCrewUIHandler_1aa2e25819e29ab940ad82662b6c69920c" compoundref="CrewUIHandler_8cs" startline="53">nameInputField</references>
+        <references refid="classCrewUIHandler_1ae1dc75523a6a216baa0f0705209d3b31" compoundref="CrewUIHandler_8cs" startline="241" endline="247">ResetCrewCreateUI</references>
+        <references refid="classCrewUIHandler_1ab68577087c65d6f469e732f2781148ed" compoundref="CrewUIHandler_8cs" startline="68">selectedRace</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewUIHandler_1adc64cd9fb9c94d6cd30dfea9b8ef5c81" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewUIHandler.OnAddEquipmentButtonClicked</definition>
+        <argsstring>()</argsstring>
+        <name>OnAddEquipmentButtonClicked</name>
+        <qualifiedname>CrewUIHandler.OnAddEquipmentButtonClicked</qualifiedname>
+        <briefdescription>
+<para>장비 구매 UI로의 이동 버튼 클릭 시 호출 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="355" column="17" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="355" bodyend="360"/>
+        <references refid="classCrewUIHandler_1ac2ad6c0094368a8cdcb9549804898e8d" compoundref="CrewUIHandler_8cs" startline="35">addEquipmentUIScreen</references>
+        <references refid="classCrewUIHandler_1a4d32848eaf008a7e7a2c65155506f27e" compoundref="CrewUIHandler_8cs" startline="272" endline="281">DisableCrews</references>
+        <references refid="classCrewUIHandler_1ad6d30e28e6b12254a7284d840395058b" compoundref="CrewUIHandler_8cs" startline="175" endline="189">ShowUI</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>선원 생성, 종족 선택, 장비 구매 등 크루 관련 UI 전체를 관리하는 핸들러. 화면 전환, 입력 처리, 버튼 이벤트 등 UI 흐름을 통합적으로 제어합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CrewUIHandler</label>
+        <link refid="classCrewUIHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="26">
+        <label>Constants</label>
+      </node>
+      <node id="22">
+        <label>CrewBase</label>
+        <link refid="classCrewBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>+equippedAssistant</edgelabel>
+          <edgelabel>+equippedShield</edgelabel>
+          <edgelabel>+equippedWeapon</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>+currentRoom</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+currentShip</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>+healthBarController</edgelabel>
+        </childnode>
+      </node>
+      <node id="27">
+        <label>CrewHealthBar</label>
+        <link refid="classCrewHealthBar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-offset</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-crewBase</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>CrewMember</label>
+        <link refid="classCrewMember"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-movementDirection</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>+madRoom</edgelabel>
+          <edgelabel>+oldReservedRoom</edgelabel>
+          <edgelabel>+reservedRoom</edgelabel>
+        </childnode>
+      </node>
+      <node id="32">
+        <label>CrewRaceStat</label>
+        <link refid="classCrewRaceStat"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>CrewUIHandler</label>
+        <link refid="classCrewUIHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>+Instance</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+equipmentUIHandler</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>+raceButtonControllers</edgelabel>
+          <edgelabel>-currentSelectedButton</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>+amorphousButton</edgelabel>
+          <edgelabel>+beastButton</edgelabel>
+          <edgelabel>+humanButton</edgelabel>
+          <edgelabel>+insectButton</edgelabel>
+          <edgelabel>+mechanicSupButton</edgelabel>
+          <edgelabel>+mechanicTankButton</edgelabel>
+          <edgelabel>+submitButton</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>EquipmentButton</label>
+        <link refid="classEquipmentButton"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>+myButton</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>+linkedItem</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+uiHandler</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>EquipmentItem</label>
+        <link refid="classEquipmentItem"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>EquipmentUIHandler</label>
+        <link refid="classEquipmentUIHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>+backButton</edgelabel>
+          <edgelabel>+buyButton</edgelabel>
+          <edgelabel>+globalCompleteButton</edgelabel>
+          <edgelabel>+personalBackButton</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>+currentSelectedItem</edgelabel>
+          <edgelabel>-pendingEquipItem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>+currentSelectedButton</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>+selectedCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="29">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="30">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="23">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="14">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>RaceButtonController</label>
+        <link refid="classRaceButtonController"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+        <childnode refid="31" relation="public-inheritance">
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>+crewRaceStat</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-button</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="25">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="17">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>UnityEngine</label>
+      </node>
+      <node id="10">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Crew/CrewUIHandler.cs" line="10" column="7" bodyfile="Assets/Scripts/Crew/CrewUIHandler.cs" bodystart="11" bodyend="361"/>
+    <listofallmembers>
+      <member refid="classCrewUIHandler_1ab1e7b0a011c773eb6f12ad21d3328abd" prot="private" virt="non-virtual"><scope>CrewUIHandler</scope><name>ActiveFullCrewUI</name></member>
+      <member refid="classCrewUIHandler_1ac2ad6c0094368a8cdcb9549804898e8d" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>addEquipmentUIScreen</name></member>
+      <member refid="classCrewUIHandler_1a4a766090dc8f4d4ece6bb5f050519524" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>amorphousButton</name></member>
+      <member refid="classCrewUIHandler_1a6ad5d8d9deb3180a6e7f562b63f7ee55" prot="private" virt="non-virtual"><scope>CrewUIHandler</scope><name>Awake</name></member>
+      <member refid="classCrewUIHandler_1a157e0cef3cf36e0333e88f029169d007" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>beastButton</name></member>
+      <member refid="classCrewUIHandler_1a6aaca8dffcefc4b3511b5e7f6e4eb326" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>createUIScreen</name></member>
+      <member refid="classCrewUIHandler_1a74688bc8f605ed720fa258bf0b978343" prot="private" virt="non-virtual"><scope>CrewUIHandler</scope><name>currentSelectedButton</name></member>
+      <member refid="classCrewUIHandler_1a3e91e95085b4b0584f3ebe77684500cf" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>customizeShipUIScreen</name></member>
+      <member refid="classCrewUIHandler_1a4d32848eaf008a7e7a2c65155506f27e" prot="private" virt="non-virtual"><scope>CrewUIHandler</scope><name>DisableCrews</name></member>
+      <member refid="classCrewUIHandler_1a85e650af7a8cdbf7e948a4d10634646f" prot="private" virt="non-virtual"><scope>CrewUIHandler</scope><name>EnableCrews</name></member>
+      <member refid="classCrewUIHandler_1a40ec0e0e88d0afae15b2687d75a1f363" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>equipmentUIHandler</name></member>
+      <member refid="classCrewUIHandler_1aa47cef1896f9f88f223854ab3dfa52c7" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>fullCrewUIScreen</name></member>
+      <member refid="classCrewUIHandler_1ab05248ba25a695ab86b68a0408403fea" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>GetCurrentActiveUI</name></member>
+      <member refid="classCrewUIHandler_1a196c4306195ad7aae0683ae25ebb85c0" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>humanButton</name></member>
+      <member refid="classCrewUIHandler_1a69ba91d098f39cb64a1e24a4db99c988" prot="private" virt="non-virtual"><scope>CrewUIHandler</scope><name>InActiveFullCrewUI</name></member>
+      <member refid="classCrewUIHandler_1aa4383d1996c515e95e57dee372834afc" prot="private" virt="non-virtual"><scope>CrewUIHandler</scope><name>inputName</name></member>
+      <member refid="classCrewUIHandler_1ab8b572a5ade93cac5e312a4443581522" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>insectButton</name></member>
+      <member refid="classCrewUIHandler_1ab4bbd7a8a2c512abef285644a6e75627" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>Instance</name></member>
+      <member refid="classCrewUIHandler_1ae9069232231c9c4379af8f5664423adf" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>mainUIScreen</name></member>
+      <member refid="classCrewUIHandler_1a5e2132fd6dfab06853acbd93b5a804c5" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>mechanicSupButton</name></member>
+      <member refid="classCrewUIHandler_1a1a409c59102a7784a4ab5df6731d32e2" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>mechanicTankButton</name></member>
+      <member refid="classCrewUIHandler_1aa2e25819e29ab940ad82662b6c69920c" prot="private" virt="non-virtual"><scope>CrewUIHandler</scope><name>nameInputField</name></member>
+      <member refid="classCrewUIHandler_1adc64cd9fb9c94d6cd30dfea9b8ef5c81" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>OnAddEquipmentButtonClicked</name></member>
+      <member refid="classCrewUIHandler_1aa1f9892a6d408e42fde14d2cd0c4ad2b" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>OnBackButtonClicked</name></member>
+      <member refid="classCrewUIHandler_1a25fe54aa5427f0bcdc856b95714bfd34" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>OnCreateButtonClicked</name></member>
+      <member refid="classCrewUIHandler_1a45a753651a66f7896431a39f5d7f76ed" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>OnCustomizeButtonClicked</name></member>
+      <member refid="classCrewUIHandler_1a836663b4d3ffe30f66baaeac349a35cc" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>OnRaceButtonClicked</name></member>
+      <member refid="classCrewUIHandler_1a22bad1caab3c0a3183de081a6257d08b" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>OnSubmitButtonClicked</name></member>
+      <member refid="classCrewUIHandler_1a4377b6220d91aebd8b18b1be659181e2" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>playerShip</name></member>
+      <member refid="classCrewUIHandler_1ad02a889997cbcbe60a8363fba886f6bc" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>raceButtonControllers</name></member>
+      <member refid="classCrewUIHandler_1ae1dc75523a6a216baa0f0705209d3b31" prot="private" virt="non-virtual"><scope>CrewUIHandler</scope><name>ResetCrewCreateUI</name></member>
+      <member refid="classCrewUIHandler_1a6dec12d65f5889d38e0e89e318516979" prot="private" virt="non-virtual"><scope>CrewUIHandler</scope><name>ResetEquipmentUI</name></member>
+      <member refid="classCrewUIHandler_1ab68577087c65d6f469e732f2781148ed" prot="private" virt="non-virtual"><scope>CrewUIHandler</scope><name>selectedRace</name></member>
+      <member refid="classCrewUIHandler_1ad6d30e28e6b12254a7284d840395058b" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>ShowUI</name></member>
+      <member refid="classCrewUIHandler_1a25baacf893fcd4cc0870ea081c174d2b" prot="private" virt="non-virtual"><scope>CrewUIHandler</scope><name>Start</name></member>
+      <member refid="classCrewUIHandler_1a75f0d2f5ce67afa6a631d83ee92b0078" prot="public" virt="non-virtual"><scope>CrewUIHandler</scope><name>submitButton</name></member>
+      <member refid="classCrewUIHandler_1a85b061f77ad36c26c7516d8acea12452" prot="private" virt="non-virtual"><scope>CrewUIHandler</scope><name>uiHistory</name></member>
+      <member refid="classCrewUIHandler_1a42da2714a3929f976646d77871bb6a14" prot="private" virt="non-virtual"><scope>CrewUIHandler</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

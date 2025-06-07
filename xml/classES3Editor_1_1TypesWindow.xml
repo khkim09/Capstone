@@ -1,0 +1,906 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classES3Editor_1_1TypesWindow" kind="class" language="C#" prot="public">
+    <compoundname>ES3Editor::TypesWindow</compoundname>
+    <basecompoundref refid="classES3Editor_1_1SubWindow" prot="public" virt="non-virtual">ES3Editor.SubWindow</basecompoundref>
+    <innerclass refid="classES3Editor_1_1TypesWindow_1_1TypeListItem" prot="public">ES3Editor::TypesWindow::TypeListItem</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1ae6c40655e5855deb0d462a0b395b00fb" prot="private" static="no" mutable="no">
+        <type><ref refid="classES3Editor_1_1TypesWindow_1_1TypeListItem" kindref="compound">TypeListItem</ref>[]</type>
+        <definition>TypeListItem [] ES3Editor.TypesWindow.types</definition>
+        <argsstring></argsstring>
+        <name>types</name>
+        <qualifiedname>ES3Editor.TypesWindow.types</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="17" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1ae58f7e39dbef86a26acc1178199fa4e6" prot="private" static="no" mutable="no">
+        <type>List&lt; int &gt;</type>
+        <definition>List&lt;int&gt; ES3Editor.TypesWindow.recentTypes</definition>
+        <argsstring></argsstring>
+        <name>recentTypes</name>
+        <qualifiedname>ES3Editor.TypesWindow.recentTypes</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="19" column="6" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1a7a23dbd156dbd9166c53290e68e48852" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 ES3Editor.TypesWindow.typeListScrollPos</definition>
+        <argsstring></argsstring>
+        <name>typeListScrollPos</name>
+        <qualifiedname>ES3Editor.TypesWindow.typeListScrollPos</qualifiedname>
+        <initializer>= Vector2.zero</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="21" column="9" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1ad26c3bbd0ee93922cc752e158c3102c8" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 ES3Editor.TypesWindow.typePaneScrollPos</definition>
+        <argsstring></argsstring>
+        <name>typePaneScrollPos</name>
+        <qualifiedname>ES3Editor.TypesWindow.typePaneScrollPos</qualifiedname>
+        <initializer>= Vector2.zero</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="22" column="9" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1a3ccfd379a1eef1b8549a81b6777c5b8e" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ES3Editor.TypesWindow.leftPaneWidth</definition>
+        <argsstring></argsstring>
+        <name>leftPaneWidth</name>
+        <qualifiedname>ES3Editor.TypesWindow.leftPaneWidth</qualifiedname>
+        <initializer>= 300</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="23" column="5" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1a053dbe9c26c598edad49a25eef4b5e56" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ES3Editor.TypesWindow.searchFieldValue</definition>
+        <argsstring></argsstring>
+        <name>searchFieldValue</name>
+        <qualifiedname>ES3Editor.TypesWindow.searchFieldValue</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="25" column="8" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1aed01c68c076507cf07deaec0f3e8c4a2" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ES3Editor.TypesWindow.selectedType</definition>
+        <argsstring></argsstring>
+        <name>selectedType</name>
+        <qualifiedname>ES3Editor.TypesWindow.selectedType</qualifiedname>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="27" column="5" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1a4edc1c825a3c40bbb491f041985bf8af" prot="private" static="no" mutable="no">
+        <type><ref refid="structES3Internal_1_1ES3Reflection_1_1ES3ReflectedMember" kindref="compound">ES3Reflection.ES3ReflectedMember</ref>[]</type>
+        <definition>ES3Reflection.ES3ReflectedMember [] ES3Editor.TypesWindow.fields</definition>
+        <argsstring></argsstring>
+        <name>fields</name>
+        <qualifiedname>ES3Editor.TypesWindow.fields</qualifiedname>
+        <initializer>= new <ref refid="structES3Internal_1_1ES3Reflection_1_1ES3ReflectedMember" kindref="compound">ES3Reflection.ES3ReflectedMember</ref>[0]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="28" column="41" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1a025e6a502631269e5111471eabd5c4aa" prot="private" static="no" mutable="no">
+        <type>bool[]</type>
+        <definition>bool [] ES3Editor.TypesWindow.fieldSelected</definition>
+        <argsstring></argsstring>
+        <name>fieldSelected</name>
+        <qualifiedname>ES3Editor.TypesWindow.fieldSelected</qualifiedname>
+        <initializer>= new bool[0]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="29" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1aab7c9f5adb49dc9139de375050a0a726" prot="private" static="no" mutable="no">
+        <type>Texture2D</type>
+        <definition>Texture2D ES3Editor.TypesWindow.checkmark</definition>
+        <argsstring></argsstring>
+        <name>checkmark</name>
+        <qualifiedname>ES3Editor.TypesWindow.checkmark</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="31" column="19" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1a650193c90114a8e2b29afb019c991e3e" prot="private" static="no" mutable="no">
+        <type>GUIStyle</type>
+        <definition>GUIStyle ES3Editor.TypesWindow.searchBarStyle</definition>
+        <argsstring></argsstring>
+        <name>searchBarStyle</name>
+        <qualifiedname>ES3Editor.TypesWindow.searchBarStyle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="34" column="18" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1ac4a72f073d193bbde90140ea69000720" prot="private" static="no" mutable="no">
+        <type>GUIStyle</type>
+        <definition>GUIStyle ES3Editor.TypesWindow.searchBarCancelButtonStyle</definition>
+        <argsstring></argsstring>
+        <name>searchBarCancelButtonStyle</name>
+        <qualifiedname>ES3Editor.TypesWindow.searchBarCancelButtonStyle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="35" column="18" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1ada6de19341d67e124d2a0d232ca0f24a" prot="private" static="no" mutable="no">
+        <type>GUIStyle</type>
+        <definition>GUIStyle ES3Editor.TypesWindow.leftPaneStyle</definition>
+        <argsstring></argsstring>
+        <name>leftPaneStyle</name>
+        <qualifiedname>ES3Editor.TypesWindow.leftPaneStyle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="36" column="18" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1a5fa0319705011c68a582fa26576343ea" prot="private" static="no" mutable="no">
+        <type>GUIStyle</type>
+        <definition>GUIStyle ES3Editor.TypesWindow.typeButtonStyle</definition>
+        <argsstring></argsstring>
+        <name>typeButtonStyle</name>
+        <qualifiedname>ES3Editor.TypesWindow.typeButtonStyle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="37" column="18" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1a721d48a8a28a521c8c1735554f3ea2ce" prot="private" static="no" mutable="no">
+        <type>GUIStyle</type>
+        <definition>GUIStyle ES3Editor.TypesWindow.selectedTypeButtonStyle</definition>
+        <argsstring></argsstring>
+        <name>selectedTypeButtonStyle</name>
+        <qualifiedname>ES3Editor.TypesWindow.selectedTypeButtonStyle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="38" column="18" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1a234211b7d2344ebdbde2bdcb78a26cea" prot="private" static="no" mutable="no">
+        <type>GUIStyle</type>
+        <definition>GUIStyle ES3Editor.TypesWindow.selectAllNoneButtonStyle</definition>
+        <argsstring></argsstring>
+        <name>selectAllNoneButtonStyle</name>
+        <qualifiedname>ES3Editor.TypesWindow.selectAllNoneButtonStyle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="39" column="18" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1a4ccdc4b8c6bfd241847a7487bdd694df" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ES3Editor.TypesWindow.valueTemplateFile</definition>
+        <argsstring></argsstring>
+        <name>valueTemplateFile</name>
+        <qualifiedname>ES3Editor.TypesWindow.valueTemplateFile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="41" column="16" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1a81b17a9790355b01c7c175c66e50e2da" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ES3Editor.TypesWindow.classTemplateFile</definition>
+        <argsstring></argsstring>
+        <name>classTemplateFile</name>
+        <qualifiedname>ES3Editor.TypesWindow.classTemplateFile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="42" column="16" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1ad44300b086c2e487ba9159e233b327bb" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ES3Editor.TypesWindow.componentTemplateFile</definition>
+        <argsstring></argsstring>
+        <name>componentTemplateFile</name>
+        <qualifiedname>ES3Editor.TypesWindow.componentTemplateFile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="43" column="16" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1aefa4e3ccbf8228af4967b8a727c76ea3" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ES3Editor.TypesWindow.scriptableObjectTemplateFile</definition>
+        <argsstring></argsstring>
+        <name>scriptableObjectTemplateFile</name>
+        <qualifiedname>ES3Editor.TypesWindow.scriptableObjectTemplateFile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="44" column="16" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1ac4e9b3c36c354ca0b3b14acf578307cd" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ES3Editor.TypesWindow.unsavedChanges</definition>
+        <argsstring></argsstring>
+        <name>unsavedChanges</name>
+        <qualifiedname>ES3Editor.TypesWindow.unsavedChanges</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="46" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classES3Editor_1_1TypesWindow_1a9b4998985e4b922a9ef678b4eeed114e" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int ES3Editor.TypesWindow.recentTypeCount</definition>
+        <argsstring></argsstring>
+        <name>recentTypeCount</name>
+        <qualifiedname>ES3Editor.TypesWindow.recentTypeCount</qualifiedname>
+        <initializer>= 5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="18" column="11" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1a5bd85c04a73f54533850fad977322549" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3Editor.TypesWindow.TypesWindow</definition>
+        <argsstring>(EditorWindow window)</argsstring>
+        <name>TypesWindow</name>
+        <qualifiedname>ES3Editor.TypesWindow.TypesWindow</qualifiedname>
+        <param>
+          <type>EditorWindow</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="48" column="8" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1a7b0b79f973cbd6da29de34d8f552ad9d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Editor.TypesWindow.OnGUI</definition>
+        <argsstring>()</argsstring>
+        <name>OnGUI</name>
+        <qualifiedname>ES3Editor.TypesWindow.OnGUI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="50" column="22" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="50" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1afaa50fa710b3b1aee8a1832fd12507ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ES3Editor.TypesWindow.OnLostFocus</definition>
+        <argsstring>()</argsstring>
+        <name>OnLostFocus</name>
+        <qualifiedname>ES3Editor.TypesWindow.OnLostFocus</qualifiedname>
+        <reimplements refid="classES3Editor_1_1SubWindow_1a01f9a28473762eafb6fcec7d4ddabe3d">OnLostFocus</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="311" column="22" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="311" bodyend="315"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1a499856ce0596b9f4286d12d551238f89" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.SelectType</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>SelectType</name>
+        <qualifiedname>ES3Editor.TypesWindow.SelectType</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="354" column="21" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="354" bodyend="360"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1a00c5ee3570d23fdec3ad032ef35c0f95" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.SearchBar</definition>
+        <argsstring>()</argsstring>
+        <name>SearchBar</name>
+        <qualifiedname>ES3Editor.TypesWindow.SearchBar</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="68" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="68" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1abeab2398903f6a479640aba8772b6443" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.RecentTypeList</definition>
+        <argsstring>()</argsstring>
+        <name>RecentTypeList</name>
+        <qualifiedname>ES3Editor.TypesWindow.RecentTypeList</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="97" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="97" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1a2acb1340b20a9c6c86ab61dfd7286f11" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.TypeList</definition>
+        <argsstring>()</argsstring>
+        <name>TypeList</name>
+        <qualifiedname>ES3Editor.TypesWindow.TypeList</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="109" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="109" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1a025d200d195b0ab0d744967ca2f7296d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.TypePane</definition>
+        <argsstring>()</argsstring>
+        <name>TypePane</name>
+        <qualifiedname>ES3Editor.TypesWindow.TypePane</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="125" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="125" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1a612df4f41980555123507d972b7c3a7c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.PropertyPane</definition>
+        <argsstring>()</argsstring>
+        <name>PropertyPane</name>
+        <qualifiedname>ES3Editor.TypesWindow.PropertyPane</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="210" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="210" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1abe3c1457ffc1847666ffa258c80f5c2a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.DisplayFieldsOrProperties</definition>
+        <argsstring>(bool showFields, bool showProperties)</argsstring>
+        <name>DisplayFieldsOrProperties</name>
+        <qualifiedname>ES3Editor.TypesWindow.DisplayFieldsOrProperties</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>showFields</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>showProperties</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="227" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="227" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1ac9e7ba4965d209b0281c0920733826ea" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.SelectAll</definition>
+        <argsstring>(bool selectFields, bool selectProperties)</argsstring>
+        <name>SelectAll</name>
+        <qualifiedname>ES3Editor.TypesWindow.SelectAll</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>selectFields</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>selectProperties</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="296" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="296" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1a4b99bd8bcd8f4d71700b632a8eac202a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.SelectNone</definition>
+        <argsstring>(bool selectFields, bool selectProperties)</argsstring>
+        <name>SelectNone</name>
+        <qualifiedname>ES3Editor.TypesWindow.SelectNone</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>selectFields</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>selectProperties</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="304" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="304" bodyend="309"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1ae46114f14caeb4a904edb4d9a7b0bf2b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.TypeButton</definition>
+        <argsstring>(int i)</argsstring>
+        <name>TypeButton</name>
+        <qualifiedname>ES3Editor.TypesWindow.TypeButton</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="317" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="317" bodyend="343"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1afe6b8fdb31db964df27c390a5f1ada27" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.PerformSearch</definition>
+        <argsstring>(string query)</argsstring>
+        <name>PerformSearch</name>
+        <qualifiedname>ES3Editor.TypesWindow.PerformSearch</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>query</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="345" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="345" bodyend="352"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1a44f6a78ef16c72cc6d7e9ce954d6e45c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.SelectType</definition>
+        <argsstring>(int typeIndex)</argsstring>
+        <name>SelectType</name>
+        <qualifiedname>ES3Editor.TypesWindow.SelectType</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>typeIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="362" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="362" bodyend="409"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1ac0db4dc1d8bda443bd4606101c46fef1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.SaveType</definition>
+        <argsstring>(string key, int typeIndex)</argsstring>
+        <name>SaveType</name>
+        <qualifiedname>ES3Editor.TypesWindow.SaveType</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>typeIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="411" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="411" bodyend="416"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1ab56d584a1b7cd1ca347c77a314d7b6cc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.SaveType</definition>
+        <argsstring>(string key, Type type)</argsstring>
+        <name>SaveType</name>
+        <qualifiedname>ES3Editor.TypesWindow.SaveType</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="418" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="418" bodyend="421"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1a70c3df16f86d49fcca3978bbe2af46e3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ES3Editor.TypesWindow.LoadTypeIndex</definition>
+        <argsstring>(string key)</argsstring>
+        <name>LoadTypeIndex</name>
+        <qualifiedname>ES3Editor.TypesWindow.LoadTypeIndex</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="423" column="13" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="423" bodyend="437"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1ab00a825a0c94c1079b135f13aa17f1c1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ES3Editor.TypesWindow.GetTypeIndex</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>GetTypeIndex</name>
+        <qualifiedname>ES3Editor.TypesWindow.GetTypeIndex</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="439" column="13" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="439" bodyend="445"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1a8ec3ba6be2def74e9c86387d06272f89" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <qualifiedname>ES3Editor.TypesWindow.Init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="447" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="447" bodyend="529"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1a3442894e8b28bd3cb7012c5422ba5520" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Editor.TypesWindow.Generate</definition>
+        <argsstring>()</argsstring>
+        <name>Generate</name>
+        <qualifiedname>ES3Editor.TypesWindow.Generate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="531" column="14" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="531" bodyend="595"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1ae0fa6d893b8b79a6268bb953708940a6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ES3Editor.TypesWindow.GenerateWrites</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateWrites</name>
+        <qualifiedname>ES3Editor.TypesWindow.GenerateWrites</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="597" column="16" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="597" bodyend="627"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1adfd1347edfcd731ed0a76fa91e968029" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ES3Editor.TypesWindow.GenerateReads</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateReads</name>
+        <qualifiedname>ES3Editor.TypesWindow.GenerateReads</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="629" column="16" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="629" bodyend="662"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1aabea7d335ba1a9f5c4b74473ad026bb4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ES3Editor.TypesWindow.GetOutputPath</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>GetOutputPath</name>
+        <qualifiedname>ES3Editor.TypesWindow.GetOutputPath</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="664" column="16" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="664" bodyend="667"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1ad335aad2b9fb4dfb68b7937e576537fa" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ES3Editor.TypesWindow.GetFullTypeName</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>GetFullTypeName</name>
+        <qualifiedname>ES3Editor.TypesWindow.GetFullTypeName</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="670" column="23" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="670" bodyend="684"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1ac0634494335e43295a6f03e89e0fcb13" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Editor.TypesWindow.HasExplicitES3Type</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>HasExplicitES3Type</name>
+        <qualifiedname>ES3Editor.TypesWindow.HasExplicitES3Type</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="687" column="21" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="687" bodyend="696"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Editor_1_1TypesWindow_1a6fd7cd943da99d1caa2966a0f6ad44eb" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ES3Editor.TypesWindow.HasExplicitES3Type</definition>
+        <argsstring>(ES3Type es3Type)</argsstring>
+        <name>HasExplicitES3Type</name>
+        <qualifiedname>ES3Editor.TypesWindow.HasExplicitES3Type</qualifiedname>
+        <param>
+          <type><ref refid="classES3Types_1_1ES3Type" kindref="compound">ES3Type</ref></type>
+          <declname>es3Type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="698" column="21" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="698" bodyend="706"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ES3Editor.TypesWindow</label>
+        <link refid="classES3Editor_1_1TypesWindow"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SubWindow</label>
+        <link refid="classES3Editor_1_1SubWindow"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ES3Editor.TypesWindow</label>
+        <link refid="classES3Editor_1_1TypesWindow"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-types</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-typeListScrollPos</edgelabel>
+          <edgelabel>-typePaneScrollPos</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-fields</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ES3Editor.TypesWindow.TypeListItem</label>
+        <link refid="classES3Editor_1_1TypesWindow_1_1TypeListItem"/>
+      </node>
+      <node id="5">
+        <label>ES3Internal.ES3Reflection</label>
+      </node>
+      <node id="2">
+        <label>SubWindow</label>
+        <link refid="classES3Editor_1_1SubWindow"/>
+      </node>
+      <node id="4">
+        <label>UnityEngine</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" line="15" column="7" bodyfile="Assets/Plugins/Easy Save 3/Editor/TypesWindow.cs" bodystart="16" bodyend="727"/>
+    <listofallmembers>
+      <member refid="classES3Editor_1_1TypesWindow_1aab7c9f5adb49dc9139de375050a0a726" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>checkmark</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a81b17a9790355b01c7c175c66e50e2da" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>classTemplateFile</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ad44300b086c2e487ba9159e233b327bb" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>componentTemplateFile</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1abe3c1457ffc1847666ffa258c80f5c2a" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>DisplayFieldsOrProperties</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a4edc1c825a3c40bbb491f041985bf8af" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>fields</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a025e6a502631269e5111471eabd5c4aa" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>fieldSelected</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a3442894e8b28bd3cb7012c5422ba5520" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>Generate</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1adfd1347edfcd731ed0a76fa91e968029" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>GenerateReads</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ae0fa6d893b8b79a6268bb953708940a6" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>GenerateWrites</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ad335aad2b9fb4dfb68b7937e576537fa" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>GetFullTypeName</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1aabea7d335ba1a9f5c4b74473ad026bb4" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>GetOutputPath</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ab00a825a0c94c1079b135f13aa17f1c1" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>GetTypeIndex</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ac0634494335e43295a6f03e89e0fcb13" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>HasExplicitES3Type</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a6fd7cd943da99d1caa2966a0f6ad44eb" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>HasExplicitES3Type</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a8ec3ba6be2def74e9c86387d06272f89" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>Init</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ada6de19341d67e124d2a0d232ca0f24a" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>leftPaneStyle</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a3ccfd379a1eef1b8549a81b6777c5b8e" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>leftPaneWidth</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a70c3df16f86d49fcca3978bbe2af46e3" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>LoadTypeIndex</name></member>
+      <member refid="classES3Editor_1_1SubWindow_1aba3ab3b1e7e81b2b89ff5c66bd2ee6e2" prot="public" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>name</name></member>
+      <member refid="classES3Editor_1_1SubWindow_1af01eedd3fe9dea4a3d7e22dc868aa874" prot="public" virt="virtual"><scope>ES3Editor::TypesWindow</scope><name>OnDestroy</name></member>
+      <member refid="classES3Editor_1_1SubWindow_1a3b1fa104c31c4fb4e6c7b83e7cb778f4" prot="public" virt="virtual"><scope>ES3Editor::TypesWindow</scope><name>OnFocus</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a7b0b79f973cbd6da29de34d8f552ad9d" prot="public" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>OnGUI</name></member>
+      <member refid="classES3Editor_1_1SubWindow_1af6ac275c4016d941af13b01c732a3f9d" prot="public" virt="virtual"><scope>ES3Editor::TypesWindow</scope><name>OnHierarchyChange</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1afaa50fa710b3b1aee8a1832fd12507ab" prot="public" virt="virtual"><scope>ES3Editor::TypesWindow</scope><name>OnLostFocus</name></member>
+      <member refid="classES3Editor_1_1SubWindow_1aaac516e2bfb4ac42a9f30f725a3d2a44" prot="public" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>parent</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1afe6b8fdb31db964df27c390a5f1ada27" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>PerformSearch</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a612df4f41980555123507d972b7c3a7c" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>PropertyPane</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a9b4998985e4b922a9ef678b4eeed114e" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>recentTypeCount</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1abeab2398903f6a479640aba8772b6443" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>RecentTypeList</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ae58f7e39dbef86a26acc1178199fa4e6" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>recentTypes</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ac0db4dc1d8bda443bd4606101c46fef1" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>SaveType</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ab56d584a1b7cd1ca347c77a314d7b6cc" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>SaveType</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1aefa4e3ccbf8228af4967b8a727c76ea3" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>scriptableObjectTemplateFile</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a00c5ee3570d23fdec3ad032ef35c0f95" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>SearchBar</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ac4a72f073d193bbde90140ea69000720" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>searchBarCancelButtonStyle</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a650193c90114a8e2b29afb019c991e3e" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>searchBarStyle</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a053dbe9c26c598edad49a25eef4b5e56" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>searchFieldValue</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ac9e7ba4965d209b0281c0920733826ea" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>SelectAll</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a234211b7d2344ebdbde2bdcb78a26cea" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>selectAllNoneButtonStyle</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1aed01c68c076507cf07deaec0f3e8c4a2" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>selectedType</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a721d48a8a28a521c8c1735554f3ea2ce" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>selectedTypeButtonStyle</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a4b99bd8bcd8f4d71700b632a8eac202a" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>SelectNone</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a499856ce0596b9f4286d12d551238f89" prot="public" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>SelectType</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a44f6a78ef16c72cc6d7e9ce954d6e45c" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>SelectType</name></member>
+      <member refid="classES3Editor_1_1SubWindow_1abc22c03037d80ea3fc40f92ba1817118" prot="public" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>SubWindow</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ae46114f14caeb4a904edb4d9a7b0bf2b" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>TypeButton</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a5fa0319705011c68a582fa26576343ea" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>typeButtonStyle</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a2acb1340b20a9c6c86ab61dfd7286f11" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>TypeList</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a7a23dbd156dbd9166c53290e68e48852" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>typeListScrollPos</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a025d200d195b0ab0d744967ca2f7296d" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>TypePane</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ad26c3bbd0ee93922cc752e158c3102c8" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>typePaneScrollPos</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ae6c40655e5855deb0d462a0b395b00fb" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>types</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a5bd85c04a73f54533850fad977322549" prot="public" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>TypesWindow</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1ac4e9b3c36c354ca0b3b14acf578307cd" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>unsavedChanges</name></member>
+      <member refid="classES3Editor_1_1TypesWindow_1a4ccdc4b8c6bfd241847a7487bdd694df" prot="private" virt="non-virtual"><scope>ES3Editor::TypesWindow</scope><name>valueTemplateFile</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

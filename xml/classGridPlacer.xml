@@ -1,0 +1,1009 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classGridPlacer" kind="class" language="C#" prot="public">
+    <compoundname>GridPlacer</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classGridPlacer_1aa3bed6db43534f52cebd7c29b19bd05e" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject GridPlacer.tilePrefab</definition>
+        <argsstring></argsstring>
+        <name>tilePrefab</name>
+        <qualifiedname>GridPlacer.tilePrefab</qualifiedname>
+        <briefdescription>
+<para>생성할 타일의 프리팹입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="13" column="23" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="13" bodyend="-1"/>
+        <referencedby refid="classGridPlacer_1a1903444fb2ff22b35e6dab2bfea054de" compoundref="GridPlacer_8cs" startline="64" endline="74">GenerateTiles</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classGridPlacer_1a7dd503c7d477fed2852aac32eebc8650" prot="public" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform GridPlacer.gridTiles</definition>
+        <argsstring></argsstring>
+        <name>gridTiles</name>
+        <qualifiedname>GridPlacer.gridTiles</qualifiedname>
+        <briefdescription>
+<para>생성된 그리드 타일들의 부모 오브젝트입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="18" column="22" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="18" bodyend="-1"/>
+        <referencedby refid="classGridPlacer_1a1903444fb2ff22b35e6dab2bfea054de" compoundref="GridPlacer_8cs" startline="64" endline="74">GenerateTiles</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classGridPlacer_1ac21295d57c03c692520474f158d7b933" prot="public" static="no" mutable="no">
+        <type><ref refid="classBlueprintShip" kindref="compound">BlueprintShip</ref></type>
+        <definition>BlueprintShip GridPlacer.targetBlueprintShip</definition>
+        <argsstring></argsstring>
+        <name>targetBlueprintShip</name>
+        <qualifiedname>GridPlacer.targetBlueprintShip</qualifiedname>
+        <briefdescription>
+<para>배치가 이루어질 설계도 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="23" column="26" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="23" bodyend="-1"/>
+        <referencedby refid="classGridPlacer_1a256d47f047aeee7f201c3375ab82f131" compoundref="GridPlacer_8cs" startline="115" endline="146">GetCameraStartPositionToBP</referencedby>
+        <referencedby refid="classGridPlacer_1a38cc9ea2fbdde83a506c75b7cad9010c" compoundref="GridPlacer_8cs" startline="466" endline="489">PlacePreviewWeapon</referencedby>
+        <referencedby refid="classGridPlacer_1a2392673a4205e76f004e252a493286b5" compoundref="GridPlacer_8cs" startline="382" endline="400">PlaceRoom</referencedby>
+        <referencedby refid="classGridPlacer_1a60364dec18d1d693cef75d517e768de6" compoundref="GridPlacer_8cs" startline="406" endline="433">PlaceWeapon</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classGridPlacer_1a9392a71aaccfdb44c762bc15fd688591" prot="public" static="no" mutable="no">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship GridPlacer.playerShip</definition>
+        <argsstring></argsstring>
+        <name>playerShip</name>
+        <qualifiedname>GridPlacer.playerShip</qualifiedname>
+        <briefdescription>
+<para>기존 함선 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="28" column="17" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="28" bodyend="-1"/>
+        <referencedby refid="classGridPlacer_1ab8195ca82a446385a2c7defcf3467d24" compoundref="GridPlacer_8cs" startline="152" endline="182">GetCameraStartPositionToOriginShip</referencedby>
+        <referencedby refid="classGridPlacer_1aadc01e43a91ea0bf558b803759c47a7c" compoundref="GridPlacer_8cs" startline="54" endline="58">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classGridPlacer_1aff764b1840caed8ae6c1ac2c6452d8b9" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject GridPlacer.roomPrefab</definition>
+        <argsstring></argsstring>
+        <name>roomPrefab</name>
+        <qualifiedname>GridPlacer.roomPrefab</qualifiedname>
+        <briefdescription>
+<para>공통 roomPrefab </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="33" column="23" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="33" bodyend="-1"/>
+        <referencedby refid="classGridPlacer_1a2392673a4205e76f004e252a493286b5" compoundref="GridPlacer_8cs" startline="382" endline="400">PlaceRoom</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classGridPlacer_1ad38a51961019b2d29d57e76dd7d13380" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject GridPlacer.weaponPrefab</definition>
+        <argsstring></argsstring>
+        <name>weaponPrefab</name>
+        <qualifiedname>GridPlacer.weaponPrefab</qualifiedname>
+        <briefdescription>
+<para>공통 weaponPrefab </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="38" column="23" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="38" bodyend="-1"/>
+        <referencedby refid="classGridPlacer_1a60364dec18d1d693cef75d517e768de6" compoundref="GridPlacer_8cs" startline="406" endline="433">PlaceWeapon</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classGridPlacer_1a4bc6348d6038335298cb71251da42291" prot="public" static="no" mutable="no">
+        <type>HashSet&lt; Vector2Int &gt;</type>
+        <definition>HashSet&lt;Vector2Int&gt; GridPlacer.occupiedGridTiles</definition>
+        <argsstring></argsstring>
+        <name>occupiedGridTiles</name>
+        <qualifiedname>GridPlacer.occupiedGridTiles</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>현재 도안 설계 상태에서 점유된 타일들 (모든 배치된 오브젝트 기준) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="46" column="20" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="46" bodyend="-1"/>
+        <referencedby refid="classGridPlacer_1a437aa8a7f5d613e88c6f2c3c73a2979c" compoundref="GridPlacer_8cs" startline="230" endline="233">GetAllOccupiedTiles</referencedby>
+        <referencedby refid="classGridPlacer_1a3153382f8eba83fcd114788163728a22" compoundref="GridPlacer_8cs" startline="201" endline="204">IsTileOccupied</referencedby>
+        <referencedby refid="classGridPlacer_1a922df24240435582d5d98a30d0f56ccc" compoundref="GridPlacer_8cs" startline="210" endline="214">MarkObjectOccupied</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1ac71022868de14f02fffd845270ffb42b" compoundref="Customize__1__Controller_8cs" startline="237" endline="298">Customize_1_Controller.OnClickSave</referencedby>
+        <referencedby refid="classGridPlacer_1abd95a28be8d9284dff882e48cb5d75c3" compoundref="GridPlacer_8cs" startline="220" endline="224">UnMarkObjectOccupied</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classGridPlacer_1a6b976c6c2d43a888fee17d73a0aa0382" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject GridPlacer.previewRoomPrefab</definition>
+        <argsstring></argsstring>
+        <name>previewRoomPrefab</name>
+        <qualifiedname>GridPlacer.previewRoomPrefab</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="40" column="25" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classGridPlacer_1a25076a3c812a12acd7649a43bc01a844" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject GridPlacer.previewWeaponPrefab</definition>
+        <argsstring></argsstring>
+        <name>previewWeaponPrefab</name>
+        <qualifiedname>GridPlacer.previewWeaponPrefab</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="41" column="25" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classGridPlacer_1a98b8a2a121d0b580ec300f0518ec818f" prot="private" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int GridPlacer.gridSize</definition>
+        <argsstring></argsstring>
+        <name>gridSize</name>
+        <qualifiedname>GridPlacer.gridSize</qualifiedname>
+        <initializer>= new(60, 60)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="48" column="25" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classGridPlacer_1a0cb3269713281d1e7319a186b5892754" prot="private" static="no" mutable="no">
+        <type>Vector3</type>
+        <definition>Vector3 GridPlacer.gridOrigin</definition>
+        <argsstring></argsstring>
+        <name>gridOrigin</name>
+        <qualifiedname>GridPlacer.gridOrigin</qualifiedname>
+        <initializer>= Vector3.zero</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="49" column="22" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="49" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classGridPlacer_1aadc01e43a91ea0bf558b803759c47a7c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GridPlacer.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>GridPlacer.Start</qualifiedname>
+        <briefdescription>
+<para>게임 시작 시 그리드 타일을 생성합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="54" column="18" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="54" bodyend="58"/>
+        <references refid="classGridPlacer_1a1903444fb2ff22b35e6dab2bfea054de" compoundref="GridPlacer_8cs" startline="64" endline="74">GenerateTiles</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classGridPlacer_1a9392a71aaccfdb44c762bc15fd688591" compoundref="GridPlacer_8cs" startline="28">playerShip</references>
+        <references refid="classGameManager_1af31b125ee50ee4ffee177b8357ef1f11" compoundref="GameManager_8cs" startline="19">GameManager.playerShip</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classGridPlacer_1a1903444fb2ff22b35e6dab2bfea054de" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GridPlacer.GenerateTiles</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateTiles</name>
+        <qualifiedname>GridPlacer.GenerateTiles</qualifiedname>
+        <briefdescription>
+<para>함선 커스터마이징에 사용할 그리드 생성 모든 tile object는 gridTiles 오브젝트의 자식으로 생성됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="64" column="17" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="64" bodyend="74"/>
+        <references refid="classGridPlacer_1a67a8b7577950ee0bbbed35781a1e984b" compoundref="GridPlacer_8cs" startline="92" endline="95">GetWorldPositionFromGrid</references>
+        <references refid="classGridPlacer_1a7dd503c7d477fed2852aac32eebc8650" compoundref="GridPlacer_8cs" startline="18">gridTiles</references>
+        <references refid="classGridPlacer_1aa3bed6db43534f52cebd7c29b19bd05e" compoundref="GridPlacer_8cs" startline="13">tilePrefab</references>
+        <referencedby refid="classGridPlacer_1aadc01e43a91ea0bf558b803759c47a7c" compoundref="GridPlacer_8cs" startline="54" endline="58">Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1a9afa06495a3d3c0f1c50aec2ca0166a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector3</type>
+        <definition>Vector3 GridPlacer.GridToWorldPosition</definition>
+        <argsstring>(Vector2Int gridPos)</argsstring>
+        <name>GridToWorldPosition</name>
+        <qualifiedname>GridPlacer.GridToWorldPosition</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>gridPos</declname>
+        </param>
+        <briefdescription>
+<para>그리드 좌표를 월드 좌표로 변환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gridPos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>변환할 그리드 좌표.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 위치의 월드 좌표.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="81" column="20" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="81" bodyend="85"/>
+        <referencedby refid="classGridPlacer_1a67a8b7577950ee0bbbed35781a1e984b" compoundref="GridPlacer_8cs" startline="92" endline="95">GetWorldPositionFromGrid</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1a67a8b7577950ee0bbbed35781a1e984b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector3</type>
+        <definition>Vector3 GridPlacer.GetWorldPositionFromGrid</definition>
+        <argsstring>(Vector2Int gridPos)</argsstring>
+        <name>GetWorldPositionFromGrid</name>
+        <qualifiedname>GridPlacer.GetWorldPositionFromGrid</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>gridPos</declname>
+        </param>
+        <briefdescription>
+<para>실제 월드 위치 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gridPos</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="92" column="20" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="92" bodyend="95"/>
+        <references refid="classGridPlacer_1a9afa06495a3d3c0f1c50aec2ca0166a5" compoundref="GridPlacer_8cs" startline="81" endline="85">GridToWorldPosition</references>
+        <referencedby refid="classGridPlacer_1a1903444fb2ff22b35e6dab2bfea054de" compoundref="GridPlacer_8cs" startline="64" endline="74">GenerateTiles</referencedby>
+        <referencedby refid="classGridPlacer_1a256d47f047aeee7f201c3375ab82f131" compoundref="GridPlacer_8cs" startline="115" endline="146">GetCameraStartPositionToBP</referencedby>
+        <referencedby refid="classGridPlacer_1ab8195ca82a446385a2c7defcf3467d24" compoundref="GridPlacer_8cs" startline="152" endline="182">GetCameraStartPositionToOriginShip</referencedby>
+        <referencedby refid="classGridPlacer_1a11cf51c13e2c8c9261444a8e1687218a" compoundref="GridPlacer_8cs" startline="440" endline="460">PlacePreviewRoom</referencedby>
+        <referencedby refid="classGridPlacer_1a38cc9ea2fbdde83a506c75b7cad9010c" compoundref="GridPlacer_8cs" startline="466" endline="489">PlacePreviewWeapon</referencedby>
+        <referencedby refid="classGridPlacer_1a2392673a4205e76f004e252a493286b5" compoundref="GridPlacer_8cs" startline="382" endline="400">PlaceRoom</referencedby>
+        <referencedby refid="classGridPlacer_1a60364dec18d1d693cef75d517e768de6" compoundref="GridPlacer_8cs" startline="406" endline="433">PlaceWeapon</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">BlueprintRoom.Update</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">BlueprintWeapon.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1a170904c40cdc0b03cde40e50b3f23d50" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>Vector2Int GridPlacer.WorldToGridPosition</definition>
+        <argsstring>(Vector2 worldPos)</argsstring>
+        <name>WorldToGridPosition</name>
+        <qualifiedname>GridPlacer.WorldToGridPosition</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>worldPos</declname>
+        </param>
+        <briefdescription>
+<para>월드 좌표를 그리드 좌표로 변환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>worldPos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>변환할 월드 좌표.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 위치의 그리드 좌표.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="102" column="23" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="102" bodyend="107"/>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">BlueprintRoom.Update</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">BlueprintWeapon.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1a256d47f047aeee7f201c3375ab82f131" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector3</type>
+        <definition>Vector3 GridPlacer.GetCameraStartPositionToBP</definition>
+        <argsstring>()</argsstring>
+        <name>GetCameraStartPositionToBP</name>
+        <qualifiedname>GridPlacer.GetCameraStartPositionToBP</qualifiedname>
+        <briefdescription>
+<para>설게도 화면에서 camera의 시작 위치 보정 설계도에 방이 없을 시 그리드 중앙 시작 설계도에 방이 있을 경우 방 들의 중앙 위치에서 시작 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="115" column="20" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="115" bodyend="146"/>
+        <references refid="interfaceIBlueprintPlaceable_1a018a87125833cd2bc8f09d7b0433bc33">IBlueprintPlaceable.GetOccupiedTiles</references>
+        <references refid="classGridPlacer_1a67a8b7577950ee0bbbed35781a1e984b" compoundref="GridPlacer_8cs" startline="92" endline="95">GetWorldPositionFromGrid</references>
+        <references refid="classGridPlacer_1ac21295d57c03c692520474f158d7b933" compoundref="GridPlacer_8cs" startline="23">targetBlueprintShip</references>
+        <referencedby refid="classCustomize__1__Controller_1a1e3252edf847a5240e2adf246a7c16d0" compoundref="Customize__1__Controller_8cs" startline="181" endline="188">Customize_1_Controller.CenterCameraToBP</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a5b4e6936bd278afd768d73911b716bee" compoundref="CustomizeShipUIHandler_8cs" startline="220" endline="227">CustomizeShipUIHandler.CenterCameraToBP</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1ab8195ca82a446385a2c7defcf3467d24" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector3</type>
+        <definition>Vector3 GridPlacer.GetCameraStartPositionToOriginShip</definition>
+        <argsstring>()</argsstring>
+        <name>GetCameraStartPositionToOriginShip</name>
+        <qualifiedname>GridPlacer.GetCameraStartPositionToOriginShip</qualifiedname>
+        <briefdescription>
+<para>기존 소유 함선을 이루는 방들의 중심으로 카메라 시작 위치 보정 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="152" column="20" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="152" bodyend="182"/>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classShip_1a058800cd1cdc9601aeb176ac45fd91d4" compoundref="Ship_8cs" startline="1143" endline="1146">Ship.GetAllWeapons</references>
+        <references refid="classBlueprintWeapon_1a85d791c56437b9f6c2f8abc6209808eb" compoundref="BlueprintWeapon_8cs" startline="336" endline="339">BlueprintWeapon.GetGridPosition</references>
+        <references refid="classBlueprintRoom_1a7e0e187aee44308f619d702050ee3679" compoundref="BlueprintRoom_8cs" startline="388" endline="391">BlueprintRoom.GetOccupiedTiles</references>
+        <references refid="classGridPlacer_1a67a8b7577950ee0bbbed35781a1e984b" compoundref="GridPlacer_8cs" startline="92" endline="95">GetWorldPositionFromGrid</references>
+        <references refid="classGridPlacer_1a9392a71aaccfdb44c762bc15fd688591" compoundref="GridPlacer_8cs" startline="28">playerShip</references>
+        <referencedby refid="classCustomize__1__Controller_1aeefc317aca4eeac648711932c7eebd11" compoundref="Customize__1__Controller_8cs" startline="193" endline="198">Customize_1_Controller.ResetCameraToOriginShip</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a879fbb6d240f6283df43ef8bb2f7378b" compoundref="CustomizeShipUIHandler_8cs" startline="232" endline="237">CustomizeShipUIHandler.ResetCameraToOriginShip</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1aab1ac19e1eb794283f10c830d04c2922" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GridPlacer.IsInGrid</definition>
+        <argsstring>(Vector2Int tile)</argsstring>
+        <name>IsInGrid</name>
+        <qualifiedname>GridPlacer.IsInGrid</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>tile</declname>
+        </param>
+        <briefdescription>
+<para>해당 타일이 그리드 범위 내에 있는지 검사 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tile</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="189" column="17" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="189" bodyend="194"/>
+        <referencedby refid="classGridPlacer_1a7952bea4a05cd391da94778ec2e5f3b9" compoundref="GridPlacer_8cs" startline="238" endline="333">CanPlaceObject</referencedby>
+        <referencedby refid="classGridPlacer_1a329304b7ca9ec3e50e8e4bf5cd360b8f" compoundref="GridPlacer_8cs" startline="338" endline="356">CanPlaceRoom</referencedby>
+        <referencedby refid="classGridPlacer_1aca24a07e1070703d190a127a89613d64" compoundref="GridPlacer_8cs" startline="361" endline="377">CanPlaceWeapon</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1a3153382f8eba83fcd114788163728a22" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GridPlacer.IsTileOccupied</definition>
+        <argsstring>(Vector2Int tile)</argsstring>
+        <name>IsTileOccupied</name>
+        <qualifiedname>GridPlacer.IsTileOccupied</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>tile</declname>
+        </param>
+        <briefdescription>
+<para>해당 타일이 현재 다른 오브젝트에 의해 점유되어 있는지 검사 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tile</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="201" column="17" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="201" bodyend="204"/>
+        <references refid="classGridPlacer_1a4bc6348d6038335298cb71251da42291" compoundref="GridPlacer_8cs" startline="46">occupiedGridTiles</references>
+        <referencedby refid="classGridPlacer_1a7952bea4a05cd391da94778ec2e5f3b9" compoundref="GridPlacer_8cs" startline="238" endline="333">CanPlaceObject</referencedby>
+        <referencedby refid="classGridPlacer_1a329304b7ca9ec3e50e8e4bf5cd360b8f" compoundref="GridPlacer_8cs" startline="338" endline="356">CanPlaceRoom</referencedby>
+        <referencedby refid="classGridPlacer_1aca24a07e1070703d190a127a89613d64" compoundref="GridPlacer_8cs" startline="361" endline="377">CanPlaceWeapon</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1a922df24240435582d5d98a30d0f56ccc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GridPlacer.MarkObjectOccupied</definition>
+        <argsstring>(IBlueprintPlaceable placeable)</argsstring>
+        <name>MarkObjectOccupied</name>
+        <qualifiedname>GridPlacer.MarkObjectOccupied</qualifiedname>
+        <param>
+          <type><ref refid="interfaceIBlueprintPlaceable" kindref="compound">IBlueprintPlaceable</ref></type>
+          <declname>placeable</declname>
+        </param>
+        <briefdescription>
+<para>해당 오브젝트가 점유하고 있는 모든 타일을 전체 점유 목록에 추가 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>placeable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>배치 가능 오브젝트</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="210" column="17" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="210" bodyend="214"/>
+        <references refid="interfaceIBlueprintPlaceable_1a018a87125833cd2bc8f09d7b0433bc33">IBlueprintPlaceable.GetOccupiedTiles</references>
+        <references refid="classGridPlacer_1a4bc6348d6038335298cb71251da42291" compoundref="GridPlacer_8cs" startline="46">occupiedGridTiles</references>
+        <referencedby refid="classGridPlacer_1a2392673a4205e76f004e252a493286b5" compoundref="GridPlacer_8cs" startline="382" endline="400">PlaceRoom</referencedby>
+        <referencedby refid="classGridPlacer_1a60364dec18d1d693cef75d517e768de6" compoundref="GridPlacer_8cs" startline="406" endline="433">PlaceWeapon</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">BlueprintRoom.Update</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">BlueprintWeapon.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1abd95a28be8d9284dff882e48cb5d75c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GridPlacer.UnMarkObjectOccupied</definition>
+        <argsstring>(IBlueprintPlaceable placeable)</argsstring>
+        <name>UnMarkObjectOccupied</name>
+        <qualifiedname>GridPlacer.UnMarkObjectOccupied</qualifiedname>
+        <param>
+          <type><ref refid="interfaceIBlueprintPlaceable" kindref="compound">IBlueprintPlaceable</ref></type>
+          <declname>placeable</declname>
+        </param>
+        <briefdescription>
+<para>특정 오브젝트 제거 시 점유 타일 목록에서 제거 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>placeable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>배치 가능 오브젝트</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="220" column="17" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="220" bodyend="224"/>
+        <references refid="interfaceIBlueprintPlaceable_1a018a87125833cd2bc8f09d7b0433bc33">IBlueprintPlaceable.GetOccupiedTiles</references>
+        <references refid="classGridPlacer_1a4bc6348d6038335298cb71251da42291" compoundref="GridPlacer_8cs" startline="46">occupiedGridTiles</references>
+        <referencedby refid="classRoomSelectionHandler_1a146498f3749b2c31f48ad72228898c5b" compoundref="RoomSelectionHandler_8cs" startline="105" endline="115">RoomSelectionHandler.ConfirmDelete</referencedby>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">BlueprintRoom.Update</referencedby>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">BlueprintWeapon.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1a437aa8a7f5d613e88c6f2c3c73a2979c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerable&lt; Vector2Int &gt;</type>
+        <definition>IEnumerable&lt; Vector2Int &gt; GridPlacer.GetAllOccupiedTiles</definition>
+        <argsstring>()</argsstring>
+        <name>GetAllOccupiedTiles</name>
+        <qualifiedname>GridPlacer.GetAllOccupiedTiles</qualifiedname>
+        <briefdescription>
+<para>디버깅 용 점유 타일 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="230" column="24" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="230" bodyend="233"/>
+        <references refid="classGridPlacer_1a4bc6348d6038335298cb71251da42291" compoundref="GridPlacer_8cs" startline="46">occupiedGridTiles</references>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1a7952bea4a05cd391da94778ec2e5f3b9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GridPlacer.CanPlaceObject</definition>
+        <argsstring>(IBlueprintPlaceable placeable, Vector2Int position, object rotation)</argsstring>
+        <name>CanPlaceObject</name>
+        <qualifiedname>GridPlacer.CanPlaceObject</qualifiedname>
+        <param>
+          <type><ref refid="interfaceIBlueprintPlaceable" kindref="compound">IBlueprintPlaceable</ref></type>
+          <declname>placeable</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>해당 오브젝트를 현재 위치와 회전 상태로 배치 가능한지 검사 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="238" column="17" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="238" bodyend="333"/>
+        <references refid="interfaceIBlueprintPlaceable_1ae74f4fe02223313619f2809a6caa72c6">IBlueprintPlaceable.GetGridPosition</references>
+        <references refid="interfaceIBlueprintPlaceable_1a018a87125833cd2bc8f09d7b0433bc33">IBlueprintPlaceable.GetOccupiedTiles</references>
+        <references refid="interfaceIBlueprintPlaceable_1ab0239f32856108832ca9ff02fab66fe6">IBlueprintPlaceable.GetRotation</references>
+        <references refid="classGridPlacer_1aab1ac19e1eb794283f10c830d04c2922" compoundref="GridPlacer_8cs" startline="189" endline="194">IsInGrid</references>
+        <references refid="classGridPlacer_1a3153382f8eba83fcd114788163728a22" compoundref="GridPlacer_8cs" startline="201" endline="204">IsTileOccupied</references>
+        <references refid="interfaceIBlueprintPlaceable_1ac30756929c602873e3b2471dc9d63584">IBlueprintPlaceable.SetGridPosition</references>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1a329304b7ca9ec3e50e8e4bf5cd360b8f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GridPlacer.CanPlaceRoom</definition>
+        <argsstring>(RoomData data, int level, Vector2Int position, Constants.Rotations.Rotation rotation)</argsstring>
+        <name>CanPlaceRoom</name>
+        <qualifiedname>GridPlacer.CanPlaceRoom</qualifiedname>
+        <param>
+          <type><ref refid="classRoomData" kindref="compound">RoomData</ref></type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>해당 방을 현재 위치와 회전 상태로 배치 가능한지 검사 (이전 버전과의 호환성 유지) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="338" column="17" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="338" bodyend="356"/>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classGridPlacer_1aab1ac19e1eb794283f10c830d04c2922" compoundref="GridPlacer_8cs" startline="189" endline="194">IsInGrid</references>
+        <references refid="classGridPlacer_1a3153382f8eba83fcd114788163728a22" compoundref="GridPlacer_8cs" startline="201" endline="204">IsTileOccupied</references>
+        <references refid="classRoomData_1_1RoomLevel_1a1038e7c8647b924aed778b2c211dc049" compoundref="RoomData_8cs" startline="69">RoomData&lt; T &gt;.RoomLevel.size</references>
+        <referencedby refid="classBlueprintRoom_1a53cf733e4494a70c823b5c01eaf4855a" compoundref="BlueprintRoom_8cs" startline="101" endline="218">BlueprintRoom.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1aca24a07e1070703d190a127a89613d64" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GridPlacer.CanPlaceWeapon</definition>
+        <argsstring>(ShipWeaponData data, Vector2Int position, ShipWeaponAttachedDirection direction)</argsstring>
+        <name>CanPlaceWeapon</name>
+        <qualifiedname>GridPlacer.CanPlaceWeapon</qualifiedname>
+        <param>
+          <type><ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref></type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>ShipWeaponAttachedDirection</type>
+          <declname>direction</declname>
+        </param>
+        <briefdescription>
+<para>해당 무기를 현재 위치와 부착 방향으로 배치 가능한지 검사 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="361" column="17" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="361" bodyend="377"/>
+        <references refid="classGridPlacer_1aab1ac19e1eb794283f10c830d04c2922" compoundref="GridPlacer_8cs" startline="189" endline="194">IsInGrid</references>
+        <references refid="classGridPlacer_1a3153382f8eba83fcd114788163728a22" compoundref="GridPlacer_8cs" startline="201" endline="204">IsTileOccupied</references>
+        <referencedby refid="classBlueprintWeapon_1a67de5752dd1667838d17b66b66e4775c" compoundref="BlueprintWeapon_8cs" startline="110" endline="230">BlueprintWeapon.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1a2392673a4205e76f004e252a493286b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GridPlacer.PlaceRoom</definition>
+        <argsstring>(RoomData data, int level, Vector2Int position, Constants.Rotations.Rotation rotation)</argsstring>
+        <name>PlaceRoom</name>
+        <qualifiedname>GridPlacer.PlaceRoom</qualifiedname>
+        <param>
+          <type><ref refid="classRoomData" kindref="compound">RoomData</ref></type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>실제 방을 해당 위치에 배치함 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="382" column="17" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="382" bodyend="400"/>
+        <references refid="classBlueprintShip_1ab8c6bef407ee2520f0ee47c39089196b" compoundref="BlueprintShip_8cs" startline="140" endline="147">BlueprintShip.AddPlaceable</references>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classGridPlacer_1a67a8b7577950ee0bbbed35781a1e984b" compoundref="GridPlacer_8cs" startline="92" endline="95">GetWorldPositionFromGrid</references>
+        <references refid="classBlueprintRoom_1ae76607d6bcaeffa74b78b54acc1b0128" compoundref="BlueprintRoom_8cs" startline="259" endline="279">BlueprintRoom.Initialize</references>
+        <references refid="classGridPlacer_1a922df24240435582d5d98a30d0f56ccc" compoundref="GridPlacer_8cs" startline="210" endline="214">MarkObjectOccupied</references>
+        <references refid="classGridPlacer_1aff764b1840caed8ae6c1ac2c6452d8b9" compoundref="GridPlacer_8cs" startline="33">roomPrefab</references>
+        <references refid="classBlueprintRoom_1a206cee30827d88a027ef567ac9963929" compoundref="BlueprintRoom_8cs" startline="337" endline="340">BlueprintRoom.SetBlueprint</references>
+        <references refid="classBlueprintRoom_1a5a8b6723ac5f7a9e099dee6c0c795540" compoundref="BlueprintRoom_8cs" startline="355" endline="358">BlueprintRoom.SetGridPlacer</references>
+        <references refid="classRoomData_1_1RoomLevel_1a1038e7c8647b924aed778b2c211dc049" compoundref="RoomData_8cs" startline="69">RoomData&lt; T &gt;.RoomLevel.size</references>
+        <references refid="classGridPlacer_1ac21295d57c03c692520474f158d7b933" compoundref="GridPlacer_8cs" startline="23">targetBlueprintShip</references>
+        <referencedby refid="classCustomizeShipUIHandler_1a0e012f81eef06ab83ffc84e3b5bee0e1" compoundref="CustomizeShipUIHandler_8cs" startline="242" endline="248">CustomizeShipUIHandler.GetSavedBPRooms</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1a765b5d6af2c3ccd94e113c0d3bc1a6fa" compoundref="Customize__1__Controller_8cs" startline="204" endline="230">Customize_1_Controller.ReloadBlueprintFromSlot</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1a60364dec18d1d693cef75d517e768de6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classBlueprintWeapon" kindref="compound">BlueprintWeapon</ref></type>
+        <definition>BlueprintWeapon GridPlacer.PlaceWeapon</definition>
+        <argsstring>(ShipWeaponData data, Vector2Int position, ShipWeaponAttachedDirection direction)</argsstring>
+        <name>PlaceWeapon</name>
+        <qualifiedname>GridPlacer.PlaceWeapon</qualifiedname>
+        <param>
+          <type><ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref></type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>ShipWeaponAttachedDirection</type>
+          <declname>direction</declname>
+        </param>
+        <briefdescription>
+<para>실제 무기를 해당 위치에 배치함 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>생성된 <ref refid="classBlueprintWeapon" kindref="compound">BlueprintWeapon</ref> 인스턴스</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="406" column="28" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="406" bodyend="433"/>
+        <references refid="classBlueprintShip_1ab8c6bef407ee2520f0ee47c39089196b" compoundref="BlueprintShip_8cs" startline="140" endline="147">BlueprintShip.AddPlaceable</references>
+        <references refid="classBlueprintShip_1af261ef03f43fb9025372b1ff117489e1" compoundref="BlueprintShip_8cs" startline="94" endline="97">BlueprintShip.GetHullLevel</references>
+        <references refid="classGridPlacer_1a67a8b7577950ee0bbbed35781a1e984b" compoundref="GridPlacer_8cs" startline="92" endline="95">GetWorldPositionFromGrid</references>
+        <references refid="classBlueprintWeapon_1a56914dbc72da61c2e31524b9fdabe257" compoundref="BlueprintWeapon_8cs" startline="267" endline="283">BlueprintWeapon.Initialize</references>
+        <references refid="classGridPlacer_1a922df24240435582d5d98a30d0f56ccc" compoundref="GridPlacer_8cs" startline="210" endline="214">MarkObjectOccupied</references>
+        <references refid="classBlueprintWeapon_1a484e24eaf4ebb1994f8c9817dcbb2f6f" compoundref="BlueprintWeapon_8cs" startline="353" endline="363">BlueprintWeapon.SetBlueprint</references>
+        <references refid="classBlueprintWeapon_1aea22c0e321f64c39c6f6a56d020af717" compoundref="BlueprintWeapon_8cs" startline="378" endline="381">BlueprintWeapon.SetGridPlacer</references>
+        <references refid="classBlueprintWeapon_1ab44eb8d7287bbcaa5504a8629a4bbf4f" compoundref="BlueprintWeapon_8cs" startline="461" endline="473">BlueprintWeapon.SetHullLevel</references>
+        <references refid="classGridPlacer_1ac21295d57c03c692520474f158d7b933" compoundref="GridPlacer_8cs" startline="23">targetBlueprintShip</references>
+        <references refid="classGridPlacer_1ad38a51961019b2d29d57e76dd7d13380" compoundref="GridPlacer_8cs" startline="38">weaponPrefab</references>
+        <referencedby refid="classCustomizeShipUIHandler_1adfa80c7837c984b5a7e8b9af9a1d181a" compoundref="CustomizeShipUIHandler_8cs" startline="253" endline="262">CustomizeShipUIHandler.GetSavedWeaponRooms</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1a765b5d6af2c3ccd94e113c0d3bc1a6fa" compoundref="Customize__1__Controller_8cs" startline="204" endline="230">Customize_1_Controller.ReloadBlueprintFromSlot</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1a11cf51c13e2c8c9261444a8e1687218a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>GameObject</type>
+        <definition>GameObject GridPlacer.PlacePreviewRoom</definition>
+        <argsstring>(RoomData data, int level, Vector2Int position, Constants.Rotations.Rotation rotation, Transform previewRoot, List&lt; Vector2Int &gt; tilePos)</argsstring>
+        <name>PlacePreviewRoom</name>
+        <qualifiedname>GridPlacer.PlacePreviewRoom</qualifiedname>
+        <param>
+          <type><ref refid="classRoomData" kindref="compound">RoomData</ref></type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>Constants.Rotations.Rotation</type>
+          <declname>rotation</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>previewRoot</declname>
+        </param>
+        <param>
+          <type>List&lt; Vector2Int &gt;</type>
+          <declname>tilePos</declname>
+        </param>
+        <briefdescription>
+<para>실제 방을 해당 위치에 배치함 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="440" column="23" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="440" bodyend="460"/>
+        <references refid="classRoomData_1a93ada549c4d197d14917913e944f46c2">RoomData&lt; T &gt;.GetRoomDataByLevel</references>
+        <references refid="classGridPlacer_1a67a8b7577950ee0bbbed35781a1e984b" compoundref="GridPlacer_8cs" startline="92" endline="95">GetWorldPositionFromGrid</references>
+        <references refid="classBlueprintRoom_1ae76607d6bcaeffa74b78b54acc1b0128" compoundref="BlueprintRoom_8cs" startline="259" endline="279">BlueprintRoom.Initialize</references>
+        <references refid="classRoomData_1_1RoomLevel_1a1038e7c8647b924aed778b2c211dc049" compoundref="RoomData_8cs" startline="69">RoomData&lt; T &gt;.RoomLevel.size</references>
+        <referencedby refid="classCustomize__2__Controller_1af70f75f637519d654732d526e3bcdcdd" compoundref="Customize__2__Controller_8cs" startline="168" endline="220">Customize_2_Controller.MakeBPShipWithSaveData</referencedby>
+        <referencedby refid="classBPPreviewArea_1a6b5d2cb5df9097c71feb974ab80c5eb3" compoundref="BPPreviewArea_8cs" startline="20" endline="57">BPPreviewArea.UpdateAndShow</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGridPlacer_1a38cc9ea2fbdde83a506c75b7cad9010c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>GameObject</type>
+        <definition>GameObject GridPlacer.PlacePreviewWeapon</definition>
+        <argsstring>(ShipWeaponData data, Vector2Int position, ShipWeaponAttachedDirection direction, Transform previewRoot, List&lt; Vector2Int &gt; tilePos)</argsstring>
+        <name>PlacePreviewWeapon</name>
+        <qualifiedname>GridPlacer.PlacePreviewWeapon</qualifiedname>
+        <param>
+          <type><ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref></type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>ShipWeaponAttachedDirection</type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>previewRoot</declname>
+        </param>
+        <param>
+          <type>List&lt; Vector2Int &gt;</type>
+          <declname>tilePos</declname>
+        </param>
+        <briefdescription>
+<para>실제 무기를 해당 위치에 배치함 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>생성된 <ref refid="classBlueprintWeapon" kindref="compound">BlueprintWeapon</ref> 인스턴스</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="466" column="23" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="466" bodyend="489"/>
+        <references refid="classBlueprintWeapon_1a8cfe28579eabea19cdb49d89b8e73078" compoundref="BlueprintWeapon_8cs" startline="17">BlueprintWeapon.bpPosition</references>
+        <references refid="classBlueprintShip_1af261ef03f43fb9025372b1ff117489e1" compoundref="BlueprintShip_8cs" startline="94" endline="97">BlueprintShip.GetHullLevel</references>
+        <references refid="classGridPlacer_1a67a8b7577950ee0bbbed35781a1e984b" compoundref="GridPlacer_8cs" startline="92" endline="95">GetWorldPositionFromGrid</references>
+        <references refid="classBlueprintWeapon_1a56914dbc72da61c2e31524b9fdabe257" compoundref="BlueprintWeapon_8cs" startline="267" endline="283">BlueprintWeapon.Initialize</references>
+        <references refid="classBlueprintWeapon_1ab44eb8d7287bbcaa5504a8629a4bbf4f" compoundref="BlueprintWeapon_8cs" startline="461" endline="473">BlueprintWeapon.SetHullLevel</references>
+        <references refid="classGridPlacer_1ac21295d57c03c692520474f158d7b933" compoundref="GridPlacer_8cs" startline="23">targetBlueprintShip</references>
+        <referencedby refid="classCustomize__2__Controller_1af70f75f637519d654732d526e3bcdcdd" compoundref="Customize__2__Controller_8cs" startline="168" endline="220">Customize_2_Controller.MakeBPShipWithSaveData</referencedby>
+        <referencedby refid="classBPPreviewArea_1a6b5d2cb5df9097c71feb974ab80c5eb3" compoundref="BPPreviewArea_8cs" startline="20" endline="57">BPPreviewArea.UpdateAndShow</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선 커스터마이징을 위한 그리드 시스템을 생성하고 방/무기 배치를 관리하는 클래스. 타일 생성, 배치 가능 여부 판단, 실제 설치 등을 처리합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GridPlacer</label>
+        <link refid="classGridPlacer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>BlueprintShip</label>
+        <link refid="classBlueprintShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GridPlacer</label>
+        <link refid="classGridPlacer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+targetBlueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-gridOrigin</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="14">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="17">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>UnityEngine</label>
+      </node>
+      <node id="10">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/GridPlacer.cs" line="8" column="7" bodyfile="Assets/Scripts/CustomizeShip/GridPlacer.cs" bodystart="9" bodyend="492"/>
+    <listofallmembers>
+      <member refid="classGridPlacer_1a7952bea4a05cd391da94778ec2e5f3b9" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>CanPlaceObject</name></member>
+      <member refid="classGridPlacer_1a329304b7ca9ec3e50e8e4bf5cd360b8f" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>CanPlaceRoom</name></member>
+      <member refid="classGridPlacer_1aca24a07e1070703d190a127a89613d64" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>CanPlaceWeapon</name></member>
+      <member refid="classGridPlacer_1a1903444fb2ff22b35e6dab2bfea054de" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>GenerateTiles</name></member>
+      <member refid="classGridPlacer_1a437aa8a7f5d613e88c6f2c3c73a2979c" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>GetAllOccupiedTiles</name></member>
+      <member refid="classGridPlacer_1a256d47f047aeee7f201c3375ab82f131" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>GetCameraStartPositionToBP</name></member>
+      <member refid="classGridPlacer_1ab8195ca82a446385a2c7defcf3467d24" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>GetCameraStartPositionToOriginShip</name></member>
+      <member refid="classGridPlacer_1a67a8b7577950ee0bbbed35781a1e984b" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>GetWorldPositionFromGrid</name></member>
+      <member refid="classGridPlacer_1a0cb3269713281d1e7319a186b5892754" prot="private" virt="non-virtual"><scope>GridPlacer</scope><name>gridOrigin</name></member>
+      <member refid="classGridPlacer_1a98b8a2a121d0b580ec300f0518ec818f" prot="private" virt="non-virtual"><scope>GridPlacer</scope><name>gridSize</name></member>
+      <member refid="classGridPlacer_1a7dd503c7d477fed2852aac32eebc8650" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>gridTiles</name></member>
+      <member refid="classGridPlacer_1a9afa06495a3d3c0f1c50aec2ca0166a5" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>GridToWorldPosition</name></member>
+      <member refid="classGridPlacer_1aab1ac19e1eb794283f10c830d04c2922" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>IsInGrid</name></member>
+      <member refid="classGridPlacer_1a3153382f8eba83fcd114788163728a22" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>IsTileOccupied</name></member>
+      <member refid="classGridPlacer_1a922df24240435582d5d98a30d0f56ccc" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>MarkObjectOccupied</name></member>
+      <member refid="classGridPlacer_1a4bc6348d6038335298cb71251da42291" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>occupiedGridTiles</name></member>
+      <member refid="classGridPlacer_1a11cf51c13e2c8c9261444a8e1687218a" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>PlacePreviewRoom</name></member>
+      <member refid="classGridPlacer_1a38cc9ea2fbdde83a506c75b7cad9010c" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>PlacePreviewWeapon</name></member>
+      <member refid="classGridPlacer_1a2392673a4205e76f004e252a493286b5" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>PlaceRoom</name></member>
+      <member refid="classGridPlacer_1a60364dec18d1d693cef75d517e768de6" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>PlaceWeapon</name></member>
+      <member refid="classGridPlacer_1a9392a71aaccfdb44c762bc15fd688591" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>playerShip</name></member>
+      <member refid="classGridPlacer_1a6b976c6c2d43a888fee17d73a0aa0382" prot="private" virt="non-virtual"><scope>GridPlacer</scope><name>previewRoomPrefab</name></member>
+      <member refid="classGridPlacer_1a25076a3c812a12acd7649a43bc01a844" prot="private" virt="non-virtual"><scope>GridPlacer</scope><name>previewWeaponPrefab</name></member>
+      <member refid="classGridPlacer_1aff764b1840caed8ae6c1ac2c6452d8b9" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>roomPrefab</name></member>
+      <member refid="classGridPlacer_1aadc01e43a91ea0bf558b803759c47a7c" prot="private" virt="non-virtual"><scope>GridPlacer</scope><name>Start</name></member>
+      <member refid="classGridPlacer_1ac21295d57c03c692520474f158d7b933" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>targetBlueprintShip</name></member>
+      <member refid="classGridPlacer_1aa3bed6db43534f52cebd7c29b19bd05e" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>tilePrefab</name></member>
+      <member refid="classGridPlacer_1abd95a28be8d9284dff882e48cb5d75c3" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>UnMarkObjectOccupied</name></member>
+      <member refid="classGridPlacer_1ad38a51961019b2d29d57e76dd7d13380" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>weaponPrefab</name></member>
+      <member refid="classGridPlacer_1a170904c40cdc0b03cde40e50b3f23d50" prot="public" virt="non-virtual"><scope>GridPlacer</scope><name>WorldToGridPosition</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

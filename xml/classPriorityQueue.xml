@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classPriorityQueue" kind="class" language="C#" prot="public">
+    <compoundname>PriorityQueue</compoundname>
+    <templateparamlist>
+      <param>
+        <type>T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classPriorityQueue_1a0e54c6c7276e6c0d7c0733f03c198f71" prot="private" static="no" mutable="no">
+        <type>List&lt;(T item, int priority)&gt;</type>
+        <definition>List&lt;(T item, int priority)&gt; PriorityQueue&lt; T &gt;.elements</definition>
+        <argsstring></argsstring>
+        <name>elements</name>
+        <qualifiedname>PriorityQueue.elements</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/PriorityQueue.cs" line="9" column="18" bodyfile="Assets/Scripts/RTS/PriorityQueue.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classPriorityQueue_1a708f85e9c29affea4a72ee5556b0e9d5" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int PriorityQueue&lt; T &gt;.Count</definition>
+        <argsstring></argsstring>
+        <name>Count</name>
+        <qualifiedname>PriorityQueue.Count</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/PriorityQueue.cs" line="11" column="16" bodyfile="Assets/Scripts/RTS/PriorityQueue.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPriorityQueue_1a4beae27c1a3e217e643661b00707b5c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PriorityQueue&lt; T &gt;.Enqueue</definition>
+        <argsstring>(T item, int priority)</argsstring>
+        <name>Enqueue</name>
+        <qualifiedname>PriorityQueue.Enqueue</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>item</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>priority</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/PriorityQueue.cs" line="13" column="17" bodyfile="Assets/Scripts/RTS/PriorityQueue.cs" bodystart="13" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classPriorityQueue_1aae0fa48e5be2a445fdc4ebdc6ad31839" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T PriorityQueue&lt; T &gt;.Dequeue</definition>
+        <argsstring>()</argsstring>
+        <name>Dequeue</name>
+        <qualifiedname>PriorityQueue.Dequeue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/PriorityQueue.cs" line="18" column="14" bodyfile="Assets/Scripts/RTS/PriorityQueue.cs" bodystart="18" bodyend="29"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>간단한 우선순위 큐 구현 (A*에서 사용) </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>PriorityQueue&lt; T &gt;</label>
+        <link refid="classPriorityQueue"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/RTS/PriorityQueue.cs" line="7" column="7" bodyfile="Assets/Scripts/RTS/PriorityQueue.cs" bodystart="8" bodyend="30"/>
+    <listofallmembers>
+      <member refid="classPriorityQueue_1a708f85e9c29affea4a72ee5556b0e9d5" prot="public" virt="non-virtual"><scope>PriorityQueue</scope><name>Count</name></member>
+      <member refid="classPriorityQueue_1aae0fa48e5be2a445fdc4ebdc6ad31839" prot="public" virt="non-virtual"><scope>PriorityQueue</scope><name>Dequeue</name></member>
+      <member refid="classPriorityQueue_1a0e54c6c7276e6c0d7c0733f03c198f71" prot="private" virt="non-virtual"><scope>PriorityQueue</scope><name>elements</name></member>
+      <member refid="classPriorityQueue_1a4beae27c1a3e217e643661b00707b5c2" prot="public" virt="non-virtual"><scope>PriorityQueue</scope><name>Enqueue</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

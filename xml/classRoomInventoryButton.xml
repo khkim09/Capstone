@@ -1,0 +1,606 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classRoomInventoryButton" kind="class" language="C#" prot="public">
+    <compoundname>RoomInventoryButton</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerDownHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IBeginDragHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IDragHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IEndDragHandler</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classRoomInventoryButton_1a37f5d5a680154c9000993ead05e3e1dc" prot="public" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image RoomInventoryButton.icon</definition>
+        <argsstring></argsstring>
+        <name>icon</name>
+        <qualifiedname>RoomInventoryButton.icon</qualifiedname>
+        <briefdescription>
+<para>인벤토리의 방 이미지 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" line="16" column="19" bodyfile="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" bodystart="16" bodyend="-1"/>
+        <referencedby refid="classRoomInventoryButton_1ae708c51641e25597f04faed15e8faf44" compoundref="RoomInventoryButton_8cs" startline="59" endline="119">Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoomInventoryButton_1a8b08fa083384eb183340cefb94dd89c6" prot="public" static="no" mutable="no">
+        <type>TMP_Text</type>
+        <definition>TMP_Text RoomInventoryButton.label</definition>
+        <argsstring></argsstring>
+        <name>label</name>
+        <qualifiedname>RoomInventoryButton.label</qualifiedname>
+        <briefdescription>
+<para>방 이름 라벨 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" line="21" column="21" bodyfile="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" bodystart="21" bodyend="-1"/>
+        <referencedby refid="classRoomInventoryButton_1ae708c51641e25597f04faed15e8faf44" compoundref="RoomInventoryButton_8cs" startline="59" endline="119">Initialize</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classRoomInventoryButton_1aba9374e931b367a79e72e65e747037fe" prot="private" static="no" mutable="no">
+        <type><ref refid="classRoomData" kindref="compound">RoomData</ref></type>
+        <definition>RoomData RoomInventoryButton.roomData</definition>
+        <argsstring></argsstring>
+        <name>roomData</name>
+        <qualifiedname>RoomInventoryButton.roomData</qualifiedname>
+        <briefdescription>
+<para>방 정보 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" line="26" column="22" bodyfile="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" bodystart="26" bodyend="-1"/>
+        <referencedby refid="classRoomInventoryButton_1ae708c51641e25597f04faed15e8faf44" compoundref="RoomInventoryButton_8cs" startline="59" endline="119">Initialize</referencedby>
+        <referencedby refid="classRoomInventoryButton_1aa6093a1d936511467ea555b5b7dfa848" compoundref="RoomInventoryButton_8cs" startline="135" endline="141">OnBeginDrag</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoomInventoryButton_1af186837758ad65c5e30be3e03843234e" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int RoomInventoryButton.level</definition>
+        <argsstring></argsstring>
+        <name>level</name>
+        <qualifiedname>RoomInventoryButton.level</qualifiedname>
+        <briefdescription>
+<para>방 레벨 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" line="31" column="17" bodyfile="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" bodystart="31" bodyend="-1"/>
+        <referencedby refid="classRoomInventoryButton_1ae708c51641e25597f04faed15e8faf44" compoundref="RoomInventoryButton_8cs" startline="59" endline="119">Initialize</referencedby>
+        <referencedby refid="classRoomInventoryButton_1aa6093a1d936511467ea555b5b7dfa848" compoundref="RoomInventoryButton_8cs" startline="135" endline="141">OnBeginDrag</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoomInventoryButton_1ad3adc8c9985dc6734d83ddfa3111af1d" prot="private" static="no" mutable="no">
+        <type><ref refid="classBlueprintRoomDragHandler" kindref="compound">BlueprintRoomDragHandler</ref></type>
+        <definition>BlueprintRoomDragHandler RoomInventoryButton.dragHandler</definition>
+        <argsstring></argsstring>
+        <name>dragHandler</name>
+        <qualifiedname>RoomInventoryButton.dragHandler</qualifiedname>
+        <briefdescription>
+<para>방 드래그를 관리하는 handler </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" line="36" column="38" bodyfile="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" bodystart="36" bodyend="-1"/>
+        <referencedby refid="classRoomInventoryButton_1ae708c51641e25597f04faed15e8faf44" compoundref="RoomInventoryButton_8cs" startline="59" endline="119">Initialize</referencedby>
+        <referencedby refid="classRoomInventoryButton_1aa6093a1d936511467ea555b5b7dfa848" compoundref="RoomInventoryButton_8cs" startline="135" endline="141">OnBeginDrag</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoomInventoryButton_1a692170318541bba500ada5e4b89f3fd5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool RoomInventoryButton.isDragging</definition>
+        <argsstring></argsstring>
+        <name>isDragging</name>
+        <qualifiedname>RoomInventoryButton.isDragging</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>드래그 중인지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" line="41" column="18" bodyfile="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" bodystart="41" bodyend="-1"/>
+        <referencedby refid="classRoomInventoryButton_1aa6093a1d936511467ea555b5b7dfa848" compoundref="RoomInventoryButton_8cs" startline="135" endline="141">OnBeginDrag</referencedby>
+        <referencedby refid="classRoomInventoryButton_1aa332fd441a462fbaedfaf62281d60b14" compoundref="RoomInventoryButton_8cs" startline="156" endline="159">OnEndDrag</referencedby>
+        <referencedby refid="classRoomInventoryButton_1ac5b8f3a48b580893ba6e66adbd0fca9e" compoundref="RoomInventoryButton_8cs" startline="125" endline="129">OnPointerDown</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoomInventoryButton_1a4ea26c1163b6ebf34858f03f32690abc" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RoomInventoryButton.baseWidth</definition>
+        <argsstring></argsstring>
+        <name>baseWidth</name>
+        <qualifiedname>RoomInventoryButton.baseWidth</qualifiedname>
+        <initializer>= 130f</initializer>
+        <briefdescription>
+<para>방 기본 크기 - 가로 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" line="46" column="20" bodyfile="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" bodystart="46" bodyend="-1"/>
+        <referencedby refid="classRoomInventoryButton_1ae708c51641e25597f04faed15e8faf44" compoundref="RoomInventoryButton_8cs" startline="59" endline="119">Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRoomInventoryButton_1ad04cadd671eac5a7bbb5be35f288d74b" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RoomInventoryButton.baseHeight</definition>
+        <argsstring></argsstring>
+        <name>baseHeight</name>
+        <qualifiedname>RoomInventoryButton.baseHeight</qualifiedname>
+        <initializer>= 130f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" line="49" column="19" bodyfile="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" bodystart="49" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classRoomInventoryButton_1ae708c51641e25597f04faed15e8faf44" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomInventoryButton.Initialize</definition>
+        <argsstring>(RoomData data, int lvl, RoomData.RoomLevel levelData, int levelsCount, BlueprintRoomDragHandler handler)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>RoomInventoryButton.Initialize</qualifiedname>
+        <param>
+          <type><ref refid="classRoomData" kindref="compound">RoomData</ref></type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>lvl</declname>
+        </param>
+        <param>
+          <type><ref refid="classRoomData_1_1RoomLevel" kindref="compound">RoomData.RoomLevel</ref></type>
+          <declname>levelData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>levelsCount</declname>
+        </param>
+        <param>
+          <type><ref refid="classBlueprintRoomDragHandler" kindref="compound">BlueprintRoomDragHandler</ref></type>
+          <declname>handler</declname>
+        </param>
+        <briefdescription>
+<para>방 정보에 따른 방 초기화 작업 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>방 정보</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lvl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>방 레벨</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>levelData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>레벨에 따른 방 세부 데이터</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>levelsCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>레벨 개수</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>handler</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>드래그 핸들러</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" line="59" column="17" bodyfile="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" bodystart="59" bodyend="119"/>
+        <references refid="classRoomInventoryButton_1a4ea26c1163b6ebf34858f03f32690abc" compoundref="RoomInventoryButton_8cs" startline="46">baseWidth</references>
+        <references refid="classRoomInventoryButton_1ad3adc8c9985dc6734d83ddfa3111af1d" compoundref="RoomInventoryButton_8cs" startline="36">dragHandler</references>
+        <references refid="classRoomInventoryButton_1a37f5d5a680154c9000993ead05e3e1dc" compoundref="RoomInventoryButton_8cs" startline="16">icon</references>
+        <references refid="classRoomInventoryButton_1a8b08fa083384eb183340cefb94dd89c6" compoundref="RoomInventoryButton_8cs" startline="21">label</references>
+        <references refid="classRoomInventoryButton_1af186837758ad65c5e30be3e03843234e" compoundref="RoomInventoryButton_8cs" startline="31">level</references>
+        <references refid="classRoomInventoryButton_1aba9374e931b367a79e72e65e747037fe" compoundref="RoomInventoryButton_8cs" startline="26">roomData</references>
+        <referencedby refid="classBlueprintInventoryUI_1ab12fd348917c304198c6bd0c519dea3b" compoundref="BlueprintInventoryUI_8cs" startline="51" endline="73">BlueprintInventoryUI.FilterByCategory</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoomInventoryButton_1ac5b8f3a48b580893ba6e66adbd0fca9e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomInventoryButton.OnPointerDown</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerDown</name>
+        <qualifiedname>RoomInventoryButton.OnPointerDown</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>클릭 시 바로 드래그 시작 준비 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" line="125" column="17" bodyfile="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" bodystart="125" bodyend="129"/>
+        <references refid="classRoomInventoryButton_1a692170318541bba500ada5e4b89f3fd5" compoundref="RoomInventoryButton_8cs" startline="41">isDragging</references>
+      </memberdef>
+      <memberdef kind="function" id="classRoomInventoryButton_1aa6093a1d936511467ea555b5b7dfa848" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomInventoryButton.OnBeginDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnBeginDrag</name>
+        <qualifiedname>RoomInventoryButton.OnBeginDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>드래그 시작 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" line="135" column="17" bodyfile="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" bodystart="135" bodyend="141"/>
+        <references refid="classRoomInventoryButton_1ad3adc8c9985dc6734d83ddfa3111af1d" compoundref="RoomInventoryButton_8cs" startline="36">dragHandler</references>
+        <references refid="classRoomInventoryButton_1a692170318541bba500ada5e4b89f3fd5" compoundref="RoomInventoryButton_8cs" startline="41">isDragging</references>
+        <references refid="classRoomInventoryButton_1af186837758ad65c5e30be3e03843234e" compoundref="RoomInventoryButton_8cs" startline="31">level</references>
+        <references refid="classRoomInventoryButton_1aba9374e931b367a79e72e65e747037fe" compoundref="RoomInventoryButton_8cs" startline="26">roomData</references>
+        <references refid="classBlueprintRoomDragHandler_1acab88240f6dc197cf08fc6842585cb44" compoundref="BlueprintRoomDragHandler_8cs" startline="32" endline="59">BlueprintRoomDragHandler.StartDragging</references>
+      </memberdef>
+      <memberdef kind="function" id="classRoomInventoryButton_1a431b94d31d0083edfcb5da3c2c6e88b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomInventoryButton.OnDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnDrag</name>
+        <qualifiedname>RoomInventoryButton.OnDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>드래그 중 (RoomDragHandler가 업데이트에서 처리) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" line="147" column="17" bodyfile="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" bodystart="147" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomInventoryButton_1aa332fd441a462fbaedfaf62281d60b14" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomInventoryButton.OnEndDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnEndDrag</name>
+        <qualifiedname>RoomInventoryButton.OnEndDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>드래그 종료 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" line="156" column="17" bodyfile="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" bodystart="156" bodyend="159"/>
+        <references refid="classRoomInventoryButton_1a692170318541bba500ada5e4b89f3fd5" compoundref="RoomInventoryButton_8cs" startline="41">isDragging</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>각 룸 항목에 대한 UI 버튼. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>IBeginDragHandler</label>
+      </node>
+      <node id="5">
+        <label>IDragHandler</label>
+      </node>
+      <node id="6">
+        <label>IEndDragHandler</label>
+      </node>
+      <node id="3">
+        <label>IPointerDownHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>RoomInventoryButton</label>
+        <link refid="classRoomInventoryButton"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="9">
+        <label>BlueprintRoomDragHandler</label>
+        <link refid="classBlueprintRoomDragHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+gridPlacer</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-draggingRoomData</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>-draggingRotation</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>BlueprintShip</label>
+        <link refid="classBlueprintShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Constants</label>
+      </node>
+      <node id="19">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>GridPlacer</label>
+        <link refid="classGridPlacer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+targetBlueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-gridOrigin</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>IBeginDragHandler</label>
+      </node>
+      <node id="5">
+        <label>IDragHandler</label>
+      </node>
+      <node id="6">
+        <label>IEndDragHandler</label>
+      </node>
+      <node id="3">
+        <label>IPointerDownHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="21">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>RoomInventoryButton</label>
+        <link refid="classRoomInventoryButton"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-roomData</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-dragHandler</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="24">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="12" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>UnityEngine</label>
+      </node>
+      <node id="17">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" line="11" column="7" bodyfile="Assets/Scripts/CustomizeShip/RoomInventoryButton.cs" bodystart="12" bodyend="160"/>
+    <listofallmembers>
+      <member refid="classRoomInventoryButton_1ad04cadd671eac5a7bbb5be35f288d74b" prot="private" virt="non-virtual"><scope>RoomInventoryButton</scope><name>baseHeight</name></member>
+      <member refid="classRoomInventoryButton_1a4ea26c1163b6ebf34858f03f32690abc" prot="private" virt="non-virtual"><scope>RoomInventoryButton</scope><name>baseWidth</name></member>
+      <member refid="classRoomInventoryButton_1ad3adc8c9985dc6734d83ddfa3111af1d" prot="private" virt="non-virtual"><scope>RoomInventoryButton</scope><name>dragHandler</name></member>
+      <member refid="classRoomInventoryButton_1a37f5d5a680154c9000993ead05e3e1dc" prot="public" virt="non-virtual"><scope>RoomInventoryButton</scope><name>icon</name></member>
+      <member refid="classRoomInventoryButton_1ae708c51641e25597f04faed15e8faf44" prot="public" virt="non-virtual"><scope>RoomInventoryButton</scope><name>Initialize</name></member>
+      <member refid="classRoomInventoryButton_1a692170318541bba500ada5e4b89f3fd5" prot="private" virt="non-virtual"><scope>RoomInventoryButton</scope><name>isDragging</name></member>
+      <member refid="classRoomInventoryButton_1a8b08fa083384eb183340cefb94dd89c6" prot="public" virt="non-virtual"><scope>RoomInventoryButton</scope><name>label</name></member>
+      <member refid="classRoomInventoryButton_1af186837758ad65c5e30be3e03843234e" prot="private" virt="non-virtual"><scope>RoomInventoryButton</scope><name>level</name></member>
+      <member refid="classRoomInventoryButton_1aa6093a1d936511467ea555b5b7dfa848" prot="public" virt="non-virtual"><scope>RoomInventoryButton</scope><name>OnBeginDrag</name></member>
+      <member refid="classRoomInventoryButton_1a431b94d31d0083edfcb5da3c2c6e88b7" prot="public" virt="non-virtual"><scope>RoomInventoryButton</scope><name>OnDrag</name></member>
+      <member refid="classRoomInventoryButton_1aa332fd441a462fbaedfaf62281d60b14" prot="public" virt="non-virtual"><scope>RoomInventoryButton</scope><name>OnEndDrag</name></member>
+      <member refid="classRoomInventoryButton_1ac5b8f3a48b580893ba6e66adbd0fca9e" prot="public" virt="non-virtual"><scope>RoomInventoryButton</scope><name>OnPointerDown</name></member>
+      <member refid="classRoomInventoryButton_1aba9374e931b367a79e72e65e747037fe" prot="private" virt="non-virtual"><scope>RoomInventoryButton</scope><name>roomData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1483 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classES3Reader" kind="class" language="C#" prot="public" abstract="yes">
+    <compoundname>ES3Reader</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">System.IDisposable</basecompoundref>
+    <derivedcompoundref refid="classES3Internal_1_1ES3JSONReader" prot="public" virt="non-virtual">ES3Internal.ES3JSONReader</derivedcompoundref>
+    <innerclass refid="classES3Reader_1_1ES3ReaderPropertyEnumerator" prot="public">ES3Reader::ES3ReaderPropertyEnumerator</innerclass>
+    <innerclass refid="classES3Reader_1_1ES3ReaderRawEnumerator" prot="public">ES3Reader::ES3ReaderRawEnumerator</innerclass>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classES3Reader_1a7d7c413278eb3d790d1ae8b58d02ff22" prot="public" static="no" mutable="no">
+        <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+        <definition>ES3Settings ES3Reader.settings</definition>
+        <argsstring></argsstring>
+        <name>settings</name>
+        <qualifiedname>ES3Reader.settings</qualifiedname>
+        <briefdescription>
+<para>The settings used to create this reader. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="13" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="13" bodyend="-1"/>
+        <referencedby refid="classES3Reader_1a2dab6175d91f66b88adf644dbedc314e" compoundref="ES3Reader_8cs" startline="379" endline="389">Create</referencedby>
+        <referencedby refid="classES3Reader_1a3fe50ad09c5b6156562fa34b1c162534" compoundref="ES3Reader_8cs" startline="359" endline="369">Create</referencedby>
+        <referencedby refid="classES3Reader_1a1d8ad1622b67f64157348b9935fa7ee9" compoundref="ES3Reader_8cs" startline="352" endline="355">Create</referencedby>
+        <referencedby refid="classES3Reader_1ab8944d2ab8278ce2eee59c99e09417cf" compoundref="ES3Reader_8cs" startline="194" endline="205">Read&lt; T &gt;</referencedby>
+        <referencedby refid="classES3Reader_1a1e16fa46ad694596ddbe4bafca816cd8" compoundref="ES3Reader_8cs" startline="225" endline="235">ReadInto&lt; T &gt;</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classES3Reader_1afc66d2e29f1c31b431808890492a4712" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ES3Reader.serializationDepth</definition>
+        <argsstring></argsstring>
+        <name>serializationDepth</name>
+        <qualifiedname>ES3Reader.serializationDepth</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="15" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="classES3Reader_1a2fd14eb38537c7361126b88d99625175" prot="package" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ES3Reader.overridePropertiesName</definition>
+        <argsstring></argsstring>
+        <name>overridePropertiesName</name>
+        <qualifiedname>ES3Reader.overridePropertiesName</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="93" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="93" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classES3Reader_1a0c93138b15a0cb7731fdbe3415b3636c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classES3Reader_1_1ES3ReaderPropertyEnumerator" kindref="compound">ES3ReaderPropertyEnumerator</ref></type>
+        <definition>virtual ES3ReaderPropertyEnumerator ES3Reader.Properties</definition>
+        <argsstring></argsstring>
+        <name>Properties</name>
+        <qualifiedname>ES3Reader.Properties</qualifiedname>
+        <briefdescription>
+<para>Allows you to enumerate over each field name. This should only be used within an ES3Type file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="95" column="44" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="96" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="property" id="classES3Reader_1ae4385a42e9efbd7936211cd04b835c31" prot="package" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classES3Reader_1_1ES3ReaderRawEnumerator" kindref="compound">ES3ReaderRawEnumerator</ref></type>
+        <definition>virtual ES3ReaderRawEnumerator ES3Reader.RawEnumerator</definition>
+        <argsstring></argsstring>
+        <name>RawEnumerator</name>
+        <qualifiedname>ES3Reader.RawEnumerator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="103" column="41" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="104" bodyend="109"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="package-func">
+      <memberdef kind="function" id="classES3Reader_1ae3ddb23faeb63b87c3f82b0239716f8a" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int ES3Reader.Read_int</definition>
+        <argsstring>()</argsstring>
+        <name>Read_int</name>
+        <qualifiedname>ES3Reader.Read_int</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="19" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a7e9dbf9f142cbc9131d8aa2d8d8ef9d3" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float ES3Reader.Read_float</definition>
+        <argsstring>()</argsstring>
+        <name>Read_float</name>
+        <qualifiedname>ES3Reader.Read_float</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="20" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1ae960492c12941bacb689ee5e1b6c88a9" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ES3Reader.Read_bool</definition>
+        <argsstring>()</argsstring>
+        <name>Read_bool</name>
+        <qualifiedname>ES3Reader.Read_bool</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="21" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a1fd354295575206abc5be45f2195d48e" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char</type>
+        <definition>char ES3Reader.Read_char</definition>
+        <argsstring>()</argsstring>
+        <name>Read_char</name>
+        <qualifiedname>ES3Reader.Read_char</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="22" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a7d02558c1f0958485fb25f8923308693" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>decimal</type>
+        <definition>decimal ES3Reader.Read_decimal</definition>
+        <argsstring>()</argsstring>
+        <name>Read_decimal</name>
+        <qualifiedname>ES3Reader.Read_decimal</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="23" column="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1aa34a35887378ce547aacc7d2032c2d37" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double ES3Reader.Read_double</definition>
+        <argsstring>()</argsstring>
+        <name>Read_double</name>
+        <qualifiedname>ES3Reader.Read_double</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="24" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1aa39442679bceb88b3dc32f978195d3d2" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long</type>
+        <definition>long ES3Reader.Read_long</definition>
+        <argsstring>()</argsstring>
+        <name>Read_long</name>
+        <qualifiedname>ES3Reader.Read_long</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="25" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a41b4975243380289ab2c8c97094b13ae" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ulong</type>
+        <definition>ulong ES3Reader.Read_ulong</definition>
+        <argsstring>()</argsstring>
+        <name>Read_ulong</name>
+        <qualifiedname>ES3Reader.Read_ulong</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="26" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1aba02e3f29878bbc49ed7219a0087551d" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>byte</type>
+        <definition>byte ES3Reader.Read_byte</definition>
+        <argsstring>()</argsstring>
+        <name>Read_byte</name>
+        <qualifiedname>ES3Reader.Read_byte</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="27" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1ae9847d47f3e7bdb7483f17c4b11c4f65" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sbyte</type>
+        <definition>sbyte ES3Reader.Read_sbyte</definition>
+        <argsstring>()</argsstring>
+        <name>Read_sbyte</name>
+        <qualifiedname>ES3Reader.Read_sbyte</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="28" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1adc0acbf617f11c7731c682572a40b0b3" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>short</type>
+        <definition>short ES3Reader.Read_short</definition>
+        <argsstring>()</argsstring>
+        <name>Read_short</name>
+        <qualifiedname>ES3Reader.Read_short</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="29" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1ae5d1e710e1d0d9516ca2aa312ed1d79a" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ushort</type>
+        <definition>ushort ES3Reader.Read_ushort</definition>
+        <argsstring>()</argsstring>
+        <name>Read_ushort</name>
+        <qualifiedname>ES3Reader.Read_ushort</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="30" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a617d9d5c77a80daa63d67291b7546535" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint</type>
+        <definition>uint ES3Reader.Read_uint</definition>
+        <argsstring>()</argsstring>
+        <name>Read_uint</name>
+        <qualifiedname>ES3Reader.Read_uint</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="31" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a523e096451707d83c05cc66df8969c87" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string ES3Reader.Read_string</definition>
+        <argsstring>()</argsstring>
+        <name>Read_string</name>
+        <qualifiedname>ES3Reader.Read_string</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="32" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a90c8f856aedb174439c43d311d0f2e58" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>byte[]</type>
+        <definition>byte[] ES3Reader.Read_byteArray</definition>
+        <argsstring>()</argsstring>
+        <name>Read_byteArray</name>
+        <qualifiedname>ES3Reader.Read_byteArray</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="33" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a382d6babc3f440806e76167ac5ccb54c" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long</type>
+        <definition>long ES3Reader.Read_ref</definition>
+        <argsstring>()</argsstring>
+        <name>Read_ref</name>
+        <qualifiedname>ES3Reader.Read_ref</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="34" column="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a3a1f239903bd266e393d960fec329c7f" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>byte[]</type>
+        <definition>byte[] ES3Reader.ReadElement</definition>
+        <argsstring>(bool skip=false)</argsstring>
+        <name>ReadElement</name>
+        <qualifiedname>ES3Reader.ReadElement</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>skip</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="41" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a0fd5272f34b9ade681630e52b205e0e4" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool ES3Reader.Goto</definition>
+        <argsstring>(string key)</argsstring>
+        <name>Goto</name>
+        <qualifiedname>ES3Reader.Goto</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="47" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="47" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a7a70dddf5ec861ee6834e2a272130b4d" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool ES3Reader.StartReadObject</definition>
+        <argsstring>()</argsstring>
+        <name>StartReadObject</name>
+        <qualifiedname>ES3Reader.StartReadObject</qualifiedname>
+        <reimplementedby refid="classES3Internal_1_1ES3JSONReader_1a00c5d0160b64b7453b6e40d6ed30b781">StartReadObject</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="62" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="62" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a2969d7a9dc70dbca37b275fc27a5e237" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Reader.EndReadObject</definition>
+        <argsstring>()</argsstring>
+        <name>EndReadObject</name>
+        <qualifiedname>ES3Reader.EndReadObject</qualifiedname>
+        <reimplementedby refid="classES3Internal_1_1ES3JSONReader_1a784f5a86c5c9cadaef696350c6d929d6">EndReadObject</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="68" column="23" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="68" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a2cb874539458156995ce78d747f69491" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ES3Reader.StartReadDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>StartReadDictionary</name>
+        <qualifiedname>ES3Reader.StartReadDictionary</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="73" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a3c0f189f183ae1727d36037850388b81" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Reader.EndReadDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>EndReadDictionary</name>
+        <qualifiedname>ES3Reader.EndReadDictionary</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="74" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1ae8f51d6b86938f984be09586b501261a" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ES3Reader.StartReadDictionaryKey</definition>
+        <argsstring>()</argsstring>
+        <name>StartReadDictionaryKey</name>
+        <qualifiedname>ES3Reader.StartReadDictionaryKey</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="75" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a08ab23637d52977ed6c876aebf2cdaca" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Reader.EndReadDictionaryKey</definition>
+        <argsstring>()</argsstring>
+        <name>EndReadDictionaryKey</name>
+        <qualifiedname>ES3Reader.EndReadDictionaryKey</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="76" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a4b8f08345a9b5bb7268f73d803a08b40" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Reader.StartReadDictionaryValue</definition>
+        <argsstring>()</argsstring>
+        <name>StartReadDictionaryValue</name>
+        <qualifiedname>ES3Reader.StartReadDictionaryValue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="77" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1af162bfecafed192eb2c50350a55246dd" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ES3Reader.EndReadDictionaryValue</definition>
+        <argsstring>()</argsstring>
+        <name>EndReadDictionaryValue</name>
+        <qualifiedname>ES3Reader.EndReadDictionaryValue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="78" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a20f47361e944c680a343fdd4254da19d" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ES3Reader.StartReadCollection</definition>
+        <argsstring>()</argsstring>
+        <name>StartReadCollection</name>
+        <qualifiedname>ES3Reader.StartReadCollection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="80" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1ad15cdef43be3cb6be5af747f0e897b0b" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Reader.EndReadCollection</definition>
+        <argsstring>()</argsstring>
+        <name>EndReadCollection</name>
+        <qualifiedname>ES3Reader.EndReadCollection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="81" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a09bb115ec05672addff59e3adaf4618b" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ES3Reader.StartReadCollectionItem</definition>
+        <argsstring>()</argsstring>
+        <name>StartReadCollectionItem</name>
+        <qualifiedname>ES3Reader.StartReadCollectionItem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="82" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1af6b2262087aaac5dc6364e08077051fc" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ES3Reader.EndReadCollectionItem</definition>
+        <argsstring>()</argsstring>
+        <name>EndReadCollectionItem</name>
+        <qualifiedname>ES3Reader.EndReadCollectionItem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="83" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1ac23c293088687fe1ec21f1cbbbc21b77" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3Reader.ES3Reader</definition>
+        <argsstring>(ES3Settings settings, bool readHeaderAndFooter=true)</argsstring>
+        <name>ES3Reader</name>
+        <qualifiedname>ES3Reader.ES3Reader</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>readHeaderAndFooter</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="87" column="10" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="87" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a69147b058db09f9f966cccd8eb09cc70" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Type</type>
+        <definition>Type ES3Reader.ReadType</definition>
+        <argsstring>()</argsstring>
+        <name>ReadType</name>
+        <qualifiedname>ES3Reader.ReadType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="157" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="157" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a5ecfbadfcab2025dd7b7467a20d578c1" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Type</type>
+        <definition>Type ES3Reader.ReadTypeFromHeader&lt; T &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>ReadTypeFromHeader&lt; T &gt;</name>
+        <qualifiedname>ES3Reader.ReadTypeFromHeader&lt; T &gt;</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="313" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="313" bodyend="334"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classES3Reader_1a8b3c82f788b1a48beb0f9d465e95da4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string ES3Reader.ReadPropertyName</definition>
+        <argsstring>()</argsstring>
+        <name>ReadPropertyName</name>
+        <qualifiedname>ES3Reader.ReadPropertyName</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="37" column="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1ad9ccf0bc21ac3b98e22c2781c91457ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Reader.Dispose</definition>
+        <argsstring>()</argsstring>
+        <name>Dispose</name>
+        <qualifiedname>ES3Reader.Dispose</qualifiedname>
+        <briefdescription>
+<para>Disposes of the reader and it&apos;s underlying stream. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="44" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a630d660bde984243c424babdb2496631" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Reader.Skip</definition>
+        <argsstring>()</argsstring>
+        <name>Skip</name>
+        <qualifiedname>ES3Reader.Skip</qualifiedname>
+        <briefdescription>
+<para>Skips the current object in the stream. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="118" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="118" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1ac1ce30dc04efc0e3288e70205d38afff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>T</type>
+        <definition>virtual T ES3Reader.Read&lt; T &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>Read&lt; T &gt;</name>
+        <qualifiedname>ES3Reader.Read&lt; T &gt;</qualifiedname>
+        <briefdescription>
+<para>Reads a value of type T from the reader. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="124" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="124" bodyend="127"/>
+        <references refid="classES3Reader_1ac1ce30dc04efc0e3288e70205d38afff" compoundref="ES3Reader_8cs" startline="124" endline="127">Read&lt; T &gt;</references>
+        <referencedby refid="classES3Reader_1ac1ce30dc04efc0e3288e70205d38afff" compoundref="ES3Reader_8cs" startline="124" endline="127">Read&lt; T &gt;</referencedby>
+        <referencedby refid="classES3Reader_1ab8944d2ab8278ce2eee59c99e09417cf" compoundref="ES3Reader_8cs" startline="194" endline="205">Read&lt; T &gt;</referencedby>
+        <referencedby refid="classES3Reader_1a966ece25534c57951a89abb71ed62619" compoundref="ES3Reader_8cs" startline="210" endline="220">Read&lt; T &gt;</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a365721ffd29981bc9ede16cd612138f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Reader.ReadInto&lt; T &gt;</definition>
+        <argsstring>(object obj)</argsstring>
+        <name>ReadInto&lt; T &gt;</name>
+        <qualifiedname>ES3Reader.ReadInto&lt; T &gt;</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Reads a value of type T from the reader into an existing object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object we want to read our value into.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="131" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="131" bodyend="134"/>
+        <references refid="classES3Reader_1a365721ffd29981bc9ede16cd612138f9" compoundref="ES3Reader_8cs" startline="131" endline="134">ReadInto&lt; T &gt;</references>
+        <referencedby refid="classES3Reader_1a365721ffd29981bc9ede16cd612138f9" compoundref="ES3Reader_8cs" startline="131" endline="134">ReadInto&lt; T &gt;</referencedby>
+        <referencedby refid="classES3Reader_1a1e16fa46ad694596ddbe4bafca816cd8" compoundref="ES3Reader_8cs" startline="225" endline="235">ReadInto&lt; T &gt;</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a0a25c91eef53db6fae806b718f0e24da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T ES3Reader.ReadProperty&lt; T &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>ReadProperty&lt; T &gt;</name>
+        <qualifiedname>ES3Reader.ReadProperty&lt; T &gt;</qualifiedname>
+        <briefdescription>
+<para>Reads a property (i.e. a property name and value) from the reader, ignoring the property name and only returning the value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="138" column="8" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="138" bodyend="141"/>
+        <references refid="classES3Reader_1a0a25c91eef53db6fae806b718f0e24da" compoundref="ES3Reader_8cs" startline="138" endline="141">ReadProperty&lt; T &gt;</references>
+        <referencedby refid="classES3Reader_1a0a25c91eef53db6fae806b718f0e24da" compoundref="ES3Reader_8cs" startline="138" endline="141">ReadProperty&lt; T &gt;</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a4ec3b600e8eef689d469632221546622" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T ES3Reader.ReadProperty&lt; T &gt;</definition>
+        <argsstring>(ES3Type type)</argsstring>
+        <name>ReadProperty&lt; T &gt;</name>
+        <qualifiedname>ES3Reader.ReadProperty&lt; T &gt;</qualifiedname>
+        <param>
+          <type><ref refid="classES3Types_1_1ES3Type" kindref="compound">ES3Type</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="144" column="8" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="144" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a76857f3ac5cac673c82e18ac75741d0f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>long</type>
+        <definition>long ES3Reader.ReadRefProperty</definition>
+        <argsstring>()</argsstring>
+        <name>ReadRefProperty</name>
+        <qualifiedname>ES3Reader.ReadRefProperty</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="151" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="151" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a81d370551fb0b07dfc798082b675ae37" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>object ES3Reader.SetPrivateProperty</definition>
+        <argsstring>(string name, object value, object objectContainingProperty)</argsstring>
+        <name>SetPrivateProperty</name>
+        <qualifiedname>ES3Reader.SetPrivateProperty</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>objectContainingProperty</declname>
+        </param>
+        <briefdescription>
+<para>Sets the value of a private property on an object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the property we want to set.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value we want to set the property to.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>objectContainingProperty</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object containing the property we want to set.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The objectContainingProperty object. This is helpful if you&apos;re setting a private property on a struct or other immutable type and need to return the boxed value.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="167" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="167" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a75a9be91e35c6dda4c082d2fc19d4d09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>object ES3Reader.SetPrivateField</definition>
+        <argsstring>(string name, object value, object objectContainingField)</argsstring>
+        <name>SetPrivateField</name>
+        <qualifiedname>ES3Reader.SetPrivateField</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>objectContainingField</declname>
+        </param>
+        <briefdescription>
+<para>Sets the value of a private field on an object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the field we want to set.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value we want to set the field to.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>objectContainingField</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object containing the field we want to set.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The objectContainingField object. This is helpful if you&apos;re setting a private property on a struct or other immutable type and need to return the boxed value.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="181" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="181" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1ab8944d2ab8278ce2eee59c99e09417cf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>T</type>
+        <definition>virtual T ES3Reader.Read&lt; T &gt;</definition>
+        <argsstring>(string key)</argsstring>
+        <name>Read&lt; T &gt;</name>
+        <qualifiedname>ES3Reader.Read&lt; T &gt;</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Reads a value from the reader with the given key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key which uniquely identifies our value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="194" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="194" bodyend="205"/>
+        <references refid="classES3Settings_1a3213eb287400d8d12776529fb9f70dd8" compoundref="ES3Settings_8cs" startline="162" endline="202">ES3Settings.FullPath</references>
+        <references refid="classES3Reader_1ac1ce30dc04efc0e3288e70205d38afff" compoundref="ES3Reader_8cs" startline="124" endline="127">Read&lt; T &gt;</references>
+        <references refid="classES3Reader_1a7d7c413278eb3d790d1ae8b58d02ff22" compoundref="ES3Reader_8cs" startline="13">settings</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a966ece25534c57951a89abb71ed62619" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>T</type>
+        <definition>virtual T ES3Reader.Read&lt; T &gt;</definition>
+        <argsstring>(string key, T defaultValue)</argsstring>
+        <name>Read&lt; T &gt;</name>
+        <qualifiedname>ES3Reader.Read&lt; T &gt;</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>defaultValue</declname>
+        </param>
+        <briefdescription>
+<para>Reads a value from the reader with the given key, returning the default value if the key does not exist. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key which uniquely identifies our value.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>defaultValue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value we want to return if this key does not exist in the reader.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="210" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="210" bodyend="220"/>
+        <references refid="classES3Reader_1ac1ce30dc04efc0e3288e70205d38afff" compoundref="ES3Reader_8cs" startline="124" endline="127">Read&lt; T &gt;</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a1e16fa46ad694596ddbe4bafca816cd8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Reader.ReadInto&lt; T &gt;</definition>
+        <argsstring>(string key, T obj)</argsstring>
+        <name>ReadInto&lt; T &gt;</name>
+        <qualifiedname>ES3Reader.ReadInto&lt; T &gt;</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Reads a value from the reader with the given key into the provided object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key which uniquely identifies our value.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object we want to load the value into.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="225" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="225" bodyend="235"/>
+        <references refid="classES3Settings_1a3213eb287400d8d12776529fb9f70dd8" compoundref="ES3Settings_8cs" startline="162" endline="202">ES3Settings.FullPath</references>
+        <references refid="classES3Reader_1a365721ffd29981bc9ede16cd612138f9" compoundref="ES3Reader_8cs" startline="131" endline="134">ReadInto&lt; T &gt;</references>
+        <references refid="classES3Reader_1a7d7c413278eb3d790d1ae8b58d02ff22" compoundref="ES3Reader_8cs" startline="13">settings</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a4bfa981965998cf19a5404dfef270e9f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>T</type>
+        <definition>virtual T ES3Reader.Read&lt; T &gt;</definition>
+        <argsstring>(ES3Type type)</argsstring>
+        <name>Read&lt; T &gt;</name>
+        <qualifiedname>ES3Reader.Read&lt; T &gt;</qualifiedname>
+        <param>
+          <type><ref refid="classES3Types_1_1ES3Type" kindref="compound">ES3Type</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="282" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="282" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a0016afa46b6c48048376b7d213f12f7f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Reader.ReadInto&lt; T &gt;</definition>
+        <argsstring>(object obj, ES3Type type)</argsstring>
+        <name>ReadInto&lt; T &gt;</name>
+        <qualifiedname>ES3Reader.ReadInto&lt; T &gt;</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Types_1_1ES3Type" kindref="compound">ES3Type</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="297" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="297" bodyend="308"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classES3Reader_1aab4ea9245ad4e0c8e657de06b83b7ec3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Type</type>
+        <definition>Type ES3Reader.ReadKeyPrefix</definition>
+        <argsstring>(bool ignore=false)</argsstring>
+        <name>ReadKeyPrefix</name>
+        <qualifiedname>ES3Reader.ReadKeyPrefix</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>ignore</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="39" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a8ca37c47b6c4f2e21ec64ce248585890" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3Reader.ReadKeySuffix</definition>
+        <argsstring>()</argsstring>
+        <name>ReadKeySuffix</name>
+        <qualifiedname>ES3Reader.ReadKeySuffix</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="40" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a528a876b40edfd31250343ee3c4a8001" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ES3Reader.ReadObject&lt; T &gt;</definition>
+        <argsstring>(object obj, ES3Type type)</argsstring>
+        <name>ReadObject&lt; T &gt;</name>
+        <qualifiedname>ES3Reader.ReadObject&lt; T &gt;</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Types_1_1ES3Type" kindref="compound">ES3Type</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="237" column="23" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="237" bodyend="248"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1aa60a4602c023bd6ace1ef80bd371eca3" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>T</type>
+        <definition>virtual T ES3Reader.ReadObject&lt; T &gt;</definition>
+        <argsstring>(ES3Type type)</argsstring>
+        <name>ReadObject&lt; T &gt;</name>
+        <qualifiedname>ES3Reader.ReadObject&lt; T &gt;</qualifiedname>
+        <param>
+          <type><ref refid="classES3Types_1_1ES3Type" kindref="compound">ES3Type</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="250" column="19" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="250" bodyend="262"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="classES3Reader_1acf3b67ba91ca3518b478cf0bab78522c" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3Reader.TryOnAfterDeserialize</definition>
+        <argsstring>(object obj)</argsstring>
+        <name>TryOnAfterDeserialize</name>
+        <qualifiedname>ES3Reader.TryOnAfterDeserialize</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="264" column="22" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="264" bodyend="268"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1ac944e33838d25f091edc35a4e6a863e8" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3Reader" kindref="compound">ES3Reader</ref></type>
+        <definition>static ES3Reader ES3Reader.Create</definition>
+        <argsstring>(Stream stream, ES3Settings settings)</argsstring>
+        <name>Create</name>
+        <qualifiedname>ES3Reader.Create</qualifiedname>
+        <param>
+          <type>Stream</type>
+          <declname>stream</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="391" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="391" bodyend="399"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a4413a870ee8ee10d4b16a871495b927a" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3Reader" kindref="compound">ES3Reader</ref></type>
+        <definition>static ES3Reader ES3Reader.Create</definition>
+        <argsstring>(Stream stream, ES3Settings settings, bool readHeaderAndFooter)</argsstring>
+        <name>Create</name>
+        <qualifiedname>ES3Reader.Create</qualifiedname>
+        <param>
+          <type>Stream</type>
+          <declname>stream</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>readHeaderAndFooter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="401" column="27" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="401" bodyend="407"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classES3Reader_1aaaa29fbf59162a541245da765cefe48f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3Reader" kindref="compound">ES3Reader</ref></type>
+        <definition>static ES3Reader ES3Reader.Create</definition>
+        <argsstring>()</argsstring>
+        <name>Create</name>
+        <qualifiedname>ES3Reader.Create</qualifiedname>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3Reader" kindref="compound">ES3Reader</ref> and loads the default file into it. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="337" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="337" bodyend="340"/>
+        <references refid="classES3Reader_1aaaa29fbf59162a541245da765cefe48f" compoundref="ES3Reader_8cs" startline="337" endline="340">Create</references>
+        <referencedby refid="classES3Reader_1aaaa29fbf59162a541245da765cefe48f" compoundref="ES3Reader_8cs" startline="337" endline="340">Create</referencedby>
+        <referencedby refid="classES3Reader_1a7b5d385b9983f0153220e56c4d181abe" compoundref="ES3Reader_8cs" startline="372" endline="375">Create</referencedby>
+        <referencedby refid="classES3Reader_1a2ab56d97b8966ec6aa0d70d5be64e72e" compoundref="ES3Reader_8cs" startline="344" endline="347">Create</referencedby>
+        <referencedby refid="classES3Reader_1a1d8ad1622b67f64157348b9935fa7ee9" compoundref="ES3Reader_8cs" startline="352" endline="355">Create</referencedby>
+        <referencedby refid="classES3File_1a0f6e20d6b48b5855f342500cc2527073" compoundref="ES3File_8cs" startline="54" endline="74">ES3File.ES3File</referencedby>
+        <referencedby refid="classES3_1a5eaa2a6725e6a0b7bd96c35ac6fc16c9" compoundref="ES3_8cs" startline="1437" endline="1456">ES3.GetKeys</referencedby>
+        <referencedby refid="classES3_1a770b880c09645903cf787887ba59f7d1" compoundref="ES3_8cs" startline="1328" endline="1339">ES3.KeyExists</referencedby>
+        <referencedby refid="classES3_1a2ca126385d0ead1e03e6f9e9639afba5" compoundref="ES3_8cs" startline="453" endline="474">ES3.Load&lt; T &gt;</referencedby>
+        <referencedby refid="classES3_1adeea8b58bb9c869179e90fb49aa72deb" compoundref="ES3_8cs" startline="511" endline="532">ES3.Load&lt; T &gt;</referencedby>
+        <referencedby refid="classES3_1a9e9b661927a3aec2d697a51e636dc2b3" compoundref="ES3_8cs" startline="607" endline="633">ES3.LoadInto&lt; T &gt;</referencedby>
+        <referencedby refid="classES3File_1a399f5818be437d20e813639d471d22de" compoundref="ES3File_8cs" startline="186" endline="204">ES3File.SaveRaw</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a2ab56d97b8966ec6aa0d70d5be64e72e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3Reader" kindref="compound">ES3Reader</ref></type>
+        <definition>static ES3Reader ES3Reader.Create</definition>
+        <argsstring>(string filePath)</argsstring>
+        <name>Create</name>
+        <qualifiedname>ES3Reader.Create</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3Reader" kindref="compound">ES3Reader</ref> and loads a file in storage into it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to load into the reader.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="344" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="344" bodyend="347"/>
+        <references refid="classES3Reader_1aaaa29fbf59162a541245da765cefe48f" compoundref="ES3Reader_8cs" startline="337" endline="340">Create</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a1d8ad1622b67f64157348b9935fa7ee9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3Reader" kindref="compound">ES3Reader</ref></type>
+        <definition>static ES3Reader ES3Reader.Create</definition>
+        <argsstring>(string filePath, ES3Settings settings)</argsstring>
+        <name>Create</name>
+        <qualifiedname>ES3Reader.Create</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3Reader" kindref="compound">ES3Reader</ref> and loads a file in storage into it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative or absolute path of the file we want to load into the reader.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="352" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="352" bodyend="355"/>
+        <references refid="classES3Reader_1aaaa29fbf59162a541245da765cefe48f" compoundref="ES3Reader_8cs" startline="337" endline="340">Create</references>
+        <references refid="classES3Reader_1a7d7c413278eb3d790d1ae8b58d02ff22" compoundref="ES3Reader_8cs" startline="13">settings</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a3fe50ad09c5b6156562fa34b1c162534" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3Reader" kindref="compound">ES3Reader</ref></type>
+        <definition>static ES3Reader ES3Reader.Create</definition>
+        <argsstring>(ES3Settings settings)</argsstring>
+        <name>Create</name>
+        <qualifiedname>ES3Reader.Create</qualifiedname>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3Reader" kindref="compound">ES3Reader</ref> and loads a file in storage into it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="359" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="359" bodyend="369"/>
+        <references refid="classES3Settings_1ae356976f8a7c66fb686123e32ac4e7d6" compoundref="ES3Settings_8cs" startline="115">ES3Settings.format</references>
+        <references refid="classES3Reader_1a7d7c413278eb3d790d1ae8b58d02ff22" compoundref="ES3Reader_8cs" startline="13">settings</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a7b5d385b9983f0153220e56c4d181abe" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3Reader" kindref="compound">ES3Reader</ref></type>
+        <definition>static ES3Reader ES3Reader.Create</definition>
+        <argsstring>(byte[] bytes)</argsstring>
+        <name>Create</name>
+        <qualifiedname>ES3Reader.Create</qualifiedname>
+        <param>
+          <type>byte[]</type>
+          <declname>bytes</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3Reader" kindref="compound">ES3Reader</ref> and loads the bytes provided into it. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="372" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="372" bodyend="375"/>
+        <references refid="classES3Reader_1aaaa29fbf59162a541245da765cefe48f" compoundref="ES3Reader_8cs" startline="337" endline="340">Create</references>
+      </memberdef>
+      <memberdef kind="function" id="classES3Reader_1a2dab6175d91f66b88adf644dbedc314e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classES3Reader" kindref="compound">ES3Reader</ref></type>
+        <definition>static ES3Reader ES3Reader.Create</definition>
+        <argsstring>(byte[] bytes, ES3Settings settings)</argsstring>
+        <name>Create</name>
+        <qualifiedname>ES3Reader.Create</qualifiedname>
+        <param>
+          <type>byte[]</type>
+          <declname>bytes</declname>
+        </param>
+        <param>
+          <type><ref refid="classES3Settings" kindref="compound">ES3Settings</ref></type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="classES3Reader" kindref="compound">ES3Reader</ref> and loads the bytes provided into it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The settings we want to use to override the default settings.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="379" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="379" bodyend="389"/>
+        <references refid="classES3Settings_1ae356976f8a7c66fb686123e32ac4e7d6" compoundref="ES3Settings_8cs" startline="115">ES3Settings.format</references>
+        <references refid="classES3Reader_1a7d7c413278eb3d790d1ae8b58d02ff22" compoundref="ES3Reader_8cs" startline="13">settings</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ES3Internal.ES3JSONReader</label>
+        <link refid="classES3Internal_1_1ES3JSONReader"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ES3Reader</label>
+        <link refid="classES3Reader"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>System::IDisposable</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8">
+        <label>ES3</label>
+        <link refid="classES3"/>
+      </node>
+      <node id="5">
+        <label>ES3Defaults</label>
+        <link refid="classES3Defaults"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+settings</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ES3Reader</label>
+        <link refid="classES3Reader"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+settings</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>ES3SerializableSettings</label>
+        <link refid="classES3SerializableSettings"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ES3Settings</label>
+        <link refid="classES3Settings"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-_defaults</edgelabel>
+          <edgelabel>-_unencryptedUncompressedSettings</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-_defaultSettingsScriptableObject</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+compressionType</edgelabel>
+          <edgelabel>+directory</edgelabel>
+          <edgelabel>+encryptionType</edgelabel>
+          <edgelabel>+format</edgelabel>
+          <edgelabel>+memberReferenceMode</edgelabel>
+          <edgelabel>+referenceMode</edgelabel>
+          <edgelabel>-_location</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>+encoding</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="9">
+        <label>System</label>
+      </node>
+      <node id="4">
+        <label>System::ICloneable</label>
+      </node>
+      <node id="2">
+        <label>System::IDisposable</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" line="10" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Readers/ES3Reader.cs" bodystart="11" bodyend="470"/>
+    <listofallmembers>
+      <member refid="classES3Reader_1aaaa29fbf59162a541245da765cefe48f" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1a2ab56d97b8966ec6aa0d70d5be64e72e" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1a1d8ad1622b67f64157348b9935fa7ee9" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1a3fe50ad09c5b6156562fa34b1c162534" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1a7b5d385b9983f0153220e56c4d181abe" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1a2dab6175d91f66b88adf644dbedc314e" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1ac944e33838d25f091edc35a4e6a863e8" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1a4413a870ee8ee10d4b16a871495b927a" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Create</name></member>
+      <member refid="classES3Reader_1ad9ccf0bc21ac3b98e22c2781c91457ba" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>Dispose</name></member>
+      <member refid="classES3Reader_1ad15cdef43be3cb6be5af747f0e897b0b" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>EndReadCollection</name></member>
+      <member refid="classES3Reader_1af6b2262087aaac5dc6364e08077051fc" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>EndReadCollectionItem</name></member>
+      <member refid="classES3Reader_1a3c0f189f183ae1727d36037850388b81" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>EndReadDictionary</name></member>
+      <member refid="classES3Reader_1a08ab23637d52977ed6c876aebf2cdaca" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>EndReadDictionaryKey</name></member>
+      <member refid="classES3Reader_1af162bfecafed192eb2c50350a55246dd" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>EndReadDictionaryValue</name></member>
+      <member refid="classES3Reader_1a2969d7a9dc70dbca37b275fc27a5e237" prot="package" virt="virtual"><scope>ES3Reader</scope><name>EndReadObject</name></member>
+      <member refid="classES3Reader_1ac23c293088687fe1ec21f1cbbbc21b77" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>ES3Reader</name></member>
+      <member refid="classES3Reader_1a0fd5272f34b9ade681630e52b205e0e4" prot="package" virt="virtual"><scope>ES3Reader</scope><name>Goto</name></member>
+      <member refid="classES3Reader_1a2fd14eb38537c7361126b88d99625175" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>overridePropertiesName</name></member>
+      <member refid="classES3Reader_1a0c93138b15a0cb7731fdbe3415b3636c" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>Properties</name></member>
+      <member refid="classES3Reader_1ae4385a42e9efbd7936211cd04b835c31" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>RawEnumerator</name></member>
+      <member refid="classES3Reader_1ac1ce30dc04efc0e3288e70205d38afff" prot="public" virt="virtual"><scope>ES3Reader</scope><name>Read&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1ab8944d2ab8278ce2eee59c99e09417cf" prot="public" virt="virtual"><scope>ES3Reader</scope><name>Read&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1a966ece25534c57951a89abb71ed62619" prot="public" virt="virtual"><scope>ES3Reader</scope><name>Read&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1a4bfa981965998cf19a5404dfef270e9f" prot="public" virt="virtual"><scope>ES3Reader</scope><name>Read&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1ae960492c12941bacb689ee5e1b6c88a9" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_bool</name></member>
+      <member refid="classES3Reader_1aba02e3f29878bbc49ed7219a0087551d" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_byte</name></member>
+      <member refid="classES3Reader_1a90c8f856aedb174439c43d311d0f2e58" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_byteArray</name></member>
+      <member refid="classES3Reader_1a1fd354295575206abc5be45f2195d48e" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_char</name></member>
+      <member refid="classES3Reader_1a7d02558c1f0958485fb25f8923308693" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_decimal</name></member>
+      <member refid="classES3Reader_1aa34a35887378ce547aacc7d2032c2d37" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_double</name></member>
+      <member refid="classES3Reader_1a7e9dbf9f142cbc9131d8aa2d8d8ef9d3" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_float</name></member>
+      <member refid="classES3Reader_1ae3ddb23faeb63b87c3f82b0239716f8a" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_int</name></member>
+      <member refid="classES3Reader_1aa39442679bceb88b3dc32f978195d3d2" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_long</name></member>
+      <member refid="classES3Reader_1a382d6babc3f440806e76167ac5ccb54c" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_ref</name></member>
+      <member refid="classES3Reader_1ae9847d47f3e7bdb7483f17c4b11c4f65" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_sbyte</name></member>
+      <member refid="classES3Reader_1adc0acbf617f11c7731c682572a40b0b3" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_short</name></member>
+      <member refid="classES3Reader_1a523e096451707d83c05cc66df8969c87" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_string</name></member>
+      <member refid="classES3Reader_1a617d9d5c77a80daa63d67291b7546535" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_uint</name></member>
+      <member refid="classES3Reader_1a41b4975243380289ab2c8c97094b13ae" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_ulong</name></member>
+      <member refid="classES3Reader_1ae5d1e710e1d0d9516ca2aa312ed1d79a" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>Read_ushort</name></member>
+      <member refid="classES3Reader_1a3a1f239903bd266e393d960fec329c7f" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>ReadElement</name></member>
+      <member refid="classES3Reader_1a365721ffd29981bc9ede16cd612138f9" prot="public" virt="virtual"><scope>ES3Reader</scope><name>ReadInto&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1a1e16fa46ad694596ddbe4bafca816cd8" prot="public" virt="virtual"><scope>ES3Reader</scope><name>ReadInto&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1a0016afa46b6c48048376b7d213f12f7f" prot="public" virt="virtual"><scope>ES3Reader</scope><name>ReadInto&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1aab4ea9245ad4e0c8e657de06b83b7ec3" prot="protected" virt="non-virtual"><scope>ES3Reader</scope><name>ReadKeyPrefix</name></member>
+      <member refid="classES3Reader_1a8ca37c47b6c4f2e21ec64ce248585890" prot="protected" virt="non-virtual"><scope>ES3Reader</scope><name>ReadKeySuffix</name></member>
+      <member refid="classES3Reader_1a528a876b40edfd31250343ee3c4a8001" prot="protected" virt="virtual"><scope>ES3Reader</scope><name>ReadObject&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1aa60a4602c023bd6ace1ef80bd371eca3" prot="protected" virt="virtual"><scope>ES3Reader</scope><name>ReadObject&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1a0a25c91eef53db6fae806b718f0e24da" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>ReadProperty&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1a4ec3b600e8eef689d469632221546622" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>ReadProperty&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1a8b3c82f788b1a48beb0f9d465e95da4e" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>ReadPropertyName</name></member>
+      <member refid="classES3Reader_1a76857f3ac5cac673c82e18ac75741d0f" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>ReadRefProperty</name></member>
+      <member refid="classES3Reader_1a69147b058db09f9f966cccd8eb09cc70" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>ReadType</name></member>
+      <member refid="classES3Reader_1a5ecfbadfcab2025dd7b7467a20d578c1" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>ReadTypeFromHeader&lt; T &gt;</name></member>
+      <member refid="classES3Reader_1afc66d2e29f1c31b431808890492a4712" prot="protected" virt="non-virtual"><scope>ES3Reader</scope><name>serializationDepth</name></member>
+      <member refid="classES3Reader_1a75a9be91e35c6dda4c082d2fc19d4d09" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>SetPrivateField</name></member>
+      <member refid="classES3Reader_1a81d370551fb0b07dfc798082b675ae37" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>SetPrivateProperty</name></member>
+      <member refid="classES3Reader_1a7d7c413278eb3d790d1ae8b58d02ff22" prot="public" virt="non-virtual"><scope>ES3Reader</scope><name>settings</name></member>
+      <member refid="classES3Reader_1a630d660bde984243c424babdb2496631" prot="public" virt="virtual"><scope>ES3Reader</scope><name>Skip</name></member>
+      <member refid="classES3Reader_1a20f47361e944c680a343fdd4254da19d" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>StartReadCollection</name></member>
+      <member refid="classES3Reader_1a09bb115ec05672addff59e3adaf4618b" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>StartReadCollectionItem</name></member>
+      <member refid="classES3Reader_1a2cb874539458156995ce78d747f69491" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>StartReadDictionary</name></member>
+      <member refid="classES3Reader_1ae8f51d6b86938f984be09586b501261a" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>StartReadDictionaryKey</name></member>
+      <member refid="classES3Reader_1a4b8f08345a9b5bb7268f73d803a08b40" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>StartReadDictionaryValue</name></member>
+      <member refid="classES3Reader_1a7a70dddf5ec861ee6834e2a272130b4d" prot="package" virt="virtual"><scope>ES3Reader</scope><name>StartReadObject</name></member>
+      <member refid="classES3Reader_1acf3b67ba91ca3518b478cf0bab78522c" prot="package" virt="non-virtual"><scope>ES3Reader</scope><name>TryOnAfterDeserialize</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

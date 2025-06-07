@@ -1,0 +1,342 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classHitPointSystem" kind="class" language="C#" prot="public">
+    <compoundname>HitPointSystem</compoundname>
+    <basecompoundref refid="classShipSystem" prot="public" virt="non-virtual">ShipSystem</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classHitPointSystem_1a3ca966cdfe4de384fc07f14eab78ac97" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float HitPointSystem.currentHitPoint</definition>
+        <argsstring></argsstring>
+        <name>currentHitPoint</name>
+        <qualifiedname>HitPointSystem.currentHitPoint</qualifiedname>
+        <briefdescription>
+<para>현재 체력 값입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" line="12" column="19" bodyfile="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" bodystart="12" bodyend="-1"/>
+        <referencedby refid="classHitPointSystem_1afc57249cf7099f1cc807759fe5d83f50" compoundref="HitPointSystem_8cs" startline="73" endline="79">ChangeHitPoint</referencedby>
+        <referencedby refid="classHitPointSystem_1a85a6d6b8c9c935065ccad64984e8dfba" compoundref="HitPointSystem_8cs" startline="53" endline="56">GetHitPoint</referencedby>
+        <referencedby refid="classHitPointSystem_1abe2111690dc484e8a3e3a3d1ec129d52" compoundref="HitPointSystem_8cs" startline="62" endline="66">GetHitPointPercentage</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classHitPointSystem_1a1922a765f4716727a403ae198456c49a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void HitPointSystem.Initialize</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>HitPointSystem.Initialize</qualifiedname>
+        <reimplements refid="classShipSystem_1ab0e5623073f8bfb48c02955484cfcd4e">Initialize</reimplements>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>시스템을 초기화하고 최대 체력으로 설정합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>초기화 대상 함선 객체.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" line="18" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" bodystart="18" bodyend="23"/>
+        <referencedby refid="classShip_1a5246a04784a96576460f8494bce02887" compoundref="Ship_8cs" startline="715" endline="737">Ship.InitializeSystems</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classHitPointSystem_1a95f56a183bb9402c5b1504a57abae7b6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void HitPointSystem.Refresh</definition>
+        <argsstring>()</argsstring>
+        <name>Refresh</name>
+        <qualifiedname>HitPointSystem.Refresh</qualifiedname>
+        <reimplements refid="classShipSystem_1ad94492134ef4577b127382af0877f6d6">Refresh</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" line="25" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" bodystart="25" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classHitPointSystem_1ac25f35ef89649ff83f64283a7b2f2164" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void HitPointSystem.RecalculateHitPoint</definition>
+        <argsstring>()</argsstring>
+        <name>RecalculateHitPoint</name>
+        <qualifiedname>HitPointSystem.RecalculateHitPoint</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" line="30" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" bodystart="30" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classHitPointSystem_1ae2d9bb1390f2c6ae26c845d8e760b7ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void HitPointSystem.Update</definition>
+        <argsstring>(float deltaTime)</argsstring>
+        <name>Update</name>
+        <qualifiedname>HitPointSystem.Update</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>deltaTime</declname>
+        </param>
+        <briefdescription>
+<para>매 프레임마다 호출되어 시스템 상태를 갱신합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>deltaTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>경과 시간 (초).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" line="45" column="26" bodyfile="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" bodystart="45" bodyend="47"/>
+        <referencedby refid="classShip_1a6ab0aaf28782b38d9c80bf19e652f46c" compoundref="Ship_8cs" startline="161" endline="172">Ship.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classHitPointSystem_1a85a6d6b8c9c935065ccad64984e8dfba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float HitPointSystem.GetHitPoint</definition>
+        <argsstring>()</argsstring>
+        <name>GetHitPoint</name>
+        <qualifiedname>HitPointSystem.GetHitPoint</qualifiedname>
+        <briefdescription>
+<para>현재 체력 값을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>현재 체력.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" line="53" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" bodystart="53" bodyend="56"/>
+        <references refid="classHitPointSystem_1a3ca966cdfe4de384fc07f14eab78ac97" compoundref="HitPointSystem_8cs" startline="12">currentHitPoint</references>
+        <referencedby refid="classShip_1ae4377c57fedfa3f2af2c69d82986a344" compoundref="Ship_8cs" startline="1195" endline="1198">Ship.GetCurrentHitPoints</referencedby>
+        <referencedby refid="classShip_1ac61b02cdac21a64fd326753ccb8ae96a" compoundref="Ship_8cs" startline="1291" endline="1300">Ship.TakeDamage</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classHitPointSystem_1abe2111690dc484e8a3e3a3d1ec129d52" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float HitPointSystem.GetHitPointPercentage</definition>
+        <argsstring>()</argsstring>
+        <name>GetHitPointPercentage</name>
+        <qualifiedname>HitPointSystem.GetHitPointPercentage</qualifiedname>
+        <briefdescription>
+<para>현재 체력의 퍼센트 값을 반환합니다. (0 ~ 100) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>현재 체력 / 최대 체력 * 100 값.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" line="62" column="18" bodyfile="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" bodystart="62" bodyend="66"/>
+        <references refid="classHitPointSystem_1a3ca966cdfe4de384fc07f14eab78ac97" compoundref="HitPointSystem_8cs" startline="12">currentHitPoint</references>
+        <references refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" compoundref="ShipSystem_8cs" startline="39" endline="42">ShipSystem.GetShipStat</references>
+      </memberdef>
+      <memberdef kind="function" id="classHitPointSystem_1afc57249cf7099f1cc807759fe5d83f50" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void HitPointSystem.ChangeHitPoint</definition>
+        <argsstring>(float amount)</argsstring>
+        <name>ChangeHitPoint</name>
+        <qualifiedname>HitPointSystem.ChangeHitPoint</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>amount</declname>
+        </param>
+        <briefdescription>
+<para>체력을 변경합니다. 양수이면 회복, 음수이면 피해를 의미합니다. 최대 체력을 초과하지 않으며, 0 아래로 내려가지 않습니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>amount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>변경할 체력량. (양수/음수)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" line="73" column="17" bodyfile="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" bodystart="73" bodyend="79"/>
+        <references refid="classHitPointSystem_1a3ca966cdfe4de384fc07f14eab78ac97" compoundref="HitPointSystem_8cs" startline="12">currentHitPoint</references>
+        <references refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" compoundref="ShipSystem_8cs" startline="39" endline="42">ShipSystem.GetShipStat</references>
+        <referencedby refid="classShip_1ac61b02cdac21a64fd326753ccb8ae96a" compoundref="Ship_8cs" startline="1291" endline="1300">Ship.TakeDamage</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선의 체력(Hit Point)을 관리하는 시스템. 체력의 초기화, 변경 및 현재 상태를 조회하는 기능을 담당. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="11">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="12">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="15">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" line="7" column="7" bodyfile="Assets/Scripts/Ship/ShipSystems/HitPointSystem.cs" bodystart="8" bodyend="80"/>
+    <listofallmembers>
+      <member refid="classHitPointSystem_1afc57249cf7099f1cc807759fe5d83f50" prot="public" virt="non-virtual"><scope>HitPointSystem</scope><name>ChangeHitPoint</name></member>
+      <member refid="classHitPointSystem_1a3ca966cdfe4de384fc07f14eab78ac97" prot="private" virt="non-virtual"><scope>HitPointSystem</scope><name>currentHitPoint</name></member>
+      <member refid="classHitPointSystem_1a85a6d6b8c9c935065ccad64984e8dfba" prot="public" virt="non-virtual"><scope>HitPointSystem</scope><name>GetHitPoint</name></member>
+      <member refid="classHitPointSystem_1abe2111690dc484e8a3e3a3d1ec129d52" prot="public" virt="non-virtual"><scope>HitPointSystem</scope><name>GetHitPointPercentage</name></member>
+      <member refid="classShipSystem_1a0c4c206aa7e875dc6810ea122e46b332" prot="protected" virt="non-virtual"><scope>HitPointSystem</scope><name>GetShipStat</name></member>
+      <member refid="classHitPointSystem_1a1922a765f4716727a403ae198456c49a" prot="public" virt="virtual"><scope>HitPointSystem</scope><name>Initialize</name></member>
+      <member refid="classShipSystem_1adde74af44fb3cbdc3b002e1c5a09092c" prot="protected" virt="non-virtual"><scope>HitPointSystem</scope><name>parentShip</name></member>
+      <member refid="classHitPointSystem_1ac25f35ef89649ff83f64283a7b2f2164" prot="public" virt="non-virtual"><scope>HitPointSystem</scope><name>RecalculateHitPoint</name></member>
+      <member refid="classHitPointSystem_1a95f56a183bb9402c5b1504a57abae7b6" prot="public" virt="virtual"><scope>HitPointSystem</scope><name>Refresh</name></member>
+      <member refid="classHitPointSystem_1ae2d9bb1390f2c6ae26c845d8e760b7ee" prot="public" virt="non-virtual"><scope>HitPointSystem</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

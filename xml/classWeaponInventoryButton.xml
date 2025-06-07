@@ -1,0 +1,579 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classWeaponInventoryButton" kind="class" language="C#" prot="public">
+    <compoundname>WeaponInventoryButton</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerDownHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IBeginDragHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IDragHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IEndDragHandler</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classWeaponInventoryButton_1af80aded4b4413375cbc54fe8243a69e5" prot="public" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image WeaponInventoryButton.icon</definition>
+        <argsstring></argsstring>
+        <name>icon</name>
+        <qualifiedname>WeaponInventoryButton.icon</qualifiedname>
+        <briefdescription>
+<para>인벤토리의 무기 이미지 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" line="15" column="19" bodyfile="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" bodystart="15" bodyend="-1"/>
+        <referencedby refid="classWeaponInventoryButton_1af07b9a277e9e13e37df1c7fc623b641d" compoundref="WeaponInventoryButton_8cs" startline="52" endline="71">Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classWeaponInventoryButton_1a7f9978e68b98ced1c4054dcf7ed6ed1e" prot="public" static="no" mutable="no">
+        <type>TMP_Text</type>
+        <definition>TMP_Text WeaponInventoryButton.label</definition>
+        <argsstring></argsstring>
+        <name>label</name>
+        <qualifiedname>WeaponInventoryButton.label</qualifiedname>
+        <briefdescription>
+<para>무기 이름 라벨 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" line="20" column="21" bodyfile="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" bodystart="20" bodyend="-1"/>
+        <referencedby refid="classWeaponInventoryButton_1af07b9a277e9e13e37df1c7fc623b641d" compoundref="WeaponInventoryButton_8cs" startline="52" endline="71">Initialize</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classWeaponInventoryButton_1adf41fd2766a235e80b1be78146e99ce6" prot="private" static="no" mutable="no">
+        <type><ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref></type>
+        <definition>ShipWeaponData WeaponInventoryButton.weaponData</definition>
+        <argsstring></argsstring>
+        <name>weaponData</name>
+        <qualifiedname>WeaponInventoryButton.weaponData</qualifiedname>
+        <briefdescription>
+<para>무기 정보 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" line="25" column="28" bodyfile="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" bodystart="25" bodyend="-1"/>
+        <referencedby refid="classWeaponInventoryButton_1af07b9a277e9e13e37df1c7fc623b641d" compoundref="WeaponInventoryButton_8cs" startline="52" endline="71">Initialize</referencedby>
+        <referencedby refid="classWeaponInventoryButton_1a0c1988a2557638470bbaed14af4e0922" compoundref="WeaponInventoryButton_8cs" startline="87" endline="93">OnBeginDrag</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classWeaponInventoryButton_1a50a1e270cd8f7319bb2737db68bee949" prot="private" static="no" mutable="no">
+        <type><ref refid="classBlueprintWeaponDragHandler" kindref="compound">BlueprintWeaponDragHandler</ref></type>
+        <definition>BlueprintWeaponDragHandler WeaponInventoryButton.dragHandler</definition>
+        <argsstring></argsstring>
+        <name>dragHandler</name>
+        <qualifiedname>WeaponInventoryButton.dragHandler</qualifiedname>
+        <briefdescription>
+<para>무기 드래그를 관리하는 handler </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" line="30" column="40" bodyfile="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" bodystart="30" bodyend="-1"/>
+        <referencedby refid="classWeaponInventoryButton_1af07b9a277e9e13e37df1c7fc623b641d" compoundref="WeaponInventoryButton_8cs" startline="52" endline="71">Initialize</referencedby>
+        <referencedby refid="classWeaponInventoryButton_1a0c1988a2557638470bbaed14af4e0922" compoundref="WeaponInventoryButton_8cs" startline="87" endline="93">OnBeginDrag</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classWeaponInventoryButton_1a48ed155c63d1c8adcd79b28afa2758da" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool WeaponInventoryButton.isDragging</definition>
+        <argsstring></argsstring>
+        <name>isDragging</name>
+        <qualifiedname>WeaponInventoryButton.isDragging</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>드래그 중인지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" line="35" column="18" bodyfile="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" bodystart="35" bodyend="-1"/>
+        <referencedby refid="classWeaponInventoryButton_1a0c1988a2557638470bbaed14af4e0922" compoundref="WeaponInventoryButton_8cs" startline="87" endline="93">OnBeginDrag</referencedby>
+        <referencedby refid="classWeaponInventoryButton_1afa0b145cb73645bca3941b77fadb2657" compoundref="WeaponInventoryButton_8cs" startline="108" endline="111">OnEndDrag</referencedby>
+        <referencedby refid="classWeaponInventoryButton_1a3342a2810de3531300f1de980014aab4" compoundref="WeaponInventoryButton_8cs" startline="77" endline="81">OnPointerDown</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classWeaponInventoryButton_1acad137a3a1421fe7a2a8844bc8918a6c" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float WeaponInventoryButton.baseWidth</definition>
+        <argsstring></argsstring>
+        <name>baseWidth</name>
+        <qualifiedname>WeaponInventoryButton.baseWidth</qualifiedname>
+        <initializer>= 100f</initializer>
+        <briefdescription>
+<para>무기 기본 크기 - 가로 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" line="40" column="20" bodyfile="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" bodystart="40" bodyend="-1"/>
+        <referencedby refid="classWeaponInventoryButton_1af07b9a277e9e13e37df1c7fc623b641d" compoundref="WeaponInventoryButton_8cs" startline="52" endline="71">Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classWeaponInventoryButton_1a12362bc70e9ddb8140a98cf97fa47c50" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float WeaponInventoryButton.baseHeight</definition>
+        <argsstring></argsstring>
+        <name>baseHeight</name>
+        <qualifiedname>WeaponInventoryButton.baseHeight</qualifiedname>
+        <initializer>= 50f</initializer>
+        <briefdescription>
+<para>무기 기본 크기 - 세로 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" line="45" column="19" bodyfile="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classWeaponInventoryButton_1af07b9a277e9e13e37df1c7fc623b641d" compoundref="WeaponInventoryButton_8cs" startline="52" endline="71">Initialize</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classWeaponInventoryButton_1af07b9a277e9e13e37df1c7fc623b641d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WeaponInventoryButton.Initialize</definition>
+        <argsstring>(ShipWeaponData data, BlueprintWeaponDragHandler handler)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>WeaponInventoryButton.Initialize</qualifiedname>
+        <param>
+          <type><ref refid="classShipWeaponData" kindref="compound">ShipWeaponData</ref></type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="classBlueprintWeaponDragHandler" kindref="compound">BlueprintWeaponDragHandler</ref></type>
+          <declname>handler</declname>
+        </param>
+        <briefdescription>
+<para>무기 정보에 따른 초기화 작업 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>무기 정보</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>handler</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>드래그 핸들러</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" line="52" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" bodystart="52" bodyend="71"/>
+        <references refid="classWeaponInventoryButton_1a12362bc70e9ddb8140a98cf97fa47c50" compoundref="WeaponInventoryButton_8cs" startline="45">baseHeight</references>
+        <references refid="classWeaponInventoryButton_1acad137a3a1421fe7a2a8844bc8918a6c" compoundref="WeaponInventoryButton_8cs" startline="40">baseWidth</references>
+        <references refid="classWeaponInventoryButton_1a50a1e270cd8f7319bb2737db68bee949" compoundref="WeaponInventoryButton_8cs" startline="30">dragHandler</references>
+        <references refid="classWeaponInventoryButton_1af80aded4b4413375cbc54fe8243a69e5" compoundref="WeaponInventoryButton_8cs" startline="15">icon</references>
+        <references refid="classWeaponInventoryButton_1a7f9978e68b98ced1c4054dcf7ed6ed1e" compoundref="WeaponInventoryButton_8cs" startline="20">label</references>
+        <references refid="classWeaponInventoryButton_1adf41fd2766a235e80b1be78146e99ce6" compoundref="WeaponInventoryButton_8cs" startline="25">weaponData</references>
+        <references refid="classShipWeaponData_1a56f63799379c96ba15619ddc6c46cc8a" compoundref="ShipWeaponData_8cs" startline="39">ShipWeaponData.weaponIcon</references>
+        <references refid="classShipWeaponData_1a7928a3832b5b84cf9f916566902dc334" compoundref="ShipWeaponData_8cs" startline="19">ShipWeaponData.weaponName</references>
+        <referencedby refid="classBlueprintWeaponInventoryUI_1ab30acac82d2da8413c2826835b73ebcd" compoundref="BlueprintWeaponInventoryUI_8cs" startline="48" endline="81">BlueprintWeaponInventoryUI.LoadWeapons</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classWeaponInventoryButton_1a3342a2810de3531300f1de980014aab4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WeaponInventoryButton.OnPointerDown</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerDown</name>
+        <qualifiedname>WeaponInventoryButton.OnPointerDown</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>클릭 시 바로 드래그 시작 준비 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" line="77" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" bodystart="77" bodyend="81"/>
+        <references refid="classWeaponInventoryButton_1a48ed155c63d1c8adcd79b28afa2758da" compoundref="WeaponInventoryButton_8cs" startline="35">isDragging</references>
+      </memberdef>
+      <memberdef kind="function" id="classWeaponInventoryButton_1a0c1988a2557638470bbaed14af4e0922" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WeaponInventoryButton.OnBeginDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnBeginDrag</name>
+        <qualifiedname>WeaponInventoryButton.OnBeginDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>드래그 시작 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" line="87" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" bodystart="87" bodyend="93"/>
+        <references refid="classWeaponInventoryButton_1a50a1e270cd8f7319bb2737db68bee949" compoundref="WeaponInventoryButton_8cs" startline="30">dragHandler</references>
+        <references refid="classWeaponInventoryButton_1a48ed155c63d1c8adcd79b28afa2758da" compoundref="WeaponInventoryButton_8cs" startline="35">isDragging</references>
+        <references refid="classBlueprintWeaponDragHandler_1a5834a6e49dd8a0724bb81e6e36ee9642" compoundref="BlueprintWeaponDragHandler_8cs" startline="43" endline="85">BlueprintWeaponDragHandler.StartDragging</references>
+        <references refid="classWeaponInventoryButton_1adf41fd2766a235e80b1be78146e99ce6" compoundref="WeaponInventoryButton_8cs" startline="25">weaponData</references>
+      </memberdef>
+      <memberdef kind="function" id="classWeaponInventoryButton_1a5416650243609c4d74b313072b60987f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WeaponInventoryButton.OnDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnDrag</name>
+        <qualifiedname>WeaponInventoryButton.OnDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>드래그 중 (WeaponDragHandler가 업데이트에서 처리) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" line="99" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" bodystart="99" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classWeaponInventoryButton_1afa0b145cb73645bca3941b77fadb2657" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WeaponInventoryButton.OnEndDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnEndDrag</name>
+        <qualifiedname>WeaponInventoryButton.OnEndDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>드래그 종료 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" line="108" column="17" bodyfile="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" bodystart="108" bodyend="111"/>
+        <references refid="classWeaponInventoryButton_1a48ed155c63d1c8adcd79b28afa2758da" compoundref="WeaponInventoryButton_8cs" startline="35">isDragging</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>각 무기 항목에 대한 UI 버튼. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>IBeginDragHandler</label>
+      </node>
+      <node id="5">
+        <label>IDragHandler</label>
+      </node>
+      <node id="6">
+        <label>IEndDragHandler</label>
+      </node>
+      <node id="3">
+        <label>IPointerDownHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>WeaponInventoryButton</label>
+        <link refid="classWeaponInventoryButton"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="14">
+        <label>BlueprintShip</label>
+        <link refid="classBlueprintShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>BlueprintWeaponDragHandler</label>
+        <link refid="classBlueprintWeaponDragHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>+gridPlacer</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>+blueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-draggingWeaponData</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>GridPlacer</label>
+        <link refid="classGridPlacer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>+targetBlueprintShip</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>-gridOrigin</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>IBeginDragHandler</label>
+      </node>
+      <node id="5">
+        <label>IDragHandler</label>
+      </node>
+      <node id="6">
+        <label>IEndDragHandler</label>
+      </node>
+      <node id="3">
+        <label>IPointerDownHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="24">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="27">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="15" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>ShipWeaponData</label>
+        <link refid="classShipWeaponData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>+weaponType</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+effectData</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+warheadType</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ShipWeaponTypeData</label>
+        <link refid="classShipWeaponTypeData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>UnityEngine</label>
+      </node>
+      <node id="11">
+        <label>WarheadTypeData</label>
+        <link refid="classWarheadTypeData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>WeaponEffectData</label>
+        <link refid="classWeaponEffectData"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>WeaponInventoryButton</label>
+        <link refid="classWeaponInventoryButton"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-weaponData</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-dragHandler</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" line="9" column="7" bodyfile="Assets/Scripts/CustomizeShip/Weapon/WeaponInventoryButton.cs" bodystart="11" bodyend="112"/>
+    <listofallmembers>
+      <member refid="classWeaponInventoryButton_1a12362bc70e9ddb8140a98cf97fa47c50" prot="private" virt="non-virtual"><scope>WeaponInventoryButton</scope><name>baseHeight</name></member>
+      <member refid="classWeaponInventoryButton_1acad137a3a1421fe7a2a8844bc8918a6c" prot="private" virt="non-virtual"><scope>WeaponInventoryButton</scope><name>baseWidth</name></member>
+      <member refid="classWeaponInventoryButton_1a50a1e270cd8f7319bb2737db68bee949" prot="private" virt="non-virtual"><scope>WeaponInventoryButton</scope><name>dragHandler</name></member>
+      <member refid="classWeaponInventoryButton_1af80aded4b4413375cbc54fe8243a69e5" prot="public" virt="non-virtual"><scope>WeaponInventoryButton</scope><name>icon</name></member>
+      <member refid="classWeaponInventoryButton_1af07b9a277e9e13e37df1c7fc623b641d" prot="public" virt="non-virtual"><scope>WeaponInventoryButton</scope><name>Initialize</name></member>
+      <member refid="classWeaponInventoryButton_1a48ed155c63d1c8adcd79b28afa2758da" prot="private" virt="non-virtual"><scope>WeaponInventoryButton</scope><name>isDragging</name></member>
+      <member refid="classWeaponInventoryButton_1a7f9978e68b98ced1c4054dcf7ed6ed1e" prot="public" virt="non-virtual"><scope>WeaponInventoryButton</scope><name>label</name></member>
+      <member refid="classWeaponInventoryButton_1a0c1988a2557638470bbaed14af4e0922" prot="public" virt="non-virtual"><scope>WeaponInventoryButton</scope><name>OnBeginDrag</name></member>
+      <member refid="classWeaponInventoryButton_1a5416650243609c4d74b313072b60987f" prot="public" virt="non-virtual"><scope>WeaponInventoryButton</scope><name>OnDrag</name></member>
+      <member refid="classWeaponInventoryButton_1afa0b145cb73645bca3941b77fadb2657" prot="public" virt="non-virtual"><scope>WeaponInventoryButton</scope><name>OnEndDrag</name></member>
+      <member refid="classWeaponInventoryButton_1a3342a2810de3531300f1de980014aab4" prot="public" virt="non-virtual"><scope>WeaponInventoryButton</scope><name>OnPointerDown</name></member>
+      <member refid="classWeaponInventoryButton_1adf41fd2766a235e80b1be78146e99ce6" prot="private" virt="non-virtual"><scope>WeaponInventoryButton</scope><name>weaponData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

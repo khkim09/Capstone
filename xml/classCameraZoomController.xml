@@ -1,0 +1,448 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCameraZoomController" kind="class" language="C#" prot="public">
+    <compoundname>CameraZoomController</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classCameraZoomController_1a66952d9816434ba034cd8a488e14dd9f" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CameraZoomController.zoomSpeed</definition>
+        <argsstring></argsstring>
+        <name>zoomSpeed</name>
+        <qualifiedname>CameraZoomController.zoomSpeed</qualifiedname>
+        <initializer>= 2f</initializer>
+        <briefdescription>
+<para>카메라 줌 속도 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="15" column="19" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="15" bodyend="-1"/>
+        <referencedby refid="classCameraZoomController_1a781cfbae9b3ee713fc2e71f71b759e2a" compoundref="CameraZoomController_8cs" startline="77" endline="92">HandleZoom</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCameraZoomController_1a1f4ad9069d9f67b2d1a27f28b9b95501" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CameraZoomController.minSize</definition>
+        <argsstring></argsstring>
+        <name>minSize</name>
+        <qualifiedname>CameraZoomController.minSize</qualifiedname>
+        <initializer>= 4.5f</initializer>
+        <briefdescription>
+<para>카메라 최대 확대 줌인 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="20" column="19" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="20" bodyend="-1"/>
+        <referencedby refid="classCameraZoomController_1a781cfbae9b3ee713fc2e71f71b759e2a" compoundref="CameraZoomController_8cs" startline="77" endline="92">HandleZoom</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCameraZoomController_1ade109f3a29cbfb1f3397e236e756061c" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CameraZoomController.maxSize</definition>
+        <argsstring></argsstring>
+        <name>maxSize</name>
+        <qualifiedname>CameraZoomController.maxSize</qualifiedname>
+        <initializer>= 15f</initializer>
+        <briefdescription>
+<para>카메라 최소치 줌 아웃 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="25" column="19" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="25" bodyend="-1"/>
+        <referencedby refid="classCameraZoomController_1a781cfbae9b3ee713fc2e71f71b759e2a" compoundref="CameraZoomController_8cs" startline="77" endline="92">HandleZoom</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCameraZoomController_1a651d9651a23d63222cd8fb366aedfa0d" prot="private" static="no" mutable="no">
+        <type>Camera</type>
+        <definition>Camera CameraZoomController.cam</definition>
+        <argsstring></argsstring>
+        <name>cam</name>
+        <qualifiedname>CameraZoomController.cam</qualifiedname>
+        <briefdescription>
+<para>조정할 메인 카메라 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="30" column="20" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="30" bodyend="-1"/>
+        <referencedby refid="classCameraZoomController_1aeeeaca48381857823d2c32863f94922d" compoundref="CameraZoomController_8cs" startline="97" endline="152">CameraMove</referencedby>
+        <referencedby refid="classCameraZoomController_1a781cfbae9b3ee713fc2e71f71b759e2a" compoundref="CameraZoomController_8cs" startline="77" endline="92">HandleZoom</referencedby>
+        <referencedby refid="classCameraZoomController_1ad107396ad27354ab0eb1c2c4671e8769" compoundref="CameraZoomController_8cs" startline="203" endline="212">isMouseOverRoomOrGrid</referencedby>
+        <referencedby refid="classCameraZoomController_1ae4532f79518d5011088c0449f93bb3ff" compoundref="CameraZoomController_8cs" startline="42" endline="47">OnEnable</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classCameraZoomController_1a8c61fb2b0f712180f3af194520f5a49d" prot="public" static="no" mutable="no">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship CameraZoomController.targetShip</definition>
+        <argsstring></argsstring>
+        <name>targetShip</name>
+        <qualifiedname>CameraZoomController.targetShip</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="32" column="18" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCameraZoomController_1ae7bc6b4b0cdfb8f1ddcabbb61e74bcf9" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CameraZoomController.lastZoomSize</definition>
+        <argsstring></argsstring>
+        <name>lastZoomSize</name>
+        <qualifiedname>CameraZoomController.lastZoomSize</qualifiedname>
+        <initializer>= 5f</initializer>
+        <briefdescription>
+<para>가장 최신 줌 사이즈 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="37" column="19" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="37" bodyend="-1"/>
+        <referencedby refid="classCustomize__1__Controller_1a1e3252edf847a5240e2adf246a7c16d0" compoundref="Customize__1__Controller_8cs" startline="181" endline="188">Customize_1_Controller.CenterCameraToBP</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a5b4e6936bd278afd768d73911b716bee" compoundref="CustomizeShipUIHandler_8cs" startline="220" endline="227">CustomizeShipUIHandler.CenterCameraToBP</referencedby>
+        <referencedby refid="classCameraZoomController_1a781cfbae9b3ee713fc2e71f71b759e2a" compoundref="CameraZoomController_8cs" startline="77" endline="92">HandleZoom</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classCameraZoomController_1ae4532f79518d5011088c0449f93bb3ff" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraZoomController.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <qualifiedname>CameraZoomController.OnEnable</qualifiedname>
+        <briefdescription>
+<para>함선 위치로 카메라 세팅, 줌 사이즈 = 5 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="42" column="18" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="42" bodyend="47"/>
+        <references refid="classCameraZoomController_1a651d9651a23d63222cd8fb366aedfa0d" compoundref="CameraZoomController_8cs" startline="30">cam</references>
+      </memberdef>
+      <memberdef kind="function" id="classCameraZoomController_1a24a091ceb4fdb8eed0a9e6be68ea45ce" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator CameraZoomController.CameraCoroutine</definition>
+        <argsstring>()</argsstring>
+        <name>CameraCoroutine</name>
+        <qualifiedname>CameraZoomController.CameraCoroutine</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="49" column="25" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="49" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classCameraZoomController_1a132d7fcc53b19d02c675cf49c52c329e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraZoomController.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>CameraZoomController.Update</qualifiedname>
+        <briefdescription>
+<para>설계도 작업 시에만 카메라 컨트롤 적용 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="66" column="18" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="66" bodyend="71"/>
+        <references refid="classCameraZoomController_1aeeeaca48381857823d2c32863f94922d" compoundref="CameraZoomController_8cs" startline="97" endline="152">CameraMove</references>
+        <references refid="classCameraZoomController_1a781cfbae9b3ee713fc2e71f71b759e2a" compoundref="CameraZoomController_8cs" startline="77" endline="92">HandleZoom</references>
+      </memberdef>
+      <memberdef kind="function" id="classCameraZoomController_1a781cfbae9b3ee713fc2e71f71b759e2a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraZoomController.HandleZoom</definition>
+        <argsstring>()</argsstring>
+        <name>HandleZoom</name>
+        <qualifiedname>CameraZoomController.HandleZoom</qualifiedname>
+        <briefdescription>
+<para>화면을 확대/축소합니다. 마우스 휠 스크롤을 이용하여 확대/축소 가능하며 최대 확대 거리 : 4.5, 최대 축소 거리 : 15 입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="77" column="18" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="77" bodyend="92"/>
+        <references refid="classCameraZoomController_1a651d9651a23d63222cd8fb366aedfa0d" compoundref="CameraZoomController_8cs" startline="30">cam</references>
+        <references refid="classCameraZoomController_1a42ae01d49f36d22d58f1c3b041a388fa" compoundref="CameraZoomController_8cs" startline="193" endline="197">IsMouseInGameView</references>
+        <references refid="classCameraZoomController_1ad107396ad27354ab0eb1c2c4671e8769" compoundref="CameraZoomController_8cs" startline="203" endline="212">isMouseOverRoomOrGrid</references>
+        <references refid="classCameraZoomController_1ae7bc6b4b0cdfb8f1ddcabbb61e74bcf9" compoundref="CameraZoomController_8cs" startline="37">lastZoomSize</references>
+        <references refid="classCameraZoomController_1ade109f3a29cbfb1f3397e236e756061c" compoundref="CameraZoomController_8cs" startline="25">maxSize</references>
+        <references refid="classCameraZoomController_1a1f4ad9069d9f67b2d1a27f28b9b95501" compoundref="CameraZoomController_8cs" startline="20">minSize</references>
+        <references refid="classCameraZoomController_1a66952d9816434ba034cd8a488e14dd9f" compoundref="CameraZoomController_8cs" startline="15">zoomSpeed</references>
+        <referencedby refid="classCameraZoomController_1a132d7fcc53b19d02c675cf49c52c329e" compoundref="CameraZoomController_8cs" startline="66" endline="71">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCameraZoomController_1aeeeaca48381857823d2c32863f94922d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraZoomController.CameraMove</definition>
+        <argsstring>()</argsstring>
+        <name>CameraMove</name>
+        <qualifiedname>CameraZoomController.CameraMove</qualifiedname>
+        <briefdescription>
+<para>카메라 이동 구현 및 이동 제한 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="97" column="18" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="97" bodyend="152"/>
+        <references refid="classCameraZoomController_1a651d9651a23d63222cd8fb366aedfa0d" compoundref="CameraZoomController_8cs" startline="30">cam</references>
+        <references refid="classCameraZoomController_1ab235d5af1107e5f1f2d2747b22c39e83" compoundref="CameraZoomController_8cs" startline="217" endline="226">CheckBounds</references>
+        <referencedby refid="classCameraZoomController_1a132d7fcc53b19d02c675cf49c52c329e" compoundref="CameraZoomController_8cs" startline="66" endline="71">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCameraZoomController_1a42ae01d49f36d22d58f1c3b041a388fa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CameraZoomController.IsMouseInGameView</definition>
+        <argsstring>()</argsstring>
+        <name>IsMouseInGameView</name>
+        <qualifiedname>CameraZoomController.IsMouseInGameView</qualifiedname>
+        <briefdescription>
+<para>유저의 마우스가 GameView 내에 위치한지 확인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="193" column="18" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="193" bodyend="197"/>
+        <referencedby refid="classCameraZoomController_1a781cfbae9b3ee713fc2e71f71b759e2a" compoundref="CameraZoomController_8cs" startline="77" endline="92">HandleZoom</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCameraZoomController_1ad107396ad27354ab0eb1c2c4671e8769" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CameraZoomController.isMouseOverRoomOrGrid</definition>
+        <argsstring>()</argsstring>
+        <name>isMouseOverRoomOrGrid</name>
+        <qualifiedname>CameraZoomController.isMouseOverRoomOrGrid</qualifiedname>
+        <briefdescription>
+<para>방 ui 위에 있을 때는 줌 가능 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="203" column="18" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="203" bodyend="212"/>
+        <references refid="classCameraZoomController_1a651d9651a23d63222cd8fb366aedfa0d" compoundref="CameraZoomController_8cs" startline="30">cam</references>
+        <referencedby refid="classCameraZoomController_1a781cfbae9b3ee713fc2e71f71b759e2a" compoundref="CameraZoomController_8cs" startline="77" endline="92">HandleZoom</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCameraZoomController_1ab235d5af1107e5f1f2d2747b22c39e83" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CameraZoomController.CheckBounds</definition>
+        <argsstring>(Vector3 simulatePos)</argsstring>
+        <name>CheckBounds</name>
+        <qualifiedname>CameraZoomController.CheckBounds</qualifiedname>
+        <param>
+          <type>Vector3</type>
+          <declname>simulatePos</declname>
+        </param>
+        <briefdescription>
+<para>카메라 화면 이동 가능 영역을 제한합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="217" column="18" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="217" bodyend="226"/>
+        <referencedby refid="classCameraZoomController_1aeeeaca48381857823d2c32863f94922d" compoundref="CameraZoomController_8cs" startline="97" endline="152">CameraMove</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCameraZoomController_1a167bc55b6e4d87ff914de3a838d63f80" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector3</type>
+        <definition>Vector3 CameraZoomController.GetCameraStartPositionToOriginShip</definition>
+        <argsstring>()</argsstring>
+        <name>GetCameraStartPositionToOriginShip</name>
+        <qualifiedname>CameraZoomController.GetCameraStartPositionToOriginShip</qualifiedname>
+        <briefdescription>
+<para>기존 소유 함선을 이루는 방들의 중심으로 카메라 시작 위치 보정 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="158" column="20" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="158" bodyend="188"/>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classShip_1a058800cd1cdc9601aeb176ac45fd91d4" compoundref="Ship_8cs" startline="1143" endline="1146">Ship.GetAllWeapons</references>
+        <references refid="classShipWeapon_1a421526a38a8fbd32127d0063526c9c6a" compoundref="ShipWeapon_8cs" startline="269" endline="272">ShipWeapon.GetGridPosition</references>
+        <references refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" compoundref="Room_8cs" startline="482" endline="488">Room&lt; TData, TLevel &gt;.GetOccupiedTiles</references>
+        <references refid="classShip_1acc377098e3c61bbd4b8fc53595d09293" compoundref="Ship_8cs" startline="1456" endline="1459">Ship.GetWorldPositionFromGrid</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선 커스터마이징 시 camera의 zoom-in, zoom-out과 우클릭으로의 화면 이동을 관리합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CameraZoomController</label>
+        <link refid="classCameraZoomController"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>CameraZoomController</label>
+        <link refid="classCameraZoomController"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+targetShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="13">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="16">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Camera/CameraZoomController.cs" line="10" column="7" bodyfile="Assets/Scripts/Camera/CameraZoomController.cs" bodystart="11" bodyend="227"/>
+    <listofallmembers>
+      <member refid="classCameraZoomController_1a651d9651a23d63222cd8fb366aedfa0d" prot="private" virt="non-virtual"><scope>CameraZoomController</scope><name>cam</name></member>
+      <member refid="classCameraZoomController_1a24a091ceb4fdb8eed0a9e6be68ea45ce" prot="private" virt="non-virtual"><scope>CameraZoomController</scope><name>CameraCoroutine</name></member>
+      <member refid="classCameraZoomController_1aeeeaca48381857823d2c32863f94922d" prot="private" virt="non-virtual"><scope>CameraZoomController</scope><name>CameraMove</name></member>
+      <member refid="classCameraZoomController_1ab235d5af1107e5f1f2d2747b22c39e83" prot="private" virt="non-virtual"><scope>CameraZoomController</scope><name>CheckBounds</name></member>
+      <member refid="classCameraZoomController_1a167bc55b6e4d87ff914de3a838d63f80" prot="public" virt="non-virtual"><scope>CameraZoomController</scope><name>GetCameraStartPositionToOriginShip</name></member>
+      <member refid="classCameraZoomController_1a781cfbae9b3ee713fc2e71f71b759e2a" prot="private" virt="non-virtual"><scope>CameraZoomController</scope><name>HandleZoom</name></member>
+      <member refid="classCameraZoomController_1a42ae01d49f36d22d58f1c3b041a388fa" prot="private" virt="non-virtual"><scope>CameraZoomController</scope><name>IsMouseInGameView</name></member>
+      <member refid="classCameraZoomController_1ad107396ad27354ab0eb1c2c4671e8769" prot="private" virt="non-virtual"><scope>CameraZoomController</scope><name>isMouseOverRoomOrGrid</name></member>
+      <member refid="classCameraZoomController_1ae7bc6b4b0cdfb8f1ddcabbb61e74bcf9" prot="public" virt="non-virtual"><scope>CameraZoomController</scope><name>lastZoomSize</name></member>
+      <member refid="classCameraZoomController_1ade109f3a29cbfb1f3397e236e756061c" prot="private" virt="non-virtual"><scope>CameraZoomController</scope><name>maxSize</name></member>
+      <member refid="classCameraZoomController_1a1f4ad9069d9f67b2d1a27f28b9b95501" prot="private" virt="non-virtual"><scope>CameraZoomController</scope><name>minSize</name></member>
+      <member refid="classCameraZoomController_1ae4532f79518d5011088c0449f93bb3ff" prot="private" virt="non-virtual"><scope>CameraZoomController</scope><name>OnEnable</name></member>
+      <member refid="classCameraZoomController_1a8c61fb2b0f712180f3af194520f5a49d" prot="public" virt="non-virtual"><scope>CameraZoomController</scope><name>targetShip</name></member>
+      <member refid="classCameraZoomController_1a132d7fcc53b19d02c675cf49c52c329e" prot="private" virt="non-virtual"><scope>CameraZoomController</scope><name>Update</name></member>
+      <member refid="classCameraZoomController_1a66952d9816434ba034cd8a488e14dd9f" prot="private" virt="non-virtual"><scope>CameraZoomController</scope><name>zoomSpeed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

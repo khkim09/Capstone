@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classES3Internal_1_1ES3PlayerPrefsStream" kind="class" language="C#" prot="package">
+    <compoundname>ES3Internal::ES3PlayerPrefsStream</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MemoryStream</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classES3Internal_1_1ES3PlayerPrefsStream_1a6fd079fe16402989a4c84824d881beb0" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ES3Internal.ES3PlayerPrefsStream.path</definition>
+        <argsstring></argsstring>
+        <name>path</name>
+        <qualifiedname>ES3Internal.ES3PlayerPrefsStream.path</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" line="8" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3PlayerPrefsStream_1acf8b1f3adee541f45ac54ec0b1afef4a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ES3Internal.ES3PlayerPrefsStream.append</definition>
+        <argsstring></argsstring>
+        <name>append</name>
+        <qualifiedname>ES3Internal.ES3PlayerPrefsStream.append</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" line="9" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3PlayerPrefsStream_1ac62966167fa2bb73a907b2bf10ad3dfc" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ES3Internal.ES3PlayerPrefsStream.isWriteStream</definition>
+        <argsstring></argsstring>
+        <name>isWriteStream</name>
+        <qualifiedname>ES3Internal.ES3PlayerPrefsStream.isWriteStream</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" line="10" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3Internal_1_1ES3PlayerPrefsStream_1a34483c1ab7997493100bbe2b7185c340" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ES3Internal.ES3PlayerPrefsStream.isDisposed</definition>
+        <argsstring></argsstring>
+        <name>isDisposed</name>
+        <qualifiedname>ES3Internal.ES3PlayerPrefsStream.isDisposed</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" line="11" column="14" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3PlayerPrefsStream_1abcec7868d48b2df4c91cf21f39339c58" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3Internal.ES3PlayerPrefsStream.ES3PlayerPrefsStream</definition>
+        <argsstring>(string path)</argsstring>
+        <name>ES3PlayerPrefsStream</name>
+        <qualifiedname>ES3Internal.ES3PlayerPrefsStream.ES3PlayerPrefsStream</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" line="14" column="8" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" bodystart="14" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3Internal_1_1ES3PlayerPrefsStream_1a77bfa7943b474d5d76f4e9c7df5b2265" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ES3Internal.ES3PlayerPrefsStream.ES3PlayerPrefsStream</definition>
+        <argsstring>(string path, int bufferSize, bool append=false)</argsstring>
+        <name>ES3PlayerPrefsStream</name>
+        <qualifiedname>ES3Internal.ES3PlayerPrefsStream.ES3PlayerPrefsStream</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>bufferSize</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>append</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" line="21" column="8" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" bodystart="21" bodyend="26"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3PlayerPrefsStream_1a2a1a706d376edfa4b98ac7537c796a9f" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>byte[]</type>
+        <definition>static byte[] ES3Internal.ES3PlayerPrefsStream.GetData</definition>
+        <argsstring>(string path, bool isWriteStream)</argsstring>
+        <name>GetData</name>
+        <qualifiedname>ES3Internal.ES3PlayerPrefsStream.GetData</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>isWriteStream</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" line="28" column="21" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" bodystart="28" bodyend="33"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classES3Internal_1_1ES3PlayerPrefsStream_1aa3820f5bd7e4f53f56d2c1ea59abe23e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void ES3Internal.ES3PlayerPrefsStream.Dispose</definition>
+        <argsstring>(bool disposing)</argsstring>
+        <name>Dispose</name>
+        <qualifiedname>ES3Internal.ES3PlayerPrefsStream.Dispose</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>disposing</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" line="35" column="25" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" bodystart="35" bodyend="61"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ES3Internal.ES3PlayerPrefsStream</label>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MemoryStream</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ES3Internal.ES3PlayerPrefsStream</label>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MemoryStream</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" line="6" column="9" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Streams/ES3PlayerPrefsStream.cs" bodystart="7" bodyend="62"/>
+    <listofallmembers>
+      <member refid="classES3Internal_1_1ES3PlayerPrefsStream_1acf8b1f3adee541f45ac54ec0b1afef4a" prot="private" virt="non-virtual"><scope>ES3Internal::ES3PlayerPrefsStream</scope><name>append</name></member>
+      <member refid="classES3Internal_1_1ES3PlayerPrefsStream_1aa3820f5bd7e4f53f56d2c1ea59abe23e" prot="protected" virt="non-virtual"><scope>ES3Internal::ES3PlayerPrefsStream</scope><name>Dispose</name></member>
+      <member refid="classES3Internal_1_1ES3PlayerPrefsStream_1abcec7868d48b2df4c91cf21f39339c58" prot="public" virt="non-virtual"><scope>ES3Internal::ES3PlayerPrefsStream</scope><name>ES3PlayerPrefsStream</name></member>
+      <member refid="classES3Internal_1_1ES3PlayerPrefsStream_1a77bfa7943b474d5d76f4e9c7df5b2265" prot="public" virt="non-virtual"><scope>ES3Internal::ES3PlayerPrefsStream</scope><name>ES3PlayerPrefsStream</name></member>
+      <member refid="classES3Internal_1_1ES3PlayerPrefsStream_1a2a1a706d376edfa4b98ac7537c796a9f" prot="private" virt="non-virtual"><scope>ES3Internal::ES3PlayerPrefsStream</scope><name>GetData</name></member>
+      <member refid="classES3Internal_1_1ES3PlayerPrefsStream_1a34483c1ab7997493100bbe2b7185c340" prot="private" virt="non-virtual"><scope>ES3Internal::ES3PlayerPrefsStream</scope><name>isDisposed</name></member>
+      <member refid="classES3Internal_1_1ES3PlayerPrefsStream_1ac62966167fa2bb73a907b2bf10ad3dfc" prot="private" virt="non-virtual"><scope>ES3Internal::ES3PlayerPrefsStream</scope><name>isWriteStream</name></member>
+      <member refid="classES3Internal_1_1ES3PlayerPrefsStream_1a6fd079fe16402989a4c84824d881beb0" prot="private" virt="non-virtual"><scope>ES3Internal::ES3PlayerPrefsStream</scope><name>path</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

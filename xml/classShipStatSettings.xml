@@ -1,0 +1,294 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classShipStatSettings" kind="class" language="C#" prot="public">
+    <compoundname>ShipStatSettings</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ScriptableObject</basecompoundref>
+    <innerclass refid="classShipStatSettings_1_1StatLimit" prot="public">ShipStatSettings::StatLimit</innerclass>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classShipStatSettings_1a151c9630bad7b78ed72dee05f900b319" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="classShipStatSettings_1_1StatLimit" kindref="compound">StatLimit</ref> &gt;</type>
+        <definition>List&lt;StatLimit&gt; ShipStatSettings.StatLimits</definition>
+        <argsstring></argsstring>
+        <name>StatLimits</name>
+        <qualifiedname>ShipStatSettings.StatLimits</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>해당 스탯에 대한 설명 또는 메모. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipStatSettings.cs" line="34" column="18" bodyfile="Assets/Scripts/Ship/ShipStatSettings.cs" bodystart="34" bodyend="-1"/>
+        <referencedby refid="classShipStatSettings_1ace19c52571b4d549409ae1a324e4c3c2" compoundref="ShipStatSettings_8cs" startline="67" endline="71">InitializeCache</referencedby>
+        <referencedby refid="classShipStatSettings_1a036011dc340c55a59b6421aab5601d99" compoundref="ShipStatSettings_8cs" startline="77" endline="218">InitializeDefaultValues</referencedby>
+        <referencedby refid="classShipStatSettings_1abf00705e8fcc42d9d9765ffc771bbd1c" compoundref="ShipStatSettings_8cs" startline="56" endline="62">OnEnable</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classShipStatSettings_1a06fa9ad68f587681d350c97dc06e5568" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShipStatSettings.defaultMaxValue</definition>
+        <argsstring></argsstring>
+        <name>defaultMaxValue</name>
+        <qualifiedname>ShipStatSettings.defaultMaxValue</qualifiedname>
+        <initializer>= float.MaxValue</initializer>
+        <briefdescription>
+<para>설정되지 않은 스탯에 대한 기본 최대값. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipStatSettings.cs" line="40" column="20" bodyfile="Assets/Scripts/Ship/ShipStatSettings.cs" bodystart="40" bodyend="-1"/>
+        <referencedby refid="classShipStatSettings_1a0cf4982d2398174be34a5fd3f0dadf8c" compoundref="ShipStatSettings_8cs" startline="225" endline="232">GetMaxValue</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classShipStatSettings_1a70cb1e73807cd3d2814ab59c43a31635" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShipStatSettings.defaultMinValue</definition>
+        <argsstring></argsstring>
+        <name>defaultMinValue</name>
+        <qualifiedname>ShipStatSettings.defaultMinValue</qualifiedname>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+<para>설정되지 않은 스탯에 대한 기본 최소값. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipStatSettings.cs" line="45" column="20" bodyfile="Assets/Scripts/Ship/ShipStatSettings.cs" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classShipStatSettings_1aa8610985e2ab454b9226f18cb8ce6f16" compoundref="ShipStatSettings_8cs" startline="237" endline="244">GetMinValue</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classShipStatSettings_1a34043c35952960b9590f1781ec493b67" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; ShipStat, <ref refid="classShipStatSettings_1_1StatLimit" kindref="compound">StatLimit</ref> &gt;</type>
+        <definition>Dictionary&lt;ShipStat, StatLimit&gt; ShipStatSettings._limitsCache</definition>
+        <argsstring></argsstring>
+        <name>_limitsCache</name>
+        <qualifiedname>ShipStatSettings._limitsCache</qualifiedname>
+        <briefdescription>
+<para>빠른 조회를 위한 내부 캐시 딕셔너리. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipStatSettings.cs" line="50" column="24" bodyfile="Assets/Scripts/Ship/ShipStatSettings.cs" bodystart="50" bodyend="-1"/>
+        <referencedby refid="classShipStatSettings_1a0cf4982d2398174be34a5fd3f0dadf8c" compoundref="ShipStatSettings_8cs" startline="225" endline="232">GetMaxValue</referencedby>
+        <referencedby refid="classShipStatSettings_1aa8610985e2ab454b9226f18cb8ce6f16" compoundref="ShipStatSettings_8cs" startline="237" endline="244">GetMinValue</referencedby>
+        <referencedby refid="classShipStatSettings_1a612329c3de4b8e204561183cb2e7fd06" compoundref="ShipStatSettings_8cs" startline="249" endline="256">HasMinLimit</referencedby>
+        <referencedby refid="classShipStatSettings_1ace19c52571b4d549409ae1a324e4c3c2" compoundref="ShipStatSettings_8cs" startline="67" endline="71">InitializeCache</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classShipStatSettings_1abf00705e8fcc42d9d9765ffc771bbd1c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipStatSettings.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <qualifiedname>ShipStatSettings.OnEnable</qualifiedname>
+        <briefdescription>
+<para>ScriptableObject가 활성화될 때 자동으로 호출됩니다. 기본값과 캐시 초기화를 수행합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipStatSettings.cs" line="56" column="18" bodyfile="Assets/Scripts/Ship/ShipStatSettings.cs" bodystart="56" bodyend="62"/>
+        <references refid="classShipStatSettings_1ace19c52571b4d549409ae1a324e4c3c2" compoundref="ShipStatSettings_8cs" startline="67" endline="71">InitializeCache</references>
+        <references refid="classShipStatSettings_1a036011dc340c55a59b6421aab5601d99" compoundref="ShipStatSettings_8cs" startline="77" endline="218">InitializeDefaultValues</references>
+        <references refid="classShipStatSettings_1a151c9630bad7b78ed72dee05f900b319" compoundref="ShipStatSettings_8cs" startline="34">StatLimits</references>
+      </memberdef>
+      <memberdef kind="function" id="classShipStatSettings_1ace19c52571b4d549409ae1a324e4c3c2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipStatSettings.InitializeCache</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeCache</name>
+        <qualifiedname>ShipStatSettings.InitializeCache</qualifiedname>
+        <briefdescription>
+<para>내부 캐시를 초기화합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipStatSettings.cs" line="67" column="18" bodyfile="Assets/Scripts/Ship/ShipStatSettings.cs" bodystart="67" bodyend="71"/>
+        <references refid="classShipStatSettings_1a34043c35952960b9590f1781ec493b67" compoundref="ShipStatSettings_8cs" startline="50">_limitsCache</references>
+        <references refid="classShipStatSettings_1_1StatLimit_1ab71d1a38eed2a2baf24d9e4bf2dccf60" compoundref="ShipStatSettings_8cs" startline="18">ShipStatSettings.StatLimit.Stat</references>
+        <references refid="classShipStatSettings_1a151c9630bad7b78ed72dee05f900b319" compoundref="ShipStatSettings_8cs" startline="34">StatLimits</references>
+        <referencedby refid="classShipStatSettings_1a0cf4982d2398174be34a5fd3f0dadf8c" compoundref="ShipStatSettings_8cs" startline="225" endline="232">GetMaxValue</referencedby>
+        <referencedby refid="classShipStatSettings_1aa8610985e2ab454b9226f18cb8ce6f16" compoundref="ShipStatSettings_8cs" startline="237" endline="244">GetMinValue</referencedby>
+        <referencedby refid="classShipStatSettings_1a612329c3de4b8e204561183cb2e7fd06" compoundref="ShipStatSettings_8cs" startline="249" endline="256">HasMinLimit</referencedby>
+        <referencedby refid="classShipStatSettings_1abf00705e8fcc42d9d9765ffc771bbd1c" compoundref="ShipStatSettings_8cs" startline="56" endline="62">OnEnable</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipStatSettings_1a036011dc340c55a59b6421aab5601d99" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipStatSettings.InitializeDefaultValues</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeDefaultValues</name>
+        <qualifiedname>ShipStatSettings.InitializeDefaultValues</qualifiedname>
+        <briefdescription>
+<para>기본 스탯 제한 값들을 설정합니다. StatLimits가 비어 있는 경우에만 호출됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipStatSettings.cs" line="77" column="18" bodyfile="Assets/Scripts/Ship/ShipStatSettings.cs" bodystart="77" bodyend="218"/>
+        <references refid="classShipStatSettings_1a612329c3de4b8e204561183cb2e7fd06" compoundref="ShipStatSettings_8cs" startline="249" endline="256">HasMinLimit</references>
+        <references refid="classShipStatSettings_1a151c9630bad7b78ed72dee05f900b319" compoundref="ShipStatSettings_8cs" startline="34">StatLimits</references>
+        <referencedby refid="classShipStatSettings_1abf00705e8fcc42d9d9765ffc771bbd1c" compoundref="ShipStatSettings_8cs" startline="56" endline="62">OnEnable</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classShipStatSettings_1a0cf4982d2398174be34a5fd3f0dadf8c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float ShipStatSettings.GetMaxValue</definition>
+        <argsstring>(ShipStat stat)</argsstring>
+        <name>GetMaxValue</name>
+        <qualifiedname>ShipStatSettings.GetMaxValue</qualifiedname>
+        <param>
+          <type>ShipStat</type>
+          <declname>stat</declname>
+        </param>
+        <briefdescription>
+<para>특정 스탯의 최대값을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>조회할 스탯.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>최대값.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipStatSettings.cs" line="225" column="18" bodyfile="Assets/Scripts/Ship/ShipStatSettings.cs" bodystart="225" bodyend="232"/>
+        <references refid="classShipStatSettings_1a34043c35952960b9590f1781ec493b67" compoundref="ShipStatSettings_8cs" startline="50">_limitsCache</references>
+        <references refid="classShipStatSettings_1a06fa9ad68f587681d350c97dc06e5568" compoundref="ShipStatSettings_8cs" startline="40">defaultMaxValue</references>
+        <references refid="classShipStatSettings_1ace19c52571b4d549409ae1a324e4c3c2" compoundref="ShipStatSettings_8cs" startline="67" endline="71">InitializeCache</references>
+        <referencedby refid="classShipStatSettings_1a5d65824dd5b7c3085e3147389f0daba9" compoundref="ShipStatSettings_8cs" startline="261" endline="272">ClampValue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipStatSettings_1aa8610985e2ab454b9226f18cb8ce6f16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float ShipStatSettings.GetMinValue</definition>
+        <argsstring>(ShipStat stat)</argsstring>
+        <name>GetMinValue</name>
+        <qualifiedname>ShipStatSettings.GetMinValue</qualifiedname>
+        <param>
+          <type>ShipStat</type>
+          <declname>stat</declname>
+        </param>
+        <briefdescription>
+<para>특정 스탯의 최소값을 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipStatSettings.cs" line="237" column="18" bodyfile="Assets/Scripts/Ship/ShipStatSettings.cs" bodystart="237" bodyend="244"/>
+        <references refid="classShipStatSettings_1a34043c35952960b9590f1781ec493b67" compoundref="ShipStatSettings_8cs" startline="50">_limitsCache</references>
+        <references refid="classShipStatSettings_1a70cb1e73807cd3d2814ab59c43a31635" compoundref="ShipStatSettings_8cs" startline="45">defaultMinValue</references>
+        <references refid="classShipStatSettings_1ace19c52571b4d549409ae1a324e4c3c2" compoundref="ShipStatSettings_8cs" startline="67" endline="71">InitializeCache</references>
+        <referencedby refid="classShipStatSettings_1a5d65824dd5b7c3085e3147389f0daba9" compoundref="ShipStatSettings_8cs" startline="261" endline="272">ClampValue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipStatSettings_1a612329c3de4b8e204561183cb2e7fd06" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ShipStatSettings.HasMinLimit</definition>
+        <argsstring>(ShipStat stat)</argsstring>
+        <name>HasMinLimit</name>
+        <qualifiedname>ShipStatSettings.HasMinLimit</qualifiedname>
+        <param>
+          <type>ShipStat</type>
+          <declname>stat</declname>
+        </param>
+        <briefdescription>
+<para>특정 스탯이 최소값 제한이 있는지 확인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipStatSettings.cs" line="249" column="17" bodyfile="Assets/Scripts/Ship/ShipStatSettings.cs" bodystart="249" bodyend="256"/>
+        <references refid="classShipStatSettings_1a34043c35952960b9590f1781ec493b67" compoundref="ShipStatSettings_8cs" startline="50">_limitsCache</references>
+        <references refid="classShipStatSettings_1ace19c52571b4d549409ae1a324e4c3c2" compoundref="ShipStatSettings_8cs" startline="67" endline="71">InitializeCache</references>
+        <referencedby refid="classShipStatSettings_1a5d65824dd5b7c3085e3147389f0daba9" compoundref="ShipStatSettings_8cs" startline="261" endline="272">ClampValue</referencedby>
+        <referencedby refid="classShipStatSettings_1a036011dc340c55a59b6421aab5601d99" compoundref="ShipStatSettings_8cs" startline="77" endline="218">InitializeDefaultValues</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipStatSettings_1a5d65824dd5b7c3085e3147389f0daba9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float ShipStatSettings.ClampValue</definition>
+        <argsstring>(ShipStat stat, float value)</argsstring>
+        <name>ClampValue</name>
+        <qualifiedname>ShipStatSettings.ClampValue</qualifiedname>
+        <param>
+          <type>ShipStat</type>
+          <declname>stat</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>주어진 스탯 값이 최소값과 최대값 사이에 있도록 제한합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipStatSettings.cs" line="261" column="18" bodyfile="Assets/Scripts/Ship/ShipStatSettings.cs" bodystart="261" bodyend="272"/>
+        <references refid="classShipStatSettings_1a0cf4982d2398174be34a5fd3f0dadf8c" compoundref="ShipStatSettings_8cs" startline="225" endline="232">GetMaxValue</references>
+        <references refid="classShipStatSettings_1aa8610985e2ab454b9226f18cb8ce6f16" compoundref="ShipStatSettings_8cs" startline="237" endline="244">GetMinValue</references>
+        <references refid="classShipStatSettings_1a612329c3de4b8e204561183cb2e7fd06" compoundref="ShipStatSettings_8cs" startline="249" endline="256">HasMinLimit</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classShip" kindref="compound">Ship</ref> 스탯의 최소값과 최대값을 관리하는 ScriptableObject. 밸런스 조정 및 수치 안정성을 위한 범위 제한 기능을 제공합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>ShipStatSettings</label>
+        <link refid="classShipStatSettings"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>ShipStatSettings</label>
+        <link refid="classShipStatSettings"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipStatSettings.cs" line="9" column="7" bodyfile="Assets/Scripts/Ship/ShipStatSettings.cs" bodystart="10" bodyend="273"/>
+    <listofallmembers>
+      <member refid="classShipStatSettings_1a34043c35952960b9590f1781ec493b67" prot="private" virt="non-virtual"><scope>ShipStatSettings</scope><name>_limitsCache</name></member>
+      <member refid="classShipStatSettings_1a5d65824dd5b7c3085e3147389f0daba9" prot="public" virt="non-virtual"><scope>ShipStatSettings</scope><name>ClampValue</name></member>
+      <member refid="classShipStatSettings_1a06fa9ad68f587681d350c97dc06e5568" prot="private" virt="non-virtual"><scope>ShipStatSettings</scope><name>defaultMaxValue</name></member>
+      <member refid="classShipStatSettings_1a70cb1e73807cd3d2814ab59c43a31635" prot="private" virt="non-virtual"><scope>ShipStatSettings</scope><name>defaultMinValue</name></member>
+      <member refid="classShipStatSettings_1a0cf4982d2398174be34a5fd3f0dadf8c" prot="public" virt="non-virtual"><scope>ShipStatSettings</scope><name>GetMaxValue</name></member>
+      <member refid="classShipStatSettings_1aa8610985e2ab454b9226f18cb8ce6f16" prot="public" virt="non-virtual"><scope>ShipStatSettings</scope><name>GetMinValue</name></member>
+      <member refid="classShipStatSettings_1a612329c3de4b8e204561183cb2e7fd06" prot="public" virt="non-virtual"><scope>ShipStatSettings</scope><name>HasMinLimit</name></member>
+      <member refid="classShipStatSettings_1ace19c52571b4d549409ae1a324e4c3c2" prot="private" virt="non-virtual"><scope>ShipStatSettings</scope><name>InitializeCache</name></member>
+      <member refid="classShipStatSettings_1a036011dc340c55a59b6421aab5601d99" prot="private" virt="non-virtual"><scope>ShipStatSettings</scope><name>InitializeDefaultValues</name></member>
+      <member refid="classShipStatSettings_1abf00705e8fcc42d9d9765ffc771bbd1c" prot="private" virt="non-virtual"><scope>ShipStatSettings</scope><name>OnEnable</name></member>
+      <member refid="classShipStatSettings_1a151c9630bad7b78ed72dee05f900b319" prot="public" virt="non-virtual"><scope>ShipStatSettings</scope><name>StatLimits</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

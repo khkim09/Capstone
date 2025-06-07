@@ -1,0 +1,660 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classShipFollowCamera" kind="class" language="C#" prot="public">
+    <compoundname>ShipFollowCamera</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classShipFollowCamera_1ae822e5a53e7991b8b3abc4519ebd4f83" prot="public" static="no" mutable="no">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship ShipFollowCamera.targetShip</definition>
+        <argsstring></argsstring>
+        <name>targetShip</name>
+        <qualifiedname>ShipFollowCamera.targetShip</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="12" column="18" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classShipFollowCamera_1a81d37c2ffe94fccb76179d4f21c48bed" prot="private" static="no" mutable="no">
+        <type>Camera</type>
+        <definition>Camera ShipFollowCamera.camera</definition>
+        <argsstring></argsstring>
+        <name>camera</name>
+        <qualifiedname>ShipFollowCamera.camera</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="13" column="21" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1a46aada7bfa6c63b63b2bd5cd3a14b187" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShipFollowCamera.targetShipPositionX</definition>
+        <argsstring></argsstring>
+        <name>targetShipPositionX</name>
+        <qualifiedname>ShipFollowCamera.targetShipPositionX</qualifiedname>
+        <initializer>= 0.3f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="14" column="20" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1a867ab5fb6e73ce4e643c7f348725fa1c" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShipFollowCamera.targetShipPositionY</definition>
+        <argsstring></argsstring>
+        <name>targetShipPositionY</name>
+        <qualifiedname>ShipFollowCamera.targetShipPositionY</qualifiedname>
+        <initializer>= 0.5f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="15" column="20" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1a75a40b0343e011831096cf4e23751879" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShipFollowCamera.leftBoundaryPercent</definition>
+        <argsstring></argsstring>
+        <name>leftBoundaryPercent</name>
+        <qualifiedname>ShipFollowCamera.leftBoundaryPercent</qualifiedname>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="16" column="20" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1a34ce679bbe3b31ad12dbad88aa0eed05" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShipFollowCamera.rightBoundaryPercent</definition>
+        <argsstring></argsstring>
+        <name>rightBoundaryPercent</name>
+        <qualifiedname>ShipFollowCamera.rightBoundaryPercent</qualifiedname>
+        <initializer>= 0.6f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="17" column="20" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1aefb34cd459e5d6c8e49327e47c6b7ac6" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShipFollowCamera.paddingPercent</definition>
+        <argsstring></argsstring>
+        <name>paddingPercent</name>
+        <qualifiedname>ShipFollowCamera.paddingPercent</qualifiedname>
+        <initializer>= 0.05f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="18" column="20" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1a364dbcc2cfd6a63984de31722cd8511c" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShipFollowCamera.safetyMarginPercent</definition>
+        <argsstring></argsstring>
+        <name>safetyMarginPercent</name>
+        <qualifiedname>ShipFollowCamera.safetyMarginPercent</qualifiedname>
+        <initializer>= 0.95f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="19" column="20" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1a175d86f9ab6d98fe46bb0afbdb499e3a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShipFollowCamera.minOrthographicSize</definition>
+        <argsstring></argsstring>
+        <name>minOrthographicSize</name>
+        <qualifiedname>ShipFollowCamera.minOrthographicSize</qualifiedname>
+        <initializer>= 3f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="20" column="20" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1a3d355ea83c33d86e285af0df4d8ad7c0" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShipFollowCamera.maxOrthographicSize</definition>
+        <argsstring></argsstring>
+        <name>maxOrthographicSize</name>
+        <qualifiedname>ShipFollowCamera.maxOrthographicSize</qualifiedname>
+        <initializer>= 30f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="21" column="20" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1aca83acbd8641aaca2cc63623883afe3d" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ShipFollowCamera.debugMode</definition>
+        <argsstring></argsstring>
+        <name>debugMode</name>
+        <qualifiedname>ShipFollowCamera.debugMode</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="22" column="19" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1a3cbf6686914203f53a5b22bf88b4b507" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ShipFollowCamera.updateEveryFrame</definition>
+        <argsstring></argsstring>
+        <name>updateEveryFrame</name>
+        <qualifiedname>ShipFollowCamera.updateEveryFrame</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="23" column="19" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1a3aa46793a91461281d04fbf80639b7f8" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ShipFollowCamera.isFollowPlayerShip</definition>
+        <argsstring></argsstring>
+        <name>isFollowPlayerShip</name>
+        <qualifiedname>ShipFollowCamera.isFollowPlayerShip</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>런타임에서 Follow <ref refid="classShip" kindref="compound">Ship</ref> 을 정하기 위한 boolean </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="28" column="19" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1a76417c03ae171627c30363345c81eaf3" prot="private" static="no" mutable="no">
+        <type>Vector3</type>
+        <definition>Vector3 ShipFollowCamera.shipCenter</definition>
+        <argsstring></argsstring>
+        <name>shipCenter</name>
+        <qualifiedname>ShipFollowCamera.shipCenter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="30" column="21" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1a3624e079cf98050c0e29cafc1915748a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShipFollowCamera.shipWidth</definition>
+        <argsstring></argsstring>
+        <name>shipWidth</name>
+        <qualifiedname>ShipFollowCamera.shipWidth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="31" column="19" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1a9bd9d3b7c1d51abbd89fbbd5950ff0df" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ShipFollowCamera.shipHeight</definition>
+        <argsstring></argsstring>
+        <name>shipHeight</name>
+        <qualifiedname>ShipFollowCamera.shipHeight</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="31" column="29" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classShipFollowCamera_1ac36d928f2a3f6bc5733635f85b15581f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ShipFollowCamera.isWidthConstraining</definition>
+        <argsstring></argsstring>
+        <name>isWidthConstraining</name>
+        <qualifiedname>ShipFollowCamera.isWidthConstraining</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="32" column="18" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="32" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classShipFollowCamera_1a217b7e245103459ff8bdef6c0ec00d48" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float ShipFollowCamera.TargetShipPositionX</definition>
+        <argsstring></argsstring>
+        <name>TargetShipPositionX</name>
+        <qualifiedname>ShipFollowCamera.TargetShipPositionX</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="34" column="18" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="35" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="property" id="classShipFollowCamera_1a4b5b1d1fa5c8f6050ca0aeb46eab56df" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float ShipFollowCamera.TargetShipPositionY</definition>
+        <argsstring></argsstring>
+        <name>TargetShipPositionY</name>
+        <qualifiedname>ShipFollowCamera.TargetShipPositionY</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="40" column="18" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="41" bodyend="44"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classShipFollowCamera_1a58ec309e2cc3efbbb7363ab477f4153d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipFollowCamera.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>ShipFollowCamera.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="47" column="18" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="47" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipFollowCamera_1ae08a672075fc1376a2ac962b24597dab" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipFollowCamera.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <qualifiedname>ShipFollowCamera.OnEnable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="54" column="18" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="54" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipFollowCamera_1adf2a030c2c4a107a1334c61d134b7dde" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ShipFollowCamera.CameraCoroutine</definition>
+        <argsstring>()</argsstring>
+        <name>CameraCoroutine</name>
+        <qualifiedname>ShipFollowCamera.CameraCoroutine</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="59" column="25" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="59" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipFollowCamera_1ab5a832be5d18dad46c9f91c6352e88f2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipFollowCamera.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>ShipFollowCamera.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="70" column="18" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="70" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipFollowCamera_1a3a29406deb0419cc7b41349889df2d8e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipFollowCamera.DebugLog</definition>
+        <argsstring>(string message)</argsstring>
+        <name>DebugLog</name>
+        <qualifiedname>ShipFollowCamera.DebugLog</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="76" column="18" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="76" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipFollowCamera_1a1cdf15b00d16479b642d88bc4d5cdd68" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipFollowCamera.CalculateCameraSettings</definition>
+        <argsstring>()</argsstring>
+        <name>CalculateCameraSettings</name>
+        <qualifiedname>ShipFollowCamera.CalculateCameraSettings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="167" column="18" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="167" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipFollowCamera_1abe6f8904cbd54a08e46bb404f4c7a88e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float ShipFollowCamera.CalculateOrthoSizeForWidth</definition>
+        <argsstring>(float shipWidth, float availableWidthRatio)</argsstring>
+        <name>CalculateOrthoSizeForWidth</name>
+        <qualifiedname>ShipFollowCamera.CalculateOrthoSizeForWidth</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>shipWidth</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>availableWidthRatio</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="223" column="19" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="223" bodyend="238"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipFollowCamera_1af09f6061c73f93e115c0965aa5f2eb5e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float ShipFollowCamera.CalculateOrthoSizeForHeight</definition>
+        <argsstring>(float shipHeight)</argsstring>
+        <name>CalculateOrthoSizeForHeight</name>
+        <qualifiedname>ShipFollowCamera.CalculateOrthoSizeForHeight</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>shipHeight</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="240" column="19" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="240" bodyend="255"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipFollowCamera_1a56c717856808ecd1c10ec1f2d158f075" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipFollowCamera.PositionCamera</definition>
+        <argsstring>(Vector3 targetPosition, float orthoSize)</argsstring>
+        <name>PositionCamera</name>
+        <qualifiedname>ShipFollowCamera.PositionCamera</qualifiedname>
+        <param>
+          <type>Vector3</type>
+          <declname>targetPosition</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>orthoSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="257" column="18" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="257" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classShipFollowCamera_1a303dc1e747346f90794488b68cb62293" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipFollowCamera.VisualizeShipPositionOnScreen</definition>
+        <argsstring>(float orthoSize)</argsstring>
+        <name>VisualizeShipPositionOnScreen</name>
+        <qualifiedname>ShipFollowCamera.VisualizeShipPositionOnScreen</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>orthoSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="303" column="18" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="303" bodyend="354"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classShipFollowCamera_1a4920a5fab6a65d27bdbe14ef33738bf2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ShipFollowCamera.GetCameraStartPositionToOriginShip</definition>
+        <argsstring>()</argsstring>
+        <name>GetCameraStartPositionToOriginShip</name>
+        <qualifiedname>ShipFollowCamera.GetCameraStartPositionToOriginShip</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="82" column="17" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="82" bodyend="165"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ShipFollowCamera</label>
+        <link refid="classShipFollowCamera"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="11">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="13">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="16">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ShipFollowCamera</label>
+        <link refid="classShipFollowCamera"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+targetShip</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-shipCenter</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>UnityEngine</label>
+      </node>
+      <node id="9">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipFollowCamera.cs" line="10" column="7" bodyfile="Assets/Scripts/Ship/ShipFollowCamera.cs" bodystart="11" bodyend="355"/>
+    <listofallmembers>
+      <member refid="classShipFollowCamera_1a58ec309e2cc3efbbb7363ab477f4153d" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>Awake</name></member>
+      <member refid="classShipFollowCamera_1a1cdf15b00d16479b642d88bc4d5cdd68" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>CalculateCameraSettings</name></member>
+      <member refid="classShipFollowCamera_1af09f6061c73f93e115c0965aa5f2eb5e" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>CalculateOrthoSizeForHeight</name></member>
+      <member refid="classShipFollowCamera_1abe6f8904cbd54a08e46bb404f4c7a88e" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>CalculateOrthoSizeForWidth</name></member>
+      <member refid="classShipFollowCamera_1a81d37c2ffe94fccb76179d4f21c48bed" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>camera</name></member>
+      <member refid="classShipFollowCamera_1adf2a030c2c4a107a1334c61d134b7dde" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>CameraCoroutine</name></member>
+      <member refid="classShipFollowCamera_1a3a29406deb0419cc7b41349889df2d8e" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>DebugLog</name></member>
+      <member refid="classShipFollowCamera_1aca83acbd8641aaca2cc63623883afe3d" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>debugMode</name></member>
+      <member refid="classShipFollowCamera_1a4920a5fab6a65d27bdbe14ef33738bf2" prot="public" virt="non-virtual"><scope>ShipFollowCamera</scope><name>GetCameraStartPositionToOriginShip</name></member>
+      <member refid="classShipFollowCamera_1a3aa46793a91461281d04fbf80639b7f8" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>isFollowPlayerShip</name></member>
+      <member refid="classShipFollowCamera_1ac36d928f2a3f6bc5733635f85b15581f" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>isWidthConstraining</name></member>
+      <member refid="classShipFollowCamera_1a75a40b0343e011831096cf4e23751879" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>leftBoundaryPercent</name></member>
+      <member refid="classShipFollowCamera_1a3d355ea83c33d86e285af0df4d8ad7c0" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>maxOrthographicSize</name></member>
+      <member refid="classShipFollowCamera_1a175d86f9ab6d98fe46bb0afbdb499e3a" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>minOrthographicSize</name></member>
+      <member refid="classShipFollowCamera_1ae08a672075fc1376a2ac962b24597dab" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>OnEnable</name></member>
+      <member refid="classShipFollowCamera_1aefb34cd459e5d6c8e49327e47c6b7ac6" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>paddingPercent</name></member>
+      <member refid="classShipFollowCamera_1a56c717856808ecd1c10ec1f2d158f075" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>PositionCamera</name></member>
+      <member refid="classShipFollowCamera_1a34ce679bbe3b31ad12dbad88aa0eed05" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>rightBoundaryPercent</name></member>
+      <member refid="classShipFollowCamera_1a364dbcc2cfd6a63984de31722cd8511c" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>safetyMarginPercent</name></member>
+      <member refid="classShipFollowCamera_1a76417c03ae171627c30363345c81eaf3" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>shipCenter</name></member>
+      <member refid="classShipFollowCamera_1a9bd9d3b7c1d51abbd89fbbd5950ff0df" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>shipHeight</name></member>
+      <member refid="classShipFollowCamera_1a3624e079cf98050c0e29cafc1915748a" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>shipWidth</name></member>
+      <member refid="classShipFollowCamera_1ae822e5a53e7991b8b3abc4519ebd4f83" prot="public" virt="non-virtual"><scope>ShipFollowCamera</scope><name>targetShip</name></member>
+      <member refid="classShipFollowCamera_1a217b7e245103459ff8bdef6c0ec00d48" prot="public" virt="non-virtual"><scope>ShipFollowCamera</scope><name>TargetShipPositionX</name></member>
+      <member refid="classShipFollowCamera_1a46aada7bfa6c63b63b2bd5cd3a14b187" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>targetShipPositionX</name></member>
+      <member refid="classShipFollowCamera_1a4b5b1d1fa5c8f6050ca0aeb46eab56df" prot="public" virt="non-virtual"><scope>ShipFollowCamera</scope><name>TargetShipPositionY</name></member>
+      <member refid="classShipFollowCamera_1a867ab5fb6e73ce4e643c7f348725fa1c" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>targetShipPositionY</name></member>
+      <member refid="classShipFollowCamera_1ab5a832be5d18dad46c9f91c6352e88f2" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>Update</name></member>
+      <member refid="classShipFollowCamera_1a3cbf6686914203f53a5b22bf88b4b507" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>updateEveryFrame</name></member>
+      <member refid="classShipFollowCamera_1a303dc1e747346f90794488b68cb62293" prot="private" virt="non-virtual"><scope>ShipFollowCamera</scope><name>VisualizeShipPositionOnScreen</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

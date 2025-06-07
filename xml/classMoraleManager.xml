@@ -1,0 +1,691 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classMoraleManager" kind="class" language="C#" prot="public">
+    <compoundname>MoraleManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classMoraleManager_1a99fc58c85c62846fd88822ac2ad2fe71" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="classMoraleManager" kindref="compound">MoraleManager</ref></type>
+        <definition>MoraleManager MoraleManager.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>MoraleManager.Instance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="12" column="33" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="12" bodyend="12"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classMoraleManager_1a981da2d3fdd4d7159b88766d3847cc8c" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject MoraleManager.moraleIconPrefab</definition>
+        <argsstring></argsstring>
+        <name>moraleIconPrefab</name>
+        <qualifiedname>MoraleManager.moraleIconPrefab</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="14" column="25" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classMoraleManager_1a8d44200a85005749a03011d7007fc10e" prot="private" static="no" mutable="no">
+        <type>RectTransform</type>
+        <definition>RectTransform MoraleManager.moraleStatusPanel</definition>
+        <argsstring></argsstring>
+        <name>moraleStatusPanel</name>
+        <qualifiedname>MoraleManager.moraleStatusPanel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="15" column="28" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classMoraleManager_1a031726c39c23f354acb9258772925428" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; CrewRace, <ref refid="classMoraleIcon" kindref="compound">MoraleIcon</ref> &gt;</type>
+        <definition>Dictionary&lt;CrewRace, MoraleIcon&gt; MoraleManager.raceIcons</definition>
+        <argsstring></argsstring>
+        <name>raceIcons</name>
+        <qualifiedname>MoraleManager.raceIcons</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="18" column="24" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classMoraleManager_1a70237d1f8458d9631188ad1dae94dc9c" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="classMoraleEffectData" kindref="compound">MoraleEffectData</ref> &gt;</type>
+        <definition>List&lt;MoraleEffectData&gt; MoraleManager.activeEffects</definition>
+        <argsstring></argsstring>
+        <name>activeEffects</name>
+        <qualifiedname>MoraleManager.activeEffects</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>현재 적용 중인 사기 효과 데이터 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="23" column="17" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="23" bodyend="-1"/>
+        <referencedby refid="classMoraleManager_1a46ffa9e63ba6d57f0dd4822a3785cf99" compoundref="MoraleManager_8cs" startline="377" endline="401">CheckEventExpirations</referencedby>
+        <referencedby refid="classMoraleManager_1a7bb901d1f8151418f85135e6578c8934" compoundref="MoraleManager_8cs" startline="407" endline="421">PrintAllMorale</referencedby>
+        <referencedby refid="classMoraleManager_1a5c7deba883078410f81eadfba8caca65" compoundref="MoraleManager_8cs" startline="333" endline="363">ReapplyLoadedEffects</referencedby>
+        <referencedby refid="classMoraleManager_1ab2d7325d4af338a08a7998024fbcf9fb" compoundref="MoraleManager_8cs" startline="225" endline="235">RegisterMoraleEffect</referencedby>
+        <referencedby refid="classMoraleManager_1ad3e72b7842ce25a7fed6ad5abab235d1" compoundref="MoraleManager_8cs" startline="200" endline="220">ResetAllMorale</referencedby>
+        <referencedby refid="classGameManager_1a3f9d70e8b90c50d31469cf9b15bda527" compoundref="GameManager_8cs" startline="623" endline="651">GameManager.SavePlayerData</referencedby>
+        <referencedby refid="classMoraleManager_1aab72a759bb0a5d7393b98f339171aeb5" compoundref="MoraleManager_8cs" startline="306" endline="328">UpdateRaceIcon</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classMoraleManager_1abc1d0d6ec847d864357efc1e1345b9e4" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MoraleManager.humanMorale</definition>
+        <argsstring></argsstring>
+        <name>humanMorale</name>
+        <qualifiedname>MoraleManager.humanMorale</qualifiedname>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+<para>종족별 사기 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="28" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="28" bodyend="-1"/>
+        <referencedby refid="classMoraleManager_1ad25d3eb792d8fede14408e5b7a9863d0" compoundref="MoraleManager_8cs" startline="150" endline="162">GetRaceMorale</referencedby>
+        <referencedby refid="classMoraleManager_1a5c7deba883078410f81eadfba8caca65" compoundref="MoraleManager_8cs" startline="333" endline="363">ReapplyLoadedEffects</referencedby>
+        <referencedby refid="classMoraleManager_1ad3e72b7842ce25a7fed6ad5abab235d1" compoundref="MoraleManager_8cs" startline="200" endline="220">ResetAllMorale</referencedby>
+        <referencedby refid="classMoraleManager_1a45e020bcbb1f5a594ed3cda430998625" compoundref="MoraleManager_8cs" startline="176" endline="187">SetRaceMorale</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classMoraleManager_1a96f6b59cc7c3163da1601cf59f69155d" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MoraleManager.amorphousMorale</definition>
+        <argsstring></argsstring>
+        <name>amorphousMorale</name>
+        <qualifiedname>MoraleManager.amorphousMorale</qualifiedname>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="30" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classMoraleManager_1ab29eee7f5f9490df30b2a2fb36cd5d74" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MoraleManager.mechanicTankMorale</definition>
+        <argsstring></argsstring>
+        <name>mechanicTankMorale</name>
+        <qualifiedname>MoraleManager.mechanicTankMorale</qualifiedname>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="31" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classMoraleManager_1ab263e87f1e78fa0b36a6b607d5691d4f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MoraleManager.mechanicSupMorale</definition>
+        <argsstring></argsstring>
+        <name>mechanicSupMorale</name>
+        <qualifiedname>MoraleManager.mechanicSupMorale</qualifiedname>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="32" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classMoraleManager_1afbd67ec2c41345f3a75cf84c57c470d5" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MoraleManager.beastMorale</definition>
+        <argsstring></argsstring>
+        <name>beastMorale</name>
+        <qualifiedname>MoraleManager.beastMorale</qualifiedname>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="33" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classMoraleManager_1a9940066442951159305dd9782ec12bd3" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MoraleManager.insectMorale</definition>
+        <argsstring></argsstring>
+        <name>insectMorale</name>
+        <qualifiedname>MoraleManager.insectMorale</qualifiedname>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="34" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classMoraleManager_1a97ce8cfac147a9a2afa37072ea1cb380" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MoraleManager.globalMorale</definition>
+        <argsstring></argsstring>
+        <name>globalMorale</name>
+        <qualifiedname>MoraleManager.globalMorale</qualifiedname>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+<para>전체 선원 적용 사기 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="39" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="39" bodyend="-1"/>
+        <referencedby refid="classMoraleManager_1aacab07b85300cf958c0a5de9d3ae725c" compoundref="MoraleManager_8cs" startline="272" endline="284">ApplyMoraleEffectValue</referencedby>
+        <referencedby refid="classMoraleManager_1ae4bd0f13d318a29833b66d05fe6b632e" compoundref="MoraleManager_8cs" startline="167" endline="171">GetTotalMoraleBonus</referencedby>
+        <referencedby refid="classMoraleManager_1a5c7deba883078410f81eadfba8caca65" compoundref="MoraleManager_8cs" startline="333" endline="363">ReapplyLoadedEffects</referencedby>
+        <referencedby refid="classMoraleManager_1a83a8800a9739e2f86acfad17fa8fa3c2" compoundref="MoraleManager_8cs" startline="289" endline="301">RemoveMoraleEffectValue</referencedby>
+        <referencedby refid="classMoraleManager_1ad3e72b7842ce25a7fed6ad5abab235d1" compoundref="MoraleManager_8cs" startline="200" endline="220">ResetAllMorale</referencedby>
+        <referencedby refid="classMoraleManager_1af1cb805b49d259cc84441559dd0bb1c6" compoundref="MoraleManager_8cs" startline="192" endline="195">SetAllCrewMorale</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classMoraleManager_1a569a5eb21cf439b9e43cc81ece7a2991" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>MoraleManager.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="41" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="41" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1af0656802f9fbd6e286a5b56600b0acdd" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>MoraleManager.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="54" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="54" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1ac934245e2c2633e4a44485a933d6754b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <qualifiedname>MoraleManager.OnEnable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="58" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="58" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1ab1e1d73db07bb3100a8eebbdd19ec9b3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.OnDisable</definition>
+        <argsstring>()</argsstring>
+        <name>OnDisable</name>
+        <qualifiedname>MoraleManager.OnDisable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="66" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="66" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1a6aa24056655b344a887362e2b946fc8b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.OnSceneLoaded</definition>
+        <argsstring>(Scene scene, LoadSceneMode mode)</argsstring>
+        <name>OnSceneLoaded</name>
+        <qualifiedname>MoraleManager.OnSceneLoaded</qualifiedname>
+        <param>
+          <type>Scene</type>
+          <declname>scene</declname>
+        </param>
+        <param>
+          <type>LoadSceneMode</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="72" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="72" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1ac3928d89e453c7631964438043bb1ed5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.CreateRaceIcons</definition>
+        <argsstring>()</argsstring>
+        <name>CreateRaceIcons</name>
+        <qualifiedname>MoraleManager.CreateRaceIcons</qualifiedname>
+        <briefdescription>
+<para>종족별 아이콘 생성 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="106" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="106" bodyend="145"/>
+        <references refid="classMoraleIcon_1aaeced56dbad37de4cc88315ec05b41e1" compoundref="MoraleIcon_8cs" startline="49" endline="70">MoraleIcon.Initialize</references>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1aacab07b85300cf958c0a5de9d3ae725c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.ApplyMoraleEffectValue</definition>
+        <argsstring>(MoraleEffectData effect)</argsstring>
+        <name>ApplyMoraleEffectValue</name>
+        <qualifiedname>MoraleManager.ApplyMoraleEffectValue</qualifiedname>
+        <param>
+          <type><ref refid="classMoraleEffectData" kindref="compound">MoraleEffectData</ref></type>
+          <declname>effect</declname>
+        </param>
+        <briefdescription>
+<para>사기 효과 값 적용 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="272" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="272" bodyend="284"/>
+        <references refid="classMoraleManager_1ad25d3eb792d8fede14408e5b7a9863d0" compoundref="MoraleManager_8cs" startline="150" endline="162">GetRaceMorale</references>
+        <references refid="classMoraleManager_1a97ce8cfac147a9a2afa37072ea1cb380" compoundref="MoraleManager_8cs" startline="39">globalMorale</references>
+        <references refid="classMoraleManager_1af1cb805b49d259cc84441559dd0bb1c6" compoundref="MoraleManager_8cs" startline="192" endline="195">SetAllCrewMorale</references>
+        <references refid="classMoraleManager_1a45e020bcbb1f5a594ed3cda430998625" compoundref="MoraleManager_8cs" startline="176" endline="187">SetRaceMorale</references>
+        <references refid="classMoraleEffectData_1a786f46149c40a2a991cd8c3f5b22c5c1" compoundref="MoraleEffectData_8cs" startline="10">MoraleEffectData.targetRace</references>
+        <references refid="classMoraleEffectData_1acbd6595c08558c3601ee5f0d0f30b8a4" compoundref="MoraleEffectData_8cs" startline="15">MoraleEffectData.value</references>
+        <referencedby refid="classMoraleManager_1a5c7deba883078410f81eadfba8caca65" compoundref="MoraleManager_8cs" startline="333" endline="363">ReapplyLoadedEffects</referencedby>
+        <referencedby refid="classMoraleManager_1ab2d7325d4af338a08a7998024fbcf9fb" compoundref="MoraleManager_8cs" startline="225" endline="235">RegisterMoraleEffect</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1a83a8800a9739e2f86acfad17fa8fa3c2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.RemoveMoraleEffectValue</definition>
+        <argsstring>(MoraleEffectData effect)</argsstring>
+        <name>RemoveMoraleEffectValue</name>
+        <qualifiedname>MoraleManager.RemoveMoraleEffectValue</qualifiedname>
+        <param>
+          <type><ref refid="classMoraleEffectData" kindref="compound">MoraleEffectData</ref></type>
+          <declname>effect</declname>
+        </param>
+        <briefdescription>
+<para>사기 효과 값 제거 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="289" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="289" bodyend="301"/>
+        <references refid="classMoraleManager_1ad25d3eb792d8fede14408e5b7a9863d0" compoundref="MoraleManager_8cs" startline="150" endline="162">GetRaceMorale</references>
+        <references refid="classMoraleManager_1a97ce8cfac147a9a2afa37072ea1cb380" compoundref="MoraleManager_8cs" startline="39">globalMorale</references>
+        <references refid="classMoraleManager_1af1cb805b49d259cc84441559dd0bb1c6" compoundref="MoraleManager_8cs" startline="192" endline="195">SetAllCrewMorale</references>
+        <references refid="classMoraleManager_1a45e020bcbb1f5a594ed3cda430998625" compoundref="MoraleManager_8cs" startline="176" endline="187">SetRaceMorale</references>
+        <references refid="classMoraleEffectData_1a786f46149c40a2a991cd8c3f5b22c5c1" compoundref="MoraleEffectData_8cs" startline="10">MoraleEffectData.targetRace</references>
+        <references refid="classMoraleEffectData_1acbd6595c08558c3601ee5f0d0f30b8a4" compoundref="MoraleEffectData_8cs" startline="15">MoraleEffectData.value</references>
+        <referencedby refid="classMoraleManager_1a46ffa9e63ba6d57f0dd4822a3785cf99" compoundref="MoraleManager_8cs" startline="377" endline="401">CheckEventExpirations</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1aab72a759bb0a5d7393b98f339171aeb5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.UpdateRaceIcon</definition>
+        <argsstring>(CrewRace race)</argsstring>
+        <name>UpdateRaceIcon</name>
+        <qualifiedname>MoraleManager.UpdateRaceIcon</qualifiedname>
+        <param>
+          <type>CrewRace</type>
+          <declname>race</declname>
+        </param>
+        <briefdescription>
+<para>종족별 아이콘 업데이트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="306" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="306" bodyend="328"/>
+        <references refid="classMoraleManager_1a70237d1f8458d9631188ad1dae94dc9c" compoundref="MoraleManager_8cs" startline="23">activeEffects</references>
+        <referencedby refid="classMoraleManager_1a46ffa9e63ba6d57f0dd4822a3785cf99" compoundref="MoraleManager_8cs" startline="377" endline="401">CheckEventExpirations</referencedby>
+        <referencedby refid="classMoraleManager_1a5c7deba883078410f81eadfba8caca65" compoundref="MoraleManager_8cs" startline="333" endline="363">ReapplyLoadedEffects</referencedby>
+        <referencedby refid="classMoraleManager_1ab2d7325d4af338a08a7998024fbcf9fb" compoundref="MoraleManager_8cs" startline="225" endline="235">RegisterMoraleEffect</referencedby>
+        <referencedby refid="classMoraleManager_1a26be2d53d6d7ae0f2fdb660895e951da" compoundref="MoraleManager_8cs" startline="368" endline="372">UpdateAllRaceIcons</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1a26be2d53d6d7ae0f2fdb660895e951da" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.UpdateAllRaceIcons</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateAllRaceIcons</name>
+        <qualifiedname>MoraleManager.UpdateAllRaceIcons</qualifiedname>
+        <briefdescription>
+<para>모든 종족 아이콘 업데이트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="368" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="368" bodyend="372"/>
+        <references refid="classMoraleManager_1aab72a759bb0a5d7393b98f339171aeb5" compoundref="MoraleManager_8cs" startline="306" endline="328">UpdateRaceIcon</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classMoraleManager_1ad25d3eb792d8fede14408e5b7a9863d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float MoraleManager.GetRaceMorale</definition>
+        <argsstring>(CrewRace race)</argsstring>
+        <name>GetRaceMorale</name>
+        <qualifiedname>MoraleManager.GetRaceMorale</qualifiedname>
+        <param>
+          <type>CrewRace</type>
+          <declname>race</declname>
+        </param>
+        <briefdescription>
+<para>종족 별 사기 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="150" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="150" bodyend="162"/>
+        <references refid="classMoraleManager_1abc1d0d6ec847d864357efc1e1345b9e4" compoundref="MoraleManager_8cs" startline="28">humanMorale</references>
+        <referencedby refid="classMoraleManager_1aacab07b85300cf958c0a5de9d3ae725c" compoundref="MoraleManager_8cs" startline="272" endline="284">ApplyMoraleEffectValue</referencedby>
+        <referencedby refid="classMoraleManager_1ae4bd0f13d318a29833b66d05fe6b632e" compoundref="MoraleManager_8cs" startline="167" endline="171">GetTotalMoraleBonus</referencedby>
+        <referencedby refid="classMoraleManager_1a83a8800a9739e2f86acfad17fa8fa3c2" compoundref="MoraleManager_8cs" startline="289" endline="301">RemoveMoraleEffectValue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1ae4bd0f13d318a29833b66d05fe6b632e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float MoraleManager.GetTotalMoraleBonus</definition>
+        <argsstring>(CrewMember crew)</argsstring>
+        <name>GetTotalMoraleBonus</name>
+        <qualifiedname>MoraleManager.GetTotalMoraleBonus</qualifiedname>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crew</declname>
+        </param>
+        <briefdescription>
+<para>선원의 총 사기 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="167" column="18" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="167" bodyend="171"/>
+        <references refid="classMoraleManager_1ad25d3eb792d8fede14408e5b7a9863d0" compoundref="MoraleManager_8cs" startline="150" endline="162">GetRaceMorale</references>
+        <references refid="classMoraleManager_1a97ce8cfac147a9a2afa37072ea1cb380" compoundref="MoraleManager_8cs" startline="39">globalMorale</references>
+        <references refid="classCrewBase_1a5a53b04defdcf26f6be526e1dd7c4910" compoundref="CrewBase_8cs" startline="19">CrewBase.race</references>
+        <referencedby refid="classCrewMember_1aad4604b549178c53a36eb89d903633e8" compoundref="CrewMember_8cs" startline="121" endline="139">CrewMember.GetCrewSkillValue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1a45e020bcbb1f5a594ed3cda430998625" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.SetRaceMorale</definition>
+        <argsstring>(CrewRace race, float value)</argsstring>
+        <name>SetRaceMorale</name>
+        <qualifiedname>MoraleManager.SetRaceMorale</qualifiedname>
+        <param>
+          <type>CrewRace</type>
+          <declname>race</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>종족별 사기 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="176" column="17" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="176" bodyend="187"/>
+        <references refid="classMoraleManager_1abc1d0d6ec847d864357efc1e1345b9e4" compoundref="MoraleManager_8cs" startline="28">humanMorale</references>
+        <referencedby refid="classMoraleManager_1aacab07b85300cf958c0a5de9d3ae725c" compoundref="MoraleManager_8cs" startline="272" endline="284">ApplyMoraleEffectValue</referencedby>
+        <referencedby refid="classMoraleManager_1a83a8800a9739e2f86acfad17fa8fa3c2" compoundref="MoraleManager_8cs" startline="289" endline="301">RemoveMoraleEffectValue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1af1cb805b49d259cc84441559dd0bb1c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.SetAllCrewMorale</definition>
+        <argsstring>(float value)</argsstring>
+        <name>SetAllCrewMorale</name>
+        <qualifiedname>MoraleManager.SetAllCrewMorale</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>전체 선원 사기 한 번에 할당 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="192" column="17" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="192" bodyend="195"/>
+        <references refid="classMoraleManager_1a97ce8cfac147a9a2afa37072ea1cb380" compoundref="MoraleManager_8cs" startline="39">globalMorale</references>
+        <referencedby refid="classMoraleManager_1aacab07b85300cf958c0a5de9d3ae725c" compoundref="MoraleManager_8cs" startline="272" endline="284">ApplyMoraleEffectValue</referencedby>
+        <referencedby refid="classShip_1a8f3f2bdca106f32f2d4c2b3f892a139f" compoundref="Ship_8cs" startline="774" endline="828">Ship.RecalculateAllStats</referencedby>
+        <referencedby refid="classMoraleManager_1a83a8800a9739e2f86acfad17fa8fa3c2" compoundref="MoraleManager_8cs" startline="289" endline="301">RemoveMoraleEffectValue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1ad3e72b7842ce25a7fed6ad5abab235d1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.ResetAllMorale</definition>
+        <argsstring>()</argsstring>
+        <name>ResetAllMorale</name>
+        <qualifiedname>MoraleManager.ResetAllMorale</qualifiedname>
+        <briefdescription>
+<para>전체 사기 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="200" column="17" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="200" bodyend="220"/>
+        <references refid="classMoraleManager_1a70237d1f8458d9631188ad1dae94dc9c" compoundref="MoraleManager_8cs" startline="23">activeEffects</references>
+        <references refid="classMoraleIcon_1ae72cf74829f289c3f433b5cd82f1f7df" compoundref="MoraleIcon_8cs" startline="95" endline="100">MoraleIcon.ClearEffectData</references>
+        <references refid="classMoraleManager_1a97ce8cfac147a9a2afa37072ea1cb380" compoundref="MoraleManager_8cs" startline="39">globalMorale</references>
+        <references refid="classMoraleManager_1abc1d0d6ec847d864357efc1e1345b9e4" compoundref="MoraleManager_8cs" startline="28">humanMorale</references>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1ab2d7325d4af338a08a7998024fbcf9fb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.RegisterMoraleEffect</definition>
+        <argsstring>(MoraleEffectData effectData)</argsstring>
+        <name>RegisterMoraleEffect</name>
+        <qualifiedname>MoraleManager.RegisterMoraleEffect</qualifiedname>
+        <param>
+          <type><ref refid="classMoraleEffectData" kindref="compound">MoraleEffectData</ref></type>
+          <declname>effectData</declname>
+        </param>
+        <briefdescription>
+<para>새로운 사기 효과 등록 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="225" column="17" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="225" bodyend="235"/>
+        <references refid="classMoraleManager_1a70237d1f8458d9631188ad1dae94dc9c" compoundref="MoraleManager_8cs" startline="23">activeEffects</references>
+        <references refid="classMoraleManager_1aacab07b85300cf958c0a5de9d3ae725c" compoundref="MoraleManager_8cs" startline="272" endline="284">ApplyMoraleEffectValue</references>
+        <references refid="classMoraleEffectData_1a786f46149c40a2a991cd8c3f5b22c5c1" compoundref="MoraleEffectData_8cs" startline="10">MoraleEffectData.targetRace</references>
+        <references refid="classMoraleManager_1aab72a759bb0a5d7393b98f339171aeb5" compoundref="MoraleManager_8cs" startline="306" endline="328">UpdateRaceIcon</references>
+        <referencedby refid="classEventCrewEffectHandler_1a1c6a865eb331d25525e8ff555a722e75" compoundref="EventCrewEffectHandler_8cs" startline="30" endline="73">EventCrewEffectHandler.ApplyEffects</referencedby>
+        <referencedby refid="classMoraleManager_1a576d61fa73aeaccba883998ca9255b61" compoundref="MoraleManager_8cs" startline="240" endline="267">RegisterMoraleEffect</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1a576d61fa73aeaccba883998ca9255b61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.RegisterMoraleEffect</definition>
+        <argsstring>(CrewEffect crewEffect)</argsstring>
+        <name>RegisterMoraleEffect</name>
+        <qualifiedname>MoraleManager.RegisterMoraleEffect</qualifiedname>
+        <param>
+          <type><ref refid="classCrewEffect" kindref="compound">CrewEffect</ref></type>
+          <declname>crewEffect</declname>
+        </param>
+        <briefdescription>
+<para>CrewEffect에서 <ref refid="classMoraleEffectData" kindref="compound">MoraleEffectData</ref> 생성 및 등록 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="240" column="17" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="240" bodyend="267"/>
+        <references refid="classCrewEffect_1abb323c8018396a4fcb2691d81b9c696c" compoundref="CrewEffect_8cs" startline="25">CrewEffect.changeAmount</references>
+        <references refid="classCrewEffect_1afd66e87948b08af3f623e9e2116a2d7e" compoundref="CrewEffect_8cs" startline="50">CrewEffect.conditionAmount</references>
+        <references refid="classGameManager_1a0a5c70718a18bd796bdcf70f7411a539" compoundref="GameManager_8cs" startline="85">GameManager.CurrentYear</references>
+        <references refid="classCrewEffect_1a57bb7da755bbedcd4ff405eda8b50f30" compoundref="CrewEffect_8cs" startline="15">CrewEffect.effectType</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classCrewEffect_1ad94d96f4c323b163d6252b58e219071b" compoundref="CrewEffect_8cs" startline="20">CrewEffect.raceType</references>
+        <references refid="classMoraleManager_1ab2d7325d4af338a08a7998024fbcf9fb" compoundref="MoraleManager_8cs" startline="225" endline="235">RegisterMoraleEffect</references>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1a5c7deba883078410f81eadfba8caca65" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.ReapplyLoadedEffects</definition>
+        <argsstring>()</argsstring>
+        <name>ReapplyLoadedEffects</name>
+        <qualifiedname>MoraleManager.ReapplyLoadedEffects</qualifiedname>
+        <briefdescription>
+<para>저장된 사기 효과들을 다시 적용합니다 (로드 후 호출용) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="333" column="17" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="333" bodyend="363"/>
+        <references refid="classMoraleManager_1a70237d1f8458d9631188ad1dae94dc9c" compoundref="MoraleManager_8cs" startline="23">activeEffects</references>
+        <references refid="classMoraleManager_1aacab07b85300cf958c0a5de9d3ae725c" compoundref="MoraleManager_8cs" startline="272" endline="284">ApplyMoraleEffectValue</references>
+        <references refid="classMoraleIcon_1ae72cf74829f289c3f433b5cd82f1f7df" compoundref="MoraleIcon_8cs" startline="95" endline="100">MoraleIcon.ClearEffectData</references>
+        <references refid="classMoraleManager_1a97ce8cfac147a9a2afa37072ea1cb380" compoundref="MoraleManager_8cs" startline="39">globalMorale</references>
+        <references refid="classMoraleManager_1abc1d0d6ec847d864357efc1e1345b9e4" compoundref="MoraleManager_8cs" startline="28">humanMorale</references>
+        <references refid="classMoraleEffectData_1a786f46149c40a2a991cd8c3f5b22c5c1" compoundref="MoraleEffectData_8cs" startline="10">MoraleEffectData.targetRace</references>
+        <references refid="classMoraleManager_1aab72a759bb0a5d7393b98f339171aeb5" compoundref="MoraleManager_8cs" startline="306" endline="328">UpdateRaceIcon</references>
+        <referencedby refid="classGameManager_1a229cccd2baab5ebf97e46ed2a92ff8d4" compoundref="GameManager_8cs" startline="656" endline="739">GameManager.LoadPlayerData</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1a46ffa9e63ba6d57f0dd4822a3785cf99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.CheckEventExpirations</definition>
+        <argsstring>(int currentYear)</argsstring>
+        <name>CheckEventExpirations</name>
+        <qualifiedname>MoraleManager.CheckEventExpirations</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>currentYear</declname>
+        </param>
+        <briefdescription>
+<para>현재 이벤트 상태를 확인하고 만료된 효과를 제거합니다 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="377" column="17" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="377" bodyend="401"/>
+        <references refid="classMoraleManager_1a70237d1f8458d9631188ad1dae94dc9c" compoundref="MoraleManager_8cs" startline="23">activeEffects</references>
+        <references refid="classMoraleEffectData_1a3d643c4de022939f92888a523cdbb08e" compoundref="MoraleEffectData_8cs" startline="30">MoraleEffectData.EndYear</references>
+        <references refid="classMoraleManager_1a83a8800a9739e2f86acfad17fa8fa3c2" compoundref="MoraleManager_8cs" startline="289" endline="301">RemoveMoraleEffectValue</references>
+        <references refid="classMoraleEffectData_1a786f46149c40a2a991cd8c3f5b22c5c1" compoundref="MoraleEffectData_8cs" startline="10">MoraleEffectData.targetRace</references>
+        <references refid="classMoraleManager_1aab72a759bb0a5d7393b98f339171aeb5" compoundref="MoraleManager_8cs" startline="306" endline="328">UpdateRaceIcon</references>
+      </memberdef>
+      <memberdef kind="function" id="classMoraleManager_1a7bb901d1f8151418f85135e6578c8934" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MoraleManager.PrintAllMorale</definition>
+        <argsstring>()</argsstring>
+        <name>PrintAllMorale</name>
+        <qualifiedname>MoraleManager.PrintAllMorale</qualifiedname>
+        <briefdescription>
+<para>전체 사기 상태 출력 (디버깅용) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Morale/MoraleManager.cs" line="407" column="17" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="407" bodyend="421"/>
+        <references refid="classMoraleManager_1a70237d1f8458d9631188ad1dae94dc9c" compoundref="MoraleManager_8cs" startline="23">activeEffects</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>사기 관련 이벤트 생성에 따른 사기 효과 적용 관리 Manager. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>MoraleManager</label>
+        <link refid="classMoraleManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>MoraleManager</label>
+        <link refid="classMoraleManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Morale/MoraleManager.cs" line="10" column="7" bodyfile="Assets/Scripts/Morale/MoraleManager.cs" bodystart="11" bodyend="422"/>
+    <listofallmembers>
+      <member refid="classMoraleManager_1a70237d1f8458d9631188ad1dae94dc9c" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>activeEffects</name></member>
+      <member refid="classMoraleManager_1a96f6b59cc7c3163da1601cf59f69155d" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>amorphousMorale</name></member>
+      <member refid="classMoraleManager_1aacab07b85300cf958c0a5de9d3ae725c" prot="private" virt="non-virtual"><scope>MoraleManager</scope><name>ApplyMoraleEffectValue</name></member>
+      <member refid="classMoraleManager_1a569a5eb21cf439b9e43cc81ece7a2991" prot="private" virt="non-virtual"><scope>MoraleManager</scope><name>Awake</name></member>
+      <member refid="classMoraleManager_1afbd67ec2c41345f3a75cf84c57c470d5" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>beastMorale</name></member>
+      <member refid="classMoraleManager_1a46ffa9e63ba6d57f0dd4822a3785cf99" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>CheckEventExpirations</name></member>
+      <member refid="classMoraleManager_1ac3928d89e453c7631964438043bb1ed5" prot="private" virt="non-virtual"><scope>MoraleManager</scope><name>CreateRaceIcons</name></member>
+      <member refid="classMoraleManager_1ad25d3eb792d8fede14408e5b7a9863d0" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>GetRaceMorale</name></member>
+      <member refid="classMoraleManager_1ae4bd0f13d318a29833b66d05fe6b632e" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>GetTotalMoraleBonus</name></member>
+      <member refid="classMoraleManager_1a97ce8cfac147a9a2afa37072ea1cb380" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>globalMorale</name></member>
+      <member refid="classMoraleManager_1abc1d0d6ec847d864357efc1e1345b9e4" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>humanMorale</name></member>
+      <member refid="classMoraleManager_1a9940066442951159305dd9782ec12bd3" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>insectMorale</name></member>
+      <member refid="classMoraleManager_1a99fc58c85c62846fd88822ac2ad2fe71" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>Instance</name></member>
+      <member refid="classMoraleManager_1ab263e87f1e78fa0b36a6b607d5691d4f" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>mechanicSupMorale</name></member>
+      <member refid="classMoraleManager_1ab29eee7f5f9490df30b2a2fb36cd5d74" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>mechanicTankMorale</name></member>
+      <member refid="classMoraleManager_1a981da2d3fdd4d7159b88766d3847cc8c" prot="private" virt="non-virtual"><scope>MoraleManager</scope><name>moraleIconPrefab</name></member>
+      <member refid="classMoraleManager_1a8d44200a85005749a03011d7007fc10e" prot="private" virt="non-virtual"><scope>MoraleManager</scope><name>moraleStatusPanel</name></member>
+      <member refid="classMoraleManager_1ab1e1d73db07bb3100a8eebbdd19ec9b3" prot="private" virt="non-virtual"><scope>MoraleManager</scope><name>OnDisable</name></member>
+      <member refid="classMoraleManager_1ac934245e2c2633e4a44485a933d6754b" prot="private" virt="non-virtual"><scope>MoraleManager</scope><name>OnEnable</name></member>
+      <member refid="classMoraleManager_1a6aa24056655b344a887362e2b946fc8b" prot="private" virt="non-virtual"><scope>MoraleManager</scope><name>OnSceneLoaded</name></member>
+      <member refid="classMoraleManager_1a7bb901d1f8151418f85135e6578c8934" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>PrintAllMorale</name></member>
+      <member refid="classMoraleManager_1a031726c39c23f354acb9258772925428" prot="private" virt="non-virtual"><scope>MoraleManager</scope><name>raceIcons</name></member>
+      <member refid="classMoraleManager_1a5c7deba883078410f81eadfba8caca65" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>ReapplyLoadedEffects</name></member>
+      <member refid="classMoraleManager_1ab2d7325d4af338a08a7998024fbcf9fb" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>RegisterMoraleEffect</name></member>
+      <member refid="classMoraleManager_1a576d61fa73aeaccba883998ca9255b61" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>RegisterMoraleEffect</name></member>
+      <member refid="classMoraleManager_1a83a8800a9739e2f86acfad17fa8fa3c2" prot="private" virt="non-virtual"><scope>MoraleManager</scope><name>RemoveMoraleEffectValue</name></member>
+      <member refid="classMoraleManager_1ad3e72b7842ce25a7fed6ad5abab235d1" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>ResetAllMorale</name></member>
+      <member refid="classMoraleManager_1af1cb805b49d259cc84441559dd0bb1c6" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>SetAllCrewMorale</name></member>
+      <member refid="classMoraleManager_1a45e020bcbb1f5a594ed3cda430998625" prot="public" virt="non-virtual"><scope>MoraleManager</scope><name>SetRaceMorale</name></member>
+      <member refid="classMoraleManager_1af0656802f9fbd6e286a5b56600b0acdd" prot="private" virt="non-virtual"><scope>MoraleManager</scope><name>Start</name></member>
+      <member refid="classMoraleManager_1a26be2d53d6d7ae0f2fdb660895e951da" prot="private" virt="non-virtual"><scope>MoraleManager</scope><name>UpdateAllRaceIcons</name></member>
+      <member refid="classMoraleManager_1aab72a759bb0a5d7393b98f339171aeb5" prot="private" virt="non-virtual"><scope>MoraleManager</scope><name>UpdateRaceIcon</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

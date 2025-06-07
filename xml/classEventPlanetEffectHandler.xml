@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEventPlanetEffectHandler" kind="class" language="C#" prot="public">
+    <compoundname>EventPlanetEffectHandler</compoundname>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEventPlanetEffectHandler_1aeca4b82198b088572ac4dffabc13e5ce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventPlanetEffectHandler.Handle</definition>
+        <argsstring>(PlanetEffect effect)</argsstring>
+        <name>Handle</name>
+        <qualifiedname>EventPlanetEffectHandler.Handle</qualifiedname>
+        <param>
+          <type><ref refid="classPlanetEffect" kindref="compound">PlanetEffect</ref></type>
+          <declname>effect</declname>
+        </param>
+        <briefdescription>
+<para>단일 행성 효과를 리스트로 감싸서 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>effect</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>적용할 단일 <ref refid="classPlanetEffect" kindref="compound">PlanetEffect</ref></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventHandlers/EventPlanetEffectHandler.cs" line="16" column="17" bodyfile="Assets/Scripts/Events/EventHandlers/EventPlanetEffectHandler.cs" bodystart="16" bodyend="25"/>
+        <references refid="classEventPlanetEffectHandler_1acb9d8896a00d4e0a242b1da619dcf733" compoundref="EventPlanetEffectHandler_8cs" startline="32" endline="53">ApplyEffects</references>
+      </memberdef>
+      <memberdef kind="function" id="classEventPlanetEffectHandler_1acb9d8896a00d4e0a242b1da619dcf733" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventPlanetEffectHandler.ApplyEffects</definition>
+        <argsstring>(List&lt; PlanetEffect &gt; planetEffects, string eventTitle=&quot;&quot;)</argsstring>
+        <name>ApplyEffects</name>
+        <qualifiedname>EventPlanetEffectHandler.ApplyEffects</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="classPlanetEffect" kindref="compound">PlanetEffect</ref> &gt;</type>
+          <declname>planetEffects</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>eventTitle</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para><ref refid="classPlanetEffect" kindref="compound">PlanetEffect</ref> 리스트를 받아 로그 출력 및 현재 행성에 적용합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>planetEffects</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>적용할 행성 효과 리스트</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>행성의 이름</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Events/EventHandlers/EventPlanetEffectHandler.cs" line="32" column="17" bodyfile="Assets/Scripts/Events/EventHandlers/EventPlanetEffectHandler.cs" bodystart="32" bodyend="53"/>
+        <references refid="classGameManager_1a0a5c70718a18bd796bdcf70f7411a539" compoundref="GameManager_8cs" startline="85">GameManager.CurrentYear</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <referencedby refid="classEventManager_1a355c69c40c2d9bb101476692466ac9ac" compoundref="EventManager_8cs" startline="258" endline="295">EventManager.ApplyOutcomeEffects</referencedby>
+        <referencedby refid="classEventPlanetEffectHandler_1aeca4b82198b088572ac4dffabc13e5ce" compoundref="EventPlanetEffectHandler_8cs" startline="16" endline="25">Handle</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>PlanetEffect를 받아 아이템 카테고리별 가격 변동을 처리하는 유틸리티 핸들러입니다. SpecialEffectType 처리와는 무관하게 EventOutcome의 planetEffects에 직접 대응합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>EventPlanetEffectHandler</label>
+        <link refid="classEventPlanetEffectHandler"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Events/EventHandlers/EventPlanetEffectHandler.cs" line="10" column="7" bodyfile="Assets/Scripts/Events/EventHandlers/EventPlanetEffectHandler.cs" bodystart="11" bodyend="54"/>
+    <listofallmembers>
+      <member refid="classEventPlanetEffectHandler_1acb9d8896a00d4e0a242b1da619dcf733" prot="public" virt="non-virtual"><scope>EventPlanetEffectHandler</scope><name>ApplyEffects</name></member>
+      <member refid="classEventPlanetEffectHandler_1aeca4b82198b088572ac4dffabc13e5ce" prot="public" virt="non-virtual"><scope>EventPlanetEffectHandler</scope><name>Handle</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

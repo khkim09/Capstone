@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classTradingItemDataBase" kind="class" language="C#" prot="public">
+    <compoundname>TradingItemDataBase</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ScriptableObject</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classTradingItemDataBase_1a9268c2af4cde9789c320628f5adffe46" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="classTradingItemData" kindref="compound">TradingItemData</ref> &gt;</type>
+        <definition>List&lt;TradingItemData&gt; TradingItemDataBase.allItems</definition>
+        <argsstring></argsstring>
+        <name>allItems</name>
+        <qualifiedname>TradingItemDataBase.allItems</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" line="7" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classTradingItemDataBase_1ab1bcefba161818d2b70e7dbb805012be" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; int, <ref refid="classTradingItemData" kindref="compound">TradingItemData</ref> &gt;</type>
+        <definition>Dictionary&lt;int, TradingItemData&gt; TradingItemDataBase.itemDictionary</definition>
+        <argsstring></argsstring>
+        <name>itemDictionary</name>
+        <qualifiedname>TradingItemDataBase.itemDictionary</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" line="10" column="24" bodyfile="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classTradingItemDataBase_1a186b64659c9debdb18331a7d0cd91eec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TradingItemDataBase.InitializeDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeDictionary</name>
+        <qualifiedname>TradingItemDataBase.InitializeDictionary</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" line="12" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" bodystart="12" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDataBase_1ae8b78a261f73b32283fa995a1aa7d1b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+        <definition>TradingItemData TradingItemDataBase.GetItemData</definition>
+        <argsstring>(int id)</argsstring>
+        <name>GetItemData</name>
+        <qualifiedname>TradingItemDataBase.GetItemData</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" line="18" column="28" bodyfile="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" bodystart="18" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDataBase_1a448cf259eb47ad214348cde41b8dda6d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classTradingItemData" kindref="compound">TradingItemData</ref> &gt;</type>
+        <definition>List&lt; TradingItemData &gt; TradingItemDataBase.GetItemsByPlanet</definition>
+        <argsstring>(ItemPlanet planetName)</argsstring>
+        <name>GetItemsByPlanet</name>
+        <qualifiedname>TradingItemDataBase.GetItemsByPlanet</qualifiedname>
+        <param>
+          <type>ItemPlanet</type>
+          <declname>planetName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" line="26" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" bodystart="26" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDataBase_1a78dcb0e7f6cf5403cbdd1b43b1c3dcef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="classTradingItemData" kindref="compound">TradingItemData</ref> &gt;</type>
+        <definition>List&lt; TradingItemData &gt; TradingItemDataBase.GetItemsByTier</definition>
+        <argsstring>(ItemTierLevel tier)</argsstring>
+        <name>GetItemsByTier</name>
+        <qualifiedname>TradingItemDataBase.GetItemsByTier</qualifiedname>
+        <param>
+          <type>ItemTierLevel</type>
+          <declname>tier</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" line="36" column="17" bodyfile="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" bodystart="36" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classTradingItemDataBase_1ab1aff7c29d2f8a505e8c68689ae077df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classTradingItemData" kindref="compound">TradingItemData</ref></type>
+        <definition>TradingItemData TradingItemDataBase.GetRandomItem</definition>
+        <argsstring>()</argsstring>
+        <name>GetRandomItem</name>
+        <qualifiedname>TradingItemDataBase.GetRandomItem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" line="46" column="28" bodyfile="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" bodystart="46" bodyend="50"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>TradingItemDataBase</label>
+        <link refid="classTradingItemDataBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>TradingItemDataBase</label>
+        <link refid="classTradingItemDataBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" line="5" column="7" bodyfile="Assets/Scripts/Trade/Item/TradingItemDatabase.cs" bodystart="6" bodyend="51"/>
+    <listofallmembers>
+      <member refid="classTradingItemDataBase_1a9268c2af4cde9789c320628f5adffe46" prot="public" virt="non-virtual"><scope>TradingItemDataBase</scope><name>allItems</name></member>
+      <member refid="classTradingItemDataBase_1ae8b78a261f73b32283fa995a1aa7d1b1" prot="public" virt="non-virtual"><scope>TradingItemDataBase</scope><name>GetItemData</name></member>
+      <member refid="classTradingItemDataBase_1a448cf259eb47ad214348cde41b8dda6d" prot="public" virt="non-virtual"><scope>TradingItemDataBase</scope><name>GetItemsByPlanet</name></member>
+      <member refid="classTradingItemDataBase_1a78dcb0e7f6cf5403cbdd1b43b1c3dcef" prot="public" virt="non-virtual"><scope>TradingItemDataBase</scope><name>GetItemsByTier</name></member>
+      <member refid="classTradingItemDataBase_1ab1aff7c29d2f8a505e8c68689ae077df" prot="public" virt="non-virtual"><scope>TradingItemDataBase</scope><name>GetRandomItem</name></member>
+      <member refid="classTradingItemDataBase_1a186b64659c9debdb18331a7d0cd91eec" prot="public" virt="non-virtual"><scope>TradingItemDataBase</scope><name>InitializeDictionary</name></member>
+      <member refid="classTradingItemDataBase_1ab1bcefba161818d2b70e7dbb805012be" prot="private" virt="non-virtual"><scope>TradingItemDataBase</scope><name>itemDictionary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

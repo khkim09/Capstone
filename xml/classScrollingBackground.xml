@@ -1,0 +1,583 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classScrollingBackground" kind="class" language="C#" prot="public">
+    <compoundname>ScrollingBackground</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classScrollingBackground_1a409f9f622f692dc1c2dea67d25cc4773" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ScrollingBackground.scrollSpeed</definition>
+        <argsstring></argsstring>
+        <name>scrollSpeed</name>
+        <qualifiedname>ScrollingBackground.scrollSpeed</qualifiedname>
+        <initializer>= 0.5f</initializer>
+        <briefdescription>
+<para>흐르는 속도 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="10" column="20" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="10" bodyend="-1"/>
+        <referencedby refid="classScrollingBackground_1a1d3faf5deef431d89413e40bb6550745" compoundref="ScrollingBackground_8cs" startline="260" endline="344">TransitionToNewBackground</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1ad9ff5494fbafa350825d42c720dbb6c0" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ScrollingBackground.scrollHorizontal</definition>
+        <argsstring></argsstring>
+        <name>scrollHorizontal</name>
+        <qualifiedname>ScrollingBackground.scrollHorizontal</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>평행 방향으로 흐르는지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="15" column="19" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1a2597fa3c0ebfb320462c740353da580b" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ScrollingBackground.scrollVertical</definition>
+        <argsstring></argsstring>
+        <name>scrollVertical</name>
+        <qualifiedname>ScrollingBackground.scrollVertical</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>수직 방향으로 흐르는지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="20" column="19" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1ab47de409962cec2af750e1f36307a022" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ScrollingBackground.reverseDirection</definition>
+        <argsstring></argsstring>
+        <name>reverseDirection</name>
+        <qualifiedname>ScrollingBackground.reverseDirection</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>흐르는 방향 전환 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="25" column="19" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1aa0b464278c46b17284e75ca8a9bd0b82" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ScrollingBackground.randomDirection</definition>
+        <argsstring></argsstring>
+        <name>randomDirection</name>
+        <qualifiedname>ScrollingBackground.randomDirection</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>흐르는 방향 랜덤 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="30" column="19" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1aa2857cba5f517e5603fda5c2fe15f229" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ScrollingBackground.randomImage</definition>
+        <argsstring></argsstring>
+        <name>randomImage</name>
+        <qualifiedname>ScrollingBackground.randomImage</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>배경 이미지 랜덤으로 정할지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="35" column="19" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1ab45c599024fbd1541aec9745fc66a8c4" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 ScrollingBackground.tiling</definition>
+        <argsstring></argsstring>
+        <name>tiling</name>
+        <qualifiedname>ScrollingBackground.tiling</qualifiedname>
+        <initializer>= new(0.5f, 1)</initializer>
+        <briefdescription>
+<para>타일링 정도 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="40" column="22" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1a9de0ca8f8b8be196ad14d3396a3c1ccb" prot="private" static="no" mutable="no">
+        <type>RawImage</type>
+        <definition>RawImage ScrollingBackground.mainRawImage</definition>
+        <argsstring></argsstring>
+        <name>mainRawImage</name>
+        <qualifiedname>ScrollingBackground.mainRawImage</qualifiedname>
+        <briefdescription>
+<para>메인 배경 이미지 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="47" column="22" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1a0b970cafd14086c4d770df9b135dfe95" prot="private" static="no" mutable="no">
+        <type>RawImage</type>
+        <definition>RawImage ScrollingBackground.subRawImage</definition>
+        <argsstring></argsstring>
+        <name>subRawImage</name>
+        <qualifiedname>ScrollingBackground.subRawImage</qualifiedname>
+        <briefdescription>
+<para>서브 배경 이미지 (전환용) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="52" column="23" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1a56fe19872b317f47f9137ca2dff96bf6" prot="private" static="no" mutable="no">
+        <type>Texture2D[]</type>
+        <definition>Texture2D [] ScrollingBackground.backgroundTextures</definition>
+        <argsstring></argsstring>
+        <name>backgroundTextures</name>
+        <qualifiedname>ScrollingBackground.backgroundTextures</qualifiedname>
+        <briefdescription>
+<para>랜덤일 경우 사용할 이미지 목록 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="57" column="24" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="57" bodyend="-1"/>
+        <referencedby refid="classScrollingBackground_1a3e7c23262f44c8ebde063c5e3f90c8b1" compoundref="ScrollingBackground_8cs" startline="234" endline="255">SetRandomBackgroundTexture</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1a832a8308e0e3ce9b4fa716ef3a2a0eeb" prot="private" static="no" mutable="no">
+        <type>readonly float</type>
+        <definition>readonly float ScrollingBackground.transitionDuration</definition>
+        <argsstring></argsstring>
+        <name>transitionDuration</name>
+        <qualifiedname>ScrollingBackground.transitionDuration</qualifiedname>
+        <initializer>= Constants.WarpNodes.WarpingDuration</initializer>
+        <briefdescription>
+<para>배경 전환 시간 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="64" column="28" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="64" bodyend="-1"/>
+        <referencedby refid="classScrollingBackground_1a1d3faf5deef431d89413e40bb6550745" compoundref="ScrollingBackground_8cs" startline="260" endline="344">TransitionToNewBackground</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1a229440e8ae34a4ec4d24095be309c00e" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ScrollingBackground.maxScrollSpeed</definition>
+        <argsstring></argsstring>
+        <name>maxScrollSpeed</name>
+        <qualifiedname>ScrollingBackground.maxScrollSpeed</qualifiedname>
+        <initializer>= 10.0f</initializer>
+        <briefdescription>
+<para>전환 중 최대 스크롤 속도 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="69" column="20" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="69" bodyend="-1"/>
+        <referencedby refid="classScrollingBackground_1a1d3faf5deef431d89413e40bb6550745" compoundref="ScrollingBackground_8cs" startline="260" endline="344">TransitionToNewBackground</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1a79f712c04b51f8284b777c715a9db97f" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject ScrollingBackground.noTouchPanel</definition>
+        <argsstring></argsstring>
+        <name>noTouchPanel</name>
+        <qualifiedname>ScrollingBackground.noTouchPanel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="71" column="25" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1aafae6c85f987b20af7bd8c15bad552ee" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ScrollingBackground.isMainActive</definition>
+        <argsstring></argsstring>
+        <name>isMainActive</name>
+        <qualifiedname>ScrollingBackground.isMainActive</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>현재 활성화된 배경 (true: main, false: sub) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="76" column="18" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="76" bodyend="-1"/>
+        <referencedby refid="classScrollingBackground_1a1d3faf5deef431d89413e40bb6550745" compoundref="ScrollingBackground_8cs" startline="260" endline="344">TransitionToNewBackground</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1a4e1dc5a8db8d00ff21ec5fa369865320" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ScrollingBackground.originalScrollSpeed</definition>
+        <argsstring></argsstring>
+        <name>originalScrollSpeed</name>
+        <qualifiedname>ScrollingBackground.originalScrollSpeed</qualifiedname>
+        <briefdescription>
+<para>원본 스크롤 속도 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="81" column="19" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="81" bodyend="-1"/>
+        <referencedby refid="classScrollingBackground_1a1d3faf5deef431d89413e40bb6550745" compoundref="ScrollingBackground_8cs" startline="260" endline="344">TransitionToNewBackground</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classScrollingBackground_1a982372d8f211a4d7de997f98285443b4" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ScrollingBackground.isTransitioning</definition>
+        <argsstring></argsstring>
+        <name>isTransitioning</name>
+        <qualifiedname>ScrollingBackground.isTransitioning</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>현재 전환 중인지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="86" column="18" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="86" bodyend="-1"/>
+        <referencedby refid="classScrollingBackground_1a1d3faf5deef431d89413e40bb6550745" compoundref="ScrollingBackground_8cs" startline="260" endline="344">TransitionToNewBackground</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classScrollingBackground_1a231e7d5463da50e56b528998b5d14890" prot="private" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>RawImage</type>
+        <definition>RawImage ScrollingBackground.CurrentRawImage</definition>
+        <argsstring></argsstring>
+        <name>CurrentRawImage</name>
+        <qualifiedname>ScrollingBackground.CurrentRawImage</qualifiedname>
+        <briefdescription>
+<para>현재 활성화된 RawImage </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="91" column="22" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="91" bodyend="-1"/>
+        <referencedby refid="classScrollingBackground_1a1d3faf5deef431d89413e40bb6550745" compoundref="ScrollingBackground_8cs" startline="260" endline="344">TransitionToNewBackground</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="classScrollingBackground_1a7d057d33085611cfc25a50a38b6dd655" prot="private" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>RawImage</type>
+        <definition>RawImage ScrollingBackground.InactiveRawImage</definition>
+        <argsstring></argsstring>
+        <name>InactiveRawImage</name>
+        <qualifiedname>ScrollingBackground.InactiveRawImage</qualifiedname>
+        <briefdescription>
+<para>현재 비활성화된 RawImage </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="96" column="22" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="96" bodyend="-1"/>
+        <referencedby refid="classScrollingBackground_1a1d3faf5deef431d89413e40bb6550745" compoundref="ScrollingBackground_8cs" startline="260" endline="344">TransitionToNewBackground</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classScrollingBackground_1a0020540449d0e62cb8616843ca6ad3e0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ScrollingBackground.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>ScrollingBackground.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="98" column="18" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="98" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classScrollingBackground_1a682e9224d78def947d52c2ee8718f377" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ScrollingBackground.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>ScrollingBackground.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="114" column="18" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="114" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="classScrollingBackground_1a67f5a365b6f681972f90a36e96f79aa2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ScrollingBackground.UpdateScrolling</definition>
+        <argsstring>(RawImage rawImage)</argsstring>
+        <name>UpdateScrolling</name>
+        <qualifiedname>ScrollingBackground.UpdateScrolling</qualifiedname>
+        <param>
+          <type>RawImage</type>
+          <declname>rawImage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="128" column="18" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="128" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classScrollingBackground_1abeee819ac2faf1888bc89be059e82d83" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ScrollingBackground.SetRandomDirection</definition>
+        <argsstring>()</argsstring>
+        <name>SetRandomDirection</name>
+        <qualifiedname>ScrollingBackground.SetRandomDirection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="144" column="18" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="144" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="classScrollingBackground_1a37587fdca837d5962ed0e9e15adc9513" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ScrollingBackground.SetupTextureSettings</definition>
+        <argsstring>(RawImage rawImage)</argsstring>
+        <name>SetupTextureSettings</name>
+        <qualifiedname>ScrollingBackground.SetupTextureSettings</qualifiedname>
+        <param>
+          <type>RawImage</type>
+          <declname>rawImage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="193" column="18" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="193" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="classScrollingBackground_1adc54760e2509e5a76f83a90d624cbaa5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ScrollingBackground.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <qualifiedname>ScrollingBackground.OnEnable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="202" column="18" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="202" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="classScrollingBackground_1aef93344b15684034d7f920b30cb7cb3e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ScrollingBackground.OnDisable</definition>
+        <argsstring>()</argsstring>
+        <name>OnDisable</name>
+        <qualifiedname>ScrollingBackground.OnDisable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="211" column="18" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="211" bodyend="218"/>
+      </memberdef>
+      <memberdef kind="function" id="classScrollingBackground_1af42e84fd6bbc96fe809c44fdb0c5fa08" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ScrollingBackground.OnYearChanged</definition>
+        <argsstring>(int year)</argsstring>
+        <name>OnYearChanged</name>
+        <qualifiedname>ScrollingBackground.OnYearChanged</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>year</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="220" column="18" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="220" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="classScrollingBackground_1a3e7c23262f44c8ebde063c5e3f90c8b1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ScrollingBackground.SetRandomBackgroundTexture</definition>
+        <argsstring>(RawImage targetImage)</argsstring>
+        <name>SetRandomBackgroundTexture</name>
+        <qualifiedname>ScrollingBackground.SetRandomBackgroundTexture</qualifiedname>
+        <param>
+          <type>RawImage</type>
+          <declname>targetImage</declname>
+        </param>
+        <briefdescription>
+<para>지정된 RawImage에 랜덤 배경 텍스처 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>targetImage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>텍스처를 설정할 RawImage</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>성공 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="234" column="18" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="234" bodyend="255"/>
+        <references refid="classScrollingBackground_1a56fe19872b317f47f9137ca2dff96bf6" compoundref="ScrollingBackground_8cs" startline="57">backgroundTextures</references>
+        <referencedby refid="classScrollingBackground_1a1d3faf5deef431d89413e40bb6550745" compoundref="ScrollingBackground_8cs" startline="260" endline="344">TransitionToNewBackground</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classScrollingBackground_1a1d3faf5deef431d89413e40bb6550745" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ScrollingBackground.TransitionToNewBackground</definition>
+        <argsstring>()</argsstring>
+        <name>TransitionToNewBackground</name>
+        <qualifiedname>ScrollingBackground.TransitionToNewBackground</qualifiedname>
+        <briefdescription>
+<para>새로운 배경으로 전환하는 코루틴 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="260" column="25" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="260" bodyend="344"/>
+        <references refid="classScrollingBackground_1a231e7d5463da50e56b528998b5d14890" compoundref="ScrollingBackground_8cs" startline="91">CurrentRawImage</references>
+        <references refid="classScrollingBackground_1a7d057d33085611cfc25a50a38b6dd655" compoundref="ScrollingBackground_8cs" startline="96">InactiveRawImage</references>
+        <references refid="classScrollingBackground_1aafae6c85f987b20af7bd8c15bad552ee" compoundref="ScrollingBackground_8cs" startline="76">isMainActive</references>
+        <references refid="classScrollingBackground_1a982372d8f211a4d7de997f98285443b4" compoundref="ScrollingBackground_8cs" startline="86">isTransitioning</references>
+        <references refid="classScrollingBackground_1a229440e8ae34a4ec4d24095be309c00e" compoundref="ScrollingBackground_8cs" startline="69">maxScrollSpeed</references>
+        <references refid="classScrollingBackground_1a4e1dc5a8db8d00ff21ec5fa369865320" compoundref="ScrollingBackground_8cs" startline="81">originalScrollSpeed</references>
+        <references refid="classScrollingBackground_1a409f9f622f692dc1c2dea67d25cc4773" compoundref="ScrollingBackground_8cs" startline="10">scrollSpeed</references>
+        <references refid="classScrollingBackground_1a3e7c23262f44c8ebde063c5e3f90c8b1" compoundref="ScrollingBackground_8cs" startline="234" endline="255">SetRandomBackgroundTexture</references>
+        <references refid="classScrollingBackground_1a832a8308e0e3ce9b4fa716ef3a2a0eeb" compoundref="ScrollingBackground_8cs" startline="64">transitionDuration</references>
+      </memberdef>
+      <memberdef kind="function" id="classScrollingBackground_1a7bd5657a4de7491b45fdb0f54a4d7558" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator ScrollingBackground.ShowNoTouchPanelForSeconds</definition>
+        <argsstring>(float seconds)</argsstring>
+        <name>ShowNoTouchPanelForSeconds</name>
+        <qualifiedname>ScrollingBackground.ShowNoTouchPanelForSeconds</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>seconds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="346" column="25" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="346" bodyend="352"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classScrollingBackground_1a0a55e360f8b62686c05bc0f6d593dcf0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ScrollingBackground.TestBackgroundTransition</definition>
+        <argsstring>()</argsstring>
+        <name>TestBackgroundTransition</name>
+        <qualifiedname>ScrollingBackground.TestBackgroundTransition</qualifiedname>
+        <briefdescription>
+<para>수동으로 배경 전환 테스트용 (디버그) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="358" column="17" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="358" bodyend="361"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ScrollingBackground</label>
+        <link refid="classScrollingBackground"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ScrollingBackground</label>
+        <link refid="classScrollingBackground"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-tiling</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>UnityEngine</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/UI/ScrollingBackground.cs" line="5" column="7" bodyfile="Assets/Scripts/UI/ScrollingBackground.cs" bodystart="6" bodyend="362"/>
+    <listofallmembers>
+      <member refid="classScrollingBackground_1a0020540449d0e62cb8616843ca6ad3e0" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>Awake</name></member>
+      <member refid="classScrollingBackground_1a56fe19872b317f47f9137ca2dff96bf6" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>backgroundTextures</name></member>
+      <member refid="classScrollingBackground_1a231e7d5463da50e56b528998b5d14890" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>CurrentRawImage</name></member>
+      <member refid="classScrollingBackground_1a7d057d33085611cfc25a50a38b6dd655" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>InactiveRawImage</name></member>
+      <member refid="classScrollingBackground_1aafae6c85f987b20af7bd8c15bad552ee" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>isMainActive</name></member>
+      <member refid="classScrollingBackground_1a982372d8f211a4d7de997f98285443b4" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>isTransitioning</name></member>
+      <member refid="classScrollingBackground_1a9de0ca8f8b8be196ad14d3396a3c1ccb" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>mainRawImage</name></member>
+      <member refid="classScrollingBackground_1a229440e8ae34a4ec4d24095be309c00e" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>maxScrollSpeed</name></member>
+      <member refid="classScrollingBackground_1a79f712c04b51f8284b777c715a9db97f" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>noTouchPanel</name></member>
+      <member refid="classScrollingBackground_1aef93344b15684034d7f920b30cb7cb3e" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>OnDisable</name></member>
+      <member refid="classScrollingBackground_1adc54760e2509e5a76f83a90d624cbaa5" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>OnEnable</name></member>
+      <member refid="classScrollingBackground_1af42e84fd6bbc96fe809c44fdb0c5fa08" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>OnYearChanged</name></member>
+      <member refid="classScrollingBackground_1a4e1dc5a8db8d00ff21ec5fa369865320" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>originalScrollSpeed</name></member>
+      <member refid="classScrollingBackground_1aa0b464278c46b17284e75ca8a9bd0b82" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>randomDirection</name></member>
+      <member refid="classScrollingBackground_1aa2857cba5f517e5603fda5c2fe15f229" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>randomImage</name></member>
+      <member refid="classScrollingBackground_1ab47de409962cec2af750e1f36307a022" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>reverseDirection</name></member>
+      <member refid="classScrollingBackground_1ad9ff5494fbafa350825d42c720dbb6c0" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>scrollHorizontal</name></member>
+      <member refid="classScrollingBackground_1a409f9f622f692dc1c2dea67d25cc4773" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>scrollSpeed</name></member>
+      <member refid="classScrollingBackground_1a2597fa3c0ebfb320462c740353da580b" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>scrollVertical</name></member>
+      <member refid="classScrollingBackground_1a3e7c23262f44c8ebde063c5e3f90c8b1" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>SetRandomBackgroundTexture</name></member>
+      <member refid="classScrollingBackground_1abeee819ac2faf1888bc89be059e82d83" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>SetRandomDirection</name></member>
+      <member refid="classScrollingBackground_1a37587fdca837d5962ed0e9e15adc9513" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>SetupTextureSettings</name></member>
+      <member refid="classScrollingBackground_1a7bd5657a4de7491b45fdb0f54a4d7558" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>ShowNoTouchPanelForSeconds</name></member>
+      <member refid="classScrollingBackground_1a0b970cafd14086c4d770df9b135dfe95" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>subRawImage</name></member>
+      <member refid="classScrollingBackground_1a0a55e360f8b62686c05bc0f6d593dcf0" prot="public" virt="non-virtual"><scope>ScrollingBackground</scope><name>TestBackgroundTransition</name></member>
+      <member refid="classScrollingBackground_1ab45c599024fbd1541aec9745fc66a8c4" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>tiling</name></member>
+      <member refid="classScrollingBackground_1a832a8308e0e3ce9b4fa716ef3a2a0eeb" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>transitionDuration</name></member>
+      <member refid="classScrollingBackground_1a1d3faf5deef431d89413e40bb6550745" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>TransitionToNewBackground</name></member>
+      <member refid="classScrollingBackground_1a682e9224d78def947d52c2ee8718f377" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>Update</name></member>
+      <member refid="classScrollingBackground_1a67f5a365b6f681972f90a36e96f79aa2" prot="private" virt="non-virtual"><scope>ScrollingBackground</scope><name>UpdateScrolling</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

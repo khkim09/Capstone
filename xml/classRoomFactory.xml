@@ -1,0 +1,521 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classRoomFactory" kind="class" language="C#" prot="public">
+    <compoundname>RoomFactory</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classRoomFactory_1a59572a8dffd744d713fe49f563413b93" prot="private" static="no" mutable="no">
+        <type><ref refid="classRoomDatabase" kindref="compound">RoomDatabase</ref></type>
+        <definition>RoomDatabase RoomFactory.roomDatabase</definition>
+        <argsstring></argsstring>
+        <name>roomDatabase</name>
+        <qualifiedname>RoomFactory.roomDatabase</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="9" column="28" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classRoomFactory_1a70ee0d9bf09584dc08440ec127cb1564" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject RoomFactory.roomPrefab</definition>
+        <argsstring></argsstring>
+        <name>roomPrefab</name>
+        <qualifiedname>RoomFactory.roomPrefab</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="11" column="26" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classRoomFactory_1a60dd31e0d6c07415f8888978505ae2fd" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomFactory.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>RoomFactory.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="13" column="18" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="13" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomFactory_1a4fb957d9dc0b7fce782299d32fad7a4d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RoomFactory.InitializeRoomDatabase</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeRoomDatabase</name>
+        <qualifiedname>RoomFactory.InitializeRoomDatabase</qualifiedname>
+        <briefdescription>
+<para>방 데이터베이스 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="21" column="18" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="21" bodyend="27"/>
+        <references refid="classRoomDatabase_1a75151c7a98fdbb86f13d95b14bb6ffed" compoundref="RoomDatabase_8cs" startline="58" endline="64">RoomDatabase.Initialize</references>
+      </memberdef>
+      <memberdef kind="function" id="classRoomFactory_1accc1ec930451bce96ac44a51f58925f0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+        <definition>Room RoomFactory.AttachRoomComponent</definition>
+        <argsstring>(GameObject roomObject, RoomType roomType)</argsstring>
+        <name>AttachRoomComponent</name>
+        <qualifiedname>RoomFactory.AttachRoomComponent</qualifiedname>
+        <param>
+          <type>GameObject</type>
+          <declname>roomObject</declname>
+        </param>
+        <param>
+          <type>RoomType</type>
+          <declname>roomType</declname>
+        </param>
+        <briefdescription>
+<para>방 유형에 따라 적절한 컴포넌트 부착 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="256" column="18" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="256" bodyend="314"/>
+        <referencedby refid="classRoomFactory_1a1edd492986abad0c85593be2fd572234" compoundref="RoomFactory_8cs" startline="95" endline="119">CreateRoomInstance</referencedby>
+        <referencedby refid="classRoomFactory_1acf6b68350a4e777e8373beddcc2cae99" compoundref="RoomFactory_8cs" startline="204" endline="251">CreateRoomObject</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoomFactory_1a443f648ae7680fe8175fc4078421b21c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classStorageRoomBase" kindref="compound">StorageRoomBase</ref></type>
+        <definition>StorageRoomBase RoomFactory.AttachStorageRoomComponent</definition>
+        <argsstring>(GameObject roomObject, StorageType storageType)</argsstring>
+        <name>AttachStorageRoomComponent</name>
+        <qualifiedname>RoomFactory.AttachStorageRoomComponent</qualifiedname>
+        <param>
+          <type>GameObject</type>
+          <declname>roomObject</declname>
+        </param>
+        <param>
+          <type>StorageType</type>
+          <declname>storageType</declname>
+        </param>
+        <briefdescription>
+<para>창고 유형에 따라 적절한 컴포넌트 부착 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="319" column="29" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="319" bodyend="340"/>
+        <referencedby refid="classRoomFactory_1acf6b68350a4e777e8373beddcc2cae99" compoundref="RoomFactory_8cs" startline="204" endline="251">CreateRoomObject</referencedby>
+        <referencedby refid="classRoomFactory_1a74acccb59860611971da7f27ec99d54f" compoundref="RoomFactory_8cs" startline="128" endline="153">CreateStorageRoomInstance</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classRoomFactory_1a309880375e5a2aa595511adfb3ec349b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classRoomData" kindref="compound">RoomData</ref></type>
+        <definition>RoomData RoomFactory.GetRoomData</definition>
+        <argsstring>(RoomType roomType)</argsstring>
+        <name>GetRoomData</name>
+        <qualifiedname>RoomFactory.GetRoomData</qualifiedname>
+        <param>
+          <type>RoomType</type>
+          <declname>roomType</declname>
+        </param>
+        <briefdescription>
+<para>방 유형에 따른 데이터 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>roomType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>방 유형</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 유형의 방 데이터</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="34" column="21" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="34" bodyend="43"/>
+        <references refid="classRoomDatabase_1a8c001321f5462b50ba8c013a3b06c93e" compoundref="RoomDatabase_8cs" startline="129" endline="137">RoomDatabase.GetRoomData</references>
+        <referencedby refid="classRoomFactory_1a1edd492986abad0c85593be2fd572234" compoundref="RoomFactory_8cs" startline="95" endline="119">CreateRoomInstance</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoomFactory_1a10fd996249d083cfb066722da981f6c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classStorageRoomBaseData" kindref="compound">StorageRoomBaseData</ref></type>
+        <definition>StorageRoomBaseData RoomFactory.GetStorageRoomData</definition>
+        <argsstring>(StorageType storageType, StorageSize size)</argsstring>
+        <name>GetStorageRoomData</name>
+        <qualifiedname>RoomFactory.GetStorageRoomData</qualifiedname>
+        <param>
+          <type>StorageType</type>
+          <declname>storageType</declname>
+        </param>
+        <param>
+          <type>StorageSize</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>창고 데이터 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>storageType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>창고 유형</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>창고 크기</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 유형과 크기의 창고 데이터</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="51" column="32" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="51" bodyend="60"/>
+        <references refid="classRoomDatabase_1acf4163d9ce9df6f0046ae5b601a5f970" compoundref="RoomDatabase_8cs" startline="142" endline="152">RoomDatabase.GetStorageRoomData</references>
+        <referencedby refid="classRoomFactory_1a74acccb59860611971da7f27ec99d54f" compoundref="RoomFactory_8cs" startline="128" endline="153">CreateStorageRoomInstance</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoomFactory_1a101e5aab3006053430806c3e90ccf6e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classLifeSupportRoomData" kindref="compound">LifeSupportRoomData</ref></type>
+        <definition>LifeSupportRoomData RoomFactory.GetLifeSupportRoomData</definition>
+        <argsstring>(LifeSupportRoomType facilityType)</argsstring>
+        <name>GetLifeSupportRoomData</name>
+        <qualifiedname>RoomFactory.GetLifeSupportRoomData</qualifiedname>
+        <param>
+          <type>LifeSupportRoomType</type>
+          <declname>facilityType</declname>
+        </param>
+        <briefdescription>
+<para>생활시설 데이터 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>facilityType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>시설 유형</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>해당 유형의 생활시설 데이터</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="67" column="32" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="67" bodyend="76"/>
+        <references refid="classRoomDatabase_1a6e93aa81081b9f4415136aa4e40e624b" compoundref="RoomDatabase_8cs" startline="157" endline="165">RoomDatabase.GetLifeSupportRoomData</references>
+        <referencedby refid="classRoomFactory_1ade948fb094ac8db96a6fc3d71bd67cee" compoundref="RoomFactory_8cs" startline="161" endline="178">CreateLifeSupportRoomInstance</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoomFactory_1acca2332d4ee1007cae4aa78a911f336c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classCrewQuartersRoomData" kindref="compound">CrewQuartersRoomData</ref></type>
+        <definition>CrewQuartersRoomData RoomFactory.GetCrewQuartersRoomData</definition>
+        <argsstring>(CrewQuartersRoomSize size)</argsstring>
+        <name>GetCrewQuartersRoomData</name>
+        <qualifiedname>RoomFactory.GetCrewQuartersRoomData</qualifiedname>
+        <param>
+          <type>CrewQuartersRoomSize</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="78" column="33" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="78" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomFactory_1a1edd492986abad0c85593be2fd572234" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+        <definition>Room RoomFactory.CreateRoomInstance</definition>
+        <argsstring>(RoomType roomType, int level=1)</argsstring>
+        <name>CreateRoomInstance</name>
+        <qualifiedname>RoomFactory.CreateRoomInstance</qualifiedname>
+        <param>
+          <type>RoomType</type>
+          <declname>roomType</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+<para>지정된 방 유형의 인스턴스 생성 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>roomType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>생성할 방 유형</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>방 레벨</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>생성된 방 인스턴스</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="95" column="17" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="95" bodyend="119"/>
+        <references refid="classRoomFactory_1accc1ec930451bce96ac44a51f58925f0" compoundref="RoomFactory_8cs" startline="256" endline="314">AttachRoomComponent</references>
+        <references refid="classRoomFactory_1a309880375e5a2aa595511adfb3ec349b" compoundref="RoomFactory_8cs" startline="34" endline="43">GetRoomData</references>
+        <references refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" compoundref="Room_8cs" startline="285" endline="307">Room&lt; TData, TLevel &gt;.Initialize</references>
+        <referencedby refid="classShipFactory_1a3c26f8bde8633e87fe1d7eaf140bc253" compoundref="ShipFactory_8cs" startline="40" endline="76">ShipFactory.CreateShipFromTemplate</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoomFactory_1a74acccb59860611971da7f27ec99d54f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classStorageRoomBase" kindref="compound">StorageRoomBase</ref></type>
+        <definition>StorageRoomBase RoomFactory.CreateStorageRoomInstance</definition>
+        <argsstring>(StorageType storageType, StorageSize size, int level=1)</argsstring>
+        <name>CreateStorageRoomInstance</name>
+        <qualifiedname>RoomFactory.CreateStorageRoomInstance</qualifiedname>
+        <param>
+          <type>StorageType</type>
+          <declname>storageType</declname>
+        </param>
+        <param>
+          <type>StorageSize</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+<para>창고 인스턴스 생성 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>storageType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>창고 유형</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>창고 크기</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>방 레벨</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>생성된 창고 인스턴스</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="128" column="28" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="128" bodyend="153"/>
+        <references refid="classRoomFactory_1a443f648ae7680fe8175fc4078421b21c" compoundref="RoomFactory_8cs" startline="319" endline="340">AttachStorageRoomComponent</references>
+        <references refid="classRoomFactory_1a10fd996249d083cfb066722da981f6c3" compoundref="RoomFactory_8cs" startline="51" endline="60">GetStorageRoomData</references>
+        <references refid="classStorageRoomBase_1ad434cfbd52fdf361866908f89e1a5cd9" compoundref="StorageRoomBase_8cs" startline="32" endline="41">StorageRoomBase.Initialize</references>
+        <referencedby refid="classTradeUIController_1a83d3fa6bc6d31230c7a925bce8d62b91" compoundref="TradeUIController_8cs" startline="317" endline="347">TradeUIController.Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRoomFactory_1ade948fb094ac8db96a6fc3d71bd67cee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classLifeSupportRoom" kindref="compound">LifeSupportRoom</ref></type>
+        <definition>LifeSupportRoom RoomFactory.CreateLifeSupportRoomInstance</definition>
+        <argsstring>(LifeSupportRoomType facilityType, int level=1)</argsstring>
+        <name>CreateLifeSupportRoomInstance</name>
+        <qualifiedname>RoomFactory.CreateLifeSupportRoomInstance</qualifiedname>
+        <param>
+          <type>LifeSupportRoomType</type>
+          <declname>facilityType</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+<para>생활시설 인스턴스 생성 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>facilityType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>시설 유형</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>방 레벨</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>생성된 생활시설 인스턴스</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="161" column="28" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="161" bodyend="178"/>
+        <references refid="classRoomFactory_1a101e5aab3006053430806c3e90ccf6e9" compoundref="RoomFactory_8cs" startline="67" endline="76">GetLifeSupportRoomData</references>
+        <references refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" compoundref="Room_8cs" startline="285" endline="307">Room&lt; TData, TLevel &gt;.Initialize</references>
+      </memberdef>
+      <memberdef kind="function" id="classRoomFactory_1addcea0fdfb24873444c0288a789897ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classCrewQuartersRoom" kindref="compound">CrewQuartersRoom</ref></type>
+        <definition>CrewQuartersRoom RoomFactory.CreateCrewQuartersRoomInstance</definition>
+        <argsstring>(CrewQuartersRoomSize size, int level=1)</argsstring>
+        <name>CreateCrewQuartersRoomInstance</name>
+        <qualifiedname>RoomFactory.CreateCrewQuartersRoomInstance</qualifiedname>
+        <param>
+          <type>CrewQuartersRoomSize</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="180" column="29" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="180" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classRoomFactory_1acf6b68350a4e777e8373beddcc2cae99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+        <definition>Room RoomFactory.CreateRoomObject</definition>
+        <argsstring>(Room sourceRoom)</argsstring>
+        <name>CreateRoomObject</name>
+        <qualifiedname>RoomFactory.CreateRoomObject</qualifiedname>
+        <param>
+          <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+          <declname>sourceRoom</declname>
+        </param>
+        <briefdescription>
+<para>기존 방과 동일한 방 인스턴스 생성 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sourceRoom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>복제할 방</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>복제된 방 인스턴스</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="204" column="17" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="204" bodyend="251"/>
+        <references refid="classRoomFactory_1accc1ec930451bce96ac44a51f58925f0" compoundref="RoomFactory_8cs" startline="256" endline="314">AttachRoomComponent</references>
+        <references refid="classRoomFactory_1a443f648ae7680fe8175fc4078421b21c" compoundref="RoomFactory_8cs" startline="319" endline="340">AttachStorageRoomComponent</references>
+        <references refid="classRoom_1aa967e9283d77d2ef7bb90fc2f4635eb7" compoundref="Room_8cs" startline="168" endline="180">Room&lt; TData, TLevel &gt;.CopyFrom</references>
+        <references refid="classRoom_1ae14b08f3ba19cce81b077d6fefcb1fd5" compoundref="Room_8cs" startline="441" endline="444">Room&lt; TData, TLevel &gt;.GetCurrentLevel</references>
+        <references refid="classRoom_1a02fa31258f9318a89d5b7c29dfdf602c" compoundref="Room_8cs" startline="285" endline="307">Room&lt; TData, TLevel &gt;.Initialize</references>
+        <referencedby refid="classShipFactory_1a4d0d4bf2882b83a2ab97df63c38695e5" compoundref="ShipFactory_8cs" startline="83" endline="117">ShipFactory.CloneShip</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선 내의 모든 방을 생성하고 관리하는 팩토리 클래스. 방 인스턴스 생성, 복제 등을 담당합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>RoomFactory</label>
+        <link refid="classRoomFactory"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="3">
+        <label>RoomDatabase</label>
+        <link refid="classRoomDatabase"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>RoomFactory</label>
+        <link refid="classRoomFactory"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-roomDatabase</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ScriptableObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/Rooms/RoomFactory.cs" line="7" column="7" bodyfile="Assets/Scripts/Ship/Rooms/RoomFactory.cs" bodystart="8" bodyend="341"/>
+    <listofallmembers>
+      <member refid="classRoomFactory_1accc1ec930451bce96ac44a51f58925f0" prot="private" virt="non-virtual"><scope>RoomFactory</scope><name>AttachRoomComponent</name></member>
+      <member refid="classRoomFactory_1a443f648ae7680fe8175fc4078421b21c" prot="private" virt="non-virtual"><scope>RoomFactory</scope><name>AttachStorageRoomComponent</name></member>
+      <member refid="classRoomFactory_1a60dd31e0d6c07415f8888978505ae2fd" prot="private" virt="non-virtual"><scope>RoomFactory</scope><name>Awake</name></member>
+      <member refid="classRoomFactory_1addcea0fdfb24873444c0288a789897ed" prot="public" virt="non-virtual"><scope>RoomFactory</scope><name>CreateCrewQuartersRoomInstance</name></member>
+      <member refid="classRoomFactory_1ade948fb094ac8db96a6fc3d71bd67cee" prot="public" virt="non-virtual"><scope>RoomFactory</scope><name>CreateLifeSupportRoomInstance</name></member>
+      <member refid="classRoomFactory_1a1edd492986abad0c85593be2fd572234" prot="public" virt="non-virtual"><scope>RoomFactory</scope><name>CreateRoomInstance</name></member>
+      <member refid="classRoomFactory_1acf6b68350a4e777e8373beddcc2cae99" prot="public" virt="non-virtual"><scope>RoomFactory</scope><name>CreateRoomObject</name></member>
+      <member refid="classRoomFactory_1a74acccb59860611971da7f27ec99d54f" prot="public" virt="non-virtual"><scope>RoomFactory</scope><name>CreateStorageRoomInstance</name></member>
+      <member refid="classRoomFactory_1acca2332d4ee1007cae4aa78a911f336c" prot="public" virt="non-virtual"><scope>RoomFactory</scope><name>GetCrewQuartersRoomData</name></member>
+      <member refid="classRoomFactory_1a101e5aab3006053430806c3e90ccf6e9" prot="public" virt="non-virtual"><scope>RoomFactory</scope><name>GetLifeSupportRoomData</name></member>
+      <member refid="classRoomFactory_1a309880375e5a2aa595511adfb3ec349b" prot="public" virt="non-virtual"><scope>RoomFactory</scope><name>GetRoomData</name></member>
+      <member refid="classRoomFactory_1a10fd996249d083cfb066722da981f6c3" prot="public" virt="non-virtual"><scope>RoomFactory</scope><name>GetStorageRoomData</name></member>
+      <member refid="classRoomFactory_1a4fb957d9dc0b7fce782299d32fad7a4d" prot="private" virt="non-virtual"><scope>RoomFactory</scope><name>InitializeRoomDatabase</name></member>
+      <member refid="classRoomFactory_1a59572a8dffd744d713fe49f563413b93" prot="private" virt="non-virtual"><scope>RoomFactory</scope><name>roomDatabase</name></member>
+      <member refid="classRoomFactory_1a70ee0d9bf09584dc08440ec127cb1564" prot="private" virt="non-virtual"><scope>RoomFactory</scope><name>roomPrefab</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1191 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classEquipmentApplyHandler" kind="class" language="C#" prot="public">
+    <compoundname>EquipmentApplyHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a8482997809271af3059c71266af043b0" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject EquipmentApplyHandler.crewDetailPanel</definition>
+        <argsstring></argsstring>
+        <name>crewDetailPanel</name>
+        <qualifiedname>EquipmentApplyHandler.crewDetailPanel</qualifiedname>
+        <briefdescription>
+<para>개별 선원 디테일 정보 표시 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="11" column="23" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1ae95b562db137d947dd0e68a703b19e16" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject EquipmentApplyHandler.allEquipmentPanel</definition>
+        <argsstring></argsstring>
+        <name>allEquipmentPanel</name>
+        <qualifiedname>EquipmentApplyHandler.allEquipmentPanel</qualifiedname>
+        <briefdescription>
+<para>보유 중인 전체 장비 나타내는 패널 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="16" column="23" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1afb17246727b03db7d679d9a9e23f7964" prot="public" static="no" mutable="no">
+        <type>HashSet&lt; <ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref> &gt;</type>
+        <definition>HashSet&lt;EquipmentItem&gt; EquipmentApplyHandler.purchasedItems</definition>
+        <argsstring></argsstring>
+        <name>purchasedItems</name>
+        <qualifiedname>EquipmentApplyHandler.purchasedItems</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>구매한 장비 목록입니다. 중복 구매를 방지하기 위해 HashSet으로 관리됩니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="22" column="20" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a20667fd4f8a7f321ce0e959b0bb6b169" prot="public" static="no" mutable="no">
+        <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+        <definition>CrewMember EquipmentApplyHandler.selectedCrew</definition>
+        <argsstring></argsstring>
+        <name>selectedCrew</name>
+        <qualifiedname>EquipmentApplyHandler.selectedCrew</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>장비 착용할 선택된 선원 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="27" column="23" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="27" bodyend="-1"/>
+        <referencedby refid="classEquipmentApplyHandler_1ae905dc4e4a0d8317769bcfd3c7eaa132" compoundref="EquipmentApplyHandler_8cs" startline="413" endline="422">GetCurrentEquippedByType</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1abd424807c871bb5f37f1b82c9bd008db" compoundref="EquipmentApplyHandler_8cs" startline="311" endline="341">OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" compoundref="EquipmentApplyHandler_8cs" startline="361" endline="406">OnClickStatApplyButton</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a2b8c7968c51cd21b8fc85e2b2ae5a598" compoundref="EquipmentApplyHandler_8cs" startline="168" endline="196">OnCrewIconSelected</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a64517bd171a33f2cd6025797d945f473" compoundref="EquipmentApplyHandler_8cs" startline="281" endline="305">OnEquipmentIconSelected</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a9ad0b321e092e78256b121de2cc406da" compoundref="EquipmentApplyHandler_8cs" startline="427" endline="477">RefreshCrewDetailPanel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1aff4bf07c003e5f0af5057549ba21c0a1" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject EquipmentApplyHandler.equipmentIconPrefab</definition>
+        <argsstring></argsstring>
+        <name>equipmentIconPrefab</name>
+        <qualifiedname>EquipmentApplyHandler.equipmentIconPrefab</qualifiedname>
+        <briefdescription>
+<para>장비 Prefab </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="33" column="23" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="33" bodyend="-1"/>
+        <referencedby refid="classEquipmentApplyHandler_1a30971b246563208e707c97fd25646dc4" compoundref="EquipmentApplyHandler_8cs" startline="151" endline="162">PopulateEquipmentIcons</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a63e28fce65a94ce0932dc197d10c3171" prot="public" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform EquipmentApplyHandler.equipmentContent</definition>
+        <argsstring></argsstring>
+        <name>equipmentContent</name>
+        <qualifiedname>EquipmentApplyHandler.equipmentContent</qualifiedname>
+        <briefdescription>
+<para>각 장비가 설치될 content </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="38" column="22" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="38" bodyend="-1"/>
+        <referencedby refid="classEquipmentApplyHandler_1a30971b246563208e707c97fd25646dc4" compoundref="EquipmentApplyHandler_8cs" startline="151" endline="162">PopulateEquipmentIcons</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1ae8f671ec9368e9f2e382d9621b877998" prot="public" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image EquipmentApplyHandler.detailCrewImage</definition>
+        <argsstring></argsstring>
+        <name>detailCrewImage</name>
+        <qualifiedname>EquipmentApplyHandler.detailCrewImage</qualifiedname>
+        <briefdescription>
+<para>개별 선원 디테일 UI에서 선원 이미지 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="43" column="18" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a992f84326c37961ff249916005452f19" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button EquipmentApplyHandler.detailWeaponButton</definition>
+        <argsstring></argsstring>
+        <name>detailWeaponButton</name>
+        <qualifiedname>EquipmentApplyHandler.detailWeaponButton</qualifiedname>
+        <briefdescription>
+<para>개별 선원 디테일 UI에서 무기 장비 버튼 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="48" column="19" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classEquipmentApplyHandler_1a2b8c7968c51cd21b8fc85e2b2ae5a598" compoundref="EquipmentApplyHandler_8cs" startline="168" endline="196">OnCrewIconSelected</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a9ad0b321e092e78256b121de2cc406da" compoundref="EquipmentApplyHandler_8cs" startline="427" endline="477">RefreshCrewDetailPanel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1ad4f645ef343a5230a54197715e4e23b6" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button EquipmentApplyHandler.detailShieldButton</definition>
+        <argsstring></argsstring>
+        <name>detailShieldButton</name>
+        <qualifiedname>EquipmentApplyHandler.detailShieldButton</qualifiedname>
+        <briefdescription>
+<para>개별 선원 디테일 UI에서 방어구 장비 버튼 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="53" column="19" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="53" bodyend="-1"/>
+        <referencedby refid="classEquipmentApplyHandler_1a2b8c7968c51cd21b8fc85e2b2ae5a598" compoundref="EquipmentApplyHandler_8cs" startline="168" endline="196">OnCrewIconSelected</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a9ad0b321e092e78256b121de2cc406da" compoundref="EquipmentApplyHandler_8cs" startline="427" endline="477">RefreshCrewDetailPanel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a17e3fcd7d8e6183983b716aa7d8121c1" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button EquipmentApplyHandler.detailAssistButton</definition>
+        <argsstring></argsstring>
+        <name>detailAssistButton</name>
+        <qualifiedname>EquipmentApplyHandler.detailAssistButton</qualifiedname>
+        <briefdescription>
+<para>개별 선원 디테일 UI에서 보조 장비 버튼 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="58" column="19" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="58" bodyend="-1"/>
+        <referencedby refid="classEquipmentApplyHandler_1a2b8c7968c51cd21b8fc85e2b2ae5a598" compoundref="EquipmentApplyHandler_8cs" startline="168" endline="196">OnCrewIconSelected</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a9ad0b321e092e78256b121de2cc406da" compoundref="EquipmentApplyHandler_8cs" startline="427" endline="477">RefreshCrewDetailPanel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a436049e28516d97d02de20ce6a8b2dcc" prot="public" static="no" mutable="no">
+        <type>Sprite</type>
+        <definition>Sprite EquipmentApplyHandler.noneIcon</definition>
+        <argsstring></argsstring>
+        <name>noneIcon</name>
+        <qualifiedname>EquipmentApplyHandler.noneIcon</qualifiedname>
+        <briefdescription>
+<para>착용 중인 장비 없음을 나타내는 icon </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="63" column="19" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="63" bodyend="-1"/>
+        <referencedby refid="classEquipmentApplyHandler_1a2b8c7968c51cd21b8fc85e2b2ae5a598" compoundref="EquipmentApplyHandler_8cs" startline="168" endline="196">OnCrewIconSelected</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a9ad0b321e092e78256b121de2cc406da" compoundref="EquipmentApplyHandler_8cs" startline="427" endline="477">RefreshCrewDetailPanel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a3019b30f075d40c1c069f9f11989764a" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button EquipmentApplyHandler.applyButton</definition>
+        <argsstring></argsstring>
+        <name>applyButton</name>
+        <qualifiedname>EquipmentApplyHandler.applyButton</qualifiedname>
+        <briefdescription>
+<para>선원에게 장비 적용 버튼 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="68" column="19" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1aa4e933299cf87679179ce192042b894e" prot="public" static="no" mutable="no">
+        <type>Button</type>
+        <definition>Button EquipmentApplyHandler.backButton</definition>
+        <argsstring></argsstring>
+        <name>backButton</name>
+        <qualifiedname>EquipmentApplyHandler.backButton</qualifiedname>
+        <briefdescription>
+<para>선원 리스트로 돌아가는 버튼 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="73" column="19" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1aa84df60ed2227c474a527e979e7cddcb" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject EquipmentApplyHandler.statComparePanel</definition>
+        <argsstring></argsstring>
+        <name>statComparePanel</name>
+        <qualifiedname>EquipmentApplyHandler.statComparePanel</qualifiedname>
+        <briefdescription>
+<para>스텟 비교 패널 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="79" column="23" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a91b34d97ffe00603d585aaa877eb264e" prot="public" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI EquipmentApplyHandler.baseStatsText</definition>
+        <argsstring></argsstring>
+        <name>baseStatsText</name>
+        <qualifiedname>EquipmentApplyHandler.baseStatsText</qualifiedname>
+        <briefdescription>
+<para>기존 스텟 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="84" column="28" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a3b28bb7219d5fb04039f7eed69baa7ff" prot="public" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI EquipmentApplyHandler.newStatsText</definition>
+        <argsstring></argsstring>
+        <name>newStatsText</name>
+        <qualifiedname>EquipmentApplyHandler.newStatsText</qualifiedname>
+        <briefdescription>
+<para>장비 착용, 미착용 후 변화 스텟 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="89" column="28" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a38ebad3aded8ec3cddbe8af6488e9f99" prot="public" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI EquipmentApplyHandler.statDiffText</definition>
+        <argsstring></argsstring>
+        <name>statDiffText</name>
+        <qualifiedname>EquipmentApplyHandler.statDiffText</qualifiedname>
+        <briefdescription>
+<para>차이 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="94" column="28" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a243f762beb199d10886be5e42da25615" prot="public" static="no" mutable="no">
+        <type><ref refid="classSlidePanelController" kindref="compound">SlidePanelController</ref></type>
+        <definition>SlidePanelController EquipmentApplyHandler.slidePanelController</definition>
+        <argsstring></argsstring>
+        <name>slidePanelController</name>
+        <qualifiedname>EquipmentApplyHandler.slidePanelController</qualifiedname>
+        <briefdescription>
+<para>선원 패널 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="114" column="33" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="114" bodyend="-1"/>
+        <referencedby refid="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" compoundref="EquipmentApplyHandler_8cs" startline="361" endline="406">OnClickStatApplyButton</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1aa86adcfb91345a29fa4718980f5491d9" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject EquipmentApplyHandler.midArrows</definition>
+        <argsstring></argsstring>
+        <name>midArrows</name>
+        <qualifiedname>EquipmentApplyHandler.midArrows</qualifiedname>
+        <briefdescription>
+<para>변화 표시 오브젝트 (우측 화살표) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="120" column="23" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="120" bodyend="-1"/>
+        <referencedby refid="classEquipmentApplyHandler_1a1c0b271d335367df0c60b36f6e07afc7" compoundref="EquipmentApplyHandler_8cs" startline="482" endline="493">OnClickBackPersonal</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" compoundref="EquipmentApplyHandler_8cs" startline="361" endline="406">OnClickStatApplyButton</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a505eedb5e3c77409be764388eb3fa994" compoundref="EquipmentApplyHandler_8cs" startline="203" endline="275">ShowStatComparison</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a15e2ed74bf371aa4930f3f7192d341b7" prot="private" static="no" mutable="no">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentApplyHandler.pendingEquipItem</definition>
+        <argsstring></argsstring>
+        <name>pendingEquipItem</name>
+        <qualifiedname>EquipmentApplyHandler.pendingEquipItem</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>해제하는 장비 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="99" column="27" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="99" bodyend="-1"/>
+        <referencedby refid="classEquipmentApplyHandler_1abd424807c871bb5f37f1b82c9bd008db" compoundref="EquipmentApplyHandler_8cs" startline="311" endline="341">OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" compoundref="EquipmentApplyHandler_8cs" startline="361" endline="406">OnClickStatApplyButton</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a64517bd171a33f2cd6025797d945f473" compoundref="EquipmentApplyHandler_8cs" startline="281" endline="305">OnEquipmentIconSelected</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1ad359b3b6598fb4d519b1ae4a1907d195" prot="private" static="no" mutable="no">
+        <type>EquipmentType</type>
+        <definition>EquipmentType EquipmentApplyHandler.pendingEquipType</definition>
+        <argsstring></argsstring>
+        <name>pendingEquipType</name>
+        <qualifiedname>EquipmentApplyHandler.pendingEquipType</qualifiedname>
+        <initializer>= EquipmentType.None</initializer>
+        <briefdescription>
+<para>해제하는 장비 타입 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="104" column="27" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="104" bodyend="-1"/>
+        <referencedby refid="classEquipmentApplyHandler_1abd424807c871bb5f37f1b82c9bd008db" compoundref="EquipmentApplyHandler_8cs" startline="311" endline="341">OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" compoundref="EquipmentApplyHandler_8cs" startline="361" endline="406">OnClickStatApplyButton</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a64517bd171a33f2cd6025797d945f473" compoundref="EquipmentApplyHandler_8cs" startline="281" endline="305">OnEquipmentIconSelected</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a44f25460b1769b0307c1563fa82b2da7" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool EquipmentApplyHandler.isPendingRemoval</definition>
+        <argsstring></argsstring>
+        <name>isPendingRemoval</name>
+        <qualifiedname>EquipmentApplyHandler.isPendingRemoval</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>장비 해제 완료 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="109" column="18" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="109" bodyend="-1"/>
+        <referencedby refid="classEquipmentApplyHandler_1abd424807c871bb5f37f1b82c9bd008db" compoundref="EquipmentApplyHandler_8cs" startline="311" endline="341">OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" compoundref="EquipmentApplyHandler_8cs" startline="361" endline="406">OnClickStatApplyButton</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a64517bd171a33f2cd6025797d945f473" compoundref="EquipmentApplyHandler_8cs" startline="281" endline="305">OnEquipmentIconSelected</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a466c91b58f921f36fbcee1136d6f864d" prot="private" static="no" mutable="no">
+        <type>Image[]</type>
+        <definition>Image [] EquipmentApplyHandler.changeArrows</definition>
+        <argsstring></argsstring>
+        <name>changeArrows</name>
+        <qualifiedname>EquipmentApplyHandler.changeArrows</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="121" column="20" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a56b2592dca7971ad63b193486d18497d" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image EquipmentApplyHandler.beforeEquipImage</definition>
+        <argsstring></argsstring>
+        <name>beforeEquipImage</name>
+        <qualifiedname>EquipmentApplyHandler.beforeEquipImage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="122" column="20" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a055dc1243e6aa511a04666de69bd4e97" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image EquipmentApplyHandler.afterEquipImage</definition>
+        <argsstring></argsstring>
+        <name>afterEquipImage</name>
+        <qualifiedname>EquipmentApplyHandler.afterEquipImage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="123" column="20" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a2965c9fb8ae979f959c4c18011ee6ecf" prot="private" static="no" mutable="no">
+        <type>Sprite</type>
+        <definition>Sprite EquipmentApplyHandler.increaseSprite</definition>
+        <argsstring></argsstring>
+        <name>increaseSprite</name>
+        <qualifiedname>EquipmentApplyHandler.increaseSprite</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="124" column="21" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a0ed8c65ebd3c41dfd9ae7081a12ca30f" prot="private" static="no" mutable="no">
+        <type>Sprite</type>
+        <definition>Sprite EquipmentApplyHandler.decreaseSprite</definition>
+        <argsstring></argsstring>
+        <name>decreaseSprite</name>
+        <qualifiedname>EquipmentApplyHandler.decreaseSprite</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="125" column="21" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEquipmentApplyHandler_1a3c92f4b5585928a3b5f52bd5ce38341a" prot="private" static="no" mutable="no">
+        <type>Sprite</type>
+        <definition>Sprite EquipmentApplyHandler.noChangeSprite</definition>
+        <argsstring></argsstring>
+        <name>noChangeSprite</name>
+        <qualifiedname>EquipmentApplyHandler.noChangeSprite</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="126" column="21" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="126" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEquipmentApplyHandler_1a09798977813367f2f3acf42a475dc852" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentApplyHandler.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <qualifiedname>EquipmentApplyHandler.OnEnable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="128" column="18" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="128" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentApplyHandler_1a30971b246563208e707c97fd25646dc4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentApplyHandler.PopulateEquipmentIcons</definition>
+        <argsstring>()</argsstring>
+        <name>PopulateEquipmentIcons</name>
+        <qualifiedname>EquipmentApplyHandler.PopulateEquipmentIcons</qualifiedname>
+        <briefdescription>
+<para>보유 중인 전체 장비 리스트 갱신 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="151" column="18" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="151" bodyend="162"/>
+        <references refid="classEquipmentApplyHandler_1a63e28fce65a94ce0932dc197d10c3171" compoundref="EquipmentApplyHandler_8cs" startline="38">equipmentContent</references>
+        <references refid="classEquipmentApplyHandler_1aff4bf07c003e5f0af5057549ba21c0a1" compoundref="EquipmentApplyHandler_8cs" startline="33">equipmentIconPrefab</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classEquipmentApplyHandler_1a64517bd171a33f2cd6025797d945f473" compoundref="EquipmentApplyHandler_8cs" startline="281" endline="305">OnEquipmentIconSelected</references>
+        <references refid="classGameManager_1af31b125ee50ee4ffee177b8357ef1f11" compoundref="GameManager_8cs" startline="19">GameManager.playerShip</references>
+        <references refid="classShip_1aecbf6d2dcd3550da4a46ee12bbbc8a6a" compoundref="Ship_8cs" startline="54">Ship.unUsedItems</references>
+        <referencedby refid="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" compoundref="EquipmentApplyHandler_8cs" startline="361" endline="406">OnClickStatApplyButton</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentApplyHandler_1a505eedb5e3c77409be764388eb3fa994" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentApplyHandler.ShowStatComparison</definition>
+        <argsstring>(EquipmentStats before, EquipmentStats after)</argsstring>
+        <name>ShowStatComparison</name>
+        <qualifiedname>EquipmentApplyHandler.ShowStatComparison</qualifiedname>
+        <param>
+          <type><ref refid="classEquipmentStats" kindref="compound">EquipmentStats</ref></type>
+          <declname>before</declname>
+        </param>
+        <param>
+          <type><ref refid="classEquipmentStats" kindref="compound">EquipmentStats</ref></type>
+          <declname>after</declname>
+        </param>
+        <briefdescription>
+<para>장비 착용 / 해제 비교 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>before</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>after</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="203" column="18" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="203" bodyend="275"/>
+        <references refid="classEquipmentApplyHandler_1aa86adcfb91345a29fa4718980f5491d9" compoundref="EquipmentApplyHandler_8cs" startline="120">midArrows</references>
+        <referencedby refid="classEquipmentApplyHandler_1abd424807c871bb5f37f1b82c9bd008db" compoundref="EquipmentApplyHandler_8cs" startline="311" endline="341">OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a64517bd171a33f2cd6025797d945f473" compoundref="EquipmentApplyHandler_8cs" startline="281" endline="305">OnEquipmentIconSelected</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentApplyHandler_1a64517bd171a33f2cd6025797d945f473" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentApplyHandler.OnEquipmentIconSelected</definition>
+        <argsstring>(EquipmentItem item)</argsstring>
+        <name>OnEquipmentIconSelected</name>
+        <qualifiedname>EquipmentApplyHandler.OnEquipmentIconSelected</qualifiedname>
+        <param>
+          <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+<para>장비 선택됨 (장비 착용, 미착용 등 스텟 비교) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>item</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="281" column="18" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="281" bodyend="305"/>
+        <references refid="classCrewBase_1ad9e50598947dde72ca04a35781a39989" compoundref="CrewBase_8cs" startline="85">CrewBase.equippedAssistant</references>
+        <references refid="classCrewBase_1a4d57ff0d91892589b29b17b2bdf4f919" compoundref="CrewBase_8cs" startline="82">CrewBase.equippedShield</references>
+        <references refid="classCrewBase_1af24e32cdeeee12b9f2a45b88a0bef2e5" compoundref="CrewBase_8cs" startline="79">CrewBase.equippedWeapon</references>
+        <references refid="classCrewMember_1a4eba19a797d1f5b3bcaa0c36b695f245" compoundref="CrewMember_8cs" startline="340" endline="357">CrewMember.GetCombinedStats</references>
+        <references refid="classCrewMember_1ab51adc771fd75a9ee2d1f53e218e77c8" compoundref="CrewMember_8cs" startline="364" endline="421">CrewMember.GetStatsIfEquipped</references>
+        <references refid="classEquipmentApplyHandler_1a44f25460b1769b0307c1563fa82b2da7" compoundref="EquipmentApplyHandler_8cs" startline="109">isPendingRemoval</references>
+        <references refid="classEquipmentApplyHandler_1a15e2ed74bf371aa4930f3f7192d341b7" compoundref="EquipmentApplyHandler_8cs" startline="99">pendingEquipItem</references>
+        <references refid="classEquipmentApplyHandler_1ad359b3b6598fb4d519b1ae4a1907d195" compoundref="EquipmentApplyHandler_8cs" startline="104">pendingEquipType</references>
+        <references refid="classEquipmentApplyHandler_1a20667fd4f8a7f321ce0e959b0bb6b169" compoundref="EquipmentApplyHandler_8cs" startline="27">selectedCrew</references>
+        <references refid="classEquipmentApplyHandler_1a505eedb5e3c77409be764388eb3fa994" compoundref="EquipmentApplyHandler_8cs" startline="203" endline="275">ShowStatComparison</references>
+        <referencedby refid="classEquipmentApplyHandler_1a30971b246563208e707c97fd25646dc4" compoundref="EquipmentApplyHandler_8cs" startline="151" endline="162">PopulateEquipmentIcons</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentApplyHandler_1ae905dc4e4a0d8317769bcfd3c7eaa132" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+        <definition>EquipmentItem EquipmentApplyHandler.GetCurrentEquippedByType</definition>
+        <argsstring>(EquipmentType type)</argsstring>
+        <name>GetCurrentEquippedByType</name>
+        <qualifiedname>EquipmentApplyHandler.GetCurrentEquippedByType</qualifiedname>
+        <param>
+          <type>EquipmentType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>현재 착용 중인 장비 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="413" column="27" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="413" bodyend="422"/>
+        <references refid="classCrewBase_1ad9e50598947dde72ca04a35781a39989" compoundref="CrewBase_8cs" startline="85">CrewBase.equippedAssistant</references>
+        <references refid="classCrewBase_1a4d57ff0d91892589b29b17b2bdf4f919" compoundref="CrewBase_8cs" startline="82">CrewBase.equippedShield</references>
+        <references refid="classCrewBase_1af24e32cdeeee12b9f2a45b88a0bef2e5" compoundref="CrewBase_8cs" startline="79">CrewBase.equippedWeapon</references>
+        <references refid="classEquipmentApplyHandler_1a20667fd4f8a7f321ce0e959b0bb6b169" compoundref="EquipmentApplyHandler_8cs" startline="27">selectedCrew</references>
+        <referencedby refid="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" compoundref="EquipmentApplyHandler_8cs" startline="361" endline="406">OnClickStatApplyButton</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentApplyHandler_1a9ad0b321e092e78256b121de2cc406da" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentApplyHandler.RefreshCrewDetailPanel</definition>
+        <argsstring>(EquipmentType type)</argsstring>
+        <name>RefreshCrewDetailPanel</name>
+        <qualifiedname>EquipmentApplyHandler.RefreshCrewDetailPanel</qualifiedname>
+        <param>
+          <type>EquipmentType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>선원 개인 디테일 패널 정보 갱신 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="427" column="18" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="427" bodyend="477"/>
+        <references refid="classEquipmentApplyHandler_1a17e3fcd7d8e6183983b716aa7d8121c1" compoundref="EquipmentApplyHandler_8cs" startline="58">detailAssistButton</references>
+        <references refid="classEquipmentApplyHandler_1ad4f645ef343a5230a54197715e4e23b6" compoundref="EquipmentApplyHandler_8cs" startline="53">detailShieldButton</references>
+        <references refid="classEquipmentApplyHandler_1a992f84326c37961ff249916005452f19" compoundref="EquipmentApplyHandler_8cs" startline="48">detailWeaponButton</references>
+        <references refid="classCrewBase_1ad9e50598947dde72ca04a35781a39989" compoundref="CrewBase_8cs" startline="85">CrewBase.equippedAssistant</references>
+        <references refid="classCrewBase_1a4d57ff0d91892589b29b17b2bdf4f919" compoundref="CrewBase_8cs" startline="82">CrewBase.equippedShield</references>
+        <references refid="classCrewBase_1af24e32cdeeee12b9f2a45b88a0bef2e5" compoundref="CrewBase_8cs" startline="79">CrewBase.equippedWeapon</references>
+        <references refid="classCrewMember_1a4eba19a797d1f5b3bcaa0c36b695f245" compoundref="CrewMember_8cs" startline="340" endline="357">CrewMember.GetCombinedStats</references>
+        <references refid="classEquipmentApplyHandler_1a436049e28516d97d02de20ce6a8b2dcc" compoundref="EquipmentApplyHandler_8cs" startline="63">noneIcon</references>
+        <references refid="classEquipmentApplyHandler_1a20667fd4f8a7f321ce0e959b0bb6b169" compoundref="EquipmentApplyHandler_8cs" startline="27">selectedCrew</references>
+        <referencedby refid="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" compoundref="EquipmentApplyHandler_8cs" startline="361" endline="406">OnClickStatApplyButton</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEquipmentApplyHandler_1a386c9de97752d4a5dd1d8cf5795940bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentApplyHandler.Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>EquipmentApplyHandler.Initialize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="135" column="17" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="135" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentApplyHandler_1a2b8c7968c51cd21b8fc85e2b2ae5a598" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentApplyHandler.OnCrewIconSelected</definition>
+        <argsstring>(CrewMember crew)</argsstring>
+        <name>OnCrewIconSelected</name>
+        <qualifiedname>EquipmentApplyHandler.OnCrewIconSelected</qualifiedname>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crew</declname>
+        </param>
+        <briefdescription>
+<para>선원 선택됨 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>crew</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="168" column="17" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="168" bodyend="196"/>
+        <references refid="classEquipmentApplyHandler_1a17e3fcd7d8e6183983b716aa7d8121c1" compoundref="EquipmentApplyHandler_8cs" startline="58">detailAssistButton</references>
+        <references refid="classEquipmentApplyHandler_1ad4f645ef343a5230a54197715e4e23b6" compoundref="EquipmentApplyHandler_8cs" startline="53">detailShieldButton</references>
+        <references refid="classEquipmentApplyHandler_1a992f84326c37961ff249916005452f19" compoundref="EquipmentApplyHandler_8cs" startline="48">detailWeaponButton</references>
+        <references refid="classEquipmentApplyHandler_1a436049e28516d97d02de20ce6a8b2dcc" compoundref="EquipmentApplyHandler_8cs" startline="63">noneIcon</references>
+        <references refid="classCrewBase_1ad780ab3fedd8afc88bf6009e45cd2c74" compoundref="CrewBase_8cs" startline="123">CrewBase.portraitSprite</references>
+        <references refid="classEquipmentApplyHandler_1a20667fd4f8a7f321ce0e959b0bb6b169" compoundref="EquipmentApplyHandler_8cs" startline="27">selectedCrew</references>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentApplyHandler_1abd424807c871bb5f37f1b82c9bd008db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentApplyHandler.OnClickPendingUnEquip</definition>
+        <argsstring>(EquipmentType type)</argsstring>
+        <name>OnClickPendingUnEquip</name>
+        <qualifiedname>EquipmentApplyHandler.OnClickPendingUnEquip</qualifiedname>
+        <param>
+          <type>EquipmentType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>장비 해제 예비 작업 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="311" column="17" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="311" bodyend="341"/>
+        <references refid="classEquipmentManager_1ae273b3db3b9f64a405560cd76bbed441" compoundref="EquipmentManager_8cs" startline="30">EquipmentManager.defaultAssistant</references>
+        <references refid="classEquipmentManager_1a1f54095ae7e284228a950f5df50c2017" compoundref="EquipmentManager_8cs" startline="25">EquipmentManager.defaultShield</references>
+        <references refid="classEquipmentManager_1a40f1f1382937d24afb96b3f19b5109ec" compoundref="EquipmentManager_8cs" startline="20">EquipmentManager.defaultWeapon</references>
+        <references refid="classCrewBase_1ad9e50598947dde72ca04a35781a39989" compoundref="CrewBase_8cs" startline="85">CrewBase.equippedAssistant</references>
+        <references refid="classCrewBase_1a4d57ff0d91892589b29b17b2bdf4f919" compoundref="CrewBase_8cs" startline="82">CrewBase.equippedShield</references>
+        <references refid="classCrewBase_1af24e32cdeeee12b9f2a45b88a0bef2e5" compoundref="CrewBase_8cs" startline="79">CrewBase.equippedWeapon</references>
+        <references refid="classCrewMember_1a4eba19a797d1f5b3bcaa0c36b695f245" compoundref="CrewMember_8cs" startline="340" endline="357">CrewMember.GetCombinedStats</references>
+        <references refid="classEquipmentManager_1a59c00f08f3b14747fea08fa3ff8211c6" compoundref="EquipmentManager_8cs" startline="120" endline="129">EquipmentManager.GetDefaultEquipment</references>
+        <references refid="classCrewMember_1ab51adc771fd75a9ee2d1f53e218e77c8" compoundref="CrewMember_8cs" startline="364" endline="421">CrewMember.GetStatsIfEquipped</references>
+        <references refid="classEquipmentManager_1ac1e25a54adbc1f163ae3ee0ac62c37e7" compoundref="EquipmentManager_8cs" startline="13" endline="13">EquipmentManager.Instance</references>
+        <references refid="classEquipmentApplyHandler_1a44f25460b1769b0307c1563fa82b2da7" compoundref="EquipmentApplyHandler_8cs" startline="109">isPendingRemoval</references>
+        <references refid="classEquipmentApplyHandler_1a15e2ed74bf371aa4930f3f7192d341b7" compoundref="EquipmentApplyHandler_8cs" startline="99">pendingEquipItem</references>
+        <references refid="classEquipmentApplyHandler_1ad359b3b6598fb4d519b1ae4a1907d195" compoundref="EquipmentApplyHandler_8cs" startline="104">pendingEquipType</references>
+        <references refid="classEquipmentApplyHandler_1a20667fd4f8a7f321ce0e959b0bb6b169" compoundref="EquipmentApplyHandler_8cs" startline="27">selectedCrew</references>
+        <references refid="classEquipmentApplyHandler_1a505eedb5e3c77409be764388eb3fa994" compoundref="EquipmentApplyHandler_8cs" startline="203" endline="275">ShowStatComparison</references>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentApplyHandler_1afc2e325df5efb3cc65c0fb74b08556f3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentApplyHandler.OnClickUnEquipWeaponSlot</definition>
+        <argsstring>()</argsstring>
+        <name>OnClickUnEquipWeaponSlot</name>
+        <qualifiedname>EquipmentApplyHandler.OnClickUnEquipWeaponSlot</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="343" column="17" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="343" bodyend="346"/>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentApplyHandler_1a1784f93397e8e747d47a9f6bae4053d2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentApplyHandler.OnClickUnEquipShieldSlot</definition>
+        <argsstring>()</argsstring>
+        <name>OnClickUnEquipShieldSlot</name>
+        <qualifiedname>EquipmentApplyHandler.OnClickUnEquipShieldSlot</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="348" column="17" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="348" bodyend="351"/>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentApplyHandler_1a867e9f64beaaf5d7356159ed133c0dba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentApplyHandler.OnClickUnEquipAssistantSlot</definition>
+        <argsstring>()</argsstring>
+        <name>OnClickUnEquipAssistantSlot</name>
+        <qualifiedname>EquipmentApplyHandler.OnClickUnEquipAssistantSlot</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="353" column="17" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="353" bodyend="356"/>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentApplyHandler.OnClickStatApplyButton</definition>
+        <argsstring>()</argsstring>
+        <name>OnClickStatApplyButton</name>
+        <qualifiedname>EquipmentApplyHandler.OnClickStatApplyButton</qualifiedname>
+        <briefdescription>
+<para>ok 버튼 눌러 장비를 선원에게 직접 적용 / 해제 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="361" column="17" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="361" bodyend="406"/>
+        <references refid="classEquipmentManager_1ae273b3db3b9f64a405560cd76bbed441" compoundref="EquipmentManager_8cs" startline="30">EquipmentManager.defaultAssistant</references>
+        <references refid="classEquipmentApplyHandler_1ae905dc4e4a0d8317769bcfd3c7eaa132" compoundref="EquipmentApplyHandler_8cs" startline="413" endline="422">GetCurrentEquippedByType</references>
+        <references refid="classEquipmentManager_1a59c00f08f3b14747fea08fa3ff8211c6" compoundref="EquipmentManager_8cs" startline="120" endline="129">EquipmentManager.GetDefaultEquipment</references>
+        <references refid="classEquipmentManager_1ac1e25a54adbc1f163ae3ee0ac62c37e7" compoundref="EquipmentManager_8cs" startline="13" endline="13">EquipmentManager.Instance</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classEquipmentApplyHandler_1a44f25460b1769b0307c1563fa82b2da7" compoundref="EquipmentApplyHandler_8cs" startline="109">isPendingRemoval</references>
+        <references refid="classEquipmentApplyHandler_1aa86adcfb91345a29fa4718980f5491d9" compoundref="EquipmentApplyHandler_8cs" startline="120">midArrows</references>
+        <references refid="classEquipmentApplyHandler_1a15e2ed74bf371aa4930f3f7192d341b7" compoundref="EquipmentApplyHandler_8cs" startline="99">pendingEquipItem</references>
+        <references refid="classEquipmentApplyHandler_1ad359b3b6598fb4d519b1ae4a1907d195" compoundref="EquipmentApplyHandler_8cs" startline="104">pendingEquipType</references>
+        <references refid="classGameManager_1af31b125ee50ee4ffee177b8357ef1f11" compoundref="GameManager_8cs" startline="19">GameManager.playerShip</references>
+        <references refid="classEquipmentApplyHandler_1a30971b246563208e707c97fd25646dc4" compoundref="EquipmentApplyHandler_8cs" startline="151" endline="162">PopulateEquipmentIcons</references>
+        <references refid="classEquipmentManager_1a90239daf1d91e83617f4863e00a4b2e2" compoundref="EquipmentManager_8cs" startline="85" endline="88">EquipmentManager.PurchaseAndEquipPersonal</references>
+        <references refid="classEquipmentApplyHandler_1a9ad0b321e092e78256b121de2cc406da" compoundref="EquipmentApplyHandler_8cs" startline="427" endline="477">RefreshCrewDetailPanel</references>
+        <references refid="classEquipmentApplyHandler_1a20667fd4f8a7f321ce0e959b0bb6b169" compoundref="EquipmentApplyHandler_8cs" startline="27">selectedCrew</references>
+        <references refid="classEquipmentApplyHandler_1a243f762beb199d10886be5e42da25615" compoundref="EquipmentApplyHandler_8cs" startline="114">slidePanelController</references>
+        <references refid="classShip_1aecbf6d2dcd3550da4a46ee12bbbc8a6a" compoundref="Ship_8cs" startline="54">Ship.unUsedItems</references>
+      </memberdef>
+      <memberdef kind="function" id="classEquipmentApplyHandler_1a1c0b271d335367df0c60b36f6e07afc7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EquipmentApplyHandler.OnClickBackPersonal</definition>
+        <argsstring>()</argsstring>
+        <name>OnClickBackPersonal</name>
+        <qualifiedname>EquipmentApplyHandler.OnClickBackPersonal</qualifiedname>
+        <briefdescription>
+<para>선원 개인 디테일 panel 끄기 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="482" column="17" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="482" bodyend="493"/>
+        <references refid="classEquipmentApplyHandler_1aa86adcfb91345a29fa4718980f5491d9" compoundref="EquipmentApplyHandler_8cs" startline="120">midArrows</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EquipmentApplyHandler</label>
+        <link refid="classEquipmentApplyHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="10">
+        <label>Constants</label>
+      </node>
+      <node id="4">
+        <label>CrewBase</label>
+        <link refid="classCrewBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+equippedAssistant</edgelabel>
+          <edgelabel>+equippedShield</edgelabel>
+          <edgelabel>+equippedWeapon</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+currentRoom</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+currentShip</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>+healthBarController</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>CrewHealthBar</label>
+        <link refid="classCrewHealthBar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-offset</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-crewBase</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>CrewMember</label>
+        <link refid="classCrewMember"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-movementDirection</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+madRoom</edgelabel>
+          <edgelabel>+oldReservedRoom</edgelabel>
+          <edgelabel>+reservedRoom</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>EquipmentApplyHandler</label>
+        <link refid="classEquipmentApplyHandler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+selectedCrew</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>+applyButton</edgelabel>
+          <edgelabel>+backButton</edgelabel>
+          <edgelabel>+detailAssistButton</edgelabel>
+          <edgelabel>+detailShieldButton</edgelabel>
+          <edgelabel>+detailWeaponButton</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-pendingEquipItem</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>+slidePanelController</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>EquipmentItem</label>
+        <link refid="classEquipmentItem"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="33">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="5">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="28">
+        <label>ItemMapController</label>
+        <link refid="classItemMapController"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>-currentItem</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="20">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>RandomQuest</label>
+        <link refid="classRandomQuest"/>
+      </node>
+      <node id="8">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="23">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="11" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>SlidePanelController</label>
+        <link refid="classSlidePanelController"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-buttonCrew</edgelabel>
+          <edgelabel>-buttonQuest</edgelabel>
+          <edgelabel>-buttonShip</edgelabel>
+          <edgelabel>-buttonStorage</edgelabel>
+          <edgelabel>-closedPosition</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>-questToCancel</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>-itemMapPanel</edgelabel>
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>-selectedStoragePanel</edgelabel>
+        </childnode>
+      </node>
+      <node id="30">
+        <label>StorageInfoPanel</label>
+        <link refid="classStorageInfoPanel"/>
+        <childnode refid="31" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>-panelButton</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>-currentItem</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>-slidePanelController</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>TooltipPanelBase</label>
+        <link refid="classTooltipPanelBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="32" relation="public-inheritance">
+        </childnode>
+        <childnode refid="33" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>#lastMousePosition</edgelabel>
+        </childnode>
+      </node>
+      <node id="29">
+        <label>TradingItemData</label>
+        <link refid="classTradingItemData"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>UnityEngine</label>
+      </node>
+      <node id="16">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" line="6" column="7" bodyfile="Assets/Scripts/Equipment/EquipmentApplyHandler.cs" bodystart="7" bodyend="494"/>
+    <listofallmembers>
+      <member refid="classEquipmentApplyHandler_1a055dc1243e6aa511a04666de69bd4e97" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>afterEquipImage</name></member>
+      <member refid="classEquipmentApplyHandler_1ae95b562db137d947dd0e68a703b19e16" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>allEquipmentPanel</name></member>
+      <member refid="classEquipmentApplyHandler_1a3019b30f075d40c1c069f9f11989764a" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>applyButton</name></member>
+      <member refid="classEquipmentApplyHandler_1aa4e933299cf87679179ce192042b894e" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>backButton</name></member>
+      <member refid="classEquipmentApplyHandler_1a91b34d97ffe00603d585aaa877eb264e" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>baseStatsText</name></member>
+      <member refid="classEquipmentApplyHandler_1a56b2592dca7971ad63b193486d18497d" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>beforeEquipImage</name></member>
+      <member refid="classEquipmentApplyHandler_1a466c91b58f921f36fbcee1136d6f864d" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>changeArrows</name></member>
+      <member refid="classEquipmentApplyHandler_1a8482997809271af3059c71266af043b0" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>crewDetailPanel</name></member>
+      <member refid="classEquipmentApplyHandler_1a0ed8c65ebd3c41dfd9ae7081a12ca30f" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>decreaseSprite</name></member>
+      <member refid="classEquipmentApplyHandler_1a17e3fcd7d8e6183983b716aa7d8121c1" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>detailAssistButton</name></member>
+      <member refid="classEquipmentApplyHandler_1ae8f671ec9368e9f2e382d9621b877998" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>detailCrewImage</name></member>
+      <member refid="classEquipmentApplyHandler_1ad4f645ef343a5230a54197715e4e23b6" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>detailShieldButton</name></member>
+      <member refid="classEquipmentApplyHandler_1a992f84326c37961ff249916005452f19" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>detailWeaponButton</name></member>
+      <member refid="classEquipmentApplyHandler_1a63e28fce65a94ce0932dc197d10c3171" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>equipmentContent</name></member>
+      <member refid="classEquipmentApplyHandler_1aff4bf07c003e5f0af5057549ba21c0a1" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>equipmentIconPrefab</name></member>
+      <member refid="classEquipmentApplyHandler_1ae905dc4e4a0d8317769bcfd3c7eaa132" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>GetCurrentEquippedByType</name></member>
+      <member refid="classEquipmentApplyHandler_1a2965c9fb8ae979f959c4c18011ee6ecf" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>increaseSprite</name></member>
+      <member refid="classEquipmentApplyHandler_1a386c9de97752d4a5dd1d8cf5795940bd" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>Initialize</name></member>
+      <member refid="classEquipmentApplyHandler_1a44f25460b1769b0307c1563fa82b2da7" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>isPendingRemoval</name></member>
+      <member refid="classEquipmentApplyHandler_1aa86adcfb91345a29fa4718980f5491d9" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>midArrows</name></member>
+      <member refid="classEquipmentApplyHandler_1a3b28bb7219d5fb04039f7eed69baa7ff" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>newStatsText</name></member>
+      <member refid="classEquipmentApplyHandler_1a3c92f4b5585928a3b5f52bd5ce38341a" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>noChangeSprite</name></member>
+      <member refid="classEquipmentApplyHandler_1a436049e28516d97d02de20ce6a8b2dcc" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>noneIcon</name></member>
+      <member refid="classEquipmentApplyHandler_1a1c0b271d335367df0c60b36f6e07afc7" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>OnClickBackPersonal</name></member>
+      <member refid="classEquipmentApplyHandler_1abd424807c871bb5f37f1b82c9bd008db" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>OnClickPendingUnEquip</name></member>
+      <member refid="classEquipmentApplyHandler_1aa78bfaf762e0ef65f070c6aea9f16112" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>OnClickStatApplyButton</name></member>
+      <member refid="classEquipmentApplyHandler_1a867e9f64beaaf5d7356159ed133c0dba" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>OnClickUnEquipAssistantSlot</name></member>
+      <member refid="classEquipmentApplyHandler_1a1784f93397e8e747d47a9f6bae4053d2" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>OnClickUnEquipShieldSlot</name></member>
+      <member refid="classEquipmentApplyHandler_1afc2e325df5efb3cc65c0fb74b08556f3" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>OnClickUnEquipWeaponSlot</name></member>
+      <member refid="classEquipmentApplyHandler_1a2b8c7968c51cd21b8fc85e2b2ae5a598" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>OnCrewIconSelected</name></member>
+      <member refid="classEquipmentApplyHandler_1a09798977813367f2f3acf42a475dc852" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>OnEnable</name></member>
+      <member refid="classEquipmentApplyHandler_1a64517bd171a33f2cd6025797d945f473" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>OnEquipmentIconSelected</name></member>
+      <member refid="classEquipmentApplyHandler_1a15e2ed74bf371aa4930f3f7192d341b7" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>pendingEquipItem</name></member>
+      <member refid="classEquipmentApplyHandler_1ad359b3b6598fb4d519b1ae4a1907d195" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>pendingEquipType</name></member>
+      <member refid="classEquipmentApplyHandler_1a30971b246563208e707c97fd25646dc4" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>PopulateEquipmentIcons</name></member>
+      <member refid="classEquipmentApplyHandler_1afb17246727b03db7d679d9a9e23f7964" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>purchasedItems</name></member>
+      <member refid="classEquipmentApplyHandler_1a9ad0b321e092e78256b121de2cc406da" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>RefreshCrewDetailPanel</name></member>
+      <member refid="classEquipmentApplyHandler_1a20667fd4f8a7f321ce0e959b0bb6b169" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>selectedCrew</name></member>
+      <member refid="classEquipmentApplyHandler_1a505eedb5e3c77409be764388eb3fa994" prot="private" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>ShowStatComparison</name></member>
+      <member refid="classEquipmentApplyHandler_1a243f762beb199d10886be5e42da25615" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>slidePanelController</name></member>
+      <member refid="classEquipmentApplyHandler_1aa84df60ed2227c474a527e979e7cddcb" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>statComparePanel</name></member>
+      <member refid="classEquipmentApplyHandler_1a38ebad3aded8ec3cddbe8af6488e9f99" prot="public" virt="non-virtual"><scope>EquipmentApplyHandler</scope><name>statDiffText</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

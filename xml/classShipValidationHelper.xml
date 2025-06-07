@@ -1,0 +1,629 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classShipValidationHelper" kind="class" language="C#" prot="public">
+    <compoundname>ShipValidationHelper</compoundname>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classShipValidationHelper_1afe90d1e14396951e3079f4a426ead02d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classValidationResult" kindref="compound">ValidationResult</ref></type>
+        <definition>ValidationResult ShipValidationHelper.ValidateShipLayout</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>ValidateShipLayout</name>
+        <qualifiedname>ShipValidationHelper.ValidateShipLayout</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>함선 배치의 유효성 검사 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="17" column="29" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="17" bodyend="58"/>
+        <references refid="classShip_1a4564f5164e97e4c582442cffe8302c54" compoundref="Ship_8cs" startline="493">Ship.backupCrewDatas</references>
+        <references refid="classShipValidationHelper_1a11fc072a1eafd79fadee661b4af713a6" compoundref="ShipValidatonHelper_8cs" startline="212" endline="330">CheckAllRoomsPathConnectedByDoors</references>
+        <references refid="classShipValidationHelper_1ab1718296af9c0c61362ef161bff9a3c8" compoundref="ShipValidatonHelper_8cs" startline="101" endline="122">CheckOxygenBreathe</references>
+        <references refid="classShipValidationHelper_1a88b3d2ffb57d59c06182ebd39f88adb1" compoundref="ShipValidatonHelper_8cs" startline="63" endline="93">CheckRequiredRooms</references>
+        <references refid="classShipValidationHelper_1a39d36df3f0a7878f35261c554c7b1574" compoundref="ShipValidatonHelper_8cs" startline="389" endline="471">CheckWeaponConnectivity</references>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classValidationResult_1a0f2b55478f1835b03ff10d719356d3c9" compoundref="ShipValidationResult_8cs" startline="13">ValidationResult.IsValid</references>
+        <references refid="classShipValidationHelper_1a9111fff29a3ed831923e35aa76ba14be" compoundref="ShipValidatonHelper_8cs" startline="130" endline="204">ValidateWeaponAttachmentDirection</references>
+        <references refid="classShipValidationHelper_1aae7e4b1ba35c545797689b1f7b4bc9c1" compoundref="ShipValidatonHelper_8cs" startline="338" endline="381">ValidateWeaponPlacement</references>
+        <referencedby refid="classCustomizeShipUIHandler_1a0a87df1bbf10a142bcfb73c4634a7bd4" compoundref="CustomizeShipUIHandler_8cs" startline="307" endline="372">CustomizeShipUIHandler.OnClickBuild</referencedby>
+        <referencedby refid="classCustomize__1__Controller_1ac71022868de14f02fffd845270ffb42b" compoundref="Customize__1__Controller_8cs" startline="237" endline="298">Customize_1_Controller.OnClickSave</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipValidationHelper_1ab1718296af9c0c61362ef161bff9a3c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classValidationResult" kindref="compound">ValidationResult</ref></type>
+        <definition>ValidationResult ShipValidationHelper.CheckOxygenBreathe</definition>
+        <argsstring>(List&lt; Room &gt; rooms, List&lt; BackupCrewData &gt; crewDatas)</argsstring>
+        <name>CheckOxygenBreathe</name>
+        <qualifiedname>ShipValidationHelper.CheckOxygenBreathe</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="classRoom" kindref="compound">Room</ref> &gt;</type>
+          <declname>rooms</declname>
+        </param>
+        <param>
+          <type>List&lt; <ref refid="structBackupCrewData" kindref="compound">BackupCrewData</ref> &gt;</type>
+          <declname>crewDatas</declname>
+        </param>
+        <briefdescription>
+<para>산소 호흡 종족 소유 여부에 따라 산소실 배치 체크 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rooms</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>crews</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="101" column="29" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="101" bodyend="122"/>
+        <referencedby refid="classShipValidationHelper_1afe90d1e14396951e3079f4a426ead02d" compoundref="ShipValidatonHelper_8cs" startline="17" endline="58">ValidateShipLayout</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipValidationHelper_1a9111fff29a3ed831923e35aa76ba14be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classValidationResult" kindref="compound">ValidationResult</ref></type>
+        <definition>ValidationResult ShipValidationHelper.ValidateWeaponAttachmentDirection</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>ValidateWeaponAttachmentDirection</name>
+        <qualifiedname>ShipValidationHelper.ValidateWeaponAttachmentDirection</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>무기의 방향과 방 연결 상태를 검사합니다. 각 무기의 AttachedDirection에 따라 적절한 위치에 방이 있어야 합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>검사할 함선</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>검증 결과</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="130" column="29" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="130" bodyend="204"/>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classShip_1a058800cd1cdc9601aeb176ac45fd91d4" compoundref="Ship_8cs" startline="1143" endline="1146">Ship.GetAllWeapons</references>
+        <references refid="classShipWeapon_1aeaa57cf7fa6e6a8543a0350f8e45ca9d" compoundref="ShipWeapon_8cs" startline="287" endline="290">ShipWeapon.GetAttachedDirection</references>
+        <references refid="classShipWeapon_1a421526a38a8fbd32127d0063526c9c6a" compoundref="ShipWeapon_8cs" startline="269" endline="272">ShipWeapon.GetGridPosition</references>
+        <references refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" compoundref="Room_8cs" startline="482" endline="488">Room&lt; TData, TLevel &gt;.GetOccupiedTiles</references>
+        <references refid="classRoom_1a20cd0655c331d88c7e1825abc51e9941" compoundref="Room_8cs" startline="464" endline="467">Room&lt; TData, TLevel &gt;.GetSize</references>
+        <references refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" compoundref="Room_8cs" startline="15">Room&lt; TData, TLevel &gt;.position</references>
+        <referencedby refid="classShipValidationHelper_1afe90d1e14396951e3079f4a426ead02d" compoundref="ShipValidatonHelper_8cs" startline="17" endline="58">ValidateShipLayout</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipValidationHelper_1aae7e4b1ba35c545797689b1f7b4bc9c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classValidationResult" kindref="compound">ValidationResult</ref></type>
+        <definition>ValidationResult ShipValidationHelper.ValidateWeaponPlacement</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>ValidateWeaponPlacement</name>
+        <qualifiedname>ShipValidationHelper.ValidateWeaponPlacement</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>무기 설치 위치 유효성 검사 무기 우측(x 증가 방향)에 그리드 끝까지 방이나 다른 무기가 있는지 확인 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>검사할 함선</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>검증 결과</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="338" column="29" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="338" bodyend="381"/>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classShip_1a058800cd1cdc9601aeb176ac45fd91d4" compoundref="Ship_8cs" startline="1143" endline="1146">Ship.GetAllWeapons</references>
+        <references refid="classShipWeapon_1a421526a38a8fbd32127d0063526c9c6a" compoundref="ShipWeapon_8cs" startline="269" endline="272">ShipWeapon.GetGridPosition</references>
+        <references refid="classRoom_1af41633a85c88ae9e207f5a2589e752c2" compoundref="Room_8cs" startline="495" endline="498">Room&lt; TData, TLevel &gt;.OccupiesTile</references>
+        <referencedby refid="classShipValidationHelper_1afe90d1e14396951e3079f4a426ead02d" compoundref="ShipValidatonHelper_8cs" startline="17" endline="58">ValidateShipLayout</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipValidationHelper_1a39d36df3f0a7878f35261c554c7b1574" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classValidationResult" kindref="compound">ValidationResult</ref></type>
+        <definition>ValidationResult ShipValidationHelper.CheckWeaponConnectivity</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>CheckWeaponConnectivity</name>
+        <qualifiedname>ShipValidationHelper.CheckWeaponConnectivity</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>모든 무기가 방과 직접 또는 간접적으로 연결되어 있는지 확인합니다. BFS를 사용하여 무기와 방의 연결성을 검사합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>검사할 함선</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>검증 결과</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="389" column="29" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="389" bodyend="471"/>
+        <references refid="classShipValidationHelper_1ac9c0c29fd6e7688a8be3cd98b7bfcf31" compoundref="ShipValidatonHelper_8cs" startline="480" endline="492">AreAdjacent</references>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classShip_1a058800cd1cdc9601aeb176ac45fd91d4" compoundref="Ship_8cs" startline="1143" endline="1146">Ship.GetAllWeapons</references>
+        <references refid="classShipWeapon_1a421526a38a8fbd32127d0063526c9c6a" compoundref="ShipWeapon_8cs" startline="269" endline="272">ShipWeapon.GetGridPosition</references>
+        <references refid="classRoom_1a18ac2f2af25dbf2e6181db75eab061ae" compoundref="Room_8cs" startline="482" endline="488">Room&lt; TData, TLevel &gt;.GetOccupiedTiles</references>
+        <references refid="classRoom_1a20cd0655c331d88c7e1825abc51e9941" compoundref="Room_8cs" startline="464" endline="467">Room&lt; TData, TLevel &gt;.GetSize</references>
+        <references refid="classShipValidationHelper_1aad98d691b3393602f52c39afaa2bb80f" compoundref="ShipValidatonHelper_8cs" startline="501" endline="527">IsAdjacentToRoomTiles</references>
+        <references refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" compoundref="Room_8cs" startline="15">Room&lt; TData, TLevel &gt;.position</references>
+        <referencedby refid="classShipValidationHelper_1afe90d1e14396951e3079f4a426ead02d" compoundref="ShipValidatonHelper_8cs" startline="17" endline="58">ValidateShipLayout</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classShipValidationHelper_1a88b3d2ffb57d59c06182ebd39f88adb1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classValidationResult" kindref="compound">ValidationResult</ref></type>
+        <definition>ValidationResult ShipValidationHelper.CheckRequiredRooms</definition>
+        <argsstring>(List&lt; Room &gt; rooms)</argsstring>
+        <name>CheckRequiredRooms</name>
+        <qualifiedname>ShipValidationHelper.CheckRequiredRooms</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="classRoom" kindref="compound">Room</ref> &gt;</type>
+          <declname>rooms</declname>
+        </param>
+        <briefdescription>
+<para>필수 방이 존재하는지 확인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="63" column="30" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="63" bodyend="93"/>
+        <referencedby refid="classShipValidationHelper_1afe90d1e14396951e3079f4a426ead02d" compoundref="ShipValidatonHelper_8cs" startline="17" endline="58">ValidateShipLayout</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipValidationHelper_1a11fc072a1eafd79fadee661b4af713a6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classValidationResult" kindref="compound">ValidationResult</ref></type>
+        <definition>ValidationResult ShipValidationHelper.CheckAllRoomsPathConnectedByDoors</definition>
+        <argsstring>(List&lt; Room &gt; rooms, Vector2Int gridSize)</argsstring>
+        <name>CheckAllRoomsPathConnectedByDoors</name>
+        <qualifiedname>ShipValidationHelper.CheckAllRoomsPathConnectedByDoors</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="classRoom" kindref="compound">Room</ref> &gt;</type>
+          <declname>rooms</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>gridSize</declname>
+        </param>
+        <briefdescription>
+<para>BFS + DFS 이용하여 방과 방의 연결성 및 이동 가능성 확인 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rooms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>검사할 방 목록</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gridSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>그리드 크기</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>검증 결과</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="212" column="30" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="212" bodyend="330"/>
+        <references refid="classRoom_1ae1f89a83229215231d726691043898c6" compoundref="Room_8cs" startline="36">Room&lt; TData, TLevel &gt;.currentRotation</references>
+        <references refid="structDoorPosition_1a57a3b25d1cc64716f7ffb23cd1ac8752" compoundref="DoorPosition_8cs" startline="14">DoorPosition.direction</references>
+        <references refid="classShipValidationHelper_1a43c8592d73023458b0e0ec51cff2778b" compoundref="ShipValidatonHelper_8cs" startline="538" endline="560">DoorPositionMatch</references>
+        <references refid="classShipValidationHelper_1af6cfc878d1c32ed04b1cac1bf18dcb0a" compoundref="ShipValidatonHelper_8cs" startline="585" endline="595">GetAdjacentTile</references>
+        <references refid="classRoom_1ae14b08f3ba19cce81b077d6fefcb1fd5" compoundref="Room_8cs" startline="441" endline="444">Room&lt; TData, TLevel &gt;.GetCurrentLevel</references>
+        <references refid="classRoomData_1a32d344538a3e29e053bad7a953f6d088" compoundref="RoomData_8cs" startline="153" endline="177">RoomData&lt; T &gt;.GetDoorPositionsWithDirection</references>
+        <references refid="classShipValidationHelper_1aad99cd6afb0ed624a4855671e77b1548" compoundref="ShipValidatonHelper_8cs" startline="602" endline="612">GetOppositeDoorDirection</references>
+        <references refid="classShipValidationHelper_1a2607fc92732f55b9034ea6dc9570bd11" compoundref="ShipValidatonHelper_8cs" startline="618" endline="628">GetOrCreateVisualizer</references>
+        <references refid="structDoorPosition_1aa9b01dac11a0393895589472bb644d60" compoundref="DoorPosition_8cs" startline="11">DoorPosition.position</references>
+        <references refid="classRoom_1ac5fe65688e08065e4e586bb25218ad8c" compoundref="Room_8cs" startline="15">Room&lt; TData, TLevel &gt;.position</references>
+        <referencedby refid="classShipValidationHelper_1afe90d1e14396951e3079f4a426ead02d" compoundref="ShipValidatonHelper_8cs" startline="17" endline="58">ValidateShipLayout</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipValidationHelper_1ac9c0c29fd6e7688a8be3cd98b7bfcf31" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ShipValidationHelper.AreAdjacent</definition>
+        <argsstring>(Vector2Int pos1, Vector2Int pos2, Vector2Int gridSize)</argsstring>
+        <name>AreAdjacent</name>
+        <qualifiedname>ShipValidationHelper.AreAdjacent</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>pos1</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>pos2</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>gridSize</declname>
+        </param>
+        <briefdescription>
+<para>두 위치가 서로 인접해 있는지 확인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pos1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>첫 번째 위치</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pos2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>두 번째 위치</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gridSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>그리드 크기</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>인접 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="480" column="18" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="480" bodyend="492"/>
+        <referencedby refid="classShipValidationHelper_1a39d36df3f0a7878f35261c554c7b1574" compoundref="ShipValidatonHelper_8cs" startline="389" endline="471">CheckWeaponConnectivity</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipValidationHelper_1aad98d691b3393602f52c39afaa2bb80f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ShipValidationHelper.IsAdjacentToRoomTiles</definition>
+        <argsstring>(Vector2Int pos, HashSet&lt; Vector2Int &gt; roomTiles, Vector2Int gridSize)</argsstring>
+        <name>IsAdjacentToRoomTiles</name>
+        <qualifiedname>ShipValidationHelper.IsAdjacentToRoomTiles</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>HashSet&lt; Vector2Int &gt;</type>
+          <declname>roomTiles</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>gridSize</declname>
+        </param>
+        <briefdescription>
+<para>위치가 방 타일에 인접해 있는지 확인합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>확인할 위치</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>roomTiles</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>방이 점유하는 타일 집합</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gridSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>그리드 크기</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>인접 여부</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="501" column="18" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="501" bodyend="527"/>
+        <referencedby refid="classShipValidationHelper_1a39d36df3f0a7878f35261c554c7b1574" compoundref="ShipValidatonHelper_8cs" startline="389" endline="471">CheckWeaponConnectivity</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipValidationHelper_1a43c8592d73023458b0e0ec51cff2778b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ShipValidationHelper.DoorPositionMatch</definition>
+        <argsstring>(Vector2Int doorPosA, DoorDirection dirA, Vector2Int doorPosB, DoorDirection dirB, Vector2Int gridSize)</argsstring>
+        <name>DoorPositionMatch</name>
+        <qualifiedname>ShipValidationHelper.DoorPositionMatch</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>doorPosA</declname>
+        </param>
+        <param>
+          <type>DoorDirection</type>
+          <declname>dirA</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>doorPosB</declname>
+        </param>
+        <param>
+          <type>DoorDirection</type>
+          <declname>dirB</declname>
+        </param>
+        <param>
+          <type>Vector2Int</type>
+          <declname>gridSize</declname>
+        </param>
+        <briefdescription>
+<para>각 방의 문이 위치한 타일에 대해 문으로 이동 가능하도록 인접했는지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>doorPosA</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>현재 방 문 위치</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dirA</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>현재 방 문 방향</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>doorPosB</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>반대 방 문 위치</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dirB</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>반대 방 문 방향</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gridSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>그리드 크기</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="538" column="18" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="538" bodyend="560"/>
+        <references refid="classShipValidationHelper_1ae5340dbe7983726acdd4586eaf151bc9" compoundref="ShipValidatonHelper_8cs" startline="567" endline="577">GetDirectionOffset</references>
+        <referencedby refid="classShipValidationHelper_1a11fc072a1eafd79fadee661b4af713a6" compoundref="ShipValidatonHelper_8cs" startline="212" endline="330">CheckAllRoomsPathConnectedByDoors</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipValidationHelper_1ae5340dbe7983726acdd4586eaf151bc9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>Vector2Int ShipValidationHelper.GetDirectionOffset</definition>
+        <argsstring>(DoorDirection dir)</argsstring>
+        <name>GetDirectionOffset</name>
+        <qualifiedname>ShipValidationHelper.GetDirectionOffset</qualifiedname>
+        <param>
+          <type>DoorDirection</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>문 방향에 따른 그리드 타일 위치 offset 세팅 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="567" column="24" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="567" bodyend="577"/>
+        <referencedby refid="classShipValidationHelper_1a43c8592d73023458b0e0ec51cff2778b" compoundref="ShipValidatonHelper_8cs" startline="538" endline="560">DoorPositionMatch</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipValidationHelper_1af6cfc878d1c32ed04b1cac1bf18dcb0a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>Vector2Int ShipValidationHelper.GetAdjacentTile</definition>
+        <argsstring>(Vector2Int pos, DoorDirection dir)</argsstring>
+        <name>GetAdjacentTile</name>
+        <qualifiedname>ShipValidationHelper.GetAdjacentTile</qualifiedname>
+        <param>
+          <type>Vector2Int</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>DoorDirection</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>인접 타일 위치 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pos</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="585" column="24" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="585" bodyend="595"/>
+        <referencedby refid="classShipValidationHelper_1a11fc072a1eafd79fadee661b4af713a6" compoundref="ShipValidatonHelper_8cs" startline="212" endline="330">CheckAllRoomsPathConnectedByDoors</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classShipValidationHelper_1aad99cd6afb0ed624a4855671e77b1548" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DoorDirection</type>
+        <definition>DoorDirection ShipValidationHelper.GetOppositeDoorDirection</definition>
+        <argsstring>(DoorDirection dir)</argsstring>
+        <name>GetOppositeDoorDirection</name>
+        <qualifiedname>ShipValidationHelper.GetOppositeDoorDirection</qualifiedname>
+        <param>
+          <type>DoorDirection</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>현재 방 문의 반대 방향 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>현재 방의 문 방향</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="602" column="27" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="602" bodyend="612"/>
+        <referencedby refid="classShipValidationHelper_1a11fc072a1eafd79fadee661b4af713a6" compoundref="ShipValidatonHelper_8cs" startline="212" endline="330">CheckAllRoomsPathConnectedByDoors</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classShipValidationHelper_1a2607fc92732f55b9034ea6dc9570bd11" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classShipPathDebugVisualizer" kindref="compound">ShipPathDebugVisualizer</ref></type>
+        <definition>static ShipPathDebugVisualizer ShipValidationHelper.GetOrCreateVisualizer</definition>
+        <argsstring>()</argsstring>
+        <name>GetOrCreateVisualizer</name>
+        <qualifiedname>ShipValidationHelper.GetOrCreateVisualizer</qualifiedname>
+        <briefdescription>
+<para>디버깅 시각화 오브젝트 생성 (삭제할 예정) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="618" column="44" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="618" bodyend="628"/>
+        <referencedby refid="classShipValidationHelper_1a11fc072a1eafd79fadee661b4af713a6" compoundref="ShipValidatonHelper_8cs" startline="212" endline="330">CheckAllRoomsPathConnectedByDoors</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>함선의 방 배치와 무기 배치가 유효한지 검증하는 클래스입니다. 모든 방이 서로 연결되어 있고, 문이 적절히 배치되어 있는지 확인하며, 무기의 발사 경로를 검증합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>ShipValidationHelper</label>
+        <link refid="classShipValidationHelper"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" line="10" column="7" bodyfile="Assets/Scripts/Ship/ShipValidationHelper/ShipValidatonHelper.cs" bodystart="11" bodyend="629"/>
+    <listofallmembers>
+      <member refid="classShipValidationHelper_1ac9c0c29fd6e7688a8be3cd98b7bfcf31" prot="private" virt="non-virtual"><scope>ShipValidationHelper</scope><name>AreAdjacent</name></member>
+      <member refid="classShipValidationHelper_1a11fc072a1eafd79fadee661b4af713a6" prot="private" virt="non-virtual"><scope>ShipValidationHelper</scope><name>CheckAllRoomsPathConnectedByDoors</name></member>
+      <member refid="classShipValidationHelper_1ab1718296af9c0c61362ef161bff9a3c8" prot="public" virt="non-virtual"><scope>ShipValidationHelper</scope><name>CheckOxygenBreathe</name></member>
+      <member refid="classShipValidationHelper_1a88b3d2ffb57d59c06182ebd39f88adb1" prot="private" virt="non-virtual"><scope>ShipValidationHelper</scope><name>CheckRequiredRooms</name></member>
+      <member refid="classShipValidationHelper_1a39d36df3f0a7878f35261c554c7b1574" prot="public" virt="non-virtual"><scope>ShipValidationHelper</scope><name>CheckWeaponConnectivity</name></member>
+      <member refid="classShipValidationHelper_1a43c8592d73023458b0e0ec51cff2778b" prot="private" virt="non-virtual"><scope>ShipValidationHelper</scope><name>DoorPositionMatch</name></member>
+      <member refid="classShipValidationHelper_1af6cfc878d1c32ed04b1cac1bf18dcb0a" prot="private" virt="non-virtual"><scope>ShipValidationHelper</scope><name>GetAdjacentTile</name></member>
+      <member refid="classShipValidationHelper_1ae5340dbe7983726acdd4586eaf151bc9" prot="private" virt="non-virtual"><scope>ShipValidationHelper</scope><name>GetDirectionOffset</name></member>
+      <member refid="classShipValidationHelper_1aad99cd6afb0ed624a4855671e77b1548" prot="private" virt="non-virtual"><scope>ShipValidationHelper</scope><name>GetOppositeDoorDirection</name></member>
+      <member refid="classShipValidationHelper_1a2607fc92732f55b9034ea6dc9570bd11" prot="private" virt="non-virtual"><scope>ShipValidationHelper</scope><name>GetOrCreateVisualizer</name></member>
+      <member refid="classShipValidationHelper_1aad98d691b3393602f52c39afaa2bb80f" prot="private" virt="non-virtual"><scope>ShipValidationHelper</scope><name>IsAdjacentToRoomTiles</name></member>
+      <member refid="classShipValidationHelper_1afe90d1e14396951e3079f4a426ead02d" prot="public" virt="non-virtual"><scope>ShipValidationHelper</scope><name>ValidateShipLayout</name></member>
+      <member refid="classShipValidationHelper_1a9111fff29a3ed831923e35aa76ba14be" prot="public" virt="non-virtual"><scope>ShipValidationHelper</scope><name>ValidateWeaponAttachmentDirection</name></member>
+      <member refid="classShipValidationHelper_1aae7e4b1ba35c545797689b1f7b4bc9c1" prot="public" virt="non-virtual"><scope>ShipValidationHelper</scope><name>ValidateWeaponPlacement</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classNonDraggableScrollRect" kind="class" language="C#" prot="public">
+    <compoundname>NonDraggableScrollRect</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ScrollRect</basecompoundref>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classNonDraggableScrollRect_1a6d5f6e7583b74f8055bbeea29a8a8443" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool NonDraggableScrollRect.IsScrollbarHandle</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>IsScrollbarHandle</name>
+        <qualifiedname>NonDraggableScrollRect.IsScrollbarHandle</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>현재 포인터가 스크롤바 핸들 위에 있는지 여부를 판단합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이벤트 데이터.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>스크롤바 핸들 위라면 true.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/NonDraggableScrollRect.cs" line="16" column="18" bodyfile="Assets/Scripts/Equipment/NonDraggableScrollRect.cs" bodystart="16" bodyend="32"/>
+        <referencedby refid="classNonDraggableScrollRect_1a865db33a8eec3777750823cd0967152e" compoundref="NonDraggableScrollRect_8cs" startline="39" endline="44">OnBeginDrag</referencedby>
+        <referencedby refid="classNonDraggableScrollRect_1aebae0e0d293c2b92000ada48b45910b5" compoundref="NonDraggableScrollRect_8cs" startline="51" endline="55">OnDrag</referencedby>
+        <referencedby refid="classNonDraggableScrollRect_1ae7130b051f4189c36bf342e9c21ae467" compoundref="NonDraggableScrollRect_8cs" startline="62" endline="66">OnEndDrag</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classNonDraggableScrollRect_1a865db33a8eec3777750823cd0967152e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void NonDraggableScrollRect.OnBeginDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnBeginDrag</name>
+        <qualifiedname>NonDraggableScrollRect.OnBeginDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>드래그 시작 시 호출됩니다. 스크롤바 핸들 위일 경우에만 기본 드래그 동작을 수행합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이벤트 데이터.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/NonDraggableScrollRect.cs" line="39" column="26" bodyfile="Assets/Scripts/Equipment/NonDraggableScrollRect.cs" bodystart="39" bodyend="44"/>
+        <references refid="classNonDraggableScrollRect_1a6d5f6e7583b74f8055bbeea29a8a8443" compoundref="NonDraggableScrollRect_8cs" startline="16" endline="32">IsScrollbarHandle</references>
+      </memberdef>
+      <memberdef kind="function" id="classNonDraggableScrollRect_1aebae0e0d293c2b92000ada48b45910b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void NonDraggableScrollRect.OnDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnDrag</name>
+        <qualifiedname>NonDraggableScrollRect.OnDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>드래그 중 호출됩니다. 스크롤바 핸들 위일 경우에만 기본 드래그 동작을 수행합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이벤트 데이터.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/NonDraggableScrollRect.cs" line="51" column="26" bodyfile="Assets/Scripts/Equipment/NonDraggableScrollRect.cs" bodystart="51" bodyend="55"/>
+        <references refid="classNonDraggableScrollRect_1a6d5f6e7583b74f8055bbeea29a8a8443" compoundref="NonDraggableScrollRect_8cs" startline="16" endline="32">IsScrollbarHandle</references>
+      </memberdef>
+      <memberdef kind="function" id="classNonDraggableScrollRect_1ae7130b051f4189c36bf342e9c21ae467" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void NonDraggableScrollRect.OnEndDrag</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnEndDrag</name>
+        <qualifiedname>NonDraggableScrollRect.OnEndDrag</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+<para>드래그 종료 시 호출됩니다. 스크롤바 핸들 위일 경우에만 기본 드래그 동작을 수행합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eventData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이벤트 데이터.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/NonDraggableScrollRect.cs" line="62" column="26" bodyfile="Assets/Scripts/Equipment/NonDraggableScrollRect.cs" bodystart="62" bodyend="66"/>
+        <references refid="classNonDraggableScrollRect_1a6d5f6e7583b74f8055bbeea29a8a8443" compoundref="NonDraggableScrollRect_8cs" startline="16" endline="32">IsScrollbarHandle</references>
+      </memberdef>
+      <memberdef kind="function" id="classNonDraggableScrollRect_1adc782f1847ad6faa14548e78630b8f63" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void NonDraggableScrollRect.OnScroll</definition>
+        <argsstring>(PointerEventData data)</argsstring>
+        <name>OnScroll</name>
+        <qualifiedname>NonDraggableScrollRect.OnScroll</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>마우스 휠 스크롤 이벤트를 허용합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>이벤트 데이터.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Equipment/NonDraggableScrollRect.cs" line="72" column="26" bodyfile="Assets/Scripts/Equipment/NonDraggableScrollRect.cs" bodystart="72" bodyend="75"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>ScrollRect 기능을 확장하여, 스크롤바 핸들 외의 영역에서는 드래그를 비활성화하는 스크립트. 마우스 휠 스크롤은 정상 작동하며, 수직 스크롤만 허용됩니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>NonDraggableScrollRect</label>
+        <link refid="classNonDraggableScrollRect"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScrollRect</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>NonDraggableScrollRect</label>
+        <link refid="classNonDraggableScrollRect"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScrollRect</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Equipment/NonDraggableScrollRect.cs" line="9" column="7" bodyfile="Assets/Scripts/Equipment/NonDraggableScrollRect.cs" bodystart="10" bodyend="76"/>
+    <listofallmembers>
+      <member refid="classNonDraggableScrollRect_1a6d5f6e7583b74f8055bbeea29a8a8443" prot="private" virt="non-virtual"><scope>NonDraggableScrollRect</scope><name>IsScrollbarHandle</name></member>
+      <member refid="classNonDraggableScrollRect_1a865db33a8eec3777750823cd0967152e" prot="public" virt="non-virtual"><scope>NonDraggableScrollRect</scope><name>OnBeginDrag</name></member>
+      <member refid="classNonDraggableScrollRect_1aebae0e0d293c2b92000ada48b45910b5" prot="public" virt="non-virtual"><scope>NonDraggableScrollRect</scope><name>OnDrag</name></member>
+      <member refid="classNonDraggableScrollRect_1ae7130b051f4189c36bf342e9c21ae467" prot="public" virt="non-virtual"><scope>NonDraggableScrollRect</scope><name>OnEndDrag</name></member>
+      <member refid="classNonDraggableScrollRect_1adc782f1847ad6faa14548e78630b8f63" prot="public" virt="non-virtual"><scope>NonDraggableScrollRect</scope><name>OnScroll</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

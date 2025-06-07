@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCrewRaceStat" kind="class" language="C#" prot="public">
+    <compoundname>CrewRaceStat</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ScriptableObject</basecompoundref>
+    <innerclass refid="classCrewRaceStat_1_1RaceStat" prot="public">CrewRaceStat::RaceStat</innerclass>
+    <innerclass refid="classCrewRaceStat_1_1SkillValue" prot="public">CrewRaceStat::SkillValue</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classCrewRaceStat_1ae150cf7a6d97170c5b6a70f374f85bce" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="classCrewRaceStat_1_1RaceStat" kindref="compound">RaceStat</ref> &gt;</type>
+        <definition>List&lt;RaceStat&gt; CrewRaceStat.raceStats</definition>
+        <argsstring></argsstring>
+        <name>raceStats</name>
+        <qualifiedname>CrewRaceStat.raceStats</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>인스펙터에서 보이도록 직렬화 가능한 리스트 사용 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" line="80" column="19" bodyfile="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" bodystart="80" bodyend="-1"/>
+        <referencedby refid="classCrewRaceStat_1a5ba22a6331aafe91eff27d904d550cbb" compoundref="CrewRaceStat_8cs" startline="121" endline="329">InitializeDefaultStats</referencedby>
+        <referencedby refid="classCrewRaceStat_1a5b6ecdb0576e89cc9a739e045837fe28" compoundref="CrewRaceStat_8cs" startline="99" endline="103">InitializeDictionaryFromList</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewRaceStat_1ad596ab1bf13a945a820806861b8f9ae7" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; CrewRace, <ref refid="classCrewRaceStat_1_1RaceStat" kindref="compound">RaceStat</ref> &gt;</type>
+        <definition>Dictionary&lt;CrewRace, RaceStat&gt; CrewRaceStat.byRace</definition>
+        <argsstring></argsstring>
+        <name>byRace</name>
+        <qualifiedname>CrewRaceStat.byRace</qualifiedname>
+        <briefdescription>
+<para>런타임에만 사용할 Dictionary </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" line="85" column="24" bodyfile="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" bodystart="85" bodyend="-1"/>
+        <referencedby refid="classCrewRaceStat_1a5ba22a6331aafe91eff27d904d550cbb" compoundref="CrewRaceStat_8cs" startline="121" endline="329">InitializeDefaultStats</referencedby>
+        <referencedby refid="classCrewRaceStat_1a5b6ecdb0576e89cc9a739e045837fe28" compoundref="CrewRaceStat_8cs" startline="99" endline="103">InitializeDictionaryFromList</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classCrewRaceStat_1a61d03014328c91551b38a8e259fec538" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Dictionary&lt; CrewRace, <ref refid="classCrewRaceStat_1_1RaceStat" kindref="compound">RaceStat</ref> &gt;</type>
+        <definition>Dictionary&lt;CrewRace, RaceStat&gt; CrewRaceStat.ByRace</definition>
+        <argsstring></argsstring>
+        <name>ByRace</name>
+        <qualifiedname>CrewRaceStat.ByRace</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" line="87" column="23" bodyfile="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" bodystart="88" bodyend="94"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classCrewRaceStat_1a5b6ecdb0576e89cc9a739e045837fe28" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewRaceStat.InitializeDictionaryFromList</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeDictionaryFromList</name>
+        <qualifiedname>CrewRaceStat.InitializeDictionaryFromList</qualifiedname>
+        <briefdescription>
+<para>숙련도 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" line="99" column="18" bodyfile="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" bodystart="99" bodyend="103"/>
+        <references refid="classCrewRaceStat_1ad596ab1bf13a945a820806861b8f9ae7" compoundref="CrewRaceStat_8cs" startline="85">byRace</references>
+        <references refid="classCrewRaceStat_1ae150cf7a6d97170c5b6a70f374f85bce" compoundref="CrewRaceStat_8cs" startline="80">raceStats</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewRaceStat_1a8b936c4403c3b1907e05b3fdca76eb79" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewRaceStat.OnValidate</definition>
+        <argsstring>()</argsstring>
+        <name>OnValidate</name>
+        <qualifiedname>CrewRaceStat.OnValidate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" line="105" column="18" bodyfile="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" bodystart="105" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewRaceStat_1a9602ef2e1cb59f255190ae7f4c0e5c3f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewRaceStat.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <qualifiedname>CrewRaceStat.OnEnable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" line="111" column="18" bodyfile="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" bodystart="111" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewRaceStat_1a5ba22a6331aafe91eff27d904d550cbb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewRaceStat.InitializeDefaultStats</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeDefaultStats</name>
+        <qualifiedname>CrewRaceStat.InitializeDefaultStats</qualifiedname>
+        <briefdescription>
+<para>종족 별 기본 값 세팅 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" line="121" column="18" bodyfile="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" bodystart="121" bodyend="329"/>
+        <references refid="classCrewRaceStat_1ad596ab1bf13a945a820806861b8f9ae7" compoundref="CrewRaceStat_8cs" startline="85">byRace</references>
+        <references refid="classCrewRaceStat_1ae150cf7a6d97170c5b6a70f374f85bce" compoundref="CrewRaceStat_8cs" startline="80">raceStats</references>
+        <references refid="classCrewRaceStat_1_1RaceStat_1a2ba7593e361347d042f11ff83525eb44" compoundref="CrewRaceStat_8cs" startline="69" endline="74">CrewRaceStat.RaceStat.SetMaxSkillValuesFromDictionary</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>종족 별 기본 값 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CrewRaceStat</label>
+        <link refid="classCrewRaceStat"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>CrewRaceStat</label>
+        <link refid="classCrewRaceStat"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" line="9" column="7" bodyfile="Assets/ScriptableObject/CrewRaceSettings/CrewRaceStat.cs" bodystart="10" bodyend="330"/>
+    <listofallmembers>
+      <member refid="classCrewRaceStat_1ad596ab1bf13a945a820806861b8f9ae7" prot="private" virt="non-virtual"><scope>CrewRaceStat</scope><name>byRace</name></member>
+      <member refid="classCrewRaceStat_1a61d03014328c91551b38a8e259fec538" prot="public" virt="non-virtual"><scope>CrewRaceStat</scope><name>ByRace</name></member>
+      <member refid="classCrewRaceStat_1a5ba22a6331aafe91eff27d904d550cbb" prot="private" virt="non-virtual"><scope>CrewRaceStat</scope><name>InitializeDefaultStats</name></member>
+      <member refid="classCrewRaceStat_1a5b6ecdb0576e89cc9a739e045837fe28" prot="private" virt="non-virtual"><scope>CrewRaceStat</scope><name>InitializeDictionaryFromList</name></member>
+      <member refid="classCrewRaceStat_1a9602ef2e1cb59f255190ae7f4c0e5c3f" prot="private" virt="non-virtual"><scope>CrewRaceStat</scope><name>OnEnable</name></member>
+      <member refid="classCrewRaceStat_1a8b936c4403c3b1907e05b3fdca76eb79" prot="private" virt="non-virtual"><scope>CrewRaceStat</scope><name>OnValidate</name></member>
+      <member refid="classCrewRaceStat_1ae150cf7a6d97170c5b6a70f374f85bce" prot="private" virt="non-virtual"><scope>CrewRaceStat</scope><name>raceStats</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

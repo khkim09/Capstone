@@ -1,0 +1,317 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classOuterShipCombatController" kind="class" language="C#" prot="public">
+    <compoundname>OuterShipCombatController</compoundname>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classOuterShipCombatController_1a11ae7e43fcd5261ae159ccffb975dba9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool OuterShipCombatController.WeaponFire</definition>
+        <argsstring>(Ship attacker, ShipWeapon weapon)</argsstring>
+        <name>WeaponFire</name>
+        <qualifiedname>OuterShipCombatController.WeaponFire</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>attacker</declname>
+        </param>
+        <param>
+          <type><ref refid="classShipWeapon" kindref="compound">ShipWeapon</ref></type>
+          <declname>weapon</declname>
+        </param>
+        <briefdescription>
+<para>지정된 함선이 무기를 발사하도록 시도합니다. 무기가 준비되지 않았거나 대상이 없으면 실패합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>attacker</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>공격을 시도하는 함선.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>weapon</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>발사할 무기.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>발사 성공 여부.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/OuterShipCombat/OuterShipCombatController.cs" line="16" column="17" bodyfile="Assets/Scripts/Combat/OuterShipCombat/OuterShipCombatController.cs" bodystart="16" bodyend="31"/>
+        <references refid="classShip_1aaeb3c2fae57814b8bfd366f887e2c39f" compoundref="Ship_8cs" startline="1161" endline="1164">Ship.GetActualDamage</references>
+        <references refid="classGameManager_1acb45f12416a7b021433ac7706ec5f95c" compoundref="GameManager_8cs" startline="443" endline="446">GameManager.GetCurrentEnemyShip</references>
+        <references refid="classShipWeapon_1a5d0c8b9cb45cd7470fb3868d9feb826d" compoundref="ShipWeapon_8cs" startline="237" endline="240">ShipWeapon.GetDamage</references>
+        <references refid="classShip_1a73217557e08511f1436830db223bfc4e" compoundref="Ship_8cs" startline="1209" endline="1219">Ship.GetRandomTargetPosition</references>
+        <references refid="classShip_1acc377098e3c61bbd4b8fc53595d09293" compoundref="Ship_8cs" startline="1456" endline="1459">Ship.GetWorldPositionFromGrid</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classShipWeapon_1a72518cf9b3021beca098c19c438dbc5f" compoundref="ShipWeapon_8cs" startline="201" endline="204">ShipWeapon.IsReady</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classOuterShipCombatController_1a3523b9dcbbf323a3d2c52639740f081c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool OuterShipCombatController.FireLaser</definition>
+        <argsstring>(Ship shooter, ShipWeapon weapon, Transform target)</argsstring>
+        <name>FireLaser</name>
+        <qualifiedname>OuterShipCombatController.FireLaser</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>shooter</declname>
+        </param>
+        <param>
+          <type><ref refid="classShipWeapon" kindref="compound">ShipWeapon</ref></type>
+          <declname>weapon</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>레이저(발사체) 무기 발사를 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shooter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>발사하는 함선.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>weapon</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>사용할 무기.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>목표 트랜스폼.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>발사 성공 여부.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/OuterShipCombat/OuterShipCombatController.cs" line="40" column="18" bodyfile="Assets/Scripts/Combat/OuterShipCombat/OuterShipCombatController.cs" bodystart="40" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classOuterShipCombatController_1afdf48e3402b315bb9f1ce9f1ea73dbf6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool OuterShipCombatController.FireRailgun</definition>
+        <argsstring>(Ship shooter, ShipWeapon weapon, Transform target)</argsstring>
+        <name>FireRailgun</name>
+        <qualifiedname>OuterShipCombatController.FireRailgun</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>shooter</declname>
+        </param>
+        <param>
+          <type><ref refid="classShipWeapon" kindref="compound">ShipWeapon</ref></type>
+          <declname>weapon</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>레일건(빔) 무기 발사를 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shooter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>발사하는 함선.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>weapon</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>사용할 무기.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>목표 트랜스폼.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>발사 성공 여부.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/OuterShipCombat/OuterShipCombatController.cs" line="60" column="18" bodyfile="Assets/Scripts/Combat/OuterShipCombat/OuterShipCombatController.cs" bodystart="60" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classOuterShipCombatController_1a22ff1b4226f9691ef36b23c1fc168a23" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool OuterShipCombatController.FireMissile</definition>
+        <argsstring>(Ship shooter, ShipWeapon weapon, Transform target)</argsstring>
+        <name>FireMissile</name>
+        <qualifiedname>OuterShipCombatController.FireMissile</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>shooter</declname>
+        </param>
+        <param>
+          <type><ref refid="classShipWeapon" kindref="compound">ShipWeapon</ref></type>
+          <declname>weapon</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>미사일 무기 발사를 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shooter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>발사하는 함선.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>weapon</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>사용할 무기.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>목표 트랜스폼.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>발사 성공 여부.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/OuterShipCombat/OuterShipCombatController.cs" line="74" column="18" bodyfile="Assets/Scripts/Combat/OuterShipCombat/OuterShipCombatController.cs" bodystart="74" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classOuterShipCombatController_1ae2e7263ef8f430ceeb5591225c4b9036" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void OuterShipCombatController.HandleShipDestroyed</definition>
+        <argsstring>(Ship destroyed, Ship destroyer)</argsstring>
+        <name>HandleShipDestroyed</name>
+        <qualifiedname>OuterShipCombatController.HandleShipDestroyed</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>destroyed</declname>
+        </param>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>destroyer</declname>
+        </param>
+        <briefdescription>
+<para>함선이 파괴되었을 때 호출되어, 이펙트 및 보상을 처리합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>destroyed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>파괴된 함선.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>destroyer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>파괴한 함선 (null일 수 있음).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/OuterShipCombat/OuterShipCombatController.cs" line="87" column="18" bodyfile="Assets/Scripts/Combat/OuterShipCombat/OuterShipCombatController.cs" bodystart="87" bodyend="99"/>
+        <references refid="classOuterShipCombatController_1ae3b32ae65bf43db75444d8ef4ddec880" compoundref="OuterShipCombatController_8cs" startline="105" endline="109">CreateDebris</references>
+      </memberdef>
+      <memberdef kind="function" id="classOuterShipCombatController_1ae3b32ae65bf43db75444d8ef4ddec880" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void OuterShipCombatController.CreateDebris</definition>
+        <argsstring>(Ship ship)</argsstring>
+        <name>CreateDebris</name>
+        <qualifiedname>OuterShipCombatController.CreateDebris</qualifiedname>
+        <param>
+          <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+          <declname>ship</declname>
+        </param>
+        <briefdescription>
+<para>함선 파괴 시 잔해를 생성합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ship</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>잔해를 생성할 원본 함선.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Combat/OuterShipCombat/OuterShipCombatController.cs" line="105" column="18" bodyfile="Assets/Scripts/Combat/OuterShipCombat/OuterShipCombatController.cs" bodystart="105" bodyend="109"/>
+        <referencedby refid="classOuterShipCombatController_1ae2e7263ef8f430ceeb5591225c4b9036" compoundref="OuterShipCombatController_8cs" startline="87" endline="99">HandleShipDestroyed</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>우주선 전투에서 실제 무기 발사를 제어하는 컨트롤러 클래스입니다. 무기 종류별 발사 처리, 타격 판정, 투사체 관리 등을 담당합니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>OuterShipCombatController</label>
+        <link refid="classOuterShipCombatController"/>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Combat/OuterShipCombat/OuterShipCombatController.cs" line="7" column="7" bodyfile="Assets/Scripts/Combat/OuterShipCombat/OuterShipCombatController.cs" bodystart="8" bodyend="110"/>
+    <listofallmembers>
+      <member refid="classOuterShipCombatController_1ae3b32ae65bf43db75444d8ef4ddec880" prot="private" virt="non-virtual"><scope>OuterShipCombatController</scope><name>CreateDebris</name></member>
+      <member refid="classOuterShipCombatController_1a3523b9dcbbf323a3d2c52639740f081c" prot="private" virt="non-virtual"><scope>OuterShipCombatController</scope><name>FireLaser</name></member>
+      <member refid="classOuterShipCombatController_1a22ff1b4226f9691ef36b23c1fc168a23" prot="private" virt="non-virtual"><scope>OuterShipCombatController</scope><name>FireMissile</name></member>
+      <member refid="classOuterShipCombatController_1afdf48e3402b315bb9f1ce9f1ea73dbf6" prot="private" virt="non-virtual"><scope>OuterShipCombatController</scope><name>FireRailgun</name></member>
+      <member refid="classOuterShipCombatController_1ae2e7263ef8f430ceeb5591225c4b9036" prot="private" virt="non-virtual"><scope>OuterShipCombatController</scope><name>HandleShipDestroyed</name></member>
+      <member refid="classOuterShipCombatController_1a11ae7e43fcd5261ae159ccffb975dba9" prot="public" virt="non-virtual"><scope>OuterShipCombatController</scope><name>WeaponFire</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

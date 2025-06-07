@@ -1,0 +1,1921 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCrewMember" kind="class" language="C#" prot="public">
+    <compoundname>CrewMember</compoundname>
+    <basecompoundref refid="classCrewBase" prot="public" virt="non-virtual">CrewBase</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classCrewMember_1aa33c08a92ff830a5662c96421f7f84e2" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 CrewMember.movementDirection</definition>
+        <argsstring></argsstring>
+        <name>movementDirection</name>
+        <qualifiedname>CrewMember.movementDirection</qualifiedname>
+        <briefdescription>
+<para>현재 이동 방향 (normalized) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="19" column="21" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="19" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CombatRoutine</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+        <referencedby refid="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" compoundref="CrewMember_8cs" startline="429" endline="463">PlayAnimation</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1ac7e67a6c2e4863dd2f6b3dda04bf2eb1" prot="private" static="no" mutable="no">
+        <type>List&lt; Vector2Int &gt;</type>
+        <definition>List&lt;Vector2Int&gt; CrewMember.path</definition>
+        <argsstring></argsstring>
+        <name>path</name>
+        <qualifiedname>CrewMember.path</qualifiedname>
+        <briefdescription>
+<para>이동 경로 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="22" column="18" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="22" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1a66e77fbffb949a64534ac03233d3fc65" compoundref="CrewMember_8cs" startline="155" endline="180">AssignPathAndMove</referencedby>
+        <referencedby refid="classCrewMember_1a2472a8d09a844b219190039393a6a601" compoundref="CrewMember_8cs" startline="186" endline="211">CancelAndRedirect</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1a601563f5de14b6286a125f9f1f5c0a38" prot="private" static="no" mutable="no">
+        <type>Coroutine</type>
+        <definition>Coroutine CrewMember.moveCoroutine</definition>
+        <argsstring></argsstring>
+        <name>moveCoroutine</name>
+        <qualifiedname>CrewMember.moveCoroutine</qualifiedname>
+        <briefdescription>
+<para>이동 수행 코루틴 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="27" column="23" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="27" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1a66e77fbffb949a64534ac03233d3fc65" compoundref="CrewMember_8cs" startline="155" endline="180">AssignPathAndMove</referencedby>
+        <referencedby refid="classCrewMember_1a2472a8d09a844b219190039393a6a601" compoundref="CrewMember_8cs" startline="186" endline="211">CancelAndRedirect</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1a61e3027a3593ebbdda8d63d518a6b397" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CrewMember.wasMoving</definition>
+        <argsstring></argsstring>
+        <name>wasMoving</name>
+        <qualifiedname>CrewMember.wasMoving</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>움직이는 중이었다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="57" column="18" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="57" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1aa5c7668b76acb42a080c33cbcc949965" compoundref="CrewMember_8cs" startline="681" endline="707">Die</referencedby>
+        <referencedby refid="classCrewMember_1a21e78c05a8f47d72c5f5ad28874537ad" compoundref="CrewMember_8cs" startline="811" endline="828">ImDying</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1a6d1d65b745c3149c882246ed07b136fb" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CrewMember.attackBeforeDelay</definition>
+        <argsstring></argsstring>
+        <name>attackBeforeDelay</name>
+        <qualifiedname>CrewMember.attackBeforeDelay</qualifiedname>
+        <initializer>= 1f</initializer>
+        <briefdescription>
+<para>애니메이션 발동 타이밍과 실제 데미지 적용 사이의 딜레이 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="490" column="19" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="490" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1ad151c19c429cf2ccb66f1d855ff49169" compoundref="CrewMember_8cs" startline="75" endline="114">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1ac6ca8793bfaacba93122cfae01d55c61" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CrewMember.attackAfterDelay</definition>
+        <argsstring></argsstring>
+        <name>attackAfterDelay</name>
+        <qualifiedname>CrewMember.attackAfterDelay</qualifiedname>
+        <initializer>= 1f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="492" column="19" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="492" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classCrewMember_1aa199a08672617743ad8cb3c8939eea00" prot="public" static="no" mutable="no">
+        <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+        <definition>Room CrewMember.reservedRoom</definition>
+        <argsstring></argsstring>
+        <name>reservedRoom</name>
+        <qualifiedname>CrewMember.reservedRoom</qualifiedname>
+        <briefdescription>
+<para>최종 목적지 방 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="32" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="32" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1a66e77fbffb949a64534ac03233d3fc65" compoundref="CrewMember_8cs" startline="155" endline="180">AssignPathAndMove</referencedby>
+        <referencedby refid="classCrewMember_1a2472a8d09a844b219190039393a6a601" compoundref="CrewMember_8cs" startline="186" endline="211">CancelAndRedirect</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+        <referencedby refid="classCrewMember_1a21e78c05a8f47d72c5f5ad28874537ad" compoundref="CrewMember_8cs" startline="811" endline="828">ImDying</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a0002c5992875339db3028007c2472b6d" compoundref="RTSSelectionManager_8cs" startline="443" endline="666">RTSSelectionManager.IssueMoveCommand</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1adccdce5625f1fee5e0000051ca086ea5" prot="public" static="no" mutable="no">
+        <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+        <definition>Room CrewMember.oldReservedRoom</definition>
+        <argsstring></argsstring>
+        <name>oldReservedRoom</name>
+        <qualifiedname>CrewMember.oldReservedRoom</qualifiedname>
+        <briefdescription>
+<para>새로운 이동 명령 전 기존 목적지 방 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="37" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="37" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1a2472a8d09a844b219190039393a6a601" compoundref="CrewMember_8cs" startline="186" endline="211">CancelAndRedirect</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1a0381b8847e46da4bce05aa695fc147d7" prot="public" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int CrewMember.reservedTile</definition>
+        <argsstring></argsstring>
+        <name>reservedTile</name>
+        <qualifiedname>CrewMember.reservedTile</qualifiedname>
+        <briefdescription>
+<para>새로운 최종 목적지 타일 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="42" column="23" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1a66e77fbffb949a64534ac03233d3fc65" compoundref="CrewMember_8cs" startline="155" endline="180">AssignPathAndMove</referencedby>
+        <referencedby refid="classCrewMember_1a2472a8d09a844b219190039393a6a601" compoundref="CrewMember_8cs" startline="186" endline="211">CancelAndRedirect</referencedby>
+        <referencedby refid="classCrewMember_1a21e78c05a8f47d72c5f5ad28874537ad" compoundref="CrewMember_8cs" startline="811" endline="828">ImDying</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1a04fbdab8a828a20a37f1c817a744897b" prot="public" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int CrewMember.oldReservedTile</definition>
+        <argsstring></argsstring>
+        <name>oldReservedTile</name>
+        <qualifiedname>CrewMember.oldReservedTile</qualifiedname>
+        <briefdescription>
+<para>새로운 이동 명령 전 기존 목적지 타일 (예약 됐다 취소된..) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="47" column="23" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="47" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1a2472a8d09a844b219190039393a6a601" compoundref="CrewMember_8cs" startline="186" endline="211">CancelAndRedirect</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1a85bab37fe17c1e07083b63116f485dd2" prot="public" static="no" mutable="no">
+        <type>Vector2Int</type>
+        <definition>Vector2Int CrewMember.originPosTile</definition>
+        <argsstring></argsstring>
+        <name>originPosTile</name>
+        <qualifiedname>CrewMember.originPosTile</qualifiedname>
+        <briefdescription>
+<para>이동 전 위치했던 타일 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="52" column="23" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1a9fa4ab26db0e51c215d6c71d21a7535e" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CrewMember.hasEnteredTPRoom</definition>
+        <argsstring></argsstring>
+        <name>hasEnteredTPRoom</name>
+        <qualifiedname>CrewMember.hasEnteredTPRoom</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>텔레포트 방에 입장 여부 (텔포 준비 완료 여부) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="62" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="62" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1ab9457e53edac9eb82e9b4995f83e03e3" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CrewMember.inCombat</definition>
+        <argsstring></argsstring>
+        <name>inCombat</name>
+        <qualifiedname>CrewMember.inCombat</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>전투 상태 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="485" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="485" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1a1980132bc97845dc890766dadd559e00" compoundref="CrewMember_8cs" startline="613" endline="644">Attack</referencedby>
+        <referencedby refid="classCrewMember_1ae80f1831860b8a260b6899410f48bc1d" compoundref="CrewMember_8cs" startline="865" endline="882">BackToThePeace</referencedby>
+        <referencedby refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CombatRoutine</referencedby>
+        <referencedby refid="classCrewMember_1aa5c7668b76acb42a080c33cbcc949965" compoundref="CrewMember_8cs" startline="681" endline="707">Die</referencedby>
+        <referencedby refid="classCrewMember_1a5e60edae0eee3d5844c455ca6d698ccd" compoundref="CrewMember_8cs" startline="765" endline="805">DontTouchMe</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+        <referencedby refid="classCrewMember_1a41c7608e6555b803935adbc401e44bbe" compoundref="CrewMember_8cs" startline="1074" endline="1093">Freeze</referencedby>
+        <referencedby refid="classEnemyController_1af954337c88f0e402b6a80a3b6fa3176b" compoundref="EnemyController_8cs" startline="203" endline="214">EnemyController.IsDoingSomething</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1a8befaa80fc7bdc53921b67c2673ee015" prot="public" static="no" mutable="no">
+        <type>Coroutine</type>
+        <definition>Coroutine CrewMember.combatCoroutine</definition>
+        <argsstring></argsstring>
+        <name>combatCoroutine</name>
+        <qualifiedname>CrewMember.combatCoroutine</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>전투 코루틴 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="497" column="22" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="497" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CombatRoutine</referencedby>
+        <referencedby refid="classCrewMember_1a5e60edae0eee3d5844c455ca6d698ccd" compoundref="CrewMember_8cs" startline="765" endline="805">DontTouchMe</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+        <referencedby refid="classCrewMember_1a333520785e710bfa87327f3f15f03734" compoundref="CrewMember_8cs" startline="562" endline="574">RepeatCombatRoutine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1af20c359bbdde1ce95bc281d915acea1e" prot="public" static="no" mutable="no">
+        <type>Coroutine</type>
+        <definition>Coroutine CrewMember.DieCoroutine</definition>
+        <argsstring></argsstring>
+        <name>DieCoroutine</name>
+        <qualifiedname>CrewMember.DieCoroutine</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>사망 코루틴 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="502" column="22" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="502" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1a65c02aa3aa6abb37b0aa92eb7bb4346c" prot="public" static="no" mutable="no">
+        <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+        <definition>Room CrewMember.madRoom</definition>
+        <argsstring></argsstring>
+        <name>madRoom</name>
+        <qualifiedname>CrewMember.madRoom</qualifiedname>
+        <briefdescription>
+<para>파괴할 방 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="507" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="507" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1a1980132bc97845dc890766dadd559e00" compoundref="CrewMember_8cs" startline="613" endline="644">Attack</referencedby>
+        <referencedby refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CombatRoutine</referencedby>
+        <referencedby refid="classCrewMember_1a5e60edae0eee3d5844c455ca6d698ccd" compoundref="CrewMember_8cs" startline="765" endline="805">DontTouchMe</referencedby>
+        <referencedby refid="classCrewMember_1a41c7608e6555b803935adbc401e44bbe" compoundref="CrewMember_8cs" startline="1074" endline="1093">Freeze</referencedby>
+        <referencedby refid="classCrewMember_1a1503a3e4b8b009a5f75cdc9dcb99b69a" compoundref="CrewMember_8cs" startline="833" endline="860">LookAtMe</referencedby>
+        <referencedby refid="classCrewMember_1a333520785e710bfa87327f3f15f03734" compoundref="CrewMember_8cs" startline="562" endline="574">RepeatCombatRoutine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1ae91e98832bfc722342d76eabd56ca36b" prot="public" static="no" mutable="no">
+        <type>Coroutine</type>
+        <definition>Coroutine CrewMember.repairCoroutine</definition>
+        <argsstring></argsstring>
+        <name>repairCoroutine</name>
+        <qualifiedname>CrewMember.repairCoroutine</qualifiedname>
+        <briefdescription>
+<para>수리 코루틴 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="908" column="22" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="908" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1a8ee5c024823e872d9addf84d0858879b" compoundref="CrewMember_8cs" startline="951" endline="975">RepairRoutine</referencedby>
+        <referencedby refid="classCrewMember_1a2e19d5fd76a3e3435eb7b6c313057ef8" compoundref="CrewMember_8cs" startline="925" endline="945">TryRepair</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1ac9c288a9e9a89fe0a9edc0dec3e925d4" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CrewMember.repairCoefficient</definition>
+        <argsstring></argsstring>
+        <name>repairCoefficient</name>
+        <qualifiedname>CrewMember.repairCoefficient</qualifiedname>
+        <initializer>= 10</initializer>
+        <briefdescription>
+<para>수리 효율 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="913" column="18" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="913" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1a6d2b12f78fe2bb8cae67fa23d5878e4d" compoundref="CrewMember_8cs" startline="982" endline="994">RepairFacility</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1a9cb327b33dcd83820750fbb1c2172268" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CrewMember.repairBeforeDelay</definition>
+        <argsstring></argsstring>
+        <name>repairBeforeDelay</name>
+        <qualifiedname>CrewMember.repairBeforeDelay</qualifiedname>
+        <initializer>= 0.5f</initializer>
+        <briefdescription>
+<para>수리 간 딜레이 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="918" column="18" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="918" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1a8ee5c024823e872d9addf84d0858879b" compoundref="CrewMember_8cs" startline="951" endline="975">RepairRoutine</referencedby>
+        <referencedby refid="classCrewMember_1ad151c19c429cf2ccb66f1d855ff49169" compoundref="CrewMember_8cs" startline="75" endline="114">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1a56876d71041ddef59156f4f32035c05b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CrewMember.repairAfterDelay</definition>
+        <argsstring></argsstring>
+        <name>repairAfterDelay</name>
+        <qualifiedname>CrewMember.repairAfterDelay</qualifiedname>
+        <initializer>= 0.5f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="920" column="18" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="920" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1ae056f833ac8368fd774c7755f3865716" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CrewMember.isWorking</definition>
+        <argsstring></argsstring>
+        <name>isWorking</name>
+        <qualifiedname>CrewMember.isWorking</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>현재 작업 중인지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="1004" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="1004" bodyend="-1"/>
+        <referencedby refid="classCrewMember_1aa5c7668b76acb42a080c33cbcc949965" compoundref="CrewMember_8cs" startline="681" endline="707">Die</referencedby>
+        <referencedby refid="classCrewMember_1a5e60edae0eee3d5844c455ca6d698ccd" compoundref="CrewMember_8cs" startline="765" endline="805">DontTouchMe</referencedby>
+        <referencedby refid="classEnemyController_1af954337c88f0e402b6a80a3b6fa3176b" compoundref="EnemyController_8cs" startline="203" endline="214">EnemyController.IsDoingSomething</referencedby>
+        <referencedby refid="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" compoundref="CrewMember_8cs" startline="429" endline="463">PlayAnimation</referencedby>
+        <referencedby refid="classCrewMember_1a4786d3c0560290a9558f6420dc3304b3" compoundref="CrewMember_8cs" startline="1010" endline="1038">TryWork</referencedby>
+        <referencedby refid="classCrewMember_1a5161a521053d829ee86ecae3de914b22" compoundref="CrewMember_8cs" startline="1098" endline="1113">WalkOut</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCrewMember_1afb435b0b971b7a9025e4ef236faac821" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CrewMember.isTPing</definition>
+        <argsstring></argsstring>
+        <name>isTPing</name>
+        <qualifiedname>CrewMember.isTPing</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="1129" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="1129" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classCrewMember_1af475638b2aaf65170b3dcd9d3ac3dbe8" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+        <definition>CrewMember CrewMember.combatTarget</definition>
+        <argsstring></argsstring>
+        <name>combatTarget</name>
+        <qualifiedname>CrewMember.combatTarget</qualifiedname>
+        <briefdescription>
+<para>전투 대상 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="480" column="23" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="480" bodyend="480"/>
+        <referencedby refid="classCrewMember_1a1980132bc97845dc890766dadd559e00" compoundref="CrewMember_8cs" startline="613" endline="644">Attack</referencedby>
+        <referencedby refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CombatRoutine</referencedby>
+        <referencedby refid="classCrewMember_1a5e60edae0eee3d5844c455ca6d698ccd" compoundref="CrewMember_8cs" startline="765" endline="805">DontTouchMe</referencedby>
+        <referencedby refid="classCrewMember_1a41c7608e6555b803935adbc401e44bbe" compoundref="CrewMember_8cs" startline="1074" endline="1093">Freeze</referencedby>
+        <referencedby refid="classCrewMember_1a1503a3e4b8b009a5f75cdc9dcb99b69a" compoundref="CrewMember_8cs" startline="833" endline="860">LookAtMe</referencedby>
+        <referencedby refid="classCrewMember_1a333520785e710bfa87327f3f15f03734" compoundref="CrewMember_8cs" startline="562" endline="574">RepeatCombatRoutine</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classCrewMember_1a173769c95550e312185617a3e3880a60" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>CrewMember.Update</qualifiedname>
+        <briefdescription>
+<para>Unity 생명주기 메서드. 매 프레임마다 선원 상태를 갱신합니다. (현재는 구현 미완료) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="68" column="18" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="68" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a908e574d7df106ce221c0291e25cb82e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.EnsureHealthBarFollows</definition>
+        <argsstring>()</argsstring>
+        <name>EnsureHealthBarFollows</name>
+        <qualifiedname>CrewMember.EnsureHealthBarFollows</qualifiedname>
+        <briefdescription>
+<para>체력바가 선원을 제대로 따라가도록 확인 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="216" column="18" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="216" bodyend="223"/>
+        <referencedby refid="classCrewMember_1a66e77fbffb949a64534ac03233d3fc65" compoundref="CrewMember_8cs" startline="155" endline="180">AssignPathAndMove</referencedby>
+        <referencedby refid="classCrewMember_1a2472a8d09a844b219190039393a6a601" compoundref="CrewMember_8cs" startline="186" endline="211">CancelAndRedirect</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1ae46abe81a744b6abd13f285a25455404" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator CrewMember.FollowPathCoroutine</definition>
+        <argsstring>()</argsstring>
+        <name>FollowPathCoroutine</name>
+        <qualifiedname>CrewMember.FollowPathCoroutine</qualifiedname>
+        <briefdescription>
+<para>경로를 따라 이동하는 코루틴 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="243" column="25" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="243" bodyend="334"/>
+        <references refid="classCrewMember_1ae80f1831860b8a260b6899410f48bc1d" compoundref="CrewMember_8cs" startline="865" endline="882">BackToThePeace</references>
+        <references refid="classCrewMember_1a8befaa80fc7bdc53921b67c2673ee015" compoundref="CrewMember_8cs" startline="497">combatCoroutine</references>
+        <references refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CombatRoutine</references>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classCrewBase_1ab5bc82e72ae13e47df0d37bd92fdd417" compoundref="CrewBase_8cs" startline="115">CrewBase.currentShip</references>
+        <references refid="classCrewMember_1a5e60edae0eee3d5844c455ca6d698ccd" compoundref="CrewMember_8cs" startline="765" endline="805">DontTouchMe</references>
+        <references refid="classCrewMember_1a41c7608e6555b803935adbc401e44bbe" compoundref="CrewMember_8cs" startline="1074" endline="1093">Freeze</references>
+        <references refid="classCrewMember_1af4b290dc38d44cde63972f5260377c43" compoundref="CrewMember_8cs" startline="145" endline="148">GetCurrentTile</references>
+        <references refid="classShip_1a1a0fe5c17186a36d8cc9f13a23cfff1b" compoundref="Ship_8cs" startline="367" endline="372">Ship.GetRoomAtPosition</references>
+        <references refid="classShip_1acc377098e3c61bbd4b8fc53595d09293" compoundref="Ship_8cs" startline="1456" endline="1459">Ship.GetWorldPositionFromGrid</references>
+        <references refid="classCrewMember_1a9fa4ab26db0e51c215d6c71d21a7535e" compoundref="CrewMember_8cs" startline="62">hasEnteredTPRoom</references>
+        <references refid="classCrewMember_1ab9457e53edac9eb82e9b4995f83e03e3" compoundref="CrewMember_8cs" startline="485">inCombat</references>
+        <references refid="classRTSSelectionManager_1ac0db424ecf85d35f8a8106fa3bef1d64" compoundref="RTSSelectionManager_8cs" startline="94" endline="94">RTSSelectionManager.Instance</references>
+        <references refid="classCrewBase_1ab78b5a4de7a4515d545bf97fa28b6cc9" compoundref="CrewBase_8cs" startline="106">CrewBase.isMoving</references>
+        <references refid="classRoom_1af15fefedd48a2009da56d461a9084ed8" compoundref="Room_8cs" startline="324" endline="336">Room&lt; TData, TLevel &gt;.IsOperational</references>
+        <references refid="classCrewMember_1a2a72214520c246d394664e2f4bf4a03c" compoundref="CrewMember_8cs" startline="1121" endline="1125">IsOwnShip</references>
+        <references refid="classCrewMember_1a11bff82217c9aa131dd188028cffd5d2" compoundref="CrewMember_8cs" startline="888" endline="900">isWithEnemy</references>
+        <references refid="classCrewMember_1a1503a3e4b8b009a5f75cdc9dcb99b69a" compoundref="CrewMember_8cs" startline="833" endline="860">LookAtMe</references>
+        <references refid="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" compoundref="RTSSelectionManager_8cs" startline="672" endline="800">RTSSelectionManager.MoveForCombat</references>
+        <references refid="classCrewMember_1aa33c08a92ff830a5662c96421f7f84e2" compoundref="CrewMember_8cs" startline="19">movementDirection</references>
+        <references refid="classCrewBase_1ae4c9651c030151345da1640e05de8f45" compoundref="CrewBase_8cs" startline="97">CrewBase.moveSpeed</references>
+        <references refid="classRoom_1a577bbc93f6479096f0d4bedd6cefc26e" compoundref="Room_8cs" startline="104" endline="108">Room&lt; TData, TLevel &gt;.OnCrewEnter</references>
+        <references refid="classCrewMember_1ac7e67a6c2e4863dd2f6b3dda04bf2eb1" compoundref="CrewMember_8cs" startline="22">path</references>
+        <references refid="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" compoundref="CrewMember_8cs" startline="429" endline="463">PlayAnimation</references>
+        <references refid="classCrewBase_1a1025f6ffef015905221678bf57959773" compoundref="CrewBase_8cs" startline="91">CrewBase.position</references>
+        <references refid="classCrewMember_1aa199a08672617743ad8cb3c8939eea00" compoundref="CrewMember_8cs" startline="32">reservedRoom</references>
+        <references refid="classRoom_1af4b97c8e2306beda35f26f8803734eb5" compoundref="Room_8cs" startline="24">Room&lt; TData, TLevel &gt;.roomType</references>
+        <references refid="classCrewMember_1a508cdfced903ba8a7c2f9a5ebfe9927e" compoundref="CrewMember_8cs" startline="1137" endline="1277">TeleportAfterDelay</references>
+        <referencedby refid="classCrewMember_1a66e77fbffb949a64534ac03233d3fc65" compoundref="CrewMember_8cs" startline="155" endline="180">AssignPathAndMove</referencedby>
+        <referencedby refid="classCrewMember_1a2472a8d09a844b219190039393a6a601" compoundref="CrewMember_8cs" startline="186" endline="211">CancelAndRedirect</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a3c76b7a048169237b4038ee133aa1704" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.SetAnimationDirection</definition>
+        <argsstring>(Vector2 direction)</argsstring>
+        <name>SetAnimationDirection</name>
+        <qualifiedname>CrewMember.SetAnimationDirection</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>direction</declname>
+        </param>
+        <briefdescription>
+<para>애니메이션 방향 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="469" column="18" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="469" bodyend="473"/>
+        <references refid="classCrewBase_1a1d5736844f6e70fe9231464468444294" compoundref="CrewBase_8cs" startline="128">CrewBase.animator</references>
+        <referencedby refid="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" compoundref="CrewMember_8cs" startline="429" endline="463">PlayAnimation</referencedby>
+        <referencedby refid="classCrewMember_1a4786d3c0560290a9558f6420dc3304b3" compoundref="CrewMember_8cs" startline="1010" endline="1038">TryWork</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a29c300d9fdaf373da03bb5b11f81a782" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float CrewMember.GetEquipmentAttack</definition>
+        <argsstring>()</argsstring>
+        <name>GetEquipmentAttack</name>
+        <qualifiedname>CrewMember.GetEquipmentAttack</qualifiedname>
+        <briefdescription>
+<para>현재 착용 중인 장비들의 공격력 수치 합계 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="580" column="19" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="580" bodyend="588"/>
+        <references refid="classCrewBase_1a4d57ff0d91892589b29b17b2bdf4f919" compoundref="CrewBase_8cs" startline="82">CrewBase.equippedShield</references>
+        <references refid="classCrewBase_1af24e32cdeeee12b9f2a45b88a0bef2e5" compoundref="CrewBase_8cs" startline="79">CrewBase.equippedWeapon</references>
+        <referencedby refid="classCrewMember_1a1980132bc97845dc890766dadd559e00" compoundref="CrewMember_8cs" startline="613" endline="644">Attack</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a2c66362578e3109fbc6ac3f85c545c00" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float CrewMember.GetEquipmentDefense</definition>
+        <argsstring>()</argsstring>
+        <name>GetEquipmentDefense</name>
+        <qualifiedname>CrewMember.GetEquipmentDefense</qualifiedname>
+        <briefdescription>
+<para>현재 착용 중인 장비들의 방어력 수치 합계 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="594" column="19" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="594" bodyend="602"/>
+        <references refid="classCrewBase_1a4d57ff0d91892589b29b17b2bdf4f919" compoundref="CrewBase_8cs" startline="82">CrewBase.equippedShield</references>
+        <references refid="classCrewBase_1af24e32cdeeee12b9f2a45b88a0bef2e5" compoundref="CrewBase_8cs" startline="79">CrewBase.equippedWeapon</references>
+        <referencedby refid="classCrewMember_1ab2132618bc1788d25a42db80dd3bd70f" compoundref="CrewMember_8cs" startline="650" endline="660">TakeDamage</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1acd9bc234ccc5194520a41702571f0ba9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.StopAllCrewCoroutine</definition>
+        <argsstring>()</argsstring>
+        <name>StopAllCrewCoroutine</name>
+        <qualifiedname>CrewMember.StopAllCrewCoroutine</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="1281" column="18" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="1281" bodyend="1288"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCrewMember_1ad151c19c429cf2ccb66f1d855ff49169" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void CrewMember.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>CrewMember.Start</qualifiedname>
+        <reimplements refid="classCrewBase_1ad961e3cae86ad5ee21a1bf16cc7c8cfc">Start</reimplements>
+        <briefdescription>
+<para>Scriptable Object로 수정 필요!! </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="75" column="26" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="75" bodyend="114"/>
+        <references refid="classCrewMember_1a6d1d65b745c3149c882246ed07b136fb" compoundref="CrewMember_8cs" startline="490">attackBeforeDelay</references>
+        <references refid="classCrewBase_1a5a53b04defdcf26f6be526e1dd7c4910" compoundref="CrewBase_8cs" startline="19">CrewBase.race</references>
+        <references refid="classCrewMember_1a9cb327b33dcd83820750fbb1c2172268" compoundref="CrewMember_8cs" startline="918">repairBeforeDelay</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1aad4604b549178c53a36eb89d903633e8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override Dictionary&lt; SkillType, float &gt;</type>
+        <definition>override Dictionary&lt; SkillType, float &gt; CrewMember.GetCrewSkillValue</definition>
+        <argsstring>()</argsstring>
+        <name>GetCrewSkillValue</name>
+        <qualifiedname>CrewMember.GetCrewSkillValue</qualifiedname>
+        <reimplements refid="classCrewBase_1a3cdf59dab8eeb45091b4ab4a81be4873">GetCrewSkillValue</reimplements>
+        <briefdescription>
+<para>현재 선원의 모든 스킬 값을 계산하여 반환합니다. 기본 숙련도, 장비 보너스, 사기 보너스를 포함합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>스킬 타입별 총 숙련도 값 딕셔너리.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="121" column="32" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="121" bodyend="139"/>
+        <references refid="classCrewBase_1a0242579bbf8a0289be79ecb26182f88b" compoundref="CrewBase_8cs" startline="76">CrewBase.equipAdditionalSkills</references>
+        <references refid="classMoraleManager_1ae4bd0f13d318a29833b66d05fe6b632e" compoundref="MoraleManager_8cs" startline="167" endline="171">MoraleManager.GetTotalMoraleBonus</references>
+        <references refid="classCrewBase_1a0412004e817734bab43a62c793d45cdb" compoundref="CrewBase_8cs" startline="70">CrewBase.skills</references>
+        <referencedby refid="classAmmunitionRoom_1a0004f22eee794e77d7456a06b6e1f4f6" compoundref="AmmunitionRoom_8cs" startline="75" endline="83">AmmunitionRoom.CanITouch</referencedby>
+        <referencedby refid="classCockpitRoom_1adb55e600c703d61b88522127f8ab69fd" compoundref="CockpitRoom_8cs" startline="67" endline="75">CockpitRoom.CanITouch</referencedby>
+        <referencedby refid="classEngineRoom_1accf6fbfbf65570e5c72fd428fdbfab94" compoundref="EngineRoom_8cs" startline="74" endline="83">EngineRoom.CanITouch</referencedby>
+        <referencedby refid="classMedBayRoom_1a91d9189733afdd2f3fcb739ce47c6912" compoundref="MedBayRoom_8cs" startline="89" endline="97">MedBayRoom.CanITouch</referencedby>
+        <referencedby refid="classPowerRoom_1ad56c8a1c749143e7cb4fcbe499f67117" compoundref="PowerRoom_8cs" startline="67" endline="75">PowerRoom.CanITouch</referencedby>
+        <referencedby refid="classShieldRoom_1ad44542c6ec5f21aaa3b10ee12b486c5d" compoundref="ShieldRoom_8cs" startline="70" endline="78">ShieldRoom.CanITouch</referencedby>
+        <referencedby refid="classWeaponControlRoom_1aa5891f5f353d934a17034e534d490830" compoundref="WeaponControlRoom_8cs" startline="64" endline="72">WeaponControlRoom.CanITouch</referencedby>
+        <referencedby refid="classAmmunitionRoom_1a012c56f5c2f19743ed9cf120aefb8309" compoundref="AmmunitionRoom_8cs" startline="27" endline="68">AmmunitionRoom.GetStatContributions</referencedby>
+        <referencedby refid="classCockpitRoom_1af833aa863276c6bc42615c39a355c313" compoundref="CockpitRoom_8cs" startline="27" endline="60">CockpitRoom.GetStatContributions</referencedby>
+        <referencedby refid="classEngineRoom_1a9fc4568124314c8f33d8a34835f94839" compoundref="EngineRoom_8cs" startline="28" endline="67">EngineRoom.GetStatContributions</referencedby>
+        <referencedby refid="classMedBayRoom_1a75a59c7fa045fb29df402c27871a8757" compoundref="MedBayRoom_8cs" startline="52" endline="82">MedBayRoom.GetStatContributions</referencedby>
+        <referencedby refid="classPowerRoom_1ad9c7015d49b585675a4da437c37d413d" compoundref="PowerRoom_8cs" startline="33" endline="60">PowerRoom.GetStatContributions</referencedby>
+        <referencedby refid="classShieldRoom_1a0e069dba29de8d01cf788925860bd76c" compoundref="ShieldRoom_8cs" startline="28" endline="63">ShieldRoom.GetStatContributions</referencedby>
+        <referencedby refid="classWeaponControlRoom_1afc42aa6a0418c1e6276ea271414baf17" compoundref="WeaponControlRoom_8cs" startline="27" endline="57">WeaponControlRoom.GetStatContributions</referencedby>
+        <referencedby refid="classCrewMember_1a6d2b12f78fe2bb8cae67fa23d5878e4d" compoundref="CrewMember_8cs" startline="982" endline="994">RepairFacility</referencedby>
+        <referencedby refid="classCrewMember_1a2e19d5fd76a3e3435eb7b6c313057ef8" compoundref="CrewMember_8cs" startline="925" endline="945">TryRepair</referencedby>
+        <referencedby refid="classMedBayRoom_1abbbb914b1e061f0d720012883375a24d" compoundref="MedBayRoom_8cs" startline="26" endline="45">MedBayRoom.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1af4b290dc38d44cde63972f5260377c43" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2Int</type>
+        <definition>Vector2Int CrewMember.GetCurrentTile</definition>
+        <argsstring>()</argsstring>
+        <name>GetCurrentTile</name>
+        <qualifiedname>CrewMember.GetCurrentTile</qualifiedname>
+        <briefdescription>
+<para>현재 위치 반환 (가장 가까운 타일) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="145" column="23" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="145" bodyend="148"/>
+        <references refid="classCrewBase_1a1025f6ffef015905221678bf57959773" compoundref="CrewBase_8cs" startline="91">CrewBase.position</references>
+        <referencedby refid="classCrewMember_1a66e77fbffb949a64534ac03233d3fc65" compoundref="CrewMember_8cs" startline="155" endline="180">AssignPathAndMove</referencedby>
+        <referencedby refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CombatRoutine</referencedby>
+        <referencedby refid="classCrewPathfinder_1a5511dc3dd1f1dd7fefda36d5c9e044c2" compoundref="CrewPathFinder_8cs" startline="19" endline="23">CrewPathfinder.FindPathToTile</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+        <referencedby refid="classCrewMember_1adf2ef6b08d0e224b1b592ee7f68a1d39" compoundref="CrewMember_8cs" startline="229" endline="236">GetCurrentTilePriorityIndex</referencedby>
+        <referencedby refid="classCrewMember_1a21e78c05a8f47d72c5f5ad28874537ad" compoundref="CrewMember_8cs" startline="811" endline="828">ImDying</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a0002c5992875339db3028007c2472b6d" compoundref="RTSSelectionManager_8cs" startline="443" endline="666">RTSSelectionManager.IssueMoveCommand</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" compoundref="RTSSelectionManager_8cs" startline="672" endline="800">RTSSelectionManager.MoveForCombat</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a1b4a2ba4cb9ea7b2957e937a683ca02f" compoundref="RTSSelectionManager_8cs" startline="806" endline="813">RTSSelectionManager.Select</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a8f7107c278338d7cb2abbe4d1a6ebfba" compoundref="RTSSelectionManager_8cs" startline="355" endline="389">RTSSelectionManager.SelectMultipleCrew</referencedby>
+        <referencedby refid="classRTSSelectionManager_1aa9ac0a8b0fd62fdd5bfb2a36589ccb16" compoundref="RTSSelectionManager_8cs" startline="331" endline="350">RTSSelectionManager.SelectSingleCrew</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a66e77fbffb949a64534ac03233d3fc65" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.AssignPathAndMove</definition>
+        <argsstring>(List&lt; Vector2Int &gt; newPath)</argsstring>
+        <name>AssignPathAndMove</name>
+        <qualifiedname>CrewMember.AssignPathAndMove</qualifiedname>
+        <param>
+          <type>List&lt; Vector2Int &gt;</type>
+          <declname>newPath</declname>
+        </param>
+        <briefdescription>
+<para>이동 경로를 명시하고 이동 시작 이동 시작 시 기존 점유 타일 해제, 새로운 목적지 타일 점유 등록 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="155" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="155" bodyend="180"/>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classCrewBase_1ab5bc82e72ae13e47df0d37bd92fdd417" compoundref="CrewBase_8cs" startline="115">CrewBase.currentShip</references>
+        <references refid="classCrewMember_1a908e574d7df106ce221c0291e25cb82e" compoundref="CrewMember_8cs" startline="216" endline="223">EnsureHealthBarFollows</references>
+        <references refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</references>
+        <references refid="classCrewMember_1af4b290dc38d44cde63972f5260377c43" compoundref="CrewMember_8cs" startline="145" endline="148">GetCurrentTile</references>
+        <references refid="classCrewMember_1a601563f5de14b6286a125f9f1f5c0a38" compoundref="CrewMember_8cs" startline="27">moveCoroutine</references>
+        <references refid="classCrewMember_1ac7e67a6c2e4863dd2f6b3dda04bf2eb1" compoundref="CrewMember_8cs" startline="22">path</references>
+        <references refid="classCrewMember_1aa199a08672617743ad8cb3c8939eea00" compoundref="CrewMember_8cs" startline="32">reservedRoom</references>
+        <references refid="classCrewMember_1a0381b8847e46da4bce05aa695fc147d7" compoundref="CrewMember_8cs" startline="42">reservedTile</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a2472a8d09a844b219190039393a6a601" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.CancelAndRedirect</definition>
+        <argsstring>(List&lt; Vector2Int &gt; newPath)</argsstring>
+        <name>CancelAndRedirect</name>
+        <qualifiedname>CrewMember.CancelAndRedirect</qualifiedname>
+        <param>
+          <type>List&lt; Vector2Int &gt;</type>
+          <declname>newPath</declname>
+        </param>
+        <briefdescription>
+<para>이동 중 새로운 이동 명령 수신 시 이전 목적지 타일 점유 해제 (체력바 follow) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>newPath</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="186" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="186" bodyend="211"/>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classCrewBase_1ab5bc82e72ae13e47df0d37bd92fdd417" compoundref="CrewBase_8cs" startline="115">CrewBase.currentShip</references>
+        <references refid="classCrewMember_1a908e574d7df106ce221c0291e25cb82e" compoundref="CrewMember_8cs" startline="216" endline="223">EnsureHealthBarFollows</references>
+        <references refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</references>
+        <references refid="classCrewMember_1a601563f5de14b6286a125f9f1f5c0a38" compoundref="CrewMember_8cs" startline="27">moveCoroutine</references>
+        <references refid="classCrewMember_1adccdce5625f1fee5e0000051ca086ea5" compoundref="CrewMember_8cs" startline="37">oldReservedRoom</references>
+        <references refid="classCrewMember_1a04fbdab8a828a20a37f1c817a744897b" compoundref="CrewMember_8cs" startline="47">oldReservedTile</references>
+        <references refid="classCrewMember_1ac7e67a6c2e4863dd2f6b3dda04bf2eb1" compoundref="CrewMember_8cs" startline="22">path</references>
+        <references refid="classCrewMember_1aa199a08672617743ad8cb3c8939eea00" compoundref="CrewMember_8cs" startline="32">reservedRoom</references>
+        <references refid="classCrewMember_1a0381b8847e46da4bce05aa695fc147d7" compoundref="CrewMember_8cs" startline="42">reservedTile</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1adf2ef6b08d0e224b1b592ee7f68a1d39" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int CrewMember.GetCurrentTilePriorityIndex</definition>
+        <argsstring>()</argsstring>
+        <name>GetCurrentTilePriorityIndex</name>
+        <qualifiedname>CrewMember.GetCurrentTilePriorityIndex</qualifiedname>
+        <briefdescription>
+<para>현재 방에서 선원이 점유 중인 타일의 우선순위 인덱스 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="229" column="16" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="229" bodyend="236"/>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classCrewMember_1af4b290dc38d44cde63972f5260377c43" compoundref="CrewMember_8cs" startline="145" endline="148">GetCurrentTile</references>
+        <references refid="classRoom_1a08dfe5c5a797aacad22c29926b3482e4" compoundref="Room_8cs" startline="123" endline="154">Room&lt; TData, TLevel &gt;.GetRotatedCrewEntryGridPriority</references>
+        <referencedby refid="classRTSSelectionManager_1a0002c5992875339db3028007c2472b6d" compoundref="RTSSelectionManager_8cs" startline="443" endline="666">RTSSelectionManager.IssueMoveCommand</referencedby>
+        <referencedby refid="classCrewMember_1a4786d3c0560290a9558f6420dc3304b3" compoundref="CrewMember_8cs" startline="1010" endline="1038">TryWork</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a4eba19a797d1f5b3bcaa0c36b695f245" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classEquipmentStats" kindref="compound">EquipmentStats</ref></type>
+        <definition>EquipmentStats CrewMember.GetCombinedStats</definition>
+        <argsstring>()</argsstring>
+        <name>GetCombinedStats</name>
+        <qualifiedname>CrewMember.GetCombinedStats</qualifiedname>
+        <briefdescription>
+<para>현재 선원의 스텟 반환 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="340" column="27" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="340" bodyend="357"/>
+        <references refid="classCrewBase_1ad7ba770907db7fc91ef38ae08066c43d" compoundref="CrewBase_8cs" startline="25">CrewBase.attack</references>
+        <references refid="classCrewBase_1a21015f193776314b53984f22276e933b" compoundref="CrewBase_8cs" startline="28">CrewBase.defense</references>
+        <references refid="classCrewBase_1a387a18a6fd0627064c66a5471d8fcee7" compoundref="CrewBase_8cs" startline="100">CrewBase.health</references>
+        <references refid="classCrewBase_1a0412004e817734bab43a62c793d45cdb" compoundref="CrewBase_8cs" startline="70">CrewBase.skills</references>
+        <referencedby refid="classCrewMember_1ab51adc771fd75a9ee2d1f53e218e77c8" compoundref="CrewMember_8cs" startline="364" endline="421">GetStatsIfEquipped</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1abd424807c871bb5f37f1b82c9bd008db" compoundref="EquipmentApplyHandler_8cs" startline="311" endline="341">EquipmentApplyHandler.OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentUIHandler_1a6185fb10654f2cfbd33acf4ef73126a2" compoundref="EquipmentUIHandler_8cs" startline="540" endline="570">EquipmentUIHandler.OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a64517bd171a33f2cd6025797d945f473" compoundref="EquipmentApplyHandler_8cs" startline="281" endline="305">EquipmentApplyHandler.OnEquipmentIconSelected</referencedby>
+        <referencedby refid="classEquipmentUIHandler_1a5a49da089005a57f7f0930868f56c239" compoundref="EquipmentUIHandler_8cs" startline="421" endline="446">EquipmentUIHandler.OnEquipmentIconSelected</referencedby>
+        <referencedby refid="classEquipmentUIHandler_1a10dc6e7062787956eba5849e1f5ba46a" compoundref="EquipmentUIHandler_8cs" startline="646" endline="655">EquipmentUIHandler.RefreshCrewDetailPanel</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a9ad0b321e092e78256b121de2cc406da" compoundref="EquipmentApplyHandler_8cs" startline="427" endline="477">EquipmentApplyHandler.RefreshCrewDetailPanel</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1ab51adc771fd75a9ee2d1f53e218e77c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classEquipmentStats" kindref="compound">EquipmentStats</ref></type>
+        <definition>EquipmentStats CrewMember.GetStatsIfEquipped</definition>
+        <argsstring>(EquipmentItem newItem)</argsstring>
+        <name>GetStatsIfEquipped</name>
+        <qualifiedname>CrewMember.GetStatsIfEquipped</qualifiedname>
+        <param>
+          <type><ref refid="classEquipmentItem" kindref="compound">EquipmentItem</ref></type>
+          <declname>newItem</declname>
+        </param>
+        <briefdescription>
+<para>새로운 장비 착용 시뮬레이션 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>newItem</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="364" column="27" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="364" bodyend="421"/>
+        <references refid="classCrewBase_1ad9e50598947dde72ca04a35781a39989" compoundref="CrewBase_8cs" startline="85">CrewBase.equippedAssistant</references>
+        <references refid="classCrewBase_1a4d57ff0d91892589b29b17b2bdf4f919" compoundref="CrewBase_8cs" startline="82">CrewBase.equippedShield</references>
+        <references refid="classCrewBase_1af24e32cdeeee12b9f2a45b88a0bef2e5" compoundref="CrewBase_8cs" startline="79">CrewBase.equippedWeapon</references>
+        <references refid="classCrewMember_1a4eba19a797d1f5b3bcaa0c36b695f245" compoundref="CrewMember_8cs" startline="340" endline="357">GetCombinedStats</references>
+        <referencedby refid="classEquipmentApplyHandler_1abd424807c871bb5f37f1b82c9bd008db" compoundref="EquipmentApplyHandler_8cs" startline="311" endline="341">EquipmentApplyHandler.OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentUIHandler_1a6185fb10654f2cfbd33acf4ef73126a2" compoundref="EquipmentUIHandler_8cs" startline="540" endline="570">EquipmentUIHandler.OnClickPendingUnEquip</referencedby>
+        <referencedby refid="classEquipmentApplyHandler_1a64517bd171a33f2cd6025797d945f473" compoundref="EquipmentApplyHandler_8cs" startline="281" endline="305">EquipmentApplyHandler.OnEquipmentIconSelected</referencedby>
+        <referencedby refid="classEquipmentUIHandler_1a5a49da089005a57f7f0930868f56c239" compoundref="EquipmentUIHandler_8cs" startline="421" endline="446">EquipmentUIHandler.OnEquipmentIconSelected</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.PlayAnimation</definition>
+        <argsstring>(string trigger)</argsstring>
+        <name>PlayAnimation</name>
+        <qualifiedname>CrewMember.PlayAnimation</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>trigger</declname>
+        </param>
+        <briefdescription>
+<para>animation 실행 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>trigger</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="429" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="429" bodyend="463"/>
+        <references refid="classCrewBase_1a1d5736844f6e70fe9231464468444294" compoundref="CrewBase_8cs" startline="128">CrewBase.animator</references>
+        <references refid="classCrewBase_1ab78b5a4de7a4515d545bf97fa28b6cc9" compoundref="CrewBase_8cs" startline="106">CrewBase.isMoving</references>
+        <references refid="classCrewMember_1ae056f833ac8368fd774c7755f3865716" compoundref="CrewMember_8cs" startline="1004">isWorking</references>
+        <references refid="classCrewMember_1aa33c08a92ff830a5662c96421f7f84e2" compoundref="CrewMember_8cs" startline="19">movementDirection</references>
+        <references refid="classCrewMember_1a3c76b7a048169237b4038ee133aa1704" compoundref="CrewMember_8cs" startline="469" endline="473">SetAnimationDirection</references>
+        <referencedby refid="classCrewMember_1ae80f1831860b8a260b6899410f48bc1d" compoundref="CrewMember_8cs" startline="865" endline="882">BackToThePeace</referencedby>
+        <referencedby refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CombatRoutine</referencedby>
+        <referencedby refid="classCrewMember_1aa5c7668b76acb42a080c33cbcc949965" compoundref="CrewMember_8cs" startline="681" endline="707">Die</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+        <referencedby refid="classCrewMember_1a41c7608e6555b803935adbc401e44bbe" compoundref="CrewMember_8cs" startline="1074" endline="1093">Freeze</referencedby>
+        <referencedby refid="classCrewMember_1a21e78c05a8f47d72c5f5ad28874537ad" compoundref="CrewMember_8cs" startline="811" endline="828">ImDying</referencedby>
+        <referencedby refid="classCrewMember_1a8ee5c024823e872d9addf84d0858879b" compoundref="CrewMember_8cs" startline="951" endline="975">RepairRoutine</referencedby>
+        <referencedby refid="classCrewMember_1a508cdfced903ba8a7c2f9a5ebfe9927e" compoundref="CrewMember_8cs" startline="1137" endline="1277">TeleportAfterDelay</referencedby>
+        <referencedby refid="classCrewMember_1a4786d3c0560290a9558f6420dc3304b3" compoundref="CrewMember_8cs" startline="1010" endline="1038">TryWork</referencedby>
+        <referencedby refid="classCrewMember_1a5161a521053d829ee86ecae3de914b22" compoundref="CrewMember_8cs" startline="1098" endline="1113">WalkOut</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator CrewMember.CombatRoutine</definition>
+        <argsstring>()</argsstring>
+        <name>CombatRoutine</name>
+        <qualifiedname>CrewMember.CombatRoutine</qualifiedname>
+        <briefdescription>
+<para>전투 진입 코루틴 (타겟 설정 후 전투 시작, 타겟이 없고 적 함선일 경우 방 부수기 돌입) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="513" column="24" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="513" bodyend="557"/>
+        <references refid="classCrewBase_1ad208436cc1bc5959ab8c940ffe18ac60" compoundref="CrewBase_8cs" startline="140">CrewBase.bullier</references>
+        <references refid="classCrewMember_1a8befaa80fc7bdc53921b67c2673ee015" compoundref="CrewMember_8cs" startline="497">combatCoroutine</references>
+        <references refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CombatRoutine</references>
+        <references refid="classCrewMember_1af475638b2aaf65170b3dcd9d3ac3dbe8" compoundref="CrewMember_8cs" startline="480" endline="480">combatTarget</references>
+        <references refid="classRoom_1a3eda5d2a24f5e68c7cd376d50096cb4c" compoundref="Room_8cs" startline="21">Room&lt; TData, TLevel &gt;.currentHitPoints</references>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classCrewMember_1a41c7608e6555b803935adbc401e44bbe" compoundref="CrewMember_8cs" startline="1074" endline="1093">Freeze</references>
+        <references refid="classCrewMember_1af4b290dc38d44cde63972f5260377c43" compoundref="CrewMember_8cs" startline="145" endline="148">GetCurrentTile</references>
+        <references refid="classRoom_1aca10cd460fc622d1f4b968092676be31" compoundref="Room_8cs" startline="240" endline="243">Room&lt; TData, TLevel &gt;.GetIsDamageable</references>
+        <references refid="classCrewBase_1a387a18a6fd0627064c66a5471d8fcee7" compoundref="CrewBase_8cs" startline="100">CrewBase.health</references>
+        <references refid="classCrewMember_1ab9457e53edac9eb82e9b4995f83e03e3" compoundref="CrewMember_8cs" startline="485">inCombat</references>
+        <references refid="classCrewBase_1a234dad1a8fd8847879f0922fb0b17996" compoundref="CrewBase_8cs" startline="103">CrewBase.isAlive</references>
+        <references refid="classCrewMember_1a2a72214520c246d394664e2f4bf4a03c" compoundref="CrewMember_8cs" startline="1121" endline="1125">IsOwnShip</references>
+        <references refid="classCrewMember_1a65c02aa3aa6abb37b0aa92eb7bb4346c" compoundref="CrewMember_8cs" startline="507">madRoom</references>
+        <references refid="classCrewMember_1aa33c08a92ff830a5662c96421f7f84e2" compoundref="CrewMember_8cs" startline="19">movementDirection</references>
+        <references refid="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" compoundref="CrewMember_8cs" startline="429" endline="463">PlayAnimation</references>
+        <referencedby refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CombatRoutine</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+        <referencedby refid="classCrewMember_1a333520785e710bfa87327f3f15f03734" compoundref="CrewMember_8cs" startline="562" endline="574">RepeatCombatRoutine</referencedby>
+        <referencedby refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" compoundref="EnemyController_8cs" startline="23" endline="122">EnemyController.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a333520785e710bfa87327f3f15f03734" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.RepeatCombatRoutine</definition>
+        <argsstring>()</argsstring>
+        <name>RepeatCombatRoutine</name>
+        <qualifiedname>CrewMember.RepeatCombatRoutine</qualifiedname>
+        <briefdescription>
+<para><ref refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" kindref="member">CombatRoutine()</ref>은 1회 공격 -&gt; 반복해라 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="562" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="562" bodyend="574"/>
+        <references refid="classCrewMember_1a8befaa80fc7bdc53921b67c2673ee015" compoundref="CrewMember_8cs" startline="497">combatCoroutine</references>
+        <references refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CombatRoutine</references>
+        <references refid="classCrewMember_1af475638b2aaf65170b3dcd9d3ac3dbe8" compoundref="CrewMember_8cs" startline="480" endline="480">combatTarget</references>
+        <references refid="classCrewMember_1a65c02aa3aa6abb37b0aa92eb7bb4346c" compoundref="CrewMember_8cs" startline="507">madRoom</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a1980132bc97845dc890766dadd559e00" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.Attack</definition>
+        <argsstring>()</argsstring>
+        <name>Attack</name>
+        <qualifiedname>CrewMember.Attack</qualifiedname>
+        <briefdescription>
+<para>전투 메서드: 1 hit 당 피해량 계산 후 체력 차감, 체력이 0 이하이면 죽음 처리 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>attacker</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>공격한 상대가 살아있는지 여부를 반환한다.<linebreak/>
+ True: 아직 살아있음 / False: 죽었음 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="613" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="613" bodyend="644"/>
+        <references refid="classCrewBase_1ad7ba770907db7fc91ef38ae08066c43d" compoundref="CrewBase_8cs" startline="25">CrewBase.attack</references>
+        <references refid="classCrewMember_1af475638b2aaf65170b3dcd9d3ac3dbe8" compoundref="CrewMember_8cs" startline="480" endline="480">combatTarget</references>
+        <references refid="classRoom_1a3eda5d2a24f5e68c7cd376d50096cb4c" compoundref="Room_8cs" startline="21">Room&lt; TData, TLevel &gt;.currentHitPoints</references>
+        <references refid="classCrewBase_1ab5bc82e72ae13e47df0d37bd92fdd417" compoundref="CrewBase_8cs" startline="115">CrewBase.currentShip</references>
+        <references refid="classCrewMember_1a29c300d9fdaf373da03bb5b11f81a782" compoundref="CrewMember_8cs" startline="580" endline="588">GetEquipmentAttack</references>
+        <references refid="classCrewMember_1ab9457e53edac9eb82e9b4995f83e03e3" compoundref="CrewMember_8cs" startline="485">inCombat</references>
+        <references refid="classRTSSelectionManager_1ac0db424ecf85d35f8a8106fa3bef1d64" compoundref="RTSSelectionManager_8cs" startline="94" endline="94">RTSSelectionManager.Instance</references>
+        <references refid="classCrewMember_1a11bff82217c9aa131dd188028cffd5d2" compoundref="CrewMember_8cs" startline="888" endline="900">isWithEnemy</references>
+        <references refid="classCrewMember_1a65c02aa3aa6abb37b0aa92eb7bb4346c" compoundref="CrewMember_8cs" startline="507">madRoom</references>
+        <references refid="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" compoundref="RTSSelectionManager_8cs" startline="672" endline="800">RTSSelectionManager.MoveForCombat</references>
+        <references refid="classCrewMember_1ab2132618bc1788d25a42db80dd3bd70f" compoundref="CrewMember_8cs" startline="650" endline="660">TakeDamage</references>
+        <references refid="classRoom_1a6a7d8be84106267b1036aa51645819a4" compoundref="Room_8cs" startline="597" endline="615">Room&lt; TData, TLevel &gt;.TakeDamage</references>
+        <references refid="classShip_1ac61b02cdac21a64fd326753ccb8ae96a" compoundref="Ship_8cs" startline="1291" endline="1300">Ship.TakeDamage</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1ab2132618bc1788d25a42db80dd3bd70f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.TakeDamage</definition>
+        <argsstring>(float damage)</argsstring>
+        <name>TakeDamage</name>
+        <qualifiedname>CrewMember.TakeDamage</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>damage</declname>
+        </param>
+        <briefdescription>
+<para>현재 선원의 방어력을 고려한 피해 발생 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>damage</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="650" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="650" bodyend="660"/>
+        <references refid="classCrewBase_1a21015f193776314b53984f22276e933b" compoundref="CrewBase_8cs" startline="28">CrewBase.defense</references>
+        <references refid="classCrewMember_1aa5c7668b76acb42a080c33cbcc949965" compoundref="CrewMember_8cs" startline="681" endline="707">Die</references>
+        <references refid="classCrewMember_1a2c66362578e3109fbc6ac3f85c545c00" compoundref="CrewMember_8cs" startline="594" endline="602">GetEquipmentDefense</references>
+        <references refid="classCrewBase_1a387a18a6fd0627064c66a5471d8fcee7" compoundref="CrewBase_8cs" startline="100">CrewBase.health</references>
+        <referencedby refid="classShip_1acce93654d385d59ee798d2a4f76005c9" compoundref="Ship_8cs" startline="1329" endline="1337">Ship.ApplyDamageToCrewsAtPosition</referencedby>
+        <referencedby refid="classShip_1ab6958862fd134458e06c8b9bce6ba40f" compoundref="Ship_8cs" startline="1315" endline="1321">Ship.ApplyDamageToCrewsInRoom</referencedby>
+        <referencedby refid="classEventCrewEffectHandler_1a1c6a865eb331d25525e8ff555a722e75" compoundref="EventCrewEffectHandler_8cs" startline="30" endline="73">EventCrewEffectHandler.ApplyEffects</referencedby>
+        <referencedby refid="classCrewMember_1a1980132bc97845dc890766dadd559e00" compoundref="CrewMember_8cs" startline="613" endline="644">Attack</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a05e0a89cdc5aac50422e1351c1796872" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.TakeOxygenDamage</definition>
+        <argsstring>()</argsstring>
+        <name>TakeOxygenDamage</name>
+        <qualifiedname>CrewMember.TakeOxygenDamage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>damage</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="666" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="666" bodyend="675"/>
+        <references refid="classCrewMember_1aa5c7668b76acb42a080c33cbcc949965" compoundref="CrewMember_8cs" startline="681" endline="707">Die</references>
+        <references refid="classCrewBase_1a387a18a6fd0627064c66a5471d8fcee7" compoundref="CrewBase_8cs" startline="100">CrewBase.health</references>
+        <references refid="classCrewBase_1a45320e06eadb3f7a51df9040ff464973" compoundref="CrewBase_8cs" startline="22">CrewBase.maxHealth</references>
+        <references refid="classCrewBase_1aa013b1f70d4f6d5737ce118baee45d69" compoundref="CrewBase_8cs" startline="34">CrewBase.needsOxygen</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1aa5c7668b76acb42a080c33cbcc949965" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.Die</definition>
+        <argsstring>()</argsstring>
+        <name>Die</name>
+        <qualifiedname>CrewMember.Die</qualifiedname>
+        <briefdescription>
+<para>사망 시, 자신을 combatTarget으로 지정한 선원들에게서 자신을 할당 해제시키고 다른 목표를 탐색하도록한다. 또한 애니메이션 재생을 마친 후에 Destroy </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="681" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="681" bodyend="707"/>
+        <references refid="classShip_1a77e8600c112c136e294bf98d19625546" compoundref="Ship_8cs" startline="46">Ship.allCrews</references>
+        <references refid="classShip_1aa7ca40e2dae616881351d9a3e025bb79" compoundref="Ship_8cs" startline="49">Ship.allEnemies</references>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classCrewBase_1ab5bc82e72ae13e47df0d37bd92fdd417" compoundref="CrewBase_8cs" startline="115">CrewBase.currentShip</references>
+        <references refid="classCrewMember_1a5e60edae0eee3d5844c455ca6d698ccd" compoundref="CrewMember_8cs" startline="765" endline="805">DontTouchMe</references>
+        <references refid="classCrewMember_1ab9457e53edac9eb82e9b4995f83e03e3" compoundref="CrewMember_8cs" startline="485">inCombat</references>
+        <references refid="classRTSSelectionManager_1ac0db424ecf85d35f8a8106fa3bef1d64" compoundref="RTSSelectionManager_8cs" startline="94" endline="94">RTSSelectionManager.Instance</references>
+        <references refid="classCrewBase_1a234dad1a8fd8847879f0922fb0b17996" compoundref="CrewBase_8cs" startline="103">CrewBase.isAlive</references>
+        <references refid="classCrewBase_1ab78b5a4de7a4515d545bf97fa28b6cc9" compoundref="CrewBase_8cs" startline="106">CrewBase.isMoving</references>
+        <references refid="classCrewBase_1a24c27571ccbe1263b7bcc0b1edf78010" compoundref="CrewBase_8cs" startline="16">CrewBase.isPlayerControlled</references>
+        <references refid="classCrewMember_1ae056f833ac8368fd774c7755f3865716" compoundref="CrewMember_8cs" startline="1004">isWorking</references>
+        <references refid="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" compoundref="CrewMember_8cs" startline="429" endline="463">PlayAnimation</references>
+        <references refid="classRTSSelectionManager_1af0d1c7a1b0c8e99784daebcb7fa2e777" compoundref="RTSSelectionManager_8cs" startline="42">RTSSelectionManager.selectedCrew</references>
+        <references refid="classCrewMember_1a5161a521053d829ee86ecae3de914b22" compoundref="CrewMember_8cs" startline="1098" endline="1113">WalkOut</references>
+        <references refid="classCrewMember_1a61e3027a3593ebbdda8d63d518a6b397" compoundref="CrewMember_8cs" startline="57">wasMoving</references>
+        <referencedby refid="classCrewMember_1ab2132618bc1788d25a42db80dd3bd70f" compoundref="CrewMember_8cs" startline="650" endline="660">TakeDamage</referencedby>
+        <referencedby refid="classCrewMember_1a05e0a89cdc5aac50422e1351c1796872" compoundref="CrewMember_8cs" startline="666" endline="675">TakeOxygenDamage</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a2156ca5862fb2b062ff6b67eb04b6e9e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.AfterDie</definition>
+        <argsstring>()</argsstring>
+        <name>AfterDie</name>
+        <qualifiedname>CrewMember.AfterDie</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="709" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="709" bodyend="723"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1adad7548664d8a252831ede5df11520dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.InstantKill</definition>
+        <argsstring>()</argsstring>
+        <name>InstantKill</name>
+        <qualifiedname>CrewMember.InstantKill</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="725" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="725" bodyend="760"/>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a5e60edae0eee3d5844c455ca6d698ccd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.DontTouchMe</definition>
+        <argsstring>()</argsstring>
+        <name>DontTouchMe</name>
+        <qualifiedname>CrewMember.DontTouchMe</qualifiedname>
+        <briefdescription>
+<para>전투 상황에서 자신이 이동했을 때, 자신을 공격하던 다른 선원들에게 자신을 공격하는 행위 이외의 다른 행동을 하도록 명령 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="765" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="765" bodyend="805"/>
+        <references refid="classCrewMember_1ae80f1831860b8a260b6899410f48bc1d" compoundref="CrewMember_8cs" startline="865" endline="882">BackToThePeace</references>
+        <references refid="classCrewBase_1ad208436cc1bc5959ab8c940ffe18ac60" compoundref="CrewBase_8cs" startline="140">CrewBase.bullier</references>
+        <references refid="classCrewMember_1a8befaa80fc7bdc53921b67c2673ee015" compoundref="CrewMember_8cs" startline="497">combatCoroutine</references>
+        <references refid="classCrewMember_1af475638b2aaf65170b3dcd9d3ac3dbe8" compoundref="CrewMember_8cs" startline="480" endline="480">combatTarget</references>
+        <references refid="classCrewMember_1ab9457e53edac9eb82e9b4995f83e03e3" compoundref="CrewMember_8cs" startline="485">inCombat</references>
+        <references refid="classRTSSelectionManager_1ac0db424ecf85d35f8a8106fa3bef1d64" compoundref="RTSSelectionManager_8cs" startline="94" endline="94">RTSSelectionManager.Instance</references>
+        <references refid="classCrewMember_1a11bff82217c9aa131dd188028cffd5d2" compoundref="CrewMember_8cs" startline="888" endline="900">isWithEnemy</references>
+        <references refid="classCrewMember_1ae056f833ac8368fd774c7755f3865716" compoundref="CrewMember_8cs" startline="1004">isWorking</references>
+        <references refid="classCrewMember_1a65c02aa3aa6abb37b0aa92eb7bb4346c" compoundref="CrewMember_8cs" startline="507">madRoom</references>
+        <references refid="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" compoundref="RTSSelectionManager_8cs" startline="672" endline="800">RTSSelectionManager.MoveForCombat</references>
+        <references refid="classCrewMember_1a5161a521053d829ee86ecae3de914b22" compoundref="CrewMember_8cs" startline="1098" endline="1113">WalkOut</references>
+        <referencedby refid="classCrewMember_1aa5c7668b76acb42a080c33cbcc949965" compoundref="CrewMember_8cs" startline="681" endline="707">Die</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a21e78c05a8f47d72c5f5ad28874537ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator CrewMember.ImDying</definition>
+        <argsstring>()</argsstring>
+        <name>ImDying</name>
+        <qualifiedname>CrewMember.ImDying</qualifiedname>
+        <briefdescription>
+<para>죽음 처리 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="811" column="24" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="811" bodyend="828"/>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classCrewBase_1ab5bc82e72ae13e47df0d37bd92fdd417" compoundref="CrewBase_8cs" startline="115">CrewBase.currentShip</references>
+        <references refid="classCrewMember_1af4b290dc38d44cde63972f5260377c43" compoundref="CrewMember_8cs" startline="145" endline="148">GetCurrentTile</references>
+        <references refid="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" compoundref="CrewMember_8cs" startline="429" endline="463">PlayAnimation</references>
+        <references refid="classCrewMember_1aa199a08672617743ad8cb3c8939eea00" compoundref="CrewMember_8cs" startline="32">reservedRoom</references>
+        <references refid="classCrewMember_1a0381b8847e46da4bce05aa695fc147d7" compoundref="CrewMember_8cs" startline="42">reservedTile</references>
+        <references refid="classCrewMember_1a61e3027a3593ebbdda8d63d518a6b397" compoundref="CrewMember_8cs" startline="57">wasMoving</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a1503a3e4b8b009a5f75cdc9dcb99b69a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.LookAtMe</definition>
+        <argsstring>()</argsstring>
+        <name>LookAtMe</name>
+        <qualifiedname>CrewMember.LookAtMe</qualifiedname>
+        <briefdescription>
+<para>선원이 진입한 방의 적이 멈춰 있고 전투 중이 아니라면, 모두 본인을 공격하도록 설정 (어그로) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="833" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="833" bodyend="860"/>
+        <references refid="classCrewMember_1af475638b2aaf65170b3dcd9d3ac3dbe8" compoundref="CrewMember_8cs" startline="480" endline="480">combatTarget</references>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classRTSSelectionManager_1ac0db424ecf85d35f8a8106fa3bef1d64" compoundref="RTSSelectionManager_8cs" startline="94" endline="94">RTSSelectionManager.Instance</references>
+        <references refid="classCrewBase_1a24c27571ccbe1263b7bcc0b1edf78010" compoundref="CrewBase_8cs" startline="16">CrewBase.isPlayerControlled</references>
+        <references refid="classCrewMember_1a65c02aa3aa6abb37b0aa92eb7bb4346c" compoundref="CrewMember_8cs" startline="507">madRoom</references>
+        <references refid="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" compoundref="RTSSelectionManager_8cs" startline="672" endline="800">RTSSelectionManager.MoveForCombat</references>
+        <references refid="classCrewMember_1a5161a521053d829ee86ecae3de914b22" compoundref="CrewMember_8cs" startline="1098" endline="1113">WalkOut</references>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1ae80f1831860b8a260b6899410f48bc1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.BackToThePeace</definition>
+        <argsstring>()</argsstring>
+        <name>BackToThePeace</name>
+        <qualifiedname>CrewMember.BackToThePeace</qualifiedname>
+        <briefdescription>
+<para>Idle 상태 이후 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="865" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="865" bodyend="882"/>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classCrewMember_1ab9457e53edac9eb82e9b4995f83e03e3" compoundref="CrewMember_8cs" startline="485">inCombat</references>
+        <references refid="classCrewBase_1a234dad1a8fd8847879f0922fb0b17996" compoundref="CrewBase_8cs" startline="103">CrewBase.isAlive</references>
+        <references refid="classCrewBase_1ab78b5a4de7a4515d545bf97fa28b6cc9" compoundref="CrewBase_8cs" startline="106">CrewBase.isMoving</references>
+        <references refid="classCrewMember_1a2a72214520c246d394664e2f4bf4a03c" compoundref="CrewMember_8cs" startline="1121" endline="1125">IsOwnShip</references>
+        <references refid="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" compoundref="CrewMember_8cs" startline="429" endline="463">PlayAnimation</references>
+        <references refid="classCrewMember_1a2e19d5fd76a3e3435eb7b6c313057ef8" compoundref="CrewMember_8cs" startline="925" endline="945">TryRepair</references>
+        <references refid="classCrewMember_1a4786d3c0560290a9558f6420dc3304b3" compoundref="CrewMember_8cs" startline="1010" endline="1038">TryWork</references>
+        <referencedby refid="classCombatManager_1aee060c280528f8f8ffcbd2b5e94dc91e" compoundref="CombatManager_8cs" startline="130" endline="191">CombatManager.BackToTheHome</referencedby>
+        <referencedby refid="classCrewMember_1a5e60edae0eee3d5844c455ca6d698ccd" compoundref="CrewMember_8cs" startline="765" endline="805">DontTouchMe</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a1d36784aba862015ecf5cd784b8c83e7" compoundref="CustomizeShipUIHandler_8cs" startline="205" endline="215">CustomizeShipUIHandler.EnableCrews</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+        <referencedby refid="classRoom_1a24a2b295f97d7b3d6efbe51b8f865415" compoundref="Room_8cs" startline="429" endline="438">Room&lt; TData, TLevel &gt;.NotifyStateChanged</referencedby>
+        <referencedby refid="classCrewSystem_1ad3044664f70376b994206ccfed121df3" compoundref="CrewSystem_8cs" startline="232" endline="300">CrewSystem.RestoreCrewAfterBuild</referencedby>
+        <referencedby refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" compoundref="EnemyController_8cs" startline="23" endline="122">EnemyController.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a11bff82217c9aa131dd188028cffd5d2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CrewMember.isWithEnemy</definition>
+        <argsstring>()</argsstring>
+        <name>isWithEnemy</name>
+        <qualifiedname>CrewMember.isWithEnemy</qualifiedname>
+        <briefdescription>
+<para>방 안의 적군 탐지 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="888" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="888" bodyend="900"/>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classCrewBase_1a234dad1a8fd8847879f0922fb0b17996" compoundref="CrewBase_8cs" startline="103">CrewBase.isAlive</references>
+        <references refid="classCrewBase_1a24c27571ccbe1263b7bcc0b1edf78010" compoundref="CrewBase_8cs" startline="16">CrewBase.isPlayerControlled</references>
+        <referencedby refid="classCrewMember_1a1980132bc97845dc890766dadd559e00" compoundref="CrewMember_8cs" startline="613" endline="644">Attack</referencedby>
+        <referencedby refid="classCrewMember_1a5e60edae0eee3d5844c455ca6d698ccd" compoundref="CrewMember_8cs" startline="765" endline="805">DontTouchMe</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+        <referencedby refid="classCrewMember_1a8ee5c024823e872d9addf84d0858879b" compoundref="CrewMember_8cs" startline="951" endline="975">RepairRoutine</referencedby>
+        <referencedby refid="classCrewMember_1a4786d3c0560290a9558f6420dc3304b3" compoundref="CrewMember_8cs" startline="1010" endline="1038">TryWork</referencedby>
+        <referencedby refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" compoundref="EnemyController_8cs" startline="23" endline="122">EnemyController.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a2e19d5fd76a3e3435eb7b6c313057ef8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.TryRepair</definition>
+        <argsstring>()</argsstring>
+        <name>TryRepair</name>
+        <qualifiedname>CrewMember.TryRepair</qualifiedname>
+        <briefdescription>
+<para>본인 함선에서 수리 시도 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="925" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="925" bodyend="945"/>
+        <references refid="classCrewMember_1aad4604b549178c53a36eb89d903633e8" compoundref="CrewMember_8cs" startline="121" endline="139">GetCrewSkillValue</references>
+        <references refid="classCrewMember_1a2a72214520c246d394664e2f4bf4a03c" compoundref="CrewMember_8cs" startline="1121" endline="1125">IsOwnShip</references>
+        <references refid="classCrewMember_1ae91e98832bfc722342d76eabd56ca36b" compoundref="CrewMember_8cs" startline="908">repairCoroutine</references>
+        <references refid="classCrewMember_1a8ee5c024823e872d9addf84d0858879b" compoundref="CrewMember_8cs" startline="951" endline="975">RepairRoutine</references>
+        <references refid="classCrewMember_1a4786d3c0560290a9558f6420dc3304b3" compoundref="CrewMember_8cs" startline="1010" endline="1038">TryWork</references>
+        <referencedby refid="classCrewMember_1ae80f1831860b8a260b6899410f48bc1d" compoundref="CrewMember_8cs" startline="865" endline="882">BackToThePeace</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a8ee5c024823e872d9addf84d0858879b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator CrewMember.RepairRoutine</definition>
+        <argsstring>()</argsstring>
+        <name>RepairRoutine</name>
+        <qualifiedname>CrewMember.RepairRoutine</qualifiedname>
+        <briefdescription>
+<para>수리 루틴 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="951" column="24" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="951" bodyend="975"/>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classCrewMember_1a11bff82217c9aa131dd188028cffd5d2" compoundref="CrewMember_8cs" startline="888" endline="900">isWithEnemy</references>
+        <references refid="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" compoundref="CrewMember_8cs" startline="429" endline="463">PlayAnimation</references>
+        <references refid="classCrewMember_1a9cb327b33dcd83820750fbb1c2172268" compoundref="CrewMember_8cs" startline="918">repairBeforeDelay</references>
+        <references refid="classCrewMember_1ae91e98832bfc722342d76eabd56ca36b" compoundref="CrewMember_8cs" startline="908">repairCoroutine</references>
+        <references refid="classCrewMember_1a6d2b12f78fe2bb8cae67fa23d5878e4d" compoundref="CrewMember_8cs" startline="982" endline="994">RepairFacility</references>
+        <references refid="classCrewMember_1a8ee5c024823e872d9addf84d0858879b" compoundref="CrewMember_8cs" startline="951" endline="975">RepairRoutine</references>
+        <references refid="classCrewMember_1a4786d3c0560290a9558f6420dc3304b3" compoundref="CrewMember_8cs" startline="1010" endline="1038">TryWork</references>
+        <referencedby refid="classCrewMember_1a8ee5c024823e872d9addf84d0858879b" compoundref="CrewMember_8cs" startline="951" endline="975">RepairRoutine</referencedby>
+        <referencedby refid="classCrewMember_1a2e19d5fd76a3e3435eb7b6c313057ef8" compoundref="CrewMember_8cs" startline="925" endline="945">TryRepair</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a6d2b12f78fe2bb8cae67fa23d5878e4d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.RepairFacility</definition>
+        <argsstring>(Room room)</argsstring>
+        <name>RepairFacility</name>
+        <qualifiedname>CrewMember.RepairFacility</qualifiedname>
+        <param>
+          <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+          <declname>room</declname>
+        </param>
+        <briefdescription>
+<para>특정 방을 수리하며 수리 스킬을 향상시킵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>room</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>수리 대상 방.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>amount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>수리량.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="982" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="982" bodyend="994"/>
+        <references refid="classCrewMember_1aad4604b549178c53a36eb89d903633e8" compoundref="CrewMember_8cs" startline="121" endline="139">GetCrewSkillValue</references>
+        <references refid="classCrewBase_1a186f7b2292966c554c5dabc126baeb11" compoundref="CrewBase_8cs" startline="314" endline="350">CrewBase.ImproveSkill</references>
+        <references refid="classRoom_1ab0d240e0649b42fe9bec652095f91c35" compoundref="Room_8cs" startline="630" endline="651">Room&lt; TData, TLevel &gt;.Repair</references>
+        <references refid="classCrewMember_1ac9c288a9e9a89fe0a9edc0dec3e925d4" compoundref="CrewMember_8cs" startline="913">repairCoefficient</references>
+        <referencedby refid="classCrewMember_1a8ee5c024823e872d9addf84d0858879b" compoundref="CrewMember_8cs" startline="951" endline="975">RepairRoutine</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a4786d3c0560290a9558f6420dc3304b3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.TryWork</definition>
+        <argsstring>()</argsstring>
+        <name>TryWork</name>
+        <qualifiedname>CrewMember.TryWork</qualifiedname>
+        <briefdescription>
+<para>주변 적들의 유무와 현재 자신의 위치한 타일, 작업 가능한 방인지 여부에 따라 작업 행동을 시도한다. 선원의 작업 숙련도 유무와 숙련도 적용은 Room.CanITouch에서 작동된다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="1010" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="1010" bodyend="1038"/>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classRoom_1ae1f89a83229215231d726691043898c6" compoundref="Room_8cs" startline="36">Room&lt; TData, TLevel &gt;.currentRotation</references>
+        <references refid="classCrewMember_1adf2ef6b08d0e224b1b592ee7f68a1d39" compoundref="CrewMember_8cs" startline="229" endline="236">GetCurrentTilePriorityIndex</references>
+        <references refid="classRoom_1a060d1169bcb74a2884762dcade03711b" compoundref="Room_8cs" startline="51">Room&lt; TData, TLevel &gt;.isActive</references>
+        <references refid="classCrewBase_1a24c27571ccbe1263b7bcc0b1edf78010" compoundref="CrewBase_8cs" startline="16">CrewBase.isPlayerControlled</references>
+        <references refid="classCrewMember_1a11bff82217c9aa131dd188028cffd5d2" compoundref="CrewMember_8cs" startline="888" endline="900">isWithEnemy</references>
+        <references refid="classCrewMember_1ae056f833ac8368fd774c7755f3865716" compoundref="CrewMember_8cs" startline="1004">isWorking</references>
+        <references refid="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" compoundref="CrewMember_8cs" startline="429" endline="463">PlayAnimation</references>
+        <references refid="classCrewMember_1a3c76b7a048169237b4038ee133aa1704" compoundref="CrewMember_8cs" startline="469" endline="473">SetAnimationDirection</references>
+        <references refid="classRoom_1a08bfe2fcb01f8857b0aa420d3eb08629" compoundref="Room_8cs" startline="680">Room&lt; TData, TLevel &gt;.workDirection</references>
+        <referencedby refid="classCrewMember_1ae80f1831860b8a260b6899410f48bc1d" compoundref="CrewMember_8cs" startline="865" endline="882">BackToThePeace</referencedby>
+        <referencedby refid="classCrewMember_1a8ee5c024823e872d9addf84d0858879b" compoundref="CrewMember_8cs" startline="951" endline="975">RepairRoutine</referencedby>
+        <referencedby refid="classCrewMember_1a2e19d5fd76a3e3435eb7b6c313057ef8" compoundref="CrewMember_8cs" startline="925" endline="945">TryRepair</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1ab1b5a739bfeb532e0f29eaee1765a2a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.Heal</definition>
+        <argsstring>(float amount)</argsstring>
+        <name>Heal</name>
+        <qualifiedname>CrewMember.Heal</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>amount</declname>
+        </param>
+        <briefdescription>
+<para>선원의 체력을 회복합니다. 최대 체력을 초과하지 않습니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>amount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>회복량.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="1048" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="1048" bodyend="1055"/>
+        <references refid="classCrewBase_1a387a18a6fd0627064c66a5471d8fcee7" compoundref="CrewBase_8cs" startline="100">CrewBase.health</references>
+        <references refid="classCrewBase_1adcfd5968f97ac9087b1034d913f6f819" compoundref="CrewBase_8cs" startline="135">CrewBase.healthBarController</references>
+        <references refid="classCrewBase_1a45320e06eadb3f7a51df9040ff464973" compoundref="CrewBase_8cs" startline="22">CrewBase.maxHealth</references>
+        <referencedby refid="classEventCrewEffectHandler_1a1c6a865eb331d25525e8ff555a722e75" compoundref="EventCrewEffectHandler_8cs" startline="30" endline="73">EventCrewEffectHandler.ApplyEffects</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1abac8cdb281fc60506385ef57450a9ac3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CrewMember.NeedsHealing</definition>
+        <argsstring>()</argsstring>
+        <name>NeedsHealing</name>
+        <qualifiedname>CrewMember.NeedsHealing</qualifiedname>
+        <briefdescription>
+<para>체력이 최대치보다 낮은지 여부를 반환합니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>치료가 필요하면 true.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="1061" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="1061" bodyend="1064"/>
+        <references refid="classCrewBase_1a387a18a6fd0627064c66a5471d8fcee7" compoundref="CrewBase_8cs" startline="100">CrewBase.health</references>
+        <references refid="classCrewBase_1a45320e06eadb3f7a51df9040ff464973" compoundref="CrewBase_8cs" startline="22">CrewBase.maxHealth</references>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a41c7608e6555b803935adbc401e44bbe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.Freeze</definition>
+        <argsstring>()</argsstring>
+        <name>Freeze</name>
+        <qualifiedname>CrewMember.Freeze</qualifiedname>
+        <briefdescription>
+<para>현재 하던 행동을 모두 멈추고 애니메이션을 대기 상태로 전환시킨다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="1074" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="1074" bodyend="1093"/>
+        <references refid="classCrewMember_1af475638b2aaf65170b3dcd9d3ac3dbe8" compoundref="CrewMember_8cs" startline="480" endline="480">combatTarget</references>
+        <references refid="classCrewMember_1ab9457e53edac9eb82e9b4995f83e03e3" compoundref="CrewMember_8cs" startline="485">inCombat</references>
+        <references refid="classCrewBase_1ab78b5a4de7a4515d545bf97fa28b6cc9" compoundref="CrewBase_8cs" startline="106">CrewBase.isMoving</references>
+        <references refid="classCrewMember_1a65c02aa3aa6abb37b0aa92eb7bb4346c" compoundref="CrewMember_8cs" startline="507">madRoom</references>
+        <references refid="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" compoundref="CrewMember_8cs" startline="429" endline="463">PlayAnimation</references>
+        <references refid="classCrewMember_1a5161a521053d829ee86ecae3de914b22" compoundref="CrewMember_8cs" startline="1098" endline="1113">WalkOut</references>
+        <referencedby refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CombatRoutine</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1abbab9873da783b4b8291de69396ff36d" compoundref="CustomizeShipUIHandler_8cs" startline="190" endline="200">CustomizeShipUIHandler.DisableCrews</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a0002c5992875339db3028007c2472b6d" compoundref="RTSSelectionManager_8cs" startline="443" endline="666">RTSSelectionManager.IssueMoveCommand</referencedby>
+        <referencedby refid="classCrewSystem_1ad3044664f70376b994206ccfed121df3" compoundref="CrewSystem_8cs" startline="232" endline="300">CrewSystem.RestoreCrewAfterBuild</referencedby>
+        <referencedby refid="classEnemyController_1a9bdea1a4318709cb950e066c8e4879c0" compoundref="EnemyController_8cs" startline="178" endline="197">EnemyController.WhereToGo</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a5161a521053d829ee86ecae3de914b22" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CrewMember.WalkOut</definition>
+        <argsstring>()</argsstring>
+        <name>WalkOut</name>
+        <qualifiedname>CrewMember.WalkOut</qualifiedname>
+        <briefdescription>
+<para>현재 하던 작업 행동을 멈추고 자신을 Room.workingCrew로 할당한 Room을 찾아 할당 해제시키고 함선 능력치를 재계산한다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="1098" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="1098" bodyend="1113"/>
+        <references refid="classCrewBase_1ab5bc82e72ae13e47df0d37bd92fdd417" compoundref="CrewBase_8cs" startline="115">CrewBase.currentShip</references>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classCrewMember_1ae056f833ac8368fd774c7755f3865716" compoundref="CrewMember_8cs" startline="1004">isWorking</references>
+        <references refid="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" compoundref="CrewMember_8cs" startline="429" endline="463">PlayAnimation</references>
+        <references refid="classShip_1a8f3f2bdca106f32f2d4c2b3f892a139f" compoundref="Ship_8cs" startline="774" endline="828">Ship.RecalculateAllStats</references>
+        <referencedby refid="classCrewMember_1aa5c7668b76acb42a080c33cbcc949965" compoundref="CrewMember_8cs" startline="681" endline="707">Die</referencedby>
+        <referencedby refid="classCrewMember_1a5e60edae0eee3d5844c455ca6d698ccd" compoundref="CrewMember_8cs" startline="765" endline="805">DontTouchMe</referencedby>
+        <referencedby refid="classCrewMember_1a41c7608e6555b803935adbc401e44bbe" compoundref="CrewMember_8cs" startline="1074" endline="1093">Freeze</referencedby>
+        <referencedby refid="classCrewMember_1a1503a3e4b8b009a5f75cdc9dcb99b69a" compoundref="CrewMember_8cs" startline="833" endline="860">LookAtMe</referencedby>
+        <referencedby refid="classRoom_1a24a2b295f97d7b3d6efbe51b8f865415" compoundref="Room_8cs" startline="429" endline="438">Room&lt; TData, TLevel &gt;.NotifyStateChanged</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a2a72214520c246d394664e2f4bf4a03c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CrewMember.IsOwnShip</definition>
+        <argsstring>()</argsstring>
+        <name>IsOwnShip</name>
+        <qualifiedname>CrewMember.IsOwnShip</qualifiedname>
+        <briefdescription>
+<para>현재 선원이 탑승해 있는 함선이 선원의 모선인지 확인 (상대 배에 타있으면 false) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="1121" column="17" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="1121" bodyend="1125"/>
+        <references refid="classCrewBase_1a24c27571ccbe1263b7bcc0b1edf78010" compoundref="CrewBase_8cs" startline="16">CrewBase.isPlayerControlled</references>
+        <referencedby refid="classCrewMember_1ae80f1831860b8a260b6899410f48bc1d" compoundref="CrewMember_8cs" startline="865" endline="882">BackToThePeace</referencedby>
+        <referencedby refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" compoundref="CrewMember_8cs" startline="513" endline="557">CombatRoutine</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+        <referencedby refid="classTeleportRoom_1a5a020e507d95397b1978b4d0484afb4b" compoundref="TeleportRoom_8cs" startline="69" endline="79">TeleportRoom.OnCrewEnter</referencedby>
+        <referencedby refid="classCrewMember_1a508cdfced903ba8a7c2f9a5ebfe9927e" compoundref="CrewMember_8cs" startline="1137" endline="1277">TeleportAfterDelay</referencedby>
+        <referencedby refid="classCrewMember_1a2e19d5fd76a3e3435eb7b6c313057ef8" compoundref="CrewMember_8cs" startline="925" endline="945">TryRepair</referencedby>
+        <referencedby refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" compoundref="EnemyController_8cs" startline="23" endline="122">EnemyController.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCrewMember_1a508cdfced903ba8a7c2f9a5ebfe9927e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator CrewMember.TeleportAfterDelay</definition>
+        <argsstring>(CrewMember crew, float delay)</argsstring>
+        <name>TeleportAfterDelay</name>
+        <qualifiedname>CrewMember.TeleportAfterDelay</qualifiedname>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crew</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>delay</declname>
+        </param>
+        <briefdescription>
+<para>딜레이 후 텔레포트 진행 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>crew</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delay</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/Crew/CrewMember.cs" line="1137" column="24" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="1137" bodyend="1277"/>
+        <references refid="classGameManager_1a63db7104c139e5b4150bcaeca3cfd365" compoundref="GameManager_8cs" startline="24">GameManager.currentEnemyShip</references>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classRoom_1a08dfe5c5a797aacad22c29926b3482e4" compoundref="Room_8cs" startline="123" endline="154">Room&lt; TData, TLevel &gt;.GetRotatedCrewEntryGridPriority</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classRTSSelectionManager_1ac0db424ecf85d35f8a8106fa3bef1d64" compoundref="RTSSelectionManager_8cs" startline="94" endline="94">RTSSelectionManager.Instance</references>
+        <references refid="classCrewMember_1a2a72214520c246d394664e2f4bf4a03c" compoundref="CrewMember_8cs" startline="1121" endline="1125">IsOwnShip</references>
+        <references refid="classCrewBase_1a24c27571ccbe1263b7bcc0b1edf78010" compoundref="CrewBase_8cs" startline="16">CrewBase.isPlayerControlled</references>
+        <references refid="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" compoundref="RTSSelectionManager_8cs" startline="672" endline="800">RTSSelectionManager.MoveForCombat</references>
+        <references refid="classRoom_1a577bbc93f6479096f0d4bedd6cefc26e" compoundref="Room_8cs" startline="104" endline="108">Room&lt; TData, TLevel &gt;.OnCrewEnter</references>
+        <references refid="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" compoundref="CrewMember_8cs" startline="429" endline="463">PlayAnimation</references>
+        <references refid="classGameManager_1af31b125ee50ee4ffee177b8357ef1f11" compoundref="GameManager_8cs" startline="19">GameManager.playerShip</references>
+        <references refid="classRTSSelectionManager_1af0d1c7a1b0c8e99784daebcb7fa2e777" compoundref="RTSSelectionManager_8cs" startline="42">RTSSelectionManager.selectedCrew</references>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">FollowPathCoroutine</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a0002c5992875339db3028007c2472b6d" compoundref="RTSSelectionManager_8cs" startline="443" endline="666">RTSSelectionManager.IssueMoveCommand</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>선원의 데이터를 확장하여 실제 게임 내 선원(Crew)의 기능을 담당하는 클래스입니다. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>CrewBase</label>
+        <link refid="classCrewBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>CrewMember</label>
+        <link refid="classCrewMember"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="9">
+        <label>Constants</label>
+      </node>
+      <node id="2">
+        <label>CrewBase</label>
+        <link refid="classCrewBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>+equippedAssistant</edgelabel>
+          <edgelabel>+equippedShield</edgelabel>
+          <edgelabel>+equippedWeapon</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+currentRoom</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+currentShip</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>+healthBarController</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>CrewHealthBar</label>
+        <link refid="classCrewHealthBar"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>-offset</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>-crewBase</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>CrewMember</label>
+        <link refid="classCrewMember"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>-movementDirection</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+madRoom</edgelabel>
+          <edgelabel>+oldReservedRoom</edgelabel>
+          <edgelabel>+reservedRoom</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>EquipmentItem</label>
+        <link refid="classEquipmentItem"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>IShipStatContributor</label>
+        <link refid="interfaceIShipStatContributor"/>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="19">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Room&lt; TData, TLevel &gt;</label>
+        <link refid="classRoom"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>#roomData</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>+currentRotation</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>+parentShip</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>-_workingCrew</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>RoomData&lt; T &gt;</label>
+        <link refid="classRoomData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="22">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>UnityEngine</label>
+      </node>
+      <node id="15">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/Crew/CrewMember.cs" line="14" column="7" bodyfile="Assets/Scripts/Crew/CrewMember.cs" bodystart="15" bodyend="1289"/>
+    <listofallmembers>
+      <member refid="classCrewMember_1a2156ca5862fb2b062ff6b67eb04b6e9e" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>AfterDie</name></member>
+      <member refid="classCrewBase_1a7e7d8cf176042fb0d689200c2dc84e22" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>allRaceAnimations</name></member>
+      <member refid="classCrewBase_1a4ba133f93c958b4530ebac5005dc60d5" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>allRaceSprites</name></member>
+      <member refid="classCrewBase_1a1d5736844f6e70fe9231464468444294" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>animator</name></member>
+      <member refid="classCrewBase_1ab749442908a2b7cfa18f0ab704d5b584" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>ApplyOxygenDamage</name></member>
+      <member refid="classCrewBase_1a9dddfbc358fd94633bac8de4575e4f8a" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>ApplyPersonalEquipment</name></member>
+      <member refid="classCrewMember_1a66e77fbffb949a64534ac03233d3fc65" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>AssignPathAndMove</name></member>
+      <member refid="classCrewMember_1a1980132bc97845dc890766dadd559e00" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>Attack</name></member>
+      <member refid="classCrewBase_1ad7ba770907db7fc91ef38ae08066c43d" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>attack</name></member>
+      <member refid="classCrewMember_1ac6ca8793bfaacba93122cfae01d55c61" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>attackAfterDelay</name></member>
+      <member refid="classCrewMember_1a6d1d65b745c3149c882246ed07b136fb" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>attackBeforeDelay</name></member>
+      <member refid="classCrewMember_1ae80f1831860b8a260b6899410f48bc1d" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>BackToThePeace</name></member>
+      <member refid="classCrewBase_1ad208436cc1bc5959ab8c940ffe18ac60" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>bullier</name></member>
+      <member refid="classCrewMember_1a2472a8d09a844b219190039393a6a601" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>CancelAndRedirect</name></member>
+      <member refid="classCrewBase_1a3aad6fe98647cfaae5d6e1c33efe2825" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>CheckSkillImprovement</name></member>
+      <member refid="classCrewMember_1a8befaa80fc7bdc53921b67c2673ee015" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>combatCoroutine</name></member>
+      <member refid="classCrewMember_1a7e33e888e4ee988873045be9c623b09c" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>CombatRoutine</name></member>
+      <member refid="classCrewMember_1af475638b2aaf65170b3dcd9d3ac3dbe8" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>combatTarget</name></member>
+      <member refid="classCrewBase_1a72497e5f7ba2f64f572a509788f46d28" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>CopyFrom</name></member>
+      <member refid="classCrewBase_1a916946f11b6a8e81f89c1f6daa526147" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>crewName</name></member>
+      <member refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>currentRoom</name></member>
+      <member refid="classCrewBase_1ab5bc82e72ae13e47df0d37bd92fdd417" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>currentShip</name></member>
+      <member refid="classCrewBase_1a21015f193776314b53984f22276e933b" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>defense</name></member>
+      <member refid="classCrewMember_1aa5c7668b76acb42a080c33cbcc949965" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>Die</name></member>
+      <member refid="classCrewMember_1af20c359bbdde1ce95bc281d915acea1e" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>DieCoroutine</name></member>
+      <member refid="classCrewMember_1a5e60edae0eee3d5844c455ca6d698ccd" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>DontTouchMe</name></member>
+      <member refid="classCrewMember_1a908e574d7df106ce221c0291e25cb82e" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>EnsureHealthBarFollows</name></member>
+      <member refid="classCrewBase_1a0242579bbf8a0289be79ecb26182f88b" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>equipAdditionalSkills</name></member>
+      <member refid="classCrewBase_1ad9e50598947dde72ca04a35781a39989" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>equippedAssistant</name></member>
+      <member refid="classCrewBase_1a4d57ff0d91892589b29b17b2bdf4f919" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>equippedShield</name></member>
+      <member refid="classCrewBase_1af24e32cdeeee12b9f2a45b88a0bef2e5" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>equippedWeapon</name></member>
+      <member refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>FollowPathCoroutine</name></member>
+      <member refid="classCrewMember_1a41c7608e6555b803935adbc401e44bbe" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>Freeze</name></member>
+      <member refid="classCrewMember_1a4eba19a797d1f5b3bcaa0c36b695f245" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>GetCombinedStats</name></member>
+      <member refid="classCrewMember_1aad4604b549178c53a36eb89d903633e8" prot="public" virt="virtual"><scope>CrewMember</scope><name>GetCrewSkillValue</name></member>
+      <member refid="classCrewMember_1af4b290dc38d44cde63972f5260377c43" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>GetCurrentTile</name></member>
+      <member refid="classCrewMember_1adf2ef6b08d0e224b1b592ee7f68a1d39" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>GetCurrentTilePriorityIndex</name></member>
+      <member refid="classCrewMember_1a29c300d9fdaf373da03bb5b11f81a782" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>GetEquipmentAttack</name></member>
+      <member refid="classCrewMember_1a2c66362578e3109fbc6ac3f85c545c00" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>GetEquipmentDefense</name></member>
+      <member refid="classCrewBase_1abd66d1b5faf5b30ecac4247f5b434442" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>GetEquippedItem</name></member>
+      <member refid="classCrewBase_1a68eecbddd324268327edbc31c96d269f" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>GetSkillLevel</name></member>
+      <member refid="classCrewBase_1ab6ba17c4beabffb26ac248f7b16907f4" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>GetSpriteRenderer</name></member>
+      <member refid="classCrewBase_1a0c35d7b81e7bbda6c1187cd56da46b19" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>GetStatContributions</name></member>
+      <member refid="classCrewMember_1ab51adc771fd75a9ee2d1f53e218e77c8" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>GetStatsIfEquipped</name></member>
+      <member refid="classCrewMember_1a9fa4ab26db0e51c215d6c71d21a7535e" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>hasEnteredTPRoom</name></member>
+      <member refid="classCrewMember_1ab1b5a739bfeb532e0f29eaee1765a2a7" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>Heal</name></member>
+      <member refid="classCrewBase_1a387a18a6fd0627064c66a5471d8fcee7" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>health</name></member>
+      <member refid="classCrewBase_1adcfd5968f97ac9087b1034d913f6f819" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>healthBarController</name></member>
+      <member refid="classCrewMember_1a21e78c05a8f47d72c5f5ad28874537ad" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>ImDying</name></member>
+      <member refid="classCrewBase_1a186f7b2292966c554c5dabc126baeb11" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>ImproveSkill</name></member>
+      <member refid="classCrewMember_1ab9457e53edac9eb82e9b4995f83e03e3" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>inCombat</name></member>
+      <member refid="classCrewBase_1a5d2533be5267b0bd79bf34e0cb395223" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>InitializePortrait</name></member>
+      <member refid="classCrewMember_1adad7548664d8a252831ede5df11520dd" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>InstantKill</name></member>
+      <member refid="classCrewBase_1a234dad1a8fd8847879f0922fb0b17996" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>isAlive</name></member>
+      <member refid="classCrewBase_1a18bdc7789c50375ffc53d11690ba679f" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>IsEnemyOf</name></member>
+      <member refid="classCrewBase_1ab78b5a4de7a4515d545bf97fa28b6cc9" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>isMoving</name></member>
+      <member refid="classCrewMember_1a2a72214520c246d394664e2f4bf4a03c" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>IsOwnShip</name></member>
+      <member refid="classCrewBase_1a24c27571ccbe1263b7bcc0b1edf78010" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>isPlayerControlled</name></member>
+      <member refid="classCrewMember_1afb435b0b971b7a9025e4ef236faac821" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>isTPing</name></member>
+      <member refid="classCrewMember_1a11bff82217c9aa131dd188028cffd5d2" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>isWithEnemy</name></member>
+      <member refid="classCrewMember_1ae056f833ac8368fd774c7755f3865716" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>isWorking</name></member>
+      <member refid="classCrewBase_1a288e9a6051a7d62d3969f5ae9d68deb8" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>learningSpeed</name></member>
+      <member refid="classCrewMember_1a1503a3e4b8b009a5f75cdc9dcb99b69a" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>LookAtMe</name></member>
+      <member refid="classCrewMember_1a65c02aa3aa6abb37b0aa92eb7bb4346c" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>madRoom</name></member>
+      <member refid="classCrewBase_1a17c7cc5495de04b887d2b6d85acdaae2" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>maxAmmunitionSkillValue</name></member>
+      <member refid="classCrewBase_1a0c623f04849e607006621e28ff84b096" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>maxEngineSkillValue</name></member>
+      <member refid="classCrewBase_1a45320e06eadb3f7a51df9040ff464973" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>maxHealth</name></member>
+      <member refid="classCrewBase_1a3e558032761637457f5abbb71835a4ee" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>maxMedBaySkillValue</name></member>
+      <member refid="classCrewBase_1ae9f8363cc4b49d58eca3feffdbb2f9f4" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>maxPilotSkillValue</name></member>
+      <member refid="classCrewBase_1a415986baf7c5088aa885e7ffda05b4c0" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>maxPowerSkillValue</name></member>
+      <member refid="classCrewBase_1aac6e00a0924949bda22ea86609bdf7ff" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>maxRepairSkillValue</name></member>
+      <member refid="classCrewBase_1a66bf90b457dd4c0c0fa042ec8ffd57f4" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>maxShieldSkillValue</name></member>
+      <member refid="classCrewBase_1a4cc506cbc88ad7dd8d46fc296327b314" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>maxSkillValueArray</name></member>
+      <member refid="classCrewBase_1a3f210cecc18d2c47b72075e201531f22" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>maxWeaponSkillValue</name></member>
+      <member refid="classCrewMember_1a601563f5de14b6286a125f9f1f5c0a38" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>moveCoroutine</name></member>
+      <member refid="classCrewMember_1aa33c08a92ff830a5662c96421f7f84e2" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>movementDirection</name></member>
+      <member refid="classCrewBase_1ae4c9651c030151345da1640e05de8f45" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>moveSpeed</name></member>
+      <member refid="classCrewMember_1abac8cdb281fc60506385ef57450a9ac3" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>NeedsHealing</name></member>
+      <member refid="classCrewBase_1aa013b1f70d4f6d5737ce118baee45d69" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>needsOxygen</name></member>
+      <member refid="classCrewMember_1adccdce5625f1fee5e0000051ca086ea5" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>oldReservedRoom</name></member>
+      <member refid="classCrewMember_1a04fbdab8a828a20a37f1c817a744897b" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>oldReservedTile</name></member>
+      <member refid="classCrewMember_1a85bab37fe17c1e07083b63116f485dd2" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>originPosTile</name></member>
+      <member refid="classCrewMember_1ac7e67a6c2e4863dd2f6b3dda04bf2eb1" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>path</name></member>
+      <member refid="classCrewMember_1a536ad7d67b7d95eac17c63ac7449fbe1" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>PlayAnimation</name></member>
+      <member refid="classCrewBase_1ad780ab3fedd8afc88bf6009e45cd2c74" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>portraitSprite</name></member>
+      <member refid="classCrewBase_1a1025f6ffef015905221678bf57959773" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>position</name></member>
+      <member refid="classCrewBase_1a5a53b04defdcf26f6be526e1dd7c4910" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>race</name></member>
+      <member refid="classCrewBase_1a233fbdc4519521e27786d8c0799dcd44" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>RecalculateEquipmentBonus</name></member>
+      <member refid="classCrewMember_1a56876d71041ddef59156f4f32035c05b" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>repairAfterDelay</name></member>
+      <member refid="classCrewMember_1a9cb327b33dcd83820750fbb1c2172268" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>repairBeforeDelay</name></member>
+      <member refid="classCrewMember_1ac9c288a9e9a89fe0a9edc0dec3e925d4" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>repairCoefficient</name></member>
+      <member refid="classCrewMember_1ae91e98832bfc722342d76eabd56ca36b" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>repairCoroutine</name></member>
+      <member refid="classCrewMember_1a6d2b12f78fe2bb8cae67fa23d5878e4d" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>RepairFacility</name></member>
+      <member refid="classCrewMember_1a8ee5c024823e872d9addf84d0858879b" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>RepairRoutine</name></member>
+      <member refid="classCrewMember_1a333520785e710bfa87327f3f15f03734" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>RepeatCombatRoutine</name></member>
+      <member refid="classCrewMember_1aa199a08672617743ad8cb3c8939eea00" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>reservedRoom</name></member>
+      <member refid="classCrewMember_1a0381b8847e46da4bce05aa695fc147d7" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>reservedTile</name></member>
+      <member refid="classCrewMember_1a3c76b7a048169237b4038ee133aa1704" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>SetAnimationDirection</name></member>
+      <member refid="classCrewBase_1a1a8c5407b341616bb1432afd43a8be47" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>SetEquippedItem</name></member>
+      <member refid="classCrewBase_1a4caf4647af76ed0aaef6525a5b9b62bf" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>SetupHealthBar</name></member>
+      <member refid="classCrewBase_1abef1114410497e821cafbf9c6272ad37" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>skillIncreaseInterval</name></member>
+      <member refid="classCrewBase_1a0412004e817734bab43a62c793d45cdb" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>skills</name></member>
+      <member refid="classCrewBase_1ad7ced9376b2c4390ddf1a4276462deb8" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>spriteRenderer</name></member>
+      <member refid="classCrewMember_1ad151c19c429cf2ccb66f1d855ff49169" prot="public" virt="virtual"><scope>CrewMember</scope><name>Start</name></member>
+      <member refid="classCrewMember_1acd9bc234ccc5194520a41702571f0ba9" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>StopAllCrewCoroutine</name></member>
+      <member refid="classCrewBase_1ae85c44a76273e19c8d76f3eb61a24d49" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>SwapEquipment</name></member>
+      <member refid="classCrewMember_1ab2132618bc1788d25a42db80dd3bd70f" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>TakeDamage</name></member>
+      <member refid="classCrewMember_1a05e0a89cdc5aac50422e1351c1796872" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>TakeOxygenDamage</name></member>
+      <member refid="classCrewBase_1aae1ad015ed2f8acd6aef37a2a38c6619" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>targetPosition</name></member>
+      <member refid="classCrewMember_1a508cdfced903ba8a7c2f9a5ebfe9927e" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>TeleportAfterDelay</name></member>
+      <member refid="classCrewBase_1ae335d725c05960ab34f14f1f12af79cd" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>timeSinceLastSkillIncrease</name></member>
+      <member refid="classCrewMember_1a2e19d5fd76a3e3435eb7b6c313057ef8" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>TryRepair</name></member>
+      <member refid="classCrewMember_1a4786d3c0560290a9558f6420dc3304b3" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>TryWork</name></member>
+      <member refid="classCrewMember_1a173769c95550e312185617a3e3880a60" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>Update</name></member>
+      <member refid="classCrewMember_1a5161a521053d829ee86ecae3de914b22" prot="public" virt="non-virtual"><scope>CrewMember</scope><name>WalkOut</name></member>
+      <member refid="classCrewMember_1a61e3027a3593ebbdda8d63d518a6b397" prot="private" virt="non-virtual"><scope>CrewMember</scope><name>wasMoving</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

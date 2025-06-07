@@ -1,0 +1,1229 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classRTSSelectionManager" kind="class" language="C#" prot="public">
+    <compoundname>RTSSelectionManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classRTSSelectionManager_1a8b52447f37a7606380dcf35294d2edf2" prot="public" static="no" mutable="no">
+        <type>Texture2D</type>
+        <definition>Texture2D RTSSelectionManager.selectionTexture</definition>
+        <argsstring></argsstring>
+        <name>selectionTexture</name>
+        <qualifiedname>RTSSelectionManager.selectionTexture</qualifiedname>
+        <briefdescription>
+<para>드래그 선택 시 표시할 텍스처입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="18" column="22" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="18" bodyend="-1"/>
+        <referencedby refid="classRTSSelectionManager_1a8c5f2133833bbe480eada20aed4b03ea" compoundref="RTSSelectionManager_8cs" startline="290" endline="295">DrawScreenRect</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a216c9073cb85eb5ccf47a78be6dcc6e9" compoundref="RTSSelectionManager_8cs" startline="303" endline="315">DrawScreenRectBorder</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1ab7b10156c6120e40c2574b9e89d28d8f" prot="public" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 RTSSelectionManager.dragStartPos</definition>
+        <argsstring></argsstring>
+        <name>dragStartPos</name>
+        <qualifiedname>RTSSelectionManager.dragStartPos</qualifiedname>
+        <briefdescription>
+<para>드래그 시작 위치입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="23" column="20" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="23" bodyend="-1"/>
+        <referencedby refid="classRTSSelectionManager_1af5851fbefc56215070a7599f6481be19" compoundref="RTSSelectionManager_8cs" startline="260" endline="268">OnGUI</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a8f7107c278338d7cb2abbe4d1a6ebfba" compoundref="RTSSelectionManager_8cs" startline="355" endline="389">SelectMultipleCrew</referencedby>
+        <referencedby refid="classRTSSelectionManager_1abe94780370a9af6878c66cf3cc98732a" compoundref="RTSSelectionManager_8cs" startline="148" endline="195">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1a1e3fc4cd25accdbc0c62e6c0cff7d836" prot="public" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 RTSSelectionManager.dragEndPos</definition>
+        <argsstring></argsstring>
+        <name>dragEndPos</name>
+        <qualifiedname>RTSSelectionManager.dragEndPos</qualifiedname>
+        <briefdescription>
+<para>드래그 종료 위치입니다. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="28" column="20" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="28" bodyend="-1"/>
+        <referencedby refid="classRTSSelectionManager_1abe94780370a9af6878c66cf3cc98732a" compoundref="RTSSelectionManager_8cs" startline="148" endline="195">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1aaf369ece129544119bf0e9f89d56d181" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RTSSelectionManager.clickThreshold</definition>
+        <argsstring></argsstring>
+        <name>clickThreshold</name>
+        <qualifiedname>RTSSelectionManager.clickThreshold</qualifiedname>
+        <initializer>= 10f</initializer>
+        <briefdescription>
+<para>단일 클릭 임계값 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="37" column="18" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="37" bodyend="-1"/>
+        <referencedby refid="classRTSSelectionManager_1abe94780370a9af6878c66cf3cc98732a" compoundref="RTSSelectionManager_8cs" startline="148" endline="195">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1af0d1c7a1b0c8e99784daebcb7fa2e777" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="classCrewMember" kindref="compound">CrewMember</ref> &gt;</type>
+        <definition>List&lt;CrewMember&gt; RTSSelectionManager.selectedCrew</definition>
+        <argsstring></argsstring>
+        <name>selectedCrew</name>
+        <qualifiedname>RTSSelectionManager.selectedCrew</qualifiedname>
+        <initializer>= new()</initializer>
+        <briefdescription>
+<para>선택된 선원 리스트 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="42" column="17" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classRTSSelectionManager_1accd2ba3a2c61d55226642f6022c38daa" compoundref="RTSSelectionManager_8cs" startline="394" endline="397">CleanUpSelectedCrew</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a82a95c14e8d3815dc062bf909a30c7e8" compoundref="RTSSelectionManager_8cs" startline="320" endline="326">DeselectAll</referencedby>
+        <referencedby refid="classCrewMember_1aa5c7668b76acb42a080c33cbcc949965" compoundref="CrewMember_8cs" startline="681" endline="707">CrewMember.Die</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a0002c5992875339db3028007c2472b6d" compoundref="RTSSelectionManager_8cs" startline="443" endline="666">IssueMoveCommand</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a1b4a2ba4cb9ea7b2957e937a683ca02f" compoundref="RTSSelectionManager_8cs" startline="806" endline="813">Select</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a8f7107c278338d7cb2abbe4d1a6ebfba" compoundref="RTSSelectionManager_8cs" startline="355" endline="389">SelectMultipleCrew</referencedby>
+        <referencedby refid="classRTSSelectionManager_1aa9ac0a8b0fd62fdd5bfb2a36589ccb16" compoundref="RTSSelectionManager_8cs" startline="331" endline="350">SelectSingleCrew</referencedby>
+        <referencedby refid="classCrewMember_1a508cdfced903ba8a7c2f9a5ebfe9927e" compoundref="CrewMember_8cs" startline="1137" endline="1277">CrewMember.TeleportAfterDelay</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1af15ca7575734c8ba6a6f78e1fbc60d0a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RTSSelectionManager.tmpEquipmentAttack</definition>
+        <argsstring></argsstring>
+        <name>tmpEquipmentAttack</name>
+        <qualifiedname>RTSSelectionManager.tmpEquipmentAttack</qualifiedname>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+<para>임시 장비 공격력 변수 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="47" column="18" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1a3d3848f488ddaceb2042b8888c3375b1" prot="public" static="no" mutable="no">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship RTSSelectionManager.playerShip</definition>
+        <argsstring></argsstring>
+        <name>playerShip</name>
+        <qualifiedname>RTSSelectionManager.playerShip</qualifiedname>
+        <briefdescription>
+<para>유저 함선 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="54" column="17" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="54" bodyend="-1"/>
+        <referencedby refid="classRTSSelectionManager_1ae5c3f854603e7329447bf4cd81a1be14" compoundref="RTSSelectionManager_8cs" startline="433" endline="436">GetMovementValidatorForCrew</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ae59ec6d9fbc150d1b018fb03d62b17fe" compoundref="RTSSelectionManager_8cs" startline="423" endline="426">GetPathfinderForCrew</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" compoundref="RTSSelectionManager_8cs" startline="672" endline="800">MoveForCombat</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ad68211bed4c24acf467aa4dd2285d987" compoundref="RTSSelectionManager_8cs" startline="402" endline="416">RefreshMovementData</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a9d17ab1cce229c4d7d23cbd27e325d70" compoundref="RTSSelectionManager_8cs" startline="131" endline="142">Start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1a4a2547e2bd18f5f543b467e9fba187c3" prot="public" static="no" mutable="no">
+        <type><ref refid="classCrewPathfinder" kindref="compound">CrewPathfinder</ref></type>
+        <definition>CrewPathfinder RTSSelectionManager.crewPathfinder</definition>
+        <argsstring></argsstring>
+        <name>crewPathfinder</name>
+        <qualifiedname>RTSSelectionManager.crewPathfinder</qualifiedname>
+        <briefdescription>
+<para>선원 경로 계산기 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="59" column="27" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="59" bodyend="-1"/>
+        <referencedby refid="classRTSSelectionManager_1ae59ec6d9fbc150d1b018fb03d62b17fe" compoundref="RTSSelectionManager_8cs" startline="423" endline="426">GetPathfinderForCrew</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ad68211bed4c24acf467aa4dd2285d987" compoundref="RTSSelectionManager_8cs" startline="402" endline="416">RefreshMovementData</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1ab17a5c2ffd3a2d56fdb47fd2ddc03d36" prot="public" static="no" mutable="no">
+        <type><ref refid="classCrewMovementValidator" kindref="compound">CrewMovementValidator</ref></type>
+        <definition>CrewMovementValidator RTSSelectionManager.movementValidator</definition>
+        <argsstring></argsstring>
+        <name>movementValidator</name>
+        <qualifiedname>RTSSelectionManager.movementValidator</qualifiedname>
+        <briefdescription>
+<para>선원 이동 가능 검사기 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="64" column="34" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="64" bodyend="-1"/>
+        <referencedby refid="classRTSSelectionManager_1ae5c3f854603e7329447bf4cd81a1be14" compoundref="RTSSelectionManager_8cs" startline="433" endline="436">GetMovementValidatorForCrew</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ad68211bed4c24acf467aa4dd2285d987" compoundref="RTSSelectionManager_8cs" startline="402" endline="416">RefreshMovementData</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1a0a3726488363e236df0f1290003fcdcc" prot="public" static="no" mutable="no">
+        <type><ref refid="classShip" kindref="compound">Ship</ref></type>
+        <definition>Ship RTSSelectionManager.enemyShip</definition>
+        <argsstring></argsstring>
+        <name>enemyShip</name>
+        <qualifiedname>RTSSelectionManager.enemyShip</qualifiedname>
+        <briefdescription>
+<para>적 함선 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="69" column="17" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="69" bodyend="-1"/>
+        <referencedby refid="classRTSSelectionManager_1ae5c3f854603e7329447bf4cd81a1be14" compoundref="RTSSelectionManager_8cs" startline="433" endline="436">GetMovementValidatorForCrew</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ae59ec6d9fbc150d1b018fb03d62b17fe" compoundref="RTSSelectionManager_8cs" startline="423" endline="426">GetPathfinderForCrew</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ad68211bed4c24acf467aa4dd2285d987" compoundref="RTSSelectionManager_8cs" startline="402" endline="416">RefreshMovementData</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1a31336e426f512aa3c77e30921fc64693" prot="public" static="no" mutable="no">
+        <type><ref refid="classCrewPathfinder" kindref="compound">CrewPathfinder</ref></type>
+        <definition>CrewPathfinder RTSSelectionManager.enemyPathFinder</definition>
+        <argsstring></argsstring>
+        <name>enemyPathFinder</name>
+        <qualifiedname>RTSSelectionManager.enemyPathFinder</qualifiedname>
+        <briefdescription>
+<para>적 선원 경로 계산기 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="74" column="27" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="74" bodyend="-1"/>
+        <referencedby refid="classRTSSelectionManager_1ae59ec6d9fbc150d1b018fb03d62b17fe" compoundref="RTSSelectionManager_8cs" startline="423" endline="426">GetPathfinderForCrew</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ad68211bed4c24acf467aa4dd2285d987" compoundref="RTSSelectionManager_8cs" startline="402" endline="416">RefreshMovementData</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1aa7d8334f5a9bfe95f58b2e485ebd6695" prot="public" static="no" mutable="no">
+        <type><ref refid="classCrewMovementValidator" kindref="compound">CrewMovementValidator</ref></type>
+        <definition>CrewMovementValidator RTSSelectionManager.enemyMovementValidator</definition>
+        <argsstring></argsstring>
+        <name>enemyMovementValidator</name>
+        <qualifiedname>RTSSelectionManager.enemyMovementValidator</qualifiedname>
+        <briefdescription>
+<para>적 선원 이동 가능 검사기 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="79" column="34" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="79" bodyend="-1"/>
+        <referencedby refid="classRTSSelectionManager_1ae5c3f854603e7329447bf4cd81a1be14" compoundref="RTSSelectionManager_8cs" startline="433" endline="436">GetMovementValidatorForCrew</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ad68211bed4c24acf467aa4dd2285d987" compoundref="RTSSelectionManager_8cs" startline="402" endline="416">RefreshMovementData</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1a35898d07f100198b1bf44f739b9526f3" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject RTSSelectionManager.combatManager</definition>
+        <argsstring></argsstring>
+        <name>combatManager</name>
+        <qualifiedname>RTSSelectionManager.combatManager</qualifiedname>
+        <briefdescription>
+<para>전투 담당 매니저 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="89" column="23" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1a6c4c8f47e58b23c94fbc5abec6ed3636" prot="public" static="no" mutable="no">
+        <type>Material</type>
+        <definition>Material RTSSelectionManager.outlineMaterial</definition>
+        <argsstring></argsstring>
+        <name>outlineMaterial</name>
+        <qualifiedname>RTSSelectionManager.outlineMaterial</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="113" column="21" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1a68f90db6c1e472c2c7ee44353819d2fe" prot="public" static="no" mutable="no">
+        <type>Material</type>
+        <definition>Material RTSSelectionManager.defaultMaterial</definition>
+        <argsstring></argsstring>
+        <name>defaultMaterial</name>
+        <qualifiedname>RTSSelectionManager.defaultMaterial</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="114" column="21" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="114" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classRTSSelectionManager_1af5c4ca57f7341634453e73f53d852169" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool RTSSelectionManager.isDragging</definition>
+        <argsstring></argsstring>
+        <name>isDragging</name>
+        <qualifiedname>RTSSelectionManager.isDragging</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>드래그 중인지 여부 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="32" column="18" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="32" bodyend="-1"/>
+        <referencedby refid="classRTSSelectionManager_1af5851fbefc56215070a7599f6481be19" compoundref="RTSSelectionManager_8cs" startline="260" endline="268">OnGUI</referencedby>
+        <referencedby refid="classRTSSelectionManager_1abe94780370a9af6878c66cf3cc98732a" compoundref="RTSSelectionManager_8cs" startline="148" endline="195">Update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRTSSelectionManager_1ad6f63c8ca8232bad90be1cc2afdd9de4" prot="private" static="no" mutable="no">
+        <type>GraphicRaycaster</type>
+        <definition>GraphicRaycaster RTSSelectionManager.combatUIGRC</definition>
+        <argsstring></argsstring>
+        <name>combatUIGRC</name>
+        <qualifiedname>RTSSelectionManager.combatUIGRC</qualifiedname>
+        <briefdescription>
+<para>전투 시 필요 canvas </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="84" column="30" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="84" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classRTSSelectionManager_1ac0db424ecf85d35f8a8106fa3bef1d64" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="classRTSSelectionManager" kindref="compound">RTSSelectionManager</ref></type>
+        <definition>RTSSelectionManager RTSSelectionManager.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>RTSSelectionManager.Instance</qualifiedname>
+        <briefdescription>
+<para>싱글톤 instance </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="94" column="39" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="94" bodyend="94"/>
+        <referencedby refid="classCrewMember_1a1980132bc97845dc890766dadd559e00" compoundref="CrewMember_8cs" startline="613" endline="644">CrewMember.Attack</referencedby>
+        <referencedby refid="classCombatManager_1ae72a224a22b4a92056f79e2add99acb3" compoundref="CombatManager_8cs" startline="43" endline="56">CombatManager.Awake</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ae403c53a7c07d1a658f4ba60b6835dcd" compoundref="RTSSelectionManager_8cs" startline="99" endline="109">Awake</referencedby>
+        <referencedby refid="classSceneChanger_1a414c25e36c5ac30a44e6af6238466b6c" compoundref="SceneChanger_8cs" startline="127" endline="172">SceneChanger.BackToTheHome</referencedby>
+        <referencedby refid="classCrewMember_1aa5c7668b76acb42a080c33cbcc949965" compoundref="CrewMember_8cs" startline="681" endline="707">CrewMember.Die</referencedby>
+        <referencedby refid="classCrewMember_1a5e60edae0eee3d5844c455ca6d698ccd" compoundref="CrewMember_8cs" startline="765" endline="805">CrewMember.DontTouchMe</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">CrewMember.FollowPathCoroutine</referencedby>
+        <referencedby refid="classCrewMember_1a1503a3e4b8b009a5f75cdc9dcb99b69a" compoundref="CrewMember_8cs" startline="833" endline="860">CrewMember.LookAtMe</referencedby>
+        <referencedby refid="classCustomizeShipUIHandler_1a0a87df1bbf10a142bcfb73c4634a7bd4" compoundref="CustomizeShipUIHandler_8cs" startline="307" endline="372">CustomizeShipUIHandler.OnClickBuild</referencedby>
+        <referencedby refid="classCustomize__2__Controller_1a4f017401dbc31501a4109324ccec2bd7" compoundref="Customize__2__Controller_8cs" startline="227" endline="294">Customize_2_Controller.OnClickBuy</referencedby>
+        <referencedby refid="classCombatManager_1abf07f5abfdb7c1d1f7215cd56c2392ca" compoundref="CombatManager_8cs" startline="62" endline="85">CombatManager.Start</referencedby>
+        <referencedby refid="classCrewMember_1a508cdfced903ba8a7c2f9a5ebfe9927e" compoundref="CrewMember_8cs" startline="1137" endline="1277">CrewMember.TeleportAfterDelay</referencedby>
+        <referencedby refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" compoundref="EnemyController_8cs" startline="23" endline="122">EnemyController.Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classRTSSelectionManager_1ae403c53a7c07d1a658f4ba60b6835dcd" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>RTSSelectionManager.Awake</qualifiedname>
+        <briefdescription>
+<para>싱글톤 instance 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="99" column="18" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="99" bodyend="109"/>
+        <references refid="classRTSSelectionManager_1ac0db424ecf85d35f8a8106fa3bef1d64" compoundref="RTSSelectionManager_8cs" startline="94" endline="94">Instance</references>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1a9d17ab1cce229c4d7d23cbd27e325d70" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator RTSSelectionManager.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>RTSSelectionManager.Start</qualifiedname>
+        <briefdescription>
+<para>게임 오브젝트 연결 (RTS 이동 검사를 위한 오브젝트) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="131" column="25" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="131" bodyend="142"/>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classGameManager_1af31b125ee50ee4ffee177b8357ef1f11" compoundref="GameManager_8cs" startline="19">GameManager.playerShip</references>
+        <references refid="classRTSSelectionManager_1a3d3848f488ddaceb2042b8888c3375b1" compoundref="RTSSelectionManager_8cs" startline="54">playerShip</references>
+        <references refid="classRTSSelectionManager_1ad68211bed4c24acf467aa4dd2285d987" compoundref="RTSSelectionManager_8cs" startline="402" endline="416">RefreshMovementData</references>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1abe94780370a9af6878c66cf3cc98732a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>RTSSelectionManager.Update</qualifiedname>
+        <briefdescription>
+<para>좌클릭 감지 - 다중 선택 시 영역 표시 우클릭 감지 - 선택한 선원 이동 명령 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="148" column="18" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="148" bodyend="195"/>
+        <references refid="classRTSSelectionManager_1a757a41ec93e93221843ecf0585ed0f9e" compoundref="RTSSelectionManager_8cs" startline="241" endline="247">BlockRTSSelection</references>
+        <references refid="classRTSSelectionManager_1aaf369ece129544119bf0e9f89d56d181" compoundref="RTSSelectionManager_8cs" startline="37">clickThreshold</references>
+        <references refid="classRTSSelectionManager_1a1e3fc4cd25accdbc0c62e6c0cff7d836" compoundref="RTSSelectionManager_8cs" startline="28">dragEndPos</references>
+        <references refid="classRTSSelectionManager_1ab7b10156c6120e40c2574b9e89d28d8f" compoundref="RTSSelectionManager_8cs" startline="23">dragStartPos</references>
+        <references refid="classRTSSelectionManager_1af5c4ca57f7341634453e73f53d852169" compoundref="RTSSelectionManager_8cs" startline="32">isDragging</references>
+        <references refid="classRTSSelectionManager_1a8f7107c278338d7cb2abbe4d1a6ebfba" compoundref="RTSSelectionManager_8cs" startline="355" endline="389">SelectMultipleCrew</references>
+        <references refid="classRTSSelectionManager_1aa9ac0a8b0fd62fdd5bfb2a36589ccb16" compoundref="RTSSelectionManager_8cs" startline="331" endline="350">SelectSingleCrew</references>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1a8643e14297e6aae5fb2b86a0ff48ee51" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.LateUpdate</definition>
+        <argsstring>()</argsstring>
+        <name>LateUpdate</name>
+        <qualifiedname>RTSSelectionManager.LateUpdate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="197" column="18" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="197" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1aeebc0532d5eedc8c0b6709f86e065e38" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool RTSSelectionManager.IsUIWithTagClicked</definition>
+        <argsstring>(string tag)</argsstring>
+        <name>IsUIWithTagClicked</name>
+        <qualifiedname>RTSSelectionManager.IsUIWithTagClicked</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>tag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="222" column="18" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="222" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1a757a41ec93e93221843ecf0585ed0f9e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool RTSSelectionManager.BlockRTSSelection</definition>
+        <argsstring>()</argsstring>
+        <name>BlockRTSSelection</name>
+        <qualifiedname>RTSSelectionManager.BlockRTSSelection</qualifiedname>
+        <briefdescription>
+<para>RTS 선원 선택 방지 코드 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="241" column="18" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="241" bodyend="247"/>
+        <referencedby refid="classRTSSelectionManager_1abe94780370a9af6878c66cf3cc98732a" compoundref="RTSSelectionManager_8cs" startline="148" endline="195">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1a3ea8e5c8f78e68e1eaab75b6ced092f6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool RTSSelectionManager.BlockRTSNBPMove</definition>
+        <argsstring>()</argsstring>
+        <name>BlockRTSNBPMove</name>
+        <qualifiedname>RTSSelectionManager.BlockRTSNBPMove</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="249" column="18" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="249" bodyend="255"/>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1af5851fbefc56215070a7599f6481be19" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.OnGUI</definition>
+        <argsstring>()</argsstring>
+        <name>OnGUI</name>
+        <qualifiedname>RTSSelectionManager.OnGUI</qualifiedname>
+        <briefdescription>
+<para>OnGUI를 이용하여 드래그 영역의 사각형 표시 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="260" column="18" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="260" bodyend="268"/>
+        <references refid="classRTSSelectionManager_1ab7b10156c6120e40c2574b9e89d28d8f" compoundref="RTSSelectionManager_8cs" startline="23">dragStartPos</references>
+        <references refid="classRTSSelectionManager_1a8c5f2133833bbe480eada20aed4b03ea" compoundref="RTSSelectionManager_8cs" startline="290" endline="295">DrawScreenRect</references>
+        <references refid="classRTSSelectionManager_1a216c9073cb85eb5ccf47a78be6dcc6e9" compoundref="RTSSelectionManager_8cs" startline="303" endline="315">DrawScreenRectBorder</references>
+        <references refid="classRTSSelectionManager_1a6479dd9b17c3c57ef0bb2ddd49080e4f" compoundref="RTSSelectionManager_8cs" startline="276" endline="283">GetScreenRect</references>
+        <references refid="classRTSSelectionManager_1af5c4ca57f7341634453e73f53d852169" compoundref="RTSSelectionManager_8cs" startline="32">isDragging</references>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1a6479dd9b17c3c57ef0bb2ddd49080e4f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Rect</type>
+        <definition>Rect RTSSelectionManager.GetScreenRect</definition>
+        <argsstring>(Vector2 screenPosition1, Vector2 screenPosition2)</argsstring>
+        <name>GetScreenRect</name>
+        <qualifiedname>RTSSelectionManager.GetScreenRect</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>screenPosition1</declname>
+        </param>
+        <param>
+          <type>Vector2</type>
+          <declname>screenPosition2</declname>
+        </param>
+        <briefdescription>
+<para>두 스크린 좌표로 사각형 영역 계산 (y좌표 보정 포함) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>screenPosition1</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>screenPosition2</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="276" column="18" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="276" bodyend="283"/>
+        <referencedby refid="classRTSSelectionManager_1af5851fbefc56215070a7599f6481be19" compoundref="RTSSelectionManager_8cs" startline="260" endline="268">OnGUI</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a8f7107c278338d7cb2abbe4d1a6ebfba" compoundref="RTSSelectionManager_8cs" startline="355" endline="389">SelectMultipleCrew</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1a8c5f2133833bbe480eada20aed4b03ea" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.DrawScreenRect</definition>
+        <argsstring>(Rect rect, Color color)</argsstring>
+        <name>DrawScreenRect</name>
+        <qualifiedname>RTSSelectionManager.DrawScreenRect</qualifiedname>
+        <param>
+          <type>Rect</type>
+          <declname>rect</declname>
+        </param>
+        <param>
+          <type>Color</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>사각형 내부 채우기 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rect</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>color</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="290" column="18" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="290" bodyend="295"/>
+        <references refid="classRTSSelectionManager_1a8b52447f37a7606380dcf35294d2edf2" compoundref="RTSSelectionManager_8cs" startline="18">selectionTexture</references>
+        <referencedby refid="classRTSSelectionManager_1af5851fbefc56215070a7599f6481be19" compoundref="RTSSelectionManager_8cs" startline="260" endline="268">OnGUI</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1a216c9073cb85eb5ccf47a78be6dcc6e9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.DrawScreenRectBorder</definition>
+        <argsstring>(Rect rect, float thickness, Color color)</argsstring>
+        <name>DrawScreenRectBorder</name>
+        <qualifiedname>RTSSelectionManager.DrawScreenRectBorder</qualifiedname>
+        <param>
+          <type>Rect</type>
+          <declname>rect</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>thickness</declname>
+        </param>
+        <param>
+          <type>Color</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>사각형 테두리 그리기 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rect</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>thickness</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>color</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="303" column="18" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="303" bodyend="315"/>
+        <references refid="classRTSSelectionManager_1a8b52447f37a7606380dcf35294d2edf2" compoundref="RTSSelectionManager_8cs" startline="18">selectionTexture</references>
+        <referencedby refid="classRTSSelectionManager_1af5851fbefc56215070a7599f6481be19" compoundref="RTSSelectionManager_8cs" startline="260" endline="268">OnGUI</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1ae59ec6d9fbc150d1b018fb03d62b17fe" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classCrewPathfinder" kindref="compound">CrewPathfinder</ref></type>
+        <definition>CrewPathfinder RTSSelectionManager.GetPathfinderForCrew</definition>
+        <argsstring>(CrewMember crew)</argsstring>
+        <name>GetPathfinderForCrew</name>
+        <qualifiedname>RTSSelectionManager.GetPathfinderForCrew</qualifiedname>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crew</declname>
+        </param>
+        <briefdescription>
+<para>이동 경로 탐색기 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>crew</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="423" column="28" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="423" bodyend="426"/>
+        <references refid="classRTSSelectionManager_1a4a2547e2bd18f5f543b467e9fba187c3" compoundref="RTSSelectionManager_8cs" startline="59">crewPathfinder</references>
+        <references refid="classCrewBase_1ab5bc82e72ae13e47df0d37bd92fdd417" compoundref="CrewBase_8cs" startline="115">CrewBase.currentShip</references>
+        <references refid="classRTSSelectionManager_1a31336e426f512aa3c77e30921fc64693" compoundref="RTSSelectionManager_8cs" startline="74">enemyPathFinder</references>
+        <references refid="classRTSSelectionManager_1a0a3726488363e236df0f1290003fcdcc" compoundref="RTSSelectionManager_8cs" startline="69">enemyShip</references>
+        <references refid="classRTSSelectionManager_1a3d3848f488ddaceb2042b8888c3375b1" compoundref="RTSSelectionManager_8cs" startline="54">playerShip</references>
+        <referencedby refid="classRTSSelectionManager_1a0002c5992875339db3028007c2472b6d" compoundref="RTSSelectionManager_8cs" startline="443" endline="666">IssueMoveCommand</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" compoundref="RTSSelectionManager_8cs" startline="672" endline="800">MoveForCombat</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1ae5c3f854603e7329447bf4cd81a1be14" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classCrewMovementValidator" kindref="compound">CrewMovementValidator</ref></type>
+        <definition>CrewMovementValidator RTSSelectionManager.GetMovementValidatorForCrew</definition>
+        <argsstring>(CrewMember crew)</argsstring>
+        <name>GetMovementValidatorForCrew</name>
+        <qualifiedname>RTSSelectionManager.GetMovementValidatorForCrew</qualifiedname>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crew</declname>
+        </param>
+        <briefdescription>
+<para>이동 가능 검사기 설정 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>crew</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="433" column="35" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="433" bodyend="436"/>
+        <references refid="classCrewBase_1ab5bc82e72ae13e47df0d37bd92fdd417" compoundref="CrewBase_8cs" startline="115">CrewBase.currentShip</references>
+        <references refid="classRTSSelectionManager_1aa7d8334f5a9bfe95f58b2e485ebd6695" compoundref="RTSSelectionManager_8cs" startline="79">enemyMovementValidator</references>
+        <references refid="classRTSSelectionManager_1a0a3726488363e236df0f1290003fcdcc" compoundref="RTSSelectionManager_8cs" startline="69">enemyShip</references>
+        <references refid="classRTSSelectionManager_1ab17a5c2ffd3a2d56fdb47fd2ddc03d36" compoundref="RTSSelectionManager_8cs" startline="64">movementValidator</references>
+        <references refid="classRTSSelectionManager_1a3d3848f488ddaceb2042b8888c3375b1" compoundref="RTSSelectionManager_8cs" startline="54">playerShip</references>
+        <referencedby refid="classRTSSelectionManager_1a0002c5992875339db3028007c2472b6d" compoundref="RTSSelectionManager_8cs" startline="443" endline="666">IssueMoveCommand</referencedby>
+        <referencedby refid="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" compoundref="RTSSelectionManager_8cs" startline="672" endline="800">MoveForCombat</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classRTSSelectionManager_1afb4ddb4974899d6505a796b884cc1309" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.SetOutline</definition>
+        <argsstring>(CrewMember crew, bool onoff)</argsstring>
+        <name>SetOutline</name>
+        <qualifiedname>RTSSelectionManager.SetOutline</qualifiedname>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crew</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>onoff</declname>
+        </param>
+        <briefdescription>
+<para>crew의 스프라이트 렌더러에 onoff값에 따라 Material을 변경하며 외곽선 효과를 준다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>crew</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>onoff</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="121" column="17" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="121" bodyend="124"/>
+        <referencedby refid="classRTSSelectionManager_1a82a95c14e8d3815dc062bf909a30c7e8" compoundref="RTSSelectionManager_8cs" startline="320" endline="326">DeselectAll</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a1b4a2ba4cb9ea7b2957e937a683ca02f" compoundref="RTSSelectionManager_8cs" startline="806" endline="813">Select</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a8f7107c278338d7cb2abbe4d1a6ebfba" compoundref="RTSSelectionManager_8cs" startline="355" endline="389">SelectMultipleCrew</referencedby>
+        <referencedby refid="classRTSSelectionManager_1aa9ac0a8b0fd62fdd5bfb2a36589ccb16" compoundref="RTSSelectionManager_8cs" startline="331" endline="350">SelectSingleCrew</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1a99bf984b250839df585a4f395a50a3d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.SetGRC</definition>
+        <argsstring>(GraphicRaycaster GRC)</argsstring>
+        <name>SetGRC</name>
+        <qualifiedname>RTSSelectionManager.SetGRC</qualifiedname>
+        <param>
+          <type>GraphicRaycaster</type>
+          <declname>GRC</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="210" column="17" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="210" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1a82a95c14e8d3815dc062bf909a30c7e8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.DeselectAll</definition>
+        <argsstring>()</argsstring>
+        <name>DeselectAll</name>
+        <qualifiedname>RTSSelectionManager.DeselectAll</qualifiedname>
+        <briefdescription>
+<para>선택한 선원 모두 해제 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="320" column="17" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="320" bodyend="326"/>
+        <references refid="classRTSSelectionManager_1af0d1c7a1b0c8e99784daebcb7fa2e777" compoundref="RTSSelectionManager_8cs" startline="42">selectedCrew</references>
+        <references refid="classRTSSelectionManager_1afb4ddb4974899d6505a796b884cc1309" compoundref="RTSSelectionManager_8cs" startline="121" endline="124">SetOutline</references>
+        <referencedby refid="classRTSSelectionManager_1a1b4a2ba4cb9ea7b2957e937a683ca02f" compoundref="RTSSelectionManager_8cs" startline="806" endline="813">Select</referencedby>
+        <referencedby refid="classRTSSelectionManager_1aa9ac0a8b0fd62fdd5bfb2a36589ccb16" compoundref="RTSSelectionManager_8cs" startline="331" endline="350">SelectSingleCrew</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1aa9ac0a8b0fd62fdd5bfb2a36589ccb16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.SelectSingleCrew</definition>
+        <argsstring>()</argsstring>
+        <name>SelectSingleCrew</name>
+        <qualifiedname>RTSSelectionManager.SelectSingleCrew</qualifiedname>
+        <briefdescription>
+<para>단일 선원 선택 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="331" column="17" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="331" bodyend="350"/>
+        <references refid="classRTSSelectionManager_1a82a95c14e8d3815dc062bf909a30c7e8" compoundref="RTSSelectionManager_8cs" startline="320" endline="326">DeselectAll</references>
+        <references refid="classCrewMember_1af4b290dc38d44cde63972f5260377c43" compoundref="CrewMember_8cs" startline="145" endline="148">CrewMember.GetCurrentTile</references>
+        <references refid="classCrewBase_1a24c27571ccbe1263b7bcc0b1edf78010" compoundref="CrewBase_8cs" startline="16">CrewBase.isPlayerControlled</references>
+        <references refid="classRTSSelectionManager_1af0d1c7a1b0c8e99784daebcb7fa2e777" compoundref="RTSSelectionManager_8cs" startline="42">selectedCrew</references>
+        <references refid="classRTSSelectionManager_1afb4ddb4974899d6505a796b884cc1309" compoundref="RTSSelectionManager_8cs" startline="121" endline="124">SetOutline</references>
+        <referencedby refid="classRTSSelectionManager_1abe94780370a9af6878c66cf3cc98732a" compoundref="RTSSelectionManager_8cs" startline="148" endline="195">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1a8f7107c278338d7cb2abbe4d1a6ebfba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.SelectMultipleCrew</definition>
+        <argsstring>()</argsstring>
+        <name>SelectMultipleCrew</name>
+        <qualifiedname>RTSSelectionManager.SelectMultipleCrew</qualifiedname>
+        <briefdescription>
+<para>영역 내 선원 다중 선택 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="355" column="17" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="355" bodyend="389"/>
+        <references refid="classRTSSelectionManager_1ab7b10156c6120e40c2574b9e89d28d8f" compoundref="RTSSelectionManager_8cs" startline="23">dragStartPos</references>
+        <references refid="classCrewMember_1af4b290dc38d44cde63972f5260377c43" compoundref="CrewMember_8cs" startline="145" endline="148">CrewMember.GetCurrentTile</references>
+        <references refid="classRTSSelectionManager_1a6479dd9b17c3c57ef0bb2ddd49080e4f" compoundref="RTSSelectionManager_8cs" startline="276" endline="283">GetScreenRect</references>
+        <references refid="classCrewBase_1a24c27571ccbe1263b7bcc0b1edf78010" compoundref="CrewBase_8cs" startline="16">CrewBase.isPlayerControlled</references>
+        <references refid="classCrewBase_1a1025f6ffef015905221678bf57959773" compoundref="CrewBase_8cs" startline="91">CrewBase.position</references>
+        <references refid="classRTSSelectionManager_1af0d1c7a1b0c8e99784daebcb7fa2e777" compoundref="RTSSelectionManager_8cs" startline="42">selectedCrew</references>
+        <references refid="classRTSSelectionManager_1afb4ddb4974899d6505a796b884cc1309" compoundref="RTSSelectionManager_8cs" startline="121" endline="124">SetOutline</references>
+        <referencedby refid="classRTSSelectionManager_1abe94780370a9af6878c66cf3cc98732a" compoundref="RTSSelectionManager_8cs" startline="148" endline="195">Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1accd2ba3a2c61d55226642f6022c38daa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.CleanUpSelectedCrew</definition>
+        <argsstring>()</argsstring>
+        <name>CleanUpSelectedCrew</name>
+        <qualifiedname>RTSSelectionManager.CleanUpSelectedCrew</qualifiedname>
+        <briefdescription>
+<para>죽은 선원을 선택된 선원 리스트에서 제거 (갱신) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="394" column="17" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="394" bodyend="397"/>
+        <references refid="classRTSSelectionManager_1af0d1c7a1b0c8e99784daebcb7fa2e777" compoundref="RTSSelectionManager_8cs" startline="42">selectedCrew</references>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1ad68211bed4c24acf467aa4dd2285d987" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.RefreshMovementData</definition>
+        <argsstring>()</argsstring>
+        <name>RefreshMovementData</name>
+        <qualifiedname>RTSSelectionManager.RefreshMovementData</qualifiedname>
+        <briefdescription>
+<para>RTS 이동을 위한 기여 오브젝트 초기화 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="402" column="17" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="402" bodyend="416"/>
+        <references refid="classRTSSelectionManager_1a4a2547e2bd18f5f543b467e9fba187c3" compoundref="RTSSelectionManager_8cs" startline="59">crewPathfinder</references>
+        <references refid="classRTSSelectionManager_1aa7d8334f5a9bfe95f58b2e485ebd6695" compoundref="RTSSelectionManager_8cs" startline="79">enemyMovementValidator</references>
+        <references refid="classRTSSelectionManager_1a31336e426f512aa3c77e30921fc64693" compoundref="RTSSelectionManager_8cs" startline="74">enemyPathFinder</references>
+        <references refid="classRTSSelectionManager_1a0a3726488363e236df0f1290003fcdcc" compoundref="RTSSelectionManager_8cs" startline="69">enemyShip</references>
+        <references refid="classShip_1a8ced30f0d71c2a5cf333b3de23af48f2" compoundref="Ship_8cs" startline="1110" endline="1113">Ship.GetAllRooms</references>
+        <references refid="classCrewMovementValidator_1a81f36c4d99a75149fc7c0e5db33b7101" compoundref="CrewMovementValidator_8cs" startline="19" endline="29">CrewMovementValidator.Initialize</references>
+        <references refid="classRTSSelectionManager_1ab17a5c2ffd3a2d56fdb47fd2ddc03d36" compoundref="RTSSelectionManager_8cs" startline="64">movementValidator</references>
+        <references refid="classRTSSelectionManager_1a3d3848f488ddaceb2042b8888c3375b1" compoundref="RTSSelectionManager_8cs" startline="54">playerShip</references>
+        <referencedby refid="classCustomizeShipUIHandler_1a0a87df1bbf10a142bcfb73c4634a7bd4" compoundref="CustomizeShipUIHandler_8cs" startline="307" endline="372">CustomizeShipUIHandler.OnClickBuild</referencedby>
+        <referencedby refid="classCustomize__2__Controller_1a4f017401dbc31501a4109324ccec2bd7" compoundref="Customize__2__Controller_8cs" startline="227" endline="294">Customize_2_Controller.OnClickBuy</referencedby>
+        <referencedby refid="classCombatManager_1abf07f5abfdb7c1d1f7215cd56c2392ca" compoundref="CombatManager_8cs" startline="62" endline="85">CombatManager.Start</referencedby>
+        <referencedby refid="classRTSSelectionManager_1a9d17ab1cce229c4d7d23cbd27e325d70" compoundref="RTSSelectionManager_8cs" startline="131" endline="142">Start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1a0002c5992875339db3028007c2472b6d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.IssueMoveCommand</definition>
+        <argsstring>(Room targetRoom=null, CrewMember crewByEnemyController=null)</argsstring>
+        <name>IssueMoveCommand</name>
+        <qualifiedname>RTSSelectionManager.IssueMoveCommand</qualifiedname>
+        <param>
+          <type><ref refid="classRoom" kindref="compound">Room</ref></type>
+          <declname>targetRoom</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crewByEnemyController</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>선택된 선원들을 목적지 방의 우선순위 타일로 최단 경로 기반 배정 후 이동시킵니다. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>targetRoom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>목적지 방</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>crewByEnemyController</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>적 선원이 호출한 이동 명령일 경우 true</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="443" column="17" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="443" bodyend="666"/>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classCrewBase_1ab5bc82e72ae13e47df0d37bd92fdd417" compoundref="CrewBase_8cs" startline="115">CrewBase.currentShip</references>
+        <references refid="classCrewPathfinder_1a5511dc3dd1f1dd7fefda36d5c9e044c2" compoundref="CrewPathFinder_8cs" startline="19" endline="23">CrewPathfinder.FindPathToTile</references>
+        <references refid="classCrewMember_1a41c7608e6555b803935adbc401e44bbe" compoundref="CrewMember_8cs" startline="1074" endline="1093">CrewMember.Freeze</references>
+        <references refid="classCrewMember_1af4b290dc38d44cde63972f5260377c43" compoundref="CrewMember_8cs" startline="145" endline="148">CrewMember.GetCurrentTile</references>
+        <references refid="classCrewMember_1adf2ef6b08d0e224b1b592ee7f68a1d39" compoundref="CrewMember_8cs" startline="229" endline="236">CrewMember.GetCurrentTilePriorityIndex</references>
+        <references refid="classRTSSelectionManager_1ae5c3f854603e7329447bf4cd81a1be14" compoundref="RTSSelectionManager_8cs" startline="433" endline="436">GetMovementValidatorForCrew</references>
+        <references refid="classRTSSelectionManager_1ae59ec6d9fbc150d1b018fb03d62b17fe" compoundref="RTSSelectionManager_8cs" startline="423" endline="426">GetPathfinderForCrew</references>
+        <references refid="classGameManager_1ad3e717f4fb0f378b969f4457de81f23e" compoundref="GameManager_8cs" startline="93" endline="93">GameManager.Instance</references>
+        <references refid="classCrewBase_1a234dad1a8fd8847879f0922fb0b17996" compoundref="CrewBase_8cs" startline="103">CrewBase.isAlive</references>
+        <references refid="classCrewMovementValidator_1a5d4caf53367c1f0d9ac691bfd9c553cc" compoundref="CrewMovementValidator_8cs" startline="34" endline="37">CrewMovementValidator.IsTileWalkable</references>
+        <references refid="classGameManager_1af31b125ee50ee4ffee177b8357ef1f11" compoundref="GameManager_8cs" startline="19">GameManager.playerShip</references>
+        <references refid="classCrewMember_1aa199a08672617743ad8cb3c8939eea00" compoundref="CrewMember_8cs" startline="32">CrewMember.reservedRoom</references>
+        <references refid="classRTSSelectionManager_1af0d1c7a1b0c8e99784daebcb7fa2e777" compoundref="RTSSelectionManager_8cs" startline="42">selectedCrew</references>
+        <references refid="classCrewMember_1a508cdfced903ba8a7c2f9a5ebfe9927e" compoundref="CrewMember_8cs" startline="1137" endline="1277">CrewMember.TeleportAfterDelay</references>
+        <referencedby refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" compoundref="EnemyController_8cs" startline="23" endline="122">EnemyController.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.MoveForCombat</definition>
+        <argsstring>(CrewMember readyCombatCrew)</argsstring>
+        <name>MoveForCombat</name>
+        <qualifiedname>RTSSelectionManager.MoveForCombat</qualifiedname>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>readyCombatCrew</declname>
+        </param>
+        <briefdescription>
+<para>같은 방 내에 적이 있다면 공격 AI </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>readyCombatCrew</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="672" column="17" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="672" bodyend="800"/>
+        <references refid="classCrewBase_1a26aadf40cb40eb684fb9a5dbec380491" compoundref="CrewBase_8cs" startline="88">CrewBase.currentRoom</references>
+        <references refid="classCrewPathfinder_1a5511dc3dd1f1dd7fefda36d5c9e044c2" compoundref="CrewPathFinder_8cs" startline="19" endline="23">CrewPathfinder.FindPathToTile</references>
+        <references refid="classCrewSystem_1a211d4d37de0e70c08101ad8733367bd7" compoundref="CrewSystem_8cs" startline="148" endline="159">CrewSystem.GetCrews</references>
+        <references refid="classCrewMember_1af4b290dc38d44cde63972f5260377c43" compoundref="CrewMember_8cs" startline="145" endline="148">CrewMember.GetCurrentTile</references>
+        <references refid="classRTSSelectionManager_1ae5c3f854603e7329447bf4cd81a1be14" compoundref="RTSSelectionManager_8cs" startline="433" endline="436">GetMovementValidatorForCrew</references>
+        <references refid="classRTSSelectionManager_1ae59ec6d9fbc150d1b018fb03d62b17fe" compoundref="RTSSelectionManager_8cs" startline="423" endline="426">GetPathfinderForCrew</references>
+        <references refid="classCrewBase_1a234dad1a8fd8847879f0922fb0b17996" compoundref="CrewBase_8cs" startline="103">CrewBase.isAlive</references>
+        <references refid="classCrewBase_1ab78b5a4de7a4515d545bf97fa28b6cc9" compoundref="CrewBase_8cs" startline="106">CrewBase.isMoving</references>
+        <references refid="classCrewBase_1a24c27571ccbe1263b7bcc0b1edf78010" compoundref="CrewBase_8cs" startline="16">CrewBase.isPlayerControlled</references>
+        <references refid="classCrewMovementValidator_1a5d4caf53367c1f0d9ac691bfd9c553cc" compoundref="CrewMovementValidator_8cs" startline="34" endline="37">CrewMovementValidator.IsTileWalkable</references>
+        <references refid="classRTSSelectionManager_1a3d3848f488ddaceb2042b8888c3375b1" compoundref="RTSSelectionManager_8cs" startline="54">playerShip</references>
+        <referencedby refid="classCrewMember_1a1980132bc97845dc890766dadd559e00" compoundref="CrewMember_8cs" startline="613" endline="644">CrewMember.Attack</referencedby>
+        <referencedby refid="classCrewMember_1a5e60edae0eee3d5844c455ca6d698ccd" compoundref="CrewMember_8cs" startline="765" endline="805">CrewMember.DontTouchMe</referencedby>
+        <referencedby refid="classCrewMember_1ae46abe81a744b6abd13f285a25455404" compoundref="CrewMember_8cs" startline="243" endline="334">CrewMember.FollowPathCoroutine</referencedby>
+        <referencedby refid="classCrewMember_1a1503a3e4b8b009a5f75cdc9dcb99b69a" compoundref="CrewMember_8cs" startline="833" endline="860">CrewMember.LookAtMe</referencedby>
+        <referencedby refid="classCrewMember_1a508cdfced903ba8a7c2f9a5ebfe9927e" compoundref="CrewMember_8cs" startline="1137" endline="1277">CrewMember.TeleportAfterDelay</referencedby>
+        <referencedby refid="classEnemyController_1a41090510cff98622fe675d1f6e3ecd82" compoundref="EnemyController_8cs" startline="23" endline="122">EnemyController.Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1a1b4a2ba4cb9ea7b2957e937a683ca02f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RTSSelectionManager.Select</definition>
+        <argsstring>(CrewMember crew)</argsstring>
+        <name>Select</name>
+        <qualifiedname>RTSSelectionManager.Select</qualifiedname>
+        <param>
+          <type><ref refid="classCrewMember" kindref="compound">CrewMember</ref></type>
+          <declname>crew</declname>
+        </param>
+        <briefdescription>
+<para>선원 리스트 UI에서 선원 선택 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>crew</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="806" column="17" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="806" bodyend="813"/>
+        <references refid="classRTSSelectionManager_1a82a95c14e8d3815dc062bf909a30c7e8" compoundref="RTSSelectionManager_8cs" startline="320" endline="326">DeselectAll</references>
+        <references refid="classCrewMember_1af4b290dc38d44cde63972f5260377c43" compoundref="CrewMember_8cs" startline="145" endline="148">CrewMember.GetCurrentTile</references>
+        <references refid="classRTSSelectionManager_1af0d1c7a1b0c8e99784daebcb7fa2e777" compoundref="RTSSelectionManager_8cs" startline="42">selectedCrew</references>
+        <references refid="classRTSSelectionManager_1afb4ddb4974899d6505a796b884cc1309" compoundref="RTSSelectionManager_8cs" startline="121" endline="124">SetOutline</references>
+      </memberdef>
+      <memberdef kind="function" id="classRTSSelectionManager_1a811828acde592f083a5cdc67f11ccfbd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool RTSSelectionManager.CallCombatManager</definition>
+        <argsstring>(out CombatManager combat)</argsstring>
+        <name>CallCombatManager</name>
+        <qualifiedname>RTSSelectionManager.CallCombatManager</qualifiedname>
+        <param>
+          <type>out <ref refid="classCombatManager" kindref="compound">CombatManager</ref></type>
+          <declname>combat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="815" column="17" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="815" bodyend="826"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>선원 RTS 선택 및 이동 명령 관리 (단일, 다중 선택) </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>RTSSelectionManager</label>
+        <link refid="classRTSSelectionManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="19">
+        <label>CrewMovementValidator</label>
+        <link refid="classCrewMovementValidator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>CrewPathfinder</label>
+        <link refid="classCrewPathfinder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>-movementValidator</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>CrewSystem</label>
+        <link refid="classCrewSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>DoorData</label>
+        <link refid="classDoorData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>HitPointSystem</label>
+        <link refid="classHitPointSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="14">
+        <label>MoraleSystem</label>
+        <link refid="classMoraleSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OuterHullData</label>
+        <link refid="classOuterHullData"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>OuterHullSystem</label>
+        <link refid="classOuterHullSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>OxygenSystem</label>
+        <link refid="classOxygenSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>PowerSystem</label>
+        <link refid="classPowerSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>RTSSelectionManager</label>
+        <link refid="classRTSSelectionManager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+dragEndPos</edgelabel>
+          <edgelabel>+dragStartPos</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+enemyShip</edgelabel>
+          <edgelabel>+playerShip</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>+crewPathfinder</edgelabel>
+          <edgelabel>+enemyPathFinder</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>+enemyMovementValidator</edgelabel>
+          <edgelabel>+movementValidator</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="17">
+        <label>ShieldSystem</label>
+        <link refid="classShieldSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Ship</label>
+        <link refid="classShip"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-doorData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+outerHullData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-outerHullSystem</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>-weaponSystem</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>-oxygenSystem</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>-crewSystem</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>-hitpointSystem</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>-moraleSystem</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>-powerSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>-storageSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>-shieldSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ShipSystem</label>
+        <link refid="classShipSystem"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>#parentShip</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>StorageSystem</label>
+        <link refid="classStorageSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>UnityEngine</label>
+      </node>
+      <node id="10">
+        <label>WeaponSystem</label>
+        <link refid="classWeaponSystem"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Scripts/RTS/RTSSelectionManager.cs" line="13" column="7" bodyfile="Assets/Scripts/RTS/RTSSelectionManager.cs" bodystart="14" bodyend="827"/>
+    <listofallmembers>
+      <member refid="classRTSSelectionManager_1ae403c53a7c07d1a658f4ba60b6835dcd" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>Awake</name></member>
+      <member refid="classRTSSelectionManager_1a3ea8e5c8f78e68e1eaab75b6ced092f6" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>BlockRTSNBPMove</name></member>
+      <member refid="classRTSSelectionManager_1a757a41ec93e93221843ecf0585ed0f9e" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>BlockRTSSelection</name></member>
+      <member refid="classRTSSelectionManager_1a811828acde592f083a5cdc67f11ccfbd" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>CallCombatManager</name></member>
+      <member refid="classRTSSelectionManager_1accd2ba3a2c61d55226642f6022c38daa" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>CleanUpSelectedCrew</name></member>
+      <member refid="classRTSSelectionManager_1aaf369ece129544119bf0e9f89d56d181" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>clickThreshold</name></member>
+      <member refid="classRTSSelectionManager_1a35898d07f100198b1bf44f739b9526f3" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>combatManager</name></member>
+      <member refid="classRTSSelectionManager_1ad6f63c8ca8232bad90be1cc2afdd9de4" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>combatUIGRC</name></member>
+      <member refid="classRTSSelectionManager_1a4a2547e2bd18f5f543b467e9fba187c3" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>crewPathfinder</name></member>
+      <member refid="classRTSSelectionManager_1a68f90db6c1e472c2c7ee44353819d2fe" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>defaultMaterial</name></member>
+      <member refid="classRTSSelectionManager_1a82a95c14e8d3815dc062bf909a30c7e8" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>DeselectAll</name></member>
+      <member refid="classRTSSelectionManager_1a1e3fc4cd25accdbc0c62e6c0cff7d836" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>dragEndPos</name></member>
+      <member refid="classRTSSelectionManager_1ab7b10156c6120e40c2574b9e89d28d8f" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>dragStartPos</name></member>
+      <member refid="classRTSSelectionManager_1a8c5f2133833bbe480eada20aed4b03ea" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>DrawScreenRect</name></member>
+      <member refid="classRTSSelectionManager_1a216c9073cb85eb5ccf47a78be6dcc6e9" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>DrawScreenRectBorder</name></member>
+      <member refid="classRTSSelectionManager_1aa7d8334f5a9bfe95f58b2e485ebd6695" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>enemyMovementValidator</name></member>
+      <member refid="classRTSSelectionManager_1a31336e426f512aa3c77e30921fc64693" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>enemyPathFinder</name></member>
+      <member refid="classRTSSelectionManager_1a0a3726488363e236df0f1290003fcdcc" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>enemyShip</name></member>
+      <member refid="classRTSSelectionManager_1ae5c3f854603e7329447bf4cd81a1be14" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>GetMovementValidatorForCrew</name></member>
+      <member refid="classRTSSelectionManager_1ae59ec6d9fbc150d1b018fb03d62b17fe" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>GetPathfinderForCrew</name></member>
+      <member refid="classRTSSelectionManager_1a6479dd9b17c3c57ef0bb2ddd49080e4f" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>GetScreenRect</name></member>
+      <member refid="classRTSSelectionManager_1ac0db424ecf85d35f8a8106fa3bef1d64" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>Instance</name></member>
+      <member refid="classRTSSelectionManager_1af5c4ca57f7341634453e73f53d852169" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>isDragging</name></member>
+      <member refid="classRTSSelectionManager_1a0002c5992875339db3028007c2472b6d" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>IssueMoveCommand</name></member>
+      <member refid="classRTSSelectionManager_1aeebc0532d5eedc8c0b6709f86e065e38" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>IsUIWithTagClicked</name></member>
+      <member refid="classRTSSelectionManager_1a8643e14297e6aae5fb2b86a0ff48ee51" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>LateUpdate</name></member>
+      <member refid="classRTSSelectionManager_1ad41f57db47b19c1fc53f8415a0ec46c3" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>MoveForCombat</name></member>
+      <member refid="classRTSSelectionManager_1ab17a5c2ffd3a2d56fdb47fd2ddc03d36" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>movementValidator</name></member>
+      <member refid="classRTSSelectionManager_1af5851fbefc56215070a7599f6481be19" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>OnGUI</name></member>
+      <member refid="classRTSSelectionManager_1a6c4c8f47e58b23c94fbc5abec6ed3636" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>outlineMaterial</name></member>
+      <member refid="classRTSSelectionManager_1a3d3848f488ddaceb2042b8888c3375b1" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>playerShip</name></member>
+      <member refid="classRTSSelectionManager_1ad68211bed4c24acf467aa4dd2285d987" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>RefreshMovementData</name></member>
+      <member refid="classRTSSelectionManager_1a1b4a2ba4cb9ea7b2957e937a683ca02f" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>Select</name></member>
+      <member refid="classRTSSelectionManager_1af0d1c7a1b0c8e99784daebcb7fa2e777" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>selectedCrew</name></member>
+      <member refid="classRTSSelectionManager_1a8b52447f37a7606380dcf35294d2edf2" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>selectionTexture</name></member>
+      <member refid="classRTSSelectionManager_1a8f7107c278338d7cb2abbe4d1a6ebfba" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>SelectMultipleCrew</name></member>
+      <member refid="classRTSSelectionManager_1aa9ac0a8b0fd62fdd5bfb2a36589ccb16" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>SelectSingleCrew</name></member>
+      <member refid="classRTSSelectionManager_1a99bf984b250839df585a4f395a50a3d3" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>SetGRC</name></member>
+      <member refid="classRTSSelectionManager_1afb4ddb4974899d6505a796b884cc1309" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>SetOutline</name></member>
+      <member refid="classRTSSelectionManager_1a9d17ab1cce229c4d7d23cbd27e325d70" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>Start</name></member>
+      <member refid="classRTSSelectionManager_1af15ca7575734c8ba6a6f78e1fbc60d0a" prot="public" virt="non-virtual"><scope>RTSSelectionManager</scope><name>tmpEquipmentAttack</name></member>
+      <member refid="classRTSSelectionManager_1abe94780370a9af6878c66cf3cc98732a" prot="private" virt="non-virtual"><scope>RTSSelectionManager</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

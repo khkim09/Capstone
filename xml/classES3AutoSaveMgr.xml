@@ -1,0 +1,536 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classES3AutoSaveMgr" kind="class" language="C#" prot="public">
+    <compoundname>ES3AutoSaveMgr</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classES3AutoSaveMgr_1aa63c8cbc1de13c1281eb8689a22e91f8" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>LoadEvent</name>
+        <qualifiedname>ES3AutoSaveMgr.LoadEvent</qualifiedname>
+        <enumvalue id="classES3AutoSaveMgr_1aa63c8cbc1de13c1281eb8689a22e91f8a6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classES3AutoSaveMgr_1aa63c8cbc1de13c1281eb8689a22e91f8a9ca8bcac74fbf1f118cc3589aeca836f" prot="public">
+          <name>Awake</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classES3AutoSaveMgr_1aa63c8cbc1de13c1281eb8689a22e91f8aa6122a65eaa676f700ae68d393054a37" prot="public">
+          <name>Start</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="45" column="11" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="enum" id="classES3AutoSaveMgr_1a18c3cc5f4ee76c586444a7a0b186b737" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>SaveEvent</name>
+        <qualifiedname>ES3AutoSaveMgr.SaveEvent</qualifiedname>
+        <enumvalue id="classES3AutoSaveMgr_1a18c3cc5f4ee76c586444a7a0b186b737a6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classES3AutoSaveMgr_1a18c3cc5f4ee76c586444a7a0b186b737a09a561de0145dcaaf87f31c3b081fe99" prot="public">
+          <name>OnApplicationQuit</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classES3AutoSaveMgr_1a18c3cc5f4ee76c586444a7a0b186b737a3848dd01f0ac63dd3a694608e1f13c83" prot="public">
+          <name>OnApplicationPause</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="46" column="7" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="46" bodyend="46"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classES3AutoSaveMgr_1ad0c5af8e5d39d6b8738ebbaec15163ab" prot="public" static="yes" mutable="no">
+        <type><ref refid="classES3AutoSaveMgr" kindref="compound">ES3AutoSaveMgr</ref></type>
+        <definition>ES3AutoSaveMgr ES3AutoSaveMgr._current</definition>
+        <argsstring></argsstring>
+        <name>_current</name>
+        <qualifiedname>ES3AutoSaveMgr._current</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="13" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3AutoSaveMgr_1a3fe3114fdb84de54604f0b7853f9ef46" prot="public" static="yes" mutable="no">
+        <type>Dictionary&lt; Scene, <ref refid="classES3AutoSaveMgr" kindref="compound">ES3AutoSaveMgr</ref> &gt;</type>
+        <definition>Dictionary&lt;Scene, ES3AutoSaveMgr&gt; ES3AutoSaveMgr.managers</definition>
+        <argsstring></argsstring>
+        <name>managers</name>
+        <qualifiedname>ES3AutoSaveMgr.managers</qualifiedname>
+        <initializer>= new Dictionary&lt;Scene, <ref refid="classES3AutoSaveMgr" kindref="compound">ES3AutoSaveMgr</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="37" column="30" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classES3AutoSaveMgr_1aaacbc6d83c8ccd209236253b26d7761d" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classES3AutoSaveMgr" kindref="compound">ES3AutoSaveMgr</ref></type>
+        <definition>ES3AutoSaveMgr ES3AutoSaveMgr.Current</definition>
+        <argsstring></argsstring>
+        <name>Current</name>
+        <qualifiedname>ES3AutoSaveMgr.Current</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="14" column="34" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="15" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="property" id="classES3AutoSaveMgr_1a843628b75cd1d6fdc1938ab81cd60530" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classES3AutoSaveMgr" kindref="compound">ES3AutoSaveMgr</ref></type>
+        <definition>ES3AutoSaveMgr ES3AutoSaveMgr.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>ES3AutoSaveMgr.Instance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="40" column="34" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="41" bodyend="43"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classES3AutoSaveMgr_1a0c15f335dfb16c9e59e7f16b4dc22c0e" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ES3AutoSaveMgr.key</definition>
+        <argsstring></argsstring>
+        <name>key</name>
+        <qualifiedname>ES3AutoSaveMgr.key</qualifiedname>
+        <initializer>= System.Guid.NewGuid().ToString()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="48" column="15" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3AutoSaveMgr_1a07b35f6bc12f1ec7a6b240e49b52bb49" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ES3AutoSaveMgr.immediatelyCommitToFile</definition>
+        <argsstring></argsstring>
+        <name>immediatelyCommitToFile</name>
+        <qualifiedname>ES3AutoSaveMgr.immediatelyCommitToFile</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="49" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3AutoSaveMgr_1a85e35a964bcc78e51bfa6c63b0293907" prot="public" static="no" mutable="no">
+        <type>SaveEvent</type>
+        <definition>SaveEvent ES3AutoSaveMgr.saveEvent</definition>
+        <argsstring></argsstring>
+        <name>saveEvent</name>
+        <qualifiedname>ES3AutoSaveMgr.saveEvent</qualifiedname>
+        <initializer>= SaveEvent.OnApplicationQuit</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="50" column="18" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3AutoSaveMgr_1a10dad8961b69d54c37be406dd0234bec" prot="public" static="no" mutable="no">
+        <type>LoadEvent</type>
+        <definition>LoadEvent ES3AutoSaveMgr.loadEvent</definition>
+        <argsstring></argsstring>
+        <name>loadEvent</name>
+        <qualifiedname>ES3AutoSaveMgr.loadEvent</qualifiedname>
+        <initializer>= LoadEvent.Start</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="51" column="18" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3AutoSaveMgr_1a7be95509b452933b30dc2b5d6f04176b" prot="public" static="no" mutable="no">
+        <type><ref refid="classES3SerializableSettings" kindref="compound">ES3SerializableSettings</ref></type>
+        <definition>ES3SerializableSettings ES3AutoSaveMgr.settings</definition>
+        <argsstring></argsstring>
+        <name>settings</name>
+        <qualifiedname>ES3AutoSaveMgr.settings</qualifiedname>
+        <initializer>= new <ref refid="classES3SerializableSettings" kindref="compound">ES3SerializableSettings</ref>(&quot;SaveFile.es3&quot;, ES3.Location.Cache)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="52" column="32" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classES3AutoSaveMgr_1a0ed4841e6362795c67ab3721f49e90a9" prot="public" static="no" mutable="no">
+        <type>HashSet&lt; <ref refid="classES3AutoSave" kindref="compound">ES3AutoSave</ref> &gt;</type>
+        <definition>HashSet&lt;ES3AutoSave&gt; ES3AutoSaveMgr.autoSaves</definition>
+        <argsstring></argsstring>
+        <name>autoSaves</name>
+        <qualifiedname>ES3AutoSaveMgr.autoSaves</qualifiedname>
+        <initializer>= new HashSet&lt;<ref refid="classES3AutoSave" kindref="compound">ES3AutoSave</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="54" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="54" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classES3AutoSaveMgr_1a70193b042c0fa5268bd95e289a8fcdfc" prot="private" static="no" mutable="no">
+        <type>List&lt; long &gt;</type>
+        <definition>List&lt;long&gt; ES3AutoSaveMgr.destroyedIds</definition>
+        <argsstring></argsstring>
+        <name>destroyedIds</name>
+        <qualifiedname>ES3AutoSaveMgr.destroyedIds</qualifiedname>
+        <initializer>= new List&lt;long&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="56" column="10" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="56" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classES3AutoSaveMgr_1af5573712062e31049b7dcf2a0755f55a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3AutoSaveMgr.Save</definition>
+        <argsstring>()</argsstring>
+        <name>Save</name>
+        <qualifiedname>ES3AutoSaveMgr.Save</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="58" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="58" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3AutoSaveMgr_1af80e8de2c747d39cfce7634403cd08da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3AutoSaveMgr.Load</definition>
+        <argsstring>()</argsstring>
+        <name>Load</name>
+        <qualifiedname>ES3AutoSaveMgr.Load</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="94" column="13" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="94" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3AutoSaveMgr_1a676c1f0fd5b5340703cfd4c309521784" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3AutoSaveMgr.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>ES3AutoSaveMgr.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="133" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="133" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3AutoSaveMgr_1a9e69b1efab8bb1ad24fe0ea65882b193" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3AutoSaveMgr.GetAutoSaves</definition>
+        <argsstring>()</argsstring>
+        <name>GetAutoSaves</name>
+        <qualifiedname>ES3AutoSaveMgr.GetAutoSaves</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="192" column="17" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="192" bodyend="198"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classES3AutoSaveMgr_1afb0312c08ff4b7726630af4f32b6693f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3AutoSaveMgr.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>ES3AutoSaveMgr.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="127" column="10" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="127" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3AutoSaveMgr_1a108179a4e5de4884c6c228abaa4ffe57" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3AutoSaveMgr.OnApplicationQuit</definition>
+        <argsstring>()</argsstring>
+        <name>OnApplicationQuit</name>
+        <qualifiedname>ES3AutoSaveMgr.OnApplicationQuit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="142" column="10" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="142" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3AutoSaveMgr_1a0605b19a9a14065d12a1f346b5c572a3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3AutoSaveMgr.OnApplicationPause</definition>
+        <argsstring>(bool paused)</argsstring>
+        <name>OnApplicationPause</name>
+        <qualifiedname>ES3AutoSaveMgr.OnApplicationPause</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>paused</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="148" column="6" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="148" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3AutoSaveMgr_1a0716a707523980a54d7e4f52c90584b8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ES3AutoSaveMgr.ManageSlots</definition>
+        <argsstring>()</argsstring>
+        <name>ManageSlots</name>
+        <qualifiedname>ES3AutoSaveMgr.ManageSlots</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="215" column="10" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="215" bodyend="221"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classES3AutoSaveMgr_1ae49594f8cee70beb1db021c2d5dba51d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3AutoSaveMgr.AddAutoSave</definition>
+        <argsstring>(ES3AutoSave autoSave)</argsstring>
+        <name>AddAutoSave</name>
+        <qualifiedname>ES3AutoSaveMgr.AddAutoSave</qualifiedname>
+        <param>
+          <type><ref refid="classES3AutoSave" kindref="compound">ES3AutoSave</ref></type>
+          <declname>autoSave</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="156" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="156" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="classES3AutoSaveMgr_1ae1bf684efcd53a91b351db2b359e3c40" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ES3AutoSaveMgr.DestroyAutoSave</definition>
+        <argsstring>(ES3AutoSave autoSave)</argsstring>
+        <name>DestroyAutoSave</name>
+        <qualifiedname>ES3AutoSaveMgr.DestroyAutoSave</qualifiedname>
+        <param>
+          <type><ref refid="classES3AutoSave" kindref="compound">ES3AutoSave</ref></type>
+          <declname>autoSave</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="167" column="20" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="167" bodyend="189"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classES3AutoSaveMgr_1a7242877d4816238c05e8b7c1e0bb14eb" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int ES3AutoSaveMgr.GetDepth</definition>
+        <argsstring>(Transform t)</argsstring>
+        <name>GetDepth</name>
+        <qualifiedname>ES3AutoSaveMgr.GetDepth</qualifiedname>
+        <param>
+          <type>Transform</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="201" column="16" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="201" bodyend="212"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ES3AutoSaveMgr</label>
+        <link refid="classES3AutoSaveMgr"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8">
+        <label>ES3</label>
+        <link refid="classES3"/>
+      </node>
+      <node id="1">
+        <label>ES3AutoSaveMgr</label>
+        <link refid="classES3AutoSaveMgr"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>+_current</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+settings</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ES3Defaults</label>
+        <link refid="classES3Defaults"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+settings</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ES3SerializableSettings</label>
+        <link refid="classES3SerializableSettings"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ES3Settings</label>
+        <link refid="classES3Settings"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-_defaults</edgelabel>
+          <edgelabel>-_unencryptedUncompressedSettings</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-_defaultSettingsScriptableObject</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+compressionType</edgelabel>
+          <edgelabel>+directory</edgelabel>
+          <edgelabel>+encryptionType</edgelabel>
+          <edgelabel>+format</edgelabel>
+          <edgelabel>+memberReferenceMode</edgelabel>
+          <edgelabel>+referenceMode</edgelabel>
+          <edgelabel>-_location</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>+encoding</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="7">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="9">
+        <label>System</label>
+      </node>
+      <node id="5">
+        <label>System::ICloneable</label>
+      </node>
+    </collaborationgraph>
+    <location file="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" line="11" column="7" bodyfile="Assets/Plugins/Easy Save 3/Scripts/Auto Save/ES3AutoSaveMgr.cs" bodystart="12" bodyend="222"/>
+    <listofallmembers>
+      <member refid="classES3AutoSaveMgr_1ad0c5af8e5d39d6b8738ebbaec15163ab" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>_current</name></member>
+      <member refid="classES3AutoSaveMgr_1ae49594f8cee70beb1db021c2d5dba51d" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>AddAutoSave</name></member>
+      <member refid="classES3AutoSaveMgr_1a0ed4841e6362795c67ab3721f49e90a9" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>autoSaves</name></member>
+      <member refid="classES3AutoSaveMgr_1a676c1f0fd5b5340703cfd4c309521784" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>Awake</name></member>
+      <member refid="classES3AutoSaveMgr_1aaacbc6d83c8ccd209236253b26d7761d" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>Current</name></member>
+      <member refid="classES3AutoSaveMgr_1ae1bf684efcd53a91b351db2b359e3c40" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>DestroyAutoSave</name></member>
+      <member refid="classES3AutoSaveMgr_1a70193b042c0fa5268bd95e289a8fcdfc" prot="private" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>destroyedIds</name></member>
+      <member refid="classES3AutoSaveMgr_1a9e69b1efab8bb1ad24fe0ea65882b193" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>GetAutoSaves</name></member>
+      <member refid="classES3AutoSaveMgr_1a7242877d4816238c05e8b7c1e0bb14eb" prot="private" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>GetDepth</name></member>
+      <member refid="classES3AutoSaveMgr_1a07b35f6bc12f1ec7a6b240e49b52bb49" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>immediatelyCommitToFile</name></member>
+      <member refid="classES3AutoSaveMgr_1a843628b75cd1d6fdc1938ab81cd60530" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>Instance</name></member>
+      <member refid="classES3AutoSaveMgr_1a0c15f335dfb16c9e59e7f16b4dc22c0e" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>key</name></member>
+      <member refid="classES3AutoSaveMgr_1af80e8de2c747d39cfce7634403cd08da" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>Load</name></member>
+      <member refid="classES3AutoSaveMgr_1a10dad8961b69d54c37be406dd0234bec" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>loadEvent</name></member>
+      <member refid="classES3AutoSaveMgr_1aa63c8cbc1de13c1281eb8689a22e91f8" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>LoadEvent</name></member>
+      <member refid="classES3AutoSaveMgr_1a3fe3114fdb84de54604f0b7853f9ef46" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>managers</name></member>
+      <member refid="classES3AutoSaveMgr_1a0716a707523980a54d7e4f52c90584b8" prot="private" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>ManageSlots</name></member>
+      <member refid="classES3AutoSaveMgr_1a0605b19a9a14065d12a1f346b5c572a3" prot="private" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>OnApplicationPause</name></member>
+      <member refid="classES3AutoSaveMgr_1a108179a4e5de4884c6c228abaa4ffe57" prot="private" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>OnApplicationQuit</name></member>
+      <member refid="classES3AutoSaveMgr_1af5573712062e31049b7dcf2a0755f55a" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>Save</name></member>
+      <member refid="classES3AutoSaveMgr_1a85e35a964bcc78e51bfa6c63b0293907" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>saveEvent</name></member>
+      <member refid="classES3AutoSaveMgr_1a18c3cc5f4ee76c586444a7a0b186b737" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>SaveEvent</name></member>
+      <member refid="classES3AutoSaveMgr_1a7be95509b452933b30dc2b5d6f04176b" prot="public" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>settings</name></member>
+      <member refid="classES3AutoSaveMgr_1afb0312c08ff4b7726630af4f32b6693f" prot="private" virt="non-virtual"><scope>ES3AutoSaveMgr</scope><name>Start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
